@@ -63,7 +63,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.RegisterProperty("dummy", new PropertyValue(6));
             var index = testingTarget.GetPropertyIndex("dummy");
             var result = testingTarget.GetPropertyName(index);
-            Assert.AreEqual("dummy", result, "should be eaqual.");
+            Assert.AreEqual("dummy", result, "should be equal.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatableGetPropertyName END (OK)");
@@ -160,7 +160,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsTrue(10001001 == index);
 
             var result = view.GetPropertyType(index);
-            Assert.AreEqual(PropertyType.Map, result, "should be eaqual.");
+            Assert.AreEqual(PropertyType.Map, result, "should be equal.");
 
             view.Dispose();
             tlog.Debug(tag, $"AnimatableGetGetPropertyType END (OK)");
@@ -185,7 +185,7 @@ namespace Tizen.NUI.Devel.Tests
             var index = testingTarget.GetPropertyIndex("dummy");
             testingTarget.SetProperty(index, new PropertyValue(8));
             testingTarget.GetProperty(index).Get(out int result);
-            Assert.AreEqual(8, result, "should be eaqual.");
+            Assert.AreEqual(8, result, "should be equal.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatableSetProperty END (OK)");
@@ -209,7 +209,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.RegisterProperty("dummy", new PropertyValue(6));
             var index = testingTarget.GetPropertyIndex("dummy");
             testingTarget.GetProperty(index).Get(out int result);
-            Assert.AreEqual(6, result, "should be eaqual.");
+            Assert.AreEqual(6, result, "should be equal.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatableRegisterProperty END (OK)");
@@ -233,7 +233,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.RegisterProperty("dummy", new PropertyValue(6), PropertyAccessMode.Animatable);
             var index = testingTarget.GetPropertyIndex("dummy");
             testingTarget.GetProperty(index).Get(out int result);
-            Assert.AreEqual(6, result, "should be eaqual.");
+            Assert.AreEqual(6, result, "should be equal.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatableRegisterPropertyWithAccessMode END (OK)");
@@ -257,7 +257,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.RegisterProperty("dummy", new PropertyValue(6), PropertyAccessMode.Animatable);
             var index = testingTarget.GetPropertyIndex("dummy");
             testingTarget.GetProperty(index).Get(out int result);
-            Assert.AreEqual(6, result, "should be eaqual.");
+            Assert.AreEqual(6, result, "should be equal.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatableGetProperty END (OK)");

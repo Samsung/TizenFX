@@ -54,6 +54,35 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("BaseObject GetTypeInfo.")]
+        [Property("SPEC", "Tizen.NUI.BaseObject.GetTypeInfo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void BaseObjectGetTypeInfo()
+        {
+            tlog.Debug(tag, $"BaseObjectGetTypeInfo START");
+
+            var testingTarget = new BaseObject(Interop.NDalic.GetImplementation(BaseHandle.getCPtr(widget)), false);
+            Assert.IsNotNull(testingTarget, "should not be null.");
+            Assert.IsInstanceOf<BaseObject>(testingTarget, "should be an instance of BaseObject class!");
+
+            try
+            {
+                testingTarget.GetTypeInfo(new TypeInfo(widget.SwigCPtr.Handle, false));
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Cuaght Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"BaseObjectGetTypeInfo END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("BaseObject GetTypeName.")]
         [Property("SPEC", "Tizen.NUI.BaseObject.GetTypeName M")]
         [Property("SPEC_URL", "-")]

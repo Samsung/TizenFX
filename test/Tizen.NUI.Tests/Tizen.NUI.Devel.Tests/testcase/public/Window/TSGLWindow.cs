@@ -107,33 +107,60 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"GLWindowWindowSize END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("GLWindow SetEglConfig")]
-        //[Property("SPEC", "Tizen.NUI.GLWindow.SetEglConfig M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //public void GLWindowSetEglConfig()
-        //{
-        //    tlog.Debug(tag, $"GLWindowSetEglConfig START");
+        [Test]
+        [Category("P2")]
+        [Description("GLWindow WindowSize")]
+        [Property("SPEC", "Tizen.NUI.GLWindow.WindowSize A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        public void GLWindowWindowSizeNullValue()
+        {
+            tlog.Debug(tag, $"GLWindowWindowSizeNullValue START");
 
-        //    var testingTarget = new GLWindow();
-        //    Assert.IsNotNull(testingTarget, "Can't create success object GLWindow");
-        //    Assert.IsInstanceOf<GLWindow>(testingTarget, "Should be an instance of GLWindow type.");
+            var testingTarget = new GLWindow();
+            Assert.IsNotNull(testingTarget, "Can't create success object GLWindow");
+            Assert.IsInstanceOf<GLWindow>(testingTarget, "Should be an instance of GLWindow type.");
 
-        //    try
-        //    {
-        //        testingTarget.SetEglConfig(true, true, 10, GLESVersion.Version20);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
+            try
+            {
+                Size2D size2d = null;
+                testingTarget.WindowSize = size2d;
+            }
+            catch (ArgumentNullException)
+            {
+                testingTarget.Destroy();
+                tlog.Debug(tag, $"GLWindowWindowSizeNullValue END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
+        }
 
-        //    testingTarget.Destroy();
-        //    tlog.Debug(tag, $"GLWindowSetEglConfig END (OK)");
-        //}
+        [Test]
+        [Category("P1")]
+        [Description("GLWindow SetEglConfig")]
+        [Property("SPEC", "Tizen.NUI.GLWindow.SetEglConfig M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void GLWindowSetEglConfig()
+        {
+            tlog.Debug(tag, $"GLWindowSetEglConfig START");
+
+            var testingTarget = new GLWindow();
+            Assert.IsNotNull(testingTarget, "Can't create success object GLWindow");
+            Assert.IsInstanceOf<GLWindow>(testingTarget, "Should be an instance of GLWindow type.");
+
+            try
+            {
+                testingTarget.SetEglConfig(true, true, 10, GLESVersion.Version20);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            testingTarget.Destroy();
+            tlog.Debug(tag, $"GLWindowSetEglConfig END (OK)");
+        }
 
         [Test]
         [Category("P1")]
@@ -516,6 +543,33 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
+        [Category("P2")]
+        [Description("GLWindow SetAvailableOrientations")]
+        [Property("SPEC", "Tizen.NUI.GLWindow.SetAvailableOrientations M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void GLWindowSetAvailableOrientationsNullValue()
+        {
+            tlog.Debug(tag, $"GLWindowSetAvailableOrientationsNullValue START");
+            
+            string name = "myGLWindow";
+            Rectangle rectangle = new Rectangle(20, 20, 100, 100);
+            var testingTarget = new GLWindow(name, rectangle, true);
+
+            try
+            {
+                List<GLWindow.GLWindowOrientation> list = null;
+                testingTarget.SetAvailableOrientations(list);
+            }
+            catch (ArgumentNullException)
+            {
+                testingTarget.Destroy();
+                tlog.Debug(tag, $"GLWindowSetAvailableOrientationsNullValue END (OK)");
+                Assert.Pass("Caught ArgumentNullException :  Passed!");
+            }
+        }
+
+        [Test]
         [Category("P1")]
         [Description("GLWindow RenderOnce")]
         [Property("SPEC", "Tizen.NUI.GLWindow.RenderOnce M")]
@@ -551,6 +605,27 @@ namespace Tizen.NUI.Devel.Tests
 
             a1.Destroy();
             tlog.Debug(tag, $"GLWindowRegisterGlCallback END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("GLWindow RenderingMode")]
+        [Property("SPEC", "Tizen.NUI.GLWindow.RenderingMode A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        public void GLWindowRenderingMode()
+        {
+            tlog.Debug(tag, $"GLWindowRenderingMode START");
+
+            var testingTarget = new GLWindow();
+            Assert.IsNotNull(testingTarget, "Can't create success object GLWindow");
+            Assert.IsInstanceOf<GLWindow>(testingTarget, "Should be an instance of GLWindow type.");
+
+            testingTarget.RenderingMode = GLRenderingMode.Continuous;
+            tlog.Debug(tag, "RenderingMode : " + testingTarget.RenderingMode);
+
+            testingTarget.Destroy();
+            tlog.Debug(tag, $"GLWindowRenderingMode END (OK)");
         }
 
         public void GLInit() { }
