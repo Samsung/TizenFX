@@ -75,6 +75,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size ToDp(this Size pixel)
         {
+            if (pixel == null) return null;
             return new Size(GraphicsTypeManager.Instance.ConvertFromPixel(pixel.Width),
                             GraphicsTypeManager.Instance.ConvertFromPixel(pixel.Height));
         }
@@ -89,6 +90,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size ToPixel(this Size dp)
         {
+            if (dp == null) return null;
             return new Size(GraphicsTypeManager.Instance.ConvertToPixel(dp.Width),
                             GraphicsTypeManager.Instance.ConvertToPixel(dp.Height));
         }
@@ -103,6 +105,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D ToDp(this Size2D pixel)
         {
+            if (pixel == null) return null;
             return new Size2D((int)GraphicsTypeManager.Instance.ConvertFromPixel(pixel.Width),
                               (int)GraphicsTypeManager.Instance.ConvertFromPixel(pixel.Height));
         }
@@ -117,6 +120,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Size2D ToPixel(this Size2D dp)
         {
+            if (dp == null) return null;
             return new Size2D((int)GraphicsTypeManager.Instance.ConvertToPixel(dp.Width),
                               (int)GraphicsTypeManager.Instance.ConvertToPixel(dp.Height));
         }
@@ -131,6 +135,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Position ToDp(this Position pixel)
         {
+            if (pixel == null) return null;
             return new Position(GraphicsTypeManager.Instance.ConvertFromPixel(pixel.X),
                                 GraphicsTypeManager.Instance.ConvertFromPixel(pixel.Y));
         }
@@ -145,6 +150,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Position ToPixel(this Position dp)
         {
+            if (dp == null) return null;
             return new Position(GraphicsTypeManager.Instance.ConvertToPixel(dp.X),
                                 GraphicsTypeManager.Instance.ConvertToPixel(dp.Y));
         }
@@ -159,6 +165,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Position2D ToDp(this Position2D pixel)
         {
+            if (pixel == null) return null;
             return new Position2D((int)GraphicsTypeManager.Instance.ConvertFromPixel(pixel.X),
                                   (int)GraphicsTypeManager.Instance.ConvertFromPixel(pixel.Y));
         }
@@ -173,6 +180,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Position2D ToPixel(this Position2D dp)
         {
+            if (dp == null) return null;
             return new Position2D((int)GraphicsTypeManager.Instance.ConvertToPixel(dp.X),
                                   (int)GraphicsTypeManager.Instance.ConvertToPixel(dp.Y));
         }
@@ -187,6 +195,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Rectangle ToDp(this Rectangle pixel)
         {
+            if (pixel == null) return null;
             return new Rectangle((int)GraphicsTypeManager.Instance.ConvertFromPixel(pixel.X),
                                  (int)GraphicsTypeManager.Instance.ConvertFromPixel(pixel.Y),
                                  (int)GraphicsTypeManager.Instance.ConvertFromPixel(pixel.Width),
@@ -203,6 +212,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Rectangle ToPixel(this Rectangle dp)
         {
+            if (dp == null) return null;
             return new Rectangle((int)GraphicsTypeManager.Instance.ConvertToPixel(dp.X),
                                  (int)GraphicsTypeManager.Instance.ConvertToPixel(dp.Y),
                                  (int)GraphicsTypeManager.Instance.ConvertToPixel(dp.Width),
@@ -219,6 +229,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Extents ToDp(this Extents pixel)
         {
+            if (pixel == null) return null;
             return new Extents((ushort)GraphicsTypeManager.Instance.ConvertFromPixel(pixel.Start),
                                (ushort)GraphicsTypeManager.Instance.ConvertFromPixel(pixel.End),
                                (ushort)GraphicsTypeManager.Instance.ConvertFromPixel(pixel.Top),
@@ -235,6 +246,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Extents ToPixel(this Extents dp)
         {
+            if (dp == null) return null;
             return new Extents((ushort)GraphicsTypeManager.Instance.ConvertToPixel(dp.Start),
                                (ushort)GraphicsTypeManager.Instance.ConvertToPixel(dp.End),
                                (ushort)GraphicsTypeManager.Instance.ConvertToPixel(dp.Top),
