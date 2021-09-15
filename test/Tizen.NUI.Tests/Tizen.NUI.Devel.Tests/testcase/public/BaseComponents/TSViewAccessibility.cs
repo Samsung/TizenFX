@@ -264,9 +264,9 @@ namespace Tizen.NUI.Devel.Tests
         [Test]
         [Category("P1")]
         [Description("ViewAccessibility.View.RemoveAccessibilityAttribute.")]
-        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.RemoveAccessibilityAttribute A")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.RemoveAccessibilityAttribute M")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ViewAccessibilityViewRemoveAccessibilityAttribute()
         {
@@ -288,15 +288,16 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
+            testingTarget.Dispose();
             tlog.Debug(tag, $"ViewAccessibilityViewRemoveAccessibilityAttribute END (OK)");
         }
 
         [Test]
         [Category("P1")]
         [Description("ViewAccessibility.View.ClearAccessibilityAttributes.")]
-        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.ClearAccessibilityAttributes A")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.ClearAccessibilityAttributes MR")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ViewAccessibilityViewClearAccessibilityAttributes()
         {
@@ -318,7 +319,220 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
+            testingTarget.Dispose();
             tlog.Debug(tag, $"ViewAccessibilityViewClearAccessibilityAttributes END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ViewAccessibility.View.ClearAccessibilityHighlight.")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.ClearAccessibilityHighlight M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewAccessibilityViewClearAccessibilityHighlight()
+        {
+            tlog.Debug(tag, $"ViewAccessibilityViewClearAccessibilityHighlight START");
+
+            var testingTarget = new View();
+            Assert.IsNotNull(testingTarget, "Can't create success object View");
+            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
+
+            testingTarget.AccessibilityHighlightable = true;
+
+            try
+            {
+                var result = testingTarget.ClearAccessibilityHighlight();
+                tlog.Debug(tag, "ClearAccessibilityHighlight : " + result);
+
+                result = testingTarget.GrabAccessibilityHighlight();
+                tlog.Debug(tag, "GrabAccessibilityHighlight : " + result);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewAccessibilityViewClearAccessibilityHighlight END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ViewAccessibility.View.AppendAccessibilityRelation.")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.AppendAccessibilityRelation M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewAccessibilityViewAppendAccessibilityRelation()
+        {
+            tlog.Debug(tag, $"ViewAccessibilityViewAppendAccessibilityRelation START");
+
+            var testingTarget = new View()
+            {
+                Size = new Size2D(100, 100),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.TopCenter,
+                PivotPoint = PivotPoint.TopCenter,
+                BackgroundColor = Color.AquaMarine,
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object View");
+            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
+
+            using (View child = new View())
+            {
+                try
+                {
+                    testingTarget.AppendAccessibilityRelation(child, AccessibilityRelationType.MemberOf);
+                    var result = testingTarget.GetAccessibilityRelations();
+                    tlog.Debug(tag, "AccessibilityRelations : " + result);
+                    
+                    testingTarget.RemoveAccessibilityRelation(child, AccessibilityRelationType.MemberOf);
+                    testingTarget.ClearAccessibilityRelations();
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewAccessibilityViewAppendAccessibilityRelation END (OK)");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("ViewAccessibility.View.AppendAccessibilityRelation.")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.AppendAccessibilityRelation M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewAccessibilityViewAppendAccessibilityRelationNullValue()
+        {
+            tlog.Debug(tag, $"ViewAccessibilityViewAppendAccessibilityRelationNullValue START");
+
+            var testingTarget = new View()
+            {
+                Size = new Size2D(100, 100),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.TopCenter,
+                PivotPoint = PivotPoint.TopCenter,
+                BackgroundColor = Color.AquaMarine,
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object View");
+            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
+
+            View child = null;
+            try
+            {
+                testingTarget.AppendAccessibilityRelation(child, AccessibilityRelationType.MemberOf);
+            }
+            catch (ArgumentNullException)
+            {
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"ViewAccessibilityViewAppendAccessibilityRelationNullValue END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ViewAccessibility.View.SetAccessibilityReadingInfoTypes.")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.SetAccessibilityReadingInfoTypes M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewAccessibilityViewSetAccessibilityReadingInfoTypes()
+        {
+            tlog.Debug(tag, $"ViewAccessibilityViewSetAccessibilityReadingInfoTypes START");
+
+            var testingTarget = new View()
+            {
+                Size = new Size2D(100, 100),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.TopCenter,
+                PivotPoint = PivotPoint.TopCenter,
+                BackgroundColor = Color.AquaMarine,
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object View");
+            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
+
+           
+            testingTarget.SetAccessibilityReadingInfoTypes(AccessibilityReadingInfoTypes.Description);
+            var result = testingTarget.GetAccessibilityReadingInfoTypes();
+            tlog.Debug(tag, "AccessibilityReadingInfoTypes : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewAccessibilityViewSetAccessibilityReadingInfoTypes END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ViewAccessibility.View.NotifyAccessibilityStatesChange.")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.NotifyAccessibilityStatesChange M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewAccessibilityViewNotifyAccessibilityStatesChange()
+        {
+            tlog.Debug(tag, $"ViewAccessibilityViewNotifyAccessibilityStatesChange START");
+
+            var testingTarget = new View()
+            {
+                Size = new Size2D(100, 100),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.TopCenter,
+                PivotPoint = PivotPoint.TopCenter,
+                BackgroundColor = Color.AquaMarine,
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object View");
+            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
+
+            testingTarget.NotifyAccessibilityStatesChange(AccessibilityStates.Busy, true);
+            var result = testingTarget.GetAccessibilityStates();
+            tlog.Debug(tag, "AccessibilityStates : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewAccessibilityViewNotifyAccessibilityStatesChange END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ViewAccessibility.View.RegisterPopup.")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.RegisterPopup M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewAccessibilityRegisterPopup()
+        {
+            tlog.Debug(tag, $"ViewAccessibilityRegisterPopup START");
+
+            var testingTarget = new View()
+            {
+                Size = new Size2D(100, 100),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.TopCenter,
+                PivotPoint = PivotPoint.TopCenter,
+                BackgroundColor = Color.AquaMarine,
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object View");
+            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
+
+            try
+            {
+                testingTarget.RegisterPopup();
+                testingTarget.RemovePopup();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewAccessibilityRegisterPopup END (OK)");
         }
     }
 }

@@ -143,6 +143,160 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ViewHasFocus END (OK)");
         }
 
+        [Test]
+        [Description("View.RotateBy method")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewRotateBy()
+        {
+            tlog.Debug(tag, $"ViewRotateBy START");
 
+            var view = new View()
+            {
+                Size = new Size2D(200, 200),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.CenterRight,
+                PivotPoint = PivotPoint.CenterRight,
+                BackgroundColor = Color.Azure,
+                Focusable = true,
+            };
+            NUIApplication.GetDefaultWindow().Add(view);
+
+            try
+            {
+                using (Degree degree = new Degree(0.3f))
+                {
+                    using (Vector3 axis = new Vector3(1.0f, 1.0f, 0.0f))
+                    {
+                        view.RotateBy(degree, axis);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            NUIApplication.GetDefaultWindow().Remove(view);
+            view.Dispose();
+            tlog.Debug(tag, $"ViewRotateBy END (OK)");
+        }
+
+        [Test]
+        [Description("View.RotateBy method")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewRotateByRadian()
+        {
+            tlog.Debug(tag, $"ViewRotateByRadian START");
+
+            var view = new View()
+            {
+                Size = new Size2D(200, 200),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.CenterRight,
+                PivotPoint = PivotPoint.CenterRight,
+                BackgroundColor = Color.Azure,
+                Focusable = true,
+            };
+            NUIApplication.GetDefaultWindow().Add(view);
+
+            try
+            {
+                using (Radian angle = new Radian(0.3f))
+                {
+                    using (Vector3 axis = new Vector3(1.0f, 1.0f, 0.0f))
+                    {
+                        view.RotateBy(angle, axis);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            NUIApplication.GetDefaultWindow().Remove(view);
+            view.Dispose();
+            tlog.Debug(tag, $"ViewRotateByRadian END (OK)");
+        }
+
+        [Test]
+        [Description("View.Rotation method")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewRotateByRotation()
+        {
+            tlog.Debug(tag, $"ViewRotateByRotation START");
+
+            var view = new View()
+            {
+                Size = new Size2D(200, 200),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.CenterRight,
+                PivotPoint = PivotPoint.CenterRight,
+                BackgroundColor = Color.Azure,
+                Focusable = true,
+            };
+            NUIApplication.GetDefaultWindow().Add(view);
+
+            try
+            {
+                using (Radian angle = new Radian(0.3f))
+                {
+                    using (Vector3 axis = new Vector3(1.0f, 1.0f, 0.0f))
+                    {
+                        using (Rotation relativeRotation = new Rotation(angle, axis))
+                        {
+                            view.RotateBy(relativeRotation);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            NUIApplication.GetDefaultWindow().Remove(view);
+            view.Dispose();
+            tlog.Debug(tag, $"ViewRotateByRotation END (OK)");
+        }
+
+        [Test]
+        [Description("View.ScaleBy method")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewScaleBy()
+        {
+            tlog.Debug(tag, $"ViewScaleBy START");
+
+            var view = new View()
+            {
+                Size = new Size2D(200, 200),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.CenterRight,
+                PivotPoint = PivotPoint.CenterRight,
+                BackgroundColor = Color.Azure,
+                Focusable = true,
+            };
+            NUIApplication.GetDefaultWindow().Add(view);
+
+            try
+            {
+                using (Vector3 relativeScale = new Vector3(1.0f, 1.0f, 0.0f))
+                {
+                    view.ScaleBy(relativeScale);
+                }
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            NUIApplication.GetDefaultWindow().Remove(view);
+            view.Dispose();
+            tlog.Debug(tag, $"ViewScaleBy END (OK)");
+        }
     }
 }

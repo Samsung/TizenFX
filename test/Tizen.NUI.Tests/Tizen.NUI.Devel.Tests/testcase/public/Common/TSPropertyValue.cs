@@ -426,6 +426,75 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("PropertyValue constructor with Matrix3")]
+        [Property("SPEC", "Tizen.NUI.PropertyValue.PropertyValue C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PropertyValueConstructorWithMatrix3()
+        {
+            tlog.Debug(tag, $"PropertyValueConstructorWithMatrix3 START");
+
+            using (Matrix3 matrix = new Matrix3())
+            {
+                var testingTarget = new PropertyValue(matrix);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<PropertyValue>(testingTarget, "Should return PropertyValue instance.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"PropertyValueConstructorWithMatrix3 END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("PropertyValue constructor with Matrix")]
+        [Property("SPEC", "Tizen.NUI.PropertyValue.PropertyValue C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PropertyValueConstructorWithMatrix()
+        {
+            tlog.Debug(tag, $"PropertyValueConstructorWithMatrix START");
+
+            using (Matrix matrix = new Matrix())
+            {
+                var testingTarget = new PropertyValue(matrix);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<PropertyValue>(testingTarget, "Should return PropertyValue instance.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"PropertyValueConstructorWithMatrix END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("PropertyValue constructor with AngleAxis")]
+        [Property("SPEC", "Tizen.NUI.PropertyValue.PropertyValue C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PropertyValueConstructorWithAngleAxis()
+        {
+            tlog.Debug(tag, $"PropertyValueConstructorWithAngleAxis START");
+
+            using (AngleAxis angleAxis = new AngleAxis())
+            {
+                var testingTarget = new PropertyValue(angleAxis);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<PropertyValue>(testingTarget, "Should return PropertyValue instance.");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"PropertyValueConstructorWithAngleAxis END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("PropertyValue CreateFromObject")]
         [Property("SPEC", "Tizen.NUI.PropertyValue.CreateFromObject M")]
         [Property("SPEC_URL", "-")]
@@ -555,10 +624,10 @@ namespace Tizen.NUI.Devel.Tests
             var result = testingTarget.Get(rectangle);
             Assert.IsTrue(result);
 
-            Assert.AreEqual(1, rectangle.X, "should be eaqual.");
-            Assert.AreEqual(2, rectangle.Y, "should be eaqual.");
-            Assert.AreEqual(3, rectangle.Width, "should be eaqual.");
-            Assert.AreEqual(4, rectangle.Height, "should be eaqual.");
+            Assert.AreEqual(1, rectangle.X, "should be equal.");
+            Assert.AreEqual(2, rectangle.Y, "should be equal.");
+            Assert.AreEqual(3, rectangle.Width, "should be equal.");
+            Assert.AreEqual(4, rectangle.Height, "should be equal.");
 
             rectangle.Dispose();
             testingTarget.Dispose();
@@ -611,9 +680,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = testingTarget.Get(position);
             Assert.IsTrue(result);
 
-            Assert.AreEqual(1, position.X, "should be eaqual.");
-            Assert.AreEqual(2, position.Y, "should be eaqual.");
-            Assert.AreEqual(3, position.Z, "should be eaqual.");
+            Assert.AreEqual(1, position.X, "should be equal.");
+            Assert.AreEqual(2, position.Y, "should be equal.");
+            Assert.AreEqual(3, position.Z, "should be equal.");
 
             position.Dispose();
             testingTarget.Dispose();
@@ -639,8 +708,8 @@ namespace Tizen.NUI.Devel.Tests
             var result = testingTarget.Get(position);
             Assert.IsTrue(result);
 
-            Assert.AreEqual(1, position.X, "should be eaqual.");
-            Assert.AreEqual(2, position.Y, "should be eaqual.");
+            Assert.AreEqual(1, position.X, "should be equal.");
+            Assert.AreEqual(2, position.Y, "should be equal.");
 
             position.Dispose();
             testingTarget.Dispose();
@@ -720,10 +789,10 @@ namespace Tizen.NUI.Devel.Tests
             var result = testingTarget.Get(vector);
             Assert.IsTrue(result);
 
-            Assert.AreEqual(10, vector.X, "should be eaqual.");
-            Assert.AreEqual(20, vector.Y, "should be eaqual.");
-            Assert.AreEqual(30, vector.Z, "should be eaqual.");
-            Assert.AreEqual(40, vector.W, "should be eaqual.");
+            Assert.AreEqual(10, vector.X, "should be equal.");
+            Assert.AreEqual(20, vector.Y, "should be equal.");
+            Assert.AreEqual(30, vector.Z, "should be equal.");
+            Assert.AreEqual(40, vector.W, "should be equal.");
 
             vector.Dispose();
             testingTarget.Dispose();
@@ -749,10 +818,10 @@ namespace Tizen.NUI.Devel.Tests
             var result = testingTarget.Get(extents);
             Assert.IsTrue(result);
 
-            Assert.AreEqual(1, extents.Start, "should be eaqual.");
-            Assert.AreEqual(2, extents.End, "should be eaqual.");
-            Assert.AreEqual(3, extents.Top, "should be eaqual.");
-            Assert.AreEqual(4, extents.Bottom, "should be eaqual.");
+            Assert.AreEqual(1, extents.Start, "should be equal.");
+            Assert.AreEqual(2, extents.End, "should be equal.");
+            Assert.AreEqual(3, extents.Top, "should be equal.");
+            Assert.AreEqual(4, extents.Bottom, "should be equal.");
 
             extents.Dispose();
             testingTarget.Dispose();
@@ -814,9 +883,9 @@ namespace Tizen.NUI.Devel.Tests
             Radian angle = new Radian(20.0f);
             Vector3 axis = new Vector3(0, 0, 0);
             rotation.GetAxisAngle(axis, angle);
-            Assert.AreEqual(0.27f, float.Parse(axis.X.ToString("F2")), "shoule be eaqual.");
-            Assert.AreEqual(0.53f, float.Parse(axis.Y.ToString("F2")), "shoule be eaqual.");
-            Assert.AreEqual(0.80f, float.Parse(axis.Z.ToString("F2")), "shoule be eaqual.");
+            Assert.AreEqual(0.27f, float.Parse(axis.X.ToString("F2")), "shoule be equal.");
+            Assert.AreEqual(0.53f, float.Parse(axis.Y.ToString("F2")), "shoule be equal.");
+            Assert.AreEqual(0.80f, float.Parse(axis.Z.ToString("F2")), "shoule be equal.");
 
             testingTarget.Dispose();
             rotation.Dispose();
@@ -841,7 +910,7 @@ namespace Tizen.NUI.Devel.Tests
 
             string result = "";
             testingTarget.Get(out result);
-            Assert.AreEqual("DALI", result, "should be eaqual.");
+            Assert.AreEqual("DALI", result, "should be equal.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"PropertyValueGetPropertyStringValue END (OK)");
@@ -872,7 +941,7 @@ namespace Tizen.NUI.Devel.Tests
 
             float temp = 0.0f;
             testingTarget[0].Get(out temp);
-            Assert.AreEqual(3.0f, temp, "should be eaqual.");
+            Assert.AreEqual(3.0f, temp, "should be equal.");
 
             testingTarget.Dispose();
             propertyValue.Dispose();
@@ -907,7 +976,7 @@ namespace Tizen.NUI.Devel.Tests
             PropertyValue propertyValue = propertyMap[2];
             float temp = 0.0f;
             propertyValue.Get(out temp);
-            Assert.AreEqual(400.0f, temp, "should be eaqual.");
+            Assert.AreEqual(400.0f, temp, "should be equal.");
 
             testingTarget.Dispose();
             dummy.Dispose();
