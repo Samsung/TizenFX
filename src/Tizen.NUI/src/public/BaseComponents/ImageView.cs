@@ -1131,10 +1131,16 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Gets or sets the mode to adjust view size to preserve the aspect ratio of the image resource.
-        /// If this is set to be true, then the width or height, which is not set by user explicitly, can be adjusted to preserve the aspect ratio of the image resource.
-        /// AdjustViewSize works only if ImageView is added to a View having Layout.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// This is false by default.
+        /// If this is set to be true, then the width or height value, which is not set by user explicitly, can be changed automatically
+        /// to preserve the aspect ratio of the image resource.
+        /// AdjustViewSize works only if ImageView is added to a View having Layout.
+        /// e.g. If the image resource size is (100, 100), then the ImageView requests size (100, 100) to its parent layout by default.
+        ///      If the ImageView's HeightSpecification is 50 and AdjustViewSize is true, then the ImageView requests size (50, 50) instead of (100, 50).
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
         public bool AdjustViewSize { get; set; } = false;
 
         internal Selector<string> ResourceUrlSelector
