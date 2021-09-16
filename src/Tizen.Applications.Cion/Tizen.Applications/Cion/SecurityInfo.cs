@@ -44,7 +44,12 @@ namespace Tizen.Applications.Cion
         /// <summary>
         /// Gets the CA cert path.
         /// </summary>
+        /// <remarks>
+        /// http://tizen.org/privilege/mediastorage is needed if the file path is relevant to media storage.
+        /// http://tizen.org/privilege/externalstorage is needed if the file path is relevant to external storage.
+        /// </remarks>
         /// <exception cref="ArgumentException">Thrown when the CA path is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public string CaPath
         {
@@ -72,7 +77,12 @@ namespace Tizen.Applications.Cion
         /// <summary>
         /// Gets the cert path.
         /// </summary>
+        /// <remarks>
+        /// http://tizen.org/privilege/mediastorage is needed if the file path is relevant to media storage.
+        /// http://tizen.org/privilege/externalstorage is needed if the file path is relevant to external storage.
+        /// </remarks>
         /// <exception cref="ArgumentException">Thrown when the cert path is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public string CertPath
         {
@@ -100,7 +110,12 @@ namespace Tizen.Applications.Cion
         /// <summary>
         /// Gets the private key path.
         /// </summary>
+        /// <remarks>
+        /// http://tizen.org/privilege/mediastorage is needed if the file path is relevant to media storage.
+        /// http://tizen.org/privilege/externalstorage is needed if the file path is relevant to external storage.
+        /// </remarks>
         /// <exception cref="ArgumentException">Thrown when the private key path is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public string PrivateKeyPath
         {
