@@ -112,7 +112,7 @@ namespace Tizen.NUI
         {
             return value * ((float)pointDpi / (float)GraphicsTypeManager.Instance.BaselineDpi);
         }
-x
+
         /// <summary>
         /// Converts pixel to point type
         /// </summary>
