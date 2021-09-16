@@ -62,7 +62,7 @@ namespace Tizen.NUI
             {
                 if (scriptValue.EndsWith("pt"))
                 {
-                    convertedValue = ConvertToPixel(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    convertedValue = ConvertToPixel(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("pt")), CultureInfo.InvariantCulture));
                 }
                 else if (scriptValue.EndsWith("px"))
                 {
@@ -112,7 +112,7 @@ namespace Tizen.NUI
         {
             return value * ((float)pointDpi / (float)GraphicsTypeManager.Instance.BaselineDpi);
         }
-
+x
         /// <summary>
         /// Converts pixel to point type
         /// </summary>

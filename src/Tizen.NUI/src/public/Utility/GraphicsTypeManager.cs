@@ -140,7 +140,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Density
         {
-            get => ((float)BaselineDpi / (float)ScaledDpi);
+            get => ((float)ScaledDpi / (float)BaselineDpi);
         }
 
         /// <summary>
