@@ -23,15 +23,15 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// PoppedEventArgs is a class to record popped event arguments which will be sent to user.
+    /// PoppedEventArgs is a class to record <see cref="Navigator.Popped"/> event arguments which will be sent to user.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class PoppedEventArgs : EventArgs
     {
         /// <summary>
         /// Page popped by Navigator.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Page Page { get; internal set; }
     }
 
@@ -115,9 +115,11 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// An event fired when Pop of a page has been finished.
-        /// Notice that Popped event handler should be removed when it is called not to call it duplicate.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// When you free resources in the Popped event handler, please make sure if the popped page is the page you find.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<PoppedEventArgs> Popped;
 
         /// <summary>
