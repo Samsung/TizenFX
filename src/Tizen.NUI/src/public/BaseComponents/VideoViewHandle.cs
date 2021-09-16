@@ -27,7 +27,7 @@ namespace Tizen.NUI
     internal class SafeNativePlayerHandle : SafeHandle
     {
         /// <summary>
-        /// Constructor, Native player handle is set to handle.
+        /// Initializes a new instance of SafeNativePlayerHandle referencing the given videoView.
         /// </summary>
         internal SafeNativePlayerHandle(VideoView videoView) : base(global::System.IntPtr.Zero, false)
         {
