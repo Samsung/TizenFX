@@ -15,6 +15,7 @@
  *
  */
 
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -28,13 +29,118 @@ namespace Tizen.NUI
     {
         private volatile static GraphicsTypeManager graphicsTypeManager;
         private GraphicsTypeConverter typeConverter;
+        private float scalingFactor = 1.0f;
+        private int baselineDpi = DensityMedium;
 
         /// <summary>
-        /// Creates private GraphicsTypeManager object.
+        /// Constant of low(120) density dpi.
         /// </summary>
-        private GraphicsTypeManager()
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const ushort DensityLow = 120;
+
+        /// <summary>
+        /// Constant of medium(160) density dpi. Baseline dpi.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const ushort DensityMedium = 160;
+
+        /// <summary>
+        /// Constant of high(240) density dpi.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const ushort DensityHigh = 240;
+
+        /// <summary>
+        /// Constant of extra high(320) density dpi.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const ushort DensityXHigh = 320;
+
+        /// <summary>
+        /// Constant of double extra high(480) density dpi.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const ushort DensityXXHigh = 480;
+
+        /// <summary>
+        /// Constant of triple extra high(640) density dpi.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const ushort DensityXXXHigh = 640;
+
+        /// <summary>
+        /// Custom scale factor of display metrics.
+        /// ScalingFactor scale Dpi on DpiStable.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ScalingFactor
         {
-            typeConverter = new GraphicsTypeConverter();
+            get => scalingFactor;
+            internal set => scalingFactor = value;
+        }
+
+        /// <summary>
+        /// Dot per Inch value from system.
+        /// See Vector Dpi in <see cref="Tizen.NUI.Window" /> also.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int Dpi
+        {
+            get
+            {
+               Vector2 screenDpi = NUIApplication.GetDefaultWindow().Dpi;
+
+               // Currently Dpi.X and Dpi.Y is all same value from ecore_wl2_output_dpi_get
+               // Also Diagonal Dpi should be same as X, Y Dpi in normal rectangle-pixels display
+               // so for the convenience, we use Dpi.X
+               return Convert.ToInt32(Math.Round(screenDpi.X));
+            }
+        }
+
+        /// <summary>
+        /// Dpi for GraphicsTypeManager.
+        /// Dpi is scaled from Dpi with custom ScalingFactor.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int ScaledDpi
+        {
+            get
+            {
+                return Convert.ToInt32(Math.Round(Dpi * ScalingFactor));
+            }
+        }
+
+        /// <summary>
+        /// Default baseline dpi. Medium(160) density dpi is origianlly provided.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int BaselineDpi
+        {
+            get => baselineDpi;
+            internal set
+            {
+                baselineDpi = value;
+            }
+        }
+
+        /// <summary>
+        /// Density of display.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float Density
+        {
+            get => ((float)ScaledDpi / (float)BaselineDpi);
         }
 
         /// <summary>
@@ -54,17 +160,36 @@ namespace Tizen.NUI
 
                 return graphicsTypeManager;
             }
-
         }
 
         /// <summary>
-        /// Sets the custom GraphicsTypeConverter.
+        /// GraphicsTypeConverter that manager internally use for type converting.
+        /// Default TypeConverter is DpTypeConverter.
+        /// See <see cref="Tizen.NUI.GraphicsTypeConverter" /> and <see cref="Tizen.NUI.DpTypeConverter" />.
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetTypeConverter(GraphicsTypeConverter typeConverter)
+        public GraphicsTypeConverter TypeConverter
         {
-            this.typeConverter = typeConverter;
+            get
+            {
+                return typeConverter;
+            }
+            set
+            {
+                typeConverter = value;
+            }
+        }
+
+        /// <summary>
+        /// Creates private GraphicsTypeManager object.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private GraphicsTypeManager()
+        {
+            // Get default type converter
+            typeConverter = DpTypeConverter.Instance;
         }
 
         /// <summary>
