@@ -120,7 +120,8 @@ namespace Tizen.NUI.BaseComponents
             }
 
             onWindowSendEventCallback = SendViewAddedEventToWindow;
-            this.OnWindowSignal().Connect(onWindowSendEventCallback);
+            using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
+            signal?.Connect(onWindowSendEventCallback);
 
             if (!shown)
             {
