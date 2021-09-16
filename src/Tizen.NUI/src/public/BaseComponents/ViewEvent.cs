@@ -114,19 +114,23 @@ namespace Tizen.NUI.BaseComponents
                 if (keyInputFocusGainedEventHandler == null)
                 {
                     keyInputFocusGainedCallback = OnKeyInputFocusGained;
-                    this.KeyInputFocusGainedSignal().Connect(keyInputFocusGainedCallback);
+                    using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusGainedSignal(SwigCPtr), false);
+                    signal?.Connect(keyInputFocusGainedCallback);
                 }
-
                 keyInputFocusGainedEventHandler += value;
             }
 
             remove
             {
                 keyInputFocusGainedEventHandler -= value;
-
-                if (keyInputFocusGainedEventHandler == null && KeyInputFocusGainedSignal().Empty() == false)
+                if (keyInputFocusGainedEventHandler == null)
                 {
-                    this.KeyInputFocusGainedSignal().Disconnect(keyInputFocusGainedCallback);
+                    using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusGainedSignal(SwigCPtr), false);
+                    if (signal?.Empty() == false)
+                    {
+                        signal?.Disconnect(keyInputFocusGainedCallback);
+                        keyInputFocusGainedCallback = null;
+                    }
                 }
             }
         }
@@ -143,19 +147,23 @@ namespace Tizen.NUI.BaseComponents
                 if (keyInputFocusLostEventHandler == null)
                 {
                     keyInputFocusLostCallback = OnKeyInputFocusLost;
-                    this.KeyInputFocusLostSignal().Connect(keyInputFocusLostCallback);
+                    using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusLostSignal(SwigCPtr), false);
+                    signal?.Connect(keyInputFocusLostCallback);
                 }
-
                 keyInputFocusLostEventHandler += value;
             }
 
             remove
             {
                 keyInputFocusLostEventHandler -= value;
-
-                if (keyInputFocusLostEventHandler == null && KeyInputFocusLostSignal().Empty() == false)
+                if (keyInputFocusLostEventHandler == null)
                 {
-                    this.KeyInputFocusLostSignal().Disconnect(keyInputFocusLostCallback);
+                    using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusLostSignal(SwigCPtr), false);
+                    if (signal?.Empty() == false)
+                    {
+                        signal?.Disconnect(keyInputFocusLostCallback);
+                        keyInputFocusLostCallback = null;
+                    }
                 }
             }
         }
@@ -172,19 +180,23 @@ namespace Tizen.NUI.BaseComponents
                 if (keyEventHandler == null)
                 {
                     keyCallback = OnKeyEvent;
-                    this.KeyEventSignal().Connect(keyCallback);
+                    using ControlKeySignal signal = new ControlKeySignal(Interop.ViewSignal.KeyEventSignal(SwigCPtr), false);
+                    signal?.Connect(keyCallback);
                 }
-
                 keyEventHandler += value;
             }
 
             remove
             {
                 keyEventHandler -= value;
-
-                if (keyEventHandler == null && KeyEventSignal().Empty() == false)
+                if (keyEventHandler == null)
                 {
-                    this.KeyEventSignal().Disconnect(keyCallback);
+                    using ControlKeySignal signal = new ControlKeySignal(Interop.ViewSignal.KeyEventSignal(SwigCPtr), false);
+                    if (signal?.Empty() == false)
+                    {
+                        signal?.Disconnect(keyCallback);
+                        keyCallback = null;
+                    }
                 }
             }
         }
@@ -201,22 +213,24 @@ namespace Tizen.NUI.BaseComponents
                 if (onRelayoutEventHandler == null)
                 {
                     onRelayoutEventCallback = OnRelayout;
-                    this.OnRelayoutSignal().Connect(onRelayoutEventCallback);
+                    using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnRelayoutSignal(SwigCPtr), false);
+                    signal?.Connect(onRelayoutEventCallback);
                 }
-
                 onRelayoutEventHandler += value;
             }
 
             remove
             {
                 onRelayoutEventHandler -= value;
-
-                if (onRelayoutEventHandler == null && OnRelayoutSignal().Empty() == false)
+                if (onRelayoutEventHandler == null)
                 {
-                    this.OnRelayoutSignal().Disconnect(onRelayoutEventCallback);
-                    onRelayoutEventCallback = null;
+                    using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnRelayoutSignal(SwigCPtr), false);
+                    if (signal?.Empty() == false)
+                    {
+                        signal?.Disconnect(onRelayoutEventCallback);
+                        onRelayoutEventCallback = null;
+                    }
                 }
-
             }
         }
 
@@ -234,19 +248,23 @@ namespace Tizen.NUI.BaseComponents
                 if (interceptTouchDataEventHandler == null)
                 {
                     interceptTouchDataCallback = OnInterceptTouch;
-                    this.InterceptTouchSignal().Connect(interceptTouchDataCallback);
+                    using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(SwigCPtr), false);
+                    signal?.Connect(interceptTouchDataCallback);
                 }
-
                 interceptTouchDataEventHandler += value;
             }
 
             remove
             {
                 interceptTouchDataEventHandler -= value;
-
-                if (interceptTouchDataEventHandler == null && InterceptTouchSignal().Empty() == false)
+                if (interceptTouchDataEventHandler == null)
                 {
-                    this.InterceptTouchSignal().Disconnect(interceptTouchDataCallback);
+                    using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(SwigCPtr), false);
+                    if (signal?.Empty() == false)
+                    {
+                        signal?.Disconnect(interceptTouchDataCallback);
+                        interceptTouchDataCallback = null;
+                    }
                 }
             }
         }
@@ -276,19 +294,23 @@ namespace Tizen.NUI.BaseComponents
                 if (touchDataEventHandler == null)
                 {
                     touchDataCallback = OnTouch;
-                    this.TouchSignal().Connect(touchDataCallback);
+                    using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(SwigCPtr), false);
+                    signal.Connect(touchDataCallback);
                 }
-
                 touchDataEventHandler += value;
             }
 
             remove
             {
                 touchDataEventHandler -= value;
-
-                if (touchDataEventHandler == null && TouchSignal().Empty() == false)
+                if (touchDataEventHandler == null)
                 {
-                    this.TouchSignal().Disconnect(touchDataCallback);
+                    using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(SwigCPtr), false);
+                    if (signal.Empty() == false)
+                    {
+                        signal.Disconnect(touchDataCallback);
+                        touchDataCallback = null;
+                    }
                 }
             }
         }
@@ -305,21 +327,24 @@ namespace Tizen.NUI.BaseComponents
                 if (hoverEventHandler == null)
                 {
                     hoverEventCallback = OnHoverEvent;
-                    this.HoveredSignal().Connect(hoverEventCallback);
+                    using HoverSignal signal = new HoverSignal(Interop.ActorSignal.ActorHoveredSignal(SwigCPtr), false);
+                    signal?.Connect(hoverEventCallback);
                 }
-
                 hoverEventHandler += value;
             }
 
             remove
             {
                 hoverEventHandler -= value;
-
-                if (hoverEventHandler == null && HoveredSignal().Empty() == false)
+                if (hoverEventHandler == null)
                 {
-                    this.HoveredSignal().Disconnect(hoverEventCallback);
+                    using HoverSignal signal = new HoverSignal(Interop.ActorSignal.ActorHoveredSignal(SwigCPtr), false);
+                    if (signal?.Empty() == false)
+                    {
+                        signal?.Disconnect(hoverEventCallback);
+                        hoverEventCallback = null;
+                    }
                 }
-
             }
         }
 
@@ -335,7 +360,8 @@ namespace Tizen.NUI.BaseComponents
                 if (wheelEventHandler == null)
                 {
                     wheelEventCallback = OnWheelEvent;
-                    this.WheelEventSignal().Connect(wheelEventCallback);
+                    using WheelSignal signal = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(SwigCPtr), false);
+                    signal?.Connect(wheelEventCallback);
                 }
                 wheelEventHandler += value;
 
@@ -349,9 +375,14 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 wheelEventHandler -= value;
-                if (wheelEventHandler == null && WheelEventSignal().Empty() == false)
+                if (wheelEventHandler == null)
                 {
-                    this.WheelEventSignal().Disconnect(wheelEventCallback);
+                    using WheelSignal signal = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(SwigCPtr), false);
+                    if (signal?.Empty() == false)
+                    {
+                        signal?.Disconnect(wheelEventCallback);
+                        wheelEventCallback = null;
+                    }
                 }
 
                 WindowWheelEventHandler -= value;
@@ -374,20 +405,23 @@ namespace Tizen.NUI.BaseComponents
                 if (onWindowEventHandler == null)
                 {
                     onWindowEventCallback = OnWindow;
-                    this.OnWindowSignal().Connect(onWindowEventCallback);
+                    using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
+                    signal?.Connect(onWindowEventCallback);
                 }
-
                 onWindowEventHandler += value;
             }
 
             remove
             {
                 onWindowEventHandler -= value;
-
-                if (onWindowEventHandler == null && OnWindowSignal().Empty() == false)
+                if (onWindowEventHandler == null)
                 {
-                    this.OnWindowSignal().Disconnect(onWindowEventCallback);
-                    onWindowEventCallback = null;
+                    using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
+                    if (signal?.Empty() == false)
+                    {
+                        signal?.Disconnect(onWindowEventCallback);
+                        onWindowEventCallback = null;
+                    }
                 }
             }
         }
@@ -404,20 +438,23 @@ namespace Tizen.NUI.BaseComponents
                 if (offWindowEventHandler == null)
                 {
                     offWindowEventCallback = OffWindow;
-                    this.OffWindowSignal().Connect(offWindowEventCallback);
+                    using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOffSceneSignal(SwigCPtr), false);
+                    signal?.Connect(offWindowEventCallback);
                 }
-
                 offWindowEventHandler += value;
             }
 
             remove
             {
                 offWindowEventHandler -= value;
-
-                if (offWindowEventHandler == null && OffWindowSignal().Empty() == false)
+                if (offWindowEventHandler == null)
                 {
-                    this.OffWindowSignal().Disconnect(offWindowEventCallback);
-                    offWindowEventCallback = null;
+                    using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOffSceneSignal(SwigCPtr), false);
+                    if (signal?.Empty() == false)
+                    {
+                        signal?.Disconnect(offWindowEventCallback);
+                        offWindowEventCallback = null;
+                    }
                 }
             }
         }
@@ -492,20 +529,23 @@ namespace Tizen.NUI.BaseComponents
                 if (resourcesLoadedEventHandler == null)
                 {
                     ResourcesLoadedCallback = OnResourcesLoaded;
-                    this.ResourcesLoadedSignal().Connect(ResourcesLoadedCallback);
+                    using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(SwigCPtr), false);
+                    signal?.Connect(ResourcesLoadedCallback);
                 }
-
                 resourcesLoadedEventHandler += value;
             }
 
             remove
             {
                 resourcesLoadedEventHandler -= value;
-
-                if (resourcesLoadedEventHandler == null && ResourcesLoadedSignal().Empty() == false)
+                if (resourcesLoadedEventHandler == null)
                 {
-                    this.ResourcesLoadedSignal().Disconnect(ResourcesLoadedCallback);
-                    ResourcesLoadedCallback = null;
+                    using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(SwigCPtr), false);
+                    if (signal?.Empty() == false)
+                    {
+                        signal?.Disconnect(ResourcesLoadedCallback);
+                        ResourcesLoadedCallback = null;
+                    }
                 }
             }
         }
@@ -549,19 +589,23 @@ namespace Tizen.NUI.BaseComponents
                 if (backgroundResourceLoadedEventHandler == null)
                 {
                     backgroundResourceLoadedCallback = OnBackgroundResourceLoaded;
-                    this.ResourcesLoadedSignal().Connect(backgroundResourceLoadedCallback);
+                    using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(SwigCPtr), false);
+                    signal?.Connect(backgroundResourceLoadedCallback);
                 }
-
                 backgroundResourceLoadedEventHandler += value;
             }
+            
             remove
             {
                 backgroundResourceLoadedEventHandler -= value;
-
-                if (backgroundResourceLoadedEventHandler == null && ResourcesLoadedSignal().Empty() == false)
+                if (backgroundResourceLoadedEventHandler == null)
                 {
-                    this.ResourcesLoadedSignal().Disconnect(backgroundResourceLoadedCallback);
-                    backgroundResourceLoadedCallback = null;
+                    using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(SwigCPtr), false);
+                    if (signal?.Empty() == false)
+                    {
+                        signal?.Disconnect(backgroundResourceLoadedCallback);
+                        backgroundResourceLoadedCallback = null;
+                    }
                 }
             }
         }
