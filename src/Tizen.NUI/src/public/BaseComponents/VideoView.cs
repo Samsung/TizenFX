@@ -389,7 +389,7 @@ namespace Tizen.NUI.BaseComponents
         /// How to get native player handle
         /// <code>
         /// VideoView videoView = new VideoView();
-        /// videoView.ResourceUrl = "some xxx video path";
+        /// videoView.ResourceUrl = "some video path";
         /// var handle = videoView.NativeHandle;
         /// if(handle?.IsInvalid == false)
         /// {
