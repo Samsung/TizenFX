@@ -517,7 +517,6 @@ namespace Tizen.NUI
         {
             var val = new Uint16Pair(Interop.ImageLoading.GetOriginalImageSize(filename, orientationCorrection), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
-            val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
