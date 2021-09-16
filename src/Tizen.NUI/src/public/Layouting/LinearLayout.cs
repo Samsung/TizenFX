@@ -186,13 +186,13 @@ namespace Tizen.NUI
         /// <summary>
         /// Get/Set the horizontal alignment in the layout
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public HorizontalAlignment HorizontalAlignment { get; set; } = HorizontalAlignment.Begin;
 
         /// <summary>
         /// Get/Set the vertical alignment in the layout
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public VerticalAlignment VerticalAlignment { get; set; } = VerticalAlignment.Top;
 
         private float totalLength = 0.0f;
