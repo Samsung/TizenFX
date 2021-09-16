@@ -27,7 +27,7 @@ namespace Tizen.NUI
     internal class SafeNativeWindowHandle : SafeHandle
     {
         /// <summary>
-        ///Constructor, Native window handle is set to handle.
+        /// Initializes a new instance of SafeNativeWindowHandle referencing the given window.
         /// </summary>
         internal SafeNativeWindowHandle(Window currentWindow) : base(IntPtr.Zero, false)
         {
