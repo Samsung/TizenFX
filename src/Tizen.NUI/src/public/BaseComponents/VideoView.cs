@@ -391,7 +391,7 @@ namespace Tizen.NUI.BaseComponents
         /// VideoView videoView = new VideoView();
         /// videoView.ResourceUrl = "some video path";
         /// var handle = videoView.NativeHandle;
-        /// if(handle?.IsInvalid == false)
+        /// if(handle.IsInvalid == false)
         /// {
         ///     IntPtr nativeHandle = handle.DangerousGetHandle();
         ///     // do something with nativeHandle
