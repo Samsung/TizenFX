@@ -1734,7 +1734,7 @@ namespace Tizen.NUI
         /// <code>
         /// Window window = NUIApplication.GetDefaultWindow();
         /// var handle = window.NativeHandle;
-        /// if(handle?.IsInvalid == false)
+        /// if(handle.IsInvalid == false)
         /// {
         ///     IntPtr nativeHandle = handle.DangerousGetHandle();
         ///     // do something with nativeHandle
