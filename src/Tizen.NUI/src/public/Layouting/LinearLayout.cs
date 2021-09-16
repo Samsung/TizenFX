@@ -49,6 +49,7 @@ namespace Tizen.NUI
         /// [Draft] Enumeration for the alignment of the linear layout items
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use HorizontalAlignment and VerticalAlignment instead!")]
         public enum Alignment
         {
             /// <summary>
@@ -137,6 +138,7 @@ namespace Tizen.NUI
         /// [Draft] Get/Set the alignment in the layout
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use HorizontalAlignment and VerticalAlignment properties instead!")]
         public LinearLayout.Alignment LinearAlignment
         {
             get
