@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace Tizen.NUI
 {
@@ -190,6 +191,18 @@ namespace Tizen.NUI
         {
             // Get default type converter
             typeConverter = DpTypeConverter.Instance;
+
+            // Get ScalingFactor.
+            // FIXME: We need to get ScalingFactor from System.Information model-config firstly.
+            var scaleEnv = System.Environment.GetEnvironmentVariable("NUI_SCALING_FACTOR");
+            if (scaleEnv != null)
+            {
+                float scaled = 1.0f;
+                if (float.TryParse(scaleEnv, NumberStyles.Any, CultureInfo.InvariantCulture, out scaled))
+                {
+                    ScalingFactor = scaled;
+                }
+            }
         }
 
         /// <summary>
