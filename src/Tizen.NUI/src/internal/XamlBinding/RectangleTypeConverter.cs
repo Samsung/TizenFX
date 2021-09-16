@@ -37,9 +37,14 @@ namespace Tizen.NUI.Binding
             {
                 double x, y, w, h;
                 string[] xywh = value.Split(',');
-                if (xywh.Length == 4 && double.TryParse(xywh[0], NumberStyles.Number, CultureInfo.InvariantCulture, out x) && double.TryParse(xywh[1], NumberStyles.Number, CultureInfo.InvariantCulture, out y) &&
-                    double.TryParse(xywh[2], NumberStyles.Number, CultureInfo.InvariantCulture, out w) && double.TryParse(xywh[3], NumberStyles.Number, CultureInfo.InvariantCulture, out h))
+                if (xywh.Length == 4)
+                {
+                    x = GraphicsTypeManager.Instance.ConvertScriptToPixel(xywh[0]);
+                    y = GraphicsTypeManager.Instance.ConvertScriptToPixel(xywh[1]);
+                    w = GraphicsTypeManager.Instance.ConvertScriptToPixel(xywh[2]);
+                    h = GraphicsTypeManager.Instance.ConvertScriptToPixel(xywh[3]);
                     return new Rectangle((int)x, (int)y, (int)w, (int)h);
+                }
             }
 
             throw new InvalidOperationException(string.Format("Cannot convert \"{0}\" into {1}", value, typeof(Rectangle)));

@@ -449,20 +449,50 @@ namespace Tizen.NUI.Xaml
                 if (nodeType == typeof(Int16))
                 {
                     short retval;
-                    if (short.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    if (valuestring.EndsWith("dp"))
+                    {
+                        return (short)GraphicsTypeManager.Instance.ConvertToPixel(short.Parse(valuestring.Substring(0, valuestring.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    }
+                    else if (valuestring.EndsWith("px"))
+                    {
+                        return (short.Parse(valuestring.Substring(0, valuestring.LastIndexOf("px")), CultureInfo.InvariantCulture));
+                    }
+                    else if (short.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    {
                         return retval;
+                    }
                 }
                 if (nodeType == typeof(Int32))
                 {
                     int retval;
-                    if (int.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    if (valuestring.EndsWith("dp"))
+                    {
+                        return (int)GraphicsTypeManager.Instance.ConvertToPixel(int.Parse(valuestring.Substring(0, valuestring.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    }
+                    else if (valuestring.EndsWith("px"))
+                    {
+                        return int.Parse(valuestring.Substring(0, valuestring.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else if (int.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    {
                         return retval;
+                    }
                 }
                 if (nodeType == typeof(Int64))
                 {
                     long retval;
-                    if (long.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    if (valuestring.EndsWith("dp"))
+                    {
+                        return (long)GraphicsTypeManager.Instance.ConvertToPixel(long.Parse(valuestring.Substring(0, valuestring.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    }
+                    else if (valuestring.EndsWith("px"))
+                    {
+                        return long.Parse(valuestring.Substring(0, valuestring.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else if (long.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    {
                         return retval;
+                    }
                 }
                 if (nodeType == typeof(Byte))
                 {
@@ -473,32 +503,83 @@ namespace Tizen.NUI.Xaml
                 if (nodeType == typeof(UInt16))
                 {
                     ushort retval;
-                    if (ushort.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    if (valuestring.EndsWith("dp"))
+                    {
+                        return (ushort)GraphicsTypeManager.Instance.ConvertToPixel(ushort.Parse(valuestring.Substring(0, valuestring.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    }
+                    else if (valuestring.EndsWith("px"))
+                    {
+                        return ushort.Parse(valuestring.Substring(0, valuestring.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else if (ushort.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    {
                         return retval;
+                    }
                 }
                 if (nodeType == typeof(UInt32))
                 {
                     uint retval;
-                    if (uint.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    if (valuestring.EndsWith("dp"))
+                    {
+                        return (uint)GraphicsTypeManager.Instance.ConvertToPixel(uint.Parse(valuestring.Substring(0, valuestring.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    }
+                    else if (valuestring.EndsWith("px"))
+                    {
+                        return uint.Parse(valuestring.Substring(0, valuestring.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else if (uint.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    {
                         return retval;
+                    }
                 }
                 if (nodeType == typeof(UInt64))
                 {
                     ulong retval;
-                    if (ulong.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    if (valuestring.EndsWith("dp"))
+                    {
+                        return (ulong)GraphicsTypeManager.Instance.ConvertToPixel(ulong.Parse(valuestring.Substring(0, valuestring.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    }
+                    else if (valuestring.EndsWith("px"))
+                    {
+                        return ulong.Parse(valuestring.Substring(0, valuestring.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else if (ulong.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    {
                         return retval;
+                    }
                 }
                 if (nodeType == typeof(Single))
                 {
                     float retval;
-                    if (float.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    if (valuestring.EndsWith("dp"))
+                    {
+                        return GraphicsTypeManager.Instance.ConvertToPixel(float.Parse(valuestring.Substring(0, valuestring.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    }
+                    else if (valuestring.EndsWith("px"))
+                    {
+                        return float.Parse(valuestring.Substring(0, valuestring.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else if (float.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    {
                         return retval;
+                    }
                 }
                 if (nodeType == typeof(Double))
                 {
                     double retval;
-                    if (double.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    if (valuestring.EndsWith("dp"))
+                    {
+                        retval = (double.Parse(valuestring.Substring(0, valuestring.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                        return retval * GraphicsTypeManager.Instance.Density;
+                    }
+                    else if (valuestring.EndsWith("px"))
+                    {
+                        return double.Parse(valuestring.Substring(0, valuestring.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else if (double.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
+                    {
                         return retval;
+                    }
                 }
                 if (nodeType == typeof(Boolean))
                 {

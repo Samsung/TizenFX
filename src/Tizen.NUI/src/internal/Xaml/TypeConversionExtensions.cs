@@ -196,23 +196,129 @@ namespace Tizen.NUI.Xaml
                 if (toType == typeof(SByte))
                     return SByte.Parse(str, CultureInfo.InvariantCulture);
                 if (toType == typeof(Int16))
-                    return Int16.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    if (str.EndsWith("dp"))
+                    {
+                        return (Int16)GraphicsTypeManager.Instance.ConvertToPixel(Int16.Parse(str.Substring(0, str.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    }
+                    else if (str.EndsWith("px"))
+                    {
+                        return Int16.Parse(str.Substring(0, str.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else
+                    {
+                        return Int16.Parse(str, CultureInfo.InvariantCulture);
+                    }
+                }
                 if (toType == typeof(Int32))
-                    return Int32.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    if (str.EndsWith("dp"))
+                    {
+                        return (Int32)GraphicsTypeManager.Instance.ConvertToPixel(Int32.Parse(str.Substring(0, str.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    }
+                    else if (str.EndsWith("px"))
+                    {
+                        return Int32.Parse(str.Substring(0, str.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else
+                    {
+                        return Int32.Parse(str, CultureInfo.InvariantCulture);
+                    }
+                }
                 if (toType == typeof(Int64))
-                    return Int64.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    if (str.EndsWith("dp"))
+                    {
+                        return (Int64)GraphicsTypeManager.Instance.ConvertToPixel(Int64.Parse(str.Substring(0, str.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    }
+                    else if (str.EndsWith("px"))
+                    {
+                        return Int64.Parse(str.Substring(0, str.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else
+                    {
+                        return Int64.Parse(str, CultureInfo.InvariantCulture);
+                    }
+                }
                 if (toType == typeof(Byte))
                     return Byte.Parse(str, CultureInfo.InvariantCulture);
                 if (toType == typeof(UInt16))
-                    return UInt16.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    if (str.EndsWith("dp"))
+                    {
+                        return (UInt16)GraphicsTypeManager.Instance.ConvertToPixel(UInt16.Parse(str.Substring(0, str.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    }
+                    else if (str.EndsWith("px"))
+                    {
+                        return UInt16.Parse(str.Substring(0, str.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else
+                    {
+                        return UInt16.Parse(str, CultureInfo.InvariantCulture);
+                    }
+                }
                 if (toType == typeof(UInt32))
-                    return UInt32.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    if (str.EndsWith("dp"))
+                    {
+                        return (UInt32)GraphicsTypeManager.Instance.ConvertToPixel(UInt32.Parse(str.Substring(0, str.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    }
+                    else if (str.EndsWith("px"))
+                    {
+                        return UInt32.Parse(str.Substring(0, str.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else
+                    {
+                        return UInt32.Parse(str, CultureInfo.InvariantCulture);
+                    }
+                }
                 if (toType == typeof(UInt64))
-                    return UInt64.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    if (str.EndsWith("dp"))
+                    {
+                        return (UInt64)GraphicsTypeManager.Instance.ConvertToPixel(UInt64.Parse(str.Substring(0, str.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    }
+                    else if (str.EndsWith("px"))
+                    {
+                        return UInt64.Parse(str.Substring(0, str.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else
+                    {
+                        return UInt64.Parse(str, CultureInfo.InvariantCulture);
+                    }
+                }
                 if (toType == typeof(Single))
-                    return Single.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    if (str.EndsWith("dp"))
+                    {
+                        return (Single)GraphicsTypeManager.Instance.ConvertToPixel(Single.Parse(str.Substring(0, str.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                    }
+                    else if (str.EndsWith("px"))
+                    {
+                        return Single.Parse(str.Substring(0, str.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else
+                    {
+                        return Single.Parse(str, CultureInfo.InvariantCulture);
+                    }
+                }
                 if (toType == typeof(Double))
+                {
                     return Double.Parse(str, CultureInfo.InvariantCulture);
+                    if (str.EndsWith("dp"))
+                    {
+                        var ret = Int32.Parse(str.Substring(0, str.LastIndexOf("dp")), CultureInfo.InvariantCulture);
+                        return ret * GraphicsTypeManager.Instance.Density;
+                    }
+                    else if (str.EndsWith("px"))
+                    {
+                        return Double.Parse(str.Substring(0, str.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    }
+                    else
+                    {
+                        return Double.Parse(str, CultureInfo.InvariantCulture);
+                    }
+                }
                 if (toType == typeof(Boolean))
                     return Boolean.Parse(str);
                 if (toType == typeof(TimeSpan))
