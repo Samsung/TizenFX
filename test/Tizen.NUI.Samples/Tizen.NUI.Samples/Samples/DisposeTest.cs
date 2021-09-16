@@ -293,7 +293,7 @@ namespace Tizen.NUI.Samples
                 };
                 root.Add(view);
 
-                PixelData pixelData = PixelBuffer.Convert(ImageLoading.LoadImageFromFile(
+                PixelData pixelData = PixelBuffer.Convert(ImageLoader.LoadImageFromFile(
                     resource + "/images/PopupTest/circle.jpg",
                     new Size2D(),
                     FittingModeType.ScaleToFill
@@ -329,7 +329,7 @@ namespace Tizen.NUI.Samples
                 root.Add(view);
                 views.Add(view);
 
-                PixelData pixelData = PixelBuffer.Convert(ImageLoading.LoadImageFromFile(
+                PixelData pixelData = PixelBuffer.Convert(ImageLoader.LoadImageFromFile(
                     resource + "/images/PaletteTest/red2.jpg",
                     new Size2D(),
                     FittingModeType.ScaleToFill

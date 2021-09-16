@@ -18,9 +18,57 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="res\layout\BaseXamlSample.xaml" />
+    <None Remove="res\layout\BaseXamlSample3.xaml" />
+    <None Remove="res\layout\BindingSample.xaml" />
+    <None Remove="res\layout\MyResourceDictionary.xaml" />
+    <None Remove="testcase\public\Xaml\TotalSample\BaseXamlSample2.xaml" />
+    <None Remove="testcase\public\Xaml\TotalSample\ClockView.xaml" />
+    <None Remove="testcase\public\Xaml\TotalSample\HslColorScrollView.xaml" />
+    <None Remove="testcase\public\Xaml\TotalSample\StaticDateTimeView.xaml" />
+    <None Remove="testcase\public\Xaml\TotalSample\TotalSample.xaml" />
+    <None Remove="testcase\public\Xaml\TotalSample\XamlStyleSample.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="res\layout\MyResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\BaseXamlSample3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\BaseXamlSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\BindingSample.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\XamlStyleSample.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\TotalSample.xaml" />
+    <EmbeddedResource Include="testcase\public\Xaml\TotalSample\BaseXamlSample2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="testcase\public\Xaml\TotalSample\ClockView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="testcase\public\Xaml\TotalSample\HslColorScrollView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="testcase\public\Xaml\TotalSample\StaticDateTimeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 
   <ItemGroup>
 	<Folder Include="lib\" />
+	<Folder Include="res\examl\" />
   </ItemGroup>
 
   <Import Project="..\Common\dependencies.props" />

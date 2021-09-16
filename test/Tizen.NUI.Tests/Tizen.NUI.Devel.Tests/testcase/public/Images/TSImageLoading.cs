@@ -677,7 +677,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"ImageLoadingGetOriginalImageSize START");
 
-            var testingTarget = ImageLoading.GetOriginalImageSize(file_name, true);
+            var testingTarget = ImageLoading.GetOriginalImageSize(file_name);
             Assert.IsNotNull(testingTarget, "Can't create success object Size2D.");
             Assert.IsInstanceOf<Size2D>(testingTarget, "Should return Size2D instance.");
 
@@ -748,7 +748,15 @@ namespace Tizen.NUI.Devel.Tests
                 testingTarget.Dispose();
             }
 
-            tlog.Debug(tag, $"ImageLoadingDownloadImageSynchronouslyWithFittingMode END (OK)");
+            try
+            {
+                ImageLoading.DownloadImageSynchronously(bmp_path, null, FittingModeType.FitHeight);
+            }
+            catch (ArgumentNullException)
+            {
+                tlog.Debug(tag, $"ImageLoadingDownloadImageSynchronouslyWithFittingMode END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
         }
 
         [Test]
@@ -771,7 +779,15 @@ namespace Tizen.NUI.Devel.Tests
                 testingTarget.Dispose();
             }
 
-            tlog.Debug(tag, $"ImageLoadingDownloadImageSynchronouslyWithSamplingMode END (OK)");
+            try
+            {
+                ImageLoading.DownloadImageSynchronously(bmp_path, null, FittingModeType.FitHeight, SamplingModeType.Nearest);
+            }
+            catch (ArgumentNullException)
+            {
+                tlog.Debug(tag, $"ImageLoadingDownloadImageSynchronouslyWithSamplingMode END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
         }
 
         [Test]
@@ -794,7 +810,72 @@ namespace Tizen.NUI.Devel.Tests
                 testingTarget.Dispose();
             }
 
-            tlog.Debug(tag, $"ImageLoadingDownloadImageSynchronouslyWithOrientationCorrection END (OK)");
+            try
+            {
+                ImageLoading.DownloadImageSynchronously(bmp_path, null, FittingModeType.FitHeight, SamplingModeType.Nearest, true);
+            }
+            catch (ArgumentNullException)
+            {
+                tlog.Debug(tag, $"ImageLoadingDownloadImageSynchronouslyWithOrientationCorrection END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ImageLoading DownloadImageSynchronously. With Uri.")]
+        [Property("SPEC", "Tizen.NUI.ImageLoading.DownloadImageSynchronously M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ImageLoadingDownloadImageSynchronouslyByUrl()
+        {
+            tlog.Debug(tag, $"ImageLoadingDownloadImageSynchronouslyByUrl START");
+
+            using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
+            {
+                var testingTarget = ImageLoading.DownloadImageSynchronously(new Uri(bmp_path), size2d, FittingModeType.Center);
+                Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
+                Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
+
+                testingTarget.Dispose();
+            }
+
+            try
+            {
+                ImageLoading.DownloadImageSynchronously(new Uri(bmp_path), null, FittingModeType.FitHeight);
+            }
+            catch (ArgumentNullException)
+            {
+                tlog.Debug(tag, $"ImageLoadingDownloadImageSynchronouslyByUrl END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("ImageLoading DownloadImageSynchronously. With Uri.")]
+        [Property("SPEC", "Tizen.NUI.ImageLoading.DownloadImageSynchronously M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ImageLoadingDownloadImageSynchronouslyByNullUrl()
+        {
+            tlog.Debug(tag, $"ImageLoadingDownloadImageSynchronouslyByNullUrl START");
+
+            try
+            {
+                using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
+                {
+                    Uri uri = null;
+                    ImageLoading.DownloadImageSynchronously(uri, size2d, FittingModeType.Center);
+                }
+            }
+            catch (ArgumentNullException)
+            {
+                tlog.Debug(tag, $"ImageLoadingDownloadImageSynchronouslyByNullUrl END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
         }
     }
 }

@@ -60,11 +60,11 @@ namespace Tizen.NUI.Samples
             View currentParent = isCurrentParent1 ? parent1 : parent2;
             if (isCurrentParent1)
             {
-                currentChild = currentParent.FindChildByID(removeTargetID1) as TextLabel;
+                currentChild = currentParent.FindDescendantByID(removeTargetID1) as TextLabel;
             }
             else
             {
-                currentChild = currentParent.FindChildByID(removeTargetID2) as TextLabel;
+                currentChild = currentParent.FindDescendantByID(removeTargetID2) as TextLabel;
             }
 
             if (currentChild != null && currentChild.Name.Contains("ID"))

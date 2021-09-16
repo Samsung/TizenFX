@@ -34,7 +34,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <summary>
         /// Creates an initialized CanvasView.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public CanvasView() : this(Interop.CanvasView.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -91,8 +91,11 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
 
         /// <summary>
         /// The viewbox of the CanvasView.
+        /// The viewbox means the size of CanvasView's internal space.
+        /// If the size of the viewbox is larger than the size of the CanvasView, the shapes are displayed smaller than the specified size.
+        /// The default value of the viewbox is the same as the size of the canvasview.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Size2D ViewBox
         {
             get
@@ -139,7 +142,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <param name="drawable">Drawable object</param>
         /// <exception cref="ArgumentNullException"> Thrown when drawable is null. </exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void RemoveDrawable(Drawable drawable)
         {
             if (drawable == null)
@@ -154,7 +157,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// <summary>
         /// Remove all drawable objects added to the CanvasView.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void RemoveAllDrawables()
         {
             Interop.CanvasView.RemoveAllDrawables(View.getCPtr(this));

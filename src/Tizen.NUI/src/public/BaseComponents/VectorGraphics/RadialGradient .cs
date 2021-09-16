@@ -22,13 +22,13 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
     /// <summary>
     /// A class representing the radial gradient fill of the Shape object.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class RadialGradient : Gradient
     {
         /// <summary>
         /// Creates an initialized radial gradient.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public RadialGradient() : this(Interop.RadialGradient.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -45,7 +45,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <param name="centerPoint">The point of the center of the bounding circle.</param>
         /// <param name="radius">The radius of the bounding circle.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void SetBounds(Position2D centerPoint, float radius)
         {
             Interop.RadialGradient.SetBounds(BaseHandle.getCPtr(this), Position2D.getCPtr(centerPoint), radius);
@@ -57,7 +57,7 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <param name="centerPoint">The point of the center of the bounding circle.</param>
         /// <param name="radius">The radius of the bounding circle.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void GetBounds(ref Position2D centerPoint, ref float radius)
         {
             float ret = 0.0f;

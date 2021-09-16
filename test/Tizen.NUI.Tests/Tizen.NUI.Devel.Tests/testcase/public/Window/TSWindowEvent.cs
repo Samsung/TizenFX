@@ -28,6 +28,84 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("WindowEvent.TransitionEffectEventArgs State.")]
+        [Property("SPEC", "Tizen.NUI.WindowEvent.TransitionEffectEventArgs.State A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WindowEventTransitionEffectEventArgs()
+        {
+            tlog.Debug(tag, $"WindowEventTransitionEffectEventArgs START");
+
+            var testingTarget = new Window.TransitionEffectEventArgs();
+            Assert.IsNotNull(testingTarget, "Can't create success object Window");
+            Assert.IsInstanceOf<Window.TransitionEffectEventArgs>(testingTarget, "Should be an instance of Window.TransitionEffectEventArgs type.");
+
+            testingTarget.State = Window.EffectState.Start;
+            tlog.Debug(tag, "State : " + testingTarget.State);
+
+            testingTarget.Type = Window.EffectType.Show;
+            tlog.Debug(tag, "Type : " + testingTarget.Type);
+
+            tlog.Debug(tag, $"WindowEventTransitionEffectEventArgs END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WindowEvent.VisibilityChangedEventArgs Visibility.")]
+        [Property("SPEC", "Tizen.NUI.WindowEvent.VisibilityChangedEventArgs.Visibility A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WindowEventVisibilityChangedEventArgsVisibility()
+        {
+            tlog.Debug(tag, $"WindowEventVisibilityChangedEventArgsVisibility START");
+
+            var testingTarget = new Window.VisibilityChangedEventArgs();
+            Assert.IsNotNull(testingTarget, "Can't create success object Window");
+            Assert.IsInstanceOf<Window.VisibilityChangedEventArgs>(testingTarget, "Should be an instance of Window.VisibilityChangedEventArgs type.");
+
+            testingTarget.Visibility = true;
+            tlog.Debug(tag, "Visibility : " + testingTarget.Visibility);
+
+            tlog.Debug(tag, $"WindowEventVisibilityChangedEventArgsVisibility END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WindowEvent VisibiltyChangedSignalEmit.")]
+        [Property("SPEC", "Tizen.NUI.WindowEvent.VisibiltyChangedSignalEmit M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WindowEventVisibiltyChangedSignalEmit()
+        {
+            tlog.Debug(tag, $"WindowEventVisibiltyChangedSignalEmit START");
+
+            using (Rectangle rec = new Rectangle(0, 0, 2, 2))
+            {
+                var testingTarget = new Window(rec);
+                Assert.IsNotNull(testingTarget, "Can't create success object Window");
+                Assert.IsInstanceOf<Window>(testingTarget, "Should be an instance of Window type.");
+
+                try
+                {
+                    testingTarget.VisibiltyChangedSignalEmit(true);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"WindowEventVisibiltyChangedSignalEmit END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("WindowEvent FocusChanged.")]
         [Property("SPEC", "Tizen.NUI.WindowEvent.FocusChanged A")]
         [Property("SPEC_URL", "-")]

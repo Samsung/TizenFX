@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// TimeChangedEventArgs is a class to notify changed TimePicker value argument which will sent to user.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class TimeChangedEventArgs : EventArgs
     {
         /// <summary>
@@ -43,7 +43,7 @@ namespace Tizen.NUI.Components
         /// TimeChangedEventArgs default constructor.
         /// <returns>The current time value of TimePicker.</returns>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]   
+        /// <since_tizen> 9 </since_tizen>
         public DateTime Time { get; }
     }
 
@@ -52,7 +52,7 @@ namespace Tizen.NUI.Components
     /// a time through a scrolling motion by expressing the specified value as a list.
     /// TimePicker expresses the current time using the locale information of the system.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class TimePicker : Control
     {
         private bool isAm;
@@ -66,7 +66,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of TimePicker.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TimePicker()
         {
         }
@@ -75,7 +75,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of TimePicker.
         /// </summary>
         /// <param name="style">Creates TimePicker by special style defined in UX.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TimePicker(string style) : base(style)
         {
         }
@@ -84,7 +84,7 @@ namespace Tizen.NUI.Components
         /// Creates a new instance of TimePicker.
         /// </summary>
         /// <param name="timePickerStyle">Creates TimePicker by style customized by user.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public TimePicker(TimePickerStyle timePickerStyle) : base(timePickerStyle)
         {
         }
@@ -120,13 +120,13 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// An event emitted when TimePicker value changed, user can subscribe or unsubscribe to this event handler.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<TimeChangedEventArgs> TimeChanged;
 
         /// <summary>
         /// The hour value of TimePicker.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public DateTime Time
         {
             get
@@ -161,7 +161,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The is24hourview value of TimePicker.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool Is24HourView
         {
             get

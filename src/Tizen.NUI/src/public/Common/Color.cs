@@ -18,6 +18,7 @@
 using System;
 using Tizen.NUI.Binding;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace Tizen.NUI
 {
@@ -1029,7 +1030,7 @@ namespace Tizen.NUI
                         R = Math.Min(1.0f, ((float)Convert.ToInt32(components[0], 10)) / 255.0f);
                         G = Math.Min(1.0f, ((float)Convert.ToInt32(components[1], 10)) / 255.0f);
                         B = Math.Min(1.0f, ((float)Convert.ToInt32(components[2], 10)) / 255.0f);
-                        A = Math.Min(1.0f, float.Parse(components[3]));
+                        A = Math.Min(1.0f, float.Parse(components[3], CultureInfo.InvariantCulture));
                     }
                 }
             }

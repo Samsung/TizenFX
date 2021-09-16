@@ -42,7 +42,7 @@ namespace Tizen.NUI.BaseComponents
         private int widthPolicy = LayoutParamPolicies.WrapContent; // Layout width policy
         private int heightPolicy = LayoutParamPolicies.WrapContent; // Layout height policy
         private float weight = 0.0f; // Weighting of child View in a Layout
-        private bool backgroundImageSynchronosLoading = false;
+        private bool backgroundImageSynchronousLoading = false;
         private bool excludeLayouting = false;
         private LayoutTransition layoutTransition;
         private TransitionOptions transitionOptions = null;
@@ -532,7 +532,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The color for the borderline of the View.
         /// It is Color.Black by default.
-        /// This color is affected by View Opacity.
         /// </summary>
         /// <remarks>
         /// <para>
@@ -2564,11 +2563,30 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return backgroundImageSynchronosLoading;
+                return BackgroundImageSynchronousLoading;
             }
             set
             {
-                backgroundImageSynchronosLoading = value;
+                BackgroundImageSynchronousLoading = value;
+            }
+        }
+
+        /// <summary>
+        ///  Whether to load the BackgroundImage synchronously.
+        ///  If not specified, the default is false, i.e. the BackgroundImage is loaded asynchronously.
+        ///  Note: For Normal Quad images only.
+        /// </summary>
+        /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool BackgroundImageSynchronousLoading
+        {
+            get
+            {
+                return backgroundImageSynchronousLoading;
+            }
+            set
+            {
+                backgroundImageSynchronousLoading = value;
 
                 string bgUrl = null;
                 var pValue = Background.Find(ImageVisualProperty.URL);
@@ -2578,7 +2596,7 @@ namespace Tizen.NUI.BaseComponents
                 if (!string.IsNullOrEmpty(bgUrl))
                 {
                     PropertyMap bgMap = this.Background;
-                    var temp = new PropertyValue(backgroundImageSynchronosLoading);
+                    var temp = new PropertyValue(backgroundImageSynchronousLoading);
                     bgMap.Add("synchronousLoading", temp);
                     temp.Dispose();
                     Background = bgMap;

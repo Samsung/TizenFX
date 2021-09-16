@@ -466,7 +466,6 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The color for the borderline of the View.
-        /// This color is affected by View Opacity.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color BorderlineColor

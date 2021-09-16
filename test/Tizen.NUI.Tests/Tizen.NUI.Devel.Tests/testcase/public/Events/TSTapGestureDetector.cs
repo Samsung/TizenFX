@@ -308,6 +308,8 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.TapGesture = new TapGesture();
             tlog.Debug(tag, "TapGesture : " + testingTarget.TapGesture);
 
+            tlog.Debug(tag, "Handled : " + testingTarget.Handled);
+
             tlog.Debug(tag, $"TapGestureDetectedEventArgsView END (OK)");
         }
     }

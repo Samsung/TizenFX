@@ -1090,13 +1090,13 @@ namespace Tizen.NUI
             return instance;
         }
 
-        public static Application NewApplication(string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize, WindowType type)
+        public static Application NewApplication(string stylesheet, NUIApplication.WindowMode windowMode, WindowType type)
         {
             if (instance)
             {
                 return instance;
             }
-            Application ret = New(1, stylesheet, windowMode, positionSize, type);
+            Application ret = New(1, stylesheet, windowMode, type);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             instance = ret;
@@ -1206,9 +1206,12 @@ namespace Tizen.NUI
             return ret;
         }
 
-        public static Application New(int argc, string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize, WindowType type)
+        public static Application New(int argc, string stylesheet, NUIApplication.WindowMode windowMode, WindowType type)
         {
-            Application ret = new Application(Interop.Application.New(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize), (int)type), true);
+            // It will be removed until dali APIs are prepared.
+            Rectangle initRectangle = new Rectangle(0, 0, 0, 0);
+
+            Application ret = new Application(Interop.Application.New(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(initRectangle), (int)type), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

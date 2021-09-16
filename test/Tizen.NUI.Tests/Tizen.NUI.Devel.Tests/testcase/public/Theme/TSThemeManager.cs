@@ -16,6 +16,15 @@ namespace Tizen.NUI.Devel.Tests
         private const string tag = "NUITEST";
         private string path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "Test_Theme.xaml";
 
+        internal class IThemeCreatorImpy : IThemeCreator
+        {
+            public Theme Create()
+            {
+                var path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "Test_Theme.xaml";
+                return new Theme(path);
+            }
+        }
+
         [SetUp]
         public void Init()
         {
@@ -61,12 +70,12 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ThemeManagerplatformThemeEnabled START");
 
             ThemeManager.PlatformThemeEnabled = true;
-            tlog.Debug(tag, "PlatformThemeEnabled : " + ThemeManager.PlatformThemeEnabled);
+            tlog.Error(tag, "PlatformThemeEnabled : " + ThemeManager.PlatformThemeEnabled);
 
             var result = ThemeManager.ApplyPlatformTheme("Tizen.NUI.Theme.Common");
-            tlog.Debug(tag, "ApplyPlatformTheme : " + result);
-            tlog.Debug(tag, "GetPlatformStyle : " + ThemeManager.GetPlatformStyle("style"));
-            tlog.Debug(tag, "GetPlatformStyle : " + ThemeManager.GetPlatformStyle(typeof(ViewStyle)));
+            tlog.Error(tag, "ApplyPlatformTheme : " + result);
+            tlog.Error(tag, "GetPlatformStyle : " + ThemeManager.GetPlatformStyle("style"));
+            tlog.Error(tag, "GetPlatformStyle : " + ThemeManager.GetPlatformStyle(typeof(ViewStyle)));
 
             tlog.Debug(tag, $"ThemeManagerplatformThemeEnabled END (OK)");
         }
@@ -183,6 +192,62 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"ThemeManagerApplyFallbackTheme END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Test ThemeManager AddPackageTheme.")]
+        [Property("SPEC", "Tizen.NUI.ThemeManager.AddPackageTheme  M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        public void ThemeManagerAddPackageTheme()
+        {
+            tlog.Debug(tag, $"ThemeManagerAddPackageTheme START");
+
+            try
+            {
+                ThemeManager.AddPackageTheme(new IThemeCreatorImpy());
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"ThemeManagerAddPackageTheme END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ThemeManager ApplyExternalPlatformTheme.")]
+        [Property("SPEC", "Tizen.NUI.ThemeManager.ApplyExternalPlatformTheme  M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        public void ThemeManagerApplyExternalPlatformTheme()
+        {
+            tlog.Debug(tag, $"ThemeManagerApplyExternalPlatformTheme START");
+
+            var theme = new Theme(path);
+            ViewStyle style = new ViewStyle()
+            {
+                Color = Color.Cyan,
+            };
+
+            theme.AddStyle("style", style);
+
+            try
+            {
+                ThemeManager.ApplyExternalPlatformTheme(theme.Id, theme.Version);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"ThemeManagerApplyExternalPlatformTheme END (OK)");
         }
     }
 }

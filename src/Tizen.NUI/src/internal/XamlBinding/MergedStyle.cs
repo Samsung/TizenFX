@@ -127,18 +127,18 @@ namespace Tizen.NUI.Binding
         void RegisterImplicitStyles()
         {
             Type type = TargetType;
-            if (type == null)
-            {
-                return;
-            }
             while (true)
             {
-                BindableProperty implicitStyleProperty = BindableProperty.Create(nameof(ImplicitStyle), typeof(XamlStyle), typeof(View), default(XamlStyle),
-                        propertyChanged: (bindable, oldvalue, newvalue) => OnImplicitStyleChanged());
-                implicitStyles.Add(implicitStyleProperty);
-                Target.SetDynamicResource(implicitStyleProperty, type.FullName);
-                type = type.GetTypeInfo().BaseType;
-                if (stopAtTypes.Contains(type))
+                if (type != null)
+                {
+                    BindableProperty implicitStyleProperty = BindableProperty.Create(nameof(ImplicitStyle), typeof(XamlStyle), typeof(View), default(XamlStyle),
+                            propertyChanged: (bindable, oldvalue, newvalue) => OnImplicitStyleChanged());
+                    implicitStyles.Add(implicitStyleProperty);
+                    Target.SetDynamicResource(implicitStyleProperty, type.FullName);
+                    type = type.GetTypeInfo().BaseType;
+                }
+
+                if (type == null || stopAtTypes.Contains(type))
                     return;
             }
         }

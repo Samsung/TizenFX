@@ -1,4 +1,5 @@
-﻿using Tizen.NUI.BaseComponents;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Extension;
 using Tizen.NUI.Components;
 
 namespace Tizen.NUI.Samples
@@ -48,7 +49,7 @@ namespace Tizen.NUI.Samples
 
         private Window window;
         private Layer defaultLayer;
-        private RiveAnimationView rav;
+        private Tizen.NUI.Extension.RiveAnimationView rav;
         private TextLabel header;
         private Components.ScrollableBase scroll;
         private View[] viewItems;
@@ -65,7 +66,7 @@ namespace Tizen.NUI.Samples
             window.TouchEvent += OnRiveWindowTouchEvent;
 
             // Load RiveAnimation File
-            rav = new RiveAnimationView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "rive/space_reload.riv")
+            rav = new Tizen.NUI.Extension.RiveAnimationView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "rive/space_reload.riv")
             {
                 Size = new Size(720, 500),
                 Position = new Position(0, 72)
