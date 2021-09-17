@@ -38,6 +38,7 @@ namespace Tizen.Applications
         private Interop.CionClient.CionClientDisconnectedCb _disconnectedCb;
         private Interop.CionClient.CionClientPayloadAsyncResultCb _payloadAsyncResultCb;
         private Dictionary<string, TaskCompletionSource<PayloadAsyncResult>> _tcsDictionary = new Dictionary<string, TaskCompletionSource<PayloadAsyncResult>>();
+        private Dictionary<string, Interop.CionClient.CionClientPayloadAsyncResultCb> _payloadAsyncCbDictionary = new Dictionary<string, Interop.CionClient.CionClientPayloadAsyncResultCb>();
 
         /// <summary>
         /// Gets the service name of current cion client.
@@ -274,37 +275,41 @@ namespace Tizen.Applications
                 throw new ArgumentException("Payload is invalid.");
             }
 
+            if (_tcsDictionary.ContainsKey(payload.Id))
+            {
+                throw new InvalidOperationException("Payload is already sent.");
+            }
+
             TaskCompletionSource<PayloadAsyncResult> tcs = new TaskCompletionSource<PayloadAsyncResult>();
             _tcsDictionary[payload.Id] = tcs;
 
-            if (_payloadAsyncResultCb == null)
-            {
-                Interop.CionClient.CionClientPayloadAsyncResultCb cb = new Interop.CionClient.CionClientPayloadAsyncResultCb(
-                    (IntPtr result, IntPtr userData) =>
+            Interop.CionClient.CionClientPayloadAsyncResultCb cb = new Interop.CionClient.CionClientPayloadAsyncResultCb(
+                (IntPtr result, IntPtr userData) =>
+                {
+                    TaskCompletionSource<PayloadAsyncResult> tcsToReturn = _tcsDictionary[payload.Id];
+                    PayloadAsyncResult resultPayload = null;
+                    try
                     {
-                        TaskCompletionSource<PayloadAsyncResult> tcsToReturn = _tcsDictionary[payload.Id];
-                        PayloadAsyncResult resultPayload = null;
-                        try
-                        {
-                            resultPayload = PayloadAsyncResult.CreateFromHandle(result);
-                        }
-                        catch (Exception e)
-                        {
-                            Log.Error(LogTag, string.Format("Failed to create PayloadAsyncResult from result handle: {0}.", e.Message));
-                            tcsToReturn.SetException(e);
-                            return;
-                        }
-                        tcsToReturn.SetResult(resultPayload);
-                        _tcsDictionary.Remove(resultPayload.PayloadId);
-                    });
-                _payloadAsyncResultCb = cb;
-            }
+                        resultPayload = PayloadAsyncResult.CreateFromHandle(result);
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Error(LogTag, string.Format("Failed to create PayloadAsyncResult from result handle: {0}.", e.Message));
+                        tcsToReturn.SetException(e);
+                        return;
+                    }
+                    tcsToReturn.SetResult(resultPayload);
+                    _payloadAsyncCbDictionary.Remove(resultPayload.PayloadId);
+                    _tcsDictionary.Remove(resultPayload.PayloadId);
+                });
 
             Interop.Cion.ErrorCode ret = Interop.CionClient.CionClientSendPayloadAsync(_handle, payload?._handle, _payloadAsyncResultCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
             {
                 throw CionErrorFactory.GetException(ret, "Failed to send payload.");
             }
+
+            _payloadAsyncCbDictionary[payload?.Id] = cb;
 
             return tcs.Task;
         }
