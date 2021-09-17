@@ -224,7 +224,7 @@ namespace Tizen.Applications
         /// <since_tizen> 9 </since_tizen>
         public Task<PayloadAsyncResult> SendPayloadAsync(Payload payload, PeerInfo peerInfo)
         {
-            if (payload?.Id.Length == 0 || peerInfo?.UUID.Length == 0)
+            if (payload == null || payload.Id.Length == 0 || peerInfo == null || peerInfo.UUID.Length == 0)
             {
                 throw new ArgumentException("Payload or peerinfo is invalid.");
             }

@@ -262,7 +262,7 @@ namespace Tizen.Applications
         /// <since_tizen> 9 </since_tizen>
         public Task<PayloadAsyncResult> SendPayloadAsync(Payload payload)
         {
-            if (payload?.Id.Length == 0)
+            if (payload == null || payload.Id.Length == 0)
             {
                 throw new ArgumentException("Payload is invalid.");
             }
