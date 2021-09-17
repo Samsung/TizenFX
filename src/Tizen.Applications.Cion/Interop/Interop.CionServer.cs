@@ -37,7 +37,7 @@ internal static partial class Interop
         internal delegate void CionServerDataReceivedCb(string serviceName, IntPtr peerInfo, byte[] data, int dataSize, out byte[] returnData, out int returnDataSize, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void CionServerPayloadRecievedCb(string serviceName, IntPtr peerInfo, IntPtr payload, int status, IntPtr userData);
+        internal delegate void CionServerPayloadReceivedCb(string serviceName, IntPtr peerInfo, IntPtr payload, int status, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void CionServerConnectionRequestCb(string serviceName, IntPtr peerInfo, IntPtr userData);
@@ -70,8 +70,7 @@ internal static partial class Interop
         internal static extern ErrorCode CionServerDisconnect(ServerSafeHandle server, PeerInfoSafeHandle peerInfo);
 
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_send_payload_async")]
-        internal static extern ErrorCode CionServerSendPayloadAsync(ServerSafeHandle server, PeerInfoSafeHandle peerInfo, PayloadSafeHandle payload, 
-            CionServerPayloadAsyncResultCb cb, IntPtr userData);
+        internal static extern ErrorCode CionServerSendPayloadAsync(ServerSafeHandle server, PeerInfoSafeHandle peerInfo, PayloadSafeHandle payload, CionServerPayloadAsyncResultCb cb, IntPtr userData);
 
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_foreach_connected_peer_info")]
         internal static extern ErrorCode CionServerForeachConnectedPeerInfo(ServerSafeHandle server, CionServerPeerInfoIterator cb, IntPtr userData);
@@ -79,20 +78,29 @@ internal static partial class Interop
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_add_connection_result_cb")]
         internal static extern ErrorCode CionServerAddConnectionResultCb(ServerSafeHandle server, CionServerConnectionResultCb cb, IntPtr userData);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_server_add_payload_recieved_cb")]
-        internal static extern ErrorCode CionServerAddPayloadReceivedCb(ServerSafeHandle server, CionServerPayloadRecievedCb cb, IntPtr userData);
+        [DllImport(Libraries.Cion, EntryPoint = "cion_server_remove_connection_result_cb")]
+        internal static extern ErrorCode CionServerRemoveConnectionResultCb(ServerSafeHandle server, CionServerConnectionResultCb cb);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_server_add_error_reported_cb")]
-        internal static extern ErrorCode CionServerAddErrorReportedCb(ServerSafeHandle server, CionServerErrorReportedCb cb, IntPtr userData);
+        [DllImport(Libraries.Cion, EntryPoint = "cion_server_add_payload_recieved_cb")]
+        internal static extern ErrorCode CionServerAddPayloadReceivedCb(ServerSafeHandle server, CionServerPayloadReceivedCb cb, IntPtr userData);
+
+        [DllImport(Libraries.Cion, EntryPoint = "cion_server_remove_payload_received_cb")]
+        internal static extern ErrorCode CionServerRemovePayloadReceivedCb(ServerSafeHandle server, CionServerPayloadReceivedCb cb, IntPtr userData);
 
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_set_data_recieved_cb")]
         internal static extern ErrorCode CionServerSetDataReceivedCb(ServerSafeHandle server, CionServerDataReceivedCb cb, IntPtr userData);
 
+        [DllImport(Libraries.Cion, EntryPoint = "cion_server_unset_data_recieved_cb")]
+        internal static extern ErrorCode CionServerUnsetDataReceivedCb(ServerSafeHandle server, CionServerDataReceivedCb cb);
+
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_add_disconnected_cb")]
         internal static extern ErrorCode CionServerAddDisconnectedCb(ServerSafeHandle server, CionServerDisconnectedCb cb, IntPtr userData);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_server_set_ondemand_launch_enable")]
-        internal static extern ErrorCode CionServerSetOndemandLaunchEnable(ServerSafeHandle server, bool enable);
+        [DllImport(Libraries.Cion, EntryPoint = "cion_server_remove_disconnected_cb")]
+        internal static extern ErrorCode CionServerRemoveDisconnectedCb(ServerSafeHandle server, CionServerDisconnectedCb cb);
+
+        [DllImport(Libraries.Cion, EntryPoint = "cion_server_set_on_demand_launch_enable")]
+        internal static extern ErrorCode CionServerSetOnDemandLaunchEnable(ServerSafeHandle server, bool enable);
 
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_set_display_name")]
         internal static extern ErrorCode CionServerSetDisplayName(ServerSafeHandle server, string displayName);

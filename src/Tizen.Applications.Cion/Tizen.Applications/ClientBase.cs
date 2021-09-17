@@ -34,7 +34,7 @@ namespace Tizen.Applications
 
         private Interop.CionClient.CionClientServerDiscoveredCb _discoveredCb;
         private Interop.CionClient.CionClientConnectionResultCb _connectionResultCb;
-        private Interop.CionClient.CionClientPayloadRecievedCb _payloadRecievedCb;
+        private Interop.CionClient.CionClientPayloadReceivedCb _payloadRecievedCb;
         private Interop.CionClient.CionClientDisconnectedCb _disconnectedCb;
         private Interop.CionClient.CionClientPayloadAsyncResultCb _payloadAsyncResultCb;
         private Dictionary<string, TaskCompletionSource<PayloadAsyncResult>> _tcsDictionary = new Dictionary<string, TaskCompletionSource<PayloadAsyncResult>>();
@@ -113,7 +113,7 @@ namespace Tizen.Applications
                 throw CionErrorFactory.GetException(ret, "Failed to add connection status changed callback.");
             }
 
-            _payloadRecievedCb = new Interop.CionClient.CionClientPayloadRecievedCb(
+            _payloadRecievedCb = new Interop.CionClient.CionClientPayloadReceivedCb(
                 (string service, IntPtr peerInfo, IntPtr payload, int status, IntPtr userData) =>
                 {
                     Payload receivedPayload;

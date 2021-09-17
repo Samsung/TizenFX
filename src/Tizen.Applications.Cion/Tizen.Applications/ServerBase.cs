@@ -33,7 +33,7 @@ namespace Tizen.Applications
         private Interop.CionServer.CionServerConnectionRequestCb _connectionRequestCb;
         private Interop.CionServer.CionServerConnectionResultCb _connectionResultCb;
         private Interop.CionServer.CionServerDataReceivedCb _dataReceivedCb;
-        private Interop.CionServer.CionServerPayloadRecievedCb _payloadRecievedCb;
+        private Interop.CionServer.CionServerPayloadReceivedCb _payloadRecievedCb;
         private Interop.CionServer.CionServerDisconnectedCb _disconnectedCb;
         private Interop.CionServer.CionServerPayloadAsyncResultCb _payloadAsyncResultCb;
         private Dictionary<Tuple<string, string>, TaskCompletionSource<PayloadAsyncResult>> _tcsDictionary = new Dictionary<Tuple<string, string>, TaskCompletionSource<PayloadAsyncResult>>();
@@ -123,7 +123,14 @@ namespace Tizen.Applications
             _dataReceivedCb = new Interop.CionServer.CionServerDataReceivedCb(
                 (string service, IntPtr peerInfo, byte[] data, int dataSize, out byte[] returnData, out int returnDataSize, IntPtr userData) =>
                 {
-                    returnData = OnDataReceived(data, new PeerInfo(new PeerInfoSafeHandle(peerInfo, false)));
+                    Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
+                    if (clone_ret != Interop.Cion.ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Failed to clone peer info.");
+                        returnData = null;
+                        returnDataSize = -1;
+                    }
+                    returnData = OnDataReceived(data, new PeerInfo(clone));
                     returnDataSize = returnData.Length;
                 });
             ret = Interop.CionServer.CionServerSetDataReceivedCb(_handle, _dataReceivedCb, IntPtr.Zero);
@@ -133,7 +140,7 @@ namespace Tizen.Applications
                 throw CionErrorFactory.GetException(ret, "Failed to set data received callback.");
             }     
 
-            _payloadRecievedCb = new Interop.CionServer.CionServerPayloadRecievedCb(
+            _payloadRecievedCb = new Interop.CionServer.CionServerPayloadReceivedCb(
                 (string service, IntPtr peerInfo, IntPtr payload, int status, IntPtr userData) =>
                 {
                     Payload receivedPayload;
@@ -150,7 +157,13 @@ namespace Tizen.Applications
                             Log.Error(LogTag, "Invalid payload type received.");
                             return;
                     }
-                    OnPayloadReceived(receivedPayload, new PeerInfo(new PeerInfoSafeHandle(peerInfo, false)), (PayloadTransferStatus)status);
+                    Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
+                    if (clone_ret != Interop.Cion.ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Failed to clone peer info.");
+                        return;
+                    }
+                    OnPayloadReceived(receivedPayload, new PeerInfo(clone), (PayloadTransferStatus)status);
                 });
             ret = Interop.CionServer.CionServerAddPayloadReceivedCb(_handle, _payloadRecievedCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
@@ -356,7 +369,7 @@ namespace Tizen.Applications
         /// <since_tizen> 9 </since_tizen>
         public void SetOndemandLaunchEnabled(bool enable)
         {
-            Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerSetOndemandLaunchEnable(_handle, enable);
+            Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerSetOnDemandLaunchEnable(_handle, enable);
             if (ret != Interop.Cion.ErrorCode.None)
             {
                 throw CionErrorFactory.GetException(ret, "Failed to set ondemand launch enable");

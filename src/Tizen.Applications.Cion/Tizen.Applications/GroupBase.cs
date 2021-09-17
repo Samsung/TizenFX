@@ -81,9 +81,16 @@ namespace Tizen.Applications
                             receivedPayload = new FilePayload(new PayloadSafeHandle(payload, false));
                             break;
                         default:
-                            throw new ArgumentException("Invalid payload type received.");
+                            Log.Error(LogTag, "Invalid payload type received.");
+                            return;
                     }
-                    OnPayloadReceived(receivedPayload, new PeerInfo(new PeerInfoSafeHandle(peerInfo, false)));
+                    Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
+                    if (clone_ret != Interop.Cion.ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Failed to clone peer info.");
+                        return;
+                    }
+                    OnPayloadReceived(receivedPayload, new PeerInfo(clone));
                 });
             ret = Interop.CionGroup.CionGroupAddPayloadReceivedCb(_handle, _payloadReceivedCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
