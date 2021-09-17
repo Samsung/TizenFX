@@ -25,7 +25,7 @@ internal static partial class Interop
     internal static partial class CionClient
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void CionClientDiscoveredCb(string serviceName, IntPtr peerInfo, IntPtr userData);
+        internal delegate void CionClientServerDiscoveredCb(string serviceName, IntPtr peerInfo, IntPtr userData);
         
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void CionClientConnectionResultCb(string serviceName, IntPtr peerInfo, IntPtr result, IntPtr userData);
@@ -46,7 +46,7 @@ internal static partial class Interop
         internal static extern ErrorCode CionClientDestroy(IntPtr client);
         
         [DllImport(Libraries.Cion, EntryPoint = "cion_client_try_discovery")]
-        internal static extern ErrorCode CionClientTryDiscovery(ClientSafeHandle client, CionClientDiscoveredCb cb, IntPtr userData);
+        internal static extern ErrorCode CionClientTryDiscovery(ClientSafeHandle client, CionClientServerDiscoveredCb cb, IntPtr userData);
         
         [DllImport(Libraries.Cion, EntryPoint = "cion_client_stop_discovery")]
         internal static extern ErrorCode CionClientStopDiscovery(ClientSafeHandle client);

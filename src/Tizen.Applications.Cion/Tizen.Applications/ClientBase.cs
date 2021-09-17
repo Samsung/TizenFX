@@ -32,7 +32,7 @@ namespace Tizen.Applications
 
         private PeerInfo _peer;
 
-        private Interop.CionClient.CionClientDiscoveredCb _discoveredCb;
+        private Interop.CionClient.CionClientServerDiscoveredCb _discoveredCb;
         private Interop.CionClient.CionClientConnectionResultCb _connectionResultCb;
         private Interop.CionClient.CionClientPayloadRecievedCb _payloadRecievedCb;
         private Interop.CionClient.CionClientDisconnectedCb _disconnectedCb;
@@ -170,7 +170,7 @@ namespace Tizen.Applications
         {
             if (_discoveredCb == null)
             {
-                Interop.CionClient.CionClientDiscoveredCb cb = new Interop.CionClient.CionClientDiscoveredCb(
+                Interop.CionClient.CionClientServerDiscoveredCb cb = new Interop.CionClient.CionClientServerDiscoveredCb(
                     (string serviceName, IntPtr peerInfo, IntPtr userData) =>
                     {
                         Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
