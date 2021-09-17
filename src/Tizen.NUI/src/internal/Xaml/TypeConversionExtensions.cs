@@ -197,37 +197,37 @@ namespace Tizen.NUI.Xaml
                     return SByte.Parse(str, CultureInfo.InvariantCulture);
                 if (toType == typeof(Int16))
                 {
-                    return (Int16)GraphicsTypeManager.Instance.ConvertScriptToPixel(str);
+                    return Convert.ToInt16(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
                 }
                 if (toType == typeof(Int32))
                 {
-                    return (Int32)GraphicsTypeManager.Instance.ConvertScriptToPixel(str);
+                    return Convert.ToInt32(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
                 }
                 if (toType == typeof(Int64))
                 {
-                    return (Int64)GraphicsTypeManager.Instance.ConvertScriptToPixel(str);
+                    return Convert.ToInt64(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
                 }
                 if (toType == typeof(Byte))
                     return Byte.Parse(str, CultureInfo.InvariantCulture);
                 if (toType == typeof(UInt16))
                 {
-                    return (UInt16)GraphicsTypeManager.Instance.ConvertScriptToPixel(str);
+                    return Convert.ToUInt16(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
                 }
                 if (toType == typeof(UInt32))
                 {
-                    return (UInt32)GraphicsTypeManager.Instance.ConvertScriptToPixel(str);
+                    return Convert.ToUInt32(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
                 }
                 if (toType == typeof(UInt64))
                 {
-                    return (UInt64)GraphicsTypeManager.Instance.ConvertScriptToPixel(str);
+                    return Convert.ToUInt64(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
                 }
                 if (toType == typeof(Single))
                 {
-                    return (Single)GraphicsTypeManager.Instance.ConvertScriptToPixel(str);
+                    return GraphicsTypeManager.Instance.ConvertScriptToPixel(str);
                 }
                 if (toType == typeof(Double))
                 {
-                    return (Double)GraphicsTypeManager.Instance.ConvertScriptToPixel(str);
+                    return Convert.ToDouble(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
                 }
                 if (toType == typeof(Boolean))
                     return Boolean.Parse(str);

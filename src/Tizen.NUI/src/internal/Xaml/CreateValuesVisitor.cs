@@ -448,15 +448,15 @@ namespace Tizen.NUI.Xaml
                 }
                 if (nodeType == typeof(Int16))
                 {
-                    return (Int16)GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring);
+                    return Convert.ToInt16(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
                 if (nodeType == typeof(Int32))
                 {
-                    return (Int32)GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring);
+                    return Convert.ToInt32(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
                 if (nodeType == typeof(Int64))
                 {
-                    return (Int64)GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring);
+                    return Convert.ToInt64(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
                 if (nodeType == typeof(Byte))
                 {
@@ -466,23 +466,23 @@ namespace Tizen.NUI.Xaml
                 }
                 if (nodeType == typeof(UInt16))
                 {
-                    return (UInt16)GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring);
+                    return Convert.ToUInt16(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
                 if (nodeType == typeof(UInt32))
                 {
-                    return (UInt32)GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring);
+                    return Convert.ToUInt32(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
                 if (nodeType == typeof(UInt64))
                 {
-                    return (UInt64)GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring);
+                    return Convert.ToUInt64(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
                 if (nodeType == typeof(Single))
                 {
-                    return (Single)GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring);
+                    return GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring);
                 }
                 if (nodeType == typeof(Double))
                 {
-                    return (Double)GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring);
+                    return Convert.ToDouble(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
                 if (nodeType == typeof(Boolean))
                 {
