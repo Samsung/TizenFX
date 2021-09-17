@@ -45,6 +45,10 @@ namespace Tizen.NUI.BaseComponents
                 return mergedStyle;
             }
         }
+        internal virtual LayoutItem CreateDefaultLayout()
+        {
+            return new AbsoluteLayout();
+        }
 
         internal class ThemeData
         {
