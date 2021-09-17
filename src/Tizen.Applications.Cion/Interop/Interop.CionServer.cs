@@ -81,16 +81,16 @@ internal static partial class Interop
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_remove_connection_result_cb")]
         internal static extern ErrorCode CionServerRemoveConnectionResultCb(ServerSafeHandle server, CionServerConnectionResultCb cb);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_server_add_payload_recieved_cb")]
+        [DllImport(Libraries.Cion, EntryPoint = "cion_server_add_payload_received_cb")]
         internal static extern ErrorCode CionServerAddPayloadReceivedCb(ServerSafeHandle server, CionServerPayloadReceivedCb cb, IntPtr userData);
 
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_remove_payload_received_cb")]
         internal static extern ErrorCode CionServerRemovePayloadReceivedCb(ServerSafeHandle server, CionServerPayloadReceivedCb cb, IntPtr userData);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_server_set_data_recieved_cb")]
+        [DllImport(Libraries.Cion, EntryPoint = "cion_server_set_data_received_cb")]
         internal static extern ErrorCode CionServerSetDataReceivedCb(ServerSafeHandle server, CionServerDataReceivedCb cb, IntPtr userData);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_server_unset_data_recieved_cb")]
+        [DllImport(Libraries.Cion, EntryPoint = "cion_server_unset_data_received_cb")]
         internal static extern ErrorCode CionServerUnsetDataReceivedCb(ServerSafeHandle server, CionServerDataReceivedCb cb);
 
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_add_disconnected_cb")]
