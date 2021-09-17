@@ -24,8 +24,14 @@ using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
 using Tizen.NUI.Xaml;
 
+[assembly: global::Tizen.NUI.Xaml.XamlResourceIdAttribute("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.BaseXamlSample2.xaml",
+    "testcase.public.Xaml.TotalSample.BaseXamlSample2.xaml",
+    typeof(global::Tizen.NUI.Devel.Tests.BaseXamlSample2))]
+
 namespace Tizen.NUI.Devel.Tests
 {
+    [Tizen.NUI.Xaml.XamlFilePathAttribute("testcase\\public\\Xaml\\TotalSample\\BaseXamlSample2.xaml")]
+    [Tizen.NUI.Xaml.XamlCompilationAttribute(global::Tizen.NUI.Xaml.XamlCompilationOptions.Compile)]
     public partial class BaseXamlSample2 : Layer
     {
         public BaseXamlSample2()

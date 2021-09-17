@@ -1,0 +1,8 @@
+<BindableObject xmlns="http://tizen.org/Tizen.NUI/2018/XAML" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:system="clr-namespace:System;assembly=mscorlib.dll" x:Class="Tizen.NUI.Devel.Tests.DuplicateXArgumentsElements">
+	<BindableObject.BindingContext>
+        <system:Uri>
+            <x:Arguments>https://example.com/</x:Arguments>
+            <x:Arguments>https://example.com/</x:Arguments>
+        </system:Uri>
+    </BindableObject.BindingContext>
+</BindableObject>

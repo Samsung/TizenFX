@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Xml;
 using Tizen.NUI.Binding;
@@ -9,12 +10,43 @@ namespace Tizen.NUI.Devel.Tests
 {
     using tlog = Tizen.Log;
 
+    internal class MockNameSpaceResolver : IXmlNamespaceResolver
+    {
+        public global::System.Collections.Generic.IDictionary<string, string> GetNamespacesInScope(XmlNamespaceScope scope)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string LookupNamespace(string prefix)
+        {
+            return "";
+        }
+
+        public string LookupPrefix(string namespaceName)
+        {
+            return "";
+        }
+    }
+
     [TestFixture]
     [Description("internal/Xaml/ApplyPropertiesVisitor")]
     public class InternalApplyPropertiesVisitorTest
     {
         private const string tag = "NUITEST";
         private ApplyPropertiesVisitor visitor;
+
+        public class MarkupExtension : IMarkupExtension
+        {
+            public object ProvideValue(global::System.IServiceProvider serviceProvider)
+            {
+                return "provided value";
+            }
+        }
+
+        public class ArrayListOwner
+        {
+            public ArrayList ArrayList { get; } = new ArrayList();
+        }
 
         internal class INodeImpl : INode
         {
@@ -439,36 +471,45 @@ namespace Tizen.NUI.Devel.Tests
         //    tlog.Debug(tag, $"ApplyPropertiesVisitorSetPropertyValue END");
         //}
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("ApplyPropertiesVisitor GetPropertyValue")]
-        //[Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.GetPropertyValue M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //public void ApplyPropertiesVisitorGetPropertyValue()
-        //{
-        //    tlog.Debug(tag, $"ApplyPropertiesVisitorGetPropertyValue START");
+        [Test]
+        [Category("P1")]
+        [Description("ApplyPropertiesVisitor GetPropertyValue")]
+        [Property("SPEC", "Tizen.NUI.ApplyPropertiesVisitor.GetPropertyValue M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void ApplyPropertiesVisitorGetPropertyValue()
+        {
+            tlog.Debug(tag, $"ApplyPropertiesVisitorGetPropertyValue START");
 
-        //    try
-        //    {
-        //        object o1 = new object();
-        //        XmlName xmlName = new XmlName();
-        //        Assert.IsNotNull(xmlName, "null XmlName");
-        //        object value = new object();
-        //        INodeImplement nodeImplement = new INodeImplement();
-        //        Assert.IsNotNull(nodeImplement, "null INodeImplement");
-        //        HydrationContext context = new HydrationContext();
-        //        Assert.IsNotNull(context, "null HydrationContext");
-        //        IXmlLineInfoImplement xmlLineInfoImplement = new IXmlLineInfoImplement();
-        //        Assert.IsNotNull(xmlLineInfoImplement, "null IXmlLineInfoImplement");
-        //        ApplyPropertiesVisitor.GetPropertyValue(o1, xmlName, context, xmlLineInfoImplement, out value);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception" + e.ToString());
-        //    }
-        //    tlog.Debug(tag, $"ApplyPropertiesVisitorGetPropertyValue END");
-        //}
+            try
+            {
+                const string NAMESPACE = "clr-namespace:Tizen.NUI.Devel.Tests;assembly=Tizen.NUI.Devel.Tests";
+                var resolver = new MockNameSpaceResolver();
+                var type = new XmlType(NAMESPACE, "InternalApplyPropertiesVisitorTest+MarkupExtension", null);
+                var listNode = new ListNode(new[]
+                {
+                    new ElementNode(type, NAMESPACE, resolver),
+                    new ElementNode(type, NAMESPACE, resolver)
+                }, resolver);
+                var rootElement = new ArrayListOwner();
+                var rootType = new XmlType(NAMESPACE, "InternalApplyPropertiesVisitorTest+ArrayListOwner", null);
+                var rootNode = new XamlLoader.RuntimeRootNode(rootType, rootElement, null);
+                var context = new HydrationContext { RootElement = rootElement };
+
+                rootNode.Properties.Add(new XmlName(null, "ArrayList"), listNode);
+                rootNode.Accept(new XamlNodeVisitor((node, parent) => node.Parent = parent), null);
+                rootNode.Accept(new CreateValuesVisitor(context), null);
+                rootNode.Accept(new ApplyPropertiesVisitor(context), null);
+
+                Assert.AreEqual("provided value", rootElement.ArrayList[0]);
+                Assert.AreEqual("provided value", rootElement.ArrayList[1]);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+            tlog.Debug(tag, $"ApplyPropertiesVisitorGetPropertyValue END");
+        }
     }
 }

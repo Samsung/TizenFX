@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<View xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+			 xmlns:local="clr-namespace:Tizen.NUI.Devel.Tests;assembly=Tizen.NUI.Devel.Tests"
+			 x:Class="Tizen.NUI.Devel.Tests.GenericCollections">
+	<TextLabel x:Name="label0">
+		<local:AttachedBP.AttachedBP>
+			<local:GenericCollection>
+				<x:String>Foo</x:String>
+			</local:GenericCollection>
+		</local:AttachedBP.AttachedBP>
+	</TextLabel>
+</View>
