@@ -168,40 +168,29 @@ namespace Tizen.NUI
         // Attaches to View ChildAdded signal so called when a View is added to a view.
         private void AddChildToLayoutGroup(View child)
         {
+            if (View.LayoutingDisabled)
+            {
+                return;
+            }
             // Only give children a layout if their parent is an explicit container or a pure View.
             // Pure View meaning not derived from a View, e.g a Legacy container.
             // layoutSet flag is true when the View became a layout using the set Layout API opposed to automatically due to it's parent.
             // First time the set Layout API is used by any View the Window no longer has layoutingDisabled.
 
             // If child already has a Layout then don't change it.
-            if (!View.LayoutingDisabled && (null == child.Layout))
+            if (null == child.Layout)
             {
                 // Only wrap View with a Layout if a child a pure View or Layout explicitly set on this Layout
                 if ((true == Owner.LayoutSet || GetType() == typeof(View)))
                 {
                     // If child of this layout is a pure View then assign it a LayoutGroup
                     // If the child is derived from a View then it may be a legacy or existing container hence will do layouting itself.
-                    if (child is TextLabel textLabel)
-                    {
-                        child.Layout = textLabel.CreateTextLayout();
-                    }
-                    else if (child is ImageView imageView)
-                    {
-                        child.Layout = ImageView.CreateImageLayout();
-                    }
-                    else
-                    {
-                        child.Layout = new AbsoluteLayout();
-                    }
+                    child.Layout = child.CreateDefaultLayout();
                 }
             }
             else
             {
-                // Add child layout to this LayoutGroup (Setting parent in the process)
-                if (child.Layout != null)
-                {
-                    Add(child.Layout);
-                }
+                Add(child.Layout);
             }
             // Parent transitions are not attached to children.
         }
@@ -500,10 +489,6 @@ namespace Tizen.NUI
             // Layout takes ownership of it's owner's children.
             foreach (View view in Owner.Children)
             {
-                if (view is TextLabel)
-                {
-                    view.Layout = (view as TextLabel)?.CreateTextLayout();
-                }
                 AddChildToLayoutGroup(view);
             }
 

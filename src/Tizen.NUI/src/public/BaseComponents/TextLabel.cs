@@ -163,14 +163,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Create internal layout of TextLabel
-        /// </summary>
-        internal LayoutItem CreateTextLayout()
-        {
-            return new TextLayout();
-        }
-
-        /// <summary>
         /// The TranslatableText property.<br />
         /// The text can set the SID value.<br />
         /// </summary>
@@ -1266,6 +1258,11 @@ namespace Tizen.NUI.BaseComponents
         protected override ViewStyle CreateViewStyle()
         {
             return new TextLabelStyle();
+        }
+
+        internal override LayoutItem CreateDefaultLayout()
+        {
+            return new TextLayout();
         }
 
         /// <summary>
