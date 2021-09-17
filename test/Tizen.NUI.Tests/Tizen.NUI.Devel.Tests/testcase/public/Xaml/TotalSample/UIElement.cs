@@ -174,6 +174,25 @@ namespace Tizen.NUI.Devel.Tests
             }
         }
 
+        private string[] stringIndexer;
+        public string[] StringIndexer
+        {
+            get
+            {
+                if (null == stringIndexer)
+                {
+                    stringIndexer = new string[1];
+                    stringIndexer[0] = "Indexer";
+                }
+
+                return stringIndexer;
+            }
+            set
+            {
+                stringIndexer = value;
+            }
+        }
+
         public float FloatP
         {
             get
