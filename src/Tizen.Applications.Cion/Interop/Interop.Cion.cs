@@ -21,17 +21,15 @@ internal static partial class Interop
         internal enum ErrorCode : int
         {
             None = Tizen.Internals.Errors.ErrorCode.None,
-            NotPermitted = Tizen.Internals.Errors.ErrorCode.NotPermitted,
             IoError = Tizen.Internals.Errors.ErrorCode.IoError,
             OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
             PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
             InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
             InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,
-            InterfaceDown = Tizen.Internals.Errors.ErrorCode.Networkdown,
-            ConnectionTimeOut = Tizen.Internals.Errors.ErrorCode.ConnectionTimeout,
             AlreadyInProgress = Tizen.Internals.Errors.ErrorCode.AlreadyInProgress,
-            NotSupported = -0x030C0000 | 0x01,
-            OperationFailed = -0x030C0000 | 0x02,
+            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
+            TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,
+            OperationFailed = -0x030C0000 | 0x01,
         }
     }
 }
