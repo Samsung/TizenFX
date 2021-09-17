@@ -32,7 +32,7 @@ namespace Tizen.NUI.Devel.Tests
         [Test]
         [Category("P1")]
         [Description("DependencyService Resolve")]
-        [Property("SPEC", "DependencyService Resolve M")]
+        [Property("SPEC", "Tizen.NUI.Binding.DependencyService.Resolve M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         public void DependencyServiceResolve()
@@ -54,7 +54,51 @@ namespace Tizen.NUI.Devel.Tests
             var mIEnumerable = DependencyService.Resolve<IEnumerable<float>>(DependencyFetchTarget.GlobalInstance);
             tlog.Error(tag, "IEnumerable : " + mIEnumerable);
 
-            tlog.Debug(tag, $"ContentPropertyAttributeConstructor END");
+            tlog.Debug(tag, $"DependencyServiceResolve END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("DependencyService Register")]
+        [Property("SPEC", "Tizen.NUI.Binding.DependencyService.Register M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void Register()
+        {
+            tlog.Debug(tag, $"Register START");
+
+            try
+            {
+                DependencyService.Register<string>();
+            }
+            catch(Exception e)
+            {
+                Assert.Fail("Catch exception: " + e.Message.ToString());
+            }
+
+            tlog.Debug(tag, $"Register END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("DependencyService Register")]
+        [Property("SPEC", "Tizen.NUI.Binding.DependencyService.Initialize M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void Initialize()
+        {
+            tlog.Debug(tag, $"Initialize START");
+
+            try
+            {
+                DependencyService.Initialize(new Assembly[] { typeof(View).Assembly });
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Catch exception: " + e.Message.ToString());
+            }
+
+            tlog.Debug(tag, $"Initialize END");
         }
     }
 }

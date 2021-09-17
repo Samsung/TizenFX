@@ -1,10 +1,5 @@
 ﻿using global::System;
 using NUnit.Framework;
-using NUnit.Framework.TUnit;
-using Tizen.NUI.Components;
-using Tizen.NUI.BaseComponents;
-using System.Reflection;
-using System.Collections.Generic;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Devel.Tests
@@ -47,6 +42,29 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, "Idiom : " + Device.Idiom);
 
             tlog.Debug(tag, $"DeviceSetIdiom END");
+        }
+
+        [Test]
+        public void TestBeginInvokeOnMainThread()
+        {
+            bool calledFromMainThread = false;
+
+            bool invoked = false;
+            Device.BeginInvokeOnMainThread(() => invoked = true);
+
+            Assert.True(invoked, "Action not invoked.");
+            Assert.False(calledFromMainThread, "Action not invoked from main thread.");
+        }
+
+        [Test]
+        public void InvokeOnMainThreadThrowsWhenNull()
+        {
+            try{
+                Device.BeginInvokeOnMainThread(() => { });
+            }
+            catch(Exception e){
+                Assert.Fail("Catch exception: " + e.Message.ToString());
+            }
         }
     }
 }

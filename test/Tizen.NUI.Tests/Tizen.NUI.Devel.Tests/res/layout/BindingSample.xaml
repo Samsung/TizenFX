@@ -27,4 +27,28 @@
             <l:RgbColorViewModel Color="Red" />
         </TextLabel.BindingContext>
     </TextLabel>
+
+    <TextLabel PointSize="18">
+        <TextLabel.XamlStyle>
+            <Binding Source="{x:Reference view1}" Path="Sensitive">
+                <Binding.Converter>
+                    <l:BoolToObjectConverter x:TypeArguments="XamlStyle">
+                        <l:BoolToObjectConverter.TrueObject>
+                            <XamlStyle TargetType="TextLabel">
+                                <Setter Property="Text" Value="Indubitably!" />
+                                <Setter Property="TextColor" Value="Green" />
+                            </XamlStyle>
+                        </l:BoolToObjectConverter.TrueObject>
+
+                        <l:BoolToObjectConverter.FalseObject>
+                            <XamlStyle TargetType="TextLabel">
+                                <Setter Property="Text" Value="Maybe later" />
+                                <Setter Property="TextColor" Value="Red" />
+                            </XamlStyle>
+                        </l:BoolToObjectConverter.FalseObject>
+                    </l:BoolToObjectConverter>
+                </Binding.Converter>
+            </Binding>
+        </TextLabel.XamlStyle>
+    </TextLabel>
 </View>
