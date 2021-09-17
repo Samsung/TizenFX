@@ -1517,7 +1517,7 @@ namespace Tizen.NUI.BaseComponents
             PixelArea = new RelativeVector4(x, y, z, w);
         }
 
-        private class ImageLayout : LayoutItem
+        private class ImageLayout : LayoutGroup
         {
             /// <summary>
             /// Gets or sets the mode to adjust view size to preserve the aspect ratio of the image resource.
@@ -1602,6 +1602,18 @@ namespace Tizen.NUI.BaseComponents
                 if (heightSpecChanged)
                 {
                     heightMeasureSpec = new MeasureSpecification(new LayoutLength(newHeight), MeasureSpecification.ModeType.Exactly);
+                }
+
+                foreach (var childLayout in LayoutChildren)
+                {
+                    if (!childLayout.SetPositionByLayout)
+                    {
+                        continue;
+                    }
+
+                    // Measure children like AbsoluteLayout does.
+                    // Use the ImageLayout's calculated widthMeasureSpec and heightMeasureSpec for measuring children.
+                    MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
                 }
 
                 MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
