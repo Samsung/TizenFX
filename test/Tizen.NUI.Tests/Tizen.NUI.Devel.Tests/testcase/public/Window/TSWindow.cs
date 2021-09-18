@@ -212,32 +212,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Window SetPositionSizeWithOrientation")]
-        [Property("SPEC", "Tizen.NUI.Window.SetPositionSizeWithOrientation M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void WindowSetPositionSizeWithOrientation()
-        {
-            tlog.Debug(tag, $"WindowSetPositionSizeWithOrientation START");
-
-            try
-            {
-                using (Rectangle positionSize = new Rectangle(1, 2, 3, 4))
-                {
-                    win.SetPositionSizeWithOrientation(positionSize, Window.WindowOrientation.Landscape);
-                }
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            tlog.Debug(tag, $"WindowSetPositionSizeWithOrientation END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Window GetNativeId")]
         [Property("SPEC", "Tizen.NUI.Window.GetNativeId M")]
         [Property("SPEC_URL", "-")]

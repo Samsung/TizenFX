@@ -12,7 +12,7 @@ namespace Tizen.NUI.Devel.Tests
     using tlog = Tizen.Log;
 
     [TestFixture]
-    [Description("public/Images/ImageLoading")]
+    [Description("public/Images/ImageLoader")]
     public class PublicImageLoadingTest
     {
         private const string tag = "NUITEST";
@@ -54,7 +54,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"ImageLoadingLoadImageFromFile START");
 
-            var testingTarget = ImageLoading.LoadImageFromFile(image_path);
+            var testingTarget = ImageLoader.LoadImageFromFile(image_path);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
             Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -75,7 +75,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.LoadImageFromFile(image_path, size2d);
+                var testingTarget = ImageLoader.LoadImageFromFile(image_path, size2d);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -85,7 +85,7 @@ namespace Tizen.NUI.Devel.Tests
             // size is null
             try
             {
-                var testingTarget = ImageLoading.LoadImageFromFile(image_path, null);
+                var testingTarget = ImageLoader.LoadImageFromFile(image_path, null);
             }
             catch (ArgumentNullException e)
             {
@@ -108,7 +108,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.LoadImageFromFile(image_path, size2d, FittingModeType.ScaleToFill);
+                var testingTarget = ImageLoader.LoadImageFromFile(image_path, size2d, FittingModeType.ScaleToFill);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -118,7 +118,7 @@ namespace Tizen.NUI.Devel.Tests
             // size is null
             try
             {
-                var testingTarget = ImageLoading.LoadImageFromFile(image_path, null, FittingModeType.ScaleToFill);
+                var testingTarget = ImageLoader.LoadImageFromFile(image_path, null, FittingModeType.ScaleToFill);
             }
             catch (ArgumentNullException e)
             {
@@ -141,7 +141,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.LoadImageFromFile(image_path, size2d, FittingModeType.ScaleToFill, SamplingModeType.Linear);
+                var testingTarget = ImageLoader.LoadImageFromFile(image_path, size2d, FittingModeType.ScaleToFill, SamplingModeType.Linear);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -151,7 +151,7 @@ namespace Tizen.NUI.Devel.Tests
             // size is null
             try
             {
-                var testingTarget = ImageLoading.LoadImageFromFile(image_path, null, FittingModeType.ScaleToFill, SamplingModeType.Linear);
+                var testingTarget = ImageLoader.LoadImageFromFile(image_path, null, FittingModeType.ScaleToFill, SamplingModeType.Linear);
             }
             catch (ArgumentNullException e)
             {
@@ -174,7 +174,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.LoadImageFromFile(image_path, size2d, FittingModeType.ScaleToFill, SamplingModeType.Linear, true);
+                var testingTarget = ImageLoader.LoadImageFromFile(image_path, size2d, FittingModeType.ScaleToFill, SamplingModeType.Linear, true);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -197,7 +197,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                ImageLoading.LoadImageFromFile(image_path, null, FittingModeType.ScaleToFill, SamplingModeType.Linear, true);
+                ImageLoader.LoadImageFromFile(image_path, null, FittingModeType.ScaleToFill, SamplingModeType.Linear, true);
             }
             catch (ArgumentNullException e)
             {
@@ -222,7 +222,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.LoadImageFromBuffer(stream, size2d, FittingModeType.ScaleToFill, SamplingModeType.Linear, true);
+                var testingTarget = ImageLoader.LoadImageFromBuffer(stream, size2d, FittingModeType.ScaleToFill, SamplingModeType.Linear, true);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -247,7 +247,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 try
                 {
-                    ImageLoading.LoadImageFromBuffer(null, size2d, FittingModeType.ScaleToFill, SamplingModeType.Linear, true);
+                    ImageLoader.LoadImageFromBuffer(null, size2d, FittingModeType.ScaleToFill, SamplingModeType.Linear, true);
                 }
                 catch (ArgumentNullException e)
                 {
@@ -273,7 +273,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                ImageLoading.LoadImageFromBuffer(stream, null, FittingModeType.ScaleToFill, SamplingModeType.Linear, true); ;
+                ImageLoader.LoadImageFromBuffer(stream, null, FittingModeType.ScaleToFill, SamplingModeType.Linear, true); ;
             }
             catch (ArgumentNullException e)
             {
@@ -298,7 +298,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.LoadImageFromBuffer(stream, size2d, FittingModeType.ScaleToFill, SamplingModeType.Linear);
+                var testingTarget = ImageLoader.LoadImageFromBuffer(stream, size2d, FittingModeType.ScaleToFill, SamplingModeType.Linear);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -323,7 +323,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 try
                 {
-                    ImageLoading.LoadImageFromBuffer(null, size2d, FittingModeType.ScaleToFill, SamplingModeType.Linear);
+                    ImageLoader.LoadImageFromBuffer(null, size2d, FittingModeType.ScaleToFill, SamplingModeType.Linear);
                 }
                 catch (ArgumentNullException e)
                 {
@@ -349,7 +349,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                ImageLoading.LoadImageFromBuffer(stream, null, FittingModeType.ScaleToFill, SamplingModeType.Linear);
+                ImageLoader.LoadImageFromBuffer(stream, null, FittingModeType.ScaleToFill, SamplingModeType.Linear);
             }
             catch (ArgumentNullException e)
             {
@@ -374,7 +374,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.LoadImageFromBuffer(stream, size2d, FittingModeType.ScaleToFill);
+                var testingTarget = ImageLoader.LoadImageFromBuffer(stream, size2d, FittingModeType.ScaleToFill);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -399,7 +399,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 try
                 {
-                    ImageLoading.LoadImageFromBuffer(null, size2d, FittingModeType.ScaleToFill);
+                    ImageLoader.LoadImageFromBuffer(null, size2d, FittingModeType.ScaleToFill);
                 }
                 catch (ArgumentNullException e)
                 {
@@ -425,7 +425,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                ImageLoading.LoadImageFromBuffer(stream, null, FittingModeType.ScaleToFill);
+                ImageLoader.LoadImageFromBuffer(stream, null, FittingModeType.ScaleToFill);
             }
             catch (ArgumentNullException e)
             {
@@ -450,7 +450,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.LoadImageFromBuffer(stream, size2d);
+                var testingTarget = ImageLoader.LoadImageFromBuffer(stream, size2d);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -475,7 +475,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 try
                 {
-                    ImageLoading.LoadImageFromBuffer(null, size2d);
+                    ImageLoader.LoadImageFromBuffer(null, size2d);
                 }
                 catch (ArgumentNullException e)
                 {
@@ -501,7 +501,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                ImageLoading.LoadImageFromBuffer(stream, null);
+                ImageLoader.LoadImageFromBuffer(stream, null);
             }
             catch (ArgumentNullException e)
             {
@@ -524,7 +524,7 @@ namespace Tizen.NUI.Devel.Tests
 
             var stream = FileToStream(image_path);
 
-            var testingTarget = ImageLoading.LoadImageFromBuffer(stream);
+            var testingTarget = ImageLoader.LoadImageFromBuffer(stream);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
             Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -545,7 +545,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                ImageLoading.LoadImageFromBuffer(null);
+                ImageLoader.LoadImageFromBuffer(null);
             }
             catch (ArgumentNullException e)
             {
@@ -566,7 +566,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"ImageLoadingGetClosestImageSize START");
 
-            var testingTarget = ImageLoading.GetClosestImageSize(file_name);
+            var testingTarget = ImageLoader.GetClosestImageSize(file_name);
             Assert.IsNotNull(testingTarget, "Can't create success object Size2D.");
             Assert.IsInstanceOf<Size2D>(testingTarget, "Should return Size2D instance.");
 
@@ -587,7 +587,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.GetClosestImageSize(file_name, size2d);
+                var testingTarget = ImageLoader.GetClosestImageSize(file_name, size2d);
                 Assert.IsNotNull(testingTarget, "Can't create success object Size2D.");
                 Assert.IsInstanceOf<Size2D>(testingTarget, "Should return Size2D instance.");
 
@@ -610,7 +610,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.GetClosestImageSize(file_name, size2d, FittingModeType.ShrinkToFit);
+                var testingTarget = ImageLoader.GetClosestImageSize(file_name, size2d, FittingModeType.ShrinkToFit);
                 Assert.IsNotNull(testingTarget, "Can't create success object Size2D.");
                 Assert.IsInstanceOf<Size2D>(testingTarget, "Should return Size2D instance.");
 
@@ -633,7 +633,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.GetClosestImageSize(file_name, size2d, FittingModeType.ShrinkToFit, SamplingModeType.Box);
+                var testingTarget = ImageLoader.GetClosestImageSize(file_name, size2d, FittingModeType.ShrinkToFit, SamplingModeType.Box);
                 Assert.IsNotNull(testingTarget, "Can't create success object Size2D.");
                 Assert.IsInstanceOf<Size2D>(testingTarget, "Should return Size2D instance.");
 
@@ -656,7 +656,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.GetClosestImageSize(file_name, size2d, FittingModeType.ShrinkToFit, SamplingModeType.Box, true);
+                var testingTarget = ImageLoader.GetClosestImageSize(file_name, size2d, FittingModeType.ShrinkToFit, SamplingModeType.Box, true);
                 Assert.IsNotNull(testingTarget, "Can't create success object Size2D.");
                 Assert.IsInstanceOf<Size2D>(testingTarget, "Should return Size2D instance.");
 
@@ -677,7 +677,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"ImageLoadingGetOriginalImageSize START");
 
-            var testingTarget = ImageLoading.GetOriginalImageSize(file_name);
+            var testingTarget = ImageLoader.GetOriginalImageSize(file_name);
             Assert.IsNotNull(testingTarget, "Can't create success object Size2D.");
             Assert.IsInstanceOf<Size2D>(testingTarget, "Should return Size2D instance.");
 
@@ -697,7 +697,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ImageLoadingDownloadImageSynchronously START");
 
 
-            var testingTarget = ImageLoading.DownloadImageSynchronously(bmp_path);
+            var testingTarget = ImageLoader.DownloadImageSynchronously(bmp_path);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
             Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -718,7 +718,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.DownloadImageSynchronously(bmp_path, size2d);
+                var testingTarget = ImageLoader.DownloadImageSynchronously(bmp_path, size2d);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -741,7 +741,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.DownloadImageSynchronously(bmp_path, size2d, FittingModeType.FitHeight);
+                var testingTarget = ImageLoader.DownloadImageSynchronously(bmp_path, size2d, FittingModeType.FitHeight);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -750,7 +750,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                ImageLoading.DownloadImageSynchronously(bmp_path, null, FittingModeType.FitHeight);
+                ImageLoader.DownloadImageSynchronously(bmp_path, null, FittingModeType.FitHeight);
             }
             catch (ArgumentNullException)
             {
@@ -772,7 +772,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.DownloadImageSynchronously(bmp_path, size2d, FittingModeType.FitWidth, SamplingModeType.Nearest);
+                var testingTarget = ImageLoader.DownloadImageSynchronously(bmp_path, size2d, FittingModeType.FitWidth, SamplingModeType.Nearest);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -781,7 +781,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                ImageLoading.DownloadImageSynchronously(bmp_path, null, FittingModeType.FitHeight, SamplingModeType.Nearest);
+                ImageLoader.DownloadImageSynchronously(bmp_path, null, FittingModeType.FitHeight, SamplingModeType.Nearest);
             }
             catch (ArgumentNullException)
             {
@@ -803,7 +803,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.DownloadImageSynchronously(bmp_path, size2d, FittingModeType.Center, SamplingModeType.DontCare, true);
+                var testingTarget = ImageLoader.DownloadImageSynchronously(bmp_path, size2d, FittingModeType.Center, SamplingModeType.DontCare, true);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -812,7 +812,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                ImageLoading.DownloadImageSynchronously(bmp_path, null, FittingModeType.FitHeight, SamplingModeType.Nearest, true);
+                ImageLoader.DownloadImageSynchronously(bmp_path, null, FittingModeType.FitHeight, SamplingModeType.Nearest, true);
             }
             catch (ArgumentNullException)
             {
@@ -834,7 +834,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
             {
-                var testingTarget = ImageLoading.DownloadImageSynchronously(new Uri(bmp_path), size2d, FittingModeType.Center);
+                var testingTarget = ImageLoader.DownloadImageSynchronously(new Uri(bmp_path), size2d, FittingModeType.Center);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer.");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should return PixelBuffer instance.");
 
@@ -843,7 +843,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                ImageLoading.DownloadImageSynchronously(new Uri(bmp_path), null, FittingModeType.FitHeight);
+                ImageLoader.DownloadImageSynchronously(new Uri(bmp_path), null, FittingModeType.FitHeight);
             }
             catch (ArgumentNullException)
             {
@@ -868,7 +868,7 @@ namespace Tizen.NUI.Devel.Tests
                 using (Size2D size2d = new Size2D(NUIApplication.GetDefaultWindow().WindowSize.Width, NUIApplication.GetDefaultWindow().WindowSize.Height))
                 {
                     Uri uri = null;
-                    ImageLoading.DownloadImageSynchronously(uri, size2d, FittingModeType.Center);
+                    ImageLoader.DownloadImageSynchronously(uri, size2d, FittingModeType.Center);
                 }
             }
             catch (ArgumentNullException)

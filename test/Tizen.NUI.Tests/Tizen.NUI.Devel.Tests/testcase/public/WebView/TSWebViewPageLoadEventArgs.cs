@@ -10,8 +10,8 @@ namespace Tizen.NUI.Devel.Tests
     using tlog = Tizen.Log;
 
     [TestFixture]
-    [Description("internal/WebView/WebViewPageLoadEventArgs")]
-    public class InternalWebViewPageLoadEventArgsTest
+    [Description("public/WebView/WebViewPageLoadEventArgs")]
+    public class PublicWebViewPageLoadEventArgsTest
     {
         private const string tag = "NUITEST";
         private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
