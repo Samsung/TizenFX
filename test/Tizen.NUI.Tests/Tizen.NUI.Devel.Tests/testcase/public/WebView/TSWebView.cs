@@ -9,8 +9,8 @@ namespace Tizen.NUI.Devel.Tests
     using tlog = Tizen.Log;
 
     [TestFixture]
-    [Description("internal/WebView/WebView")]
-    public class InternalWebViewTest
+    [Description("public/WebView/WebView")]
+    public class PublicWebViewTest
     {
         private const string tag = "NUITEST";
         private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
@@ -398,32 +398,6 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewCertificateConfirmed END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebView HttpRequestIntercepted.")]
-        [Property("SPEC", "Tizen.NUI.WebView.HttpRequestIntercepted A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewHttpRequestIntercepted()
-        {
-            tlog.Debug(tag, $"WebViewHttpRequestIntercepted START");
-
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            testingTarget.HttpRequestIntercepted += OnHttpRequestIntercepte;
-            testingTarget.HttpRequestIntercepted -= OnHttpRequestIntercepte;
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"WebViewHttpRequestIntercepted END (OK)");
         }
 
         [Test]
@@ -2476,7 +2450,6 @@ namespace Tizen.NUI.Devel.Tests
         private void OnFrameRender(object sender, EventArgs e) { }
         private void OnResponsePolicyDecide(object sender, WebViewResponsePolicyDecidedEventArgs e) { }
         private void OnCertificateConfirme(object sender, WebViewCertificateReceivedEventArgs e) { }
-        private void OnHttpRequestIntercepte(object sender, WebViewHttpRequestInterceptedEventArgs e) {  }
         private void OnSslCertificateChange(object sender, WebViewCertificateReceivedEventArgs e) {  }
         private void OnHttpAuthRequeste(object sender, WebViewHttpAuthRequestedEventArgs e) { }
         private void OnConsoleMessageReceive(object sender, WebViewConsoleMessageReceivedEventArgs e) { }

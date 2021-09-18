@@ -96,49 +96,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WebHttpRequestInterceptorReleaseSwigCPtr END (OK)");
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebHttpRequestInterceptor Url.")]
-        [Property("SPEC", "Tizen.NUI.WebHttpRequestInterceptor.Url A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task WebHttpRequestInterceptorUrl()
-        {
-            tlog.Debug(tag, $"WebHttpRequestInterceptorUrl START");
-
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView(runtimeArgs)
-            {
-                Size = new Size(500, 200),
-                UserAgent = USER_AGENT
-            };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return Tizen.NUI.BaseComponents.WebView instance.");
-
-            testingTarget.HttpRequestIntercepted += OnHttpRequestIntercepted;
-            NUIApplication.GetDefaultWindow().Add(testingTarget);
-
-            testingTarget.LoadUrl("http://www.baidu.com");
-            await Task.Delay(10000);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-            NUIApplication.GetDefaultWindow().Remove(testingTarget);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"WebHttpRequestInterceptorUrl END (OK)");
-        }
-
-        private void OnHttpRequestIntercepted(object sender, WebViewHttpRequestInterceptedEventArgs e)
-        {
-            tlog.Debug(tag, $"HttpRequestInterceptor, Url: {e.HttpRequestInterceptor.Url}");
-			
-            e.HttpRequestInterceptor.Ignore();
-            e.HttpRequestInterceptor.SetResponseStatus(911, "Internal error.");
-            e.HttpRequestInterceptor.AddResponseHeader("samsung", "webview");
-            e.HttpRequestInterceptor.AddResponseBody("Thank you for using!", 20);
-        }
     }
 }

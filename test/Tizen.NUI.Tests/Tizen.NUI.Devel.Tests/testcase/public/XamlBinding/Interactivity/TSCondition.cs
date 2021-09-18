@@ -69,7 +69,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ConditionChangedTest2 START");
             BindingCondition mb = new BindingCondition();
             Assert.IsNotNull(mb, "Should not be null");
-            var b = new Binding.Binding();
             var ac = (Action<BindableObject, bool, bool>)((bindable, b, c) => throw new Exception());
             mb.ConditionChanged = ac;
             
