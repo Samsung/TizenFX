@@ -4,6 +4,7 @@ using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -18,13 +19,15 @@ namespace Tizen.NUI.Devel.Tests
         private static string[] runtimeArgs = { "Tizen.NUI.Devel.Tests", "--enable-dali-window", "--enable-spatial-navigation" };
         private const string USER_AGENT = "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36";
 
-        private void OriginListAcquiredCallback (WebSecurityOriginList list) { }
+        private void OriginListAcquiredCallback (IList<WebSecurityOrigin> list) { }
+        private void OnSecurityOriginListAcquired (IList<WebSecurityOrigin> list) { }
         private void OnStorageUsageAcquired(ulong usage) { }
-        private void PasswordAcquiredCallback (WebPasswordDataList list) { }
+        private void PasswordAcquiredCallback (IList<WebPasswordData> list) { }
         private void DownloadCallback (string url) { }
         private void UsageAcquiredCallback (ulong usage) { }
-        private bool MimeWrittenCallback(string url, string currentMime, string newMime) 
+        private bool MimeWrittenCallback(string url, string currentMime, out string newMime) 
         {
+            newMime = null;
             return true;
         }
 
@@ -523,13 +526,6 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"GetWebStorageOrigins END (OK)");
-        }
-
-        private void OnSecurityOriginListAcquired(WebSecurityOriginList list)
-        {   
-            WebSecurityOrigin origin = list.GetItemAtIndex(0);
-            tlog.Debug(tag, "security origin, Host : " + origin.Host);
-            tlog.Debug(tag, "security origin, Protocol : " + origin.Protocol);
         }
 
         [Test]

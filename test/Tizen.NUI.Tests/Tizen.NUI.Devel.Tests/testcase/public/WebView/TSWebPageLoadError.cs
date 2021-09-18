@@ -10,8 +10,8 @@ namespace Tizen.NUI.Devel.Tests
     using tlog = Tizen.Log;
 
     [TestFixture]
-    [Description("internal/WebView/WebPageLoadError")]
-    public class InternalWebPageLoadErrorTest
+    [Description("public/WebView/WebPageLoadError")]
+    public class PublicWebPageLoadErrorTest
     {
         private const string tag = "NUITEST";
         private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";

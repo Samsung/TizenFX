@@ -258,33 +258,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WebBackForwardListItemOriginalUrl END (OK)");
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebBackForwardSubList ItemCount.")]
-        [Property("SPEC", "Tizen.NUI.WebBackForwardSubList.ItemCount A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebBackForwardSubListItemCount()
-        {
-            tlog.Debug(tag, $"WebBackForwardSubListItemCount START");
-
-            using (Tizen.NUI.BaseComponents.WebView webView = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
-            {
-                webView.LoadUrl("https://www.cnblogs.com/softidea/p/5745369.html");
-
-                var testingTarget = webView.BackForwardList.GetBackwardItems(0);
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebBackForwardSubList>(testingTarget, "Should return WebBackForwardSubList instance.");
-
-                tlog.Error(tag, "ItemCount : " + testingTarget.ItemCount);
-
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"WebBackForwardSubListItemCount END (OK)");
-        }
     }
 }
