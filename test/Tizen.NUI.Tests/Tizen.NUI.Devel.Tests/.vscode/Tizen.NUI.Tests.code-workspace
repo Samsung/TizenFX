@@ -1,0 +1,23 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../nunitlite"
+		},
+		{
+			"path": "../../nunit.framework"
+		},
+		{
+			"path": "../../../../src/Tizen.NUI"
+		},
+		{
+			"path": "../../../../src/Tizen.NUI.Components"
+		},
+		{
+			"path": "../../Common"
+		}
+	],
+	"settings": {}
+}

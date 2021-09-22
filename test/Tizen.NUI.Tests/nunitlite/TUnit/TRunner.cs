@@ -115,8 +115,8 @@ namespace NUnitLite.TUnit
             Tizen.Log.Fatal("NUITEST", $"");
             Tizen.Log.Fatal("NUITEST", $"LoadTestsuite()");
             TSettings.CurTCIndex = 0;
-            string cache_path = Tizen.Applications.Application.Current.DirectoryInfo.Cache;
-            string dllPath = cache_path.Replace("cache", "bin");
+            string cache_path = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+            string dllPath = cache_path.Replace("res", "bin");//Cache->res
             string pkgName = GetPackageName(dllPath);
             if (pkgName == "")
             {
@@ -127,15 +127,22 @@ namespace NUnitLite.TUnit
 
             //TLogger.Write("Executing the application: " + pkgName + "...");
             Tizen.Log.Fatal("NUITEST", $"Executing the application: {pkgName}");
-
-            string exeFilePathName = string.Format(dllPath + "Tizen.{0}.Tests.exe", pkgName);
+            string exeFilePathName = "";
+            if(dllPath.Contains("netcoreapp"))
+            {
+                exeFilePathName = string.Format(dllPath + "Tizen.{0}.Tests.dll", pkgName);
+            }
+            else
+            {
+                exeFilePathName = string.Format(dllPath + "Debug/netcoreapp3.1/Tizen.{0}.Devel.Tests.dll", pkgName);
+            }
             //TLogger.Write("exeFilePathName : " + exeFilePathName);
             Tizen.Log.Fatal("NUITEST", $"exeFilePathName : {exeFilePathName}");
 
             AssemblyName asmName = new AssemblyName(GetAssemblyName(exeFilePathName));
-            _testAssembly = Assembly.Load(asmName);
+            _testAssembly = Assembly.LoadFrom(exeFilePathName);
 
-            string pkgShareDir = string.Format("/home/owner/share/{0}", pkgName);
+            string pkgShareDir = $"{dllPath}{pkgName}";
             System.IO.DirectoryInfo di = new System.IO.DirectoryInfo(pkgShareDir);
             if (di.Exists == false)
             {

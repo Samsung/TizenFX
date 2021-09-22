@@ -10,6 +10,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\Tizen.Applications.Common\Tizen.Applications.Common.csproj" />
     <ProjectReference Include="..\..\..\src\Tizen.Log\Tizen.Log.csproj" />
+    <ProjectReference Include="..\..\..\src\Tizen.NUI.Components\Tizen.NUI.Components.csproj" />
+    <ProjectReference Include="..\..\..\src\Tizen.NUI\Tizen.NUI.csproj" />
   </ItemGroup>
 
 </Project>

@@ -107,7 +107,7 @@ namespace NUnit.Framework
             else if (args != null && args.Length > 0)
                 message = string.Format(message, args);
 
-            throw new SuccessException(message);
+            //throw new SuccessException(message);
         }
 
         /// <summary>

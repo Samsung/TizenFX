@@ -16,6 +16,7 @@
 
 using System;
 using NUnitLite.TUnit;
+using Tizen.Applications;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using System.Threading;
@@ -42,6 +43,7 @@ namespace Tizen.NUI.Devel.Tests
         Layer layer;
         public static int mainPid;
         public static int mainTid;
+        Timer timer;
 
         protected override void OnCreate()
         {
@@ -81,7 +83,24 @@ namespace Tizen.NUI.Devel.Tests
             root.Add(mainTitle);
 
             tlog.Debug(tag, "OnCreate() END!");
+
+            timer = new Timer(1000);
+            timer.Tick += OnTick;
+            timer.Start();
+
         }
+
+        private bool OnTick(object obj, EventArgs e)
+        {
+            TRunner t = new TRunner();
+            t.LoadTestsuite();
+            t.Execute();
+
+            App.MainTitleChangeText("Finished!");
+            return false;
+        }
+
+
 
         static public async Task MainTitleChangeBackgroundColor(Color color)
         {
@@ -106,15 +125,21 @@ namespace Tizen.NUI.Devel.Tests
             }
         }
 
+        protected override void OnAppControlReceived(AppControlReceivedEventArgs e)
+        {
+            base.OnAppControlReceived(e);
+            tlog.Debug(tag, $"### OnAppControlReceived() START!");
+        }
+
         protected override void OnResume()
         {
             base.OnResume();
 
             tlog.Debug(tag, $"### OnResume() START!");
 
-            TRunner t = new TRunner();
-            t.LoadTestsuite();
-            t.Execute();
+            // TRunner t = new TRunner();
+            // t.LoadTestsuite();
+            // t.Execute();
 
             tlog.Debug(tag, $"OnResume() END!");
         }
@@ -126,6 +151,12 @@ namespace Tizen.NUI.Devel.Tests
 
         protected override void OnTerminate()
         {
+            timer.Tick -= OnTick;
+            mainTitle.GetParent().Remove(mainTitle);
+            mainTitle = null;
+            root.GetParent().Remove(root);
+            root = null;
+
             base.OnTerminate();
             Exit();
         }

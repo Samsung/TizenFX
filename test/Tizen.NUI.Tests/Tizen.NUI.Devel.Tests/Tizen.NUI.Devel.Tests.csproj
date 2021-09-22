@@ -3,8 +3,7 @@
   <!-- Property Group for .NET Core Project -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>tizen90</TargetFramework>
-    <TargetFrameworkIdentifier>Tizen</TargetFrameworkIdentifier>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <!-- Property Group for Tizen Project -->
@@ -165,9 +164,6 @@
 
   <Import Project="..\Common\dependencies.props" />
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="$(TizenNETVersion)">
-      <ExcludeAssets>Runtime</ExcludeAssets>
-    </PackageReference>
     <PackageReference Include="Tizen.NET.Sdk" Version="$(TizenNETSdkVersion)" />
   </ItemGroup>
 
@@ -175,6 +171,8 @@
   <ItemGroup>
     <ProjectReference Include="..\nunit.framework\nunit.framework.csproj" />
     <ProjectReference Include="..\nunitlite\nunitlite.csproj" />
+    <ProjectReference Include="..\..\..\src\Tizen.NUI.Components\Tizen.NUI.Components.csproj" />
+    <ProjectReference Include="..\..\..\src\Tizen.NUI\Tizen.NUI.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
