@@ -79,7 +79,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"RotationGestureDetectorGetRotationGestureDetectorFromPtr START");
             RotationGestureDetector a1 = new RotationGestureDetector();
 			
-            RotationGestureDetector a2 = RotationGestureDetector.GetRotationGestureDetectorFromPtr(RotationGestureDetector.getCPtr(a1).Handle);
+            RotationGestureDetector a2 = RotationGestureDetector.GetRotationGestureDetectorFromPtr(a1.SwigCPtr.Handle);
             a1.Dispose();
 						
             tlog.Debug(tag, $"RotationGestureDetectorGetRotationGestureDetectorFromPtr END (OK)");
@@ -107,25 +107,6 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"RotationGestureDetectorDownCast END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("RotationGestureDetector getCPtr")]
-        [Property("SPEC", "Tizen.NUI.RotationGestureDetector.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void RotationGestureDetectorgetCPtr()
-        {
-            tlog.Debug(tag, $"RotationGestureDetectorgetCPtr START");
-            RotationGestureDetector a1 = new RotationGestureDetector();
-            global::System.Runtime.InteropServices.HandleRef b1 = RotationGestureDetector.getCPtr(a1);
-
-            a1.Dispose();
-            
-            tlog.Debug(tag, $"RotationGestureDetectorgetCPtr END (OK)");
-            Assert.Pass("RotationGestureDetectorgetCPtr");
         }
 
 		[Test]

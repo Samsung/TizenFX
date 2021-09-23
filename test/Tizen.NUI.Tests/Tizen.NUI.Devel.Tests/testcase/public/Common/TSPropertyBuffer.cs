@@ -78,42 +78,5 @@ namespace Tizen.NUI.Devel.Tests
             buffer.Dispose();
             tlog.Debug(tag, $"PropertyBufferGetSize END (OK)");
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("PropertyBuffer SetData")]
-        [Property("SPEC", "Tizen.NUI.PropertyBuffer.SetData M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void PropertyBufferSetData()
-        {
-            tlog.Debug(tag, $"PropertyBufferSetData START");
-
-            PropertyMap buffer = new PropertyMap();
-            Assert.IsNotNull(buffer, "should be not null");
-            Assert.IsInstanceOf<PropertyMap>(buffer, "should be an instance of PropertyMap class!");
-            buffer.Add("aIndex", new PropertyValue((int)PropertyType.Float));
-            buffer.Add("aValue", new PropertyValue((int)PropertyType.Float));
-
-            var testingTarget = new PropertyBuffer(buffer);
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<PropertyBuffer>(testingTarget, "Should be an instance of PropertyBuffer class!");
-            try
-            {
-                global::System.IntPtr data = new global::System.IntPtr();
-                testingTarget.SetData(data, 0);
-            }
-            catch (Exception e)
-            {
-                LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-            Assert.AreEqual(0, testingTarget.GetSize(), "Should be Equal.");
-
-            testingTarget.Dispose();
-            buffer.Dispose();
-            tlog.Debug(tag, $"PropertyBufferSetData END (OK)");
-        }
     }
 }

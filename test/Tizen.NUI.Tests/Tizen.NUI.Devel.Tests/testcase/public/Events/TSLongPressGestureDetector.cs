@@ -229,7 +229,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (LongPressGestureDetector detector= new LongPressGestureDetector(3))
             { 
-                var testingTarget = LongPressGestureDetector.GetLongPressGestureDetectorFromPtr(LongPressGestureDetector.getCPtr(detector).Handle);
+                var testingTarget = LongPressGestureDetector.GetLongPressGestureDetectorFromPtr(detector.SwigCPtr.Handle);
                 Assert.IsNotNull(testingTarget, "Can't create success object Hover");
                 Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
 
@@ -288,39 +288,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.Pass("LongPressGestureDetectorDetectedSignal");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("LongPressGestureDetector getCPtr")]
-        [Property("SPEC", "Tizen.NUI.LongPressGestureDetector.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void LongPressGestureDetectorgetCPtr()
-        {
-            tlog.Debug(tag, $"LongPressGestureDetectorgetCPtr START");
-
-            using (LongPressGestureDetector detector = new LongPressGestureDetector())
-            {
-                var testingTarget = LongPressGestureDetector.DownCast(detector);
-                Assert.IsInstanceOf<LongPressGestureDetector>(testingTarget, "Should be an instance of LongPressGestureDetector type.");
-
-                try
-                {
-                    LongPressGestureDetector.getCPtr(testingTarget);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception :  Failed!");
-                }
-
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"LongPressGestureDetectorgetCPtr END (OK)");
-            Assert.Pass("LongPressGestureDetectorgetCPtr");
-        }
-		
         [Test]
         [Category("P1")]
         [Description("Test Detected property.")]

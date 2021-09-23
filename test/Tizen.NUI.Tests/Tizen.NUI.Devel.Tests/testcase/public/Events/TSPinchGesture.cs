@@ -121,25 +121,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"PinchGestureLocalCenterPoint END (OK)");
             Assert.Pass("LocalCenterPoint");
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("PinchGesture getCPtr")]
-        [Property("SPEC", "Tizen.NUI.PinchGesture.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void PinchGesturegetCPtr()
-        {
-            tlog.Debug(tag, $"PinchGesturegetCPtr START");
-            Gesture.StateType state = Gesture.StateType.Finished;
-            PinchGesture a1 = new PinchGesture(state);
-            global::System.Runtime.InteropServices.HandleRef r1 = PinchGesture.getCPtr(a1);
-            
-            tlog.Debug(tag, $"PinchGesturegetCPtr END (OK)");
-            Assert.Pass("PinchGesturegetCPtr");
-        }
-
         [Test]
         [Category("P1")]
         [Description("PinchGesture GetPinchGestureFromPtr")]
@@ -154,12 +135,11 @@ namespace Tizen.NUI.Devel.Tests
             Gesture.StateType state = Gesture.StateType.Finished;
             PinchGesture a2 = new PinchGesture(state);			
             
-            PinchGesture a1 = PinchGesture.GetPinchGestureFromPtr(PinchGesture.getCPtr(a2).Handle);
+            PinchGesture a1 = PinchGesture.GetPinchGestureFromPtr(a2.SwigCPtr.Handle);
             
             a2.Dispose();
             tlog.Debug(tag, $"PinchGestureGetPinchGestureFromPtr END (OK)");
             Assert.Pass("PinchGestureGetPinchGestureFromPtr");
         }
     }
-
 }

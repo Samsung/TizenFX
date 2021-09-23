@@ -161,41 +161,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"AngleThresholdPairFirst END (OK)");
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("AngleThresholdPair getCPtr.")]
-        [Property("SPEC", "Tizen.NUI.AngleThresholdPair.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AngleThresholdPairGetCPtr()
-        {
-            tlog.Debug(tag, $"AngleThresholdPairGetCPtr START");
-
-            using (Radian t = new Radian(0.3f))
-            {
-                using (Radian u = new Radian(0.8f))
-                {
-                    var testingTarget = new AngleThresholdPair(t, u);
-                    Assert.IsNotNull(testingTarget, "Can't create success object AngleThresholdPair");
-                    Assert.IsInstanceOf<AngleThresholdPair>(testingTarget, "Should be an instance of AngleThresholdPair type.");
-
-                    try
-                    {
-                        AngleThresholdPair.getCPtr(testingTarget);
-                    }
-                    catch (Exception e)
-                    {
-                        tlog.Debug(tag, e.Message.ToString());
-                        Assert.Fail("Caught Exception : Failed!");
-                    }
-
-                    testingTarget.Dispose();
-                }
-            }
-
-            tlog.Debug(tag, $"AngleThresholdPairGetCPtr END (OK)");
-        }
     }
 }

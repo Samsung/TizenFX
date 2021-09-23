@@ -54,7 +54,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object AnimatedVectorImageView");
             Assert.IsInstanceOf<AnimatedVectorImageView>(testingTarget, "Should be an instance of AnimatedVectorImageView type.");
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatedVectorImageViewConstructor END (OK)");
         }
 
@@ -73,37 +72,36 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object AnimatedVectorImageView");
             Assert.IsInstanceOf<AnimatedVectorImageView>(testingTarget, "Should be an instance of AnimatedVectorImageView type.");
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatedVectorImageViewConstructorWithScale END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("AnimatedVectorImageView Dispose.")]
-        [Property("SPEC", "Tizen.NUI.AnimatedVectorImageView.Dispose M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AnimatedVectorImageViewDispose()
-        {
-            tlog.Debug(tag, $"AnimatedVectorImageViewDispose START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("AnimatedVectorImageView Dispose.")]
+        //[Property("SPEC", "Tizen.NUI.AnimatedVectorImageView.Dispose M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public void AnimatedVectorImageViewDispose()
+        //{
+        //    tlog.Debug(tag, $"AnimatedVectorImageViewDispose START");
 
-            var testingTarget = new MyAnimatedVectorImageView();
-            Assert.IsNotNull(testingTarget, "Can't create success object AnimatedVectorImageView");
-            Assert.IsInstanceOf<AnimatedVectorImageView>(testingTarget, "Should be an instance of AnimatedVectorImageView type.");
+        //    var testingTarget = new MyAnimatedVectorImageView();
+        //    Assert.IsNotNull(testingTarget, "Can't create success object AnimatedVectorImageView");
+        //    Assert.IsInstanceOf<AnimatedVectorImageView>(testingTarget, "Should be an instance of AnimatedVectorImageView type.");
 
-            try
-            {
-                testingTarget.OnDispose(DisposeTypes.Explicit);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
+        //    try
+        //    {
+        //        testingTarget.OnDispose(DisposeTypes.Explicit);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        tlog.Debug(tag, e.Message.ToString());
+        //        Assert.Fail("Caught Exception: Failed!");
+        //    }
 
-            tlog.Debug(tag, $"AnimatedVectorImageViewDispose END (OK)");
-        }
+        //    tlog.Debug(tag, $"AnimatedVectorImageViewDispose END (OK)");
+        //}
 
         [Test]
         [Category("P1")]
@@ -134,7 +132,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatedVectorImageViewResourceUrl END (OK)");
         }
 
@@ -158,7 +155,6 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.RepeatCount = 2;
             Assert.AreEqual(2, testingTarget.RepeatCount, "Should be equal");
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatedVectorImageViewRepeatCount END (OK)");
         }
 
@@ -187,7 +183,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatedVectorImageViewTotalFrame END (OK)");
         }
 
@@ -252,7 +247,6 @@ namespace Tizen.NUI.Devel.Tests
             catch (InvalidOperationException e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                testingTarget.Dispose();
                 tlog.Debug(tag, $"AnimatedVectorImageViewCurrentFrameNotSetResourceUrl END (OK)");
                 Assert.Pass("Caught InvalidOperationException: Passed!");
             }
@@ -279,7 +273,6 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.RepeatMode = AnimatedVectorImageView.RepeatModes.Restart;
             Assert.AreEqual(AnimatedVectorImageView.RepeatModes.Restart, testingTarget.RepeatMode, "Should be equal!");
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatedVectorImageViewRepeatMode END (OK)");
         }
 
@@ -322,7 +315,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatedVectorImageViewAnimationState END (OK)");
         }
 
@@ -362,7 +354,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatedVectorImageViewSetMinAndMaxFrame END (OK)");
         }
 
@@ -391,7 +382,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatedVectorImageViewSetMinMaxFrame END (OK)");
         }
 
@@ -422,7 +412,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatedVectorImageViewSetMinMaxFrameByMarker END (OK)");
         }
 
@@ -448,7 +437,6 @@ namespace Tizen.NUI.Devel.Tests
             catch (InvalidOperationException e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                testingTarget.Dispose();
                 tlog.Debug(tag, $"AnimatedVectorImageViewPlay END (OK)");
                 Assert.Pass("Caught InvalidOperationException: Passed!");
             }
@@ -483,7 +471,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatedVectorImageViewStopAsCancel END (OK)");
         }
 
@@ -516,7 +503,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatedVectorImageViewStopAsDiscard END (OK)");
         }
 
@@ -549,7 +535,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"AnimatedVectorImageViewStopAsStopFinal END (OK)");
         }
     }

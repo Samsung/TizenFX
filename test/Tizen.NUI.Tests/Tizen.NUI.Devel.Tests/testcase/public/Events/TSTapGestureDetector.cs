@@ -209,23 +209,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("TapGestureDetector getCPtr")]
-        [Property("SPEC", "Tizen.NUI.TapGestureDetector.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void TapGestureDetectorgetCPtr()
-        {
-            tlog.Debug(tag, $"TapGestureDetectorgetCPtr START");
-            TapGestureDetector a1 = new TapGestureDetector();
-            global::System.Runtime.InteropServices.HandleRef p1 = TapGestureDetector.getCPtr(a1);
-            
-            tlog.Debug(tag, $"TapGestureDetectorgetCPtr END (OK)");
-            Assert.Pass("TapGestureDetectorgetCPtr");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("TapGestureDetector GetTapGestureDetectorFromPtr")]
         [Property("SPEC", "Tizen.NUI.TapGestureDetector.GetTapGestureDetectorFromPtr M")]
         [Property("SPEC_URL", "-")]
@@ -236,7 +219,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TapGestureDetectorGetTapGestureDetectorFromPtr START");
             TapGestureDetector a1 = new TapGestureDetector();
 			
-            TapGestureDetector a2 = TapGestureDetector.GetTapGestureDetectorFromPtr(TapGestureDetector.getCPtr(a1).Handle);
+            TapGestureDetector a2 = TapGestureDetector.GetTapGestureDetectorFromPtr(a1.SwigCPtr.Handle);
 
             a1.Dispose();
             

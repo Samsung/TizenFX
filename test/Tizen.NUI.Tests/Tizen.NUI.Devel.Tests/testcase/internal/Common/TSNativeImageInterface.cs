@@ -40,8 +40,6 @@ namespace Tizen.NUI.Devel.Tests
             var testingTarget = new NativeImageSource(100, 50, NativeImageSource.ColorDepth.Default);
             Assert.IsNotNull(testingTarget, "Should be not null!");
             Assert.IsInstanceOf<NativeImageSource>(testingTarget, "Should be an Instance of NativeImageSource!");
-
-            tlog.Debug(tag, "getCPtr : " + NativeImageInterface.getCPtr(testingTarget));
            
             testingTarget.Dispose();
             tlog.Debug(tag, $"NativeImageInterfaceConstructor END (OK)");

@@ -66,38 +66,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("WebConsoleMessage ReleaseSwigCPtr.")]
-        [Property("SPEC", "Tizen.NUI.WebConsoleMessage.ReleaseSwigCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebConsoleMessageReleaseSwigCPtr()
-        {
-            tlog.Debug(tag, $"WebConsoleMessageReleaseSwigCPtr START");
-
-            using (Tizen.NUI.BaseComponents.WebView webview = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
-            {
-                var testingTarget = new MyWebConsoleMessage(webview.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebConsoleMessage>(testingTarget, "Should return WebConsoleMessage instance.");
-
-                try
-                {
-                    testingTarget.OnReleaseSwigCPtr(testingTarget.SwigCPtr);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception : Failed!");
-                }
-            }
-
-            tlog.Debug(tag, $"WebConsoleMessageReleaseSwigCPtr END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("WebConsoleMessage Source.")]
         [Property("SPEC", "Tizen.NUI.WebConsoleMessage.Source A")]
         [Property("SPEC_URL", "-")]

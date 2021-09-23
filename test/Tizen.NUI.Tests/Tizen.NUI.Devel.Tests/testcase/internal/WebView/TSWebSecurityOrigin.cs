@@ -52,32 +52,5 @@ namespace Tizen.NUI.Devel.Tests
                 
             tlog.Debug(tag, $"WebSecurityOriginConstructor END (OK)");
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebSecurityOrigin getCPtr.")]
-        [Property("SPEC", "Tizen.NUI.WebSecurityOrigin.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebSecurityOriginGetCPtr()
-        {
-            tlog.Debug(tag, $"WebSecurityOriginGetCPtr START");
-
-            using (Tizen.NUI.BaseComponents.WebView webview = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
-            {
-                var testingTarget = new WebSecurityOrigin(webview.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebSecurityOrigin>(testingTarget, "Should return WebSecurityOrigin instance.");
-
-                var result = WebSecurityOrigin.getCPtr(testingTarget);
-                tlog.Debug(tag, "getCPtr : " + result);
-
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"WebSecurityOriginGetCPtr END (OK)");
-        }
     }
 }

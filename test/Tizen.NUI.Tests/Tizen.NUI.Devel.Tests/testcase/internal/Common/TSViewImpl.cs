@@ -48,33 +48,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("ViewImpl getCPtr.")]
-        [Property("SPEC", "Tizen.NUI.ViewImpl.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewImplGetCPtr()
-        {
-            tlog.Debug(tag, $"ViewImplGetCPtr START");
-
-            using (ViewWrapperImpl impl = new ViewWrapperImpl(CustomViewBehaviour.ViewBehaviourDefault))
-            {
-                var testingTarget = new ViewWrapper("CustomView", impl);
-                Assert.IsNotNull(testingTarget, "should be not null");
-                Assert.IsInstanceOf<ViewWrapper>(testingTarget, "should be an instance of testing target class!");
-
-                var result = ViewWrapperImpl.getCPtr(testingTarget.viewWrapperImpl);
-                tlog.Debug(tag, "getCptr : " + result);
-
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"ViewImplGetCPtr END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("ViewImpl SetStyleName.")]
         [Property("SPEC", "Tizen.NUI.ViewImpl.SetStyleName M")]
         [Property("SPEC_URL", "-")]

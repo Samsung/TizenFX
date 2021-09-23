@@ -39,7 +39,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public async Task WebCookieManagerCookieChanged()
         {
-            tlog.Debug(tag, $"WebSecurityOriginListConstructor START");
+            tlog.Debug(tag, $"WebCookieManagerCookieChanged START");
 
             var webview = new Tizen.NUI.BaseComponents.WebView(runtimeArgs)
             {
@@ -61,15 +61,15 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.CookieChanged -= OnCookieChanged;
 
             testingTarget.Dispose();
-            tlog.Debug(tag, $"WebSecurityOriginListConstructor END (OK)");
+            tlog.Debug(tag, $"WebCookieManagerCookieChanged END (OK)");
         }
 
         [Test]
         [Category("P1")]
         [Description("WebCookieManager SetPersistentStorage.")]
-        [Property("SPEC", "Tizen.NUI.WebCookieManager.SetPersistentStorage A")]
+        [Property("SPEC", "Tizen.NUI.WebCookieManager.SetPersistentStorage M")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
+        [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void WebCookieManagerSetPersistentStorage()

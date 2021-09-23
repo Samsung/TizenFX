@@ -67,38 +67,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("WebFormRepostPolicyDecisionMaker ReleaseSwigCPtr.")]
-        [Property("SPEC", "Tizen.NUI.WebFormRepostPolicyDecisionMaker.ReleaseSwigCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebFormRepostPolicyDecisionMakerReleaseSwigCPtr()
-        {
-            tlog.Debug(tag, $"WebFormRepostPolicyDecisionMakerReleaseSwigCPtr START");
-
-            using (Tizen.NUI.BaseComponents.WebView webview = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
-            {
-                var testingTarget = new MyWebFormRepostPolicyDecisionMaker(webview.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebFormRepostPolicyDecisionMaker>(testingTarget, "Should return WebFormRepostPolicyDecisionMaker instance.");
-
-                try
-                {
-                    testingTarget.OnReleaseSwigCPtr(testingTarget.SwigCPtr);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception : Failed!");
-                }
-            }
-
-            tlog.Debug(tag, $"WebFormRepostPolicyDecisionMakerReleaseSwigCPtr END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("WebFormRepostPolicyDecisionMaker Reply.")]
         [Property("SPEC", "Tizen.NUI.WebFormRepostPolicyDecisionMaker.Reply M")]
         [Property("SPEC_URL", "-")]

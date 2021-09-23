@@ -57,8 +57,6 @@ namespace Tizen.NUI.Devel.Tests
                     tlog.Debug(tag, e.Message.ToString());
                     Assert.Fail("Caught Exception: Failed!");
                 }
-
-                testingTarget.Dispose();
             }
 
             tlog.Debug(tag, $"LottieAnimationViewURL END (OK)");
@@ -91,8 +89,6 @@ namespace Tizen.NUI.Devel.Tests
 
                 testingTarget.RedrawInScalingDown = true;
                 Assert.IsTrue(testingTarget.RedrawInScalingDown);
-
-                testingTarget.Dispose();
             }
 
             tlog.Debug(tag, $"LottieAnimationViewRedrawInScalingDown END (OK)");
@@ -127,7 +123,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"LottieAnimationViewSetMinMaxFrameByMarker END (OK)");
         }
 
@@ -168,7 +163,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"LottieAnimationViewGetMinMaxFrame END (OK)");
         }
 
@@ -195,7 +189,6 @@ namespace Tizen.NUI.Devel.Tests
 
             NUIApplication.GetDefaultWindow().GetDefaultLayer().Remove(testingTarget);
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"LottieAnimationViewFinished END (OK)");
         }
 
@@ -222,7 +215,6 @@ namespace Tizen.NUI.Devel.Tests
 
             NUIApplication.GetDefaultWindow().GetDefaultLayer().Remove(testingTarget);
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"LottieAnimationViewVisualEvent END (OK)");
         }
 
