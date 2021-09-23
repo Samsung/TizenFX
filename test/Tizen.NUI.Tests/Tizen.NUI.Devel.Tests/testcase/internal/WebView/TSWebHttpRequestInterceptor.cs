@@ -64,37 +64,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WebHttpRequestInterceptorConstructor END (OK)");
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebHttpRequestInterceptor ReleaseSwigCPtr.")]
-        [Property("SPEC", "Tizen.NUI.WebHttpRequestInterceptor.ReleaseSwigCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebHttpRequestInterceptorReleaseSwigCPtr()
-        {
-            tlog.Debug(tag, $"WebHttpRequestInterceptorReleaseSwigCPtr START");
-
-            using (Tizen.NUI.BaseComponents.WebView webview = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
-            {
-                var testingTarget = new MyWebHttpRequestInterceptor(webview.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebHttpRequestInterceptor>(testingTarget, "Should return WebHttpRequestInterceptor instance.");
-
-                try
-                {
-                    testingTarget.OnReleaseSwigCPtr(testingTarget.SwigCPtr);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception : Failed!");
-                }
-            }
-
-            tlog.Debug(tag, $"WebHttpRequestInterceptorReleaseSwigCPtr END (OK)");
-        }
     }
 }

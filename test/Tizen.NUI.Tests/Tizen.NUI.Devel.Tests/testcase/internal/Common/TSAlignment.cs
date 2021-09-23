@@ -108,35 +108,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Alignment getCPtr.")]
-        [Property("SPEC", "Tizen.NUI.Alignment.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AlignmentGetCPtr()
-        {
-            tlog.Debug(tag, $"AlignmentGetCPtr START");
-
-            var testingTarget = new Alignment(new ImageView().SwigCPtr.Handle, false);
-            Assert.IsNotNull(testingTarget, "Can't create success object Alignment");
-            Assert.IsInstanceOf<Alignment>(testingTarget, "Should be an instance of Alignment type.");
-
-            try
-            {
-                Alignment.getCPtr(testingTarget);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AlignmentGetCPtr END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Alignment.Padding constructor.")]
         [Property("SPEC", "Tizen.NUI.Alignment.Padding.Padding C")]
         [Property("SPEC_URL", "-")]
@@ -246,35 +217,6 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AlignmentSetPadding END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Alignment.Padding getCPtr.")]
-        [Property("SPEC", "Tizen.NUI.Alignment.Padding getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AlignmentPaddingGetCPtr()
-        {
-            tlog.Debug(tag, $"AlignmentPaddingGetCPtr START");
-
-            var testingTarget = new Alignment.Padding();
-            Assert.IsNotNull(testingTarget, "Can't create success object Alignment");
-            Assert.IsInstanceOf<Alignment.Padding>(testingTarget, "Should be an instance of Padding type.");
-
-            try
-            {
-                Alignment.Padding.getCPtr(testingTarget);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AlignmentPaddingGetCPtr END (OK)");
         }
 
         [Test]

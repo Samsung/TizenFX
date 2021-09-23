@@ -312,34 +312,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Test getCPtr property.")]
-        [Property("SPEC", "Tizen.NUI.PanGesture.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void PanGesturegetCPtr()
-        {
-            tlog.Debug(tag, $"PanGesturegetCPtr START");
-
-            using (PanGesture gesture = new PanGesture())
-            {
-                try
-                {
-                    PanGesture.getCPtr(gesture);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception : Failed!");
-                }
-            }
-
-            tlog.Debug(tag, $"PanGesturegetCPtr END (OK)");
-            Assert.Pass("PanGestureCPtr");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Test GetPanGestureFromPtr property.")]
         [Property("SPEC", "Tizen.NUI.PanGesture.GetPanGestureFromPtr M")]
         [Property("SPEC_URL", "-")]
@@ -351,7 +323,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (PanGesture gesture = new PanGesture())
             {
-                var testingTarget = PanGesture.GetPanGestureFromPtr(PanGesture.getCPtr(gesture).Handle);
+                var testingTarget = PanGesture.GetPanGestureFromPtr(gesture.SwigCPtr.Handle);
                 Assert.IsNotNull(testingTarget, "Can't create success object Hover");
                 Assert.IsInstanceOf<PanGesture>(testingTarget, "Should be an instance of PanGesture type.");
 

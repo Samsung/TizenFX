@@ -51,37 +51,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"ItemFactoryConstructor END (OK)");
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("ItemFactory getCPtr.")]
-        [Property("SPEC", "Tizen.NUI.ItemFactory.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ItemFactorygetCPtr()
-        {
-            tlog.Debug(tag, $"ItemFactorygetCPtr START");
-
-            var testingTarget = new ItemFactory();
-            Assert.IsNotNull(testingTarget, "Should be not null!");
-            Assert.IsInstanceOf<ItemFactory>(testingTarget, "Should be an Instance of ItemFactory!");
-
-            try
-            {
-                ItemFactory.getCPtr(testingTarget);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            testingTarget.Dispose();
-
-            tlog.Debug(tag, $"ItemFactorygetCPtr END (OK)");
-        }
-
-
     }
 }
