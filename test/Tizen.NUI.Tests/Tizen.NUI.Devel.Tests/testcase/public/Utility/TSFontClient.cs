@@ -337,7 +337,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (FontClient.GlyphBufferData data = new FontClient.GlyphBufferData())
             {
-                var testingTarget = new FontClient.GlyphBufferData(FontClient.GlyphBufferData.getCPtr(data).Handle, true);
+                var testingTarget = new FontClient.GlyphBufferData(data.SwigCPtr.Handle, true);
                 Assert.IsNotNull(testingTarget, "Return a null object of GlyphBufferData");
                 Assert.IsInstanceOf<FontClient.GlyphBufferData>(testingTarget, "Should be an instance of GlyphBufferData type.");
 

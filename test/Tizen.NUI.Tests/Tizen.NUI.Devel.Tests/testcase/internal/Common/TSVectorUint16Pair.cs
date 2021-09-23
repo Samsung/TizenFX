@@ -197,35 +197,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("VectorUint16Pair Insert. 3 parameters.")]
-        [Property("SPEC", "Tizen.NUI.VectorUint16Pair.Insert M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void VectorUint16InsertWith3Parameters()
-        {
-            tlog.Debug(tag, $"VectorUint16InsertWith3Parameters START");
-
-            var testingTarget = new VectorUint16Pair();
-            Assert.IsNotNull(testingTarget, "Can't create success object VectorUint16Pair.");
-            Assert.IsInstanceOf<VectorUint16Pair>(testingTarget, "Should return VectorUint16Pair instance.");
-
-            try
-            {
-                testingTarget.Insert(new Uint16Pair(0, 0), testingTarget.Begin(), testingTarget.End());
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"VectorUint16InsertWith3Parameters END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("VectorUint16Pair Reserve.")]
         [Property("SPEC", "Tizen.NUI.VectorUint16Pair.Reserve M")]
         [Property("SPEC_URL", "-")]
@@ -309,97 +280,6 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"VectorUint16ResizeWithUint16Pair END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("VectorUint16Pair Erase.")]
-        [Property("SPEC", "Tizen.NUI.VectorUint16Pair.Erase M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void VectorUint16Erase()
-        {
-            tlog.Debug(tag, $"VectorUint16Erase START");
-
-            var testingTarget = new VectorUint16Pair();
-            Assert.IsNotNull(testingTarget, "Can't create success object VectorUint16Pair.");
-            Assert.IsInstanceOf<VectorUint16Pair>(testingTarget, "Should return VectorUint16Pair instance.");
-
-            try
-            {
-                testingTarget.Erase(new Uint16Pair());
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"VectorUint16Erase END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("VectorUint16Pair Erase. With 2 Uint16Pair.")]
-        [Property("SPEC", "Tizen.NUI.VectorUint16Pair.Erase M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void VectorUint16EraseWith2Uint16Pair()
-        {
-            tlog.Debug(tag, $"VectorUint16EraseWith2Uint16Pair START");
-
-            var testingTarget = new VectorUint16Pair();
-            Assert.IsNotNull(testingTarget, "Can't create success object VectorUint16Pair.");
-            Assert.IsInstanceOf<VectorUint16Pair>(testingTarget, "Should return VectorUint16Pair instance.");
-
-            try
-            {
-                testingTarget.Erase(new Uint16Pair(), new Uint16Pair());
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"VectorUint16EraseWith2Uint16Pair END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("VectorUint16Pair Remove.")]
-        [Property("SPEC", "Tizen.NUI.VectorUint16Pair.Remove M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void VectorUint16Remove()
-        {
-            tlog.Debug(tag, $"VectorUint16Remove START");
-
-            var testingTarget = new VectorUint16Pair();
-            Assert.IsNotNull(testingTarget, "Can't create success object VectorUint16Pair.");
-            Assert.IsInstanceOf<VectorUint16Pair>(testingTarget, "Should return VectorUint16Pair instance.");
-
-            try
-            {
-                using (Uint16Pair pair = new Uint16Pair(30, 40))
-                {
-                    testingTarget.PushBack(pair);
-                    testingTarget.Remove(pair);
-                }
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"VectorUint16Remove END (OK)");
         }
 
         [Test]

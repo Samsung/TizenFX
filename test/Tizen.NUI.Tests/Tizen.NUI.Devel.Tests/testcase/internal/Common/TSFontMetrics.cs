@@ -60,8 +60,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object FontMetrics.");
             Assert.IsInstanceOf<FontMetrics>(testingTarget, "Should return FontMetrics instance.");
 
-            tlog.Debug(tag, "getCPtr : " + FontMetrics.getCPtr(testingTarget));
-
             testingTarget.UnderlineThickness = 0.3f;
             tlog.Debug(tag, "UnderlineThickness :" + testingTarget.UnderlineThickness);
 

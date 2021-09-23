@@ -77,39 +77,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("PageTurnLandscapeView getCPtr.")]
-        [Property("SPEC", "Tizen.NUI.PageTurnLandscapeView.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void PageTurnLandscapeViewGetCPtr()
-        {
-            tlog.Debug(tag, $"PageTurnLandscapeViewGetCPtr START");
-
-            using (View view = new View())
-            {
-                var testingTarget = new PageTurnLandscapeView(view.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "Should be not null!");
-                Assert.IsInstanceOf<PageTurnLandscapeView>(testingTarget, "Should be an Instance of PageTurnLandscapeView!");
-
-                try
-                {
-                    PageTurnLandscapeView.getCPtr(testingTarget);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception: Failed!");
-                }
-
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"PageTurnLandscapeViewGetCPtr END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("PageTurnLandscapeView DownCast.")]
         [Property("SPEC", "Tizen.NUI.PageTurnLandscapeView.DownCast M")]
         [Property("SPEC_URL", "-")]

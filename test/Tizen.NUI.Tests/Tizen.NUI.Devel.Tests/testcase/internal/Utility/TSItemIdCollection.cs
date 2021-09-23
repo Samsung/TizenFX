@@ -131,38 +131,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("ItemIdCollection getCPtr.")]
-        [Property("SPEC", "Tizen.NUI.ItemIdCollection.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ItemIdCollectiongetCPtr()
-        {
-            tlog.Debug(tag, $"ItemIdCollectiongetCPtr START");
-
-            uint[] itemId = new uint[] { 1, 2, 3, 4 };
-            global::System.Collections.ICollection c = itemId;
-
-            var testingTarget = new ItemIdCollection(c);
-            Assert.IsNotNull(testingTarget, "Should be not null!");
-            Assert.IsInstanceOf<ItemIdCollection>(testingTarget, "Should be an Instance of ItemIdCollection!");
-
-            try
-            {
-                ItemIdCollection.getCPtr(testingTarget);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ItemIdCollectiongetCPtr END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("ItemIdCollection this.")]
         [Property("SPEC", "Tizen.NUI.ItemIdCollection.this A")]
         [Property("SPEC_URL", "-")]
