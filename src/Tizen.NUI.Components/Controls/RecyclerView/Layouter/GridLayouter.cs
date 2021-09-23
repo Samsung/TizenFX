@@ -255,6 +255,10 @@ namespace Tizen.NUI.Components
                 height = height + itemMargin.Top + itemMargin.Bottom;
                 StepCandidate = IsHorizontal? width : height;
                 CandidateMargin = new Extents(itemMargin);
+
+                // Prevent zero division.
+                if (width == 0) width = 1;
+                if (height == 0) height = 1;
                 spanSize = IsHorizontal?
                             Convert.ToInt32(Math.Truncate((double)((colView.Size.Height - Padding.Top - Padding.Bottom) / height))) :
                             Convert.ToInt32(Math.Truncate((double)((colView.Size.Width - Padding.Start - Padding.End) / width)));
@@ -1324,7 +1328,9 @@ namespace Tizen.NUI.Components
                 else
                 {
                     float visibleAreaX = visibleArea.X - (hasHeader ? headerSize : 0);
-                    found.start = (Convert.ToInt32(Math.Abs(visibleAreaX / StepCandidate)) - 1) * spanSize;
+                    // Prevent zero division.
+                    var itemSize = (StepCandidate != 0)? StepCandidate: 1f;
+                    found.start = (Convert.ToInt32(Math.Abs(visibleAreaX / itemSize)) - 1) * spanSize;
                     if (hasHeader) found.start += 1;
                 }
                 if (found.start < 0) found.start = 0;
@@ -1384,7 +1390,9 @@ namespace Tizen.NUI.Components
                 {
                     float visibleAreaY = visibleArea.Y - (hasHeader ? headerSize : 0);
                     //Need to Consider GroupHeight!!!!
-                    found.end = (Convert.ToInt32(Math.Abs(visibleAreaY / StepCandidate)) + 1) * spanSize + adds;
+                    // Prevent zero division.
+                    var itemSize = (StepCandidate != 0)? StepCandidate: 1f;
+                    found.end = (Convert.ToInt32(Math.Abs(visibleAreaY / itemSize)) + 1) * spanSize + adds;
                     if (hasHeader) found.end += 1;
                 }
                 if (found.end > (MaxIndex)) found.end = MaxIndex;
