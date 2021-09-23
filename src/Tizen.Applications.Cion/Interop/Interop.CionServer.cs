@@ -25,7 +25,7 @@ internal static partial class Interop
     internal static partial class CionServer
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void CionServerPeerInfoIterator(IntPtr peerInfo, IntPtr userData);
+        internal delegate bool CionServerPeerInfoIterator(IntPtr peerInfo, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void CionServerPayloadAsyncResultCb(IntPtr result, IntPtr userData);
@@ -99,8 +99,8 @@ internal static partial class Interop
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_remove_disconnected_cb")]
         internal static extern ErrorCode CionServerRemoveDisconnectedCb(ServerSafeHandle server, CionServerDisconnectedCb cb);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_server_set_on_demand_launch_enable")]
-        internal static extern ErrorCode CionServerSetOnDemandLaunchEnable(ServerSafeHandle server, bool enable);
+        [DllImport(Libraries.Cion, EntryPoint = "cion_server_set_on_demand_launch_enabled")]
+        internal static extern ErrorCode CionServerSetOnDemandLaunchEnabled(ServerSafeHandle server, bool enable);
 
         [DllImport(Libraries.Cion, EntryPoint = "cion_server_set_display_name")]
         internal static extern ErrorCode CionServerSetDisplayName(ServerSafeHandle server, string displayName);

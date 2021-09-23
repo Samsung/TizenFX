@@ -352,9 +352,11 @@ namespace Tizen.Applications
                 Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peer, out PeerInfoSafeHandle clone);
                 if (clone_ret != Interop.Cion.ErrorCode.None)
                 {
-                    throw CionErrorFactory.GetException(clone_ret, "Failed to clone peer info.");
+                    Log.Error(LogTag, "Failed to clone peer info.");
+                    return false;
                 }
                 peerInfoList.Add(new PeerInfo(clone));
+                return true;
             }, IntPtr.Zero);
             return peerInfoList;
         }
@@ -369,7 +371,7 @@ namespace Tizen.Applications
         /// <since_tizen> 9 </since_tizen>
         public void SetOndemandLaunchEnabled(bool enable)
         {
-            Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerSetOnDemandLaunchEnable(_handle, enable);
+            Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerSetOnDemandLaunchEnabled(_handle, enable);
             if (ret != Interop.Cion.ErrorCode.None)
             {
                 throw CionErrorFactory.GetException(ret, "Failed to set ondemand launch enable");
