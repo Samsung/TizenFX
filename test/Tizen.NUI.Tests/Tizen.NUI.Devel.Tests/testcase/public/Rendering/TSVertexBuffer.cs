@@ -46,9 +46,7 @@ namespace Tizen.NUI.Devel.Tests
                 var testingTarget = new VertexBuffer(vertexFormat);
                 Assert.IsNotNull(testingTarget, "Return a null object of VertexBuffer");
                 Assert.IsInstanceOf<VertexBuffer>(testingTarget, "Should be an instance of VertexBuffer type.");
-
-                tlog.Debug(tag, "getCPtr : " + VertexBuffer.getCPtr(testingTarget));
-
+				
                 testingTarget.Dispose();
             }
 

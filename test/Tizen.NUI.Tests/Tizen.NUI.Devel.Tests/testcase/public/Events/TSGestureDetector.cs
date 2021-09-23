@@ -223,35 +223,5 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"GestureDetectorDownCast END (OK)");
             Assert.Pass("GestureDetectorDownCast");
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("GestureDetector getCPtr")]
-        [Property("SPEC", "Tizen.NUI.GestureDetector.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void GestureDetectorgetCPtr()
-        {
-            tlog.Debug(tag, $"GestureDetectorgetCPtr START");
-
-            var testingTarget = new GestureDetector();
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<GestureDetector>(testingTarget, "should be an instance of testing target class!");
-
-            try
-            {
-                GestureDetector.getCPtr(testingTarget);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"GestureDetectorgetCPtr END (OK)");
-            Assert.Pass("GestureDetectorgetCPtr");
-        }
     }
 }

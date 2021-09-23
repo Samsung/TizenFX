@@ -41,8 +41,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object AccessibilityManager ");
             Assert.IsInstanceOf<Accessibility.AccessibilityManager>(testingTarget, "Should be an instance of AccessibilityManager  type.");
 
-            tlog.Debug(tag, "CPtr : " + Accessibility.AccessibilityManager.getCPtr(testingTarget));
-
             testingTarget.Dispose();
             tlog.Debug(tag, $"AccessibilityManagerConstructor END (OK)");
         }

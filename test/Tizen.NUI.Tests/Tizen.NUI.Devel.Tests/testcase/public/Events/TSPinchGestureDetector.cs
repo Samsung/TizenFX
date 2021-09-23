@@ -79,7 +79,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"PinchGestureDetectorGetPinchGestureDetectorFromPtr START");
             PinchGestureDetector a1 = new PinchGestureDetector();
 
-            PinchGestureDetector a2 = PinchGestureDetector.GetPinchGestureDetectorFromPtr(PinchGestureDetector.getCPtr(a1).Handle);
+            PinchGestureDetector a2 = PinchGestureDetector.GetPinchGestureDetectorFromPtr(a1.SwigCPtr.Handle);
 			
             a1.Dispose();
             
@@ -107,26 +107,6 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"PinchGestureDetectorDownCast END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("PinchGestureDetector getCPtr")]
-        [Property("SPEC", "Tizen.NUI.PinchGestureDetector.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void PinchGestureDetectorgetCPtr()
-        {
-            tlog.Debug(tag, $"PinchGestureDetectorgetCPtr START");
-            PinchGestureDetector a1 = new PinchGestureDetector();
-
-            global::System.Runtime.InteropServices.HandleRef b1 = PinchGestureDetector.getCPtr(a1);
-
-            a1.Dispose();
-            
-            tlog.Debug(tag, $"PinchGestureDetectorgetCPtr END (OK)");
-            Assert.Pass("PinchGestureDetectorgetCPtr");
         }
 
 		[Test]

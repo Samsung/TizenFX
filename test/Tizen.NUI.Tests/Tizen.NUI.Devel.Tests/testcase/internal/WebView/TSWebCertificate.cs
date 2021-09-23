@@ -68,40 +68,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("WebCertificate ReleaseSwigCPtr.")]
-        [Property("SPEC", "Tizen.NUI.WebCertificate.ReleaseSwigCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebCertificateReleaseSwigCPtr()
-        {
-            tlog.Debug(tag, $"WebCertificateReleaseSwigCPtr START");
-
-            using (Tizen.NUI.BaseComponents.WebView webview = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
-            {
-                var testingTarget = new MyWebCertificate(webview.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebCertificate>(testingTarget, "Should return WebCertificate instance.");
-
-                try
-                {
-                    testingTarget.OnReleaseSwigCPtr(testingTarget.SwigCPtr);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception : Failed!");
-                }
-
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"WebCertificateReleaseSwigCPtr END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("WebCertificate IsFromMainFrame.")]
         [Property("SPEC", "Tizen.NUI.WebCertificate.IsFromMainFrame A")]
         [Property("SPEC_URL", "-")]
