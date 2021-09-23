@@ -203,10 +203,16 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void Measure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            OnMeasure(widthMeasureSpec, heightMeasureSpec);
-            OnMeasureIndependentChildren(widthMeasureSpec, heightMeasureSpec);
-            flags = flags | LayoutFlags.LayoutRequired;
-            flags &= ~LayoutFlags.ForceLayout;
+            bool needsLayout = NeedsLayout(widthMeasureSpec.Size.AsDecimal(), heightMeasureSpec.Size.AsDecimal(), widthMeasureSpec.Mode, heightMeasureSpec.Mode);
+
+            needsLayout = needsLayout || ((flags & LayoutFlags.ForceLayout) == LayoutFlags.ForceLayout);
+            if (needsLayout)
+            {
+                OnMeasure(widthMeasureSpec, heightMeasureSpec);
+                OnMeasureIndependentChildren(widthMeasureSpec, heightMeasureSpec);
+                flags = flags | LayoutFlags.LayoutRequired;
+                flags &= ~LayoutFlags.ForceLayout;
+            }
 
             oldWidthMeasureSpec = widthMeasureSpec;
             oldHeightMeasureSpec = heightMeasureSpec;
