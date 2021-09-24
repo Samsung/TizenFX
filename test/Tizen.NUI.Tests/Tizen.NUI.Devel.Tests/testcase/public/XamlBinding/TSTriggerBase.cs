@@ -246,6 +246,7 @@ namespace Tizen.NUI.Devel.Tests
             var sl = new SealedList<int>();
             Assert.IsNotNull(sl, "null SealedList");
             sl.Add(1);
+            sl[0] = 2;
             sl.IsReadOnly = true;
             var i = sl[0];
             Assert.Throws<InvalidOperationException>(() => sl[0] = 2);
@@ -289,6 +290,46 @@ namespace Tizen.NUI.Devel.Tests
             int i;
             Assert.Throws<InvalidOperationException>(() => sl.Remove(1));
             tlog.Debug(tag, $"SealedListRemoveTest END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("SealedList IsReadOnly")]
+        [Property("SPEC", "Tizen.NUI.Binding.Trigger.SealedList.IsReadOnly A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        public void IsReadOnly()
+        {
+            tlog.Debug(tag, $"IsReadOnly START");
+
+            var sl = new SealedList<int>();
+            Assert.IsNotNull(sl, "null SealedList");
+            sl.IsReadOnly = true;
+            sl.IsReadOnly = true; //Reassign
+            Assert.Throws<InvalidOperationException>(() => sl.IsReadOnly = false);
+            tlog.Debug(tag, $"IsReadOnly END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("SealedList Contains")]
+        [Property("SPEC", "Tizen.NUI.Binding.Trigger.SealedList.Contains M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void Contains()
+        {
+            tlog.Debug(tag, $"Contains START");
+
+            var sl = new SealedList<int>();
+            Assert.IsNotNull(sl, "null SealedList");
+            sl.Add(1);
+            var ret = sl.Contains (1);
+            Assert.AreEqual(true, ret, "Should be equal");
+            var ret2 = sl.IndexOf(1);
+            Assert.AreEqual(0, ret2, "Should be equal");
+            sl.Remove(1);
+            sl.CopyTo(new int[1] { 3 }, 0);
+            tlog.Debug(tag, $"IsReadOnly END");
         }
     }
 }
