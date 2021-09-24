@@ -27,9 +27,26 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
+        internal class MyBehavior : Behavior
+        {
+            public MyBehavior(Type associatedType) : base(associatedType) { }
+
+            public void TestAttachTo(BindableObject bindable)
+            {
+                (this as IAttachedObject).AttachTo(bindable);
+            }
+
+            public void TestDetachFrom(BindableObject bindable)
+            {
+                (this as IAttachedObject).DetachFrom(bindable);
+            }
+        }
+
         internal class MyBehavior<T> : Behavior<T> where T : BindableObject
         {
             public MyBehavior(){}
+
+            
 
             public void AttachedTo(BindableObject bindable)
             {
@@ -48,17 +65,63 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Category("P1")]
+        [Category("P2")]
         [Description("Behavior Behavior ")]
-        [Property("SPEC", "Tizen.NUI.Binding.Behavior<T>.Behavior  C")]
+        [Property("SPEC", "Tizen.NUI.Binding.Behavior.Behavior  C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MCST")]
         public void BehaviorConstructor()
         {
             tlog.Debug(tag, $"BehaviorConstructor START");
+            Assert.Throws<ArgumentNullException>(() => new MyBehavior(null));
+            
+            tlog.Debug(tag, $"BehaviorConstructor END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("Behavior AttachTo ")]
+        [Property("SPEC", "Tizen.NUI.Binding.Behavior.AttachTo  C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MCST")]
+        public void AttachTo()
+        {
+            tlog.Debug(tag, $"AttachTo START");
+            var mb = new MyBehavior(typeof(int));
+            Assert.Throws<ArgumentNullException>(() => mb.TestAttachTo(null));
+            var v = new View();
+            Assert.Throws<InvalidOperationException>(() => mb.TestAttachTo(v));
+            tlog.Debug(tag, $"AttachTo END"); 
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Behavior AttachTo ")]
+        [Property("SPEC", "Tizen.NUI.Binding.Behavior.AttachTo  C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MCST")]
+        public void AttachTo2()
+        {
+            tlog.Debug(tag, $"AttachTo2 START");
+            var mb = new MyBehavior(typeof(View));
+            var v = new View();
+            mb.TestAttachTo(v);
+            mb.TestDetachFrom(v);
+            tlog.Debug(tag, $"AttachTo2 END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Behavior Behavior ")]
+        [Property("SPEC", "Tizen.NUI.Binding.Behavior<T>.Behavior  C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MCST")]
+        public void BehaviorConstructor2()
+        {
+            tlog.Debug(tag, $"BehaviorConstructor2 START");
             MyBehavior<View> mb = new MyBehavior<View>();
             Assert.IsNotNull(mb, "Should not be null");
-            tlog.Debug(tag, $"BehaviorConstructor END");
+            tlog.Debug(tag, $"BehaviorConstructor2 END");
         }
 
         [Test]
