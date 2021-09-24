@@ -33,8 +33,8 @@ namespace Tizen.NUI.Binding
                 if (parts.Length == 4)
                 {
                     return new Extents((ushort)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[0].Trim()),
-                                       (ushort)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[2].Trim()),
                                        (ushort)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[1].Trim()),
+                                       (ushort)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[2].Trim()),
                                        (ushort)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[3].Trim()));
                 }
                 else if (parts.Length == 1)
