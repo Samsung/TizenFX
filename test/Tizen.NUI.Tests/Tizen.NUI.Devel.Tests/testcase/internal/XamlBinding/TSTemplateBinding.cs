@@ -171,8 +171,8 @@ namespace Tizen.NUI.Devel.Tests
                 var testingTarget = new TemplateBinding("{Binding template}");
                 testingTarget.Apply(null, null, View.FocusableProperty); //InvalidOperationException
             }
-            catch(Exception e){
-                Assert.Fail("Catch exception: " + e.Message.ToString());
+            catch(InvalidOperationException e){
+                Assert.True(true, "Catch exception: " + e.Message.ToString());
             }
             tlog.Debug(tag, $"Apply3 END");
         }

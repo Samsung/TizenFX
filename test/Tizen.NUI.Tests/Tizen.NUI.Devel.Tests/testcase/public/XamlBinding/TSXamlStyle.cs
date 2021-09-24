@@ -269,5 +269,31 @@ namespace Tizen.NUI.Devel.Tests
         //    Assert.Throws<ArgumentNullException>(() => t2.UnApply(null));
         //    tlog.Debug(tag, $"ApplyTest2 END");
         //}
+
+        [Test]
+        [Category("P1")]
+        [Description("XamlStyle  CanBeAppliedTo")]
+        [Property("SPEC", "Tizen.NUI.Binding.XamlStyle.CanBeAppliedTo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void CanBeAppliedTo()
+        {
+            tlog.Debug(tag, $"CanBeAppliedTo START");
+            try
+            {
+                View view = new View();
+                Assert.IsNotNull(view, "null View");
+                var style = new XamlStyle(typeof(View));
+                style.CanBeAppliedTo(typeof(View));
+
+                style.CanBeAppliedTo(typeof(TextLabel));
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+            tlog.Debug(tag, $"CanBeAppliedTo END");
+        }
+
     }
 }

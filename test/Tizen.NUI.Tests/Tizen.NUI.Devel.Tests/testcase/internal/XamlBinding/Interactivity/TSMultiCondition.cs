@@ -61,7 +61,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 var testingTarget = new MultiCondition();
                 Assert.IsNotNull(testingTarget, "Can't create success object MultiCondition.");
-
+                testingTarget.Conditions.Add(new BindingCondition());
                 testingTarget.OnSealed();
                 var v = new View();
                 testingTarget.SetUp(v);
