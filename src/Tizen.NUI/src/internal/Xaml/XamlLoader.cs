@@ -189,18 +189,6 @@ namespace Tizen.NUI.Xaml
             }
         }
 
-        [Obsolete("Use the XamlFileProvider to provide xaml files. We will remove this when Cycle 8 hits Stable.")]
-        public static object Create(string xaml, bool doNotThrow = false)
-        {
-            object inflatedView = null;
-            using (var textreader = new StringReader(xaml))
-            using (var reader = XmlReader.Create(textreader))
-            {
-                inflatedView = Create(reader, doNotThrow);
-            }
-            return inflatedView;
-        }
-
         public static object Create(XmlReader reader, bool doNotThrow = false)
         {
             object inflatedView = null;
