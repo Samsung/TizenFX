@@ -29,7 +29,7 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Constructor with TimeStamp.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         internal TimeStamp(long second, long nanoSecond)
         {
             this.Second = second;
@@ -39,7 +39,7 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// The second of TimeStamp.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public long Second
         {
             get;
@@ -49,7 +49,7 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// The nano second of TimeStamp.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public long NanoSecond
         {
             get;
@@ -69,7 +69,7 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Constructor with Header
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         internal ParcelHeader()
         {
         }
@@ -79,7 +79,7 @@ namespace Tizen.Applications.RPCPort
         /// </summary>
         /// <param name="tag">The tag of Header</param>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public void SetTag(string tag)
         {
             var r = Interop.LibRPCPort.Parcel.SetTag(_handle, tag);
@@ -92,7 +92,7 @@ namespace Tizen.Applications.RPCPort
         /// </summary>
         /// <returns>Tag</returns>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public string GetTag()
         {
             var r = Interop.LibRPCPort.Parcel.GetTag(_handle, out string tag);
@@ -107,7 +107,7 @@ namespace Tizen.Applications.RPCPort
         /// </summary>
         /// <param name="sequenceNumber">The seqence number of Header</param>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public void SetSequenceNumber(int sequenceNumber)
         {
             var r = Interop.LibRPCPort.Parcel.SetSeqNum(_handle, sequenceNumber);
@@ -120,7 +120,7 @@ namespace Tizen.Applications.RPCPort
         /// </summary>
         /// <returns>Sequence number</returns>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public int GetSequenceNumber()
         {
             var r = Interop.LibRPCPort.Parcel.GetSeqNum(_handle, out int sequenceNumber);
@@ -135,7 +135,7 @@ namespace Tizen.Applications.RPCPort
         /// </summary>
         /// <returns>Time stamp</returns>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 8 </since_tizen>
         public TimeStamp GetTimeStamp()
         {
             Interop.Libc.TimeStamp time = new Interop.Libc.TimeStamp();
