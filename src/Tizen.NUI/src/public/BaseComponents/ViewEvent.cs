@@ -1371,19 +1371,6 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (Offset)GetValue(TouchAreaOffsetProperty);
-            }
-            set
-            {
-                SetValue(TouchAreaOffsetProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private Offset InternalTouchAreaOffset
-        {
-            get
-            {
                 Interop.ActorInternal.GetTouchAreaOffset(SwigCPtr, out int left, out int right, out int bottom, out int top);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();

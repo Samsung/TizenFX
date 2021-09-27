@@ -123,19 +123,6 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new string AutomationId
         {
-            get
-            {
-                return GetValue(AutomationIdProperty) as string;
-            }
-            set
-            {
-                SetValue(AutomationIdProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private string InternalAutomationId
-        {
             get { return base.AutomationId; }
             set
             {
