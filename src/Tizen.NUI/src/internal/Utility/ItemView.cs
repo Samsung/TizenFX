@@ -25,7 +25,7 @@ namespace Tizen.NUI
 {
     /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public partial class ItemView : Scrollable
+    public class ItemView : Scrollable
     {
 
         internal ItemView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -43,19 +43,6 @@ namespace Tizen.NUI
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public new Tizen.NUI.PropertyArray Layout
-        {
-            get
-            {
-                return GetValue(LayoutProperty) as PropertyArray;
-            }
-            set
-            {
-                SetValue(LayoutProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private Tizen.NUI.PropertyArray InternalLayout
         {
             get
             {
@@ -350,19 +337,6 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(MinimumSwipeSpeedProperty);
-            }
-            set
-            {
-                SetValue(MinimumSwipeSpeedProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private float InternalMinimumSwipeSpeed
-        {
-            get
-            {
                 float returnValue = 0.0f;
                 PropertyValue minimumSwipeSpeed = GetProperty(ItemView.Property.MinimumSwipeSpeed);
                 minimumSwipeSpeed?.Get(out returnValue);
@@ -380,19 +354,6 @@ namespace Tizen.NUI
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float MinimumSwipeDistance
-        {
-            get
-            {
-                return (float)GetValue(MinimumSwipeDistanceProperty);
-            }
-            set
-            {
-                SetValue(MinimumSwipeDistanceProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private float InternalMinimumSwipeDistance
         {
             get
             {
@@ -416,19 +377,6 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(WheelScrollDistanceStepProperty);
-            }
-            set
-            {
-                SetValue(WheelScrollDistanceStepProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private float InternalWheelScrollDistanceStep
-        {
-            get
-            {
                 float returnValue = 0.0f;
                 PropertyValue wheelScrollDistanceStep = GetProperty(ItemView.Property.WheelScrollDistanceStep);
                 wheelScrollDistanceStep?.Get(out returnValue);
@@ -446,19 +394,6 @@ namespace Tizen.NUI
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SnapToItemEnabled
-        {
-            get
-            {
-                return (bool)GetValue(SnapToItemEnabledProperty);
-            }
-            set
-            {
-                SetValue(SnapToItemEnabledProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private bool InternalSnapToItemEnabled
         {
             get
             {
@@ -482,19 +417,6 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(RefreshIntervalProperty);
-            }
-            set
-            {
-                SetValue(RefreshIntervalProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private float InternalRefreshInterval
-        {
-            get
-            {
                 float returnValue = 0.0f;
                 PropertyValue refreshIntervalu = GetProperty(ItemView.Property.RefreshInterval);
                 refreshIntervalu?.Get(out returnValue);
@@ -512,19 +434,6 @@ namespace Tizen.NUI
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float LayoutPosition
-        {
-            get
-            {
-                return (float)GetValue(LayoutPositionProperty);
-            }
-            set
-            {
-                SetValue(LayoutPositionProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private float InternalLayoutPosition
         {
             get
             {
@@ -548,19 +457,6 @@ namespace Tizen.NUI
         {
             get
             {
-                return (float)GetValue(ScrollSpeedProperty);
-            }
-            set
-            {
-                SetValue(ScrollSpeedProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private float InternalScrollSpeed
-        {
-            get
-            {
                 float returnValue = 0.0f;
                 PropertyValue scrollSpeed = GetProperty(ItemView.Property.ScrollSpeed);
                 scrollSpeed?.Get(out returnValue);
@@ -578,19 +474,6 @@ namespace Tizen.NUI
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Overshoot
-        {
-            get
-            {
-                return (float)GetValue(OvershootProperty);
-            }
-            set
-            {
-                SetValue(OvershootProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private float InternalOvershoot
         {
             get
             {
@@ -614,19 +497,6 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetValue(ScrollDirectionProperty) as Vector2;
-            }
-            set
-            {
-                SetValue(ScrollDirectionProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private Vector2 InternalScrollDirection
-        {
-            get
-            {
                 Vector2 returnValue = new Vector2(0.0f, 0.0f);
                 PropertyValue scrollDirection = GetProperty(ItemView.Property.ScrollDirection);
                 scrollDirection?.Get(returnValue);
@@ -647,19 +517,6 @@ namespace Tizen.NUI
         {
             get
             {
-                return (int)GetValue(LayoutOrientationProperty);
-            }
-            set
-            {
-                SetValue(LayoutOrientationProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private int InternalLayoutOrientation
-        {
-            get
-            {
                 int returnValue = 0;
                 PropertyValue layoutOrientation = GetProperty(ItemView.Property.LayoutOrientation);
                 layoutOrientation?.Get(out returnValue);
@@ -677,19 +534,6 @@ namespace Tizen.NUI
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScrollContentSize
-        {
-            get
-            {
-                return (float)GetValue(ScrollContentSizeProperty);
-            }
-            set
-            {
-                SetValue(ScrollContentSizeProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private float InternalScrollContentSize
         {
             get
             {
