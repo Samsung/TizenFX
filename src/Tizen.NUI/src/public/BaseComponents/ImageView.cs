@@ -27,9 +27,235 @@ namespace Tizen.NUI.BaseComponents
     /// An instance of ImageView can be created using a URL or an image instance.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public partial class ImageView : View
+    public class ImageView : View
     {
         static ImageView() { }
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ImageView.ResourceUrl), typeof(string), typeof(ImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+
+            if (newValue is Selector<string> selector)
+            {
+                imageView.ResourceUrlSelector = selector;
+            }
+            else
+            {
+                imageView.resourceUrlSelector?.Reset(imageView);
+                imageView.SetResourceUrl((string)newValue);
+            }
+        },
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            string ret = "";
+
+            PropertyMap imageMap = new PropertyMap();
+            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(imageMap);
+            imageMap.Find(ImageVisualProperty.URL)?.Get(out ret);
+            return ret;
+        }));
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImageProperty = BindableProperty.Create(nameof(ImageView.Image), typeof(PropertyMap), typeof(ImageView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            if (newValue != null)
+            {
+                PropertyMap map = (PropertyMap)newValue;
+                if (imageView.IsCreateByXaml)
+                {
+                    string url = "", alphaMaskURL = "", auxiliaryImageURL = "";
+                    string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+                    PropertyValue urlValue = map.Find(NDalic.ImageVisualUrl);
+                    bool ret = false;
+                    if (urlValue != null) ret = urlValue.Get(out url);
+                    PropertyMap mmap = new PropertyMap();
+                    if (ret && url.StartsWith("*Resource*"))
+                    {
+                        url = url.Replace("*Resource*", resource);
+                        mmap.Insert(NDalic.ImageVisualUrl, new PropertyValue(url));
+                    }
+
+                    ret = false;
+                    PropertyValue alphaMaskUrlValue = map.Find(NDalic.ImageVisualAlphaMaskUrl);
+                    if (alphaMaskUrlValue != null) ret = alphaMaskUrlValue.Get(out alphaMaskURL);
+                    if (ret && alphaMaskURL.StartsWith("*Resource*"))
+                    {
+                        alphaMaskURL = alphaMaskURL.Replace("*Resource*", resource);
+                        mmap.Insert(NDalic.ImageVisualUrl, new PropertyValue(alphaMaskURL));
+                    }
+
+                    ret = false;
+                    PropertyValue auxiliaryImageURLValue = map.Find(NDalic.ImageVisualAuxiliaryImageUrl);
+                    if (auxiliaryImageURLValue != null) ret = auxiliaryImageURLValue.Get(out auxiliaryImageURL);
+                    if (ret && auxiliaryImageURL.StartsWith("*Resource*"))
+                    {
+                        auxiliaryImageURL = auxiliaryImageURL.Replace("*Resource*", resource);
+                        mmap.Insert(NDalic.ImageVisualAuxiliaryImageUrl, new PropertyValue(auxiliaryImageURL));
+                    }
+
+                    map.Merge(mmap);
+                }
+                if (imageView._border == null)
+                {
+                    Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(map));
+                }
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            if (imageView._border == null)
+            {
+                PropertyMap temp = new PropertyMap();
+                Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(temp);
+                return temp;
+            }
+            else
+            {
+                return null;
+            }
+        }));
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty PreMultipliedAlphaProperty = BindableProperty.Create(nameof(PreMultipliedAlpha), typeof(bool), typeof(ImageView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha).Get(out temp);
+            return temp;
+        }));
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty PixelAreaProperty = BindableProperty.Create(nameof(PixelArea), typeof(RelativeVector4), typeof(ImageView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PixelArea, new Tizen.NUI.PropertyValue((RelativeVector4)newValue));
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PixelArea).Get(temp);
+            RelativeVector4 relativeTemp = new RelativeVector4(temp.X, temp.Y, temp.Z, temp.W);
+            return relativeTemp;
+        }));
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderProperty = BindableProperty.Create(nameof(Border), typeof(Rectangle), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            imageView.borderSelector?.Reset(imageView);
+
+            if (newValue is Selector<Rectangle> selector)
+            {
+                if (selector.HasAll()) imageView.SetBorder(selector.All);
+                else imageView.borderSelector = new TriggerableSelector<Rectangle>(imageView, selector, imageView.SetBorder, true);
+            }
+            else
+            {
+                imageView.SetBorder((Rectangle)newValue);
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            return imageView._border;
+        });
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderOnlyProperty = BindableProperty.Create(nameof(BorderOnly), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            if (newValue != null)
+            {
+                imageView.UpdateImage(NpatchImageVisualProperty.BorderOnly, new PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            bool ret = false;
+            PropertyMap imageMap = new PropertyMap();
+            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(imageMap);
+            imageMap.Find(ImageVisualProperty.BorderOnly)?.Get(out ret);
+            return ret;
+        }));
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SynchronosLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            if (newValue != null)
+            {
+                imageView._synchronousLoading = (bool)newValue;
+                imageView.UpdateImage(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            return imageView._synchronousLoading;
+        });
+
+        /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SynchronousLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            if (newValue != null)
+            {
+                imageView._synchronousLoading = (bool)newValue;
+                imageView.UpdateImage(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            return imageView._synchronousLoading;
+        });
+
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty OrientationCorrectionProperty = BindableProperty.Create(nameof(OrientationCorrection), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            if (newValue != null)
+            {
+                imageView.UpdateImage(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)newValue));
+            }
+        },
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+
+            bool ret = false;
+            PropertyMap imageMap = new PropertyMap();
+            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(imageMap);
+            imageMap?.Find(ImageVisualProperty.OrientationCorrection)?.Get(out ret);
+
+            return ret;
+        }));
 
         private EventHandler<ResourceReadyEventArgs> _resourceReadyEventHandler;
         private ResourceReadyEventCallbackType _resourceReadyEventCallback;
@@ -242,18 +468,6 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("Please do not use! This will be deprecated! Please use Image property instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap ImageMap
-        {
-            get
-            {
-                return GetValue(ImageMapProperty) as PropertyMap;
-            }
-            set
-            {
-                SetValue(ImageMapProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        private PropertyMap InternalImageMap
         {
             get
             {
@@ -596,19 +810,6 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetValue(AlphaMaskURLProperty) as string;
-            }
-            set
-            {
-                SetValue(AlphaMaskURLProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private string InternalAlphaMaskURL
-        {
-            get
-            {
                 string ret = "";
                 PropertyMap imageMap = new PropertyMap();
                 PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
@@ -644,18 +845,6 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public bool CropToMask
-        {
-            get
-            {
-                return (bool)GetValue(CropToMaskProperty);
-            }
-            set
-            {
-                SetValue(CropToMaskProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        private bool InternalCropToMask
         {
             get
             {
@@ -739,19 +928,6 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (FittingModeType)GetValue(FittingModeProperty);
-            }
-            set
-            {
-                SetValue(FittingModeProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private FittingModeType InternalFittingMode
-        {
-            get
-            {
                 int ret = (int)_fittingMode;
                 PropertyMap imageMap = new PropertyMap();
                 PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
@@ -793,18 +969,6 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(DesiredWidthProperty);
-            }
-            set
-            {
-                SetValue(DesiredWidthProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        private int InternalDesiredWidth
-        {
-            get
-            {
                 PropertyMap imageMap = new PropertyMap();
                 PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
                 image?.Get(imageMap);
@@ -839,18 +1003,6 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(DesiredHeightProperty);
-            }
-            set
-            {
-                SetValue(DesiredHeightProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        private int InternalDesiredHeight
-        {
-            get
-            {
                 PropertyMap imageMap = new PropertyMap();
                 PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
                 image?.Get(imageMap);
@@ -879,19 +1031,6 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ReleasePolicyType ReleasePolicy
-        {
-            get
-            {
-                return (ReleasePolicyType)GetValue(ReleasePolicyProperty);
-            }
-            set
-            {
-                SetValue(ReleasePolicyProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private ReleasePolicyType InternalReleasePolicy
         {
             get
             {
@@ -926,19 +1065,6 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public WrapModeType WrapModeU
-        {
-            get
-            {
-                return (WrapModeType)GetValue(WrapModeUProperty);
-            }
-            set
-            {
-                SetValue(WrapModeUProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private WrapModeType InternalWrapModeU
         {
             get
             {
@@ -977,19 +1103,6 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (WrapModeType)GetValue(WrapModeVProperty);
-            }
-            set
-            {
-                SetValue(WrapModeVProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private WrapModeType InternalWrapModeV
-        {
-            get
-            {
                 int ret = (int)WrapModeType.Default;
                 PropertyMap imageMap = new PropertyMap();
                 PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
@@ -1017,19 +1130,7 @@ namespace Tizen.NUI.BaseComponents
         /// AdjustViewSize works only if ImageView is added to a View having Layout.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool AdjustViewSize
-        {
-            get
-            {
-                return (bool)GetValue(AdjustViewSizeProperty);
-            }
-            set
-            {
-                SetValue(AdjustViewSizeProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        private bool adjustViewSize = false;
+        public bool AdjustViewSize { get; set; } = false;
 
         internal Selector<string> ResourceUrlSelector
         {
