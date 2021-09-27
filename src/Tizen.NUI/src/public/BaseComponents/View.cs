@@ -2299,6 +2299,7 @@ namespace Tizen.NUI.BaseComponents
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
+        [Binding.TypeConverter(typeof(IntDpTypeConverter))]
         public int WidthSpecification
         {
             get
@@ -2355,6 +2356,7 @@ namespace Tizen.NUI.BaseComponents
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
+        [Binding.TypeConverter(typeof(IntDpTypeConverter))]
         public int HeightSpecification
         {
             get
