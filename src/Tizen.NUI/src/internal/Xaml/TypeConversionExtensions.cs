@@ -196,23 +196,39 @@ namespace Tizen.NUI.Xaml
                 if (toType == typeof(SByte))
                     return SByte.Parse(str, CultureInfo.InvariantCulture);
                 if (toType == typeof(Int16))
-                    return Int16.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    return Convert.ToInt16(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
+                }
                 if (toType == typeof(Int32))
-                    return Int32.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    return Convert.ToInt32(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
+                }
                 if (toType == typeof(Int64))
-                    return Int64.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    return Convert.ToInt64(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
+                }
                 if (toType == typeof(Byte))
                     return Byte.Parse(str, CultureInfo.InvariantCulture);
                 if (toType == typeof(UInt16))
-                    return UInt16.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    return Convert.ToUInt16(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
+                }
                 if (toType == typeof(UInt32))
-                    return UInt32.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    return Convert.ToUInt32(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
+                }
                 if (toType == typeof(UInt64))
-                    return UInt64.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    return Convert.ToUInt64(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
+                }
                 if (toType == typeof(Single))
-                    return Single.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    return GraphicsTypeManager.Instance.ConvertScriptToPixel(str);
+                }
                 if (toType == typeof(Double))
-                    return Double.Parse(str, CultureInfo.InvariantCulture);
+                {
+                    return Convert.ToDouble(GraphicsTypeManager.Instance.ConvertScriptToPixel(str));
+                }
                 if (toType == typeof(Boolean))
                     return Boolean.Parse(str);
                 if (toType == typeof(TimeSpan))
