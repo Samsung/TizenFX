@@ -18,7 +18,6 @@ using System;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents.VectorGraphics
 {
@@ -31,24 +30,6 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         private List<Drawable> drawables; //The list of added drawables
 
         static CanvasView() { }
-
-        /// <summary>
-        /// ViewBoxProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ViewBoxProperty = BindableProperty.Create(nameof(ViewBox), typeof(Tizen.NUI.Size2D), typeof(Tizen.NUI.BaseComponents.VectorGraphics.CanvasView), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
-            if (newValue != null)
-            {
-                instance.InternalViewBox = (Tizen.NUI.Size2D)newValue;
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Tizen.NUI.BaseComponents.VectorGraphics.CanvasView)bindable;
-            return instance.InternalViewBox;
-        });
 
         /// <summary>
         /// Creates an initialized CanvasView.
@@ -116,19 +97,6 @@ namespace Tizen.NUI.BaseComponents.VectorGraphics
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Size2D ViewBox
-        {
-            get
-            {
-                return GetValue(ViewBoxProperty) as Size2D;
-            }
-            set
-            {
-                SetValue(ViewBoxProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private Size2D InternalViewBox
         {
             get
             {

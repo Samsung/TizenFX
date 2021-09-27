@@ -22,7 +22,7 @@ namespace Tizen.NUI
 {
     /// This will be released at Tizen.NET API Level 6, so currently this would be used as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public partial class Camera : View
+    public class Camera : View
     {
 
         internal Camera(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -221,19 +221,6 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetValue(TypeProperty) as string;
-            }
-            set
-            {
-                SetValue(TypeProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private string InternalType
-        {
-            get
-            {
                 string returnValue = "";
                 PropertyValue type = GetProperty(Camera.Property.TYPE);
                 type?.Get(out returnValue);
@@ -254,19 +241,6 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetValue(ProjectionModeProperty) as string;
-            }
-            set
-            {
-                SetValue(ProjectionModeProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private string InternalProjectionMode
-        {
-            get
-            {
                 string returnValue = "";
                 PropertyValue projectionMode = GetProperty(Camera.Property.ProjectionMode);
                 projectionMode?.Get(out returnValue);
@@ -280,21 +254,7 @@ namespace Tizen.NUI
                 setValue.Dispose();
             }
         }
-
         public float FieldOfView
-        {
-            get
-            {
-                return (float)GetValue(FieldOfViewProperty);
-            }
-            set
-            {
-                SetValue(FieldOfViewProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private float InternalFieldOfView
         {
             get
             {
@@ -311,21 +271,7 @@ namespace Tizen.NUI
                 setValue.Dispose();
             }
         }
-
         public float AspectRatio
-        {
-            get
-            {
-                return (float)GetValue(AspectRatioProperty);
-            }
-            set
-            {
-                SetValue(AspectRatioProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private float InternalAspectRatio
         {
             get
             {
@@ -342,21 +288,7 @@ namespace Tizen.NUI
                 setValue.Dispose();
             }
         }
-
         public float NearPlaneDistance
-        {
-            get
-            {
-                return (float)GetValue(NearPlaneDistanceProperty);
-            }
-            set
-            {
-                SetValue(NearPlaneDistanceProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private float InternalNearPlaneDistance
         {
             get
             {
@@ -373,21 +305,7 @@ namespace Tizen.NUI
                 setValue.Dispose();
             }
         }
-
         public float FarPlaneDistance
-        {
-            get
-            {
-                return (float)GetValue(FarPlaneDistanceProperty);
-            }
-            set
-            {
-                SetValue(FarPlaneDistanceProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private float InternalFarPlaneDistance
         {
             get
             {
@@ -404,21 +322,7 @@ namespace Tizen.NUI
                 setValue.Dispose();
             }
         }
-
         public float LeftPlaneDistance
-        {
-            get
-            {
-                return (float)GetValue(LeftPlaneDistanceProperty);
-            }
-            set
-            {
-                SetValue(LeftPlaneDistanceProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private float InternalLeftPlaneDistance
         {
             get
             {
@@ -435,21 +339,7 @@ namespace Tizen.NUI
                 setValue.Dispose();
             }
         }
-
         public float RightPlaneDistance
-        {
-            get
-            {
-                return (float)GetValue(RightPlaneDistanceProperty);
-            }
-            set
-            {
-                SetValue(RightPlaneDistanceProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private float InternalRightPlaneDistance
         {
             get
             {
@@ -466,21 +356,7 @@ namespace Tizen.NUI
                 setValue.Dispose();
             }
         }
-
         public float TopPlaneDistance
-        {
-            get
-            {
-                return (float)GetValue(TopPlaneDistanceProperty);
-            }
-            set
-            {
-                SetValue(TopPlaneDistanceProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private float InternalTopPlaneDistance
         {
             get
             {
@@ -497,21 +373,7 @@ namespace Tizen.NUI
                 setValue.Dispose();
             }
         }
-
         public float BottomPlaneDistance
-        {
-            get
-            {
-                return (float)GetValue(BottomPlaneDistanceProperty);
-            }
-            set
-            {
-                SetValue(BottomPlaneDistanceProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private float InternalBottomPlaneDistance
         {
             get
             {
@@ -528,21 +390,7 @@ namespace Tizen.NUI
                 setValue.Dispose();
             }
         }
-
         public Vector3 TargetPosition
-        {
-            get
-            {
-                return GetValue(TargetPositionProperty) as Vector3;
-            }
-            set
-            {
-                SetValue(TargetPositionProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private Vector3 InternalTargetPosition
         {
             get
             {
@@ -581,21 +429,7 @@ namespace Tizen.NUI
                 return returnValue;
             }
         }
-
         public bool InvertYAxis
-        {
-            get
-            {
-                return (bool)GetValue(InvertYAxisProperty);
-            }
-            set
-            {
-                SetValue(InvertYAxisProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-        
-        private bool InternalInvertYAxis
         {
             get
             {

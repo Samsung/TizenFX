@@ -27,7 +27,7 @@ namespace Tizen.NUI.BaseComponents
     /// WebView allows presenting content with embedded web browser, both local files and remote websites.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public partial class WebView : View
+    public class WebView : View
     {
         private Color contentBackgroundColor;
         private bool tilesClearedWhenHidden;
@@ -762,19 +762,6 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (CacheModel)GetValue(CacheModelProperty);
-            }
-            set
-            {
-                SetValue(CacheModelProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private CacheModel InternalCacheModel
-        {
-            get
-            {
                 return (CacheModel)Context.CacheModel;
             }
             set
@@ -788,19 +775,6 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CookieAcceptPolicy CookieAcceptPolicy
-        {
-            get
-            {
-                return (CookieAcceptPolicy)GetValue(CookieAcceptPolicyProperty);
-            }
-            set
-            {
-                SetValue(CookieAcceptPolicyProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private CookieAcceptPolicy InternalCookieAcceptPolicy
         {
             get
             {
@@ -837,19 +811,6 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (bool)GetValue(EnableJavaScriptProperty);
-            }
-            set
-            {
-                SetValue(EnableJavaScriptProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private bool InternalEnableJavaScript
-        {
-            get
-            {
                 return Settings.JavaScriptEnabled;
             }
             set
@@ -863,19 +824,6 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LoadImagesAutomatically
-        {
-            get
-            {
-                return (bool)GetValue(LoadImagesAutomaticallyProperty);
-            }
-            set
-            {
-                SetValue(LoadImagesAutomaticallyProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private bool InternalLoadImagesAutomatically
         {
             get
             {
@@ -896,19 +844,6 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return GetValue(DefaultTextEncodingNameProperty) as string;
-            }
-            set
-            {
-                SetValue(DefaultTextEncodingNameProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private string InternalDefaultTextEncodingName
-        {
-            get
-            {
                 return Settings.DefaultTextEncodingName;
             }
             set
@@ -925,19 +860,6 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (int)GetValue(DefaultFontSizeProperty);
-            }
-            set
-            {
-                SetValue(DefaultFontSizeProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private int InternalDefaultFontSize
-        {
-            get
-            {
                 return Settings.DefaultFontSize;
             }
             set
@@ -951,18 +873,6 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Position ScrollPosition
-        {
-            get
-            {
-                return GetValue(ScrollPositionProperty) as Position;
-            }
-            set
-            {
-                SetValue(ScrollPositionProperty, value);
-            }
-        }
-
-        private Position InternalScrollPosition
         {
             get
             {
