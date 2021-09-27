@@ -64049,6 +64049,11 @@
     "title": "Enum DrawModeType",
     "keywords": ""
   },
+  "API9/api/Tizen.NUI.EllipsisPosition.html": {
+    "href": "API9/api/Tizen.NUI.EllipsisPosition.html",
+    "title": "Enum EllipsisPosition",
+    "keywords": ""
+  },
   "API9/api/Tizen.NUI.EventHandlerWithReturnType-3.html": {
     "href": "API9/api/Tizen.NUI.EventHandlerWithReturnType-3.html",
     "title": "Delegate EventHandlerWithReturnType<T, U, R>",
