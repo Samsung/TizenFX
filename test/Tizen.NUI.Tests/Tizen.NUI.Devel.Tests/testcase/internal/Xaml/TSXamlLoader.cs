@@ -1,5 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
+using System.IO;
+using System.Xml;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
@@ -71,7 +74,9 @@ namespace Tizen.NUI.Devel.Tests
                              "\r\n" +
                              "\r\n  <View Size=\"100,100\"  BackgroundColor=\"Red\" />" +
                              "\r\n</View>";
-                var view = XamlLoader.Create(content);
+                using var textReader = new StringReader(content);
+                using var reader = XmlReader.Create(textReader);
+                var view = XamlLoader.Create(reader);
                 Assert.IsNotNull(view, "Should not be null");
             }
             catch (Exception e)
