@@ -278,7 +278,7 @@ namespace Tizen.Multimedia.Vision
         /// <remarks>It should be greater than or equal to 0.</remarks>
         /// <exception cref="ArgumentOutOfRangeException">The value is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated since API9; Will be removed in API11. Please use MetadataFilePath instead.")]
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public double MeanValue
         {
             get
@@ -303,7 +303,7 @@ namespace Tizen.Multimedia.Vision
         /// <remarks>It should be greater than or equal to 0.</remarks>
         /// <exception cref="ArgumentOutOfRangeException">The value is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated since API9; Will be removed in API11. Please use MetadataFilePath instead.")]
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public double StdValue
         {
             get
@@ -360,7 +360,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated since API8; Will be removed in API10. Please use Device instead.")]
+        [Obsolete("Deprecated since API8. Will be removed in API10. Please use Device instead.")]
         public InferenceTargetType Target
         {
             get
@@ -410,7 +410,7 @@ namespace Tizen.Multimedia.Vision
         /// Only one of <paramref name="value.Width"/> or <paramref name="value.Height"/> have -1.</exception>
         /// <exception cref="ArgumentOutOfRangeException">The value is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated since API9; Will be removed in API11. Please use MetadataFilePath instead.")]
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public Size TensorSize
         {
             get
@@ -453,7 +453,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException">The value is invalid.</exception>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated since API9; Will be removed in API11. Please use MetadataFilePath instead.")]
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public int TensorChannels
         {
             get
@@ -480,7 +480,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 8 </since_tizen>
-        [Obsolete("Deprecated since API9; Will be removed in API11. Please use MetadataFilePath instead.")]
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public InferenceDataType DataType
         {
             get
@@ -500,7 +500,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated since API9; Will be removed in API11. Please use MetadataFilePath instead.")]
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public string InputNodeName
         {
             get
@@ -523,7 +523,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated since API9; Will be removed in API11. Please use MetadataFilePath instead.")]
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public IList<string> OutputNodeName
         {
             get
@@ -551,7 +551,7 @@ namespace Tizen.Multimedia.Vision
         /// This value can be used to decide the size of <see cref="Roi"/>, it's length should be the same.
         /// </remarks>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated since API9; Will be removed in API11. Please use MetadataFilePath instead.")]
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public int MaxOutputNumber
         {
             get
@@ -573,7 +573,7 @@ namespace Tizen.Multimedia.Vision
         /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/>is out of range.</exception>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated since API9; Will be removed in API11. Please use MetadataFilePath instead.")]
+        [Obsolete("Deprecated since API9. Will be removed in API11. Please use MetadataFilePath instead.")]
         public double ConfidenceThreshold
         {
             get
