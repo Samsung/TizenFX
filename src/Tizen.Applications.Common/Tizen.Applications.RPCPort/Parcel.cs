@@ -15,9 +15,139 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Applications.RPCPort
 {
+    /// <summary>
+    /// This structure represents the time stamp.(internal)
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class TimeStamp
+    {
+        /// <summary>
+        /// Constructor with TimeStamp.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        internal TimeStamp(long second, long nanoSecond)
+        {
+            this.Second = second;
+            this.NanoSecond = nanoSecond;
+        }
+
+        /// <summary>
+        /// The second of TimeStamp.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public long Second
+        {
+            get;
+            private set;
+        }
+
+        /// <summary>
+        /// The nano second of TimeStamp.
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public long NanoSecond
+        {
+            get;
+            private set;
+        }
+    }
+
+    /// <summary>
+    /// The class is the header that has the Parcel's information.(internal)
+    /// </summary>
+    /// <since_tizen> 8 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class ParcelHeader
+    {
+        internal IntPtr _handle;
+
+        /// <summary>
+        /// Constructor with Header
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        internal ParcelHeader()
+        {
+        }
+
+        /// <summary>
+        /// Sets tag of Header.
+        /// </summary>
+        /// <param name="tag">The tag of Header</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public void SetTag(string tag)
+        {
+            var r = Interop.LibRPCPort.Parcel.SetTag(_handle, tag);
+            if (r != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Gets tag of Header.
+        /// </summary>
+        /// <returns>Tag</returns>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public string GetTag()
+        {
+            var r = Interop.LibRPCPort.Parcel.GetTag(_handle, out string tag);
+            if (r != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+
+            return tag;
+        }
+
+        /// <summary>
+        /// Sets sequence number of Header.
+        /// </summary>
+        /// <param name="sequenceNumber">The seqence number of Header</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public void SetSequenceNumber(int sequenceNumber)
+        {
+            var r = Interop.LibRPCPort.Parcel.SetSeqNum(_handle, sequenceNumber);
+            if (r != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Gets sequence number of Header.
+        /// </summary>
+        /// <returns>Sequence number</returns>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public int GetSequenceNumber()
+        {
+            var r = Interop.LibRPCPort.Parcel.GetSeqNum(_handle, out int sequenceNumber);
+            if (r != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+
+            return sequenceNumber;
+        }
+
+        /// <summary>
+        /// Gets time stamp of Header.
+        /// </summary>
+        /// <returns>Time stamp</returns>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        public TimeStamp GetTimeStamp()
+        {
+            Interop.Libc.TimeStamp time = new Interop.Libc.TimeStamp();
+
+            var r = Interop.LibRPCPort.Parcel.GetTimeStamp(_handle, ref time);
+            if (r != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidIOException();
+
+            return new TimeStamp(time.sec.ToInt64(), time.nsec.ToInt64());
+        }
+    };
+
     /// <summary>
     /// The class that helps to perform marshalling and unmarshalling for RPC.
     /// </summary>
@@ -25,6 +155,7 @@ namespace Tizen.Applications.RPCPort
     public class Parcel : IDisposable
     {
         private IntPtr _handle;
+        private ParcelHeader _header;
 
         /// <summary>
         /// Constructor for this class.
@@ -300,6 +431,24 @@ namespace Tizen.Applications.RPCPort
             var ret = new byte[size];
             Interop.LibRPCPort.Parcel.Read(_handle, ret, size);
             return ret;
+        }
+
+        /// <summary>
+        /// Gets header of rpc port parcel.(internal)
+        /// </summary>
+        /// <returns>Parcel header</returns>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ParcelHeader GetHeader()
+        {
+            if (_header == null) {
+                Interop.LibRPCPort.Parcel.GetHeader(_handle, out IntPtr handle);
+                _header = new ParcelHeader() {
+                    _handle = handle
+                };
+            }
+
+            return _header;
         }
 
         #region IDisposable Support

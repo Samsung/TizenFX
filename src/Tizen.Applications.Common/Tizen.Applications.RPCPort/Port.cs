@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -95,6 +96,19 @@ namespace Tizen.Applications.RPCPort
             Interop.LibRPCPort.ErrorCode err = Interop.LibRPCPort.Port.UnsetPrivateSharing(Handle);
             if (err != Interop.LibRPCPort.ErrorCode.None)
                 throw new InvalidIOException();
+        }
+
+        /// <summary>
+        /// Disconnects the port.(internal)
+        /// </summary>
+        /// <exception cref="System.InvalidOperationException">Thrown when an internal IO error occurrs.</exception>
+        /// <since_tizen> 8 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Disconnect()
+        {
+            Interop.LibRPCPort.ErrorCode err = Interop.LibRPCPort.Port.Disconnect(Handle);
+            if (err != Interop.LibRPCPort.ErrorCode.None)
+                throw new InvalidOperationException();
         }
     }
 }
