@@ -645,10 +645,13 @@ namespace Tizen.NUI.Components
                 WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent,
                 HeightSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent,
             };
+            // Check if children's sizes change to update Scrollbar
             ContentContainer.Relayout += OnScrollingChildRelayout;
             propertyNotification = ContentContainer.AddPropertyNotification("position", PropertyCondition.Step(mScrollingEventThreshold));
             propertyNotification.Notified += OnPropertyChanged;
             base.Add(ContentContainer);
+            // Check if ScrollableBase's size changes to update Scrollbar
+            base.Relayout += OnScrollingChildRelayout;
 
             Scrollbar = new Scrollbar();
 
