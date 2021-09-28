@@ -36,7 +36,7 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// The second of TimeStamp.
+        /// The seconds of TimeStamp.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public long Second
@@ -46,7 +46,7 @@ namespace Tizen.Applications.RPCPort
         }
 
         /// <summary>
-        /// The nano second of TimeStamp.
+        /// The nano seconds of TimeStamp.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public long NanoSecond
@@ -57,7 +57,7 @@ namespace Tizen.Applications.RPCPort
     }
 
     /// <summary>
-    /// The class is the header that has the Parcel's information.
+    /// The class represents the header information of an RPC Parcel.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     public class ParcelHeader
