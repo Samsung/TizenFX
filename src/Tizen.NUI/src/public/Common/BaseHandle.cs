@@ -576,6 +576,11 @@ namespace Tizen.NUI
             }
         }
 
+        internal bool IsNativeHandleInvalid()
+        {
+            return swigCPtr.Handle == IntPtr.Zero;
+        }
+
         /// <summary>
         /// swigCMemOwn
         /// </summary>
