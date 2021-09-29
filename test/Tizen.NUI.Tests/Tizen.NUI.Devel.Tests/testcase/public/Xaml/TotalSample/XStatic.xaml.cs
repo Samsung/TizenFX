@@ -60,79 +60,48 @@ namespace Tizen.NUI.Devel.Tests
             nestedField = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<TextLabel>(this, "nestedField");
         }
 
-		[TestFixture]
-		public class Tests
+	}
+
+
+	[TestFixture]
+	public class XStaticTests
+	{
+		//{x:Static Member=prefix:typeName.staticMemberName}
+		//{x:Static prefix:typeName.staticMemberName}
+
+		//The code entity that is referenced must be one of the following:
+		// - A constant
+		// - A static property
+		// - A field
+		// - An enumeration value
+		// All other cases should throw
+
+		[SetUp]
+		public void Setup()
 		{
-			//{x:Static Member=prefix:typeName.staticMemberName}
-			//{x:Static prefix:typeName.staticMemberName}
+		}
 
-			//The code entity that is referenced must be one of the following:
-			// - A constant
-			// - A static property
-			// - A field
-			// - An enumeration value
-			// All other cases should throw
+		[TearDown]
+		public void TearDown()
+		{
+		}
 
-			[SetUp]
-			public void Setup()
-			{
-			}
-
-			[TearDown]
-			public void TearDown()
-			{
-			}
-
-			[Test]
-			public void StaticProperty ()
-			{
-				var layout = new XStatic ();
-				Assert.AreEqual ("Property", layout.staticproperty.Text);
-			}
-
-			[Test]
-			public void MemberOptional ()
-			{
-				var layout = new XStatic ();
-				Assert.AreEqual ("Property", layout.memberisoptional.Text);
-			}
-
-			[Test]
-			public void FieldColor ()
-			{
-				var layout = new XStatic ();
-				Assert.AreEqual (Color.Fuchsia, layout.color.TextColor);
-			}
-
-			[Test]
-			public void Constant()
-			{
-				var layout = new XStatic();
-				Assert.AreEqual("Constant", layout.constant.Text);
-			}
-
-			[Test]
-			public void Field()
-			{
-				var layout = new XStatic();
-				Assert.AreEqual("Field", layout.field.Text);
-			}
-
-			[Test]
-			public void FieldRef()
-			{
-				var layout = new XStatic();
-				Assert.AreEqual("ic_close.png", layout.field2.Text);
-			}
-
-
-			[Test]
-			// https://bugzilla.xamarin.com/show_bug.cgi?id=55096
-			public void xStaticAndNestedClasses()
-			{
-				var layout = new XStatic();
-				Assert.AreEqual(MockxStatic.Nested.Foo, layout.nestedField.Text);
-			}
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void StaticProperty()
+		{
+			var layout = new XStatic();
+			Assert.AreEqual("Property", layout.staticproperty.Text);
+			Assert.AreEqual("Property", layout.memberisoptional.Text);
+			Assert.AreEqual(Color.Fuchsia, layout.color.TextColor);
+			Assert.AreEqual("Constant", layout.constant.Text);
+			Assert.AreEqual("Field", layout.field.Text);
+			Assert.AreEqual("ic_close.png", layout.field2.Text);
+			Assert.AreEqual(MockxStatic.Nested.Foo, layout.nestedField.Text);
 		}
 	}
 }

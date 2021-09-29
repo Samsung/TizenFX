@@ -17,15 +17,30 @@ namespace Tizen.NUI.Devel.Tests
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(DuplicatePropertyElements));
         }
+	}
 
-		[TestFixture]
-		public static class Tests
+	[TestFixture]
+	public class DuplicatePropertyElementsTests
+	{
+		[SetUp]
+		public void Setup()
 		{
-			[Test]
-			public static void ThrowXamlParseException()
-			{
-				Assert.Throws<ArgumentException>(() => new DuplicatePropertyElements());
-			}
+		}
+
+		[TearDown]
+		public void TearDown()
+		{
+		}
+
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void ThrowXamlParseException()
+		{
+			Assert.Throws<ArgumentException>(() => new DuplicatePropertyElements());
 		}
 	}
 }

@@ -16,22 +16,27 @@ namespace Tizen.NUI.Devel.Tests
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(FactoryMethodMissingMethod));
         }
+	}
 
-		[TestFixture]
-		public class Tests
+	[TestFixture]
+	public class FactoryMethodMissingMethodTests
+	{
+		[SetUp]
+		public void SetUp()
 		{
-			[SetUp]
-			public void SetUp()
-			{
-			}
+		}
 
-			[Test]
-			public void Throw()
-			{
-				//Assert.Throws<XamlParseException>(() => new FactoryMethodMissingMethod());
-				var fm = new FactoryMethodMissingMethod();
-				Assert.True(true, "Should go here");
-			}
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void FactoryMethodMissingMethodThrow()
+		{
+			//Assert.Throws<XamlParseException>(() => new FactoryMethodMissingMethod());
+			var fm = new FactoryMethodMissingMethod();
+			Assert.True(true, "Should go here");
 		}
 	}
 }
