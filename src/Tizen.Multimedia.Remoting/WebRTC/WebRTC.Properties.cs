@@ -146,6 +146,7 @@ namespace Tizen.Multimedia.Remoting
         /// Gets or sets the STUN server url.
         /// </summary>
         /// <value>The STUN server url</value>
+        /// <exception cref="ArgumentNullException">STUN server URI is null.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
         public string StunServer

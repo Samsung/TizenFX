@@ -1,3 +1,4 @@
+using System.ComponentModel;
 /*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
@@ -30,80 +31,173 @@ namespace Tizen.Multimedia.Remoting
         private NativeDataChannel.MessageReceivedCallback _webRtcDataChannelMsgRecvCallback;
         private NativeDataChannel.ErrorOccurredCallback _webRtcDataChannelErrorOccurredCallback;
 
+        private event EventHandler<EventArgs> _opened;
+        private event EventHandler<EventArgs> _closed;
+        private event EventHandler<WebRTCDataChannelMessageReceivedEventArgs> _messageReceived;
+        private event EventHandler<WebRTCDataChannelErrorOccurredEventArgs> _errorOccurred;
+
         /// <summary>
         /// Occurs when the data channel's underlying data transport is established.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public event EventHandler<EventArgs> Opened;
+        public event EventHandler<EventArgs> Opened
+        {
+            add
+            {
+                if (_opened == null)
+                {
+                    RegisterDataChannelOpenedCallback();
+                }
+                _opened += value;
+            }
+            remove
+            {
+                _opened -= value;
+                if (_opened == null)
+                {
+                    UnregisterDataChannelOpenedCallback();
+                }
+            }
+        }
 
         /// <summary>
         /// Occurs when the data channel has closed down.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public event EventHandler<EventArgs> Closed;
+        public event EventHandler<EventArgs> Closed
+        {
+            add
+            {
+                if (_closed == null)
+                {
+                    RegisterDataChannelClosedCallback();
+                }
+                _closed += value;
+            }
+            remove
+            {
+                _closed -= value;
+                if (_closed == null)
+                {
+                    UnregisterDataChannelClosedCallback();
+                }
+            }
+        }
 
         /// <summary>
         /// Occurs when a message is received from the remote peer.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public event EventHandler<WebRTCDataChannelMessageReceivedEventArgs> MessageReceived;
+        public event EventHandler<WebRTCDataChannelMessageReceivedEventArgs> MessageReceived
+        {
+            add
+            {
+                if (_messageReceived == null)
+                {
+                    RegisterDataChannelMessageReceivedCallback();
+                }
+                _messageReceived += value;
+            }
+            remove
+            {
+                _messageReceived -= value;
+                if (_messageReceived == null)
+                {
+                    UnregisterDataChannelMessageReceivedCallback();
+                }
+            }
+        }
 
         /// <summary>
         /// Occurs when an error occurs on the data channel.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public event EventHandler<WebRTCDataChannelErrorOccurredEventArgs> ErrorOccurred;
-
-        private void RegisterEvents()
+        public event EventHandler<WebRTCDataChannelErrorOccurredEventArgs> ErrorOccurred
         {
-            RegisterDataChannelOpenedCallback();
-            RegisterDataChannelClosedCallback();
-            RegisterDataChannelMsgRecvCallback();
-            RegisterDataChannelErrorOccurredCallback();
+            add
+            {
+                if (_errorOccurred == null)
+                {
+                    RegisterDataChannelErrorOccurredCallback();
+                }
+                _errorOccurred += value;
+            }
+            remove
+            {
+                _errorOccurred -= value;
+                if (_errorOccurred == null)
+                {
+                    UnregisterDataChannelErrorOccurredCallback();
+                }
+            }
         }
 
         private void RegisterDataChannelOpenedCallback()
         {
             _webRtcDataChannelOpenedCallback = (dataChannelHandle, _) =>
             {
-                Opened?.Invoke(this, new EventArgs());
+                _opened?.Invoke(this, new EventArgs());
             };
 
             NativeDataChannel.SetOpenedCb(_handle, _webRtcDataChannelOpenedCallback).
                 ThrowIfFailed("Failed to set data channel opened callback.");
         }
 
-        private void RegisterDataChannelMsgRecvCallback()
+        private void UnregisterDataChannelOpenedCallback()
         {
-            _webRtcDataChannelMsgRecvCallback = (dataChannelHandle, type, message, _) =>
-            {
-                MessageReceived?.Invoke(this, new WebRTCDataChannelMessageReceivedEventArgs(type, message));
-            };
-
-            NativeDataChannel.SetMessageReceivedCb(_handle, _webRtcDataChannelMsgRecvCallback).
-                ThrowIfFailed("Failed to set data channel message received callback.");
-        }
-
-        private void RegisterDataChannelErrorOccurredCallback()
-        {
-            _webRtcDataChannelErrorOccurredCallback = (dataChannelHandle, error, _) =>
-            {
-                ErrorOccurred?.Invoke(this, new WebRTCDataChannelErrorOccurredEventArgs((WebRTCError)error));
-            };
-
-            NativeDataChannel.SetErrorOccurredCb(_handle, _webRtcDataChannelErrorOccurredCallback).
-                ThrowIfFailed("Failed to set data channel error callback.");
+            NativeDataChannel.UnsetOpenedCb(_handle).
+                ThrowIfFailed("Failed to unset data channel opened callback.");
         }
 
         private void RegisterDataChannelClosedCallback()
         {
             _webRtcDataChannelClosedCallback = (dataChannelHandle, _) =>
             {
-                Closed?.Invoke(this, new EventArgs());
+                _closed?.Invoke(this, new EventArgs());
             };
 
             NativeDataChannel.SetClosedCb(_handle, _webRtcDataChannelClosedCallback).
                 ThrowIfFailed("Failed to set data channel closed callback.");
+        }
+
+        private void UnregisterDataChannelClosedCallback()
+        {
+            NativeDataChannel.UnsetClosedCb(_handle).
+                ThrowIfFailed("Failed to unset data channel closed callback.");
+        }
+
+        private void RegisterDataChannelMessageReceivedCallback()
+        {
+            _webRtcDataChannelMsgRecvCallback = (dataChannelHandle, type, message, _) =>
+            {
+                _messageReceived?.Invoke(this, new WebRTCDataChannelMessageReceivedEventArgs(type, message));
+            };
+
+            NativeDataChannel.SetMessageReceivedCb(_handle, _webRtcDataChannelMsgRecvCallback).
+                ThrowIfFailed("Failed to set data channel message received callback.");
+        }
+
+        private void UnregisterDataChannelMessageReceivedCallback()
+        {
+            NativeDataChannel.UnsetMessageReceivedCb(_handle).
+                ThrowIfFailed("Failed to unset data channel message received callback.");
+        }
+
+        private void RegisterDataChannelErrorOccurredCallback()
+        {
+            _webRtcDataChannelErrorOccurredCallback = (dataChannelHandle, error, _) =>
+            {
+                _errorOccurred?.Invoke(this, new WebRTCDataChannelErrorOccurredEventArgs((WebRTCError)error));
+            };
+
+            NativeDataChannel.SetErrorOccurredCb(_handle, _webRtcDataChannelErrorOccurredCallback).
+                ThrowIfFailed("Failed to set data channel error callback.");
+        }
+
+        private void UnregisterDataChannelErrorOccurredCallback()
+        {
+            NativeDataChannel.UnsetErrorOccurredCb(_handle).
+                ThrowIfFailed("Failed to unset data channel error callback.");
         }
     }
 }
