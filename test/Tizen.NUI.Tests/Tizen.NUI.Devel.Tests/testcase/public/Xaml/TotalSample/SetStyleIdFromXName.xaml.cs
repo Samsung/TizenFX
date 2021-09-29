@@ -25,28 +25,33 @@ namespace Tizen.NUI.Devel.Tests
             label1 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<TextLabel>(this, "label1");
             label2 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<TextLabel>(this, "label2");
         }
+	}
 
-		[TestFixture]
-		public class Tests
+	[TestFixture]
+	public class SetStyleIdFromXNameTests
+	{
+		[SetUp]
+		public void Setup()
 		{
-			[SetUp]
-			public void Setup()
-			{
-			}
+		}
 
-			[TearDown]
-			public void TearDown()
-			{
-			}
+		[TearDown]
+		public void TearDown()
+		{
+		}
 
-			[Test]
-			public void SetStyleId()
-			{
-				var layout = new SetStyleIdFromXName();
-				Assert.That(layout.label0.StyleId, Is.EqualTo("label0"));
-				Assert.That(layout.label1.StyleId, Is.EqualTo("foo"));
-				Assert.That(layout.label2.StyleId, Is.EqualTo("bar"));
-			}
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void SetStyleId()
+		{
+			var layout = new SetStyleIdFromXName();
+			Assert.That(layout.label0.StyleId, Is.EqualTo("label0"));
+			Assert.That(layout.label1.StyleId, Is.EqualTo("foo"));
+			Assert.That(layout.label2.StyleId, Is.EqualTo("bar"));
 		}
 	}
 }

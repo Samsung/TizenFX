@@ -18,25 +18,30 @@ namespace Tizen.NUI.Devel.Tests
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(ResourceDictionaryWithInvalidSource));
         }
+	}
 
-		[TestFixture]
-		public class Tests
+	[TestFixture]
+	public class Tests
+	{
+		[SetUp]
+		public void Setup()
 		{
-			[SetUp]
-			public void Setup()
-			{
-			}
+		}
 
-			[TearDown]
-			public void TearDown()
-			{
-			}
+		[TearDown]
+		public void TearDown()
+		{
+		}
 
-			[Test]
-			public void InvalidSourceThrows()
-			{
-				Assert.Throws<FileNotFoundException>(() => new ResourceDictionaryWithInvalidSource());
-			}
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void InvalidSourceThrows()
+		{
+			Assert.Throws<FileNotFoundException>(() => new ResourceDictionaryWithInvalidSource());
 		}
 	}
 }

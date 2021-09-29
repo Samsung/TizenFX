@@ -24,6 +24,10 @@ using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
 using Tizen.NUI.Xaml;
 
+[assembly: global::Tizen.NUI.Xaml.XamlResourceIdAttribute("Tizen.NUI.Devel.Tests.res.layout.MyResourceDictionary.xaml",
+    "res.layout.MyResourceDictionary.xaml",
+    typeof(ResourceDictionary))]
+
 namespace Tizen.NUI.Devel.Tests
 {
     public class FocusEffect
@@ -49,7 +53,8 @@ namespace Tizen.NUI.Devel.Tests
 
         public string[] Array { get; set; }
     }
-
+    [Tizen.NUI.Xaml.XamlFilePathAttribute("res/layout/MyResourceDictionary.xaml")]
+    [Tizen.NUI.Xaml.XamlCompilationAttribute(global::Tizen.NUI.Xaml.XamlCompilationOptions.Compile)]
     public partial class BaseXamlSample : View
     {
         public BaseXamlSample()
