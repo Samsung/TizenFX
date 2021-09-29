@@ -82,6 +82,11 @@ namespace Tizen.NUI.EXaml
 
             var type = globalDataList.GatheredTypes[typeIndex];
             var method = type.GetRuntimeMethods().FirstOrDefault(isMatch);
+
+            if (null == method)
+            {
+                throw new Exception($"Can't get method {methodName} with {paramTypeList.Count} params");
+            }
             globalDataList.GatheredMethods.Add(method);
         }
 
