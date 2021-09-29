@@ -561,7 +561,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (disposing == false)
             {
-                if (SwigCPtr.Handle == IntPtr.Zero || SwigCMemOwn == false)
+                if (IsNativeHandleInvalid() || SwigCMemOwn == false)
                 {
                     // at this case, implicit nor explicit dispose is not required. No native object is made.
                     disposed = true;

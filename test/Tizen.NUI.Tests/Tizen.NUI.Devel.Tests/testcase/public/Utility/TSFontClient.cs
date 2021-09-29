@@ -123,38 +123,34 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"FontClientAssign END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("FontClient GetDpi.")]
-        //[Property("SPEC", "Tizen.NUI.FontClient.GetDpi M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void FontClientGetDpi()
-        //{
-        //    tlog.Debug(tag, $"FontClientGetDpi START");
+        [Test]
+        [Category("P1")]
+        [Description("FontClient GetDpi.")]
+        [Property("SPEC", "Tizen.NUI.FontClient.GetDpi M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FontClientGetDpi()
+        {
+            tlog.Debug(tag, $"FontClientGetDpi START");
 
-        //    var testingTarget = new FontClient(FontClient.Instance);
-        //    Assert.IsNotNull(testingTarget, "Return a null object of FontClient");
-        //    Assert.IsInstanceOf<FontClient>(testingTarget, "Should be an instance of FontClient type.");
+            Size size = new Size(1920, 1080);   
+            FontClient.Instance.SetDpi((uint)size.Width, (uint)size.Height);
 
-        //    testingTarget.SetDpi(50, 60);
+            try
+            {
+                var horizontalDpi = new SWIGTYPE_p_unsigned_int(size.SwigCPtr.Handle);
+                var verticalDpi = new SWIGTYPE_p_unsigned_int(size.SwigCPtr.Handle);
+                FontClient.Instance.GetDpi(horizontalDpi, verticalDpi);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed");
+            }
 
-        //    try
-        //    {
-        //        var horizontalDpi = new SWIGTYPE_p_unsigned_int(testingTarget.GetBaseHandleCPtrHandleRef.Handle);
-        //        var verticalDpi = new SWIGTYPE_p_unsigned_int(new FontClient().GetBaseHandleCPtrHandleRef.Handle);
-        //        testingTarget.GetDpi(horizontalDpi, verticalDpi);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed");
-        //    }
-
-        //    testingTarget.Dispose();
-        //    tlog.Debug(tag, $"FontClientGetDpi END (OK)");
-        //}
+            tlog.Debug(tag, $"FontClientGetDpi END (OK)");
+        }
 
         [Test]
         [Category("P1")]
@@ -341,7 +337,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (FontClient.GlyphBufferData data = new FontClient.GlyphBufferData())
             {
-                var testingTarget = new FontClient.GlyphBufferData(FontClient.GlyphBufferData.getCPtr(data).Handle, true);
+                var testingTarget = new FontClient.GlyphBufferData(data.SwigCPtr.Handle, true);
                 Assert.IsNotNull(testingTarget, "Return a null object of GlyphBufferData");
                 Assert.IsInstanceOf<FontClient.GlyphBufferData>(testingTarget, "Should be an instance of GlyphBufferData type.");
 

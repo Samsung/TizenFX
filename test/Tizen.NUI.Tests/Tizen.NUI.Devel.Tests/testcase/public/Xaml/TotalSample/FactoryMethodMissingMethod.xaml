@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<local:MockView xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		xmlns:local="clr-namespace:Tizen.NUI.Devel.Tests;assembly=Tizen.NUI.Devel.Tests"
+		x:Class="Tizen.NUI.Devel.Tests.FactoryMethodMissingMethod">
+	<local:MockView.Content>
+		<local:MockFactory x:FactoryMethod="Factory">
+			<x:Arguments>
+				<x:Object/>
+				<x:String>bar</x:String>
+				<x:Int32>42</x:Int32>
+			</x:Arguments>
+		</local:MockFactory>
+	</local:MockView.Content>
+</local:MockView>

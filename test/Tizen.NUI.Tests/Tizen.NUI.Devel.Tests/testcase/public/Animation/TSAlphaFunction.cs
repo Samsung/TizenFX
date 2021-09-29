@@ -51,8 +51,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<AlphaFunction>(testingTarget, "should be an instance of testing target class!");
 
-            tlog.Debug(tag, "getCPtr : " + AlphaFunction.getCPtr(testingTarget));
-
             testingTarget.Dispose();
             tlog.Debug(tag, $"AlphaFunctionConstructorWithUserDefinedFunction END (OK)");
         }

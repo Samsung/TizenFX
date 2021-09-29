@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Xml;
 using Tizen.NUI.Xaml;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI.Devel.Tests
 {
-    using Tizen.NUI.Binding.Internals;
     using tlog = Tizen.Log;
 
     [TestFixture]

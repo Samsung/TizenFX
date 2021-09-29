@@ -601,5 +601,28 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"SizeConstructorWithFloat END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Size GetSizeFromPtr.")]
+        [Property("SPEC", "Tizen.NUI.Size.GetSizeFromPtr M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void SizeGetSizeFromPtr()
+        {
+            tlog.Debug(tag, $"SizeGetSizeFromPtr START");
+
+            using (Size size = new Size(100, 50))
+            {
+                var testingTarget = Size.GetSizeFromPtr(size.SwigCPtr.Handle);
+                Assert.AreEqual(100, testingTarget.Width, "Should be equal!");
+                Assert.AreEqual(50, testingTarget.Height, "Should be equal!");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"SizeGetSizeFromPtr END (OK)");
+        }
     }
 }

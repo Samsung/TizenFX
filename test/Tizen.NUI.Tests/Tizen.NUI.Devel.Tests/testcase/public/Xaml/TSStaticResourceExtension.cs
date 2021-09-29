@@ -133,7 +133,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"GetApplicationLevelResourceTest START");
 
             var sr = new StaticResourceExtension();
-            Assert.Throws<ArgumentNullException>(() => sr.GetApplicationLevelResource("key", null));
+            Assert.Throws<Tizen.NUI.Xaml.XamlParseException>(() => sr.GetApplicationLevelResource("key", null));
 
             tlog.Debug(tag, $"GetApplicationLevelResourceTest END");
         }

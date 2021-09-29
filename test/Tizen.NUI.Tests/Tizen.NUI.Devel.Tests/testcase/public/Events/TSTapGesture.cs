@@ -120,24 +120,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Test getCPtr property.")]
-        [Property("SPEC", "Tizen.NUI.TapGesture.getCPtr A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void TapGesturegetCPtr()
-        {
-            tlog.Debug(tag, $"TapGesturegetCPtr START");
-            TapGesture a1 = new TapGesture();
-
-            global::System.Runtime.InteropServices.HandleRef p1 = TapGesture.getCPtr(a1);
-            
-            tlog.Debug(tag, $"TapGesturegetCPtr END (OK)");
-            Assert.Pass("TapGesturegetCPtr");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Test GetTapGestureFromPtr property.")]
         [Property("SPEC", "Tizen.NUI.TapGesture.GetTapGestureFromPtr A")]
         [Property("SPEC_URL", "-")]
@@ -148,7 +130,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TapGestureGetTapGestureFromPtr START");
             TapGesture a1 = new TapGesture();
 			
-            TapGesture a2 = TapGesture.GetTapGestureFromPtr(TapGesture.getCPtr(a1).Handle);
+            TapGesture a2 = TapGesture.GetTapGestureFromPtr(a1.SwigCPtr.Handle);
 
             a1.Dispose();
             

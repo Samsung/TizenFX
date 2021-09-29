@@ -220,28 +220,29 @@ namespace Tizen.Uix.InputMethod
     /// Enumeration for the InputHints.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Flags]
     public enum InputHints
     {
         /// <summary>
         /// None.
         /// </summary>
-        None,
+        None = 0,
         /// <summary>
         /// AutoComplete.
         /// </summary>
-        AutoComplete,
+        AutoComplete = 1 << 0,
         /// <summary>
         /// SensitiveData.
         /// </summary>
-        SensitiveData,
+        SensitiveData = 1 << 1,
         /// <summary>
         /// Multiline.
         /// </summary>
-        Multiline,
+        Multiline = 1 << 2,
         /// <summary>
         /// Undefined.
         /// </summary>
-        Undefined
+        Undefined = 0
     };
 
     /// <summary>

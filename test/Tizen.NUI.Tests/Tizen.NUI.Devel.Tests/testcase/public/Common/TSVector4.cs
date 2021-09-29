@@ -1019,5 +1019,26 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"Vector4Dot END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Vector4 Clone")]
+        [Property("SPEC", "Tizen.NUI.Vector4.Clone M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void Vector4Clone()
+        {
+            tlog.Debug(tag, $"Vector4Clone START");
+
+            using (Vector4 vec = new Vector4(20, 20, 20, 20))
+            {
+                var testingTarget = vec.Clone();
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<Vector4>(testingTarget, "should be an instance of testing target class!");
+            }
+
+            tlog.Debug(tag, $"Vector4Clone END (OK)");
+        }
     }
 }

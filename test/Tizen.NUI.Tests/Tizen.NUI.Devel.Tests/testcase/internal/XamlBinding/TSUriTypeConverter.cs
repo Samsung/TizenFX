@@ -18,12 +18,6 @@ namespace Tizen.NUI.Devel.Tests
         private const string tag = "NUITEST";
         private string selfpath = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "Test_Theme.xaml";
 
-        internal class UriTypeConverterImpl : Binding.UriTypeConverter
-        {
-            public UriTypeConverterImpl()
-            { }
-        }
-
         [SetUp]
         public void Init()
         {
@@ -39,41 +33,23 @@ namespace Tizen.NUI.Devel.Tests
         [Test]
         [Category("P1")]
         [Description("UriTypeConverter ConvertFromInvariantString")]
-        [Property("SPEC", "Tizen.NUI.UriTypeConverter.ConvertFromInvariantString M")]
+        [Property("SPEC", "Tizen.NUI.Binding.UriTypeConverter.ConvertFromInvariantString M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         public void UriTypeConverterConvertFromInvariantString()
         {
             tlog.Debug(tag, $"UriTypeConverterConvertFromInvariantString START");
 
-            var testingTarget = new UriTypeConverterImpl();
+            var testingTarget = new Binding.UriTypeConverter();
             Assert.IsNotNull(testingTarget, "Can't create success object UriTypeConverter.");
-            Assert.IsInstanceOf<Tizen.NUI.Binding.UriTypeConverter>(testingTarget, "Should return UriTypeConverter instance.");
+            Assert.IsInstanceOf<Binding.UriTypeConverter>(testingTarget, "Should return UriTypeConverter instance.");
 
-            var result = testingTarget.ConvertFromInvariantString(selfpath);
-            tlog.Debug(tag, "ConvertFromInvariantString : " + result);
+            var ret = testingTarget.ConvertFromInvariantString(selfpath);
+            Assert.IsNotNull(ret, "Should not be null");
+            var ret2 = testingTarget.ConvertFromInvariantString("");
+            Assert.IsNotNull(ret, "Should not be null");
 
             tlog.Debug(tag, $"UriTypeConverterConvertFromInvariantString END");
-        }
-
-        [Test]
-        [Category("P2")]
-        [Description("UriTypeConverter ConvertFromInvariantString")]
-        [Property("SPEC", "Tizen.NUI.UriTypeConverter.ConvertFromInvariantString M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void UriTypeConverterConvertFromInvariantStringNullPath()
-        {
-            tlog.Debug(tag, $"UriTypeConverterConvertFromInvariantStringNullPath START");
-
-            var testingTarget = new UriTypeConverterImpl();
-            Assert.IsNotNull(testingTarget, "Can't create success object UriTypeConverter.");
-            Assert.IsInstanceOf<Tizen.NUI.Binding.UriTypeConverter>(testingTarget, "Should return UriTypeConverter instance.");
-
-            var result = testingTarget.ConvertFromInvariantString(" ");
-            tlog.Debug(tag, "ConvertFromInvariantString : " + result);
-
-            tlog.Debug(tag, $"UriTypeConverterConvertFromInvariantStringNullPath END");
         }
     }
 }

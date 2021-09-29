@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,8 @@ namespace Tizen.NUI
     /// </summary>
     public class LinearLayout : LayoutGroup
     {
+        private Alignment linearAlignment = Alignment.Top;
+
         /// <summary>
         /// [Draft] Enumeration for the direction in which the content is laid out
         /// </summary>
@@ -134,7 +137,63 @@ namespace Tizen.NUI
         /// [Draft] Get/Set the alignment in the layout
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        public LinearLayout.Alignment LinearAlignment { get; set; } = Alignment.Top;
+        public LinearLayout.Alignment LinearAlignment
+        {
+            get
+            {
+                return linearAlignment;
+            }
+
+            set
+            {
+                if (linearAlignment == value)
+                {
+                    return;
+                }
+
+                linearAlignment = value;
+
+                switch (linearAlignment)
+                {
+                    case Alignment.Begin:
+                        HorizontalAlignment = HorizontalAlignment.Begin;
+                        break;
+                    case Alignment.End:
+                        HorizontalAlignment = HorizontalAlignment.End;
+                        break;
+                    case Alignment.CenterHorizontal:
+                        HorizontalAlignment = HorizontalAlignment.Center;
+                        break;
+                    case Alignment.Top:
+                        VerticalAlignment = VerticalAlignment.Top;
+                        break;
+                    case Alignment.Bottom:
+                        VerticalAlignment = VerticalAlignment.Bottom;
+                        break;
+                    case Alignment.CenterVertical:
+                        VerticalAlignment = VerticalAlignment.Center;
+                        break;
+                    case Alignment.Center:
+                        HorizontalAlignment = HorizontalAlignment.Center;
+                        VerticalAlignment = VerticalAlignment.Center;
+                        break;
+                    default:
+                        break;
+                }
+            }
+         }
+
+        /// <summary>
+        /// Get/Set the horizontal alignment in the layout
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public HorizontalAlignment HorizontalAlignment { get; set; } = HorizontalAlignment.Begin;
+
+        /// <summary>
+        /// Get/Set the vertical alignment in the layout
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VerticalAlignment VerticalAlignment { get; set; } = VerticalAlignment.Top;
 
         private float totalLength = 0.0f;
         private Size2D cellPadding = new Size2D(0, 0);
@@ -270,8 +329,12 @@ namespace Tizen.NUI
             // We measure all children whose width specification policy is WrapContent without weight.
             // After 1st phase, remaining width of parent is accumulated to calculate width of children
             // whose width specification policy is MatchParent.
-            foreach (LayoutItem childLayout in IterateLayoutChildren())
+            foreach (var childLayout in LayoutChildren)
             {
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
                 int childDesiredWidth = childLayout.Owner.WidthSpecification;
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
@@ -339,13 +402,25 @@ namespace Tizen.NUI
             float remainingWidth = widthSize - totalLength;
             float totalWeightLength = 0.0f;
 
+            // Up to now, only WrapContent children's sizes are added to the totalLength.
+            // Since the totalLength is used in OnLayout as the sum of all children's sizes,
+            // the layout size is assigned to the totalLength if MatchParent child exists.
+            if (childrenMatchParentCount > 0)
+            {
+                totalLength = widthSize;
+            }
+
             // 2ND PHASE:
             //
             // We measure all children whose width specification policy is MatchParent without weight.
             // After 2nd phase, all children's widths are calculated without considering weight.
             // And the widths of all weighted children are accumulated to calculate weighted width.
-            foreach (LayoutItem childLayout in IterateLayoutChildren())
+            foreach (var childLayout in LayoutChildren)
             {
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
                 int childDesiredWidth = childLayout.Owner.WidthSpecification;
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
@@ -434,8 +509,12 @@ namespace Tizen.NUI
             // in remaining width of parent.
             if (totalWeight > 0.0f)
             {
-                foreach (LayoutItem childLayout in IterateLayoutChildren())
+                foreach (LayoutItem childLayout in LayoutChildren)
                 {
+                    if (!childLayout.SetPositionByLayout)
+                    {
+                        continue;
+                    }
                     int childDesiredWidth = childLayout.Owner.WidthSpecification;
                     float childWeight = childLayout.Owner.Weight;
 
@@ -503,8 +582,12 @@ namespace Tizen.NUI
             // We measure all children whose height specification policy is WrapContent without weight.
             // After 1st phase, remaining height of parent is accumulated to calculate height of children
             // whose height specification policy is MatchParent.
-            foreach (LayoutItem childLayout in IterateLayoutChildren())
+            foreach (var childLayout in LayoutChildren)
             {
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
                 int childDesiredWidth = childLayout.Owner.WidthSpecification;
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
@@ -572,13 +655,25 @@ namespace Tizen.NUI
             float remainingHeight = heightSize - totalLength;
             float totalWeightLength = 0.0f;
 
+            // Up to now, only WrapContent children's sizes are added to the totalLength.
+            // Since the totalLength is used in OnLayout as the sum of all children's sizes,
+            // the layout size is assigned to the totalLength if MatchParent child exists.
+            if (childrenMatchParentCount > 0)
+            {
+                totalLength = heightSize;
+            }
+
             // 2ND PHASE:
             //
             // We measure all children whose height specification policy is MatchParent without weight.
             // After 2nd phase, all children's heights are calculated without considering weight.
             // And the heights of all weighted children are accumulated to calculate weighted height.
-            foreach (LayoutItem childLayout in IterateLayoutChildren())
+            foreach (var childLayout in LayoutChildren)
             {
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
                 int childDesiredWidth = childLayout.Owner.WidthSpecification;
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
@@ -667,8 +762,12 @@ namespace Tizen.NUI
             // in remaining height of parent.
             if (totalWeight > 0)
             {
-                foreach (LayoutItem childLayout in IterateLayoutChildren())
+                foreach (var childLayout in LayoutChildren)
                 {
+                    if (!childLayout.SetPositionByLayout)
+                    {
+                        continue;
+                    }
                     int childDesiredHeight = childLayout.Owner.HeightSpecification;
                     float childWeight = childLayout.Owner.Weight;
 
@@ -722,12 +821,12 @@ namespace Tizen.NUI
             // Space available for child
             LayoutLength childSpace = new LayoutLength(height - Padding.Top - Padding.Bottom);
 
-            List<LayoutItem> LinearChildren = IterateLayoutChildren().ToList();
-            int count = LinearChildren.Count;
+            var LinearChildren = IterateLayoutChildren();
+            int count = LinearChildren.Count<LayoutItem>();
 
-            switch (LinearAlignment)
+            switch (HorizontalAlignment)
             {
-                case Alignment.End:
+                case HorizontalAlignment.End:
                     // totalLength contains the padding already
                     // In case of RTL map END alignment to the left edge
                     if (isLayoutRtl)
@@ -739,12 +838,11 @@ namespace Tizen.NUI
                         childLeft = new LayoutLength(Padding.Start + right.AsDecimal() - left.AsDecimal() - totalLength);
                     }
                     break;
-                case Alignment.CenterHorizontal: // FALL THROUGH
-                case Alignment.Center:
+                case HorizontalAlignment.Center:
                     // totalLength contains the padding already
                     childLeft = new LayoutLength(Padding.Start + (right.AsDecimal() - left.AsDecimal() - totalLength) / 2.0f);
                     break;
-                case Alignment.Begin: // FALL THROUGH (default)
+                case HorizontalAlignment.Begin: // FALL THROUGH (default)
                 default:
                     // totalLength contains the padding already
                     // In case of RTL map BEGIN alignment to the right edge
@@ -773,22 +871,21 @@ namespace Tizen.NUI
             {
                 int childIndex = start + dir * i;
                 // Get a reference to the childLayout at the given index
-                LayoutItem childLayout = LinearChildren[childIndex];
+                LayoutItem childLayout = LinearChildren.ElementAt<LayoutItem>(i);
 
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                 LayoutLength childHeight = childLayout.MeasuredHeight.Size;
                 Extents childMargin = childLayout.Margin;
 
-                switch (LinearAlignment)
+                switch (VerticalAlignment)
                 {
-                    case Alignment.Bottom:
+                    case VerticalAlignment.Bottom:
                         childTop = new LayoutLength(height - Padding.Bottom - childHeight - childMargin.Bottom);
                         break;
-                    case Alignment.CenterVertical:
-                    case Alignment.Center: // FALLTHROUGH
+                    case VerticalAlignment.Center:
                         childTop = new LayoutLength(Padding.Top + ((childSpace - childHeight).AsDecimal() / 2.0f) + childMargin.Top - childMargin.Bottom);
                         break;
-                    case Alignment.Top: // FALLTHROUGH default
+                    case VerticalAlignment.Top: // FALLTHROUGH default
                     default:
                         childTop = new LayoutLength(Padding.Top + childMargin.Top);
                         break;
@@ -810,21 +907,20 @@ namespace Tizen.NUI
             // Space available for child
             LayoutLength childSpace = new LayoutLength(width - Padding.Start - Padding.End);
 
-            List<LayoutItem> LinearChildren = IterateLayoutChildren().ToList();
-            int count = LinearChildren.Count;
+            var LinearChildren = IterateLayoutChildren();
+            int count = LinearChildren.Count<LayoutItem>();
 
-            switch (LinearAlignment)
+            switch (VerticalAlignment)
             {
-                case Alignment.Bottom:
+                case VerticalAlignment.Bottom:
                     // totalLength contains the padding already
                     childTop = new LayoutLength(Padding.Top + bottom.AsDecimal() - top.AsDecimal() - totalLength);
                     break;
-                case Alignment.CenterVertical: // FALL THROUGH
-                case Alignment.Center:
+                case VerticalAlignment.Center:
                     // totalLength contains the padding already
                     childTop = new LayoutLength(Padding.Top + (bottom.AsDecimal() - top.AsDecimal() - totalLength) / 2.0f);
                     break;
-                case Alignment.Top:  // FALL THROUGH (default)
+                case VerticalAlignment.Top:  // FALL THROUGH (default)
                 default:
                     // totalLength contains the padding already
                     childTop = new LayoutLength(Padding.Top);
@@ -833,28 +929,27 @@ namespace Tizen.NUI
 
             for (int i = 0; i < count; i++)
             {
-                LayoutItem childLayout = LinearChildren[i];
+                LayoutItem childLayout = LinearChildren.ElementAt<LayoutItem>(i);
 
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                 LayoutLength childHeight = childLayout.MeasuredHeight.Size;
                 Extents childMargin = childLayout.Margin;
 
                 childTop += childMargin.Top;
-                switch (LinearAlignment)
+                switch (HorizontalAlignment)
                 {
-                    case Alignment.Begin:
+                    case HorizontalAlignment.Begin:
                     default:
                         {
                             childLeft = new LayoutLength(Padding.Start + childMargin.Start);
                             break;
                         }
-                    case Alignment.End:
+                    case HorizontalAlignment.End:
                         {
                             childLeft = new LayoutLength(width - Padding.End - childWidth - childMargin.End);
                             break;
                         }
-                    case Alignment.CenterHorizontal:
-                    case Alignment.Center: // FALL THROUGH
+                    case HorizontalAlignment.Center:
                         {
                             childLeft = new LayoutLength(Padding.Start + ((childSpace - childWidth).AsDecimal() / 2.0f) + childMargin.Start - childMargin.End);
                             break;
@@ -871,8 +966,12 @@ namespace Tizen.NUI
             // ourselves. The measured height should be the max height of the children, changed
             // to accommodate the heightMeasureSpec from the parent
             MeasureSpecification uniformMeasureSpec = new MeasureSpecification(MeasuredHeight.Size, MeasureSpecification.ModeType.Exactly);
-            foreach (LayoutItem childLayout in IterateLayoutChildren())
+            foreach (var childLayout in LayoutChildren)
             {
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
                 int desiredChildHeight = childLayout.Owner.HeightSpecification;
                 int desiredChildWidth = childLayout.Owner.WidthSpecification;
 

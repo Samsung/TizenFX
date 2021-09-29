@@ -25,11 +25,8 @@ namespace Tizen.NUI
     /// </summary>
     /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class GraphicsTypeConverter
+    public abstract class GraphicsTypeConverter
     {
-
-        private const float defaultDpi = 160.0f;
-
         /// <summary>
         /// Converts script to px
         /// </summary>
@@ -41,21 +38,10 @@ namespace Tizen.NUI
             float convertedValue = 0;
             if (scriptValue != null)
             {
-                if (scriptValue.EndsWith("dp"))
+                if (!float.TryParse(scriptValue, NumberStyles.Any, CultureInfo.InvariantCulture, out convertedValue))
                 {
-                    convertedValue = ConvertToPixel(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("dp")), CultureInfo.InvariantCulture));
-                }
-                else if (scriptValue.EndsWith("px"))
-                {
-                    convertedValue = float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("px")), CultureInfo.InvariantCulture);
-                }
-                else
-                {
-                    if (!float.TryParse(scriptValue, NumberStyles.Any, CultureInfo.InvariantCulture, out convertedValue))
-                    {
-                        NUILog.Error("Cannot convert the script {scriptValue}\n");
-                        convertedValue = 0;
-                    }
+                    NUILog.Error("Cannot convert the script {scriptValue}\n");
+                    convertedValue = 0;
                 }
             }
             return convertedValue;
@@ -69,7 +55,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float ConvertToPixel(float value)
         {
-            return value * (NUIApplication.GetDefaultWindow().Dpi.X / defaultDpi);
+            return value;
         }
 
         /// <summary>
@@ -80,7 +66,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual float ConvertFromPixel(float value)
         {
-            return value * (defaultDpi / NUIApplication.GetDefaultWindow().Dpi.X);
+            return value;
         }
     }
 }

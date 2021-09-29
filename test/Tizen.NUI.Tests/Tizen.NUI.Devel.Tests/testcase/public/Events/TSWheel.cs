@@ -231,23 +231,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Wheel getCPtr")]
-        [Property("SPEC", "Tizen.NUI.Wheel.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WheelgetCPtr()
-        {
-            tlog.Debug(tag, $"WheelgetCPtr START");
-            Wheel a1 = new Wheel();
-            global::System.Runtime.InteropServices.HandleRef b1 = Wheel.getCPtr(a1);
-            
-            tlog.Debug(tag, $"WheelgetCPtr END (OK)");
-            Assert.Pass("WheelgetCPtr");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Wheel GetWheelFromPtr")]
         [Property("SPEC", "Tizen.NUI.Wheel.GetWheelFromPtr M")]
         [Property("SPEC_URL", "-")]
@@ -258,7 +241,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WheelGetWheelFromPtr START");
             Wheel a1 = new Wheel();
 
-            Wheel a2 = Wheel.GetWheelFromPtr(Wheel.getCPtr(a1).Handle);
+            Wheel a2 = Wheel.GetWheelFromPtr(a1.SwigCPtr.Handle);
 
             a1.Dispose();
             

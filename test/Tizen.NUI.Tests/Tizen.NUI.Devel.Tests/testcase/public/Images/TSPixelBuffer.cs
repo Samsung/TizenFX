@@ -83,7 +83,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (PixelBuffer pixelBuffer = new PixelBuffer(10, 5, PixelFormat.BGR8888))
             {
-                var testingTarget = new PixelBuffer(PixelBuffer.getCPtr(pixelBuffer).Handle, false);
+                var testingTarget = new PixelBuffer(pixelBuffer.SwigCPtr.Handle, false);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelBuffer");
                 Assert.IsInstanceOf<PixelBuffer>(testingTarget, "Should be an instance of PixelBuffer type.");
 

@@ -652,23 +652,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("InputMethodContext getCPtr")]
-        [Property("SPEC", "Tizen.NUI.InputMethodContext.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void InputMethodContextgetCPtr()
-        {
-            tlog.Debug(tag, $"InputMethodContextgetCPtr START");
-            InputMethodContext a1 = new InputMethodContext();
-
-            global::System.Runtime.InteropServices.HandleRef p1 = InputMethodContext.getCPtr(a1);
-            tlog.Debug(tag, $"InputMethodContextgetCPtr END (OK)");
-            Assert.Pass("InputMethodContextgetCPtr");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("InputMethodContext Assign")]
         [Property("SPEC", "Tizen.NUI.InputMethodContext.Assign M")]
         [Property("SPEC_URL", "-")]

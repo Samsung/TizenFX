@@ -32,7 +32,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The url of new web page.
+        /// The URL of new web page.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string NewPageUrl { get; }

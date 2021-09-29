@@ -120,7 +120,8 @@ namespace Tizen.NUI.BaseComponents
             }
 
             onWindowSendEventCallback = SendViewAddedEventToWindow;
-            this.OnWindowSignal().Connect(onWindowSendEventCallback);
+            using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
+            signal?.Connect(onWindowSendEventCallback);
 
             if (!shown)
             {
@@ -2249,6 +2250,7 @@ namespace Tizen.NUI.BaseComponents
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
+        [Binding.TypeConverter(typeof(IntDpTypeConverter))]
         public int WidthSpecification
         {
             get
@@ -2292,6 +2294,7 @@ namespace Tizen.NUI.BaseComponents
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
+        [Binding.TypeConverter(typeof(IntDpTypeConverter))]
         public int HeightSpecification
         {
             get
@@ -2463,14 +2466,12 @@ namespace Tizen.NUI.BaseComponents
                 if (value?.Owner != null)
                 {
                     // Previous owner of the layout gets a default layout as a replacement.
-                    value.Owner.Layout = new AbsoluteLayout();
-
-                    // Copy Margin and Padding to replacement LayoutGroup.
-                    if (value.Owner.Layout != null)
+                    value.Owner.Layout = new AbsoluteLayout()
                     {
-                        value.Owner.Layout.Margin = value.Margin;
-                        value.Owner.Layout.Padding = value.Padding;
-                    }
+                        // Copy Margin and Padding to replacement LayoutGroup.
+                        Margin = value.Margin,
+                        Padding = value.Padding,
+                    };
                 }
 
                 // Copy Margin and Padding to new layout being set or restore padding and margin back to
@@ -2483,6 +2484,7 @@ namespace Tizen.NUI.BaseComponents
                         // Existing layout being replaced so copy over margin and padding values.
                         value.Margin = layout.Margin;
                         value.Padding = layout.Padding;
+                        value.SetPositionByLayout = !excludeLayouting;
                     }
                     else
                     {
@@ -2522,13 +2524,13 @@ namespace Tizen.NUI.BaseComponents
                                 NotifyPropertyChanged();
                             }
                         }
+
+                        value.SetPositionByLayout = !excludeLayouting;
                     }
                 }
 
                 // Remove existing layout from it's parent layout group.
                 layout?.Unparent();
-
-                value.SetPositionByLayout = !excludeLayouting;
 
                 // Set layout to this view
                 SetLayout(value);

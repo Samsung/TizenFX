@@ -316,11 +316,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Key obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal static Key GetKeyFromPtr(global::System.IntPtr cPtr)
         {
             Key ret = new Key(cPtr, false);

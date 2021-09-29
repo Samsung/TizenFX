@@ -143,7 +143,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"KeyGetKeyFromPtr START");
             Key a1 = new Key();
 
-            Key b1 = Key.GetKeyFromPtr(Key.getCPtr(a1).Handle);
+            Key b1 = Key.GetKeyFromPtr(a1.SwigCPtr.Handle);
 
             b1.Dispose();
             a1.Dispose();

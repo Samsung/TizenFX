@@ -332,15 +332,15 @@ namespace Tizen.NUI.Components
             if (child.Layout == null) return;
 
             //FIXME: This measure can be restricted size of child to be less than parent size.
-            // but in some multiple-line TextLabel can be long enough to over the it's parent size.
-
+            // but our parent can be not calculated yet, also some child can be bigger than it's parent size,
+            // so we use implicit value 9999 as restricted specification.
             MeasureSpecification childWidthMeasureSpec = LayoutGroup.GetChildMeasureSpecification(
-                        new MeasureSpecification(new LayoutLength(parent.Size.Width - parent.Padding.Start - parent.Padding.End - child.Margin.Start - child.Margin.End), MeasureSpecification.ModeType.Exactly),
+                        new MeasureSpecification(new LayoutLength(9999), MeasureSpecification.ModeType.Exactly),
                         new LayoutLength(0),
                         new LayoutLength(child.WidthSpecification));
 
             MeasureSpecification childHeightMeasureSpec = LayoutGroup.GetChildMeasureSpecification(
-                        new MeasureSpecification(new LayoutLength(parent.Size.Height - parent.Padding.Top - parent.Padding.Bottom - child.Margin.Top - child.Margin.Bottom), MeasureSpecification.ModeType.Exactly),
+                        new MeasureSpecification(new LayoutLength(9999), MeasureSpecification.ModeType.Exactly),
                         new LayoutLength(0),
                         new LayoutLength(child.HeightSpecification));
 

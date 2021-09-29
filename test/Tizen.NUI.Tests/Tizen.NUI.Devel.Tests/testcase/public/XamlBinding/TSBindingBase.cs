@@ -1,5 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
+using System.Collections.Generic;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Xaml;
 
@@ -12,6 +14,19 @@ namespace Tizen.NUI.Devel.Tests
     internal class PublicBindingBaseTest
     {
         private const string tag = "NUITEST";
+
+        internal class MyBindingBase : BindingBase
+        {
+            internal override BindingBase Clone()
+            {
+                return null;
+            }
+
+            public void TestThrowIfApplied()
+            {
+                ThrowIfApplied();
+            }
+        }
 
         [SetUp]
         public void Init()
@@ -173,6 +188,24 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
+        [Category("P2")]
+        [Description("BindingBase  ThrowIfApplied")]
+        [Property("SPEC", "Tizen.NUI.Binding.BindingBase.ThrowIfApplied M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void ThrowIfApplied()
+        {
+            tlog.Debug(tag, $"ThrowIfApplied START");
+
+            var t2 = new  MyBindingBase();
+            Assert.IsNotNull(t2, "null Binding");
+            t2.Apply(false);
+            Assert.Throws<InvalidOperationException>(() => t2.TestThrowIfApplied());
+           
+            tlog.Debug(tag, $"ThrowIfApplied END");
+        }
+
+        [Test]
         [Category("P1")]
         [Description("BindingBase  Apply")]
         [Property("SPEC", "Tizen.NUI.Binding.BindingBase.Clone M")]
@@ -187,12 +220,36 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.IsNotNull(t2, "null Binding");
                 Binding.Binding c = t2.Clone() as Binding.Binding;
                 Assert.IsNotNull(c, "null Binding");
+
+                t2.TargetNullValue = new object();
+                var ret = t2.GetSourceValue(null, null);
+                Assert.IsNotNull(ret, "Should not be null");
             }
             catch (Exception e)
             {
                 Assert.Fail("Caught Exception" + e.ToString());
             }
             tlog.Debug(tag, $"CloneTest END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("BindingBase  DisableCollectionSynchronization")]
+        [Property("SPEC", "Tizen.NUI.Binding.BindingBase.DisableCollectionSynchronization M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MCST")]
+        public void DisableCollectionSynchronization()
+        {
+            tlog.Debug(tag, $"DisableCollectionSynchronization START");
+
+            var v = new View();
+            var l = new List<int>();
+            Assert.Throws<ArgumentNullException>(() => Binding.Binding.EnableCollectionSynchronization( l, v, null));
+            Assert.Throws<ArgumentNullException>(() => Binding.Binding.EnableCollectionSynchronization(null, v, null));
+            Assert.Throws<ArgumentNullException>(() => Binding.Binding.DisableCollectionSynchronization(null));
+
+            Assert.Throws<ArgumentNullException>(() => Binding.Binding.TryGetSynchronizedCollection(null, out var csc));
+            tlog.Debug(tag, $"DisableCollectionSynchronization END");
         }
     }
 }

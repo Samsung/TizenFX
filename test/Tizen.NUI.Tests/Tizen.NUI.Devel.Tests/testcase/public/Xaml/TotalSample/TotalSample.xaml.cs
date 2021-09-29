@@ -45,9 +45,8 @@ namespace Tizen.NUI.Devel.Tests
 		private void LoadEXaml()
         {
             eXamlData = global::Tizen.NUI.EXaml.EXamlExtensions.LoadFromEXamlByRelativePath(this, @"examl/Tizen.NUI.Devel.Tests.TotalSample.examl");
-            t1 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<global::Tizen.NUI.Devel.Tests.UIElement>(this, "t1");
-            t2 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<global::Tizen.NUI.Devel.Tests.UIElement>(this, "t2");
-            t3 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<global::Tizen.NUI.Devel.Tests.UIElement>(this, "t3");
+            global::Tizen.NUI.EXaml.EXamlExtensions.RemoveEventsInXaml(eXamlData);
+            global::Tizen.NUI.EXaml.EXamlExtensions.DisposeXamlElements(this);
         }
 		
 		private void UIElementEvent(object sender, EventArgs e)

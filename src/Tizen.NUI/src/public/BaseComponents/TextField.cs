@@ -1690,10 +1690,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The ellipsis position of the text.
-        /// The ellipsis position type when the text size over the layout size.<br />
-        /// The ellipsis position: End, Start or Middle.<br />
+        /// Specifies which portion of the text should be replaced with an ellipsis when the text size exceeds the layout size.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public EllipsisPosition EllipsisPosition
         {
             get
@@ -2096,11 +2095,6 @@ namespace Tizen.NUI.BaseComponents
         {
             _ = Interop.TextField.SelectNone(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextField obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextField_Dali__Toolkit__TextField__InputStyle__MaskF_t InputStyleChangedSignal()

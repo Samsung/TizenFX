@@ -284,10 +284,48 @@ namespace Tizen.NUI.Devel.Tests
             dummy.SingleValue = 4.0f;
             testingTarget.Add(dummy);
 
+            // keyValue.KeyString != null
+            //KeyValue dummy2 = new KeyValue()
+            //{
+            //    KeyString = "myKey"
+            //};
+            //testingTarget.Add(dummy2);
+
             Assert.AreEqual(1, testingTarget.Count(), "Add with string and PropertyValue parameter function does not work");
+
             dummy.Dispose();
+            //dummy2.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"PropertyMapAddWithKeyValue END (OK)");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("PropertyMap Add. With null KeyValue")]
+        [Property("SPEC", "Tizen.NUI.PropertyMap.Add M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR MCST")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Property("COVPARAM", "KeyValue")]
+        public void PropertyMapAddNullKeyValue()
+        {
+            tlog.Debug(tag, $"PropertyMapAddNullKeyValue START");
+
+            var testingTarget = new PropertyMap();
+            Assert.IsNotNull(testingTarget, "should not be null.");
+            Assert.IsInstanceOf<PropertyMap>(testingTarget, "should be an instance of PropertyMap class!");
+
+            try
+            {
+                KeyValue dummy = null;
+                testingTarget.Add(dummy);
+            }
+            catch (ArgumentNullException)
+            {
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"PropertyMapAddNullKeyValue END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed！");
+            }
         }
 
         [Test]
