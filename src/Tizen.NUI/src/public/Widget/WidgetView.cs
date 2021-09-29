@@ -21,6 +21,7 @@ namespace Tizen.NUI
     using System;
     using System.Runtime.InteropServices;
     using Tizen.NUI.BaseComponents;
+    using Tizen.NUI.Binding;
 
     /// <summary>
     /// The WidgetView is a class for displaying the widget image and controlling the widget.<br />
@@ -29,6 +30,114 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class WidgetView : View
     {
+        /// <summary>
+        /// PreviewProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty PreviewProperty = BindableProperty.Create(nameof(Preview), typeof(bool), typeof(Tizen.NUI.WidgetView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.WidgetView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalPreview = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.WidgetView)bindable;
+            return instance.InternalPreview;
+        });
+
+        /// <summary>
+        /// LoadingTextProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty LoadingTextProperty = BindableProperty.Create(nameof(LoadingText), typeof(bool), typeof(Tizen.NUI.WidgetView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.WidgetView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalLoadingText = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.WidgetView)bindable;
+            return instance.InternalLoadingText;
+        });
+
+        /// <summary>
+        /// WidgetStateFaultedProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty WidgetStateFaultedProperty = BindableProperty.Create(nameof(WidgetStateFaulted), typeof(bool), typeof(Tizen.NUI.WidgetView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.WidgetView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalWidgetStateFaulted = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.WidgetView)bindable;
+            return instance.InternalWidgetStateFaulted;
+        });
+
+        /// <summary>
+        /// PermanentDeleteProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty PermanentDeleteProperty = BindableProperty.Create(nameof(PermanentDelete), typeof(bool), typeof(Tizen.NUI.WidgetView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.WidgetView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalPermanentDelete = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.WidgetView)bindable;
+            return instance.InternalPermanentDelete;
+        });
+
+        /// <summary>
+        /// RetryTextProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty RetryTextProperty = BindableProperty.Create(nameof(RetryText), typeof(Tizen.NUI.PropertyMap), typeof(Tizen.NUI.WidgetView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.WidgetView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalRetryText = (Tizen.NUI.PropertyMap)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.WidgetView)bindable;
+            return instance.InternalRetryText;
+        });
+
+        /// <summary>
+        /// EffectProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EffectProperty = BindableProperty.Create(nameof(Effect), typeof(Tizen.NUI.PropertyMap), typeof(Tizen.NUI.WidgetView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.WidgetView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalEffect = (Tizen.NUI.PropertyMap)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.WidgetView)bindable;
+            return instance.InternalEffect;
+        });
+
         private EventHandler<WidgetViewEventArgs> widgetAddedEventHandler;
         private WidgetAddedEventCallbackType widgetAddedEventCallback;
         private EventHandler<WidgetViewEventArgs> widgetContentUpdatedEventHandler;
@@ -380,6 +489,19 @@ namespace Tizen.NUI
         {
             get
             {
+                return (bool)GetValue(PreviewProperty);
+            }
+            set
+            {
+                SetValue(PreviewProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        
+        private bool InternalPreview
+        {
+            get
+            {
                 bool retValue = false;
                 PropertyValue preview = GetProperty(WidgetView.Property.PREVIEW);
                 preview?.Get(out retValue);
@@ -399,6 +521,19 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool LoadingText
+        {
+            get
+            {
+                return (bool)GetValue(LoadingTextProperty);
+            }
+            set
+            {
+                SetValue(LoadingTextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        
+        private bool InternalLoadingText
         {
             get
             {
@@ -424,6 +559,19 @@ namespace Tizen.NUI
         {
             get
             {
+                return (bool)GetValue(WidgetStateFaultedProperty);
+            }
+            set
+            {
+                SetValue(WidgetStateFaultedProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        
+        private bool InternalWidgetStateFaulted
+        {
+            get
+            {
                 bool retValue = false;
                 PropertyValue widgetStateFaulted = GetProperty(WidgetView.Property.WidgetStateFaulted);
                 widgetStateFaulted?.Get(out retValue);
@@ -443,6 +591,19 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool PermanentDelete
+        {
+            get
+            {
+                return (bool)GetValue(PermanentDeleteProperty);
+            }
+            set
+            {
+                SetValue(PermanentDeleteProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        
+        private bool InternalPermanentDelete
         {
             get
             {
@@ -468,6 +629,19 @@ namespace Tizen.NUI
         {
             get
             {
+                return GetValue(RetryTextProperty) as PropertyMap;
+            }
+            set
+            {
+                SetValue(RetryTextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        
+        private PropertyMap InternalRetryText
+        {
+            get
+            {
                 PropertyMap retValue = new PropertyMap();
                 PropertyValue retryText = GetProperty(WidgetView.Property.RetryText);
                 retryText?.Get(retValue);
@@ -487,6 +661,19 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         public PropertyMap Effect
+        {
+            get
+            {
+                return GetValue(EffectProperty) as PropertyMap;
+            }
+            set
+            {
+                SetValue(EffectProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        
+        private PropertyMap InternalEffect
         {
             get
             {

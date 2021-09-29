@@ -244,6 +244,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (bool)GetValue(ExcludeLayoutingProperty);
+            }
+            set
+            {
+                SetValue(ExcludeLayoutingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalExcludeLayouting
+        {
+            get
+            {
                 return excludeLayouting;
             }
             set
@@ -644,6 +657,18 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string TooltipText
+        {
+            get
+            {
+                return GetValue(TooltipTextProperty) as string;
+            }
+            set
+            {
+                SetValue(TooltipTextProperty, value);
+            }
+        }
+
+        private string InternalTooltipText
         {
             get
             {
@@ -1123,6 +1148,18 @@ namespace Tizen.NUI.BaseComponents
             " Deprecated in API5: Will be removed in API8")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PositionUsesAnchorPoint
+        {
+            get
+            {
+                return (bool)GetValue(PositionUsesAnchorPointProperty);
+            }
+            set
+            {
+                SetValue(PositionUsesAnchorPointProperty, value);
+            }
+        }
+
+        private bool InternalPositionUsesAnchorPoint
         {
             get
             {
@@ -2067,6 +2104,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return GetValue(AnchorPointProperty) as Position;
+            }
+            set
+            {
+                SetValue(AnchorPointProperty, value);
+            }
+        }
+
+        private Position InternalAnchorPoint
+        {
+            get
+            {
                 Position temp = new Position(0.0f, 0.0f, 0.0f);
                 var pValue = GetProperty(View.Property.AnchorPoint);
                 pValue.Get(temp);
@@ -2255,6 +2304,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (int)GetValue(WidthSpecificationProperty);
+            }
+            set
+            {
+                SetValue(WidthSpecificationProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalWidthSpecification
+        {
+            get
+            {
                 return widthPolicy;
             }
             set
@@ -2296,6 +2358,19 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 6 </since_tizen>
         [Binding.TypeConverter(typeof(IntDpTypeConverter))]
         public int HeightSpecification
+        {
+            get
+            {
+                return (int)GetValue(HeightSpecificationProperty);
+            }
+            set
+            {
+                SetValue(HeightSpecificationProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalHeightSpecification
         {
             get
             {
@@ -2347,6 +2422,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return GetValue(LayoutTransitionProperty) as LayoutTransition;
+            }
+            set
+            {
+                SetValue(LayoutTransitionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private LayoutTransition InternalLayoutTransition
+        {
+            get
+            {
                 return layoutTransition;
             }
             set
@@ -2378,6 +2466,18 @@ namespace Tizen.NUI.BaseComponents
         [Obsolete("Deprecated in API5; Will be removed in API8. Please use Padding instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents PaddingEX
+        {
+            get
+            {
+                return GetValue(PaddingEXProperty) as Extents;
+            }
+            set
+            {
+                SetValue(PaddingEXProperty, value);
+            }
+        }
+
+        private Extents InternalPaddingEX
         {
             get
             {
@@ -2445,6 +2545,18 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         /// <since_tizen> 6 </since_tizen>
         public LayoutItem Layout
+        {
+            get
+            {
+                return GetValue(LayoutProperty) as LayoutItem;
+            }
+            set
+            {
+                SetValue(LayoutProperty, value);
+            }
+        }
+
+        private LayoutItem InternalLayout
         {
             get
             {
@@ -2565,6 +2677,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (bool)GetValue(BackgroundImageSynchronosLoadingProperty);
+            }
+            set
+            {
+                SetValue(BackgroundImageSynchronosLoadingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalBackgroundImageSynchronosLoading
+        {
+            get
+            {
                 return BackgroundImageSynchronousLoading;
             }
             set
@@ -2581,6 +2706,19 @@ namespace Tizen.NUI.BaseComponents
         /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool BackgroundImageSynchronousLoading
+        {
+            get
+            {
+                return (bool)GetValue(BackgroundImageSynchronousLoadingProperty);
+            }
+            set
+            {
+                SetValue(BackgroundImageSynchronousLoadingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalBackgroundImageSynchronousLoading
         {
             get
             {
@@ -2630,10 +2768,23 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableControlStatePropagation
         {
+            get
+            {
+                return (bool)GetValue(EnableControlStatePropagationProperty);
+            }
+            set
+            {
+                SetValue(EnableControlStatePropagationProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalEnableControlStatePropagation
+        {
             get => themeData?.ControlStatePropagation ?? false;
             set
             {
-                if (EnableControlStatePropagation == value) return;
+                if (InternalEnableControlStatePropagation == value) return;
 
                 if (themeData == null) themeData = new ThemeData();
 
@@ -2672,6 +2823,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (bool)GetValue(GrabTouchAfterLeaveProperty);
+            }
+            set
+            {
+                SetValue(GrabTouchAfterLeaveProperty, value);
+            }
+        }
+
+        private bool InternalGrabTouchAfterLeave
+        {
+            get
+            {
                 bool temp = false;
                 var pValue = GetProperty(View.Property.CaptureAllTouchAfterStart);
                 pValue.Get(out temp);
@@ -2694,6 +2857,18 @@ namespace Tizen.NUI.BaseComponents
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public BlendEquationType BlendEquation
+        {
+            get
+            {
+                return (BlendEquationType)GetValue(BlendEquationProperty);
+            }
+            set
+            {
+                SetValue(BlendEquationProperty, value);
+            }
+        }
+
+        private BlendEquationType InternalBlendEquation
         {
             get
             {
@@ -2823,6 +2998,19 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public TransitionOptions TransitionOptions
+        {
+            get
+            {
+                return GetValue(TransitionOptionsProperty) as TransitionOptions;
+            }
+            set
+            {
+                SetValue(TransitionOptionsProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private TransitionOptions InternalTransitionOptions
         {
             set
             {
