@@ -27,28 +27,35 @@ namespace Tizen.NUI.Devel.Tests
             label3 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<TextLabel>(this, "label3");
         }
 
-		[TestFixture]
-		public class Tests
+	}
+
+
+	[TestFixture]
+	public class StringLiteralsTests
+	{
+		[SetUp]
+		public void Setup()
 		{
-			[SetUp]
-			public void Setup()
-			{
-			}
+		}
 
-			[TearDown]
-			public void TearDown()
-			{
-			}
+		[TearDown]
+		public void TearDown()
+		{
+		}
 
-			[Test]
-			public void EscapedStringsAreTreatedAsLiterals ()
-			{
-				var layout = new StringLiterals ();
-				Assert.AreEqual ("Foo", layout.label0.Text);
-				Assert.AreEqual ("{Foo}", layout.label1.Text);
-				Assert.AreEqual (string.Empty, layout.label2.Text);
-				Assert.AreEqual ("Foo", layout.label3.Text);
-			}
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void EscapedStringsAreTreatedAsLiterals()
+		{
+			var layout = new StringLiterals();
+			Assert.AreEqual("Foo", layout.label0.Text);
+			Assert.AreEqual("{Foo}", layout.label1.Text);
+			Assert.AreEqual(string.Empty, layout.label2.Text);
+			Assert.AreEqual("Foo", layout.label3.Text);
 		}
 	}
 }

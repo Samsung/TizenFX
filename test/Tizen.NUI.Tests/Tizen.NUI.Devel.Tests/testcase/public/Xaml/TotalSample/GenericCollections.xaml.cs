@@ -41,15 +41,32 @@ namespace Tizen.NUI.Devel.Tests
             label0 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<TextLabel>(this, "label0");
         }
 
-		[TestFixture]
-		public class Tests
+
+	}
+
+	[TestFixture]
+	public class GenericCollectionsTests
+	{
+		[SetUp]
+		public void Setup()
 		{
-			[Test]
-			public void SupportsCrookedGenericScenarios ()
-			{
-				var p = new GenericCollections ();
-				Assert.AreEqual ("Foo", (p.label0.GetValue (AttachedBP.AttachedBPProperty) as GenericCollection) [0]);
-			}
+		}
+
+		[TearDown]
+		public void TearDown()
+		{
+		}
+
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void SupportsCrookedGenericScenarios()
+		{
+			var p = new GenericCollections();
+			Assert.AreEqual("Foo", (p.label0.GetValue(AttachedBP.AttachedBPProperty) as GenericCollection)[0]);
 		}
 	}
 }

@@ -37,7 +37,7 @@ namespace Tizen.NUI.Devel.Tests
     [Tizen.NUI.Xaml.XamlCompilationAttribute(global::Tizen.NUI.Xaml.XamlCompilationOptions.Compile)]
     public partial class BindablePropertiesAccessModifiers : View
 	{
-		class Data
+		internal class Data
 		{
 			public string Foo => "Foo";
 			public string Bar => "Bar";
@@ -56,29 +56,36 @@ namespace Tizen.NUI.Devel.Tests
 			//this stub will be replaced at compile time
 		}
 
-		[TestFixture]
-		public class Tests
+		
+	}
+
+	[TestFixture]
+	public class BindablePropertiesAccessModifiersTest
+	{
+		[SetUp]
+		public void Setup()
 		{
-			[SetUp]
-			public void Setup()
-			{
-				//Device.PlatformServices = new MockPlatformServices();
-			}
+			//Device.PlatformServices = new MockPlatformServices();
+		}
 
-			[TearDown]
-			public void TearDown()
-			{
-				//Device.PlatformServices = null;
-			}
+		[TearDown]
+		public void TearDown()
+		{
+			//Device.PlatformServices = null;
+		}
 
-			[Test]
-			public void BindProperties()
-			{
-				var page = new BindablePropertiesAccessModifiers();
-				page.BindingContext = new Data();
-				Assert.AreEqual("Bar", page.AMC.GetValue(AccessModifiersControl.InternalBarProperty));
-				Assert.AreEqual("Foo", page.AMC.GetValue(AccessModifiersControl.PublicFooProperty));
-			}
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void BindablePropertiesAccessModifiersBindProperties()
+		{
+			var page = new BindablePropertiesAccessModifiers();
+			page.BindingContext = new BindablePropertiesAccessModifiers.Data();
+			Assert.AreEqual("Bar", page.AMC.GetValue(AccessModifiersControl.InternalBarProperty));
+			Assert.AreEqual("Foo", page.AMC.GetValue(AccessModifiersControl.PublicFooProperty));
 		}
 	}
 }
