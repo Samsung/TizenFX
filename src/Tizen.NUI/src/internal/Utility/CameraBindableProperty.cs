@@ -62,7 +62,7 @@ namespace Tizen.NUI
         /// FieldOfViewProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FieldOfViewProperty = BindableProperty.Create(nameof(FieldOfView), typeof(float), typeof(Tizen.NUI.Camera), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FieldOfViewProperty = BindableProperty.Create(nameof(FieldOfView), typeof(float), typeof(Tizen.NUI.Camera), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
@@ -80,7 +80,7 @@ namespace Tizen.NUI
         /// AspectRatioProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AspectRatioProperty = BindableProperty.Create(nameof(AspectRatio), typeof(float), typeof(Tizen.NUI.Camera), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AspectRatioProperty = BindableProperty.Create(nameof(AspectRatio), typeof(float), typeof(Tizen.NUI.Camera), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
@@ -98,7 +98,7 @@ namespace Tizen.NUI
         /// NearPlaneDistanceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty NearPlaneDistanceProperty = BindableProperty.Create(nameof(NearPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty NearPlaneDistanceProperty = BindableProperty.Create(nameof(NearPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         /// FarPlaneDistanceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FarPlaneDistanceProperty = BindableProperty.Create(nameof(FarPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FarPlaneDistanceProperty = BindableProperty.Create(nameof(FarPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
@@ -134,7 +134,7 @@ namespace Tizen.NUI
         /// LeftPlaneDistanceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LeftPlaneDistanceProperty = BindableProperty.Create(nameof(LeftPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LeftPlaneDistanceProperty = BindableProperty.Create(nameof(LeftPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
@@ -152,7 +152,7 @@ namespace Tizen.NUI
         /// RightPlaneDistanceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RightPlaneDistanceProperty = BindableProperty.Create(nameof(RightPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RightPlaneDistanceProperty = BindableProperty.Create(nameof(RightPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
@@ -170,7 +170,7 @@ namespace Tizen.NUI
         /// TopPlaneDistanceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TopPlaneDistanceProperty = BindableProperty.Create(nameof(TopPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TopPlaneDistanceProperty = BindableProperty.Create(nameof(TopPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
@@ -188,7 +188,7 @@ namespace Tizen.NUI
         /// BottomPlaneDistanceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BottomPlaneDistanceProperty = BindableProperty.Create(nameof(BottomPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BottomPlaneDistanceProperty = BindableProperty.Create(nameof(BottomPlaneDistance), typeof(float), typeof(Tizen.NUI.Camera), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
@@ -224,7 +224,7 @@ namespace Tizen.NUI
         /// InvertYAxisProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty InvertYAxisProperty = BindableProperty.Create(nameof(InvertYAxis), typeof(bool), typeof(Tizen.NUI.Camera), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty InvertYAxisProperty = BindableProperty.Create(nameof(InvertYAxis), typeof(bool), typeof(Tizen.NUI.Camera), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Camera)bindable;
             if (newValue != null)
