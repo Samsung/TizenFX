@@ -1119,6 +1119,20 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+#if NUI_DEBUG_ON
+            NUILog.Debug($"[Dispose] View.Dispose({type}) START");
+            NUILog.Debug($"[Dispose] type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
+            if(HasBody())
+            {
+                NUILog.Debug($"[Dispose] ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
+            }
+            else
+            {
+                NUILog.Debug($"has no native body!");
+            }
+#endif
+
+
             //_mergedStyle = null;
 
             if (type == DisposeTypes.Explicit)
@@ -1156,6 +1170,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 view.InternalParent = null;
             }
+
+            NUILog.Debug($"[Dispose] View.Dispose({type}) END");
+            NUILog.Debug($"=============================");
 
             base.Dispose(type);
         }
@@ -1200,8 +1217,19 @@ namespace Tizen.NUI.BaseComponents
 
         private void DisConnectFromSignals()
         {
+            if (HasBody() == false)
+            {
+                NUILog.Debug($"[Dispose] DisConnectFromSignals() No native body! No need to Disconnect Signals!");
+                return;
+            }
+            NUILog.Debug($"[Dispose] DisConnectFromSignals START");
+            NUILog.Debug($"[Dispose] View.DisConnectFromSignals() type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
+            NUILog.Debug($"[Dispose] ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
+
             if (onRelayoutEventCallback != null)
             {
+                NUILog.Debug($"[Dispose] onRelayoutEventCallback");
+
                 using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnRelayoutSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(onRelayoutEventCallback);
                 onRelayoutEventCallback = null;
@@ -1209,6 +1237,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (offWindowEventCallback != null)
             {
+                NUILog.Debug($"[Dispose] offWindowEventCallback");
+
                 using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOffSceneSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(offWindowEventCallback);
                 offWindowEventCallback = null;
@@ -1216,6 +1246,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (onWindowEventCallback != null)
             {
+                NUILog.Debug($"[Dispose] onWindowEventCallback");
+
                 using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(onWindowEventCallback);
                 onWindowEventCallback = null;
@@ -1223,6 +1255,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (wheelEventCallback != null)
             {
+                NUILog.Debug($"[Dispose] wheelEventCallback");
+
                 using WheelSignal signal = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(wheelEventCallback);
                 wheelEventCallback = null;
@@ -1230,12 +1264,16 @@ namespace Tizen.NUI.BaseComponents
 
             if (WindowWheelEventHandler != null)
             {
+                NUILog.Debug($"[Dispose] WindowWheelEventHandler");
+
                 NUIApplication.GetDefaultWindow().WheelEvent -= OnWindowWheelEvent;
                 WindowWheelEventHandler = null;
             }
 
             if (hoverEventCallback != null)
             {
+                NUILog.Debug($"[Dispose] hoverEventCallback");
+
                 using HoverSignal signal = new HoverSignal(Interop.ActorSignal.ActorHoveredSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(hoverEventCallback);
                 hoverEventCallback = null;
@@ -1243,6 +1281,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (interceptTouchDataCallback != null)
             {
+                NUILog.Debug($"[Dispose] interceptTouchDataCallback");
+
                 using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(interceptTouchDataCallback);
                 interceptTouchDataCallback = null;
@@ -1250,6 +1290,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (touchDataCallback != null)
             {
+                NUILog.Debug($"[Dispose] touchDataCallback");
+
                 using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(touchDataCallback);
                 touchDataCallback = null;
@@ -1257,6 +1299,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (ResourcesLoadedCallback != null)
             {
+                NUILog.Debug($"[Dispose] ResourcesLoadedCallback");
+
                 using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(ResourcesLoadedCallback);
                 ResourcesLoadedCallback = null;
@@ -1264,6 +1308,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (keyCallback != null)
             {
+                NUILog.Debug($"[Dispose] keyCallback");
+
                 using ControlKeySignal signal = new ControlKeySignal(Interop.ViewSignal.KeyEventSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(keyCallback);
                 keyCallback = null;
@@ -1271,6 +1317,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (keyInputFocusLostCallback != null)
             {
+                NUILog.Debug($"[Dispose] keyInputFocusLostCallback");
+
                 using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusLostSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(keyInputFocusLostCallback);
                 keyInputFocusLostCallback = null;
@@ -1278,6 +1326,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (keyInputFocusGainedCallback != null)
             {
+                NUILog.Debug($"[Dispose] keyInputFocusGainedCallback");
+
                 using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusGainedSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(keyInputFocusGainedCallback);
                 keyInputFocusGainedCallback = null;
@@ -1285,6 +1335,8 @@ namespace Tizen.NUI.BaseComponents
 
             if (backgroundResourceLoadedCallback != null)
             {
+                NUILog.Debug($"[Dispose] backgroundResourceLoadedCallback");
+
                 using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(backgroundResourceLoadedCallback);
                 backgroundResourceLoadedCallback = null;
@@ -1292,10 +1344,13 @@ namespace Tizen.NUI.BaseComponents
 
             if (onWindowSendEventCallback != null)
             {
+                NUILog.Debug($"[Dispose] onWindowSendEventCallback");
+
                 using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(onWindowSendEventCallback);
                 onWindowSendEventCallback = null;
             }
+            NUILog.Debug($"[Dispose] DisConnectFromSignals END");
         }
 
         /// <summary>

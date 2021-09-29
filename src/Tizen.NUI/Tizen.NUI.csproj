@@ -6,6 +6,10 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>NUI_DEBUG_OFF;</DefineConstants>
+  </PropertyGroup>
+
   <ItemGroup>
     <TizenPreloadFile Include="Tizen.NUI.preload" Sequence="30" />
   </ItemGroup>
