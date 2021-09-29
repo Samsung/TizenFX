@@ -634,7 +634,7 @@ namespace Tizen.NUI.BaseComponents
         /// ShadowOffsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ShadowOffsetProperty = BindableProperty.Create(nameof(ShadowOffset), typeof(Tizen.NUI.Vector2), typeof(Tizen.NUI.BaseComponents.TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ShadowOffsetProperty = BindableProperty.Create(nameof(ShadowOffset), typeof(Tizen.NUI.Vector2), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
             if (newValue != null)
@@ -652,7 +652,7 @@ namespace Tizen.NUI.BaseComponents
         /// ShadowColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ShadowColorProperty = BindableProperty.Create(nameof(ShadowColor), typeof(Tizen.NUI.Vector4), typeof(Tizen.NUI.BaseComponents.TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ShadowColorProperty = BindableProperty.Create(nameof(ShadowColor), typeof(Tizen.NUI.Vector4), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
             if (newValue != null)
@@ -670,7 +670,7 @@ namespace Tizen.NUI.BaseComponents
         /// UnderlineEnabledProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnderlineEnabledProperty = BindableProperty.Create(nameof(UnderlineEnabled), typeof(bool), typeof(Tizen.NUI.BaseComponents.TextLabel), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnderlineEnabledProperty = BindableProperty.Create(nameof(UnderlineEnabled), typeof(bool), typeof(TextLabel), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
             if (newValue != null)
@@ -688,7 +688,7 @@ namespace Tizen.NUI.BaseComponents
         /// UnderlineColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnderlineColorProperty = BindableProperty.Create(nameof(UnderlineColor), typeof(Tizen.NUI.Vector4), typeof(Tizen.NUI.BaseComponents.TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnderlineColorProperty = BindableProperty.Create(nameof(UnderlineColor), typeof(Tizen.NUI.Vector4), typeof(TextLabel), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
             if (newValue != null)
@@ -706,7 +706,7 @@ namespace Tizen.NUI.BaseComponents
         /// UnderlineHeightProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UnderlineHeightProperty = BindableProperty.Create(nameof(UnderlineHeight), typeof(float), typeof(Tizen.NUI.BaseComponents.TextLabel), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UnderlineHeightProperty = BindableProperty.Create(nameof(UnderlineHeight), typeof(float), typeof(TextLabel), 0.0f, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.TextLabel)bindable;
             if (newValue != null)
