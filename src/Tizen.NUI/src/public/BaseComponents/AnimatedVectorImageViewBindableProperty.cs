@@ -26,7 +26,7 @@ namespace Tizen.NUI.BaseComponents
         /// ResourceURLProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResourceURLProperty = BindableProperty.Create(nameof(ResourceURL), typeof(string), typeof(Tizen.NUI.BaseComponents.AnimatedVectorImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ResourceURLProperty = BindableProperty.Create(nameof(ResourceURL), typeof(string), typeof(AnimatedVectorImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             if (newValue != null)
@@ -44,7 +44,7 @@ namespace Tizen.NUI.BaseComponents
         /// ResourceUrlProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static new readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(Tizen.NUI.BaseComponents.AnimatedVectorImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static new readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(AnimatedVectorImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             if (newValue != null)
@@ -62,7 +62,7 @@ namespace Tizen.NUI.BaseComponents
         /// RepeatCountProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RepeatCountProperty = BindableProperty.Create(nameof(RepeatCount), typeof(int), typeof(Tizen.NUI.BaseComponents.AnimatedVectorImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RepeatCountProperty = BindableProperty.Create(nameof(RepeatCount), typeof(int), typeof(AnimatedVectorImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             if (newValue != null)
@@ -80,7 +80,7 @@ namespace Tizen.NUI.BaseComponents
         /// CurrentFrameProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static new readonly BindableProperty CurrentFrameProperty = BindableProperty.Create(nameof(CurrentFrame), typeof(int), typeof(Tizen.NUI.BaseComponents.AnimatedVectorImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static new readonly BindableProperty CurrentFrameProperty = BindableProperty.Create(nameof(CurrentFrame), typeof(int), typeof(AnimatedVectorImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             if (newValue != null)
@@ -98,7 +98,7 @@ namespace Tizen.NUI.BaseComponents
         /// RepeatModeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RepeatModeProperty = BindableProperty.Create(nameof(RepeatMode), typeof(Tizen.NUI.BaseComponents.AnimatedVectorImageView.RepeatModes), typeof(Tizen.NUI.BaseComponents.AnimatedVectorImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RepeatModeProperty = BindableProperty.Create(nameof(RepeatMode), typeof(RepeatModes), typeof(AnimatedVectorImageView), default(RepeatModes), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedVectorImageView)bindable;
             if (newValue != null)
