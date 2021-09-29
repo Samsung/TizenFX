@@ -64,35 +64,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WebContextMenuItemConstructor END (OK)");
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebContextMenuItem getCPtr.")]
-        [Property("SPEC", "Tizen.NUI.WebContextMenuItem.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextMenuItemGetCPtr()
-        {
-            tlog.Debug(tag, $"WebContextMenuItemGetCPtr START");
-
-            using (Tizen.NUI.BaseComponents.WebView webview = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
-            {
-                WebContextMenu menu = new WebContextMenu(webview.SwigCPtr.Handle, false);
-
-                var testingTarget = new WebContextMenuItem(menu.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebContextMenuItem>(testingTarget, "Should return WebContextMenuItem instance.");
-
-                var result = WebContextMenuItem.getCPtr(testingTarget);
-                tlog.Debug(tag, "getCPtr : " + result);
-
-                menu.Dispose();
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"WebContextMenuItemGetCPtr END (OK)");
-        }
     }
 }

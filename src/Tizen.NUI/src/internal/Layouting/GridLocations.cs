@@ -33,7 +33,7 @@ namespace Tizen.NUI
         private int totalHorizontalExpand = 0;
         private int totalVerticalExpand = 0;
 
-        private List<GridChild> gridChildren;
+        private List<GridChild> gridChildren = new List<GridChild>();
 
         /// <summary>
         /// The nested class to represent a node of DAG.
@@ -153,15 +153,20 @@ namespace Tizen.NUI
 
             vLocations = hLocations = null;
             vEdgeList = hEdgeList = null;
-            gridChildren = new List<GridChild>();
+            gridChildren.Clear();
             maxColumnConut = Columns;
             maxRowCount = Rows;
 
             totalVerticalExpand = 0;
             totalHorizontalExpand = 0;
 
-            foreach (LayoutItem item in IterateLayoutChildren())
+            foreach (var item in LayoutChildren)
             {
+                if (!item.SetPositionByLayout)
+                {
+                    continue;
+                }
+
                 int column, columnSpan, row, rowSpan;
                 StretchFlags verticalStretch, horizontalStretch;
                 View view = item.Owner;

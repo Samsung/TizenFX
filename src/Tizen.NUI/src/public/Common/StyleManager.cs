@@ -175,9 +175,41 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(StyleManager obj)
+        /// <summary>
+        /// The Type of BrokenImage
+        /// </summary>
+        internal enum BrokenImageType
         {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
+            Small = 0,
+            Normal = 1,
+            Large = 2
+        }
+
+        /// <summary>
+        /// Sets the broken image url.
+        /// The broken image is the image to show when image loading is failed.
+        /// When the broken image and type are set in the Application,
+        /// the proper brokenImage is set automatically considering the size of view and the size of the brokenImage.
+        /// This Api is used from theme manager.
+        /// </summary>
+        /// <param name="type"> The type for brokenImage </param>
+        /// <param name="url"> The url for brokenImage </param>
+        internal void SetBrokenImageUrl(BrokenImageType type, string url)
+        {
+            Interop.StyleManager.SetBrokenImageUrl(SwigCPtr, (uint)type, url);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets the broken image url
+        /// </summary>
+        /// <param name="type"> The type for brokenImage</param>
+        /// <returns> the url for brokenImage </returns>
+        internal string GetBrokenImageUrl(BrokenImageType type)
+        {
+            string ret = Interop.StyleManager.GetBrokenImageUrl(SwigCPtr, (uint)type);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

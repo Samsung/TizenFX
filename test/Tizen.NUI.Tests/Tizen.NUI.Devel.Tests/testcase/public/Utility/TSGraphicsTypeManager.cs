@@ -35,30 +35,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("GraphicsTypeManager SetTypeConverter.")]
-        [Property("SPEC", "Tizen.NUI.GraphicsTypeManager.SetTypeConverter M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void GraphicsTypeManagerSetTypeConverter()
-        {
-            tlog.Debug(tag, $"GraphicsTypeManagerSetTypeConverter START");
-
-            try
-            {
-                GraphicsTypeManager.Instance.SetTypeConverter(new GraphicsTypeConverter());
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            tlog.Debug(tag, $"GraphicsTypeManagerSetTypeConverter END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("GraphicsTypeManager ConvertScriptToPixel.")]
         [Property("SPEC", "Tizen.NUI.GraphicsTypeManager.ConvertScriptToPixel M")]
         [Property("SPEC_URL", "-")]

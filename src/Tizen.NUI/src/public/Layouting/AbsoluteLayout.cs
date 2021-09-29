@@ -45,8 +45,13 @@ namespace Tizen.NUI
             MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
             MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
 
-            foreach (LayoutItem childLayout in IterateLayoutChildren())
+            foreach (var childLayout in LayoutChildren)
             {
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
+
                 // Get size of child with no padding, no margin. we won't support margin, padding for AbsolutLayout.
                 MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
 
@@ -88,8 +93,13 @@ namespace Tizen.NUI
         {
             // Absolute layout positions it's children at their Actor positions.
             // Children could overlap or spill outside the parent, as is the nature of absolute positions.
-            foreach (LayoutItem childLayout in IterateLayoutChildren())
+            foreach (var childLayout in LayoutChildren)
             {
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
+
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                 LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 

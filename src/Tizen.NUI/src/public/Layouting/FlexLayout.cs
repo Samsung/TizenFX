@@ -451,7 +451,7 @@ namespace Tizen.NUI
             get => (FlexJustification)Interop.FlexLayout.GetFlexJustification(swigCPtr);
             set
             {
-                if (value < FlexJustification.FlexStart || value > FlexJustification.SpaceAround)
+                if (value < FlexJustification.FlexStart || value > FlexJustification.SpaceEvenly)
                     throw new InvalidEnumArgumentException(nameof(Justification));
 
                 Interop.FlexLayout.SetFlexJustification(swigCPtr, (int)value);
@@ -570,11 +570,15 @@ namespace Tizen.NUI
             /// </summary>
             SpaceBetween,
             /// <summary>
-            /// Items are positioned with equal space before, between, and after the lines.<br/>
-            /// Compared to <see cref="FlexJustification.SpaceBetween"/> using <see cref="FlexJustification.SpaceAround"/>
-            /// will result in space being distributed to the beginning of the first child and end of the last child.
+            /// Items are positioned with equal space before, and after the lines.<br/>
             /// </summary>
-            SpaceAround
+            SpaceAround,
+            /// <summary>
+            /// Items are positioned with equal space before, between, and after the lines.<br/>
+            /// Spaces are distributed equally to the beginning of the first child, between each child, and the end of the last child.
+            /// </summary>
+            /// <since_tizen> 9 </since_tizen>
+            SpaceEvenly
         }
 
         /// <summary>

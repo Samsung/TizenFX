@@ -41,9 +41,10 @@
         </ResourceDictionary>
     </l:UIElement.XamlResources>
 
-    <l:UIElement x:Name="t1" CharP="c" StringP="{Binding Path=Size.Width, Converter={StaticResource floatToStringConverter}, StringFormat='{0:N0}'}" BindingContext="{x:Reference t2}" />
+    <l:UIElement x:Name="t1" CharP="c" StringP="{Binding Path=.Size.Width, Converter={StaticResource floatToStringConverter}, StringFormat='{0:N0}'}" BindingContext="{x:Reference t2}" />
     <l:UIElement x:Name="t2" Size="300, 200" Position="{DynamicResource positionKey}" />
     <l:UIElement x:Name="t3" StringP="{Binding Source={x:Reference t2}, Path=Size.Height, Converter={StaticResource floatToStringConverter}, StringFormat='{0:N0}'}" />
+    <l:UIElement x:Name="t4" StringP="{Binding Source={x:Reference t2}, Path=StringIndexer.[0]}" />
 
     <l:UIElement CustomBindableProperty="View.Position">
     </l:UIElement>

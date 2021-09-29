@@ -163,14 +163,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Create internal layout of TextLabel
-        /// </summary>
-        internal LayoutItem CreateTextLayout()
-        {
-            return new TextLayout();
-        }
-
-        /// <summary>
         /// The TranslatableText property.<br />
         /// The text can set the SID value.<br />
         /// </summary>
@@ -931,10 +923,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The ellipsis position of the text.
-        /// The ellipsis position type when the text size over the layout size.<br />
-        /// The ellipsis position: End, Start or Middle.<br />
+        /// Specifies which portion of the text should be replaced with an ellipsis when the text size exceeds the layout size.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public EllipsisPosition EllipsisPosition
         {
             get
@@ -1253,11 +1244,6 @@ namespace Tizen.NUI.BaseComponents
             base.Dispose(type);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextLabel obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
@@ -1272,6 +1258,11 @@ namespace Tizen.NUI.BaseComponents
         protected override ViewStyle CreateViewStyle()
         {
             return new TextLabelStyle();
+        }
+
+        internal override LayoutItem CreateDefaultLayout()
+        {
+            return new TextLayout();
         }
 
         /// <summary>

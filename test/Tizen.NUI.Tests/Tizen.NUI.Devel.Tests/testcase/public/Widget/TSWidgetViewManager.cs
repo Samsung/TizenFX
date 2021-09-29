@@ -132,35 +132,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("WidgetViewManager getCPtr.")]
-        [Property("SPEC", "Tizen.NUI.WidgetViewManager.getCPtr A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WidgetViewManagergetCPtr()
-        {
-            tlog.Debug(tag, $"WidgetViewManagergetCPtr START");
-
-            var testingTarget = new WidgetViewManager(widget.GetIntPtr(), false);
-            Assert.IsNotNull(testingTarget, "Can't create success object WidgetViewManager");
-            Assert.IsInstanceOf<WidgetViewManager>(testingTarget, "Should be an instance of WidgetViewManager type.");
-
-            try
-            {
-
-                WidgetViewManager.getCPtr(testingTarget);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            tlog.Debug(tag, $"WidgetViewManagergetCPtr END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("WidgetViewManager DownCast.")]
         [Property("SPEC", "Tizen.NUI.WidgetViewManager.DownCast A")]
         [Property("SPEC_URL", "-")]

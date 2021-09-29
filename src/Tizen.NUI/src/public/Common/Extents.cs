@@ -286,11 +286,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone() => new Extents(this);
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Extents obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal Extents Assign(SWIGTYPE_p_uint16_t array)
         {
             Extents ret = new Extents(Interop.Extents.AssignUint16(SwigCPtr, SWIGTYPE_p_uint16_t.getCPtr(array)), false);

@@ -283,11 +283,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(PixelBuffer obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal PixelBuffer Assign(PixelBuffer rhs)
         {
             PixelBuffer ret = new PixelBuffer(Interop.PixelBuffer.Assign(SwigCPtr, PixelBuffer.getCPtr(rhs)), false);

@@ -950,5 +950,57 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"RotationDispose END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Rotation Rotate.")]
+        [Property("SPEC", "Tizen.NUI.Rotate. M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RotationRotate()
+        {
+            tlog.Debug(tag, $"RotationRotate START");
+
+            var testingTarget = new Rotation(new Radian(new Degree(180.0f)), new Vector3(1.0f, 0.0f, 0.0f));
+            Assert.IsNotNull(testingTarget, "Can't create success object Rotation");
+            Assert.IsInstanceOf<Rotation>(testingTarget, "Should return Rotation instance.");
+
+            using (Vector3 vec = new Vector3(0.0f, 1.0f, 0.0f))
+            {
+                var result = testingTarget.Rotate(vec);
+                Assert.IsNotNull(result, "Can't create success object Vector3");
+                Assert.IsInstanceOf<Vector3>(result, "Should return Vector3 instance.");
+            }
+            
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RotationRotate END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Rotation Rotate.")]
+        [Property("SPEC", "Tizen.NUI.Rotate. M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RotationRotateWithVector4()
+        {
+            tlog.Debug(tag, $"RotationRotateWithVector4 START");
+
+            var testingTarget = new Rotation(new Radian(new Degree(180.0f)), new Vector3(0.0f, 1.0f, 0.0f));
+            Assert.IsNotNull(testingTarget, "Can't create success object Rotation");
+            Assert.IsInstanceOf<Rotation>(testingTarget, "Should return Rotation instance.");
+
+            using (Vector4 vec = new Vector4(1.0f, 0.0f, 0.0f, 0.0f))
+            {
+                var result = testingTarget.Rotate(vec);
+                Assert.IsNotNull(result, "Can't create success object Vector4");
+                Assert.IsInstanceOf<Vector4>(result, "Should return Vector4 instance.");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RotationRotateWithVector4 END (OK)");
+        }
     }
 }

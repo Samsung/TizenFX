@@ -43,8 +43,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<ObjectRegistry>(testingTarget, "Should return ObjectRegistry instance.");
 
-            tlog.Debug(tag, "getCPtr : " + ObjectRegistry.getCPtr(testingTarget));
-
             testingTarget.Dispose();
             tlog.Debug(tag, $"ObjectRegistryConstructor END (OK)");
         }

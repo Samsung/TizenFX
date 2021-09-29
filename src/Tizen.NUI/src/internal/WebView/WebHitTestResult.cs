@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
@@ -101,7 +102,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the link url of the hit test.
+        /// Gets the link URL of the hit test.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string LinkUrl
@@ -137,7 +138,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the image url of the hit test.
+        /// Gets the image URL of the hit test.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ImageUrl
@@ -149,7 +150,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the media url of the hit test.
+        /// Gets the media URL of the hit test.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string MediaUrl
@@ -191,12 +192,32 @@ namespace Tizen.NUI
         /// key 'src', value 'img_girl.jpg' would be stored in the map.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyMap Attributes
+        public IDictionary<string, string> Attributes
         {
             get
             {
                 IntPtr arributesIntPtr = Interop.WebHitTest.GetAttributes(SwigCPtr);
-                return new PropertyMap(arributesIntPtr, true);
+                IDictionary<string, string> dictionary = new Dictionary<string, string>();
+                PropertyMap map = new PropertyMap(arributesIntPtr, true);
+                for (uint i = 0; i < map.Count(); i++)
+                {
+                    using (PropertyKey key = map.GetKeyAt(i))
+                    {
+                        if (key.Type == PropertyKey.KeyType.String)
+                        {
+                            string outValue;
+                            using (PropertyValue mapValue = map.GetValue(i))
+                            {
+                                if (mapValue.Get(out outValue))
+                                {
+                                    dictionary.Add(key.StringKey, outValue);
+                                }
+                            }
+                        }
+                    }
+                }
+                map.Dispose();
+                return dictionary;
             }
         }
 

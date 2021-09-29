@@ -40,8 +40,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Reply whether form repost decision is allowed or not.
-        /// <param name="allowed">allowed or not</param>
         /// </summary>
+        /// <param name="allowed">allowed or not</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Reply(bool allowed)
         {

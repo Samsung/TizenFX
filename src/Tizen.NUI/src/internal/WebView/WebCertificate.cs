@@ -82,8 +82,8 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Allows the site access about certificate error.
-        /// <param name="allowed">allowed or not</param>
         /// </summary>
+        /// <param name="allowed">Allowed or not</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Allow(bool allowed)
         {

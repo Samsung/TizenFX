@@ -14,6 +14,19 @@ namespace Tizen.NUI.Devel.Tests
     {
         private const string tag = "NUITEST";
 
+        internal class MyElement : Element
+        {
+            public void ChildAdded(Element child)
+            {
+                OnChildAdded(child);
+            }
+
+            public void ChildRemoved(Element child)
+            {
+                OnChildRemoved(child);
+            }
+        }
+
         [SetUp]
         public void Init()
         {
@@ -47,6 +60,30 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception" + e.ToString());
             }
             tlog.Debug(tag, $"AutomationIdTest END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("Element  AutomationId")]
+        [Property("SPEC", "Tizen.NUI.Binding.Element.AutomationId  A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        public void AutomationIdTest2()
+        {
+            tlog.Debug(tag, $"AutomationIdTest2 START");
+            try
+            {
+                View t2 = new View();
+                Assert.IsNotNull(t2, "null Element");
+                t2.AutomationId = "View1";
+                Assert.AreEqual("View1", t2.AutomationId, "Should be equal");
+                t2.AutomationId = "View2";
+            }
+            catch (InvalidOperationException e)
+            {
+                Assert.True(true, "Caught InvalidOperationException" + e.Message.ToString());
+            }
+            tlog.Debug(tag, $"AutomationIdTest2 END");
         }
 
         [Test]
@@ -114,6 +151,32 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception" + e.ToString());
             }
             tlog.Debug(tag, $"ParentViewTest END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Element  ParentView")]
+        [Property("SPEC", "Tizen.NUI.Binding.Element.ParentView  A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        public void ParentViewTest2()
+        {
+            tlog.Debug(tag, $"ParentViewTest2 START");
+            try
+            {
+                BaseHandle t1 = new BaseHandle();
+                Assert.IsNotNull(t1, "null BaseHandle");
+                BaseHandle t2 = new BaseHandle();
+                Assert.IsNotNull(t2, "null BaseHandle");
+                t1.Parent = t2;
+                t1.ParentOverride = t2;
+                Assert.IsNull(t1.ParentView, "Should be null");
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+            tlog.Debug(tag, $"ParentViewTest2 END");
         }
 
         [Test]
@@ -311,6 +374,94 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("Element  OnChildAdded")]
+        [Property("SPEC", "Tizen.NUI.Binding.Element.OnChildAdded  M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MCST")]
+        public void OnChildAdded()
+        {
+            tlog.Debug(tag, $"OnChildAdded START");
+            try
+            {
+                MyElement t2 = new MyElement();
+                Assert.IsNotNull(t2, "null Element");
+                t2.ChildAdded(new MyElement());
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+            tlog.Debug(tag, $"OnChildAdded END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Element  OnChildAdded")]
+        [Property("SPEC", "Tizen.NUI.Binding.Element.OnChildAdded  M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MCST")]
+        public void OnChildAdded2()
+        {
+            tlog.Debug(tag, $"OnChildAdded2 START");
+            try
+            {
+                MyElement t2 = new MyElement();
+                Assert.IsNotNull(t2, "null Element");
+                t2.ChildAdded(new MyElement());
+            }
+            catch (ArgumentNullException e)
+            {
+                Assert.True(true, "Caught Exception" + e.Message.ToString());
+            }
+            tlog.Debug(tag, $"OnChildAdded2 END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Element  OnChildRemoved")]
+        [Property("SPEC", "Tizen.NUI.Binding.Element.OnChildRemoved  M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MCST")]
+        public void OnChildRemoved()
+        {
+            tlog.Debug(tag, $"OnChildRemoved START");
+            try
+            {
+                MyElement t2 = new MyElement();
+                Assert.IsNotNull(t2, "null Element");
+                t2.ChildRemoved(new MyElement());
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+            tlog.Debug(tag, $"OnChildRemoved END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("Element  OnChildRemoved")]
+        [Property("SPEC", "Tizen.NUI.Binding.Element.OnChildRemoved  M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MCST")]
+        public void OnChildRemoved2()
+        {
+            tlog.Debug(tag, $"OnChildRemoved2 START");
+            try
+            {
+                MyElement t2 = new MyElement();
+                Assert.IsNotNull(t2, "null Element");
+                t2.ChildRemoved(null);
+            }
+            catch (ArgumentNullException e)
+            {
+                Assert.True(true, "Caught Exception" + e.Message.ToString());
+            }
+            tlog.Debug(tag, $"OnChildRemoved2 END");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("Element  Descendants")]
         [Property("SPEC", "Tizen.NUI.Binding.Element.Descendants  M")]
         [Property("SPEC_URL", "-")]
@@ -331,6 +482,29 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception" + e.ToString());
             }
             tlog.Debug(tag, $"DescendantsTest END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Element  VisibleDescendants")]
+        [Property("SPEC", "Tizen.NUI.Binding.Element.VisibleDescendants  M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void VisibleDescendants()
+        {
+            tlog.Debug(tag, $"VisibleDescendants START");
+            try
+            {
+                View t2 = new View();
+                Assert.IsNotNull(t2, "null Element");
+                t2.LogicalChildren.Append<Element>(new View());
+                t2.VisibleDescendants();
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+            tlog.Debug(tag, $"VisibleDescendants END");
         }
     }
 }

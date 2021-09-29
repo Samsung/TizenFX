@@ -1738,7 +1738,7 @@ namespace Tizen.NUI.BaseComponents
         /// The Ellipsis property.<br />
         /// Enable or disable the ellipsis.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public bool Ellipsis
         {
             get
@@ -1755,10 +1755,9 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The ellipsis position of the text.
-        /// The ellipsis position type when the text size over the layout size.<br />
-        /// The ellipsis position: End, Start or Middle.<br />
+        /// Specifies which portion of the text should be replaced with an ellipsis when the text size exceeds the layout size.<br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public EllipsisPosition EllipsisPosition
         {
             get
@@ -2057,11 +2056,6 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(MinLineSizeProperty, value);
                 NotifyPropertyChanged();
             }
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(TextEditor obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         internal SWIGTYPE_p_Dali__SignalT_void_fDali__Toolkit__TextEditor_Dali__Toolkit__TextEditor__InputStyle__MaskF_t InputStyleChangedSignal()

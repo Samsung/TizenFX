@@ -167,7 +167,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<TransitionData>(testingTarget, "should be an instance of TransitionData class!");
 
             var result = testingTarget.Count();
-            Assert.AreEqual(1, result, "should be eaqual!");
+            Assert.AreEqual(1, result, "should be equal!");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"TransitionDataCount END (OK)");
@@ -206,7 +206,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<TransitionData>(testingTarget, "should be an instance of TransitionData class!");
 
             var result = testingTarget.GetAnimatorAt(0);
-            Assert.AreEqual(3, result.Count(), "should be eaqual!");
+            Assert.AreEqual(3, result.Count(), "should be equal!");
             
             testingTarget.Dispose();
             tlog.Debug(tag, $"TransitionDataGetAnimatorAt END (OK)");

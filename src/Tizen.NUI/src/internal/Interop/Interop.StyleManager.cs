@@ -51,6 +51,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_SWIGUpcast")]
             public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_SetBrokenImageUrl")]
+            public static extern void SetBrokenImageUrl(global::System.Runtime.InteropServices.HandleRef jarg1,uint jarg2, string jarg3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_GetBrokenImageUrl")]
+            public static extern string GetBrokenImageUrl(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
         }
     }
 }

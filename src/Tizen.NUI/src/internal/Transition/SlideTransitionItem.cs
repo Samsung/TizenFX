@@ -43,11 +43,6 @@ namespace Tizen.NUI
         {
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(SlideTransitionItem obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal SlideTransitionItem(SlideTransitionItem handle) : this(Interop.SlideTransitionItem.NewSlideTransitionItem(SlideTransitionItem.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
