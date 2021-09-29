@@ -26,7 +26,7 @@ namespace Tizen.NUI.BaseComponents
         /// ResourceUrlProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static new readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(Tizen.NUI.BaseComponents.AnimatedImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static new readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(AnimatedImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
             if (newValue != null)
@@ -44,7 +44,7 @@ namespace Tizen.NUI.BaseComponents
         /// BatchSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BatchSizeProperty = BindableProperty.Create(nameof(BatchSize), typeof(int), typeof(Tizen.NUI.BaseComponents.AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BatchSizeProperty = BindableProperty.Create(nameof(BatchSize), typeof(int), typeof(AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
             if (newValue != null)
@@ -62,7 +62,7 @@ namespace Tizen.NUI.BaseComponents
         /// CacheSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CacheSizeProperty = BindableProperty.Create(nameof(CacheSize), typeof(int), typeof(Tizen.NUI.BaseComponents.AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CacheSizeProperty = BindableProperty.Create(nameof(CacheSize), typeof(int), typeof(AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
             if (newValue != null)
@@ -80,7 +80,7 @@ namespace Tizen.NUI.BaseComponents
         /// FrameDelayProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FrameDelayProperty = BindableProperty.Create(nameof(FrameDelay), typeof(int), typeof(Tizen.NUI.BaseComponents.AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FrameDelayProperty = BindableProperty.Create(nameof(FrameDelay), typeof(int), typeof(AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
             if (newValue != null)
@@ -98,7 +98,7 @@ namespace Tizen.NUI.BaseComponents
         /// LoopCountProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LoopCountProperty = BindableProperty.Create(nameof(LoopCount), typeof(int), typeof(Tizen.NUI.BaseComponents.AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LoopCountProperty = BindableProperty.Create(nameof(LoopCount), typeof(int), typeof(AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
             if (newValue != null)
@@ -116,7 +116,7 @@ namespace Tizen.NUI.BaseComponents
         /// StopBehaviorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StopBehaviorProperty = BindableProperty.Create(nameof(StopBehavior), typeof(Tizen.NUI.BaseComponents.AnimatedImageView.StopBehaviorType), typeof(Tizen.NUI.BaseComponents.AnimatedImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty StopBehaviorProperty = BindableProperty.Create(nameof(StopBehavior), typeof(StopBehaviorType), typeof(AnimatedImageView), default(StopBehaviorType), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
             if (newValue != null)
@@ -134,7 +134,7 @@ namespace Tizen.NUI.BaseComponents
         /// CurrentFrameProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CurrentFrameProperty = BindableProperty.Create(nameof(CurrentFrame), typeof(int), typeof(Tizen.NUI.BaseComponents.AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CurrentFrameProperty = BindableProperty.Create(nameof(CurrentFrame), typeof(int), typeof(AnimatedImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
             if (newValue != null)

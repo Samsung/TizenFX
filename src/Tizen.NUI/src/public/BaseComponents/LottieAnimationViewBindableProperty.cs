@@ -62,7 +62,7 @@ namespace Tizen.NUI.BaseComponents
         /// LoopingModeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LoopingModeProperty = BindableProperty.Create(nameof(LoopingMode), typeof(Tizen.NUI.BaseComponents.LottieAnimationView.LoopingModeType), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LoopingModeProperty = BindableProperty.Create(nameof(LoopingMode), typeof(LoopingModeType), typeof(LottieAnimationView), default(LoopingModeType), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             if (newValue != null)
@@ -98,7 +98,7 @@ namespace Tizen.NUI.BaseComponents
         /// StopBehaviorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty StopBehaviorProperty = BindableProperty.Create(nameof(StopBehavior), typeof(Tizen.NUI.BaseComponents.LottieAnimationView.StopBehaviorType), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty StopBehaviorProperty = BindableProperty.Create(nameof(StopBehavior), typeof(StopBehaviorType), typeof(LottieAnimationView), default(StopBehaviorType), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             if (newValue != null)
@@ -116,7 +116,7 @@ namespace Tizen.NUI.BaseComponents
         /// RedrawInScalingDownProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RedrawInScalingDownProperty = BindableProperty.Create(nameof(RedrawInScalingDown), typeof(bool), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RedrawInScalingDownProperty = BindableProperty.Create(nameof(RedrawInScalingDown), typeof(bool), typeof(Tizen.NUI.BaseComponents.LottieAnimationView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.LottieAnimationView)bindable;
             if (newValue != null)

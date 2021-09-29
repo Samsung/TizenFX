@@ -26,7 +26,7 @@ namespace Tizen.NUI
         /// LayoutProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static new readonly BindableProperty LayoutProperty = BindableProperty.Create(nameof(Layout), typeof(Tizen.NUI.PropertyArray), typeof(Tizen.NUI.ItemView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static new readonly BindableProperty LayoutProperty = BindableProperty.Create(nameof(Layout), typeof(Tizen.NUI.PropertyArray), typeof(ItemView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
@@ -44,7 +44,7 @@ namespace Tizen.NUI
         /// MinimumSwipeSpeedProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinimumSwipeSpeedProperty = BindableProperty.Create(nameof(MinimumSwipeSpeed), typeof(float), typeof(Tizen.NUI.ItemView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MinimumSwipeSpeedProperty = BindableProperty.Create(nameof(MinimumSwipeSpeed), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
@@ -62,7 +62,7 @@ namespace Tizen.NUI
         /// MinimumSwipeDistanceProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty MinimumSwipeDistanceProperty = BindableProperty.Create(nameof(MinimumSwipeDistance), typeof(float), typeof(Tizen.NUI.ItemView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty MinimumSwipeDistanceProperty = BindableProperty.Create(nameof(MinimumSwipeDistance), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
@@ -80,7 +80,7 @@ namespace Tizen.NUI
         /// WheelScrollDistanceStepProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WheelScrollDistanceStepProperty = BindableProperty.Create(nameof(WheelScrollDistanceStep), typeof(float), typeof(Tizen.NUI.ItemView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WheelScrollDistanceStepProperty = BindableProperty.Create(nameof(WheelScrollDistanceStep), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
@@ -98,7 +98,7 @@ namespace Tizen.NUI
         /// SnapToItemEnabledProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SnapToItemEnabledProperty = BindableProperty.Create(nameof(SnapToItemEnabled), typeof(bool), typeof(Tizen.NUI.ItemView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty SnapToItemEnabledProperty = BindableProperty.Create(nameof(SnapToItemEnabled), typeof(bool), typeof(ItemView), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
@@ -116,7 +116,7 @@ namespace Tizen.NUI
         /// RefreshIntervalProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty RefreshIntervalProperty = BindableProperty.Create(nameof(RefreshInterval), typeof(float), typeof(Tizen.NUI.ItemView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty RefreshIntervalProperty = BindableProperty.Create(nameof(RefreshInterval), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
@@ -134,7 +134,7 @@ namespace Tizen.NUI
         /// LayoutPositionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutPositionProperty = BindableProperty.Create(nameof(LayoutPosition), typeof(float), typeof(Tizen.NUI.ItemView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LayoutPositionProperty = BindableProperty.Create(nameof(LayoutPosition), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
@@ -152,7 +152,7 @@ namespace Tizen.NUI
         /// ScrollSpeedProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollSpeedProperty = BindableProperty.Create(nameof(ScrollSpeed), typeof(float), typeof(Tizen.NUI.ItemView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollSpeedProperty = BindableProperty.Create(nameof(ScrollSpeed), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
@@ -170,7 +170,7 @@ namespace Tizen.NUI
         /// OvershootProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OvershootProperty = BindableProperty.Create(nameof(Overshoot), typeof(float), typeof(Tizen.NUI.ItemView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty OvershootProperty = BindableProperty.Create(nameof(Overshoot), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
@@ -188,7 +188,7 @@ namespace Tizen.NUI
         /// ScrollDirectionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollDirectionProperty = BindableProperty.Create(nameof(ScrollDirection), typeof(Tizen.NUI.Vector2), typeof(Tizen.NUI.ItemView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollDirectionProperty = BindableProperty.Create(nameof(ScrollDirection), typeof(Tizen.NUI.Vector2), typeof(ItemView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
@@ -206,7 +206,7 @@ namespace Tizen.NUI
         /// LayoutOrientationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutOrientationProperty = BindableProperty.Create(nameof(LayoutOrientation), typeof(int), typeof(Tizen.NUI.ItemView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LayoutOrientationProperty = BindableProperty.Create(nameof(LayoutOrientation), typeof(int), typeof(ItemView), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
@@ -224,7 +224,7 @@ namespace Tizen.NUI
         /// ScrollContentSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ScrollContentSizeProperty = BindableProperty.Create(nameof(ScrollContentSize), typeof(float), typeof(Tizen.NUI.ItemView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ScrollContentSizeProperty = BindableProperty.Create(nameof(ScrollContentSize), typeof(float), typeof(ItemView), default(float), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.ItemView)bindable;
             if (newValue != null)
