@@ -50,6 +50,10 @@ namespace Tizen.NUI
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
 
+#if NUI_DEBUG_ON
+        private static int debuggingCount = 0;
+#endif
+
         /// <summary>
         /// Create an instance of BaseHandle.
         /// </summary>
@@ -74,6 +78,8 @@ namespace Tizen.NUI
             //to catch derived classes dali native exceptions
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
+            NUILog.Debug($"[Dispose] BaseHandle.contructor with cMemeryOwn:{cMemoryOwn} START");
+
             registerMe = swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             // using copy constructor to create another native handle so Registry.Unregister works fine.
@@ -82,14 +88,27 @@ namespace Tizen.NUI
 
             if (registerMe)
             {
-
                 // Register this instance of BaseHandle in the registry.
                 Registry.Register(this);
             }
+
+#if NUI_DEBUG_ON
+            NUILog.Debug($"[Dispose] type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")}");
+
+            debuggingCount++;
+            if (this is BaseComponents.View view)
+            {
+                NUILog.Debug($"[Dispose] ID:{view.ID} Name:{view.Name} debuggingCount:{debuggingCount}");
+            }
+            NUILog.Debug($"[Dispose] BaseHandle.contructor with cMemeryOwn END");
+            NUILog.Debug($"=============================");
+#endif
         }
 
         internal BaseHandle(global::System.IntPtr cPtr)
         {
+            NUILog.Debug($"[Dispose] BaseHandle.contructor START");
+
             registerMe = swigCMemOwn = true;
 
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -103,6 +122,19 @@ namespace Tizen.NUI
                 // Register this instance of BaseHandle in the registry.
                 Registry.Register(this);
             }
+
+#if NUI_DEBUG_ON
+            NUILog.Debug($"[Dispose] type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")}");
+
+            debuggingCount++;
+            if (this is BaseComponents.View view)
+            {
+                NUILog.Debug($"[Dispose] ID:{view.ID} Name:{view.Name} debuggingCount:{debuggingCount}");
+            }
+            NUILog.Debug($"[Dispose] BaseHandle.contructor END");
+            NUILog.Debug($"=============================");
+#endif
+
         }
 
         /// <summary>
@@ -494,6 +526,8 @@ namespace Tizen.NUI
                 return;
             }
 
+            NUILog.Debug($"[Dispose] BaseHandle.Dispose({type}) START");
+
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
@@ -511,6 +545,11 @@ namespace Tizen.NUI
             {
                 Registry.Unregister(this);
             }
+
+#if NUI_DEBUG_ON
+            debuggingCount--;
+            NUILog.Debug($"[Dispose] swigCMemOwn:{swigCMemOwn} debuggingCount:{debuggingCount} type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")}");
+#endif
 
             if (SwigCPtr.Handle != IntPtr.Zero)
             {
@@ -534,6 +573,9 @@ namespace Tizen.NUI
             {
                 Application.Current.XamlResourceChanged -= OnResourcesChanged;
             }
+            
+            NUILog.Debug($"[Dispose] BaseHandle.Dispose({type}) END");
+            NUILog.Debug($"=============================");
         }
 
         /// <summary>
