@@ -27,7 +27,7 @@ namespace Tizen.NUI.BaseComponents
     /// LottieAnimationView renders an animated vector image (Lottie file).
     /// </summary>
     /// <since_tizen> 7 </since_tizen>
-    public class LottieAnimationView : ImageView
+    public partial class LottieAnimationView : ImageView
     {
         #region Constructor, Destructor, Dispose
         /// <summary>
@@ -99,6 +99,19 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public string URL
+        {
+            get
+            {
+                return GetValue(URLProperty) as string;
+            }
+            set
+            {
+                SetValue(URLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string InternalURL
         {
             set
             {
@@ -227,6 +240,19 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 7 </since_tizen>
         public int CurrentFrame
         {
+            get
+            {
+                return (int)GetValue(CurrentFrameProperty);
+            }
+            set
+            {
+                SetValue(CurrentFrameProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalCurrentFrame
+        {
             set
             {
                 currentStates.frame = value;
@@ -259,6 +285,19 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public LoopingModeType LoopingMode
+        {
+            get
+            {
+                return (LoopingModeType)GetValue(LoopingModeProperty);
+            }
+            set
+            {
+                SetValue(LoopingModeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private LoopingModeType InternalLoopingMode
         {
             set
             {
@@ -318,6 +357,19 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 7 </since_tizen>
         public int LoopCount
         {
+            get
+            {
+                return (int)GetValue(LoopCountProperty);
+            }
+            set
+            {
+                SetValue(LoopCountProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalLoopCount
+        {
             set
             {
                 currentStates.changed = true;
@@ -359,6 +411,19 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public StopBehaviorType StopBehavior
+        {
+            get
+            {
+                return (StopBehaviorType)GetValue(StopBehaviorProperty);
+            }
+            set
+            {
+                SetValue(StopBehaviorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private StopBehaviorType InternalStopBehavior
         {
             set
             {
@@ -406,6 +471,19 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool RedrawInScalingDown
+        {
+            get
+            {
+                return (bool)GetValue(RedrawInScalingDownProperty);
+            }
+            set
+            {
+                SetValue(RedrawInScalingDownProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalRedrawInScalingDown
         {
             set
             {
