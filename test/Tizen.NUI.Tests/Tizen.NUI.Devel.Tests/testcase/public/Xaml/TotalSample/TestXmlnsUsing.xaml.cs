@@ -23,27 +23,34 @@ namespace Tizen.NUI.Devel.Tests
             view0 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<CustomXamlView>(this, "view0");
         }
 
-		[TestFixture]
-		class Tests
+	}
+
+
+	[TestFixture]
+	class TestXmlnsUsingTests
+	{
+		[SetUp]
+		public void Setup()
 		{
-			[SetUp]
-			public void Setup()
-			{
-			}
+		}
 
-			[TearDown]
-			public void TearDown()
-			{
-				Application.Current = null;
-			}
+		[TearDown]
+		public void TearDown()
+		{
+			//Application.Current = null;
+		}
 
-			[Test]
-			public void SupportUsingXmlns()
-			{
-				var page = new TestXmlnsUsing();
-				Assert.That(page.view0, Is.Not.Null);
-				Assert.That(page.view0, Is.TypeOf<CustomXamlView>());
-			}
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void SupportUsingXmlns()
+		{
+			var page = new TestXmlnsUsing();
+			Assert.That(page.view0, Is.Not.Null);
+			Assert.That(page.view0, Is.TypeOf<CustomXamlView>());
 		}
 	}
 }

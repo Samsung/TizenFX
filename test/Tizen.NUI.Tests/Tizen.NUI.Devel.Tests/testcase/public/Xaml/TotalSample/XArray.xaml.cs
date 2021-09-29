@@ -24,20 +24,37 @@ namespace Tizen.NUI.Devel.Tests
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(XArray));
         }
 
-		[TestFixture]
-		public class Tests
+	}
+
+
+	[TestFixture]
+	public class XArrayTests
+	{
+		[SetUp]
+		public void Setup()
 		{
-			[Test]
-			public void SupportsXArray ()
-			{
-				var layout = new XArray ();
-				var array = layout.Content;
-				Assert.NotNull (array);
-				Assert.That (array, Is.TypeOf<string[]> ());
-				Assert.AreEqual (2, ((string[])layout.Content).Length);
-				Assert.AreEqual ("Hello", ((string[])layout.Content) [0]);
-				Assert.AreEqual ("World", ((string[])layout.Content) [1]);
-			}
+		}
+
+		[TearDown]
+		public void TearDown()
+		{
+		}
+
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void SupportsXArray()
+		{
+			var layout = new XArray();
+			var array = layout.Content;
+			Assert.NotNull(array);
+			Assert.That(array, Is.TypeOf<string[]>());
+			Assert.AreEqual(2, ((string[])layout.Content).Length);
+			Assert.AreEqual("Hello", ((string[])layout.Content)[0]);
+			Assert.AreEqual("World", ((string[])layout.Content)[1]);
 		}
 	}
 }
