@@ -79,8 +79,6 @@ namespace Tizen.Multimedia.Remoting
             Debug.Assert(_handle != null);
 
             Label = label;
-
-            RegisterEvents();
         }
 
         internal WebRTCDataChannel(IntPtr dataChannelHandle)
@@ -97,9 +95,6 @@ namespace Tizen.Multimedia.Remoting
                 ThrowIfFailed("Failed to get label");
 
             Label = label;
-
-            Log.Info(WebRTCLog.Tag, "Register event");
-            RegisterEvents();
         }
 
         private IntPtr Handle
@@ -179,7 +174,7 @@ namespace Tizen.Multimedia.Remoting
                 return;
             }
 
-            if (true)
+            if (_handle != null)
             {
                 NativeDataChannel.Destroy(_handle);
                 _disposed = true;

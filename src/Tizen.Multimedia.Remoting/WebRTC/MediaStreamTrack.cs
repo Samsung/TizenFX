@@ -131,6 +131,11 @@ namespace Tizen.Multimedia.Remoting
         {
             get
             {
+                if (Type != MediaType.Video)
+                {
+                    throw new InvalidOperationException("This property is only for video.");
+                }
+
                 NativeWebRTC.GetDisplayMode(_webRtc.Handle, _trackId, out var val).
                     ThrowIfFailed("Failed to get WebRTC display mode");
 
@@ -138,6 +143,11 @@ namespace Tizen.Multimedia.Remoting
             }
             set
             {
+                if (Type != MediaType.Video)
+                {
+                    throw new InvalidOperationException("This property is only for video.");
+                }
+
                 ValidationUtil.ValidateEnum(typeof(WebRTCDisplayMode), value, nameof(value));
 
                 NativeWebRTC.SetDisplayMode(_webRtc.Handle, _trackId, value).
@@ -158,6 +168,11 @@ namespace Tizen.Multimedia.Remoting
         {
             get
             {
+                if (Type != MediaType.Video)
+                {
+                    throw new InvalidOperationException("This property is only for video.");
+                }
+
                 NativeWebRTC.GetDisplayVisible(_webRtc.Handle, _trackId, out bool val).
                     ThrowIfFailed("Failed to get visible status");
 
@@ -165,6 +180,11 @@ namespace Tizen.Multimedia.Remoting
             }
             set
             {
+                if (Type != MediaType.Video)
+                {
+                    throw new InvalidOperationException("This property is only for video.");
+                }
+
                 NativeWebRTC.SetDisplayVisible(_webRtc.Handle, _trackId, value).
                     ThrowIfFailed("Failed to set display status.");
             }
