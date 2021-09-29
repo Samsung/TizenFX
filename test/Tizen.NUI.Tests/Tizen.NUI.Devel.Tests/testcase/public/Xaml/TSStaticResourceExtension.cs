@@ -122,20 +122,20 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ProvideValueTest3 END");
         }
 
-        [Test]
-        [Category("P2")]
-        [Description("StaticResourceExtension GetApplicationLevelResource")]
-        [Property("SPEC", "Tizen.NUI.Xaml.StaticResourceExtension.GetApplicationLevelResource M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void GetApplicationLevelResourceTest()
-        {
-            tlog.Debug(tag, $"GetApplicationLevelResourceTest START");
+        //[Test]
+        //[Category("P2")]
+        //[Description("StaticResourceExtension GetApplicationLevelResource")]
+        //[Property("SPEC", "Tizen.NUI.Xaml.StaticResourceExtension.GetApplicationLevelResource M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void GetApplicationLevelResourceTest()
+        //{
+        //    tlog.Debug(tag, $"GetApplicationLevelResourceTest START");
 
-            var sr = new StaticResourceExtension();
-            Assert.Throws<Tizen.NUI.Xaml.XamlParseException>(() => sr.GetApplicationLevelResource("key", null));
+        //    var sr = new StaticResourceExtension();
+        //    Assert.Throws<Tizen.NUI.Xaml.XamlParseException>(() => sr.GetApplicationLevelResource("key", null));
 
-            tlog.Debug(tag, $"GetApplicationLevelResourceTest END");
-        }
+        //    tlog.Debug(tag, $"GetApplicationLevelResourceTest END");
+        //}
     }
 }

@@ -105,7 +105,7 @@ namespace Tizen.NUI
         /// WrappingEnabledProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WrappingEnabledProperty = BindableProperty.Create(nameof(WrappingEnabled), typeof(bool), typeof(Tizen.NUI.Spin), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WrappingEnabledProperty = BindableProperty.Create(nameof(WrappingEnabled), typeof(bool), typeof(Tizen.NUI.Spin), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.Spin)bindable;
             if (newValue != null)

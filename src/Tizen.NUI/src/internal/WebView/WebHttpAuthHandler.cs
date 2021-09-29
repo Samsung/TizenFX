@@ -63,9 +63,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Sends credential for authentication challenge.
+        /// </summary>
         /// <param name="userId">user id from user input.</param>
         /// <param name="password">user password from user input.</param>
-        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void UseCredential(string userId, string password)
         {

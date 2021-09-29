@@ -1836,7 +1836,7 @@ namespace Tizen.NUI.BaseComponents
         /// AccessibilityRoleProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AccessibilityRoleProperty = BindableProperty.Create(nameof(AccessibilityRole), typeof(Role), typeof(View), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AccessibilityRoleProperty = BindableProperty.Create(nameof(AccessibilityRole), typeof(Role), typeof(View), default(Role), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
             if (newValue != null)
@@ -1877,7 +1877,7 @@ namespace Tizen.NUI.BaseComponents
         /// ExcludeLayoutingProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ExcludeLayoutingProperty = BindableProperty.Create(nameof(ExcludeLayouting), typeof(bool), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ExcludeLayoutingProperty = BindableProperty.Create(nameof(ExcludeLayouting), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -1895,7 +1895,7 @@ namespace Tizen.NUI.BaseComponents
         /// TooltipTextProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TooltipTextProperty = BindableProperty.Create(nameof(TooltipText), typeof(string), typeof(Tizen.NUI.BaseComponents.View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TooltipTextProperty = BindableProperty.Create(nameof(TooltipText), typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -1913,7 +1913,7 @@ namespace Tizen.NUI.BaseComponents
         /// PositionUsesAnchorPointProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PositionUsesAnchorPointProperty = BindableProperty.Create(nameof(PositionUsesAnchorPoint), typeof(bool), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PositionUsesAnchorPointProperty = BindableProperty.Create(nameof(PositionUsesAnchorPoint), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -1931,7 +1931,7 @@ namespace Tizen.NUI.BaseComponents
         /// AnchorPointProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AnchorPointProperty = BindableProperty.Create(nameof(AnchorPoint), typeof(Tizen.NUI.Position), typeof(Tizen.NUI.BaseComponents.View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AnchorPointProperty = BindableProperty.Create(nameof(AnchorPoint), typeof(Tizen.NUI.Position), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -1949,7 +1949,7 @@ namespace Tizen.NUI.BaseComponents
         /// WidthSpecificationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WidthSpecificationProperty = BindableProperty.Create(nameof(WidthSpecification), typeof(int), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WidthSpecificationProperty = BindableProperty.Create(nameof(WidthSpecification), typeof(int), typeof(View), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -1967,7 +1967,7 @@ namespace Tizen.NUI.BaseComponents
         /// HeightSpecificationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty HeightSpecificationProperty = BindableProperty.Create(nameof(HeightSpecification), typeof(int), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty HeightSpecificationProperty = BindableProperty.Create(nameof(HeightSpecification), typeof(int), typeof(View), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -1985,7 +1985,7 @@ namespace Tizen.NUI.BaseComponents
         /// LayoutTransitionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutTransitionProperty = BindableProperty.Create(nameof(LayoutTransition), typeof(Tizen.NUI.LayoutTransition), typeof(Tizen.NUI.BaseComponents.View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LayoutTransitionProperty = BindableProperty.Create(nameof(LayoutTransition), typeof(Tizen.NUI.LayoutTransition), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -2003,7 +2003,7 @@ namespace Tizen.NUI.BaseComponents
         /// PaddingEXProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PaddingEXProperty = BindableProperty.Create(nameof(PaddingEX), typeof(Tizen.NUI.Extents), typeof(Tizen.NUI.BaseComponents.View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PaddingEXProperty = BindableProperty.Create(nameof(PaddingEX), typeof(Tizen.NUI.Extents), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -2021,7 +2021,7 @@ namespace Tizen.NUI.BaseComponents
         /// LayoutProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LayoutProperty = BindableProperty.Create(nameof(Layout), typeof(Tizen.NUI.LayoutItem), typeof(Tizen.NUI.BaseComponents.View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LayoutProperty = BindableProperty.Create(nameof(Layout), typeof(Tizen.NUI.LayoutItem), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -2039,7 +2039,7 @@ namespace Tizen.NUI.BaseComponents
         /// BackgroundImageSynchronosLoadingProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackgroundImageSynchronosLoadingProperty = BindableProperty.Create(nameof(BackgroundImageSynchronosLoading), typeof(bool), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackgroundImageSynchronosLoadingProperty = BindableProperty.Create(nameof(BackgroundImageSynchronosLoading), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -2057,7 +2057,7 @@ namespace Tizen.NUI.BaseComponents
         /// BackgroundImageSynchronousLoadingProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BackgroundImageSynchronousLoadingProperty = BindableProperty.Create(nameof(BackgroundImageSynchronousLoading), typeof(bool), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BackgroundImageSynchronousLoadingProperty = BindableProperty.Create(nameof(BackgroundImageSynchronousLoading), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -2075,7 +2075,7 @@ namespace Tizen.NUI.BaseComponents
         /// EnableControlStatePropagationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableControlStatePropagationProperty = BindableProperty.Create(nameof(EnableControlStatePropagation), typeof(bool), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableControlStatePropagationProperty = BindableProperty.Create(nameof(EnableControlStatePropagation), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -2093,7 +2093,7 @@ namespace Tizen.NUI.BaseComponents
         /// GrabTouchAfterLeaveProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty GrabTouchAfterLeaveProperty = BindableProperty.Create(nameof(GrabTouchAfterLeave), typeof(bool), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty GrabTouchAfterLeaveProperty = BindableProperty.Create(nameof(GrabTouchAfterLeave), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -2111,7 +2111,7 @@ namespace Tizen.NUI.BaseComponents
         /// BlendEquationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BlendEquationProperty = BindableProperty.Create(nameof(BlendEquation), typeof(Tizen.NUI.BlendEquationType), typeof(Tizen.NUI.BaseComponents.View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BlendEquationProperty = BindableProperty.Create(nameof(BlendEquation), typeof(BlendEquationType), typeof(View), default(BlendEquationType), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -2129,7 +2129,7 @@ namespace Tizen.NUI.BaseComponents
         /// TransitionOptionsProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TransitionOptionsProperty = BindableProperty.Create(nameof(TransitionOptions), typeof(Tizen.NUI.TransitionOptions), typeof(Tizen.NUI.BaseComponents.View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TransitionOptionsProperty = BindableProperty.Create(nameof(TransitionOptions), typeof(TransitionOptions), typeof(View), default(TransitionOptions), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -2147,7 +2147,7 @@ namespace Tizen.NUI.BaseComponents
         /// AutomationIdProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AutomationIdProperty = BindableProperty.Create(nameof(AutomationId), typeof(string), typeof(Tizen.NUI.BaseComponents.View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AutomationIdProperty = BindableProperty.Create(nameof(AutomationId), typeof(string), typeof(View), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
@@ -2165,7 +2165,7 @@ namespace Tizen.NUI.BaseComponents
         /// TouchAreaOffsetProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty TouchAreaOffsetProperty = BindableProperty.Create(nameof(TouchAreaOffset), typeof(Tizen.NUI.Offset), typeof(Tizen.NUI.BaseComponents.View), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty TouchAreaOffsetProperty = BindableProperty.Create(nameof(TouchAreaOffset), typeof(Offset), typeof(View), default(Offset), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)

@@ -74,6 +74,7 @@ namespace Tizen.NUI.Devel.Tests
                              "\r\n" +
                              "\r\n  <View Size=\"100,100\"  BackgroundColor=\"Red\" />" +
                              "\r\n</View>";
+
                 using var textReader = new StringReader(content);
                 using var reader = XmlReader.Create(textReader);
                 var view = XamlLoader.Create(reader);

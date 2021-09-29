@@ -253,7 +253,7 @@ namespace Tizen.NUI.BaseComponents
         /// ImageMapProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImageMapProperty = BindableProperty.Create(nameof(ImageMap), typeof(Tizen.NUI.PropertyMap), typeof(Tizen.NUI.BaseComponents.ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ImageMapProperty = BindableProperty.Create(nameof(ImageMap), typeof(Tizen.NUI.PropertyMap), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
@@ -271,7 +271,7 @@ namespace Tizen.NUI.BaseComponents
         /// AlphaMaskURLProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AlphaMaskURLProperty = BindableProperty.Create(nameof(AlphaMaskURL), typeof(string), typeof(Tizen.NUI.BaseComponents.ImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AlphaMaskURLProperty = BindableProperty.Create(nameof(AlphaMaskURL), typeof(string), typeof(ImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
@@ -289,7 +289,7 @@ namespace Tizen.NUI.BaseComponents
         /// CropToMaskProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CropToMaskProperty = BindableProperty.Create(nameof(CropToMask), typeof(bool), typeof(Tizen.NUI.BaseComponents.ImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CropToMaskProperty = BindableProperty.Create(nameof(CropToMask), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
@@ -307,7 +307,7 @@ namespace Tizen.NUI.BaseComponents
         /// FittingModeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty FittingModeProperty = BindableProperty.Create(nameof(FittingMode), typeof(Tizen.NUI.FittingModeType), typeof(Tizen.NUI.BaseComponents.ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty FittingModeProperty = BindableProperty.Create(nameof(FittingMode), typeof(FittingModeType), typeof(ImageView), default(FittingModeType), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
@@ -325,7 +325,7 @@ namespace Tizen.NUI.BaseComponents
         /// DesiredWidthProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DesiredWidthProperty = BindableProperty.Create(nameof(DesiredWidth), typeof(int), typeof(Tizen.NUI.BaseComponents.ImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DesiredWidthProperty = BindableProperty.Create(nameof(DesiredWidth), typeof(int), typeof(ImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
@@ -343,7 +343,7 @@ namespace Tizen.NUI.BaseComponents
         /// DesiredHeightProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DesiredHeightProperty = BindableProperty.Create(nameof(DesiredHeight), typeof(int), typeof(Tizen.NUI.BaseComponents.ImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DesiredHeightProperty = BindableProperty.Create(nameof(DesiredHeight), typeof(int), typeof(ImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
@@ -361,7 +361,7 @@ namespace Tizen.NUI.BaseComponents
         /// ReleasePolicyProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ReleasePolicyProperty = BindableProperty.Create(nameof(ReleasePolicy), typeof(Tizen.NUI.ReleasePolicyType), typeof(Tizen.NUI.BaseComponents.ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ReleasePolicyProperty = BindableProperty.Create(nameof(ReleasePolicy), typeof(ReleasePolicyType), typeof(ImageView), default(ReleasePolicyType), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
@@ -379,7 +379,7 @@ namespace Tizen.NUI.BaseComponents
         /// WrapModeUProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WrapModeUProperty = BindableProperty.Create(nameof(WrapModeU), typeof(Tizen.NUI.WrapModeType), typeof(Tizen.NUI.BaseComponents.ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WrapModeUProperty = BindableProperty.Create(nameof(WrapModeU), typeof(Tizen.NUI.WrapModeType), typeof(ImageView), default(WrapModeType), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
@@ -397,7 +397,7 @@ namespace Tizen.NUI.BaseComponents
         /// WrapModeVProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WrapModeVProperty = BindableProperty.Create(nameof(WrapModeV), typeof(Tizen.NUI.WrapModeType), typeof(Tizen.NUI.BaseComponents.ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WrapModeVProperty = BindableProperty.Create(nameof(WrapModeV), typeof(Tizen.NUI.WrapModeType), typeof(ImageView), default(WrapModeType), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
@@ -415,7 +415,7 @@ namespace Tizen.NUI.BaseComponents
         /// AdjustViewSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty AdjustViewSizeProperty = BindableProperty.Create(nameof(AdjustViewSize), typeof(bool), typeof(Tizen.NUI.BaseComponents.ImageView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty AdjustViewSizeProperty = BindableProperty.Create(nameof(AdjustViewSize), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)

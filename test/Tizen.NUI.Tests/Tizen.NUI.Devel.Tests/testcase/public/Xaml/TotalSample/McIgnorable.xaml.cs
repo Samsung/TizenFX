@@ -16,16 +16,31 @@ namespace Tizen.NUI.Devel.Tests
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(McIgnorable));
         }
+	}
 
 
-		[TestFixture]
-		public class Tests
+	[TestFixture]
+	public class McIgnorableTests
+	{
+		[SetUp]
+		public void Setup()
 		{
-			[Test]
-			public void DoesNotThrow ()
-			{
-				var layout = new McIgnorable ();
-			}
+		}
+
+		[TearDown]
+		public void TearDown()
+		{
+		}
+
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void DoesNotThrow()
+		{
+			var layout = new McIgnorable();
 		}
 	}
 }

@@ -76,7 +76,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Default Font Size.
+        /// Default font size.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int DefaultFontSize
@@ -111,7 +111,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable cache builer
+        /// Enables cache builder.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool CacheBuilderEnabled
@@ -129,7 +129,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable do not track, to protect user privacy security.
+        /// Enables web feature that does not track to protect user privacy security.
         /// </summary>
         public bool DoNotTrackEnabled
         {
@@ -146,7 +146,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Use scrollbar thumb focus notifications
+        /// Uses scrollbar thumb focus notifications
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ScrollbarThumbFocusNotificationsUsed
@@ -199,7 +199,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable auto fitting
+        /// Enables auto fitting
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AutoFittingEnabled
@@ -216,7 +216,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable plugins
+        /// Enables plugins
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PluginsEnabled
@@ -233,7 +233,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable private browsing
+        /// Enables private browsing
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PrivateBrowsingEnabled
@@ -250,7 +250,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable link magnifier
+        /// Enables link magnifier
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool LinkMagnifierEnabled
@@ -267,7 +267,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Use keypad without user action
+        /// Uses keypad without user action
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool KeypadWithoutUserActionUsed
@@ -284,7 +284,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable autofill password form
+        /// Enables autofill password form
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AutofillPasswordFormEnabled
@@ -301,7 +301,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable form candidate data
+        /// Enables form candidate data
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool FormCandidateDataEnabled
@@ -318,7 +318,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable text selection
+        /// Enables text selection
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool TextSelectionEnabled
@@ -335,7 +335,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable text autosizing
+        /// Enables text autosizing
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool TextAutosizingEnabled
@@ -352,7 +352,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable arrow scroll
+        /// Enables arrow scroll
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ArrowScrollEnabled
@@ -369,7 +369,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable clipboard
+        /// Enables clipboard
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ClipboardEnabled
@@ -386,7 +386,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Enable ime panel
+        /// Enables IME panel
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ImePanelEnabled
@@ -421,7 +421,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Allow images load automatically or not.
+        /// Allows images load automatically or not.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool AutomaticImageLoadingAllowed
@@ -473,7 +473,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Force zoom
+        ///  Forces zoom
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ZoomForced
@@ -490,7 +490,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Enable text zoom
+        ///  Enables text zoom
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool TextZoomEnabled
@@ -507,7 +507,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Enable extra feature
+        ///  Enables the given extra feature.
         /// </summary>
         /// <param name="str">The string of extra feature.</param>
         /// <param name="tag">Enable or disable.</param>
@@ -519,7 +519,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Enable extra feature
+        ///  Checks the extra feature is enabled or not.
         /// </summary>
         /// <param name="str">The string of extra feature.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -448,21 +448,15 @@ namespace Tizen.NUI.Xaml
                 }
                 if (nodeType == typeof(Int16))
                 {
-                    short retval;
-                    if (short.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                    return Convert.ToInt16(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
                 if (nodeType == typeof(Int32))
                 {
-                    int retval;
-                    if (int.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                    return Convert.ToInt32(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
                 if (nodeType == typeof(Int64))
                 {
-                    long retval;
-                    if (long.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                    return Convert.ToInt64(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
                 if (nodeType == typeof(Byte))
                 {
@@ -472,33 +466,23 @@ namespace Tizen.NUI.Xaml
                 }
                 if (nodeType == typeof(UInt16))
                 {
-                    ushort retval;
-                    if (ushort.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                    return Convert.ToUInt16(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
                 if (nodeType == typeof(UInt32))
                 {
-                    uint retval;
-                    if (uint.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                    return Convert.ToUInt32(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
                 if (nodeType == typeof(UInt64))
                 {
-                    ulong retval;
-                    if (ulong.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                    return Convert.ToUInt64(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
                 if (nodeType == typeof(Single))
                 {
-                    float retval;
-                    if (float.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                    return GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring);
                 }
                 if (nodeType == typeof(Double))
                 {
-                    double retval;
-                    if (double.TryParse(valuestring, NumberStyles.Number, CultureInfo.InvariantCulture, out retval))
-                        return retval;
+                    return Convert.ToDouble(GraphicsTypeManager.Instance.ConvertScriptToPixel(valuestring));
                 }
                 if (nodeType == typeof(Boolean))
                 {

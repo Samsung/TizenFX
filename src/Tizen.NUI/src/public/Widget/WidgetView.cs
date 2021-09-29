@@ -34,7 +34,7 @@ namespace Tizen.NUI
         /// PreviewProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PreviewProperty = BindableProperty.Create(nameof(Preview), typeof(bool), typeof(Tizen.NUI.WidgetView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PreviewProperty = BindableProperty.Create(nameof(Preview), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             if (newValue != null)
@@ -52,7 +52,7 @@ namespace Tizen.NUI
         /// LoadingTextProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LoadingTextProperty = BindableProperty.Create(nameof(LoadingText), typeof(bool), typeof(Tizen.NUI.WidgetView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LoadingTextProperty = BindableProperty.Create(nameof(LoadingText), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             if (newValue != null)
@@ -70,7 +70,7 @@ namespace Tizen.NUI
         /// WidgetStateFaultedProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty WidgetStateFaultedProperty = BindableProperty.Create(nameof(WidgetStateFaulted), typeof(bool), typeof(Tizen.NUI.WidgetView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty WidgetStateFaultedProperty = BindableProperty.Create(nameof(WidgetStateFaulted), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             if (newValue != null)
@@ -88,7 +88,7 @@ namespace Tizen.NUI
         /// PermanentDeleteProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PermanentDeleteProperty = BindableProperty.Create(nameof(PermanentDelete), typeof(bool), typeof(Tizen.NUI.WidgetView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty PermanentDeleteProperty = BindableProperty.Create(nameof(PermanentDelete), typeof(bool), typeof(Tizen.NUI.WidgetView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.WidgetView)bindable;
             if (newValue != null)

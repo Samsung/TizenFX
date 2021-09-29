@@ -26,7 +26,7 @@ namespace Tizen.NUI.BaseComponents
         /// CacheModelProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CacheModelProperty = BindableProperty.Create(nameof(CacheModel), typeof(Tizen.NUI.CacheModel), typeof(Tizen.NUI.BaseComponents.WebView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CacheModelProperty = BindableProperty.Create(nameof(CacheModel), typeof(CacheModel), typeof(WebView), default(CacheModel), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             if (newValue != null)
@@ -44,7 +44,7 @@ namespace Tizen.NUI.BaseComponents
         /// CookieAcceptPolicyProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty CookieAcceptPolicyProperty = BindableProperty.Create(nameof(CookieAcceptPolicy), typeof(Tizen.NUI.CookieAcceptPolicy), typeof(Tizen.NUI.BaseComponents.WebView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty CookieAcceptPolicyProperty = BindableProperty.Create(nameof(CookieAcceptPolicy), typeof(CookieAcceptPolicy), typeof(WebView), default(CookieAcceptPolicy), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             if (newValue != null)
@@ -62,7 +62,7 @@ namespace Tizen.NUI.BaseComponents
         /// EnableJavaScriptProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty EnableJavaScriptProperty = BindableProperty.Create(nameof(EnableJavaScript), typeof(bool), typeof(Tizen.NUI.BaseComponents.WebView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty EnableJavaScriptProperty = BindableProperty.Create(nameof(EnableJavaScript), typeof(bool), typeof(WebView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             if (newValue != null)
@@ -80,7 +80,7 @@ namespace Tizen.NUI.BaseComponents
         /// LoadImagesAutomaticallyProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty LoadImagesAutomaticallyProperty = BindableProperty.Create(nameof(LoadImagesAutomatically), typeof(bool), typeof(Tizen.NUI.BaseComponents.WebView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty LoadImagesAutomaticallyProperty = BindableProperty.Create(nameof(LoadImagesAutomatically), typeof(bool), typeof(WebView), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             if (newValue != null)
@@ -98,7 +98,7 @@ namespace Tizen.NUI.BaseComponents
         /// DefaultTextEncodingNameProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DefaultTextEncodingNameProperty = BindableProperty.Create(nameof(DefaultTextEncodingName), typeof(string), typeof(Tizen.NUI.BaseComponents.WebView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DefaultTextEncodingNameProperty = BindableProperty.Create(nameof(DefaultTextEncodingName), typeof(string), typeof(WebView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             if (newValue != null)
@@ -116,7 +116,7 @@ namespace Tizen.NUI.BaseComponents
         /// DefaultFontSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty DefaultFontSizeProperty = BindableProperty.Create(nameof(DefaultFontSize), typeof(int), typeof(Tizen.NUI.BaseComponents.WebView), 0, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty DefaultFontSizeProperty = BindableProperty.Create(nameof(DefaultFontSize), typeof(int), typeof(WebView), 0, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Tizen.NUI.BaseComponents.WebView)bindable;
             if (newValue != null)

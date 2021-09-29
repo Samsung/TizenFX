@@ -25,26 +25,36 @@ namespace Tizen.NUI.Devel.Tests
             entry = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<TextField>(this, "entry");
         }
 
-		[TestFixture]
-		public class Tests
+	}
+
+	[TestFixture]
+	public class XReferenceTests
+	{
+		[SetUp]
+		public void Setup()
 		{
-			[Test]
-			public void XReferenceAsBindingSource ()
-			{
-				var layout = new XReference ();
+		}
 
-				Assert.AreEqual ("foo", layout.entry.Text);
-				Assert.AreEqual ("bar", layout.entry.PlaceholderText);
-			}
+		[TearDown]
+		public void TearDown()
+		{
+		}
 
-			[Test]
-			public void CrossXReference ()
-			{
-				var layout = new XReference ();
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void XReferenceAsBindingSource()
+		{
+			var layout = new XReference();
 
-				Assert.AreSame (layout.label0, layout.label1.BindingContext);
-				Assert.AreSame (layout.label1, layout.label0.BindingContext);
-			}
+			Assert.AreEqual("foo", layout.entry.Text);
+			Assert.AreEqual("bar", layout.entry.PlaceholderText);
+			Assert.AreSame(layout.label0, layout.label1.BindingContext);
+			Assert.AreSame(layout.label1, layout.label0.BindingContext);
 		}
 	}
+
 }
