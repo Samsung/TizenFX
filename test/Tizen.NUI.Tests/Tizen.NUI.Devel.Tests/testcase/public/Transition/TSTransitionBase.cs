@@ -43,8 +43,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object TransitionBase");
             Assert.IsInstanceOf<TransitionBase>(testingTarget, "Should be an instance of TransitionBase type.");
 
-            testingTarget.Dispose();
-
             tlog.Debug(tag, $"TransitionBaseConstructor END (OK)");
         }
 
@@ -59,13 +57,15 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"TransitionBaseAlphaFunction START");
 
-            var testingTarget = new TransitionBase();
+            var testingTarget = new TransitionBase()
+            {
+                TimePeriod = new TimePeriod(300),
+                AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Bounce),
+            };
             Assert.IsNotNull(testingTarget, "Can't create success object TransitionBase");
             Assert.IsInstanceOf<TransitionBase>(testingTarget, "Should be an instance of TransitionBase type.");
 
-            Assert.IsNotNull(testingTarget.AlphaFunction);
-
-            testingTarget.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Bounce);
+            testingTarget.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn);
             Assert.IsInstanceOf<AlphaFunction>(testingTarget.AlphaFunction, "Should be an instance of TimePeriod type.");
 
             testingTarget.Dispose();
@@ -83,13 +83,15 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"TransitionBaseTimePeriod START");
 
-            var testingTarget = new TransitionBase();
+            var testingTarget = new TransitionBase()
+            {
+                TimePeriod = new TimePeriod(300),
+                AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Bounce),
+            };
             Assert.IsNotNull(testingTarget, "Can't create success object TransitionBase");
             Assert.IsInstanceOf<TransitionBase>(testingTarget, "Should be an instance of TransitionBase type.");
 
-            Assert.IsNotNull(testingTarget.TimePeriod);
-
-            testingTarget.TimePeriod = new TimePeriod(300);
+            testingTarget.TimePeriod = new TimePeriod(500);
             Assert.IsInstanceOf<TimePeriod>(testingTarget.TimePeriod, "Should be an instance of TimePeriod type.");
 
             testingTarget.Dispose();
@@ -118,7 +120,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.IsInstanceOf<TransitionItemBase>(result, "Should be an instance of TransitionItemBase type.");
             }
 
-                testingTarget.Dispose();
+            testingTarget.Dispose();
             tlog.Debug(tag, $"TransitionBaseCreateTransition END (OK)");
         }
     }

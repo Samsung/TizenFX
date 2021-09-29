@@ -337,11 +337,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone() => new Size2D(Width, Height);
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Size2D obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         /// <summary>
         /// Gets the size from the pointer.
         /// </summary>

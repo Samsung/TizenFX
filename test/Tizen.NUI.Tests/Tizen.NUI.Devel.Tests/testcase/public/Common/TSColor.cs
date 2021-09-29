@@ -1162,9 +1162,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Color color = Color.Cyan)
             {
-                global::System.IntPtr cPtr = (global::System.IntPtr)Color.getCPtr(color);
-
-                var testingTarget = Color.GetColorFromPtr(cPtr);
+                var testingTarget = Color.GetColorFromPtr(color.SwigCPtr.Handle);
                 Assert.IsNotNull(testingTarget, "null handle");
                 Assert.IsInstanceOf<Color>(testingTarget, "Should return Color instance.");
 

@@ -80,27 +80,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("FrameUpdateCallbackInterface getCPtr.")]
-        [Property("SPEC", "Tizen.NUI.FrameUpdateCallbackInterface.getCPtr C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void FrameUpdateCallbackInterfaceGetCPtr()
-        {
-            tlog.Debug(tag, $"FrameUpdateCallbackInterfaceGetCPtr START");
-
-            var testingTarget = new FrameUpdateCallbackInterface();
-            Assert.IsNotNull(testingTarget, "Can't create success object FrameUpdateCallbackInterface");
-            Assert.IsInstanceOf<FrameUpdateCallbackInterface>(testingTarget, "Should return FrameUpdateCallbackInterface instance.");
-
-            tlog.Debug(tag, "getCPtr : " + FrameUpdateCallbackInterface.getCPtr(testingTarget));
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"FrameUpdateCallbackInterfaceGetCPtr END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("FrameUpdateCallbackInterface OnUpdate.")]
         [Property("SPEC", "Tizen.NUI.FrameUpdateCallbackInterface.OnUpdate M")]
         [Property("SPEC_URL", "-")]

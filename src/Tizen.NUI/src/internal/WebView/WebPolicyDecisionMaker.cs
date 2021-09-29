@@ -107,7 +107,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the url that request policy decision.
+        /// Gets the URL that request policy decision.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Url

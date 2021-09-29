@@ -82,11 +82,6 @@ namespace Tizen.NUI
             widgetImpl.SetContentInfo(contentInfo);
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Widget obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal System.IntPtr GetIntPtr()
         {
             return SwigCPtr.Handle;

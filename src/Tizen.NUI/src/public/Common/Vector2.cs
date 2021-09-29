@@ -510,11 +510,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Vector2 obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal SWIGTYPE_p_float AsFloat()
         {
             global::System.IntPtr cPtr = Interop.Vector2.AsFloat(SwigCPtr);

@@ -118,27 +118,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Widget getCPtr.")]
-        [Property("SPEC", "Tizen.NUI.Widget.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WidgetGetCPtr()
-        {
-            tlog.Debug(tag, $"WidgetGetCPtr START");
-
-            var testingTarget = new Widget(widget.GetIntPtr(), true);
-            Assert.IsNotNull(testingTarget, "Can't create success object Widget");
-            Assert.IsInstanceOf<Widget>(testingTarget, "Should be an instance of Widget type.");
-
-            var result = Widget.getCPtr(testingTarget);
-            Assert.IsNotNull(result);
-
-            tlog.Debug(tag, $"WidgetGetCPtr END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Widget Assign.")]
         [Property("SPEC", "Tizen.NUI.Widget.Assign M")]
         [Property("SPEC_URL", "-")]

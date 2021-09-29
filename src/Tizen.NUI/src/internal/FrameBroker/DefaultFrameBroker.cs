@@ -88,7 +88,7 @@ namespace Tizen.NUI
                     providerImage.PivotPoint = transition.DefaultImageStyle.PivotPoint;
                     providerImage.PositionUsesPivotPoint = true;
                     providerImage.AddRenderer(GetRenderer(frame));
-                    if (mainView)
+                    if (mainView != null)
                     {
                         mainView.Add(providerImage);
                         providerImage.LowerToBottom();

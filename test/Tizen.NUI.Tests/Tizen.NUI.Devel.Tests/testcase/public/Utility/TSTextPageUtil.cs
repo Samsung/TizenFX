@@ -48,7 +48,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 label.EnableMarkup = true;
                 label.Text = "PublicPageUtilTest";
-                var result = testingTarget.SetText(label, "MyPageUtil");
+                var result = testingTarget.SetText(label, "My PageUtil");
                 Assert.IsNotNull(result);
             }
 
@@ -111,6 +111,59 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextPageUtilGetText END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextPageUtil PageData.")]
+        [Property("SPEC", "Tizen.NUI.TextPageUtil.PageData A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextPageUtilPageData()
+        {
+            tlog.Debug(tag, $"TextPageUtilPageData START");
+
+            var testingTarget = new PageData();
+
+            testingTarget.PreviousTag = "previous";
+            tlog.Debug(tag, "PreviousTag : " + testingTarget.PreviousTag);
+
+            testingTarget.EndTag = "end";
+            tlog.Debug(tag, "EndTag : " + testingTarget.EndTag);
+
+            testingTarget.StartOffset = 0;
+            tlog.Debug(tag, "StartOffset : " + testingTarget.StartOffset);
+
+            testingTarget.EndOffset = 2;
+            tlog.Debug(tag, "EndOffset : " + testingTarget.EndOffset);
+
+            tlog.Debug(tag, $"TextPageUtilPageData END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextPageUtil TagData.")]
+        [Property("SPEC", "Tizen.NUI.TextPageUtil.TagData A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextPageUtilTagData()
+        {
+            tlog.Debug(tag, $"TextPageUtilTagData START");
+
+            var testingTarget = new TagData();
+
+            testingTarget.TagName = "tag";
+            tlog.Debug(tag, "TagName : " + testingTarget.TagName);
+
+            testingTarget.AttributeName = "size";
+            tlog.Debug(tag, "AttributName : " + testingTarget.AttributeName);
+
+            testingTarget.IsEndTag = true;
+            tlog.Debug(tag, "IsEndTag" + testingTarget.IsEndTag);
+
+            tlog.Debug(tag, $"TextPageUtilTagData END (OK)");
         }
     }
 }

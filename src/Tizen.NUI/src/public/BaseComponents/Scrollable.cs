@@ -539,30 +539,26 @@ namespace Tizen.NUI.BaseComponents
 
         private void DisConnectFromSignals()
         {
-            // Save current CPtr.
-            global::System.Runtime.InteropServices.HandleRef currentCPtr = SwigCPtr;
-
-            // Use BaseHandle CPtr as current might have been deleted already in derived classes.
-            SwigCPtr = GetBaseHandleCPtrHandleRef;
-
             if (scrollableCompletedCallbackDelegate != null)
             {
-                this.ScrollCompletedSignal().Disconnect(scrollableCompletedCallbackDelegate);
+                using ScrollableSignal signal = new ScrollableSignal(Interop.Scrollable.ScrollCompletedSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(scrollableCompletedCallbackDelegate);
+                scrollableCompletedCallbackDelegate = null;
             }
 
             if (scrollableUpdatedCallbackDelegate != null)
             {
-                this.ScrollUpdatedSignal().Disconnect(scrollableUpdatedCallbackDelegate);
+                using ScrollableSignal signal = new ScrollableSignal(Interop.Scrollable.ScrollUpdatedSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(scrollableUpdatedCallbackDelegate);
+                scrollableUpdatedCallbackDelegate = null;
             }
 
             if (scrollableStartedCallbackDelegate != null)
             {
-                this.ScrollStartedSignal().Disconnect(scrollableStartedCallbackDelegate);
+                using ScrollableSignal signal = new ScrollableSignal(Interop.Scrollable.ScrollStartedSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(scrollableStartedCallbackDelegate);
+                scrollableStartedCallbackDelegate = null;
             }
-
-            // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
-            // Restore current CPtr.
-            SwigCPtr = currentCPtr;
         }
 
         private void OnStarted(IntPtr vector2)

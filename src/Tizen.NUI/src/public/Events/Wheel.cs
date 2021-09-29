@@ -246,11 +246,6 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Wheel obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal static Wheel GetWheelFromPtr(global::System.IntPtr cPtr)
         {
             Wheel ret = new Wheel(cPtr, false);

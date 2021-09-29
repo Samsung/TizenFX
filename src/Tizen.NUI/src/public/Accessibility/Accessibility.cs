@@ -20,9 +20,6 @@ using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
 using System.Diagnostics.CodeAnalysis;
-#if (NUI_DEBUG_ON)
-using tlog = Tizen.Log;
-#endif
 
 namespace Tizen.NUI.Accessibility
 {
@@ -325,7 +322,7 @@ namespace Tizen.NUI.Accessibility
 
         private void SayFinishedEventCallback(int result)
         {
-            tlog.Fatal(tag, $"sayFinishedEventCallback(res={result}) called!");
+            NUILog.Debug($"sayFinishedEventCallback(res={result}) called!");
             sayFinishedEventHandler?.Invoke(this, new SayFinishedEventArgs(result));
         }
 
@@ -356,7 +353,7 @@ namespace Tizen.NUI.Accessibility
         internal SayFinishedEventArgs(int result)
         {
             State = (Accessibility.SayFinishedState)(result);
-            tlog.Fatal("NUITEST", $"SayFinishedEventArgs Constructor! State={State}");
+            NUILog.Debug($"SayFinishedEventArgs Constructor! State={State}");
         }
     }
 }

@@ -236,11 +236,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override Container GetParent()
         {
-            if (InternalParent)
-            {
-                return this.InternalParent as Container;
-            }
-            return null;
+            return InternalParent as Container;
         }
 
         /// <summary>

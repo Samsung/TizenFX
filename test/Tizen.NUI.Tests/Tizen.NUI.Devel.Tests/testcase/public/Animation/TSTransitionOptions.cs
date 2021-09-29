@@ -86,8 +86,8 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.AnimatedTarget = view;
 
             var result = testingTarget.AnimatedTarget;
-            Assert.AreEqual(30, result.SizeWidth, "should be eaqual!");
-            Assert.AreEqual(50, result.SizeHeight, "should be eaqual!");
+            Assert.AreEqual(30, result.SizeWidth, "should be equal!");
+            Assert.AreEqual(50, result.SizeHeight, "should be equal!");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"TransitionOptionsAnimatedTargetGet END (OK)");
@@ -115,8 +115,8 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.AnimatedTarget = view;
 
             var result = testingTarget.AnimatedTarget;
-            Assert.AreEqual(30, result.SizeWidth, "should be eaqual!");
-            Assert.AreEqual(50, result.SizeHeight, "should be eaqual!");
+            Assert.AreEqual(30, result.SizeWidth, "should be equal!");
+            Assert.AreEqual(50, result.SizeHeight, "should be equal!");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"TransitionOptionsAnimatedTargetSet END (OK)");
@@ -184,7 +184,7 @@ namespace Tizen.NUI.Devel.Tests
             };
             view.TransitionOptions.TransitionTag = "default";
             var result = view.TransitionOptions.TransitionTag;
-            Assert.AreEqual("default", result, "should be eaqual!");
+            Assert.AreEqual("default", result, "should be equal!");
 
             view.Dispose();
             tlog.Debug(tag, $"TransitionOptionsTransitionTagGet END (OK)");
@@ -208,7 +208,7 @@ namespace Tizen.NUI.Devel.Tests
             };
             view.TransitionOptions.TransitionTag = "default";
             var result = view.TransitionOptions.TransitionTag;
-            Assert.AreEqual("default", result, "should be eaqual!");
+            Assert.AreEqual("default", result, "should be equal!");
 
             view.Dispose();
             tlog.Debug(tag, $"TransitionOptionsTransitionTagSet END (OK)");
@@ -288,7 +288,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.ForwardAnimation = forwordAnimation;
 
             var result = testingTarget.ForwardAnimation;    
-            Assert.AreEqual(300, result.DurationMilliSeconds, "should be eaqual!");
+            Assert.AreEqual(300, result.DurationMilliSeconds, "should be equal!");
 
             view.Dispose();
             forwordAnimation.Dispose();
@@ -323,7 +323,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.ForwardAnimation = forwordAnimation;
 
             var result = testingTarget.ForwardAnimation;
-            Assert.AreEqual(300, result.DurationMilliSeconds, "should be eaqual!");
+            Assert.AreEqual(300, result.DurationMilliSeconds, "should be equal!");
 
             view.Dispose();
             forwordAnimation.Dispose();
@@ -358,7 +358,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.BackwardAnimation = backwordAnimation;
 
             var result = testingTarget.BackwardAnimation;
-            Assert.AreEqual(300, result.DurationMilliSeconds, "should be eaqual!");
+            Assert.AreEqual(300, result.DurationMilliSeconds, "should be equal!");
 
             view.Dispose();
             backwordAnimation.Dispose();
@@ -393,7 +393,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.BackwardAnimation = backwordAnimation;
 
             var result = testingTarget.BackwardAnimation;
-            Assert.AreEqual(300, result.DurationMilliSeconds, "should be eaqual!");
+            Assert.AreEqual(300, result.DurationMilliSeconds, "should be equal!");
 
             view.Dispose();
             backwordAnimation.Dispose();

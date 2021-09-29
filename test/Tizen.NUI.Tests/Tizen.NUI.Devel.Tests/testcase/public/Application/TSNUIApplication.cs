@@ -86,6 +86,8 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null.");
             Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of NUIApplication type.");
 
+            tlog.Debug(tag, "ApplicationHandle : " + testingTarget.ApplicationHandle);
+
             pos.Dispose();
             size.Dispose();
             testingTarget.Dispose();
@@ -240,12 +242,10 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"NUIApplicationConstructorForImeWindow START");
 
-            var application = new NUIApplication("stylesheet", NUIApplication.WindowMode.Opaque, WindowType.Ime);
-            Assert.IsNotNull(application, "NUIApplication Should return NUIApplication instance.");
+            var testingTarget = new NUIApplication("", NUIApplication.WindowMode.Opaque, WindowType.Dialog);
+            Assert.IsNotNull(testingTarget, "Should be not null.");
             Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of NUIApplication type.");
 
-            windowSize.Dispose();
-            windowPosition.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"NUIApplicationConstructorForImeWindow END (OK)");
         }

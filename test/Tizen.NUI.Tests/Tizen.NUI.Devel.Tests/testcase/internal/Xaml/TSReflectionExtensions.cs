@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using Tizen.NUI.Binding.Internals;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -110,6 +111,103 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"ReflectionExtensionsGetProperties END");
+        }
+
+
+        [Test]
+        [Category("P1")]
+        [Description("ReflectionExtensions GetField")]
+        [Property("SPEC", "Tizen.NUI.Binding.Internals.ReflectionExtensions.GetField M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void GetField()
+        {
+            tlog.Debug(tag, $"GetField START");
+
+            try
+            {
+                var ret = ReflectionExtensions.GetField(typeof(View), "backgroundExtraData");
+                Assert.IsNotNull(ret, "Should not be null");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"GetField END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ReflectionExtensions GetProperty")]
+        [Property("SPEC", "Tizen.NUI.Binding.Internals.ReflectionExtensions.GetProperty M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void GetProperty()
+        {
+            tlog.Debug(tag, $"GetProperty START");
+
+            try
+            {
+                var ret = ReflectionExtensions.GetProperty(typeof(TextLabel), "Name");
+                Assert.IsNotNull(ret, "Should not be null");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"GetProperty END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ReflectionExtensions IsAssignableFrom")]
+        [Property("SPEC", "Tizen.NUI.Binding.Internals.ReflectionExtensions.IsAssignableFrom M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void IsAssignableFrom()
+        {
+            tlog.Debug(tag, $"IsAssignableFrom START");
+
+            try
+            {
+                var ret = ReflectionExtensions.IsAssignableFrom(typeof(TextLabel), typeof(View));
+                Assert.False(ret, "Should be false");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"IsAssignableFrom END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ReflectionExtensions IsInstanceOfType")]
+        [Property("SPEC", "Tizen.NUI.Binding.Internals.ReflectionExtensions.IsInstanceOfType M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void IsInstanceOfType()
+        {
+            tlog.Debug(tag, $"IsInstanceOfType START");
+
+            try
+            {
+                var ret = ReflectionExtensions.IsInstanceOfType(typeof(TextLabel), new TextLabel());
+                Assert.True(ret, "Should be true");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"IsInstanceOfType END");
         }
     }
 }

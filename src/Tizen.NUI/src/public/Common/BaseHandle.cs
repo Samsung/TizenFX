@@ -566,11 +566,19 @@ namespace Tizen.NUI
 
         internal global::System.Runtime.InteropServices.HandleRef SwigCPtr
         {
-            get => swigCPtr;
-            set
+            get
             {
-                swigCPtr = value;
+                if (swigCPtr.Handle == IntPtr.Zero)
+                {
+                    throw new ObjectDisposedException(nameof(SwigCPtr), "Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+                }
+                return swigCPtr;
             }
+        }
+
+        internal bool IsNativeHandleInvalid()
+        {
+            return swigCPtr.Handle == IntPtr.Zero;
         }
 
         /// <summary>

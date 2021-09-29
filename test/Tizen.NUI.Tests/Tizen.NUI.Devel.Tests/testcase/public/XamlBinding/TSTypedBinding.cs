@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using System;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
+using Tizen.NUI.Binding.Internals;
 using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
@@ -12,6 +14,14 @@ namespace Tizen.NUI.Devel.Tests
     internal class PublicTypedBindingTest
     {
         private const string tag = "NUITEST";
+
+        internal class MyTypedBindingBase : TypedBindingBase
+        {
+            internal override BindingBase Clone()
+            {
+                return null;
+            }
+        }
 
         [SetUp]
         public void Init()
@@ -27,155 +37,157 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("TypedBinding Mode")]
-        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding.Mode A")]
+        [Description("TypedBindingBase Converter")]
+        [Property("SPEC", "Tizen.NUI.Binding.TypedBindingBase.Converter A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
-        public void ModeTest()
+        public void ConverterTest()
         {
-            tlog.Debug(tag, $"ModeTest START");
-            Binding.Binding t2 = new Binding.Binding("Test");
-            Assert.IsNotNull(t2, "null Binding");
-            Assert.IsInstanceOf<Binding.Binding>(t2, "Should return TypedBinding instance.");
-            var ret = t2.Mode;
-            Assert.AreEqual(BindingMode.Default, ret, "Should be equal");
+            tlog.Debug(tag, $"ConverterTest START");
+            MyTypedBindingBase mt = new MyTypedBindingBase();
+            Assert.IsNotNull(mt, "null Binding");
+            var ret = mt.Converter;
+            mt.Converter = ret;
+            Assert.AreEqual(ret, mt.Converter, "Should be equal");
 
-            tlog.Debug(tag, $"ModeTest END");
+            tlog.Debug(tag, $"ConverterTest END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("TypedBinding StringFormat")]
-        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding.StringFormat A")]
+        [Description("TypedBindingBase ConverterParameter")]
+        [Property("SPEC", "Tizen.NUI.Binding.TypedBindingBase.ConverterParameter A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
-        public void StringFormatTest()
+        public void ConverterParameterTest()
         {
-            tlog.Debug(tag, $"StringFormatTest START");
-            Binding.Binding t2 = new Binding.Binding("Test");
-            Assert.IsNotNull(t2, "null Binding");
-            Assert.IsInstanceOf<Binding.Binding>(t2, "Should return TypedBinding instance.");
+            tlog.Debug(tag, $"ConverterParameterTest START");
+            MyTypedBindingBase mt = new MyTypedBindingBase();
+            Assert.IsNotNull(mt, "null Binding");
+            var ret = mt.ConverterParameter;
+            mt.ConverterParameter = ret;
+            Assert.AreEqual(ret, mt.ConverterParameter, "Should be equal");
 
-            var ret = t2.StringFormat;
-            Assert.IsNull(ret, "null StringFormat");
-
-            tlog.Debug(tag, $"StringFormatTest END");
+            tlog.Debug(tag, $"ConverterParameterTest END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("TypedBinding TargetNullValue")]
-        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding.TargetNullValue A")]
+        [Description("TypedBindingBase Source")]
+        [Property("SPEC", "Tizen.NUI.Binding.TypedBindingBase.Source A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
-        public void TargetNullValueTest()
+        public void SourceTest()
         {
-            tlog.Debug(tag, $"TargetNullValueTest START");
-            Binding.Binding t2 = new Binding.Binding("Test");
-            Assert.IsNotNull(t2, "null Binding");
-            Assert.IsInstanceOf<Binding.Binding>(t2, "Should return Binding instance.");
+            tlog.Debug(tag, $"SourceTest START");
+            MyTypedBindingBase mt = new MyTypedBindingBase();
+            Assert.IsNotNull(mt, "null Binding");
+            var ret = mt.Source;
+            mt.Source = ret;
+            Assert.AreEqual(ret, mt.Source, "Should be equal");
 
-            var ret = t2.TargetNullValue;
-            Assert.IsNull(ret, "null TargetNullValue");
-
-            tlog.Debug(tag, $"TargetNullValueTest END");
+            tlog.Debug(tag, $"SourceTest END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("TypedBinding FallbackValue")]
-        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding.FallbackValue A")]
+        [Description("TypedBindingBase UpdateSourceEventName")]
+        [Property("SPEC", "Tizen.NUI.Binding.TypedBindingBase.UpdateSourceEventName A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
-        public void FallbackValueTest()
+        public void UpdateSourceEventNameTest()
         {
-            tlog.Debug(tag, $"FallbackValueTest START");
-            Binding.Binding t2 = new Binding.Binding("Test");
-            Assert.IsNotNull(t2, "null Binding");
-            Assert.IsInstanceOf<Binding.Binding>(t2, "Should return Binding instance.");
+            tlog.Debug(tag, $"UpdateSourceEventNameTest START");
+            MyTypedBindingBase mt = new MyTypedBindingBase();
+            Assert.IsNotNull(mt, "null Binding");
+            var ret = mt.UpdateSourceEventName;
+            mt.UpdateSourceEventName = ret;
+            Assert.AreEqual(ret, mt.UpdateSourceEventName, "Should be equal");
 
-            var ret = t2.FallbackValue;
-            Assert.IsNull(ret, "null FallbackValue");
-
-            tlog.Debug(tag, $"FallbackValueTest END");
+            tlog.Debug(tag, $"UpdateSourceEventNameTest END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("TypedBinding AllowChaining")]
-        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding.AllowChaining  A")]
+        [Description("TypedBinding<TSource, TProperty> TypedBinding<TSource, TProperty>")]
+        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding<TSource, TProperty>.TypedBinding<TSource, TProperty> C")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        public void AllowChainingTest()
+        [Property("CRITERIA", "CONSTR")]
+        public void TypedBindingConstructor()
         {
-            tlog.Debug(tag, $"AllowChainingTest START");
+            tlog.Debug(tag, $"TypedBindingConstructor START");
+            Func<View, FocusEffect> getter = (v) => new FocusEffect();
+            var mt = new TypedBinding<View, FocusEffect>(getter, null,  null);
+            Assert.IsNotNull(mt, "null TypedBinding");
+            Assert.IsInstanceOf<TypedBinding<View, FocusEffect>>(mt, "Should return TypedBinding instance.");
+            tlog.Debug(tag, $"TypedBindingConstructor END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("TypedBinding<TSource, TProperty> TypedBinding<TSource, TProperty>")]
+        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding<TSource, TProperty>.TypedBinding<TSource, TProperty> C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        public void TypedBindingConstructor2()
+        {
+            tlog.Debug(tag, $"TypedBindingConstructor2 START");
+            Assert.Throws<ArgumentNullException>(() => new TypedBinding<View, FocusEffect>(null, null, null));
+            tlog.Debug(tag, $"TypedBindingConstructor2 END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TypedBinding<TSource, TProperty> Apply")]
+        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding<TSource, TProperty>.Apply M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MCST")]
+        public void ApplyTest()
+        {
+            tlog.Debug(tag, $"ApplyTest START");
             try
             {
-                Binding.Binding t2 = new Binding.Binding("Test");
-                Assert.IsNotNull(t2, "null Binding");
-                t2.AllowChaining = true;
-                Assert.True(t2.AllowChaining, "Should be true");
-                t2.AllowChaining = false;
-                Assert.False(t2.AllowChaining, "Should be false"); ;
+                Func<View, FocusEffect> getter = (v) => new FocusEffect();
+                var mt = new TypedBinding<View, FocusEffect>(getter, null, null);
+                Assert.IsNotNull(mt, "null TypedBinding");
+
+                mt.Apply();
+            }
+            catch (InvalidOperationException e)
+            {
+                Assert.True(true, "Caught Exception" + e.ToString());
+            }
+            tlog.Debug(tag, $"ApplyTest END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TypedBinding<TSource, TProperty> Apply")]
+        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding<TSource, TProperty>.Apply M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MCST")]
+        public void ApplyTest2()
+        {
+            tlog.Debug(tag, $"ApplyTest2 START");
+            try
+            {
+                Func<View, FocusEffect> getter = (v) => new FocusEffect();
+                var mt = new TypedBinding<View, FocusEffect>(getter, null, null);
+                Assert.IsNotNull(mt, "null TypedBinding");
+
+                mt.Apply(null, new View(), View.FocusableProperty);
             }
             catch (Exception e)
             {
                 Assert.Fail("Caught Exception" + e.ToString());
             }
-            tlog.Debug(tag, $"AllowChainingTest END");
+            tlog.Debug(tag, $"ApplyTest2 END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("TypedBinding Context ")]
-        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding.Context   A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        public void ContextTest()
-        {
-            tlog.Debug(tag, $"ContextTest START");
-            try
-            {
-                Binding.Binding t2 = new Binding.Binding("Test");
-                Assert.IsNotNull(t2, "null Binding");
-                t2.Context = null;
-                Assert.IsNull(t2.Context, "Should go here");
-                
-            }
-            catch (Exception e)
-            {
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-            tlog.Debug(tag, $"ContextTest END");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("TypedBinding IsApplied ")]
-        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding.IsApplied   A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        public void IsAppliedTest()
-        {
-            tlog.Debug(tag, $"ContextTest START");
-            try
-            {
-                Binding.Binding t2 = new Binding.Binding("Test");
-                Assert.IsNotNull(t2, "null Binding");
-                Assert.IsFalse(t2.IsApplied, "Should be false by default");
-
-            }
-            catch (Exception e)
-            {
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-            tlog.Debug(tag, $"ContextTest END");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("TypedBinding  Apply")]
-        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding.Clone M")]
+        [Description("TypedBinding<TSource, TProperty> Clone")]
+        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding<TSource, TProperty>.Clone M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         public void CloneTest()
@@ -183,10 +195,12 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"CloneTest START");
             try
             {
-                Binding.Binding t2 = new Binding.Binding("Test");
-                Assert.IsNotNull(t2, "null Binding");
-                Binding.Binding c = t2.Clone() as Binding.Binding;
-                Assert.IsNotNull(c, "null Binding");
+                Func<View, FocusEffect> getter = (v) => new FocusEffect();
+                var mt = new TypedBinding<View, FocusEffect>(getter, null, null);
+                Assert.IsNotNull(mt, "null TypedBinding");
+
+                var ret = mt.Clone();
+                Assert.IsNotNull(mt, "null TypedBinding");
             }
             catch (Exception e)
             {
@@ -194,5 +208,104 @@ namespace Tizen.NUI.Devel.Tests
             }
             tlog.Debug(tag, $"CloneTest END");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("TypedBinding<TSource, TProperty> GetSourceValue")]
+        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding<TSource, TProperty>.GetSourceValue M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void GetSourceValueTest()
+        {
+            tlog.Debug(tag, $"GetSourceValueTest START");
+            try
+            {
+                Func<View, FocusEffect> getter = (v) => new FocusEffect();
+                var mt = new TypedBinding<View, FocusEffect>(getter, null, null);
+                Assert.IsNotNull(mt, "null TypedBinding");
+
+                var ret = mt.GetSourceValue(new View(), typeof(bool));
+                Assert.IsNotNull(mt, "null TypedBinding");
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+            tlog.Debug(tag, $"GetSourceValueTest END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TypedBinding<TSource, TProperty> GetTargetValue")]
+        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding<TSource, TProperty>.GetTargetValue M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void GetTargetValueTest()
+        {
+            tlog.Debug(tag, $"GetTargetValueTest START");
+            try
+            {
+                Func<View, FocusEffect> getter = (v) => new FocusEffect();
+                var mt = new TypedBinding<View, FocusEffect>(getter, null, null);
+                Assert.IsNotNull(mt, "null TypedBinding");
+
+                var ret = mt.GetTargetValue(new View(), typeof(bool));
+                Assert.IsNotNull(mt, "null TypedBinding");
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+            tlog.Debug(tag, $"GetTargetValueTest END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TypedBinding<TSource, TProperty> Unapply")]
+        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding<TSource, TProperty>.Unapply M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MCST")]
+        public void UnapplyTest()
+        {
+            tlog.Debug(tag, $"UnapplyTest START");
+            try
+            {
+                Func<View, FocusEffect> getter = (v) => new FocusEffect();
+                var mt = new TypedBinding<View, FocusEffect>(getter, null, null);
+                Assert.IsNotNull(mt, "null TypedBinding");
+
+                mt.Unapply();
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+            tlog.Debug(tag, $"UnapplyTest END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TypedBinding<TSource, TProperty> ApplyCore")]
+        [Property("SPEC", "Tizen.NUI.Binding.TypedBinding<TSource, TProperty>.ApplyCore M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MCST")]
+        public void ApplyCoreTest()
+        {
+            tlog.Debug(tag, $"ApplyCoreTest START");
+            try
+            {
+                Func<View, FocusEffect> getter = (v) => new FocusEffect();
+                var mt = new TypedBinding<View, FocusEffect>(getter, null, null);
+                Assert.IsNotNull(mt, "null TypedBinding");
+
+                mt.ApplyCore(new View(), new View(), View.FocusableProperty);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+            tlog.Debug(tag, $"ApplyCoreTest END");
+        }
+
     }
 }

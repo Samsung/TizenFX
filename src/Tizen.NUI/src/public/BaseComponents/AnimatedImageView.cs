@@ -18,10 +18,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 
-#if (NUI_DEBUG_ON)
-using tlog = Tizen.Log;
-#endif
-
 namespace Tizen.NUI.BaseComponents
 {
     /// <summary>

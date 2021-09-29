@@ -169,6 +169,10 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
+                if (GraphicsTypeManager.Instance.ScalingFactor != 0.0f)
+                {
+                    newValue = (float)newValue * GraphicsTypeManager.Instance.ScalingFactor;
+                }
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.PointSize, new Tizen.NUI.PropertyValue((float)newValue));
             }
         }),
@@ -177,6 +181,10 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.PointSize).Get(out temp);
+            if (GraphicsTypeManager.Instance.ScalingFactor != 0.0f)
+            {
+                temp = (float)temp / GraphicsTypeManager.Instance.ScalingFactor;
+            }
             return temp;
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -721,6 +729,10 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
+                if (GraphicsTypeManager.Instance.ScalingFactor != 0.0f)
+                {
+                    newValue = (float)newValue * GraphicsTypeManager.Instance.ScalingFactor;
+                }
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputPointSize, new Tizen.NUI.PropertyValue((float)newValue));
             }
         }),
@@ -729,6 +741,10 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputPointSize).Get(out temp);
+            if (GraphicsTypeManager.Instance.ScalingFactor != 0.0f)
+            {
+                temp = (float)temp / GraphicsTypeManager.Instance.ScalingFactor;
+            }
             return temp;
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.

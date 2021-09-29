@@ -109,10 +109,9 @@ namespace Tizen.NUI.Devel.Tests
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
+                tlog.Debug(tag, $"TimerSetIntervalWithDisposedInstance END (OK)");
+                Assert.Pass("Caught Exception: Passed!");
             }
-
-            tlog.Debug(tag, $"TimerSetIntervalWithDisposedInstance END (OK)");
         }
 
         [Test]
@@ -139,11 +138,10 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
+                tlog.Debug(tag, e.Message.ToString()); 
+                tlog.Debug(tag, $"TimerGetIntervalWithDisposedInstance END (OK)");
+                Assert.Pass("Caught Exception: Passed!");
             }
-
-            tlog.Debug(tag, $"TimerGetIntervalWithDisposedInstance END (OK)");
         }
 
         [Test]
@@ -170,10 +168,9 @@ namespace Tizen.NUI.Devel.Tests
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
+                tlog.Debug(tag, $"TimerStartWithDisposedInstance END (OK)");
+                Assert.Pass("Caught Exception: Passed!");
             }
-
-            tlog.Debug(tag, $"TimerStartWithDisposedInstance END (OK)");
         }
 
         [Test]
@@ -201,10 +198,9 @@ namespace Tizen.NUI.Devel.Tests
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
+                tlog.Debug(tag, $"TimerStopWithDisposedInstance END (OK)");
+                Assert.Pass("Caught Exception: Passed!");
             }
-
-            tlog.Debug(tag, $"TimerStopWithDisposedInstance END (OK)");
         }
 
         [Test]
@@ -232,10 +228,9 @@ namespace Tizen.NUI.Devel.Tests
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
+                tlog.Debug(tag, $"TimerIsRunningWithDisposedInstance END (OK)");
+                Assert.Pass("Caught Exception: Passed!");
             }
-
-            tlog.Debug(tag, $"TimerIsRunningWithDisposedInstance END (OK)");
         }
 
         [Test]

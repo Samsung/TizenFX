@@ -73,35 +73,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("AngleAxis getCPtr.")]
-        [Property("SPEC", "Tizen.NUI.AngleAxis.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AngleAxisGetCPtr()
-        {
-            tlog.Debug(tag, $"AngleAxisGetCPtr START");
-
-            var testingTarget = new AngleAxis();
-            Assert.IsNotNull(testingTarget, "Can't create success object AngleAxis");
-            Assert.IsInstanceOf<AngleAxis>(testingTarget, "Should be an instance of AngleAxis type.");
-
-            try
-            {
-                AngleAxis.getCPtr(testingTarget);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AngleAxisGetCPtr END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("AngleAxis constructor. angle.")]
         [Property("SPEC", "Tizen.NUI.AngleAxis.angle A")]
         [Property("SPEC_URL", "-")]

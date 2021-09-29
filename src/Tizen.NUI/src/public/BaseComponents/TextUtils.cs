@@ -34,11 +34,6 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(RendererParameters obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         /// <summary>
         /// Dispose
         /// </summary>
@@ -675,11 +670,6 @@ namespace Tizen.NUI.BaseComponents
         {
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(EmbeddedItemInfo obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         /// <summary>
         /// Dispose
         /// </summary>
@@ -849,11 +839,6 @@ namespace Tizen.NUI.BaseComponents
 
         internal ShadowParameters(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ShadowParameters obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
 
         /// <summary>
