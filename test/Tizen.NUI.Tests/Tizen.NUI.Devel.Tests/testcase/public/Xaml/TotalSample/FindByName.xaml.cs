@@ -22,15 +22,32 @@ namespace Tizen.NUI.Devel.Tests
             label0 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<TextLabel>(this, "label0");
         }
 
-		[TestFixture]
-		public class FindByNameTests
+	}
+
+
+	[TestFixture]
+	public class FindByNameTests
+	{
+		[SetUp]
+		public void Setup()
 		{
-			[Test]
-			public void TestRootName ()
-			{
-				var page = new FindByName ();
-				Assert.AreSame (page, page.root);
-			}
+		}
+
+		[TearDown]
+		public void TearDown()
+		{
+		}
+
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void TestRootName()
+		{
+			var page = new FindByName();
+			Assert.AreSame(page, page.root);
 		}
 	}
 }

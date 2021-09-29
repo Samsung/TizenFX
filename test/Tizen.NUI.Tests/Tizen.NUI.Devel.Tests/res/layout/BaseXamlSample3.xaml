@@ -7,7 +7,12 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <!-- Add more resource dictionaries here -->
-                <ResourceDictionary Source="res/layout/MyResourceDictionary.xaml"/>
+                <ResourceDictionary >
+                    <Color x:Key="red">Red</Color>
+                </ResourceDictionary>
+                <ResourceDictionary >
+                    <Color x:Key="green">Green</Color>
+                </ResourceDictionary>
                 <!-- Add more resource dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

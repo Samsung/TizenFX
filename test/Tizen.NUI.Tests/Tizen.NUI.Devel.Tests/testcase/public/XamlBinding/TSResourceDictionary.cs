@@ -95,7 +95,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 ResourceDictionary t1 = new ResourceDictionary();
                 Assert.IsNotNull(t1, "null ResourceDictionary");
-                t1.SetAndLoadSource(new Uri("http://www.contoso.com/"), "res/layout/MyResourceDictionary.xaml", typeof(View).Assembly, null);
+                t1.SetAndLoadSource(new Uri("http://www.contoso.com/"), "layout/MyResourceDictionary.xaml", typeof(UIElement).Assembly, null);
                 Assert.True(true, "Should go here");
             }
             catch (Exception e)
