@@ -104,7 +104,7 @@ namespace Tizen.Multimedia.Remoting
     /// <remarks>This state is related in SDP offer/answer.</remarks>
     /// <seealso cref="WebRTC.SetLocalDescription"/>
     /// <seealso cref="WebRTC.SetRemoteDescription"/>
-    /// <seealso cref="WebRTC.CreateAnswer()"/>
+    /// <seealso cref="WebRTC.CreateAnswerAsync()"/>
     /// <since_tizen> 9 </since_tizen>
     public enum WebRTCSignalingState
     {
