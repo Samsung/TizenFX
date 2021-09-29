@@ -63,6 +63,7 @@ namespace Tizen.NUI
                 NUILog.Debug("refCptr is already exist! OR something wrong!");
             }
 
+            NUILog.Debug($"[Registry] Register! type:{baseHandle.GetType()} count:{Instance._controlMap.Count} copyNativeHandle:{baseHandle.GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
             return;
         }
 
@@ -81,6 +82,7 @@ namespace Tizen.NUI
                 NUILog.Debug("something wrong when removing refCptr!");
             }
 
+            NUILog.Debug($"[Registry] Unregister! type:{baseHandle.GetType()} count:{Instance._controlMap.Count} copyNativeHandle:{baseHandle.GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
             return;
         }
 
