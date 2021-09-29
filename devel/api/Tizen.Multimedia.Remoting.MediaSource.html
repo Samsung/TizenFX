@@ -193,7 +193,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L135">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L145">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_Mute_" data-uid="Tizen.Multimedia.Remoting.MediaSource.Mute*"></a>
   <h4 id="Tizen_Multimedia_Remoting_MediaSource_Mute" data-uid="Tizen.Multimedia.Remoting.MediaSource.Mute">Mute</h4>
@@ -355,7 +355,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L159">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L182">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_VideoResolution_" data-uid="Tizen.Multimedia.Remoting.MediaSource.VideoResolution*"></a>
   <h4 id="Tizen_Multimedia_Remoting_MediaSource_VideoResolution" data-uid="Tizen.Multimedia.Remoting.MediaSource.VideoResolution">VideoResolution</h4>
@@ -392,13 +392,10 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>This source is not video source.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>MediaSource is not attached yet.</p>
+        <td><p>MediaSource is not attached yet.<br>
+-or-<br>
+This MediaSource is not Video</p>
 </td>
       </tr>
       <tr>
@@ -416,7 +413,7 @@
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L203">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L238">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_EnableAudioLoopback_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EnableAudioLoopback*"></a>
   <h4 id="Tizen_Multimedia_Remoting_MediaSource_EnableAudioLoopback_Tizen_Multimedia_AudioStreamPolicy_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EnableAudioLoopback(Tizen.Multimedia.AudioStreamPolicy)">EnableAudioLoopback(AudioStreamPolicy)</h4>
@@ -481,7 +478,9 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>This MediaSource is not Audio</p>
+        <td><p>MediaSource is not attached yet.<br>
+-or-<br>
+This MediaSource is not Audio</p>
 </td>
       </tr>
       <tr>
@@ -501,7 +500,7 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L246">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Remoting/WebRTC/MediaSource.cs/#L288">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Remoting_MediaSource_EnableVideoLoopback_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EnableVideoLoopback*"></a>
   <h4 id="Tizen_Multimedia_Remoting_MediaSource_EnableVideoLoopback_Tizen_Multimedia_Display_" data-uid="Tizen.Multimedia.Remoting.MediaSource.EnableVideoLoopback(Tizen.Multimedia.Display)">EnableVideoLoopback(Display)</h4>
@@ -566,7 +565,9 @@ Supported types are <a class="xref" href="Tizen.Multimedia.AudioStreamType.html#
       </tr>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>This MediaSource is not Video</p>
+        <td><p>MediaSource is not attached yet.<br>
+-or-<br>
+This MediaSource is not Video</p>
 </td>
       </tr>
       <tr>
