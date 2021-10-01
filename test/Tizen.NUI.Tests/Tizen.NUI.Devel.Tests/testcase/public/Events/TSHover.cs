@@ -250,34 +250,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Test GetCPtr.")]
-        [Property("SPEC", "Tizen.NUI.Hover.GetCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void HoverGetCPtr()
-        {
-            tlog.Debug(tag, $"HoverGetCPtr START");
-
-            using (Hover hover = new Hover())
-            {
-                try
-                {
-                    Hover.getCPtr(hover);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception : Failed!");
-                }
-            }
-
-            tlog.Debug(tag, $"HoverGetCPtr END (OK)");
-            Assert.Pass("HoverGetCPtr");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Test GetHoverFromPtr.")]
         [Property("SPEC", "Tizen.NUI.Hover.GetHoverFromPtr M")]
         [Property("SPEC_URL", "-")]
@@ -289,7 +261,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (Hover hover = new Hover(300))
             {
-                var testingTarget = Hover.GetHoverFromPtr(Hover.getCPtr(hover).Handle);
+                var testingTarget = Hover.GetHoverFromPtr(hover.SwigCPtr.Handle);
                 Assert.IsNotNull(testingTarget, "Can't create success object Hover");
                 Assert.IsInstanceOf<Hover>(testingTarget, "Should be an instance of Hover type.");
 

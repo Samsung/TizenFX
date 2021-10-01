@@ -44,10 +44,10 @@ namespace Tizen.NUI
         /// if AppearingTransition, transition starts from scaled by the ScaleFactor and is animated to the original size.
         /// And if DisappearingTransition, transition is finished to the scaled state by the ScaleFactor.
         ///
-        /// Default ScaleFactor is Vector2(0.5f, 0.5f).
+        /// Default ScaleFactor is Vector2(0.0f, 0.0f).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 ScaleFactor { get; set; } = new Vector2(0.5f, 0.5f);
+        public Vector2 ScaleFactor { get; set; } = new Vector2(0.0f, 0.0f);
 
         internal override TransitionItemBase CreateTransition(View view, bool isAppearing)
         {

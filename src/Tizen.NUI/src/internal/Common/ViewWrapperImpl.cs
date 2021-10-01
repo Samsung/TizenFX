@@ -134,11 +134,6 @@ namespace Tizen.NUI
         {
         }
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(ViewWrapperImpl obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
         }
@@ -363,7 +358,7 @@ namespace Tizen.NUI
         private void DirectorOnChildAdd(global::System.IntPtr child)
         {
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
+            if (view != null)
             {
                 OnChildAdd?.Invoke(view);
             }
@@ -372,7 +367,7 @@ namespace Tizen.NUI
         private void DirectorOnChildRemove(global::System.IntPtr child)
         {
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
+            if (view != null)
             {
                 OnChildRemove?.Invoke(view);
             }
@@ -431,7 +426,7 @@ namespace Tizen.NUI
         private float DirectorCalculateChildSize(global::System.IntPtr child, int dimension)
         {
             View view = Registry.GetManagedBaseHandleFromNativePtr(child) as View;
-            if (view)
+            if (view != null)
             {
                 return CalculateChildSize?.Invoke(view, (DimensionType)dimension) ?? 0.0f;
             }

@@ -72,8 +72,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.IsNotNull(testingTarget, "Should be not null!");
                 Assert.IsInstanceOf<CustomActorImpl>(testingTarget, "Should be an Instance of CustomActorImpl!");
 
-                tlog.Debug(tag, "getCPtr : " + CustomActorImpl.getCPtr(testingTarget));
-
                 var result = testingTarget.IsRelayoutEnabled();
                 tlog.Debug(tag, "IsRelayoutEnabled : " + result);
 

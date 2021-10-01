@@ -488,5 +488,55 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"Size2DGetHashCode END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Size2D Clone.")]
+        [Property("SPEC", "Tizen.NUI.Size2D.Clone M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void Size2DClone()
+        {
+            tlog.Debug(tag, $"Size2DClone START");
+
+            using (Size2D size2d = new Size2D(100, 50))
+            {
+                try
+                {
+                    size2d.Clone();
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception :  Failed!");
+                }
+            }
+
+            tlog.Debug(tag, $"Size2DClone END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Size2D GetSize2DFromPtr.")]
+        [Property("SPEC", "Tizen.NUI.Size2D.GetSize2DFromPtr M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void Size2DGetSize2DFromPtr()
+        {
+            tlog.Debug(tag, $"Size2DGetSize2DFromPtr START");
+
+            using (Size size = new Size(100, 50))
+            {
+                var testingTarget = Size2D.GetSize2DFromPtr(size.SwigCPtr.Handle);
+                Assert.AreEqual(100, testingTarget.Width, "Should be equal!");
+                Assert.AreEqual(50, testingTarget.Height, "Should be equal!");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"Size2DGetSize2DFromPtr END (OK)");
+        }
     }
 }

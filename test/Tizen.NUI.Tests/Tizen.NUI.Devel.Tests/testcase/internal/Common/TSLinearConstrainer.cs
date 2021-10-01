@@ -42,8 +42,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<LinearConstrainer>(testingTarget, "should be an instance of testing target class!");
 
-            tlog.Debug(tag, "getCPtr : " + LinearConstrainer.getCPtr(testingTarget));
-
             testingTarget.Dispose();
             tlog.Debug(tag, $"LinearConstrainerConstructor END (OK)");
         }

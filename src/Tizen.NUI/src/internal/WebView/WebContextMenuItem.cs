@@ -187,7 +187,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the link url of context menu item.
+        /// Gets the link URL of context menu item.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string LinkUrl
@@ -199,7 +199,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the image url of context menu item.
+        /// Gets the image URL of context menu item.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string ImageUrl
@@ -233,11 +233,6 @@ namespace Tizen.NUI
                 IntPtr result = Interop.WebContextMenuItem.GetParentMenu(SwigCPtr);
                 return new WebContextMenu(result, true);
             }
-        }
-
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(WebContextMenuItem obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
         }
     }
 }

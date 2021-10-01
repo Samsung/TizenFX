@@ -278,6 +278,17 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.PositionPolicy = VisualTransformPolicyType.Relative;
             Assert.AreEqual(VisualTransformPolicyType.Relative, testingTarget.PositionPolicy, "Retrieved PositionPolicy should be equal to set value");
 
+            // default
+            try
+            {
+                testingTarget.PositionPolicy = (VisualTransformPolicyType)3;
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"VisualMapPositionPolicy END (OK)");
         }
@@ -304,6 +315,17 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.PositionPolicyX = VisualTransformPolicyType.Relative;
             Assert.AreEqual(VisualTransformPolicyType.Relative, testingTarget.PositionPolicyX, "Retrieved PositionPolicyX should be equal to set value");
+
+            // default
+            try
+            {
+                testingTarget.PositionPolicyX = (VisualTransformPolicyType)3;
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"VisualMapPositionPolicyX END (OK)");
@@ -332,6 +354,17 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.PositionPolicyY = VisualTransformPolicyType.Relative;
             Assert.AreEqual(VisualTransformPolicyType.Relative, testingTarget.PositionPolicyY, "Retrieved PositionPolicyY should be equal to set value");
 
+            // default
+            try
+            {
+                testingTarget.PositionPolicyY = (VisualTransformPolicyType)3;
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"VisualMapPositionPolicyY END (OK)");
         }
@@ -358,6 +391,17 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.SizePolicy = VisualTransformPolicyType.Relative;
             Assert.AreEqual(VisualTransformPolicyType.Relative, testingTarget.SizePolicy, "Retrieved SizePolicy should be equal to set value");
+
+            // default
+            try
+            {
+                testingTarget.SizePolicy = (VisualTransformPolicyType)3;
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"VisualMapSizePolicy END (OK)");
@@ -386,6 +430,17 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.SizePolicyWidth = VisualTransformPolicyType.Relative;
             Assert.AreEqual(VisualTransformPolicyType.Relative, testingTarget.SizePolicyWidth, "Retrieved SizePolicyWidth should be equal to set value");
 
+            // default
+            try
+            {
+                testingTarget.SizePolicyWidth = (VisualTransformPolicyType)3;
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"VisualMapSizePolicyWidth END (OK)");
         }
@@ -412,6 +467,17 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.SizePolicyHeight = VisualTransformPolicyType.Relative;
             Assert.AreEqual(VisualTransformPolicyType.Relative, testingTarget.SizePolicyHeight, "Retrieved SizePolicyHeight should be equal to set value");
+
+            // default
+            try
+            {
+                testingTarget.SizePolicyHeight = (VisualTransformPolicyType)3;
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"VisualMapSizePolicyHeight END (OK)");
@@ -584,6 +650,28 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("VisualMap VisualFittingMode.")]
+        [Property("SPEC", "Tizen.NUI.VisualMap.VisualFittingMode A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void VisualMapVisualFittingModeWithNullMode()
+        {
+            tlog.Debug(tag, $"VisualMapVisualFittingModeWithNullMode START");
+
+            TextVisual tVisual = new TextVisual();
+            Assert.AreEqual(VisualFittingModeType.FitKeepAspectRatio, tVisual.VisualFittingMode, "should be equal!");
+
+            BorderVisual bvisual = new BorderVisual();
+            Assert.AreEqual(VisualFittingModeType.Fill, bvisual.VisualFittingMode, "should be equal!");
+
+            tVisual.Dispose();
+            bvisual.Dispose();
+            tlog.Debug(tag, $"VisualMapVisualFittingModeWithNullMode END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("VisualMap CornerRadius.")]
         [Property("SPEC", "Tizen.NUI.VisualMap.CornerRadius A")]
         [Property("SPEC_URL", "-")]
@@ -624,13 +712,44 @@ namespace Tizen.NUI.Devel.Tests
 
             var testingTarget = new MyVisualMap();
             Assert.IsInstanceOf<VisualMap>(testingTarget, "Should be an instance of VisualMap type.");
-            
+
+            testingTarget.VisualFittingMode = VisualFittingModeType.Fill;
+            testingTarget.CornerRadius = new Vector4(0.8f, 0.8f, 0.8f, 0.8f);
+
             PropertyMap propertyMap = testingTarget.OutputVisualMap;
-            Assert.AreEqual(0, propertyMap.Count(), "Retrieved PropertyMap count should be 0");
+            Assert.AreEqual(2, propertyMap.Count(), "Retrieved PropertyMap count should be 0");
             Assert.True(flagComposingPropertyMap, "ComposingPropertyMap overrided method not invoked.");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"VisualMapComposingPropertyMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("VisualMap BorderlineWidth.")]
+        [Property("SPEC", "Tizen.NUI.VisualMap.BorderlineWidth A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void VisualMapBorderlineWidth()
+        {
+            tlog.Debug(tag, $"VisualMapBorderlineWidth START");
+
+            var testingTarget = new VisualMap();
+            Assert.IsNotNull(testingTarget, "Can't create success object VisualMap");
+            Assert.IsInstanceOf<VisualMap>(testingTarget, "Should be an instance of VisualMap type.");
+
+            testingTarget.BorderlineWidth = 0.3f;
+            Assert.AreEqual(0.3f, testingTarget.BorderlineWidth, "should be equal!");
+
+            testingTarget.BorderlineColor = new Vector4(1.0f, 1.0f, 1.0f, 0.0f);
+            Assert.AreEqual(1.0f, testingTarget.BorderlineColor.R, "should be equal!");
+
+            testingTarget.BorderlineOffset = 0.2f;
+            Assert.AreEqual(0.2f, testingTarget.BorderlineOffset, "should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"VisualMapBorderlineWidth END (OK)");
         }
     }
 }

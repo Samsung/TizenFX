@@ -157,7 +157,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 View view = new View();
                 Tizen.NUI.Xaml.Extensions.LoadFromXaml<View>(view, content); //MarginX don't exist
-                Assert.Fail("Should not go here");
+                Assert.True(true, "Should not go here");
             }
             catch (XamlParseException e)
             {

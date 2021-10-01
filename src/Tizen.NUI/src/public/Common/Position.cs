@@ -878,11 +878,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object Clone() => new Position(X, Y, Z);
 
-        internal static global::System.Runtime.InteropServices.HandleRef getCPtr(Position obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         internal static Position GetPositionFromPtr(global::System.IntPtr cPtr)
         {
             Position ret = new Position(cPtr, false);

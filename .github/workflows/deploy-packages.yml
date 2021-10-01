@@ -99,3 +99,4 @@ jobs:
         git tag -m "Release $VERSION" $SUBMIT_TAG
         git push -f gerrit HEAD:$GERRIT_BRANCH
         git push gerrit refs/tags/$SUBMIT_TAG
+        echo "::notice title=Submit Request TAG::$SUBMIT_TAG"

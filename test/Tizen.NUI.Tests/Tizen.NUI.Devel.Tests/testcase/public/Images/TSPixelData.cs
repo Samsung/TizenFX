@@ -65,7 +65,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (PixelData pixelData = new PixelData(buffer, 10, 1, 2, PixelFormat.L8, PixelData.ReleaseFunction.Free))
             {
-                var testingTarget = new PixelData(PixelData.getCPtr(pixelData).Handle, true);
+                var testingTarget = new PixelData(pixelData.SwigCPtr.Handle, true);
                 Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
                 Assert.IsInstanceOf<PixelData>(testingTarget, "Should be an instance of PixelData type.");
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<View xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+		xmlns:d="ignoreme"
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d"
+		x:Class="Tizen.NUI.Devel.Tests.McIgnorable"
+		d:DesignWidth="320"
+		d:DesignHeight="800">
+	<View.BindingContext>
+		<d:FooBar />
+	</View.BindingContext>
+	<View x:Name="stack">
+		<d:FakeControlWithContent>
+			<d:Invalid />
+			<TextLabel />
+		</d:FakeControlWithContent>
+	</View>
+</View>

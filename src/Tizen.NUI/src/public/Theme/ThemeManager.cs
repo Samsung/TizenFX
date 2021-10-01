@@ -161,6 +161,10 @@ namespace Tizen.NUI
                 newTheme.Id = "NONAME";
             }
 
+            StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Small, newTheme.SmallBrokenImageUrl ?? "");
+            StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Normal, newTheme.BrokenImageUrl ?? "");
+            StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Large, newTheme.LargeBrokenImageUrl ?? "");
+
             userTheme = newTheme;
             UpdateThemeForInitialize();
             UpdateThemeForUpdate();

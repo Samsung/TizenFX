@@ -241,5 +241,110 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"ExtentsBottom END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Extents CopyFrom")]
+        [Property("SPEC", "Tizen.NUI.Extents.CopyFrom M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ExtentsCopyFrom()
+        {
+            tlog.Debug(tag, $"ExtentsCopyFrom START");
+
+            var testingTarget = new Extents();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Extents>(testingTarget, "should be an instance of testing target class!");
+
+            Assert.AreEqual(0, testingTarget.Top, "Should be equal!");
+
+            using (Extents extents = new Extents(20, 20, 20, 20))
+            {
+                testingTarget.CopyFrom(extents);
+                Assert.AreEqual(20, testingTarget.Top, "Should be equal!");
+            }
+          
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ExtentsCopyFrom END (OK)");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("Extents CopyFrom")]
+        [Property("SPEC", "Tizen.NUI.Extents.CopyFrom M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ExtentsCopyFromNullExtents()
+        {
+            tlog.Debug(tag, $"ExtentsCopyFromNullExtents START");
+
+            var testingTarget = new Extents();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Extents>(testingTarget, "should be an instance of testing target class!");
+
+            Assert.AreEqual(0, testingTarget.Top, "Should be equal!");
+
+            try
+            {
+                Extents extents = null;
+                testingTarget.CopyFrom(extents);
+            }
+            catch (ArgumentNullException)
+            {
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"ExtentsCopyFromNullExtents END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
+            }
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Extents Clone")]
+        [Property("SPEC", "Tizen.NUI.Extents.Clone M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ExtentsClone()
+        {
+            tlog.Debug(tag, $"ExtentsClone START");
+
+            using (Extents extents = new Extents(20, 20, 20, 20))
+            {
+                var testingTarget = extents.Clone();
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<Extents>(testingTarget, "should be an instance of testing target class!");
+            }
+
+            tlog.Debug(tag, $"ExtentsClone END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Extents Assign")]
+        [Property("SPEC", "Tizen.NUI.Extents.Assign M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ExtentsAssign()
+        {
+            tlog.Debug(tag, $"ExtentsAssign START");
+
+            var testingTarget = new Extents();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Extents>(testingTarget, "should be an instance of testing target class!");
+
+            Assert.AreEqual(0, testingTarget.Top, "Should be equal!");
+
+            using (Extents extents = new Extents(20, 20, 20, 20))
+            {
+                testingTarget.Assign(extents);
+                Assert.AreEqual(20, testingTarget.Top, "Should be equal!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ExtentsAssign END (OK)");
+        }
     }
 }

@@ -105,24 +105,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("RotationGesture getCPtr")]
-        [Property("SPEC", "Tizen.NUI.RotationGesture.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void RotationGesturegetCPtr()
-        {
-            tlog.Debug(tag, $"RotationGesturegetCPtr START");
-            Gesture.StateType state = Gesture.StateType.Finished;
-            RotationGesture a1 = new RotationGesture(state);
-            global::System.Runtime.InteropServices.HandleRef r1 = RotationGesture.getCPtr(a1);
-            
-            tlog.Debug(tag, $"RotationGesturegetCPtr END (OK)");
-            Assert.Pass("RotationGesturegetCPtr");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("RotationGesture GetRotationGestureFromPtr")]
         [Property("SPEC", "Tizen.NUI.RotationGesture.GetRotationGestureFromPtr M")]
         [Property("SPEC_URL", "-")]
@@ -133,7 +115,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"RotationGestureGetRotationGestureFromPtr START");
             Gesture.StateType state = Gesture.StateType.Finished;
             RotationGesture a2 = new RotationGesture(state);         		
-            RotationGesture a1 = RotationGesture.GetRotationGestureFromPtr(RotationGesture.getCPtr(a2).Handle);
+            RotationGesture a1 = RotationGesture.GetRotationGestureFromPtr(a2.SwigCPtr.Handle);
             
             a2.Dispose();            
             tlog.Debug(tag, $"RotationGestureGetRotationGestureFromPtr END (OK)");

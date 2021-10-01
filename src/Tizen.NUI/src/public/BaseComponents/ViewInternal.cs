@@ -45,6 +45,10 @@ namespace Tizen.NUI.BaseComponents
                 return mergedStyle;
             }
         }
+        internal virtual LayoutItem CreateDefaultLayout()
+        {
+            return new AbsoluteLayout();
+        }
 
         internal class ThemeData
         {
@@ -1146,16 +1150,11 @@ namespace Tizen.NUI.BaseComponents
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
 
-            // equivalent to "if (this != null)". more clear to understand.
-            if (this.HasBody())
+            DisConnectFromSignals();
+
+            foreach (View view in Children)
             {
-                DisConnectFromSignals();
-
-                foreach (View view in Children)
-                {
-                    view.InternalParent = null;
-                }
-
+                view.InternalParent = null;
             }
 
             base.Dispose(type);
@@ -1201,117 +1200,102 @@ namespace Tizen.NUI.BaseComponents
 
         private void DisConnectFromSignals()
         {
-            // Save current CPtr.
-            global::System.Runtime.InteropServices.HandleRef currentCPtr = SwigCPtr;
-
-            // Use BaseHandle CPtr as current might have been deleted already in derived classes.
-            SwigCPtr = GetBaseHandleCPtrHandleRef;
-
             if (onRelayoutEventCallback != null)
             {
-                ViewSignal signal = this.OnRelayoutSignal();
+                using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnRelayoutSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(onRelayoutEventCallback);
-                signal?.Dispose();
                 onRelayoutEventCallback = null;
             }
 
             if (offWindowEventCallback != null)
             {
-                ViewSignal signal = this.OffWindowSignal();
+                using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOffSceneSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(offWindowEventCallback);
-                signal?.Dispose();
                 offWindowEventCallback = null;
             }
 
             if (onWindowEventCallback != null)
             {
-                ViewSignal signal = this.OnWindowSignal();
+                using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(onWindowEventCallback);
-                signal?.Dispose();
                 onWindowEventCallback = null;
             }
 
             if (wheelEventCallback != null)
             {
-                WheelSignal signal = this.WheelEventSignal();
+                using WheelSignal signal = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(wheelEventCallback);
-                signal?.Dispose();
+                wheelEventCallback = null;
             }
 
             if (WindowWheelEventHandler != null)
             {
                 NUIApplication.GetDefaultWindow().WheelEvent -= OnWindowWheelEvent;
+                WindowWheelEventHandler = null;
             }
 
             if (hoverEventCallback != null)
             {
-                HoverSignal signal = this.HoveredSignal();
+                using HoverSignal signal = new HoverSignal(Interop.ActorSignal.ActorHoveredSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(hoverEventCallback);
-                signal?.Dispose();
+                hoverEventCallback = null;
             }
 
             if (interceptTouchDataCallback != null)
             {
-                TouchDataSignal signal = this.InterceptTouchSignal();
+                using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(interceptTouchDataCallback);
-                signal?.Dispose();
+                interceptTouchDataCallback = null;
             }
 
             if (touchDataCallback != null)
             {
-                TouchDataSignal signal = this.TouchSignal();
+                using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(touchDataCallback);
-                signal?.Dispose();
+                touchDataCallback = null;
             }
 
             if (ResourcesLoadedCallback != null)
             {
-                ViewSignal signal = this.ResourcesLoadedSignal();
+                using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(ResourcesLoadedCallback);
-                signal?.Dispose();
                 ResourcesLoadedCallback = null;
             }
 
             if (keyCallback != null)
             {
-                ControlKeySignal signal = this.KeyEventSignal();
+                using ControlKeySignal signal = new ControlKeySignal(Interop.ViewSignal.KeyEventSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(keyCallback);
-                signal?.Dispose();
+                keyCallback = null;
             }
 
             if (keyInputFocusLostCallback != null)
             {
-                KeyInputFocusSignal signal = this.KeyInputFocusLostSignal();
+                using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusLostSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(keyInputFocusLostCallback);
-                signal?.Dispose();
+                keyInputFocusLostCallback = null;
             }
 
             if (keyInputFocusGainedCallback != null)
             {
-                KeyInputFocusSignal signal = this.KeyInputFocusGainedSignal();
+                using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusGainedSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(keyInputFocusGainedCallback);
-                signal?.Dispose();
+                keyInputFocusGainedCallback = null;
             }
 
             if (backgroundResourceLoadedCallback != null)
             {
-                ViewSignal signal = this.ResourcesLoadedSignal();
+                using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(backgroundResourceLoadedCallback);
-                signal?.Dispose();
                 backgroundResourceLoadedCallback = null;
             }
 
             if (onWindowSendEventCallback != null)
             {
-                ViewSignal signal = this.OnWindowSignal();
+                using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(onWindowSendEventCallback);
-                signal?.Dispose();
                 onWindowSendEventCallback = null;
             }
-
-            // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
-            // Restore current CPtr.
-            SwigCPtr = currentCPtr;
         }
 
         /// <summary>

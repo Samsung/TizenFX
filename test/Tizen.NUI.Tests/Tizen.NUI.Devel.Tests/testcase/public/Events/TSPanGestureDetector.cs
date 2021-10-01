@@ -578,7 +578,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"PanGestureDetectorGetPanGestureDetectorFromPtr START");
             PanGestureDetector a1 = new PanGestureDetector();
 			           
-            PanGestureDetector.GetPanGestureDetectorFromPtr(PanGestureDetector.getCPtr(a1).Handle);
+            PanGestureDetector.GetPanGestureDetectorFromPtr(a1.SwigCPtr.Handle);
             a1.Dispose();
 					
             tlog.Debug(tag, $"PanGestureDetectorGetPanGestureDetectorFromPtr END (OK)");

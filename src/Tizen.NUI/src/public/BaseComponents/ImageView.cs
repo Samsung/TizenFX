@@ -353,14 +353,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// <summary>
-        /// Create internal layout of ImageView
-        /// </summary>
-        internal static LayoutItem CreateImageLayout()
-        {
-            return new ImageLayout();
-        }
-
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void ResourceReadyEventCallbackType(IntPtr data);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -917,6 +909,11 @@ namespace Tizen.NUI.BaseComponents
                 default:
                     return FittingModeType.ShrinkToFit;
             }
+        }
+
+        internal override LayoutItem CreateDefaultLayout()
+        {
+            return new ImageLayout();
         }
 
         /// <summary>

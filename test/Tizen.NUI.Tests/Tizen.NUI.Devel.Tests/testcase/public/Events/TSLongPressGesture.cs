@@ -115,36 +115,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Test getCPtr property.")]
-        [Property("SPEC", "Tizen.NUI.LongPressGesture.getCPtr M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void LongPressGesturegetCPtr()
-        {
-            tlog.Debug(tag, $"LongPressGesturegetCPtr START");
-
-            var testingTarget = new LongPressGesture(Gesture.StateType.Finished);
-            Assert.IsNotNull(testingTarget, "Can't create success object Hover");
-            Assert.IsInstanceOf<LongPressGesture>(testingTarget, "Should be an instance of Hover type.");
-
-            try
-            {
-                LongPressGesture.getCPtr(testingTarget);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"LongPressGesturegetCPtr END (OK)");
-            Assert.Pass("LongPressGestureLocalPoint");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Test GetLongPressGestureFromPtr property.")]
         [Property("SPEC", "Tizen.NUI.LongPressGesture.GetLongPressGestureFromPtr M")]
         [Property("SPEC_URL", "-")]
@@ -156,7 +126,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (LongPressGesture gestrue = new LongPressGesture(Gesture.StateType.Finished))
             {
-                var testingTarget = LongPressGesture.GetLongPressGestureFromPtr(LongPressGesture.getCPtr(gestrue).Handle);
+                var testingTarget = LongPressGesture.GetLongPressGestureFromPtr(gestrue.SwigCPtr.Handle);
                 Assert.IsNotNull(testingTarget, "Can't create success object Hover");
                 Assert.IsInstanceOf<LongPressGesture>(testingTarget, "Should be an instance of Hover type.");
 
@@ -167,5 +137,4 @@ namespace Tizen.NUI.Devel.Tests
             Assert.Pass("LongPressGestureGetLongPressGestureFromPtr");
         }
     }
-
 }

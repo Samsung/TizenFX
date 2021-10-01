@@ -27,11 +27,6 @@ namespace Tizen.NUI
         {
         }
 
-        internal static HandleRef getCPtr(TouchPointContainer obj)
-        {
-            return (obj == null) ? new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero) : obj.SwigCPtr;
-        }
-
         protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
             Interop.TouchPointContainer.DeleteTouchPointContainer(swigCPtr);

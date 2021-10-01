@@ -35,7 +35,7 @@ namespace Tizen.NUI.Devel.Tests
         [Test]
         [Category("P1")]
         [Description("MarkupExtensionParser Parse")]
-        [Property("SPEC", "Tizen.NUI.MarkupExtensionParser.Parse M")]
+        [Property("SPEC", "Tizen.NUI.Xaml.MarkupExtensionParser.Parse M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         public void MarkupExtensionParserParse()
@@ -56,6 +56,61 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"MarkupExtensionParserParse END");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("MarkupExtensionParser Parse")]
+        [Property("SPEC", "Tizen.NUI.Xaml.MarkupExtensionParser.Parse M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void MarkupExtensionParserParse2()
+        {
+            tlog.Debug(tag, $"MarkupExtensionParserParse2 START");
+
+            try
+            {
+                string str = "{Binding Red}";
+                IServiceProviderImpl provider = new IServiceProviderImpl();
+                Assert.IsNotNull(provider, "null IServiceProviderImplement");
+                extParser.Parse("Binding", ref str, provider);
+                string str2 = "{TemplateBinding Red}";
+                extParser.Parse("TemplateBinding", ref str2, provider);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"MarkupExtensionParserParse2 END");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("MarkupExtensionParser Parse")]
+        [Property("SPEC", "Tizen.NUI.Xaml.MarkupExtensionParser.Parse M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void MarkupExtensionParserParse3()
+        {
+            tlog.Debug(tag, $"MarkupExtensionParserParse3 START");
+
+            try
+            {
+                string str = "{Binding Red}";
+                IServiceProviderImpl provider = new IServiceProviderImpl();
+                Assert.IsNotNull(provider, "null IServiceProviderImplement");
+                string str3 = "}";
+                extParser.Parse("StaticResource", ref str3, provider);
+            }
+            catch (XamlParseException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.True(true, $"Should caught Exception {e.Message.ToString()}");
+            }
+
+            tlog.Debug(tag, $"MarkupExtensionParserParse3 END");
         }
     }
 }
