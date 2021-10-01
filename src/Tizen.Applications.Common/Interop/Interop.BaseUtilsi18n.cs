@@ -39,5 +39,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.BaseUtilsi18n, EntryPoint = "i18n_ulocale_get_variant")]
         internal static extern Int32 GetVariant(string localeID, [Out] StringBuilder variant, Int32 variantCapacity);
+
+        [DllImport(Libraries.BaseUtilsi18n, EntryPoint = "i18n_ulocale_get_lcid")]
+        internal static extern UInt32 GetLCID(string localeID);
     }
 }

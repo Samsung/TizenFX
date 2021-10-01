@@ -257,9 +257,14 @@ namespace Tizen.Applications
         private CultureInfo ConvertCultureInfo(string locale)
         {
             ULocale pLocale = new ULocale(locale);
+
             try
             {
-                return new CultureInfo(pLocale.Locale.Replace("_", "-"));
+                return new CultureInfo(pLocale.LCID);
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                return GetFallbackCultureInfo(pLocale);
             }
             catch (CultureNotFoundException)
             {
@@ -277,6 +282,19 @@ namespace Tizen.Applications
             CultureInfo.CurrentUICulture = ConvertCultureInfo(locale);
         }
 
+        private bool ExistCultureInfo(CultureInfo cultureInfo)
+        {
+            foreach (var info in CultureInfo.GetCultures(CultureTypes.AllCultures))
+            {
+                if (info.Name == cultureInfo.Name)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private CultureInfo GetCultureInfo(string locale)
         {
             CultureInfo cultureInfo = null;
@@ -290,15 +308,20 @@ namespace Tizen.Applications
                 return null;
             }
 
+            if (!ExistCultureInfo(cultureInfo))
+            {
+                return null;
+            }
+
             return cultureInfo;
         }
 
         private CultureInfo GetFallbackCultureInfo(ULocale uLocale)
         {
-            string locale = string.Empty;
-            CultureInfo fallbackCultureInfo = null;
+            string locale = uLocale.Locale.Replace("_", "-");
+            CultureInfo fallbackCultureInfo = GetCultureInfo(locale);
 
-            if (uLocale.Script != null && uLocale.Country != null)
+            if (fallbackCultureInfo == null && uLocale.Script != null && uLocale.Country != null)
             {
                 locale = uLocale.Language + "-" + uLocale.Script + "-" + uLocale.Country;
                 fallbackCultureInfo = GetCultureInfo(locale);
@@ -347,6 +370,7 @@ namespace Tizen.Applications
             Script = GetScript(Locale);
             Country = GetCountry(Locale);
             Variant = GetVariant(Locale);
+            LCID = GetLCID(Locale);
         }
 
         internal string Locale { get; private set; }
@@ -354,6 +378,7 @@ namespace Tizen.Applications
         internal string Script { get; private set; }
         internal string Country { get; private set; }
         internal string Variant { get; private set; }
+        internal int LCID { get; private set; }
 
         private string Canonicalize(string localeName)
         {
@@ -396,7 +421,7 @@ namespace Tizen.Applications
             int err = 0;
 
             // Get the country name from ICU
-            StringBuilder sb = new StringBuilder(ULOC_SCRIPT_CAPACITY);
+            StringBuilder sb = new StringBuilder(ULOC_COUNTRY_CAPACITY);
             if (Interop.BaseUtilsi18n.GetCountry(locale, sb, sb.Capacity, out err) <= 0)
             {
                 return null;
@@ -415,6 +440,13 @@ namespace Tizen.Applications
             }
 
             return sb.ToString();
+        }
+
+        private int GetLCID(string locale)
+        {
+            // Get the LCID from ICU
+            uint lcid = Interop.BaseUtilsi18n.GetLCID(locale);
+            return (int)lcid;
         }
     }
 }
