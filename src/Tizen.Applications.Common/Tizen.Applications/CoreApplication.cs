@@ -16,6 +16,7 @@
 
 using System;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Timers;
 using Tizen.Applications.CoreBackend;
@@ -141,6 +142,10 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnCreate()
         {
+            string locale = ULocale.GetDefaultLocale();
+            ChangeCurrentUICultureInfo(locale);
+            ChangeCurrentCultureInfo(locale);
+
             Created?.Invoke(this, EventArgs.Empty);
         }
 
@@ -447,6 +452,22 @@ namespace Tizen.Applications
             // Get the LCID from ICU
             uint lcid = Interop.BaseUtilsi18n.GetLCID(locale);
             return (int)lcid;
+        }
+
+        internal static string GetDefaultLocale()
+        {
+            IntPtr stringPtr = IntPtr.Zero;
+            if (Interop.BaseUtilsi18n.GetDefault(out stringPtr) != 0)
+            {
+                return string.Empty;
+            }
+
+            if (stringPtr == IntPtr.Zero)
+            {
+                return string.Empty;
+            }
+
+            return Marshal.PtrToStringAnsi(stringPtr);
         }
     }
 }
