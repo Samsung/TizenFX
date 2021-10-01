@@ -319,37 +319,43 @@ namespace Tizen.Applications
 
         private CultureInfo GetFallbackCultureInfo(ULocale uLocale)
         {
-            string locale = uLocale.Locale.Replace("_", "-");
-            CultureInfo fallbackCultureInfo = GetCultureInfo(locale);
+            CultureInfo fallbackCultureInfo = null;
+            string locale = string.Empty;
 
-            if (fallbackCultureInfo == null && uLocale.Script != null && uLocale.Country != null)
+            if (uLocale.Locale != null)
+            {
+                locale = uLocale.Locale.Replace("_", "-");
+                fallbackCultureInfo = GetCultureInfo(locale);
+            }
+
+            if (fallbackCultureInfo == null && uLocale.Language != null && uLocale.Script != null && uLocale.Country != null)
             {
                 locale = uLocale.Language + "-" + uLocale.Script + "-" + uLocale.Country;
                 fallbackCultureInfo = GetCultureInfo(locale);
             }
 
-            if (fallbackCultureInfo == null && uLocale.Script != null)
+            if (fallbackCultureInfo == null && uLocale.Language != null && uLocale.Script != null)
             {
                 locale = uLocale.Language + "-" + uLocale.Script;
                 fallbackCultureInfo = GetCultureInfo(locale);
             }
 
-            if (fallbackCultureInfo == null && uLocale.Country != null)
+            if (fallbackCultureInfo == null && uLocale.Language != null && uLocale.Country != null)
             {
                 locale = uLocale.Language + "-" + uLocale.Country;
                 fallbackCultureInfo = GetCultureInfo(locale);
             }
 
+            if (fallbackCultureInfo == null && uLocale.Language != null)
+            {
+                locale = uLocale.Language;
+                fallbackCultureInfo = GetCultureInfo(locale);
+            }
+
             if (fallbackCultureInfo == null)
             {
-                try
-                {
-                    fallbackCultureInfo = new CultureInfo(uLocale.Language);
-                }
-                catch (CultureNotFoundException)
-                {
-                    fallbackCultureInfo = new CultureInfo("en");
-                }
+                locale = "en";
+                fallbackCultureInfo = GetCultureInfo(locale);
             }
 
             return fallbackCultureInfo;
