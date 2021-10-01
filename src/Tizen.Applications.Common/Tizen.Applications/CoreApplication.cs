@@ -287,11 +287,11 @@ namespace Tizen.Applications
             CultureInfo.CurrentUICulture = ConvertCultureInfo(locale);
         }
 
-        private bool ExistCultureInfo(CultureInfo cultureInfo)
+        private bool ExistCultureInfo(string locale)
         {
-            foreach (var info in CultureInfo.GetCultures(CultureTypes.AllCultures))
+            foreach (var cultureInfo in CultureInfo.GetCultures(CultureTypes.AllCultures))
             {
-                if (info.Name == cultureInfo.Name)
+                if (cultureInfo.Name == locale)
                 {
                     return true;
                 }
@@ -302,23 +302,19 @@ namespace Tizen.Applications
 
         private CultureInfo GetCultureInfo(string locale)
         {
-            CultureInfo cultureInfo = null;
+            if (!ExistCultureInfo(locale))
+            {
+                return null;
+            }
 
             try
             {
-                cultureInfo = new CultureInfo(locale);
+                return new CultureInfo(locale);
             }
             catch (CultureNotFoundException)
             {
                 return null;
             }
-
-            if (!ExistCultureInfo(cultureInfo))
-            {
-                return null;
-            }
-
-            return cultureInfo;
         }
 
         private CultureInfo GetFallbackCultureInfo(ULocale uLocale)
