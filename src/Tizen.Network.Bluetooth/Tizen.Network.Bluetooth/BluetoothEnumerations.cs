@@ -1321,6 +1321,10 @@ namespace Tizen.Network.Bluetooth
         /// Service removed.
         /// </summary>
         Removed,
+        /// <summary>
+        /// Resync is required.
+        /// </summary>
+        Resync,
     }
 
     /// <summary>
