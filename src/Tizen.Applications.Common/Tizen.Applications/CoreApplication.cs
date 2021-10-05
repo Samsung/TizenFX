@@ -279,12 +279,28 @@ namespace Tizen.Applications
 
         private void ChangeCurrentCultureInfo(string locale)
         {
-            CultureInfo.CurrentCulture = ConvertCultureInfo(locale);
+            CultureInfo cultureInfo = ConvertCultureInfo(locale);
+            if (cultureInfo != null)
+            {
+                CultureInfo.CurrentCulture = cultureInfo;
+            }
+            else
+            {
+                Log.Error(LogTag, "CultureInfo is null. locale: " + locale);
+            }
         }
 
         private void ChangeCurrentUICultureInfo(string locale)
         {
-            CultureInfo.CurrentUICulture = ConvertCultureInfo(locale);
+            CultureInfo cultureInfo = ConvertCultureInfo(locale);
+            if (cultureInfo != null)
+            {
+                CultureInfo.CurrentUICulture = cultureInfo;
+            }
+            else
+            {
+                Log.Error(LogTag, "CultureInfo is null. locale: " + locale);
+            }
         }
 
         private bool ExistCultureInfo(string locale)
@@ -354,8 +370,14 @@ namespace Tizen.Applications
 
             if (fallbackCultureInfo == null)
             {
-                locale = "en";
-                fallbackCultureInfo = GetCultureInfo(locale);
+                try
+                {
+                    fallbackCultureInfo = new CultureInfo("en");
+                }
+                catch (CultureNotFoundException e)
+                {
+                    Log.Error(LogTag, "Failed to create CultureInfo. err = " + e.Message);
+                }
             }
 
             return fallbackCultureInfo;
