@@ -52,14 +52,13 @@ namespace Tizen.NUI
                     continue;
                 }
 
-                MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
+                // Get size of child with no padding, no margin. we won't support margin, padding for AbsolutLayout.
+                MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
 
                 // Determine the width and height needed by the children using their given position and size.
                 // Children could overlap so find the right most child.
-                float childRight = childLayout.MeasuredWidth.Size.AsDecimal() + childLayout.Owner.PositionX +
-                                   Padding.Start + Padding.End + childLayout.Margin.Start + childLayout.Margin.End;
-                float childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + childLayout.Owner.PositionY +
-                                    Padding.Top + Padding.Bottom + childLayout.Margin.Top + childLayout.Margin.Bottom;
+                float childRight = childLayout.MeasuredWidth.Size.AsDecimal() + childLayout.Owner.PositionX;
+                float childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + childLayout.Owner.PositionY;
 
                 if (maxWidth < childRight)
                     maxWidth = childRight;
@@ -104,10 +103,10 @@ namespace Tizen.NUI
                 LayoutLength childWidth = childLayout.MeasuredWidth.Size;
                 LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 
-                LayoutLength childLeft = new LayoutLength(childLayout.Owner.PositionX + Padding.Start + childLayout.Margin.Start);
-                LayoutLength childTop = new LayoutLength(childLayout.Owner.PositionY + Padding.Top + childLayout.Margin.Top);
+                LayoutLength childLeft = new LayoutLength(childLayout.Owner.PositionX);
+                LayoutLength childTop = new LayoutLength(childLayout.Owner.PositionY);
 
-                childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight);
+                childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
             }
         }
     }
