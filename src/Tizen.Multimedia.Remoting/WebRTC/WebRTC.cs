@@ -108,25 +108,6 @@ namespace Tizen.Multimedia.Remoting
             if (_disposed || !disposing)
                 return;
 
-            if (_source != null && _source.Count > 0)
-            {
-                try
-                {
-                    Log.Info(WebRTCLog.Tag, "Detach sources");
-                    foreach (var source in _source)
-                    {
-                        source.ReplaceDisplay(null);
-                        source.DetachFrom(this);
-                    }
-                    _source.Clear();
-                    _source = null;
-                }
-                catch (Exception ex)
-                {
-                    Log.Error(WebRTCLog.Tag, ex.ToString());
-                }
-            }
-
             if (_handle != null)
             {
                 _handle.Dispose();

@@ -82,7 +82,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 if (!SourceId.HasValue)
                 {
-                    throw new InvalidOperationException("MediaSource is not attached yet. Call SetSource() first.");
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
                 }
 
                 NativeWebRTC.GetTransceiverDirection(WebRtc.Handle, SourceId.Value, MediaType, out TransceiverDirection mode).
@@ -94,7 +94,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 if (!SourceId.HasValue)
                 {
-                    throw new InvalidOperationException("MediaSource is not attached yet. Call SetSource() first.");
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
                 }
 
                 NativeWebRTC.SetTransceiverDirection(WebRtc.Handle, SourceId.Value, MediaType, value).
@@ -113,6 +113,11 @@ namespace Tizen.Multimedia.Remoting
         {
             get
             {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+
                 NativeWebRTC.GetPause(WebRtc.Handle, SourceId.Value, MediaType, out bool isPaused).
                     ThrowIfFailed("Failed to get pause");
 
@@ -120,6 +125,11 @@ namespace Tizen.Multimedia.Remoting
             }
             set
             {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+
                 NativeWebRTC.SetPause(WebRtc.Handle, SourceId.Value, MediaType, value).
                     ThrowIfFailed("Failed to set pause");
             }
@@ -136,6 +146,11 @@ namespace Tizen.Multimedia.Remoting
         {
             get
             {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+
                 NativeWebRTC.GetMute(WebRtc.Handle, SourceId.Value, MediaType, out bool isMuted).
                     ThrowIfFailed("Failed to get mute");
 
@@ -143,6 +158,11 @@ namespace Tizen.Multimedia.Remoting
             }
             set
             {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+
                 NativeWebRTC.SetMute(WebRtc.Handle, SourceId.Value, MediaType, value).
                     ThrowIfFailed("Failed to set mute");
             }
@@ -152,17 +172,24 @@ namespace Tizen.Multimedia.Remoting
         /// Gets or sets the video resolution of the current media source.
         /// </summary>
         /// <value>A value that specifies the mute status.</value>
-        /// <exception cref="ArgumentException">This source is not video source.</exception>
-        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     MediaSource is not attached yet.<br/>
+        /// -or-<br/>
+        ///     This MediaSource is not Video
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
         public Size VideoResolution
         {
             get
             {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
                 if (MediaType != MediaType.Video)
                 {
-                    throw new ArgumentException("This property is only for video.");
+                    throw new InvalidOperationException("This property is only for video.");
                 }
 
                 NativeWebRTC.GetVideoResolution(WebRtc.Handle, SourceId.Value, out int width, out int height).
@@ -172,9 +199,13 @@ namespace Tizen.Multimedia.Remoting
             }
             set
             {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
                 if (MediaType != MediaType.Video)
                 {
-                    throw new ArgumentException("This property is only for video.");
+                    throw new InvalidOperationException("This property is only for video.");
                 }
 
                 NativeWebRTC.SetVideoResolution(WebRtc.Handle, SourceId.Value, value.Width, value.Height).
@@ -192,7 +223,11 @@ namespace Tizen.Multimedia.Remoting
         /// <see cref="AudioStreamType.MediaExternalOnly"/>.<br/>
         /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="policy"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">This MediaSource is not Audio</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     MediaSource is not attached yet.<br/>
+        /// -or-<br/>
+        ///     This MediaSource is not Audio
+        /// </exception>
         /// <exception cref="NotSupportedException">
         ///     <see cref="AudioStreamType"/> of <paramref name="policy"/> is not supported on the current platform.
         /// </exception>
@@ -202,11 +237,14 @@ namespace Tizen.Multimedia.Remoting
         /// <returns><see cref="MediaStreamTrack"/></returns>
         public MediaStreamTrack EnableAudioLoopback(AudioStreamPolicy policy)
         {
+            if (!SourceId.HasValue)
+            {
+                throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+            }
             if (policy == null)
             {
                 throw new ArgumentNullException(nameof(policy));
             }
-
             if (MediaType != MediaType.Audio)
             {
                 throw new InvalidOperationException("AudioLoopback is only for Audio MediaSource");
@@ -240,18 +278,25 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="display">The <see cref="Display"/> to apply.</param>
         /// <exception cref="ArgumentException">The display has already been assigned to another.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="display"/> is null.</exception>
-        /// <exception cref="InvalidOperationException">This MediaSource is not Video</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     MediaSource is not attached yet.<br/>
+        /// -or-<br/>
+        ///     This MediaSource is not Video
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <returns><see cref="MediaStreamTrack"/></returns>
         public MediaStreamTrack EnableVideoLoopback(Display display)
         {
             uint trackId = 0;
 
+            if (!SourceId.HasValue)
+            {
+                throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+            }
             if (display == null)
             {
                 throw new ArgumentNullException(nameof(display), "Display cannot be null.");
             }
-
             if (MediaType != MediaType.Video)
             {
                 throw new InvalidOperationException("VideoLoopback is only for Video MediaSource");
