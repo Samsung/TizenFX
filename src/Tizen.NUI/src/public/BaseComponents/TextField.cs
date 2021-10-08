@@ -1574,8 +1574,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Selected Text property.
+        /// The portion of the text that has been selected by the user.
         /// </summary>
+        /// <remarks>
+        /// Empty string when nothing is selected.
+        /// </remarks>
         /// <since_tizen> 9 </since_tizen>
         public string SelectedText
         {
@@ -1590,6 +1593,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The start index for selection.
         /// </summary>
+        /// <remarks>
+        /// When there is no selection, the index is current cursor position.
+        /// </remarks>
         /// <since_tizen> 9 </since_tizen>
         public int SelectedTextStart
         {
@@ -1604,6 +1610,9 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The end index for selection.
         /// </summary>
+        /// <remarks>
+        /// When there is no selection, the index is current cursor position.
+        /// </remarks>
         /// <since_tizen> 9 </since_tizen>
         public int SelectedTextEnd
         {
@@ -2062,10 +2071,13 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Select text from start to end index. <br />
-        /// The index is valid when 0 or positive. <br />
+        /// The index is valid when 0 or positive.
         /// </summary>
         /// <param name="start">The start index for selection.</param>
         /// <param name="end">The end index for selection.</param>
+        /// <remarks>
+        /// If the end index exceeds the maximum value, it is set to the length of the text.
+        /// </remarks>
         /// <since_tizen> 9 </since_tizen>
         public void SelectText(int start, int end)
         {
@@ -2079,7 +2091,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Clear selection of the text.
+        /// Clear selection of the text. <br />
+        /// Valid when selection is activate.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public void SelectNone()
