@@ -92,8 +92,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
-            alphaFunction.Dispose();
-            timePeriod.Dispose();
+            alphaFunction?.Dispose();
+            timePeriod?.Dispose();
             base.Dispose(type);
         }
     }
