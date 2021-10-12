@@ -158,6 +158,9 @@ namespace Tizen.Applications
         /// Starts discovering cion servers.
         /// </summary>
         /// <exception cref="InvalidOperationException">Thrown when the discovery operation is already in progress.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+        /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <since_tizen> 9 </since_tizen>
         public void TryDiscovery()
         {
@@ -206,7 +209,9 @@ namespace Tizen.Applications
         /// Connects with the cion server.
         /// </summary>
         /// <param name="peer">The peer to connect.</param>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <since_tizen> 9 </since_tizen>
         public void Connect(PeerInfo peer)
         {

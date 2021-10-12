@@ -124,7 +124,9 @@ namespace Tizen.Applications
         /// <summary>
         /// Subscribes the topic.
         /// </summary>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <since_tizen> 9 </since_tizen>
         public void Subscribe()
         {
