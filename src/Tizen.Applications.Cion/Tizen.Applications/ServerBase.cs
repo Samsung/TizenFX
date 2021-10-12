@@ -195,6 +195,7 @@ namespace Tizen.Applications
         /// Starts server and listens for requests from cion clients.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <exception cref="InvalidOperationException">Thrown when the listen operation is already in progress.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>

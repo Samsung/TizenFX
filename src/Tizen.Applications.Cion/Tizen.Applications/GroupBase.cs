@@ -138,6 +138,7 @@ namespace Tizen.Applications
         /// Subscribes the topic.
         /// </summary>
         /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
         /// <privlevel>public</privlevel>
         /// <exception cref="InvalidOperationException">Thrown when failed to subscribe.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
