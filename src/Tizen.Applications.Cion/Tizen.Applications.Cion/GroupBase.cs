@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
     /// <summary>
     /// An abstract class to represent cion group.

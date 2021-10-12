@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
     /// <summary>
     /// Enumeration for connection status.

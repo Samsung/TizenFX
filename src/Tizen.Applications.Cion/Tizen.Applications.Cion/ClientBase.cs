@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
     /// <summary>
     /// An abstract class to represent cion client.
@@ -81,7 +81,7 @@ namespace Tizen.Applications
         {
             ServiceName = serviceName;
 
-            Cion.SecuritySafeHandle handle = security?._handle;
+            SecuritySafeHandle handle = security?._handle;
             Interop.Cion.ErrorCode ret = Interop.CionClient.CionClientCreate(out _handle, serviceName, handle?.DangerousGetHandle() ?? IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
             {

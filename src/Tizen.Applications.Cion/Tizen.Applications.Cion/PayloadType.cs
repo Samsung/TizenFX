@@ -14,29 +14,21 @@
  * limitations under the License.
  */
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
     /// <summary>
-    /// Enumeration for payload result code.
+    /// Enumeration for payload type.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public enum PayloadAsyncResultCode
+    public enum PayloadType
     {
         /// <summary>
-        /// Fail to get the result code.
+        /// Data payload.
         /// </summary>
-        Error = -1,
+        DataPayload,
         /// <summary>
-        /// The async request result is not yet received.
+        /// File payload.
         /// </summary>
-        Pending = 0,
-        /// <summary>
-        /// The async request result is success.
-        /// </summary>
-        Success,
-        /// <summary>
-        /// The async request result is fail.
-        /// </summary>
-        Fail,
+        FilePayload,
     }
 }
