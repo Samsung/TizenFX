@@ -3,7 +3,7 @@
 namespace Tizen.NUI
 {
     /// <summary>
-    /// The GraphicTypeExtensions class is graphics type coverter for pixel based object.
+    /// The GraphicTypeExtensions class is graphics type converter for pixel based object.
     /// Density independent pixel(dp) unit is our basic target type and you can get converted value by ToDp(),
     /// and you can get original pixel by ToDp().
     /// One dp is a virtual pixel unit that's roughly equal to one pixel on a medium-density(160dpi) screen.
