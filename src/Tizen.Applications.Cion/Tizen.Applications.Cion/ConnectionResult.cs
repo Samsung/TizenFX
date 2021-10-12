@@ -14,39 +14,47 @@
  * limitations under the License.
  */
 
-namespace Tizen.Applications
+using System;
+
+namespace Tizen.Applications.Cion
 {
     /// <summary>
-    /// An abstract class to represent payload.
+    /// A class to represent result of connection.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public abstract class Payload
+    public class ConnectionResult
     {
-        private readonly string LogTag = "Tizen.Cion";
-        internal PayloadSafeHandle _handle;
+        private readonly string _reason;
+        private readonly ConnectionStatus _status;
+
+        internal ConnectionResult(IntPtr handle)
+        {
+            Interop.CionConnectionResult.CionConnectionResultGetReason(handle, out _reason);
+            Interop.CionConnectionResult.CionConnectionResultGetStatus(handle, out _status);
+        }
 
         /// <summary>
-        /// Gets type of the payload.
+        /// Gets the connection status.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public abstract PayloadType PayloadType { get; }
-
-        /// <summary>
-        /// Gets Id of the payload.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public string Id
+        public ConnectionStatus Status
         {
             get
             {
-                Interop.Cion.ErrorCode ret = Interop.CionPayload.CionPayloadGetPayloadID(_handle, out string id);
-                if (ret != Interop.Cion.ErrorCode.None)
-                {
-                    Log.Error(LogTag, "Failed to get id of payload.");
-                    return "";
-                }
-                return id;
-            }            
+                return _status;
+            }
+        }
+
+        /// <summary>
+        /// Gets the reason of the connection result.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public string Reason
+        {
+            get
+            {
+                return _reason;
+            }
         }
     }
 }

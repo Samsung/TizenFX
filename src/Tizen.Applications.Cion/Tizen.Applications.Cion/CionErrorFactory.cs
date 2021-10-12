@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
     internal static class CionErrorFactory
     {

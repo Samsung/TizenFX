@@ -19,7 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
     /// <summary>
     /// A class to represent data type payload.

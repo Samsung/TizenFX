@@ -14,21 +14,25 @@
  * limitations under the License.
  */
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
     /// <summary>
-    /// Enumeration for payload type.
+    /// Enumeration for payload transfer status.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public enum PayloadType
+    public enum PayloadTransferStatus
     {
         /// <summary>
-        /// Data payload.
+        /// Success.
         /// </summary>
-        DataPayload,
+        Success,
         /// <summary>
-        /// File payload.
+        /// Failure.
         /// </summary>
-        FilePayload,
+        Failure,
+        /// <summary>
+        /// In Progress.
+        /// </summary>
+        InProgress,
     }
 }
