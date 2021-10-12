@@ -154,8 +154,10 @@ namespace Tizen.NUI
         public void Run(string[] args)
         {
             TizenSynchronizationContext.Initialize();
-
-            args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
+            if (Tizen.Applications.Application.Current?.ApplicationInfo != null)
+            {
+                args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
+            }
             if (string.IsNullOrEmpty(args[0]))
             {
                 args[0] = this.GetType().Assembly.FullName.Replace(" ", "");
