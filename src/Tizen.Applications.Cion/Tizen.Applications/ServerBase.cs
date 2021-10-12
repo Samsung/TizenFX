@@ -212,7 +212,7 @@ namespace Tizen.Applications
                             Log.Error(LogTag, "Failed to clone peer info");
                             return;
                         }
-                        OnConnentionRequest(new PeerInfo(clone));
+                        OnConnectionRequest(new PeerInfo(clone));
                     });
                 _connectionRequestCb = cb;
             }
@@ -408,7 +408,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="peerInfo">The peer info of the cion client.</param>
         /// <since_tizen> 9 </since_tizen>
-        protected abstract void OnConnentionRequest(PeerInfo peerInfo);
+        protected abstract void OnConnectionRequest(PeerInfo peerInfo);
 
         /// <summary>
         /// The callback invoked when disconnected with cion client.
