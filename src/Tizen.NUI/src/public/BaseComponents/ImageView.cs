@@ -685,7 +685,7 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal VisualFittingModeType CovertFittingModetoVisualFittingMode(FittingModeType value)
+        internal VisualFittingModeType ConvertFittingModetoVisualFittingMode(FittingModeType value)
         {
             switch (value)
             {
@@ -700,7 +700,7 @@ namespace Tizen.NUI.BaseComponents
                 case FittingModeType.FitHeight:
                     return VisualFittingModeType.FitHeight;
                 case FittingModeType.FitWidth:
-                    return VisualFittingModeType.FitHeight;
+                    return VisualFittingModeType.FitWidth;
                 default:
                     return VisualFittingModeType.Fill;
             }
@@ -773,7 +773,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                VisualFittingModeType ret = CovertFittingModetoVisualFittingMode(value);
+                VisualFittingModeType ret = ConvertFittingModetoVisualFittingMode(value);
                 PropertyValue setValue = new PropertyValue((int)ret);
                 if(_fittingMode != ret)
                 {
