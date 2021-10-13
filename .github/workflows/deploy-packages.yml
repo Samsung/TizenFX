@@ -83,6 +83,10 @@ jobs:
         GERRIT_BRANCH: ${{ steps.metadata.outputs.tizen-branch }}
         GERRIT_URL: ssh://dotnetbuild@review.tizen.org:29418/platform/core/csapi/tizenfx
       run: |
+        if [ -z "$GERRIT_BRANCH" ]; then
+          echo "## no specified tizen branch"
+          exit 0
+        fi
         git remote add gerrit $GERRIT_URL
         git fetch gerrit $GERRIT_BRANCH
         git checkout -t gerrit/$GERRIT_BRANCH
