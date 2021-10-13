@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
     /// <summary>
     /// A class to represent file type payload.
@@ -24,7 +24,7 @@ namespace Tizen.Applications
     /// <since_tizen> 9 </since_tizen>
     public class FilePayload : Payload
     {
-        private readonly string LogTag = "Tizen.Cion";
+        private readonly string LogTag = "Tizen.Applications.Cion";
 
         internal FilePayload(PayloadSafeHandle handle)
         {
@@ -35,7 +35,12 @@ namespace Tizen.Applications
         /// The constructor of FilePayload class.
         /// </summary>
         /// <param name="path">The path of file for the FilePayload.</param>
+        /// <remarks>
+        /// http://tizen.org/privilege/mediastorage is needed if the file path is relevant to media storage.
+        /// http://tizen.org/privilege/externalstorage is needed if the file path is relevant to external storage.
+        /// </remarks>
         /// <exception cref="ArgumentException">Thrown when the input file path is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public FilePayload(string path)
         {
@@ -113,6 +118,12 @@ namespace Tizen.Applications
         /// Saves file of payload to speicific path.
         /// </summary>
         /// <param name="path">The path of file to save.</param>
+        /// <remarks>
+        /// http://tizen.org/privilege/mediastorage is needed if the file path is relevant to media storage.
+        /// http://tizen.org/privilege/externalstorage is needed if the file path is relevant to external storage.
+        /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when the input file path is invalid.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void SaveAsFile(string path)
         {

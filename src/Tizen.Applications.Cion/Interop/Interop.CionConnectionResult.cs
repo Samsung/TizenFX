@@ -16,7 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Tizen.Applications;
+using Tizen.Applications.Cion;
 
 using ErrorCode = Interop.Cion.ErrorCode;
 
