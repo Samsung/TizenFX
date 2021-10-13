@@ -25,7 +25,7 @@ namespace Tizen.NUI.Components
     /// DefaultGridItem may contain text or an icon.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class DefaultGridItem : RecyclerViewItem
+    public partial class DefaultGridItem : RecyclerViewItem
     {
         private TextLabel itemLabel;
         private ImageView itemImage;
@@ -135,6 +135,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(BadgeProperty) as View;
+            }
+            set
+            {
+                SetValue(BadgeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private View InternalBadge
+        {
+            get
+            {
                 return itemBadge;
 
             }
@@ -205,6 +217,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(TextProperty) as string;
+            }
+            set
+            {
+                SetValue(TextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalText
+        {
+            get
+            {
                 return Label.Text;
             }
             set
@@ -218,6 +242,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public LabelOrientation LabelOrientationType
+        {
+            get
+            {
+                return (Tizen.NUI.Components.DefaultGridItem.LabelOrientation)GetValue(LabelOrientationTypeProperty);
+            }
+            set
+            {
+                SetValue(LabelOrientationTypeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Tizen.NUI.Components.DefaultGridItem.LabelOrientation InternalLabelOrientationType
         {
             get
             {

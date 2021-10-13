@@ -27,7 +27,7 @@ namespace Tizen.NUI.Components
     /// The icon part consists of track and thumb.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class Switch : Button
+    public partial class Switch : Button
     {
         private ImageView thumb = null;
 
@@ -172,6 +172,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchBackgroundImageURLSelector
         {
+            get
+            {
+                return GetValue(SwitchBackgroundImageURLSelectorProperty) as StringSelector;
+            }
+            set
+            {
+                SetValue(SwitchBackgroundImageURLSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private StringSelector InternalSwitchBackgroundImageURLSelector
+        {
             get => new StringSelector(Icon.ResourceUrlSelector);
             set
             {
@@ -185,6 +197,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string SwitchHandlerImageURL
+        {
+            get
+            {
+                return GetValue(SwitchHandlerImageURLProperty) as string;
+            }
+            set
+            {
+                SetValue(SwitchHandlerImageURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalSwitchHandlerImageURL
         {
             get
             {
@@ -203,6 +227,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchHandlerImageURLSelector
         {
+            get
+            {
+                return GetValue(SwitchHandlerImageURLSelectorProperty) as StringSelector;
+            }
+            set
+            {
+                SetValue(SwitchHandlerImageURLSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private StringSelector InternalSwitchHandlerImageURLSelector
+        {
             get => new StringSelector(thumb.ResourceUrlSelector);
             set
             {
@@ -216,6 +252,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Size SwitchHandlerImageSize
+        {
+            get
+            {
+                return GetValue(SwitchHandlerImageSizeProperty) as Size;
+            }
+            set
+            {
+                SetValue(SwitchHandlerImageSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Size InternalSwitchHandlerImageSize
         {
             get
             {

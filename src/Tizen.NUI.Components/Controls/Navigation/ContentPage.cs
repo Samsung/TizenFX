@@ -24,7 +24,7 @@ namespace Tizen.NUI.Components
     /// ContentPage contains title app bar and content.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public class ContentPage : Page
+    public partial class ContentPage : Page
     {
         private AppBar appBar = null;
         private View content = null;
@@ -80,6 +80,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(AppBarProperty) as AppBar;
+            }
+            set
+            {
+                SetValue(AppBarProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private AppBar InternalAppBar
+        {
+            get
+            {
                 return appBar;
             }
             set
@@ -114,6 +126,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public View Content
+        {
+            get
+            {
+                return GetValue(ContentProperty) as View;
+            }
+            set
+            {
+                SetValue(ContentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private View InternalContent
         {
             get
             {

@@ -27,7 +27,7 @@ namespace Tizen.NUI.Components
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     [Obsolete("Deprecated in API8; Will be removed in API10")]
-    public class Tab : Control
+    public partial class Tab : Control
     {
         private const int aniTime = 100; // will be defined in const file later
         private List<TabItem> itemList = new List<TabItem>();
@@ -121,6 +121,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (int)GetValue(SelectedItemIndexProperty);
+            }
+            set
+            {
+                SetValue(SelectedItemIndexProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalSelectedItemIndex
+        {
+            get
+            {
                 return curIndex;
             }
             set
@@ -139,6 +151,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public bool UseTextNaturalSize
+        {
+            get
+            {
+                return (bool)GetValue(UseTextNaturalSizeProperty);
+            }
+            set
+            {
+                SetValue(UseTextNaturalSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalUseTextNaturalSize
         {
             get
             {
@@ -163,6 +187,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (int)GetValue(ItemSpaceProperty);
+            }
+            set
+            {
+                SetValue(ItemSpaceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalItemSpace
+        {
+            get
+            {
                 return tabStyle?.ItemSpace ?? 0;
             }
             set
@@ -184,6 +220,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(SpaceProperty) as Extents;
+            }
+            set
+            {
+                SetValue(SpaceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Extents InternalSpace
+        {
+            get
+            {
                 return ItemPadding;
             }
             set
@@ -199,6 +247,18 @@ namespace Tizen.NUI.Components
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents ItemPadding
+        {
+            get
+            {
+                return GetValue(ItemPaddingProperty) as Extents;
+            }
+            set
+            {
+                SetValue(ItemPaddingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Extents InternalItemPadding
         {
             get
             {
@@ -240,6 +300,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(UnderLineSizeProperty) as Size;
+            }
+            set
+            {
+                SetValue(UnderLineSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Size InternalUnderLineSize
+        {
+            get
+            {
                 return Underline.Size;
             }
             set
@@ -258,6 +330,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Color UnderLineBackgroundColor
+        {
+            get
+            {
+                return GetValue(UnderLineBackgroundColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(UnderLineBackgroundColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalUnderLineBackgroundColor
         {
             get
             {
@@ -282,6 +366,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (float)GetValue(PointSizeProperty);
+            }
+            set
+            {
+                SetValue(PointSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalPointSize
+        {
+            get
+            {
                 return tabStyle?.Text?.PointSize?.All ?? 0;
             }
             set
@@ -300,6 +396,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string FontFamily
+        {
+            get
+            {
+                return GetValue(FontFamilyProperty) as string;
+            }
+            set
+            {
+                SetValue(FontFamilyProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalFontFamily
         {
             get
             {
@@ -324,6 +432,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(TextColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(TextColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalTextColor
+        {
+            get
+            {
                 return tabStyle?.Text?.TextColor?.All;
             }
             set
@@ -343,6 +463,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public ColorSelector TextColorSelector
+        {
+            get
+            {
+                return GetValue(TextColorSelectorProperty) as ColorSelector;
+            }
+            set
+            {
+                SetValue(TextColorSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private ColorSelector InternalTextColorSelector
         {
             get
             {

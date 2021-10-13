@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -57,6 +58,42 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 9 </since_tizen>
     public abstract class Page : Control
     {
+        /// <summary>
+        /// AppearingTransitionProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty AppearingTransitionProperty = BindableProperty.Create(nameof(AppearingTransition), typeof(TransitionBase), typeof(Page), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Page)bindable;
+            if (newValue != null)
+            {
+                instance.InternalAppearingTransition = newValue as TransitionBase;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Page)bindable;
+            return instance.InternalAppearingTransition;
+        });
+
+        /// <summary>
+        /// DisappearingTransitionProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty DisappearingTransitionProperty = BindableProperty.Create(nameof(DisappearingTransition), typeof(TransitionBase), typeof(Page), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Page)bindable;
+            if (newValue != null)
+            {
+                instance.InternalDisappearingTransition = newValue as TransitionBase;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Page)bindable;
+            return instance.InternalDisappearingTransition;
+        });
+
         private Navigator navigator = null;
 
         // Default transition is Fade.
@@ -100,6 +137,18 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TransitionBase AppearingTransition
         {
+            get
+            {
+                return GetValue(AppearingTransitionProperty) as TransitionBase;
+            }
+            set
+            {
+                SetValue(AppearingTransitionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private TransitionBase InternalAppearingTransition
+        {
             set
             {
                 appearingTransition = value;
@@ -115,6 +164,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TransitionBase DisappearingTransition
+        {
+            get
+            {
+                return GetValue(DisappearingTransitionProperty) as TransitionBase;
+            }
+            set
+            {
+                SetValue(DisappearingTransitionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private TransitionBase InternalDisappearingTransition
         {
             set
             {
