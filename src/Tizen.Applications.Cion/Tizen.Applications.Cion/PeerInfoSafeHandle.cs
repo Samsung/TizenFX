@@ -18,15 +18,20 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
-    internal sealed class ClientSafeHandle : SafeHandle
+    internal sealed class PeerInfoSafeHandle : SafeHandle
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ClientSafeHandle() : base(IntPtr.Zero, true)
+        public PeerInfoSafeHandle() : base(IntPtr.Zero, true)
         {
         }
-
+        
+        internal PeerInfoSafeHandle(IntPtr existingHandle, bool ownsHandle) : base(IntPtr.Zero, ownsHandle)
+        {
+            SetHandle(existingHandle);
+        }
+        
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool IsInvalid
         {
@@ -35,7 +40,7 @@ namespace Tizen.Applications
 
         protected override bool ReleaseHandle()
         {
-            Interop.CionClient.CionClientDestroy(this.handle);
+            Interop.CionPeerInfo.CionPeerInfoDestroy(this.handle);
             SetHandle(IntPtr.Zero);
             return true;
         }

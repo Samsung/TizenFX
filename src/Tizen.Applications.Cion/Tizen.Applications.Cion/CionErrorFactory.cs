@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
     internal static class CionErrorFactory
     {
@@ -25,18 +25,24 @@ namespace Tizen.Applications
             string errMessage = string.Format("{0} err = {1}", message, err);
             switch (err)
             {
-                case Interop.Cion.ErrorCode.InvalidParameter:
-                    return new ArgumentException(errMessage);
+                case Interop.Cion.ErrorCode.IoError:
+                    return new InvalidOperationException(errMessage);
                 case Interop.Cion.ErrorCode.OutOfMemory:
                     return new InvalidOperationException(errMessage);
-                case Interop.Cion.ErrorCode.IoError:
-                    return new global::System.IO.IOException(errMessage);
                 case Interop.Cion.ErrorCode.PermissionDenied:
                     return new UnauthorizedAccessException(errMessage);
+                case Interop.Cion.ErrorCode.InvalidParameter:
+                    return new ArgumentException(errMessage);
                 case Interop.Cion.ErrorCode.InvalidOperation:
+                    return new InvalidOperationException(errMessage);
+                case Interop.Cion.ErrorCode.AlreadyInProgress:
                     return new InvalidOperationException(errMessage);
                 case Interop.Cion.ErrorCode.NotSupported:
                     return new NotSupportedException(errMessage);
+                case Interop.Cion.ErrorCode.TimedOut:
+                    return new TimeoutException(errMessage);
+                case Interop.Cion.ErrorCode.OperationFailed:
+                    return new InvalidOperationException(errMessage);
                 default:
                     return new InvalidOperationException(errMessage);
             }

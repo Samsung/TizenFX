@@ -18,12 +18,12 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
-    internal sealed class GroupSafeHandle : SafeHandle
+    internal sealed class ClientSafeHandle : SafeHandle
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public GroupSafeHandle() : base(IntPtr.Zero, true)
+        public ClientSafeHandle() : base(IntPtr.Zero, true)
         {
         }
 
@@ -35,7 +35,7 @@ namespace Tizen.Applications
 
         protected override bool ReleaseHandle()
         {
-            Interop.CionGroup.CionGroupDestroy(this.handle);
+            Interop.CionClient.CionClientDestroy(this.handle);
             SetHandle(IntPtr.Zero);
             return true;
         }

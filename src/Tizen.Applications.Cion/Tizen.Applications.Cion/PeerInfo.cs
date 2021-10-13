@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
     /// <summary>
     /// A class to represent peer info.
@@ -24,7 +24,7 @@ namespace Tizen.Applications
     /// <since_tizen> 9 </since_tizen>
     public class PeerInfo : IDisposable
     {
-        private readonly string LogTag = "Tizen.Cion";
+        private readonly string LogTag = "Tizen.Applications.Cion";
         internal PeerInfoSafeHandle _handle;
 
         internal PeerInfo(PeerInfoSafeHandle handle)
