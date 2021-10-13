@@ -33,11 +33,15 @@
         <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
       </group>
       <group targetFramework="Tizen9.0">
-        <dependency id="Tizen.NET.API9" version="$fxversion$" />
+        <dependency id="Tizen.NET.API9" version="9.0.0.16760" />
+        <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
+      </group>
+      <group targetFramework="Tizen10.0">
+        <dependency id="Tizen.NET.API10" version="$fxversion$" />
         <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
       </group>
       <group targetFramework=".NETStandard2.0">
-        <dependency id="Tizen.NET.API9" version="$fxversion$" />
+        <dependency id="Tizen.NET.API10" version="$fxversion$" />
         <dependency id="Microsoft.NETCore.Platforms" version="3.1.0" />
       </group>
     </dependencies>
