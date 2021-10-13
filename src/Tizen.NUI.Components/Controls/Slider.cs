@@ -67,10 +67,10 @@ namespace Tizen.NUI.Components
     public partial class Slider : Control
     {
         /// <summary>
-        /// IndicatorTypeProperty
+        /// SpaceBetweenTrackAndIndicatorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IndicatorTypeProperty = BindableProperty.Create("IndicatorType", typeof(IndicatorType), typeof(Slider), IndicatorType.None, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty IndicatorProperty = BindableProperty.Create(nameof(Indicator), typeof(IndicatorType), typeof(Slider), IndicatorType.None, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Slider)bindable;
             if (newValue != null)
@@ -395,6 +395,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (DirectionType)GetValue(DirectionProperty);
+            }
+            set
+            {
+                SetValue(DirectionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private DirectionType InternalDirection
+        {
+            get
+            {
                 return direction;
             }
             set
@@ -420,11 +432,11 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return (IndicatorType)GetValue(IndicatorTypeProperty);
+                return (IndicatorType)GetValue(IndicatorProperty);
             }
             set
             {
-                SetValue(IndicatorTypeProperty, value);
+                SetValue(IndicatorProperty, value);
             }
         }
 
@@ -433,6 +445,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public float MinValue
+        {
+            get
+            {
+                return (float)GetValue(MinValueProperty);
+            }
+            set
+            {
+                SetValue(MinValueProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalMinValue
         {
             get
             {
@@ -450,6 +474,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public float MaxValue
+        {
+            get
+            {
+                return (float)GetValue(MaxValueProperty);
+            }
+            set
+            {
+                SetValue(MaxValueProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalMaxValue
         {
             get
             {
@@ -486,6 +522,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(ThumbSizeProperty) as Size;
+            }
+            set
+            {
+                SetValue(ThumbSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Size InternalThumbSize
+        {
+            get
+            {
                 return thumbImage?.Size;
             }
             set
@@ -505,6 +553,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string ThumbImageURL
+        {
+            get
+            {
+                return GetValue(ThumbImageURLProperty) as string;
+            }
+            set
+            {
+                SetValue(ThumbImageURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalThumbImageURL
         {
             get
             {
@@ -530,6 +590,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector ThumbImageURLSelector
         {
+            get
+            {
+                return GetValue(ThumbImageURLSelectorProperty) as StringSelector;
+            }
+            set
+            {
+                SetValue(ThumbImageURLSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private StringSelector InternalThumbImageURLSelector
+        {
             get => thumbImage == null ? null : new StringSelector(thumbImage.ResourceUrlSelector);
             set
             {
@@ -550,6 +622,18 @@ namespace Tizen.NUI.Components
         /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// <since_tizen> 9 </since_tizen>
         public Selector<string> ThumbImageUrl
+        {
+            get
+            {
+                return GetValue(ThumbImageUrlProperty) as Selector<string>;
+            }
+            set
+            {
+                SetValue(ThumbImageUrlProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Selector<string> InternalThumbImageUrl
         {
             get
             {
@@ -583,6 +667,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(ThumbColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(ThumbColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalThumbColor
+        {
+            get
+            {
                 return thumbImage?.Color;
             }
             set
@@ -603,6 +699,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(BgTrackColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(BgTrackColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalBgTrackColor
+        {
+            get
+            {
                 return bgTrackImage?.BackgroundColor;
             }
             set
@@ -619,6 +727,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Color SlidedTrackColor
+        {
+            get
+            {
+                return GetValue(SlidedTrackColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(SlidedTrackColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalSlidedTrackColor
         {
             get
             {
@@ -658,6 +778,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (float)GetValue(WarningStartValueProperty);
+            }
+            set
+            {
+                SetValue(WarningStartValueProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalWarningStartValue
+        {
+            get
+            {
                 return warningStartValue;
             }
             set
@@ -673,6 +805,18 @@ namespace Tizen.NUI.Components
         /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color WarningTrackColor
+        {
+            get
+            {
+                return GetValue(WarningTrackColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(WarningTrackColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalWarningTrackColor
         {
             get
             {
@@ -696,6 +840,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(WarningSlidedTrackColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(WarningSlidedTrackColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalWarningSlidedTrackColor
+        {
+            get
+            {
                 return warningSlidedTrackImage?.BackgroundColor;
             }
             set
@@ -714,6 +870,18 @@ namespace Tizen.NUI.Components
         /// This will be public opened later after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> WarningThumbImageUrl
+        {
+            get
+            {
+                return GetValue(WarningThumbImageUrlProperty) as Selector<string>;
+            }
+            set
+            {
+                SetValue(WarningThumbImageUrlProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Selector<string> InternalWarningThumbImageUrl
         {
             get
             {
@@ -741,6 +909,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(WarningThumbColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(WarningThumbColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalWarningThumbColor
+        {
+            get
+            {
                 return warningThumbColor;
             }
             set
@@ -754,6 +934,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string LowIndicatorImageURL
+        {
+            get
+            {
+                return GetValue(LowIndicatorImageURLProperty) as string;
+            }
+            set
+            {
+                SetValue(LowIndicatorImageURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalLowIndicatorImageURL
         {
             get
             {
@@ -774,6 +966,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(HighIndicatorImageURLProperty) as string;
+            }
+            set
+            {
+                SetValue(HighIndicatorImageURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalHighIndicatorImageURL
+        {
+            get
+            {
                 return highIndicatorImage?.ResourceUrl;
             }
             set
@@ -788,6 +992,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string LowIndicatorTextContent
+        {
+            get
+            {
+                return GetValue(LowIndicatorTextContentProperty) as string;
+            }
+            set
+            {
+                SetValue(LowIndicatorTextContentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalLowIndicatorTextContent
         {
             get
             {
@@ -810,6 +1026,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(HighIndicatorTextContentProperty) as string;
+            }
+            set
+            {
+                SetValue(HighIndicatorTextContentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalHighIndicatorTextContent
+        {
+            get
+            {
                 return highIndicatorText?.Text;
             }
             set
@@ -826,6 +1054,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Size LowIndicatorSize
+        {
+            get
+            {
+                return GetValue(LowIndicatorSizeProperty) as Size;
+            }
+            set
+            {
+                SetValue(LowIndicatorSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Size InternalLowIndicatorSize
         {
             get
             {
@@ -846,6 +1086,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Size HighIndicatorSize
+        {
+            get
+            {
+                return GetValue(HighIndicatorSizeProperty) as Size;
+            }
+            set
+            {
+                SetValue(HighIndicatorSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Size InternalHighIndicatorSize
         {
             get
             {
@@ -916,6 +1168,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(ValueIndicatorSizeProperty) as Size;
+            }
+            set
+            {
+                SetValue(ValueIndicatorSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Size InternalValueIndicatorSize
+        {
+            get
+            {
                 return valueIndicatorImage?.Size;
             }
             set
@@ -932,6 +1196,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public string ValueIndicatorUrl
+        {
+            get
+            {
+                return GetValue(ValueIndicatorUrlProperty) as string;
+            }
+            set
+            {
+                SetValue(ValueIndicatorUrlProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalValueIndicatorUrl
         {
             get
             {
@@ -952,7 +1228,19 @@ namespace Tizen.NUI.Components
         /// The default value is false.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public bool IsDiscrete { get; set; } = false;
+        public bool IsDiscrete
+        {
+            get
+            {
+                return (bool)GetValue(IsDiscreteProperty);
+            }
+            set
+            {
+                SetValue(IsDiscreteProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalIsDiscrete { get; set; } = false;
 
         /// <summary>
         /// Gets or sets the discrete value of slider.
@@ -965,6 +1253,18 @@ namespace Tizen.NUI.Components
         /// </remarks>
         /// <since_tizen> 9 </since_tizen>
         public float DiscreteValue
+        {
+            get
+            {
+                return (float)GetValue(DiscreteValueProperty);
+            }
+            set
+            {
+                SetValue(DiscreteValueProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalDiscreteValue
         {
             get
             {

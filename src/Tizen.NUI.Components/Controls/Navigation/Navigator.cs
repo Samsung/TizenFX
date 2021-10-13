@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -73,6 +74,24 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 9 </since_tizen>
     public class Navigator : Control
     {
+        /// <summary>
+        /// TransitionProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TransitionProperty = BindableProperty.Create(nameof(Transition), typeof(Transition), typeof(Navigator), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Navigator)bindable;
+            if (newValue != null)
+            {
+                instance.InternalTransition = newValue as Transition;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Navigator)bindable;
+            return instance.InternalTransition;
+        });
+
         private const int DefaultTransitionDuration = 500;
 
         //This will be replaced with view transition class instance.
@@ -142,6 +161,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Transition Transition
+        {
+            get
+            {
+                return GetValue(TransitionProperty) as Transition;
+            }
+            set
+            {
+                SetValue(TransitionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Transition InternalTransition
         {
             set
             {

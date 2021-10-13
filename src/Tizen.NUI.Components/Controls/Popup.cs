@@ -27,7 +27,7 @@ namespace Tizen.NUI.Components
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     [Obsolete("Deprecated in API8; Will be removed in API10")]
-    public class Popup : Control
+    public partial class Popup : Control
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -328,6 +328,18 @@ namespace Tizen.NUI.Components
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string TitleText
         {
+            get
+            {
+                return GetValue(TitleTextProperty) as string;
+            }
+            set
+            {
+                SetValue(TitleTextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalTitleText
+        {
             get => Title.Text;
             set => Title.Text = value;
         }
@@ -338,6 +350,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public float TitlePointSize
+        {
+            get
+            {
+                return (float)GetValue(TitlePointSizeProperty);
+            }
+            set
+            {
+                SetValue(TitlePointSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalTitlePointSize
         {
             get => Title.PointSize;
             set => Title.PointSize = value;
@@ -350,6 +374,18 @@ namespace Tizen.NUI.Components
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Color TitleTextColor
         {
+            get
+            {
+                return GetValue(TitleTextColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(TitleTextColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalTitleTextColor
+        {
             get => Title.TextColor;
             set => Title.TextColor = value;
         }
@@ -360,6 +396,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public HorizontalAlignment TitleTextHorizontalAlignment
+        {
+            get
+            {
+                return (HorizontalAlignment)GetValue(TitleTextHorizontalAlignmentProperty);
+            }
+            set
+            {
+                SetValue(TitleTextHorizontalAlignmentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private HorizontalAlignment InternalTitleTextHorizontalAlignment
         {
             get => Title.HorizontalAlignment;
             set => Title.HorizontalAlignment = value;
@@ -372,6 +420,18 @@ namespace Tizen.NUI.Components
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Position TitleTextPosition
         {
+            get
+            {
+                return GetValue(TitleTextPositionProperty) as Position;
+            }
+            set
+            {
+                SetValue(TitleTextPositionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Position InternalTitleTextPosition
+        {
             get => Title.Position;
             set => Title.Position = value;
         }
@@ -382,6 +442,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public int TitleHeight
+        {
+            get
+            {
+                return (int)GetValue(TitleHeightProperty);
+            }
+            set
+            {
+                SetValue(TitleHeightProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalTitleHeight
         {
             get => (int)Title.SizeHeight;
             set => Title.SizeHeight = (int)value;
@@ -404,6 +476,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public int ButtonCount
+        {
+            get
+            {
+                return (int)GetValue(ButtonCountProperty);
+            }
+            set
+            {
+                SetValue(ButtonCountProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalButtonCount
         {
             get;
             set;
