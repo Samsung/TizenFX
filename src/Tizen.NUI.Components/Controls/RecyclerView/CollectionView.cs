@@ -29,7 +29,7 @@ namespace Tizen.NUI.Components
     /// Selectable RecyclerView that presenting a collection of items with variable layouters.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public class CollectionView : RecyclerView
+    public partial class CollectionView : RecyclerView
     {
         /// <summary>
         /// Binding Property of selected item in single selection.
@@ -270,6 +270,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(ItemTemplateProperty) as DataTemplate;
+            }
+            set
+            {
+                SetValue(ItemTemplateProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private DataTemplate InternalItemTemplate
+        {
+            get
+            {
                 return itemTemplate;
             }
             set
@@ -294,6 +306,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public virtual ItemsLayouter ItemsLayouter
+        {
+            get
+            {
+                return GetValue(ItemsLayouterProperty) as ItemsLayouter;
+            }
+            set
+            {
+                SetValue(ItemsLayouterProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private ItemsLayouter InternalItemsLayouter
         {
             get
             {
@@ -329,6 +353,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public new Direction ScrollingDirection
+        {
+            get
+            {
+                return (Direction)GetValue(ScrollingDirectionProperty);
+            }
+            set
+            {
+                SetValue(ScrollingDirectionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Direction InternalScrollingDirection
         {
             get
             {
@@ -379,13 +415,37 @@ namespace Tizen.NUI.Components
         /// Command of selection changed.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ICommand SelectionChangedCommand { set; get; }
+        public ICommand SelectionChangedCommand
+        {
+            get
+            {
+                return GetValue(SelectionChangedCommandProperty) as ICommand;
+            }
+            set
+            {
+                SetValue(SelectionChangedCommandProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private ICommand InternalSelectionChangedCommand { set; get; }
 
         /// <summary>
         /// Command parameter of selection changed.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public object SelectionChangedCommandParameter { set; get; }
+        public object SelectionChangedCommandParameter
+        {
+            get
+            {
+                return GetValue(SelectionChangedCommandParameterProperty);
+            }
+            set
+            {
+                SetValue(SelectionChangedCommandParameterProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private object InternalSelectionChangedCommandParameter { set; get; }
 
         /// <summary>
         /// Header item placed in top-most position.
@@ -393,6 +453,18 @@ namespace Tizen.NUI.Components
         /// <remarks>Please note that, internal index will be increased by header.</remarks>
         /// <since_tizen> 9 </since_tizen>
         public RecyclerViewItem Header
+        {
+            get
+            {
+                return GetValue(HeaderProperty) as RecyclerViewItem;
+            }
+            set
+            {
+                SetValue(HeaderProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private RecyclerViewItem InternalHeader
         {
             get => header;
             set
@@ -426,6 +498,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public RecyclerViewItem Footer
         {
+            get
+            {
+                return GetValue(FooterProperty) as RecyclerViewItem;
+            }
+            set
+            {
+                SetValue(FooterProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private RecyclerViewItem InternalFooter
+        {
             get => footer;
             set
             {
@@ -457,6 +541,18 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsGrouped
         {
+            get
+            {
+                return (bool)GetValue(IsGroupedProperty);
+            }
+            set
+            {
+                SetValue(IsGroupedProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalIsGrouped
+        {
             get => isGrouped;
             set
             {
@@ -484,6 +580,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(GroupHeaderTemplateProperty) as DataTemplate;
+            }
+            set
+            {
+                SetValue(GroupHeaderTemplateProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private DataTemplate InternalGroupHeaderTemplate
+        {
+            get
+            {
                 return groupHeaderTemplate;
             }
             set
@@ -508,6 +616,18 @@ namespace Tizen.NUI.Components
         /// <remarks>Please note that, internal index will be increased by group footer.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DataTemplate GroupFooterTemplate
+        {
+            get
+            {
+                return GetValue(GroupFooterTemplateProperty) as DataTemplate;
+            }
+            set
+            {
+                SetValue(GroupFooterTemplateProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private DataTemplate InternalGroupFooterTemplate
         {
             get
             {

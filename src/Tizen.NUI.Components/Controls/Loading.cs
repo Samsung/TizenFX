@@ -30,6 +30,24 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     public class Loading : Control
     {
+        /// <summary>
+        /// ImageArrayProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImageArrayProperty = BindableProperty.Create(nameof(ImageArray), typeof(string[]), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Loading)bindable;
+            if (newValue != null)
+            {
+                instance.InternalImageArray = newValue as string[];
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Loading)bindable;
+            return instance.InternalImageArray;
+        });
+
         /// <summary>The ImageList bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ImageListProperty = BindableProperty.Create(nameof(ImageList), typeof(IList<string>), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -142,6 +160,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string[] ImageArray
+        {
+            get
+            {
+                return GetValue(ImageArrayProperty) as string[];
+            }
+            set
+            {
+                SetValue(ImageArrayProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string[] InternalImageArray
         {
             get => (GetValue(ImageListProperty) as List<string>)?.ToArray() ?? null;
             set => SetValue(ImageListProperty, value == null ? new List<string>() : new List<string>((string[])value));

@@ -28,6 +28,42 @@ namespace Tizen.NUI.Components
     public abstract class RecyclerView : ScrollableBase, ICollectionChangedNotifier
     {
         /// <summary>
+        /// ItemsSourceProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(RecyclerView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (RecyclerView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalItemsSource = newValue as IEnumerable;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (RecyclerView)bindable;
+            return instance.InternalItemsSource;
+        });
+
+        /// <summary>
+        /// ItemTemplateProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ItemTemplateProperty = BindableProperty.Create(nameof(ItemTemplate), typeof(DataTemplate), typeof(RecyclerView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (RecyclerView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalItemTemplate = newValue as DataTemplate;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (RecyclerView)bindable;
+            return instance.InternalItemTemplate;
+        });
+
+        /// <summary>
         /// Base Constructor
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
@@ -40,13 +76,37 @@ namespace Tizen.NUI.Components
         /// Item's source data.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public virtual IEnumerable ItemsSource { get; set; }
+        public virtual IEnumerable ItemsSource
+        {
+            get
+            {
+                return GetValue(ItemsSourceProperty) as IEnumerable;
+            }
+            set
+            {
+                SetValue(ItemsSourceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private IEnumerable InternalItemsSource { get; set; }
 
         /// <summary>
         /// DataTemplate for items.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public virtual DataTemplate ItemTemplate { get; set; }
+        public virtual DataTemplate ItemTemplate
+        {
+            get
+            {
+                return GetValue(ItemTemplateProperty) as DataTemplate;
+            }
+            set
+            {
+                SetValue(ItemTemplateProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private DataTemplate InternalItemTemplate { get; set; }
 
         /// <summary>
         /// Internal encapsulated items data source.

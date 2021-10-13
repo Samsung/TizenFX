@@ -25,7 +25,7 @@ namespace Tizen.NUI.Components
     /// DefaultLinearItem may contain text or an icon.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class DefaultLinearItem : RecyclerViewItem
+    public partial class DefaultLinearItem : RecyclerViewItem
     {
         private View itemIcon;
         private TextLabel itemLabel;
@@ -69,6 +69,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Icon
+        {
+            get
+            {
+                return GetValue(IconProperty) as View;
+            }
+            set
+            {
+                SetValue(IconProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private View InternalIcon
         {
             get
             {
@@ -156,6 +168,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(TextProperty) as string;
+            }
+            set
+            {
+                SetValue(TextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalText
+        {
+            get
+            {
                 return Label.Text;
             }
             set
@@ -198,6 +222,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(SubTextProperty) as string;
+            }
+            set
+            {
+                SetValue(SubTextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalSubText
+        {
+            get
+            {
                 return SubLabel.Text;
             }
             set
@@ -211,6 +247,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public View Extra
+        {
+            get
+            {
+                return GetValue(ExtraProperty) as View;
+            }
+            set
+            {
+                SetValue(ExtraProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private View InternalExtra
         {
             get
             {

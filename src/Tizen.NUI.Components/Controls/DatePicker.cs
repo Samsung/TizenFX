@@ -21,6 +21,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Diagnostics.CodeAnalysis;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -57,6 +58,24 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 9 </since_tizen>
     public class DatePicker : Control
     {
+        /// <summary>
+        /// DateProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty DateProperty = BindableProperty.Create(nameof(Date), typeof(DateTime), typeof(DatePicker), default(DateTime), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (DatePicker)bindable;
+            if (newValue != null)
+            {
+                instance.InternalDate = (DateTime)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (DatePicker)bindable;
+            return instance.InternalDate;
+        });
+
         private DateTime currentDate;
         private Picker dayPicker;
         private Picker monthPicker;
@@ -128,6 +147,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public DateTime Date
+        {
+            get
+            {
+                return (DateTime)GetValue(DateProperty);
+            }
+            set
+            {
+                SetValue(DateProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private DateTime InternalDate
         {
             get
             {

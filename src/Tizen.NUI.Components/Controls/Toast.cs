@@ -29,7 +29,7 @@ namespace Tizen.NUI.Components
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     [Obsolete("Deprecated in API8; Will be removed in API10")]
-    public class Toast : Control
+    public partial class Toast : Control
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -127,6 +127,18 @@ namespace Tizen.NUI.Components
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string[] TextArray
         {
+            get
+            {
+                return GetValue(TextArrayProperty) as string[];
+            }
+            set
+            {
+                SetValue(TextArrayProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string[] InternalTextArray
+        {
             get;
             set;
         }
@@ -137,6 +149,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public float PointSize
+        {
+            get
+            {
+                return (float)GetValue(PointSizeProperty);
+            }
+            set
+            {
+                SetValue(PointSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalPointSize
         {
             get
             {
@@ -160,6 +184,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(FontFamilyProperty) as string;
+            }
+            set
+            {
+                SetValue(FontFamilyProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalFontFamily
+        {
+            get
+            {
                 return textLabel?.FontFamily;
             }
             set
@@ -180,6 +216,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(TextColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(TextColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalTextColor
+        {
+            get
+            {
                 return textLabel?.TextColor;
             }
             set
@@ -197,6 +245,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public HorizontalAlignment TextAlignment
+        {
+            get
+            {
+                return (HorizontalAlignment)GetValue(TextAlignmentProperty);
+            }
+            set
+            {
+                SetValue(TextAlignmentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private HorizontalAlignment InternalTextAlignment
         {
             get
             {
@@ -249,6 +309,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(TextPaddingProperty) as Extents;
+            }
+            set
+            {
+                SetValue(TextPaddingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Extents InternalTextPadding
+        {
+            get
+            {
                 return textLabel?.Padding;
             }
             set
@@ -265,14 +337,38 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
-        public uint TextLineHeight { get; set; }
+        public uint TextLineHeight
+        {
+            get
+            {
+                return (UInt32)GetValue(TextLineHeightProperty);
+            }
+            set
+            {
+                SetValue(TextLineHeightProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private uint InternalTextLineHeight { get; set; }
 
         /// <summary>
         /// Gets or sets text line space in toast.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [Obsolete("Deprecated in API8; Will be removed in API10")]
-        public uint TextLineSpace { get; set; }
+        public uint TextLineSpace
+        {
+            get
+            {
+                return (uint)GetValue(TextLineSpaceProperty);
+            }
+            set
+            {
+                SetValue(TextLineSpaceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private uint InternalTextLineSpace { get; set; }
 
         /// <summary>
         /// Gets or sets duration of toast.
