@@ -14,47 +14,39 @@
  * limitations under the License.
  */
 
-using System;
-
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
     /// <summary>
-    /// A class to represent result of connection.
+    /// An abstract class to represent payload.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public class ConnectionResult
+    public abstract class Payload
     {
-        private readonly string _reason;
-        private readonly ConnectionStatus _status;
-
-        internal ConnectionResult(IntPtr handle)
-        {
-            Interop.CionConnectionResult.CionConnectionResultGetReason(handle, out _reason);
-            Interop.CionConnectionResult.CionConnectionResultGetStatus(handle, out _status);
-        }
+        private readonly string LogTag = "Tizen.Applications.Cion";
+        internal PayloadSafeHandle _handle;
 
         /// <summary>
-        /// Gets the connection status.
+        /// Gets type of the payload.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public ConnectionStatus Status
+        public abstract PayloadType PayloadType { get; }
+
+        /// <summary>
+        /// Gets Id of the payload.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public string Id
         {
             get
             {
-                return _status;
-            }
-        }
-
-        /// <summary>
-        /// Gets the reason of the connection result.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public string Reason
-        {
-            get
-            {
-                return _reason;
-            }
+                Interop.Cion.ErrorCode ret = Interop.CionPayload.CionPayloadGetPayloadID(_handle, out string id);
+                if (ret != Interop.Cion.ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Failed to get id of payload.");
+                    return "";
+                }
+                return id;
+            }            
         }
     }
 }

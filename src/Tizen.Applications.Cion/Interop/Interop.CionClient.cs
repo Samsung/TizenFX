@@ -16,7 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Tizen.Applications;
+using Tizen.Applications.Cion;
 
 using ErrorCode = Interop.Cion.ErrorCode;
 
@@ -25,13 +25,13 @@ internal static partial class Interop
     internal static partial class CionClient
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void CionClientDiscoveredCb(string serviceName, IntPtr peerInfo, IntPtr userData);
+        internal delegate void CionClientServerDiscoveredCb(string serviceName, IntPtr peerInfo, IntPtr userData);
         
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void CionClientConnectionResultCb(string serviceName, IntPtr peerInfo, IntPtr result, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void CionClientPayloadRecievedCb(string serviceName, IntPtr peerInfo, IntPtr payload, int status, IntPtr userData);
+        internal delegate void CionClientPayloadReceivedCb(string serviceName, IntPtr peerInfo, IntPtr payload, int status, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void CionClientDisconnectedCb(string serviceName, IntPtr peerInfo, IntPtr userData);
@@ -42,11 +42,11 @@ internal static partial class Interop
         [DllImport(Libraries.Cion, EntryPoint = "cion_client_create")]
         internal static extern ErrorCode CionClientCreate(out ClientSafeHandle client, string serviceName, IntPtr security);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_client_destory")]
+        [DllImport(Libraries.Cion, EntryPoint = "cion_client_destroy")]
         internal static extern ErrorCode CionClientDestroy(IntPtr client);
         
         [DllImport(Libraries.Cion, EntryPoint = "cion_client_try_discovery")]
-        internal static extern ErrorCode CionClientTryDiscovery(ClientSafeHandle client, CionClientDiscoveredCb cb, IntPtr userData);
+        internal static extern ErrorCode CionClientTryDiscovery(ClientSafeHandle client, CionClientServerDiscoveredCb cb, IntPtr userData);
         
         [DllImport(Libraries.Cion, EntryPoint = "cion_client_stop_discovery")]
         internal static extern ErrorCode CionClientStopDiscovery(ClientSafeHandle client);
@@ -66,10 +66,19 @@ internal static partial class Interop
         [DllImport(Libraries.Cion, EntryPoint = "cion_client_add_connection_result_cb")]
         internal static extern ErrorCode CionClientAddConnectionResultCb(ClientSafeHandle client, CionClientConnectionResultCb cb, IntPtr userData);
 
-        [DllImport(Libraries.Cion, EntryPoint = "cion_client_add_payload_recieved_cb")]
-        internal static extern ErrorCode CionClientAddPayloadReceivedCb(ClientSafeHandle client, CionClientPayloadRecievedCb cb, IntPtr userData);
+        [DllImport(Libraries.Cion, EntryPoint = "cion_client_remove_connection_result_cb")]
+        internal static extern ErrorCode CionClientRemoveConnectionResultCb(ClientSafeHandle client, CionClientConnectionResultCb cb);
+
+        [DllImport(Libraries.Cion, EntryPoint = "cion_client_add_payload_received_cb")]
+        internal static extern ErrorCode CionClientAddPayloadReceivedCb(ClientSafeHandle client, CionClientPayloadReceivedCb cb, IntPtr userData);
+
+        [DllImport(Libraries.Cion, EntryPoint = "cion_client_remove_payload_received_cb")]
+        internal static extern ErrorCode CionClientRemovePayloadReceivedCb(ClientSafeHandle client, CionClientPayloadReceivedCb cb);
 
         [DllImport(Libraries.Cion, EntryPoint = "cion_client_add_disconnected_cb")]
         internal static extern ErrorCode CionClientAddDisconnectedCb(ClientSafeHandle client, CionClientDisconnectedCb cb, IntPtr userData);
+
+        [DllImport(Libraries.Cion, EntryPoint = "cion_client_remove_disconnected_cb")]
+        internal static extern ErrorCode CionClientRemoveDisconnectedCb(ClientSafeHandle client, CionClientDisconnectedCb cb);
     }
 }

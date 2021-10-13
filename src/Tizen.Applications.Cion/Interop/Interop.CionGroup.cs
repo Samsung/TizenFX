@@ -16,7 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
-using Tizen.Applications;
+using Tizen.Applications.Cion;
 
 using ErrorCode = Interop.Cion.ErrorCode;
 
@@ -51,10 +51,19 @@ internal static partial class Interop
         [DllImport(Libraries.Cion, EntryPoint = "cion_group_add_payload_received_cb")]
         internal static extern ErrorCode CionGroupAddPayloadReceivedCb(GroupSafeHandle group, CionGroupPayloadReceivedCb cb, IntPtr userData);
 
+        [DllImport(Libraries.Cion, EntryPoint = "cion_group_remove_payload_received_cb")]
+        internal static extern ErrorCode CionGroupRemovePayloadReceivedCb(GroupSafeHandle group, CionGroupPayloadReceivedCb cb);
+
         [DllImport(Libraries.Cion, EntryPoint = "cion_group_add_joined_cb")]
         internal static extern ErrorCode CionGroupAddJoinedCb(GroupSafeHandle group, CionGroupJoinedCb cb, IntPtr userData);
 
+        [DllImport(Libraries.Cion, EntryPoint = "cion_group_remove_joined_cb")]
+        internal static extern ErrorCode CionGroupRemoveJoinedCb(GroupSafeHandle group, CionGroupJoinedCb cb);
+
         [DllImport(Libraries.Cion, EntryPoint = "cion_group_add_left_cb")]
         internal static extern ErrorCode CionGroupAddLeftCb(GroupSafeHandle group, CionGroupLeftCb cb, IntPtr userData);
+
+        [DllImport(Libraries.Cion, EntryPoint = "cion_group_remove_left_cb")]
+        internal static extern ErrorCode CionGroupRemoveLeftCb(GroupSafeHandle group, CionGroupLeftCb cb);
     }
 }

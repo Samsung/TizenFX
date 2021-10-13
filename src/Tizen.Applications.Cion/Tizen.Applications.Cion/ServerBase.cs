@@ -18,7 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Tizen.Applications
+namespace Tizen.Applications.Cion
 {
     /// <summary>
     /// An abstract class to represent cion server.
@@ -26,13 +26,14 @@ namespace Tizen.Applications
     /// <since_tizen> 9 </since_tizen>
     public abstract class ServerBase : IDisposable
     {
-        private const string LogTag = "Tizen.Cion";
+        private readonly string LogTag = "Tizen.Applications.Cion";
 
+        private string _displayName;
         private readonly ServerSafeHandle _handle;
         private Interop.CionServer.CionServerConnectionRequestCb _connectionRequestCb;
         private Interop.CionServer.CionServerConnectionResultCb _connectionResultCb;
         private Interop.CionServer.CionServerDataReceivedCb _dataReceivedCb;
-        private Interop.CionServer.CionServerPayloadRecievedCb _payloadRecievedCb;
+        private Interop.CionServer.CionServerPayloadReceivedCb _payloadRecievedCb;
         private Interop.CionServer.CionServerDisconnectedCb _disconnectedCb;
         private Interop.CionServer.CionServerPayloadAsyncResultCb _payloadAsyncResultCb;
         private Dictionary<Tuple<string, string>, TaskCompletionSource<PayloadAsyncResult>> _tcsDictionary = new Dictionary<Tuple<string, string>, TaskCompletionSource<PayloadAsyncResult>>();
@@ -44,17 +45,38 @@ namespace Tizen.Applications
         public string ServiceName { get; }
 
         /// <summary>
-        /// Gets the display name of current cion server.
+        /// Gets or sets the display name of current cion server.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public string DisplayName { get; }
+        public string DisplayName
+        {
+            get
+            {
+                return _displayName;
+            }
+
+            set
+            {
+                Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerSetDisplayName(_handle, value);
+                if (ret != Interop.Cion.ErrorCode.None)
+                {
+                    Log.Error(LogTag, string.Format("Failed to set display name: {0}", ret));
+                }
+                else
+                {
+                    _displayName = value;
+                }
+            }
+        }
 
         /// <summary>
         /// The constructor of ServerBase class.
         /// </summary>
         /// <param name="serviceName">The name of service.</param>
         /// <param name="displayName">The display name of service.</param>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
+        /// <remarks>The maximum length of service name is 512.</remarks>
+        /// <exception cref="ArgumentException">Thrown when the given service name is too long.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
         /// <since_tizen> 9 </since_tizen>
         public ServerBase(string serviceName, string displayName) : this(serviceName, displayName, null) { }
 
@@ -64,12 +86,14 @@ namespace Tizen.Applications
         /// <param name="serviceName">The name of service.</param>
         /// <param name="displayName">The display name of service.</param>
         /// <param name="security">The security configuration.</param>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <remarks>The maximum length of service name is 512.</remarks>
+        /// <exception cref="ArgumentException">Thrown when the given service name is too long.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is not enough memory to continue the execution of the method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public ServerBase(string serviceName, string displayName, Cion.SecurityInfo security)
         {
             ServiceName = serviceName;
-            DisplayName = displayName;
+            _displayName = displayName;
 
             Cion.SecuritySafeHandle handle = security?._handle;
             Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerCreate(out _handle, serviceName, displayName, handle?.DangerousGetHandle() ?? IntPtr.Zero);
@@ -99,7 +123,14 @@ namespace Tizen.Applications
             _dataReceivedCb = new Interop.CionServer.CionServerDataReceivedCb(
                 (string service, IntPtr peerInfo, byte[] data, int dataSize, out byte[] returnData, out int returnDataSize, IntPtr userData) =>
                 {
-                    returnData = OnDataReceived(data, new PeerInfo(new PeerInfoSafeHandle(peerInfo, false)));
+                    Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
+                    if (clone_ret != Interop.Cion.ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Failed to clone peer info.");
+                        returnData = null;
+                        returnDataSize = -1;
+                    }
+                    returnData = OnDataReceived(data, new PeerInfo(clone));
                     returnDataSize = returnData.Length;
                 });
             ret = Interop.CionServer.CionServerSetDataReceivedCb(_handle, _dataReceivedCb, IntPtr.Zero);
@@ -109,7 +140,7 @@ namespace Tizen.Applications
                 throw CionErrorFactory.GetException(ret, "Failed to set data received callback.");
             }     
 
-            _payloadRecievedCb = new Interop.CionServer.CionServerPayloadRecievedCb(
+            _payloadRecievedCb = new Interop.CionServer.CionServerPayloadReceivedCb(
                 (string service, IntPtr peerInfo, IntPtr payload, int status, IntPtr userData) =>
                 {
                     Payload receivedPayload;
@@ -126,7 +157,13 @@ namespace Tizen.Applications
                             Log.Error(LogTag, "Invalid payload type received.");
                             return;
                     }
-                    OnPayloadReceived(receivedPayload, new PeerInfo(new PeerInfoSafeHandle(peerInfo, false)), (PayloadTransferStatus)status);
+                    Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
+                    if (clone_ret != Interop.Cion.ErrorCode.None)
+                    {
+                        Log.Error(LogTag, "Failed to clone peer info.");
+                        return;
+                    }
+                    OnPayloadReceived(receivedPayload, new PeerInfo(clone), (PayloadTransferStatus)status);
                 });
             ret = Interop.CionServer.CionServerAddPayloadReceivedCb(_handle, _payloadRecievedCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
@@ -157,8 +194,11 @@ namespace Tizen.Applications
         /// <summary>
         /// Starts server and listens for requests from cion clients.
         /// </summary>
-        /// <exception cref="InvalidOperationException">Thrown when the listen operation is already in progress.</exception>
         /// <privilege>http://tizen.org/privilege/d2d.datasharing</privilege>
+        /// <privilege>http://tizen.org/privilege/internet</privilege>
+        /// <privlevel>public</privlevel>
+        /// <exception cref="InvalidOperationException">Thrown when the listen operation is already in progress.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void Listen()
         {
@@ -173,7 +213,7 @@ namespace Tizen.Applications
                             Log.Error(LogTag, "Failed to clone peer info");
                             return;
                         }
-                        OnConnentionRequest(new PeerInfo(clone));
+                        OnConnectionRequest(new PeerInfo(clone));
                     });
                 _connectionRequestCb = cb;
             }
@@ -220,7 +260,7 @@ namespace Tizen.Applications
         /// <param name="payload">The payload to send.</param>
         /// <param name="peerInfo">The peer to send payload.</param>
         /// <exception cref="ArgumentException">Thrown when the payload is not valid.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when there is no such connected cion client.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when there is no such connected cion client or failed to send payload.</exception>
         /// <since_tizen> 9 </since_tizen>
         public Task<PayloadAsyncResult> SendPayloadAsync(Payload payload, PeerInfo peerInfo)
         {
@@ -267,6 +307,8 @@ namespace Tizen.Applications
         /// Sends the payload to all of connected peer asynchronously.
         /// </summary>
         /// <param name="payload">The payload to send.</param>
+        /// <exception cref="ArgumentException">Thrown when the payload is not valid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed to send payload.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void SendPayloadAsync(Payload payload)
         {
@@ -301,7 +343,7 @@ namespace Tizen.Applications
         /// <summary>
         /// Gets connected peers.
         /// </summary>
-        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
+        /// <exception cref="InvalidOperationException">Thrown when there is not enough memory to continue the execution of the method.</exception> 
         /// <since_tizen> 9 </since_tizen>
         public IEnumerable<PeerInfo> GetConnectedPeerList()
         {
@@ -311,9 +353,11 @@ namespace Tizen.Applications
                 Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peer, out PeerInfoSafeHandle clone);
                 if (clone_ret != Interop.Cion.ErrorCode.None)
                 {
-                    throw CionErrorFactory.GetException(clone_ret, "Failed to clone peer info.");
+                    Log.Error(LogTag, "Failed to clone peer info.");
+                    return false;
                 }
                 peerInfoList.Add(new PeerInfo(clone));
+                return true;
             }, IntPtr.Zero);
             return peerInfoList;
         }
@@ -322,12 +366,13 @@ namespace Tizen.Applications
         /// Sets ondemand launch enabled flag.
         /// </summary>
         /// <param name="enable">Whether ondemand launch is enabled or not.</param>
-        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <privilege>http://tizen.org/privilege/d2d.remotelaunch</privilege>
+        /// <privlevel>public</privlevel>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
         /// <since_tizen> 9 </since_tizen>
         public void SetOndemandLaunchEnabled(bool enable)
         {
-            Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerSetOndemandLaunchEnable(_handle, enable);
+            Interop.Cion.ErrorCode ret = Interop.CionServer.CionServerSetOnDemandLaunchEnabled(_handle, enable);
             if (ret != Interop.Cion.ErrorCode.None)
             {
                 throw CionErrorFactory.GetException(ret, "Failed to set ondemand launch enable");
@@ -364,7 +409,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="peerInfo">The peer info of the cion client.</param>
         /// <since_tizen> 9 </since_tizen>
-        protected abstract void OnConnentionRequest(PeerInfo peerInfo);
+        protected abstract void OnConnectionRequest(PeerInfo peerInfo);
 
         /// <summary>
         /// The callback invoked when disconnected with cion client.
