@@ -53,7 +53,7 @@
   SecurityInfo
   </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Cion/Tizen.Applications/Cion/SecurityInfo.cs/#L25" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Cion/Tizen.Applications.Cion/SecurityInfo.cs/#L25" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -97,7 +97,7 @@
   <a id="Tizen_Applications_Cion_SecurityInfo__ctor_" data-uid="Tizen.Applications.Cion.SecurityInfo.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Cion/Tizen.Applications/Cion/SecurityInfo.cs/#L35">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Cion/Tizen.Applications.Cion/SecurityInfo.cs/#L35">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Cion_SecurityInfo__ctor" data-uid="Tizen.Applications.Cion.SecurityInfo.#ctor">SecurityInfo()</h4>
     <section>
@@ -135,7 +135,7 @@
   <a id="Tizen_Applications_Cion_SecurityInfo_CaPath_" data-uid="Tizen.Applications.Cion.SecurityInfo.CaPath*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Cion/Tizen.Applications/Cion/SecurityInfo.cs/#L49">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Cion/Tizen.Applications.Cion/SecurityInfo.cs/#L54">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Cion_SecurityInfo_CaPath" data-uid="Tizen.Applications.Cion.SecurityInfo.CaPath">CaPath</h4>
     <section>
@@ -163,6 +163,10 @@
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_Applications_Cion_SecurityInfo_CaPath_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a> is needed if the file path is relevant to media storage.
+<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a> is needed if the file path is relevant to external storage.</p>
+</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
     <thead>
@@ -177,6 +181,11 @@
         <td><p>Thrown when the CA path is invalid.</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when an application does not have the privilege to access this method.</p>
+</td>
+      </tr>
     </tbody>
   </table>
   
@@ -186,7 +195,7 @@
   <a id="Tizen_Applications_Cion_SecurityInfo_CertPath_" data-uid="Tizen.Applications.Cion.SecurityInfo.CertPath*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Cion/Tizen.Applications/Cion/SecurityInfo.cs/#L77">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Cion/Tizen.Applications.Cion/SecurityInfo.cs/#L87">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Cion_SecurityInfo_CertPath" data-uid="Tizen.Applications.Cion.SecurityInfo.CertPath">CertPath</h4>
     <section>
@@ -214,6 +223,10 @@
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_Applications_Cion_SecurityInfo_CertPath_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a> is needed if the file path is relevant to media storage.
+<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a> is needed if the file path is relevant to external storage.</p>
+</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
     <thead>
@@ -228,6 +241,11 @@
         <td><p>Thrown when the cert path is invalid.</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when an application does not have the privilege to access this method.</p>
+</td>
+      </tr>
     </tbody>
   </table>
   
@@ -237,7 +255,7 @@
   <a id="Tizen_Applications_Cion_SecurityInfo_PrivateKeyPath_" data-uid="Tizen.Applications.Cion.SecurityInfo.PrivateKeyPath*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Cion/Tizen.Applications/Cion/SecurityInfo.cs/#L105">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Cion/Tizen.Applications.Cion/SecurityInfo.cs/#L120">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Cion_SecurityInfo_PrivateKeyPath" data-uid="Tizen.Applications.Cion.SecurityInfo.PrivateKeyPath">PrivateKeyPath</h4>
     <section>
@@ -265,6 +283,10 @@
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_Applications_Cion_SecurityInfo_PrivateKeyPath_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p><a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a> is needed if the file path is relevant to media storage.
+<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a> is needed if the file path is relevant to external storage.</p>
+</div>
   <h5 class="exceptions">Exceptions</h5>
   <table class="table">
     <thead>
@@ -279,6 +301,11 @@
         <td><p>Thrown when the private key path is invalid.</p>
 </td>
       </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when an application does not have the privilege to access this method.</p>
+</td>
+      </tr>
     </tbody>
   </table>
   
@@ -290,7 +317,7 @@
   <a id="Tizen_Applications_Cion_SecurityInfo_Dispose_" data-uid="Tizen.Applications.Cion.SecurityInfo.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Cion/Tizen.Applications/Cion/SecurityInfo.cs/#L152">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Cion/Tizen.Applications.Cion/SecurityInfo.cs/#L167">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Cion_SecurityInfo_Dispose" data-uid="Tizen.Applications.Cion.SecurityInfo.Dispose">Dispose()</h4>
     <section>
@@ -310,7 +337,7 @@
   <a id="Tizen_Applications_Cion_SecurityInfo_Dispose_" data-uid="Tizen.Applications.Cion.SecurityInfo.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Cion/Tizen.Applications/Cion/SecurityInfo.cs/#L136">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Cion/Tizen.Applications.Cion/SecurityInfo.cs/#L151">View Source</a>
     </span>
     <h4 id="Tizen_Applications_Cion_SecurityInfo_Dispose_System_Boolean_" data-uid="Tizen.Applications.Cion.SecurityInfo.Dispose(System.Boolean)">Dispose(Boolean)</h4>
     <section>

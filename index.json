@@ -57264,9 +57264,69 @@
     "title": "Enum CertificateType",
     "keywords": ""
   },
+  "API9/api/Tizen.Applications.Cion.ClientBase.html": {
+    "href": "API9/api/Tizen.Applications.Cion.ClientBase.html",
+    "title": "Class ClientBase",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Applications.Cion.ConnectionResult.html": {
+    "href": "API9/api/Tizen.Applications.Cion.ConnectionResult.html",
+    "title": "Class ConnectionResult",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Applications.Cion.ConnectionStatus.html": {
+    "href": "API9/api/Tizen.Applications.Cion.ConnectionStatus.html",
+    "title": "Enum ConnectionStatus",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Applications.Cion.DataPayload.html": {
+    "href": "API9/api/Tizen.Applications.Cion.DataPayload.html",
+    "title": "Class DataPayload",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Applications.Cion.FilePayload.html": {
+    "href": "API9/api/Tizen.Applications.Cion.FilePayload.html",
+    "title": "Class FilePayload",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Applications.Cion.GroupBase.html": {
+    "href": "API9/api/Tizen.Applications.Cion.GroupBase.html",
+    "title": "Class GroupBase",
+    "keywords": ""
+  },
   "API9/api/Tizen.Applications.Cion.html": {
     "href": "API9/api/Tizen.Applications.Cion.html",
     "title": "Namespace Tizen.Applications.Cion",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Applications.Cion.Payload.html": {
+    "href": "API9/api/Tizen.Applications.Cion.Payload.html",
+    "title": "Class Payload",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Applications.Cion.PayloadAsyncResult.html": {
+    "href": "API9/api/Tizen.Applications.Cion.PayloadAsyncResult.html",
+    "title": "Class PayloadAsyncResult",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Applications.Cion.PayloadAsyncResultCode.html": {
+    "href": "API9/api/Tizen.Applications.Cion.PayloadAsyncResultCode.html",
+    "title": "Enum PayloadAsyncResultCode",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Applications.Cion.PayloadTransferStatus.html": {
+    "href": "API9/api/Tizen.Applications.Cion.PayloadTransferStatus.html",
+    "title": "Enum PayloadTransferStatus",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Applications.Cion.PayloadType.html": {
+    "href": "API9/api/Tizen.Applications.Cion.PayloadType.html",
+    "title": "Enum PayloadType",
+    "keywords": ""
+  },
+  "API9/api/Tizen.Applications.Cion.PeerInfo.html": {
+    "href": "API9/api/Tizen.Applications.Cion.PeerInfo.html",
+    "title": "Class PeerInfo",
     "keywords": ""
   },
   "API9/api/Tizen.Applications.Cion.SecurityInfo.html": {
@@ -57274,9 +57334,9 @@
     "title": "Class SecurityInfo",
     "keywords": ""
   },
-  "API9/api/Tizen.Applications.ClientBase.html": {
-    "href": "API9/api/Tizen.Applications.ClientBase.html",
-    "title": "Class ClientBase",
+  "API9/api/Tizen.Applications.Cion.ServerBase.html": {
+    "href": "API9/api/Tizen.Applications.Cion.ServerBase.html",
+    "title": "Class ServerBase",
     "keywords": ""
   },
   "API9/api/Tizen.Applications.ComponentBased.Common.BaseComponent.html": {
@@ -57382,16 +57442,6 @@
   "API9/api/Tizen.Applications.ComponentBased.RequestEventArgs.html": {
     "href": "API9/api/Tizen.Applications.ComponentBased.RequestEventArgs.html",
     "title": "Class RequestEventArgs",
-    "keywords": ""
-  },
-  "API9/api/Tizen.Applications.ConnectionResult.html": {
-    "href": "API9/api/Tizen.Applications.ConnectionResult.html",
-    "title": "Class ConnectionResult",
-    "keywords": ""
-  },
-  "API9/api/Tizen.Applications.ConnectionStatus.html": {
-    "href": "API9/api/Tizen.Applications.ConnectionStatus.html",
-    "title": "Enum ConnectionStatus",
     "keywords": ""
   },
   "API9/api/Tizen.Applications.CoreApplication.html": {
@@ -57537,11 +57587,6 @@
   "API9/api/Tizen.Applications.DataControl.UpdateResult.html": {
     "href": "API9/api/Tizen.Applications.DataControl.UpdateResult.html",
     "title": "Class UpdateResult",
-    "keywords": ""
-  },
-  "API9/api/Tizen.Applications.DataPayload.html": {
-    "href": "API9/api/Tizen.Applications.DataPayload.html",
-    "title": "Class DataPayload",
     "keywords": ""
   },
   "API9/api/Tizen.Applications.DeviceOrientation.html": {
@@ -57747,16 +57792,6 @@
   "API9/api/Tizen.Applications.Exceptions.PermissionDeniedException.html": {
     "href": "API9/api/Tizen.Applications.Exceptions.PermissionDeniedException.html",
     "title": "Class PermissionDeniedException",
-    "keywords": ""
-  },
-  "API9/api/Tizen.Applications.FilePayload.html": {
-    "href": "API9/api/Tizen.Applications.FilePayload.html",
-    "title": "Class FilePayload",
-    "keywords": ""
-  },
-  "API9/api/Tizen.Applications.GroupBase.html": {
-    "href": "API9/api/Tizen.Applications.GroupBase.html",
-    "title": "Class GroupBase",
     "keywords": ""
   },
   "API9/api/Tizen.Applications.html": {
@@ -58064,36 +58099,6 @@
     "title": "Enum PackageType",
     "keywords": ""
   },
-  "API9/api/Tizen.Applications.Payload.html": {
-    "href": "API9/api/Tizen.Applications.Payload.html",
-    "title": "Class Payload",
-    "keywords": ""
-  },
-  "API9/api/Tizen.Applications.PayloadAsyncResult.html": {
-    "href": "API9/api/Tizen.Applications.PayloadAsyncResult.html",
-    "title": "Class PayloadAsyncResult",
-    "keywords": ""
-  },
-  "API9/api/Tizen.Applications.PayloadAsyncResultCode.html": {
-    "href": "API9/api/Tizen.Applications.PayloadAsyncResultCode.html",
-    "title": "Enum PayloadAsyncResultCode",
-    "keywords": ""
-  },
-  "API9/api/Tizen.Applications.PayloadTransferStatus.html": {
-    "href": "API9/api/Tizen.Applications.PayloadTransferStatus.html",
-    "title": "Enum PayloadTransferStatus",
-    "keywords": ""
-  },
-  "API9/api/Tizen.Applications.PayloadType.html": {
-    "href": "API9/api/Tizen.Applications.PayloadType.html",
-    "title": "Enum PayloadType",
-    "keywords": ""
-  },
-  "API9/api/Tizen.Applications.PeerInfo.html": {
-    "href": "API9/api/Tizen.Applications.PeerInfo.html",
-    "title": "Class PeerInfo",
-    "keywords": ""
-  },
   "API9/api/Tizen.Applications.PermissionType.html": {
     "href": "API9/api/Tizen.Applications.PermissionType.html",
     "title": "Enum PermissionType",
@@ -58232,11 +58237,6 @@
   "API9/api/Tizen.Applications.SafeBundleHandle.html": {
     "href": "API9/api/Tizen.Applications.SafeBundleHandle.html",
     "title": "Class SafeBundleHandle",
-    "keywords": ""
-  },
-  "API9/api/Tizen.Applications.ServerBase.html": {
-    "href": "API9/api/Tizen.Applications.ServerBase.html",
-    "title": "Class ServerBase",
     "keywords": ""
   },
   "API9/api/Tizen.Applications.ServiceApplication.html": {
