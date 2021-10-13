@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -59,6 +60,42 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public partial class FlexibleView : Control
     {
+        /// <summary>
+        /// PaddingProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly new BindableProperty PaddingProperty = BindableProperty.Create(nameof(Padding), typeof(Extents), typeof(FlexibleView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (FlexibleView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalPadding = newValue as Extents;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (FlexibleView)bindable;
+            return instance.InternalPadding;
+        });
+
+        /// <summary>
+        /// FocusedItemIndexProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FocusedItemIndexProperty = BindableProperty.Create(nameof(FocusedItemIndex), typeof(int), typeof(FlexibleView), default(int), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (FlexibleView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalFocusedItemIndex = (int)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (FlexibleView)bindable;
+            return instance.InternalFocusedItemIndex;
+        });
+
         /// <summary>
         /// Constant value: -1.
         /// </summary>
@@ -186,6 +223,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(PaddingProperty) as Extents;
+            }
+            set
+            {
+                SetValue(PaddingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Extents InternalPadding
+        {
+            get
+            {
                 if (null == padding)
                 {
                     padding = new Extents((ushort start, ushort end, ushort top, ushort bottom) =>
@@ -223,6 +272,18 @@ namespace Tizen.NUI.Components
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int FocusedItemIndex
+        {
+            get
+            {
+                return (int)GetValue(FocusedItemIndexProperty);
+            }
+            set
+            {
+                SetValue(FocusedItemIndexProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalFocusedItemIndex
         {
             get
             {

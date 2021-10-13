@@ -53,7 +53,7 @@ namespace Tizen.NUI.Components
     /// a value through a scrolling motion by expressing the specified value as a list.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public class Picker : Control
+    public partial class Picker : Control
     {
         //Tizen 6.5 base components Picker guide visible scroll item is 5.
         private const int scrollVisibleItems = 5;
@@ -186,6 +186,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (int)GetValue(CurrentValueProperty);
+            }
+            set
+            {
+                SetValue(CurrentValueProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalCurrentValue
+        {
+            get
+            {
                 return currentValue;
             }
             set
@@ -209,6 +221,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (int)GetValue(MaxValueProperty);
+            }
+            set
+            {
+                SetValue(MaxValueProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalMaxValue
+        {
+            get
+            {
                 return maxValue;
             }
             set
@@ -228,6 +252,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public int MinValue
+        {
+            get
+            {
+                return (int)GetValue(MinValueProperty);
+            }
+            set
+            {
+                SetValue(MinValueProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalMinValue
         {
             get
             {

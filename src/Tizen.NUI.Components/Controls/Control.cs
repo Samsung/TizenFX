@@ -32,6 +32,24 @@ namespace Tizen.NUI.Components
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class Control : VisualView
     {
+        /// <summary>
+        /// FeedbackProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FeedbackProperty = BindableProperty.Create(nameof(Feedback), typeof(bool), typeof(Control), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Control)bindable;
+            if (newValue != null)
+            {
+                instance.InternalFeedback = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Control)bindable;
+            return instance.InternalFeedback;
+        });
+
         /// Internal used.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty CommandProperty = BindableProperty.Create(nameof(Command), typeof(ICommand), typeof(Control), null, propertyChanged: (bo, o, n) => ((Control)bo).OnCommandChanged());
@@ -99,6 +117,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Feedback
+        {
+            get
+            {
+                return (bool)GetValue(FeedbackProperty);
+            }
+            set
+            {
+                SetValue(FeedbackProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalFeedback
         {
             get => feedback != null;
             set

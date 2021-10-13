@@ -142,7 +142,7 @@ namespace Tizen.NUI.Components
     /// This class provides a View that can scroll a single View with a layout. This View can be a nest of Views.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
-    public class ScrollableBase : Control
+    public partial class ScrollableBase : Control
     {
         static bool LayoutDebugScrollableBase = false; // Debug flag
         private Direction mScrollingDirection = Direction.Vertical;
@@ -254,6 +254,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (Direction)GetValue(ScrollingDirectionProperty);
+            }
+            set
+            {
+                SetValue(ScrollingDirectionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Direction InternalScrollingDirection
+        {
+            get
+            {
                 return mScrollingDirection;
             }
             set
@@ -280,6 +292,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public bool ScrollEnabled
+        {
+            get
+            {
+                return (bool)GetValue(ScrollEnabledProperty);
+            }
+            set
+            {
+                SetValue(ScrollEnabledProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalScrollEnabled
         {
             get
             {
@@ -316,7 +340,19 @@ namespace Tizen.NUI.Components
         /// Default is false.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public bool SnapToPage { set; get; } = false;
+        public bool SnapToPage
+        {
+            get
+            {
+                return (bool)GetValue(SnapToPageProperty);
+            }
+            set
+            {
+                SetValue(SnapToPageProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalSnapToPage { set; get; } = false;
 
         /// <summary>
         /// Get current page.
@@ -332,6 +368,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public int ScrollDuration
         {
+            get
+            {
+                return (int)GetValue(ScrollDurationProperty);
+            }
+            set
+            {
+                SetValue(ScrollDurationProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalScrollDuration
+        {
             set
             {
                 mScrollDuration = value >= 0 ? value : mScrollDuration;
@@ -346,7 +394,19 @@ namespace Tizen.NUI.Components
         /// Scroll Available area.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public Vector2 ScrollAvailableArea { set; get; }
+        public Vector2 ScrollAvailableArea
+        {
+            get
+            {
+                return GetValue(ScrollAvailableAreaProperty) as Vector2;
+            }
+            set
+            {
+                SetValue(ScrollAvailableAreaProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Vector2 InternalScrollAvailableArea { set; get; }
 
         /// <summary>
         /// An event emitted when user starts dragging ScrollableBase, user can subscribe or unsubscribe to this event handler.<br />
@@ -392,6 +452,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(ScrollbarProperty) as ScrollbarBase;
+            }
+            set
+            {
+                SetValue(ScrollbarProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private ScrollbarBase InternalScrollbar
+        {
+            get
+            {
                 return scrollBar;
             }
             set
@@ -429,6 +501,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (bool)GetValue(HideScrollbarProperty);
+            }
+            set
+            {
+                SetValue(HideScrollbarProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalHideScrollbar
+        {
+            get
+            {
                 return hideScrollbar;
             }
             set
@@ -463,6 +547,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(LayoutProperty) as LayoutItem;
+            }
+            set
+            {
+                SetValue(LayoutProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private LayoutItem InternalLayout
+        {
+            get
+            {
                 return ContentContainer.Layout;
             }
             set
@@ -493,6 +589,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (float)GetValue(DecelerationRateProperty);
+            }
+            set
+            {
+                SetValue(DecelerationRateProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalDecelerationRate
+        {
+            get
+            {
                 return decelerationRate;
             }
             set
@@ -506,7 +614,19 @@ namespace Tizen.NUI.Components
         /// Threshold not to go infinite at the end of scrolling animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float DecelerationThreshold { get; set; } = 0.1f;
+        public float DecelerationThreshold
+        {
+            get
+            {
+                return (float)GetValue(DecelerationThresholdProperty);
+            }
+            set
+            {
+                SetValue(DecelerationThresholdProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalDecelerationThreshold { get; set; } = 0.1f;
 
         /// <summary>
         /// Scrolling event will be thrown when this amount of scroll position is changed.
@@ -516,6 +636,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScrollingEventThreshold
+        {
+            get
+            {
+                return (float)GetValue(ScrollingEventThresholdProperty);
+            }
+            set
+            {
+                SetValue(ScrollingEventThresholdProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalScrollingEventThreshold
         {
             get
             {
@@ -542,6 +674,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (float)GetValue(PageFlickThresholdProperty);
+            }
+            set
+            {
+                SetValue(PageFlickThresholdProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalPageFlickThreshold
+        {
+            get
+            {
                 return mPageFlickThreshold;
             }
             set
@@ -558,6 +702,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(PaddingProperty) as Extents;
+            }
+            set
+            {
+                SetValue(PaddingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Extents InternalPadding
+        {
+            get
+            {
                 return ContentContainer.Padding;
             }
             set
@@ -570,7 +726,19 @@ namespace Tizen.NUI.Components
         /// Alphafunction for scroll animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AlphaFunction ScrollAlphaFunction { get; set; } = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+        public AlphaFunction ScrollAlphaFunction
+        {
+            get
+            {
+                return GetValue(ScrollAlphaFunctionProperty) as AlphaFunction;
+            }
+            set
+            {
+                SetValue(ScrollAlphaFunctionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private AlphaFunction InternalScrollAlphaFunction { get; set; } = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
 
         private bool hideScrollbar = true;
         private float maxScrollDistance;
@@ -592,6 +760,18 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         // Let's consider more whether this needs to be set as protected.
         public float NoticeAnimationEndBeforePosition
+        {
+            get
+            {
+                return (float)GetValue(NoticeAnimationEndBeforePositionProperty);
+            }
+            set
+            {
+                SetValue(NoticeAnimationEndBeforePositionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalNoticeAnimationEndBeforePosition
         {
             get => noticeAnimationEndBeforePosition;
             set => noticeAnimationEndBeforePosition = value;
@@ -1110,7 +1290,19 @@ namespace Tizen.NUI.Components
         /// Enable/Disable overshooting effect. default is disabled.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool EnableOverShootingEffect { get; set; } = false;
+        public bool EnableOverShootingEffect
+        {
+            get
+            {
+                return (bool)GetValue(EnableOverShootingEffectProperty);
+            }
+            set
+            {
+                SetValue(EnableOverShootingEffectProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalEnableOverShootingEffect { get; set; } = false;
 
         private void AttachOverShootingShadowView()
         {
