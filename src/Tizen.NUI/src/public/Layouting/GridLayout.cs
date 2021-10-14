@@ -449,6 +449,7 @@ namespace Tizen.NUI
                     // because the grand children's Measure() is called with the mode type AtMost.
                     int widthSpecification = child.LayoutItem.Owner.WidthSpecification;
                     int heightSpecification = child.LayoutItem.Owner.HeightSpecification;
+                    Size2D origSize = new Size2D(child.LayoutItem.Owner.Size2D.Width, child.LayoutItem.Owner.Size2D.Height);
 
                     if (needMeasuredWidth)
                     {
@@ -470,6 +471,14 @@ namespace Tizen.NUI
                     if (needMeasuredHeight)
                     {
                         child.LayoutItem.Owner.HeightSpecification = heightSpecification;
+                    }
+
+                    // If the both Width/HeightSpecification are set with values bigger than 0,
+                    // then the child's Size2D is changed with the values of Width/HeightSpecification.
+                    // The Size2D changes, caused by setting Width/HeightSpecification, should be reverted.
+                    if (needMeasuredWidth && needMeasuredHeight && (widthSpecification > 0) && (heightSpecification > 0))
+                    {
+                        child.LayoutItem.Owner.SetSize(origSize.Width, origSize.Height);
                     }
                 }
 
