@@ -180,13 +180,9 @@ namespace Tizen.NUI
             // If child already has a Layout then don't change it.
             if (null == child.Layout)
             {
-                // Only wrap View with a Layout if a child a pure View or Layout explicitly set on this Layout
-                if ((true == Owner.LayoutSet || GetType() == typeof(View)))
-                {
-                    // If child of this layout is a pure View then assign it a LayoutGroup
-                    // If the child is derived from a View then it may be a legacy or existing container hence will do layouting itself.
-                    child.Layout = child.CreateDefaultLayout();
-                }
+                // If child view does not have Layout, then default layout is automatically set to the child view.
+                // The Layout is automatically added to this LayoutGroup when child view sets Layout.
+                child.Layout = child.CreateDefaultLayout();
             }
             else
             {
