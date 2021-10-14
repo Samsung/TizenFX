@@ -135,7 +135,7 @@ An instance of ImageView can be created using a URL or an image instance.<br></p
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L279">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L279">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView__ctor_" data-uid="Tizen.NUI.BaseComponents.ImageView.#ctor*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView__ctor" data-uid="Tizen.NUI.BaseComponents.ImageView.#ctor">ImageView()</h4>
@@ -152,7 +152,7 @@ An instance of ImageView can be created using a URL or an image instance.<br></p
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L308">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L308">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView__ctor_" data-uid="Tizen.NUI.BaseComponents.ImageView.#ctor*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView__ctor_System_String_" data-uid="Tizen.NUI.BaseComponents.ImageView.#ctor(System.String)">ImageView(String)</h4>
@@ -190,7 +190,47 @@ If the string is empty, ImageView will not display anything.<br></p>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L592">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L1144">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_ImageView_AdjustViewSize_" data-uid="Tizen.NUI.BaseComponents.ImageView.AdjustViewSize*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_ImageView_AdjustViewSize" data-uid="Tizen.NUI.BaseComponents.ImageView.AdjustViewSize">AdjustViewSize</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the mode to adjust view size to preserve the aspect ratio of the image resource.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool AdjustViewSize { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_ImageView_AdjustViewSize_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This is false by default.
+If this is set to be true, then the width or height value, which is not set by user explicitly, can be changed automatically
+to preserve the aspect ratio of the image resource.
+AdjustViewSize works only if ImageView is added to a View having Layout.
+e.g. If the image resource size is (100, 100), then the ImageView requests size (100, 100) to its parent layout by default.
+ If the ImageView&apos;s HeightSpecification is 50 and AdjustViewSize is true, then the ImageView requests size (50, 50) instead of (100, 50).</p>
+</div>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L592">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_Border_" data-uid="Tizen.NUI.BaseComponents.ImageView.Border*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_Border" data-uid="Tizen.NUI.BaseComponents.ImageView.Border">Border</h4>
@@ -228,7 +268,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L620">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L620">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_BorderOnly_" data-uid="Tizen.NUI.BaseComponents.ImageView.BorderOnly*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_BorderOnly" data-uid="Tizen.NUI.BaseComponents.ImageView.BorderOnly">BorderOnly</h4>
@@ -263,7 +303,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L847">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L852">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_CropToMask_" data-uid="Tizen.NUI.BaseComponents.ImageView.CropToMask*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_CropToMask" data-uid="Tizen.NUI.BaseComponents.ImageView.CropToMask">CropToMask</h4>
@@ -295,7 +335,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L519">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L519">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_Image_" data-uid="Tizen.NUI.BaseComponents.ImageView.Image*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_Image" data-uid="Tizen.NUI.BaseComponents.ImageView.Image">Image</h4>
@@ -341,7 +381,7 @@ imageview.Image = map;</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L688">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L693">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_LoadingStatus_" data-uid="Tizen.NUI.BaseComponents.ImageView.LoadingStatus*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_LoadingStatus" data-uid="Tizen.NUI.BaseComponents.ImageView.LoadingStatus">LoadingStatus</h4>
@@ -373,7 +413,7 @@ imageview.Image = map;</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L671">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L676">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_OrientationCorrection_" data-uid="Tizen.NUI.BaseComponents.ImageView.OrientationCorrection*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_OrientationCorrection" data-uid="Tizen.NUI.BaseComponents.ImageView.OrientationCorrection">OrientationCorrection</h4>
@@ -405,7 +445,7 @@ imageview.Image = map;</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L568">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L568">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_PixelArea_" data-uid="Tizen.NUI.BaseComponents.ImageView.PixelArea*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_PixelArea" data-uid="Tizen.NUI.BaseComponents.ImageView.PixelArea">PixelArea</h4>
@@ -441,7 +481,7 @@ Pixel area is a relative value with the whole image area as [0.0, 0.0, 1.0, 1.0]
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L547">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L547">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_PreMultipliedAlpha_" data-uid="Tizen.NUI.BaseComponents.ImageView.PreMultipliedAlpha*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_PreMultipliedAlpha" data-uid="Tizen.NUI.BaseComponents.ImageView.PreMultipliedAlpha">PreMultipliedAlpha</h4>
@@ -474,7 +514,7 @@ Image must be initialized.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L450">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L450">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_ResourceUrl_" data-uid="Tizen.NUI.BaseComponents.ImageView.ResourceUrl*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_ResourceUrl" data-uid="Tizen.NUI.BaseComponents.ImageView.ResourceUrl">ResourceUrl</h4>
@@ -508,16 +548,18 @@ When it is set as null, it gives empty string (&quot;&quot;) to be read.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L637">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L637">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_SynchronosLoading_" data-uid="Tizen.NUI.BaseComponents.ImageView.SynchronosLoading*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_SynchronosLoading" data-uid="Tizen.NUI.BaseComponents.ImageView.SynchronosLoading">SynchronosLoading</h4>
+  <div class="markdown obsolete" data-id="Tizen_NUI_BaseComponents_ImageView_SynchronosLoading">Deprecated since API level 9 and will be removed in API level 11. Please use SynchronousLoading instead!</div>
   <div class="markdown level1 summary"><p>Gets or sets whether to synchronous loading the resourceurl of image.<br></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool SynchronosLoading { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API level 9 and will be removed in API level 11. Please use SynchronousLoading instead!&quot;)]
+public bool SynchronosLoading { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -539,10 +581,47 @@ When it is set as null, it gives empty string (&quot;&quot;) to be read.</p>
   
   <div style="margin-bottom: 15px"></div>
 
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L659">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_ImageView_SynchronousLoading_" data-uid="Tizen.NUI.BaseComponents.ImageView.SynchronousLoading*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_ImageView_SynchronousLoading" data-uid="Tizen.NUI.BaseComponents.ImageView.SynchronousLoading">SynchronousLoading</h4>
+  <div class="markdown level1 summary"><p>Gets or sets whether the image of the ResourceUrl property will be loaded synchronously.<br></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool SynchronousLoading { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_BaseComponents_ImageView_SynchronousLoading_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Changing this property make this ImageView load image synchronously at the next loading
+by following operation: <a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html#Tizen_NUI_BaseComponents_ImageView_Reload">Reload()</a>, <a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html#Tizen_NUI_BaseComponents_ImageView_SetImage_System_String_">SetImage(String)</a>,
+and by some properties those cause reloading: <a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html#Tizen_NUI_BaseComponents_ImageView_ResourceUrl">ResourceUrl</a>, <a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html#Tizen_NUI_BaseComponents_ImageView_PreMultipliedAlpha">PreMultipliedAlpha</a> and etc.</p>
+</div>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L1224">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L1235">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_Dispose_" data-uid="Tizen.NUI.BaseComponents.ImageView.Dispose*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.BaseComponents.ImageView.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
@@ -579,7 +658,7 @@ When it is set as null, it gives empty string (&quot;&quot;) to be read.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L751">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L756">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_IsResourceReady_" data-uid="Tizen.NUI.BaseComponents.ImageView.IsResourceReady*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_IsResourceReady" data-uid="Tizen.NUI.BaseComponents.ImageView.IsResourceReady">IsResourceReady()</h4>
@@ -613,7 +692,7 @@ True if the resources are loaded and ready, false otherwise.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L785">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L790">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_Pause_" data-uid="Tizen.NUI.BaseComponents.ImageView.Pause*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_Pause" data-uid="Tizen.NUI.BaseComponents.ImageView.Pause">Pause()</h4>
@@ -630,7 +709,7 @@ True if the resources are loaded and ready, false otherwise.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L774">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L779">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_Play_" data-uid="Tizen.NUI.BaseComponents.ImageView.Play*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_Play" data-uid="Tizen.NUI.BaseComponents.ImageView.Play">Play()</h4>
@@ -647,7 +726,7 @@ True if the resources are loaded and ready, false otherwise.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L763">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L768">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_Reload_" data-uid="Tizen.NUI.BaseComponents.ImageView.Reload*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_Reload" data-uid="Tizen.NUI.BaseComponents.ImageView.Reload">Reload()</h4>
@@ -664,7 +743,7 @@ True if the resources are loaded and ready, false otherwise.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L726">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L731">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_SetImage_" data-uid="Tizen.NUI.BaseComponents.ImageView.SetImage*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_SetImage_System_String_" data-uid="Tizen.NUI.BaseComponents.ImageView.SetImage(System.String)">SetImage(String)</h4>
@@ -716,7 +795,7 @@ If the URL is empty, ImageView will not display anything.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L796">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L801">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_ImageView_Stop_" data-uid="Tizen.NUI.BaseComponents.ImageView.Stop*"></a>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_Stop" data-uid="Tizen.NUI.BaseComponents.ImageView.Stop">Stop()</h4>
@@ -735,7 +814,7 @@ If the URL is empty, ImageView will not display anything.<br></p>
   <h3 id="events">Events
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L367">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L367">View Source</a>
   </span>
   <h4 id="Tizen_NUI_BaseComponents_ImageView_ResourceReady" data-uid="Tizen.NUI.BaseComponents.ImageView.ResourceReady">ResourceReady</h4>
   <div class="markdown level1 summary"><p>An event for ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br>
@@ -782,7 +861,7 @@ Most resources are only loaded when the control is placed on the stage.<br></p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L30" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/ImageView.cs/#L30" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

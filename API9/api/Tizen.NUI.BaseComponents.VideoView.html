@@ -128,7 +128,7 @@
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L140">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L140">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView__ctor_" data-uid="Tizen.NUI.BaseComponents.VideoView.#ctor*"></a>
   <h4 id="Tizen_NUI_BaseComponents_VideoView__ctor" data-uid="Tizen.NUI.BaseComponents.VideoView.#ctor">VideoView()</h4>
@@ -145,7 +145,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L151">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L151">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView__ctor_" data-uid="Tizen.NUI.BaseComponents.VideoView.#ctor*"></a>
   <h4 id="Tizen_NUI_BaseComponents_VideoView__ctor_System_String_" data-uid="Tizen.NUI.BaseComponents.VideoView.#ctor(System.String)">VideoView(String)</h4>
@@ -183,7 +183,7 @@ If the string is empty, VideoView will not display anything.<br></p>
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L252">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L252">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView_Looping_" data-uid="Tizen.NUI.BaseComponents.VideoView.Looping*"></a>
   <h4 id="Tizen_NUI_BaseComponents_VideoView_Looping" data-uid="Tizen.NUI.BaseComponents.VideoView.Looping">Looping</h4>
@@ -215,7 +215,7 @@ If the string is empty, VideoView will not display anything.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L269">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L269">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView_Muted_" data-uid="Tizen.NUI.BaseComponents.VideoView.Muted*"></a>
   <h4 id="Tizen_NUI_BaseComponents_VideoView_Muted" data-uid="Tizen.NUI.BaseComponents.VideoView.Muted">Muted</h4>
@@ -247,7 +247,50 @@ If the string is empty, VideoView will not display anything.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L321">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L403">View Source</a>
+  </span>
+  <a id="Tizen_NUI_BaseComponents_VideoView_NativeHandle_" data-uid="Tizen.NUI.BaseComponents.VideoView.NativeHandle*"></a>
+  <h4 id="Tizen_NUI_BaseComponents_VideoView_NativeHandle" data-uid="Tizen.NUI.BaseComponents.VideoView.NativeHandle">NativeHandle</h4>
+  <div class="markdown level1 summary"><p>Get native player handle.
+<example>
+How to get native player handle<p>
+<pre><code>VideoView videoView = new VideoView();
+videoView.ResourceUrl = &quot;some xxx video path&quot;;
+var handle = videoView.NativeHandle;
+if(handle?.IsInvalid == false)
+{
+    IntPtr nativeHandle = handle.DangerousGetHandle();
+    // do something with nativeHandle
+}</code></pre>
+<p></example></p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SafeHandle NativeHandle { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.runtime.interopservices.safehandle">SafeHandle</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L321">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView_ResourceUrl_" data-uid="Tizen.NUI.BaseComponents.VideoView.ResourceUrl*"></a>
   <h4 id="Tizen_NUI_BaseComponents_VideoView_ResourceUrl" data-uid="Tizen.NUI.BaseComponents.VideoView.ResourceUrl">ResourceUrl</h4>
@@ -279,7 +322,7 @@ If the string is empty, VideoView will not display anything.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L304">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L304">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView_Underlay_" data-uid="Tizen.NUI.BaseComponents.VideoView.Underlay*"></a>
   <h4 id="Tizen_NUI_BaseComponents_VideoView_Underlay" data-uid="Tizen.NUI.BaseComponents.VideoView.Underlay">Underlay</h4>
@@ -312,7 +355,7 @@ This shows video composited underneath the window by the system. This means it m
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L235">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L235">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView_Video_" data-uid="Tizen.NUI.BaseComponents.VideoView.Video*"></a>
   <h4 id="Tizen_NUI_BaseComponents_VideoView_Video" data-uid="Tizen.NUI.BaseComponents.VideoView.Video">Video</h4>
@@ -344,7 +387,7 @@ This shows video composited underneath the window by the system. This means it m
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L286">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L286">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView_Volume_" data-uid="Tizen.NUI.BaseComponents.VideoView.Volume*"></a>
   <h4 id="Tizen_NUI_BaseComponents_VideoView_Volume" data-uid="Tizen.NUI.BaseComponents.VideoView.Volume">Volume</h4>
@@ -378,7 +421,7 @@ This shows video composited underneath the window by the system. This means it m
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L380">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L380">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView_Backward_" data-uid="Tizen.NUI.BaseComponents.VideoView.Backward*"></a>
   <h4 id="Tizen_NUI_BaseComponents_VideoView_Backward_System_Int32_" data-uid="Tizen.NUI.BaseComponents.VideoView.Backward(System.Int32)">Backward(Int32)</h4>
@@ -413,7 +456,7 @@ This shows video composited underneath the window by the system. This means it m
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L398">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L423">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView_Dispose_" data-uid="Tizen.NUI.BaseComponents.VideoView.Dispose*"></a>
   <h4 id="Tizen_NUI_BaseComponents_VideoView_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.BaseComponents.VideoView.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
@@ -450,7 +493,7 @@ This shows video composited underneath the window by the system. This means it m
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L369">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L369">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView_Forward_" data-uid="Tizen.NUI.BaseComponents.VideoView.Forward*"></a>
   <h4 id="Tizen_NUI_BaseComponents_VideoView_Forward_System_Int32_" data-uid="Tizen.NUI.BaseComponents.VideoView.Forward(System.Int32)">Forward(Int32)</h4>
@@ -485,7 +528,7 @@ This shows video composited underneath the window by the system. This means it m
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L348">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L348">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView_Pause_" data-uid="Tizen.NUI.BaseComponents.VideoView.Pause*"></a>
   <h4 id="Tizen_NUI_BaseComponents_VideoView_Pause" data-uid="Tizen.NUI.BaseComponents.VideoView.Pause">Pause()</h4>
@@ -502,7 +545,7 @@ This shows video composited underneath the window by the system. This means it m
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L338">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L338">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView_Play_" data-uid="Tizen.NUI.BaseComponents.VideoView.Play*"></a>
   <h4 id="Tizen_NUI_BaseComponents_VideoView_Play" data-uid="Tizen.NUI.BaseComponents.VideoView.Play">Play()</h4>
@@ -519,7 +562,7 @@ This shows video composited underneath the window by the system. This means it m
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L358">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L358">View Source</a>
   </span>
   <a id="Tizen_NUI_BaseComponents_VideoView_Stop_" data-uid="Tizen.NUI.BaseComponents.VideoView.Stop*"></a>
   <h4 id="Tizen_NUI_BaseComponents_VideoView_Stop" data-uid="Tizen.NUI.BaseComponents.VideoView.Stop">Stop()</h4>
@@ -538,7 +581,7 @@ This shows video composited underneath the window by the system. This means it m
   <h3 id="events">Events
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L210">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L210">View Source</a>
   </span>
   <h4 id="Tizen_NUI_BaseComponents_VideoView_Finished" data-uid="Tizen.NUI.BaseComponents.VideoView.Finished">Finished</h4>
   <div class="markdown level1 summary"><p>Event for the finished signal which can be used to subscribe or unsubscribe the event handler
@@ -584,7 +627,7 @@ The finished signal is emitted when a video playback has finished.<br></p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/BaseComponents/VideoView.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
