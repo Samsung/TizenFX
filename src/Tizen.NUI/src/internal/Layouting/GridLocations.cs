@@ -126,7 +126,7 @@ namespace Tizen.NUI
                     Node node = edgeList[i];
                     // update expanded size.
                     if (node.Stretch.HasFlag(StretchFlags.Expand))
-                        node.ExpandedSize = curExpandedSize / totalExpand;
+                        node.ExpandedSize = curExpandedSize * (node.End - node.Start) / totalExpand;
                 }
 
                 // re-init locations based on updated expanded size.
