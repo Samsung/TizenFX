@@ -1646,20 +1646,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Set InputFilter to TextEditor. <br />
+        /// Set InputFilter to TextEditor.
         /// </summary>
         /// <param name="inputFilter">The InputFilter</param>
         /// <remarks>
         /// <see cref="Tizen.NUI.Text.InputFilter"/> filters input based on regular expressions. <br />
-        /// Users can set the Accepted or Rejected regular expression set, or both. <br />
-        /// If both are used, Rejected has higher priority. <br />
-        /// The character set must follow the regular expression rules. <br />
-        /// Behaviour can not be guaranteed for incorrect grammars. <br />
-        /// Refer the link below for detailed rules. <br />
-        /// The functions in std::regex library use the ECMAScript grammar: <br />
-        /// http://cplusplus.com/reference/regex/ECMAScript/ <br />
         /// InputFiltered signal is emitted when the input is filtered by InputFilter <br />
-        /// See <see cref="InputFiltered"/>, <see cref="InputFilterType"/> and <see cref="InputFilteredEventArgs"/> for a detailed description. <br />
+        /// See <see cref="InputFiltered"/>, <see cref="InputFilterType"/> and <see cref="InputFilteredEventArgs"/> for a detailed description.
         /// </remarks>
         /// <example>
         /// The following example demonstrates how to use the SetInputFilter method.

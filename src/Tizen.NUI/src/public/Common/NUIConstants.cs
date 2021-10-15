@@ -1986,10 +1986,10 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Enumeration for the type of InputFilter. <br />
+    /// Enumeration for the type of InputFilter.
     /// </summary>
     /// <remarks>
-    /// The type of InputFilter that is stored in the <see cref="Tizen.NUI.BaseComponents.InputFilteredEventArgs"/> when the input is filtered. <br />
+    /// The type of InputFilter that is stored in the <see cref="Tizen.NUI.BaseComponents.InputFilteredEventArgs"/> when the input is filtered.
     /// </remarks>
     /// <since_tizen> 9 </since_tizen>
     public enum InputFilterType
