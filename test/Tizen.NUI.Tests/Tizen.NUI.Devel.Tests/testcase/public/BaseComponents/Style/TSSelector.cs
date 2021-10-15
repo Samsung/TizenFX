@@ -5,7 +5,7 @@ using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 
-namespace Tizen.NUI.Devel.Tests.testcase
+namespace Tizen.NUI.Devel.Tests
 {
     using tlog = Tizen.Log;
 
