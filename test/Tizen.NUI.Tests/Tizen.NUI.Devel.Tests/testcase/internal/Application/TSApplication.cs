@@ -46,25 +46,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Application NewApplication.")]
-        [Property("SPEC", "Tizen.NUI.Application.NewApplication M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ApplicationNewApplication()
-        {
-            tlog.Debug(tag, $"ApplicationNewApplication START");
-
-            var testingTarget = Application.NewApplication();
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<Application>(testingTarget, "should be an instance of testing target class!");
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ApplicationNewApplication END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("NUIApplicationInitEventArgs Application.Get.")]
         [Property("SPEC", "Tizen.NUI.Application.NUIApplicationInitEventArgs.Application A")]
         [Property("SPEC_URL", "-")]
@@ -594,37 +575,6 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"GetResourcesProviderIResourcesProviderGet END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("Application constructor.")]
-        //[Property("SPEC", "Tizen.NUI.Application.Application C")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "CONSTR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void ApplicationConstructor()
-        //{
-        //    tlog.Debug(tag, $"ApplicationConstructor START");
-
-        //    Application application = Application.NewApplication();
-
-        //    try
-        //    {
-        //        var testingTarget = new Application(application);
-        //        Assert.IsNotNull(testingTarget, "should be not null");
-        //        Assert.IsInstanceOf<Application>(testingTarget, "should be an instance of testing target class!");
-
-        //        testingTarget.Dispose();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
-
-        //    application.Dispose();
-        //    tlog.Debug(tag, $"ApplicationConstructor END (OK)");
-        //}
 
         [Test]
         [Category("P1")]
@@ -1177,8 +1127,11 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                Application.GetResourcePath();
                 tlog.Debug(tag, "ResourcePath : " + Application.GetResourcePath());
+                tlog.Debug(tag, "Language : " + Application.Instance.GetLanguage());
+                tlog.Debug(tag, "Region : " + Application.Instance.GetRegion());
+                tlog.Debug(tag, "Window : " + Application.Instance.GetWindow());
+
             }
             catch (Exception e)
             {
@@ -1187,81 +1140,6 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"ApplicationGetResourcePath END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Application GetLanguage.")]
-        [Property("SPEC", "Tizen.NUI.Application.GetLanguage M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ApplicationGetLanguage()
-        {
-            tlog.Debug(tag, $"ApplicationGetLanguage START");
-
-            try
-            {
-                Application.Instance.GetLanguage();
-                tlog.Debug(tag, "Language : " + Application.Instance.GetLanguage());
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            tlog.Debug(tag, $"ApplicationGetLanguage END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Application GetRegion.")]
-        [Property("SPEC", "Tizen.NUI.Application.GetRegion M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ApplicationGetRegion()
-        {
-            tlog.Debug(tag, $"ApplicationGetRegion START");
-
-            try
-            {
-                Application.Instance.GetRegion();
-                tlog.Debug(tag, "Region : " + Application.Instance.GetRegion());
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            tlog.Debug(tag, $"ApplicationGetRegion END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Application GetWindow.")]
-        [Property("SPEC", "Tizen.NUI.Application.GetWindow M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ApplicationGetWindow()
-        {
-            tlog.Debug(tag, $"ApplicationGetWindow START");
-
-            try
-            {
-                Application.Instance.GetWindow();
-                tlog.Debug(tag, "Region : " + Application.Instance.GetWindow());
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            tlog.Debug(tag, $"ApplicationGetWindow END (OK)");
         }
 
         [Test]
