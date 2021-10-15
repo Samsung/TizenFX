@@ -39,9 +39,9 @@ namespace Tizen.NUI.Devel.Tests
                 base.GetScale(view.ID, new Vector3(100.0f, 150.0f, 0.0f));
                 base.SetScale(view.ID, new Vector3(100.0f, 150.0f, 0.0f));
                 base.BakeScale(view.ID, new Vector3(100.0f, 150.0f, 0.0f));
-                base.GetColor(view.ID, new Color(100.0f, 150.0f, 0.0f, 200.0f));
-                base.SetColor(view.ID, new Color(100.0f, 150.0f, 0.0f, 200.0f));
-                base.BakeColor(view.ID, new Color(100.0f, 150.0f, 0.0f, 200.0f));
+                base.GetColor(view.ID, Color.Blue);
+                base.SetColor(view.ID, Color.Red);
+                base.BakeColor(view.ID, Color.Yellow);
                 base.GetPositionAndSize(view.ID, new Position(100.0f, 150.0f, 0.0f), new Size(100.0f, 200.0f, 300.0f));
                 base.OnUpdate(300);
             }
