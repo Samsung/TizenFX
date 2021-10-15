@@ -30,7 +30,6 @@ namespace Tizen.NUI.Devel.Tests
         public TextLabel label10;
         public TextField entry0;
         public TextField entry1;
-        public TextLabel labelWithUncompiledBinding;
 
         public BindingsCompiler()
 		{
@@ -47,7 +46,6 @@ namespace Tizen.NUI.Devel.Tests
             label8 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<TextLabel>(this, "label8");
             label9 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<TextLabel>(this, "label9");
             label10 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<TextLabel>(this, "label10");
-            labelWithUncompiledBinding = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<TextLabel>(this, "labelWithUncompiledBinding");
             entry0 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<TextField>(this, "entry0");
             entry1 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<TextField>(this, "entry1");
         }
