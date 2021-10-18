@@ -710,19 +710,18 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnSize2DChanged(int? width, int? height)
         {
-            PropertyValue temp;
+            PropertyValue temp = null;
             if (width != null)
             {
-                temp = new Tizen.NUI.PropertyValue((float)width);
-                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeWidth, temp);
-                temp.Dispose();
+                temp = new PropertyValue((float)width);
+                Object.SetProperty(SwigCPtr, Property.SizeWidth, temp);
             }
             if (height != null)
             {
-                temp = new Tizen.NUI.PropertyValue((float)height);
-                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeHeight, temp);
-                temp.Dispose();
+                temp = new PropertyValue((float)height);
+                Object.SetProperty(SwigCPtr, Property.SizeHeight, temp);
             }
+            temp?.Dispose();
         }
 
         private void OnMinimumSizeChanged(int? width, int? height)
