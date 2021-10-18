@@ -196,6 +196,7 @@ namespace Tizen.NUI.Binding
             BindingChanging = bindingChanging;
             IsReadOnly = isReadOnly;
             DefaultValueCreator = defaultValueCreator;
+            ValueGetter = defaultValueCreator;
 
             Dictionary<string, BindableProperty> nameToBindableProperty;
             bindablePropertyOfType.TryGetValue(declaringType, out nameToBindableProperty);
@@ -309,6 +310,8 @@ namespace Tizen.NUI.Binding
         internal CoerceValueDelegate CoerceValue { get; private set; }
 
         internal CreateDefaultValueDelegate DefaultValueCreator { get; }
+
+        internal CreateDefaultValueDelegate ValueGetter { get; }
 
         internal BindingPropertyChangedDelegate PropertyChanged { get; private set; }
 
