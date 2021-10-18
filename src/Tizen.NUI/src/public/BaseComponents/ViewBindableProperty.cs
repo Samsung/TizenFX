@@ -607,26 +607,43 @@ namespace Tizen.NUI.BaseComponents
         /// Size2DProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty Size2DProperty = BindableProperty.Create(nameof(Size2D), typeof(Size2D), typeof(View), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            if (newValue != null)
+        public static readonly BindableProperty Size2DProperty = BindableProperty.Create(nameof(Size2D), typeof(Size2D), typeof(View), null,
+            propertyChanged: ((bindable, oldValue, newValue) =>
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SIZE, new Tizen.NUI.PropertyValue(new Size((Size2D)newValue)));
-                view.widthPolicy = ((Size2D)newValue).Width;
-                view.heightPolicy = ((Size2D)newValue).Height;
+                View view = (View)bindable;
+                if (newValue != null)
+                {
+                    view.SetSize(((Size2D)newValue).Width, ((Size2D)newValue).Height, 0);
 
-                view.layout?.RequestLayout();
-            }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-        {
-            var view = (View)bindable;
-            Size temp = new Size(0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SIZE).Get(temp);
-            Size2D size = new Size2D((int)temp.Width, (int)temp.Height);
-            return size;
-        }));
+                    view.widthPolicy = ((Size2D)newValue).Width;
+                    view.heightPolicy = ((Size2D)newValue).Height;
+
+                    view.layout?.RequestLayout();
+                }
+            }),
+            defaultValueCreator: ((bindable) =>
+            {
+                View view = (View)bindable;
+                var tmp = new Size(0, 0, 0);
+                Object.GetProperty(view.SwigCPtr, Property.SIZE).Get(tmp);
+
+                int tmpWidth = (int)tmp?.Width;
+                int tmpHeight = (int)tmp?.Height;
+                tmp?.Dispose();
+                tmp = null;
+
+                if (view.internalSize2D == null)
+                {
+                    view.internalSize2D = new Size2D(view.OnSize2DChanged, tmpWidth, tmpHeight);
+                }
+                else
+                {
+                    if (view.internalSize2D.Width != tmpWidth) { view.internalSize2D.Width = tmpWidth; }
+                    if (view.internalSize2D.Height != tmpHeight) { view.internalSize2D.Height = tmpHeight; }
+                }
+                return view.internalSize2D;
+            })
+        );
 
         /// <summary>
         /// OpacityProperty
@@ -1160,9 +1177,9 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                if((ResizePolicyType)newValue == ResizePolicyType.KeepSizeFollowingParent)
+                if ((ResizePolicyType)newValue == ResizePolicyType.KeepSizeFollowingParent)
                 {
-                    if(view.widthConstraint == null)
+                    if (view.widthConstraint == null)
                     {
                         view.widthConstraint = new EqualConstraintWithParentFloat((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeWidth, View.Property.SizeWidth);
                         view.widthConstraint.Apply();
@@ -1220,9 +1237,9 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                if((ResizePolicyType)newValue == ResizePolicyType.KeepSizeFollowingParent)
+                if ((ResizePolicyType)newValue == ResizePolicyType.KeepSizeFollowingParent)
                 {
-                    if(view.heightConstraint == null)
+                    if (view.heightConstraint == null)
                     {
                         view.heightConstraint = new EqualConstraintWithParentFloat((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeHeight, View.Property.SizeHeight);
                         view.heightConstraint.Apply();

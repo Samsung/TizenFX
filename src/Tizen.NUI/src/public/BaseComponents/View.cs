@@ -51,6 +51,9 @@ namespace Tizen.NUI.BaseComponents
         // List of constraints
         private Constraint widthConstraint = null;
         private Constraint heightConstraint = null;
+
+        private Size2D internalSize2D = null;
+
         static View()
         {
             RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
@@ -989,17 +992,15 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Size2D temp = (Size2D)GetValue(Size2DProperty);
-                int width = temp.Width;
-                int height = temp.Height;
+                var temp = (Size2D)GetValue(Size2DProperty);
 
                 if (this.Layout == null)
                 {
-                    if (width < 0) { width = 0; }
-                    if (height < 0) { height = 0; }
+                    if (temp.Width < 0) { temp.Width = 0; }
+                    if (temp.Height < 0) { temp.Height = 0; }
                 }
 
-                return new Size2D(OnSize2DChanged, width, height);
+                return temp;
             }
             set
             {
