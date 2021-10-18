@@ -3,8 +3,7 @@
   <!-- Property Group for .NET Core Project -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>tizen90</TargetFramework>
-    <TargetFrameworkIdentifier>Tizen</TargetFrameworkIdentifier>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <!-- Property Group for Tizen Project -->
@@ -18,17 +17,6 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
   </PropertyGroup>
-  <ItemGroup>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="testcase - Copy\**" />
-    <EmbeddedResource Remove="testcase - Copy\**" />
-    <None Remove="testcase - Copy\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-	<Folder Include="lib\" />
-  </ItemGroup>
 
   <Import Project="..\Common\dependencies.props" />
   <ItemGroup>
@@ -37,12 +25,12 @@
     </PackageReference>
     <PackageReference Include="Tizen.NET.Sdk" Version="1.1.6" />
   </ItemGroup>
-
-  <!-- Include Nuget Package for Tizen Project building -->
   <ItemGroup>
     <ProjectReference Include="..\nunit.framework\nunit.framework.csproj" />
     <ProjectReference Include="..\nunitlite\nunitlite.csproj" />
   </ItemGroup>
+
+  <!-- Include Nuget Package for Tizen Project building -->
 
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
