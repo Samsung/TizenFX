@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+using System;
+using System.Runtime.InteropServices;
+
 internal static partial class Interop
 {
     internal static partial class Cion
@@ -31,5 +34,8 @@ internal static partial class Interop
             TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,
             OperationFailed = -0x030C0000 | 0x01,
         }
+
+        [DllImport(Libraries.Libc, EntryPoint = "malloc")]
+        internal static extern IntPtr Malloc(int size);
     }
 }
