@@ -768,7 +768,7 @@ namespace Tizen.NUI.BaseComponents
         public void Reload()
         {
             PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(ImageView.Property.IMAGE, Property.ActionReload, attributes);
+            this.DoAction(ImageView.Property.IMAGE, ActionReload, attributes);
             attributes?.Dispose();
         }
 
@@ -779,7 +779,7 @@ namespace Tizen.NUI.BaseComponents
         public void Play()
         {
             PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(ImageView.Property.IMAGE, Property.ActionPlay, attributes);
+            this.DoAction(ImageView.Property.IMAGE, ActionPlay, attributes);
             attributes?.Dispose();
         }
 
@@ -790,7 +790,7 @@ namespace Tizen.NUI.BaseComponents
         public void Pause()
         {
             PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(ImageView.Property.IMAGE, Property.ActionPause, attributes);
+            this.DoAction(ImageView.Property.IMAGE, ActionPause, attributes);
             attributes?.Dispose();
         }
 
@@ -801,7 +801,7 @@ namespace Tizen.NUI.BaseComponents
         public void Stop()
         {
             PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(ImageView.Property.IMAGE, Property.ActionStop, attributes);
+            this.DoAction(ImageView.Property.IMAGE, ActionStop, attributes);
             attributes?.Dispose();
         }
 
@@ -873,6 +873,29 @@ namespace Tizen.NUI.BaseComponents
                 setValue.Dispose();
             }
         }
+
+        /// <summary>
+        /// Actions property value for Reload image.
+        /// </summary>
+        private int ActionReload { get; set; } = Interop.ImageView.ImageVisualActionReloadGet();
+
+        /// <summary>
+        /// Actions property value to Play animated images.
+        /// This property can be redefined by child class if it use different value.
+        /// </summary>
+        protected internal int ActionPlay { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionPlayGet();
+
+        /// <summary>
+        /// Actions property value to Pause animated images.
+        /// This property can be redefined by child class if it use different value.
+        /// </summary>
+        protected internal int ActionPause { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionPauseGet();
+
+        /// <summary>
+        /// Actions property value to Stop animated images.
+        /// This property can be redefined by child class if it use different value.
+        /// </summary>
+        protected internal int ActionStop { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionStopGet();
 
         internal VisualFittingModeType CovertFittingModetoVisualFittingMode(FittingModeType value)
         {
@@ -1492,10 +1515,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int IMAGE = Interop.ImageView.ImageGet();
             internal static readonly int PreMultipliedAlpha = Interop.ImageView.PreMultipliedAlphaGet();
             internal static readonly int PixelArea = Interop.ImageView.PixelAreaGet();
-            internal static readonly int ActionReload = Interop.ImageView.ImageVisualActionReloadGet();
-            internal static readonly int ActionPlay = Interop.ImageView.ImageVisualActionPlayGet();
-            internal static readonly int ActionPause = Interop.ImageView.ImageVisualActionPauseGet();
-            internal static readonly int ActionStop = Interop.ImageView.ImageVisualActionStopGet();
         }
 
         private enum ImageType

@@ -27,6 +27,21 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class AnimatedImageView : ImageView
     {
+        #region Internal
+        #endregion Internal
+
+        #region Private
+        private string url = "";
+        private List<string> resourceURLs = new List<string>();
+        private int batchSize = 1;
+        private int cacheSize = 1;
+        private int frameDelay = 0;
+        private int loopCount = -1;
+        private bool dirtyFlag = false;
+        private StopBehaviorType stopBehavior;
+        private PropertyMap propertyMap;
+        #endregion Private
+
         #region Constructor, Destructor, Dispose
         /// <summary>
         /// Construct AnimatedImageView
@@ -35,6 +50,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatedImageView() : base()
         {
+            ActionPlay = Interop.AnimatedImageView.AnimatedImageVisualActionPlayGet();
+            ActionPause = Interop.AnimatedImageView.AnimatedImageVisualActionPauseGet();
+            ActionStop = Interop.AnimatedImageView.AnimatedImageVisualActionStopGet();
+    
             dirtyFlag = true;
         }
 
@@ -225,7 +244,7 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
-                DoAction(ImageView.Property.IMAGE, (int)ActionType.jumpTo, new PropertyValue(value));
+                DoAction(ImageView.Property.IMAGE, ActionJumpTo, new PropertyValue(value));
             }
             get
             {
@@ -245,6 +264,12 @@ namespace Tizen.NUI.BaseComponents
                 return ret;
             }
         }
+
+        /// <summary>
+        /// Actions property value to Jump to the specified frame.
+        /// This property can be redefined by child class if it use different value.
+        /// </summary>
+        protected internal int ActionJumpTo { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionJumpToGet();
         #endregion Property
 
         #region Method
@@ -375,30 +400,6 @@ namespace Tizen.NUI.BaseComponents
             MaximumFrame
         }
 
-        private enum ActionType
-        {
-            play,
-            pause,
-            stop,
-            jumpTo,
-        };
         #endregion Event, Enum, Struct, ETC
-
-
-        #region Internal
-        #endregion Internal
-
-
-        #region Private
-        private string url = "";
-        private List<string> resourceURLs = new List<string>();
-        private int batchSize = 1;
-        private int cacheSize = 1;
-        private int frameDelay = 0;
-        private int loopCount = -1;
-        private bool dirtyFlag = false;
-        private StopBehaviorType stopBehavior;
-        private PropertyMap propertyMap;
-        #endregion Private
     }
 }
