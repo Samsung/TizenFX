@@ -188,9 +188,9 @@ namespace Tizen.NUI.Binding
             if (property == null)
                 throw new ArgumentNullException(nameof(property));
 
-            if (!IsBinded && property.DefaultValueCreator != null)
+            if (!IsBinded && property.ValueGetter != null)
             {
-                return property.DefaultValueCreator(this);
+                return property.ValueGetter(this);
             }
 
             BindablePropertyContext context = property.DefaultValueCreator != null ? GetOrCreateContext(property) : GetContext(property);
@@ -860,7 +860,11 @@ namespace Tizen.NUI.Binding
             {
                 context = CreateAndAddContext(property);
             }
-            else if (property.DefaultValueCreator != null)
+            else if (property.ValueGetter != null)
+            {
+                context.Value = property.ValueGetter(this); //Update Value from dali
+            }//added by xiaohui.fang
+            else if (property.DefaultValueCreator != null) //This will be removed in the future.
             {
                 context.Value = property.DefaultValueCreator(this); //Update Value from dali
             }//added by xb.teng
