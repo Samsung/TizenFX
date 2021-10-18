@@ -19,5 +19,6 @@ internal static partial class Interop
     internal static partial class Libraries
     {
         public const string Cion = "libcion.so.1";
+        public const string Libc = "libc.so.6";
     }
 }
