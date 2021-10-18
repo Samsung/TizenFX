@@ -42,4 +42,11 @@
     </None>
   </ItemGroup>
 
+
+  <!--Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="sdb root on&#xA;&#xD;&#xA;sdb shell &quot;mount -o remount,rw /&quot;&#xA;&#xD;&#xA;sdb shell &quot;rm /usr/share/dotnet.tizen/framework/*.ni.dll&quot;&#xA;&#xD;&#xA;sdb push $(TargetDir)Tizen.NUI.dll /usr/share/dotnet.tizen/framework/&#xA;&#xD;&#xA;sdb shell &quot;chsmack -a '_' /usr/share/dotnet.tizen/framework/Tizen.NUI.dll&quot;&#xA;&#xD;&#xA;sdb shell sync&#xA;" />
+  </Target-->
+
+
+
 </Project>

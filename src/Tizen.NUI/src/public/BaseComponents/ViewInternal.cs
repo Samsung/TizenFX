@@ -1120,6 +1120,8 @@ namespace Tizen.NUI.BaseComponents
             }
 
             //_mergedStyle = null;
+            
+            internalSize2D?.Dispose();
 
             if (type == DisposeTypes.Explicit)
             {
