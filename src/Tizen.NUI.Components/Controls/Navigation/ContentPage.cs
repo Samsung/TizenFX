@@ -183,7 +183,7 @@ namespace Tizen.NUI.Components
                         appBarSizeH = Size2D.Height - Padding.Top - Padding.Bottom - appBar.Margin.Top - appBar.Margin.Bottom;
                     }
 
-                    appBar.Size2D = new Size2D(appBarSizeW, appBarSizeH);
+                    appBar.SetSize(new Size2D(appBarSizeW, appBarSizeH));
                 }
             }
 
@@ -209,7 +209,7 @@ namespace Tizen.NUI.Components
                         contentSizeH = Size2D.Height - Padding.Top - Padding.Bottom - content.Margin.Top - content.Margin.Bottom - (appBar?.Size2D.Height ?? 0);
                     }
 
-                    content.Size2D = new Size2D(contentSizeW, contentSizeH);
+                    content.SetSize(new Size2D(contentSizeW, contentSizeH));
                 }
             }
         }
