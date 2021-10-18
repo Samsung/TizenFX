@@ -32,6 +32,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Image_Visual_BORDER_get")]
             public static extern int ImageVisualBorderGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Visual_Actions_UPDATE_PROPERTY_get")]
+            public static extern int GetActionUpdateProperty();
         }
     }
 }
