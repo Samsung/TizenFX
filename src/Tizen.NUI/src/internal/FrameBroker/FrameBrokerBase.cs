@@ -83,13 +83,12 @@ namespace Tizen.NUI
         /// To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.
         /// </remarks>
         /// <param name="appControl">The AppControl.</param>
-        /// <param name="toProvider"> The flag, if it's true, the launch request is sent to the frame provider application.</param>
         /// <returns>A task with the result of the launch request.</returns>
         /// <exception cref="ArgumentException">Thrown when failed because of the argument is invalid.</exception>
         /// <exception cref="AppNotFoundException">Thrown when the application to run is not found.</exception>
         /// <exception cref="LaunchRejectedException">Thrown when the launch request is rejected.</exception>
         /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
-        internal Task<FrameBrokerBaseResult> SendLaunchRequest(AppControl appControl, bool toProvider)
+        internal Task<FrameBrokerBaseResult> SendLaunchRequest(AppControl appControl)
         {
             if (appControl == null)
             {
@@ -113,10 +112,7 @@ namespace Tizen.NUI
             }
 
             Interop.FrameBroker.ErrorCode err;
-            if (toProvider)
-                err = Interop.FrameBroker.SendLaunchRequestToProvider(handle, appControl.SafeAppControlHandle, resultCallbackMaps[requestId], null, (IntPtr)requestId);
-            else
-                err = Interop.FrameBroker.SendLaunchRequest(handle, appControl.SafeAppControlHandle, resultCallbackMaps[requestId], null, (IntPtr)requestId);
+            err = Interop.FrameBroker.SendLaunchRequest(handle, appControl.SafeAppControlHandle, resultCallbackMaps[requestId], null, (IntPtr)requestId);
 
             if (err != Interop.FrameBroker.ErrorCode.None)
             {
@@ -323,9 +319,9 @@ namespace Tizen.NUI
             /* Create Property buffer */
             PropertyValue value = new PropertyValue((int)PropertyType.Vector2);
             PropertyMap vertexFormat = new PropertyMap();
-            PropertyBuffer vertexBuffer = new PropertyBuffer(vertexFormat);
-
             vertexFormat.Add("aPosition", value);
+
+            PropertyBuffer vertexBuffer = new PropertyBuffer(vertexFormat);
             vertexBuffer.SetData(RectangleDataPtr(), 4);
 
             Geometry geometry = new Geometry();
