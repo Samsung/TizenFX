@@ -468,6 +468,11 @@ namespace Tizen.NUI.Components
                 return false;
             }
 
+            if (!AccessibilityManager.Instance.IsForcedEnable())
+            {
+                return false;
+            }
+
             // Touch Down
             isPressed = true;
             UpdateState();
