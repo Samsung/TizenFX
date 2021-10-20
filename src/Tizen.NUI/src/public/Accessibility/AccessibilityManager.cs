@@ -32,6 +32,7 @@ namespace Tizen.NUI.Accessibility
     public partial class AccessibilityManager : BaseHandle
     {
         private static readonly AccessibilityManager instance = AccessibilityManager.Get();
+        private bool isForced = false;
 
         internal AccessibilityManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.AccessibilityManager.AccessibilityManager_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -852,6 +853,7 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void EnableAccessibility(bool enabled)
         {
+            isForced = enabled;
             Interop.AccessibilityManager.EnableAccessibility(swigCPtr, enabled);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -868,6 +870,13 @@ namespace Tizen.NUI.Accessibility
             bool ret = Interop.AccessibilityManager.IsEnabled(swigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// Queries whether EnableAccessibility() is called and Accessibility is enabled forcibly or not.
+        /// This API is only used for internal checks.
+        internal bool IsForcedEnable()
+        {
+            return isForced;
         }
 
         internal static AccessibilityManager Get()
