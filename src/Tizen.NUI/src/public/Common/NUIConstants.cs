@@ -1950,43 +1950,38 @@ namespace Tizen.NUI
     /// If the device can not support GLES version 3.0 over, the version will be chosen with GLES version 2.0.<br />
     /// It is for GLWindow and GLView.<br />
     /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum GLESVersion
     {
       /// <summary>
       /// GLES version 2.0
       /// </summary>
-      [EditorBrowsable(EditorBrowsableState.Never)]
       Version20 = 0,
 
       /// <summary>
       /// GLES version 3.0
       /// </summary>
-      [EditorBrowsable(EditorBrowsableState.Never)]
       Version30
     }
 
     /// <summary>
     /// Enumeration for rendering mode
     /// This Enumeration is used to choose the rendering mode.
-    /// It has two options.
-    /// One of them is continuous mode. It is rendered continuously.
-    /// The other is on demand mode. It is rendered by application.
     /// It is for GLWindow and GLView.
     /// </summary>
+    /// <since_tizen> 9 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum GLRenderingMode
     {
       /// <summary>
-      /// continuous mode
+      /// The render frame delegate is invoked continuously.
       /// </summary>
-      [EditorBrowsable(EditorBrowsableState.Never)]
       Continuous = 0,
 
       /// <summary>
-      /// on demand by application
+      /// The render frame delegate is invoked by user.
       /// </summary>
-      [EditorBrowsable(EditorBrowsableState.Never)]
       OnDemand = 1
     }
 
