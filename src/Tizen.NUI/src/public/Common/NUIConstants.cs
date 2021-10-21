@@ -1946,12 +1946,10 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// This Enumeration is used the GLES version for EGL configuration.<br />
-    /// If the device can not support GLES version 3.0 over, the version will be chosen with GLES version 2.0.<br />
-    /// It is for GLWindow and GLView.<br />
+    /// This Enumeration is used the GLES version for EGL configuration.
+    /// It is for GLWindow and GLView.
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 10 </since_tizen>
     public enum GLESVersion
     {
       /// <summary>
@@ -1970,8 +1968,7 @@ namespace Tizen.NUI
     /// This Enumeration is used to choose the rendering mode.
     /// It is for GLWindow and GLView.
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 10 </since_tizen>
     public enum GLRenderingMode
     {
       /// <summary>

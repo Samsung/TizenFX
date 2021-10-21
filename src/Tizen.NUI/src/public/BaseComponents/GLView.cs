@@ -11,8 +11,7 @@ namespace Tizen.NUI.BaseComponents
     /// GLView creates a context, a surface, and a render thread.
     /// The render thread invokes user's callbacks.
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 10 </since_tizen>
     public class GLView : View
     {
         private GLInitializeDelegate glInitializeCallback;
@@ -24,8 +23,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Type of callback to initialize OpenGLES.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public delegate void GLInitializeDelegate();
 
         /// <summary>
@@ -33,15 +31,13 @@ namespace Tizen.NUI.BaseComponents
         /// If the return value of this callback is not 0, the eglSwapBuffers() will be called.
         /// </summary>
         /// <returns>The return value is not 0, the eglSwapBuffers() will be called.</returns>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public delegate int GLRenderFrameDelegate();
 
         /// <summary>
         /// Type of callback to clean up GL resource.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public delegate void GLTerminateDelegate();
 
         /// <summary>
@@ -49,8 +45,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="w">The resized width size of the GLView</param>
         /// <param name="h">The resized height size of the GLView</param>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public delegate void ViewResizeDelegate(int w, int h);
 
         internal GLView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -61,8 +56,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates an initialized GLView.
         /// </summary>
         /// <param name="colorFormat">The format of the color buffer</param>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public GLView(ColorFormat colorFormat) : this(Interop.GLView.New((int)colorFormat), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -71,30 +65,24 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Enumeration for the color format of the color buffer
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public enum ColorFormat
         {
             /// <summary>
             /// 8 red bits, 8 green bits, 8 blue bits
             /// </summary>
-            /// <since_tizen> 9 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             RGB888 = 0,
 
             /// <summary>
             /// 8 red bits, 8 green bits, 8 blue bits, alpha 8 bits
             /// </summary>
-            /// <since_tizen> 9 </since_tizen>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             RGBA8888
         }
 
         /// <summary>
         /// Gets or sets the rendering mode of the GLView.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public GLRenderingMode RenderingMode
         {
             get
@@ -116,8 +104,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="glInit">The callback function for GL initialization</param>
         /// <param name="glRenderFrame">The callback function to render the frame</param>
         /// <param name="glTerminate">The callback function to clean up GL resources</param>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public void RegisterGLCallbacks(GLInitializeDelegate glInit, GLRenderFrameDelegate glRenderFrame, GLTerminateDelegate glTerminate)
         {
             glInitializeCallback = glInit;
@@ -147,8 +134,7 @@ namespace Tizen.NUI.BaseComponents
         /// When GLView is resized, the callback is invoked and it passes the width and height.
         /// </summary>
         /// <param name="callback">The resize callback function</param>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public void SetResizeCallback(ViewResizeDelegate callback)
         {
             viewResizeCallback = callback;
@@ -166,8 +152,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="msaa">The bit of MSAA</param>
         /// <param name="version">The GLES version</param>
         /// <returns>True if the config was successfully set, false otherwise.</returns>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public bool SetGraphicsConfig(bool depth, bool stencil, int msaa, GLESVersion version)
         {
             bool ret = Interop.GLView.GlViewSetGraphicsConfig(SwigCPtr, depth, stencil, msaa, (int)version);
@@ -178,8 +163,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Renders once more, even when paused.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public void RenderOnce()
         {
             Interop.GLView.GlViewRenderOnce(SwigCPtr);
