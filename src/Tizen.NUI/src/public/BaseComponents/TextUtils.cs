@@ -1139,12 +1139,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Copy the previously selected text into the clipboard and return the copied value.
+        /// Copy the previously selected text from the text control into the clipboard.
         /// </summary>
         /// <param name="textEditor">The textEditor control from which the text is copied.</param>
         /// <returns>The copied text.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static string CopyToClipboard(TextEditor textEditor)
         {
             string copiedText = Interop.TextEditor.CopyText(textEditor.SwigCPtr);
@@ -1153,12 +1152,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Copy the previously selected text into the clipboard and return the copied value.
+        /// Copy the previously selected text from the text control into the clipboard.
         /// </summary>
         /// <param name="textField">The textField control from which the text is copied.</param>
         /// <returns>The copied text.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static string CopyToClipboard(TextField textField)
         {
             string copiedText = Interop.TextField.CopyText(textField.SwigCPtr);
@@ -1167,12 +1165,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Cut the previously selected text from the text control and into the clipboard and return the cut value.
+        /// Cut the previously selected text from the text control into the clipboard.
         /// </summary>
         /// <param name="textEditor">The textEditor control from which the text is cut.</param>
         /// <returns>The cut text.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static string CutToClipboard(TextEditor textEditor)
         {
             string cutText = Interop.TextEditor.CutText(textEditor.SwigCPtr);
@@ -1181,12 +1178,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Cut the previously selected text from the text control and into the clipboard and return the cut value.
+        /// Cut the previously selected text from the text control into the clipboard.
         /// </summary>
         /// <param name="textField">The textField control from which the text is cut.</param>
         /// <returns>The cut text.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static string CutToClipboard(TextField textField)
         {
             string cutText = Interop.TextField.CutText(textField.SwigCPtr);
@@ -1195,11 +1191,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Paste the most recently copied/cut text from the clipboard and into the text control.
+        /// Paste the most recently copied/cut text item from the clipboard into the text control.
         /// </summary>
+        /// <remarks>
+        /// The pasted text will be inserted in the current cursor position and if the text control has no focus,
+        /// the text will be appended to the last cursor position and the text control will gain focus.
+        /// If some text inside the text control is selected, it will be replaced by the pasted text.
+        /// </remarks>
         /// <param name="textEditor">The textEditor control into which the text is pasted.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void PasteTo(TextEditor textEditor)
         {
             Interop.TextEditor.PasteText(textEditor.SwigCPtr);
@@ -1207,15 +1207,20 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Paste the most recently copied/cut text from the clipboard and into the text control.
+        /// Paste the most recently copied/cut text item from the clipboard into the text control.
         /// </summary>
+        /// <remarks>
+        /// The pasted text will be inserted in the current cursor position and if the text control has no focus,
+        /// the text will be appended to the last cursor position and the text control will gain focus.
+        /// If some text inside the text control is selected, it will be replaced by the pasted text.
+        /// </remarks>
         /// <param name="textField">The textField control into which the text is pasted.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public static void PasteTo(TextField textField)
         {
             Interop.TextField.PasteText(textField.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
     }
 }
