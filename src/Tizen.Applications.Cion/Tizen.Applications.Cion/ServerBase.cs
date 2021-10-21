@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace Tizen.Applications.Cion
@@ -121,17 +122,19 @@ namespace Tizen.Applications.Cion
             }
 
             _dataReceivedCb = new Interop.CionServer.CionServerDataReceivedCb(
-                (string service, IntPtr peerInfo, byte[] data, int dataSize, out byte[] returnData, out int returnDataSize, IntPtr userData) =>
+                (string service, IntPtr peerInfo, byte[] data, int dataSize, out IntPtr returnData, out int returnDataSize, IntPtr userData) =>
                 {
                     Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
                     if (clone_ret != Interop.Cion.ErrorCode.None)
                     {
                         Log.Error(LogTag, "Failed to clone peer info.");
-                        returnData = null;
+                        returnData = IntPtr.Zero;
                         returnDataSize = -1;
                     }
-                    returnData = OnDataReceived(data, new PeerInfo(clone));
-                    returnDataSize = returnData.Length;
+                    byte[] returnDataRaw = OnDataReceived(data, new PeerInfo(clone));
+                    returnDataSize = returnDataRaw.Length;
+                    returnData = Interop.Cion.Malloc(returnDataSize);
+                    Marshal.Copy(returnDataRaw, 0, returnData, returnDataSize);
                 });
             ret = Interop.CionServer.CionServerSetDataReceivedCb(_handle, _dataReceivedCb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
