@@ -36,7 +36,6 @@ namespace Tizen.Applications.Cion
         private Interop.CionClient.CionClientConnectionResultCb _connectionResultCb;
         private Interop.CionClient.CionClientPayloadReceivedCb _payloadRecievedCb;
         private Interop.CionClient.CionClientDisconnectedCb _disconnectedCb;
-        private Interop.CionClient.CionClientPayloadAsyncResultCb _payloadAsyncResultCb;
         private Dictionary<string, TaskCompletionSource<PayloadAsyncResult>> _tcsDictionary = new Dictionary<string, TaskCompletionSource<PayloadAsyncResult>>();
         private Dictionary<string, Interop.CionClient.CionClientPayloadAsyncResultCb> _payloadAsyncCbDictionary = new Dictionary<string, Interop.CionClient.CionClientPayloadAsyncResultCb>();
 
@@ -305,7 +304,7 @@ namespace Tizen.Applications.Cion
                     _tcsDictionary.Remove(resultPayload.PayloadId);
                 });
 
-            Interop.Cion.ErrorCode ret = Interop.CionClient.CionClientSendPayloadAsync(_handle, payload?._handle, _payloadAsyncResultCb, IntPtr.Zero);
+            Interop.Cion.ErrorCode ret = Interop.CionClient.CionClientSendPayloadAsync(_handle, payload?._handle, cb, IntPtr.Zero);
             if (ret != Interop.Cion.ErrorCode.None)
             {
                 throw CionErrorFactory.GetException(ret, "Failed to send payload.");
