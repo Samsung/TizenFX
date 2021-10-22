@@ -262,6 +262,19 @@ namespace Tizen.Applications
         private CultureInfo ConvertCultureInfo(string locale)
         {
             ULocale pLocale = new ULocale(locale);
+            string cultureName = CultureInfoHelper.GetCultureName(pLocale.Locale.Replace("_", "-"));
+
+            if (!string.IsNullOrEmpty(cultureName))
+            {
+                try
+                {
+                    return new CultureInfo(cultureName);
+                }
+                catch (CultureNotFoundException)
+                {
+                    Log.Error(LogTag, "CultureNotFoundException occurs. CultureName: " + cultureName);
+                }
+            }
 
             try
             {
