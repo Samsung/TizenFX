@@ -96,7 +96,7 @@ namespace Tizen.NUI.Samples
                 {
                     TimePeriod = new TimePeriod(500),
                     AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
-                    Direction = SlideTransitionDirection.Right
+                    Direction = SlideTransitionDirection.Top
                 },
             };
             navigator.Push(mainPage);

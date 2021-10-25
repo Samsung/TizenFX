@@ -28,7 +28,7 @@ namespace Tizen.NUI
             public static extern IntPtr NewEmpty();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Transition_New")]
-            public static extern IntPtr New(HandleRef source, HandleRef destination, HandleRef timePeriod);
+            public static extern IntPtr New(HandleRef source, HandleRef destination, bool useDestinationTarget, HandleRef timePeriod);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Transition")]
             public static extern void Delete(HandleRef transition);
