@@ -32,7 +32,7 @@ namespace Tizen.NUI
         /// Creates an initialized transition.<br />
         /// </summary>
         /// <remarks>DurationmSeconds must be greater than zero.</remarks>
-        public TransitionItem(View source, View destination, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.TransitionItem.New(source.SwigCPtr, destination.SwigCPtr, timePeriod.SwigCPtr), true)
+        public TransitionItem(View source, View destination, bool useDestinationTarget, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.TransitionItem.New(source.SwigCPtr, destination.SwigCPtr, useDestinationTarget, timePeriod.SwigCPtr), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             AlphaFunction = alphaFunction;
