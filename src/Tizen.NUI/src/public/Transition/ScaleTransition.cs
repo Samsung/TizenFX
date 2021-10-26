@@ -49,9 +49,9 @@ namespace Tizen.NUI
         /// <since_tizen> 9 </since_tizen>
         public Vector2 ScaleFactor { get; set; } = new Vector2(0.0f, 0.0f);
 
-        internal override TransitionItemBase CreateTransition(View view, bool isAppearing)
+        internal override TransitionItemBase CreateTransition(View view, bool appearingTransition, TimePeriod timePeriod, AlphaFunction alphaFunction)
         {
-            ScaleTransitionItem scale = new ScaleTransitionItem(view, ScaleFactor, isAppearing, GetTimePeriod(), GetAlphaFunction());
+            ScaleTransitionItem scale = new ScaleTransitionItem(view, ScaleFactor, appearingTransition, timePeriod, alphaFunction);
             return scale;
         }
     }

@@ -101,8 +101,19 @@ namespace Tizen.NUI
 
         public void AddTransition(TransitionItemBase transition)
         {
-            Interop.TransitionSet.AddTransition(SwigCPtr, transition.SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (transition is TransitionGroupItem)
+            {
+                TransitionGroupItem transitionGroup = transition as TransitionGroupItem;
+                for (int index = 0; index < transitionGroup.TransitionCount; ++index)
+                {
+                    this.AddTransition(transitionGroup.GetTransitionAt(index));
+                }
+            }
+            else
+            {
+                Interop.TransitionSet.AddTransition(SwigCPtr, transition.SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
         }
 
         public TransitionItemBase GetTransitionAt(uint index)
