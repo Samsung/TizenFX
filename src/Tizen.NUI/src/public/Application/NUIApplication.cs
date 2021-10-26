@@ -458,21 +458,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This is used to improve application launch performance.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SendLaunchRequest(AppControl appControl)
-        {
-            TransitionOptions?.SendLaunchRequest(appControl);
-        }
-
-        /// <summary>
-        /// This is used to improve application launch performance.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TransitionOptions TransitionOptions { get; set; }
-
-        /// <summary>
         /// Check if it is loaded as dotnet-loader-nui.
         /// </summary>
         static internal bool IsPreload { get; set; }

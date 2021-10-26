@@ -19,20 +19,25 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
+    /// <summary>
+    /// Default FrameBroker of NUI Application.
+    /// </summary>
     internal class DefaultFrameBroker : FrameBrokerBase
     {
+        private const int DefaultTransitionDuration = 500;
+
         private Window window;
         private ImageView providerImage;
         private bool isAnimating;
-
-        public delegate void AnimationEventHandler(bool direction);
-        internal event AnimationEventHandler AnimationInitialized;
-        internal event AnimationEventHandler AnimationFinished;
-
-        internal View mainView;
         private bool direction;
+        private AnimationType animationType;
 
-        internal Animation animation;
+        private TransitionSet transitionSet;
+        private Transition defaultTransition = new Transition()
+        {
+            TimePeriod = new TimePeriod(DefaultTransitionDuration),
+            AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+        };
 
         internal DefaultFrameBroker(Window window) : base(window)
         {
@@ -40,132 +45,147 @@ namespace Tizen.NUI
             isAnimating = false;
         }
 
+        /// <summary>
+        /// AnimationEvent Handler for broker animation
+        /// </summary>
+        internal delegate void AnimationEventHandler(bool direction);
+
+        /// <summary>
+        /// Emits the event when the animation is started.
+        /// </summary>
+        internal event AnimationEventHandler AnimationInitialized;
+
+        /// <summary>
+        /// Emits the event when the animation is finished.
+        /// </summary>
+        internal event AnimationEventHandler AnimationFinished;
+
+        /// <summary>
+        /// Transition properties for the transition of Window during this application call new application.
+        /// </summary>
+        internal TransitionBase AppearingTransition { get; set; }
+
+        /// <summary>
+        /// Transition properties for the transition of Window during new application is exited.
+        /// </summary>
+        internal TransitionBase DisappearingTransition { get; set; }
+
+        private void SetAnimationType()
+        {
+            if (ApplicationTransitionManager.Instance.SourceView != null)
+            {
+                animationType = direction ? AnimationType.SeamlessAnimationAppearing : AnimationType.SeamlessAnimationDisappearing;
+            }
+            else if (AppearingTransition != null || DisappearingTransition != null)
+            {
+                animationType = direction ? AnimationType.TransitionBaseAppearing : AnimationType.TransitionBaseDisappearing;
+            }
+            else
+            {
+                animationType = AnimationType.None;
+            }
+        }
+
+        private void CreateProviderImage(FrameData frame)
+        {
+            providerImage = new ImageView();
+            providerImage.Size = new Size(window.WindowSize);
+            providerImage.ParentOrigin = ParentOrigin.Center;
+            providerImage.PivotPoint = PivotPoint.Center;
+            providerImage.PositionUsesPivotPoint = true;
+            providerImage.AddRenderer(GetRenderer(frame));
+        }
+
+        private void PlayTransitionAnimation()
+        {
+            transitionSet = CreateTransitionSet();
+
+            window.Add(providerImage);
+            transitionSet.Play();
+            // Notifies that the animation is started to provider.
+            StartAnimation();
+        }
+
+        private TransitionSet CreateTransitionSet()
+        {
+            TransitionSet transitionSet = new TransitionSet();
+
+            if (animationType != AnimationType.None)
+            {
+                TransitionItemBase transitionItem = null;
+                switch (animationType)
+                {
+                    case AnimationType.SeamlessAnimationAppearing:
+                        transitionItem = defaultTransition.CreateTransition(ApplicationTransitionManager.Instance.SourceView, providerImage, true);
+                        break;
+                    case AnimationType.SeamlessAnimationDisappearing:
+                        transitionItem = defaultTransition.CreateTransition(providerImage, ApplicationTransitionManager.Instance.SourceView, false);
+                        break;
+                    case AnimationType.TransitionBaseAppearing:
+                        transitionItem = AppearingTransition.CreateTransition(providerImage, true);
+                        break;
+                    case AnimationType.TransitionBaseDisappearing:
+                        transitionItem = DisappearingTransition.CreateTransition(providerImage, false);
+                        break;
+                }
+                if (transitionItem != null)
+                {
+                    transitionSet.AddTransition(transitionItem);
+                    transitionSet.Finished += TransitionSetFinished;
+                    transitionItem.Dispose();
+                    transitionItem = null;
+                }
+            }
+            return transitionSet;
+        }
+
+        private void TransitionSetFinished(object sender, EventArgs e)
+        {
+            (sender as TransitionSet).Finished -= TransitionSetFinished;
+            providerImage.Unparent();
+            providerImage.Dispose();
+            providerImage = null;
+
+            FinishAnimation();
+            AnimationFinished?.Invoke(direction);
+            isAnimating = false;
+        }
+
+        /// <summary>
+        /// Occurs Whenever the frame is resumed.
+        /// </summary>
+        /// <param name="frame">The frame data.</param>
+        /// <remarks>
+        /// When the frame has been prepared, this function is called.
+        /// The caller can start animations, To notify that the animation is started, the caller should call StartAnimation().
+        /// After the animation is finished, the caller should call FinishAnimation() to notify.
+        /// </remarks>
         protected override void OnFrameResumed(FrameData frame)
         {
-            base.OnFrameResumed(frame);
-
+            Log.Info("NUI", "OnFrameResumed : " + frame.DirectionForward);
             direction = frame.DirectionForward;
 
             if (isAnimating)
             {
+                Log.Warn("NUI", "The OnFrameResumed() : Playing...");
                 return;
             }
+            Log.Info("NUI", "The OnFrameResumed() : Play Application Transition Animation");
             isAnimating = true;
+            AnimationInitialized?.Invoke(direction);
 
-            AnimationInitialized?.Invoke(frame.DirectionForward);
-
-            if (frame.DirectionForward)
-            {
-                PlayAnimateTo(frame, ForwardAnimation);
-            }
-            else
-            {
-                PlayAnimateTo(frame, BackwardAnimation);
-            }
-
-            StartAnimation();
+            SetAnimationType();
+            CreateProviderImage(frame);
+            PlayTransitionAnimation();
         }
 
-        protected override void OnFramePaused()
+        private enum AnimationType
         {
-            base.OnFramePaused();
-            animation?.Stop();
-
-            ResetImage();
-
-            isAnimating = false;
-        }
-
-        private void PlayAnimateTo(FrameData frame, TransitionAnimation transition)
-        {
-            if (transition != null)
-            {
-                //ResetImage();
-                if (!providerImage)
-                {
-                    providerImage = new ImageView(transition.DefaultImageStyle);
-                    providerImage.ParentOrigin = transition.DefaultImageStyle.ParentOrigin;
-                    providerImage.PivotPoint = transition.DefaultImageStyle.PivotPoint;
-                    providerImage.PositionUsesPivotPoint = true;
-                    providerImage.AddRenderer(GetRenderer(frame));
-                    if (mainView != null)
-                    {
-                        mainView.Add(providerImage);
-                        providerImage.LowerToBottom();
-                    }
-                    else
-                    {
-                        window.Add(providerImage);
-                    }
-                }
-                else
-                {
-                    providerImage.ApplyStyle(transition.DefaultImageStyle.Clone());
-                }
-
-                providerImage.Show();
-                int propertyCount = transition.AnimationDataList.Count;
-                animation = new Animation(transition.DurationMilliSeconds + 80);
-
-                for (int i = 0; i < propertyCount; i++)
-                {
-                    animation.PropertyList.Add(transition.AnimationDataList[i].Property);
-                    animation.DestValueList.Add(transition.AnimationDataList[i].DestinationValue);
-                    animation.StartTimeList.Add(80 + transition.AnimationDataList[i].StartTime);
-                    animation.EndTimeList.Add(80 + transition.AnimationDataList[i].EndTime);
-                }
-                animation.PlayAnimateTo(providerImage);
-                animation.Finished += Ani_Finished;
-            }
-            else
-            {
-                FinishAnimation();
-            }
-        }
-
-
-        private TransitionAnimation forwardAnimation;
-        internal TransitionAnimation ForwardAnimation
-        {
-            get
-            {
-                return forwardAnimation;
-            }
-            set
-            {
-                forwardAnimation = value;
-            }
-        }
-
-        private TransitionAnimation backwardAnimation;
-        internal TransitionAnimation BackwardAnimation
-        {
-            get
-            {
-                return backwardAnimation;
-            }
-            set
-            {
-                backwardAnimation = value;
-            }
-        }
-
-        private void Ani_Finished(object sender, EventArgs e)
-        {
-            FinishAnimation();
-
-            AnimationFinished?.Invoke(direction);
-        }
-
-        private void ResetImage()
-        {
-            if (providerImage != null)
-            {
-                providerImage.Hide();
-                //providerImage.Unparent();
-                //providerImage.Dispose();
-                //providerImage = null;
-            }
+            None = 0,
+            SeamlessAnimationAppearing = 1,
+            SeamlessAnimationDisappearing = 2,
+            TransitionBaseAppearing = 3,
+            TransitionBaseDisappearing = 4,
         }
     }
 }
