@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -122,7 +123,7 @@ namespace Tizen.Nlp
                 result.Add("token", (string[])msg.GetItem("return_token"));
 
             if (msg.Contains("request_id"))
-                e.RequestId = requestid = int.Parse((string)msg.GetItem("request_id"));
+                e.RequestId = requestid = int.Parse((string)msg.GetItem("request_id"), NumberStyles.Integer, CultureInfo.InvariantCulture);
             else
                 return;
 
