@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest package="org.tizen.example.NUISimpleCaller" version="1.0.0" api-version="5" xmlns="http://tizen.org/ns/packages">
+<manifest package="org.tizen.example.BrokerSample" version="1.0.0" api-version="6" xmlns="http://tizen.org/ns/packages">
     <profile name="common" />
-    <ui-application appid="org.tizen.example.NUISimpleCaller" exec="NUISimpleCaller.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
-        <label>NUISimpleCaller</label>
-        <icon>NUISimpleCaller.png</icon>
+    <ui-application appid="org.tizen.example.BrokerSample" exec="BrokerSample.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" launch_mode="single">
+        <label>BrokerSample</label>
+        <icon>BrokerSample.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
         <splash-screens />
     </ui-application>

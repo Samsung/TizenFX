@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+      <AssemblyName>ProviderSample</AssemblyName>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -14,13 +15,17 @@
 
   <ItemGroup>
     <Folder Include="lib\" />
+    <Folder Include="res\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.1" />
-  </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Tizen.NUI.Components\Tizen.NUI.Components.csproj" />
     <ProjectReference Include="..\..\..\src\Tizen.NUI\Tizen.NUI.csproj" />
   </ItemGroup>
 
