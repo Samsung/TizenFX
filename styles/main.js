@@ -1,6 +1,7 @@
 $(function () {
   var monikers = {
-    "API9": "API Level 9 / Tizen vNext",
+    "API10": "API Level 10 / Tizen vNext",
+    "API9": "API Level 9 / Tizen 6.5",
     "API8": "API Level 8 / Tizen 6.0",
     "API7": "API Level 7 / Tizen 5.5 M3",
     "API6": "API Level 6 / Tizen 5.5 M2",
