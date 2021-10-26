@@ -18,48 +18,49 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
     /// <summary>
     /// FadeTransition class is a cluster of properties for the fade transition of a View.
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
-    public class FadeTransition : TransitionBase
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class TransitionGroup : TransitionBase
     {
-        private float opacity = 0.0f;
+        private List<TransitionBase> transitionList = null;
 
         /// <summary>
         /// Create a FadeTransition for the View pair.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public FadeTransition()
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TransitionGroup()
         {
         }
 
-        /// <summary>
-        /// Set Opacity for this fade transition.
-        /// If this transition is for appearing, the opacity of target View is animated from this property.
-        /// If this transition is for disappearing, the opacity of target View is animated to this property.
-        /// Default Opacity is 0.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public float Opacity
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool UseGroupTimePeriod { set; get; } = false;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool StepTransition { set; get; } = false;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool UseGroupAlphaFunction { set; get; } = false;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddTransition(TransitionBase transition)
         {
-            get
+            if (transitionList == null)
             {
-                return opacity;
+                transitionList = new List<TransitionBase>();
             }
-            set
-            {
-                opacity = value;
-            }
+            transitionList.Add(transition);
         }
 
         internal override TransitionItemBase CreateTransition(View view, bool appearingTransition, TimePeriod timePeriod, AlphaFunction alphaFunction)
         {
-            FadeTransitionItem fade = new FadeTransitionItem(view, Opacity, appearingTransition, timePeriod, alphaFunction);
-            return fade;
+            TransitionGroupItem group = new TransitionGroupItem(view, transitionList, UseGroupTimePeriod, StepTransition, UseGroupAlphaFunction, appearingTransition, timePeriod, alphaFunction);
+            return group;
         }
     }
 }

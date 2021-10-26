@@ -31,10 +31,10 @@ namespace Tizen.NUI
         /// Creates an initialized SlideTransition.<br />
         /// </summary>
         /// <remarks>Delay and duration of timePeriod must be greater than zero.</remarks>
-        public SlideTransitionItem(View view, Vector2 direction, bool isAppearing, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.SlideTransitionItem.New(view.SwigCPtr, direction.SwigCPtr, timePeriod.SwigCPtr), true)
+        public SlideTransitionItem(View view, Vector2 direction, bool appearingTransition, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.SlideTransitionItem.New(view.SwigCPtr, direction.SwigCPtr, timePeriod.SwigCPtr), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            AppearingTransition = isAppearing;
+            AppearingTransition = appearingTransition;
             AlphaFunction = alphaFunction;
         }
 
