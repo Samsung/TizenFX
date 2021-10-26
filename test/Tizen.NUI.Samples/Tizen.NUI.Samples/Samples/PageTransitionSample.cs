@@ -82,6 +82,37 @@ namespace Tizen.NUI.Samples
             layoutView.Add(greenButton);
             layoutView.Add(blueButton);
 
+
+            TransitionGroup transitionGroup = new TransitionGroup()
+            {
+                UseGroupTimePeriod = true,
+                UseGroupAlphaFunction = true,
+                StepTransition = true,
+                TimePeriod = new TimePeriod(500, 3000),
+                AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOut),
+            };
+            SlideTransition slide = new SlideTransition()
+            {
+                TimePeriod = new TimePeriod(1000),
+                AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+                Direction = SlideTransitionDirection.Top
+            };
+            transitionGroup.AddTransition(slide);
+            FadeTransition fade = new FadeTransition()
+            {
+                Opacity = 0.3f,
+                TimePeriod = new TimePeriod(1000),
+                AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default)
+            };
+            transitionGroup.AddTransition(fade);
+            ScaleTransition scale = new ScaleTransition()
+            {
+                ScaleFactor = new Vector2(0.3f, 0.3f),
+                TimePeriod = new TimePeriod(1000),
+                AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default)
+            };
+            transitionGroup.AddTransition(scale);
+
             mainPage = new ContentPage()
             {
                 BackgroundColor = Color.Transparent,
@@ -92,12 +123,7 @@ namespace Tizen.NUI.Samples
                     AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
                     ScaleFactor = new Vector2(0.5f, 1.5f)
                 },
-                AppearingTransition = new SlideTransition()
-                {
-                    TimePeriod = new TimePeriod(500),
-                    AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
-                    Direction = SlideTransitionDirection.Top
-                },
+                AppearingTransition = transitionGroup,
             };
             navigator.Push(mainPage);
 
@@ -328,15 +354,20 @@ namespace Tizen.NUI.Samples
             };
             pageRoot.Add(pageBackground);
 
+            TransitionGroup transitionGroup = new TransitionGroup();
+            FadeTransition slide = new FadeTransition()
+            {
+                TimePeriod = new TimePeriod(500),
+                AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
+            };
+            transitionGroup.AddTransition(slide);
+
             Page page = new ContentPage()
             {
                 BackgroundColor = Color.Transparent,
                 Content = pageRoot,
-                AppearingTransition = new FadeTransition()
-                {
-                    TimePeriod = new TimePeriod(500),
-                    AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
-                },
+
+                AppearingTransition = transitionGroup,
                 DisappearingTransition = new SlideTransition()
                 {
                     TimePeriod = new TimePeriod(500),
