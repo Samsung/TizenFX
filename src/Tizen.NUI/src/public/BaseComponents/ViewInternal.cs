@@ -31,6 +31,14 @@ namespace Tizen.NUI.BaseComponents
     public partial class View
     {
         private MergedStyle mergedStyle = null;
+
+        // Ignore WidthResizePolicy and HeightResizePolicy when Layout is set.
+        // Restore WidthResizePolicy and HeightResizePolicy when Layout is unset.
+        // See also IgnoreResizePolicy() and RestoreResizePolicy().
+        private ResizePolicyType widthResizePolicy = ResizePolicyType.Fixed;
+        private ResizePolicyType heightResizePolicy = ResizePolicyType.Fixed;
+        private bool isIgnoredResizePolicy = false;
+
         internal string styleName;
 
         internal MergedStyle MergedStyle
@@ -189,6 +197,17 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetLayout(LayoutItem layout)
         {
+            // ResizePolicy is restored when Layout is unset and it is considered when View size is calculated.
+            if (layout == null)
+            {
+                RestoreResizePolicy();
+            }
+            // ResizePolicy is stored when Layout is set and it is ignored when View size is calculated.
+            else
+            {
+                IgnoreResizePolicy();
+            }
+
             Window.Instance.LayoutController.CreateProcessCallback();
             this.layout = layout;
             this.layout?.AttachToOwner(this);
@@ -1010,6 +1029,8 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         internal void ResetLayout()
         {
+            // ResizePolicy is restored when Layout is unset and it is considered when View size is calculated.
+            RestoreResizePolicy();
             layout = null;
         }
 
@@ -1463,6 +1484,33 @@ namespace Tizen.NUI.BaseComponents
             if (themeData == null) themeData = new ThemeData();
 
             return themeData.selectorData ?? (themeData.selectorData = new ViewSelectorData());
+        }
+
+        // ResizePolicy is stored when Layout is set and it is ignored when View size is calculated.
+        private void IgnoreResizePolicy()
+        {
+            if (isIgnoredResizePolicy) return;
+            isIgnoredResizePolicy = true;
+
+            widthResizePolicy = WidthResizePolicy;
+            heightResizePolicy = HeightResizePolicy;
+
+            // Set bindable property directly not to store width/heightResizePolicy duplicately.
+            SetValue(WidthResizePolicyProperty, ResizePolicyType.Fixed);
+            SetValue(HeightResizePolicyProperty, ResizePolicyType.Fixed);
+            NotifyPropertyChanged();
+        }
+
+        // ResizePolicy is restored when Layout is unset and it is considered when View size is calculated.
+        private void RestoreResizePolicy()
+        {
+            if (!isIgnoredResizePolicy) return;
+            isIgnoredResizePolicy = false;
+
+            // Set bindable property directly not to store width/heightResizePolicy duplicately.
+            SetValue(WidthResizePolicyProperty, widthResizePolicy);
+            SetValue(HeightResizePolicyProperty, heightResizePolicy);
+            NotifyPropertyChanged();
         }
     }
 }
