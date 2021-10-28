@@ -1856,6 +1856,9 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                // Store ResizePolicy to restore it when Layout is unset.
+                widthResizePolicy = value;
+
                 SetValue(WidthResizePolicyProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1873,6 +1876,9 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                // Store ResizePolicy to restore it when Layout is unset.
+                heightResizePolicy = value;
+
                 SetValue(HeightResizePolicyProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2549,6 +2555,13 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                // ResizePolicy is restored when Layout is unset and it is considered when View size is calculated.
+                // SetValue(LayoutProperty, value) sets InternalLayout only if layout is not null.
+                if (value == null)
+                {
+                    RestoreResizePolicy();
+                }
+
                 SetValue(LayoutProperty, value);
             }
         }
