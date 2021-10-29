@@ -12,5 +12,6 @@
     </ui-application>
     <privileges>
           <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+          <privilege>http://tizen.org/privilege/window.priority.set</privilege>
   </privileges>
 </manifest>
