@@ -26,6 +26,8 @@
     <PackageReference Include="Tizen.NET.Sdk" Version="1.1.6" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Tizen.NUI.Components\Tizen.NUI.Components.csproj" />
+    <ProjectReference Include="..\..\..\src\Tizen.NUI\Tizen.NUI.csproj" />
     <ProjectReference Include="..\nunit.framework\nunit.framework.csproj" />
     <ProjectReference Include="..\nunitlite\nunitlite.csproj" />
   </ItemGroup>
