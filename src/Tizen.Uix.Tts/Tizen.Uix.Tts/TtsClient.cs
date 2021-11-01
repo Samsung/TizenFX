@@ -154,7 +154,22 @@ namespace Tizen.Uix.Tts
         /// Audio policy blocked.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        AudioPolicyBlocked
+        AudioPolicyBlocked,
+        /// <summary>
+        /// Not supported feature of current engine.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        NotSupportedFeature,
+        /// <summary>
+        /// Service reset.
+        /// </summary>
+        /// <since_tizen> 3 </since_tizen>
+        ServiceReset,
+        /// <summary>
+        /// Screen reader off.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        ScreenReaderOff
     };
 
     /// <summary>

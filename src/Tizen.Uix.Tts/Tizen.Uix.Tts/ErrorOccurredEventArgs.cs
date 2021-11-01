@@ -111,6 +111,24 @@ namespace Tizen.Uix.Tts
                         ErrorValue = Error.AudioPolicyBlocked;
                         break;
                     }
+
+                case Interop.Tts.TtsError.NotSupportedFeature:
+                    {
+                        ErrorValue = Error.NotSupportedFeature;
+                        break;
+                    }
+
+                case Interop.Tts.TtsError.ServiceReset:
+                    {
+                        ErrorValue = Error.ServiceReset;
+                        break;
+                    }
+
+                case Interop.Tts.TtsError.ScreenReaderOff:
+                    {
+                        ErrorValue = Error.ScreenReaderOff;
+                        break;
+                    }
             }
         }
 
