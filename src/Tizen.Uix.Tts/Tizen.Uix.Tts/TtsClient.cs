@@ -111,7 +111,7 @@ namespace Tizen.Uix.Tts
         /// <since_tizen> 3 </since_tizen>
         InvalidParameter,
         /// <summary>
-        /// No answer from the STT service.
+        /// No answer from the TTS service.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         TimedOut,
@@ -126,7 +126,7 @@ namespace Tizen.Uix.Tts
         /// <since_tizen> 3 </since_tizen>
         PermissionDenied,
         /// <summary>
-        /// STT not supported.
+        /// TTS not supported.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         NotSupported,
@@ -154,7 +154,22 @@ namespace Tizen.Uix.Tts
         /// Audio policy blocked.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        AudioPolicyBlocked
+        AudioPolicyBlocked,
+        /// <summary>
+        /// Not supported feature of current engine.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        NotSupportedFeature,
+        /// <summary>
+        /// Service reset.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        ServiceReset,
+        /// <summary>
+        /// Screen reader off.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        ScreenReaderOff
     };
 
     /// <summary>
@@ -612,7 +627,7 @@ namespace Tizen.Uix.Tts
         /// The Default Voice SupportedVoice value, 0 if unable to get the value.
         /// </returns>
         /// <pre>
-        /// The State should be ready.
+        /// The state must be ready.
         /// </pre>
         public uint MaxTextSize
         {
@@ -676,7 +691,7 @@ namespace Tizen.Uix.Tts
         /// <exception cref="OutOfMemoryException">This exception can be due to out Of memory.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
-        /// The State should be created.
+        /// The state must be created.
         /// </pre>
         public Mode CurrentMode
         {
@@ -749,7 +764,7 @@ namespace Tizen.Uix.Tts
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
         /// <pre>
-        /// The State should be created or ready.
+        /// The state must be created or ready.
         /// </pre>
         public void SetCredential(string credential)
         {
@@ -768,10 +783,14 @@ namespace Tizen.Uix.Tts
         /// <feature>
         /// http://tizen.org/feature/speech.synthesis
         /// </feature>
-        /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
+        /// <exception cref="InvalidOperationException">
+        /// This exception can be due to the following reasons while setting the value:
+        /// 1. Invalid state
+        /// 2. Screen reader off
+        /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
-        /// The State must be Created.
+        /// The state must be created.
         /// </pre>
         /// <post>
         /// If this function is successful, the TTS state will be ready.
@@ -788,7 +807,7 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// Disconnects from the STT service.
+        /// Disconnects from the TTS service.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <feature>
@@ -981,6 +1000,7 @@ namespace Tizen.Uix.Tts
         /// 1. Invalid State
         /// 2. Operation Failure
         /// 3. Invalid Voice
+        /// 4. Screen reader off
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -1013,6 +1033,7 @@ namespace Tizen.Uix.Tts
         /// 1. Invalid State
         /// 2. Operation Failure
         /// 3. Out of Network
+        /// 4. Screen reader off
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
@@ -1043,6 +1064,7 @@ namespace Tizen.Uix.Tts
         /// This exception can be due to the following reasons:
         /// 1. Invalid Stat
         /// 2. Operation Failure
+        /// 3. Screen reader off
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
@@ -1073,13 +1095,14 @@ namespace Tizen.Uix.Tts
         /// This exception can be due to the following reasons:
         /// 1. Invalid State
         /// 2. Operation Failure
+        /// 3. Screen reader off
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
         /// The state must be playing.
         /// </pre>
         /// <post>
-        /// If this function succeeds, the TTS state will be Paused.
+        /// If this function succeeds, the TTS state will be paused.
         /// </post>
         public void Pause()
         {
