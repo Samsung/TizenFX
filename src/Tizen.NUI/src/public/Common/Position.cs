@@ -540,7 +540,7 @@ namespace Tizen.NUI
                 Interop.Vector3.XSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z);
+                callback?.Invoke(value, null, null);
             }
             get
             {
@@ -573,7 +573,7 @@ namespace Tizen.NUI
                 Interop.Vector3.YSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z);
+                callback?.Invoke(null, value, null);
             }
             get
             {
@@ -606,7 +606,7 @@ namespace Tizen.NUI
                 Interop.Vector3.ZSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y, Z);
+                callback?.Invoke(null, null, value);
             }
             get
             {
@@ -949,7 +949,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal delegate void PositionChangedCallback(float x, float y, float z);
+        internal delegate void PositionChangedCallback(float? x, float? y, float? z);
 
         internal Position(PositionChangedCallback cb, float x, float y, float z) : this(Interop.Vector3.NewVector3(x, y, z), true)
         {

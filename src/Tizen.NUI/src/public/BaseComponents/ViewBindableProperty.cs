@@ -121,29 +121,51 @@ namespace Tizen.NUI.BaseComponents
         /// ColorProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ColorProperty = BindableProperty.Create(nameof(Color), typeof(Color), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-
-            view.themeData?.selectorData?.Color?.Reset(view);
-
-            if (newValue is Selector<Color> selector)
+        public static readonly BindableProperty ColorProperty = BindableProperty.Create(nameof(Color), typeof(Color), typeof(View), null,
+            propertyChanged: (bindable, oldValue, newValue) =>
             {
-                if (selector.HasAll()) view.SetColor(selector.All);
-                else view.EnsureSelectorData().Color = new TriggerableSelector<Color>(view, selector, view.SetColor, true);
-            }
-            else
+                var view = (View)bindable;
+
+                view.themeData?.selectorData?.Color?.Reset(view);
+
+                if (newValue is Selector<Color> selector)
+                {
+                    if (selector.HasAll()) view.SetColor(selector.All);
+                    else view.EnsureSelectorData().Color = new TriggerableSelector<Color>(view, selector, view.SetColor, true);
+                }
+                else
+                {
+                    view.SetColor((Color)newValue);
+                }
+            },
+            defaultValueCreator: (bindable) =>
             {
-                view.SetColor((Color)newValue);
+                var view = (View)bindable;
+                var tmp = new Color(0, 0, 0, 0);
+                view.GetProperty(Interop.ActorProperty.ColorGet()).Get(tmp);
+
+                float tmpR = (float)tmp?.R;
+                float tmpG = (float)tmp?.G;
+                float tmpB = (float)tmp?.B;
+                float tmpA = (float)tmp?.A;
+                tmp?.Dispose();
+                tmp = null;
+
+                if (view.internalColor == null)
+                {
+                    view.internalColor = new Color(view.OnColorChanged, tmpR, tmpG, tmpB, tmpA);
+                }
+                else
+                {
+                    if (view.internalColor.R != tmpR) { view.internalColor.R = tmpR; }
+                    if (view.internalColor.G != tmpG) { view.internalColor.G = tmpG; }
+                    if (view.internalColor.B != tmpB) { view.internalColor.B = tmpB; }
+                    if (view.internalColor.A != tmpA) { view.internalColor.A = tmpA; }
+                }
+                return view.internalColor;
             }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            Color color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-            view.GetProperty(Interop.ActorProperty.ColorGet()).Get(color);
-            return color;
-        });
+        );
+
         /// <summary> BackgroundImageProperty </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create(nameof(BackgroundImage), typeof(string), typeof(View), default(string), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -608,9 +630,9 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty Size2DProperty = BindableProperty.Create(nameof(Size2D), typeof(Size2D), typeof(View), null,
-            propertyChanged: ((bindable, oldValue, newValue) =>
+            propertyChanged: (bindable, oldValue, newValue) =>
             {
-                View view = (View)bindable;
+                var view = (View)bindable;
                 if (newValue != null)
                 {
                     view.SetSize(((Size2D)newValue).Width, ((Size2D)newValue).Height, 0);
@@ -620,10 +642,10 @@ namespace Tizen.NUI.BaseComponents
 
                     view.layout?.RequestLayout();
                 }
-            }),
-            defaultValueCreator: ((bindable) =>
+            },
+            defaultValueCreator: (bindable) =>
             {
-                View view = (View)bindable;
+                var view = (View)bindable;
                 var tmp = new Size(0, 0, 0);
                 Object.GetProperty(view.SwigCPtr, Property.SIZE).Get(tmp);
 
@@ -642,7 +664,7 @@ namespace Tizen.NUI.BaseComponents
                     if (view.internalSize2D.Height != tmpHeight) { view.internalSize2D.Height = tmpHeight; }
                 }
                 return view.internalSize2D;
-            })
+            }
         );
 
         /// <summary>
@@ -677,21 +699,38 @@ namespace Tizen.NUI.BaseComponents
         /// Position2DProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty Position2DProperty = BindableProperty.Create(nameof(Position2D), typeof(Position2D), typeof(View), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            if (newValue != null)
+        public static readonly BindableProperty Position2DProperty = BindableProperty.Create(nameof(Position2D), typeof(Position2D), typeof(View), null,
+            propertyChanged: (bindable, oldValue, newValue) =>
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.POSITION, new Tizen.NUI.PropertyValue(new Position((Position2D)newValue)));
+                var view = (View)bindable;
+                if (newValue != null)
+                {
+                    view.SetPosition(((Position2D)newValue).X, ((Position2D)newValue).Y, 0);
+                }
+            },
+            defaultValueCreator: (bindable) =>
+            {
+                var view = (View)bindable;
+                var tmp = new Position(0, 0, 0);
+                Object.GetProperty(view.SwigCPtr, Property.POSITION).Get(tmp);
+
+                int tmpX = (int)tmp?.X;
+                int tmpY = (int)tmp?.Y;
+                tmp?.Dispose();
+                tmp = null;
+
+                if (view.internalPosition2D == null)
+                {
+                    view.internalPosition2D = new Position2D(view.OnPosition2DChanged, tmpX, tmpY);
+                }
+                else
+                {
+                    if (view.internalPosition2D.X != tmpX) { view.internalPosition2D.X = tmpX; }
+                    if (view.internalPosition2D.Y != tmpY) { view.internalPosition2D.Y = tmpY; }
+                }
+                return view.internalPosition2D;
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-        {
-            var view = (View)bindable;
-            Position temp = new Position(0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.POSITION).Get(temp);
-            return new Position2D(temp);
-        }));
+        );
 
         /// <summary>
         /// PositionUsesPivotPointProperty
@@ -849,21 +888,40 @@ namespace Tizen.NUI.BaseComponents
         /// PositionProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PositionProperty = BindableProperty.Create(nameof(Position), typeof(Position), typeof(View), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            if (newValue != null)
+        public static readonly BindableProperty PositionProperty = BindableProperty.Create(nameof(Position), typeof(Position), typeof(View), null,
+            propertyChanged: (bindable, oldValue, newValue) =>
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.POSITION, new Tizen.NUI.PropertyValue((Position)newValue));
+                var view = (View)bindable;
+                if (newValue != null)
+                {
+                    view.SetPosition(((Position)newValue).X, ((Position)newValue).Y, ((Position)newValue).Z);
+                }
+            },
+            defaultValueCreator: (bindable) =>
+            {
+                var view = (View)bindable;
+                var tmp = new Position(0, 0, 0);
+                Object.GetProperty(view.SwigCPtr, Property.POSITION).Get(tmp);
+
+                float tmpX = (float)tmp.X;
+                float tmpY = (float)tmp.Y;
+                float tmpZ = (float)tmp.Z;
+                tmp?.Dispose();
+                tmp = null;
+
+                if (view.internalPosition == null)
+                {
+                    view.internalPosition = new Position(view.OnPositionChanged, tmpX, tmpY, tmpZ);
+                }
+                else
+                {
+                    if (view.internalPosition.X != tmpX) { view.internalPosition.X = tmpX; }
+                    if (view.internalPosition.Y != tmpY) { view.internalPosition.Y = tmpY; }
+                    if (view.internalPosition.Z != tmpZ) { view.internalPosition.Z = tmpZ; }
+                }
+                return view.internalPosition;
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-        {
-            var view = (View)bindable;
-            Position temp = new Position(0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.POSITION).Get(temp);
-            return temp;
-        }));
+        );
 
         /// <summary>
         /// PositionXProperty
@@ -1377,26 +1435,46 @@ namespace Tizen.NUI.BaseComponents
         /// SizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(View), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            if (newValue != null)
+        public static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(View), null,
+            propertyChanged: (bindable, oldValue, newValue) =>
             {
-                Size size = (Size)newValue;
-                // Set Specification so when layouts measure this View it matches the value set here.
-                // All Views are currently Layouts.
-                view.WidthSpecification = (int)System.Math.Ceiling(size.Width);
-                view.HeightSpecification = (int)System.Math.Ceiling(size.Height);
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SIZE, new Tizen.NUI.PropertyValue(size));
+                var view = (View)bindable;
+                if (newValue != null)
+                {
+                    // Set Specification so when layouts measure this View it matches the value set here.
+                    // All Views are currently Layouts.
+                    view.WidthSpecification = (int)System.Math.Ceiling(((Size)newValue).Width);
+                    view.HeightSpecification = (int)System.Math.Ceiling(((Size)newValue).Height);
+
+                    view.SetSize(((Size)newValue).Width, ((Size)newValue).Height, ((Size)newValue).Depth);
+                }
+            },
+            defaultValueCreator: (bindable) =>
+            {
+                var view = (View)bindable;
+                var tmp = new Size(0, 0, 0);
+                Object.GetProperty(view.SwigCPtr, Property.SIZE).Get(tmp);
+
+                float tmpWidth = (float)tmp?.Width;
+                float tmpHeight = (float)tmp?.Height;
+                float tmpDepth = (float)tmp?.Depth;
+                tmp?.Dispose();
+                tmp = null;
+
+                if (view.internalSize == null)
+                {
+                    view.internalSize = new Size(view.OnSizeChanged, tmpWidth, tmpHeight, tmpDepth);
+                }
+                else
+                {
+                    if (view.internalSize.Width != tmpWidth) { view.internalSize.Width = tmpWidth; }
+                    if (view.internalSize.Height != tmpHeight) { view.internalSize.Height = tmpHeight; }
+                    if (view.internalSize.Depth != tmpDepth) { view.internalSize.Depth = tmpDepth; }
+                }
+
+                return view.internalSize;
             }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-        {
-            var view = (View)bindable;
-            Size temp = new Size(0, 0, 0);
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SIZE).Get(temp);
-            return temp;
-        }));
+        );
 
         /// <summary>
         /// MinimumSizeProperty

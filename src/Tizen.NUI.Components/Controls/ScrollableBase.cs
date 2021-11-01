@@ -1326,25 +1326,19 @@ namespace Tizen.NUI.Components
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
         {
-            OnPanGesture(e.PanGesture);
-            if(!((SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing) || e.PanGesture.State == Gesture.StateType.Started))
-            {
-                e.Handled = !((int)finalTargetPosition == 0 || -(int)finalTargetPosition == (int)maxScrollDistance);
-            }
+            e.Handled = OnPanGesture(e.PanGesture);
         }
 
-        private void OnPanGesture(PanGesture panGesture)
+        private bool OnPanGesture(PanGesture panGesture)
         {
+            bool handled = true;
             if (SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)
             {
-                return;
+                return handled;
             }
-
             if (panGesture.State == Gesture.StateType.Started)
             {
                 readyToNotice = false;
-                //Interrupt touching when panning is started
-                this.InterceptTouchEvent += OnInterruptTouchingChildTouched;
                 AttachOverShootingShadowView();
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Gesture Start");
                 if (scrolling && !SnapToPage)
@@ -1352,6 +1346,21 @@ namespace Tizen.NUI.Components
                     StopScroll();
                 }
                 totalDisplacementForPan = 0.0f;
+
+                // check if gesture need to propagation
+                var checkDisplacement = (ScrollingDirection == Direction.Horizontal) ? panGesture.Displacement.X : panGesture.Displacement.Y;
+                var checkChildCurrentPosition = (ScrollingDirection == Direction.Horizontal) ? ContentContainer.PositionX : ContentContainer.PositionY;
+                var checkChildTargetPosition = checkChildCurrentPosition + checkDisplacement;
+                var checkFinalTargetPosition = BoundScrollPosition(checkChildTargetPosition);
+                handled = !((int)checkFinalTargetPosition == 0 || -(int)checkFinalTargetPosition == (int)maxScrollDistance);
+                // If you propagate a gesture event, return;
+                if(!handled)
+                {
+                    return handled;
+                }
+
+                //Interrupt touching when panning is started
+                this.InterceptTouchEvent += OnInterruptTouchingChildTouched;
                 OnScrollDragStarted();
             }
             else if (panGesture.State == Gesture.StateType.Continuing)
@@ -1418,6 +1427,7 @@ namespace Tizen.NUI.Components
                 readyToNotice = true;
                 OnScrollAnimationStarted();
             }
+            return handled;
         }
 
         internal void BaseRemove(View view)

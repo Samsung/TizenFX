@@ -81,7 +81,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal delegate void Position2DChangedCallback(int x, int y);
+        internal delegate void Position2DChangedCallback(int? x, int? y);
 
         /// <summary>
         /// The x component.
@@ -106,7 +106,7 @@ namespace Tizen.NUI
                 Interop.Vector2.XSet(SwigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y);
+                callback?.Invoke(value, null);
             }
             get
             {
@@ -139,7 +139,7 @@ namespace Tizen.NUI
                 Interop.Vector2.YSet(SwigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(X, Y);
+                callback?.Invoke(null, value);
             }
             get
             {

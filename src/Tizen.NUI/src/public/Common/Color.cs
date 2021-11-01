@@ -1078,7 +1078,7 @@ namespace Tizen.NUI
         {
         }
 
-        internal delegate void ColorChangedCallback(float r, float g, float b, float a);
+        internal delegate void ColorChangedCallback(float? r, float? g, float? b, float? a);
         private ColorChangedCallback callback = null;
 
         /// <summary>
@@ -1104,7 +1104,7 @@ namespace Tizen.NUI
                 Interop.Vector4.RSet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(R, G, B, A);
+                callback?.Invoke(value, null, null, null);
             }
             get
             {
@@ -1137,7 +1137,7 @@ namespace Tizen.NUI
                 Interop.Vector4.GSet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(R, G, B, A);
+                callback?.Invoke(null, value, null, null);
             }
             get
             {
@@ -1170,7 +1170,7 @@ namespace Tizen.NUI
                 Interop.Vector4.BSet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(R, G, B, A);
+                callback?.Invoke(null, null, value, null);
             }
             get
             {
@@ -1203,7 +1203,7 @@ namespace Tizen.NUI
                 Interop.Vector4.ASet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(R, G, B, A);
+                callback?.Invoke(null, null, null, value);
             }
             get
             {

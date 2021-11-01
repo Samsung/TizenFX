@@ -2299,9 +2299,9 @@ namespace Tizen.NUI.BaseComponents
         {
             InputColor = new Vector4(x, y, z, w);
         }
-        private void OnPlaceholderTextColorChanged(float r, float g, float b, float a)
+        private void OnPlaceholderTextColorChanged(float? r, float? g, float? b, float? a)
         {
-            PlaceholderTextColor = new Color(r, g, b, a);
+            PlaceholderTextColor = new Color((float)r, (float)g, (float)b, (float)a);
         }
         private void OnPrimaryCursorColorChanged(float x, float y, float z, float w)
         {
@@ -2319,9 +2319,9 @@ namespace Tizen.NUI.BaseComponents
         {
             TextColor = new Vector4(x, y, z, w);
         }
-        private void OnGrabHandleColorChanged(float r, float g, float b, float a)
+        private void OnGrabHandleColorChanged(float? r, float? g, float? b, float? a)
         {
-            GrabHandleColor = new Color(r, g, b, a);
+            GrabHandleColor = new Color((float)r, (float)g, (float)b, (float)a);
         }
     }
 }

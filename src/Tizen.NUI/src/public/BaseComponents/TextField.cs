@@ -2364,13 +2364,13 @@ namespace Tizen.NUI.BaseComponents
         {
             ShadowOffset = new Vector2(x, y);
         }
-        private void OnTextColorChanged(float r, float g, float b, float a)
+        private void OnTextColorChanged(float? r, float? g, float? b, float? a)
         {
-            TextColor = new Color(r, g, b, a);
+            TextColor = new Color((float)r, (float)g, (float)b, (float)a);
         }
-        private void OnGrabHandleColorChanged(float r, float g, float b, float a)
+        private void OnGrabHandleColorChanged(float? r, float? g, float? b, float? a)
         {
-            GrabHandleColor = new Color(r, g, b, a);
+            GrabHandleColor = new Color((float)r, (float)g, (float)b, (float)a);
         }
     }
 }

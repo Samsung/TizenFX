@@ -1120,8 +1120,17 @@ namespace Tizen.NUI.BaseComponents
             }
 
             //_mergedStyle = null;
-            
+
+            internalColor?.Dispose();
+            internalColor = null;
+            internalPosition?.Dispose();
+            internalPosition = null;
+            internalPosition2D?.Dispose();
+            internalPosition2D = null;
+            internalSize?.Dispose();
+            internalSize = null;
             internalSize2D?.Dispose();
+            internalSize2D = null;
 
             if (type == DisposeTypes.Explicit)
             {
@@ -1355,9 +1364,9 @@ namespace Tizen.NUI.BaseComponents
             Scale = new Vector3(x, y, z);
         }
 
-        private void OnBackgroundColorChanged(float r, float g, float b, float a)
+        private void OnBackgroundColorChanged(float? r, float? g, float? b, float? a)
         {
-            BackgroundColor = new Color(r, g, b, a);
+            BackgroundColor = new Color((float)r, (float)g, (float)b, (float)a);
         }
 
         private void OnPaddingChanged(ushort start, ushort end, ushort top, ushort bottom)
@@ -1370,14 +1379,9 @@ namespace Tizen.NUI.BaseComponents
             Margin = new Extents(start, end, top, bottom);
         }
 
-        private void OnColorChanged(float r, float g, float b, float a)
+        private void OnAnchorPointChanged(float? x, float? y, float? z)
         {
-            Color = new Color(r, g, b, a);
-        }
-
-        private void OnAnchorPointChanged(float x, float y, float z)
-        {
-            AnchorPoint = new Position(x, y, z);
+            AnchorPoint = new Position((float)x, (float)y, (float)z);
         }
 
         private void OnCellIndexChanged(float x, float y)

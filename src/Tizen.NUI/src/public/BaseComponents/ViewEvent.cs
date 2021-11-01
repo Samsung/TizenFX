@@ -708,20 +708,46 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        private void OnColorChanged(float? r, float? g, float? b, float? a)
+        {
+            PropertyValue tmp = null;
+            if (r != null)
+            {
+                tmp = new PropertyValue((float)r);
+                Object.SetProperty(SwigCPtr, Interop.ActorProperty.ColorRedGet(), tmp);
+            }
+            if (g != null)
+            {
+                tmp = new PropertyValue((float)g);
+                Object.SetProperty(SwigCPtr, Interop.ActorProperty.ColorGreenGet(), tmp);
+            }
+            if (b != null)
+            {
+                tmp = new PropertyValue((float)b);
+                Object.SetProperty(SwigCPtr, Interop.ActorProperty.ColorBlueGet(), tmp);
+            }
+            if (a != null)
+            {
+                tmp = new PropertyValue((float)a);
+                Object.SetProperty(SwigCPtr, Interop.ActorProperty.ColorAlphaGet(), tmp);
+            }
+            tmp?.Dispose();
+        }
+
         private void OnSize2DChanged(int? width, int? height)
         {
-            PropertyValue temp = null;
+            PropertyValue tmp = null;
             if (width != null)
             {
-                temp = new PropertyValue((float)width);
-                Object.SetProperty(SwigCPtr, Property.SizeWidth, temp);
+                tmp = new PropertyValue((float)width);
+                Object.SetProperty(SwigCPtr, Property.SizeWidth, tmp);
             }
             if (height != null)
             {
-                temp = new PropertyValue((float)height);
-                Object.SetProperty(SwigCPtr, Property.SizeHeight, temp);
+                tmp = new PropertyValue((float)height);
+                Object.SetProperty(SwigCPtr, Property.SizeHeight, tmp);
             }
-            temp?.Dispose();
+            tmp?.Dispose();
         }
 
         private void OnMinimumSizeChanged(int? width, int? height)
@@ -764,47 +790,72 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        private void OnPosition2DChanged(int x, int y)
+        private void OnPosition2DChanged(int? x, int? y)
         {
-            Position2D = new Position2D(x, y);
+            PropertyValue tmp = null;
+            if (x != null)
+            {
+                tmp = new PropertyValue((float)x);
+                Object.SetProperty(SwigCPtr, Property.PositionX, tmp);
+            }
+            if (y != null)
+            {
+                tmp = new PropertyValue((float)y);
+                Object.SetProperty(SwigCPtr, Property.PositionY, tmp);
+            }
+            tmp?.Dispose();
         }
 
         private void OnSizeChanged(float? width, float? height, float? depth)
         {
-            PropertyValue temp;
+            PropertyValue tmp = null;
             if (width != null)
             {
-                temp = new Tizen.NUI.PropertyValue((float)width);
-                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeWidth, temp);
-                temp.Dispose();
+                tmp = new PropertyValue((float)width);
+                Object.SetProperty(SwigCPtr, Property.SizeWidth, tmp);
             }
             if (height != null)
             {
-                temp = new Tizen.NUI.PropertyValue((float)height);
-                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeHeight, temp);
-                temp.Dispose();
+                tmp = new PropertyValue((float)height);
+                Object.SetProperty(SwigCPtr, Property.SizeHeight, tmp);
             }
             if (depth != null)
             {
-                temp = new Tizen.NUI.PropertyValue((float)depth);
-                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeDepth, temp);
-                temp.Dispose();
+                tmp = new PropertyValue((float)depth);
+                Object.SetProperty(SwigCPtr, Property.SizeDepth, tmp);
             }
+            tmp?.Dispose();
         }
 
-        private void OnPositionChanged(float x, float y, float z)
+        private void OnPositionChanged(float? x, float? y, float? z)
         {
-            Position = new Position(x, y, z);
+            PropertyValue tmp = null;
+            if (x != null)
+            {
+                tmp = new PropertyValue((float)x);
+                Object.SetProperty(SwigCPtr, Property.PositionX, tmp);
+            }
+            if (y != null)
+            {
+                tmp = new PropertyValue((float)y);
+                Object.SetProperty(SwigCPtr, Property.PositionY, tmp);
+            }
+            if (z != null)
+            {
+                tmp = new PropertyValue((float)z);
+                Object.SetProperty(SwigCPtr, Property.PositionZ, tmp);
+            }
+            tmp?.Dispose();
         }
 
-        private void OnParentOriginChanged(float x, float y, float z)
+        private void OnParentOriginChanged(float? x, float? y, float? z)
         {
-            ParentOrigin = new Position(x, y, z);
+            ParentOrigin = new Position((float)x, (float)y, (float)z);
         }
 
-        private void OnPivotPointChanged(float x, float y, float z)
+        private void OnPivotPointChanged(float? x, float? y, float? z)
         {
-            PivotPoint = new Position(x, y, z);
+            PivotPoint = new Position((float)x, (float)y, (float)z);
         }
 
         private void OnImageShadowChanged(ShadowBase instance)

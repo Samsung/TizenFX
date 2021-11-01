@@ -52,6 +52,10 @@ namespace Tizen.NUI.BaseComponents
         private Constraint widthConstraint = null;
         private Constraint heightConstraint = null;
 
+        private Color internalColor = null;
+        private Position internalPosition = null;
+        private Position2D internalPosition2D = null;
+        private Size internalSize = null;
         private Size2D internalSize2D = null;
 
         static View()
@@ -1062,8 +1066,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Position2D temp = (Position2D)GetValue(Position2DProperty);
-                return new Position2D(OnPosition2DChanged, temp.X, temp.Y);
+                var tmp = (Position2D)GetValue(Position2DProperty);
+                return tmp;
             }
             set
             {
@@ -1344,8 +1348,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Position tmp = (Position)GetValue(PositionProperty);
-                return new Position(OnPositionChanged, tmp.X, tmp.Y, tmp.Z);
+                var tmp = (Position)GetValue(PositionProperty);
+                return tmp;
             }
             set
             {
@@ -2102,8 +2106,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Size tmp = (Size)GetValue(SizeProperty);
-                return new Size(OnSizeChanged, tmp.Width, tmp.Height, tmp.Depth);
+                var tmp = (Size)GetValue(SizeProperty);
+                return tmp;
             }
             set
             {
@@ -2425,8 +2429,8 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Color temp = (Color)GetValue(ColorProperty);
-                return new Color(OnColorChanged, temp.R, temp.G, temp.B, temp.A);
+                var tmp = (Color)GetValue(ColorProperty);
+                return tmp;
             }
             set
             {
