@@ -15,13 +15,12 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
-    using System;
-    using System.ComponentModel;
-
-    using Tizen.NUI.BaseComponents;
-
     /// <summary>
     /// SlideTransitionItem is an object to set slide transition of a View that will appear or disappear.
     /// SlideTransitionItem object is required to be added to the TransitionSet to play.

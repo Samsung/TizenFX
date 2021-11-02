@@ -15,12 +15,12 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
-    using System;
-    using System.ComponentModel;
-    using Tizen.NUI.BaseComponents;
-
     /// <summary>
     /// ScaleTransition provides smoothly appearing/disappearing scale effects for target View.
     /// If this transition is for appearing, the View comes out with the scale factor applied
