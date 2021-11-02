@@ -15,12 +15,12 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+
 namespace Tizen.NUI
 {
-    using System;
-    using System.ComponentModel;
-    using System.Runtime.InteropServices;
-
     /// <summary>
     /// TransitionSet is used to control lifetime of multiple Transitions.
     /// For the one page transition, may multiple transitions are played coincidently.

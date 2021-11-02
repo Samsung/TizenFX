@@ -15,13 +15,12 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
-    using System;
-    using System.ComponentModel;
-
-    using Tizen.NUI.BaseComponents;
-
     /// <summary>
     /// TransitionItem is an object to set Transition of View pair those have same TransitionTag.
     /// TransitionItem object is required for each View pair and this is added to the TransitionSet to play.
