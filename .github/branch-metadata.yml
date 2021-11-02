@@ -6,7 +6,7 @@ master:
 API9:
   api-level: API9
   labels: [ API9 ]
-  tizen-branch: tizen
+  tizen-branch: tizen_6.5
   version-prefix: 9.0.0
 
 API8:

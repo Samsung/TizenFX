@@ -34,7 +34,7 @@ internal static partial class Interop
         internal delegate void CionServerConnectionResultCb(string serviceName, IntPtr peerInfo, IntPtr result, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void CionServerDataReceivedCb(string serviceName, IntPtr peerInfo, byte[] data, int dataSize, out byte[] returnData, out int returnDataSize, IntPtr userData);
+        internal delegate void CionServerDataReceivedCb(string serviceName, IntPtr peerInfo, byte[] data, int dataSize, out IntPtr returnData, out int returnDataSize, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void CionServerPayloadReceivedCb(string serviceName, IntPtr peerInfo, IntPtr payload, int status, IntPtr userData);
