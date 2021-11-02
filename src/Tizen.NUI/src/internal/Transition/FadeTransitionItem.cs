@@ -15,13 +15,12 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
-    using System;
-    using System.ComponentModel;
-
-    using Tizen.NUI.BaseComponents;
-
     /// <summary>
     /// FadeTransitionItem is an object to set Fade transition of a View that will appear or disappear.
     /// FadeTransitionItem object is required to be added to the TransitionSet to play.

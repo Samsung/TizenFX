@@ -15,12 +15,12 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
-    using System;
-    using System.ComponentModel;
-    using Tizen.NUI.BaseComponents;
-
     /// <summary>
     /// TransitionBase class is a base class for all Transition.
     /// Each Transition child classes inherits this base class.

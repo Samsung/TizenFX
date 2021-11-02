@@ -15,12 +15,12 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
-    using System;
-    using System.ComponentModel;
-    using Tizen.NUI.BaseComponents;
-
     /// <summary>
     /// FadeTransition class is a cluster of properties for the fade transition of a View.
     /// </summary>
