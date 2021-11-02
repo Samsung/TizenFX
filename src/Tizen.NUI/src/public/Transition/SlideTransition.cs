@@ -15,12 +15,12 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
-    using System;
-    using System.ComponentModel;
-    using Tizen.NUI.BaseComponents;
-
     /// <summary>
     /// SlideTransition class is a cluster of properties for the slide transition of a View.
     /// SlideTransition provides smoothly appearing/disappearing effects for target Control.
