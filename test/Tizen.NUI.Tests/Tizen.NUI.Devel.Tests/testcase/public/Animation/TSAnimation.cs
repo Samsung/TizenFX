@@ -1587,33 +1587,5 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationShow END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("Animation Pause")]
-        //[Property("SPEC", "Tizen.NUI.Animation.Pause M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public async Task AnimationPause()
-        //{
-        //    tlog.Debug(tag, $"AnimationPause START");
-
-        //    var testingTarget = new Animation(600);
-        //    Assert.IsNotNull(testingTarget, "should be not null");
-        //    Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
-
-        //    testingTarget.EndAction = Animation.EndActions.StopFinal;
-        //    testingTarget.Play();
-        //    await Task.Delay(200);
-        //    testingTarget.Pause();
-        //    var result = testingTarget.GetState();
-        //    Assert.IsTrue(States.Paused == result);
-
-        //    testingTarget.Play();
-        //    testingTarget.Stop();
-        //    testingTarget.Dispose();
-        //    tlog.Debug(tag, $"AnimationPause END (OK)");
-        //}
     }
 }

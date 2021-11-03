@@ -59,6 +59,8 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<View>(testingTarget, "Should return View instance.");
 
+            tlog.Debug(tag, "Culled : " + testingTarget.Culled);
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewConstructor END (OK)");
         }
@@ -222,6 +224,84 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewBackgroundImageBorder END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("View BorderlineWidth.")]
+        [Property("SPEC", "Tizen.NUI.View.BorderlineWidth A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewBorderlineWidth()
+        {
+            tlog.Debug(tag, $"ViewBorderlineWidth START");
+
+            var testingTarget = new View()
+            {
+                Size = new Size(100, 200),
+                BackgroundColor = Color.Cyan
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<View>(testingTarget, "Should return View instance.");
+
+            testingTarget.BorderlineWidth = 2.0f;
+            tlog.Debug(tag, "BorderlineWidth : " + testingTarget.BorderlineWidth);
+
+            testingTarget.BorderlineColor = Color.Red;
+            tlog.Debug(tag, "BorderlineColor : " + testingTarget.BorderlineColor);
+
+            testingTarget.BorderlineOffset = 0.3f;
+            tlog.Debug(tag, "BorderlineOffset : " + testingTarget.BorderlineOffset);
+
+            testingTarget.TooltipText = "tooltipText";
+            tlog.Debug(tag, "TooltipText : " + testingTarget.TooltipText);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewBorderlineWidth END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("View FocusableChildren.")]
+        [Property("SPEC", "Tizen.NUI.View.FocusableChildren A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewFocusableChildren()
+        {
+            tlog.Debug(tag, $"ViewFocusableChildren START");
+
+            var view = new View()
+            {
+                Size = new Size2D(200, 200),
+            };
+            NUIApplication.GetDefaultWindow().Add(view);
+
+            var child = new View()
+            {
+                Size = new Size2D(100, 100),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.CenterRight,
+                PivotPoint = PivotPoint.CenterRight,
+                BackgroundColor = Color.Azure,
+                Focusable = true,
+            };
+
+            view.Add(child);
+
+            tlog.Debug(tag, "FocusableChildren : " + view.FocusableChildren);
+            view.FocusableChildren = false;
+            tlog.Debug(tag, "FocusableChildren : " + view.FocusableChildren);
+
+            view.FocusableInTouch = true;
+            tlog.Debug(tag, "FocusableInTouch : " + view.FocusableInTouch);
+
+            NUIApplication.GetDefaultWindow().Remove(view);
+            view.Dispose();
+            tlog.Debug(tag, $"ViewFocusableChildren END (OK)");
         }
     }
 }

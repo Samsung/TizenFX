@@ -14,6 +14,7 @@ namespace Tizen.NUI.Devel.Tests
     class PublicTextUtilsTest
     {
         private const string tag = "NUITEST";
+        private string imageurl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
 
         [SetUp]
         public void Init()
@@ -489,6 +490,9 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<RendererParameters>(testingTarget, "Should be an instance of RendererParameters type.");
 
             testingTarget.TextColor = Color.Cyan;
+            tlog.Debug(tag, "IsTextColorSet : " + testingTarget.IsTextColorSet);
+
+            testingTarget.IsTextColorSet = false;
             tlog.Debug(tag, "IsTextColorSet : " + testingTarget.IsTextColorSet);
 
             testingTarget.Dispose();
@@ -1030,6 +1034,373 @@ namespace Tizen.NUI.Devel.Tests
             Assert.AreEqual(0.8f, small, "Should be equal!");
 
             tlog.Debug(tag, $"TextUtilsGetFontSizeScale END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils GetFontWidthString.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.GetFontWidthString M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsGetFontWidthString()
+        {
+            tlog.Debug(tag, $"TextUtilsGetFontWidthString START");
+
+            var result = TextUtils.GetFontWidthString(FontWidthType.ExtraCondensed);
+            tlog.Debug(tag, "GetFontWidthString : " + result);
+
+            result = TextUtils.GetFontWeightString(FontWeightType.UltraLight);
+            tlog.Debug(tag, "GetFontWeightString : " + result);
+
+            result = TextUtils.GetFontSlantString(FontSlantType.Italic);
+            tlog.Debug(tag, "GetFontSlantString : " + result);
+
+            tlog.Debug(tag, $"TextUtilsGetFontWidthString END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils GetFontWidthType.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.GetFontWidthType M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsGetFontWidthType()
+        {
+            tlog.Debug(tag, $"TextUtilsGetFontWidthType START");
+
+            var fontWidth = TextUtils.GetFontWidthType("ExtraCondensed");
+            tlog.Debug(tag, "GetFontWidthType : " + fontWidth);
+
+            var fontWeight = TextUtils.GetFontWeightType("UltraLight");
+            tlog.Debug(tag, "GetFontWeightType : " + fontWeight);
+
+            var fontSlant = TextUtils.GetFontSlantType("Italic");
+            tlog.Debug(tag, "GetFontSlantType : " + fontSlant);
+
+            tlog.Debug(tag, $"TextUtilsGetFontWidthType END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils GetFontStyleMap.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.GetFontStyleMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsGetFontStyleMap()
+        {
+            tlog.Debug(tag, $"TextUtilsGetFontStyleMap START");
+
+            var fontStyle = new Tizen.NUI.Text.FontStyle()
+            {
+                Width = FontWidthType.Expanded,
+                Weight = FontWeightType.Bold,
+                Slant = FontSlantType.Italic
+            };
+
+            var map = TextUtils.GetFontStyleMap(fontStyle);
+            tlog.Debug(tag, "GetFontStyleMap : " + map);
+
+            var result = TextUtils.GetFontStyleStruct(map);
+            tlog.Debug(tag, "GetFontStyleStruct : " + result);
+
+            tlog.Debug(tag, $"TextUtilsGetFontStyleMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils GetInputFilterMap.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.GetInputFilterMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsGetInputFilterMap()
+        {
+            tlog.Debug(tag, $"TextUtilsGetInputFilterMap START");
+
+            var inputFilter = new Tizen.NUI.Text.InputFilter()
+            {
+                Accepted = @"[\d]",
+                Rejected = "[0-3]"
+            };
+
+            var map = TextUtils.GetInputFilterMap(inputFilter);
+            tlog.Debug(tag, "GetInputFilterMap : " + map);
+
+            var result = TextUtils.GetInputFilterStruct(map);
+            tlog.Debug(tag, "GetInputFilterStruct : " + result);
+
+            tlog.Debug(tag, $"TextUtilsGetInputFilterMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils GetUnderlineMap.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.GetUnderlineMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsGetUnderlineMap()
+        {
+            tlog.Debug(tag, $"TextUtilsGetUnderlineMap START");
+
+            var underline = new Tizen.NUI.Text.Underline()
+            {
+                Enable = true,
+                Color = new Color("#3498DB"),
+                Height = 2.0f
+            };
+
+            var map = TextUtils.GetUnderlineMap(underline);
+            tlog.Debug(tag, "GetUnderlineMap : " + map);
+
+            var result = TextUtils.GetUnderlineStruct(map);
+            tlog.Debug(tag, "GetUnderlineStruct : " + result);
+
+            tlog.Debug(tag, $"TextUtilsGetUnderlineMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils GetShadowMap.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.GetShadowMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsGetShadowMap()
+        {
+            tlog.Debug(tag, $"TextUtilsGetShadowMap START");
+
+            var shadow = new Tizen.NUI.Text.Shadow()
+            {
+                Offset = new Vector2(3, 3),
+                Color = new Color("#F1C40F")
+            };
+
+            TextField filed = new TextField()
+            {
+                Size = new Size(50, 80),
+                Text = "TextField"
+            };
+            filed.SetShadow(shadow);
+
+            var result = filed.GetShadow();
+            tlog.Debug(tag, "GetShadowStruct : " + result);
+
+            tlog.Debug(tag, $"TextUtilsGetShadowMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils GetOutlineMap.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.GetOutlineMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsGetOutlineMap()
+        {
+            tlog.Debug(tag, $"TextUtilsGetOutlineMap START");
+
+            var outline = new Tizen.NUI.Text.Outline()
+            {
+                Width = 2.0f,
+                Color = new Color("#45B39D")
+            };
+
+            var map = TextUtils.GetOutlineMap(outline);
+            tlog.Debug(tag, "GetOutlineMap : " + map);
+
+            var result = TextUtils.GetOutlineStruct(map);
+            tlog.Debug(tag, "GetOutlineStruct : " + result);
+
+            tlog.Debug(tag, $"TextUtilsGetOutlineMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils GetFontSizeString.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.GetFontSizeString M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsGetFontSizeString()
+        {
+            tlog.Debug(tag, $"TextUtilsGetFontSizeString START");
+
+            var str = TextUtils.GetFontSizeString(FontSizeType.PointSize);
+            tlog.Debug(tag, "GetFontSizeString : " + str);
+
+            var result = TextUtils.GetFontSizeType("PixelSize");
+            tlog.Debug(tag, "GetFontSizeType : " + result);
+
+            tlog.Debug(tag, $"TextUtilsGetFontSizeString END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils GetTextFitMap.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.GetTextFitMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsGetTextFitMap()
+        {
+            tlog.Debug(tag, $"TextUtilsGetTextFitMap START");
+
+            var textfit = new Tizen.NUI.Text.TextFit()
+            {
+                Enable = true,
+                MinSize = 10.0f,
+                MaxSize = 100.0f,
+                StepSize = 5.0f,
+                FontSizeType = FontSizeType.PointSize
+            };
+
+            var map = TextUtils.GetTextFitMap(textfit);
+            tlog.Debug(tag, "GetTextFitMap : " + map);
+
+            var result = TextUtils.GetTextFitStruct(map);
+            tlog.Debug(tag, "GetTextFitStruct : " + result);
+
+            tlog.Debug(tag, $"TextUtilsGetTextFitMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils GetPlaceholderMap.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.GetPlaceholderMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsGetPlaceholderMap()
+        {
+            tlog.Debug(tag, $"TextUtilsGetTextFitMap START");
+
+            var placeholder = new Tizen.NUI.Text.Placeholder()
+            {
+                Text = "placeholder text",
+                TextFocused = "placeholder textFocused",
+                Color = new Color("#45B39D"),
+                FontFamily = "BreezeSans",
+                FontStyle = new Tizen.NUI.Text.FontStyle()
+                {
+                    Width = FontWidthType.Expanded,
+                    Weight = FontWeightType.ExtraLight,
+                    Slant = FontSlantType.Italic,
+                },
+                PointSize = 25.0f,
+                PixelSize = 50.0f,
+                Ellipsis = true
+            };
+
+            var map = TextUtils.GetPlaceholderMap(placeholder);
+            tlog.Debug(tag, "GetPlaceholderMap : " + map);
+
+            var result = TextUtils.GetPlaceholderStruct(map);
+            tlog.Debug(tag, "GetPlaceholderStruct : " + result);
+
+            tlog.Debug(tag, $"TextUtilsGetPlaceholderMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils GetHiddenInputMap.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.GetHiddenInputMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsGetHiddenInputMap()
+        {
+            tlog.Debug(tag, $"TextUtilsGetHiddenInputMap START");
+
+            var hiddenInput = new Tizen.NUI.Text.HiddenInput()
+            {
+                Mode = HiddenInputModeType.ShowLastCharacter,
+                SubstituteCharacter = '★',
+                SubstituteCount = 0,
+                ShowLastCharacterDuration = 1000
+            };
+
+            var map = TextUtils.GetHiddenInputMap(hiddenInput);
+            tlog.Debug(tag, "GetHiddenInputMap : " + map);
+
+            var result = TextUtils.GetHiddenInputStruct(map);
+            tlog.Debug(tag, "GetHiddenInputStruct : " + result);
+
+            tlog.Debug(tag, $"TextUtilsGetHiddenInputMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils GetFileNameMap.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.GetFileNameMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsGetFileNameMap()
+        {
+            tlog.Debug(tag, $"TextUtilsGetFileNameMap START");
+
+            var map = TextUtils.GetFileNameMap(imageurl);
+            tlog.Debug(tag, "GetFileNameMap : " + map);
+
+            tlog.Debug(tag, $"TextUtilsGetFileNameMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils CopyToClipboard.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.CopyToClipboard M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsCopyToClipboard()
+        {
+            tlog.Debug(tag, $"TextUtilsCopyToClipboard START");
+
+            TextEditor editor = new TextEditor()
+            { 
+                Text = "editor",
+            };
+            var result = TextUtils.CopyToClipboard(editor);
+            tlog.Debug(tag, "CopyToClipboard : " + result);
+
+            result = TextUtils.CutToClipboard(editor);
+            tlog.Debug(tag, "CutToClipboard : " + result);
+
+            try
+            {
+                TextUtils.PasteTo(editor);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            TextField field = new TextField()
+            {
+                Text = "field",
+            };
+            result = TextUtils.CopyToClipboard(field);
+            tlog.Debug(tag, "CopyToClipboard : " + field);
+
+            result = TextUtils.CutToClipboard(field);
+            tlog.Debug(tag, "CutToClipboard : " + field);
+
+            try
+            {
+                TextUtils.PasteTo(field);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"TextUtilsCopyToClipboard END (OK)");
         }
     }
 }

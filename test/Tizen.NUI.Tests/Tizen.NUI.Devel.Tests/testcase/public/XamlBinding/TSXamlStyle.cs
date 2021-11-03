@@ -254,22 +254,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ApplyTest1 END");
         }
 
-        //[Test]
-        //[Category("P2")]
-        //[Description("XamlStyle  Apply")]
-        //[Property("SPEC", "Tizen.NUI.Binding.XamlStyle.Apply  M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MCST")]
-        //public void ApplyTest2()
-        //{
-        //    tlog.Debug(tag, $"ApplyTest2 START");
-        //    XamlStyle t2 = new XamlStyle(typeof(View));
-        //    Assert.IsNotNull(t2, "null XamlStyle");
-        //    Assert.Throws<ArgumentNullException>(() => t2.Apply(null));
-        //    Assert.Throws<ArgumentNullException>(() => t2.UnApply(null));
-        //    tlog.Debug(tag, $"ApplyTest2 END");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("XamlStyle  CanBeAppliedTo")]

@@ -29,38 +29,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("WeakEvent Add.")]
-        //[Property("SPEC", "Tizen.NUI.WeakEvent.Add M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WeakEventAdd()
-        //{
-        //    tlog.Debug(tag, $"WeakEventAdd START");
-
-        //    var testingTarget = new NUI.WeakEvent<EventHandler<EventArgs>>();
-        //    Assert.IsNotNull(testingTarget, "Can't create success object WeakEvent");
-        //    Assert.IsInstanceOf<NUI.WeakEvent<EventHandler<EventArgs>>>(testingTarget, "Should be an instance of WeakEvent type.");
-
-        //    TChanged += OnDummyCallback;
-            
-        //    try
-        //    {
-        //        testingTarget.Add(TChanged);
-        //        testingTarget.Remove(TChanged);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception : Failed!");
-        //    }
-
-        //    TChanged -= OnDummyCallback;
-        //    tlog.Debug(tag, $"WeakEventAdd END (OK)");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("WeakEvent Invoke.")]
