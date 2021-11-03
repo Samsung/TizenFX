@@ -122,7 +122,6 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.FocusChanged += OnFocusChanged;
             testingTarget.FocusChanged -= OnFocusChanged;
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WindowEventFocusChanged END (OK)");
         }
 
@@ -274,7 +273,6 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.EventProcessingFinished += OnEventProcessingFinished;
             testingTarget.EventProcessingFinished -= OnEventProcessingFinished;
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WindowEventEventProcessingFinished END (OK)");
         }
 
@@ -296,7 +294,6 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.ContextLost += OnContextLost;
             testingTarget.ContextLost -= OnContextLost;
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WindowEventContextLost END (OK)");
         }
 
@@ -318,7 +315,6 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.ContextRegained += OnContextRegained;
             testingTarget.ContextRegained -= OnContextRegained;
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WindowEventContextRegained END (OK)");
         }
 
@@ -340,7 +336,6 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.SceneCreated += OnSceneCreated;
             testingTarget.SceneCreated -= OnSceneCreated;
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WindowEventSceneCreated END (OK)");
         }
 

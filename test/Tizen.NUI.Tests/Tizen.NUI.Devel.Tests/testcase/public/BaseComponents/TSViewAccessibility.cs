@@ -134,39 +134,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ViewAccessibilityAddressCollectionGetRelationSize END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("ViewAccessibility.AddressCollection GetAddressAt.")]
-        //[Property("SPEC", "Tizen.NUI.ViewAccessibility.AddressCollection.GetAddressAt M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void ViewAccessibilityAddressCollectionGetAddressAt()
-        //{
-        //    tlog.Debug(tag, $"ViewAccessibilityAddressCollectionGetAddressAt START");
-
-        //    using (View view = new ImageView())
-        //    {
-        //        var testingTarget = new AddressCollection(Interop.ControlDevel.DaliToolkitDevelControlNewGetAccessibilityRelations(view.SwigCPtr));
-        //        Assert.IsNotNull(testingTarget, "Can't create success object AddressCollection");
-        //        Assert.IsInstanceOf<AddressCollection>(testingTarget, "Should be an instance of AddressCollection type.");
-
-        //        try
-        //        {
-        //            var result = testingTarget.GetAddressAt(AccessibilityRelationType.NullOf, 0);
-        //            Assert.IsNotNull(result, "Can't create success object Address");
-        //            Assert.IsInstanceOf<Address>(result, "Should be an instance of Address type.");
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception: Failed!");
-        //        }
-        //    }
-
-        //    tlog.Debug(tag, $"ViewAccessibilityAddressCollectionGetAddressAt END (OK)");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("ViewAccessibility.AddressCollection ReleaseHandle.")]
@@ -533,6 +500,110 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewAccessibilityRegisterPopup END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ViewAccessibility.EmitAccessibilityEvent.")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.EmitAccessibilityEvent M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewAccessibilityEmitAccessibilityEvent()
+        {
+            tlog.Debug(tag, $"ViewAccessibilityEmitAccessibilityEvent START");
+
+            var testingTarget = new View()
+            {
+                Size = new Size2D(100, 100),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.TopCenter,
+                PivotPoint = PivotPoint.TopCenter,
+                BackgroundColor = Color.AquaMarine,
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object View");
+            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
+
+            try
+            {
+                testingTarget.EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Name);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewAccessibilityEmitAccessibilityEvent END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ViewAccessibility.EmitAccessibilityStatesChangedEvent.")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.EmitAccessibilityStatesChangedEvent M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewAccessibilityEmitAccessibilityStatesChangedEvent()
+        {
+            tlog.Debug(tag, $"ViewAccessibilityEmitAccessibilityStatesChangedEvent START");
+
+            var testingTarget = new CheckBox()
+            {
+                Size = new Size2D(100, 100),
+                IsSelectable = true,
+                IsSelected = true,
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object CheckBox.");
+            Assert.IsInstanceOf<CheckBox>(testingTarget, "Should be an instance of CheckBox type.");
+
+            try
+            {
+                testingTarget.EmitAccessibilityStatesChangedEvent(AccessibilityStates.Checked, true);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewAccessibilityEmitAccessibilityStatesChangedEvent END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ViewAccessibility.EmitTextInsertedEvent.")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.EmitTextInsertedEvent M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewAccessibilityEmitTextInsertedEvent()
+        {
+            tlog.Debug(tag, $"ViewAccessibilityEmitTextInsertedEvent START");
+
+            var testingTarget = new TextLabel()
+            {
+                Text = "InsertedEvent"
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object View");
+            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
+
+            try
+            {
+                testingTarget.EmitTextInsertedEvent(0, 4, "test");
+                testingTarget.EmitTextCursorMovedEvent(4);
+                testingTarget.EmitTextDeletedEvent(0, 4, "test");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewAccessibilityEmitTextInsertedEvent END (OK)");
         }
     }
 }

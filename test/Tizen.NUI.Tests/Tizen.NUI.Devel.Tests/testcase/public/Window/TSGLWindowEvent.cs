@@ -266,32 +266,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"GLWindowVisibilityChangedEventArgsVisibility END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("GLWindow GLWindowVisibilityChanged")]
-        //[Property("SPEC", "Tizen.NUI.GLWindow.VisibilityChanged A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //public void GLWindowVisibilityChanged()
-        //{
-        //    tlog.Debug(tag, $"GLWindowVisibilityChanged START");
-
-        //    string name = "myGLWindow";
-        //    Rectangle rectangle = new Rectangle(20, 20, 100, 100);
-            
-        //    var testingTarget = new GLWindow(name, rectangle, true);
-        //    Assert.IsNotNull(testingTarget, "Can't create success object GLWindow");
-        //    Assert.IsInstanceOf<GLWindow>(testingTarget, "Should be an instance of GLWindow type.");
-
-        //    testingTarget.VisibilityChanged += OnVisibilityChanged;
-        //    testingTarget.VisibilityChanged -= OnVisibilityChanged;
-
-        //    testingTarget.Destroy();
-        //    tlog.Debug(tag, $"GLWindowVisibilityChanged END (OK)");
-        //}
-
-        //private void OnVisibilityChanged(object sender, GLWindow.VisibilityChangedEventArgs e) { }
-
         [Test]
         [Category("P1")]
         [Description("GLWindow GLWindowVisibiltyChangedSignalEmit")]

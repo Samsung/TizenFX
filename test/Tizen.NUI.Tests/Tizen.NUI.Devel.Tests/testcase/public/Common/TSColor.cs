@@ -87,7 +87,7 @@ namespace Tizen.NUI.Devel.Tests
             var testingTarget = new Color(array);
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Color>(testingTarget, "Should return Color instance.");
-            
+
             Assert.AreEqual(0.5f, testingTarget.R, "The R property of Black is not correct here.");
             Assert.AreEqual(0.5f, testingTarget.G, "The G property of Black is not correct here.");
             Assert.AreEqual(0.5f, testingTarget.B, "The B property of Black is not correct here.");
@@ -201,7 +201,7 @@ namespace Tizen.NUI.Devel.Tests
                 new Color(textColor);
                 Assert.Fail("Should return argument exception");
             }
-            catch (ArgumentException) 
+            catch (ArgumentException)
             {
                 tlog.Debug(tag, $"ColorConstructorWithNullString END (OK)");
                 Assert.Pass("ArgumentException: passed!");
@@ -220,7 +220,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ColorConstructorWithSystemDrawingColorInstance START");
 
             global::System.Drawing.Color color = global::System.Drawing.Color.FromArgb(255, 0, 0);
-            
+
             var testingTarget = new Color(color);
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Color>(testingTarget, "Should return Color instance.");
@@ -948,34 +948,6 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"ColorDivision END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("Color operator /. By float")]
-        //[Property("SPEC", "Tizen.NUI.Color./ M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void ColorDivisionByFloat ()
-        //{
-        //    tlog.Debug(tag, $"ColorDivisionByFloat START");
-
-        //    using (Color color = new Color(0.2f, 0.2f, 0.4f, 0.6f))
-        //    {
-        //        var testingTarget = color / 2.0f;
-        //        Assert.IsNotNull(testingTarget, "null handle");
-        //        Assert.IsInstanceOf<Color>(testingTarget, "Should return Color instance.");
-
-        //        Assert.AreEqual(0.1f, testingTarget.R, "The R value of the color is not correct!");
-        //        Assert.AreEqual(0.1f, testingTarget.G, "The G value of the color is not correct!");
-        //        Assert.AreEqual(0.2f, testingTarget.B, "The B value of the color is not correct!");
-        //        Assert.AreEqual(0.3f, testingTarget.A, "The A value of the color is not correct!");
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"ColorDivisionByFloat END (OK)");
-        //}
 
         [Test]
         [Category("P1")]

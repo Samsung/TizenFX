@@ -50,19 +50,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"SetterConstructor END");
         }
 
-        //[Test]
-        //[Category("P2")]
-        //[Description("Setter Setter")]
-        //[Property("SPEC", "Tizen.NUI.Binding.Setter.Setter C")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "CONSTR")]
-        //public void SetterConstructor2()
-        //{
-        //    tlog.Debug(tag, $"SetterConstructor2 START");
-        //    Assert.Throws<ArgumentNullException>(() => new Setter());
-        //    tlog.Debug(tag, $"SetterConstructor2 END");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("Setter  Property ")]
