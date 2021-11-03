@@ -28,61 +28,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("TextShadow constructor.")]
-        //[Property("SPEC", "Tizen.NUI.TextShadow.TextShadow C")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "CONSTR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void TextShadowConstructor()
-        //{
-        //    tlog.Debug(tag, $"TextShadowConstructor START");
-
-        //    using (Vector2 vector = new Vector2(1.5f, 3.0f))
-        //    {
-        //        var testingTarget = new TextShadow(Color.Cyan, vector, 0.3f);
-        //        Assert.IsNotNull(testingTarget, "Can't create success object TextShadow");
-        //        Assert.IsInstanceOf<TextShadow>(testingTarget, "Should be an instance of TextShadow type.");
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"TextShadowConstructor END (OK)");
-        //}
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("TextShadow constructor. With TextShadow.")]
-        //[Property("SPEC", "Tizen.NUI.TextShadow.TextShadow C")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "CONSTR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void TextShadowConstructorWithTextShadow()
-        //{
-        //    tlog.Debug(tag, $"TextShadowConstructorWithTextShadow START");
-
-        //    using (Vector2 vector = new Vector2(1.5f, 3.0f))
-        //    {
-        //        using (TextShadow shadow = new TextShadow(Color.Cyan, vector, 0.3f))
-        //        {
-        //            try
-        //            {
-        //                var testingTarget = new TextShadow(shadow);
-        //                testingTarget.Dispose();
-        //            }
-        //            catch (Exception e)
-        //            {
-        //                tlog.Debug(tag, e.Message.ToString());
-        //                Assert.Fail("Caught Exception: Failed!");
-        //            }
-
-        //        }
-        //    }
-
-        //    tlog.Debug(tag, $"TextShadowConstructorWithTextShadow END (OK)");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("TextShadow constructor. With PropertyMap.")]

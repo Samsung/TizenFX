@@ -65,7 +65,8 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null.");
             Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of NUIApplication type.");
 
-            testingTarget.Dispose();
+            tlog.Debug(tag, "Window : " + testingTarget.Window);
+
             tlog.Debug(tag, $"NUIApplicationConstructor END (OK)");
         }
 
@@ -90,7 +91,6 @@ namespace Tizen.NUI.Devel.Tests
 
             pos.Dispose();
             size.Dispose();
-            testingTarget.Dispose();
             tlog.Debug(tag, $"NUIApplicationConstructorWithWindowSizeAndPosition END (OK)");
         }
 
@@ -109,7 +109,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null.");
             Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of NUIApplication type.");
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"NUIApplicationConstructorWithStyleSheet END (OK)");
         }
 
@@ -128,7 +127,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null.");
             Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of NUIApplication type.");
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"NUIApplicationConstructorWithStyleSheetAndWindowSizeAndPostion END (OK)");
         }
 
@@ -147,7 +145,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null.");
             Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of NUIApplication type.");
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"NUIApplicationConstructorWithStringAndWindowMode END (OK)");
         }
 
@@ -166,7 +163,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null.");
             Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of NUIApplication type.");
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"NUIApplicationConstructorWithStringAndWindowModeAndWindowSizeAndPosition END (OK)");
         }
 
@@ -185,7 +181,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null.");
             Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of NUIApplication type.");
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"NUIApplicationConstructorWithBackendType END (OK)");
         }
 
@@ -204,7 +199,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null.");
             Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of NUIApplication type.");
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"NUIApplicationConstructorWithThemeOptions END (OK)");
         }
 
@@ -227,7 +221,6 @@ namespace Tizen.NUI.Devel.Tests
 
             windowSize.Dispose();
             windowPosition.Dispose();
-            testingTarget.Dispose();
             tlog.Debug(tag, $"NUIApplicationConstructorWithSizePositionAndThemeOptions END (OK)");
         }
 
@@ -246,7 +239,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null.");
             Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of NUIApplication type.");
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"NUIApplicationConstructorForImeWindow END (OK)");
         }
 
@@ -332,7 +324,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Should be not null.");
             Assert.IsInstanceOf<Window>(testingTarget, "Should be an instance of Window type.");
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"NUIApplicationGetDefaultWindow END (OK)");
         }
 
@@ -403,7 +394,6 @@ namespace Tizen.NUI.Devel.Tests
 
             result.Dispose();
             transitionOption.Dispose();
-            testingTarget.Dispose();
             tlog.Debug(tag, $"NUIApplicationTransitionOptions END (OK)");
         }
 

@@ -306,38 +306,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"DefaultFrameBrokerOnFrameErred END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("DefaultFrameBroker SendLaunchRequest.")]
-        //[Property("SPEC", "Tizen.NUI.DefaultFrameBroker.SendLaunchRequest M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void DefaultFrameBrokerSendLaunchRequest()
-        //{
-        //    tlog.Debug(tag, $"DefaultFrameBrokerSendLaunchRequest START");
-
-        //    var testingTarget = new DefaultFrameBroker(Window.Instance);
-        //    Assert.IsNotNull(testingTarget, "Can't create success object CustomView");
-        //    Assert.IsInstanceOf<DefaultFrameBroker>(testingTarget, "Should be an instance of DefaultFrameBroker type.");
-
-        //    try
-        //    {
-        //        Tizen.Applications.AppControl appControl = new Tizen.Applications.AppControl();
-        //        appControl.Operation = Tizen.Applications.AppControlOperations.Call;
-        //        appControl.ApplicationId = MyAppId;
-        //        testingTarget.SendLaunchRequest(appControl, true);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception : Failed!");
-        //    }
-
-        //    testingTarget.Dispose();
-
-        //    tlog.Debug(tag, $"DefaultFrameBrokerSendLaunchRequest END (OK)");
-        //}
     }
 }

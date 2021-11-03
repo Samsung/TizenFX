@@ -14,7 +14,7 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicAnimatedVectorImageViewTest
     {
         private const string tag = "NUITEST";
-        private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
+        private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "button_9patch.png";
 
         internal class MyAnimatedVectorImageView : AnimatedVectorImageView
         {
@@ -75,33 +75,37 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"AnimatedVectorImageViewConstructorWithScale END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("AnimatedVectorImageView Dispose.")]
-        //[Property("SPEC", "Tizen.NUI.AnimatedVectorImageView.Dispose M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void AnimatedVectorImageViewDispose()
-        //{
-        //    tlog.Debug(tag, $"AnimatedVectorImageViewDispose START");
+        [Test]
+        [Category("P1")]
+        [Description("AnimatedVectorImageView Dispose.")]
+        [Property("SPEC", "Tizen.NUI.AnimatedVectorImageView.Dispose M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimatedVectorImageViewDispose()
+        {
+            tlog.Debug(tag, $"AnimatedVectorImageViewDispose START");
 
-        //    var testingTarget = new MyAnimatedVectorImageView();
-        //    Assert.IsNotNull(testingTarget, "Can't create success object AnimatedVectorImageView");
-        //    Assert.IsInstanceOf<AnimatedVectorImageView>(testingTarget, "Should be an instance of AnimatedVectorImageView type.");
+            var testingTarget = new MyAnimatedVectorImageView()
+            { 
+                Size = new Size(200, 200),
+                BackgroundColor = Color.Cyan,
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object AnimatedVectorImageView");
+            Assert.IsInstanceOf<AnimatedVectorImageView>(testingTarget, "Should be an instance of AnimatedVectorImageView type.");
 
-        //    try
-        //    {
-        //        testingTarget.OnDispose(DisposeTypes.Explicit);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
+            try
+            {
+                testingTarget.OnDispose(DisposeTypes.Explicit);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
 
-        //    tlog.Debug(tag, $"AnimatedVectorImageViewDispose END (OK)");
-        //}
+            tlog.Debug(tag, $"AnimatedVectorImageViewDispose END (OK)");
+        }
 
         [Test]
         [Category("P1")]
@@ -186,44 +190,48 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"AnimatedVectorImageViewTotalFrame END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("AnimatedVectorImageView CurrentFrame.")]
-        //[Property("SPEC", "Tizen.NUI.AnimatedVectorImageView.CurrentFrame A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void AnimatedVectorImageViewCurrentFrame()
-        //{
-        //    tlog.Debug(tag, $"AnimatedVectorImageViewCurrentFrame START");
+        [Test]
+        [Category("P1")]
+        [Description("AnimatedVectorImageView CurrentFrame.")]
+        [Property("SPEC", "Tizen.NUI.AnimatedVectorImageView.CurrentFrame A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimatedVectorImageViewCurrentFrame()
+        {
+            tlog.Debug(tag, $"AnimatedVectorImageViewCurrentFrame START");
 
-        //    var testingTarget = new AnimatedVectorImageView();
-        //    Assert.IsNotNull(testingTarget, "Can't create success object AnimatedVectorImageView");
-        //    Assert.IsInstanceOf<AnimatedVectorImageView>(testingTarget, "Should be an instance of AnimatedVectorImageView type.");
+            var testingTarget = new AnimatedVectorImageView()
+            {
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.CenterRight,
+                PivotPoint = PivotPoint.CenterRight,
+                BackgroundColor = Color.Azure,
+                Focusable = true,
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object AnimatedVectorImageView");
+            Assert.IsInstanceOf<AnimatedVectorImageView>(testingTarget, "Should be an instance of AnimatedVectorImageView type.");
 
-        //    testingTarget.ResourceUrl = url;
-        //    NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(testingTarget);
+            testingTarget.ResourceUrl = url;
 
-        //    try
-        //    {
-        //        testingTarget.CurrentFrame = 200;
-        //        var result = testingTarget.CurrentFrame;
+            try
+            {
+                testingTarget.CurrentFrame = 200;
+                var result = testingTarget.CurrentFrame;
 
-        //        /** value < 0 */
-        //        testingTarget.CurrentFrame = -3;
-        //        Assert.AreEqual(0, testingTarget.CurrentFrame, "Should be equal!");
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
+                /** value < 0 */
+                testingTarget.CurrentFrame = -3;
+                Assert.AreEqual(0, testingTarget.CurrentFrame, "Should be equal!");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
 
-        //    NUIApplication.GetDefaultWindow().GetDefaultLayer().Remove(testingTarget);
-
-        //    testingTarget.Dispose();
-        //    tlog.Debug(tag, $"AnimatedVectorImageViewCurrentFrame END (OK)");
-        //}
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"AnimatedVectorImageViewCurrentFrame END (OK)");
+        }
 
         [Test]
         [Category("P2")]
