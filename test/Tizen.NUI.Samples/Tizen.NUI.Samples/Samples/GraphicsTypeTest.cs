@@ -8,20 +8,28 @@ namespace Tizen.NUI.Samples
         private int oldPageCount = 0;
 
         private Window window;
-        private View rootView;
+        private ScrollableBase rootView;
 
         public void Activate()
         {
             window = NUIApplication.GetDefaultWindow();
 
-            rootView = new View()
+            rootView = new ScrollableBase()
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
-                Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical}
+                Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical},
+                Padding = new Extents(20, 20, 0, 0)
             };
 
             /* GraphicsTypeManager test. */
+            var managerTitleText = new TextLabel();
+            managerTitleText.Text = "GraphicsTypeManager";
+            managerTitleText.PointSize = 40;
+            managerTitleText.TextColor = Color.Blue;
+            managerTitleText.Padding = new Extents(0, 0, 0, 10);
+            rootView.Add(managerTitleText);
+
             var baseDpiText = new TextLabel();
             baseDpiText.Text = $"Baseline Dpi : {GraphicsTypeManager.Instance.BaselineDpi}";
             rootView.Add(baseDpiText);
@@ -42,11 +50,14 @@ namespace Tizen.NUI.Samples
             scaledDpiText.Text = $"Scaled Dpi : {GraphicsTypeManager.Instance.ScaledDpi}";
             rootView.Add(scaledDpiText);
 
-            var defConvertText = new TextLabel();
-            defConvertText.Text = $"DefaultTypeConverter : {GraphicsTypeManager.Instance.TypeConverter}";
-            rootView.Add(defConvertText);
-
             /* GraphicsTypeConverter test. */
+            var converterTitleText = new TextLabel();
+            converterTitleText.Text = "GraphicsTypeConverter";
+            converterTitleText.PointSize = 40;
+            converterTitleText.TextColor = Color.Red;
+            converterTitleText.Padding = new Extents(0, 0, 10, 10);
+            rootView.Add(converterTitleText);
+
             var dpConvertText = new TextLabel();
             var dp = 100.0f;
             dpConvertText.Text = $"dp : {dp}, pixel : {DpTypeConverter.Instance.ConvertToPixel(dp)}";
@@ -54,86 +65,112 @@ namespace Tizen.NUI.Samples
 
             var pxConvertText = new TextLabel();
             var px = 100.0f;
-            pxConvertText.Text = $"pixel : {px}, dp : {DpTypeConverter.Instance.ConvertToPixel(px)}";
+            pxConvertText.Text = $"pixel : {px}, dp : {DpTypeConverter.Instance.ConvertFromPixel(px)}";
+            rootView.Add(pxConvertText);
+
+            var spConvertText = new TextLabel();
+            var sp = 100.0f;
+            spConvertText.Text = $"sp : {sp}, pixel : {SpTypeConverter.Instance.ConvertToPixel(sp)}";
+            rootView.Add(spConvertText);
+
+            pxConvertText = new TextLabel();
+            px = 100.0f;
+            pxConvertText.Text = $"pixel : {px}, sp : {PointTypeConverter.Instance.ConvertFromPixel(px)}";
+            rootView.Add(pxConvertText);
+
+            var ptConvertText = new TextLabel();
+            var pt = 100.0f;
+            ptConvertText.Text = $"point : {pt}, pixel : {PointTypeConverter.Instance.ConvertToPixel(pt)}";
+            rootView.Add(pxConvertText);
+
+            pxConvertText = new TextLabel();
+            px = 100.0f;
+            pxConvertText.Text = $"pixel : {px}, point : {PointTypeConverter.Instance.ConvertFromPixel(px)}";
             rootView.Add(pxConvertText);
 
             /* GraphicsTypeExtension test. */
-            var dpToPixelText = new TextLabel();
-            dpToPixelText.Text = $"dp : {100.01f}, pixel : {100.01f.ToPixel()}";
-            rootView.Add(dpToPixelText);
+            var extTitleText = new TextLabel();
+            extTitleText.Text = "GraphicsTypeExtensions";
+            extTitleText.PointSize = 40;
+            extTitleText.TextColor = Color.Green;
+            extTitleText.Padding = new Extents(0, 0, 10, 10);
+            rootView.Add(extTitleText);
 
-            var pixelToDpText = new TextLabel();
-            pixelToDpText.Text = $"pixel : {60.01f}, dp : {60.01f.ToDp()}";
-            rootView.Add(pixelToDpText);
+            var spToPxFloatText = new TextLabel();
+            spToPxFloatText.Text = $"sp : {100.01f}, pixel : {100.01f.SpToPx()}";
+            rootView.Add(spToPxFloatText);
 
-            var dpToPixel2Text = new TextLabel();
-            dpToPixel2Text.Text = $"dp : {100}, pixel : {100.ToPixel()}";
-            rootView.Add(dpToPixel2Text);
+            var pixelToSpFloatText = new TextLabel();
+            pixelToSpFloatText.Text = $"pixel : {60.01f}, sp : {60.01f.PxToSp()}";
+            rootView.Add(pixelToSpFloatText);
 
-            var pixelToDp2Text = new TextLabel();
-            pixelToDp2Text.Text = $"pixel : {60}, dp : {60.ToDp()}";
-            rootView.Add(pixelToDp2Text);
+            var spToPxIntText = new TextLabel();
+            spToPxIntText.Text = $"sp : {100}, pixel : {100.SpToPx()}";
+            rootView.Add(spToPxIntText);
 
-            var dpToPixelSizeText = new TextLabel();
-            var dpSize = new Size(100.0f, 100.0f);
-            var pixelSize = dpSize.ToPixel();
-            dpToPixelSizeText.Text = $"dp : ({dpSize.Width}, {dpSize.Height}), pixel : ({pixelSize.Width}, {pixelSize.Height})";
-            rootView.Add(dpToPixelSizeText);
+            var pixelToSpIntText = new TextLabel();
+            pixelToSpIntText.Text = $"pixel : {60}, sp : {60.PxToSp()}";
+            rootView.Add(pixelToSpIntText);
 
-            var pixelToDpSizeText = new TextLabel();
+            var spToPxSizeText = new TextLabel();
+            var spSize = new Size(100.0f, 100.0f);
+            var pixelSize = spSize.SpToPx();
+            spToPxSizeText.Text = $"sp : ({spSize.Width}, {spSize.Height}), pixel : ({pixelSize.Width}, {pixelSize.Height})";
+            rootView.Add(spToPxSizeText);
+
+            var pixelToSpSizeText = new TextLabel();
             pixelSize = new Size(100.0f, 100.0f);
-            dpSize = pixelSize.ToDp();
-            pixelToDpSizeText.Text = $"pixel : ({pixelSize.Width}, {pixelSize.Height}), dp : ({dpSize.Width}, {dpSize.Height})";
-            rootView.Add(pixelToDpSizeText);
+            spSize = pixelSize.PxToSp();
+            pixelToSpSizeText.Text = $"pixel : ({pixelSize.Width}, {pixelSize.Height}), sp : ({spSize.Width}, {spSize.Height})";
+            rootView.Add(pixelToSpSizeText);
 
-            var dpToPixelPosText = new TextLabel();
-            var dpPos = new Position(100.0f, 100.0f);
-            var pixelPos = dpPos.ToPixel();
-            dpToPixelPosText.Text = $"dp : ({dpPos.X}, {dpPos.Y}), pixel : ({pixelPos.X}, {pixelPos.Y})";
-            rootView.Add(dpToPixelPosText);
+            var spToPxPosText = new TextLabel();
+            var spPos = new Position(100.0f, 100.0f);
+            var pixelPos = spPos.SpToPx();
+            spToPxPosText.Text = $"sp : ({spPos.X}, {spPos.Y}), pixel : ({pixelPos.X}, {pixelPos.Y})";
+            rootView.Add(spToPxPosText);
 
-            var pixelToDpPosText = new TextLabel();
+            var pixelToSpPosText = new TextLabel();
             pixelPos = new Position(100.0f, 100.0f);
-            dpPos = pixelPos.ToDp();
-            pixelToDpPosText.Text = $"pixel : ({pixelPos.X}, {pixelPos.Y}), dp : ({dpPos.X}, {dpPos.Y})";
-            rootView.Add(pixelToDpPosText);
+            spPos = pixelPos.PxToSp();
+            pixelToSpPosText.Text = $"pixel : ({pixelPos.X}, {pixelPos.Y}), sp : ({spPos.X}, {spPos.Y})";
+            rootView.Add(pixelToSpPosText);
 
-            var dpToPixelRectText = new TextLabel();
-            var dpRect = new Rectangle(100, 100, 100, 100);
-            var pixelRect = dpRect.ToPixel();
-            dpToPixelRectText.Text = $"dp : ({dpRect.X}, {dpRect.Y}, {dpRect.Width}, {dpRect.Height}), pixel : ({pixelRect.X}, {pixelRect.Y}, {pixelRect.Width}, {pixelRect.Height})";
-            rootView.Add(dpToPixelRectText);
+            var spToPxRectText = new TextLabel();
+            var spRect = new Rectangle(100, 100, 100, 100);
+            var pixelRect = spRect.SpToPx();
+            spToPxRectText.Text = $"sp : ({spRect.X}, {spRect.Y}, {spRect.Width}, {spRect.Height}), pixel : ({pixelRect.X}, {pixelRect.Y}, {pixelRect.Width}, {pixelRect.Height})";
+            rootView.Add(spToPxRectText);
 
-            var pixelToDpRectText = new TextLabel();
+            var pixelToSpRectText = new TextLabel();
             pixelRect =new Rectangle(100, 100, 100, 100);
-            dpRect = pixelRect.ToDp();
-            pixelToDpRectText.Text = $"pixel : ({pixelRect.X}, {pixelRect.Y}, {pixelRect.Width}, {pixelRect.Height}), dp : ({dpRect.X}, {dpRect.Y}, {dpRect.Width}, {dpRect.Height})";
-            rootView.Add(pixelToDpRectText);
+            spRect = pixelRect.PxToSp();
+            pixelToSpRectText.Text = $"pixel : ({pixelRect.X}, {pixelRect.Y}, {pixelRect.Width}, {pixelRect.Height}), sp : ({spRect.X}, {spRect.Y}, {spRect.Width}, {spRect.Height})";
+            rootView.Add(pixelToSpRectText);
 
-            var dpToPixelExtentText = new TextLabel();
-            var dpExtent = new Extents(10, 10, 10, 10);
-            var pixelExtent = dpExtent.ToPixel();
-            dpToPixelExtentText.Text = $"dp : ({dpExtent.Start}, {dpExtent.End}, {dpExtent.Top}, {dpExtent.Bottom}), pixel : ({pixelExtent.Start}, {pixelExtent.End}, {pixelExtent.Top}, {pixelExtent.Bottom})";
-            rootView.Add(dpToPixelExtentText);
+            var spToPxExtentText = new TextLabel();
+            var spExtent = new Extents(10, 10, 10, 10);
+            var pixelExtent = spExtent.SpToPx();
+            spToPxExtentText.Text = $"sp : ({spExtent.Start}, {spExtent.End}, {spExtent.Top}, {spExtent.Bottom}), pixel : ({pixelExtent.Start}, {pixelExtent.End}, {pixelExtent.Top}, {pixelExtent.Bottom})";
+            rootView.Add(spToPxExtentText);
 
             var pixelToDpExtentText = new TextLabel();
             pixelExtent =new Extents(10, 10, 10, 10);
-            dpExtent = pixelExtent.ToDp();
-            pixelToDpExtentText.Text = $"pixel : ({pixelExtent.Start}, {pixelExtent.End}, {pixelExtent.Top}, {pixelExtent.Bottom}), dp : ({dpExtent.Start}, {dpExtent.End}, {dpExtent.Top}, {dpExtent.Bottom})";
+            spExtent = pixelExtent.PxToSp();
+            pixelToDpExtentText.Text = $"pixel : ({pixelExtent.Start}, {pixelExtent.End}, {pixelExtent.Top}, {pixelExtent.Bottom}), sp : ({spExtent.Start}, {spExtent.End}, {spExtent.Top}, {spExtent.Bottom})";
             rootView.Add(pixelToDpExtentText);
 
             var pixelToPointText = new TextLabel();
             var fontPxSize = 30.0f;
-            pixelToPointText.PointSize = fontPxSize.PixelToPoint();
-            pixelToPointText.Text = $"pixel : {fontPxSize}, point: {fontPxSize.PixelToPoint()}";
+            pixelToPointText.PointSize = fontPxSize.PxToPt();
+            pixelToPointText.Text = $"pixel : {fontPxSize}, point: {fontPxSize.PxToPt()}";
             rootView.Add(pixelToPointText);
 
             var dpToPointText = new TextLabel();
             var dpPxSize = 80.0f;
-            dpToPointText.PointSize = dpPxSize.DpToPoint();
-            dpToPointText.Text = $"pixel : {dpPxSize}, point: {dpPxSize.DpToPoint()}";
+            dpToPointText.PointSize = dpPxSize.DpToPt();
+            dpToPointText.Text = $"pixel : {dpPxSize}, point: {dpPxSize.DpToPt()}";
             rootView.Add(dpToPointText);
-
 
             window.Add(rootView);
         }

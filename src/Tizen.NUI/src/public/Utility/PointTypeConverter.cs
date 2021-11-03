@@ -31,7 +31,7 @@ namespace Tizen.NUI
         private const ushort pointDpi = 72;
 
         /// <summary>
-        /// An unique Singleton Instance of PointTypeConverter
+        /// An unique Singleton Instance of PointTypeConverter.
         /// </summary>
         /// <value>Singleton instance of PointTypeConverter</value>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -50,7 +50,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Converts script to pixel
+        /// Converts script to pixel.
         /// </summary>
         /// <returns>Pixel value that is converted from input string</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -92,7 +92,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Converts pixel to point type
+        /// Converts pixel to point type.
         /// </summary>
         /// <returns>An converted value from pixel</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -114,7 +114,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Converts pixel to point type
+        /// Converts pixel to point type.
         /// </summary>
         /// <returns>An converted value from pixel</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
