@@ -74,40 +74,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WatchApplicationConstructor END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("WatchApplication constructor. With WatchApplication.")]
-        //[Property("SPEC", "Tizen.NUI.WatchApplication.WatchApplication C")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "CONSTR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WatchApplicationConstructorWithApplication()
-        //{
-        //    tlog.Debug(tag, $"WatchApplicationConstructorWithApplication START");
-
-        //    using (ImageView imageView = new ImageView())
-        //    {
-        //        WatchApplication watchApplication = new WatchApplication(imageView.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(watchApplication, "should be not null");
-        //        Assert.IsInstanceOf<WatchApplication>(watchApplication, "should be an instance of testing target class!");
-
-        //        try
-        //        {
-        //            new WatchApplication(watchApplication);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            /** Unable to find an entry point named 'CSharp_Dali_new_WatchApplication__SWIG_1' in shared library 'libdali2-csharp-binder.so' */
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception: Failed!");
-        //        }
-
-        //        watchApplication.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"WatchApplicationConstructorWithApplication END (OK)");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("WatchApplication.TimeTickEventArgs. Application.")]
@@ -159,67 +125,6 @@ namespace Tizen.NUI.Devel.Tests
             widget = null;
             tlog.Debug(tag, $"WatchApplicationTimeTickEventArgsWatchTime END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("WatchApplication.TimeTick.")]
-        //[Property("SPEC", "Tizen.NUI.WatchApplication.TimeTick A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WatchApplicationTimeTick()
-        //{
-        //    tlog.Debug(tag, $"WatchApplicationTimeTick START");
-
-        //    using (ImageView imageView = new ImageView())
-        //    {
-        //        var testingTarget = new WatchApplication(imageView.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "should be not null");
-        //        Assert.IsInstanceOf<WatchApplication>(testingTarget, "should be an instance of testing target class!");
-
-        //        /** Unable to find an entry point named 'CSharp_Dali_WatchApplication_TimeTickSignal' in shared library 'libdali2-csharp-binder.so' */
-        //        testingTarget.TimeTick += MyOnTimeTick;
-        //        testingTarget.TimeTick -= MyOnTimeTick;
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"WatchApplicationTimeTick END (OK)");
-        //}
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("WatchApplication.TimeTickSignal.")]
-        //[Property("SPEC", "Tizen.NUI.WatchApplication.TimeTickSignal A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WatchApplicationTimeTickSignal()
-        //{
-        //    tlog.Debug(tag, $"WatchApplicationTimeTickSignal START");
-
-        //    using (ImageView imageView = new ImageView())
-        //    {
-        //        var testingTarget = new WatchApplication(imageView.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "should be not null");
-        //        Assert.IsInstanceOf<WatchApplication>(testingTarget, "should be an instance of testing target class!");
-
-        //        try
-        //        {
-        //            testingTarget.TimeTickSignal();
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            /** Unable to find an entry point named 'CSharp_Dali_WatchApplication_TimeTickSignal' in shared library 'libdali2-csharp-binder.so' */
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception: Failed!");
-        //        }
-        //    }
-
-        //    tlog.Debug(tag, $"WatchApplicationTimeTickSignal END (OK)");
-        //}
-
-        private void MyOnTimeTick(object sender, TimeTickEventArgs e) { }
 
         [Test]
         [Category("P1")]
@@ -273,67 +178,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WatchApplicationAmbientTickArgsWatchTime END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("WatchApplication.AmbientTick.")]
-        //[Property("SPEC", "Tizen.NUI.WatchApplication.AmbientTick A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WatchApplicationAmbientTick()
-        //{
-        //    tlog.Debug(tag, $"WatchApplicationAmbientTick START");
-
-        //    using (ImageView imageView = new ImageView())
-        //    {
-        //        var testingTarget = new WatchApplication(imageView.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "should be not null");
-        //        Assert.IsInstanceOf<WatchApplication>(testingTarget, "should be an instance of testing target class!");
-
-        //        /** Unable to find an entry point named 'CSharp_Dali_WatchApplication_AmbientTickSignal' in shared library 'libdali2-csharp-binder.so' */
-        //        testingTarget.AmbientTick += MyOnAmbientTick;
-        //        testingTarget.AmbientTick -= MyOnAmbientTick;
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"WatchApplicationAmbientTick END (OK)");
-        //}
-
-        //private void MyOnAmbientTick(object sender, AmbientTickEventArgs e) { }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("WatchApplication.AmbientTickSignal.")]
-        //[Property("SPEC", "Tizen.NUI.WatchApplication.AmbientTickSignal A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WatchApplicationAmbientTickSignal()
-        //{
-        //    tlog.Debug(tag, $"WatchApplicationAmbientTickSignal START");
-
-        //    using (ImageView imageView = new ImageView())
-        //    {
-        //        var testingTarget = new WatchApplication(imageView.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "should be not null");
-        //        Assert.IsInstanceOf<WatchApplication>(testingTarget, "should be an instance of testing target class!");
-
-        //        try
-        //        {
-        //            testingTarget.AmbientTickSignal();
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            /** Unable to find an entry point named 'CSharp_Dali_WatchApplication_AmbientTickSignal' in shared library 'libdali2-csharp-binder.so' */
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception: Failed!");
-        //        }
-        //    }
-
-        //    tlog.Debug(tag, $"WatchApplicationAmbientTickSignal END (OK)");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("WatchApplication.AmbientChangedEventArgs. Application.")]
@@ -382,66 +226,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WatchApplicationAmbientChangedEventArgsChangedSet END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("WatchApplication.AmbientChanged.")]
-        //[Property("SPEC", "Tizen.NUI.WatchApplication.AmbientChanged A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WatchApplicationAmbientChanged()
-        //{
-        //    tlog.Debug(tag, $"WatchApplicationAmbientChanged START");
-
-        //    using (ImageView imageView = new ImageView())
-        //    {
-        //        var testingTarget = new WatchApplication(imageView.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "should be not null");
-        //        Assert.IsInstanceOf<WatchApplication>(testingTarget, "should be an instance of testing target class!");
-
-        //        /** Unable to find an entry point named 'CSharp_Dali_WatchApplication_AmbientChangedSignal' in shared library 'libdali2-csharp-binder.so' */
-        //        testingTarget.AmbientChanged += MyOnAmbientChanged;
-        //        testingTarget.AmbientChanged -= MyOnAmbientChanged;
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"WatchApplicationAmbientChanged END (OK)");
-        //}
-
-        //private void MyOnAmbientChanged(object sender, AmbientChangedEventArgs e) { }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("WatchApplication.AmbientChangedSignal.")]
-        //[Property("SPEC", "Tizen.NUI.WatchApplication.AmbientChangedSignal A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WatchApplicationAmbientChangedSignal()
-        //{
-        //    tlog.Debug(tag, $"WatchApplicationAmbientChangedSignal START");
-
-        //    using (ImageView imageView = new ImageView())
-        //    {
-        //        var testingTarget = new WatchApplication(imageView.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "should be not null");
-        //        Assert.IsInstanceOf<WatchApplication>(testingTarget, "should be an instance of testing target class!");
-
-        //        try
-        //        {
-        //            testingTarget.AmbientChangedSignal();
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            /** Unable to find an entry point named 'CSharp_Dali_WatchApplication_AmbientChangedSignal' in shared library 'libdali2-csharp-binder.so' */
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception: Failed!");
-        //        }
-        //    }
-
-        //    tlog.Debug(tag, $"WatchApplicationAmbientChangedSignal END (OK)");
-        //}
     }
 }

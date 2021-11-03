@@ -54,5 +54,32 @@ namespace Tizen.NUI.Devel.Tests
             label.Dispose();
             tlog.Debug(tag, $"TextEventAnchorClickedEventArgsHref END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEvent.InputFilteredEventArgs Type.")]
+        [Property("SPEC", "Tizen.NUI.TextEvent.InputFilteredEventArgs.Type A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextEventInputFilteredEventArgsType()
+        {
+            tlog.Debug(tag, $"TextEventInputFilteredEventArgsType START");
+
+            TextLabel label = new TextLabel()
+            {
+                Text = "hypertext",
+            };
+
+            var testingTarget = new InputFilteredEventArgs();
+            Assert.IsNotNull(testingTarget, "Can't create success object InputFilteredEventArgs");
+            Assert.IsInstanceOf<InputFilteredEventArgs>(testingTarget, "Should be an instance of InputFilteredEventArgs type.");
+
+            testingTarget.Type = InputFilterType.Accept;
+            Assert.IsNotNull(testingTarget.Type, "Should be not null.");
+
+            label.Dispose();
+            tlog.Debug(tag, $"TextEventInputFilteredEventArgsType END (OK)");
+        }
     }
 }

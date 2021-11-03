@@ -385,45 +385,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"RenderTaskAssign END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("RenderTask SetSourceView.")]
-        //[Property("SPEC", "Tizen.NUI.RenderTask.SetSourceView M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void RenderTaskSetSourceView()
-        //{
-        //    tlog.Debug(tag, $"RenderTaskSetSourceView START");
-
-        //    using (View view = new View())
-        //    {
-        //        using (Animatable ani = new Animatable())
-        //        {
-        //            var testingTarget = new RenderTask(ani.SwigCPtr.Handle, false);
-        //            Assert.IsNotNull(testingTarget, "Can't create success object RenderTask.");
-        //            Assert.IsInstanceOf<RenderTask>(testingTarget, "Should return RenderTask instance.");
-
-        //            try
-        //            {
-        //                testingTarget.SetSourceView(view);
-
-        //                var result = testingTarget.GetSourceView();
-        //                tlog.Debug(tag, "SourceView : " + result);
-        //            }
-        //            catch (Exception e)
-        //            {
-        //                tlog.Debug(tag, e.Message.ToString());
-        //                Assert.Fail("Caught Exception :  Failed!");
-        //            }
-
-        //            testingTarget.Dispose();
-        //        }
-        //    }
-
-        //    tlog.Debug(tag, $"RenderTaskSetSourceView END (OK)");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("RenderTask SetExclusive.")]
@@ -495,45 +456,6 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"RenderTaskSetInputEnabled END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("RenderTask SetCamera.")]
-        //[Property("SPEC", "Tizen.NUI.RenderTask.SetCamera M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void RenderTaskSetCamera()
-        //{
-        //    tlog.Debug(tag, $"RenderTaskSetCamera START");
-
-        //    using (View view = new View() { Size = new Size(100, 50) })
-        //    {
-        //        var testingTarget = new RenderTask(view.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "Can't create success object RenderTask.");
-        //        Assert.IsInstanceOf<RenderTask>(testingTarget, "Should return RenderTask instance.");
-
-        //        using (Camera camera = new Camera())
-        //        {
-        //            try
-        //            {
-        //                testingTarget.SetCamera(camera);
-
-        //                var result = testingTarget.GetCamera();
-        //                tlog.Debug(tag, "Camera : " + result);
-        //            }
-        //            catch (Exception e)
-        //            {
-        //                tlog.Debug(tag, e.Message.ToString());
-        //                Assert.Fail("Caught Exception :  Failed!");
-        //            }
-        //        }
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"RenderTaskSetCamera END (OK)");
-        //}
 
         [Test]
         [Category("P1")]
@@ -862,36 +784,6 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"RenderTaskSetRefreshRate END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("RenderTask WorldToViewport.")]
-        //[Property("SPEC", "Tizen.NUI.RenderTask.WorldToViewport M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //[Obsolete]
-        //public void RenderTaskWorldToViewport()
-        //{
-        //    tlog.Debug(tag, $"RenderTaskWorldToViewport START");
-
-        //    using (View view = new View() { Size = new Size(100, 50) })
-        //    {
-        //        var testingTarget = new RenderTask(view.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "Can't create success object RenderTask.");
-        //        Assert.IsInstanceOf<RenderTask>(testingTarget, "Should return RenderTask instance.");
-
-        //        using (Vector3 position = new Vector3(0.3f, 0.5f, 0.0f))
-        //        {
-        //            var result = testingTarget.WorldToViewport(position, out float viewportX, out float viewportY);
-        //            tlog.Debug(tag, "WorldToViewport : " + result);
-        //        }
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"RenderTaskWorldToViewport END (OK)");
-        //}
 
         [Test]
         [Category("P1")]

@@ -277,35 +277,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"ViewImplSignal (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("ViewImpl EmitKeyEventSignal.")]
-        //[Property("SPEC", "Tizen.NUI.ViewImpl.EmitKeyEventSignal M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void ViewImplEmitKeyEventSignal()
-        //{
-        //    tlog.Debug(tag, $"ViewImplEmitKeyEventSignal START");
-
-        //    using (ViewWrapperImpl impl = new ViewWrapperImpl(CustomViewBehaviour.ViewBehaviourDefault))
-        //    {
-        //        var testingTarget = new ViewWrapper("CustomView", impl);
-        //        Assert.IsNotNull(testingTarget, "should be not null");
-        //        Assert.IsInstanceOf<ViewWrapper>(testingTarget, "should be an instance of testing target class!");
-
-        //        using (Key key = new Key())
-        //        {
-        //            var result = testingTarget.viewWrapperImpl.EmitKeyEventSignal(key);
-        //            tlog.Debug(tag, "EmitKeyEventSignal : " + result);
-        //        }
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"ViewImplEmitKeyEventSignal (OK)");
-        //}
     }
 }
