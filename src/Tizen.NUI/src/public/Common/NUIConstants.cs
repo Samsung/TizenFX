@@ -819,26 +819,26 @@ namespace Tizen.NUI
     public enum LineWrapMode
     {
         /// <summary>
-        /// The word mode will move a word to the next line.
+        /// The word mode moves a word to the next line.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         Word,
 
         /// <summary>
-        /// character will move character by character to the next line.
+        /// character moves character by character to the next line.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         Character,
 
         /// <summary>
-        /// Hyphenation mode will move part of the word (at possible hyphen locations)
+        /// Hyphenation mode moves part of the word (at possible hyphen locations)
         /// to the next line and draw a hyphen at the end of the line.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         Hyphenation,
 
         /// <summary>
-        /// Mixed mode will try word wrap, if failed, it will try hyphenation wrap.
+        /// Mixed mode tries word wrap, if failed, it tries hyphenation wrap.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         Mixed
