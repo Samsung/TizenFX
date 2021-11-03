@@ -21,35 +21,35 @@ using System.Globalization;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Default DpTypeConverter class to convert dp types.
+    /// Default SpTypeConverter class to convert dp types.
     /// </summary>
     /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public sealed class DpTypeConverter : GraphicsTypeConverter
+    public sealed class SpTypeConverter : GraphicsTypeConverter
     {
-        private volatile static DpTypeConverter dpTypeConverter;
+        private volatile static SpTypeConverter spTypeConverter;
 
         /// <summary>
-        /// An unique Singleton Instance of DpTypeConverter.
+        /// An unique Singleton Instance of SpTypeConverter
         /// </summary>
-        /// <value>Singleton instance of DpTypeConverter</value>
+        /// <value>Singleton instance of SpTypeConverter</value>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static DpTypeConverter Instance
+        public static SpTypeConverter Instance
         {
             get
             {
-                if (dpTypeConverter == null)
+                if (spTypeConverter == null)
                 {
-                    dpTypeConverter = new DpTypeConverter();
+                    spTypeConverter = new SpTypeConverter();
                 }
 
-                return dpTypeConverter;
+                return spTypeConverter;
             }
         }
 
         /// <summary>
-        /// Converts script to pixel.
+        /// Converts script to pixel
         /// </summary>
         /// <returns>Pixel value that is converted from input string</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -59,13 +59,9 @@ namespace Tizen.NUI
             float convertedValue = 0;
             if (scriptValue != null)
             {
-                if (scriptValue.EndsWith("dp"))
+                if (scriptValue.EndsWith("sp"))
                 {
-                    convertedValue = ConvertToPixel(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("dp")), CultureInfo.InvariantCulture));
-                }
-                else if (scriptValue.EndsWith("px"))
-                {
-                    convertedValue = float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                    convertedValue = ConvertToPixel(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("sp")), CultureInfo.InvariantCulture));
                 }
                 else
                 {
@@ -80,25 +76,25 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Converts dp type to pixel.
+        /// Converts sp type to pixel
         /// </summary>
         /// <returns>Pixel value that is converted by the the display matric</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float ConvertToPixel(float value)
         {
-            return value * (GraphicsTypeManager.Instance.Dpi / (float)GraphicsTypeManager.Instance.BaselineDpi);
+            return value * (GraphicsTypeManager.Instance.ScaledDpi / (float)GraphicsTypeManager.Instance.BaselineDpi);
         }
 
         /// <summary>
-        /// Converts px to dp type.
+        /// Converts pixel to sp type
         /// </summary>
         /// <returns>An converted value from pixel</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float ConvertFromPixel(float value)
         {
-            return value * (GraphicsTypeManager.Instance.BaselineDpi / (float)GraphicsTypeManager.Instance.Dpi);
+            return value * (GraphicsTypeManager.Instance.BaselineDpi / (float)GraphicsTypeManager.Instance.ScaledDpi);
         }
     }
 }
