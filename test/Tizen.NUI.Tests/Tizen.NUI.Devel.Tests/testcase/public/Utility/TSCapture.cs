@@ -506,44 +506,6 @@ namespace Tizen.NUI.Devel.Tests
             }
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("Capture Start include quality.")]
-        //[Property("SPEC", "Tizen.NUI.Capture.Start M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void CaptureStartIncludeQuality()
-        //{
-        //    tlog.Debug(tag, $"CaptureStartIncludeQuality START");
-
-        //    var testingTarget = new Capture();
-        //    Assert.IsNotNull(testingTarget, "Can't create success object Capture");
-        //    Assert.IsInstanceOf<Capture>(testingTarget, "Should be an instance of Capture type.");
-
-        //    using (Container container = new View())
-        //    {
-        //        using (Size size = new Size(100, 80))
-        //        {
-        //            using (Color color = Color.Cyan)
-        //            {
-        //                try
-        //                {
-        //                    testingTarget.Start(container, size, jpg_path, color, 30);
-        //                }
-        //                catch (Exception e)
-        //                {
-        //                    tlog.Debug(tag, e.Message.ToString());
-        //                    Assert.Fail("Caught Exception: Failed!");
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    testingTarget.Dispose();
-        //    tlog.Debug(tag, $"CaptureStartIncludeQuality END (OK)");
-        //}
-
         [Test]
         [Category("P2")]
         [Description("Capture Start include quality. Color is null.")]
@@ -722,47 +684,6 @@ namespace Tizen.NUI.Devel.Tests
                 }
             }
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("Capture Start include position.")]
-        //[Property("SPEC", "Tizen.NUI.Capture.Start M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void CaptureStartIncludePosition()
-        //{
-        //    tlog.Debug(tag, $"CaptureStartIncludePosition START");
-
-        //    var testingTarget = new Capture();
-        //    Assert.IsNotNull(testingTarget, "Can't create success object Capture");
-        //    Assert.IsInstanceOf<Capture>(testingTarget, "Should be an instance of Capture type.");
-
-        //    using (Container container = new View())
-        //    {
-        //        using (Position position = new Position(50, 100))
-        //        {
-        //            using (Size size = new Size(100, 80))
-        //            {
-        //                using (Color color = Color.Cyan)
-        //                {
-        //                    try
-        //                    {
-        //                        testingTarget.Start(container, position, size, path, color);
-        //                    }
-        //                    catch (Exception e)
-        //                    {
-        //                        tlog.Debug(tag, e.Message.ToString());
-        //                        Assert.Fail("Caught Exception: Failed!");
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-
-        //    testingTarget.Dispose();
-        //    tlog.Debug(tag, $"CaptureStartIncludePosition END (OK)");
-        //}
 
         [Test]
         [Category("P2")]

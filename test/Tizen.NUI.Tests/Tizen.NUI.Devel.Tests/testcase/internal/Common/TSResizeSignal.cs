@@ -146,46 +146,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"ResizeSignalConnect END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("ResizeSignal Emit.")]
-        //[Property("SPEC", "Tizen.NUI.ResizeSignal.Emit M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void ResizeSignalEmit()
-        //{
-        //    tlog.Debug(tag, $"ResizeSignalEmit START");
-        //    var currentPid = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-        //    var currentTid = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
-
-        //    tlog.Debug(tag, $"thread check! main pid={App.mainPid}, current pid={currentPid}, main tid={App.mainTid}, current tid={currentTid}");
-
-        //    using (View view = new View())
-        //    {
-        //        view.Size2D = new Size2D(50, 60);
-        //        var testingTarget = new ResizeSignal(view.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "Should be not null!");
-        //        Assert.IsInstanceOf<ResizeSignal>(testingTarget, "Should be an Instance of ResizeSignal!");
-
-        //        try
-        //        {
-        //            using (Size2D size = new Size2D(20, 30))
-        //            {
-        //                testingTarget.Emit(size);
-        //            }
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception: Failed!");
-        //        }
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"ResizeSignalEmit END (OK)");
-        //}
     }
 }

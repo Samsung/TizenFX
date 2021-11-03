@@ -356,40 +356,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"FrameDataPositionY END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("FrameData Extra.")]
-        //[Property("SPEC", "Tizen.NUI.FrameData.Extra A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRO")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void FrameDataExtra()
-        //{
-        //    tlog.Debug(tag, $"FrameDataExtra START");
-
-        //    using (ImageView image = new ImageView())
-        //    {
-        //        image.ResourceUrl = path;
-        //        image.backgroundExtraData = new BackgroundExtraData();
-
-        //        var testingTarget = new FrameData(image.SwigCPtr.Handle);
-        //        Assert.IsNotNull(testingTarget, "Can't create success object CustomView");
-        //        Assert.IsInstanceOf<FrameData>(testingTarget, "Should be an instance of FrameData type.");
-
-        //        try
-        //        {
-        //            var result = testingTarget.Extra;
-        //            tlog.Debug(tag, "Extra : " + result);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception : Failed!");
-        //        }
-        //    }
-
-        //    tlog.Debug(tag, $"FrameDataExtra END (OK)");
-        //}
     }
 }

@@ -146,39 +146,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"ScrollViewSnapStartedSignalConnect END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("ScrollViewSnapStartedSignal Emit.")]
-        //[Property("SPEC", "Tizen.NUI.ScrollViewSnapStartedSignal.Emit M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void ScrollViewSnapStartedSignalEmit()
-        //{
-        //    tlog.Debug(tag, $"ScrollViewSnapStartedSignalEmit START");
-        //    var currentPid = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-        //    var currentTid = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
-
-        //    tlog.Debug(tag, $"thread check! main pid={App.mainPid}, current pid={currentPid}, main tid={App.mainTid}, current tid={currentTid}");
-
-        //    var testingTarget = new ScrollViewSnapStartedSignal();
-        //    Assert.IsNotNull(testingTarget, "Should be not null!");
-        //    Assert.IsInstanceOf<ScrollViewSnapStartedSignal>(testingTarget, "Should be an Instance of ScrollViewSnapStartedSignal!");
-
-        //    try
-        //    {
-        //        testingTarget.Emit(new ScrollView.SnapEvent());
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
-
-        //    testingTarget.Dispose();
-
-        //    tlog.Debug(tag, $"ScrollViewSnapStartedSignalEmit END (OK)");
-        //}
     }
 }

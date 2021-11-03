@@ -64,52 +64,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WindowWindowPositionSize END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("Window DEFAULT_BACKGROUND_COLOR")]
-        //[Property("SPEC", "Tizen.NUI.Window.DEFAULT_BACKGROUND_COLOR A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //public void WindowDEFAULT_BACKGROUND_COLOR()
-        //{
-        //    tlog.Debug(tag, $"WindowDEFAULT_BACKGROUND_COLOR START");
-        //    try
-        //    {
-        //        Vector4 v1 = Window.DEFAULT_BACKGROUND_COLOR;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-        //        Assert.Fail("Caught Exception" + e.ToString());
-        //    }
-        //    tlog.Debug(tag, $"WindowDEFAULT_BACKGROUND_COLOR END (OK)");
-        //    Assert.Pass("WindowDEFAULT_BACKGROUND_COLOR");
-        //}
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("Window DEBUG_BACKGROUND_COLOR")]
-        //[Property("SPEC", "Tizen.NUI.Window.DEBUG_BACKGROUND_COLOR A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //public void WindowDEBUG_BACKGROUND_COLOR()
-        //{
-        //    tlog.Debug(tag, $"WindowDEBUG_BACKGROUND_COLOR START");
-        //    try
-        //    {
-        //        Vector4 v1 = Window.DEBUG_BACKGROUND_COLOR;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-        //        Assert.Fail("Caught Exception" + e.ToString());
-        //    }
-        //    tlog.Debug(tag, $"WindowDEBUG_BACKGROUND_COLOR END (OK)");
-        //    Assert.Pass("WindowDEBUG_BACKGROUND_COLOR");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("Window GetLayer")]
@@ -323,29 +277,6 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WindowGetRenderTaskList END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("Window GetObjectRegistry")]
-        //[Property("SPEC", "Tizen.NUI.Window.GetObjectRegistry M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //public void WindowGetObjectRegistry()
-        //{
-        //    tlog.Debug(tag, $"WindowGetObjectRegistry START");
-        //    try
-        //    {
-        //        win.GetObjectRegistry();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-
-        //        Assert.Fail("Caught Exception" + e.ToString());
-        //    }
-        //    tlog.Debug(tag, $"WindowGetObjectRegistry END (OK)");
-        //    Assert.Pass("WindowGetObjectRegistry");
-        //}
 
         [Test]
         [Category("P1")]

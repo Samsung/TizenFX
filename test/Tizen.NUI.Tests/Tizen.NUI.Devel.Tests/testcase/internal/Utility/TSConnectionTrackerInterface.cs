@@ -59,40 +59,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"ConnectionTrackerInterfaceConstructor END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("ConnectionTrackerInterface SignalConnected.")]
-        //[Property("SPEC", "Tizen.NUI.ConnectionTrackerInterface.SignalConnected M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void ConnectionTrackerInterfaceSignalConnected()
-        //{
-        //    tlog.Debug(tag, $"ConnectionTrackerInterfaceSignalConnected START");
-
-        //    using (View view = new View())
-        //    {
-        //        var testingTarget = new ConnectionTrackerInterface(view.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "Should be not null!");
-        //        Assert.IsInstanceOf<ConnectionTrackerInterface>(testingTarget, "Should be an Instance of ConnectionTrackerInterface!");
-
-        //        try
-        //        {
-        //            var slotObserver = new SlotObserver(testingTarget.SwigCPtr.Handle, false);
-        //            var callback = new SWIGTYPE_p_CallbackBase(testingTarget.SwigCPtr.Handle);
-        //            testingTarget.SignalConnected(slotObserver, callback);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Caught Exception: Failed!");
-        //        }
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"ConnectionTrackerInterfaceSignalConnected END (OK)");
-        //}
     }
 }

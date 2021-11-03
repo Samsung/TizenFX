@@ -510,30 +510,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WidgetViewEffect END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("WidgetView DownCast.")]
-        //[Property("SPEC", "Tizen.NUI.WidgetView.DownCast M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WidgetViewDownCast()
-        //{
-        //    tlog.Debug(tag, $"WidgetViewDownCast START");
-
-        //    try
-        //    {
-        //        WidgetView.DownCast(widgetView);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
-
-        //    tlog.Debug(tag, $"WidgetViewDownCast END (OK)");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("WidgetView GetWidgetViewFromPtr.")]
