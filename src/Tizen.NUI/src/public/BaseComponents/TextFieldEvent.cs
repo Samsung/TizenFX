@@ -191,7 +191,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionChanged signal is emitted whenever the selected text changed.
+        /// The SelectionChanged event is emitted whenever the selected text is changed.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public event EventHandler SelectionChanged
