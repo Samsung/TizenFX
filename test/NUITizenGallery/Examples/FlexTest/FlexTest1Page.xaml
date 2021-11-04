@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.FlexTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="FlexTest1Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+                <FlexLayout Direction="Column" Justification="FlexStart" Alignment="FlexStart"/>
+            </View.Layout>
+
+            <TextLabel x:Name="text1"
+                         SizeWidth="720"
+                         SizeHeight="120"
+                         PointSize="8"
+                         Text="label1"
+                         BackgroundColor="#ff0000"
+                         />
+            <TextLabel x:Name="text2"
+                         SizeWidth="720"
+                         SizeHeight="100"
+                         PointSize="8"
+                         Text="label2"
+                         BackgroundColor="#aaaaaa"
+                         />
+            <TextLabel x:Name="text3"
+                         SizeWidth="720"
+                         SizeHeight="80"
+                         PointSize="8"
+                         Text="label3"
+                         BackgroundColor="#ffff00"
+                         />
+            <TextLabel x:Name="text4"
+                         SizeWidth="720"
+                         SizeHeight="60"
+                         PointSize="8"
+                         Text="label4"
+                         BackgroundColor="#00aaff"
+                         />
+            <TextLabel x:Name="text5"
+                         SizeWidth="720"
+                         SizeHeight="40"
+                         PointSize="8"
+                         Text="label5"
+                         BackgroundColor="#00ffff"
+                         />
+        </View>
+    </ContentPage.Content>
+</ContentPage>

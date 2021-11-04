@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.MenuTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="MenuTestPage"/>
+    </ContentPage.AppBar>
+
+    <ContentPage.Content>
+        <View x:Name="content"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+            <View.Layout>
+                <RelativeLayout/>
+            </View.Layout>
+
+            <Button x:Name="buttonCenterEnd"
+                      Text="Bottom Menu"
+                      RelativeLayout.LeftRelativeOffset="0.5"
+                      RelativeLayout.RightRelativeOffset="0.5"
+                      RelativeLayout.TopRelativeOffset="0.0"
+                      RelativeLayout.BottomRelativeOffset="0.0"
+                      RelativeLayout.FillHorizontal="False"
+                      RelativeLayout.FillVertical="False"
+                      RelativeLayout.HorizontalAlignment="Center"
+                      RelativeLayout.VerticalAlignment="Start"
+                      Clicked="ButtonCenterEndClicked"
+                      />
+            <Button x:Name="buttonCenterStart"
+                      Text="Top Menu"
+                      RelativeLayout.LeftRelativeOffset="0.5"
+                      RelativeLayout.RightRelativeOffset="0.5"
+                      RelativeLayout.TopRelativeOffset="1.0"
+                      RelativeLayout.BottomRelativeOffset="1.0"
+                      RelativeLayout.FillHorizontal="False"
+                      RelativeLayout.FillVertical="False"
+                      RelativeLayout.HorizontalAlignment="Center"
+                      RelativeLayout.VerticalAlignment="End"
+                      Clicked="ButtonCenterStartClicked"
+                      />
+            <Button x:Name="buttonEndCenter"
+                      Text="Right Menu"
+                      RelativeLayout.LeftRelativeOffset="0.0"
+                      RelativeLayout.RightRelativeOffset="0.0"
+                      RelativeLayout.TopRelativeOffset="0.5"
+                      RelativeLayout.BottomRelativeOffset="0.5"
+                      RelativeLayout.FillHorizontal="False"
+                      RelativeLayout.FillVertical="False"
+                      RelativeLayout.HorizontalAlignment="Start"
+                      RelativeLayout.VerticalAlignment="Center"
+                      Clicked="ButtonEndCenterClicked"
+                      />
+            <Button x:Name="buttonStartCenter"
+                      Text="Left Menu"
+                      RelativeLayout.LeftRelativeOffset="1.0"
+                      RelativeLayout.RightRelativeOffset="1.0"
+                      RelativeLayout.TopRelativeOffset="0.5"
+                      RelativeLayout.BottomRelativeOffset="0.5"
+                      RelativeLayout.FillHorizontal="False"
+                      RelativeLayout.FillVertical="False"
+                      RelativeLayout.HorizontalAlignment="End"
+                      RelativeLayout.VerticalAlignment="Center"
+                      Clicked="ButtonStartCenterClicked"
+                      />
+            <Button x:Name="buttonCenterCenter"
+                      Text="Center Menu"
+                      RelativeLayout.LeftRelativeOffset="0.5"
+                      RelativeLayout.RightRelativeOffset="0.5"
+                      RelativeLayout.TopRelativeOffset="0.5"
+                      RelativeLayout.BottomRelativeOffset="0.5"
+                      RelativeLayout.FillHorizontal="False"
+                      RelativeLayout.FillVertical="False"
+                      RelativeLayout.HorizontalAlignment="Center"
+                      RelativeLayout.VerticalAlignment="Center"
+                      Clicked="ButtonCenterCenterClicked"
+                      />
+        </View>
+    </ContentPage.Content>
+
+</ContentPage>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.EditorTest2Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="EditorTest2Page"/>
+    </ContentPage.AppBar>
+
+    <ContentPage.Content>
+        <View x:Name="mainView"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" />
+            </View.Layout>
+
+            <View x:Name="topView"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="{Static LayoutParamPolicies.WrapContent}">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" />
+                </View.Layout>
+
+                <TextLabel Text="Editor's Event : "
+                           WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                           HeightSpecification="{Static LayoutParamPolicies.WrapContent}" />
+                <TextEditor x:Name="editor"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="80" />
+                <View x:Name="underline"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        HeightSpecification="2"
+                        BackgroundColor="#999999" />
+                    <TextLabel Text="Editor's Text : "
+                               WidthSpecification="{Static LayoutParamPolicies.WrapContent}"
+                               HeightSpecification="{Static LayoutParamPolicies.WrapContent}" />
+                </View>
+                <TextEditor x:Name="editor2"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.MatchParent}" />
+                <View x:Name="underline2"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        HeightSpecification="2"
+                        BackgroundColor="#999999" />
+            </View>
+
+    </ContentPage.Content>
+</ContentPage>
+

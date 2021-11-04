@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.IndicatorViewTest3Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <ContentPage.AppBar>
+      <AppBar x:Name="appBar" Title="IndicatorViewTest3Page"/>
+    </ContentPage.AppBar>
+
+    <ContentPage.Content>
+      <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+        <View.Layout>
+            <AbsoluteLayout/>
+        </View.Layout>
+
+        <ScrollableBase x:Name="Scroller"
+                          SnapToPage="true"
+                          ScrollingDirection="Horizontal"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <ScrollableBase.Layout>
+                <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center"/>
+            </ScrollableBase.Layout>
+
+            <View x:Name="Page0"
+                    Size2D="{Binding Source={x:Static Window.Instance}, Path=Size }"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    BackgroundColor="#ff0000">
+                <TextLabel Text="Page 0"
+                          PositionUsesPivotPoint="True"
+                          ParentOrigin="Center"
+                          PivotPoint="Center"/>
+            </View>
+            <View x:Name="Page1"
+                    Size2D="{Binding Source={x:Static Window.Instance}, Path=Size }"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    BackgroundColor="#00ff00">
+                <TextLabel Text="Page 1"
+                          PositionUsesPivotPoint="True"
+                          ParentOrigin="Center"
+                          PivotPoint="Center"/>
+            </View>
+            <View x:Name="Page2"
+                    Size2D="{Binding Source={x:Static Window.Instance}, Path=Size }"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    BackgroundColor="#0000ff">
+                <TextLabel Text="Page 2"
+                          PositionUsesPivotPoint="True"
+                          ParentOrigin="Center"
+                          PivotPoint="Center"/>
+            </View>
+            <View x:Name="Page3"
+                    Size2D="{Binding Source={x:Static Window.Instance}, Path=Size }"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    BackgroundColor="#ff00ff">
+                <TextLabel Text="Page 3"
+                          PositionUsesPivotPoint="True"
+                          ParentOrigin="Center"
+                          PivotPoint="Center"/>
+            </View>
+            <View x:Name="Page4"
+                    Size2D="{Binding Source={x:Static Window.Instance}, Path=Size }"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    BackgroundColor="#00ff00">
+                <TextLabel Text="Page 4"
+                          PositionUsesPivotPoint="True"
+                          ParentOrigin="Center"
+                          PivotPoint="Center"/>
+            </View>
+        </ScrollableBase>
+
+        <Pagination x:Name="Index" Size2D="186,50"/>
+      </View>
+    </ContentPage.Content>
+</ContentPage>
