@@ -10,7 +10,7 @@
         <AppBar x:Name="appBar" Title="ActivityIndicatorTestPage"/>
     </ContentPage.AppBar>
 
-    <!-- Content is main placdeholder of ContentPage. Add your content into this view. -->
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
     <ContentPage.Content>
         <Loading x:Name="Spinner" Size2D="100, 100" Position2D="10, 10"/>
     </ContentPage.Content>

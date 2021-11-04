@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.GridTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="GridTest1Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout >
+                <GridLayout Columns="3" Rows="4" GridOrientation="Horizontal" ColumnSpacing="2" RowSpacing="2" />
+            </View.Layout>
+
+             <!-- Row 0 -->
+            <Button Text="Button 1"
+                    GridLayout.Column="0"
+                    GridLayout.Row="0"
+                    GridLayout.ColumnSpan="3"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+                <!-- Row 0 Column 1 is expanded by span -->
+                <!-- Row 0 Column 2 is expanded by span -->
+             <!-- Row 1 -->
+            <Button Text="Button 2"
+                    GridLayout.Column="0"
+                    GridLayout.Row="1"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+            <Button Text="Button 3"
+                    GridLayout.Column="1"
+                    GridLayout.Row="1"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+            <Button Text="Button 4"
+                    GridLayout.Column="2"
+                    GridLayout.Row="1"
+                    GridLayout.RowSpan="2"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+             <!-- Row 2 -->
+            <Button Text="Button 5"
+                    GridLayout.Column="0"
+                    GridLayout.Row="2"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+            <Button Text="Button 6"
+                    GridLayout.Column="1"
+                    GridLayout.Row="2"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+                <!-- Row 2 Column 2 is expanded by span -->
+             <!-- Row 3 -->
+            <Button Text="Button 7"
+                    GridLayout.Column="0"
+                    GridLayout.Row="3"
+                    GridLayout.ColumnSpan="2"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+                <!-- Row 3 Column 1 is expanded by span -->
+            <Button Text="Button 8"
+                    GridLayout.Column="2"
+                    GridLayout.Row="3"
+                    GridLayout.VerticalStretch="ExpandAndFill"
+                    GridLayout.HorizontalStretch="ExpandAndFill"/>
+        </View>
+    </ContentPage.Content>
+</ContentPage>
+
+

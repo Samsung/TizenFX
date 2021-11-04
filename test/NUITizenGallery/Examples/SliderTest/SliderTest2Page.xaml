@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.SliderTest2Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="SliderTest2Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="30,30"/>
+            </View.Layout>
+
+            <TextLabel x:Name="text1"
+                         WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         PointSize="8"
+                         Text="slider value: 50.0"/>
+            <Slider x:Name="slider1"
+                        MinValue="0"
+                        MaxValue="100"
+                        CurrentValue="50"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        TrackThickness="5"
+                        BgTrackColor="#b1b1b1"
+                        SlidedTrackColor="#3db9cc"
+                        Direction="Horizontal"/>
+            <Button x:Name="button1"
+                SizeHeight="100"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                BackgroundColor="#3db9cc"
+                PointSize="6"
+                Text="Change orientation"/>
+
+        </View>
+    </ContentPage.Content>
+</ContentPage>

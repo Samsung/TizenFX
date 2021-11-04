@@ -10,12 +10,12 @@
         <AppBar x:Name="appBar" Title="CarouselViewFocusTestPage"/>
     </ContentPage.AppBar>
 
-    <!-- Content is main placdeholder of ContentPage. Add your content into this view. -->
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
     <ContentPage.Content>
         <ScrollableBase x:Name="Scroller"
                           ScrollingDirection="Horizontal"
                           WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
-                          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">>
+                          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
             <ScrollableBase.Layout>
               <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center" CellPadding="120,0"/>
             </ScrollableBase.Layout>
