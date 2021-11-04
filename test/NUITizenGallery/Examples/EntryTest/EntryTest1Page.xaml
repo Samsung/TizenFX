@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.EntryTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="EntryTest1Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Top"/>
+            </View.Layout>
+
+            <TextField WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                       BackgroundColor="#FF66FF"
+                       Text=" "/>
+
+            <TextField WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                       Text="This is a TextField with very looooooooooooong looooooooooooooong text"
+                       Weight="1.0"/>
+
+            <TextField WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                       Text="Formated TextField"
+                       Weight="1.0"/>
+
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Top"/>
+                </View.Layout>
+
+                <TextLabel Text="Name: "/>
+
+                <TextField WidthSpecification="{Static LayoutParamPolicies.MatchParent}" />
+
+            </View>
+
+            <View WidthResizePolicy="FillToParent">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Begin"/>
+                </View.Layout>
+
+                <TextLabel Text="Passoword: "/>
+
+                <TextField WidthSpecification="{Static LayoutParamPolicies.MatchParent}" />
+
+            </View>
+
+            <View WidthResizePolicy="FillToParent">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" LinearAlignment="Top"/>
+                </View.Layout>
+
+                <TextField PlaceholderTextColor="1,0,0,1"
+                           PlaceholderText="Placeholder Color - Red"/>
+
+                <TextField PlaceholderTextColor="0,1,0,1"
+                           PlaceholderText="Placeholder Color - Gren" />
+
+                <TextField PlaceholderTextColor="0,0,1,1"
+                           PlaceholderText="Placeholder Color - Blue" />
+
+            </View>
+        </View>
+    </ContentPage.Content>
+</ContentPage>

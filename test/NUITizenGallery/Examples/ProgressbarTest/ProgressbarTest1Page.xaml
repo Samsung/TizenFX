@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.ProgressbarTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="ProgressbarTest1Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+              <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal" CellPadding="10,20"/>
+            </View.Layout>
+
+            <Progress x:Name="TestProgress"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                        CurrentValue="50"/>
+            <Slider x:Name="TestSlider"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      CurrentValue="50"
+                      ValueChanged="OnValueChanged"/>
+            <Button x:Name="AnimateButton"
+                      Text="Animate"
+                      Clicked="OnAnimateButtonClicked"/>
+            <Button x:Name="ChangeColorButton"
+                      Text="ChangeColor"
+                      Clicked="OnChangeColorButtonClicked"/>
+
+        </View>
+    </ContentPage.Content>
+</ContentPage>

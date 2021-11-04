@@ -24,7 +24,6 @@ namespace NUITizenGallery
     {
         Window window;
         Navigator navigator;
-        TabViewTestPage page;
         int pageCount = 0;
 
         public void Activate()
@@ -35,9 +34,7 @@ namespace NUITizenGallery
             navigator = window.GetDefaultNavigator();
 
             pageCount = navigator.PageCount;
-
-            page = new TabViewTestPage();
-            navigator.Push(page);
+            navigator.Push(new TabViewTestPage());
         }
 
         public void Deactivate()

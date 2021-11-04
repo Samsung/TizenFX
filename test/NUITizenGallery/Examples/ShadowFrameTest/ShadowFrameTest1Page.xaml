@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.ShadowFrameTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="ShadowFrameTest1Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placdeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+          BackgroundColor="#fcedf0"
+        >
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="30,30"/>
+            </View.Layout>
+
+            <View
+              x:Name="UpperView"
+              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+              HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+            >
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="30,30"/>
+                </View.Layout>
+
+                <View x:Name="target"
+                    Size2D="125,100"
+                    BackgroundColor="#ffffff"
+                    BorderlineWidth="10"
+                    BorderlineColor="#fac07f"
+                    BorderlineOffset="0"
+                    CornerRadiusPolicy="Relative"
+                    CornerRadius="0.25, 0.25, 0.25, 0.25"
+                    BoxShadow = "10.0 | #00000030 | -20, 20"
+                />
+            </View>
+            <View
+              x:Name="BelowView"
+              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+              HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+            >
+                <ScrollableBase
+                  x:Name="Scroller"
+                  ScrollingDirection="Vertical"
+                  HideScrollbar="false"
+                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                  HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                >
+                    <ScrollableBase.Layout>
+                        <LinearLayout LinearOrientation="Vertical" CellPadding="10, 10" LinearAlignment="Begin"/>
+                    </ScrollableBase.Layout>
+
+                    <!-- Corner Radius -->
+                    <View
+                      x:Name="CornerRadiusView"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                    >
+                        <View.Layout>
+                            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                        </View.Layout>
+
+                        <TextLabel
+                          x:Name="CornerRadiusViewHeader"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HorizontalAlignment="Begin"
+                          VerticalAlignment="Center"
+                          PixelSize="32"
+                          TextColor="#fe7c57"
+                          Text="CornerRadius"
+                        />
+                        <View
+                          x:Name="CornerRadiusViewContent"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                            </View.Layout>
+
+                            <View
+                              x:Name="CornerRadiusView1"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                            >
+                                <View.Layout>
+                                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                                </View.Layout>
+
+                                <TextLabel
+                                  x:Name="CornerTopLeftT"
+                                  Weight = "0.15"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  Text="Top L : "
+                                />
+                                <Slider x:Name="CornerTopLeft"
+                                  MinValue="0"
+                                  MaxValue="0.5"
+                                  CurrentValue="0.25"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                                <TextLabel
+                                  x:Name="CornerTopRightT"
+                                  Weight = "0.15"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  Text="Top R : "
+                                />
+                                <Slider x:Name="CornerTopRight"
+                                  MinValue="0"
+                                  MaxValue="0.5"
+                                  CurrentValue="0.25"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                            </View>
+                            <View
+                              x:Name="CornerRadiusView2"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                            >
+                                <View.Layout>
+                                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                                </View.Layout>
+
+                                <TextLabel
+                                  x:Name="CornerBottomLeftT"
+                                  Weight = "0.15"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  Text="Bot L : "
+                                />
+                                <Slider x:Name="CornerBottomLeft"
+                                  MinValue="0"
+                                  MaxValue="0.5"
+                                  CurrentValue="0.25"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                                <TextLabel
+                                  x:Name="CornerBottomRightT"
+                                  Weight = "0.15"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  Text="Bot R : "
+                                />
+                                <Slider x:Name="CornerBottomRight"
+                                  MinValue="0"
+                                  MaxValue="0.5"
+                                  CurrentValue="0.25"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                            </View>
+                        </View>
+                    </View>
+
+                    <!-- Shadow Offset -->
+                    <View
+                      x:Name="ShadowOffsetView"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                    >
+                        <View.Layout>
+                            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                        </View.Layout>
+
+                        <TextLabel
+                          x:Name="ShadowOffsetViewHeader"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HorizontalAlignment="Begin"
+                          VerticalAlignment="Center"
+                          PixelSize="32"
+                          TextColor="#fe7c57"
+                          Text="ShadowOffset"
+                        />
+                        <View
+                          x:Name="ShadowOffsetViewContent"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                            </View.Layout>
+
+                            <View
+                              x:Name="ShadowOffsetView1"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                            >
+                                <View.Layout>
+                                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                                </View.Layout>
+
+                                <TextLabel
+                                  x:Name="ShadowOffsetXT"
+                                  Weight="0.15"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  Text="Off X : "
+                                />
+                                <Slider x:Name="ShadowOffsetX"
+                                  MinValue="-40"
+                                  MaxValue="40"
+                                  CurrentValue="-20"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                                <TextLabel
+                                  x:Name="ShadowOffsetYT"
+                                  Weight="0.15"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  Text="Off Y : "
+                                />
+                                <Slider x:Name="ShadowOffsetY"
+                                  MinValue="-30"
+                                  MaxValue="30"
+                                  CurrentValue="20"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                            </View>
+                        </View>
+                    </View>
+
+                    <!-- Shadow Toggle -->
+                    <View
+                      x:Name="ShadowToggleView"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                    >
+                        <View.Layout>
+                            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                        </View.Layout>
+
+                        <TextLabel
+                          x:Name="ShadowToggleViewHeader"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HorizontalAlignment="Begin"
+                          VerticalAlignment="Center"
+                          PixelSize="32"
+                          TextColor="#fe7c57"
+                          Text="ShadowOpacity/BlurRadius"
+                        />
+                        <View
+                          x:Name="ShadowToggleViewContent"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                            </View.Layout>
+
+                            <View
+                              x:Name="ShadowToggleView1"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                            >
+                                <View.Layout>
+                                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                                </View.Layout>
+
+                                <TextLabel
+                                  x:Name="ShadowOpacityT"
+                                  Weight="0.15"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  Text="Opacity"
+                                />
+                                <Slider x:Name="ShadowOpacity"
+                                  MinValue="0"
+                                  MaxValue="255"
+                                  CurrentValue="48"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                                <TextLabel
+                                  x:Name="ShadowBlurRadiusT"
+                                  Weight="0.15"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  Text="Blur R"
+                                />
+                                <Slider x:Name="ShadowBlurRadius"
+                                  MinValue="0"
+                                  MaxValue="50"
+                                  CurrentValue="10"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                            </View>
+
+                            <View
+                              x:Name="ShadowToggleView2"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                            >
+                                <View.Layout>
+                                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                                </View.Layout>
+
+                                <TextLabel
+                                  x:Name="ShadowToggleButtonT"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  Text="Toggle HasShadow:"
+                                />
+                                <CheckBox x:Name="ShadowToggleButton"
+                                  IsSelected="True"
+                                />
+                            </View>
+                        </View>
+                    </View>
+
+                    <!-- Shadow Color -->
+                    <View
+                      x:Name="ShadowColorView"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                    >
+                        <View.Layout>
+                            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                        </View.Layout>
+
+                        <TextLabel
+                          x:Name="ShadowColorViewHeader"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HorizontalAlignment="Begin"
+                          VerticalAlignment="Center"
+                          PixelSize="32"
+                          TextColor="#fe7c57"
+                          Text="ShadowColor"
+                        />
+                        <View
+                          x:Name="ShadowColorViewContent"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                            </View.Layout>
+
+                            <View
+                              x:Name="ShadowColorView1"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                            >
+                                <View.Layout>
+                                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                                </View.Layout>
+
+                                <TextLabel
+                                  x:Name="ShadowColorRedT"
+                                  Weight="0.05"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  TextColor="#ef1010"
+                                  Text="R:"
+                                />
+                                <Slider x:Name="ShadowColorRed"
+                                  MinValue="0"
+                                  MaxValue="255"
+                                  CurrentValue="0"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                                <TextLabel
+                                  x:Name="ShadowColorGreenT"
+                                  Weight="0.05"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  TextColor="#10ef10"
+                                  Text="G:"
+                                />
+                                <Slider x:Name="ShadowColorGreen"
+                                  MinValue="0"
+                                  MaxValue="255"
+                                  CurrentValue="0"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                                <TextLabel
+                                  x:Name="ShadowColorBlueT"
+                                  Weight="0.05"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  TextColor="#1010ef"
+                                  Text="B:"
+                                />
+                                <Slider x:Name="ShadowColorBlue"
+                                  MinValue="0"
+                                  MaxValue="255"
+                                  CurrentValue="0"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                            </View>
+                        </View>
+                    </View>
+
+                    <!-- Borderline Control -->
+                    <View
+                      x:Name="BorderlineView"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                    >
+                        <View.Layout>
+                            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                        </View.Layout>
+
+                        <TextLabel
+                          x:Name="BorderlineViewHeader"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HorizontalAlignment="Begin"
+                          VerticalAlignment="Center"
+                          PixelSize="32"
+                          TextColor="#fe7c57"
+                          Text="BorderlineWidth/Offset/Color"
+                        />
+                        <View
+                          x:Name="BorderlineViewContent"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                            </View.Layout>
+
+                            <View
+                              x:Name="BorderlineView1"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                            >
+                                <View.Layout>
+                                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                                </View.Layout>
+
+                                <TextLabel
+                                  x:Name="BorderlineWidthT"
+                                  Weight="0.15"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  Text="Width : "
+                                />
+                                <Slider x:Name="BorderlineWidthSlider"
+                                  MinValue="0"
+                                  MaxValue="50"
+                                  CurrentValue="10"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                                <TextLabel
+                                  x:Name="BorderlineOffsetT"
+                                  Weight="0.15"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  Text="Offset : "
+                                />
+                                <Slider x:Name="BorderlineOffsetSlider"
+                                  MinValue="-1"
+                                  MaxValue="1"
+                                  CurrentValue="0"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                            </View>
+
+                            <View
+                              x:Name="BorderlineView2"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                            >
+                                <View.Layout>
+                                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                                </View.Layout>
+
+                                <TextLabel
+                                  x:Name="BorderlineRedT"
+                                  Weight="0.05"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  TextColor="#ef1010"
+                                  Text="R:"
+                                />
+                                <Slider x:Name="BorderlineRed"
+                                  MinValue="0"
+                                  MaxValue="255"
+                                  CurrentValue="250"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                                <TextLabel
+                                  x:Name="BorderlineGreenT"
+                                  Weight="0.05"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  TextColor="#10ef10"
+                                  Text="G:"
+                                />
+                                <Slider x:Name="BorderlineGreen"
+                                  MinValue="0"
+                                  MaxValue="255"
+                                  CurrentValue="192"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                            </View>
+
+                            <View
+                              x:Name="BorderlineView3"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                            >
+                                <View.Layout>
+                                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                                </View.Layout>
+
+                                <TextLabel
+                                  x:Name="BorderlineBlueT"
+                                  Weight="0.05"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  TextColor="#1010ef"
+                                  Text="B:"
+                                />
+                                <Slider x:Name="BorderlineBlue"
+                                  MinValue="0"
+                                  MaxValue="255"
+                                  CurrentValue="127"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                                <TextLabel
+                                  x:Name="BorderlineAlphaT"
+                                  Weight="0.05"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  TextColor="#101010"
+                                  Text="A:"
+                                />
+                                <Slider x:Name="BorderlineAlpha"
+                                  MinValue="0"
+                                  MaxValue="255"
+                                  CurrentValue="255"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                            </View>
+                        </View>
+                    </View>
+
+                    <!-- View Control -->
+                    <View
+                      x:Name="TargetColorView"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                    >
+                        <View.Layout>
+                            <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                        </View.Layout>
+
+                        <TextLabel
+                          x:Name="TargetColorViewHeader"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HorizontalAlignment="Begin"
+                          VerticalAlignment="Center"
+                          PixelSize="32"
+                          TextColor="#fe7c57"
+                          Text="ViewBackgroundColor"
+                        />
+                        <View
+                          x:Name="TargetColorViewContent"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                        >
+                            <View.Layout>
+                                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Begin" CellPadding="5,5"/>
+                            </View.Layout>
+
+                            <View
+                              x:Name="TargetColorView1"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                            >
+                                <View.Layout>
+                                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                                </View.Layout>
+
+                                <TextLabel
+                                  x:Name="ViewRedT"
+                                  Weight="0.05"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  TextColor="#ef1010"
+                                  Text="R:"
+                                />
+                                <Slider x:Name="ViewRed"
+                                  MinValue="0"
+                                  MaxValue="255"
+                                  CurrentValue="255"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                                <TextLabel
+                                  x:Name="ViewGreenT"
+                                  Weight="0.05"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  TextColor="#10ef10"
+                                  Text="G:"
+                                />
+                                <Slider x:Name="ViewGreen"
+                                  MinValue="0"
+                                  MaxValue="255"
+                                  CurrentValue="255"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                            </View>
+
+                            <View
+                              x:Name="TargetColorView2"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+                            >
+                                <View.Layout>
+                                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="CenterVertical" CellPadding="5,5"/>
+                                </View.Layout>
+
+                                <TextLabel
+                                  x:Name="ViewBlueT"
+                                  Weight="0.05"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  TextColor="#1010ef"
+                                  Text="B:"
+                                />
+                                <Slider x:Name="ViewBlue"
+                                  MinValue="0"
+                                  MaxValue="255"
+                                  CurrentValue="255"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                                <TextLabel
+                                  x:Name="ViewAlphaT"
+                                  Weight="0.05"
+                                  PixelSize="20"
+                                  HorizontalAlignment="Begin"
+                                  VerticalAlignment="Center"
+                                  TextColor="#101010"
+                                  Text="A:"
+                                />
+                                <Slider x:Name="ViewAlpha"
+                                  MinValue="0"
+                                  MaxValue="255"
+                                  CurrentValue="255"
+                                  ThumbSize="8,8"
+                                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                                />
+                            </View>
+                        </View>
+                    </View>
+                </ScrollableBase>
+            </View>
+        </View>
+    </ContentPage.Content>
+</ContentPage>

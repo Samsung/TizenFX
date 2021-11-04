@@ -10,7 +10,7 @@
         <AppBar x:Name="appBar" Title="CollectionViewCustomItemTestPage"/>
     </ContentPage.AppBar>
 
-    <!-- Content is main placdeholder of ContentPage. Add your content into this view. -->
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
     <ContentPage.Content>
         <CollectionView x:Name="ColView"
                           WidthSpecification="{Static LayoutParamPolicies.MatchParent}"

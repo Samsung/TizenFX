@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.LabelTest3Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="LabelTest3Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="mainView"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                BackgroundColor="Yellow">
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" CellPadding="10,10"/>
+            </View.Layout>
+
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" >
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Begin"/>
+                </View.Layout>
+                <TextLabel Text="LeftAligned"
+                        CellHorizontalAlignment="Left"
+                        BackgroundColor="#00ffff"/>
+            </View>
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" >
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center"/>
+                </View.Layout>
+                <TextLabel Text="CenterAligned"
+                           CellHorizontalAlignment="Center"
+                           BackgroundColor="#00ffff"/>
+            </View>
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" >
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="End"/>
+                </View.Layout>
+                <TextLabel Text="RightAligned"
+                           CellHorizontalAlignment="Right"
+                           BackgroundColor="#00ffff"/>
+            </View>
+            <TextLabel WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                       Text="Fill"
+                       BackgroundColor="#00ffff"/>
+        </View>
+    </ContentPage.Content>
+
+  </ContentPage>

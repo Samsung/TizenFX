@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.PickerTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="PickerTest1Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+          <View.Layout>
+              <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal" CellPadding="30,30"/>
+          </View.Layout>
+
+          <TextLabel x:Name="text1"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HeightSpecification="100"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          PointSize="20"
+                          Text="Black"
+                          />
+          <View x:Name="rect1"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          HeightSpecification="80"
+                          BackgroundColor="#000000"
+                          />
+          <Picker x:Name="picker1"
+                          WidthSpecification="300"
+                          MinValue="0"
+                          MaxValue="6"
+                          />
+        </View>
+    </ContentPage.Content>
+</ContentPage>

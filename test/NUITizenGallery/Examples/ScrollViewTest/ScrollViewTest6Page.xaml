@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.ScrollViewTest6Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="ScrollViewTest6Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <ScrollableBase x:Name="ScrollAreaMain"
+                          HideScrollbar="True"
+                          ScrollingDirection="Vertical"
+                          HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <ScrollableBase.Layout>
+                <LinearLayout LinearOrientation="Vertical" CellPadding="10, 10" LinearAlignment="Begin"/>
+            </ScrollableBase.Layout>
+
+            <ScrollableBase x:Name="ScrollArea"
+                              HideScrollbar="True" ScrollingDirection="Horizontal" >
+
+                <ScrollableBase.Layout>
+                    <LinearLayout LinearOrientation="Vertical" CellPadding="10, 10" LinearAlignment="Begin"/>
+                </ScrollableBase.Layout>
+
+                <TextLabel x:Name="txtLbl1"
+                             Text="This is what a ScrollView widget looks like."
+                             TextColor="Blue"
+                             CellHorizontalAlignment="Left"/>
+                <TextLabel x:Name="txtLbl2"
+                             Text="Please use the widgets to test ScrollView's behavior."
+                             TextColor="Green"
+                             CellHorizontalAlignment="Left" />
+                <TextLabel x:Name="txtLbl3"
+                             Text="This is long horizontal text."
+                             TextColor="Cyan"
+                             CellHorizontalAlignment="Left"
+                             FontSizeScale="0.8"/>
+            </ScrollableBase>
+            <TextLabel x:Name="widthLbl"
+                         Text="Width:400.00"
+                         WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                         HorizontalAlignment="Begin"
+                         VerticalAlignment="Center"
+                         PointSize="8"/>
+            <Slider x:Name="slider1"
+                      MinValue="50"
+                      MaxValue="800"
+                      CurrentValue="400"
+                      HeightSpecification="50"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+            <TextLabel x:Name="heightLbl"
+                         Text="Height:300.00"
+                         WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                         HorizontalAlignment="Begin"
+                         VerticalAlignment="Center"
+                         PointSize="8"/>
+            <Slider x:Name="slider2"
+                      MinValue="50"
+                      MaxValue="600"
+                      CurrentValue="400"
+                      HeightSpecification="50"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+            <Button x:Name="btn1"
+                      HeightSpecification="100"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      Text="Add more horizontal text"/>
+            <Button x:Name="btn2"
+                      HeightSpecification="100"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      Text="Add more vertical text"/>
+            <Button x:Name="btn3"
+                      HeightSpecification="100"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      Text="Remove more vertical text"/>
+            <TextLabel x:Name="scrollLbl"
+                         Text="ScrollX: 0, ScrollY: 0"
+                         WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                         HorizontalAlignment="Begin"
+                         VerticalAlignment="Center"
+                         PointSize="8"/>
+            <Button x:Name="btn4"
+                      HeightSpecification="100"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      Text="Async scroll to (0, 0) without animation"/>
+            <Button x:Name="btn5"
+                      HeightSpecification="100"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      Text="Async scroll to (0, 0) with animation"/>
+            <TextLabel x:Name="orientLbl"
+                         Text="Orientation: Horizontal"
+                         WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                         HorizontalAlignment="Begin"
+                         VerticalAlignment="Center"
+                         PointSize="8"/>
+            <Button x:Name="btn6"
+                      HeightSpecification="100"
+                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                      Text="Set Orientation to Vertical"/>
+        </ScrollableBase>
+    </ContentPage.Content>
+</ContentPage>
