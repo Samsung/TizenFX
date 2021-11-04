@@ -23,21 +23,17 @@ namespace NUITizenGallery
     internal class SimpleTest : IExample
     {
         Window window;
-        SimpleTestPage page;
 
         public void Activate()
         {
             Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Activate()");
             window = NUIApplication.GetDefaultWindow();
-
-            page = new SimpleTestPage();
-            window.GetDefaultNavigator().Push(page);
+            window.GetDefaultNavigator().Push(new SimpleTestPage());
         }
         public void Deactivate()
         {
             Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Deactivate()");
             window.GetDefaultNavigator().Pop();
-            page = null;
         }
     }
 }
