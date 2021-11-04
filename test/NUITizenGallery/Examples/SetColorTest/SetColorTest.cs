@@ -24,21 +24,17 @@ namespace NUITizenGallery
     internal class SetColorTest : IExample
     {
         Window window;
-        SetColorTestPage page;
 
         public void Activate()
         {
             Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Activate()");
             window = NUIApplication.GetDefaultWindow();
-
-            page = new SetColorTestPage();
-            window.GetDefaultNavigator().Push(page);
+            window.GetDefaultNavigator().Push(new SetColorTestPage());
         }
         public void Deactivate()
         {
             Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Deactivate()");
             window.GetDefaultNavigator().Pop();
-            page = null;
         }
     }
 }

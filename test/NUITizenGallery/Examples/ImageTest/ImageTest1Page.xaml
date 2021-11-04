@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.ImageTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="ImageTest1Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="mainView"
+                WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" CellPadding="10,10" LinearAlignment="Top"/>
+            </View.Layout>
+
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" CellPadding="10,10" LinearAlignment="CenterVertical"/>
+                </View.Layout>
+
+                <Button x:Name="image1Btn"
+                          Text="Image 1"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          Weight="0.3"/>
+                <Button x:Name="image2Btn"
+                          Text="Image 2"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          Weight="0.3"/>
+                <Button x:Name="image3Btn"
+                          Text="Image 3"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          Weight="0.3"/>
+            </View>
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" CellPadding="10,10" LinearAlignment="CenterVertical"/>
+                </View.Layout>
+
+                <Button x:Name="image4Btn"
+                          Text="Load 4000x2802"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          Weight="0.5"/>
+                <Button x:Name="image5Btn"
+                          Text="Load 8000x10454"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          Weight="0.5"/>
+            </View>
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" CellPadding="10,10" LinearAlignment="CenterVertical"/>
+                </View.Layout>
+
+                <Button x:Name="image6Btn"
+                          Text="URI"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          Weight="0.5" />
+                <Button x:Name="image7Btn"
+                          Text="Stream"
+                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          Weight="0.5" />
+            </View>
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" CellPadding="10,10" LinearAlignment="Center"/>
+                </View.Layout>
+
+                <TextLabel x:Name="labelA" Text="Alpha:" Weight="0.15"/>
+                <Slider x:Name="sliderA" MinValue="0" MaxValue="255" CurrentValue="255" Weight="0.85"/>
+            </View>
+            <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" CellPadding="10,10" LinearAlignment="Center"/>
+                </View.Layout>
+
+                <TextLabel x:Name="labelR" Text="R:" Weight="0.03" />
+                <Slider x:Name="sliderR" MinValue="0" MaxValue="255" CurrentValue="255" Weight="0.3"/>
+                <TextLabel x:Name="labelG" Text="G:" Weight="0.03" />
+                <Slider x:Name="sliderG" MinValue="0" MaxValue="255" CurrentValue="255" Weight="0.3"/>
+                <TextLabel x:Name="labelB" Text="B:" Weight="0.03" />
+                <Slider x:Name="sliderB" MinValue="0" MaxValue="255" CurrentValue="255" Weight="0.3"/>
+            </View>
+            <View x:Name="imgView"
+                    BackgroundColor="#ffffff"
+                    Position2D="0, 450"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+                <ImageView x:Name="imageView" Position2D="0, 10" Size2D="720, 720"/>
+            </View>
+        </View>
+    </ContentPage.Content>
+  </ContentPage>
