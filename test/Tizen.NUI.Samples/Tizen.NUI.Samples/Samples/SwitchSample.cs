@@ -323,52 +323,52 @@ namespace Tizen.NUI.Samples
                 int num = 4;
                 for (int i = 0; i < num; i++)
                 {
-                    utilitySwitch[i].Dispose();
+                    utilitySwitch[i]?.Dispose();
                     utilitySwitch[i] = null;
 
-                    familySwitch[i].Dispose();
+                    familySwitch[i]?.Dispose();
                     familySwitch[i] = null;
 
-                    foodSwitch[i].Dispose();
+                    foodSwitch[i]?.Dispose();
                     foodSwitch[i] = null;
 
-                    kitchenSwitch[i].Dispose();
+                    kitchenSwitch[i]?.Dispose();
                     kitchenSwitch[i] = null;
 
-                    modeText[i].Dispose();
+                    modeText[i]?.Dispose();
                     modeText[i] = null;
 
-                    utilitySwitch2[i].Dispose();
+                    utilitySwitch2[i]?.Dispose();
                     utilitySwitch2[i] = null;
 
-                    familySwitch2[i].Dispose();
+                    familySwitch2[i]?.Dispose();
                     familySwitch2[i] = null;
 
-                    foodSwitch2[i].Dispose();
+                    foodSwitch2[i]?.Dispose();
                     foodSwitch2[i] = null;
 
-                    kitchenSwitch2[i].Dispose();
+                    kitchenSwitch2[i]?.Dispose();
                     kitchenSwitch2[i] = null;
 
-                    modeText2[i].Dispose();
+                    modeText2[i]?.Dispose();
                     modeText2[i] = null;
                 }
 
-                createText[0].Dispose();
+                createText[0]?.Dispose();
                 createText[0] = null;
-                createText[1].Dispose();
+                createText[1]?.Dispose();
                 createText[1] = null;
 
                 for (int j = 0; j < 3; j++)
                 {
                     if (parentView[j] != null)
                     {
-                        parentView[j].Dispose();
+                        parentView[j]?.Dispose();
                         parentView[j] = null;
                     }
                 }
                 NUIApplication.GetDefaultWindow().Remove(root);
-                root.Dispose();
+                root?.Dispose();
                 root = null;
             }
         }
