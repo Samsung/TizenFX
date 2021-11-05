@@ -72,11 +72,43 @@ namespace Tizen.NUI.Samples
             if (null != example)
             {
                 DeleteDaliDemo();
-
-                example.Activate();
+                int exceptNum = 0;
+                string exceptionMessage = "Unknown!";
+                try
+                {
+                    example.Activate();
+                }
+                catch (Exception e)
+                {
+                    if (e is global::System.EntryPointNotFoundException)
+                    {
+                        Tizen.Log.Fatal("NUI", $"@@ ERROR! No dali-csharp-binding! Exception={e.Message} \n");
+                        exceptNum = 1;
+                        exceptionMessage = e.Message;
+                    }
+                    else if (e is global::System.ArgumentException)
+                    {
+                        Tizen.Log.Fatal("NUI", $"@@ ERROR! this comes when VideoView test on Ubuntu! Exception={e.Message} \n");
+                        exceptNum = 2;
+                        exceptionMessage = e.Message;
+                    }
+                }
+                switch (exceptNum)
+                {
+                    case 0:
+                    default:
+                        break;
+                    case 1:
+                    case 2:
+                        example.Deactivate();
+                        var errorPage = assembly?.CreateInstance("Tizen.NUI.Samples.ShowErrorPage") as ShowErrorPage;
+                        errorPage.Activate();
+                        errorPage.ShowExcpetionText(exceptionMessage);
+                        example = errorPage;
+                        break;
+                }
+                curExample = example;
             }
-
-            curExample = example;
         }
 
         private void ExitSample()
