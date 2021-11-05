@@ -58,9 +58,9 @@ namespace Tizen.NUI.Samples
         }
         public void Deactivate()
         {
-            defaultLayer.Remove(rav);
-            defaultLayer.Remove(playButton);
-            defaultLayer.Remove(stopButton);
+            if (rav) { defaultLayer.Remove(rav); }
+            if (playButton) { defaultLayer.Remove(playButton); }
+            if (stopButton) { defaultLayer.Remove(stopButton); }
         }
     }
 }
