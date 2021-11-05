@@ -65,7 +65,7 @@ namespace Tizen.NUI.Samples
         public void Activate()
         {
 
-            Assert.IsFalse(true, "TDD test, Exception throw");
+            //Assert.IsFalse(true, "TDD test, Exception throw");
 
             win = Window.Instance;
             win.BackgroundColor = Color.Green;
