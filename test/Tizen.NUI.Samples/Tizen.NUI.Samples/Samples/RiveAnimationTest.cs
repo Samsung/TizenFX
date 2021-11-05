@@ -153,17 +153,17 @@ namespace Tizen.NUI.Samples
         }
         public void Deactivate()
         {
-            defaultLayer.Remove(rav);
-            defaultLayer.Remove(playButton);
-            defaultLayer.Remove(stopButton);
-            defaultLayer.Remove(bounceButton);
-            defaultLayer.Remove(brokeButton);
-            defaultLayer.Remove(fillButton);
-            defaultLayer.Remove(strokeButton);
-            defaultLayer.Remove(opacityButton);
-            defaultLayer.Remove(scaleButton);
-            defaultLayer.Remove(rotationButton);
-            defaultLayer.Remove(positionButton);
+            if (rav) { defaultLayer.Remove(rav); }
+            if (playButton) { defaultLayer.Remove(playButton); }
+            if (stopButton) { defaultLayer.Remove(stopButton); }
+            if (bounceButton) { defaultLayer.Remove(bounceButton); }
+            if (brokeButton) { defaultLayer.Remove(brokeButton); }
+            if (fillButton) { defaultLayer.Remove(fillButton); }
+            if (strokeButton) { defaultLayer.Remove(strokeButton); }
+            if (opacityButton) { defaultLayer.Remove(opacityButton); }
+            if (scaleButton) { defaultLayer.Remove(scaleButton); }
+            if (rotationButton) { defaultLayer.Remove(rotationButton); }
+            if (positionButton) { defaultLayer.Remove(positionButton); }
         }
     }
 }

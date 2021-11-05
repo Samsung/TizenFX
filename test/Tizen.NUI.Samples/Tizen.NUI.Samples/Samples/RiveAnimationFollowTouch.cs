@@ -45,11 +45,11 @@ namespace Tizen.NUI.Samples
             defaultLayer.Add(playButton);
         }
 
-         private void OnRiveWindowTouchEvent(object source, Window.TouchEventArgs e)
+        private void OnRiveWindowTouchEvent(object source, Window.TouchEventArgs e)
         {
             Vector2 lp = e.Touch.GetLocalPosition(0);
             Vector2 sp = e.Touch.GetScreenPosition(0);
-            float scale = (1000.0f /720.0f);
+            float scale = (1000.0f / 720.0f);
 
             // Set root and spark node position
             rav.SetNodePosition("root", new Position(lp.X * scale, lp.Y * scale));
@@ -57,8 +57,9 @@ namespace Tizen.NUI.Samples
         }
         public void Deactivate()
         {
-            defaultLayer.Remove(rav);
-            defaultLayer.Remove(playButton);
+            window.TouchEvent -= OnRiveWindowTouchEvent;
+            if (rav) { defaultLayer.Remove(rav); }
+            if (playButton) { defaultLayer.Remove(playButton); }
         }
     }
 }
