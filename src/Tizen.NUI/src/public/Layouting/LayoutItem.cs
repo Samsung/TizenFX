@@ -628,5 +628,24 @@ namespace Tizen.NUI
             Dispose(true);
             global::System.GC.SuppressFinalize(this);
         }
+
+        /// <summary>
+        /// Sets the sibling order of the layout item so the layout can be defined within the same parent.
+        /// </summary>
+        /// <param name="order">the sibling order of the layout item</param>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ChangeLayoutSiblingOrder(int order)
+        {
+            if (Owner != null)
+            {
+                var ownerParent = Owner.GetParent() as View;
+                if (ownerParent != null)
+                {
+                    var parent = ownerParent.Layout as LayoutGroup;
+                    parent?.ChangeLayoutChildOrder(this, order);
+                }
+            }
+        }
     }
 }
