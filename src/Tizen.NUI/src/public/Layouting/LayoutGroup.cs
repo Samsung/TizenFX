@@ -165,6 +165,22 @@ namespace Tizen.NUI
             RequestLayout();
         }
 
+        /// <summary>
+        /// Sets the order of the child layout in the layout group.
+        /// </summary>
+        /// <param name="child">the child layout in the layout group</param>
+        /// <param name="order">the order of the child layout in the layout group</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ChangeLayoutChildOrder(LayoutItem child, int order)
+        {
+            if ((child != null) && (LayoutChildren.Count > order))
+            {
+                LayoutChildren.Remove(child);
+                LayoutChildren.Insert(order, child);
+                RequestLayout();
+            }
+        }
+
         // Attaches to View ChildAdded signal so called when a View is added to a view.
         private void AddChildToLayoutGroup(View child)
         {
