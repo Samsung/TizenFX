@@ -1219,8 +1219,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(SiblingOrderProperty, value);
 
-                LayoutGroup layout = Layout as LayoutGroup;
-                layout?.ChangeLayoutSiblingOrder(value);
+                Layout?.ChangeLayoutSiblingOrder(value);
 
                 NotifyPropertyChanged();
             }
