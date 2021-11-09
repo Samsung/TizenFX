@@ -94,9 +94,8 @@ namespace Tizen.NUI
             else
             {
                 // If they have same parent, ready to compare!
-                if (parent1 == parent2)
+                if (parent1 == parent2 && comparison1 != null)
                 {
-
                     if (comparison1.GetType().FullName.Contains("Layer"))
                     {
                         // If comparison1 is Layer, comparison2 is also Layer because only window can have Layer as child in NUI.
