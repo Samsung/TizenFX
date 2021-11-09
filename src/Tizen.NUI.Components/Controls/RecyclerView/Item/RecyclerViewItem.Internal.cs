@@ -106,7 +106,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool HandleControlStateOnTouch(Touch touch)
         {
-            if (!IsEnabled || null == touch)
+            if (!IsEnabled || null == touch || null == BindingContext)
             {
                 return false;
             }
