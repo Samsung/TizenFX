@@ -1155,8 +1155,35 @@ namespace Tizen.NUI.BaseComponents
 
 
             //_mergedStyle = null;
-            
+
+            internalMaximumSize?.Dispose();
+            internalMaximumSize = null;
+            internalMinimumSize?.Dispose();
+            internalMinimumSize = null;
+            internalMargin?.Dispose();
+            internalMargin = null;
+            internalPadding?.Dispose();
+            internalPadding = null;
+            internalSizeModeFactor?.Dispose();
+            internalSizeModeFactor = null;
+            internalCellIndex?.Dispose();
+            internalCellIndex = null;
+            internalBackgroundColor?.Dispose();
+            internalBackgroundColor = null;
+            internalColor?.Dispose();
+            internalColor = null;
+            internalPivotPoint?.Dispose();
+            internalPivotPoint = null;
+            internalPosition?.Dispose();
+            internalPosition = null;
+            internalPosition2D?.Dispose();
+            internalPosition2D = null;
+            internalScale?.Dispose();
+            internalScale = null;
+            internalSize?.Dispose();
+            internalSize = null;
             internalSize2D?.Dispose();
+            internalSize2D = null;
 
             if (type == DisposeTypes.Explicit)
             {
@@ -1444,11 +1471,6 @@ namespace Tizen.NUI.BaseComponents
         private void OnMarginChanged(ushort start, ushort end, ushort top, ushort bottom)
         {
             Margin = new Extents(start, end, top, bottom);
-        }
-
-        private void OnColorChanged(float r, float g, float b, float a)
-        {
-            Color = new Color(r, g, b, a);
         }
 
         private void OnAnchorPointChanged(float x, float y, float z)
