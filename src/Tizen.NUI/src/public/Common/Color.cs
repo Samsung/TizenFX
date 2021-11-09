@@ -1104,7 +1104,7 @@ namespace Tizen.NUI
                 Interop.Vector4.RSet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(R, G, B, A);
+                callback?.Invoke(value, G, B, A);
             }
             get
             {
@@ -1137,7 +1137,7 @@ namespace Tizen.NUI
                 Interop.Vector4.GSet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(R, G, B, A);
+                callback?.Invoke(R, value, B, A);
             }
             get
             {
@@ -1170,7 +1170,7 @@ namespace Tizen.NUI
                 Interop.Vector4.BSet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(R, G, B, A);
+                callback?.Invoke(R, G, value, A);
             }
             get
             {
@@ -1203,7 +1203,7 @@ namespace Tizen.NUI
                 Interop.Vector4.ASet(SwigCPtr, ValueCheck(value));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(R, G, B, A);
+                callback?.Invoke(R, G, B, value);
             }
             get
             {
