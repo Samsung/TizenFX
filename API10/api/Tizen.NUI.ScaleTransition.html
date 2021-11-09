@@ -88,12 +88,13 @@
   
   <dl class="attribute-list"><dt>Namespace:</dt><dd><a class="xref" href="Tizen.NUI.html">Tizen.NUI</a></dd></dl>
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+  <dl class="attribute-list"><dt>API Level:</dt><dd><span>9</span></dd></dl>
   
   <div class="markdown level0 summary"><p>ScaleTransition provides smoothly appearing/disappearing scale effects for target View.
 If this transition is for appearing, the View comes out with the scale factor applied
-and will be animated at its original scale.
+and will be animated to its original scale.
 If this transition is for disappearing, the View starts at its original size
-but will become the scale of scale factor and vanished.</p>
+and will finally become scaled by scale factor and vanishes.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   
@@ -126,7 +127,7 @@ but will become the scale of scale factor and vanished.</p>
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Transition/ScaleTransition.cs/#L37">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Transition/ScaleTransition.cs/#L38">View Source</a>
   </span>
   <a id="Tizen_NUI_ScaleTransition__ctor_" data-uid="Tizen.NUI.ScaleTransition.#ctor*"></a>
   <h4 id="Tizen_NUI_ScaleTransition__ctor" data-uid="Tizen.NUI.ScaleTransition.#ctor">ScaleTransition()</h4>
@@ -138,18 +139,19 @@ but will become the scale of scale factor and vanished.</p>
     <pre><code class="lang-csharp hljs">public ScaleTransition()</code></pre>
   </div>
   
+  <h6><strong>API Level</strong>: <span>9</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Transition/ScaleTransition.cs/#L49">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Transition/ScaleTransition.cs/#L50">View Source</a>
   </span>
   <a id="Tizen_NUI_ScaleTransition_ScaleFactor_" data-uid="Tizen.NUI.ScaleTransition.ScaleFactor*"></a>
   <h4 id="Tizen_NUI_ScaleTransition_ScaleFactor" data-uid="Tizen.NUI.ScaleTransition.ScaleFactor">ScaleFactor</h4>
   <div class="markdown level1 summary"><p>Set/get Scale factor for this scale transition.
-if AppearingTransition, transition starts from scaled by the ScaleFactor and is animated to the original size.
+If AppearingTransition, transition starts from scaled by the ScaleFactor and is animated to the original size.
 And if DisappearingTransition, transition is finished to the scaled state by the ScaleFactor.</p>
 <p>Default ScaleFactor is Vector2(0.0f, 0.0f).</p>
 </div>
@@ -174,6 +176,7 @@ And if DisappearingTransition, transition is finished to the scaled state by the
     </tbody>
   </table>
   
+  <h6><strong>API Level</strong>: <span>9</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
@@ -189,7 +192,7 @@ And if DisappearingTransition, transition is finished to the scaled state by the
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Transition/ScaleTransition.cs/#L31" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Transition/ScaleTransition.cs/#L32" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
