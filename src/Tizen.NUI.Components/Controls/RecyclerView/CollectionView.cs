@@ -601,7 +601,7 @@ namespace Tizen.NUI.Components
             else
             {
                 // If this is not first focus, request next focus to Layouter
-                nextFocusedView = ItemsLayouter.RequestNextFocusableView(currentFocusedView, direction, loopEnabled);
+                nextFocusedView = ItemsLayouter?.RequestNextFocusableView(currentFocusedView, direction, loopEnabled);
             }
 
             if (nextFocusedView != null)
@@ -934,6 +934,8 @@ namespace Tizen.NUI.Components
                 else
                 {
                     item = base.RealizeItem(index);
+                    if (item == null)
+                        throw new Exception("Item realize failed by Null content return.");
                     item.ParentGroup = InternalItemSource.GetGroupParent(index);
                 }
             }
@@ -941,6 +943,9 @@ namespace Tizen.NUI.Components
             {
                 item = base.RealizeItem(index);
             }
+
+            if (item == null)
+                throw new Exception("Item realize failed by Null content return.");
 
             switch (SelectionMode)
             {
