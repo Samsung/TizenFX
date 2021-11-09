@@ -1,6 +1,7 @@
 master:
   api-level: API10
   labels: [ API10 ]
+  tizen-branch: tizen
   version-prefix: 10.0.0
 
 API9:
