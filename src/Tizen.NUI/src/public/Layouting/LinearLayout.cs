@@ -345,10 +345,9 @@ namespace Tizen.NUI
                 float childMarginHeight = childMargin.Top + childMargin.Bottom;
                 bool useRemainingWidth = (childDesiredWidth == 0) && (childWeight > 0);
 
-                totalWeight += childWeight;
-
                 if ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (useRemainingWidth))
                 {
+                    totalWeight += childWeight;
                     childrenMatchParentCount++;
                 }
 
@@ -487,19 +486,19 @@ namespace Tizen.NUI
                 if (needToMeasure == true)
                 {
                     MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
+                }
 
-                    if (childWeight > 0)
+                if ((childWeight > 0) && ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (childDesiredWidth == 0)))
+                {
+                    float childMeasuredWidth = childLayout.MeasuredWidth.Size.AsDecimal();
+
+                    if (childMeasuredWidth < 0)
                     {
-                        float childMeasuredWidth = childLayout.MeasuredWidth.Size.AsDecimal();
-
-                        if (childMeasuredWidth < 0)
-                        {
-                            totalWeightLength = Math.Max(totalWeightLength, totalWeightLength + childMargin.Start + childMargin.End);
-                        }
-                        else
-                        {
-                            totalWeightLength = Math.Max(totalWeightLength, totalWeightLength + childMeasuredWidth + childMargin.Start + childMargin.End);
-                        }
+                        totalWeightLength = Math.Max(totalWeightLength, totalWeightLength + childMargin.Start + childMargin.End);
+                    }
+                    else
+                    {
+                        totalWeightLength = Math.Max(totalWeightLength, totalWeightLength + childMeasuredWidth + childMargin.Start + childMargin.End);
                     }
                 }
             } // 2ND PHASE foreach
@@ -598,10 +597,9 @@ namespace Tizen.NUI
                 float childMarginHeight = childMargin.Top + childMargin.Bottom;
                 bool useRemainingHeight = (childDesiredHeight == 0) && (childWeight > 0);
 
-                totalWeight += childWeight;
-
                 if ((childDesiredHeight == LayoutParamPolicies.MatchParent) || (useRemainingHeight))
                 {
+                    totalWeight += childWeight;
                     childrenMatchParentCount++;
                 }
 
@@ -742,7 +740,7 @@ namespace Tizen.NUI
                     MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
                 }
 
-                if (childWeight > 0)
+                if ((childWeight > 0) && ((childDesiredHeight == LayoutParamPolicies.MatchParent) || (childDesiredHeight == 0)))
                 {
                     float childMeasuredHeight = childLayout.MeasuredHeight.Size.AsDecimal();
 
