@@ -51,6 +51,12 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_IsEnabled")]
             [return: MarshalAs(UnmanagedType.U1)]
             public static extern bool IsEnabled();
+
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+            public delegate void EnabledDisabledSignalHandler();
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_RegisterEnabledDisabledSignalHandler")]
+            public static extern void RegisterEnabledDisabledSignalHandler(EnabledDisabledSignalHandler enabledSignalHandler, EnabledDisabledSignalHandler disabledSignalHandler);
         }
     }
 }
