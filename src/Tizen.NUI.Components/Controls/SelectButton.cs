@@ -214,7 +214,7 @@ namespace Tizen.NUI.Components
         {
             if (info.PreviousState.Contains(ControlState.Selected) != info.CurrentState.Contains(ControlState.Selected))
             {
-                if (Accessibility.Accessibility.Enabled && IsHighlighted)
+                if (Accessibility.Accessibility.IsEnabled && IsHighlighted)
                 {
                     EmitAccessibilityStatesChangedEvent(AccessibilityStates.Checked, info.CurrentState.Contains(ControlState.Selected));
                 }
