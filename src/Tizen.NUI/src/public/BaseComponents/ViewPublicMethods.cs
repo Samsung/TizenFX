@@ -309,7 +309,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 RegisterDefaultLabel();
 
-                if (Accessibility.Accessibility.Enabled)
+                if (Accessibility.Accessibility.IsEnabled)
                 {
                     EmitAccessibilityStatesChangedEvent(AccessibilityStates.Showing, true);
                 }
@@ -333,7 +333,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 UnregisterDefaultLabel();
 
-                if (Accessibility.Accessibility.Enabled)
+                if (Accessibility.Accessibility.IsEnabled)
                 {
                     EmitAccessibilityStatesChangedEvent(AccessibilityStates.Showing, false);
                 }
