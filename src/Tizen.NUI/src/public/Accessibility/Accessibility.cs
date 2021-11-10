@@ -67,7 +67,7 @@ namespace Tizen.NUI.Accessibility
         /// </remarks>
         /// This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool Enabled
+        public static bool IsEnabled
         {
             get
             {
