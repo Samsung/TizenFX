@@ -426,6 +426,7 @@ namespace Tizen.NUI
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
+                float childMarginHeight = childMargin.Top + childMargin.Bottom;
                 bool useRemainingWidth = (childDesiredWidth == 0) && (childWeight > 0);
                 bool needToMeasure = false;
 
@@ -486,6 +487,16 @@ namespace Tizen.NUI
                 if (needToMeasure == true)
                 {
                     MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
+
+                    float childMeasuredHeight = childLayout.MeasuredHeight.Size.AsDecimal();
+                    if (childMeasuredHeight < 0)
+                    {
+                        maxHeight = Math.Max(maxHeight, childMarginHeight);
+                    }
+                    else
+                    {
+                        maxHeight = Math.Max(maxHeight, childMeasuredHeight + childMarginHeight);
+                    }
                 }
 
                 if ((childWeight > 0) && ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (childDesiredWidth == 0)))
@@ -678,6 +689,7 @@ namespace Tizen.NUI
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
+                float childMarginWidth = childMargin.Start + childMargin.End;
                 bool useRemainingHeight = (childDesiredHeight == 0) && (childWeight > 0);
                 bool needToMeasure = false;
 
@@ -738,6 +750,16 @@ namespace Tizen.NUI
                 if (needToMeasure == true)
                 {
                     MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
+
+                    float childMeasuredWidth = childLayout.MeasuredWidth.Size.AsDecimal();
+                    if (childMeasuredWidth < 0)
+                    {
+                        maxWidth = Math.Max(maxWidth, childMarginWidth);
+                    }
+                    else
+                    {
+                        maxWidth = Math.Max(maxWidth, childMeasuredWidth + childMarginWidth);
+                    }
                 }
 
                 if ((childWeight > 0) && ((childDesiredHeight == LayoutParamPolicies.MatchParent) || (childDesiredHeight == 0)))
