@@ -176,7 +176,7 @@ namespace Tizen.NUI.Components
                 if (newValue != null)
                 {
                     instance.curValue = (float)newValue;
-                    if (Accessibility.Accessibility.Enabled && instance.IsHighlighted)
+                    if (Accessibility.Accessibility.IsEnabled && instance.IsHighlighted)
                     {
                         instance.EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
                     }
