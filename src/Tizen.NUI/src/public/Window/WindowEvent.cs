@@ -222,6 +222,7 @@ namespace Tizen.NUI
                 if (windowResizeEventHandler == null && resizeSignal?.Empty() == false && windowResizeEventCallback != null)
                 {
                     resizeSignal?.Disconnect(windowResizeEventCallback);
+                    windowResizeEventCallback = null;
                 }
             }
         }
@@ -509,66 +510,79 @@ namespace Tizen.NUI
             if (windowFocusChangedEventCallback != null)
             {
                 windowFocusChangedSignal?.Disconnect(windowFocusChangedEventCallback);
+                windowFocusChangedEventCallback = null;
             }
 
             if (rootLayerTouchDataCallback != null)
             {
                 touchDataSignal?.Disconnect(rootLayerTouchDataCallback);
+                touchDataSignal = null;
             }
 
             if (wheelEventCallback != null)
             {
                 wheelSignal?.Disconnect(wheelEventCallback);
+                wheelSignal = null;
             }
 
             if (DetentEventCallback != null)
             {
                 stageWheelSignal?.Disconnect(DetentEventCallback);
+                DetentEventCallback = null;
             }
 
             if (stageKeyCallbackDelegate != null)
             {
                 keyEventSignal?.Disconnect(stageKeyCallbackDelegate);
+                stageKeyCallbackDelegate = null;
             }
 
             if (stageEventProcessingFinishedEventCallbackDelegate != null)
             {
                 eventProcessingFinishedSignal?.Disconnect(stageEventProcessingFinishedEventCallbackDelegate);
+                stageEventProcessingFinishedEventCallbackDelegate = null;
             }
 
             if (stageContextLostEventCallbackDelegate != null)
             {
                 contextLostSignal?.Disconnect(stageContextLostEventCallbackDelegate);
+                stageContextLostEventCallbackDelegate= null;
             }
 
             if (stageContextRegainedEventCallbackDelegate != null)
             {
                 contextRegainedSignal?.Disconnect(stageContextRegainedEventCallbackDelegate);
+                stageContextRegainedEventCallbackDelegate = null;
             }
 
             if (stageSceneCreatedEventCallbackDelegate != null)
             {
                 sceneCreatedSignal?.Disconnect(stageSceneCreatedEventCallbackDelegate);
+                stageSceneCreatedEventCallbackDelegate = null;
             }
 
             if (windowResizeEventCallback != null)
             {
                 resizeSignal?.Disconnect(windowResizeEventCallback);
+                windowResizeEventCallback = null;
             }
 
             if (windowFocusChangedEventCallback2 != null)
             {
                 windowFocusChangedSignal2?.Disconnect(windowFocusChangedEventCallback2);
+                windowFocusChangedEventCallback2 = null;
             }
 
             if (transitionEffectSignal != null)
             {
                 TransitionEffectEventSignal().Disconnect(transitionEffectEventCallback);
+                transitionEffectEventCallback = null;
             }
 
             if (keyboardRepeatSettingsChangedSignal != null)
             {
                 KeyboardRepeatSettingsChangedEventSignal().Disconnect(keyboardRepeatSettingsChangedEventCallback);
+                keyboardRepeatSettingsChangedEventCallback = null;
             }
         }
 
