@@ -138,7 +138,10 @@ namespace Tizen.NUI.Components
             {
                 foreach (Button btn in btGroup.itemGroup)
                 {
-                    btn.OverlayImage.BackgroundColor = ((Selector<Color>)newValue).All;
+                    if (btn.OverlayImage != null)
+                    {
+                        btn.OverlayImage.BackgroundColor = ((Selector<Color>)newValue).All;
+                    }
                 }
                 btGroup.overLayBackgroundColorSelector = (Selector<Color>)newValue;
             }
