@@ -850,16 +850,29 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool AccessibilityScrollToChild(View child)
         {
-            foreach (RecyclerViewItem item in ContentContainer.Children.Where((item) => item is RecyclerViewItem))
+            if (ScrollingDirection == Direction.Horizontal)
             {
-                if (child == item)
+                if (child.ScreenPosition.X + child.Size.Width <= this.ScreenPosition.X)
                 {
-                    ScrollToIndex(item.Index);
-                    return true;
+                    ScrollTo((float)(child.ScreenPosition.X - ContentContainer.ScreenPosition.X), false);
+                }
+                else if (child.ScreenPosition.X >= this.ScreenPosition.X + this.Size.Width)
+                {
+                    ScrollTo((float)(child.ScreenPosition.X + child.Size.Width - ContentContainer.ScreenPosition.X - this.Size.Width), false);
                 }
             }
-
-            return false;
+            else
+            {
+                if (child.ScreenPosition.Y + child.Size.Height <= this.ScreenPosition.Y)
+                {
+                    ScrollTo((float)(child.ScreenPosition.Y - ContentContainer.ScreenPosition.Y), false);
+                }
+                else if (child.ScreenPosition.Y >= this.ScreenPosition.Y + this.Size.Height)
+                {
+                    ScrollTo((float)(child.ScreenPosition.Y + child.Size.Height - ContentContainer.ScreenPosition.Y - this.Size.Height), false);
+                }
+            }
+            return true;
         }
 
         // Realize and Decorate the item.
