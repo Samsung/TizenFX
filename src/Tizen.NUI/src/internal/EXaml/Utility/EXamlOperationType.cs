@@ -30,7 +30,6 @@ namespace Tizen.NUI.EXaml
         GatherBindableProperty,
         CreateObject,
         CreateArrayObject,
-        CreateDPObject,
         CreateDataTemplate,
         GetStaticObject,
         GetTypeObject,
