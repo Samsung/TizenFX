@@ -755,8 +755,8 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            previousContainerSize = ContentContainer.Size;
-            previousSize = Size;
+            previousContainerSize = new Size(ContentContainer.Size);
+            previousSize = new Size(Size);
         }
 
         private bool ReviseContainerPositionIfNeed()
