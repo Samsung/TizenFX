@@ -47,11 +47,6 @@ namespace Tizen.NUI.EXaml
                     break;
                 }
             }
-
-            if (null == assembly)
-            {
-                throw new Exception($"Can't find assembly {assemblyName}");
-            }
         }
 
         private string assemblyName;
