@@ -126,12 +126,6 @@ namespace Tizen.NUI.EXaml
                 globalDataList.Operations.Add(operation);
             };
 
-            createOperations[(int)EXamlOperationType.CreateDPObject] = (GlobalDataList globalDataList, List<object> opInfo) =>
-            {
-                var operation = new CreateDPObject(globalDataList, opInfo);
-                globalDataList.Operations.Add(operation);
-            };
-
             createOperations[(int)EXamlOperationType.CreateArrayObject] = (GlobalDataList globalDataList, List<object> opInfo) =>
             {
                 var operation = new CreateArrayObject(globalDataList, opInfo);
