@@ -330,11 +330,18 @@ namespace Tizen.NUI
                 //Throw exception if Dispose() is called in separate thread.
                 if (!Window.IsInstalled())
                 {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                    var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                    var me = this.GetType().FullName;
+
+                    throw new global::System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread. \n" +
+                        $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
                 }
 
                 if (isDisposeQueued)
                 {
+                    Tizen.Log.Fatal("NUI", $"should not be here! (dead code) this will be removed!");
+                    throw new global::System.Exception($"[NUI] should not be here! (dead code) this will be removed!");
                     Dispose(DisposeTypes.Implicit);
                 }
                 else
@@ -570,7 +577,13 @@ namespace Tizen.NUI
             {
                 if (swigCPtr.Handle == IntPtr.Zero)
                 {
-                    throw new ObjectDisposedException(nameof(SwigCPtr), "Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                    var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                    var me = this.GetType().FullName;
+
+                    throw new ObjectDisposedException(nameof(SwigCPtr), $"Error! NUI's native dali object is already disposed. " +
+                        $"OR the native dali object handle of NUI becomes null! \n" +
+                        $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
                 }
                 return swigCPtr;
             }
@@ -592,5 +605,12 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool Disposed => disposed;
+
+        /// <summary>
+        /// A flag to check if it is disposed by DisposeQueue.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool IsDisposeQueued => isDisposeQueued;
+
     }
 }
