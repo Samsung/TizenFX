@@ -15,57 +15,60 @@
  *
  */
 
+using global::System;
+using global::System.Runtime.InteropServices;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
     {
         internal static partial class KeyInputFocusManager
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_SWIGUpcast")]
-            public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_SWIGUpcast")]
+            public static extern IntPtr Upcast(IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_KeyInputFocusManager")]
-            public static extern global::System.IntPtr NewKeyInputFocusManager();
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_KeyInputFocusManager")]
+            public static extern IntPtr NewKeyInputFocusManager();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_KeyInputFocusManager")]
-            public static extern void DeleteKeyInputFocusManager(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_KeyInputFocusManager")]
+            public static extern void DeleteKeyInputFocusManager(HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_Get")]
-            public static extern global::System.IntPtr Get();
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_Get")]
+            public static extern IntPtr Get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_SetFocus")]
-            public static extern void SetFocus(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_SetFocus")]
+            public static extern void SetFocus(HandleRef jarg1, HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_GetCurrentFocusControl")]
-            public static extern global::System.IntPtr GetCurrentFocusControl(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_GetCurrentFocusControl")]
+            public static extern IntPtr GetCurrentFocusControl(HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_RemoveFocus")]
-            public static extern void RemoveFocus(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_RemoveFocus")]
+            public static extern void RemoveFocus(HandleRef jarg1, HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_KeyInputFocusChangedSignal")]
-            public static extern global::System.IntPtr KeyInputFocusChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusManager_KeyInputFocusChangedSignal")]
+            public static extern IntPtr KeyInputFocusChangedSignal(HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_Empty")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool KeyInputFocusSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_Empty")]
+            [return: MarshalAs(UnmanagedType.U1)]
+            public static extern bool KeyInputFocusSignalEmpty(HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_GetConnectionCount")]
-            public static extern uint KeyInputFocusSignalGetConnectionCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_GetConnectionCount")]
+            public static extern uint KeyInputFocusSignalGetConnectionCount(HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_Connect")]
-            public static extern void KeyInputFocusSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_Connect", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void KeyInputFocusSignalConnect(HandleRef jarg1, Delegate jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_Disconnect")]
-            public static extern void KeyInputFocusSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_Disconnect", CallingConvention = CallingConvention.Cdecl)]
+            public static extern void KeyInputFocusSignalDisconnect(HandleRef jarg1, Delegate jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_Emit")]
-            public static extern void KeyInputFocusSignalEmit(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyInputFocusSignal_Emit")]
+            public static extern void KeyInputFocusSignalEmit(HandleRef jarg1, HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_KeyInputFocusSignal")]
-            public static extern global::System.IntPtr NewKeyInputFocusSignal();
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_KeyInputFocusSignal")]
+            public static extern IntPtr NewKeyInputFocusSignal();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_KeyInputFocusSignal")]
-            public static extern void DeleteKeyInputFocusSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_KeyInputFocusSignal")]
+            public static extern void DeleteKeyInputFocusSignal(HandleRef jarg1);
         }
     }
 }

@@ -42,8 +42,10 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<VisibilityChangedEventArgs> visibilityChangedEventHandler;
         private VisibilityChangedEventCallbackType visibilityChangedEventCallback;
         private EventHandler keyInputFocusGainedEventHandler;
+
         private KeyInputFocusGainedCallbackType keyInputFocusGainedCallback;
         private EventHandler keyInputFocusLostEventHandler;
+
         private KeyInputFocusLostCallbackType keyInputFocusLostCallback;
         private EventHandler onRelayoutEventHandler;
         private OnRelayoutEventCallbackType onRelayoutEventCallback;
@@ -80,10 +82,12 @@ namespace Tizen.NUI.BaseComponents
         private delegate void ResourcesLoadedCallbackType(IntPtr control);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void _backgroundResourceLoadedCallbackType(IntPtr view);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void KeyInputFocusGainedCallbackType(IntPtr control);
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void KeyInputFocusLostCallbackType(IntPtr control);
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void OnRelayoutEventCallbackType(IntPtr control);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -126,10 +130,14 @@ namespace Tizen.NUI.BaseComponents
                 if (keyInputFocusGainedEventHandler == null)
                 {
                     using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusGainedSignal(SwigCPtr), false);
-                    if (signal?.Empty() == false)
+
+                    if (keyInputFocusGainedCallback != null)
                     {
                         signal?.Disconnect(keyInputFocusGainedCallback);
-                        keyInputFocusGainedCallback = null;
+                        if (signal?.Empty() == true)
+                        {
+                            keyInputFocusGainedCallback = null;
+                        }
                     }
                 }
             }
@@ -159,10 +167,14 @@ namespace Tizen.NUI.BaseComponents
                 if (keyInputFocusLostEventHandler == null)
                 {
                     using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusLostSignal(SwigCPtr), false);
-                    if (signal?.Empty() == false)
+
+                    if (keyInputFocusLostCallback != null)
                     {
                         signal?.Disconnect(keyInputFocusLostCallback);
-                        keyInputFocusLostCallback = null;
+                        if (signal?.Empty() == true)
+                        {
+                            keyInputFocusLostCallback = null;
+                        }
                     }
                 }
             }
@@ -770,18 +782,74 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnKeyInputFocusGained(IntPtr view)
         {
-            if (keyInputFocusGainedEventHandler != null)
+            if (IsNativeHandleInvalid())
             {
-                keyInputFocusGainedEventHandler(this, null);
+                if (this.Disposed)
+                {
+                    if (keyInputFocusGainedEventHandler != null)
+                    {
+                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                        var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                        var me = this.GetType().FullName;
+
+                        throw new ObjectDisposedException(nameof(SwigCPtr), $"Error! NUI's native dali object is already disposed. " +
+                            $"OR the native dali object handle of NUI becomes null! \n" +
+                            $" process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                    }
+                }
+                else
+                {
+                    if (this.IsDisposeQueued)
+                    {
+                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                        var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                        var me = this.GetType().FullName;
+
+                        //in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked!
+                        Tizen.Log.Error("NUI", "in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \n" +
+                            $"process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                        return;
+                    }
+                }
             }
+
+            keyInputFocusGainedEventHandler?.Invoke(this, null);
         }
 
         private void OnKeyInputFocusLost(IntPtr view)
         {
-            if (keyInputFocusLostEventHandler != null)
+            if (IsNativeHandleInvalid())
             {
-                keyInputFocusLostEventHandler(this, null);
+                if (this.Disposed)
+                {
+                    if (keyInputFocusLostEventHandler != null)
+                    {
+                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                        var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                        var me = this.GetType().FullName;
+
+                        throw new ObjectDisposedException(nameof(SwigCPtr), $"Error! NUI's native dali object is already disposed. " +
+                            $"OR the native dali object handle of NUI becomes null! \n" +
+                            $" process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                    }
+                }
+                else
+                {
+                    if (this.IsDisposeQueued)
+                    {
+                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                        var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                        var me = this.GetType().FullName;
+
+                        //in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked!
+                        Tizen.Log.Error("NUI", "in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \n" +
+                            $"process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                        return;
+                    }
+                }
             }
+
+            keyInputFocusLostEventHandler?.Invoke(this, null);
         }
 
         private bool OnKeyEvent(IntPtr view, IntPtr keyEvent)
