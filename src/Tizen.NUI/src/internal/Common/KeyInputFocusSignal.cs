@@ -46,20 +46,14 @@ namespace Tizen.NUI
 
         public void Connect(System.Delegate func)
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
-            {
-                Interop.KeyInputFocusManager.KeyInputFocusSignalConnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
+            Interop.KeyInputFocusManager.KeyInputFocusSignalConnect(SwigCPtr, func);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         public void Disconnect(System.Delegate func)
         {
-            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);
-            {
-                Interop.KeyInputFocusManager.KeyInputFocusSignalDisconnect(SwigCPtr, new System.Runtime.InteropServices.HandleRef(this, ip));
+                Interop.KeyInputFocusManager.KeyInputFocusSignalDisconnect(SwigCPtr, func);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
         }
 
         public void Emit(View arg)
