@@ -1177,12 +1177,12 @@ namespace Tizen.NUI.BaseComponents
                         ThemeManager.ThemeChangedInternal.Remove(OnThemeChanged);
                     }
                 }
-                if(widthConstraint != null)
+                if (widthConstraint != null)
                 {
                     widthConstraint.Remove();
                     widthConstraint.Dispose();
                 }
-                if(heightConstraint != null)
+                if (heightConstraint != null)
                 {
                     heightConstraint.Remove();
                     heightConstraint.Dispose();
@@ -1351,6 +1351,7 @@ namespace Tizen.NUI.BaseComponents
                 using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusLostSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(keyInputFocusLostCallback);
                 keyInputFocusLostCallback = null;
+                keyInputFocusLostEventHandler = null;
             }
 
             if (keyInputFocusGainedCallback != null)
@@ -1360,6 +1361,7 @@ namespace Tizen.NUI.BaseComponents
                 using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusGainedSignal(GetBaseHandleCPtrHandleRef), false);
                 signal?.Disconnect(keyInputFocusGainedCallback);
                 keyInputFocusGainedCallback = null;
+                keyInputFocusGainedEventHandler = null;
             }
 
             if (backgroundResourceLoadedCallback != null)
