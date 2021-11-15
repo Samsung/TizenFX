@@ -535,7 +535,6 @@ namespace Tizen.NUI.BaseComponents
             SetByBaseSetMinMaxFrameMethod,
         }
 
-        private string tag = "NUITEST";
         private AnimationStates CurrentAnimationState = AnimationStates.Stopped;
         #endregion Private
     }
