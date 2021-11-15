@@ -29,7 +29,7 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             public void OnAccessibilityCalculateStates()
             {
-                base.AccessibilityCalculateStates();
+                GetAccessibilityStates();
             }
 
             public void MyOnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
