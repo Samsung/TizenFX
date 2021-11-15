@@ -70,6 +70,15 @@ namespace Tizen.NUI.Components
             base.Dispose(type);
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            SetAccessibilityConstructor(Role.PageTab);
+        }
+
         /// <summary>
         /// AppBar of ContentPage.
         /// AppBar is added as a child of ContentPage automatically.
