@@ -26,7 +26,6 @@ namespace Tizen.NUI
     /// This class includes multiple options for the Transition.
     /// NUI supports various kinds of Transitions such as App transition, Page transition, and so on.
     /// </summary>
-    /// <seealso cref="NUIApplication.TransitionOptions" />
     /// <since_tizen> 9 </since_tizen>
     public class TransitionOptions : IDisposable
     {
