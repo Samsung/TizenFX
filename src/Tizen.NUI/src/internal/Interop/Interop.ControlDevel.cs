@@ -208,7 +208,7 @@ namespace Tizen.NUI
                 public AccessibilityDoAction DoAction; // 3
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate IntPtr AccessibilityCalculateStates();
+                public delegate IntPtr AccessibilityCalculateStates(ulong states);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityCalculateStates CalculateStates; // 4
 
