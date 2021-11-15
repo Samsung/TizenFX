@@ -85,15 +85,12 @@ namespace Tizen.NUI.Samples
 
             TransitionGroup transitionGroup = new TransitionGroup()
             {
-                UseGroupTimePeriod = true,
                 UseGroupAlphaFunction = true,
-                StepTransition = true,
-                TimePeriod = new TimePeriod(500, 3000),
                 AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOut),
             };
             SlideTransition slide = new SlideTransition()
             {
-                TimePeriod = new TimePeriod(1000),
+                TimePeriod = new TimePeriod(400),
                 AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default),
                 Direction = SlideTransitionDirection.Top
             };
@@ -101,14 +98,14 @@ namespace Tizen.NUI.Samples
             FadeTransition fade = new FadeTransition()
             {
                 Opacity = 0.3f,
-                TimePeriod = new TimePeriod(1000),
+                TimePeriod = new TimePeriod(400),
                 AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default)
             };
             transitionGroup.AddTransition(fade);
             ScaleTransition scale = new ScaleTransition()
             {
                 ScaleFactor = new Vector2(0.3f, 0.3f),
-                TimePeriod = new TimePeriod(1000),
+                TimePeriod = new TimePeriod(400),
                 AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default)
             };
             transitionGroup.AddTransition(scale);

@@ -746,26 +746,22 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="taggedViews">Returned tagged view list..</param>
         /// <param name="view">Root View to get tagged child View.</param>
-        /// <param name="isPage">Flag to check current View is page or not</param>
-        private void RetrieveTaggedViews(List<View> taggedViews, View view, bool isPage)
+        /// <param name="isRoot">Flag to check current View is page or not</param>
+        private void RetrieveTaggedViews(List<View> taggedViews, View view, bool isRoot)
         {
-            if (!isPage)
+            if (!isRoot && view.TransitionOptions != null)
             {
                 if (!string.IsNullOrEmpty(view.TransitionOptions?.TransitionTag))
                 {
                     taggedViews.Add((view as View));
+                    if (view.TransitionOptions.TransitionWithChild)
+                    {
+                        return;
+                    }
                 }
 
-                if (view.ChildCount == 0)
-                {
-                    return;
-                }
-
-                if (view.TransitionOptions?.TransitionWithChild ?? false)
-                {
-                    return;
-                }
             }
+
             foreach (View child in view.Children)
             {
                 RetrieveTaggedViews(taggedViews, child, false);
