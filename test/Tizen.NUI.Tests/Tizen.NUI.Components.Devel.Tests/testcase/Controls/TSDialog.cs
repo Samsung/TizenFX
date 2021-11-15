@@ -28,7 +28,7 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             public void MyAccessibilityCalculateStates()
             {
-                base.AccessibilityCalculateStates();
+                GetAccessibilityStates();//base.AccessibilityCalculateStates();
             }
         }
 
