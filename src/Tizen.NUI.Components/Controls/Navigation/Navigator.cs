@@ -106,7 +106,16 @@ namespace Tizen.NUI.Components
         {
             Layout = new AbsoluteLayout();
         }
-        
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            SetAccessibilityConstructor(Role.PageTabList);
+        }
+
         /// <summary>
         /// An event fired when Transition has been finished.
         /// </summary>
