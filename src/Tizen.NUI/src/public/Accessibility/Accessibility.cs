@@ -328,7 +328,6 @@ namespace Tizen.NUI.Accessibility
 
         private View dummy;
 
-        private static string tag = "NUITEST";
         #endregion Private
     }
 
