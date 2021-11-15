@@ -23,14 +23,21 @@ namespace Tizen.NUI
 
     internal class TransitionItemBase : BaseHandle
     {
+        private bool appearingTransition = true;
+
         /// <summary>
         /// Creates an initialized TransitionItemBase.<br />
         /// </summary>
-        public TransitionItemBase(View target, bool isAppearing, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.TransitionItemBase.New(), true)
+        public TransitionItemBase(View target, bool appearingTransition, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.TransitionItemBase.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if(target == null)
+            {
+                Tizen.Log.Error("NUI", "Argument target is empty\n");
+            }
             
-            AppearingTransition = isAppearing;
+            AppearingTransition = appearingTransition;
             TimePeriod = timePeriod;
             AlphaFunction = alphaFunction;
         }
@@ -78,7 +85,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets whether the View moves with child or not.
         /// </summary>
-        public bool TransitionWithChild
+        public virtual bool TransitionWithChild
         {
             set
             {
@@ -94,8 +101,13 @@ namespace Tizen.NUI
         {
             set
             {
+                appearingTransition = value;
                 Interop.TransitionItemBase.SetAppearingTransition(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                return appearingTransition;
             }
         }
 
