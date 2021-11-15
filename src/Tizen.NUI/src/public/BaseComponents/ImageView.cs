@@ -652,7 +652,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <remarks>
         /// Changing this property make this ImageView load image synchronously at the next loading
-        /// by following operation: <see cref="Reload"/>, <see cref="SetImage"/>,
+        /// by following operation: <see cref="Reload"/>, <see cref="SetImage(string)"/>,
         /// and by some properties those cause reloading: <see cref="ResourceUrl"/>, <see cref="PreMultipliedAlpha"/> and etc.
         /// </remarks>
         /// <since_tizen> 9 </since_tizen>
