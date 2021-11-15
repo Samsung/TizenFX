@@ -217,12 +217,12 @@ namespace Tizen.NUI.Components
         /// Calculates current states for the button<br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override AccessibilityStates AccessibilityCalculateStates()
+        protected override AccessibilityStates AccessibilityCalculateStates(ulong states)
         {
-            var states = base.AccessibilityCalculateStates();
-            FlagSetter(ref states, AccessibilityStates.Checked, this.IsSelected);
-            FlagSetter(ref states, AccessibilityStates.Enabled, this.IsEnabled);
-            return states;
+            var accessibilityStates = base.AccessibilityCalculateStates(states);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Checked, this.IsSelected);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Enabled, this.IsEnabled);
+            return accessibilityStates;
         }
 
         /// <summary>
