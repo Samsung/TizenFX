@@ -84,9 +84,14 @@ namespace Tizen.NUI
             return alphaFunction ??= new AlphaFunction(AlphaFunction.BuiltinFunctions.Default);
         }
 
-        internal virtual TransitionItemBase CreateTransition(View view, bool isAppearing)
+        internal TransitionItemBase CreateTransition(View view, bool appearingTransition)
         {
-            return new TransitionItemBase(view, isAppearing, GetTimePeriod(), GetAlphaFunction());
+            return CreateTransition(view, appearingTransition, GetTimePeriod(), GetAlphaFunction());
+        }
+
+        internal virtual TransitionItemBase CreateTransition(View view, bool appearingTransition, TimePeriod timePeriod, AlphaFunction alphaFunction)
+        {
+            return new TransitionItemBase(view, appearingTransition, timePeriod, alphaFunction);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

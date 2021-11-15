@@ -32,10 +32,10 @@ namespace Tizen.NUI
         /// Creates an initialized fade.<br />
         /// </summary>
         /// <remarks>DurationmSeconds must be greater than zero.</remarks>
-        public FadeTransitionItem(View view, float opacity, bool isAppearing, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.FadeTransitionItem.New(view.SwigCPtr, opacity, timePeriod.SwigCPtr), true)
+        public FadeTransitionItem(View view, float opacity, bool appearingTransition, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.FadeTransitionItem.New(view.SwigCPtr, opacity, timePeriod.SwigCPtr), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            AppearingTransition = isAppearing;
+            AppearingTransition = appearingTransition;
             AlphaFunction = alphaFunction;
         }
 

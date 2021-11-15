@@ -44,9 +44,9 @@ namespace Tizen.NUI
         /// <since_tizen> 9 </since_tizen>
         public Vector2 Direction { get; set; } = SlideTransitionDirection.Right;
 
-        internal override TransitionItemBase CreateTransition(View view, bool isAppearing)
+        internal override TransitionItemBase CreateTransition(View view, bool appearingTransition, TimePeriod timePeriod, AlphaFunction alphaFunction)
         {
-            SlideTransitionItem slide = new SlideTransitionItem(view, Direction, isAppearing, GetTimePeriod(), GetAlphaFunction());
+            SlideTransitionItem slide = new SlideTransitionItem(view, Direction, appearingTransition, timePeriod, alphaFunction);
             return slide;
         }
     }

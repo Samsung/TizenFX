@@ -56,9 +56,9 @@ namespace Tizen.NUI
             }
         }
 
-        internal override TransitionItemBase CreateTransition(View view, bool isAppearing)
+        internal override TransitionItemBase CreateTransition(View view, bool appearingTransition, TimePeriod timePeriod, AlphaFunction alphaFunction)
         {
-            FadeTransitionItem fade = new FadeTransitionItem(view, Opacity, isAppearing, GetTimePeriod(), GetAlphaFunction());
+            FadeTransitionItem fade = new FadeTransitionItem(view, Opacity, appearingTransition, timePeriod, alphaFunction);
             return fade;
         }
     }
