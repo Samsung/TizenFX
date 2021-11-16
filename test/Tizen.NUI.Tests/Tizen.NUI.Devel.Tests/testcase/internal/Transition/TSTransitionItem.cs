@@ -45,7 +45,7 @@ namespace Tizen.NUI.Devel.Tests
                     {
                         using (AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default))
                         {
-                            var testingTarget = new TransitionItem(source, dest, timePeriod, alphaFunction);
+                            var testingTarget = new TransitionItem(source, dest, true, timePeriod, alphaFunction);
                             Assert.IsNotNull(testingTarget, "Should be not null!");
                             Assert.IsInstanceOf<TransitionItem>(testingTarget, "Should be an Instance of TransitionItem!");
 

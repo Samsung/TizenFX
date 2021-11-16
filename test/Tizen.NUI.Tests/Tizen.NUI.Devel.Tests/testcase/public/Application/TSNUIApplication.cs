@@ -372,33 +372,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("NUIApplication TransitionOptions")]
-        [Property("SPEC", "Tizen.NUI.NUIApplication.TransitionOptions A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void NUIApplicationTransitionOptions()
-        {
-            tlog.Debug(tag, $"NUIApplicationTransitionOptions START");
-
-            var testingTarget = new NUIApplication();
-            Assert.IsNotNull(testingTarget, "Should be not null.");
-            Assert.IsInstanceOf<NUIApplication>(testingTarget, "Should be an instance of Window type.");
-
-            TransitionOptions transitionOption = new TransitionOptions(Window.Instance);
-            testingTarget.TransitionOptions = transitionOption;
-
-            var result = testingTarget.TransitionOptions;
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOf<TransitionOptions>(result, "Should be an instance of TransitionOptions type.");
-
-            result.Dispose();
-            transitionOption.Dispose();
-            tlog.Debug(tag, $"NUIApplicationTransitionOptions END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("NUIApplication OnTerminate")]
         [Property("SPEC", "Tizen.NUI.NUIApplication.OnTerminate M")]
         [Property("SPEC_URL", "-")]

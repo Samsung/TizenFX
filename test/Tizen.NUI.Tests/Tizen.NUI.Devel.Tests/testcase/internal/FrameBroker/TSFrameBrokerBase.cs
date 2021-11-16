@@ -48,7 +48,7 @@ namespace Tizen.NUI.Devel.Tests
 
                 try
                 {
-                    testingTarget.SendLaunchRequest(null, true);
+                    testingTarget.SendLaunchRequest(null);
                 }
                 catch (Exception e)
                 {
