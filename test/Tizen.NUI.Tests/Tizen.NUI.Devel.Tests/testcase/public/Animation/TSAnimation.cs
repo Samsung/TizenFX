@@ -610,186 +610,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Animation PropertyList. Get")]
-        [Property("SPEC", "Tizen.NUI.Animation.PropertyList A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AnimationPropertyList()
-        {
-            tlog.Debug(tag, $"AnimationPropertyList START");
-
-            var testingTarget = new Animation();
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
-
-            TransitionAnimation transition = new TransitionAnimation(300);
-            ImageView view = new ImageView();
-            view.ApplyStyle(transition.DefaultImageStyle.Clone());
-
-            var dummy = new TransitionAnimationData()
-            {
-                Property = "Size",
-                DestinationValue = "100, 100",
-                StartTime = 300,
-                EndTime = 600
-            };
-            transition.AddAnimationData(dummy);
-
-            for (int i = 0; i < transition.AnimationDataList.Count; i++)
-            {
-                testingTarget.PropertyList.Add(transition.AnimationDataList[i].Property);
-                testingTarget.DestValueList.Add(transition.AnimationDataList[i].DestinationValue);
-                testingTarget.StartTimeList.Add(transition.AnimationDataList[i].StartTime);
-                testingTarget.EndTimeList.Add(transition.AnimationDataList[i].EndTime);
-            }
-
-            var result = testingTarget.PropertyList[0];
-            Assert.IsTrue("Size" == result);
-
-            view.Dispose();
-            transition.Dispose();
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AnimationPropertyList END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Animation DestValueList. Get")]
-        [Property("SPEC", "Tizen.NUI.Animation.DestValueList A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AnimationDestValueList()
-        {
-            tlog.Debug(tag, $"AnimationDestValueList START");
-
-            var testingTarget = new Animation();
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
-
-            TransitionAnimation transition = new TransitionAnimation(300);
-            ImageView view = new ImageView();
-            view.ApplyStyle(transition.DefaultImageStyle.Clone());
-
-            var dummy = new TransitionAnimationData()
-            {
-                Property = "Size",
-                DestinationValue = "100, 100",
-                StartTime = 300,
-                EndTime = 600
-            };
-            transition.AddAnimationData(dummy);
-
-            for (int i = 0; i < transition.AnimationDataList.Count; i++)
-            {
-                testingTarget.PropertyList.Add(transition.AnimationDataList[i].Property);
-                testingTarget.DestValueList.Add(transition.AnimationDataList[i].DestinationValue);
-                testingTarget.StartTimeList.Add(transition.AnimationDataList[i].StartTime);
-                testingTarget.EndTimeList.Add(transition.AnimationDataList[i].EndTime);
-            }
-
-            var result = testingTarget.DestValueList[0];
-            Assert.IsTrue("100, 100" == result);
-
-            view.Dispose();
-            transition.Dispose();
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AnimationDestValueList END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Animation StartTimeList. Get")]
-        [Property("SPEC", "Tizen.NUI.Animation.StartTimeList A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AnimationStartTimeList()
-        {
-            tlog.Debug(tag, $"AnimationStartTimeList START");
-
-            var testingTarget = new Animation();
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
-
-            TransitionAnimation transition = new TransitionAnimation(300);
-            ImageView view = new ImageView();
-            view.ApplyStyle(transition.DefaultImageStyle.Clone());
-
-            var dummy = new TransitionAnimationData()
-            {
-                Property = "Size",
-                DestinationValue = "100, 100",
-                StartTime = 300,
-                EndTime = 600
-            };
-            transition.AddAnimationData(dummy);
-
-            for (int i = 0; i < transition.AnimationDataList.Count; i++)
-            {
-                testingTarget.PropertyList.Add(transition.AnimationDataList[i].Property);
-                testingTarget.DestValueList.Add(transition.AnimationDataList[i].DestinationValue);
-                testingTarget.StartTimeList.Add(transition.AnimationDataList[i].StartTime);
-                testingTarget.EndTimeList.Add(transition.AnimationDataList[i].EndTime);
-            }
-
-            var result = testingTarget.StartTimeList[0];
-            Assert.IsTrue(300 == result);
-
-            view.Dispose();
-            transition.Dispose();
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AnimationStartTimeList END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Animation EndTimeList. Get")]
-        [Property("SPEC", "Tizen.NUI.Animation.EndTimeList A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AnimationEndTimeList()
-        {
-            tlog.Debug(tag, $"AnimationEndTimeList START");
-
-            var testingTarget = new Animation();
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
-
-            TransitionAnimation transition = new TransitionAnimation(300);
-            ImageView view = new ImageView();
-            view.ApplyStyle(transition.DefaultImageStyle.Clone());
-
-            var dummy = new TransitionAnimationData()
-            {
-                Property = "Size",
-                DestinationValue = "100, 100",
-                StartTime = 300,
-                EndTime = 600
-            };
-            transition.AddAnimationData(dummy);
-
-            for (int i = 0; i < transition.AnimationDataList.Count; i++)
-            {
-                testingTarget.PropertyList.Add(transition.AnimationDataList[i].Property);
-                testingTarget.DestValueList.Add(transition.AnimationDataList[i].DestinationValue);
-                testingTarget.StartTimeList.Add(transition.AnimationDataList[i].StartTime);
-                testingTarget.EndTimeList.Add(transition.AnimationDataList[i].EndTime);
-            }
-
-            var result = testingTarget.EndTimeList[0];
-            Assert.IsTrue(600 == result);
-
-            view.Dispose();
-            transition.Dispose();
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AnimationEndTimeList END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Animation Stop. Get")]
         [Property("SPEC", "Tizen.NUI.Animation.Stop M")]
         [Property("SPEC_URL", "-")]
@@ -1194,39 +1014,22 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
 
-            TransitionAnimation transition = new TransitionAnimation(300);
-            ImageView view = new ImageView();
-            view.ApplyStyle(transition.DefaultImageStyle.Clone());
-
-            var dummy1 = new TransitionAnimationData()
-            {
-                Property = "Size",
-                DestinationValue = "100, 100",
-                StartTime = 300,
-                EndTime = 600
+            ImageView view = new ImageView()
+            { 
+                Size = new Size(100, 200),
             };
-            transition.AddAnimationData(dummy1);
 
-            var dummy2 = new TransitionAnimationData()
+            try
             {
-                Property = "Position",
-                DestinationValue = "150, 250",
-                StartTime = 300,
-                EndTime = 600
-            };
-            transition.AddAnimationData(dummy2);
-
-            for (int i = 0; i < transition.AnimationDataList.Count; i++)
-            {
-                testingTarget.PropertyList.Add(transition.AnimationDataList[i].Property);
-                testingTarget.DestValueList.Add(transition.AnimationDataList[i].DestinationValue);
-                testingTarget.StartTimeList.Add(transition.AnimationDataList[i].StartTime);
-                testingTarget.EndTimeList.Add(transition.AnimationDataList[i].EndTime);
+                testingTarget.PlayAnimateTo(view);
             }
-            testingTarget.PlayAnimateTo(view);
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
             view.Dispose();
-            transition.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationPlayAnimateTo END (OK)");
         }
@@ -1246,34 +1049,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
 
-            TransitionAnimation transition = new TransitionAnimation(300);
             ImageView view = null;
-
-            var dummy1 = new TransitionAnimationData()
-            {
-                Property = "Size",
-                DestinationValue = "100, 100",
-                StartTime = 300,
-                EndTime = 600
-            };
-            transition.AddAnimationData(dummy1);
-
-            var dummy2 = new TransitionAnimationData()
-            {
-                Property = "Position",
-                DestinationValue = "150, 250",
-                StartTime = 300,
-                EndTime = 600
-            };
-            transition.AddAnimationData(dummy2);
-
-            for (int i = 0; i < transition.AnimationDataList.Count; i++)
-            {
-                testingTarget.PropertyList.Add(transition.AnimationDataList[i].Property);
-                testingTarget.DestValueList.Add(transition.AnimationDataList[i].DestinationValue);
-                testingTarget.StartTimeList.Add(transition.AnimationDataList[i].StartTime);
-                testingTarget.EndTimeList.Add(transition.AnimationDataList[i].EndTime);
-            }
 
             try
             {
@@ -1281,7 +1057,6 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (ArgumentNullException)
             {
-                transition.Dispose();
                 testingTarget.Dispose();
                 tlog.Debug(tag, $"AnimationPlayAnimateToNullTarget END (OK)");
                 Assert.Pass("Caught ArgumentNullException : Passed!");
