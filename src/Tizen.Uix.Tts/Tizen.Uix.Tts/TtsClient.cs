@@ -1115,6 +1115,41 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
+        /// Repeats the last played text.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        /// <returns>
+        /// The RepeatedText value that stores the text to repeat and utterance ID.
+        /// </returns>
+        /// <feature>
+        /// http://tizen.org/feature/speech.synthesis
+        /// </feature>
+        /// <exception cref="InvalidOperationException">
+        /// This exception can be due to the following reasons:
+        /// 1. Invalid State
+        /// 2. Operation Failure
+        /// 3. Screen reader off
+        /// </exception>
+        /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
+        /// <pre>
+        /// The state must be ready.
+        /// </pre>
+        /// <post>
+        /// If this function succeeds, the TTS state will be playing.
+        /// </post>
+        public RepeatedText Repeat()
+        {
+            TtsError error = TtsRepeat(_handle, out string text, out int uttId);
+            if (error != TtsError.None)
+            {
+                Log.Error(LogTag, "Repeat Failed with error " + error);
+                throw ExceptionFactory.CreateException(error);
+            }
+
+            return new RepeatedText(text, uttId);
+        }
+
+        /// <summary>
         /// Method to release resources.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>

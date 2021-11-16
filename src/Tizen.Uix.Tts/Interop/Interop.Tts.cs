@@ -137,6 +137,9 @@ internal static partial class Interop
         [DllImport(Libraries.Tts, EntryPoint = "tts_pause", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsPause(IntPtr handle);
 
+        [DllImport(Libraries.Tts, EntryPoint = "tts_repeat", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsRepeat(IntPtr handle, out string text_repeat, out int utt_id);
+
         [DllImport(Libraries.Tts, EntryPoint = "tts_set_state_changed_cb", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsSetStateChangedCB(IntPtr handle, TtsStateChangedCB callback, IntPtr userData);
 
