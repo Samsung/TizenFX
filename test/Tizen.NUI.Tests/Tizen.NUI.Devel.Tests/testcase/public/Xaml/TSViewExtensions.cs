@@ -161,7 +161,7 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (XamlParseException e)
             {
-                tlog.Fatal(tag, "Caught Exception" + e.ToString());
+                tlog.Debug(tag, "Caught Exception" + e.ToString());
                 Assert.True(true, "Should throw exception");
             }
 
@@ -289,7 +289,7 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (XamlParseException e)
             {
-                tlog.Fatal(tag, "Caught Exception" + e.ToString());
+                tlog.Debug(tag, "Caught Exception" + e.ToString());
                 Assert.False(true, "Caught Exception" + e.ToString());
             }
             tlog.Debug(tag, $"ExtensionsLoadObject1 END");
@@ -318,7 +318,7 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (XamlParseException e)
             {
-                tlog.Fatal(tag, "Caught Exception" + e.ToString());
+                tlog.Debug(tag, "Caught Exception" + e.ToString());
                 Assert.True(true, "Caught Exception" + e.ToString());
             }
             tlog.Debug(tag, $"ExtensionsLoadObject2 END");

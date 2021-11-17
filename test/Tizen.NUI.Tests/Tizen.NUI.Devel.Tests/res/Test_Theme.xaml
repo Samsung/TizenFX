@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<thememanager:Theme  
+    xmlns:thememanager="clr-namespace:Tizen.Applications.ThemeManager;assembly=Tizen.Applications.ThemeManager"
+    xmlns="http://tizen.org/Tizen.NUI/2018/XAML" 
+    Id="Tizen.NUI.Theme.Common" 
+    Version="1.0" >
+</thememanager:Theme>

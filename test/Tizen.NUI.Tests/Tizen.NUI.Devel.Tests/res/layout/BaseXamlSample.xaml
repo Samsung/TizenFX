@@ -4,9 +4,6 @@
   xmlns:l="clr-namespace:Tizen.NUI.Devel.Tests;assembly=Tizen.NUI.Devel.Tests"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <!--<View.XamlResources>
-        <ResourceDictionary Source="res/layout/MyResourceDictionary.xaml" />
-    </View.XamlResources>-->
     <View x:Name="view1" BackgroundColor="Red" SizeWidth="100" SizeHeight="100" />
     <l:MyView >
         <l:MyView.Margin>
