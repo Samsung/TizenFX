@@ -1010,14 +1010,23 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"AnimationPlayAnimateTo START");
 
+            View view = new View()
+            {
+                Size = new Size(100, 200),
+                BackgroundColor = Color.Cyan,
+            };
+
             var testingTarget = new Animation(1500);
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
 
-            ImageView view = new ImageView()
-            { 
-                Size = new Size(100, 200),
-            };
+            testingTarget.EndAction = Animation.EndActions.StopFinal;
+            testingTarget.DefaultAlphaFunction = new AlphaFunction(new Vector2(0.3f, 0), new Vector2(0.15f, 1));
+            
+            testingTarget.PropertyList.Add("SizeWidth");
+            testingTarget.DestValueList.Add("80");
+            testingTarget.StartTimeList.Add(0);
+            testingTarget.EndTimeList.Add(1500);
 
             try
             {

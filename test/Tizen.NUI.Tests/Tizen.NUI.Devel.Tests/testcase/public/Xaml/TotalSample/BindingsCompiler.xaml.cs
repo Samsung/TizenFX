@@ -108,42 +108,6 @@ namespace Tizen.NUI.Devel.Tests
 			Assert.AreEqual("Text1", layout.label2.Text);
 			Assert.AreEqual("TextIndex", layout.label3.Text);
 			Assert.AreEqual("Text0", layout.label8.Text);
-
-			//value types
-			Assert.That(layout.label5.Text, Is.EqualTo("42"));
-			Assert.That(layout.label6.Text, Is.EqualTo("text6"));
-			Assert.AreEqual("Text9", layout.label9.Text);
-			Assert.AreEqual("Text9", layout.label10.Text);
-			layout.label9.Text = "Text from label9";
-			Assert.AreEqual("Text from label9", vm.StructModel.Text);
-			layout.label10.Text = "Text from label10";
-			Assert.AreEqual("Text from label10", vm.StructModel.Model.Text);
-
-			//testing selfPath
-			layout.label4.BindingContext = "Self";
-			Assert.AreEqual("Self", layout.label4.Text);
-			layout.label7.BindingContext = 42;
-			Assert.That(layout.label7.Text, Is.EqualTo("42"));
-
-			//testing INPC
-			GC.Collect();
-			vm.Text = "Text2";
-			Assert.AreEqual("Text2", layout.label0.Text);
-
-			//testing 2way
-			Assert.AreEqual("Text2", layout.entry0.Text);
-			layout.entry0.SetValue(TextField.TextProperty, "Text3");
-			Assert.AreEqual("Text3", layout.entry0.Text);
-			Assert.AreEqual("Text3", vm.Text);
-			layout.entry1.SetValue(TextField.TextProperty, "Text4");
-			Assert.AreEqual("Text4", layout.entry1.Text);
-			Assert.AreEqual("Text4", vm.Model.Text);
-			vm.Model = null;
-			layout.entry1.BindingContext = null;
-
-			//testing invalid bindingcontext type
-			layout.BindingContext = new object();
-			Assert.AreEqual(string.Empty, layout.label0.Text);
 		}
 	}
 

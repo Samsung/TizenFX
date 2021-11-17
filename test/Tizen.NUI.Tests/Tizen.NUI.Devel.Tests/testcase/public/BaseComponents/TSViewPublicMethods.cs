@@ -121,7 +121,7 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                tlog.Fatal(tag, $"Exception occured, e={e}");
+                tlog.Debug(tag, $"Exception occured, e={e}");
                 Assert.Fail("No Exception required!");
             }
             finally
