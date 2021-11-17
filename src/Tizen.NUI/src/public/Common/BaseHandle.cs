@@ -334,7 +334,7 @@ namespace Tizen.NUI
                     var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                     var me = this.GetType().FullName;
 
-                    throw new global::System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread. \n" +
+                    throw new global::System.InvalidOperationException("[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
                         $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
                 }
 
@@ -519,6 +519,34 @@ namespace Tizen.NUI
                 Registry.Unregister(this);
             }
 
+            // this is temporary test code. will be removed laster
+            {
+                if (swigCPtr.Handle != IntPtr.Zero && swigCPtrCopy.Handle != IntPtr.Zero)
+                {
+                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                    var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                    var me = this.GetType().FullName;
+                    var daliId = "unknown";
+                    var hash = this.GetType().GetHashCode();
+                    var name = "unknown";
+
+                    if (this is BaseComponents.View)
+                    {
+                        daliId = Interop.Actor.GetId(swigCPtrCopy).ToString();
+                        name = Interop.Actor.GetName(swigCPtrCopy);
+                        BaseObject tmp = new BaseObject(Interop.BaseHandle.GetBaseObject(swigCPtrCopy), false);
+                        var refCnt = tmp.ReferenceCount();
+                        tmp.Dispose();
+                        if (refCnt > 2)
+                        {
+                            Log.Error("NUI", $"[ERR] reference count is over than 2. Could be a memory leak. Need to check! \n" +
+                                $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me} \n" +
+                                $" disposeType:{type}, name:{name}, daliID:{daliId}, hash:{hash}, refCnt:{refCnt}");
+                        }
+                    }
+                }
+            }
+
             if (SwigCPtr.Handle != IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -528,11 +556,22 @@ namespace Tizen.NUI
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
+            else
+            {
+                var me = this.GetType().FullName;
+                Log.Error("NUI", $"[ERR] SwigCPtr is NULL, need to check! me:{me}");
+            }
+
             if (swigCPtrCopy.Handle != global::System.IntPtr.Zero)
             {
                 swigCMemOwn = false;
                 Interop.BaseHandle.DeleteBaseHandle(swigCPtrCopy);
                 swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                var me = this.GetType().FullName;
+                Log.Error("NUI", $"[ERR] swigCPtrCopy is NULL, need to check! me:{me}");
             }
 
             disposed = true;
