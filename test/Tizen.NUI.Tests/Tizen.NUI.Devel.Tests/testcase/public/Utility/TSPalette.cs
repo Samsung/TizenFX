@@ -14,6 +14,7 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicPaletteTest
     {
         private const string tag = "NUITEST";
+        private string image_path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
 
         [SetUp]
         public void Init()
@@ -40,7 +41,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                using (PixelBuffer buffer = new PixelBuffer(1, 1, PixelFormat.A8))
+                using (PixelBuffer buffer = ImageLoader.LoadImageFromFile(image_path))
                 {
                     var testingTarget = Palette.Generate(buffer);
                     Assert.IsNotNull(testingTarget, "Can't create success object Palette");

@@ -20,7 +20,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Info(tag, "Init() is called!");
 
-            rec = new Rectangle(0, 0, 2, 2);
+            rec = new Rectangle(0, 0, 100, 200);
             win = new Window(rec);
         }
 
@@ -49,9 +49,9 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                using (Rectangle size = new Rectangle(1, 2, 3, 4))
+                using (Rectangle ps = new Rectangle(0, 0, 150, 250))
                 {
-                    win.WindowPositionSize = size;
+                    win.WindowPositionSize = ps;
                     tlog.Debug(tag, "WindowPositionSize : " + win.WindowPositionSize);
                 }
             }
@@ -77,27 +77,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 win.GetLayer(0);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-            tlog.Debug(tag, $"WindowGetLayer END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Window GetCurrentOrientation")]
-        [Property("SPEC", "Tizen.NUI.Window.GetCurrentOrientation M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void WindowGetCurrentOrientation()
-        {
-            tlog.Debug(tag, $"WindowGetCurrentOrientation START");
-            
-            try
-            {
+                win.GetNativeId();
                 win.GetCurrentOrientation();
             }
             catch (Exception e)
@@ -105,8 +85,7 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception : Failed!");
             }
-
-            tlog.Debug(tag, $"WindowGetCurrentOrientation END (OK)");
+            tlog.Debug(tag, $"WindowGetLayer END (OK)");
         }
 
         [Test]
@@ -162,29 +141,6 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, $"WindowSetAvailableOrientationsWithNullList END (OK)");
                 Assert.Pass("Caught ArgumentNullException : Passed!");
             }
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Window GetNativeId")]
-        [Property("SPEC", "Tizen.NUI.Window.GetNativeId M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void WindowGetNativeId()
-        {
-            tlog.Debug(tag, $"WindowGetNativeId START");
-            
-            try
-            {
-                win.GetNativeId();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            tlog.Debug(tag, $"WindowGetNativeId END (OK)");
         }
 
         [Test]
@@ -313,8 +269,8 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                Position2D p1 = null;
-                win.SetPosition(p1);
+                Position2D position = null;
+                win.SetPosition(position);
             }
             catch (ArgumentNullException e)
             {
@@ -335,8 +291,8 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WindowSetPositionSize START");
             try
             {
-                Rectangle r1 = new Rectangle(0, 0, 20, 20);
-                win.SetPositionSize(r1);
+                Rectangle ps = new Rectangle(0, 0, 150, 250);
+                win.SetPositionSize(ps);
             }
             catch (Exception e)
             {
@@ -357,8 +313,9 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WindowAddFrameUpdateCallback START");
             try
             {
-                FrameUpdateCallbackInterface f1 = new FrameUpdateCallbackInterface();
-                win.AddFrameUpdateCallback(f1);
+                FrameUpdateCallbackInterface callback = new FrameUpdateCallbackInterface();
+                win.AddFrameUpdateCallback(callback);
+                win.RemoveFrameUpdateCallback(callback);
             }
             catch (Exception e)
             {
@@ -367,29 +324,6 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"WindowAddFrameUpdateCallback END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Window RemoveFrameUpdateCallback")]
-        [Property("SPEC", "Tizen.NUI.Window.RemoveFrameUpdateCallback M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void WindowRemoveFrameUpdateCallback()
-        {
-            tlog.Debug(tag, $"WindowRemoveFrameUpdateCallback START");
-            try
-            {
-                FrameUpdateCallbackInterface f1 = new FrameUpdateCallbackInterface();
-                win.RemoveFrameUpdateCallback(f1);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            tlog.Debug(tag, $"WindowRemoveFrameUpdateCallback END (OK)");
         }
 
         [Test]
@@ -404,8 +338,8 @@ namespace Tizen.NUI.Devel.Tests
             
             try
             {
-                FrameCallbackType f1 = null;
-                win.AddFrameRenderedCallback(f1, 1);
+                FrameCallbackType callback = null;
+                win.AddFrameRenderedCallback(callback, 1);
             }
             catch (ArgumentNullException e)
             {
@@ -427,8 +361,8 @@ namespace Tizen.NUI.Devel.Tests
             
             try
             {
-                FrameCallbackType f1 = null;
-                win.AddFramePresentedCallback(f1, 1);
+                FrameCallbackType callback = null;
+                win.AddFramePresentedCallback(callback, 1);
             }
             catch (ArgumentNullException e)
             {

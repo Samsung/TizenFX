@@ -67,7 +67,6 @@ namespace Tizen.NUI.Devel.Tests
             if (examl)
             {
                 LoadEXaml();
-				global::Tizen.NUI.EXaml.EXamlExtensions.RemoveEventsInXaml(eXamlData);
             }
             else
             {
