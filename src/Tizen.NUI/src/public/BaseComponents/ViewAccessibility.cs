@@ -628,18 +628,18 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual AccessibilityStates AccessibilityCalculateStates(ulong states)
         {
-            AccessibilityStates _states = (AccessibilityStates)states;
+            AccessibilityStates accessibilityStates = (AccessibilityStates)states;
 
-            FlagSetter(ref _states, AccessibilityStates.Highlightable, this.AccessibilityHighlightable);
-            FlagSetter(ref _states, AccessibilityStates.Focusable, this.Focusable);
-            FlagSetter(ref _states, AccessibilityStates.Focused, this.State == States.Focused);
-            FlagSetter(ref _states, AccessibilityStates.Highlighted, this.IsHighlighted);
-            FlagSetter(ref _states, AccessibilityStates.Enabled, this.State != States.Disabled);
-            FlagSetter(ref _states, AccessibilityStates.Sensitive, this.Sensitive);
-            FlagSetter(ref _states, AccessibilityStates.Visible, true);
-            FlagSetter(ref _states, AccessibilityStates.Defunct, !this.IsOnWindow);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Highlightable, this.AccessibilityHighlightable);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Focusable, this.Focusable);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Focused, this.State == States.Focused);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Highlighted, this.IsHighlighted);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Enabled, this.State != States.Disabled);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Sensitive, this.Sensitive);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Visible, true);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Defunct, !this.IsOnWindow);
 
-            return _states;
+            return accessibilityStates;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
