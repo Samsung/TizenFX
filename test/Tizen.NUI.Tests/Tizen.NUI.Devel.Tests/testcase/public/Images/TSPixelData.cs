@@ -52,32 +52,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("PixelData constructor. By IntPtr.")]
-        [Property("SPEC", "Tizen.NUI.PixelData.PixelData C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void PixelDataConstructorByIntPtr()
-        {
-            tlog.Debug(tag, $"PixelDataConstructorByIntPtr START");
-
-            byte[] buffer = new byte[10];
-
-            using (PixelData pixelData = new PixelData(buffer, 10, 1, 2, PixelFormat.L8, PixelData.ReleaseFunction.Free))
-            {
-                var testingTarget = new PixelData(pixelData.SwigCPtr.Handle, true);
-                Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
-                Assert.IsInstanceOf<PixelData>(testingTarget, "Should be an instance of PixelData type.");
-
-                testingTarget.Dispose();
-            }
-
-            buffer = null;
-            tlog.Debug(tag, $"PixelDataConstructorByIntPtr END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("PixelData GenerateUrl.")]
         [Property("SPEC", "Tizen.NUI.PixelData.GenerateUrl M")]
         [Property("SPEC_URL", "-")]
@@ -87,9 +61,12 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PixelDataGenerateUrl START");
 
-            byte[] buffer = new byte[10];
+            uint width = 64;
+            uint height = 64;
+            uint bufferSize = width * height * 4;
+            byte[] buffer = new byte[bufferSize];
 
-            var testingTarget = new PixelData(buffer, 10, 1, 2, PixelFormat.L8, PixelData.ReleaseFunction.Free);
+            var testingTarget = new PixelData(buffer, bufferSize, width, height, PixelFormat.RGBA8888, PixelData.ReleaseFunction.Free);
             Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
             Assert.IsInstanceOf<PixelData>(testingTarget, "Should be an instance of PixelData type.");
 

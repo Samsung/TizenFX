@@ -119,7 +119,6 @@ namespace Tizen.NUI.Devel.Tests
             View view = new View()
             {
                 Size = new Size(100, 200),
-                Color = Color.Cyan
             };
             WidgetView widgetView = new WidgetView(view.SwigCPtr.Handle, false);
 

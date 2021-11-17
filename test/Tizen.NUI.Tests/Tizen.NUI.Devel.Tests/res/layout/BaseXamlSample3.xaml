@@ -6,14 +6,12 @@
     <View.XamlResources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- Add more resource dictionaries here -->
                 <ResourceDictionary >
                     <Color x:Key="red">Red</Color>
                 </ResourceDictionary>
                 <ResourceDictionary >
                     <Color x:Key="green">Green</Color>
                 </ResourceDictionary>
-                <!-- Add more resource dictionaries here -->
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </View.XamlResources>

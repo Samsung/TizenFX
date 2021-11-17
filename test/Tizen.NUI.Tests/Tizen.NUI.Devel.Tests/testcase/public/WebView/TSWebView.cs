@@ -606,7 +606,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewScrollPosition START");
 
-            webView.ScrollPosition = new Position(0.2f, 0.1f);
+            webView.ScrollPosition = new Position(600, 0);
             tlog.Debug(tag, "ScrollPositionX : " + webView.ScrollPosition.X);
             tlog.Debug(tag, "ScrollPositionY : " + webView.ScrollPosition.Y);
 

@@ -442,33 +442,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Size2D Dispose.")]
-        [Property("SPEC", "Tizen.NUI.Size2D.Dispose M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR MCST")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void Size2DDispose()
-        {
-            tlog.Debug(tag, $"Size2DDispose START");
-
-            var testingTarget = new Size2D();
-            Assert.IsNotNull(testingTarget, "Can't create success object Size2D");
-            Assert.IsInstanceOf<Size2D>(testingTarget, "Should be an instance of Size2D type.");
-
-            try
-            {
-                testingTarget.Dispose();
-            }
-            catch (Exception e)
-            {
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-
-            tlog.Debug(tag, $"Size2DDispose END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Size2D GetHashCode.")]
         [Property("SPEC", "Tizen.NUI.Size2D.GetHashCode M")]
         [Property("SPEC_URL", "-")]
