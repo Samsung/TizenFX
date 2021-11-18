@@ -620,8 +620,7 @@ namespace Tizen.NUI
                     var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                     var me = this.GetType().FullName;
 
-                    throw new ObjectDisposedException(nameof(SwigCPtr), $"Error! NUI's native dali object is already disposed. " +
-                        $"OR the native dali object handle of NUI becomes null! \n" +
+                    Log.Fatal("NUI", $"Error! swigCPtr.Handle == IntPtr.Zero ! please check! \n" +
                         $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
                 }
                 return swigCPtr;
