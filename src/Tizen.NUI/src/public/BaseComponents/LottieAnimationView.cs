@@ -450,7 +450,8 @@ namespace Tizen.NUI.BaseComponents
         /// Actions property value to Jump to the specified frame.
         /// This property can be redefined by child class if it use different value.
         /// </summary>
-        protected internal int ActionJumpTo { get; set; } = Interop.LottieAnimationView.AnimatedVectorImageVisualActionJumpToGet();
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected int ActionJumpTo { get; set; } = Interop.LottieAnimationView.AnimatedVectorImageVisualActionJumpToGet();
         #endregion Property
 
 
