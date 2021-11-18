@@ -23,7 +23,9 @@ using System.Collections.Generic;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// FadeTransition class is a cluster of properties for the fade transition of a View.
+    /// TransitionGroup class is a cluster of properties to use multiple Transitions on a target.
+    /// FadeTransition, ScaleTransition, and SlideTransition can be added on this group with AddTransition method.
+    /// The transitions can be started at the same time or can be started sequentially in order.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TransitionGroup : TransitionBase
@@ -38,15 +40,30 @@ namespace Tizen.NUI
         {
         }
 
+        /// <summary>
+        /// Set/Get whether the child Transitions are affected by the TimePeriod of this TransitionGroup
+        /// If UseGroupTimePeriod is true, child Transitions wait for a TimePeriod.DelayMilliseconds before starting.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool UseGroupTimePeriod { set; get; } = false;
 
+        /// <summary>
+        /// Set/Get whether the child Transitions are started sequentially or not.
+        /// If StepTransition is true, the child Transitions starts sequentially with an interval of "TimePeriod.DurationMilliseconds/#ofChildTransitions".
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool StepTransition { set; get; } = false;
 
+        /// <summary>
+        /// Set/Get whether the child Transitions are affected by the AlphaFunction of this TransitionGroup
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool UseGroupAlphaFunction { set; get; } = false;
 
+
+        /// <summary>
+        /// Adds a Transition to this TransitionGroup.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AddTransition(TransitionBase transition)
         {
