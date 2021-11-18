@@ -424,6 +424,22 @@ namespace Tizen.NUI.BaseComponents
         internal uint GetId()
         {
             uint ret = Interop.Actor.GetId(SwigCPtr);
+
+            //this is temporary debugging code. will be removed in 2 weeks
+            {
+                int minusOne = -1;
+                uint errorRet = (uint)minusOne;
+                if (ret == errorRet || SwigCPtr.Handle == IntPtr.Zero)
+                {
+                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                    var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                    var me = this.GetType().FullName;
+
+                    Log.Fatal("NUI", $"Error! GetId error OR swigCPtr.Handle == IntPtr.Zero ! please check! \n" +
+                        $" process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                }
+            }
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
