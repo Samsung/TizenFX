@@ -694,19 +694,22 @@ namespace Tizen.NUI.BaseComponents
         /// Actions property value to Play animated images.
         /// This property can be redefined by child class if it use different value.
         /// </summary>
-        protected internal int ActionPlay { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionPlayGet();
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected int ActionPlay { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionPlayGet();
 
         /// <summary>
         /// Actions property value to Pause animated images.
         /// This property can be redefined by child class if it use different value.
         /// </summary>
-        protected internal int ActionPause { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionPauseGet();
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected int ActionPause { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionPauseGet();
 
         /// <summary>
         /// Actions property value to Stop animated images.
         /// This property can be redefined by child class if it use different value.
         /// </summary>
-        protected internal int ActionStop { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionStopGet();
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected int ActionStop { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionStopGet();
 
         internal VisualFittingModeType ConvertFittingModetoVisualFittingMode(FittingModeType value)
         {
