@@ -53,6 +53,23 @@ namespace Tizen.NUI.Samples
 
             FocusManager.Instance.SetCurrentFocusView(parent1);
             Window.Instance.BackgroundColor = new Color(1.0f, 0.92f, 0.80f, 1.0f);
+
+            //test
+            Window.Instance.AuxiliaryMessage += OnAuxiraryMessage;
+        }
+
+        private void OnAuxiraryMessage(object sender, Window.AuxiliraryMessageEventArgs e)
+        {
+            if(e != null)
+            {
+                Console.WriteLine($"key={e.Key} val={e.Value}");
+                var cnt = 0;
+                foreach(var option in e.Options)
+                {
+                    cnt++;
+                    Console.WriteLine($"option[{cnt}]={option}");
+                }
+            }
         }
 
         private void OnParentFocusGained(object sender, EventArgs e)

@@ -19,6 +19,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
+using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
@@ -1082,5 +1083,108 @@ namespace Tizen.NUI
             }
             VisibilityChangedEventSignal.Emit(this, visibility);
         }
+
+
+        public class AuxiliraryMessageEventArgs : EventArgs
+        {
+            private string key;
+            private string val;
+            private List<string> options;
+
+            public string Key
+            {
+                get => key;
+                internal set => key = value;
+            }
+
+            public string Value
+            {
+                get => val;
+                internal set => val = value;
+            }
+
+            public List<string> Options
+            {
+                get => options;
+                internal set => options = value;
+            }
+        }
+
+        private void OnAuxiliraryMessage(IntPtr window, IntPtr propertyArray)
+        {
+            if (window == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("[ERR] OnAuxiliraryMessage() window is null");
+                return;
+            }
+
+            // at this case, cMemoryOwn is false, because this is just a test implementation, 
+            // so I create local Dali::Property::Array in dali adaptor's window.
+            // therefore, the PropertyArray needs be managed by Dali, and in nui, no need to free it.
+            using var tmp = new PropertyArray(propertyArray, false);
+            var size = tmp.Size();
+
+            string key = "error";
+            tmp.GetElementAt(0).Get(out key);
+
+            string val = "error";
+            tmp.GetElementAt(1).Get(out val);
+
+            List<string> tmpList = new List<string>();
+
+            for (int i = 2; i < size; i++)
+            {
+                string option = "error";
+                tmp.GetElementAt((uint)i).Get(out option);
+                tmpList.Add(option);
+            }
+
+            AuxiliraryMessageEventArgs e = new AuxiliraryMessageEventArgs();
+            e.Key = key;
+            e.Value = val;
+            e.Options = tmpList;
+
+            AuxiliraryMessageEventHandler?.Invoke(this, e);
+        }
+
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void AuxiliraryMessageEventCallbackType(IntPtr window, IntPtr propertyArrary);
+        private AuxiliraryMessageEventCallbackType AuxiliraryMessageEventCallback;
+        private event EventHandler<AuxiliraryMessageEventArgs> AuxiliraryMessageEventHandler;
+
+        public event EventHandler<AuxiliraryMessageEventArgs> AuxiliaryMessage
+        {
+            add
+            {
+                if (AuxiliraryMessageEventHandler == null)
+                {
+                    AuxiliraryMessageEventCallback = OnAuxiliraryMessage;
+                    using var signal = new WindowAuxiliraryMessageSignal(this);
+                    signal.Connect(AuxiliraryMessageEventCallback);
+                }
+                AuxiliraryMessageEventHandler += value;
+            }
+            remove
+            {
+                AuxiliraryMessageEventHandler -= value;
+                if (AuxiliraryMessageEventHandler == null)
+                {
+                    if (AuxiliraryMessageEventCallback != null)
+                    {
+                        using var signal = new WindowAuxiliraryMessageSignal(this);
+                        signal.Disconnect(AuxiliraryMessageEventCallback);
+
+                        if (signal.Empty())
+                        {
+                            AuxiliraryMessageEventCallback = null;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
     }
 }
