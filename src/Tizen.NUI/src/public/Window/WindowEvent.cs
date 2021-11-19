@@ -995,6 +995,77 @@ namespace Tizen.NUI
             DetentEventHandler?.Invoke(this, e);
         }
 
+
+        /// <summary>
+        /// Visible status Event arguments
+        /// This has the one members as window's visible status.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class VisibleStatusEventArgs : EventArgs
+        {
+            private VisibleStatus status;
+
+            public VisibleStatus Status
+            {
+                get => status;
+                internal set => status = value;
+            }
+        }
+
+        private void OnVisibleStatus(VisibleStatus status)
+        {
+            VisibleStatusEventArgs e = new VisibleStatusEventArgs();
+            e.Status = status;
+
+            VisibleStatusEventHandler?.Invoke(this, e);
+        }
+
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void VisibleStatusEventCallbackType(VisibleStatus status);
+        private VisibleStatusEventCallbackType VisibleStatusEventCallback;
+        private event EventHandler<VisibleStatusEventArgs> VisibleStatusEventHandler;
+
+        /// <summary>
+        /// This event is emitted when the window's visible status is changed.
+        /// When window is shown and is unobscured, UNOBSCURED signal is emitted.
+        /// And when window is hidden or shown and obscured, OBSCURED signal is emitted
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<VisibleStatusEventArgs> VisibleStatusEvent
+        {
+            add
+            {
+                if (VisibleStatusEventHandler == null)
+                {
+                    VisibleStatusEventCallback = OnVisibleStatus;
+                    using var signal = new WindowVisibleStatusSignal(this);
+                    signal.Connect(VisibleStatusEventCallback);
+                }
+                VisibleStatusEventHandler += value;
+            }
+            remove
+            {
+                VisibleStatusEventHandler -= value;
+                if (VisibleStatusEventHandler == null)
+                {
+                    if (VisibleStatusEventCallback != null)
+                    {
+                        using var signal = new WindowVisibleStatusSignal(this);
+                        signal.Disconnect(VisibleStatusEventCallback);
+
+                        if (signal.Empty())
+                        {
+                            VisibleStatusEventCallback = null;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
+
         /// <summary>
         /// VisibilityChangedArgs
         /// </summary>

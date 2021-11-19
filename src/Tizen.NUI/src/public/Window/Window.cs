@@ -347,6 +347,23 @@ namespace Tizen.NUI
             BottomRight = 8,
         }
 
+        /// <summary>
+        /// Enumeration of visible status for when window is unobscured or obscured.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum VisibleStatus
+        {
+            /// <summary>
+            /// This window is unobscured.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            UNOBSCURED = 1,
+            /// <summary>
+            /// This window is obscured.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            OBSCURED = 2,
+        }
 
         /// <summary>
         /// The stage instance property (read-only).<br />

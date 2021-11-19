@@ -22,6 +22,7 @@ namespace Tizen.NUI.Samples
             mainWin = NUIApplication.GetDefaultWindow();
             mainWin.KeyEvent += OnKeyEvent;
             mainWin.TouchEvent += WinTouchEvent;
+            mainWin.VisibleStatusEvent += OnVisibleStatus;
             mainWin.BackgroundColor = Color.Cyan;
 
             Information.TryGetValue<int>("http://tizen.org/feature/screen.width", out screenWidth);
@@ -46,6 +47,11 @@ namespace Tizen.NUI.Samples
             animation.AnimateTo(text, "Orientation", new Rotation(new Radian(new Degree(0.0f)), PositionAxis.X), 500, 1000);
             animation.Looping = true;
             animation.Play();
+        }
+
+        private void OnVisibleStatus(object sender, Window.VisibleStatusEventArgs e)
+        {
+            log.Fatal(tag, $"OnVisibleStatus={e.Status}");
         }
 
         private void WinTouchEvent(object sender, Window.TouchEventArgs e)
