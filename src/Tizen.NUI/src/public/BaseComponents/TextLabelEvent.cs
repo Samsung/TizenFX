@@ -28,11 +28,18 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextLabel
     {
+
         private EventHandler<AnchorClickedEventArgs> textLabelAnchorClickedEventHandler;
         private AnchorClickedCallbackDelegate textLabelAnchorClickedCallbackDelegate;
 
+        private EventHandler textLabelTextFitChangedEventHandler;
+        private TextFitChangedCallbackDelegate textLabelTextFitChangedCallbackDelegate;
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textLabel, IntPtr href, uint hrefLength);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void TextFitChangedCallbackDelegate(IntPtr textLabel);
 
         /// <summary>
         /// The AnchorClicked signal is emitted when the anchor is clicked.
@@ -76,6 +83,45 @@ namespace Tizen.NUI.BaseComponents
             e.Href = Marshal.PtrToStringAnsi(href);
             //here we send all data to user event handlers
             textLabelAnchorClickedEventHandler?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// An event for the TextFitChanged signal which can be used to subscribe or unsubscribe the event handler
+        /// provided by the user. The TextFitChanged signal is emitted when the text fit properties changes.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler TextFitChanged
+        {
+            add
+            {
+                if (textLabelTextFitChangedEventHandler == null)
+                {
+                    textLabelTextFitChangedCallbackDelegate = (OnTextFitChanged);
+                    TextFitChangedSignal().Connect(textLabelTextFitChangedCallbackDelegate);
+                }
+                textLabelTextFitChangedEventHandler += value;
+            }
+            remove
+            {
+                textLabelTextFitChangedEventHandler -= value;
+                if (textLabelTextFitChangedEventHandler == null && TextFitChangedSignal().Empty() == false)
+                {
+                    TextFitChangedSignal().Disconnect(textLabelTextFitChangedCallbackDelegate);
+                }
+            }
+        }
+
+        internal TextLabelSignal TextFitChangedSignal()
+        {
+            TextLabelSignal ret = new TextLabelSignal(Interop.TextLabel.TextFitChangedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private void OnTextFitChanged(IntPtr textLabel)
+        {
+            // no data to be sent to the user, as in NUI there is no event provide old values.
+            textLabelTextFitChangedEventHandler?.Invoke(this, EventArgs.Empty);
         }
     }
 }
