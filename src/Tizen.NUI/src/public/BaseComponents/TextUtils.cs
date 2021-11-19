@@ -1560,17 +1560,25 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static TextFit GetTextFitStruct(PropertyMap map)
         {
-            map.Find(0, "enable").Get(out bool enable);
-            map.Find(0, "minSize").Get(out float minSize);
-            map.Find(0, "maxSize").Get(out float maxSize);
-            map.Find(0, "stepSize").Get(out float stepSize);
-            map.Find(0, "fontSizeType").Get(out string fontSizeType);
+            bool enable = false;
+            float minSize = 0.0f;
+            float maxSize = 0.0f;
+            float stepSize = 0.0f;
+            float fontSize = 0.0f;
+            string fontSizeType = null;
+            map.Find(0, "enable")?.Get(out enable);
+            map.Find(0, "minSize")?.Get(out minSize);
+            map.Find(0, "maxSize")?.Get(out maxSize);
+            map.Find(0, "stepSize")?.Get(out stepSize);
+            map.Find(0, "fontSize")?.Get(out fontSize);
+            map.Find(0, "fontSizeType")?.Get(out fontSizeType);
 
             var textFit = new TextFit();
             textFit.Enable = enable;
             textFit.MinSize = minSize;
             textFit.MaxSize = maxSize;
             textFit.StepSize = stepSize;
+            textFit.FontSize = fontSize;
             textFit.FontSizeType = GetFontSizeType(fontSizeType);
 
             return textFit;
@@ -1610,7 +1618,7 @@ namespace Tizen.NUI.BaseComponents
 
             else if (placeholder.PixelSize != null)
                 map.Add("pixelSize", new PropertyValue((float)placeholder.PixelSize));
-            
+
             map.Add("ellipsis", new PropertyValue(placeholder.Ellipsis));
 
             return map;
