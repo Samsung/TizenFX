@@ -1241,6 +1241,14 @@ namespace Tizen.NUI.BaseComponents
                 selectorData?.Reset(this);
             }
 
+            if (this.HasBody())
+            {
+                if (textLabelTextFitChangedCallbackDelegate != null)
+                {
+                    TextFitChangedSignal().Disconnect(textLabelTextFitChangedCallbackDelegate);
+                }
+            }
+
             base.Dispose(type);
         }
 

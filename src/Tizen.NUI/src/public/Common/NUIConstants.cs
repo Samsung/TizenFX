@@ -2144,7 +2144,7 @@ namespace Tizen.NUI
             /// <summary>
             /// The offset in pixels of the shadow (if null, the default value is 0, 0). <br />
             /// If not provided then the shadow is not enabled. <br />
-            ///  
+            ///
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public Vector2 Offset { get; set; }
@@ -2220,6 +2220,12 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public FontSizeType FontSizeType { get; set; }
+
+            /// <summary>
+            /// Font Size for text fit
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float? FontSize { get; set; }
         }
 
         /// <summary>
