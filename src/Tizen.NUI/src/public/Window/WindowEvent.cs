@@ -19,6 +19,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
+using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
@@ -1082,5 +1083,103 @@ namespace Tizen.NUI
             }
             VisibilityChangedEventSignal.Emit(this, visibility);
         }
+
+        /// <summary>
+        /// EffectStart
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class AuxiliaryMessageEventArgs : EventArgs
+        {
+            private string key;
+            private string val;
+            private List<string> options;
+
+            public string Key
+            {
+                get => key;
+                internal set => key = value;
+            }
+
+            public string Value
+            {
+                get => val;
+                internal set => val = value;
+            }
+
+            public List<string> Options
+            {
+                get => options;
+                internal set => options = value;
+            }
+        }
+
+        private void OnAuxiliaryMessage(string key, string value, IntPtr optionsArray)
+        {
+            // at this case, cMemoryOwn is false, because this is just a test implementation, 
+            // so I create local Dali::Property::Array in dali adaptor's window.
+            // therefore, the PropertyArray needs be managed by Dali, and in nui, no need to free it.
+            using var tmp = new PropertyArray(optionsArray, false);
+            var size = tmp.Size();
+
+            List<string> tmpList = new List<string>();
+
+            for (int i = 0; i < size; i++)
+            {
+                string option = "none";
+                tmp.GetElementAt((uint)i).Get(out option);
+                tmpList.Add(option);
+            }
+
+            AuxiliaryMessageEventArgs e = new AuxiliaryMessageEventArgs();
+            e.Key = key;
+            e.Value = value;
+            e.Options = tmpList;
+
+            AuxiliaryMessageEventHandler?.Invoke(this, e);
+        }
+
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void AuxiliaryMessageEventCallbackType(string key, string value, IntPtr optionsArray);
+        private AuxiliaryMessageEventCallbackType AuxiliaryMessageEventCallback;
+        private event EventHandler<AuxiliaryMessageEventArgs> AuxiliaryMessageEventHandler;
+
+        /// <summary>
+        /// EffectStart
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AuxiliaryMessageEventArgs> AuxiliaryMessage
+        {
+            add
+            {
+                if (AuxiliaryMessageEventHandler == null)
+                {
+                    AuxiliaryMessageEventCallback = OnAuxiliaryMessage;
+                    using var signal = new WindowAuxiliaryMessageSignal(this);
+                    signal.Connect(AuxiliaryMessageEventCallback);
+                }
+                AuxiliaryMessageEventHandler += value;
+            }
+            remove
+            {
+                AuxiliaryMessageEventHandler -= value;
+                if (AuxiliaryMessageEventHandler == null)
+                {
+                    if (AuxiliaryMessageEventCallback != null)
+                    {
+                        using var signal = new WindowAuxiliaryMessageSignal(this);
+                        signal.Disconnect(AuxiliaryMessageEventCallback);
+
+                        if (signal.Empty())
+                        {
+                            AuxiliaryMessageEventCallback = null;
+                        }
+                    }
+                }
+            }
+        }
+
+
+
     }
 }

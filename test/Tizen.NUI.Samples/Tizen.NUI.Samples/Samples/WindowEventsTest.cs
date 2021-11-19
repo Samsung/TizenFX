@@ -78,6 +78,8 @@ namespace Tizen.NUI.Samples
 
             if (childViewWindow != null)
             {
+                
+                childViewWindow.AddAuxiliaryHint("wm.policy.win.msg.use", "1");
                 childViewWindow.VisibilityChanged += OnChildViewWindowVisibilityChanged;
                 childViewWindow.Resized += OnChildViewWindowResized;
 
@@ -88,6 +90,7 @@ namespace Tizen.NUI.Samples
                 childViewWindow.TransitionEffect += OnChildViewWindowTransitionEffect;
                 childViewWindow.KeyboardRepeatSettingsChanged += OnChildViewWindowKeyboardRepeatSettingsChanged;
                 childViewWindow.ViewAdded += OnChildViewWindowViewAdded;
+                childViewWindow.AuxiliaryMessage += OnAuxiliaryMessageEvent;
             }
         }
 
@@ -105,7 +108,7 @@ namespace Tizen.NUI.Samples
                 childViewWindow.TransitionEffect -= OnChildViewWindowTransitionEffect;
                 childViewWindow.KeyboardRepeatSettingsChanged -= OnChildViewWindowKeyboardRepeatSettingsChanged;
                 childViewWindow.ViewAdded -= OnChildViewWindowViewAdded;
-
+                childViewWindow.AuxiliaryMessage -= OnAuxiliaryMessageEvent;
                 childViewWindow = null;
             }
         }
@@ -153,6 +156,11 @@ namespace Tizen.NUI.Samples
         private void OnChildViewWindowFocusChanged(object sender, Window.FocusChangedEventArgs e)
         {
             log.Fatal(tag, $"OnChildViewWindowFocusChanged() called!");
+        }
+
+        private void OnAuxiliaryMessageEvent(object sender, Window.AuxiliaryMessageEventArgs e)
+        {
+            log.Fatal(tag, $"OnAuxiliaryMessageEvent() called!");
         }
 
         public void Deactivate()
