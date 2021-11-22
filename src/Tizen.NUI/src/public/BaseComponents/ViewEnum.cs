@@ -235,6 +235,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int AccessibilityHighlightable = Interop.ViewProperty.AccessibilityHighlightableGet();
             internal static readonly int AccessibilityAttributes = Interop.ViewProperty.AccessibilityAttributesGet();
             internal static readonly int DispatchKeyEvents = Interop.ViewProperty.DispatchKeyEventsGet();
+            internal static readonly int AccessibilityHidden = Interop.ViewProperty.AccessibilityHiddenGet();
         }
     }
 }
