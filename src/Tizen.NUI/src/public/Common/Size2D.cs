@@ -66,7 +66,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal delegate void Size2DChangedCallback(int width, int height);
+        internal delegate void Size2DChangedCallback(int? width, int? height);
 
         /// <summary>
         /// Hidden API (Inhouse API).
@@ -127,7 +127,7 @@ namespace Tizen.NUI
                 Interop.Vector2.WidthSet(SwigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(value, Height);
+                callback?.Invoke(value, null);
             }
             get
             {
@@ -160,7 +160,7 @@ namespace Tizen.NUI
                 Interop.Vector2.HeightSet(SwigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(Width, value);
+                callback?.Invoke(null, value);
             }
             get
             {

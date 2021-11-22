@@ -147,7 +147,7 @@ namespace Tizen.NUI
                 Interop.Extents.StartSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(value, End, Top, Bottom);
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
@@ -180,7 +180,7 @@ namespace Tizen.NUI
                 Interop.Extents.EndSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(Start, value, Top, Bottom);
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
@@ -213,7 +213,7 @@ namespace Tizen.NUI
                 Interop.Extents.TopSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(Start, End, value, Bottom);
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {
@@ -246,7 +246,7 @@ namespace Tizen.NUI
                 Interop.Extents.BottomSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(Start, End, Top, value);
+                callback?.Invoke(Start, End, Top, Bottom);
             }
             get
             {

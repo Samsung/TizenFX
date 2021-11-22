@@ -114,7 +114,7 @@ namespace Tizen.NUI
                 Interop.Vector3.WidthSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(value, Height, Depth);
+                callback?.Invoke(value, null, null);
             }
             get
             {
@@ -147,7 +147,7 @@ namespace Tizen.NUI
                 Interop.Vector3.HeightSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(Width, value, Depth);
+                callback?.Invoke(null, value, null);
             }
             get
             {
@@ -180,7 +180,7 @@ namespace Tizen.NUI
                 Interop.Vector3.DepthSet(SwigCPtr, value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(Width, Height, value);
+                callback?.Invoke(null, null, value);
             }
             get
             {
@@ -464,7 +464,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal delegate void SizeChangedCallback(float width, float height, float depth);
+        internal delegate void SizeChangedCallback(float? width, float? height, float? depth);
 
         internal Size(SizeChangedCallback cb, float w, float h, float d) : this(Interop.Vector3.NewVector3(w, h, d), true)
         {

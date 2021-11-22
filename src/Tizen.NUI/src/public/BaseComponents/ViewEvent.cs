@@ -606,7 +606,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 backgroundResourceLoadedEventHandler += value;
             }
-
+            
             remove
             {
                 backgroundResourceLoadedEventHandler -= value;
@@ -720,39 +720,93 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        private void OnColorChanged(float r, float g, float b, float a)
+        private void OnSize2DChanged(int? width, int? height)
         {
-            Color = new Color(r, g, b, a);
+            PropertyValue temp = null;
+            if (width != null)
+            {
+                temp = new PropertyValue((float)width);
+                Object.SetProperty(SwigCPtr, Property.SizeWidth, temp);
+            }
+            if (height != null)
+            {
+                temp = new PropertyValue((float)height);
+                Object.SetProperty(SwigCPtr, Property.SizeHeight, temp);
+            }
+            temp?.Dispose();
         }
 
-        private void OnMinimumSizeChanged(int width, int height)
+        private void OnMinimumSizeChanged(int? width, int? height)
         {
-            MinimumSize = new Size2D(width, height);
+            if (width != null && height != null)
+            {
+                MinimumSize = new Size2D((int)width, (int)height);
+            }
+            else if (width != null && height == null)
+            {
+                MinimumSize = new Size2D((int)width, (int)this.GetMinimumSize().Height);
+            }
+            else if (width == null && height != null)
+            {
+                MinimumSize = new Size2D((int)this.GetMinimumSize().Width, (int)height);
+            }
+            else
+            {
+                //both are null, do nothing.
+            }
         }
 
-        private void OnMaximumSizeChanged(int width, int height)
+        private void OnMaximumSizeChanged(int? width, int? height)
         {
-            MaximumSize = new Size2D(width, height);
+            if (width != null && height != null)
+            {
+                MaximumSize = new Size2D((int)width, (int)height);
+            }
+            else if (width != null && height == null)
+            {
+                MaximumSize = new Size2D((int)width, (int)this.GetMaximumSize().Height);
+            }
+            else if (width == null && height != null)
+            {
+                MaximumSize = new Size2D((int)this.GetMaximumSize().Width, (int)height);
+            }
+            else
+            {
+                //both are null, do nothing.
+            }
         }
 
         private void OnPosition2DChanged(int x, int y)
         {
-            SetPosition((float)x, (float)y, 0);
+            Position2D = new Position2D(x, y);
+        }
+
+        private void OnSizeChanged(float? width, float? height, float? depth)
+        {
+            PropertyValue temp;
+            if (width != null)
+            {
+                temp = new Tizen.NUI.PropertyValue((float)width);
+                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeWidth, temp);
+                temp.Dispose();
+            }
+            if (height != null)
+            {
+                temp = new Tizen.NUI.PropertyValue((float)height);
+                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeHeight, temp);
+                temp.Dispose();
+            }
+            if (depth != null)
+            {
+                temp = new Tizen.NUI.PropertyValue((float)depth);
+                Tizen.NUI.Object.SetProperty(this.SwigCPtr, View.Property.SizeDepth, temp);
+                temp.Dispose();
+            }
         }
 
         private void OnPositionChanged(float x, float y, float z)
         {
-            SetPosition(x, y, z);
-        }
-
-        private void OnSize2DChanged(int width, int height)
-        {
-            SetSize((float)width, (float)height, 0);
-        }
-
-        private void OnSizeChanged(float width, float height, float depth)
-        {
-            SetSize(width, height, depth);
+            Position = new Position(x, y, z);
         }
 
         private void OnParentOriginChanged(float x, float y, float z)
