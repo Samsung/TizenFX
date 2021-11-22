@@ -353,6 +353,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_STRIKETHROUGH_get")]
             public static extern int StrikethroughGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_CHARACTER_SPACING_get")]
+            public static extern int CharacterSpacingGet();
         }
     }
 }
