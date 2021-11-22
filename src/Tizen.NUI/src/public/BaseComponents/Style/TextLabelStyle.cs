@@ -279,6 +279,18 @@ namespace Tizen.NUI.BaseComponents
             var textLabelStyle = (TextLabelStyle)bindable;
             return textLabelStyle.ellipsisPosition;
         });
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CharacterSpacingProperty = BindableProperty.Create(nameof(CharacterSpacing), typeof(float?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.characterSpacing = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.characterSpacing;
+        });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MatchSystemLanguageDirectionProperty = BindableProperty.Create(nameof(MatchSystemLanguageDirection), typeof(bool?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -339,6 +351,7 @@ namespace Tizen.NUI.BaseComponents
         private Selector<float?> pointSizeSelector;
         private Selector<TextShadow> textShadow;
         private PropertyMap fontStyle;
+        private float? characterSpacing;
 
         static TextLabelStyle() { }
 
@@ -508,6 +521,14 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (EllipsisPosition?)GetValue(EllipsisPositionProperty);
             set => SetValue(EllipsisPositionProperty, value);
+        }
+
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? CharacterSpacing
+        {
+            get => (float?)GetValue(CharacterSpacingProperty);
+            set => SetValue(CharacterSpacingProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.

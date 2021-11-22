@@ -201,5 +201,33 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextEditorStrikethrough END (OK)");
         }
+
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEditor CharacterSpacing.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.CharacterSpacing A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "s.sabah@samsung.com")]
+        public void TextEditorCharacterSpacing()
+        {
+            tlog.Debug(tag, $"TextEditorCharacterSpacing START");
+
+            var testingTarget = new TextEditor(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            float expandedValue = 1.5f;
+            testingTarget.CharacterSpacing = expandedValue;
+            Assert.AreEqual(expandedValue, testingTarget.CharacterSpacing, "Should be equal!");
+
+            float condensedValue = -1.5f;
+            testingTarget.CharacterSpacing = condensedValue;
+            Assert.AreEqual(condensedValue, testingTarget.CharacterSpacing, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextEditorCharacterSpacing END (OK)");
+        }
     }
 }
