@@ -2344,6 +2344,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The spaces between characters in Pixels.
+        /// <remarks>
+        /// A positive value will make the characters far apart (expanded) and a negative value will bring them closer (condensed).<br />
+        /// The default value is 0.f which does nothing.
+        ///</remarks>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float CharacterSpacing
+        {
+            get
+            {
+                return (float)GetValue(CharacterSpacingProperty);
+            }
+            set
+            {
+                SetValue(CharacterSpacingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Dispose.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -2564,6 +2585,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int MinLineSize = Interop.TextEditor.MinLineSizeGet();
             internal static readonly int InputFilter = Interop.TextEditor.InputFilterGet();
             internal static readonly int Strikethrough = Interop.TextEditor.StrikethroughGet();
+            internal static readonly int CharacterSpacing = Interop.TextEditor.CharacterSpacingGet();
         }
 
         internal class InputStyle

@@ -1342,6 +1342,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The spaces between characters in Pixels.
+        /// <remarks>
+        /// A positive value will make the characters far apart (expanded) and a negative value will bring them closer (condensed).<br />
+        /// The default value is 0.f which does nothing.
+        ///</remarks>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float CharacterSpacing
+        {
+            get
+            {
+                return (float)GetValue(CharacterSpacingProperty);
+            }
+            set
+            {
+                SetValue(CharacterSpacingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The FontSizeScale property for scaling the specified font size up or down. <br />
         /// The default value is 1.0. <br />
         /// The given font size scale value is used for multiplying the specified font size before querying fonts. <br />
@@ -1582,6 +1603,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EnableFontSizeScale = Interop.TextLabel.EnableFontSizeScaleGet();
             internal static readonly int EllipsisPosition = Interop.TextLabel.EllipsisPositionGet();
             internal static readonly int Strikethrough = Interop.TextLabel.StrikethroughGet();
+            internal static readonly int CharacterSpacing = Interop.TextLabel.CharacterSpacingGet();
         }
 
         private void OnShadowColorChanged(float x, float y, float z, float w)

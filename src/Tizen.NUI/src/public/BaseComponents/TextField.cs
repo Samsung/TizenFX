@@ -1929,6 +1929,27 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The spaces between characters in Pixels.
+        /// <remarks>
+        /// A positive value will make the characters far apart (expanded) and a negative value will bring them closer (condensed).<br />
+        /// The default value is 0.f which does nothing.
+        ///</remarks>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float CharacterSpacing
+        {
+            get
+            {
+                return (float)GetValue(CharacterSpacingProperty);
+            }
+            set
+            {
+                SetValue(CharacterSpacingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Set InputFilter to TextField.
         /// </summary>
         /// <param name="inputFilter">The InputFilter</param>
@@ -2599,7 +2620,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EllipsisPosition = Interop.TextField.EllipsisPositionGet();
             internal static readonly int InputFilter = Interop.TextField.InputFilterGet();
             internal static readonly int Strikethrough = Interop.TextField.StrikethroughGet();
-
+            internal static readonly int CharacterSpacing = Interop.TextField.CharacterSpacingGet();
         }
 
         internal class InputStyle
