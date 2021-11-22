@@ -196,7 +196,7 @@ namespace Tizen.NUI.BaseComponents
                 PropertyMap background = view.Background;
                 background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
 
-                background?.Dispose();
+                background.Dispose();
                 background = null;
 
                 return backgroundImage;
