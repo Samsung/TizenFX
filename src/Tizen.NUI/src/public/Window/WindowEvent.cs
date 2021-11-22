@@ -19,6 +19,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
+using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
@@ -46,6 +47,7 @@ namespace Tizen.NUI
         private WindowTransitionEffectSignal transitionEffectSignal;
         private KeyboardRepeatSettingsChangedEventCallbackType keyboardRepeatSettingsChangedEventCallback;
         private KeyboardRepeatSettingsChangedSignal keyboardRepeatSettingsChangedSignal;
+        private AuxiliaryMessageEventCallbackType auxiliaryMessageEventCallback;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
@@ -61,6 +63,8 @@ namespace Tizen.NUI
         private delegate void TransitionEffectEventCallbackType(IntPtr window, int state, int type);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void KeyboardRepeatSettingsChangedEventCallbackType();
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void AuxiliaryMessageEventCallbackType(IntPtr kData, IntPtr vData, IntPtr optionsArray);
 
         /// <summary>
         /// FocusChanged event.
@@ -322,6 +326,7 @@ namespace Tizen.NUI
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler2;
         private event EventHandler<TransitionEffectEventArgs> transitionEffectHandler;
         private event EventHandler keyboardRepeatSettingsChangedHandler;
+        private event EventHandler<AuxiliaryMessageEventArgs> auxiliaryMessageEventHandler;
 
         internal void SendViewAdded(View view)
         {
@@ -627,6 +632,14 @@ namespace Tizen.NUI
             {
                 KeyboardRepeatSettingsChangedEventSignal().Disconnect(keyboardRepeatSettingsChangedEventCallback);
                 keyboardRepeatSettingsChangedEventCallback = null;
+            }
+
+            if (auxiliaryMessageEventCallback != null)
+            {
+                using var signal = new WindowAuxiliaryMessageSignal(this);
+                signal.Disconnect(auxiliaryMessageEventCallback);
+                auxiliaryMessageEventHandler= null;
+                auxiliaryMessageEventCallback = null;
             }
         }
 
@@ -1140,5 +1153,74 @@ namespace Tizen.NUI
             }
             VisibilityChangedEventSignal.Emit(this, visibility);
         }
+
+        private void OnAuxiliaryMessage(IntPtr kData, IntPtr vData, IntPtr optionsArray)
+        {
+            if(kData == IntPtr.Zero || vData == IntPtr.Zero)
+            {
+                return;
+            }
+
+            using var tmp = new PropertyArray(optionsArray, false);
+            var size = tmp.Size();
+
+            List<string> tmpList = new List<string>();
+
+            for (int i = 0; i < size; i++)
+            {
+                string option = "none";
+                tmp.GetElementAt((uint)i).Get(out option);
+                tmpList.Add(option);
+            }
+
+            tmp.Dispose();
+
+            AuxiliaryMessageEventArgs e = new AuxiliaryMessageEventArgs();
+            e.Key = StringToVoidSignal.GetResult(kData);
+            e.Value = StringToVoidSignal.GetResult(vData);;
+            e.Options = tmpList;
+
+            auxiliaryMessageEventHandler?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// Auxiliary message is sent by displayer server when window's auxiliary was changed then display server sent the message.
+        /// When client application added the window's auxiliary hint and if the auxiliary is changed,
+        /// display server send the auxiliary message.
+        /// Auxiliary message has the key, value and options.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AuxiliaryMessageEventArgs> AuxiliaryMessage
+        {
+            add
+            {
+                if (auxiliaryMessageEventHandler == null)
+                {
+                    auxiliaryMessageEventCallback = OnAuxiliaryMessage;
+                    using var signal = new WindowAuxiliaryMessageSignal(this);
+                    signal.Connect(auxiliaryMessageEventCallback);
+                }
+                auxiliaryMessageEventHandler += value;
+            }
+            remove
+            {
+                auxiliaryMessageEventHandler -= value;
+                if (auxiliaryMessageEventHandler == null)
+                {
+                    if (auxiliaryMessageEventCallback != null)
+                    {
+                        using var signal = new WindowAuxiliaryMessageSignal(this);
+                        signal.Disconnect(auxiliaryMessageEventCallback);
+
+                        if (signal.Empty())
+                        {
+                            auxiliaryMessageEventCallback = null;
+                        }
+                    }
+                }
+            }
+        }
+
+
     }
 }
