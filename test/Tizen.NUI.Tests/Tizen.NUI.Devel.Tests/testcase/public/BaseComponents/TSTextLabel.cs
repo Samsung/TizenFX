@@ -125,5 +125,33 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextLabelStrikethrough END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextLabel CharacterSpacing.")]
+        [Property("SPEC", "Tizen.NUI.TextLabel.CharacterSpacing A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "s.sabah@samsung.com")]
+        public void TextLabelCharacterSpacing()
+        {
+            tlog.Debug(tag, $"TextLabelCharacterSpacing START");
+
+            var testingTarget = new TextLabel(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextLabel");
+            Assert.IsInstanceOf<TextLabel>(testingTarget, "Should be an instance of TextLabel type.");
+
+            float expandedValue = 1.5f;
+            testingTarget.CharacterSpacing = expandedValue;
+            Assert.AreEqual(expandedValue, testingTarget.CharacterSpacing, "Should be equal!");
+
+            float condensedValue = -1.5f;
+            testingTarget.CharacterSpacing = condensedValue;
+            Assert.AreEqual(condensedValue, testingTarget.CharacterSpacing, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextLabelCharacterSpacing END (OK)");
+        }
+
     }
 }
