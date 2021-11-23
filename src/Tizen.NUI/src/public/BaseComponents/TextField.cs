@@ -327,7 +327,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFontStyle(FontStyle fontStyle)
         {
-            SetValue(FontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
+            SetValue(FontStyleProperty, TextMapHelper.GetFontStyleMap(fontStyle));
         }
 
         /// <summary>
@@ -340,7 +340,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetFontStyle()
         {
-            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
+            return TextMapHelper.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
         }
 
         /// <summary>
@@ -792,12 +792,12 @@ namespace Tizen.NUI.BaseComponents
         {
             if (!String.IsNullOrEmpty(selectionHandleImage.LeftImageUrl))
             {
-                SetValue(SelectionHandleImageLeftProperty, TextUtils.GetFileNameMap(selectionHandleImage.LeftImageUrl));
+                SetValue(SelectionHandleImageLeftProperty, TextMapHelper.GetFileNameMap(selectionHandleImage.LeftImageUrl));
             }
 
             if (!String.IsNullOrEmpty(selectionHandleImage.RightImageUrl))
             {
-                SetValue(SelectionHandleImageRightProperty, TextUtils.GetFileNameMap(selectionHandleImage.RightImageUrl));
+                SetValue(SelectionHandleImageRightProperty, TextMapHelper.GetFileNameMap(selectionHandleImage.RightImageUrl));
             }
         }
 
@@ -811,7 +811,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SelectionHandleImage GetSelectionHandleImage()
         {
-            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandleImageLeftProperty), (PropertyMap)GetValue(SelectionHandleImageRightProperty));
+            return TextMapHelper.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandleImageLeftProperty), (PropertyMap)GetValue(SelectionHandleImageRightProperty));
         }
 
         /// <summary>
@@ -877,12 +877,12 @@ namespace Tizen.NUI.BaseComponents
         {
             if (!String.IsNullOrEmpty(selectionHandlePressedImage.LeftImageUrl))
             {
-                SetValue(SelectionHandlePressedImageLeftProperty, TextUtils.GetFileNameMap(selectionHandlePressedImage.LeftImageUrl));
+                SetValue(SelectionHandlePressedImageLeftProperty, TextMapHelper.GetFileNameMap(selectionHandlePressedImage.LeftImageUrl));
             }
 
             if (!String.IsNullOrEmpty(selectionHandlePressedImage.RightImageUrl))
             {
-                SetValue(SelectionHandlePressedImageRightProperty, TextUtils.GetFileNameMap(selectionHandlePressedImage.RightImageUrl));
+                SetValue(SelectionHandlePressedImageRightProperty, TextMapHelper.GetFileNameMap(selectionHandlePressedImage.RightImageUrl));
             }
         }
 
@@ -896,7 +896,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SelectionHandleImage GetSelectionHandlePressedImage()
         {
-            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandlePressedImageLeftProperty), (PropertyMap)GetValue(SelectionHandlePressedImageRightProperty));
+            return TextMapHelper.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandlePressedImageLeftProperty), (PropertyMap)GetValue(SelectionHandlePressedImageRightProperty));
         }
 
         /// <summary>
@@ -962,12 +962,12 @@ namespace Tizen.NUI.BaseComponents
         {
             if (!String.IsNullOrEmpty(selectionHandleMarkerImage.LeftImageUrl))
             {
-                SetValue(SelectionHandleMarkerImageLeftProperty, TextUtils.GetFileNameMap(selectionHandleMarkerImage.LeftImageUrl));
+                SetValue(SelectionHandleMarkerImageLeftProperty, TextMapHelper.GetFileNameMap(selectionHandleMarkerImage.LeftImageUrl));
             }
 
             if (!String.IsNullOrEmpty(selectionHandleMarkerImage.RightImageUrl))
             {
-                SetValue(SelectionHandleMarkerImageRightProperty, TextUtils.GetFileNameMap(selectionHandleMarkerImage.RightImageUrl));
+                SetValue(SelectionHandleMarkerImageRightProperty, TextMapHelper.GetFileNameMap(selectionHandleMarkerImage.RightImageUrl));
             }
         }
 
@@ -981,7 +981,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SelectionHandleImage GetSelectionHandleMarkerImage()
         {
-            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandleMarkerImageLeftProperty), (PropertyMap)GetValue(SelectionHandleMarkerImageRightProperty));
+            return TextMapHelper.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandleMarkerImageLeftProperty), (PropertyMap)GetValue(SelectionHandleMarkerImageRightProperty));
         }
 
         /// <summary>
@@ -1156,7 +1156,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetInputFontStyle(FontStyle fontStyle)
         {
-            SetValue(InputFontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
+            SetValue(InputFontStyleProperty, TextMapHelper.GetFontStyleMap(fontStyle));
         }
 
         /// <summary>
@@ -1169,7 +1169,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetInputFontStyle()
         {
-            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(InputFontStyleProperty));
+            return TextMapHelper.GetFontStyleStruct((PropertyMap)GetValue(InputFontStyleProperty));
         }
 
         /// <summary>
@@ -1233,7 +1233,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetUnderline(Underline underline)
         {
-            SetValue(UnderlineProperty, TextUtils.GetUnderlineMap(underline));
+            SetValue(UnderlineProperty, TextMapHelper.GetUnderlineMap(underline));
         }
 
         /// <summary>
@@ -1246,7 +1246,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Underline GetUnderline()
         {
-            return TextUtils.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
+            return TextMapHelper.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
         }
 
         /// <summary>
@@ -1309,7 +1309,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetShadow(Tizen.NUI.Text.Shadow shadow)
         {
-            SetValue(ShadowProperty, TextUtils.GetShadowMap(shadow));
+            SetValue(ShadowProperty, TextMapHelper.GetShadowMap(shadow));
         }
 
         /// <summary>
@@ -1322,7 +1322,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.Text.Shadow GetShadow()
         {
-            return TextUtils.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
+            return TextMapHelper.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
         }
 
         /// <summary>
@@ -1418,7 +1418,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetOutline(Outline outline)
         {
-            SetValue(OutlineProperty, TextUtils.GetOutlineMap(outline));
+            SetValue(OutlineProperty, TextMapHelper.GetOutlineMap(outline));
         }
 
         /// <summary>
@@ -1431,7 +1431,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Outline GetOutline()
         {
-            return TextUtils.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
+            return TextMapHelper.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
         }
 
         /// <summary>
@@ -1509,7 +1509,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetHiddenInput(HiddenInput hiddenInput)
         {
-            SetValue(HiddenInputSettingsProperty, TextUtils.GetHiddenInputMap(hiddenInput));
+            SetValue(HiddenInputSettingsProperty, TextMapHelper.GetHiddenInputMap(hiddenInput));
         }
 
         /// <summary>
@@ -1522,7 +1522,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public HiddenInput GetHiddenInput()
         {
-            return TextUtils.GetHiddenInputStruct((PropertyMap)GetValue(HiddenInputSettingsProperty));
+            return TextMapHelper.GetHiddenInputStruct((PropertyMap)GetValue(HiddenInputSettingsProperty));
         }
 
         /// <summary>
@@ -1782,7 +1782,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetInputFilter(InputFilter inputFilter)
         {
-            SetProperty(TextField.Property.InputFilter, new PropertyValue(TextUtils.GetInputFilterMap(inputFilter)));
+            SetProperty(TextField.Property.InputFilter, new PropertyValue(TextMapHelper.GetInputFilterMap(inputFilter)));
         }
 
         /// <summary>
@@ -1797,7 +1797,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var map = new PropertyMap();
             GetProperty(TextField.Property.InputFilter).Get(map);
-            return TextUtils.GetInputFilterStruct(map);
+            return TextMapHelper.GetInputFilterStruct(map);
         }
 
         /// <summary>
@@ -1948,7 +1948,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPlaceholder(Placeholder placeholder)
         {
-            SetValue(PlaceholderProperty, TextUtils.GetPlaceholderMap(placeholder));
+            SetValue(PlaceholderProperty, TextMapHelper.GetPlaceholderMap(placeholder));
         }
 
         /// <summary>
@@ -1961,7 +1961,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Placeholder GetPlaceholder()
         {
-            return TextUtils.GetPlaceholderStruct((PropertyMap)GetValue(PlaceholderProperty));
+            return TextMapHelper.GetPlaceholderStruct((PropertyMap)GetValue(PlaceholderProperty));
         }
 
         /// <summary>
