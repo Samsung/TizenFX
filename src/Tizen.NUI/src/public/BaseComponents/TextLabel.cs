@@ -294,7 +294,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFontStyle(FontStyle fontStyle)
         {
-            SetValue(FontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
+            SetValue(FontStyleProperty, TextMapHelper.GetFontStyleMap(fontStyle));
         }
 
         /// <summary>
@@ -307,7 +307,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetFontStyle()
         {
-            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
+            return TextMapHelper.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
         }
 
         /// <summary>
@@ -773,7 +773,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetUnderline(Underline underline)
         {
-            SetValue(UnderlineProperty, TextUtils.GetUnderlineMap(underline));
+            SetValue(UnderlineProperty, TextMapHelper.GetUnderlineMap(underline));
         }
 
         /// <summary>
@@ -786,7 +786,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Underline GetUnderline()
         {
-            return TextUtils.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
+            return TextMapHelper.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
         }
 
         /// <summary>
@@ -834,7 +834,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetShadow(Tizen.NUI.Text.Shadow shadow)
         {
-            SetValue(ShadowProperty, TextUtils.GetShadowMap(shadow));
+            SetValue(ShadowProperty, TextMapHelper.GetShadowMap(shadow));
         }
 
         /// <summary>
@@ -847,7 +847,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.Text.Shadow GetShadow()
         {
-            return TextUtils.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
+            return TextMapHelper.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
         }
 
         /// <summary>
@@ -929,7 +929,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetOutline(Outline outline)
         {
-            SetValue(OutlineProperty, TextUtils.GetOutlineMap(outline));
+            SetValue(OutlineProperty, TextMapHelper.GetOutlineMap(outline));
         }
 
         /// <summary>
@@ -942,7 +942,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Outline GetOutline()
         {
-            return TextUtils.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
+            return TextMapHelper.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
         }
 
         /// <summary>
@@ -1168,7 +1168,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTextFit(TextFit textFit)
         {
-            SetValue(TextFitProperty, TextUtils.GetTextFitMap(textFit));
+            SetValue(TextFitProperty, TextMapHelper.GetTextFitMap(textFit));
         }
 
         /// <summary>
@@ -1183,7 +1183,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextFit GetTextFit()
         {
-            return TextUtils.GetTextFitStruct((PropertyMap)GetValue(TextFitProperty));
+            return TextMapHelper.GetTextFitStruct((PropertyMap)GetValue(TextFitProperty));
         }
 
         /// <summary>
