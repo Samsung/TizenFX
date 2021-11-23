@@ -197,12 +197,13 @@ namespace Tizen.NUI.Components
             {
                 if (page is DialogPage == false)
                 {
-                   topPage.SetVisible(false);	   
+                   topPage.SetVisible(false);
                 }
 
                 //Invoke Page events
                 page.InvokeAppeared();
                 topPage.InvokeDisappeared();
+                NotifyAccessibilityStatesChangeOfPages(topPage, page);
             };
             transitionFinished = false;
         }
@@ -252,6 +253,7 @@ namespace Tizen.NUI.Components
                 //Invoke Page events
                 newTopPage.InvokeAppeared();
                 topPage.InvokeDisappeared();
+                NotifyAccessibilityStatesChangeOfPages(topPage, newTopPage);
 
                 //Invoke Popped event
                 Popped?.Invoke(this, new PoppedEventArgs() { Page = topPage });
@@ -326,6 +328,7 @@ namespace Tizen.NUI.Components
                 {
                     //Invoke Page events
                     page.InvokeAppeared();
+                    NotifyAccessibilityStatesChangeOfPages(curTop, page);
                 };
                 newAnimation.Play();
             }
@@ -399,6 +402,7 @@ namespace Tizen.NUI.Components
                 {
                     //Invoke Page events
                     newTop.InvokeAppeared();
+                    NotifyAccessibilityStatesChangeOfPages(curTop, newTop);
                 };
                 newAnimation.Play();
             }
@@ -774,6 +778,30 @@ namespace Tizen.NUI.Components
             foreach (View child in view.Children)
             {
                 RetrieveTaggedViews(taggedViews, child, false);
+            }
+        }
+
+        /// <summary>
+        /// Notify accessibility states change of pages.
+        /// </summary>
+        /// <param name="disappearedPage">Disappeared page</param>
+        /// <param name="appearedPage">Appeared page</param>
+        private void NotifyAccessibilityStatesChangeOfPages(Page disappearedPage, Page appearedPage)
+        {
+            if (disappearedPage != null)
+            {
+                //We can call disappearedPage.NotifyAccessibilityStatesChange
+                //To reduce accessibility events, we are using currently highlighted view instead
+                View curHighlightedView = Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView();
+                if (curHighlightedView != null)
+                {
+                    curHighlightedView.NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, false);
+                }
+            }
+
+            if (appearedPage != null)
+            {
+                appearedPage.NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, false);
             }
         }
 
