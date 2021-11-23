@@ -2399,7 +2399,7 @@ namespace Tizen.NUI.BaseComponents
             var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset);
             var synchronousLoading = new PropertyValue(backgroundImageSynchronousLoading);
             var npatchType = new PropertyValue((int)Visual.Type.NPatch);
-            var border = new PropertyValue(backgroundExtraData.BackgroundImageBorder);
+            var border = (backgroundExtraData.BackgroundImageBorder != null) ? new PropertyValue(backgroundExtraData.BackgroundImageBorder) : null;
             var imageType = new PropertyValue((int)Visual.Type.Image);
 
             map.Add(ImageVisualProperty.URL, url)
