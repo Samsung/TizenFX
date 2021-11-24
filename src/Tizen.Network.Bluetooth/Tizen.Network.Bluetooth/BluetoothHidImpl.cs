@@ -37,7 +37,7 @@ namespace Tizen.Network.Bluetooth
             }
             remove
             {
-                //nothing to be done
+                _hidConnectionChanged -= value;
             }
         }
 
