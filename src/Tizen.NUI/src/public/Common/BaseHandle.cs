@@ -338,16 +338,7 @@ namespace Tizen.NUI
                         $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
                 }
 
-                if (isDisposeQueued)
-                {
-                    Tizen.Log.Fatal("NUI", $"should not be here! (dead code) this will be removed!");
-                    throw new global::System.Exception($"[NUI] should not be here! (dead code) this will be removed!");
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                }
+                Dispose(DisposeTypes.Explicit);
             }
             else
             {
@@ -519,34 +510,6 @@ namespace Tizen.NUI
                 Registry.Unregister(this);
             }
 
-            // this is temporary test code. will be removed laster
-            {
-                if (swigCPtr.Handle != IntPtr.Zero && swigCPtrCopy.Handle != IntPtr.Zero)
-                {
-                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-                    var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
-                    var me = this.GetType().FullName;
-                    var daliId = "unknown";
-                    var hash = this.GetType().GetHashCode();
-                    var name = "unknown";
-
-                    if (this is BaseComponents.View)
-                    {
-                        daliId = Interop.Actor.GetId(swigCPtrCopy).ToString();
-                        name = Interop.Actor.GetName(swigCPtrCopy);
-                        BaseObject tmp = new BaseObject(Interop.BaseHandle.GetBaseObject(swigCPtrCopy), false);
-                        var refCnt = tmp.ReferenceCount();
-                        tmp.Dispose();
-                        if (refCnt > 2)
-                        {
-                            Log.Error("NUI", $"[ERR] reference count is over than 2. Could be a memory leak. Need to check! \n" +
-                                $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me} \n" +
-                                $" disposeType:{type}, name:{name}, daliID:{daliId}, hash:{hash}, refCnt:{refCnt}");
-                        }
-                    }
-                }
-            }
-
             if (SwigCPtr.Handle != IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -616,12 +579,8 @@ namespace Tizen.NUI
             {
                 if (swigCPtr.Handle == IntPtr.Zero)
                 {
-                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-                    var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                     var me = this.GetType().FullName;
-
-                    Log.Fatal("NUI", $"Error! swigCPtr.Handle == IntPtr.Zero ! please check! \n" +
-                        $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
+                    Log.Fatal("NUI", $"Error! swigCPtr.Handle == IntPtr.Zero ! please check! me:{me}\n");
                 }
                 return swigCPtr;
             }

@@ -117,16 +117,7 @@ namespace Tizen.NUI
                         $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
                 }
 
-                if (isDisposeQueued)
-                {
-                    Tizen.Log.Fatal("NUI", $"[Disposable]should not be here! (dead code) this will be removed!");
-                    throw new global::System.Exception($"[NUI] should not be here! (dead code) this will be removed!");
-                    Dispose(DisposeTypes.Implicit);
-                }
-                else
-                {
-                    Dispose(DisposeTypes.Explicit);
-                }
+                Dispose(DisposeTypes.Explicit);
             }
             else
             {
