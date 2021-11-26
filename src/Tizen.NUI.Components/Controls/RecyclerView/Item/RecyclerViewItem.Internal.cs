@@ -224,6 +224,9 @@ namespace Tizen.NUI.Components
             UpdateState();
 
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ViewItem");
+
+            SetAccessibilityConstructor(Role.ListItem);
+            AccessibilityHighlightable = true;
         }
 
         /// <summary>
