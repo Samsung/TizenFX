@@ -150,6 +150,8 @@ namespace Tizen.NUI.Components
                         layoutChanged = true;
                         Add(itemLabel);
                     }
+                    itemLabel.AppendAccessibilityRelation(this, AccessibilityRelationType.ControlledBy);
+                    this.AppendAccessibilityRelation(itemLabel, AccessibilityRelationType.LabelledBy);
                 }
                 return itemLabel;
             }
