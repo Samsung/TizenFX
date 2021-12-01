@@ -26,11 +26,11 @@ namespace Tizen.Uix.Tts
         internal RepeatedText(string text, int uttId)
         {
             this.Text = text;
-            this.UttId = uttId;
+            this.UtteranceId = uttId;
         }
 
         /// <summary>
-        /// The last played text based UTF-8.
+        /// The last played text.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public string Text
@@ -43,7 +43,7 @@ namespace Tizen.Uix.Tts
         /// The utterance ID.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
-        public int UttId
+        public int UtteranceId
         {
             get;
             internal set;

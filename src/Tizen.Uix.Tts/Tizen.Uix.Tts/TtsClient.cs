@@ -975,10 +975,10 @@ namespace Tizen.Uix.Tts
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
-        /// Locale MUST be set for UTF-8 text validation check.
+        /// Locale MUST be set for text validation check.
         /// </remarks>
         /// <param name="text">
-        /// An input text based UTF-8.
+        /// An input text.
         /// </param>
         /// <param name="language">
         /// The language selected from the SupportedVoice.Language Property obtained from GetSupportedVoices()(e.g. 'NULL'(Automatic),'en_US').
