@@ -627,7 +627,7 @@ namespace Tizen.Uix.Tts
         /// The Default Voice SupportedVoice value, 0 if unable to get the value.
         /// </returns>
         /// <pre>
-        /// The state must be ready.
+        /// The Client must be in the <see cref="State.Ready"/> state.
         /// </pre>
         public uint MaxTextSize
         {
@@ -691,7 +691,7 @@ namespace Tizen.Uix.Tts
         /// <exception cref="OutOfMemoryException">This exception can be due to out Of memory.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
-        /// The state must be created.
+        /// The Client must be in the <see cref="State.Created"/> state.
         /// </pre>
         public Mode CurrentMode
         {
@@ -764,7 +764,7 @@ namespace Tizen.Uix.Tts
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
         /// <pre>
-        /// The state must be created or ready.
+        /// The Client must be in the <see cref="State.Created"/> or <see cref="State.Ready"/> state.
         /// </pre>
         public void SetCredential(string credential)
         {
@@ -790,10 +790,10 @@ namespace Tizen.Uix.Tts
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
-        /// The state must be created.
+        /// The Client must be in the <see cref="State.Created"/> state.
         /// </pre>
         /// <post>
-        /// If this function is successful, the TTS state will be ready.
+        /// If this function is successful, the Client will be in the <see cref="State.Ready"/> state.
         /// If this function is unsuccessful, ErrorOccurred event will be invoked.
         /// </post>
         public void Prepare()
@@ -816,10 +816,10 @@ namespace Tizen.Uix.Tts
         /// <exception cref="InvalidOperationException">This exception can be due to an invalid state.</exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
-        /// The state must be ready.
+        /// The Client must be in the <see cref="State.Ready"/> state.
         /// </pre>
         /// <post>
-        /// If this function is successful, the TTS state will be created.
+        /// If this function is successful, the Client will be in the <see cref="State.Created"/> state.
         /// </post>
         public void Unprepare()
         {
@@ -889,7 +889,7 @@ namespace Tizen.Uix.Tts
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
-        /// The state must be ready.
+        /// The Client must be in the <see cref="State.Ready"/> state.
         /// </pre>
         public string GetPrivateData(string key)
         {
@@ -926,7 +926,7 @@ namespace Tizen.Uix.Tts
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
         /// <pre>
-        /// The state must be ready.
+        /// The Client must be in the <see cref="State.Ready"/> state.
         /// </pre>
         public void SetPrivateData(string key, string data)
         {
@@ -955,7 +955,7 @@ namespace Tizen.Uix.Tts
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
-        /// The state must be created.
+        /// The Client must be in the <see cref="State.Created"/> state.
         /// </pre>
         public SpeedRange GetSpeedRange()
         {
@@ -1006,7 +1006,7 @@ namespace Tizen.Uix.Tts
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <exception cref="ArgumentException">This exception can be due to improper value provided while setting the value.</exception>
         /// <pre>
-        /// The state must be ready or playing or paused.
+        /// The Client must be in the <see cref="State.Ready"/>, <see cref="State.Playing"/>, or <see cref="State.Paused"/> state.
         /// </pre>
         public int AddText(string text, string language, int voiceType, int speed)
         {
@@ -1038,10 +1038,10 @@ namespace Tizen.Uix.Tts
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
         /// <pre>
-        /// The state must be ready or paused.
+        /// The Client must be in the <see cref="State.Ready"/> or <see cref="State.Paused"/> state.
         /// </pre>
         /// <post>
-        /// If this function succeeds, the TTS state will be playing.
+        /// If this function succeeds, the Client will be in the <see cref="State.Playing"/> state.
         /// </post>
         public void Play()
         {
@@ -1068,10 +1068,10 @@ namespace Tizen.Uix.Tts
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
-        /// The state must be ready or playing or paused.
+        /// The Client must be in the <see cref="State.Ready"/>, <see cref="State.Playing"/>, or <see cref="State.Paused"/> state.
         /// </pre>
         /// <post>
-        /// If this function succeeds, the TTS state will be ready.
+        /// If this function succeeds, the Client will be in the <see cref="State.Ready"/> state.
         /// This function will remove all text added via AddText() and synthesized sound data.
         /// </post>
         public void Stop()
@@ -1099,10 +1099,10 @@ namespace Tizen.Uix.Tts
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
-        /// The state must be playing.
+        /// The Client must be in the <see cref="State.Playing"/> state.
         /// </pre>
         /// <post>
-        /// If this function succeeds, the TTS state will be paused.
+        /// If this function succeeds, the Client will be in the <see cref="State.Paused"/> state.
         /// </post>
         public void Pause()
         {
@@ -1132,10 +1132,10 @@ namespace Tizen.Uix.Tts
         /// </exception>
         /// <exception cref="NotSupportedException">This exception can be due to TTS not supported.</exception>
         /// <pre>
-        /// The state must be ready.
+        /// The Client must be in the <see cref="State.Ready"/> state.
         /// </pre>
         /// <post>
-        /// If this function succeeds, the TTS state will be playing.
+        /// If this function succeeds, the Client will be in the <see cref="State.Playing"/> state.
         /// </post>
         public RepeatedText Repeat()
         {
