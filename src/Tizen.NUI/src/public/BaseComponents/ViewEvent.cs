@@ -843,26 +843,21 @@ namespace Tizen.NUI.BaseComponents
                 {
                     if (keyInputFocusGainedEventHandler != null)
                     {
-                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-                        var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                         var me = this.GetType().FullName;
-
-                        throw new ObjectDisposedException(nameof(SwigCPtr), $"Error! NUI's native dali object is already disposed. " +
-                            $"OR the native dali object handle of NUI becomes null! \n" +
-                            $" process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                        Tizen.Log.Error("NUI", $"Error! NUI's native dali object is already disposed. " +
+                            $"OR the native dali object handle of NUI becomes null!, keyInputFocusGainedEventHandler != null, " +
+                            $"just return here! me:{me}");
+                        return;
                     }
                 }
                 else
                 {
                     if (this.IsDisposeQueued)
                     {
-                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-                        var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                         var me = this.GetType().FullName;
-
                         //in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked!
-                        Tizen.Log.Error("NUI", "in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \n" +
-                            $"process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                        Tizen.Log.Error("NUI", $"in this case, the View object is ready to be disposed waiting on DisposeQueue, " +
+                            $"so event callback should not be invoked! just return here! me:{me}");
                         return;
                     }
                 }
@@ -879,26 +874,21 @@ namespace Tizen.NUI.BaseComponents
                 {
                     if (keyInputFocusLostEventHandler != null)
                     {
-                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-                        var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                         var me = this.GetType().FullName;
-
-                        throw new ObjectDisposedException(nameof(SwigCPtr), $"Error! NUI's native dali object is already disposed. " +
-                            $"OR the native dali object handle of NUI becomes null! \n" +
-                            $" process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                        Tizen.Log.Error("NUI", $"Error! NUI's native dali object is already disposed. " +
+                            $"OR the native dali object handle of NUI becomes null!, keyInputFocusLostEventHandler != null, " +
+                            $"just return here! me:{me}");
+                        return;
                     }
                 }
                 else
                 {
                     if (this.IsDisposeQueued)
                     {
-                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-                        var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                         var me = this.GetType().FullName;
-
                         //in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked!
-                        Tizen.Log.Error("NUI", "in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \n" +
-                            $"process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                        Tizen.Log.Error("NUI", $"in this case, the View object is ready to be disposed waiting on DisposeQueue, " +
+                            $"so event callback should not be invoked! just return here! me:{me}");
                         return;
                     }
                 }
