@@ -156,10 +156,7 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextSelectorProperty = BindableProperty.Create(nameof(TextSelector), typeof(StringSelector), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (newValue != null)
-            {
-                instance.InternalTextSelector = newValue as StringSelector;
-            }
+            instance.InternalTextSelector = newValue as StringSelector;
         },
         defaultValueCreator: (bindable) =>
         {
@@ -174,10 +171,7 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TranslatableTextSelectorProperty = BindableProperty.Create(nameof(TranslatableTextSelector), typeof(StringSelector), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (newValue != null)
-            {
-                instance.InternalTranslatableTextSelector = newValue as StringSelector;
-            }
+            instance.InternalTranslatableTextSelector = newValue as StringSelector;
         },
         defaultValueCreator: (bindable) =>
         {
@@ -192,10 +186,7 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty TextColorSelectorProperty = BindableProperty.Create(nameof(TextColorSelector), typeof(ColorSelector), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (newValue != null)
-            {
-                instance.InternalTextColorSelector = newValue as ColorSelector;
-            }
+            instance.InternalTextColorSelector = newValue as ColorSelector;
         },
         defaultValueCreator: (bindable) =>
         {
@@ -210,10 +201,7 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty PointSizeSelectorProperty = BindableProperty.Create(nameof(PointSizeSelector), typeof(FloatSelector), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (newValue != null)
-            {
-                instance.InternalPointSizeSelector = newValue as FloatSelector;
-            }
+            instance.InternalPointSizeSelector = newValue as FloatSelector;
         },
         defaultValueCreator: (bindable) =>
         {
@@ -228,10 +216,7 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty IconURLSelectorProperty = BindableProperty.Create(nameof(IconURLSelector), typeof(StringSelector), typeof(Button), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
-            if (newValue != null)
-            {
-                instance.InternalIconURLSelector = newValue as StringSelector;
-            }
+            instance.InternalIconURLSelector = newValue as StringSelector;
         },
         defaultValueCreator: (bindable) =>
         {
