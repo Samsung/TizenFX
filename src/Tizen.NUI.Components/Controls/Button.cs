@@ -607,7 +607,7 @@ namespace Tizen.NUI.Components
         }
         private StringSelector InternalTextSelector
         {
-            get => buttonText == null ? null : new StringSelector(buttonText.TextSelector);
+            get => buttonText?.TextSelector == null ? null : new StringSelector(buttonText.TextSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -641,7 +641,7 @@ namespace Tizen.NUI.Components
         }
         private StringSelector InternalTranslatableTextSelector
         {
-            get => buttonText == null ? null : new StringSelector(buttonText.TranslatableTextSelector);
+            get => (buttonText?.TranslatableTextSelector == null) ? null : new StringSelector(buttonText.TranslatableTextSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -675,7 +675,7 @@ namespace Tizen.NUI.Components
         }
         private ColorSelector InternalTextColorSelector
         {
-            get => buttonText == null ? null : new ColorSelector(buttonText.TextColorSelector);
+            get => buttonText?.TextColorSelector == null ? null : new ColorSelector(buttonText.TextColorSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -709,7 +709,7 @@ namespace Tizen.NUI.Components
         }
         private FloatSelector InternalPointSizeSelector
         {
-            get => buttonText == null ? null : new FloatSelector(buttonText.PointSizeSelector);
+            get => buttonText?.PointSizeSelector == null ? null : new FloatSelector(buttonText.PointSizeSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -743,7 +743,7 @@ namespace Tizen.NUI.Components
         }
         private StringSelector InternalIconURLSelector
         {
-            get => buttonIcon == null ? null : new StringSelector(buttonIcon.ResourceUrlSelector);
+            get => buttonIcon?.ResourceUrlSelector == null ? null : new StringSelector(buttonIcon.ResourceUrlSelector);
             set
             {
                 if (value == null || buttonIcon == null)
