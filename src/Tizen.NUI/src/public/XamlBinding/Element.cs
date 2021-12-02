@@ -200,9 +200,9 @@ namespace Tizen.NUI.Binding
                 if (RealParent != null)
                     ((IElement)RealParent).RemoveResourcesChangedListener(OnParentResourcesChanged);
                 RealParent = value;
-                if (RealParent != null)
+                if (RealParent != null && RealParent.GetMergedResources() != null)
                 {
-                    OnParentResourcesChanged(RealParent?.GetMergedResources());
+                    OnParentResourcesChanged(RealParent.GetMergedResources());
                     ((IElement)RealParent).AddResourcesChangedListener(OnParentResourcesChanged);
                 }
 
