@@ -602,7 +602,7 @@ namespace Tizen.NUI.Components
         }
         private StringSelector InternalThumbImageURLSelector
         {
-            get => thumbImage == null ? null : new StringSelector(thumbImage.ResourceUrlSelector);
+            get => thumbImage?.ResourceUrlSelector == null ? null : new StringSelector(thumbImage.ResourceUrlSelector);
             set
             {
                 if (value == null || thumbImage == null)
