@@ -166,12 +166,12 @@ namespace Tizen.NUI
             public static extern void DaliAccessibilityDeleteRange(IntPtr arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Bridge_Add_Popup")]
-            public static extern void DaliAccessibilityBridgeRegisterPopup(global::System.Runtime.InteropServices.HandleRef arg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Bridge_RegisterDefaultLabel")]
+            public static extern void DaliAccessibilityBridgeRegisterDefaultLabel(global::System.Runtime.InteropServices.HandleRef arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Bridge_Remove_Popup")]
-            public static extern void DaliAccessibilityBridgeRemovePopup(global::System.Runtime.InteropServices.HandleRef arg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Bridge_UnregisterDefaultLabel")]
+            public static extern void DaliAccessibilityBridgeUnregisterDefaultLabel(global::System.Runtime.InteropServices.HandleRef arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_GetCurrentlyHighlightedActor")]
