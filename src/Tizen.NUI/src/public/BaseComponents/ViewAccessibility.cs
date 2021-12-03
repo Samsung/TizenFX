@@ -424,22 +424,28 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// Registers popup component to accessibility tree.
+        /// Registers component as a source of an accessibility "default label".
+        /// The "Default label" is a text that could be read by screen-reader immediately
+        /// after the navigation context has changed (window activates, popup shows up, tab changes)
+        /// and before first UI element is highlighted.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RegisterPopup()
+        public void RegisterDefaultLabel()
         {
-            Interop.ControlDevel.DaliAccessibilityBridgeRegisterPopup(SwigCPtr);
+            Interop.ControlDevel.DaliAccessibilityBridgeRegisterDefaultLabel(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Removes the previously added popup to accessibility tree.
+        /// Unregisters component that has been registered previously as a source of an accessibility "default label".
+        /// The "Default label" is a text that could be read by screen-reader immediately
+        /// after the navigation context has changed (window activates, popup shows up, tab changes)
+        /// and before first UI element is highlighted.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemovePopup()
+        public void UnregisterDefaultLabel()
         {
-            Interop.ControlDevel.DaliAccessibilityBridgeRemovePopup(SwigCPtr);
+            Interop.ControlDevel.DaliAccessibilityBridgeUnregisterDefaultLabel(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
