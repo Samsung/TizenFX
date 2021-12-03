@@ -303,12 +303,17 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Show()
         {
-            if (Accessibility.Accessibility.Enabled && ((GetAccessibilityStates() & AccessibilityStates.Modal) != 0))
-            {
-                RegisterPopup();
-            }
-
             SetVisible(true);
+
+            if (((GetAccessibilityStates() & AccessibilityStates.Modal) != 0))
+            {
+                RegisterDefaultLabel();
+
+                if (Accessibility.Accessibility.Enabled)
+                {
+                    EmitAccessibilityStatesChangedEvent(AccessibilityStates.Showing, true);
+                }
+            }
         }
 
         /// <summary>
@@ -324,9 +329,14 @@ namespace Tizen.NUI.BaseComponents
         {
             SetVisible(false);
 
-            if (Accessibility.Accessibility.Enabled && ((GetAccessibilityStates() & AccessibilityStates.Modal) != 0))
+            if (((GetAccessibilityStates() & AccessibilityStates.Modal) != 0))
             {
-                RemovePopup();
+                UnregisterDefaultLabel();
+
+                if (Accessibility.Accessibility.Enabled)
+                {
+                    EmitAccessibilityStatesChangedEvent(AccessibilityStates.Showing, false);
+                }
             }
         }
 
