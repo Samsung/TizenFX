@@ -85,5 +85,8 @@ namespace Tizen.NUI.Binding.Internals
             }
             bindable.SetValue(NameScopeProperty, value);
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Dictionary<string, object> XNames => names;
     }
 }
