@@ -136,6 +136,12 @@ namespace Tizen.NUI.EXaml
                 reader.Dispose();
 
                 LoadEXaml.Load(view, xaml, out eXamlData);
+                var filePath = likelyResourcePath.Replace("\\", "/");
+                if (filePath.Contains("/"))
+                {
+                    var xamlName = filePath.Substring(filePath.LastIndexOf("/") + 1, filePath.LastIndexOf(".") - filePath.LastIndexOf("/") - 1);
+                    NUIApplication.CurrentLoadedXaml = xamlName;
+                }
             }
             else
             {
