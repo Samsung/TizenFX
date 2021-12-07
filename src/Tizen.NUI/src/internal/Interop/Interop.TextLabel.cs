@@ -147,6 +147,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_Property_FONT_SIZE_SCALE_get")]
             public static extern int FontSizeScaleGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_GetTextSize")]
+            public static extern global::System.IntPtr GetTextSize(global::System.Runtime.InteropServices.HandleRef textLabelRef, uint start, uint end);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_GetTextPosition")]
+            public static extern global::System.IntPtr GetTextPosition(global::System.Runtime.InteropServices.HandleRef textLabelRef, uint start, uint end);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_AnchorClickedSignal")]
             public static extern global::System.IntPtr AnchorClickedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
