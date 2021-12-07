@@ -93,6 +93,7 @@ namespace Tizen.NUI.Xaml
                 if (string.IsNullOrEmpty(xaml))
                     throw new XamlParseException(string.Format("Can't get xaml from type {0}", callingType), new XmlLineInfo());
                 Load(view, xaml);
+                NUIApplication.CurrentLoadedXaml = callingType.FullName;
             }
             catch (XamlParseException e)
             {
