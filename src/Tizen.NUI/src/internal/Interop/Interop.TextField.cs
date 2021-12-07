@@ -298,6 +298,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_InputFilteredSignal")]
             public static extern global::System.IntPtr InputFilteredSignal(global::System.Runtime.InteropServices.HandleRef textFieldRef);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_GetTextSize")]
+            public static extern global::System.IntPtr GetTextSize(global::System.Runtime.InteropServices.HandleRef textFieldRef, uint start, uint end);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_GetTextPosition")]
+            public static extern global::System.IntPtr GetTextPosition(global::System.Runtime.InteropServices.HandleRef textFieldRef, uint start, uint end);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_CopyText")]
             public static extern string CopyText(global::System.Runtime.InteropServices.HandleRef textFieldRef);
 
