@@ -43,7 +43,7 @@ namespace Tizen.NUI
         /// Xaml loaded delegate.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void XamlLoadedHandler(XamlLoadedEventArgs args);
+        public delegate void XamlLoadedHandler(string xamlName);
 
         static NUIApplication()
         {
@@ -255,7 +255,7 @@ namespace Tizen.NUI
                 if (currentLoadedXaml != value)
                 {
                     currentLoadedXaml = value;
-                    XamlLoaded?.Invoke(new XamlLoadedEventArgs(){XamlName = value});
+                    XamlLoaded?.Invoke(value);
                 }
             }
         }
@@ -554,14 +554,5 @@ namespace Tizen.NUI
 
         internal const string GlesCSharpBinder = NDalicPINVOKE.Lib;
         internal const string VulkanCSharpBinder = "libdali-csharp-binder-vk.so";
-    }
-
-    /// <summary>
-    /// Xaml loaded event args.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class XamlLoadedEventArgs : EventArgs
-    {
-        public string XamlName {get; set;}
     }
 }
