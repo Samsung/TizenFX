@@ -17,7 +17,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding.Internals;
 
 namespace Tizen.NUI
 {
@@ -80,6 +82,92 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Copy all properties, bindings.
+        /// Copy children without xName from other container, copy all properties, bindings of children with xName.
+        /// </summary>
+        /// <param name="other"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void CopyAndKeepXNameInstance(Container other)
+        {
+            CopyFrom(other);
+
+            var nameScopeOfOther = NameScope.GetNameScope(other) as NameScope;
+            var nameScope = NameScope.GetNameScope(this) as NameScope;
+
+            if (null == nameScopeOfOther)
+            {
+                if (null != nameScope)
+                {
+                    return;
+                }
+            }
+            else if (!nameScopeOfOther.Equal(nameScope))
+            {
+                return;
+            }
+
+            var xNameToElementsOfOther = nameScopeOfOther.NameToElement;
+            var xNameToElements = nameScope.NameToElement;
+
+            if (null != xNameToElements)
+            {
+                foreach (var pair in xNameToElements)
+                {
+                    if (pair.Value is View view)
+                    {
+                        view.Parent?.Remove(view);
+                    }
+                }
+            }
+
+            for (int i = Children.Count - 1; i >= 0; i--)
+            {
+                var child = GetChildAt((uint)i);
+                Remove(child);
+
+                child.DisposeIncludeChildren();
+            }
+
+            CopyChildren(other);
+
+            if (null != xNameToElementsOfOther)
+            {
+                foreach (var pair in xNameToElementsOfOther)
+                {
+                    if (pair.Value is View view)
+                    {
+                        var parent = view.Parent;
+
+                        if (null != parent)
+                        {
+                            if (null != xNameToElements)
+                            {
+                                var holdedXElements = xNameToElements[pair.Key] as View;
+                                holdedXElements.CopyBindingRelationShip(view);
+                                holdedXElements.CopyFrom(view);
+
+                                parent.ReplaceChild(view, holdedXElements);
+                            }
+                        }
+                    }
+                }
+            }
+
+            ReplaceBindingElementInWholeTree(xNameToElementsOfOther, xNameToElements);
+
+            if (null != xNameToElementsOfOther)
+            {
+                foreach (var pair in xNameToElementsOfOther)
+                {
+                    if (pair.Value is View view)
+                    {
+                        view.Dispose();
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Adds a child view to this Container.
         /// </summary>
         /// <pre>This Container (the parent) has been initialized. The child view has been initialized. The child view is not the same as the parent view.</pre>
@@ -125,5 +213,69 @@ namespace Tizen.NUI
         public abstract UInt32 GetChildCount();
 
         internal abstract View FindCurrentChildById(uint id);
+
+        private void DisposeIncludeChildren()
+        {
+            foreach (var child in Children)
+            {
+                child.DisposeIncludeChildren();
+            }
+
+            if (IsCreateByXaml)
+            {
+                Dispose();
+                ClearBinding();
+            }
+        }
+
+        private void CopyChildren(Container other)
+        {
+            var childrenOfOtherView = new List<View>();
+
+            foreach (var child in other.Children)
+            {
+                childrenOfOtherView.Add(child);
+            }
+
+            foreach (var child in childrenOfOtherView)
+            {
+                Add(child);
+            }
+        }
+
+        private void ReplaceChild(View child, View newChild)
+        {
+            int indexOfView = Children.FindIndex((View v) => { return v == child; });
+
+            var childrenNeedtoReAdd = new Stack<View>();
+
+            for (int i = Children.Count - 1; i > indexOfView; i--)
+            {
+                childrenNeedtoReAdd.Push(Children[i]);
+                Remove(Children[i]);
+            }
+
+            Remove(child);
+
+            childrenNeedtoReAdd.Push(newChild);
+
+            while (0 < childrenNeedtoReAdd.Count)
+            {
+                Add(childrenNeedtoReAdd.Pop());
+            }
+        }
+
+        private void ReplaceBindingElementInWholeTree(Dictionary<string, object> oldNameScope, Dictionary<string, object> newNameScope)
+        {
+            if (IsCreateByXaml)
+            {
+                ReplaceBindingElement(oldNameScope, newNameScope);
+
+                foreach (var child in Children)
+                {
+                    child.ReplaceBindingElementInWholeTree(oldNameScope, newNameScope);
+                }
+            }
+        }
     }
 } // namespace Tizen.NUI
