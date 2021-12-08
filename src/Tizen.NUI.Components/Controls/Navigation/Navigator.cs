@@ -329,6 +329,8 @@ namespace Tizen.NUI.Components
             Add(page);
             page.Navigator = this;
 
+            AddPageToList(page);
+
             //Invoke Page events
             page.InvokeAppearing();
             curTop.InvokeDisappearing();
@@ -385,6 +387,7 @@ namespace Tizen.NUI.Components
             }
 
             var curTop = Peek();
+            RemovePageToList(curTop);
 
             if (navigationPages.Count == 1)
             {
@@ -858,6 +861,34 @@ namespace Tizen.NUI.Components
                 newAnimation.Stop();
                 newAnimation.Clear();
                 newAnimation = null;
+            }
+        }
+
+        // Register dialog(popup) to Accessibility bridge
+        internal void AddPageToList(Page page)
+        {
+            ContentPage obj = page as ContentPage;
+            if (obj != null)
+            {
+                View view = obj.Content;
+                if (view != null)
+                {
+                    view.Show(); // Calls RegisterDefaultLabel()
+                }
+            }
+        }
+
+        // Remove dialog(popup) from Accessibility bridge
+        internal void RemovePageToList(Page page)
+        {
+            ContentPage obj = page as ContentPage;
+            if (obj != null)
+            {
+                View view = obj.Content;
+                if (view != null)
+                {
+                    view.Hide(); // Calls UnregisterDefaultLabel()
+                }
             }
         }
     }
