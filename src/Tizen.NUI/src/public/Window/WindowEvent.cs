@@ -91,6 +91,10 @@ namespace Tizen.NUI
                 if (windowFocusChangedEventHandler == null && windowFocusChangedSignal?.Empty() == false && windowFocusChangedEventCallback != null)
                 {
                     windowFocusChangedSignal?.Disconnect(windowFocusChangedEventCallback);
+                    if(windowFocusChangedSignal?.Empty() == true)
+                    {
+                        windowFocusChangedEventCallback = null;
+                    }
                 }
             }
         }
@@ -121,6 +125,10 @@ namespace Tizen.NUI
                 if (rootLayerTouchDataEventHandler == null && touchDataSignal?.Empty() == false && rootLayerTouchDataCallback != null)
                 {
                     touchDataSignal?.Disconnect(rootLayerTouchDataCallback);
+                    if(touchDataSignal?.Empty() == true)
+                    {
+                        rootLayerTouchDataCallback = null;
+                    }
                 }
             }
         }
@@ -156,6 +164,10 @@ namespace Tizen.NUI
                 if (stageWheelHandler == null && wheelSignal?.Empty() == false)
                 {
                     wheelSignal?.Disconnect(wheelEventCallback);
+                    if(wheelSignal?.Empty() == true)
+                    {
+                        wheelEventCallback = null;
+                    }
                 }
 
                 DetentEventHandler -= value;
@@ -163,6 +175,10 @@ namespace Tizen.NUI
                 if (DetentEventHandler == null && stageWheelSignal?.Empty() == false)
                 {
                     stageWheelSignal?.Disconnect(DetentEventCallback);
+                    if(stageWheelSignal?.Empty() == true)
+                    {
+                        DetentEventCallback = null;
+                    }
                 }
             }
         }
@@ -190,6 +206,10 @@ namespace Tizen.NUI
                 if (stageKeyHandler == null && keyEventSignal?.Empty() == false)
                 {
                     keyEventSignal?.Disconnect(stageKeyCallbackDelegate);
+                    if(keyEventSignal?.Empty() == true)
+                    {
+                        stageKeyCallbackDelegate = null;
+                    }
                 }
             }
         }
@@ -219,7 +239,10 @@ namespace Tizen.NUI
                 if (windowResizeEventHandler == null && resizeSignal?.Empty() == false && windowResizeEventCallback != null)
                 {
                     resizeSignal?.Disconnect(windowResizeEventCallback);
-                    windowResizeEventCallback = null;
+                    if(resizeSignal?.Empty() == true)
+                    {
+                        windowResizeEventCallback = null;
+                    }
                 }
             }
         }
@@ -256,6 +279,10 @@ namespace Tizen.NUI
                 if (windowFocusChangedEventHandler2 == null && windowFocusChangedSignal2?.Empty() == false && windowFocusChangedEventCallback2 != null)
                 {
                     windowFocusChangedSignal2?.Disconnect(windowFocusChangedEventCallback2);
+                    if(windowFocusChangedSignal2?.Empty() == true)
+                    {
+                        windowFocusChangedEventCallback2 = null;
+                    }
                 }
             }
         }
@@ -281,6 +308,10 @@ namespace Tizen.NUI
                 if (transitionEffectHandler == null && TransitionEffectEventSignal().Empty() == false)
                 {
                     TransitionEffectEventSignal().Disconnect(transitionEffectEventCallback);
+                    if(TransitionEffectEventSignal().Empty() == true)
+                    {
+                        transitionEffectEventCallback = null;
+                    }
                 }
             }
         }
@@ -306,6 +337,10 @@ namespace Tizen.NUI
                 if (keyboardRepeatSettingsChangedHandler == null && KeyboardRepeatSettingsChangedEventSignal().Empty() == false)
                 {
                     KeyboardRepeatSettingsChangedEventSignal().Disconnect(keyboardRepeatSettingsChangedEventCallback);
+                    if(KeyboardRepeatSettingsChangedEventSignal().Empty() == true)
+                    {
+                        keyboardRepeatSettingsChangedEventCallback = null;
+                    }
                 }
             }
         }
@@ -354,6 +389,10 @@ namespace Tizen.NUI
                 if (stageEventProcessingFinishedEventHandler == null && eventProcessingFinishedSignal?.Empty() == false)
                 {
                     eventProcessingFinishedSignal?.Disconnect(stageEventProcessingFinishedEventCallbackDelegate);
+                    if(eventProcessingFinishedSignal?.Empty() == true)
+                    {
+                        stageEventProcessingFinishedEventCallbackDelegate = null;
+                    }
                 }
             }
         }
@@ -378,6 +417,10 @@ namespace Tizen.NUI
                 if (stageContextLostEventHandler == null && contextLostSignal?.Empty() == false)
                 {
                     contextLostSignal?.Disconnect(stageContextLostEventCallbackDelegate);
+                    if(contextLostSignal?.Empty() == true)
+                    {
+                        stageContextLostEventCallbackDelegate = null;
+                    }
                 }
             }
         }
@@ -402,6 +445,10 @@ namespace Tizen.NUI
                 if (stageContextRegainedEventHandler == null && contextRegainedSignal?.Empty() == false)
                 {
                     contextRegainedSignal?.Disconnect(stageContextRegainedEventCallbackDelegate);
+                    if(contextRegainedSignal?.Empty() == true)
+                    {
+                        stageContextRegainedEventCallbackDelegate = null;
+                    }
                 }
             }
         }
@@ -426,6 +473,10 @@ namespace Tizen.NUI
                 if (stageSceneCreatedEventHandler == null && sceneCreatedSignal?.Empty() == false)
                 {
                     sceneCreatedSignal?.Disconnect(stageSceneCreatedEventCallbackDelegate);
+                    if(sceneCreatedSignal?.Empty() == true)
+                    {
+                        stageSceneCreatedEventCallbackDelegate = null;
+                    }
                 }
             }
         }
@@ -530,6 +581,7 @@ namespace Tizen.NUI
                 if( touchDataSignal?.Empty() == false )
                 {
                     touchDataSignal?.Disconnect(rootLayerTouchDataCallback);
+                    rootLayerTouchDataCallback = null;
                 }
             }
 
@@ -539,6 +591,7 @@ namespace Tizen.NUI
                 if( wheelSignal?.Empty() == false )
                 {
                     wheelSignal?.Disconnect(wheelEventCallback);
+                    wheelEventCallback = null;
                 }
             }
 
@@ -638,7 +691,7 @@ namespace Tizen.NUI
             {
                 using var signal = new WindowAuxiliaryMessageSignal(this);
                 signal.Disconnect(auxiliaryMessageEventCallback);
-                auxiliaryMessageEventHandler= null;
+                auxiliaryMessageEventHandler = null;
                 auxiliaryMessageEventCallback = null;
             }
         }
@@ -1135,6 +1188,10 @@ namespace Tizen.NUI
                         if (VisibilityChangedEventSignal.Empty() == false)
                         {
                             VisibilityChangedEventSignal.Disconnect(VisibilityChangedEventCallback);
+                            if (VisibilityChangedEventSignal.Empty())
+                            {
+                                VisibilityChangedEventCallback = null;
+                            }
                         }
                     }
                 }
