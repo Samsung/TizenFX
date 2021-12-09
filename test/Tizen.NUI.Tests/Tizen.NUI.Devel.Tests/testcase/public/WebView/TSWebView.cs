@@ -596,25 +596,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("WebView ScrollPosition.")]
-        [Property("SPEC", "Tizen.NUI.WebView.ScrollPosition A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewScrollPosition()
-        {
-            tlog.Debug(tag, $"WebViewScrollPosition START");
-
-            webView.ScrollPosition = new Position(600, 0);
-            tlog.Debug(tag, "ScrollPositionX : " + webView.ScrollPosition.X);
-            tlog.Debug(tag, "ScrollPositionY : " + webView.ScrollPosition.Y);
-
-            tlog.Debug(tag, $"WebViewScrollPosition END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("WebView ScrollSize.")]
         [Property("SPEC", "Tizen.NUI.WebView.ScrollSize A")]
         [Property("SPEC_URL", "-")]

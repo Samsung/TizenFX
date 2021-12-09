@@ -184,7 +184,7 @@ namespace Tizen.NUI.Components
         }
         private StringSelector InternalSwitchBackgroundImageURLSelector
         {
-            get => new StringSelector(Icon.ResourceUrlSelector);
+            get => Icon?.ResourceUrlSelector == null ? null : new StringSelector(Icon.ResourceUrlSelector);
             set
             {
                 Debug.Assert(Icon != null);
