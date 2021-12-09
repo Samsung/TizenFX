@@ -103,10 +103,7 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty ThumbImageURLSelectorProperty = BindableProperty.Create(nameof(ThumbImageURLSelector), typeof(StringSelector), typeof(Slider), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Slider)bindable;
-            if (newValue != null)
-            {
-                instance.InternalThumbImageURLSelector = newValue as StringSelector;
-            }
+            instance.InternalThumbImageURLSelector = newValue as StringSelector;
         },
         defaultValueCreator: (bindable) =>
         {
