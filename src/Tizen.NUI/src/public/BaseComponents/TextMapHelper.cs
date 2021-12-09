@@ -27,6 +27,18 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class TextMapHelper
     {
+        private static string GetCamelCase(string pascalCase)
+        {
+            if (!string.IsNullOrEmpty(pascalCase))
+            {
+                char[] charArray = pascalCase.ToCharArray();
+                charArray[0] = Char.ToLower(charArray[0]);
+                pascalCase = new string(charArray);
+            }
+
+            return pascalCase;
+        }
+
         /// <summary>
         /// It returns a string value according to FontWidthType.
         /// The returned value can be used for FontStyle PropertyMap.
@@ -36,19 +48,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetFontWidthString(FontWidthType fontWidthType)
         {
-            string value = fontWidthType.ToString();
-            if (!string.IsNullOrEmpty(value))
-            {
-                char[] charArray = value.ToCharArray();
-                charArray[0] = Char.ToLower(charArray[0]);
-                value = new string(charArray);
-            }
-            else
-            {
-                value = "none"; // The default value.
-            }
-
-            return value;
+            string value = GetCamelCase(fontWidthType.ToString());
+            return string.IsNullOrEmpty(value) ? "none" : value;
         }
 
         /// <summary>
@@ -60,19 +61,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetFontWeightString(FontWeightType fontWeightType)
         {
-            string value = fontWeightType.ToString();
-            if (!string.IsNullOrEmpty(value))
-            {
-                char[] charArray = value.ToCharArray();
-                charArray[0] = Char.ToLower(charArray[0]);
-                value = new string(charArray);
-            }
-            else
-            {
-                value = "none"; // The default value.
-            }
-
-            return value;
+            string value = GetCamelCase(fontWeightType.ToString());
+            return string.IsNullOrEmpty(value) ? "none" : value;
         }
 
         /// <summary>
@@ -84,19 +74,21 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetFontSlantString(FontSlantType fontSlantType)
         {
-            string value = fontSlantType.ToString();
-            if (!string.IsNullOrEmpty(value))
-            {
-                char[] charArray = value.ToCharArray();
-                charArray[0] = Char.ToLower(charArray[0]);
-                value = new string(charArray);
-            }
-            else
-            {
-                value = "none"; // The default value.
-            }
+            string value = GetCamelCase(fontSlantType.ToString());
+            return string.IsNullOrEmpty(value) ? "none" : value;
+        }
 
-            return value;
+        /// <summary>
+        /// It returns a string value according to FontSizeType.
+        /// The returned value can be used for TextFit PropertyMap.
+        /// <param name="fontSizeType">The FontSizeType enum value.</param>
+        /// <returns> A string value for TextFit.FontSizeType property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static string GetFontSizeString(FontSizeType fontSizeType)
+        {
+            string value = GetCamelCase(fontSizeType.ToString());
+            return string.IsNullOrEmpty(value) ? "pointSize" : value;
         }
 
         /// <summary>
@@ -369,30 +361,6 @@ namespace Tizen.NUI.BaseComponents
             outline.Width = width;
 
             return outline;
-        }
-
-        /// <summary>
-        /// It returns a string value according to FontSizeType.
-        /// The returned value can be used for TextFit PropertyMap.
-        /// <param name="fontSizeType">The FontSizeType enum value.</param>
-        /// <returns> A string value for TextFit.FontSizeType property. </returns>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static string GetFontSizeString(FontSizeType fontSizeType)
-        {
-            string value = fontSizeType.ToString();
-            if (!string.IsNullOrEmpty(value))
-            {
-                char[] charArray = value.ToCharArray();
-                charArray[0] = Char.ToLower(charArray[0]);
-                value = new string(charArray);
-            }
-            else
-            {
-                value = "pointSize"; // The default value.
-            }
-
-            return value;
         }
 
         /// <summary>
