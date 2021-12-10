@@ -28,6 +28,8 @@ namespace Tizen.NUI.Components
     {
         private AppBar appBar = null;
         private View content = null;
+        private bool isScrollableContent = false;
+        private View scrollableContent = null;
 
         /// <summary>
         /// Creates a new instance of a ContentPage.
@@ -64,6 +66,11 @@ namespace Tizen.NUI.Components
                 if (content != null)
                 {
                     Utility.Dispose(content);
+                }
+
+                if (scrollableContent != null)
+                {
+                    Utility.Dispose(scrollableContent);
                 }
             }
 
@@ -168,8 +175,113 @@ namespace Tizen.NUI.Components
                     return;
                 }
 
-                Add(content);
+                if (IsScrollableContent)
+                {
+                    if (ScrollableContent == null)
+                    {
+                        ScrollableContent = CreateScrollableContent();
+                    }
+
+                    ScrollableContent.Add(content);
+                    Add(ScrollableContent);
+                }
+                else
+                {
+                    Add(content);
+                }
             }
+        }
+
+        /// <summary>
+        /// If IsScrollableContent is true, then Content is scrollable.
+        /// To make Content scrollable, at least either Content's WidthSpecification or HeightSpecification should not be MatchParent.
+        /// Because Content can be scrollable only if Content's width or height is bigger than scrollable region's.
+        /// If Content's Position is set manually, it cannot be preserved when Content becomes scrollable.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsScrollableContent
+        {
+            get
+            {
+                return isScrollableContent;
+            }
+            set
+            {
+                if (value == isScrollableContent)
+                {
+                    return;
+                }
+
+                if (Content != null)
+                {
+                    if (value == false)
+                    {
+                        ScrollableContent.Remove(Content);
+                        Remove(ScrollableContent);
+                        ScrollableContent.Dispose();
+                        ScrollableContent = null;
+                        Add(Content);
+                    }
+                    else
+                    {
+                        ScrollableContent = CreateScrollableContent();
+                        Remove(Content);
+                        //Initialize Content's Position not to accumulate the Position.
+                        Content.Position = new Position();
+                        ScrollableContent.Add(Content);
+                        Add(ScrollableContent);
+                    }
+                }
+
+                isScrollableContent = value;
+            }
+        }
+
+        /// <summary>
+        /// ScrollableContent of ContentPage.
+        /// If IsScrollableContent is true, then ScrollableContent is created and Content is added to ScrollableContent.
+        /// </summary>
+        internal View ScrollableContent
+        {
+            get
+            {
+                return scrollableContent;
+            }
+            private set
+            {
+                scrollableContent = value;
+            }
+        }
+
+        private View CreateScrollableContent()
+        {
+
+            var scrollableBase = new ScrollableBase()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+                HideScrollbar = true,
+            };
+
+            // TODO: Both horizontal and vertical directions should be supported.
+            if ((Content.WidthSpecification != LayoutParamPolicies.MatchParent) && (Content.HeightSpecification != LayoutParamPolicies.MatchParent))
+            {
+                scrollableBase.ScrollingDirection = ScrollableBase.Direction.Vertical;
+            }
+            else if (Content.WidthSpecification != LayoutParamPolicies.MatchParent)
+            {
+                scrollableBase.ScrollingDirection = ScrollableBase.Direction.Horizontal;
+            }
+            else if (Content.HeightSpecification != LayoutParamPolicies.MatchParent)
+            {
+                scrollableBase.ScrollingDirection = ScrollableBase.Direction.Vertical;
+            }
+            else
+            {
+                Tizen.Log.Error("NUI", "To make Content scrollable, at least either Content's WidthSpecification or HeightSpecification should not be MatchParent.\n");
+            }
+
+            return scrollableBase;
         }
 
         private class ContentPageLayout : AbsoluteLayout
@@ -183,7 +295,15 @@ namespace Tizen.NUI.Components
                 MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
 
                 var appBar = (Owner as ContentPage)?.AppBar;
-                var content = (Owner as ContentPage)?.Content;
+                View content = null;
+                if ((Owner as ContentPage != null) && ((Owner as ContentPage).IsScrollableContent))
+                {
+                    content = (Owner as ContentPage)?.ScrollableContent;
+                }
+                else
+                {
+                    content = (Owner as ContentPage)?.Content;
+                }
 
                 foreach (var childLayout in LayoutChildren)
                 {
@@ -228,6 +348,17 @@ namespace Tizen.NUI.Components
 
             protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
             {
+                var appBar = (Owner as ContentPage)?.AppBar;
+                View content = null;
+                if ((Owner as ContentPage != null) && ((Owner as ContentPage).IsScrollableContent))
+                {
+                    content = (Owner as ContentPage)?.ScrollableContent;
+                }
+                else
+                {
+                    content = (Owner as ContentPage)?.Content;
+                }
+
                 foreach (var childLayout in LayoutChildren)
                 {
                     if (!childLayout.SetPositionByLayout)
@@ -240,9 +371,6 @@ namespace Tizen.NUI.Components
 
                     LayoutLength childLeft = new LayoutLength(childLayout.Owner.PositionX);
                     LayoutLength childTop = new LayoutLength(childLayout.Owner.PositionY);
-
-                    var appBar = (Owner as ContentPage)?.AppBar;
-                    var content = (Owner as ContentPage)?.Content;
 
                     if ((content != null) && (content == childLayout.Owner))
                     {
