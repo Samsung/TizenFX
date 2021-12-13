@@ -20,6 +20,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -55,6 +56,42 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 9 </since_tizen>
     public class TimePicker : Control
     {
+        /// <summary>
+        /// TimeProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TimeProperty = BindableProperty.Create(nameof(Time), typeof(DateTime), typeof(TimePicker), default(DateTime), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (TimePicker)bindable;
+            if (newValue != null)
+            {
+                instance.InternalTime = (DateTime)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (TimePicker)bindable;
+            return instance.InternalTime;
+        });
+
+        /// <summary>
+        /// Is24HourViewProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty Is24HourViewProperty = BindableProperty.Create(nameof(Is24HourView), typeof(bool), typeof(TimePicker), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (TimePicker)bindable;
+            if (newValue != null)
+            {
+                instance.InternalIs24HourView = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (TimePicker)bindable;
+            return instance.InternalIs24HourView;
+        });
+
         private bool isAm;
         private bool is24HourView;
         private DateTime currentTime;
@@ -131,6 +168,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (DateTime)GetValue(TimeProperty);
+            }
+            set
+            {
+                SetValue(TimeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private DateTime InternalTime
+        {
+            get
+            {
                 return currentTime;
             }
             set
@@ -163,6 +212,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public bool Is24HourView
+        {
+            get
+            {
+                return (bool)GetValue(Is24HourViewProperty);
+            }
+            set
+            {
+                SetValue(Is24HourViewProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalIs24HourView
         {
             get
             {

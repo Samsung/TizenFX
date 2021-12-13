@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -73,6 +74,24 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 9 </since_tizen>
     public class Navigator : Control
     {
+        /// <summary>
+        /// TransitionProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TransitionProperty = BindableProperty.Create(nameof(Transition), typeof(Transition), typeof(Navigator), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Navigator)bindable;
+            if (newValue != null)
+            {
+                instance.InternalTransition = newValue as Transition;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Navigator)bindable;
+            return instance.InternalTransition;
+        });
+
         private const int DefaultTransitionDuration = 500;
 
         //This will be replaced with view transition class instance.
@@ -143,6 +162,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public Transition Transition
         {
+            get
+            {
+                return GetValue(TransitionProperty) as Transition;
+            }
+            set
+            {
+                SetValue(TransitionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Transition InternalTransition
+        {
             set
             {
                 transition = value;
@@ -197,12 +228,13 @@ namespace Tizen.NUI.Components
             {
                 if (page is DialogPage == false)
                 {
-                   topPage.SetVisible(false);	   
+                   topPage.SetVisible(false);
                 }
 
                 //Invoke Page events
                 page.InvokeAppeared();
                 topPage.InvokeDisappeared();
+                NotifyAccessibilityStatesChangeOfPages(topPage, page);
             };
             transitionFinished = false;
         }
@@ -252,6 +284,7 @@ namespace Tizen.NUI.Components
                 //Invoke Page events
                 newTopPage.InvokeAppeared();
                 topPage.InvokeDisappeared();
+                NotifyAccessibilityStatesChangeOfPages(topPage, newTopPage);
 
                 //Invoke Popped event
                 Popped?.Invoke(this, new PoppedEventArgs() { Page = topPage });
@@ -326,6 +359,7 @@ namespace Tizen.NUI.Components
                 {
                     //Invoke Page events
                     page.InvokeAppeared();
+                    NotifyAccessibilityStatesChangeOfPages(curTop, page);
                 };
                 newAnimation.Play();
             }
@@ -399,6 +433,7 @@ namespace Tizen.NUI.Components
                 {
                     //Invoke Page events
                     newTop.InvokeAppeared();
+                    NotifyAccessibilityStatesChangeOfPages(curTop, newTop);
                 };
                 newAnimation.Play();
             }
@@ -774,6 +809,30 @@ namespace Tizen.NUI.Components
             foreach (View child in view.Children)
             {
                 RetrieveTaggedViews(taggedViews, child, false);
+            }
+        }
+
+        /// <summary>
+        /// Notify accessibility states change of pages.
+        /// </summary>
+        /// <param name="disappearedPage">Disappeared page</param>
+        /// <param name="appearedPage">Appeared page</param>
+        private void NotifyAccessibilityStatesChangeOfPages(Page disappearedPage, Page appearedPage)
+        {
+            if (disappearedPage != null)
+            {
+                //We can call disappearedPage.NotifyAccessibilityStatesChange
+                //To reduce accessibility events, we are using currently highlighted view instead
+                View curHighlightedView = Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView();
+                if (curHighlightedView != null)
+                {
+                    curHighlightedView.NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, false);
+                }
+            }
+
+            if (appearedPage != null)
+            {
+                appearedPage.NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, false);
             }
         }
 

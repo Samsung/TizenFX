@@ -261,7 +261,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFontStyle(FontStyle fontStyle)
         {
-            SetValue(FontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
+            SetValue(FontStyleProperty, TextMapHelper.GetFontStyleMap(fontStyle));
         }
 
         /// <summary>
@@ -274,7 +274,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetFontStyle()
         {
-            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
+            return TextMapHelper.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
         }
 
         /// <summary>
@@ -552,12 +552,12 @@ namespace Tizen.NUI.BaseComponents
         {
             if (!String.IsNullOrEmpty(selectionHandleImage.LeftImageUrl))
             {
-                SetValue(SelectionHandleImageLeftProperty, TextUtils.GetFileNameMap(selectionHandleImage.LeftImageUrl));
+                SetValue(SelectionHandleImageLeftProperty, TextMapHelper.GetFileNameMap(selectionHandleImage.LeftImageUrl));
             }
 
             if (!String.IsNullOrEmpty(selectionHandleImage.RightImageUrl))
             {
-                SetValue(SelectionHandleImageRightProperty, TextUtils.GetFileNameMap(selectionHandleImage.RightImageUrl));
+                SetValue(SelectionHandleImageRightProperty, TextMapHelper.GetFileNameMap(selectionHandleImage.RightImageUrl));
             }
         }
 
@@ -571,7 +571,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SelectionHandleImage GetSelectionHandleImage()
         {
-            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandleImageLeftProperty), (PropertyMap)GetValue(SelectionHandleImageRightProperty));
+            return TextMapHelper.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandleImageLeftProperty), (PropertyMap)GetValue(SelectionHandleImageRightProperty));
         }
 
         /// <summary>
@@ -637,12 +637,12 @@ namespace Tizen.NUI.BaseComponents
         {
             if (!String.IsNullOrEmpty(selectionHandlePressedImage.LeftImageUrl))
             {
-                SetValue(SelectionHandlePressedImageLeftProperty, TextUtils.GetFileNameMap(selectionHandlePressedImage.LeftImageUrl));
+                SetValue(SelectionHandlePressedImageLeftProperty, TextMapHelper.GetFileNameMap(selectionHandlePressedImage.LeftImageUrl));
             }
 
             if (!String.IsNullOrEmpty(selectionHandlePressedImage.RightImageUrl))
             {
-                SetValue(SelectionHandlePressedImageRightProperty, TextUtils.GetFileNameMap(selectionHandlePressedImage.RightImageUrl));
+                SetValue(SelectionHandlePressedImageRightProperty, TextMapHelper.GetFileNameMap(selectionHandlePressedImage.RightImageUrl));
             }
         }
 
@@ -656,7 +656,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SelectionHandleImage GetSelectionHandlePressedImage()
         {
-            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandlePressedImageLeftProperty), (PropertyMap)GetValue(SelectionHandlePressedImageRightProperty));
+            return TextMapHelper.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandlePressedImageLeftProperty), (PropertyMap)GetValue(SelectionHandlePressedImageRightProperty));
         }
 
         /// <summary>
@@ -722,12 +722,12 @@ namespace Tizen.NUI.BaseComponents
         {
             if (!String.IsNullOrEmpty(selectionHandleMarkerImage.LeftImageUrl))
             {
-                SetValue(SelectionHandleMarkerImageLeftProperty, TextUtils.GetFileNameMap(selectionHandleMarkerImage.LeftImageUrl));
+                SetValue(SelectionHandleMarkerImageLeftProperty, TextMapHelper.GetFileNameMap(selectionHandleMarkerImage.LeftImageUrl));
             }
 
             if (!String.IsNullOrEmpty(selectionHandleMarkerImage.RightImageUrl))
             {
-                SetValue(SelectionHandleMarkerImageRightProperty, TextUtils.GetFileNameMap(selectionHandleMarkerImage.RightImageUrl));
+                SetValue(SelectionHandleMarkerImageRightProperty, TextMapHelper.GetFileNameMap(selectionHandleMarkerImage.RightImageUrl));
             }
         }
 
@@ -741,7 +741,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SelectionHandleImage GetSelectionHandleMarkerImage()
         {
-            return TextUtils.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandleMarkerImageLeftProperty), (PropertyMap)GetValue(SelectionHandleMarkerImageRightProperty));
+            return TextMapHelper.GetSelectionHandleImageStruct((PropertyMap)GetValue(SelectionHandleMarkerImageLeftProperty), (PropertyMap)GetValue(SelectionHandleMarkerImageRightProperty));
         }
 
         /// <summary>
@@ -885,7 +885,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetInputFontStyle(FontStyle fontStyle)
         {
-            SetValue(InputFontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
+            SetValue(InputFontStyleProperty, TextMapHelper.GetFontStyleMap(fontStyle));
         }
 
         /// <summary>
@@ -898,7 +898,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetInputFontStyle()
         {
-            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(InputFontStyleProperty));
+            return TextMapHelper.GetFontStyleStruct((PropertyMap)GetValue(InputFontStyleProperty));
         }
 
         /// <summary>
@@ -996,7 +996,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetUnderline(Underline underline)
         {
-            SetValue(UnderlineProperty, TextUtils.GetUnderlineMap(underline));
+            SetValue(UnderlineProperty, TextMapHelper.GetUnderlineMap(underline));
         }
 
         /// <summary>
@@ -1009,7 +1009,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Underline GetUnderline()
         {
-            return TextUtils.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
+            return TextMapHelper.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
         }
 
         /// <summary>
@@ -1072,7 +1072,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetShadow(Tizen.NUI.Text.Shadow shadow)
         {
-            SetValue(ShadowProperty, TextUtils.GetShadowMap(shadow));
+            SetValue(ShadowProperty, TextMapHelper.GetShadowMap(shadow));
         }
 
         /// <summary>
@@ -1085,7 +1085,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.Text.Shadow GetShadow()
         {
-            return TextUtils.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
+            return TextMapHelper.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
         }
 
         /// <summary>
@@ -1181,7 +1181,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetOutline(Outline outline)
         {
-            SetValue(OutlineProperty, TextUtils.GetOutlineMap(outline));
+            SetValue(OutlineProperty, TextMapHelper.GetOutlineMap(outline));
         }
 
         /// <summary>
@@ -1194,7 +1194,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Outline GetOutline()
         {
-            return TextUtils.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
+            return TextMapHelper.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
         }
 
         /// <summary>
@@ -1348,9 +1348,12 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Selected Text property (read-only).
+        /// The portion of the text that has been selected by the user.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// Empty string when nothing is selected.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
         public string SelectedText
         {
             get
@@ -1402,9 +1405,10 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The start index for selection.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// When there is no selection, the index is current cursor position.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
         public int SelectedTextStart
         {
             get
@@ -1418,9 +1422,10 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The end index for selection.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// When there is no selection, the index is current cursor position.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
         public int SelectedTextEnd
         {
             get
@@ -1624,7 +1629,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetInputFilter(InputFilter inputFilter)
         {
-            SetProperty(TextEditor.Property.InputFilter, new PropertyValue(TextUtils.GetInputFilterMap(inputFilter)));
+            SetProperty(TextEditor.Property.InputFilter, new PropertyValue(TextMapHelper.GetInputFilterMap(inputFilter)));
         }
 
         /// <summary>
@@ -1639,7 +1644,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var map = new PropertyMap();
             GetProperty(TextEditor.Property.InputFilter).Get(map);
-            return TextUtils.GetInputFilterStruct(map);
+            return TextMapHelper.GetInputFilterStruct(map);
         }
 
         /// <summary>
@@ -1790,7 +1795,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetPlaceholder(Placeholder placeholder)
         {
-            SetValue(PlaceholderProperty, TextUtils.GetPlaceholderMap(placeholder));
+            SetValue(PlaceholderProperty, TextMapHelper.GetPlaceholderMap(placeholder));
         }
 
         /// <summary>
@@ -1803,7 +1808,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Placeholder GetPlaceholder()
         {
-            return TextUtils.GetPlaceholderStruct((PropertyMap)GetValue(PlaceholderProperty));
+            return TextMapHelper.GetPlaceholderStruct((PropertyMap)GetValue(PlaceholderProperty));
         }
 
         /// <summary>
@@ -2044,7 +2049,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Select the whole text.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void SelectWholeText()
         {
             Interop.TextEditor.SelectWholeText(SwigCPtr);
@@ -2053,11 +2058,14 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Select text from start to end index. <br />
-        /// The index is valid when 0 or positive. <br />
+        /// The index is valid when 0 or positive.
         /// </summary>
         /// <param name="start">The start index for selection.</param>
         /// <param name="end">The end index for selection.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// If the end index exceeds the maximum value, it is set to the length of the text.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
         public void SelectText(int start, int end)
         {
             if (start < 0)
@@ -2070,9 +2078,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Clear selection of the text.
+        /// Clear selection of the text. <br />
+        /// Valid when selection is activate.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void SelectNone()
         {
             _ = Interop.TextEditor.SelectNone(SwigCPtr);

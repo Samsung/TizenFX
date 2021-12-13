@@ -207,7 +207,10 @@ namespace Tizen.NUI.BaseComponents
                     if (signal?.Empty() == false)
                     {
                         signal?.Disconnect(keyCallback);
-                        keyCallback = null;
+                        if (signal?.Empty() == true)
+                        {
+                            keyCallback = null;
+                        }
                     }
                 }
             }
@@ -240,7 +243,10 @@ namespace Tizen.NUI.BaseComponents
                     if (signal?.Empty() == false)
                     {
                         signal?.Disconnect(onRelayoutEventCallback);
-                        onRelayoutEventCallback = null;
+                        if (signal?.Empty() == true)
+                        {
+                            onRelayoutEventCallback = null;
+                        }
                     }
                 }
             }
@@ -275,7 +281,10 @@ namespace Tizen.NUI.BaseComponents
                     if (signal?.Empty() == false)
                     {
                         signal?.Disconnect(interceptTouchDataCallback);
-                        interceptTouchDataCallback = null;
+                        if (signal?.Empty() == true)
+                        {
+                            interceptTouchDataCallback = null;
+                        }
                     }
                 }
             }
@@ -321,7 +330,10 @@ namespace Tizen.NUI.BaseComponents
                     if (signal.Empty() == false)
                     {
                         signal.Disconnect(touchDataCallback);
-                        touchDataCallback = null;
+                        if (signal?.Empty() == true)
+                        {
+                            touchDataCallback = null;
+                        }
                     }
                 }
             }
@@ -354,7 +366,10 @@ namespace Tizen.NUI.BaseComponents
                     if (signal?.Empty() == false)
                     {
                         signal?.Disconnect(hoverEventCallback);
-                        hoverEventCallback = null;
+                        if (signal?.Empty() == true)
+                        {
+                            hoverEventCallback = null;
+                        }
                     }
                 }
             }
@@ -393,7 +408,10 @@ namespace Tizen.NUI.BaseComponents
                     if (signal?.Empty() == false)
                     {
                         signal?.Disconnect(wheelEventCallback);
-                        wheelEventCallback = null;
+                        if (signal?.Empty() == true)
+                        {
+                            wheelEventCallback = null;
+                        }
                     }
                 }
 
@@ -432,7 +450,10 @@ namespace Tizen.NUI.BaseComponents
                     if (signal?.Empty() == false)
                     {
                         signal?.Disconnect(onWindowEventCallback);
-                        onWindowEventCallback = null;
+                        if (signal?.Empty() == true)
+                        {
+                            onWindowEventCallback = null;
+                        }
                     }
                 }
             }
@@ -465,7 +486,10 @@ namespace Tizen.NUI.BaseComponents
                     if (signal?.Empty() == false)
                     {
                         signal?.Disconnect(offWindowEventCallback);
-                        offWindowEventCallback = null;
+                        if (signal?.Empty() == true)
+                        {
+                            offWindowEventCallback = null;
+                        }
                     }
                 }
             }
@@ -496,6 +520,10 @@ namespace Tizen.NUI.BaseComponents
                 if (visibilityChangedEventHandler == null && VisibilityChangedSignal(this).Empty() == false)
                 {
                     VisibilityChangedSignal(this).Disconnect(visibilityChangedEventCallback);
+                    if (VisibilityChangedSignal(this).Empty() == true)
+                    {
+                        visibilityChangedEventCallback = null;
+                    }
                 }
             }
         }
@@ -525,6 +553,10 @@ namespace Tizen.NUI.BaseComponents
                 if (layoutDirectionChangedEventHandler == null && LayoutDirectionChangedSignal(this).Empty() == false)
                 {
                     LayoutDirectionChangedSignal(this).Disconnect(layoutDirectionChangedEventCallback);
+                    if (LayoutDirectionChangedSignal(this).Empty() == true)
+                    {
+                        layoutDirectionChangedEventCallback = null;
+                    }
                 }
             }
         }
@@ -556,7 +588,10 @@ namespace Tizen.NUI.BaseComponents
                     if (signal?.Empty() == false)
                     {
                         signal?.Disconnect(ResourcesLoadedCallback);
-                        ResourcesLoadedCallback = null;
+                        if (signal?.Empty() == true)
+                        {
+                            ResourcesLoadedCallback = null;
+                        }
                     }
                 }
             }
@@ -616,7 +651,10 @@ namespace Tizen.NUI.BaseComponents
                     if (signal?.Empty() == false)
                     {
                         signal?.Disconnect(backgroundResourceLoadedCallback);
-                        backgroundResourceLoadedCallback = null;
+                        if (signal?.Empty() == true)
+                        {
+                            backgroundResourceLoadedCallback = null;
+                        }
                     }
                 }
             }

@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     /// AlertDialog class shows a dialog with title, message and action buttons.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public class AlertDialog : Control
+    public partial class AlertDialog : Control
     {
         private string title = null;
         private string message = null;
@@ -163,6 +163,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(TitleProperty) as string;
+            }
+            set
+            {
+                SetValue(TitleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalTitle
+        {
+            get
+            {
                 return title;
             }
             set
@@ -189,6 +201,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public View TitleContent
+        {
+            get
+            {
+                return GetValue(TitleContentProperty) as View;
+            }
+            set
+            {
+                SetValue(TitleContentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private View InternalTitleContent
         {
             get
             {
@@ -231,6 +255,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(MessageProperty) as string;
+            }
+            set
+            {
+                SetValue(MessageProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalMessage
+        {
+            get
+            {
                 return message;
             }
             set
@@ -257,6 +293,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public View Content
+        {
+            get
+            {
+                return GetValue(ContentProperty) as View;
+            }
+            set
+            {
+                SetValue(ContentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private View InternalContent
         {
             get
             {
@@ -341,6 +389,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public View ActionContent
+        {
+            get
+            {
+                return GetValue(ActionContentProperty) as View;
+            }
+            set
+            {
+                SetValue(ActionContentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private View InternalActionContent
         {
              get
              {
