@@ -12204,6 +12204,11 @@
     "title": "Enum Mode",
     "keywords": ""
   },
+  "API10/api/Tizen.Uix.Tts.RepeatedText.html": {
+    "href": "API10/api/Tizen.Uix.Tts.RepeatedText.html",
+    "title": "Class RepeatedText",
+    "keywords": ""
+  },
   "API10/api/Tizen.Uix.Tts.ScreenReaderChangedEventArgs.html": {
     "href": "API10/api/Tizen.Uix.Tts.ScreenReaderChangedEventArgs.html",
     "title": "Class ScreenReaderChangedEventArgs",
