@@ -40,9 +40,9 @@ internal static partial class Interop
             IoError = Tizen.Internals.Errors.ErrorCode.IoError,                     /* I/O error */
             InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,   /* Invalid parameter */
             OutOfNetwork = Tizen.Internals.Errors.ErrorCode.Networkdown,            /* Network is down */
-            TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,                   /* No answer from the STT service */
+            TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,                   /* No answer from the TTS service */
             PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,   /* Permission denied */
-            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,           /* STT NOT supported */
+            NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,           /* TTS NOT supported */
             InvalidState = ErrorTts | 0x01,                                         /* Invalid state */
             InvalidVoice = ErrorTts | 0x02,                                         /* Invalid language */
             EngineNotFound = ErrorTts | 0x03,                                       /* No available engine */
@@ -136,6 +136,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Tts, EntryPoint = "tts_pause", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsPause(IntPtr handle);
+
+        [DllImport(Libraries.Tts, EntryPoint = "tts_repeat", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsRepeat(IntPtr handle, out string text_repeat, out int utt_id);
 
         [DllImport(Libraries.Tts, EntryPoint = "tts_set_state_changed_cb", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsSetStateChangedCB(IntPtr handle, TtsStateChangedCB callback, IntPtr userData);
