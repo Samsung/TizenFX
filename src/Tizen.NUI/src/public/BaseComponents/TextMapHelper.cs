@@ -177,12 +177,14 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static FontStyle GetFontStyleStruct(PropertyMap map)
         {
-            var defaultValue = "none";
-
             var fontStyle = new FontStyle();
-            fontStyle.Width = GetFontWidthType(GetStringFromMap(map, "width", defaultValue));
-            fontStyle.Weight = GetFontWeightType(GetStringFromMap(map, "weight", defaultValue));
-            fontStyle.Slant = GetFontSlantType(GetStringFromMap(map, "slant", defaultValue));
+            if (null != map)
+            {
+                var defaultValue = "none";
+                fontStyle.Width = GetFontWidthType(GetStringFromMap(map, "width", defaultValue));
+                fontStyle.Weight = GetFontWeightType(GetStringFromMap(map, "weight", defaultValue));
+                fontStyle.Slant = GetFontSlantType(GetStringFromMap(map, "slant", defaultValue));
+            }
 
             return fontStyle;
         }
@@ -216,11 +218,13 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static InputFilter GetInputFilterStruct(PropertyMap map)
         {
-            var defaultValue = "";
-
             var inputFilter = new InputFilter();
-            inputFilter.Accepted = GetStringFromMap(map, 0, defaultValue);
-            inputFilter.Rejected = GetStringFromMap(map, 1, defaultValue);
+            if (null != map)
+            {
+                var defaultValue = "";
+                inputFilter.Accepted = GetStringFromMap(map, 0, defaultValue);
+                inputFilter.Rejected = GetStringFromMap(map, 1, defaultValue);
+            }
 
             return inputFilter;
         }
@@ -257,9 +261,12 @@ namespace Tizen.NUI.BaseComponents
         public static Underline GetUnderlineStruct(PropertyMap map)
         {
             var underline = new Underline();
-            underline.Enable = GetBoolFromMap(map, "enable", false);
-            underline.Color = GetColorFromMap(map, "color", Color.Black);
-            underline.Height = GetFloatFromMap(map, "height", 0.0f);
+            if (null != map)
+            {
+                underline.Enable = GetBoolFromMap(map, "enable", false);
+                underline.Color = GetColorFromMap(map, "color");
+                underline.Height = GetFloatFromMap(map, "height", 0.0f);
+            }
 
             return underline;
         }
@@ -296,13 +303,13 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Tizen.NUI.Text.Shadow GetShadowStruct(PropertyMap map)
         {
-            var defaultValue = new Vector2(0, 0);
-
             var shadow = new Tizen.NUI.Text.Shadow();
-            shadow.Offset = GetVector2FromMap(map, "offset", defaultValue);
-            defaultValue.Dispose();
-            shadow.Color = GetColorFromMap(map, "color", Color.Black);
-            shadow.BlurRadius = GetFloatFromMap(map, "blurRadius", 0.0f);
+            if (null != map)
+            {
+                shadow.Offset = GetVector2FromMap(map, "offset");
+                shadow.Color = GetColorFromMap(map, "color");
+                shadow.BlurRadius = GetFloatFromMap(map, "blurRadius", 0.0f);
+            }
 
             return shadow;
         }
@@ -337,8 +344,11 @@ namespace Tizen.NUI.BaseComponents
         public static Outline GetOutlineStruct(PropertyMap map)
         {
             var outline = new Outline();
-            outline.Color = GetColorFromMap(map, "color", Color.Black);
-            outline.Width = GetFloatFromMap(map, "width", 0.0f);
+            if (null != map)
+            {
+                outline.Color = GetColorFromMap(map, "color");
+                outline.Width = GetFloatFromMap(map, "width", 0.0f);
+            }
 
             return outline;
         }
@@ -377,15 +387,17 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static TextFit GetTextFitStruct(PropertyMap map)
         {
-            var defaultValue = "PointSize";
-
             var textFit = new TextFit();
-            textFit.Enable = GetBoolFromMap(map, "enable", false);
-            textFit.MinSize = GetFloatFromMap(map, "minSize", 0.0f);
-            textFit.MaxSize = GetFloatFromMap(map, "maxSize", 0.0f);
-            textFit.StepSize = GetFloatFromMap(map, "stepSize", 0.0f);
-            textFit.FontSize = GetFloatFromMap(map, "fontSize", 0.0f);
-            textFit.FontSizeType = GetFontSizeType(GetStringFromMap(map, "fontSizeType", defaultValue));
+            if (null != map)
+            {
+                var defaultValue = "PointSize";
+                textFit.Enable = GetBoolFromMap(map, "enable", false);
+                textFit.MinSize = GetFloatFromMap(map, "minSize", 0.0f);
+                textFit.MaxSize = GetFloatFromMap(map, "maxSize", 0.0f);
+                textFit.StepSize = GetFloatFromMap(map, "stepSize", 0.0f);
+                textFit.FontSize = GetFloatFromMap(map, "fontSize", 0.0f);
+                textFit.FontSizeType = GetFontSizeType(GetStringFromMap(map, "fontSizeType", defaultValue));
+            }
 
             return textFit;
         }
@@ -415,9 +427,11 @@ namespace Tizen.NUI.BaseComponents
 
             if (placeholder.FontStyle != null)
             {
-                var fontStyleValue = new PropertyValue(GetFontStyleMap((FontStyle)placeholder.FontStyle));
-                map.Add("fontStyle", fontStyleValue);
-                fontStyleValue.Dispose();
+                using (var fontStyleMap = GetFontStyleMap((FontStyle)placeholder.FontStyle))
+                using (var fontStyleValue = new PropertyValue(fontStyleMap))
+                {
+                    map.Add("fontStyle", fontStyleValue);
+                }
             }
 
             if (placeholder.PointSize != null && placeholder.PixelSize != null)
@@ -443,19 +457,22 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Placeholder GetPlaceholderStruct(PropertyMap map)
         {
-            var defaultText = "";
-            var defaultFontStyle = new PropertyMap();
-
             var placeholder = new Placeholder();
-            placeholder.Text = GetStringFromMap(map, 0, defaultText);
-            placeholder.TextFocused = GetStringFromMap(map, 1, defaultText);
-            placeholder.Color = GetColorFromMap(map, 2, Color.Black);
-            placeholder.FontFamily = GetStringFromMap(map, 3, defaultText);
-            placeholder.FontStyle = GetFontStyleStruct(GetMapFromMap(map, 4, defaultFontStyle));
-            defaultFontStyle.Dispose();
-            placeholder.PointSize = GetNullableFloatFromMap(map, 5);
-            placeholder.PixelSize = GetNullableFloatFromMap(map, 6);
-            placeholder.Ellipsis = GetBoolFromMap(map, 7, false);
+            if (null != map)
+            {
+                var defaultText = "";
+                placeholder.Text = GetStringFromMap(map, 0, defaultText);
+                placeholder.TextFocused = GetStringFromMap(map, 1, defaultText);
+                placeholder.Color = GetColorFromMap(map, 2);
+                placeholder.FontFamily = GetStringFromMap(map, 3, defaultText);
+                using (var fontStyleMap = GetMapFromMap(map, 4))
+                {
+                    placeholder.FontStyle = GetFontStyleStruct(fontStyleMap);
+                }
+                placeholder.PointSize = GetNullableFloatFromMap(map, 5);
+                placeholder.PixelSize = GetNullableFloatFromMap(map, 6);
+                placeholder.Ellipsis = GetBoolFromMap(map, 7, false);
+            }
 
             return placeholder;
         }
@@ -494,17 +511,19 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static HiddenInput GetHiddenInputStruct(PropertyMap map)
         {
-            int defaultVlaue = 0;
-
             var hiddenInput = new HiddenInput();
-            hiddenInput.Mode = (HiddenInputModeType)GetIntFromMap(map, 0, defaultVlaue);
+            if (null != map)
+            {
+                int defaultVlaue = 0;
+                hiddenInput.Mode = (HiddenInputModeType)GetIntFromMap(map, 0, defaultVlaue);
 
-            int? substituteCharacter = GetNullableIntFromMap(map, 1);
-            if (substituteCharacter != null)
-                hiddenInput.SubstituteCharacter = Convert.ToChar(substituteCharacter);
+                int? substituteCharacter = GetNullableIntFromMap(map, 1);
+                if (substituteCharacter != null)
+                    hiddenInput.SubstituteCharacter = Convert.ToChar(substituteCharacter);
 
-            hiddenInput.SubstituteCount = GetNullableIntFromMap(map, 2);
-            hiddenInput.ShowLastCharacterDuration = GetNullableIntFromMap(map, 3);
+                hiddenInput.SubstituteCount = GetNullableIntFromMap(map, 2);
+                hiddenInput.ShowLastCharacterDuration = GetNullableIntFromMap(map, 3);
+            }
 
             return hiddenInput;
         }
@@ -534,8 +553,11 @@ namespace Tizen.NUI.BaseComponents
             var defaultValue = "";
 
             var selectionHandleImage = new SelectionHandleImage();
-            selectionHandleImage.LeftImageUrl = GetStringFromMap(leftImageMap, "filename", defaultValue);
-            selectionHandleImage.RightImageUrl = GetStringFromMap(rightImageMap, "filename", defaultValue);
+            if (null != leftImageMap)
+                selectionHandleImage.LeftImageUrl = GetStringFromMap(leftImageMap, "filename", defaultValue);
+            
+            if (null != rightImageMap)
+                selectionHandleImage.RightImageUrl = GetStringFromMap(rightImageMap, "filename", defaultValue);
 
             return selectionHandleImage;
         }
@@ -555,100 +577,136 @@ namespace Tizen.NUI.BaseComponents
         internal static string GetStringFromMap(PropertyMap map, string key, string defaultValue)
         {
             string value = defaultValue;
-            map.Find(0, key)?.Get(out value);
+            using (var propertyValue = map.Find(0, key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
             return value;
         }
 
         internal static string GetStringFromMap(PropertyMap map, int key, string defaultValue)
         {
             string value = defaultValue;
-            map.Find(key)?.Get(out value);
+            using (var propertyValue = map.Find(key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
             return value;
         }
 
         internal static bool GetBoolFromMap(PropertyMap map, string key, bool defaultValue)
         {
             bool value = defaultValue;
-            map.Find(0, key)?.Get(out value);
+            using (var propertyValue = map.Find(0, key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
             return value;
         }
 
         internal static bool GetBoolFromMap(PropertyMap map, int key, bool defaultValue)
         {
             bool value = defaultValue;
-            map.Find(key)?.Get(out value);
+            using (var propertyValue = map.Find(key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
             return value;
         }
 
         internal static int GetIntFromMap(PropertyMap map, int key, int defaultValue)
         {
             int value = defaultValue;
-            map.Find(key)?.Get(out value);
+            using (var propertyValue = map.Find(key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
             return value;
         }
 
         internal static float GetFloatFromMap(PropertyMap map, string key, float defaultValue)
         {
             float value = defaultValue;
-            map.Find(0, key)?.Get(out value);
+            using (var propertyValue = map.Find(0, key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
             return value;
         }
 
-        internal static Color GetColorFromMap(PropertyMap map, string key, Color defaultValue)
+        internal static Color GetColorFromMap(PropertyMap map, string key)
         {
-            Color value = new Color(defaultValue);
-            map.Find(0, key)?.Get(value);
+            Color value = new Color();
+            using (var propertyValue = map.Find(0, key))
+            {
+                if (null != propertyValue) propertyValue.Get(value);
+            }
             return value;
         }
 
-        internal static Color GetColorFromMap(PropertyMap map, int key, Color defaultValue)
+        internal static Color GetColorFromMap(PropertyMap map, int key)
         {
-            Color value = new Color(defaultValue);
-            map.Find(key)?.Get(value);
+            Color value = new Color();
+            using (var propertyValue = map.Find(key))
+            {
+                if (null != propertyValue) propertyValue.Get(value);
+            }
             return value;
         }
 
-        internal static Vector2 GetVector2FromMap(PropertyMap map, string key, Vector2 defaultValue)
+        internal static Vector2 GetVector2FromMap(PropertyMap map, string key)
         {
-            Vector2 value = new Vector2(defaultValue);
-            map.Find(0, key)?.Get(value);
+            Vector2 value = new Vector2();
+            using (var propertyValue = map.Find(0, key))
+            {
+                if (null != propertyValue) propertyValue.Get(value);
+            }
             return value;
         }
 
-        internal static PropertyMap GetMapFromMap(PropertyMap map, int key, PropertyMap defaultValue)
+        internal static PropertyMap GetMapFromMap(PropertyMap map, int key)
         {
-            PropertyMap value = new PropertyMap(defaultValue);
-            map.Find(key)?.Get(value);
+            PropertyMap value = new PropertyMap();
+            using (var propertyValue = map.Find(key))
+            {
+                if (null != propertyValue) propertyValue.Get(value);
+            }
             return value;
         }
 
         internal static int? GetNullableIntFromMap(PropertyMap map, int key)
         {
-            PropertyValue propertyValue = map.Find(key);
-            if (propertyValue == null)
-                return null;
+            using (var propertyValue = map.Find(key))
+            {
+                if (propertyValue == null)
+                    return null;
 
-            propertyValue.Get(out int value);
-            return value;
+                propertyValue.Get(out int value);
+                return value;
+            }
         }
 
         internal static float? GetNullableFloatFromMap(PropertyMap map, int key)
         {
-            PropertyValue propertyValue = map.Find(key);
-            if (propertyValue == null)
-                return null;
+            using (var propertyValue = map.Find(key))
+            {
+                if (propertyValue == null)
+                    return null;
 
-            propertyValue.Get(out float value);
-            return value;
+                propertyValue.Get(out float value);
+                return value;
+            }
         }
 
         internal static bool IsValue(PropertyMap map, int key)
         {
-            PropertyValue propertyValue = map.Find(key);
-            if (propertyValue == null)
-                return false;
+            using (var propertyValue = map.Find(key))
+            {
+                if (propertyValue == null)
+                    return false;
 
-            return true;
+                return true;
+            }
         }
     }
 }
