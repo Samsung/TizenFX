@@ -540,7 +540,7 @@ namespace Tizen.NUI.BaseComponents
             return selectionHandleImage;
         }
 
-        private static string GetCamelCase(string pascalCase)
+        internal static string GetCamelCase(string pascalCase)
         {
             if (!string.IsNullOrEmpty(pascalCase))
             {
@@ -552,77 +552,77 @@ namespace Tizen.NUI.BaseComponents
             return pascalCase;
         }
 
-        private static string GetStringFromMap(PropertyMap map, string key, string defaultValue)
+        internal static string GetStringFromMap(PropertyMap map, string key, string defaultValue)
         {
             string value = defaultValue;
             map.Find(0, key)?.Get(out value);
             return value;
         }
 
-        private static string GetStringFromMap(PropertyMap map, int key, string defaultValue)
+        internal static string GetStringFromMap(PropertyMap map, int key, string defaultValue)
         {
             string value = defaultValue;
             map.Find(key)?.Get(out value);
             return value;
         }
 
-        private static bool GetBoolFromMap(PropertyMap map, string key, bool defaultValue)
+        internal static bool GetBoolFromMap(PropertyMap map, string key, bool defaultValue)
         {
             bool value = defaultValue;
             map.Find(0, key)?.Get(out value);
             return value;
         }
 
-        private static bool GetBoolFromMap(PropertyMap map, int key, bool defaultValue)
+        internal static bool GetBoolFromMap(PropertyMap map, int key, bool defaultValue)
         {
             bool value = defaultValue;
             map.Find(key)?.Get(out value);
             return value;
         }
 
-        private static int GetIntFromMap(PropertyMap map, int key, int defaultValue)
+        internal static int GetIntFromMap(PropertyMap map, int key, int defaultValue)
         {
             int value = defaultValue;
             map.Find(key)?.Get(out value);
             return value;
         }
 
-        private static float GetFloatFromMap(PropertyMap map, string key, float defaultValue)
+        internal static float GetFloatFromMap(PropertyMap map, string key, float defaultValue)
         {
             float value = defaultValue;
             map.Find(0, key)?.Get(out value);
             return value;
         }
 
-        private static Color GetColorFromMap(PropertyMap map, string key, Color defaultValue)
+        internal static Color GetColorFromMap(PropertyMap map, string key, Color defaultValue)
         {
             Color value = new Color(defaultValue);
             map.Find(0, key)?.Get(value);
             return value;
         }
 
-        private static Color GetColorFromMap(PropertyMap map, int key, Color defaultValue)
+        internal static Color GetColorFromMap(PropertyMap map, int key, Color defaultValue)
         {
             Color value = new Color(defaultValue);
             map.Find(key)?.Get(value);
             return value;
         }
 
-        private static Vector2 GetVector2FromMap(PropertyMap map, string key, Vector2 defaultValue)
+        internal static Vector2 GetVector2FromMap(PropertyMap map, string key, Vector2 defaultValue)
         {
             Vector2 value = new Vector2(defaultValue);
             map.Find(0, key)?.Get(value);
             return value;
         }
 
-        private static PropertyMap GetMapFromMap(PropertyMap map, int key, PropertyMap defaultValue)
+        internal static PropertyMap GetMapFromMap(PropertyMap map, int key, PropertyMap defaultValue)
         {
             PropertyMap value = new PropertyMap(defaultValue);
             map.Find(key)?.Get(value);
             return value;
         }
 
-        private static int? GetNullableIntFromMap(PropertyMap map, int key)
+        internal static int? GetNullableIntFromMap(PropertyMap map, int key)
         {
             PropertyValue propertyValue = map.Find(key);
             if (propertyValue == null)
@@ -632,7 +632,7 @@ namespace Tizen.NUI.BaseComponents
             return value;
         }
 
-        private static float? GetNullableFloatFromMap(PropertyMap map, int key)
+        internal static float? GetNullableFloatFromMap(PropertyMap map, int key)
         {
             PropertyValue propertyValue = map.Find(key);
             if (propertyValue == null)
@@ -640,6 +640,15 @@ namespace Tizen.NUI.BaseComponents
 
             propertyValue.Get(out float value);
             return value;
+        }
+
+        internal static bool IsValue(PropertyMap map, int key)
+        {
+            PropertyValue propertyValue = map.Find(key);
+            if (propertyValue == null)
+                return false;
+
+            return true;
         }
     }
 }
