@@ -244,6 +244,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Current loaded xaml's full name.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static string CurrentLoadedXaml
         {
             get
