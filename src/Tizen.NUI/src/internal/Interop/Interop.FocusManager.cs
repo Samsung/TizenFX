@@ -89,6 +89,9 @@ namespace Tizen.NUI
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsDefaultAlgorithmEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_GetNearestFocusableActor")]
+            public static extern global::System.IntPtr GetNearestFocusableActor(global::System.Runtime.InteropServices.HandleRef rootView, global::System.Runtime.InteropServices.HandleRef currentView,  int direction);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_SWIGUpcast")]
             public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
         }
