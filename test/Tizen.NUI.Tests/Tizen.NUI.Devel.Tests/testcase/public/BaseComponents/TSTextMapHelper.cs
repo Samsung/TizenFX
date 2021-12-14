@@ -193,9 +193,9 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TextMapHelperGetFontStyleStruct START");
 
             var map = new PropertyMap();
-            map["width"] = new PropertyValue("expanded");
-            map["weight"] = new PropertyValue("bold");
-            map["slant"] = new PropertyValue("italic");
+            map.Add("width", new PropertyValue("expanded"));
+            map.Add("weight", new PropertyValue("bold"));
+            map.Add("slant", new PropertyValue("italic"));
 
             FontStyle fontStyle = TextMapHelper.GetFontStyleStruct(map);
             Assert.AreEqual(FontWidthType.Expanded, fontStyle.Width, "Should be equal!");
@@ -783,6 +783,361 @@ namespace Tizen.NUI.Devel.Tests
             Assert.AreEqual(rightImageUrl, selectionHandleImage.RightImageUrl, "Should be equal!");
 
             tlog.Debug(tag, $"TextMapHelperGetSelectionHandleImageStruct END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextMapHelper GetCamelCase.")]
+        [Property("SPEC", "Tizen.NUI.TextMapHelper.GetCamelCase M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextMapHelperGetCamelCase()
+        {
+            tlog.Debug(tag, $"TextMapHelperGetCamelCase START");
+
+            string pascalCase = "TextMapHelper";
+            string camelCase = "textMapHelper";
+            string expectedResult = TextMapHelper.GetCamelCase(pascalCase);
+
+            Assert.AreEqual(camelCase, expectedResult, "Should be equal!");
+
+            string emptyString = "";
+            expectedResult = TextMapHelper.GetCamelCase(emptyString);            
+
+            Assert.AreEqual(emptyString, expectedResult, "Should be equal!");
+
+            tlog.Debug(tag, $"TextMapHelperGetCamelCase END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextMapHelper GetStringFromMap.")]
+        [Property("SPEC", "Tizen.NUI.TextMapHelper.GetStringFromMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextMapHelperGetStringFromMap()
+        {
+            tlog.Debug(tag, $"TextMapHelperGetStringFromMap START");
+
+            var stringKey = "width";
+            var stringInvalidKey = "invalidKey";
+            var intKey = 1;
+            var intInvalidKey = 10;
+            var value = "expanded";
+            var defaultValue = "none";
+
+            var map = new PropertyMap();
+            map.Add(stringKey, new PropertyValue(value));
+            map.Add(intKey, new PropertyValue(value));
+
+            var result = TextMapHelper.GetStringFromMap(map, stringKey, defaultValue);
+            Assert.AreEqual(value, result, "Should be equal!");
+
+            result = TextMapHelper.GetStringFromMap(map, stringInvalidKey, defaultValue);
+            Assert.AreEqual(defaultValue, result, "Should be equal!");
+
+            result = TextMapHelper.GetStringFromMap(map, intKey, defaultValue);
+            Assert.AreEqual(value, result, "Should be equal!");
+
+            result = TextMapHelper.GetStringFromMap(map, intInvalidKey, defaultValue);
+            Assert.AreEqual(defaultValue, result, "Should be equal!");
+
+            tlog.Debug(tag, $"TextMapHelperGetStringFromMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextMapHelper GetBoolFromMap.")]
+        [Property("SPEC", "Tizen.NUI.TextMapHelper.GetBoolFromMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextMapHelperGetBoolFromMap()
+        {
+            tlog.Debug(tag, $"TextMapHelperGetBoolFromMap START");
+
+            var stringKey = "width";
+            var stringInvalidKey = "invalidKey";
+            var intKey = 1;
+            var intInvalidKey = 10;
+            var value = true;
+            var defaultValue = false;
+
+            var map = new PropertyMap();
+            map.Add(stringKey, new PropertyValue(value));
+            map.Add(intKey, new PropertyValue(value));
+
+            var result = TextMapHelper.GetBoolFromMap(map, stringKey, defaultValue);
+            Assert.AreEqual(value, result, "Should be equal!");
+
+            result = TextMapHelper.GetBoolFromMap(map, stringInvalidKey, defaultValue);
+            Assert.AreEqual(defaultValue, result, "Should be equal!");
+
+            result = TextMapHelper.GetBoolFromMap(map, intKey, defaultValue);
+            Assert.AreEqual(value, result, "Should be equal!");
+
+            result = TextMapHelper.GetBoolFromMap(map, intInvalidKey, defaultValue);
+            Assert.AreEqual(defaultValue, result, "Should be equal!");
+
+            tlog.Debug(tag, $"TextMapHelperGetBoolFromMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextMapHelper GetIntFromMap.")]
+        [Property("SPEC", "Tizen.NUI.TextMapHelper.GetIntFromMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextMapHelperGetIntFromMap()
+        {
+            tlog.Debug(tag, $"TextMapHelperGetIntFromMap START");
+
+            var intKey = 1;
+            var intInvalidKey = 10;
+            var value = 3080;
+            var defaultValue = 0;
+
+            var map = new PropertyMap();
+            map.Add(intKey, new PropertyValue(value));
+
+            var result = TextMapHelper.GetIntFromMap(map, intKey, defaultValue);
+            Assert.AreEqual(value, result, "Should be equal!");
+
+            result = TextMapHelper.GetIntFromMap(map, intInvalidKey, defaultValue);
+            Assert.AreEqual(defaultValue, result, "Should be equal!");
+
+            tlog.Debug(tag, $"TextMapHelperGetIntFromMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextMapHelper GetFloatFromMap.")]
+        [Property("SPEC", "Tizen.NUI.TextMapHelper.GetFloatFromMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextMapHelperGetFloatFromMap()
+        {
+            tlog.Debug(tag, $"TextMapHelperGetFloatFromMap START");
+
+            var stringKey = "width";
+            var stringInvalidKey = "invalidKey";
+            float value = 3.14f;
+            float defaultValue = 0.0f;
+
+            var map = new PropertyMap();
+            map.Add(stringKey, new PropertyValue(value));
+
+            var result = TextMapHelper.GetFloatFromMap(map, stringKey, defaultValue);
+            Assert.AreEqual(value, result, "Should be equal!");
+
+            result = TextMapHelper.GetFloatFromMap(map, stringInvalidKey, defaultValue);
+            Assert.AreEqual(defaultValue, result, "Should be equal!");
+
+            tlog.Debug(tag, $"TextMapHelperGetFloatFromMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextMapHelper GetColorFromMap.")]
+        [Property("SPEC", "Tizen.NUI.TextMapHelper.GetColorFromMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextMapHelperGetColorFromMap()
+        {
+            tlog.Debug(tag, $"TextMapHelperGetColorFromMap START");
+
+            var stringKey = "color";
+            var stringInvalidKey = "invalidKey";
+            var intKey = 1;
+            var intInvalidKey = 10;
+            var value = new Color(1.0f, 0.2f, 0.5f, 1.0f);
+            var defaultValue = Color.Black;
+
+            var map = new PropertyMap();
+            map.Add(stringKey, new PropertyValue(value));
+            map.Add(intKey, new PropertyValue(value));
+
+            var result = TextMapHelper.GetColorFromMap(map, stringKey, defaultValue);
+            Assert.AreEqual(value.R, result.R, "Should be equal!");
+            Assert.AreEqual(value.G, result.G, "Should be equal!");
+            Assert.AreEqual(value.B, result.B, "Should be equal!");
+            Assert.AreEqual(value.A, result.A, "Should be equal!");
+
+            result = TextMapHelper.GetColorFromMap(map, stringInvalidKey, defaultValue);
+            Assert.AreEqual(defaultValue.R, result.R, "Should be equal!");
+            Assert.AreEqual(defaultValue.G, result.G, "Should be equal!");
+            Assert.AreEqual(defaultValue.B, result.B, "Should be equal!");
+            Assert.AreEqual(defaultValue.A, result.A, "Should be equal!");
+
+            result = TextMapHelper.GetColorFromMap(map, intKey, defaultValue);
+            Assert.AreEqual(value.R, result.R, "Should be equal!");
+            Assert.AreEqual(value.G, result.G, "Should be equal!");
+            Assert.AreEqual(value.B, result.B, "Should be equal!");
+            Assert.AreEqual(value.A, result.A, "Should be equal!");
+
+            result = TextMapHelper.GetColorFromMap(map, intInvalidKey, defaultValue);
+            Assert.AreEqual(defaultValue.R, result.R, "Should be equal!");
+            Assert.AreEqual(defaultValue.G, result.G, "Should be equal!");
+            Assert.AreEqual(defaultValue.B, result.B, "Should be equal!");
+            Assert.AreEqual(defaultValue.A, result.A, "Should be equal!");
+
+            tlog.Debug(tag, $"TextMapHelperGetColorFromMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextMapHelper GetVector2FromMap.")]
+        [Property("SPEC", "Tizen.NUI.TextMapHelper.GetVector2FromMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextMapHelperGetVector2FromMap()
+        {
+            tlog.Debug(tag, $"TextMapHelperGetVector2FromMap START");
+
+            var stringKey = "position";
+            var stringInvalidKey = "invalidKey";
+            var value = new Vector2(3, 10);
+            var defaultValue = new Vector2(0, 0);
+
+            var map = new PropertyMap();
+            map.Add(stringKey, new PropertyValue(value));
+
+            var result = TextMapHelper.GetVector2FromMap(map, stringKey, defaultValue);
+            Assert.AreEqual(value.X, result.X, "Should be equal!");
+            Assert.AreEqual(value.Y, result.Y, "Should be equal!");
+
+            result = TextMapHelper.GetVector2FromMap(map, stringInvalidKey, defaultValue);
+            Assert.AreEqual(defaultValue.X, result.X, "Should be equal!");
+            Assert.AreEqual(defaultValue.Y, result.Y, "Should be equal!");
+
+            tlog.Debug(tag, $"TextMapHelperGetVector2FromMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextMapHelper GetMapFromMap.")]
+        [Property("SPEC", "Tizen.NUI.TextMapHelper.GetMapFromMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextMapHelperGetMapFromMap()
+        {
+            tlog.Debug(tag, $"TextMapHelperGetMapFromMap START");
+
+            var intKey = 1;
+            var intInvalidKey = 10;
+            var value = new PropertyMap();
+            value.Add("width", new PropertyValue(10));
+            value.Add("height", new PropertyValue(20));
+            var defaultValue = new PropertyMap();
+            defaultValue.Add("width", new PropertyValue(0));
+            defaultValue.Add("height", new PropertyValue(0));
+
+            var map = new PropertyMap();
+            map.Add(intKey, new PropertyValue(value));
+
+            var result = TextMapHelper.GetMapFromMap(map, intKey, defaultValue);
+            result.Find(0, "width").Get(out int width);
+            result.Find(0, "height").Get(out int height);
+            Assert.AreEqual(10, width, "Should be equal!");
+            Assert.AreEqual(20, height, "Should be equal!");
+
+            result = TextMapHelper.GetMapFromMap(map, intInvalidKey, defaultValue);
+            result.Find(0, "width").Get(out int defaultWidth);
+            result.Find(0, "height").Get(out int defaultHeight);
+            Assert.AreEqual(0, defaultWidth, "Should be equal!");
+            Assert.AreEqual(0, defaultHeight, "Should be equal!");
+
+            tlog.Debug(tag, $"TextMapHelperGetMapFromMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextMapHelper GetNullableIntFromMap.")]
+        [Property("SPEC", "Tizen.NUI.TextMapHelper.GetNullableIntFromMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextMapHelperGetNullableIntFromMap()
+        {
+            tlog.Debug(tag, $"TextMapHelperGetNullableIntFromMap START");
+
+            var intKey = 1;
+            var intInvalidKey = 10;
+            int value = 3080;
+            int? result = null;
+
+            var map = new PropertyMap();
+            map.Add(intKey, new PropertyValue(value));
+
+            result = TextMapHelper.GetNullableIntFromMap(map, intKey);
+            Assert.AreEqual(value, result, "Should be equal!");
+
+            result = TextMapHelper.GetNullableIntFromMap(map, intInvalidKey);
+            Assert.AreEqual(null, result, "Should be equal!");
+
+            tlog.Debug(tag, $"TextMapHelperGetNullableIntFromMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextMapHelper GetNullableFloatFromMap.")]
+        [Property("SPEC", "Tizen.NUI.TextMapHelper.GetNullableFloatFromMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextMapHelperGetNullableFloatFromMap()
+        {
+            tlog.Debug(tag, $"TextMapHelperGetNullableFloatFromMap START");
+
+            var intKey = 1;
+            var intInvalidKey = 10;
+            float value = 3.14f;
+            float? result = null;
+
+            var map = new PropertyMap();
+            map.Add(intKey, new PropertyValue(value));
+
+            result = TextMapHelper.GetNullableFloatFromMap(map, intKey);
+            Assert.AreEqual(value, result, "Should be equal!");
+
+            result = TextMapHelper.GetNullableFloatFromMap(map, intInvalidKey);
+            Assert.AreEqual(null, result, "Should be equal!");
+
+            tlog.Debug(tag, $"TextMapHelperGetNullableFloatFromMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextMapHelper IsValue.")]
+        [Property("SPEC", "Tizen.NUI.TextMapHelper.IsValue M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextMapHelperIsValue()
+        {
+            tlog.Debug(tag, $"TextMapHelperIsValue START");
+
+            var intKey = 1;
+            var intInvalidKey = 10;
+            var value = "value";
+            
+            var map = new PropertyMap();
+            map.Add(intKey, new PropertyValue(value));
+
+            var result = TextMapHelper.IsValue(map, intKey);
+            Assert.AreEqual(true, result, "Should be true!");
+
+            result = TextMapHelper.IsValue(map, intInvalidKey);
+            Assert.AreEqual(false, result, "Should be false!");
+
+            tlog.Debug(tag, $"TextMapHelperIsValue END (OK)");
         }
     }
 }
