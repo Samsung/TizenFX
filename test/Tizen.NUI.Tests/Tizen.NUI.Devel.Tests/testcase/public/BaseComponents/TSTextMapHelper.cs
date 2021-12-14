@@ -954,37 +954,23 @@ namespace Tizen.NUI.Devel.Tests
             var stringKey = "color";
             var stringInvalidKey = "invalidKey";
             var intKey = 1;
-            var intInvalidKey = 10;
             var value = new Color(1.0f, 0.2f, 0.5f, 1.0f);
-            var defaultValue = Color.Black;
 
             var map = new PropertyMap();
             map.Add(stringKey, new PropertyValue(value));
             map.Add(intKey, new PropertyValue(value));
 
-            var result = TextMapHelper.GetColorFromMap(map, stringKey, defaultValue);
+            var result = TextMapHelper.GetColorFromMap(map, stringKey);
             Assert.AreEqual(value.R, result.R, "Should be equal!");
             Assert.AreEqual(value.G, result.G, "Should be equal!");
             Assert.AreEqual(value.B, result.B, "Should be equal!");
             Assert.AreEqual(value.A, result.A, "Should be equal!");
 
-            result = TextMapHelper.GetColorFromMap(map, stringInvalidKey, defaultValue);
-            Assert.AreEqual(defaultValue.R, result.R, "Should be equal!");
-            Assert.AreEqual(defaultValue.G, result.G, "Should be equal!");
-            Assert.AreEqual(defaultValue.B, result.B, "Should be equal!");
-            Assert.AreEqual(defaultValue.A, result.A, "Should be equal!");
-
-            result = TextMapHelper.GetColorFromMap(map, intKey, defaultValue);
+            result = TextMapHelper.GetColorFromMap(map, intKey);
             Assert.AreEqual(value.R, result.R, "Should be equal!");
             Assert.AreEqual(value.G, result.G, "Should be equal!");
             Assert.AreEqual(value.B, result.B, "Should be equal!");
             Assert.AreEqual(value.A, result.A, "Should be equal!");
-
-            result = TextMapHelper.GetColorFromMap(map, intInvalidKey, defaultValue);
-            Assert.AreEqual(defaultValue.R, result.R, "Should be equal!");
-            Assert.AreEqual(defaultValue.G, result.G, "Should be equal!");
-            Assert.AreEqual(defaultValue.B, result.B, "Should be equal!");
-            Assert.AreEqual(defaultValue.A, result.A, "Should be equal!");
 
             tlog.Debug(tag, $"TextMapHelperGetColorFromMap END (OK)");
         }
@@ -1003,18 +989,13 @@ namespace Tizen.NUI.Devel.Tests
             var stringKey = "position";
             var stringInvalidKey = "invalidKey";
             var value = new Vector2(3, 10);
-            var defaultValue = new Vector2(0, 0);
 
             var map = new PropertyMap();
             map.Add(stringKey, new PropertyValue(value));
 
-            var result = TextMapHelper.GetVector2FromMap(map, stringKey, defaultValue);
+            var result = TextMapHelper.GetVector2FromMap(map, stringKey);
             Assert.AreEqual(value.X, result.X, "Should be equal!");
             Assert.AreEqual(value.Y, result.Y, "Should be equal!");
-
-            result = TextMapHelper.GetVector2FromMap(map, stringInvalidKey, defaultValue);
-            Assert.AreEqual(defaultValue.X, result.X, "Should be equal!");
-            Assert.AreEqual(defaultValue.Y, result.Y, "Should be equal!");
 
             tlog.Debug(tag, $"TextMapHelperGetVector2FromMap END (OK)");
         }
@@ -1031,28 +1012,18 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TextMapHelperGetMapFromMap START");
 
             var intKey = 1;
-            var intInvalidKey = 10;
             var value = new PropertyMap();
             value.Add("width", new PropertyValue(10));
             value.Add("height", new PropertyValue(20));
-            var defaultValue = new PropertyMap();
-            defaultValue.Add("width", new PropertyValue(0));
-            defaultValue.Add("height", new PropertyValue(0));
 
             var map = new PropertyMap();
             map.Add(intKey, new PropertyValue(value));
 
-            var result = TextMapHelper.GetMapFromMap(map, intKey, defaultValue);
+            var result = TextMapHelper.GetMapFromMap(map, intKey);
             result.Find(0, "width").Get(out int width);
             result.Find(0, "height").Get(out int height);
             Assert.AreEqual(10, width, "Should be equal!");
             Assert.AreEqual(20, height, "Should be equal!");
-
-            result = TextMapHelper.GetMapFromMap(map, intInvalidKey, defaultValue);
-            result.Find(0, "width").Get(out int defaultWidth);
-            result.Find(0, "height").Get(out int defaultHeight);
-            Assert.AreEqual(0, defaultWidth, "Should be equal!");
-            Assert.AreEqual(0, defaultHeight, "Should be equal!");
 
             tlog.Debug(tag, $"TextMapHelperGetMapFromMap END (OK)");
         }

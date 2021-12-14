@@ -1734,7 +1734,7 @@ namespace Tizen.NUI.BaseComponents
                     map.Add("textFocused", TextMapHelper.GetStringFromMap(map, 1, defalutText));
                 
                 if (TextMapHelper.IsValue(map, 2))
-                    map.Add("color", TextMapHelper.GetColorFromMap(map, 2, Color.Black));
+                    map.Add("color", TextMapHelper.GetColorFromMap(map, 2));
                 
                 if (TextMapHelper.IsValue(map, 3))
                     map.Add("fontFamily", TextMapHelper.GetStringFromMap(map, 3, defalutText));
