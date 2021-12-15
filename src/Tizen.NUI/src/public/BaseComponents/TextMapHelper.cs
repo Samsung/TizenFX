@@ -230,15 +230,14 @@ namespace Tizen.NUI.BaseComponents
         {
             string accepted = "";
             string rejected = "";
-            map.Find(0)?.Get(out accepted);
-            map.Find(1)?.Get(out rejected);
+            map.GetValue(0)?.Get(out accepted);
+            map.GetValue(1)?.Get(out rejected);
 
             var inputFilter = new InputFilter();
             inputFilter.Accepted = accepted;
             inputFilter.Rejected = rejected;
 
             return inputFilter;
-
         }
 
         /// <summary>
@@ -530,14 +529,14 @@ namespace Tizen.NUI.BaseComponents
             PropertyValue pixelSizeValue = null;
             bool ellipsis = false;
 
-            map.Find(0)?.Get(out text);
-            map.Find(1)?.Get(out textFocused);
-            map.Find(2)?.Get(color);
-            map.Find(3)?.Get(out fontFamily);
-            map.Find(4)?.Get(fontStyle);
-            pointSizeValue = map.Find(5);
-            pixelSizeValue = map.Find(6);
-            map.Find(7)?.Get(out ellipsis);
+            map.Find(0, "text")?.Get(out text);
+            map.Find(0, "textFocused")?.Get(out textFocused);
+            map.Find(0, "color")?.Get(color);
+            map.Find(0, "fontFamily")?.Get(out fontFamily);
+            map.Find(0, "fontStyle")?.Get(fontStyle);
+            pointSizeValue = map.Find(0, "piontSizeValue");
+            pixelSizeValue = map.Find(0, "pixelSizeValue");
+            map.Find(0, "ellipsis")?.Get(out ellipsis);
 
             var placeholder = new Placeholder();
             placeholder.Text = text;
