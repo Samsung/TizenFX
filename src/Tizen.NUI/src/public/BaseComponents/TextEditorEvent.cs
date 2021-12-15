@@ -75,6 +75,8 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void InputFilteredCallbackDelegate(IntPtr textEditor, InputFilterType type);
 
+        private bool invokeTextChanged = true;
+
         /// <summary>
         /// An event for the TextChanged signal which can be used to subscribe or unsubscribe the event handler
         /// provided by the user. The TextChanged signal is emitted when the text changes.<br />
@@ -355,7 +357,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnTextChanged(IntPtr textEditor)
         {
-            if (textEditorTextChangedEventHandler != null)
+            if (textEditorTextChangedEventHandler != null && invokeTextChanged)
             {
                 TextChangedEventArgs e = new TextChangedEventArgs();
 
