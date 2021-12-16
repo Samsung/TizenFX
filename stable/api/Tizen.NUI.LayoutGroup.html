@@ -10,7 +10,7 @@
     <meta name="title" content="Class LayoutGroup
    ">
     <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API8">
+    <meta name="version" content="API9">
     
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -94,7 +94,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class LayoutGroup : LayoutItem, ILayoutParent</code></pre>
+    <pre><code class="lang-csharp hljs">public class LayoutGroup : LayoutItem, IDisposable, ILayoutParent</code></pre>
   </div>
 
   
@@ -114,18 +114,14 @@
     <dd>
       <div class="pdl"><a class="xref" href="Tizen.NUI.AbsoluteLayout.html">AbsoluteLayout</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.AbsoluteLayout.html">AbsoluteLayout</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.AbsoluteLayout.html">AbsoluteLayout</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.GridLayout.html">GridLayout</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.GridLayout.html">GridLayout</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.GridLayout.html">GridLayout</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.LinearLayout.html">LinearLayout</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.LinearLayout.html">LinearLayout</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.LinearLayout.html">LinearLayout</a></div>
-      <div class="pdl"><span class="xref">Tizen.NUI.RelativeLayout</span></div>
-      <div class="pdl"><span class="xref">Tizen.NUI.RelativeLayout</span></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.RelativeLayout.html">RelativeLayout</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.RelativeLayout.html">RelativeLayout</a></div>
     </dd>
   </dl>
   
@@ -133,6 +129,7 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
+      <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.ILayoutParent.html">ILayoutParent</a></div>
     </dd>
   </dl>
@@ -140,7 +137,7 @@
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L43">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L43">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup__ctor_" data-uid="Tizen.NUI.LayoutGroup.#ctor*"></a>
   <h4 id="Tizen_NUI_LayoutGroup__ctor" data-uid="Tizen.NUI.LayoutGroup.#ctor">LayoutGroup()</h4>
@@ -159,7 +156,7 @@
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L37">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L37">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_LayoutChildren_" data-uid="Tizen.NUI.LayoutGroup.LayoutChildren*"></a>
   <h4 id="Tizen_NUI_LayoutGroup_LayoutChildren" data-uid="Tizen.NUI.LayoutGroup.LayoutChildren">LayoutChildren</h4>
@@ -193,7 +190,7 @@
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L53">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L64">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_Add_" data-uid="Tizen.NUI.LayoutGroup.Add*"></a>
   <h4 id="Tizen_NUI_LayoutGroup_Add_Tizen_NUI_LayoutItem_" data-uid="Tizen.NUI.LayoutGroup.Add(Tizen.NUI.LayoutItem)">Add(LayoutItem)</h4>
@@ -222,13 +219,29 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when childLayout is null. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L272">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L283">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_GetChildMeasureSpecification_" data-uid="Tizen.NUI.LayoutGroup.GetChildMeasureSpecification*"></a>
   <h4 id="Tizen_NUI_LayoutGroup_GetChildMeasureSpecification_Tizen_NUI_MeasureSpecification_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_" data-uid="Tizen.NUI.LayoutGroup.GetChildMeasureSpecification(Tizen.NUI.MeasureSpecification,Tizen.NUI.LayoutLength,Tizen.NUI.LayoutLength)">GetChildMeasureSpecification(MeasureSpecification, LayoutLength, LayoutLength)</h4>
@@ -293,7 +306,7 @@ for one dimension (height or width) of one child view.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L515">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L555">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_MeasureChild_" data-uid="Tizen.NUI.LayoutGroup.MeasureChild*"></a>
   <h4 id="Tizen_NUI_LayoutGroup_MeasureChild_Tizen_NUI_LayoutItem_Tizen_NUI_MeasureSpecification_Tizen_NUI_MeasureSpecification_" data-uid="Tizen.NUI.LayoutGroup.MeasureChild(Tizen.NUI.LayoutItem,Tizen.NUI.MeasureSpecification,Tizen.NUI.MeasureSpecification)">MeasureChild(LayoutItem, MeasureSpecification, MeasureSpecification)</h4>
@@ -336,13 +349,29 @@ The heavy lifting is done in GetChildMeasureSpecification.<br></p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when child is null. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L498">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L537">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_MeasureChildren_" data-uid="Tizen.NUI.LayoutGroup.MeasureChildren*"></a>
   <h4 id="Tizen_NUI_LayoutGroup_MeasureChildren_Tizen_NUI_MeasureSpecification_Tizen_NUI_MeasureSpecification_" data-uid="Tizen.NUI.LayoutGroup.MeasureChildren(Tizen.NUI.MeasureSpecification,Tizen.NUI.MeasureSpecification)">MeasureChildren(MeasureSpecification, MeasureSpecification)</h4>
@@ -385,7 +414,7 @@ The heavy lifting is done in GetChildMeasureSpec.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L543">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L589">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_MeasureChildWithMargins_" data-uid="Tizen.NUI.LayoutGroup.MeasureChildWithMargins*"></a>
   <h4 id="Tizen_NUI_LayoutGroup_MeasureChildWithMargins_Tizen_NUI_LayoutItem_Tizen_NUI_MeasureSpecification_Tizen_NUI_LayoutLength_Tizen_NUI_MeasureSpecification_Tizen_NUI_LayoutLength_" data-uid="Tizen.NUI.LayoutGroup.MeasureChildWithMargins(Tizen.NUI.LayoutItem,Tizen.NUI.MeasureSpecification,Tizen.NUI.LayoutLength,Tizen.NUI.MeasureSpecification,Tizen.NUI.LayoutLength)">MeasureChildWithMargins(LayoutItem, MeasureSpecification, LayoutLength, MeasureSpecification, LayoutLength)</h4>
@@ -440,13 +469,29 @@ and margins. The heavy lifting is done in GetChildMeasureSpecification.<br></p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when child is null. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L440">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L483">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_OnAttachedToOwner_" data-uid="Tizen.NUI.LayoutGroup.OnAttachedToOwner*"></a>
   <h4 id="Tizen_NUI_LayoutGroup_OnAttachedToOwner" data-uid="Tizen.NUI.LayoutGroup.OnAttachedToOwner">OnAttachedToOwner()</h4>
@@ -465,7 +510,7 @@ and margins. The heavy lifting is done in GetChildMeasureSpecification.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L477">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L516">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_OnChildAdd_" data-uid="Tizen.NUI.LayoutGroup.OnChildAdd*"></a>
   <h4 id="Tizen_NUI_LayoutGroup_OnChildAdd_Tizen_NUI_LayoutItem_" data-uid="Tizen.NUI.LayoutGroup.OnChildAdd(Tizen.NUI.LayoutItem)">OnChildAdd(LayoutItem)</h4>
@@ -501,7 +546,7 @@ Derived classes can use this to set their own child properties on the child layo
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L486">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L525">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_OnChildRemove_" data-uid="Tizen.NUI.LayoutGroup.OnChildRemove*"></a>
   <h4 id="Tizen_NUI_LayoutGroup_OnChildRemove_Tizen_NUI_LayoutItem_" data-uid="Tizen.NUI.LayoutGroup.OnChildRemove(Tizen.NUI.LayoutItem)">OnChildRemove(LayoutItem)</h4>
@@ -536,7 +581,7 @@ Derived classes can use this to set their own child properties on the child layo
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L410">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L432">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_OnLayout_" data-uid="Tizen.NUI.LayoutGroup.OnLayout*"></a>
   <h4 id="Tizen_NUI_LayoutGroup_OnLayout_System_Boolean_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_Tizen_NUI_LayoutLength_" data-uid="Tizen.NUI.LayoutGroup.OnLayout(System.Boolean,Tizen.NUI.LayoutLength,Tizen.NUI.LayoutLength,Tizen.NUI.LayoutLength,Tizen.NUI.LayoutLength)">OnLayout(Boolean, LayoutLength, LayoutLength, LayoutLength, LayoutLength)</h4>
@@ -598,7 +643,7 @@ Derived classes with children should override this method and call Layout() on e
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L369">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L380">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_OnMeasure_" data-uid="Tizen.NUI.LayoutGroup.OnMeasure*"></a>
   <h4 id="Tizen_NUI_LayoutGroup_OnMeasure_Tizen_NUI_MeasureSpecification_Tizen_NUI_MeasureSpecification_" data-uid="Tizen.NUI.LayoutGroup.OnMeasure(Tizen.NUI.MeasureSpecification,Tizen.NUI.MeasureSpecification)">OnMeasure(MeasureSpecification, MeasureSpecification)</h4>
@@ -644,7 +689,7 @@ and width. <br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L86">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L101">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_Remove_" data-uid="Tizen.NUI.LayoutGroup.Remove*"></a>
   <h4 id="Tizen_NUI_LayoutGroup_Remove_Tizen_NUI_LayoutItem_" data-uid="Tizen.NUI.LayoutGroup.Remove(Tizen.NUI.LayoutItem)">Remove(LayoutItem)</h4>
@@ -679,7 +724,7 @@ and width. <br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L69">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L84">View Source</a>
   </span>
   <a id="Tizen_NUI_LayoutGroup_RemoveAll_" data-uid="Tizen.NUI.LayoutGroup.RemoveAll*"></a>
   <h4 id="Tizen_NUI_LayoutGroup_RemoveAll" data-uid="Tizen.NUI.LayoutGroup.RemoveAll">RemoveAll()</h4>
@@ -697,6 +742,9 @@ and width. <br></p>
 
   <h3 id="implements">Implements</h3>
   <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
+  <div>
       <a class="xref" href="Tizen.NUI.ILayoutParent.html">ILayoutParent</a>
   </div>
 </article>
@@ -707,7 +755,7 @@ and width. <br></p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L31" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutGroup.cs/#L31" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

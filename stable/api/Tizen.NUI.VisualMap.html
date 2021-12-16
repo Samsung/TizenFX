@@ -10,7 +10,7 @@
     <meta name="title" content="Class VisualMap
    ">
     <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API8">
+    <meta name="version" content="API9">
     
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -95,7 +95,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class VisualMap</code></pre>
+    <pre><code class="lang-csharp hljs">public class VisualMap : IDisposable</code></pre>
   </div>
 
   
@@ -114,46 +114,41 @@
     <dd>
       <div class="pdl"><a class="xref" href="Tizen.NUI.AnimatedImageVisual.html">AnimatedImageVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.AnimatedImageVisual.html">AnimatedImageVisual</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.AnimatedImageVisual.html">AnimatedImageVisual</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.BorderVisual.html">BorderVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.BorderVisual.html">BorderVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.BorderVisual.html">BorderVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.ColorVisual.html">ColorVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.ColorVisual.html">ColorVisual</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.ColorVisual.html">ColorVisual</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.GradientVisual.html">GradientVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.GradientVisual.html">GradientVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.GradientVisual.html">GradientVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.ImageVisual.html">ImageVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.ImageVisual.html">ImageVisual</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.ImageVisual.html">ImageVisual</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.MeshVisual.html">MeshVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.MeshVisual.html">MeshVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.MeshVisual.html">MeshVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.NPatchVisual.html">NPatchVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.NPatchVisual.html">NPatchVisual</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.NPatchVisual.html">NPatchVisual</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.PrimitiveVisual.html">PrimitiveVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.PrimitiveVisual.html">PrimitiveVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.PrimitiveVisual.html">PrimitiveVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.SVGVisual.html">SVGVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.SVGVisual.html">SVGVisual</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.SVGVisual.html">SVGVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.TextVisual.html">TextVisual</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.TextVisual.html">TextVisual</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.TextVisual.html">TextVisual</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.VisualAnimator.html">VisualAnimator</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.VisualAnimator.html">VisualAnimator</a></div>
       <div class="pdl"><a class="xref" href="Tizen.NUI.VisualAnimator.html">VisualAnimator</a></div>
     </dd>
   </dl>
   
   
+  <dl class="attribute-list stack">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L92">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L107">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap__ctor_" data-uid="Tizen.NUI.VisualMap.#ctor*"></a>
   <h4 id="Tizen_NUI_VisualMap__ctor" data-uid="Tizen.NUI.VisualMap.#ctor">VisualMap()</h4>
@@ -172,15 +167,17 @@
   <h3 id="fields">Fields
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L75">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L90">View Source</a>
   </span>
   <h4 id="Tizen_NUI_VisualMap__commonlyUsedMap" data-uid="Tizen.NUI.VisualMap._commonlyUsedMap">_commonlyUsedMap</h4>
+  <div class="markdown obsolete" data-id="Tizen_NUI_VisualMap__commonlyUsedMap">Deprecated in API9, Will be removed in API11, Please not use _comonlyUsedMap</div>
   <div class="markdown level1 summary"><p>The map for visual.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected PropertyMap _commonlyUsedMap</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, Will be removed in API11, Please not use _comonlyUsedMap&quot;)]
+protected PropertyMap _commonlyUsedMap</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -203,15 +200,17 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L51">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L61">View Source</a>
   </span>
   <h4 id="Tizen_NUI_VisualMap__mixColor" data-uid="Tizen.NUI.VisualMap._mixColor">_mixColor</h4>
+  <div class="markdown obsolete" data-id="Tizen_NUI_VisualMap__mixColor">Deprecated in API9, Will be removed in API11, Please use MixColor</div>
   <div class="markdown level1 summary"><p>The mixColor of the Visual.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected Color _mixColor</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, Will be removed in API11, Please use MixColor&quot;)]
+protected Color _mixColor</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -234,15 +233,17 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L57">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L69">View Source</a>
   </span>
   <h4 id="Tizen_NUI_VisualMap__opacity" data-uid="Tizen.NUI.VisualMap._opacity">_opacity</h4>
+  <div class="markdown obsolete" data-id="Tizen_NUI_VisualMap__opacity">Deprecated in API9, Will be removed in API11, Please use Opacity</div>
   <div class="markdown level1 summary"><p>The opacity of the visual.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected float? _opacity</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, Will be removed in API11, Please use Opacity&quot;)]
+protected float? _opacity</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -265,15 +266,17 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L32">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L36">View Source</a>
   </span>
   <h4 id="Tizen_NUI_VisualMap__outputVisualMap" data-uid="Tizen.NUI.VisualMap._outputVisualMap">_outputVisualMap</h4>
+  <div class="markdown obsolete" data-id="Tizen_NUI_VisualMap__outputVisualMap">Deprecated in API9, Will be removed in API11, Please use OutputVisualMap</div>
   <div class="markdown level1 summary"><p>outputVisualMap.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected PropertyMap _outputVisualMap</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, Will be removed in API11, Please use OutputVisualMap&quot;)]
+protected PropertyMap _outputVisualMap</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -296,15 +299,17 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L45">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L53">View Source</a>
   </span>
   <h4 id="Tizen_NUI_VisualMap__premultipliedAlpha" data-uid="Tizen.NUI.VisualMap._premultipliedAlpha">_premultipliedAlpha</h4>
+  <div class="markdown obsolete" data-id="Tizen_NUI_VisualMap__premultipliedAlpha">Deprecated in API9, Will be removed in API11, Please use PremultipliedAlpha</div>
   <div class="markdown level1 summary"><p>The premultipliedAlpha of the visual.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected bool? _premultipliedAlpha</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, Will be removed in API11, Please use PremultipliedAlpha&quot;)]
+protected bool? _premultipliedAlpha</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -327,15 +332,17 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L38">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L44">View Source</a>
   </span>
   <h4 id="Tizen_NUI_VisualMap__shader" data-uid="Tizen.NUI.VisualMap._shader">_shader</h4>
+  <div class="markdown obsolete" data-id="Tizen_NUI_VisualMap__shader">Deprecated in API9, Will be removed in API11, Please use Shader</div>
   <div class="markdown level1 summary"><p>The shader of the visual.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected PropertyMap _shader</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, Will be removed in API11, Please use Shader&quot;)]
+protected PropertyMap _shader</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -358,15 +365,17 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L63">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L77">View Source</a>
   </span>
   <h4 id="Tizen_NUI_VisualMap__visualFittingMode" data-uid="Tizen.NUI.VisualMap._visualFittingMode">_visualFittingMode</h4>
+  <div class="markdown obsolete" data-id="Tizen_NUI_VisualMap__visualFittingMode">Deprecated in API9, Will be removed in API11, Please use VisualFittingMode</div>
   <div class="markdown level1 summary"><p>The FittingMode of the visual.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected VisualFittingModeType? _visualFittingMode</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, Will be removed in API11, Please use VisualFittingMode&quot;)]
+protected VisualFittingModeType? _visualFittingMode</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -391,12 +400,12 @@
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L434">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L449">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_AnchorPoint_" data-uid="Tizen.NUI.VisualMap.AnchorPoint*"></a>
   <h4 id="Tizen_NUI_VisualMap_AnchorPoint" data-uid="Tizen.NUI.VisualMap.AnchorPoint">AnchorPoint</h4>
   <div class="markdown level1 summary"><p>Gets or sets the anchor point of the visual.<br>
-By default, the anchor point is center.<br>
+By default, the anchor point is AlignType.TopBegin.<br>
 Optional.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -425,7 +434,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L453">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L468">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_DepthIndex_" data-uid="Tizen.NUI.VisualMap.DepthIndex*"></a>
   <h4 id="Tizen_NUI_VisualMap_DepthIndex" data-uid="Tizen.NUI.VisualMap.DepthIndex">DepthIndex</h4>
@@ -459,7 +468,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L531">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L546">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_MixColor_" data-uid="Tizen.NUI.VisualMap.MixColor*"></a>
   <h4 id="Tizen_NUI_VisualMap_MixColor" data-uid="Tizen.NUI.VisualMap.MixColor">MixColor</h4>
@@ -491,7 +500,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L548">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L563">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_Opacity_" data-uid="Tizen.NUI.VisualMap.Opacity*"></a>
   <h4 id="Tizen_NUI_VisualMap_Opacity" data-uid="Tizen.NUI.VisualMap.Opacity">Opacity</h4>
@@ -523,12 +532,12 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L415">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L430">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_Origin_" data-uid="Tizen.NUI.VisualMap.Origin*"></a>
   <h4 id="Tizen_NUI_VisualMap_Origin" data-uid="Tizen.NUI.VisualMap.Origin">Origin</h4>
   <div class="markdown level1 summary"><p>Gets or sets the origin of the visual within its control area.<br>
-By default, the origin is center.<br>
+By default, the origin is AlignType.TopBegin.<br>
 Optional.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -557,7 +566,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L469">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L484">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_OutputTransformMap_" data-uid="Tizen.NUI.VisualMap.OutputTransformMap*"></a>
   <h4 id="Tizen_NUI_VisualMap_OutputTransformMap" data-uid="Tizen.NUI.VisualMap.OutputTransformMap">OutputTransformMap</h4>
@@ -589,7 +598,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L482">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L497">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_OutputVisualMap_" data-uid="Tizen.NUI.VisualMap.OutputVisualMap*"></a>
   <h4 id="Tizen_NUI_VisualMap_OutputVisualMap" data-uid="Tizen.NUI.VisualMap.OutputVisualMap">OutputVisualMap</h4>
@@ -621,7 +630,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L127">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L142">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_Position_" data-uid="Tizen.NUI.VisualMap.Position*"></a>
   <h4 id="Tizen_NUI_VisualMap_Position" data-uid="Tizen.NUI.VisualMap.Position">Position</h4>
@@ -656,7 +665,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L191">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L206">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_PositionPolicy_" data-uid="Tizen.NUI.VisualMap.PositionPolicy*"></a>
   <h4 id="Tizen_NUI_VisualMap_PositionPolicy" data-uid="Tizen.NUI.VisualMap.PositionPolicy">PositionPolicy</h4>
@@ -691,7 +700,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L227">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L242">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_PositionPolicyX_" data-uid="Tizen.NUI.VisualMap.PositionPolicyX*"></a>
   <h4 id="Tizen_NUI_VisualMap_PositionPolicyX" data-uid="Tizen.NUI.VisualMap.PositionPolicyX">PositionPolicyX</h4>
@@ -726,7 +735,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L266">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L281">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_PositionPolicyY_" data-uid="Tizen.NUI.VisualMap.PositionPolicyY*"></a>
   <h4 id="Tizen_NUI_VisualMap_PositionPolicyY" data-uid="Tizen.NUI.VisualMap.PositionPolicyY">PositionPolicyY</h4>
@@ -761,7 +770,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L514">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L529">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_PremultipliedAlpha_" data-uid="Tizen.NUI.VisualMap.PremultipliedAlpha*"></a>
   <h4 id="Tizen_NUI_VisualMap_PremultipliedAlpha" data-uid="Tizen.NUI.VisualMap.PremultipliedAlpha">PremultipliedAlpha</h4>
@@ -794,7 +803,7 @@ The premultiplied alpha is false by default unless this behavior is modified by 
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L170">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L185">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_RelativePosition_" data-uid="Tizen.NUI.VisualMap.RelativePosition*"></a>
   <h4 id="Tizen_NUI_VisualMap_RelativePosition" data-uid="Tizen.NUI.VisualMap.RelativePosition">RelativePosition</h4>
@@ -828,7 +837,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L150">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L165">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_RelativeSize_" data-uid="Tizen.NUI.VisualMap.RelativeSize*"></a>
   <h4 id="Tizen_NUI_VisualMap_RelativeSize" data-uid="Tizen.NUI.VisualMap.RelativeSize">RelativeSize</h4>
@@ -862,7 +871,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L496">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L511">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_Shader_" data-uid="Tizen.NUI.VisualMap.Shader*"></a>
   <h4 id="Tizen_NUI_VisualMap_Shader" data-uid="Tizen.NUI.VisualMap.Shader">Shader</h4>
@@ -894,7 +903,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L103">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L118">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_Size_" data-uid="Tizen.NUI.VisualMap.Size*"></a>
   <h4 id="Tizen_NUI_VisualMap_Size" data-uid="Tizen.NUI.VisualMap.Size">Size</h4>
@@ -929,7 +938,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L304">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L319">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_SizePolicy_" data-uid="Tizen.NUI.VisualMap.SizePolicy*"></a>
   <h4 id="Tizen_NUI_VisualMap_SizePolicy" data-uid="Tizen.NUI.VisualMap.SizePolicy">SizePolicy</h4>
@@ -964,7 +973,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L378">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L393">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_SizePolicyHeight_" data-uid="Tizen.NUI.VisualMap.SizePolicyHeight*"></a>
   <h4 id="Tizen_NUI_VisualMap_SizePolicyHeight" data-uid="Tizen.NUI.VisualMap.SizePolicyHeight">SizePolicyHeight</h4>
@@ -999,7 +1008,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L340">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L355">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_SizePolicyWidth_" data-uid="Tizen.NUI.VisualMap.SizePolicyWidth*"></a>
   <h4 id="Tizen_NUI_VisualMap_SizePolicyWidth" data-uid="Tizen.NUI.VisualMap.SizePolicyWidth">SizePolicyWidth</h4>
@@ -1034,7 +1043,7 @@ Optional.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L566">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L581">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_VisualFittingMode_" data-uid="Tizen.NUI.VisualMap.VisualFittingMode*"></a>
   <h4 id="Tizen_NUI_VisualMap_VisualFittingMode" data-uid="Tizen.NUI.VisualMap.VisualFittingMode">VisualFittingMode</h4>
@@ -1069,7 +1078,7 @@ The default is defined by the type of visual (if it is suitable to be stretched 
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L654">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L719">View Source</a>
   </span>
   <a id="Tizen_NUI_VisualMap_ComposingPropertyMap_" data-uid="Tizen.NUI.VisualMap.ComposingPropertyMap*"></a>
   <h4 id="Tizen_NUI_VisualMap_ComposingPropertyMap" data-uid="Tizen.NUI.VisualMap.ComposingPropertyMap">ComposingPropertyMap()</h4>
@@ -1085,6 +1094,10 @@ The default is defined by the type of visual (if it is suitable to be stretched 
   
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
 </article>
           </div>
           
@@ -1093,7 +1106,7 @@ The default is defined by the type of visual (if it is suitable to be stretched 
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/VisualMaps.cs/#L26" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/VisualMaps.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

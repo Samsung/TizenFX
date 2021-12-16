@@ -10,7 +10,7 @@
     <meta name="title" content="Namespace Tizen.NUI
    ">
     <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API8">
+    <meta name="version" content="API9">
     
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -176,6 +176,9 @@ This reduces ambiguity when using methods which accept angles in degrees or radi
       <h4><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></h4>
       <section><p>Extents class describing the a collection of uint16_t.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.FadeTransition.html">FadeTransition</a></h4>
+      <section><p>FadeTransition class is a cluster of properties for the fade transition of a View.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.FlexLayout.html">FlexLayout</a></h4>
       <section><p>This class implements a flex layout.
 The flex layout implementation is based on open source Facebook Yoga layout engine.
@@ -223,6 +226,9 @@ in a particular order or within a certain time frame (for example, pinch).<br></
       <section><p>Hover events are a collection of points at a specific moment in time.<br>
 When a multi-event occurs, each point represents the points that are currently being
 hovered or the points where a hover has stopped.<br></p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.ImageLoader.html">ImageLoader</a></h4>
+      <section><p>A class containing methods providing image loading</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.ImageVisual.html">ImageVisual</a></h4>
       <section><p>A class encapsulating the property map of the image visual.</p>
@@ -278,7 +284,7 @@ This allows the generation of key frame objects from individual Property::Values
 It can be laid out by a LayoutGroup.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.LayoutTransition.html">LayoutTransition</a></h4>
-      <section><p>LayoutTransition stores the animation setting for a transition conidition.</p>
+      <section><p>LayoutTransition stores the animation setting for a transition condition.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.LinearLayout.html">LinearLayout</a></h4>
       <section><p>[Draft] This class implements a linear box layout, automatically handling right to left or left to right direction change.</p>
@@ -317,6 +323,15 @@ A long press gesture finishes when all touches have been released.<br></p>
       <h4><a class="xref" href="Tizen.NUI.PaddingType.html">PaddingType</a></h4>
       <section><p>The gesture state.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.Palette.html">Palette</a></h4>
+      <section><p>A helper class to extract prominent colors from an image.</p>
+<p>A number of colors with different profiles are extracted from the image:
+Vibrant, Vibrant Dark, Vibrant Light, Muted, Muted Dark, Muted Light</p>
+<p>These can be retrieved from the appropriate getter method.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.Palette.Swatch.html">Palette.Swatch</a></h4>
+      <section><p>Represents a color swatch generated from an image&apos;s palette. The RGB color can be retrieved calling getRgb()</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.PanGesture.html">PanGesture</a></h4>
       <section><p>A PanGesture is emitted when the user moves one or more fingers in a particular direction.<br>
 A pan gesture will end in the following ways:<br></p>
@@ -343,7 +358,7 @@ A pinch gesture will continue to be sent to the actor under the center point of 
       <section><p>Position2D is a two-dimensional vector.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.PrimitiveVisual.html">PrimitiveVisual</a></h4>
-      <section><p>A class encapsulating the property map of the primetive visual.</p>
+      <section><p>A class encapsulating the property map of the primitive visual.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.PropertyArray.html">PropertyArray</a></h4>
       <section><p>An array of property values.</p>
@@ -377,6 +392,9 @@ See PropertyCondition for available defined conditions.</p>
       <h4><a class="xref" href="Tizen.NUI.Rectangle.html">Rectangle</a></h4>
       <section><p>The Rectangle class.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.RelativeLayout.html">RelativeLayout</a></h4>
+      <section><p>RelativeLayout calculates the size and position of all the children based on their relationship to each other.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.RelativeVector2.html">RelativeVector2</a></h4>
       <section><p>RelativeVector2 is a two-dimensional vector.
 Both values (x and y) should be between [0, 1].</p>
@@ -401,6 +419,13 @@ All values (x, y, and z) should be between [0, 1].</p>
       <h4><a class="xref" href="Tizen.NUI.Sampler.html">Sampler</a></h4>
       <section><p>Sampler is a handle to an object that can be used to provide the sampling parameters to sample textures.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.ScaleTransition.html">ScaleTransition</a></h4>
+      <section><p>ScaleTransition provides smoothly appearing/disappearing scale effects for target View.
+If this transition is for appearing, the View comes out with the scale factor applied
+and will be animated at its original scale.
+If this transition is for disappearing, the View starts at its original size
+but will become the scale of scale factor and vanished.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.ScriptableProperty.html">ScriptableProperty</a></h4>
       <section><p>Adds this attribute to any property belonging to a view (control) you want to be scriptable from JSON.</p>
 </section>
@@ -414,11 +439,23 @@ ScrollView instance.</p>
       <h4><a class="xref" href="Tizen.NUI.Shader.Hint.html">Shader.Hint</a></h4>
       <section><p>Hint.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.Shadow.html">Shadow</a></h4>
+      <section><p>Represents a shadow with color and blur radius for a View.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.ShadowBase.html">ShadowBase</a></h4>
+      <section><p>The base class to describe basic shadow.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.Size.html">Size</a></h4>
       <section><p>A three-dimensional size.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Size2D.html">Size2D</a></h4>
       <section><p>A two-dimensional size.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.SlideTransition.html">SlideTransition</a></h4>
+      <section><p>SlideTransition class is a cluster of properties for the slide transition of a View.
+SlideTransition provides smoothly appearing/disappearing effects for target Control.
+The direction the target Control is comming from or going to can be selected in the pre-defined directions at the SlideTransitionDirection {UP, DOWN, LEFT, RIGHT}
+And, to use custom direction, the direction can be set by using Vector2.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Spin.html">Spin</a></h4>
       <section><p>Spins the CustomView class.</p>
@@ -449,6 +486,28 @@ The images have to be ordered in the same order they are declared in the shader.
       <h4><a class="xref" href="Tizen.NUI.TextVisual.html">TextVisual</a></h4>
       <section><p>A class encapsulating the property map of the text visual.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.Theme.html">Theme</a></h4>
+      <section><p>
+Basically, the Theme is a dictionary of <a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a>s that can decorate NUI <a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a>s.
+Each ViewStyle item is identified by a string key that can be matched the <a class="xref" href="Tizen.NUI.BaseComponents.View.html#Tizen_NUI_BaseComponents_View_StyleName">StyleName</a>.
+</p>
+<p>
+The main purpose of providing theme is to separate style details from the structure.
+Managing style separately makes it easier to customize the look of application by user context.
+Also since a theme can be created from xaml file, it can be treated as a resource.
+This enables sharing styles with other applications.
+</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.ThemeChangedEventArgs.html">ThemeChangedEventArgs</a></h4>
+      <section><p>The event arguments that hold data for the event <a class="xref" href="Tizen.NUI.ThemeManager.html#Tizen_NUI_ThemeManager_ThemeChanged">ThemeChanged</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.ThemeManager.html">ThemeManager</a></h4>
+      <section><p>This static module provides methods that can manage NUI <a class="xref" href="Tizen.NUI.Theme.html">Theme</a>.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.TimePeriod.html">TimePeriod</a></h4>
+      <section><p>TimePeriod is used to define delay and duration of a process such as <a class="xref" href="Tizen.NUI.Transition.html">Transition</a>.
+TimePeriod is composed of Delay and Duration in milliseconds</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.Timer.html">Timer</a></h4>
       <section><p>Mechanism to issue simple periodic or one-shot events.<br>
 Timer is provided for application developers to be able to issue
@@ -467,14 +526,27 @@ as a member.<br></p>
 When a multi-touch event occurs, each point represents the points that are currently being
 touched or the points where a touch has stopped.<br></p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.Transition.html">Transition</a></h4>
+      <section><p>Transition class is a cluster of properties for the transition of View pair.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.TransitionBase.html">TransitionBase</a></h4>
+      <section><p>TransitionBase class is a base class for all Transition.
+Each Transition child classes inherits this base class.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.TransitionComponents.html">TransitionComponents</a></h4>
       <section><p>Parts of the transition that can be configured to provide a custom effect.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.TransitionData.html">TransitionData</a></h4>
-      <section><p>This object translates data from a property array of maps into an array of animators.</p>
+      <section><p>This object translates data from a property array of maps into an array of animators.
+This is normally used when animating visuals.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.TransitionList.html">TransitionList</a></h4>
       <section><p>Define a List of LayoutTransitions</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.TransitionOptions.html">TransitionOptions</a></h4>
+      <section><p>This TransitionOptions class is a class to control Transition motion.
+This class includes multiple options for the Transition.
+NUI supports various kinds of Transitions such as App transition, Page transition, and so on.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.TTSPlayer.html">TTSPlayer</a></h4>
       <section><p>The Text-to-speech (TTS) player.</p>
@@ -520,6 +592,15 @@ Each visual also responds to actor size and color change, and provides clipping 
 A WatchTime has a time handle from watch application framework.<br>
 You can get time(hour, minute, second, millisecond) and date(year, month, day)<br>
 on receiving timeTick signal.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.WebPageLoadError.html">WebPageLoadError</a></h4>
+      <section><p>It is a class for load error of page of web view.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.WebViewPageLoadErrorEventArgs.html">WebViewPageLoadErrorEventArgs</a></h4>
+      <section><p>Event arguments that passed via the WebView.PageLoadError.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.WebViewPageLoadEventArgs.html">WebViewPageLoadEventArgs</a></h4>
+      <section><p>Event arguments that passed via the WebView.PageLoadStarted or WebView.PageLoadFinished.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Wheel.html">Wheel</a></h4>
       <section><p>The wheel event structure is used to store a wheel rolling, it facilitates processing of the wheel rolling and passing to other libraries like Toolkit.<br>
@@ -571,6 +652,9 @@ This resized event arguments.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.ColorVisualProperty.html">ColorVisualProperty</a></h4>
       <section><p>This specifies properties of the ColorVisual.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.FontSizeScale.html">FontSizeScale</a></h4>
+      <section><p>FontSizeScale constant.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.GradientVisualProperty.html">GradientVisualProperty</a></h4>
       <section><p>This specifies properties of the GradientVisual.</p>
@@ -689,6 +773,9 @@ Interface that defines a layout Parent. Enables a layout child to access methods
       <h4><a class="xref" href="Tizen.NUI.DrawModeType.html">DrawModeType</a></h4>
       <section><p>Enumeration for the instance of how the actor and it&apos;s children will be drawn.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.EllipsisPosition.html">EllipsisPosition</a></h4>
+      <section><p>An enum of ellipsis position.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.FilterModeType.html">FilterModeType</a></h4>
       <section><p>The filter mode type.</p>
 </section>
@@ -755,7 +842,7 @@ SpreadMethod defines what happens if the gradient starts or ends inside the boun
       <section><p>The type for HiddenInput mode.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.HorizontalAlignment.html">HorizontalAlignment</a></h4>
-      <section><p>Enumeration for the text horizontal aligning.</p>
+      <section><p>Enumeration for the horizontal alignment of objects such as texts and layout items.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.HorizontalAlignmentType.html">HorizontalAlignmentType</a></h4>
       <section><p>Enumeration for horizontal alignment types.</p>
@@ -857,6 +944,9 @@ Enumeration for the access mode for custom properties.</p>
       <section><p>This specifies all the property types.<br>
 Enumeration for the property types supported.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.RelativeLayout.Alignment.html">RelativeLayout.Alignment</a></h4>
+      <section><p>The alignment of the relative layout child.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.ReleasePolicyType.html">ReleasePolicyType</a></h4>
       <section><p>Specifies the release policy types.<br>
 Decides if the image should be cached in different conditions.</p>
@@ -877,13 +967,13 @@ but all other filter modes do if the desired dimensions are not more than the ra
       <section><p>An enum of screen mode.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.ScriptableProperty.ScriptableType.html">ScriptableProperty.ScriptableType</a></h4>
-      <section><p>Rhe enum of ScriptableType</p>
+      <section><p>The enum of ScriptableType</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.ScrollModeType.html">ScrollModeType</a></h4>
       <section><p>This specifies all the scroll mode type.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.ScrollState.html">ScrollState</a></h4>
-      <section><p>An enum of the scroll state of the text eidtor.</p>
+      <section><p>An enum of the scroll state of the text editor.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Shader.Hint.Value.html">Shader.Hint.Value</a></h4>
       <section><p>Enumeration for the hint value.</p>
@@ -910,7 +1000,7 @@ but all other filter modes do if the desired dimensions are not more than the ra
       <section><p>Enumeration for the instance of TTS state.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.VerticalAlignment.html">VerticalAlignment</a></h4>
-      <section><p>Enumeration for the text horizontal aligning.</p>
+      <section><p>Enumeration for the vertical alignment of objects such as texts and layout items.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.VerticalAlignmentType.html">VerticalAlignmentType</a></h4>
       <section><p>Enumeration for vertical alignment types.</p>
@@ -922,7 +1012,7 @@ but all other filter modes do if the desired dimensions are not more than the ra
       <section><p>The visibility change type.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Visual.AlignType.html">Visual.AlignType</a></h4>
-      <section><p>This specifies visaul align types.</p>
+      <section><p>This specifies visual align types.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Visual.Type.html">Visual.Type</a></h4>
       <section><p>The index for the visual type.</p>
@@ -935,6 +1025,12 @@ but all other filter modes do if the desired dimensions are not more than the ra
 </section>
       <h4><a class="xref" href="Tizen.NUI.VisualTransformPropertyType.html">VisualTransformPropertyType</a></h4>
       <section><p>This specifies all the transform property types.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.WebPageLoadError.ErrorCode.html">WebPageLoadError.ErrorCode</a></h4>
+      <section><p>Enumeration for the load error code</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.WebPageLoadError.ErrorType.html">WebPageLoadError.ErrorType</a></h4>
+      <section><p>Enumeration for the load error type</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Wheel.WheelType.html">Wheel.WheelType</a></h4>
       <section><p>The type of the wheel event.</p>

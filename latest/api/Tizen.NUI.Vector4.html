@@ -10,7 +10,7 @@
     <meta name="title" content="Class Vector4
    ">
     <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API8">
+    <meta name="version" content="API9">
     
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -123,7 +123,7 @@
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L36">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L36">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4__ctor_" data-uid="Tizen.NUI.Vector4.#ctor*"></a>
   <h4 id="Tizen_NUI_Vector4__ctor" data-uid="Tizen.NUI.Vector4.#ctor">Vector4()</h4>
@@ -140,7 +140,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L49">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L49">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4__ctor_" data-uid="Tizen.NUI.Vector4.#ctor*"></a>
   <h4 id="Tizen_NUI_Vector4__ctor_System_Single_System_Single_System_Single_System_Single_" data-uid="Tizen.NUI.Vector4.#ctor(System.Single,System.Single,System.Single,System.Single)">Vector4(Single, Single, Single, Single)</h4>
@@ -193,7 +193,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L59">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L59">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4__ctor_" data-uid="Tizen.NUI.Vector4.#ctor*"></a>
   <h4 id="Tizen_NUI_Vector4__ctor_System_Single___" data-uid="Tizen.NUI.Vector4.#ctor(System.Single[])">Vector4(Single[])</h4>
@@ -228,7 +228,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L69">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L69">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4__ctor_" data-uid="Tizen.NUI.Vector4.#ctor*"></a>
   <h4 id="Tizen_NUI_Vector4__ctor_Tizen_NUI_Vector2_" data-uid="Tizen.NUI.Vector4.#ctor(Tizen.NUI.Vector2)">Vector4(Vector2)</h4>
@@ -263,7 +263,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L79">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L79">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4__ctor_" data-uid="Tizen.NUI.Vector4.#ctor*"></a>
   <h4 id="Tizen_NUI_Vector4__ctor_Tizen_NUI_Vector3_" data-uid="Tizen.NUI.Vector4.#ctor(Tizen.NUI.Vector3)">Vector4(Vector3)</h4>
@@ -300,7 +300,7 @@
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L527">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L516">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_A_" data-uid="Tizen.NUI.Vector4.A*"></a>
   <h4 id="Tizen_NUI_Vector4_A" data-uid="Tizen.NUI.Vector4.A">A</h4>
@@ -309,7 +309,12 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float A { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float A
+{
+    get;
+    [Obsolete(&quot;Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -335,18 +340,21 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L424">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L417">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_B_" data-uid="Tizen.NUI.Vector4.B*"></a>
   <h4 id="Tizen_NUI_Vector4_B" data-uid="Tizen.NUI.Vector4.B">B</h4>
-  <div class="markdown obsolete" data-id="Tizen_NUI_Vector4_B">Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor</div>
   <div class="markdown level1 summary"><p>The blue component.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor&quot;)]
-public float B { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float B
+{
+    get;
+    [Obsolete(&quot;Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -372,7 +380,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L322">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L318">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_G_" data-uid="Tizen.NUI.Vector4.G*"></a>
   <h4 id="Tizen_NUI_Vector4_G" data-uid="Tizen.NUI.Vector4.G">G</h4>
@@ -381,7 +389,12 @@ public float B { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float G { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float G
+{
+    get;
+    [Obsolete(&quot;Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -407,7 +420,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L586">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L573">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_Item_" data-uid="Tizen.NUI.Vector4.Item*"></a>
   <h4 id="Tizen_NUI_Vector4_Item_System_UInt32_" data-uid="Tizen.NUI.Vector4.Item(System.UInt32)">Item[UInt32]</h4>
@@ -458,7 +471,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L100">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L100">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_One_" data-uid="Tizen.NUI.Vector4.One*"></a>
   <h4 id="Tizen_NUI_Vector4_One" data-uid="Tizen.NUI.Vector4.One">One</h4>
@@ -490,7 +503,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L459">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L450">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_P_" data-uid="Tizen.NUI.Vector4.P*"></a>
   <h4 id="Tizen_NUI_Vector4_P" data-uid="Tizen.NUI.Vector4.P">P</h4>
@@ -499,7 +512,12 @@ public float B { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float P { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float P
+{
+    get;
+    [Obsolete(&quot;Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -525,7 +543,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L561">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L549">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_Q_" data-uid="Tizen.NUI.Vector4.Q*"></a>
   <h4 id="Tizen_NUI_Vector4_Q" data-uid="Tizen.NUI.Vector4.Q">Q</h4>
@@ -534,7 +552,12 @@ public float B { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float Q { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float Q
+{
+    get;
+    [Obsolete(&quot;Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -560,7 +583,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L220">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L219">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_R_" data-uid="Tizen.NUI.Vector4.R*"></a>
   <h4 id="Tizen_NUI_Vector4_R" data-uid="Tizen.NUI.Vector4.R">R</h4>
@@ -569,7 +592,12 @@ public float B { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float R { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float R
+{
+    get;
+    [Obsolete(&quot;Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -595,7 +623,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L254">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L252">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_S_" data-uid="Tizen.NUI.Vector4.S*"></a>
   <h4 id="Tizen_NUI_Vector4_S" data-uid="Tizen.NUI.Vector4.S">S</h4>
@@ -604,7 +632,12 @@ public float B { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float S { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float S
+{
+    get;
+    [Obsolete(&quot;Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -630,7 +663,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L356">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L351">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_T_" data-uid="Tizen.NUI.Vector4.T*"></a>
   <h4 id="Tizen_NUI_Vector4_T" data-uid="Tizen.NUI.Vector4.T">T</h4>
@@ -639,7 +672,12 @@ public float B { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float T { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float T
+{
+    get;
+    [Obsolete(&quot;Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -665,7 +703,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L493">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L483">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_W_" data-uid="Tizen.NUI.Vector4.W*"></a>
   <h4 id="Tizen_NUI_Vector4_W" data-uid="Tizen.NUI.Vector4.W">W</h4>
@@ -674,7 +712,12 @@ public float B { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float W { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float W
+{
+    get;
+    [Obsolete(&quot;Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -700,7 +743,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L186">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L186">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_X_" data-uid="Tizen.NUI.Vector4.X*"></a>
   <h4 id="Tizen_NUI_Vector4_X" data-uid="Tizen.NUI.Vector4.X">X</h4>
@@ -709,7 +752,12 @@ public float B { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float X { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float X
+{
+    get;
+    [Obsolete(&quot;Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -735,7 +783,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L115">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L115">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_XAxis_" data-uid="Tizen.NUI.Vector4.XAxis*"></a>
   <h4 id="Tizen_NUI_Vector4_XAxis" data-uid="Tizen.NUI.Vector4.XAxis">XAxis</h4>
@@ -767,7 +815,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L288">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L285">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_Y_" data-uid="Tizen.NUI.Vector4.Y*"></a>
   <h4 id="Tizen_NUI_Vector4_Y" data-uid="Tizen.NUI.Vector4.Y">Y</h4>
@@ -776,7 +824,12 @@ public float B { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float Y { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float Y
+{
+    get;
+    [Obsolete(&quot;Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -802,7 +855,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L130">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L130">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_YAxis_" data-uid="Tizen.NUI.Vector4.YAxis*"></a>
   <h4 id="Tizen_NUI_Vector4_YAxis" data-uid="Tizen.NUI.Vector4.YAxis">YAxis</h4>
@@ -834,7 +887,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L390">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L384">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_Z_" data-uid="Tizen.NUI.Vector4.Z*"></a>
   <h4 id="Tizen_NUI_Vector4_Z" data-uid="Tizen.NUI.Vector4.Z">Z</h4>
@@ -843,7 +896,12 @@ public float B { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float Z { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float Z
+{
+    get;
+    [Obsolete(&quot;Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -869,7 +927,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L145">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L145">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_ZAxis_" data-uid="Tizen.NUI.Vector4.ZAxis*"></a>
   <h4 id="Tizen_NUI_Vector4_ZAxis" data-uid="Tizen.NUI.Vector4.ZAxis">ZAxis</h4>
@@ -901,7 +959,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L160">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L160">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_Zero_" data-uid="Tizen.NUI.Vector4.Zero*"></a>
   <h4 id="Tizen_NUI_Vector4_Zero" data-uid="Tizen.NUI.Vector4.Zero">Zero</h4>
@@ -935,7 +993,7 @@ public float B { get; set; }</code></pre>
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L747">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L744">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_Clamp_" data-uid="Tizen.NUI.Vector4.Clamp*"></a>
   <h4 id="Tizen_NUI_Vector4_Clamp_Tizen_NUI_Vector4_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Vector4.Clamp(Tizen.NUI.Vector4,Tizen.NUI.Vector4)">Clamp(Vector4, Vector4)</h4>
@@ -976,7 +1034,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L683">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L680">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_Equals_" data-uid="Tizen.NUI.Vector4.Equals*"></a>
   <h4 id="Tizen_NUI_Vector4_Equals_Tizen_System_Object_" data-uid="Tizen.NUI.Vector4.Equals(Tizen.System.Object)">Equals(Object)</h4>
@@ -1026,11 +1084,11 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L699">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L696">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_GetHashCode_" data-uid="Tizen.NUI.Vector4.GetHashCode*"></a>
   <h4 id="Tizen_NUI_Vector4_GetHashCode" data-uid="Tizen.NUI.Vector4.GetHashCode">GetHashCode()</h4>
-  <div class="markdown level1 summary"><p>Gets the the hash code of this Vector4.</p>
+  <div class="markdown level1 summary"><p>Gets the hash code of this Vector4.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -1061,7 +1119,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L709">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L706">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_Length_" data-uid="Tizen.NUI.Vector4.Length*"></a>
   <h4 id="Tizen_NUI_Vector4_Length" data-uid="Tizen.NUI.Vector4.Length">Length()</h4>
@@ -1094,7 +1152,7 @@ public float B { get; set; }</code></pre>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L723">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L720">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_LengthSquared_" data-uid="Tizen.NUI.Vector4.LengthSquared*"></a>
   <h4 id="Tizen_NUI_Vector4_LengthSquared" data-uid="Tizen.NUI.Vector4.LengthSquared">LengthSquared()</h4>
@@ -1129,7 +1187,7 @@ threshold checks as it avoids use of the square root.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L735">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L732">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_Normalize_" data-uid="Tizen.NUI.Vector4.Normalize*"></a>
   <h4 id="Tizen_NUI_Vector4_Normalize" data-uid="Tizen.NUI.Vector4.Normalize">Normalize()</h4>
@@ -1149,7 +1207,7 @@ Sets the vector to unit length whilst maintaining its direction.<br></p>
   <h3 id="operators">Operators
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L602">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L589">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_op_Addition_" data-uid="Tizen.NUI.Vector4.op_Addition*"></a>
   <h4 id="Tizen_NUI_Vector4_op_Addition_Tizen_NUI_Vector4_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Vector4.op_Addition(Tizen.NUI.Vector4,Tizen.NUI.Vector4)">Addition(Vector4, Vector4)</h4>
@@ -1206,7 +1264,7 @@ Sets the vector to unit length whilst maintaining its direction.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L673">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L660">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_op_Division_" data-uid="Tizen.NUI.Vector4.op_Division*"></a>
   <h4 id="Tizen_NUI_Vector4_op_Division_Tizen_NUI_Vector4_System_Single_" data-uid="Tizen.NUI.Vector4.op_Division(Tizen.NUI.Vector4,System.Single)">Division(Vector4, Single)</h4>
@@ -1263,7 +1321,7 @@ Sets the vector to unit length whilst maintaining its direction.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L661">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L648">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_op_Division_" data-uid="Tizen.NUI.Vector4.op_Division*"></a>
   <h4 id="Tizen_NUI_Vector4_op_Division_Tizen_NUI_Vector4_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Vector4.op_Division(Tizen.NUI.Vector4,Tizen.NUI.Vector4)">Division(Vector4, Vector4)</h4>
@@ -1320,7 +1378,7 @@ Sets the vector to unit length whilst maintaining its direction.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L649">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L636">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_op_Multiply_" data-uid="Tizen.NUI.Vector4.op_Multiply*"></a>
   <h4 id="Tizen_NUI_Vector4_op_Multiply_Tizen_NUI_Vector4_System_Single_" data-uid="Tizen.NUI.Vector4.op_Multiply(Tizen.NUI.Vector4,System.Single)">Multiply(Vector4, Single)</h4>
@@ -1377,7 +1435,7 @@ Sets the vector to unit length whilst maintaining its direction.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L637">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L624">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_op_Multiply_" data-uid="Tizen.NUI.Vector4.op_Multiply*"></a>
   <h4 id="Tizen_NUI_Vector4_op_Multiply_Tizen_NUI_Vector4_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Vector4.op_Multiply(Tizen.NUI.Vector4,Tizen.NUI.Vector4)">Multiply(Vector4, Vector4)</h4>
@@ -1434,7 +1492,7 @@ Sets the vector to unit length whilst maintaining its direction.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L614">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L601">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_op_Subtraction_" data-uid="Tizen.NUI.Vector4.op_Subtraction*"></a>
   <h4 id="Tizen_NUI_Vector4_op_Subtraction_Tizen_NUI_Vector4_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Vector4.op_Subtraction(Tizen.NUI.Vector4,Tizen.NUI.Vector4)">Subtraction(Vector4, Vector4)</h4>
@@ -1491,7 +1549,7 @@ Sets the vector to unit length whilst maintaining its direction.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L625">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L612">View Source</a>
   </span>
   <a id="Tizen_NUI_Vector4_op_UnaryNegation_" data-uid="Tizen.NUI.Vector4.op_UnaryNegation*"></a>
   <h4 id="Tizen_NUI_Vector4_op_UnaryNegation_Tizen_NUI_Vector4_" data-uid="Tizen.NUI.Vector4.op_UnaryNegation(Tizen.NUI.Vector4)">UnaryNegation(Vector4)</h4>
@@ -1556,7 +1614,7 @@ Sets the vector to unit length whilst maintaining its direction.<br></p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Vector4.cs/#L28" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Vector4.cs/#L28" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
