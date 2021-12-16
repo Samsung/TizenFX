@@ -10,7 +10,7 @@
     <meta name="title" content="Class Switch
    ">
     <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API8">
+    <meta name="version" content="API9">
     
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -53,7 +53,7 @@
   Switch
   </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L29" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L30" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -62,8 +62,8 @@
   <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.Components.dll</dd></dl>
   <dl class="attribute-list"><dt>API Level:</dt><dd><span>6</span></dd></dl>
   
-  <div class="markdown level0 summary"><p>Switch is one kind of common component, it can be used as selector.
-User can handle Navigation by adding/inserting/deleting NavigationItem.</p>
+  <div class="markdown level0 summary"><p>Switch is a kind of <a class="xref" href="Tizen.NUI.Components.Button.html">Button</a> component that uses icon part as a toggle shape.
+The icon part consists of track and thumb.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   
@@ -77,7 +77,7 @@ User can handle Navigation by adding/inserting/deleting NavigationItem.</p>
     <dd>
       <div class="pdl-holder">
         <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.object">Object</a></div>
-        <div class="pdl"><span class="xref">Tizen.NUI.Binding.BindableObject</span></div>
+        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
         <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
@@ -110,7 +110,7 @@ User can handle Navigation by adding/inserting/deleting NavigationItem.</p>
   <a id="Tizen_NUI_Components_Switch__ctor_" data-uid="Tizen.NUI.Components.Switch.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L40">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L40">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch__ctor" data-uid="Tizen.NUI.Components.Switch.#ctor">Switch()</h4>
     <section>
@@ -130,7 +130,7 @@ User can handle Navigation by adding/inserting/deleting NavigationItem.</p>
   <a id="Tizen_NUI_Components_Switch__ctor_" data-uid="Tizen.NUI.Components.Switch.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L50">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L49">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch__ctor_System_String_" data-uid="Tizen.NUI.Components.Switch.#ctor(System.String)">Switch(String)</h4>
     <section>
@@ -168,7 +168,7 @@ User can handle Navigation by adding/inserting/deleting NavigationItem.</p>
   <a id="Tizen_NUI_Components_Switch__ctor_" data-uid="Tizen.NUI.Components.Switch.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L60">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L58">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch__ctor_Tizen_NUI_Components_SwitchStyle_" data-uid="Tizen.NUI.Components.Switch.#ctor(Tizen.NUI.Components.SwitchStyle)">Switch(SwitchStyle)</h4>
     <section>
@@ -208,11 +208,11 @@ User can handle Navigation by adding/inserting/deleting NavigationItem.</p>
   <a id="Tizen_NUI_Components_Switch_Style_" data-uid="Tizen.NUI.Components.Switch.Style*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L86">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L108">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch_Style" data-uid="Tizen.NUI.Components.Switch.Style">Style</h4>
     <section>
-      <p>Return a copied Style instance of Switch</p>
+      <p>Return currently applied style.</p>
 
     </section>
   </div>
@@ -237,8 +237,7 @@ User can handle Navigation by adding/inserting/deleting NavigationItem.</p>
     </tbody>
   </table>
   <h5 id="Tizen_NUI_Components_Switch_Style_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>It returns copied Style instance and changing it does not effect to the Switch.
-Style setting is possible by using constructor or the function of ApplyStyle(ViewStyle viewStyle)</p>
+  <div class="markdown level1 remarks"><p>Modifying contents in style may cause unexpected behaviour.</p>
 </div>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
@@ -247,11 +246,11 @@ Style setting is possible by using constructor or the function of ApplyStyle(Vie
   <a id="Tizen_NUI_Components_Switch_SwitchBackgroundImageURLSelector_" data-uid="Tizen.NUI.Components.Switch.SwitchBackgroundImageURLSelector*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L195">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L173">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch_SwitchBackgroundImageURLSelector" data-uid="Tizen.NUI.Components.Switch.SwitchBackgroundImageURLSelector">SwitchBackgroundImageURLSelector</h4>
     <section>
-      <p>Background image&apos;s resource url selector in Switch.</p>
+      <p>Switch&apos;s track part image url selector.</p>
 
     </section>
   </div>
@@ -282,7 +281,7 @@ Style setting is possible by using constructor or the function of ApplyStyle(Vie
   <a id="Tizen_NUI_Components_Switch_SwitchHandlerImageSize_" data-uid="Tizen.NUI.Components.Switch.SwitchHandlerImageSize*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L232">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L218">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch_SwitchHandlerImageSize" data-uid="Tizen.NUI.Components.Switch.SwitchHandlerImageSize">SwitchHandlerImageSize</h4>
     <section>
@@ -317,7 +316,7 @@ Style setting is possible by using constructor or the function of ApplyStyle(Vie
   <a id="Tizen_NUI_Components_Switch_SwitchHandlerImageURL_" data-uid="Tizen.NUI.Components.Switch.SwitchHandlerImageURL*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L205">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L187">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch_SwitchHandlerImageURL" data-uid="Tizen.NUI.Components.Switch.SwitchHandlerImageURL">SwitchHandlerImageURL</h4>
     <section>
@@ -352,7 +351,7 @@ Style setting is possible by using constructor or the function of ApplyStyle(Vie
   <a id="Tizen_NUI_Components_Switch_SwitchHandlerImageURLSelector_" data-uid="Tizen.NUI.Components.Switch.SwitchHandlerImageURLSelector*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L222">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L204">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch_SwitchHandlerImageURLSelector" data-uid="Tizen.NUI.Components.Switch.SwitchHandlerImageURLSelector">SwitchHandlerImageURLSelector</h4>
     <section>
@@ -388,7 +387,7 @@ Getter returns copied selector value if exist, null otherwise.</p>
   <a id="Tizen_NUI_Components_Switch_Thumb_" data-uid="Tizen.NUI.Components.Switch.Thumb*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L161">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L160">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch_Thumb" data-uid="Tizen.NUI.Components.Switch.Thumb">Thumb</h4>
     <section>
@@ -423,7 +422,7 @@ Getter returns copied selector value if exist, null otherwise.</p>
   <a id="Tizen_NUI_Components_Switch_Track_" data-uid="Tizen.NUI.Components.Switch.Track*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L127">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L147">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch_Track" data-uid="Tizen.NUI.Components.Switch.Track">Track</h4>
     <section>
@@ -460,7 +459,7 @@ Getter returns copied selector value if exist, null otherwise.</p>
   <a id="Tizen_NUI_Components_Switch_CreateViewStyle_" data-uid="Tizen.NUI.Components.Switch.CreateViewStyle*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L291">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L278">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch_CreateViewStyle" data-uid="Tizen.NUI.Components.Switch.CreateViewStyle">CreateViewStyle()</h4>
     <section>
@@ -483,7 +482,7 @@ Getter returns copied selector value if exist, null otherwise.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Tizen.NUI.BaseComponents.ViewStyle</span></td>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
         <td><p>The default switch style.</p>
 </td>
       </tr>
@@ -498,7 +497,7 @@ Getter returns copied selector value if exist, null otherwise.</p>
   <a id="Tizen_NUI_Components_Switch_Dispose_" data-uid="Tizen.NUI.Components.Switch.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L249">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L235">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Components.Switch.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
     <section>
@@ -538,7 +537,7 @@ Getter returns copied selector value if exist, null otherwise.</p>
   <a id="Tizen_NUI_Components_Switch_OnKey_" data-uid="Tizen.NUI.Components.Switch.OnKey*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L268">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L253">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch_OnKey_Tizen_NUI_Key_" data-uid="Tizen.NUI.Components.Switch.OnKey(Tizen.NUI.Key)">OnKey(Key)</h4>
     <section>
@@ -594,7 +593,7 @@ Getter returns copied selector value if exist, null otherwise.</p>
   <a id="Tizen_NUI_Components_Switch_OnTouch_" data-uid="Tizen.NUI.Components.Switch.OnTouch*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L280">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L265">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch_OnTouch_Tizen_NUI_Touch_" data-uid="Tizen.NUI.Components.Switch.OnTouch(Tizen.NUI.Touch)" data-obsolete="Deprecated in API8; Will be removed in API10. Please use OnClicked instead." class="obsolete">OnTouch(Touch)</h4>
     <section>
@@ -653,7 +652,7 @@ public override bool OnTouch(Touch touch)</code></pre>
   
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L76">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L99">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch_SelectedChanged" data-uid="Tizen.NUI.Components.Switch.SelectedChanged">SelectedChanged</h4>
     <section>
@@ -687,7 +686,7 @@ public override bool OnTouch(Touch touch)</code></pre>
   
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Switch.cs/#L70">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Switch.cs/#L93">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Switch_SelectedEvent" data-uid="Tizen.NUI.Components.Switch.SelectedEvent" data-obsolete="Deprecated in API8; Will be removed in API10. Please use SelectedChanged event instead." class="obsolete">SelectedEvent</h4>
     <section>

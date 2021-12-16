@@ -10,7 +10,7 @@
     <meta name="title" content="Class AnimatedImageVisual
    ">
     <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API8">
+    <meta name="version" content="API9">
     
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -53,7 +53,7 @@
   AnimatedImageVisual
   </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L25" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L25" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AnimatedImageVisual : VisualMap</code></pre>
+    <pre><code class="lang-csharp hljs">public class AnimatedImageVisual : VisualMap, IDisposable</code></pre>
   </div>
 
   
@@ -84,6 +84,12 @@
 
   
   
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -92,7 +98,7 @@
   <a id="Tizen_NUI_AnimatedImageVisual__ctor_" data-uid="Tizen.NUI.AnimatedImageVisual.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L37">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L37">View Source</a>
     </span>
     <h4 id="Tizen_NUI_AnimatedImageVisual__ctor" data-uid="Tizen.NUI.AnimatedImageVisual.#ctor">AnimatedImageVisual()</h4>
     <section>
@@ -114,7 +120,7 @@
   <a id="Tizen_NUI_AnimatedImageVisual_BatchSize_" data-uid="Tizen.NUI.AnimatedImageVisual.BatchSize*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L94">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L94">View Source</a>
     </span>
     <h4 id="Tizen_NUI_AnimatedImageVisual_BatchSize" data-uid="Tizen.NUI.AnimatedImageVisual.BatchSize">BatchSize</h4>
     <section>
@@ -149,7 +155,7 @@
   <a id="Tizen_NUI_AnimatedImageVisual_CacheSize_" data-uid="Tizen.NUI.AnimatedImageVisual.CacheSize*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L111">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L111">View Source</a>
     </span>
     <h4 id="Tizen_NUI_AnimatedImageVisual_CacheSize" data-uid="Tizen.NUI.AnimatedImageVisual.CacheSize">CacheSize</h4>
     <section>
@@ -184,7 +190,7 @@
   <a id="Tizen_NUI_AnimatedImageVisual_FrameDelay_" data-uid="Tizen.NUI.AnimatedImageVisual.FrameDelay*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L128">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L128">View Source</a>
     </span>
     <h4 id="Tizen_NUI_AnimatedImageVisual_FrameDelay" data-uid="Tizen.NUI.AnimatedImageVisual.FrameDelay">FrameDelay</h4>
     <section>
@@ -219,7 +225,7 @@
   <a id="Tizen_NUI_AnimatedImageVisual_LoopCount_" data-uid="Tizen.NUI.AnimatedImageVisual.LoopCount*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L146">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L146">View Source</a>
     </span>
     <h4 id="Tizen_NUI_AnimatedImageVisual_LoopCount" data-uid="Tizen.NUI.AnimatedImageVisual.LoopCount">LoopCount</h4>
     <section>
@@ -255,7 +261,7 @@ The default is -1. If the number is less than 0 then it loops unlimited,otherwis
   <a id="Tizen_NUI_AnimatedImageVisual_URL_" data-uid="Tizen.NUI.AnimatedImageVisual.URL*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L45">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L45">View Source</a>
     </span>
     <h4 id="Tizen_NUI_AnimatedImageVisual_URL" data-uid="Tizen.NUI.AnimatedImageVisual.URL">URL</h4>
     <section>
@@ -290,7 +296,7 @@ The default is -1. If the number is less than 0 then it loops unlimited,otherwis
   <a id="Tizen_NUI_AnimatedImageVisual_URLS_" data-uid="Tizen.NUI.AnimatedImageVisual.URLS*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L77">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L77">View Source</a>
     </span>
     <h4 id="Tizen_NUI_AnimatedImageVisual_URLS" data-uid="Tizen.NUI.AnimatedImageVisual.URLS">URLS</h4>
     <section>
@@ -327,7 +333,7 @@ The default is -1. If the number is less than 0 then it loops unlimited,otherwis
   <a id="Tizen_NUI_AnimatedImageVisual_ComposingPropertyMap_" data-uid="Tizen.NUI.AnimatedImageVisual.ComposingPropertyMap*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L163">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Visuals/AnimatedImageVisual.cs/#L163">View Source</a>
     </span>
     <h4 id="Tizen_NUI_AnimatedImageVisual_ComposingPropertyMap" data-uid="Tizen.NUI.AnimatedImageVisual.ComposingPropertyMap">ComposingPropertyMap()</h4>
     <section>
@@ -345,6 +351,10 @@ The default is -1. If the number is less than 0 then it loops unlimited,otherwis
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
+  <h2 id="implements">Implements</h2>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
   </div></section>
             </div>
           </main>

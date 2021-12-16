@@ -10,7 +10,7 @@
     <meta name="title" content="Class KeyValue
    ">
     <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API8">
+    <meta name="version" content="API9">
     
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -53,7 +53,7 @@
   KeyValue
   </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L26" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L28" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -66,7 +66,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class KeyValue</code></pre>
+    <pre><code class="lang-csharp hljs">public class KeyValue : IDisposable</code></pre>
   </div>
 
   
@@ -82,6 +82,12 @@
 
   
   
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -90,7 +96,7 @@
   <a id="Tizen_NUI_KeyValue__ctor_" data-uid="Tizen.NUI.KeyValue.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L50">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L62">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue__ctor" data-uid="Tizen.NUI.KeyValue.#ctor">KeyValue()</h4>
     <section>
@@ -110,9 +116,9 @@
   
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L31">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L37">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_KeyValue_KeyInt" data-uid="Tizen.NUI.KeyValue.KeyInt">KeyInt</h4>
+    <h4 id="Tizen_NUI_KeyValue_KeyInt" data-uid="Tizen.NUI.KeyValue.KeyInt" data-obsolete="Deprecated in API9, Will be removed in API11. Please use IntegerKey instead." class="obsolete">KeyInt</h4>
     <section>
       <p>Int key.</p>
 
@@ -121,7 +127,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int? KeyInt</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, Will be removed in API11. Please use IntegerKey instead.&quot;)]
+public int? KeyInt</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -143,9 +150,9 @@
   
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L36">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L45">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_KeyValue_KeyString" data-uid="Tizen.NUI.KeyValue.KeyString">KeyString</h4>
+    <h4 id="Tizen_NUI_KeyValue_KeyString" data-uid="Tizen.NUI.KeyValue.KeyString" data-obsolete="Deprecated in API9, Will be removed in API11. Please use StringKey instead." class="obsolete">KeyString</h4>
     <section>
       <p>String key.</p>
 
@@ -154,7 +161,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string KeyString</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, Will be removed in API11. Please use StringKey instead.&quot;)]
+public string KeyString</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -176,9 +184,9 @@
   
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L41">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L53">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_KeyValue_TrueValue" data-uid="Tizen.NUI.KeyValue.TrueValue">TrueValue</h4>
+    <h4 id="Tizen_NUI_KeyValue_TrueValue" data-uid="Tizen.NUI.KeyValue.TrueValue" data-obsolete="Deprecated in API9, Will be removed in API11. Please use PropertyValue instead." class="obsolete">TrueValue</h4>
     <section>
       <p>True value.</p>
 
@@ -187,7 +195,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PropertyValue TrueValue</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, Will be removed in API11. Please use PropertyValue instead.&quot;)]
+public PropertyValue TrueValue</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -212,7 +221,7 @@
   <a id="Tizen_NUI_KeyValue_BooleanValue_" data-uid="Tizen.NUI.KeyValue.BooleanValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L130">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L206">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_BooleanValue" data-uid="Tizen.NUI.KeyValue.BooleanValue">BooleanValue</h4>
     <section>
@@ -223,7 +232,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool BooleanValue { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool BooleanValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -246,7 +255,7 @@
   <a id="Tizen_NUI_KeyValue_ColorValue_" data-uid="Tizen.NUI.KeyValue.ColorValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L240">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L413">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_ColorValue" data-uid="Tizen.NUI.KeyValue.ColorValue">ColorValue</h4>
     <section>
@@ -257,7 +266,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Color ColorValue { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Color ColorValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -280,7 +289,7 @@
   <a id="Tizen_NUI_KeyValue_ExtentsValue_" data-uid="Tizen.NUI.KeyValue.ExtentsValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L306">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L539">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_ExtentsValue" data-uid="Tizen.NUI.KeyValue.ExtentsValue">ExtentsValue</h4>
     <section>
@@ -291,7 +300,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Extents ExtentsValue { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Extents ExtentsValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -314,7 +323,7 @@
   <a id="Tizen_NUI_KeyValue_IntergerValue_" data-uid="Tizen.NUI.KeyValue.IntergerValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L119">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L186">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_IntergerValue" data-uid="Tizen.NUI.KeyValue.IntergerValue">IntergerValue</h4>
     <section>
@@ -325,7 +334,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int IntergerValue { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int IntergerValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -348,7 +357,7 @@
   <a id="Tizen_NUI_KeyValue_Key_" data-uid="Tizen.NUI.KeyValue.Key*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L56">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L68">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_Key" data-uid="Tizen.NUI.KeyValue.Key">Key</h4>
     <section>
@@ -382,7 +391,7 @@
   <a id="Tizen_NUI_KeyValue_OriginalKey_" data-uid="Tizen.NUI.KeyValue.OriginalKey*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L72">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L85">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_OriginalKey" data-uid="Tizen.NUI.KeyValue.OriginalKey">OriginalKey</h4>
     <section>
@@ -410,13 +419,29 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when value is null. </p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   
   
   <a id="Tizen_NUI_KeyValue_Position2DValue_" data-uid="Tizen.NUI.KeyValue.Position2DValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L207">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L350">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_Position2DValue" data-uid="Tizen.NUI.KeyValue.Position2DValue">Position2DValue</h4>
     <section>
@@ -427,7 +452,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Position2D Position2DValue { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Position2D Position2DValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -450,7 +475,7 @@
   <a id="Tizen_NUI_KeyValue_PositionValue_" data-uid="Tizen.NUI.KeyValue.PositionValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L196">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L329">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_PositionValue" data-uid="Tizen.NUI.KeyValue.PositionValue">PositionValue</h4>
     <section>
@@ -461,7 +486,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Position PositionValue { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Position PositionValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -484,7 +509,7 @@
   <a id="Tizen_NUI_KeyValue_PropertyArrayValue_" data-uid="Tizen.NUI.KeyValue.PropertyArrayValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L317">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L560">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_PropertyArrayValue" data-uid="Tizen.NUI.KeyValue.PropertyArrayValue">PropertyArrayValue</h4>
     <section>
@@ -495,7 +520,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PropertyArray PropertyArrayValue { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public PropertyArray PropertyArrayValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -518,7 +543,7 @@
   <a id="Tizen_NUI_KeyValue_PropertyMapValue_" data-uid="Tizen.NUI.KeyValue.PropertyMapValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L328">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L581">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_PropertyMapValue" data-uid="Tizen.NUI.KeyValue.PropertyMapValue">PropertyMapValue</h4>
     <section>
@@ -529,7 +554,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PropertyMap PropertyMapValue { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public PropertyMap PropertyMapValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -552,7 +577,7 @@
   <a id="Tizen_NUI_KeyValue_RectangleValue_" data-uid="Tizen.NUI.KeyValue.RectangleValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L251">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L434">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_RectangleValue" data-uid="Tizen.NUI.KeyValue.RectangleValue">RectangleValue</h4>
     <section>
@@ -563,7 +588,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Rectangle RectangleValue { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Rectangle RectangleValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -586,7 +611,7 @@
   <a id="Tizen_NUI_KeyValue_RelativeVector2Value_" data-uid="Tizen.NUI.KeyValue.RelativeVector2Value*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L273">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L476">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_RelativeVector2Value" data-uid="Tizen.NUI.KeyValue.RelativeVector2Value">RelativeVector2Value</h4>
     <section>
@@ -597,7 +622,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelativeVector2 RelativeVector2Value { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public RelativeVector2 RelativeVector2Value { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -620,7 +645,7 @@
   <a id="Tizen_NUI_KeyValue_RelativeVector3Value_" data-uid="Tizen.NUI.KeyValue.RelativeVector3Value*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L284">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L497">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_RelativeVector3Value" data-uid="Tizen.NUI.KeyValue.RelativeVector3Value">RelativeVector3Value</h4>
     <section>
@@ -631,7 +656,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelativeVector3 RelativeVector3Value { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public RelativeVector3 RelativeVector3Value { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -654,7 +679,7 @@
   <a id="Tizen_NUI_KeyValue_RelativeVector4Value_" data-uid="Tizen.NUI.KeyValue.RelativeVector4Value*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L295">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L518">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_RelativeVector4Value" data-uid="Tizen.NUI.KeyValue.RelativeVector4Value">RelativeVector4Value</h4>
     <section>
@@ -665,7 +690,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RelativeVector4 RelativeVector4Value { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public RelativeVector4 RelativeVector4Value { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -688,7 +713,7 @@
   <a id="Tizen_NUI_KeyValue_RotationValue_" data-uid="Tizen.NUI.KeyValue.RotationValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L262">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L455">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_RotationValue" data-uid="Tizen.NUI.KeyValue.RotationValue">RotationValue</h4>
     <section>
@@ -699,7 +724,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Rotation RotationValue { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Rotation RotationValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -722,7 +747,7 @@
   <a id="Tizen_NUI_KeyValue_SingleValue_" data-uid="Tizen.NUI.KeyValue.SingleValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L141">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L226">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_SingleValue" data-uid="Tizen.NUI.KeyValue.SingleValue">SingleValue</h4>
     <section>
@@ -733,7 +758,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public float SingleValue { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public float SingleValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -756,7 +781,7 @@
   <a id="Tizen_NUI_KeyValue_Size2DValue_" data-uid="Tizen.NUI.KeyValue.Size2DValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L229">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L392">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_Size2DValue" data-uid="Tizen.NUI.KeyValue.Size2DValue">Size2DValue</h4>
     <section>
@@ -767,7 +792,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Size2D Size2DValue { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Size2D Size2DValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -790,7 +815,7 @@
   <a id="Tizen_NUI_KeyValue_SizeValue_" data-uid="Tizen.NUI.KeyValue.SizeValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L218">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L371">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_SizeValue" data-uid="Tizen.NUI.KeyValue.SizeValue">SizeValue</h4>
     <section>
@@ -801,7 +826,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Size SizeValue { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Size SizeValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -824,7 +849,7 @@
   <a id="Tizen_NUI_KeyValue_StringValue_" data-uid="Tizen.NUI.KeyValue.StringValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L152">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L246">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_StringValue" data-uid="Tizen.NUI.KeyValue.StringValue">StringValue</h4>
     <section>
@@ -835,7 +860,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string StringValue { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string StringValue { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -858,7 +883,7 @@
   <a id="Tizen_NUI_KeyValue_Value_" data-uid="Tizen.NUI.KeyValue.Value*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L103">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L121">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_Value" data-uid="Tizen.NUI.KeyValue.Value">Value</h4>
     <section>
@@ -892,7 +917,7 @@
   <a id="Tizen_NUI_KeyValue_Vector2Value_" data-uid="Tizen.NUI.KeyValue.Vector2Value*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L163">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L266">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_Vector2Value" data-uid="Tizen.NUI.KeyValue.Vector2Value">Vector2Value</h4>
     <section>
@@ -903,7 +928,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Vector2 Vector2Value { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Vector2 Vector2Value { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -926,7 +951,7 @@
   <a id="Tizen_NUI_KeyValue_Vector3Value_" data-uid="Tizen.NUI.KeyValue.Vector3Value*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L174">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L287">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_Vector3Value" data-uid="Tizen.NUI.KeyValue.Vector3Value">Vector3Value</h4>
     <section>
@@ -937,7 +962,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Vector3 Vector3Value { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Vector3 Vector3Value { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -960,7 +985,7 @@
   <a id="Tizen_NUI_KeyValue_Vector4Value_" data-uid="Tizen.NUI.KeyValue.Vector4Value*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/KeyValue.cs/#L185">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L308">View Source</a>
     </span>
     <h4 id="Tizen_NUI_KeyValue_Vector4Value" data-uid="Tizen.NUI.KeyValue.Vector4Value">Vector4Value</h4>
     <section>
@@ -971,7 +996,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Vector4 Vector4Value { set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public Vector4 Vector4Value { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -990,6 +1015,10 @@
   </table>
   
   
+  <h2 id="implements">Implements</h2>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
   </div></section>
             </div>
           </main>

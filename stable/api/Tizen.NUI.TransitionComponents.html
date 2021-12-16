@@ -10,7 +10,7 @@
     <meta name="title" content="Class TransitionComponents
    ">
     <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API8">
+    <meta name="version" content="API9">
     
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -53,7 +53,7 @@
   TransitionComponents
   </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutTransition.cs/#L102" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutTransition.cs/#L106" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class TransitionComponents</code></pre>
+    <pre><code class="lang-csharp hljs">public class TransitionComponents : IDisposable</code></pre>
   </div>
 
   
@@ -83,6 +83,12 @@
 
   
   
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -91,7 +97,7 @@
   <a id="Tizen_NUI_TransitionComponents__ctor_" data-uid="Tizen.NUI.TransitionComponents.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutTransition.cs/#L108">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutTransition.cs/#L113">View Source</a>
     </span>
     <h4 id="Tizen_NUI_TransitionComponents__ctor" data-uid="Tizen.NUI.TransitionComponents.#ctor">TransitionComponents()</h4>
     <section>
@@ -111,7 +117,7 @@
   <a id="Tizen_NUI_TransitionComponents__ctor_" data-uid="Tizen.NUI.TransitionComponents.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutTransition.cs/#L123">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutTransition.cs/#L128">View Source</a>
     </span>
     <h4 id="Tizen_NUI_TransitionComponents__ctor_System_Int32_System_Int32_Tizen_NUI_AlphaFunction_" data-uid="Tizen.NUI.TransitionComponents.#ctor(System.Int32,System.Int32,Tizen.NUI.AlphaFunction)">TransitionComponents(Int32, Int32, AlphaFunction)</h4>
     <section>
@@ -162,9 +168,9 @@
   
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutTransition.cs/#L144">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutTransition.cs/#L159">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_TransitionComponents_AlphaFunction" data-uid="Tizen.NUI.TransitionComponents.AlphaFunction">AlphaFunction</h4>
+    <h4 id="Tizen_NUI_TransitionComponents_AlphaFunction" data-uid="Tizen.NUI.TransitionComponents.AlphaFunction" data-obsolete="Deprecated in API9, Will be removed in API11. Please use GetAlphaFunction, SetAlphaFunction instead!" class="obsolete">AlphaFunction</h4>
     <section>
       <p>Get, Set the function to alter the transition path over time.</p>
 
@@ -173,7 +179,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public AlphaFunction AlphaFunction</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, Will be removed in API11. Please use GetAlphaFunction, SetAlphaFunction instead!&quot;)]
+public AlphaFunction AlphaFunction</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -196,9 +203,9 @@
   
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutTransition.cs/#L139">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutTransition.cs/#L151">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_TransitionComponents_Delay" data-uid="Tizen.NUI.TransitionComponents.Delay">Delay</h4>
+    <h4 id="Tizen_NUI_TransitionComponents_Delay" data-uid="Tizen.NUI.TransitionComponents.Delay" data-obsolete="Deprecated in API9, Will be removed in API11. Please use GetDelay, SetDelay instead!" class="obsolete">Delay</h4>
     <section>
       <p>Get, Set the delay before the transition executes. Milliseconds.</p>
 
@@ -207,7 +214,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Delay</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, Will be removed in API11. Please use GetDelay, SetDelay instead!&quot;)]
+public int Delay</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -230,9 +238,9 @@
   
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI/src/public/Layouting/LayoutTransition.cs/#L134">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Layouting/LayoutTransition.cs/#L142">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_TransitionComponents_Duration" data-uid="Tizen.NUI.TransitionComponents.Duration">Duration</h4>
+    <h4 id="Tizen_NUI_TransitionComponents_Duration" data-uid="Tizen.NUI.TransitionComponents.Duration" data-obsolete="Deprecated in API9, Will be removed in API11. Please use GetDuration, SetDuration instead!" class="obsolete">Duration</h4>
     <section>
       <p>Get, Set the time transition should execute for . Milliseconds.</p>
 
@@ -241,7 +249,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int Duration</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, Will be removed in API11. Please use GetDuration, SetDuration instead!&quot;)]
+public int Duration</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -261,6 +270,10 @@
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
+  <h2 id="implements">Implements</h2>
+  <div>
+      <a class="xref" href="https://docs.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+  </div>
   </div></section>
             </div>
           </main>

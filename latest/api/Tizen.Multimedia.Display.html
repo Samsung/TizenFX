@@ -10,7 +10,7 @@
     <meta name="title" content="Class Display
    ">
     <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API8">
+    <meta name="version" content="API9">
     
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -53,7 +53,7 @@
   Display
   </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/Common/Display.cs/#L94" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia/Common/Display.cs/#L94" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -91,7 +91,7 @@
   <a id="Tizen_Multimedia_Display__ctor_" data-uid="Tizen.Multimedia.Display.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/Common/Display.cs/#L120">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia/Common/Display.cs/#L120">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Display__ctor_ElmSharp_Window_" data-uid="Tizen.Multimedia.Display.#ctor(ElmSharp.Window)">Display(Window)</h4>
     <section>
@@ -129,7 +129,7 @@
   <a id="Tizen_Multimedia_Display__ctor_" data-uid="Tizen.Multimedia.Display.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/Common/Display.cs/#L103">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia/Common/Display.cs/#L103">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Display__ctor_Tizen_Multimedia_MediaView_" data-uid="Tizen.Multimedia.Display.#ctor(Tizen.Multimedia.MediaView)">Display(MediaView)</h4>
     <section>
@@ -167,7 +167,7 @@
   <a id="Tizen_Multimedia_Display__ctor_" data-uid="Tizen.Multimedia.Display.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.Multimedia/Common/Display.cs/#L139">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia/Common/Display.cs/#L139">View Source</a>
     </span>
     <h4 id="Tizen_Multimedia_Display__ctor_Tizen_NUI_Window_" data-uid="Tizen.Multimedia.Display.#ctor(Tizen.NUI.Window)">Display(Window)</h4>
     <section>
@@ -204,6 +204,56 @@ for the <a class="xref" href="Tizen.Multimedia.Display.html">Display</a> to be r
 </div>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
+  
+  
+  <a id="Tizen_Multimedia_Display__ctor_" data-uid="Tizen.Multimedia.Display.#ctor*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.Multimedia/Common/Display.cs/#L156">View Source</a>
+    </span>
+    <h4 id="Tizen_Multimedia_Display__ctor_Tizen_NUI_Window_System_Boolean_" data-uid="Tizen.Multimedia.Display.#ctor(Tizen.NUI.Window,System.Boolean)">Display(Window, Boolean)</h4>
+    <section>
+      <p>Initializes a new instance of the <a class="xref" href="Tizen.Multimedia.Display.html">Display</a> class with a <a class="xref" href="Tizen.NUI.Window.html">Window</a> class.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Display(Window window, bool uiSync)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Window.html">Window</a></td>
+        <td><span class="parametername">window</span></td>
+        <td><p>A <a class="xref" href="Tizen.NUI.Window.html">Window</a> to display.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td><span class="parametername">uiSync</span></td>
+        <td><p>A value indicates whether video and UI is in sync or not.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Display__ctor_Tizen_NUI_Window_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The <a class="xref" href="Tizen.NUI.Window.html#Tizen_NUI_Window_BackgroundColor">BackgroundColor</a> must be <a class="xref" href="Tizen.NUI.Color.html#Tizen_NUI_Color_Transparent">Transparent</a>
+for the <a class="xref" href="Tizen.Multimedia.Display.html">Display</a> to be rendered correctly.<br>
+UI sync is only for <a class="xref" href="Tizen.Multimedia.Player.html">Player</a> and
+<a class="xref" href="Tizen.Multimedia.Player.html#Tizen_Multimedia_Player_DisplaySettings">DisplaySettings</a> will not work in UI sync mode.</p>
+</div>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
   
   <h3 id="seealso">See Also</h3>
   <div class="seealso">

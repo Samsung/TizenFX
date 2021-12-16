@@ -10,7 +10,7 @@
     <meta name="title" content="Class Notification
    ">
     <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API8">
+    <meta name="version" content="API9">
     
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -53,7 +53,7 @@
   Notification
   </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Notification.cs/#L28" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Notification.cs/#L28" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -98,7 +98,7 @@
   <a id="Tizen_NUI_Components_Notification__ctor_" data-uid="Tizen.NUI.Components.Notification.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Notification.cs/#L54">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Notification.cs/#L91">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Notification__ctor_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.Components.Notification.#ctor(Tizen.NUI.BaseComponents.View)">Notification(View)</h4>
     <section>
@@ -139,8 +139,13 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when a given contentView is invalid.</p>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the device does not support a notification feature.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when a given contentView is null.</p>
 </td>
       </tr>
     </tbody>
@@ -154,7 +159,7 @@
   <a id="Tizen_NUI_Components_Notification_ContentView_" data-uid="Tizen.NUI.Components.Notification.ContentView*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Notification.cs/#L70">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Notification.cs/#L111">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Notification_ContentView" data-uid="Tizen.NUI.Components.Notification.ContentView">ContentView</h4>
     <section>
@@ -191,7 +196,7 @@
   <a id="Tizen_NUI_Components_Notification_Dismiss_" data-uid="Tizen.NUI.Components.Notification.Dismiss*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Notification.cs/#L250">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Notification.cs/#L367">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Notification_Dismiss" data-uid="Tizen.NUI.Components.Notification.Dismiss">Dismiss()</h4>
     <section>
@@ -211,7 +216,7 @@
   <a id="Tizen_NUI_Components_Notification_Dispose_" data-uid="Tizen.NUI.Components.Notification.Dispose*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Notification.cs/#L291">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Notification.cs/#L408">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Notification_Dispose_Tizen_NUI_DisposeTypes_" data-uid="Tizen.NUI.Components.Notification.Dispose(Tizen.NUI.DisposeTypes)">Dispose(DisposeTypes)</h4>
     <section>
@@ -250,7 +255,7 @@
   <a id="Tizen_NUI_Components_Notification_ForceQuit_" data-uid="Tizen.NUI.Components.Notification.ForceQuit*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Notification.cs/#L279">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Notification.cs/#L396">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Notification_ForceQuit" data-uid="Tizen.NUI.Components.Notification.ForceQuit">ForceQuit()</h4>
     <section>
@@ -267,10 +272,95 @@
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
   
+  <a id="Tizen_NUI_Components_Notification_MakeToast_" data-uid="Tizen.NUI.Components.Notification.MakeToast*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Notification.cs/#L178">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Components_Notification_MakeToast_System_String_Tizen_NUI_Position_" data-uid="Tizen.NUI.Components.Notification.MakeToast(System.String,Tizen.NUI.Position)">MakeToast(String, Position)</h4>
+    <section>
+      <p>Create a simple text notification called toast.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static Notification MakeToast(string text, Position gravity)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">text</span></td>
+        <td><p>The string content.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
+        <td><span class="parametername">gravity</span></td>
+        <td><p>The location at which the toast should appear. It&apos;s one of the notification constants: ToastTop, ToastCenter and ToastBottom.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.Components.Notification.html">Notification</a></td>
+        <td><p>The created Notification instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Components_Notification_MakeToast_System_String_Tizen_NUI_Position__examples">Examples</h5>
+  <p>The following example demonstrates how to make a toast at the bottom and show it for a short period time.</p>
+<pre><code>Notification.MakeToast(&quot;Hello World!&quot;, Notification.ToastBottom).Post(Notification.ToastShort);</code></pre>
+
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the device does not support a notification feature.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when the given text or gravity is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>9</span></h6>
+  
+  
   <a id="Tizen_NUI_Components_Notification_Post_" data-uid="Tizen.NUI.Components.Notification.Post*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Notification.cs/#L127">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Notification.cs/#L227">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Notification_Post_System_UInt32_" data-uid="Tizen.NUI.Components.Notification.Post(System.UInt32)">Post(UInt32)</h4>
     <section>
@@ -296,7 +386,7 @@
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
         <td><span class="parametername">duration</span></td>
-        <td><p>Dismiss the notification window after given time. The value 0 won&apos;t dismiss the notification.</p>
+        <td><p>Dismiss the notification window after given time in millisecond. The value 0 won&apos;t dismiss the notification.</p>
 </td>
       </tr>
     </tbody>
@@ -326,7 +416,7 @@
   <a id="Tizen_NUI_Components_Notification_SetAnimationOnDismiss_" data-uid="Tizen.NUI.Components.Notification.SetAnimationOnDismiss*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Notification.cs/#L239">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Notification.cs/#L356">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Notification_SetAnimationOnDismiss_Tizen_NUI_Animation_" data-uid="Tizen.NUI.Components.Notification.SetAnimationOnDismiss(Tizen.NUI.Animation)">SetAnimationOnDismiss(Animation)</h4>
     <section>
@@ -380,7 +470,7 @@ On dismiss, the given animation is played, and after the playback is completed t
   <a id="Tizen_NUI_Components_Notification_SetAnimationOnPost_" data-uid="Tizen.NUI.Components.Notification.SetAnimationOnPost*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Notification.cs/#L226">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Notification.cs/#L343">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Notification_SetAnimationOnPost_Tizen_NUI_Animation_" data-uid="Tizen.NUI.Components.Notification.SetAnimationOnPost(Tizen.NUI.Animation)">SetAnimationOnPost(Animation)</h4>
     <section>
@@ -434,7 +524,7 @@ The Notification will play the given animation right after the notification wind
   <a id="Tizen_NUI_Components_Notification_SetLevel_" data-uid="Tizen.NUI.Components.Notification.SetLevel*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Notification.cs/#L166">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Notification.cs/#L273">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Notification_SetLevel_Tizen_NUI_NotificationLevel_" data-uid="Tizen.NUI.Components.Notification.SetLevel(Tizen.NUI.NotificationLevel)">SetLevel(NotificationLevel)</h4>
     <section>
@@ -507,7 +597,7 @@ The default level is NotificationLevel.Base.</p>
   <a id="Tizen_NUI_Components_Notification_SetPositionSize_" data-uid="Tizen.NUI.Components.Notification.SetPositionSize*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API8/src/Tizen.NUI.Components/Controls/Notification.cs/#L185">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI.Components/Controls/Notification.cs/#L302">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Components_Notification_SetPositionSize_Tizen_NUI_Rectangle_" data-uid="Tizen.NUI.Components.Notification.SetPositionSize(Tizen.NUI.Rectangle)">SetPositionSize(Rectangle)</h4>
     <section>
