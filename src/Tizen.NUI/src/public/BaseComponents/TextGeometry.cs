@@ -26,7 +26,7 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public static partial class TextGeometry
+    public static class TextGeometry
     {
         private static void ValidateRange(int start, int end)
         {
