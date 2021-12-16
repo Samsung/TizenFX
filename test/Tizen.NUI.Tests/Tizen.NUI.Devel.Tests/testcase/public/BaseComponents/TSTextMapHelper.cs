@@ -244,8 +244,8 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TextMapHelperGetInputFilterStruct START");
 
             var map = new PropertyMap();
-            map["accepted"] = new PropertyValue(@"[\d]");
-            map["rejected"] = new PropertyValue("[0-3]");
+            map.Add(0, new PropertyValue(@"[\d]"));
+            map.Add(1, new PropertyValue("[0-3]"));
 
             var inputFilter = TextMapHelper.GetInputFilterStruct(map);
             Assert.AreEqual(@"[\d]", inputFilter.Accepted, "Should be equal!");
@@ -521,7 +521,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.AreEqual(minSize, textFit.MinSize, "Should be equal!");
             Assert.AreEqual(maxSize, textFit.MaxSize, "Should be equal!");
             Assert.AreEqual(stepSize, textFit.StepSize, "Should be equal!");
-            Assert.AreEqual(fontSizeType, "PointSize", "Should be equal!");
+            Assert.AreEqual(fontSizeType, "pointSize", "Should be equal!");
 
             tlog.Debug(tag, $"TextMapHelperGetTextFitMap END (OK)");
         }
@@ -547,7 +547,7 @@ namespace Tizen.NUI.Devel.Tests
             map.Add("minSize", new PropertyValue((float)minSize));
             map.Add("maxSize", new PropertyValue((float)maxSize));
             map.Add("stepSize", new PropertyValue((float)stepSize));
-            map.Add("fontSizeType", new PropertyValue("PixelSize"));
+            map.Add("fontSizeType", new PropertyValue("pointSize"));
 
             var textFit = TextMapHelper.GetTextFitStruct(map);
 
@@ -555,7 +555,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.AreEqual(minSize, textFit.MinSize, "Should be equal!");
             Assert.AreEqual(maxSize, textFit.MaxSize, "Should be equal!");
             Assert.AreEqual(stepSize, textFit.StepSize, "Should be equal!");
-            Assert.AreEqual(FontSizeType.PixelSize, "PointSize", "Should be equal!");
+            Assert.AreEqual(FontSizeType.PointSize, textFit.FontSizeType, "Should be equal!");
 
             tlog.Debug(tag, $"TextMapHelperGetTextFitStruct END (OK)");
         }
@@ -647,13 +647,13 @@ namespace Tizen.NUI.Devel.Tests
             bool ellipsis = false;
 
             var map = new PropertyMap();
-            map.Add("text", new PropertyValue(text));
-            map.Add("textFocused", new PropertyValue(textFocused));
-            map.Add("color", new PropertyValue(color));
-            map.Add("fontFamily", new PropertyValue(fontFamily));
-            map.Add("fontStyle", new PropertyValue(fontStyle));
-            map.Add("pointSize", new PropertyValue((float)pointSize));
-            map.Add("ellipsis", new PropertyValue(ellipsis));
+            map.Add(0, new PropertyValue(text));
+            map.Add(1, new PropertyValue(textFocused));
+            map.Add(2, new PropertyValue(color));
+            map.Add(3, new PropertyValue(fontFamily));
+            map.Add(4, new PropertyValue(fontStyle));
+            map.Add(5, new PropertyValue((float)pointSize));
+            map.Add(7, new PropertyValue(ellipsis));
 
             var placeholder = TextMapHelper.GetPlaceholderStruct(map);
 
