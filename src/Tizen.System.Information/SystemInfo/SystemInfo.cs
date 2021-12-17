@@ -84,8 +84,9 @@ namespace Tizen.System
         /// <returns>True if the key is valid, otherwise false.</returns>
         internal static bool IsValidKey(string key)
         {
-            Interop.SystemInfo.SystemInfoValueType valueType;
-            return GetValueType(key, out valueType) != Interop.SystemInfo.SystemInfoType.None;
+            return true;
+//	    Interop.SystemInfo.SystemInfoValueType valueType;
+//            return GetValueType(key, out valueType) != Interop.SystemInfo.SystemInfoType.None;
         }
 
         /// <summary>

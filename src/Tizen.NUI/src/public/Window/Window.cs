@@ -42,8 +42,8 @@ namespace Tizen.NUI
 
         static internal bool IsSupportedMultiWindow()
         {
-            bool isSupported = false;
-            Information.TryGetValue("http://tizen.org/feature/opengles.surfaceless_context", out isSupported);
+            bool isSupported = true;
+            // Information.TryGetValue("http://tizen.org/feature/opengles.surfaceless_context", out isSupported);
             return isSupported;
         }
 
@@ -1312,8 +1312,17 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(layer));
             }
-            Interop.Window.Add(SwigCPtr, Layer.getCPtr(layer));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (isBorderWindow)
+            {
+                Interop.Actor.Add(GetBorderWindowRootLayer().SwigCPtr, layer.SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) { throw NDalicPINVOKE.SWIGPendingException.Retrieve(); }
+            }
+            else
+            {
+                Interop.Window.Add(SwigCPtr, Layer.getCPtr(layer));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
 
             LayersChildren?.Add(layer);
             layer.SetWindow(this);
@@ -1335,6 +1344,9 @@ namespace Tizen.NUI
         internal Vector2 GetSize()
         {
             var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
+
+            convertRealWindowSizeToBorderWindowSize(val);
+
             Vector2 ret = new Vector2(val.GetWidth(), val.GetHeight());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1359,21 +1371,32 @@ namespace Tizen.NUI
             if (LayersChildren == null || LayersChildren.Count < 0)
                 return 0;
 
+            //ToDo: need check the isBorderWindow
+            if (isBorderWindow) { }
+
             return (uint)LayersChildren.Count;
         }
 
         internal Layer GetRootLayer()
         {
-            // Window.IsInstalled() is actually true only when called from event thread and
-            // Core has been initialized, not when Stage is ready.
-            if (rootLayer == null && Window.IsInstalled())
+            if (isBorderWindow)
             {
-                rootLayer = new Layer(Interop.Window.GetRootLayer(SwigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                LayersChildren?.Add(rootLayer);
-                rootLayer.SetWindow(this);
+                var borderRootLayer = GetBorderWindowRootLayer();
+                return borderRootLayer;
             }
-            return rootLayer;
+            else
+            {
+                // Window.IsInstalled() is actually true only when called from event thread and
+                // Core has been initialized, not when Stage is ready.
+                if (rootLayer == null && Window.IsInstalled())
+                {
+                    rootLayer = new Layer(Interop.Window.GetRootLayer(SwigCPtr), true);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    LayersChildren?.Add(rootLayer);
+                    rootLayer.SetWindow(this);
+                }
+                return rootLayer;
+            }
         }
 
         internal void SetBackgroundColor(Vector4 color)
@@ -1424,6 +1447,9 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(size));
             }
             var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
+
+            convertBorderWindowSizeToRealWindowSize(val);
+
             Interop.Window.SetSize(SwigCPtr, Uint16Pair.getCPtr(val));
             val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1433,8 +1459,12 @@ namespace Tizen.NUI
         internal Size2D GetWindowSize()
         {
             var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
+
+            convertRealWindowSizeToBorderWindowSize(val);
+
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            val.Dispose();
             return ret;
         }
 
@@ -1462,6 +1492,13 @@ namespace Tizen.NUI
 
         internal void SetPositionSize(Rectangle positionSize)
         {
+            var val = new Uint16Pair((uint)positionSize.Width, (uint)positionSize.Height);
+
+            convertBorderWindowSizeToRealWindowSize(val);
+
+            positionSize.Width = val.GetX();
+            positionSize.Height = val.GetY();
+
             Interop.Window.SetPositionSize(SwigCPtr, Rectangle.getCPtr(positionSize));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

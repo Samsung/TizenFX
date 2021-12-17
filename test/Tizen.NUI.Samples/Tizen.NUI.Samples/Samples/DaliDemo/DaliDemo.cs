@@ -12,6 +12,11 @@ namespace Tizen.NUI.Samples
     {
         public DaliDemo(string styleSheet) : base(styleSheet)
         {
+            // Window.BorderStyle style = new Window.BorderStyle();
+            // style.Text = "";
+            // base.SetBorderStyle(style);
+            // base.BorderEnabled = true;
+
         }
 
         private IExample curExample = null;
