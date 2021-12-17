@@ -39,6 +39,10 @@ namespace Tizen.NUI
         private static System.Resources.ResourceManager resourceManager = null;
         private static string currentLoadedXaml = null;
 
+        private bool borderEnabled = false;
+        private Size2D borderWindowSize = null;
+        private Position2D borderWindowPosition = null;
+
         /// <summary>
         /// Xaml loaded delegate.
         /// </summary>
@@ -121,6 +125,15 @@ namespace Tizen.NUI
         public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition, bool border) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
+        {
+            borderEnabled = border;
+            borderWindowSize = windowSize;
+            borderWindowPosition = windowPosition;
+        }
+
 
         /// <summary>
         /// Internal inhouse constructor with Graphics Backend Type
@@ -454,6 +467,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreCreate()
         {
+            if (borderEnabled)
+            {
+                GetDefaultWindow().EnableBorderWindowRootLayer(borderWindowSize, borderWindowPosition);
+            }
         }
 
         /// <summary>

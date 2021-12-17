@@ -23,6 +23,7 @@ namespace Tizen.NUI.Samples
         static void Main(string[] args)
         {
             new DaliDemo("").Run(args);
+            // new DaliDemo(new Size2D(500, 800), new Position2D(100, 100), true).Run(args);
         }
     }
 }

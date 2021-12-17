@@ -14,6 +14,10 @@ namespace Tizen.NUI.Samples
         {
         }
 
+        public DaliDemo(Size2D winSize, Position2D winPos, bool border) : base("", WindowMode.Transparent, winSize, winPos, border)
+        {
+        }
+
         private IExample curExample = null;
 
         private void FullGC()

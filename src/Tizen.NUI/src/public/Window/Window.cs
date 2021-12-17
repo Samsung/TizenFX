@@ -42,9 +42,10 @@ namespace Tizen.NUI
 
         static internal bool IsSupportedMultiWindow()
         {
-            bool isSupported = false;
-            Information.TryGetValue("http://tizen.org/feature/opengles.surfaceless_context", out isSupported);
-            return isSupported;
+            return true;
+            // bool isSupported = false;
+            // Information.TryGetValue("http://tizen.org/feature/opengles.surfaceless_context", out isSupported);
+            // return isSupported;
         }
 
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -114,6 +115,18 @@ namespace Tizen.NUI
                 NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
             }
             this.windowTitle = name;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window(string name, BorderStyle borderStyle, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.Window.New(Rectangle.getCPtr(windowPosition), name, isTranslucent), true)
+        {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
+            this.windowTitle = name;
+            this.EnableBorderWindow();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
