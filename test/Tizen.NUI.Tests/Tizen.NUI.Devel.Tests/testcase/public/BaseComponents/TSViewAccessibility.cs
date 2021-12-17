@@ -457,7 +457,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object View");
             Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
 
-            testingTarget.NotifyAccessibilityStatesChange(AccessibilityStates.Busy, true);
+            testingTarget.NotifyAccessibilityStatesChange(AccessibilityStates.Busy, AccessibilityStatesNotifyMode.Recursive);
             var result = testingTarget.GetAccessibilityStates();
             tlog.Debug(tag, "AccessibilityStates : " + result);
 

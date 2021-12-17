@@ -395,7 +395,7 @@ namespace Tizen.NUI.Components
 
             CalculateSizeAndPosition();
             RegisterDefaultLabel();
-            NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, true);
+            NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, AccessibilityStatesNotifyMode.Recursive);
         }
 
         /// <summary>
@@ -407,7 +407,7 @@ namespace Tizen.NUI.Components
         {
             Hide();
             UnregisterDefaultLabel();
-            NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, true);
+            NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, AccessibilityStatesNotifyMode.Recursive);
             Dispose();
         }
 

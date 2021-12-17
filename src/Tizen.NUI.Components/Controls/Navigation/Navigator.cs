@@ -827,14 +827,14 @@ namespace Tizen.NUI.Components
                 View curHighlightedView = Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView();
                 if (curHighlightedView != null)
                 {
-                    curHighlightedView.NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, false);
+                    curHighlightedView.NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, AccessibilityStatesNotifyMode.Single);
                 }
             }
 
             if (appearedPage != null)
             {
                 appearedPage.RegisterDefaultLabel();
-                appearedPage.NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, false);
+                appearedPage.NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, AccessibilityStatesNotifyMode.Single);
             }
         }
 
