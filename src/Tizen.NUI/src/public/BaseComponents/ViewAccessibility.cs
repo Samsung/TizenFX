@@ -335,11 +335,11 @@ namespace Tizen.NUI.BaseComponents
         /// If recursive is true, all children of the Accessibility object will also re-emit the states.
         /// </remarks>
         /// <param name="states">Accessibility States</param>
-        /// <param name="recursive">Flag to point if notifications of children's state would be sent</param>
+        /// <param name="notifyMode">Controls the notification strategy</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyAccessibilityStatesChange(AccessibilityStates states, bool recursive)
+        public void NotifyAccessibilityStatesChange(AccessibilityStates states, AccessibilityStatesNotifyMode notifyMode)
         {
-            Interop.ControlDevel.DaliToolkitDevelControlNotifyAccessibilityStatesChange(SwigCPtr, (ulong)states, Convert.ToInt32(recursive));
+            Interop.ControlDevel.DaliToolkitDevelControlNotifyAccessibilityStatesChange(SwigCPtr, (ulong)states, (int)notifyMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
