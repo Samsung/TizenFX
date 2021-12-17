@@ -425,12 +425,9 @@ namespace Tizen.NUI.BaseComponents
                 switch (isMinMaxFrameSet)
                 {
                     case minMaxSetTypes.NotSetByUser:
-                        if (base.CurrentFrame != totalFrameNum - 1)
-                        {
-                            NUILog.Debug($"isMinMaxFrameSet:{isMinMaxFrameSet}, CurrentFrameNumber:{base.CurrentFrame}, totalFrameNum:{ totalFrameNum}");
-                            base.CurrentFrame = totalFrameNum - 1;
-                            NUILog.Debug($"set CurrentFrameNumber({base.CurrentFrame}) as totalFrameNum({maximumFrame}) - 1 !");
-                        }
+                        NUILog.Debug($"isMinMaxFrameSet:{isMinMaxFrameSet}, CurrentFrameNumber:{base.CurrentFrame}, totalFrameNum:{ totalFrameNum}");
+                        base.CurrentFrame = totalFrameNum - 1;
+                        NUILog.Debug($"set CurrentFrameNumber({base.CurrentFrame}) as totalFrameNum({maximumFrame}) - 1 !");
                         break;
 
                     case minMaxSetTypes.SetByMinAndMaxFrameMethod:
