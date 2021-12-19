@@ -81,6 +81,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static List<Size2D> GetTextSize(TextEditor textEditor, int start, int end)
         {
+            if (textEditor == null)
+            {
+                throw new ArgumentNullException(null, "textEditor object is null");
+            }
+
             ValidateRange(start, end);
 
             List<Size2D> list = GetSizeListFromNativeVector(Interop.TextEditor.GetTextSize(textEditor.SwigCPtr, (uint)start, (uint)end));
@@ -100,6 +105,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static List<Size2D> GetTextSize(TextField textField, int start, int end)
         {
+            if (textField == null)
+            {
+                throw new ArgumentNullException(null, "textField object is null");
+            }
+
             ValidateRange(start, end);
 
             List<Size2D> list = GetSizeListFromNativeVector(Interop.TextField.GetTextSize(textField.SwigCPtr, (uint)start, (uint)end));
@@ -119,6 +129,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static List<Size2D> GetTextSize(TextLabel textLabel, int start, int end)
         {
+            if (textLabel == null)
+            {
+                throw new ArgumentNullException(null, "textLabel object is null");
+            }
+
             ValidateRange(start, end);
 
             List<Size2D> list = GetSizeListFromNativeVector(Interop.TextLabel.GetTextSize(textLabel.SwigCPtr, (uint)start, (uint)end));
@@ -138,6 +153,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static List<Position2D> GetTextPosition(TextEditor textEditor, int start, int end)
         {
+            if (textEditor == null)
+            {
+                throw new ArgumentNullException(null, "textEditor object is null");
+            }
+
             ValidateRange(start, end);
 
             List<Position2D> list = GetPositionListFromNativeVector(Interop.TextEditor.GetTextPosition(textEditor.SwigCPtr, (uint)start, (uint)end));
@@ -157,6 +177,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static List<Position2D> GetTextPosition(TextField textField, int start, int end)
         {
+            if (textField == null)
+            {
+                throw new ArgumentNullException(null, "textField object is null");
+            }
+
             ValidateRange(start, end);
 
             List<Position2D> list = GetPositionListFromNativeVector(Interop.TextField.GetTextPosition(textField.SwigCPtr, (uint)start, (uint)end));
@@ -176,6 +201,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static List<Position2D> GetTextPosition(TextLabel textLabel, int start, int end)
         {
+            if (textLabel == null)
+            {
+                throw new ArgumentNullException(null, "textLabel object is null");
+            }
+
             ValidateRange(start, end);
 
             List<Position2D> list = GetPositionListFromNativeVector(Interop.TextLabel.GetTextPosition(textLabel.SwigCPtr, (uint)start, (uint)end));
