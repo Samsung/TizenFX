@@ -28,61 +28,61 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr NewVectorVector2();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_VectorVector2")]
-            public static extern void DeleteVectorVector2(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void DeleteVectorVector2(global::System.Runtime.InteropServices.HandleRef daliVector);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_VectorVector2__SWIG_1")]
-            public static extern global::System.IntPtr NewVectorVector2(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr NewVectorVector2(global::System.Runtime.InteropServices.HandleRef daliVector);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_Assign")]
-            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern global::System.IntPtr Assign(global::System.Runtime.InteropServices.HandleRef daliVectorDest, global::System.Runtime.InteropServices.HandleRef daliVectorSrc);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_Begin")]
-            public static extern global::System.IntPtr Begin(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr Begin(global::System.Runtime.InteropServices.HandleRef daliVector);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_End")]
-            public static extern global::System.IntPtr End(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr End(global::System.Runtime.InteropServices.HandleRef daliVector);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_ValueOfIndex__SWIG_0")]
-            public static extern global::System.IntPtr ValueOfIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            public static extern global::System.IntPtr ValueOfIndex(global::System.Runtime.InteropServices.HandleRef daliVector, uint index);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_PushBack")]
-            public static extern void PushBack(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void PushBack(global::System.Runtime.InteropServices.HandleRef daliVector, global::System.Runtime.InteropServices.HandleRef item);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_Insert__SWIG_0")]
-            public static extern void Insert(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            public static extern void Insert(global::System.Runtime.InteropServices.HandleRef daliVector, global::System.Runtime.InteropServices.HandleRef iterator, global::System.Runtime.InteropServices.HandleRef item);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_Insert__SWIG_1")]
-            public static extern void Insert(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+            public static extern void Insert(global::System.Runtime.InteropServices.HandleRef daliVector, global::System.Runtime.InteropServices.HandleRef iterator, global::System.Runtime.InteropServices.HandleRef first, global::System.Runtime.InteropServices.HandleRef last);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_Reserve")]
-            public static extern void Reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            public static extern void Reserve(global::System.Runtime.InteropServices.HandleRef daliVector, uint size);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_Resize__SWIG_0")]
-            public static extern void Resize(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            public static extern void Resize(global::System.Runtime.InteropServices.HandleRef daliVector, uint size);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_Resize__SWIG_1")]
-            public static extern void Resize(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            public static extern void Resize(global::System.Runtime.InteropServices.HandleRef daliVector, uint size, global::System.Runtime.InteropServices.HandleRef item);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_Erase__SWIG_0")]
-            public static extern global::System.IntPtr Erase(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern global::System.IntPtr Erase(global::System.Runtime.InteropServices.HandleRef daliVector, global::System.Runtime.InteropServices.HandleRef iterator);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_Erase__SWIG_1")]
-            public static extern global::System.IntPtr Erase(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            public static extern global::System.IntPtr Erase(global::System.Runtime.InteropServices.HandleRef daliVector, global::System.Runtime.InteropServices.HandleRef first, global::System.Runtime.InteropServices.HandleRef last);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_Remove")]
-            public static extern void Remove(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void Remove(global::System.Runtime.InteropServices.HandleRef daliVector, global::System.Runtime.InteropServices.HandleRef item);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_Swap")]
-            public static extern void Swap(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern void Swap(global::System.Runtime.InteropServices.HandleRef daliVector1, global::System.Runtime.InteropServices.HandleRef daliVector2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_Clear")]
-            public static extern void Clear(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void Clear(global::System.Runtime.InteropServices.HandleRef daliVector);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_Release")]
-            public static extern void Release(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void Release(global::System.Runtime.InteropServices.HandleRef daliVector);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_VectorVector2_Size")]
-            public static extern int Size(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern int Size(global::System.Runtime.InteropServices.HandleRef daliVector);
 
         }
     }
