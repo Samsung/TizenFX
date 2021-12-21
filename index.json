@@ -7669,6 +7669,36 @@
     "title": "Enum FlexContainer.WrapType",
     "keywords": ""
   },
+  "API10/api/Tizen.NUI.BaseComponents.GLView.ColorFormat.html": {
+    "href": "API10/api/Tizen.NUI.BaseComponents.GLView.ColorFormat.html",
+    "title": "Enum GLView.ColorFormat",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.BaseComponents.GLView.GLInitializeDelegate.html": {
+    "href": "API10/api/Tizen.NUI.BaseComponents.GLView.GLInitializeDelegate.html",
+    "title": "Delegate GLView.GLInitializeDelegate",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.BaseComponents.GLView.GLRenderFrameDelegate.html": {
+    "href": "API10/api/Tizen.NUI.BaseComponents.GLView.GLRenderFrameDelegate.html",
+    "title": "Delegate GLView.GLRenderFrameDelegate",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.BaseComponents.GLView.GLTerminateDelegate.html": {
+    "href": "API10/api/Tizen.NUI.BaseComponents.GLView.GLTerminateDelegate.html",
+    "title": "Delegate GLView.GLTerminateDelegate",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.BaseComponents.GLView.html": {
+    "href": "API10/api/Tizen.NUI.BaseComponents.GLView.html",
+    "title": "Class GLView",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.BaseComponents.GLView.ViewResizeDelegate.html": {
+    "href": "API10/api/Tizen.NUI.BaseComponents.GLView.ViewResizeDelegate.html",
+    "title": "Delegate GLView.ViewResizeDelegate",
+    "keywords": ""
+  },
   "API10/api/Tizen.NUI.BaseComponents.html": {
     "href": "API10/api/Tizen.NUI.BaseComponents.html",
     "title": "Namespace Tizen.NUI.BaseComponents",
@@ -7687,6 +7717,11 @@
   "API10/api/Tizen.NUI.BaseComponents.ImageView.ResourceReadyEventArgs.html": {
     "href": "API10/api/Tizen.NUI.BaseComponents.ImageView.ResourceReadyEventArgs.html",
     "title": "Class ImageView.ResourceReadyEventArgs",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.BaseComponents.InputFilteredEventArgs.html": {
+    "href": "API10/api/Tizen.NUI.BaseComponents.InputFilteredEventArgs.html",
+    "title": "Class InputFilteredEventArgs",
     "keywords": ""
   },
   "API10/api/Tizen.NUI.BaseComponents.LayoutParamPolicies.html": {
@@ -8709,6 +8744,16 @@
     "title": "Class GetResourcesProvider",
     "keywords": ""
   },
+  "API10/api/Tizen.NUI.GLESVersion.html": {
+    "href": "API10/api/Tizen.NUI.GLESVersion.html",
+    "title": "Enum GLESVersion",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.GLRenderingMode.html": {
+    "href": "API10/api/Tizen.NUI.GLRenderingMode.html",
+    "title": "Enum GLRenderingMode",
+    "keywords": ""
+  },
   "API10/api/Tizen.NUI.GlyphType.html": {
     "href": "API10/api/Tizen.NUI.GlyphType.html",
     "title": "Enum GlyphType",
@@ -8802,6 +8847,11 @@
   "API10/api/Tizen.NUI.ImageVisualProperty.html": {
     "href": "API10/api/Tizen.NUI.ImageVisualProperty.html",
     "title": "Struct ImageVisualProperty",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.InputFilterType.html": {
+    "href": "API10/api/Tizen.NUI.InputFilterType.html",
+    "title": "Enum InputFilterType",
     "keywords": ""
   },
   "API10/api/Tizen.NUI.InputMethod.ActionButtonTitleType.html": {
@@ -9412,6 +9462,16 @@
   "API10/api/Tizen.NUI.TapGesture.html": {
     "href": "API10/api/Tizen.NUI.TapGesture.html",
     "title": "Class TapGesture",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.Text.html": {
+    "href": "API10/api/Tizen.NUI.Text.html",
+    "title": "Namespace Tizen.NUI.Text",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.Text.InputFilter.html": {
+    "href": "API10/api/Tizen.NUI.Text.InputFilter.html",
+    "title": "Struct InputFilter",
     "keywords": ""
   },
   "API10/api/Tizen.NUI.TextDirection.html": {
