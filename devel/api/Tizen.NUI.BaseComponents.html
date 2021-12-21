@@ -107,12 +107,20 @@ It aims at providing a more efficient way to layout, align, and distribute space
 FlexContainer has the ability to alter the width and the height of its children (i.e., flex items) to fill the available space in the best possible way on different screen sizes.<br>
 FlexContainer can expand items to fill available free space, or shrink them to prevent overflow.<br></p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.BaseComponents.GLView.html">GLView</a></h4>
+      <section><p>GLView allows drawing with OpenGL.
+GLView creates a context, a surface, and a render thread.
+The render thread invokes user&apos;s callbacks.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html">ImageView</a></h4>
       <section><p>ImageView is a class for displaying an image resource.<br>
 An instance of ImageView can be created using a URL or an image instance.<br></p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.BaseComponents.ImageView.ResourceReadyEventArgs.html">ImageView.ResourceReadyEventArgs</a></h4>
       <section><p>Event arguments of resource ready.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.BaseComponents.InputFilteredEventArgs.html">InputFilteredEventArgs</a></h4>
+      <section><p>InputFilteredEventArgs is a class to record input filter event arguments which will be sent to user.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.BaseComponents.LayoutParamPolicies.html">LayoutParamPolicies</a></h4>
       <section><p>Layout policies to decide the size of View when the View is laid out in its parent View.
@@ -237,6 +245,9 @@ space on the main axis.</p>
       <section><p>Enumeration for the wrap type of the flex container when there is no enough room for
 all the items on one flex line.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.BaseComponents.GLView.ColorFormat.html">GLView.ColorFormat</a></h4>
+      <section><p>Enumeration for the color format of the color buffer</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.BaseComponents.ImageView.LoadingStatusType.html">ImageView.LoadingStatusType</a></h4>
       <section><p>Enumeration for LoadingStatus of image.</p>
 </section>
@@ -260,6 +271,21 @@ all the items on one flex line.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.BaseComponents.ViewLayoutDirectionType.html">ViewLayoutDirectionType</a></h4>
       <section><p>The View layout Direction type.</p>
+</section>
+    <h3 id="delegates">Delegates
+  </h3>
+      <h4><a class="xref" href="Tizen.NUI.BaseComponents.GLView.GLInitializeDelegate.html">GLView.GLInitializeDelegate</a></h4>
+      <section><p>Type of callback to initialize OpenGLES.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.BaseComponents.GLView.GLRenderFrameDelegate.html">GLView.GLRenderFrameDelegate</a></h4>
+      <section><p>Type of callback to render the frame with OpenGLES APIs.
+If the return value of this callback is not 0, the eglSwapBuffers() will be called.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.BaseComponents.GLView.GLTerminateDelegate.html">GLView.GLTerminateDelegate</a></h4>
+      <section><p>Type of callback to clean up GL resource.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.BaseComponents.GLView.ViewResizeDelegate.html">GLView.ViewResizeDelegate</a></h4>
+      <section><p>Type of resize callback</p>
 </section>
 </article>
           </div>
