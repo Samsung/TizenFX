@@ -86,6 +86,12 @@ namespace Tizen.NUI.Binding
             set { SetValue(BindingContextProperty, value); }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int LineNumber { get; set; } = -1;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int LinePosition { get; set; } = -1;
+
         void IDynamicResourceHandler.SetDynamicResource(BindableProperty property, string key)
         {
             SetDynamicResource(property, key, false);
