@@ -162,6 +162,8 @@ namespace Tizen.NUI.Xaml
                         if (value is Element element)
                         {
                             element.IsCreateByXaml = true;
+                            element.LineNumber = node.LineNumber;
+                            element.LinePosition = node.LinePosition;
                         }
                     }
                 }
@@ -282,6 +284,8 @@ namespace Tizen.NUI.Xaml
                 if (ret is Element element)
                 {
                     element.IsCreateByXaml = true;
+                    element.LineNumber = (node as ElementNode)?.LineNumber ?? -1;
+                    element.LinePosition = (node as ElementNode)?.LinePosition ?? -1;
                 }
                 return ret;
             }
@@ -417,6 +421,8 @@ namespace Tizen.NUI.Xaml
                 if (value is Element element)
                 {
                     element.IsCreateByXaml = true;
+                    element.LineNumber = (node as ElementNode)?.LineNumber ?? -1;
+                    element.LinePosition = (node as ElementNode)?.LinePosition ?? -1;
                 }
             }
 
