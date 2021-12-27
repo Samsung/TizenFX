@@ -481,7 +481,7 @@ namespace Tizen.NUI
         /// <returns>The float pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static float PtToPixel(this float pt)
+        public static float PtToPx(this float pt)
         {
             return GraphicsTypeManager.Instance.Point.ConvertToPixel(pt);
         }
