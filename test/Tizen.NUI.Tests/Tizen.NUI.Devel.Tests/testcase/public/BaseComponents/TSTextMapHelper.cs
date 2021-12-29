@@ -24,6 +24,14 @@ namespace Tizen.NUI.Devel.Tests
             return false;
         }
 
+        public bool CheckVector2(Vector2 vectorSrc, Vector2 vectorDst)
+        {
+            if (vectorSrc.X == vectorDst.X && vectorSrc.Y == vectorDst.Y)
+                return true;
+
+            return false;
+        }
+
         [SetUp]
         public void Init()
         {
@@ -345,8 +353,7 @@ namespace Tizen.NUI.Devel.Tests
             map.Find(0, "blurRadius").Get(out float blurRadius);
 
             Assert.AreEqual(blurRadius, shadow.BlurRadius, "Should be equal!");
-            Assert.AreEqual(offset.X, shadow.Offset.X, "Should be equal!");
-            Assert.AreEqual(offset.Y, shadow.Offset.Y, "Should be equal!");
+            Assert.AreEqual(true, CheckVector2(offset, shadow.Offset), "Should be true!");
             Assert.AreEqual(true, CheckColor(color, shadow.Color), "Should be true!");
 
             tlog.Debug(tag, $"TextMapHelperGetShadowMap END (OK)");
@@ -375,8 +382,7 @@ namespace Tizen.NUI.Devel.Tests
             var shadow = TextMapHelper.GetShadowStruct(map);
 
             Assert.AreEqual(blurRadius, shadow.BlurRadius, "Should be equal!");
-            Assert.AreEqual(offset.X, shadow.Offset.X, "Should be equal!");
-            Assert.AreEqual(offset.Y, shadow.Offset.Y, "Should be equal!");
+            Assert.AreEqual(true, CheckVector2(offset, shadow.Offset), "Should be true!");
             Assert.AreEqual(true, CheckColor(color, shadow.Color), "Should be true!");
 
             tlog.Debug(tag, $"TextMapHelperGetShadowStruct END (OK)");
@@ -972,8 +978,7 @@ namespace Tizen.NUI.Devel.Tests
             map.Add(stringKey, new PropertyValue(value));
 
             var result = TextMapHelper.GetVector2FromMap(map, stringKey);
-            Assert.AreEqual(value.X, result.X, "Should be equal!");
-            Assert.AreEqual(value.Y, result.Y, "Should be equal!");
+            Assert.AreEqual(true, CheckVector2(value, result), "Should be true!");
 
             tlog.Debug(tag, $"TextMapHelperGetVector2FromMap END (OK)");
         }
