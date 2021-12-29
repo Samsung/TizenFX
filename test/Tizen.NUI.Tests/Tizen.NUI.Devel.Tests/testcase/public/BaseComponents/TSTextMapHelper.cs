@@ -16,6 +16,14 @@ namespace Tizen.NUI.Devel.Tests
     {
         private const string tag = "NUITEST";
 
+        public bool CheckColor(Color colorSrc, Color colorDst)
+        {
+            if (colorSrc.R == colorDst.R && colorSrc.G == colorDst.G && colorSrc.B == colorDst.B && colorSrc.A == colorDst.A)
+                return true;
+
+            return false;
+        }
+
         [SetUp]
         public void Init()
         {
@@ -280,10 +288,7 @@ namespace Tizen.NUI.Devel.Tests
 
             Assert.AreEqual(enable, underline.Enable, "Should be equal!");
             Assert.AreEqual(height, underline.Height, "Should be equal!");
-            Assert.AreEqual(color.R, underline.Color.R, "Should be equal!");
-            Assert.AreEqual(color.G, underline.Color.G, "Should be equal!");
-            Assert.AreEqual(color.B, underline.Color.B, "Should be equal!");
-            Assert.AreEqual(color.A, underline.Color.A, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(color, underline.Color), "Should be true!");
 
             tlog.Debug(tag, $"TextMapHelperGetUnderlineMap END (OK)");
         }
@@ -309,10 +314,7 @@ namespace Tizen.NUI.Devel.Tests
 
             Assert.AreEqual(true, underline.Enable, "Should be equal!");
             Assert.AreEqual(2.0f, underline.Height, "Should be equal!");
-            Assert.AreEqual(color.R, underline.Color.R, "Should be equal!");
-            Assert.AreEqual(color.G, underline.Color.G, "Should be equal!");
-            Assert.AreEqual(color.B, underline.Color.B, "Should be equal!");
-            Assert.AreEqual(color.A, underline.Color.A, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(color, underline.Color), "Should be true!");
 
             tlog.Debug(tag, $"TextMapHelperGetUnderlineStruct END (OK)");
         }
@@ -345,10 +347,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.AreEqual(blurRadius, shadow.BlurRadius, "Should be equal!");
             Assert.AreEqual(offset.X, shadow.Offset.X, "Should be equal!");
             Assert.AreEqual(offset.Y, shadow.Offset.Y, "Should be equal!");
-            Assert.AreEqual(color.R, shadow.Color.R, "Should be equal!");
-            Assert.AreEqual(color.G, shadow.Color.G, "Should be equal!");
-            Assert.AreEqual(color.B, shadow.Color.B, "Should be equal!");
-            Assert.AreEqual(color.A, shadow.Color.A, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(color, shadow.Color), "Should be true!");
 
             tlog.Debug(tag, $"TextMapHelperGetShadowMap END (OK)");
         }
@@ -378,10 +377,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.AreEqual(blurRadius, shadow.BlurRadius, "Should be equal!");
             Assert.AreEqual(offset.X, shadow.Offset.X, "Should be equal!");
             Assert.AreEqual(offset.Y, shadow.Offset.Y, "Should be equal!");
-            Assert.AreEqual(color.R, shadow.Color.R, "Should be equal!");
-            Assert.AreEqual(color.G, shadow.Color.G, "Should be equal!");
-            Assert.AreEqual(color.B, shadow.Color.B, "Should be equal!");
-            Assert.AreEqual(color.A, shadow.Color.A, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(color, shadow.Color), "Should be true!");
 
             tlog.Debug(tag, $"TextMapHelperGetShadowStruct END (OK)");
         }
@@ -409,10 +405,7 @@ namespace Tizen.NUI.Devel.Tests
             map.Find(0, "width").Get(out float width);
 
             Assert.AreEqual(width, outline.Width, "Should be equal!");
-            Assert.AreEqual(color.R, outline.Color.R, "Should be equal!");
-            Assert.AreEqual(color.G, outline.Color.G, "Should be equal!");
-            Assert.AreEqual(color.B, outline.Color.B, "Should be equal!");
-            Assert.AreEqual(color.A, outline.Color.A, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(color, outline.Color), "Should be true!");
 
             tlog.Debug(tag, $"TextMapHelperGetOutlineMap END (OK)");
         }
@@ -437,10 +430,7 @@ namespace Tizen.NUI.Devel.Tests
 
             var outline = TextMapHelper.GetOutlineStruct(map);
             Assert.AreEqual(width, outline.Width, "Should be equal!");
-            Assert.AreEqual(color.R, outline.Color.R, "Should be equal!");
-            Assert.AreEqual(color.G, outline.Color.G, "Should be equal!");
-            Assert.AreEqual(color.B, outline.Color.B, "Should be equal!");
-            Assert.AreEqual(color.A, outline.Color.A, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(color, outline.Color), "Should be true!");
 
             tlog.Debug(tag, $"TextMapHelperGetOutlineStruct END (OK)");
         }
@@ -610,10 +600,7 @@ namespace Tizen.NUI.Devel.Tests
 
             Assert.AreEqual(text, placeholder.Text, "Should be equal!");
             Assert.AreEqual(textFocused, placeholder.TextFocused, "Should be equal!");
-            Assert.AreEqual(color.R, placeholder.Color.R, "Should be equal!");
-            Assert.AreEqual(color.G, placeholder.Color.G, "Should be equal!");
-            Assert.AreEqual(color.B, placeholder.Color.B, "Should be equal!");
-            Assert.AreEqual(color.A, placeholder.Color.A, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(color, placeholder.Color), "Should be true!");
             Assert.AreEqual(fontFamily, placeholder.FontFamily, "Should be equal!");
             Assert.AreEqual(width, "expanded", "Should be equal!");
             Assert.AreEqual(weight, "bold", "Should be equal!");
@@ -659,10 +646,7 @@ namespace Tizen.NUI.Devel.Tests
 
             Assert.AreEqual(text, placeholder.Text, "Should be equal!");
             Assert.AreEqual(textFocused, placeholder.TextFocused, "Should be equal!");
-            Assert.AreEqual(color.R, placeholder.Color.R, "Should be equal!");
-            Assert.AreEqual(color.G, placeholder.Color.G, "Should be equal!");
-            Assert.AreEqual(color.B, placeholder.Color.B, "Should be equal!");
-            Assert.AreEqual(color.A, placeholder.Color.A, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(color, placeholder.Color), "Should be true!");
             Assert.AreEqual(fontFamily, placeholder.FontFamily, "Should be equal!");
             Assert.AreEqual(FontWidthType.Expanded, placeholder.FontStyle?.Width, "Should be equal!");
             Assert.AreEqual(FontWeightType.Bold, placeholder.FontStyle?.Weight, "Should be equal!");
@@ -961,16 +945,10 @@ namespace Tizen.NUI.Devel.Tests
             map.Add(intKey, new PropertyValue(value));
 
             var result = TextMapHelper.GetColorFromMap(map, stringKey);
-            Assert.AreEqual(value.R, result.R, "Should be equal!");
-            Assert.AreEqual(value.G, result.G, "Should be equal!");
-            Assert.AreEqual(value.B, result.B, "Should be equal!");
-            Assert.AreEqual(value.A, result.A, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(value, result), "Should be true!");
 
             result = TextMapHelper.GetColorFromMap(map, intKey);
-            Assert.AreEqual(value.R, result.R, "Should be equal!");
-            Assert.AreEqual(value.G, result.G, "Should be equal!");
-            Assert.AreEqual(value.B, result.B, "Should be equal!");
-            Assert.AreEqual(value.A, result.A, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(value, result), "Should be true!");
 
             tlog.Debug(tag, $"TextMapHelperGetColorFromMap END (OK)");
         }
