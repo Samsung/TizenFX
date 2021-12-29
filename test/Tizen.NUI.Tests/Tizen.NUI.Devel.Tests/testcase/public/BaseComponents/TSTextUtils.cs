@@ -24,6 +24,14 @@ namespace Tizen.NUI.Devel.Tests
             return false;
         }
 
+        public bool CheckVector2(Vector2 vectorSrc, Vector2 vectorDst)
+        {
+            if (vectorSrc.X == vectorDst.X && vectorSrc.Y == vectorDst.Y)
+                return true;
+
+            return false;
+        }
+
         [SetUp]
         public void Init()
         {
@@ -632,9 +640,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<EmbeddedItemInfo>(testingTarget, "Should be an instance of EmbeddedItemInfo type.");
 
             testingTarget.Position = new Vector2(100.0f, 200.0f);
-            Assert.AreEqual(100.0f, testingTarget.Position.X, "Should be equal!");
-            Assert.AreEqual(200.0f, testingTarget.Position.Y, "Should be equal!");
+            var position = new Vector2(100.0f, 200.0f); 
+            Assert.AreEqual(true, CheckVector2(position, testingTarget.Position), "Should be true!");
 
+            position.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextUtilsEmbeddedItemInfoPosition END (OK)");
         }
@@ -841,9 +850,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<ShadowParameters>(testingTarget, "Should be an instance of ShadowParameters type.");
 
             testingTarget.Offset = new Vector2(0.3f, 0.8f);
-            Assert.AreEqual(0.3f, testingTarget.Offset.X, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.Offset.Y, "Should be equal!");
+            var offset = new Vector2(0.3f, 0.8f);
+            Assert.AreEqual(true, CheckVector2(offset, testingTarget.Offset), "Should be true!");
 
+            offset.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextUtilsShadowParametersOffset END (OK)");
         }
