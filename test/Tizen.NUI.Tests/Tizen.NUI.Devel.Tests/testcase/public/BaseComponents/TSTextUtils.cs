@@ -16,6 +16,14 @@ namespace Tizen.NUI.Devel.Tests
         private const string tag = "NUITEST";
         private string imageurl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
 
+        public bool CheckColor(Vector4 colorSrc, Vector4 colorDst)
+        {
+            if (colorSrc.X == colorDst.X && colorSrc.Y == colorDst.Y && colorSrc.Z == colorDst.Z && colorSrc.W == colorDst.W)
+                return true;
+
+            return false;
+        }
+
         [SetUp]
         public void Init()
         {
@@ -285,11 +293,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<RendererParameters>(testingTarget, "Should be an instance of RendererParameters type.");
 
             testingTarget.TextColor = new Vector4(0.3f, 0.8f, 1.0f, 0.0f);
-            Assert.AreEqual(0.3f, testingTarget.TextColor.R, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.TextColor.G, "Should be equal!");
-            Assert.AreEqual(1.0f, testingTarget.TextColor.B, "Should be equal!");
-            Assert.AreEqual(0.0f, testingTarget.TextColor.A, "Should be equal!");
+            var color = new Vector4(0.3f, 0.8f, 1.0f, 0.0f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.TextColor), "Should be true!");
 
+            color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextUtilsRendererParametersTextColor END (OK)");
         }
@@ -784,11 +791,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<ShadowParameters>(testingTarget, "Should be an instance of ShadowParameters type.");
 
             testingTarget.TextColor = new Vector4(0.3f, 0.8f, 1.0f, 0.0f);
-            Assert.AreEqual(0.3f, testingTarget.TextColor.R, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.TextColor.G, "Should be equal!");
-            Assert.AreEqual(1.0f, testingTarget.TextColor.B, "Should be equal!");
-            Assert.AreEqual(0.0f, testingTarget.TextColor.A, "Should be equal!");
+            var color = new Vector4(0.3f, 0.8f, 1.0f, 0.0f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.TextColor), "Should be true!");
 
+            color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextUtilsShadowParametersTextColor END (OK)");
         }
@@ -811,11 +817,10 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Input = new PixelBuffer(30, 50, PixelFormat.A8);
 
             testingTarget.Color = new Vector4(0.3f, 0.8f, 1.0f, 0.0f);
-            Assert.AreEqual(0.3f, testingTarget.Color.R, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.Color.G, "Should be equal!");
-            Assert.AreEqual(1.0f, testingTarget.Color.B, "Should be equal!");
-            Assert.AreEqual(0.0f, testingTarget.Color.A, "Should be equal!");
+            var color = new Vector4(0.3f, 0.8f, 1.0f, 0.0f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.Color), "Should be true!");
 
+            color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextUtilsShadowParametersColor END (OK)");
         }
