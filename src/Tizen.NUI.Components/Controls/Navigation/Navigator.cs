@@ -231,6 +231,9 @@ namespace Tizen.NUI.Components
                    topPage.SetVisible(false);
                 }
 
+                // Need to update Content of the new page
+                ShowContentOfPage(page);
+
                 //Invoke Page events
                 page.InvokeAppeared();
                 topPage.InvokeDisappeared();
@@ -281,6 +284,9 @@ namespace Tizen.NUI.Components
                 Remove(topPage);
                 topPage.SetVisible(true);
 
+                // Need to update Content of the new page
+                ShowContentOfPage(newTopPage);
+
                 //Invoke Page events
                 newTopPage.InvokeAppeared();
                 topPage.InvokeDisappeared();
@@ -329,8 +335,6 @@ namespace Tizen.NUI.Components
             Add(page);
             page.Navigator = this;
 
-            AddPageToList(page);
-
             //Invoke Page events
             page.InvokeAppearing();
             curTop.InvokeDisappearing();
@@ -359,11 +363,18 @@ namespace Tizen.NUI.Components
                 newAnimation.EndAction = Animation.EndActions.StopFinal;
                 newAnimation.Finished += (object sender, EventArgs e) =>
                 {
+                    // Need to update Content of the new page
+                    ShowContentOfPage(page);
+
                     //Invoke Page events
                     page.InvokeAppeared();
                     NotifyAccessibilityStatesChangeOfPages(curTop, page);
                 };
                 newAnimation.Play();
+            }
+            else
+            {
+                ShowContentOfPage(page);
             }
         }
 
@@ -387,7 +398,6 @@ namespace Tizen.NUI.Components
             }
 
             var curTop = Peek();
-            RemovePageToList(curTop);
 
             if (navigationPages.Count == 1)
             {
@@ -434,6 +444,9 @@ namespace Tizen.NUI.Components
                 newAnimation.EndAction = Animation.EndActions.StopFinal;
                 newAnimation.Finished += (object sender, EventArgs e) =>
                 {
+                    // Need to update Content of the new page
+                    ShowContentOfPage(newTop);
+
                     //Invoke Page events
                     newTop.InvokeAppeared();
                     NotifyAccessibilityStatesChangeOfPages(curTop, newTop);
@@ -523,6 +536,8 @@ namespace Tizen.NUI.Components
             //TODO: The following transition codes will be replaced with view transition.
             InitializeAnimation();
 
+            ShowContentOfPage(page);
+
             if (index == PageCount)
             {
                 page.Opacity = 1.0f;
@@ -588,6 +603,8 @@ namespace Tizen.NUI.Components
 
             //TODO: The following transition codes will be replaced with view transition.
             InitializeAnimation();
+
+            HideContentOfPage(page);
 
             if ((page == Peek()) && (PageCount >= 2))
             {
@@ -864,31 +881,23 @@ namespace Tizen.NUI.Components
             }
         }
 
-        // Register dialog(popup) to Accessibility bridge
-        internal void AddPageToList(Page page)
+        // Show and Register Content of Page to Accessibility bridge
+        private void ShowContentOfPage(Page page)
         {
-            ContentPage obj = page as ContentPage;
-            if (obj != null)
+            View content = (page is DialogPage) ? (page as DialogPage)?.Content : (page as ContentPage)?.Content;
+            if (content != null)
             {
-                View view = obj.Content;
-                if (view != null)
-                {
-                    view.Show(); // Calls RegisterDefaultLabel()
-                }
+                content.Show(); // Calls RegisterDefaultLabel()
             }
         }
 
-        // Remove dialog(popup) from Accessibility bridge
-        internal void RemovePageToList(Page page)
+        // Hide and Remove Content of Page from Accessibility bridge
+        private void HideContentOfPage(Page page)
         {
-            ContentPage obj = page as ContentPage;
-            if (obj != null)
+            View content = (page is DialogPage) ? (page as DialogPage)?.Content : (page as ContentPage)?.Content;
+            if (content != null)
             {
-                View view = obj.Content;
-                if (view != null)
-                {
-                    view.Hide(); // Calls UnregisterDefaultLabel()
-                }
+                content.Hide(); // Calls UnregisterDefaultLabel()
             }
         }
     }
