@@ -88,5 +88,14 @@ namespace Tizen.NUI
 
             base.Dispose(type);
         }
+
+        /// <summary>
+        /// Awake ProcessorController. It will call ProcessController.processorCallback hardly
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Awake()
+        {
+            Interop.ProcessorController.Awake(SwigCPtr);
+        }
     } // class ProcessorController
 } // namespace Tizen.NUI
