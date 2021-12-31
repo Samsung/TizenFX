@@ -1599,8 +1599,11 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetProperty(TextEditor.Property.EnableEditing, new PropertyValue(value));
-                NotifyPropertyChanged();
+                using (var propertyValue = new PropertyValue(value))
+                {
+                    SetProperty(TextEditor.Property.EnableEditing, propertyValue);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -1758,10 +1761,9 @@ namespace Tizen.NUI.BaseComponents
         public void SetInputFilter(InputFilter inputFilter)
         {
             using (var map = TextMapHelper.GetInputFilterMap(inputFilter))
+            using (var propertyValue = new PropertyValue(map))
             {
-                var propertyValue = new PropertyValue(map);
                 SetProperty(TextEditor.Property.InputFilter, propertyValue);
-                propertyValue.Dispose();
             }
         }
 
@@ -1777,11 +1779,10 @@ namespace Tizen.NUI.BaseComponents
         {
             InputFilter inputFilter;
             using (var propertyValue = GetProperty(TextEditor.Property.InputFilter))
+            using (var map = new PropertyMap())
             {
-                var map = new PropertyMap();
                 propertyValue.Get(map);
                 inputFilter = TextMapHelper.GetInputFilterStruct(map);
-                map.Dispose();
             }
             return inputFilter;
         }
@@ -1836,19 +1837,27 @@ namespace Tizen.NUI.BaseComponents
                     map.Add("textFocused", TextMapHelper.GetStringFromMap(map, 1, defalutText));
                 
                 if (TextMapHelper.IsValue(map, 2))
-                    map.Add("color", TextMapHelper.GetColorFromMap(map, 2));
+                {
+                    using (var color = TextMapHelper.GetColorFromMap(map, 2))
+                    {
+                        map.Add("color", color);
+                    }
+                }
                 
                 if (TextMapHelper.IsValue(map, 3))
                     map.Add("fontFamily", TextMapHelper.GetStringFromMap(map, 3, defalutText));
 
                 if (TextMapHelper.IsValue(map, 4))
                 {
-                    var fontStyle = new PropertyMap();
-                    map.Find(4).Get(fontStyle);
-                    var fontStyleValue = new PropertyValue(fontStyle);
-                    map.Add("fontStyle", fontStyleValue);
-                    fontStyleValue.Dispose();
-                    fontStyle.Dispose();
+                    using (var properyValue = map.Find(4))
+                    using (var fontStyle = new PropertyMap())
+                    {
+                        properyValue.Get(fontStyle);
+                        using (var fontStyleValue = new PropertyValue(fontStyle))
+                        {
+                            map.Add("fontStyle", fontStyleValue);
+                        }
+                    }
                 }
 
                 if (TextMapHelper.IsValue(map, 5))
