@@ -293,8 +293,11 @@ namespace Tizen.NUI.BaseComponents
         /// </example>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFontStyle(FontStyle fontStyle)
-        {
-            SetValue(FontStyleProperty, TextMapHelper.GetFontStyleMap(fontStyle));
+        {            
+            using (var fontStyleMap = TextMapHelper.GetFontStyleMap(fontStyle))
+            {
+                SetValue(FontStyleProperty, fontStyleMap);
+            }
         }
 
         /// <summary>
@@ -307,7 +310,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetFontStyle()
         {
-            return TextMapHelper.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
+            FontStyle fontStyle;
+            using (var fontStyleMap = (PropertyMap)GetValue(FontStyleProperty))
+            {
+                fontStyle = TextMapHelper.GetFontStyleStruct(fontStyleMap);
+            }
+            return fontStyle;
         }
 
         /// <summary>
@@ -773,7 +781,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetUnderline(Underline underline)
         {
-            SetValue(UnderlineProperty, TextMapHelper.GetUnderlineMap(underline));
+            using (var underlineMap = TextMapHelper.GetUnderlineMap(underline))
+            {
+                SetValue(UnderlineProperty, underlineMap);
+            }
         }
 
         /// <summary>
@@ -786,7 +797,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Underline GetUnderline()
         {
-            return TextMapHelper.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
+            Underline underline;
+            using (var underlineMap = (PropertyMap)GetValue(UnderlineProperty))
+            {
+                underline = TextMapHelper.GetUnderlineStruct(underlineMap);
+            }
+            return underline;
         }
 
         /// <summary>
@@ -834,7 +850,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetShadow(Tizen.NUI.Text.Shadow shadow)
         {
-            SetValue(ShadowProperty, TextMapHelper.GetShadowMap(shadow));
+            using (var shadowMap = TextMapHelper.GetShadowMap(shadow))
+            {
+                SetValue(ShadowProperty, shadowMap);
+            }
         }
 
         /// <summary>
@@ -847,7 +866,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.Text.Shadow GetShadow()
         {
-            return TextMapHelper.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
+            Tizen.NUI.Text.Shadow shadow;
+            using (var shadowMap = (PropertyMap)GetValue(ShadowProperty))
+            {
+                shadow = TextMapHelper.GetShadowStruct(shadowMap);
+            }
+            return shadow;
         }
 
         /// <summary>
@@ -929,7 +953,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetOutline(Outline outline)
         {
-            SetValue(OutlineProperty, TextMapHelper.GetOutlineMap(outline));
+            using (var outlineMap = TextMapHelper.GetOutlineMap(outline))
+            {
+                SetValue(OutlineProperty, outlineMap);
+            }
         }
 
         /// <summary>
@@ -942,7 +969,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Outline GetOutline()
         {
-            return TextMapHelper.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
+            Outline outline;
+            using (var outlineMap = (PropertyMap)GetValue(OutlineProperty))
+            {
+                outline = TextMapHelper.GetOutlineStruct(outlineMap);
+            }
+            return outline;
         }
 
         /// <summary>
@@ -1044,9 +1076,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(TextLabel.Property.LineCount).Get(out temp);
-                return temp;
+                int lineCount = 0;
+                using (var propertyValue = GetProperty(TextLabel.Property.LineCount))
+                {
+                    propertyValue.Get(out lineCount);
+                }
+                return lineCount;
             }
         }
 
@@ -1077,9 +1112,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(TextLabel.Property.TextDirection).Get(out temp);
-                return (TextDirection)temp;
+                int textDirection = 0;
+                using (var propertyValue = GetProperty(TextLabel.Property.TextDirection))
+                {
+                    propertyValue.Get(out textDirection);
+                }
+                return (TextDirection)textDirection;
             }
         }
 
@@ -1167,7 +1205,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTextFit(TextFit textFit)
         {
-            SetValue(TextFitProperty, TextMapHelper.GetTextFitMap(textFit));
+            using (var textFitMap = TextMapHelper.GetTextFitMap(textFit))
+            {
+                SetValue(TextFitProperty, textFitMap);
+            }
         }
 
         /// <summary>
@@ -1182,7 +1223,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextFit GetTextFit()
         {
-            return TextMapHelper.GetTextFitStruct((PropertyMap)GetValue(TextFitProperty));
+            TextFit textFit;
+            using (var textFitMap = (PropertyMap)GetValue(TextFitProperty))
+            {
+                textFit = TextMapHelper.GetTextFitStruct(textFitMap);
+            }
+            return textFit;
         }
 
         /// <summary>
