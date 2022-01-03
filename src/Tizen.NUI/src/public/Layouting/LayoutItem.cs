@@ -203,13 +203,17 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public void Measure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            OnMeasure(widthMeasureSpec, heightMeasureSpec);
-            OnMeasureIndependentChildren(widthMeasureSpec, heightMeasureSpec);
-            flags = flags | LayoutFlags.LayoutRequired;
-            flags &= ~LayoutFlags.ForceLayout;
+            bool needsLayout = NeedsLayout(widthMeasureSpec.Size.AsDecimal(), heightMeasureSpec.Size.AsDecimal(), widthMeasureSpec.Mode, heightMeasureSpec.Mode);
 
-            oldWidthMeasureSpec = widthMeasureSpec;
-            oldHeightMeasureSpec = heightMeasureSpec;
+            if (needsLayout)
+            {
+                OnMeasure(widthMeasureSpec, heightMeasureSpec);
+                OnMeasureIndependentChildren(widthMeasureSpec, heightMeasureSpec);
+                flags = flags | LayoutFlags.LayoutRequired;
+                flags &= ~LayoutFlags.ForceLayout;
+                oldWidthMeasureSpec = widthMeasureSpec;
+                oldHeightMeasureSpec = heightMeasureSpec;
+            }
         }
 
         internal bool NeedsLayout(float widthSize, float heightSize, MeasureSpecification.ModeType widthMode, MeasureSpecification.ModeType heightMode)
@@ -623,6 +627,25 @@ namespace Tizen.NUI
         {
             Dispose(true);
             global::System.GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Sets the sibling order of the layout item so the layout can be defined within the same parent.
+        /// </summary>
+        /// <param name="order">the sibling order of the layout item</param>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ChangeLayoutSiblingOrder(int order)
+        {
+            if (Owner != null)
+            {
+                var ownerParent = Owner.GetParent() as View;
+                if (ownerParent != null)
+                {
+                    var parent = ownerParent.Layout as LayoutGroup;
+                    parent?.ChangeLayoutChildOrder(this, order);
+                }
+            }
         }
     }
 }

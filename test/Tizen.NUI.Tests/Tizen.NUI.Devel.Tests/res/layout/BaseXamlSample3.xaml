@@ -6,9 +6,12 @@
     <View.XamlResources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!-- Add more resource dictionaries here -->
-                <ResourceDictionary Source="res/layout/MyResourceDictionary.xaml"/>
-                <!-- Add more resource dictionaries here -->
+                <ResourceDictionary >
+                    <Color x:Key="red">Red</Color>
+                </ResourceDictionary>
+                <ResourceDictionary >
+                    <Color x:Key="green">Green</Color>
+                </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </View.XamlResources>

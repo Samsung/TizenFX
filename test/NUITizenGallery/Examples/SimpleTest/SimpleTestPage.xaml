@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.SimpleTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="SimpleTestPage"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+        <View.Layout>
+          <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center" CellPadding="10,10" />
+        </View.Layout>
+
+         <TextLabel x:Name="CounterViewer"
+                      Text="aaaaaaaaaa aaaaaa aaaaaaaaaaaaa aaaaaaaaaaaa aaaaaaaa"
+                      Size2D="320, 100"
+                      MultiLine="true"/>
+        <Button x:Name="CounterButton"
+                  Text="Click Me!"
+                  WidthSpecification="{Static LayoutParamPolicies.WrapContent}"
+                  HeightSpecification="{Static LayoutParamPolicies.WrapContent}"/>
+      </View>
+    </ContentPage.Content>
+</ContentPage>

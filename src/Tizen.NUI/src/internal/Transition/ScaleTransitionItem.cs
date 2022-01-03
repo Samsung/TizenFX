@@ -15,13 +15,12 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
-    using System;
-    using System.ComponentModel;
-
-    using Tizen.NUI.BaseComponents;
-
     /// <summary>
     /// ScaleTransitionItem is an object to set scale transition of a View that will appear or disappear.
     /// ScaleTransitionItem object is required to be added to the TransitionSet to play.
@@ -32,10 +31,10 @@ namespace Tizen.NUI
         /// Creates an initialized ScaleTransition.<br />
         /// </summary>
         /// <remarks>Delay and duration of timePeriod must be greater than zero.</remarks>
-        public ScaleTransitionItem(View view, float scale, bool isAppearing, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.ScaleTransitionItem.New(view.SwigCPtr, scale, timePeriod.SwigCPtr), true)
+        public ScaleTransitionItem(View view, float scale, bool appearingTransition, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.ScaleTransitionItem.New(view.SwigCPtr, scale, timePeriod.SwigCPtr), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            AppearingTransition = isAppearing;
+            AppearingTransition = appearingTransition;
             AlphaFunction = alphaFunction;
         }
 
@@ -43,10 +42,10 @@ namespace Tizen.NUI
         /// Creates an initialized ScaleTransition.<br />
         /// </summary>
         /// <remarks>Delay and duration of timePeriod must be greater than zero.</remarks>
-        public ScaleTransitionItem(View view, Vector2 scale, bool isAppearing, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.ScaleTransitionItem.New(view.SwigCPtr, scale.SwigCPtr, timePeriod.SwigCPtr), true)
+        public ScaleTransitionItem(View view, Vector2 scale, bool appearingTransition, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.ScaleTransitionItem.New(view.SwigCPtr, scale.SwigCPtr, timePeriod.SwigCPtr), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            AppearingTransition = isAppearing;
+            AppearingTransition = appearingTransition;
             AlphaFunction = alphaFunction;
         }
 

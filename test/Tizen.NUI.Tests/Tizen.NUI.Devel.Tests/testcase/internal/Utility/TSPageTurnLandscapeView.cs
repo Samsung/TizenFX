@@ -140,34 +140,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"PageTurnLandscapeViewAssign END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("PageTurnLandscapeView constructor.")]
-        //[Property("SPEC", "Tizen.NUI.PageTurnLandscapeView.PageTurnLandscapeView C")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "CONSTR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void PageTurnLandscapeViewConstructorWith2Parameters()
-        //{
-        //    tlog.Debug(tag, $"PageTurnLandscapeViewConstructorWith2Parameters START");
-
-        //    using (View view = new View())
-        //    {
-        //        using (PageFactory pageFactory = new PageFactory(view.SwigCPtr.Handle, true))
-        //        {
-        //            using (Vector2 pageSize = new Vector2(100, 50))
-        //            {
-        //                var testingTarget = new PageTurnLandscapeView(pageFactory, pageSize);
-        //                Assert.IsNotNull(testingTarget, "Should be not null!");
-        //                Assert.IsInstanceOf<PageTurnLandscapeView>(testingTarget, "Should be an Instance of PageTurnLandscapeView!");
-
-        //                testingTarget.Dispose();
-        //            }
-        //        }
-        //    }
-
-        //    tlog.Debug(tag, $"PageTurnLandscapeViewConstructorWith2Parameters END (OK)");
-        //}
     }
 }

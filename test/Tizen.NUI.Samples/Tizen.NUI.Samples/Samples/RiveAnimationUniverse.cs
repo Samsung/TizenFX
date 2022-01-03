@@ -355,9 +355,10 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
-            defaultLayer.Remove(rav);
-            defaultLayer.Remove(scroll);
-            defaultLayer.Remove(header);
+            window.TouchEvent -= OnRiveWindowTouchEvent;
+            if (rav) { defaultLayer.Remove(rav); }
+            if (scroll) { defaultLayer.Remove(scroll); }
+            if (header) { defaultLayer.Remove(header); }
         }
     }
 }

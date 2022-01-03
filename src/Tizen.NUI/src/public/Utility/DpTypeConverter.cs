@@ -30,7 +30,7 @@ namespace Tizen.NUI
         private volatile static DpTypeConverter dpTypeConverter;
 
         /// <summary>
-        /// An unique Singleton Instance of DpTypeConverter
+        /// An unique Singleton Instance of DpTypeConverter.
         /// </summary>
         /// <value>Singleton instance of DpTypeConverter</value>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -49,7 +49,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Converts script to px
+        /// Converts script to pixel.
         /// </summary>
         /// <returns>Pixel value that is converted from input string</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -80,25 +80,25 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Converts dp type to px
+        /// Converts dp type to pixel.
         /// </summary>
         /// <returns>Pixel value that is converted by the the display matric</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float ConvertToPixel(float value)
         {
-            return value * (GraphicsTypeManager.Instance.ScaledDpi / (float)GraphicsTypeManager.Instance.BaselineDpi);
+            return value * (GraphicsTypeManager.Instance.Dpi / (float)GraphicsTypeManager.Instance.BaselineDpi);
         }
 
         /// <summary>
-        /// Converts px to dp type
+        /// Converts px to dp type.
         /// </summary>
         /// <returns>An converted value from pixel</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override float ConvertFromPixel(float value)
         {
-            return value * (GraphicsTypeManager.Instance.BaselineDpi / (float)GraphicsTypeManager.Instance.ScaledDpi);
+            return value * (GraphicsTypeManager.Instance.BaselineDpi / (float)GraphicsTypeManager.Instance.Dpi);
         }
     }
 }

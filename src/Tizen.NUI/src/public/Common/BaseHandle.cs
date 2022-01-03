@@ -50,6 +50,10 @@ namespace Tizen.NUI
         //A Flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
 
+#if NUI_DEBUG_ON
+        private static int debuggingCount = 0;
+#endif
+
         /// <summary>
         /// Create an instance of BaseHandle.
         /// </summary>
@@ -74,6 +78,8 @@ namespace Tizen.NUI
             //to catch derived classes dali native exceptions
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
+            NUILog.Debug($"[Dispose] BaseHandle.contructor with cMemeryOwn:{cMemoryOwn} START");
+
             registerMe = swigCMemOwn = cMemoryOwn;
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
             // using copy constructor to create another native handle so Registry.Unregister works fine.
@@ -82,14 +88,27 @@ namespace Tizen.NUI
 
             if (registerMe)
             {
-
                 // Register this instance of BaseHandle in the registry.
                 Registry.Register(this);
             }
+
+#if NUI_DEBUG_ON
+            NUILog.Debug($"[Dispose] type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")}");
+
+            debuggingCount++;
+            if (this is BaseComponents.View view)
+            {
+                NUILog.Debug($"[Dispose] ID:{view.ID} Name:{view.Name} debuggingCount:{debuggingCount}");
+            }
+            NUILog.Debug($"[Dispose] BaseHandle.contructor with cMemeryOwn END");
+            NUILog.Debug($"=============================");
+#endif
         }
 
         internal BaseHandle(global::System.IntPtr cPtr)
         {
+            NUILog.Debug($"[Dispose] BaseHandle.contructor START");
+
             registerMe = swigCMemOwn = true;
 
             swigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, cPtr);
@@ -103,6 +122,19 @@ namespace Tizen.NUI
                 // Register this instance of BaseHandle in the registry.
                 Registry.Register(this);
             }
+
+#if NUI_DEBUG_ON
+            NUILog.Debug($"[Dispose] type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")}");
+
+            debuggingCount++;
+            if (this is BaseComponents.View view)
+            {
+                NUILog.Debug($"[Dispose] ID:{view.ID} Name:{view.Name} debuggingCount:{debuggingCount}");
+            }
+            NUILog.Debug($"[Dispose] BaseHandle.contructor END");
+            NUILog.Debug($"=============================");
+#endif
+
         }
 
         /// <summary>
@@ -330,11 +362,18 @@ namespace Tizen.NUI
                 //Throw exception if Dispose() is called in separate thread.
                 if (!Window.IsInstalled())
                 {
-                    throw new System.InvalidOperationException("This API called from separate thread. This API must be called from MainThread.");
+                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                    var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                    var me = this.GetType().FullName;
+
+                    throw new global::System.InvalidOperationException("[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
+                        $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
                 }
 
                 if (isDisposeQueued)
                 {
+                    Tizen.Log.Fatal("NUI", $"should not be here! (dead code) this will be removed!");
+                    throw new global::System.Exception($"[NUI] should not be here! (dead code) this will be removed!");
                     Dispose(DisposeTypes.Implicit);
                 }
                 else
@@ -494,6 +533,8 @@ namespace Tizen.NUI
                 return;
             }
 
+            NUILog.Debug($"[Dispose] BaseHandle.Dispose({type}) START");
+
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
@@ -512,6 +553,38 @@ namespace Tizen.NUI
                 Registry.Unregister(this);
             }
 
+#if NUI_DEBUG_ON
+            debuggingCount--;
+            NUILog.Debug($"[Dispose] swigCMemOwn:{swigCMemOwn} debuggingCount:{debuggingCount} type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")}");
+#endif
+            // this is temporary test code. will be removed laster
+            {
+                if (swigCPtr.Handle != IntPtr.Zero && swigCPtrCopy.Handle != IntPtr.Zero)
+                {
+                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                    var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                    var me = this.GetType().FullName;
+                    var daliId = "unknown";
+                    var hash = this.GetType().GetHashCode();
+                    var name = "unknown";
+
+                    if (this is BaseComponents.View)
+                    {
+                        daliId = Interop.Actor.GetId(swigCPtrCopy).ToString();
+                        name = Interop.Actor.GetName(swigCPtrCopy);
+                        BaseObject tmp = new BaseObject(Interop.BaseHandle.GetBaseObject(swigCPtrCopy), false);
+                        var refCnt = tmp.ReferenceCount();
+                        tmp.Dispose();
+                        if (refCnt > 2)
+                        {
+                            Log.Error("NUI", $"[ERR] reference count is over than 2. Could be a memory leak. Need to check! \n" +
+                                $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me} \n" +
+                                $" disposeType:{type}, name:{name}, daliID:{daliId}, hash:{hash}, refCnt:{refCnt}");
+                        }
+                    }
+                }
+            }
+
             if (SwigCPtr.Handle != IntPtr.Zero)
             {
                 if (swigCMemOwn)
@@ -521,11 +594,22 @@ namespace Tizen.NUI
                 }
                 swigCPtr = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
             }
+            else
+            {
+                var me = this.GetType().FullName;
+                Log.Error("NUI", $"[ERR] SwigCPtr is NULL, need to check! me:{me}");
+            }
+
             if (swigCPtrCopy.Handle != global::System.IntPtr.Zero)
             {
                 swigCMemOwn = false;
                 Interop.BaseHandle.DeleteBaseHandle(swigCPtrCopy);
                 swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+            }
+            else
+            {
+                var me = this.GetType().FullName;
+                Log.Error("NUI", $"[ERR] swigCPtrCopy is NULL, need to check! me:{me}");
             }
 
             disposed = true;
@@ -534,6 +618,9 @@ namespace Tizen.NUI
             {
                 Application.Current.XamlResourceChanged -= OnResourcesChanged;
             }
+            
+            NUILog.Debug($"[Dispose] BaseHandle.Dispose({type}) END");
+            NUILog.Debug($"=============================");
         }
 
         /// <summary>
@@ -570,7 +657,13 @@ namespace Tizen.NUI
             {
                 if (swigCPtr.Handle == IntPtr.Zero)
                 {
-                    throw new ObjectDisposedException(nameof(SwigCPtr), "Error! NUI's native dali object is already disposed. OR the native dali object handle of NUI becomes null!");
+                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                    var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                    var me = this.GetType().FullName;
+
+                    throw new ObjectDisposedException(nameof(SwigCPtr), $"Error! NUI's native dali object is already disposed. " +
+                        $"OR the native dali object handle of NUI becomes null! \n" +
+                        $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
                 }
                 return swigCPtr;
             }
@@ -592,5 +685,12 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool Disposed => disposed;
+
+        /// <summary>
+        /// A flag to check if it is disposed by DisposeQueue.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal bool IsDisposeQueued => isDisposeQueued;
+
     }
 }

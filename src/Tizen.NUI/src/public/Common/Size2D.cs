@@ -66,7 +66,43 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal delegate void Size2DChangedCallback(int? width, int? height);
+        internal delegate void Size2DChangedCallback(int width, int height);
+
+        /// <summary>
+        /// Hidden API (Inhouse API).
+        /// Dispose. 
+        /// </summary>
+        /// <remarks>
+        /// Following the guide of https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose.
+        /// This will replace "protected virtual void Dispose(DisposeTypes type)" which is exactly same in functionality.
+        /// </remarks>
+        /// <param name="disposing">true in order to free managed objects</param>
+        // Protected implementation of Dispose pattern.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            callback = null;
+
+            //perform dipose here without being added to DisposeQueue.
+            if (SwigCMemOwn && SwigCPtr.Handle != IntPtr.Zero)
+            {
+                if (disposing)
+                {
+                    base.Dispose(DisposeTypes.Explicit);
+                }
+                else
+                {
+                    base.Dispose(DisposeTypes.Implicit);
+                }
+            }
+
+            base.Dispose(disposing);
+        }
 
         /// <summary>
         /// The property for the width component of a size.
@@ -91,13 +127,13 @@ namespace Tizen.NUI
                 Interop.Vector2.WidthSet(SwigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(value, null);
+                callback?.Invoke(value, Height);
             }
             get
             {
                 float ret = Interop.Vector2.WidthGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return (int)ret;
+                return ClampToInt(ret);
             }
         }
 
@@ -124,13 +160,13 @@ namespace Tizen.NUI
                 Interop.Vector2.HeightSet(SwigCPtr, (float)value);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-                callback?.Invoke(null, value);
+                callback?.Invoke(Width, value);
             }
             get
             {
                 float ret = Interop.Vector2.HeightGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return (int)ret;
+                return ClampToInt(ret);
             }
         }
 
@@ -421,5 +457,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        private static int ClampToInt(double v) =>
+            v > int.MaxValue ? int.MaxValue
+            : v < int.MinValue ? int.MinValue
+            : (int)v;
     }
 }

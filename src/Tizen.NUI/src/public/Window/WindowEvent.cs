@@ -19,6 +19,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
+using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
@@ -58,6 +59,7 @@ namespace Tizen.NUI
         private VoidSignal eventProcessingFinishedSignal;
         private VoidSignal contextLostSignal;
         private VoidSignal contextRegainedSignal;
+        private AuxiliaryMessageEventCallbackType auxiliaryMessageEventCallback;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
@@ -73,6 +75,8 @@ namespace Tizen.NUI
         private delegate void TransitionEffectEventCallbackType(IntPtr window, int state, int type);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void KeyboardRepeatSettingsChangedEventCallbackType();
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void AuxiliaryMessageEventCallbackType(IntPtr kData, IntPtr vData, IntPtr optionsArray);
 
         /// <summary>
         /// FocusChanged event.
@@ -98,6 +102,10 @@ namespace Tizen.NUI
                 if (windowFocusChangedEventHandler == null && windowFocusChangedSignal?.Empty() == false && windowFocusChangedEventCallback != null)
                 {
                     windowFocusChangedSignal?.Disconnect(windowFocusChangedEventCallback);
+                    if (windowFocusChangedSignal?.Empty() == true)
+                    {
+                        windowFocusChangedEventCallback = null;
+                    }
                 }
             }
         }
@@ -128,6 +136,10 @@ namespace Tizen.NUI
                 if (rootLayerTouchDataEventHandler == null && touchSignal?.Empty() == false && rootLayerTouchDataCallback != null)
                 {
                     touchDataSignal?.Disconnect(rootLayerTouchDataCallback);
+                    if (touchDataSignal?.Empty() == true)
+                    {
+                        rootLayerTouchDataCallback = null;
+                    }
                 }
             }
         }
@@ -162,12 +174,20 @@ namespace Tizen.NUI
                 if (stageWheelHandler == null && wheelSignal?.Empty() == false)
                 {
                     wheelSignal?.Disconnect(wheelEventCallback);
+                    if (wheelSignal?.Empty() == true)
+                    {
+                        wheelEventCallback = null;
+                    }
                 }
 
                 DetentEventHandler -= value;
                 if (DetentEventHandler == null && stageWheelSignal?.Empty() == false)
                 {
                     stageWheelSignal?.Disconnect(DetentEventCallback);
+                    if (stageWheelSignal?.Empty() == true)
+                    {
+                        DetentEventCallback = null;
+                    }
                 }
             }
         }
@@ -194,6 +214,10 @@ namespace Tizen.NUI
                 if (stageKeyHandler == null && keyEventSignal?.Empty() == false)
                 {
                     keyEventSignal?.Disconnect(stageKeyCallbackDelegate);
+                    if (keyEventSignal?.Empty() == true)
+                    {
+                        stageKeyCallbackDelegate = null;
+                    }
                 }
             }
         }
@@ -222,6 +246,10 @@ namespace Tizen.NUI
                 if (windowResizeEventHandler == null && resizeSignal?.Empty() == false && windowResizeEventCallback != null)
                 {
                     resizeSignal?.Disconnect(windowResizeEventCallback);
+                    if (resizeSignal?.Empty() == true)
+                    {
+                        windowResizeEventCallback = null;
+                    }
                 }
             }
         }
@@ -257,6 +285,10 @@ namespace Tizen.NUI
                 if (windowFocusChangedEventHandler2 == null && windowFocusChangedSignal2?.Empty() == false && windowFocusChangedEventCallback2 != null)
                 {
                     windowFocusChangedSignal2?.Disconnect(windowFocusChangedEventCallback2);
+                    if (windowFocusChangedSignal2?.Empty() == true)
+                    {
+                        windowFocusChangedEventCallback2 = null;
+                    }
                 }
             }
         }
@@ -282,6 +314,10 @@ namespace Tizen.NUI
                 if (transitionEffectHandler == null && TransitionEffectEventSignal().Empty() == false)
                 {
                     TransitionEffectEventSignal().Disconnect(transitionEffectEventCallback);
+                    if (TransitionEffectEventSignal().Empty() == true)
+                    {
+                        transitionEffectEventCallback = null;
+                    }
                 }
             }
         }
@@ -307,6 +343,10 @@ namespace Tizen.NUI
                 if (keyboardRepeatSettingsChangedHandler == null && KeyboardRepeatSettingsChangedEventSignal().Empty() == false)
                 {
                     KeyboardRepeatSettingsChangedEventSignal().Disconnect(keyboardRepeatSettingsChangedEventCallback);
+                    if (KeyboardRepeatSettingsChangedEventSignal().Empty() == true)
+                    {
+                        keyboardRepeatSettingsChangedEventCallback = null;
+                    }
                 }
             }
         }
@@ -327,6 +367,7 @@ namespace Tizen.NUI
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler2;
         private event EventHandler<TransitionEffectEventArgs> transitionEffectHandler;
         private event EventHandler keyboardRepeatSettingsChangedHandler;
+        private event EventHandler<AuxiliaryMessageEventArgs> auxiliaryMessageEventHandler;
 
         internal void SendViewAdded(View view)
         {
@@ -374,6 +415,10 @@ namespace Tizen.NUI
                 if (stageContextLostEventHandler == null && contextLostSignal?.Empty() == false)
                 {
                     contextLostSignal?.Disconnect(stageContextLostEventCallbackDelegate);
+                    if (contextLostSignal?.Empty() == true)
+                    {
+                        stageContextLostEventCallbackDelegate = null;
+                    }
                 }
             }
         }
@@ -396,6 +441,10 @@ namespace Tizen.NUI
                 if (stageContextRegainedEventHandler == null && contextRegainedSignal?.Empty() == false)
                 {
                     contextRegainedSignal?.Disconnect(stageContextRegainedEventCallbackDelegate);
+                    if (contextRegainedSignal?.Empty() == true)
+                    {
+                        stageContextRegainedEventCallbackDelegate = null;
+                    }
                 }
             }
         }
@@ -418,6 +467,10 @@ namespace Tizen.NUI
                 if (stageSceneCreatedEventHandler == null && sceneCreatedSignal?.Empty() == false)
                 {
                     sceneCreatedSignal?.Disconnect(stageSceneCreatedEventCallbackDelegate);
+                    if (sceneCreatedSignal?.Empty() == true)
+                    {
+                        stageSceneCreatedEventCallbackDelegate = null;
+                    }
                 }
             }
         }
@@ -509,66 +562,87 @@ namespace Tizen.NUI
             if (windowFocusChangedEventCallback != null)
             {
                 windowFocusChangedSignal?.Disconnect(windowFocusChangedEventCallback);
+                windowFocusChangedEventCallback = null;
             }
 
             if (rootLayerTouchDataCallback != null)
             {
                 touchDataSignal?.Disconnect(rootLayerTouchDataCallback);
+                rootLayerTouchDataCallback = null;
             }
 
             if (wheelEventCallback != null)
             {
                 wheelSignal?.Disconnect(wheelEventCallback);
+                wheelEventCallback = null;
             }
 
             if (DetentEventCallback != null)
             {
                 stageWheelSignal?.Disconnect(DetentEventCallback);
+                DetentEventCallback = null;
             }
 
             if (stageKeyCallbackDelegate != null)
             {
                 keyEventSignal?.Disconnect(stageKeyCallbackDelegate);
+                stageKeyCallbackDelegate = null;
             }
 
             if (stageEventProcessingFinishedEventCallbackDelegate != null)
             {
                 eventProcessingFinishedSignal?.Disconnect(stageEventProcessingFinishedEventCallbackDelegate);
+                stageEventProcessingFinishedEventCallbackDelegate = null;
             }
 
             if (stageContextLostEventCallbackDelegate != null)
             {
                 contextLostSignal?.Disconnect(stageContextLostEventCallbackDelegate);
+                stageContextLostEventCallbackDelegate = null;
             }
 
             if (stageContextRegainedEventCallbackDelegate != null)
             {
                 contextRegainedSignal?.Disconnect(stageContextRegainedEventCallbackDelegate);
+                stageContextRegainedEventCallbackDelegate = null;
             }
 
             if (stageSceneCreatedEventCallbackDelegate != null)
             {
                 sceneCreatedSignal?.Disconnect(stageSceneCreatedEventCallbackDelegate);
+                stageSceneCreatedEventCallbackDelegate = null;
             }
 
             if (windowResizeEventCallback != null)
             {
                 resizeSignal?.Disconnect(windowResizeEventCallback);
+                windowResizeEventCallback = null;
             }
 
             if (windowFocusChangedEventCallback2 != null)
             {
                 windowFocusChangedSignal2?.Disconnect(windowFocusChangedEventCallback2);
+                windowFocusChangedEventCallback2 = null;
             }
 
             if (transitionEffectSignal != null)
             {
                 TransitionEffectEventSignal().Disconnect(transitionEffectEventCallback);
+                transitionEffectEventCallback = null;
             }
 
             if (keyboardRepeatSettingsChangedSignal != null)
             {
                 KeyboardRepeatSettingsChangedEventSignal().Disconnect(keyboardRepeatSettingsChangedEventCallback);
+                keyboardRepeatSettingsChangedEventCallback = null;
+            }
+
+            if (auxiliaryMessageEventCallback != null)
+            {
+                using var signal = new WindowAuxiliaryMessageSignal(this);
+                signal.Disconnect(auxiliaryMessageEventCallback);
+                auxiliaryMessageEventHandler = null;
+                auxiliaryMessageEventCallback = null;
             }
         }
 
@@ -902,6 +976,7 @@ namespace Tizen.NUI
         /// Contains and encapsulates Native Window handle.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API9, will be removed in API11. Please use Window.NativeHandle instead!")]
         public class SafeNativeWindowHandle : SafeHandle
         {
             /// <summary>
@@ -1081,5 +1156,74 @@ namespace Tizen.NUI
             }
             VisibilityChangedEventSignal.Emit(this, visibility);
         }
+
+        private void OnAuxiliaryMessage(IntPtr kData, IntPtr vData, IntPtr optionsArray)
+        {
+            if(kData == IntPtr.Zero || vData == IntPtr.Zero)
+            {
+                return;
+            }
+
+            using var tmp = new PropertyArray(optionsArray, false);
+            var size = tmp.Size();
+
+            List<string> tmpList = new List<string>();
+
+            for (int i = 0; i < size; i++)
+            {
+                string option = "none";
+                tmp.GetElementAt((uint)i).Get(out option);
+                tmpList.Add(option);
+            }
+
+            tmp.Dispose();
+
+            AuxiliaryMessageEventArgs e = new AuxiliaryMessageEventArgs();
+            e.Key = StringToVoidSignal.GetResult(kData);
+            e.Value = StringToVoidSignal.GetResult(vData);;
+            e.Options = tmpList;
+
+            auxiliaryMessageEventHandler?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// Auxiliary message is sent by displayer server when window's auxiliary was changed then display server sent the message.
+        /// When client application added the window's auxiliary hint and if the auxiliary is changed,
+        /// display server send the auxiliary message.
+        /// Auxiliary message has the key, value and options.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AuxiliaryMessageEventArgs> AuxiliaryMessage
+        {
+            add
+            {
+                if (auxiliaryMessageEventHandler == null)
+                {
+                    auxiliaryMessageEventCallback = OnAuxiliaryMessage;
+                    using var signal = new WindowAuxiliaryMessageSignal(this);
+                    signal.Connect(auxiliaryMessageEventCallback);
+                }
+                auxiliaryMessageEventHandler += value;
+            }
+            remove
+            {
+                auxiliaryMessageEventHandler -= value;
+                if (auxiliaryMessageEventHandler == null)
+                {
+                    if (auxiliaryMessageEventCallback != null)
+                    {
+                        using var signal = new WindowAuxiliaryMessageSignal(this);
+                        signal.Disconnect(auxiliaryMessageEventCallback);
+
+                        if (signal.Empty())
+                        {
+                            auxiliaryMessageEventCallback = null;
+                        }
+                    }
+                }
+            }
+        }
+
+
     }
 }

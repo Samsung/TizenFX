@@ -18,6 +18,7 @@
 using System;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -27,6 +28,24 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 9 </since_tizen>
     public class Dialog : Control
     {
+        /// <summary>
+        /// ContentProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ContentProperty = BindableProperty.Create(nameof(Content), typeof(View), typeof(Dialog), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Dialog)bindable;
+            if (newValue != null)
+            {
+                instance.InternalContent = newValue as View;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Dialog)bindable;
+            return instance.InternalContent;
+        });
+
         private View content = null;
 
         /// <summary>
@@ -71,6 +90,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(ContentProperty) as View;
+            }
+            set
+            {
+                SetValue(ContentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private View InternalContent
+        {
+            get
+            {
                 return content;
             }
             set
@@ -111,11 +142,11 @@ namespace Tizen.NUI.Components
         /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override AccessibilityStates AccessibilityCalculateStates()
+        protected override AccessibilityStates AccessibilityCalculateStates(ulong states)
         {
-            var states = base.AccessibilityCalculateStates();
-            FlagSetter(ref states, AccessibilityStates.Modal, true);
-            return states;
+            var accessibilityStates = base.AccessibilityCalculateStates(states);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Modal, true);
+            return accessibilityStates;
         }
 
         private void OnRelayout(object sender, EventArgs e)

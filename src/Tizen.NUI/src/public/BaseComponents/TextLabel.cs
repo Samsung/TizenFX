@@ -294,7 +294,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFontStyle(FontStyle fontStyle)
         {
-            SetValue(FontStyleProperty, TextUtils.GetFontStyleMap(fontStyle));
+            SetValue(FontStyleProperty, TextMapHelper.GetFontStyleMap(fontStyle));
         }
 
         /// <summary>
@@ -307,7 +307,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetFontStyle()
         {
-            return TextUtils.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
+            return TextMapHelper.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
         }
 
         /// <summary>
@@ -420,6 +420,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return GetValue(ShadowOffsetProperty) as Vector2;
+            }
+            set
+            {
+                SetValue(ShadowOffsetProperty, value);
+            }
+        }
+
+        private Vector2 InternalShadowOffset
+        {
+            get
+            {
                 Vector2 shadowOffset = new Vector2();
                 Shadow.Find(TextLabel.Property.SHADOW, "offset")?.Get(shadowOffset);
                 return new Vector2(OnShadowOffsetChanged, shadowOffset.X, shadowOffset.Y);
@@ -451,6 +463,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return GetValue(ShadowColorProperty) as Vector4;
+            }
+            set
+            {
+                SetValue(ShadowColorProperty, value);
+            }
+        }
+
+        private Vector4 InternalShadowColor
+        {
+            get
+            {
                 Vector4 shadowColor = new Vector4();
                 Shadow.Find(TextLabel.Property.SHADOW, "color")?.Get(shadowColor);
                 return new Vector4(OnShadowColorChanged, shadowColor.X, shadowColor.Y, shadowColor.Z, shadowColor.W);
@@ -478,6 +502,18 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         [Obsolete("Please do not use this UnderlineEnabled(Deprecated). Please use Underline instead.")]
         public bool UnderlineEnabled
+        {
+            get
+            {
+                return (bool)GetValue(UnderlineEnabledProperty);
+            }
+            set
+            {
+                SetValue(UnderlineEnabledProperty, value);
+            }
+        }
+
+        private bool InternalUnderlineEnabled
         {
             get
             {
@@ -513,6 +549,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return GetValue(UnderlineColorProperty) as Vector4;
+            }
+            set
+            {
+                SetValue(UnderlineColorProperty, value);
+            }
+        }
+
+        private Vector4 InternalUnderlineColor
+        {
+            get
+            {
                 Vector4 underlineColor = new Vector4();
                 Underline.Find(TextLabel.Property.UNDERLINE, "color")?.Get(underlineColor);
                 return new Vector4(OnUnderlineColorChanged, underlineColor.X, underlineColor.Y, underlineColor.Z, underlineColor.W);
@@ -540,6 +588,18 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         [Obsolete("Please do not use this UnderlineHeight(Deprecated). Please use Underline instead.")]
         public float UnderlineHeight
+        {
+            get
+            {
+                return (float)GetValue(UnderlineHeightProperty);
+            }
+            set
+            {
+                SetValue(UnderlineHeightProperty, value);
+            }
+        }
+
+        private float InternalUnderlineHeight
         {
             get
             {
@@ -713,7 +773,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetUnderline(Underline underline)
         {
-            SetValue(UnderlineProperty, TextUtils.GetUnderlineMap(underline));
+            SetValue(UnderlineProperty, TextMapHelper.GetUnderlineMap(underline));
         }
 
         /// <summary>
@@ -726,7 +786,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Underline GetUnderline()
         {
-            return TextUtils.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
+            return TextMapHelper.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
         }
 
         /// <summary>
@@ -774,7 +834,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetShadow(Tizen.NUI.Text.Shadow shadow)
         {
-            SetValue(ShadowProperty, TextUtils.GetShadowMap(shadow));
+            SetValue(ShadowProperty, TextMapHelper.GetShadowMap(shadow));
         }
 
         /// <summary>
@@ -787,7 +847,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.Text.Shadow GetShadow()
         {
-            return TextUtils.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
+            return TextMapHelper.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
         }
 
         /// <summary>
@@ -869,7 +929,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetOutline(Outline outline)
         {
-            SetValue(OutlineProperty, TextUtils.GetOutlineMap(outline));
+            SetValue(OutlineProperty, TextMapHelper.GetOutlineMap(outline));
         }
 
         /// <summary>
@@ -882,7 +942,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Outline GetOutline()
         {
-            return TextUtils.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
+            return TextMapHelper.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
         }
 
         /// <summary>
@@ -941,7 +1001,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The AutoScrollLoopDelay property.<br />
-        /// Do something.<br />
+        /// The amount of time to delay the starting time of auto scrolling and further loops.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float AutoScrollLoopDelay
@@ -959,7 +1019,8 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The AutoScrollStopMode property.<br />
-        /// Do something.<br />
+        /// The auto scrolling stop behaviour.<br />
+        /// The default value is AutoScrollStopMode.FinishLoop. <br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public AutoScrollStopMode AutoScrollStopMode
@@ -1010,8 +1071,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The direction of the text such as left to right or right to left.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextDirection TextDirection
         {
@@ -1026,8 +1086,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The vertical line alignment of the text.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public VerticalLineAlignment VerticalLineAlignment
         {
@@ -1070,7 +1129,7 @@ namespace Tizen.NUI.BaseComponents
         /// <item><term>fontSize (string)</term><description>The size type of font, You can choose between "pointSize" or "pixelSize". (the default value is "pointSize")</description></item>
         /// </list>
         /// </summary>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap TextFit
@@ -1108,7 +1167,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTextFit(TextFit textFit)
         {
-            SetValue(TextFitProperty, TextUtils.GetTextFitMap(textFit));
+            SetValue(TextFitProperty, TextMapHelper.GetTextFitMap(textFit));
         }
 
         /// <summary>
@@ -1123,13 +1182,15 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextFit GetTextFit()
         {
-            return TextUtils.GetTextFitStruct((PropertyMap)GetValue(TextFitProperty));
+            return TextMapHelper.GetTextFitStruct((PropertyMap)GetValue(TextFitProperty));
         }
 
         /// <summary>
         /// The MinLineSize property.<br />
+        /// The height of the line in points. <br />
+        /// If the font size is larger than the line size, it works with the font size. <br />
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float MinLineSize
         {
@@ -1145,8 +1206,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The FontSizeScale property. <br />
+        /// The FontSizeScale property for scaling the specified font size up or down. <br />
         /// The default value is 1.0. <br />
+        /// The given font size scale value is used for multiplying the specified font size before querying fonts. <br />
         /// If FontSizeScale.UseSystemSetting, will use the SystemSettings.FontSize internally. <br />
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
@@ -1239,6 +1301,14 @@ namespace Tizen.NUI.BaseComponents
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
                 selectorData?.Reset(this);
+            }
+
+            if (this.HasBody())
+            {
+                if (textLabelTextFitChangedCallbackDelegate != null)
+                {
+                    TextFitChangedSignal().Disconnect(textLabelTextFitChangedCallbackDelegate);
+                }
             }
 
             base.Dispose(type);

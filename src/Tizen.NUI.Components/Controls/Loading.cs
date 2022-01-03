@@ -30,6 +30,24 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     public class Loading : Control
     {
+        /// <summary>
+        /// ImageArrayProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImageArrayProperty = BindableProperty.Create(nameof(ImageArray), typeof(string[]), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Loading)bindable;
+            if (newValue != null)
+            {
+                instance.InternalImageArray = newValue as string[];
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Loading)bindable;
+            return instance.InternalImageArray;
+        });
+
         /// <summary>The ImageList bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ImageListProperty = BindableProperty.Create(nameof(ImageList), typeof(IList<string>), typeof(Loading), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -81,12 +99,21 @@ namespace Tizen.NUI.Components
         private AnimatedImageVisual imageVisual = null;
         private int frameRate = (int)(1000 / 16.6f);
 
-        internal new class Property
-        {
-            internal static readonly int ActionPlay = Interop.ImageView.ImageVisualActionPlayGet();
-            internal static readonly int ActionPause = Interop.ImageView.ImageVisualActionPauseGet();
-            internal static readonly int ActionStop = Interop.ImageView.ImageVisualActionStopGet();
-        }
+
+        /// <summary>
+        /// Actions value to Play animated images.
+        /// </summary>
+        private static int ActionPlay = Interop.AnimatedImageView.AnimatedImageVisualActionPlayGet();
+
+        /// <summary>
+        /// Actions value to Pause animated images.
+        /// </summary>
+        private static int ActionPause = Interop.AnimatedImageView.AnimatedImageVisualActionPauseGet();
+
+        /// <summary>
+        /// Actions value to Stop animated images.
+        /// </summary>
+        private static int ActionStop = Interop.AnimatedImageView.AnimatedImageVisualActionStopGet();
 
         static Loading() { }
 
@@ -133,6 +160,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string[] ImageArray
+        {
+            get
+            {
+                return GetValue(ImageArrayProperty) as string[];
+            }
+            set
+            {
+                SetValue(ImageArrayProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string[] InternalImageArray
         {
             get => (GetValue(ImageListProperty) as List<string>)?.ToArray() ?? null;
             set => SetValue(ImageListProperty, value == null ? new List<string>() : new List<string>((string[])value));
@@ -270,7 +309,7 @@ namespace Tizen.NUI.Components
         public void Play()
         {
             PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(imageVisual.VisualIndex, Property.ActionPlay, attributes);
+            this.DoAction(imageVisual.VisualIndex, ActionPlay, attributes);
             attributes.Dispose();
         }
 
@@ -282,7 +321,7 @@ namespace Tizen.NUI.Components
         public void Pause()
         {
             PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(imageVisual.VisualIndex, Property.ActionPause, attributes);
+            this.DoAction(imageVisual.VisualIndex, ActionPause, attributes);
             attributes.Dispose();
         }
 
@@ -294,7 +333,7 @@ namespace Tizen.NUI.Components
         public void Stop()
         {
             PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(imageVisual.VisualIndex, Property.ActionStop, attributes);
+            this.DoAction(imageVisual.VisualIndex, ActionStop, attributes);
             attributes.Dispose();
         }
 

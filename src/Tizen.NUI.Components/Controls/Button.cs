@@ -217,12 +217,12 @@ namespace Tizen.NUI.Components
         /// Calculates current states for the button<br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override AccessibilityStates AccessibilityCalculateStates()
+        protected override AccessibilityStates AccessibilityCalculateStates(ulong states)
         {
-            var states = base.AccessibilityCalculateStates();
-            FlagSetter(ref states, AccessibilityStates.Checked, this.IsSelected);
-            FlagSetter(ref states, AccessibilityStates.Enabled, this.IsEnabled);
-            return states;
+            var accessibilityStates = base.AccessibilityCalculateStates(states);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Checked, this.IsSelected);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Enabled, this.IsEnabled);
+            return accessibilityStates;
         }
 
         /// <summary>
@@ -356,6 +356,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(TextProperty) as string;
+            }
+            set
+            {
+                SetValue(TextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalText
+        {
+            get
+            {
                 return TextLabel.Text;
             }
             set
@@ -393,6 +405,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(TranslatableTextProperty) as string;
+            }
+            set
+            {
+                SetValue(TranslatableTextProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalTranslatableText
+        {
+            get
+            {
                 return TextLabel.TranslatableText;
             }
             set
@@ -406,6 +430,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public float PointSize
+        {
+            get
+            {
+                return (float)GetValue(PointSizeProperty);
+            }
+            set
+            {
+                SetValue(PointSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalPointSize
         {
             get
             {
@@ -425,6 +461,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(FontFamilyProperty) as string;
+            }
+            set
+            {
+                SetValue(FontFamilyProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalFontFamily
+        {
+            get
+            {
                 return TextLabel.FontFamily;
             }
             set
@@ -438,6 +486,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Color TextColor
+        {
+            get
+            {
+                return GetValue(TextColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(TextColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalTextColor
         {
             get
             {
@@ -457,6 +517,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (HorizontalAlignment)GetValue(TextAlignmentProperty);
+            }
+            set
+            {
+                SetValue(TextAlignmentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private HorizontalAlignment InternalTextAlignment
+        {
+            get
+            {
                 return TextLabel.HorizontalAlignment;
             }
             set
@@ -470,6 +542,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string IconURL
+        {
+            get
+            {
+                return GetValue(IconURLProperty) as string;
+            }
+            set
+            {
+                SetValue(IconURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalIconURL
         {
             get
             {
@@ -487,6 +571,18 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size IconSize
         {
+            get
+            {
+                return GetValue(IconSizeProperty) as Size;
+            }
+            set
+            {
+                SetValue(IconSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Size InternalIconSize
+        {
             get => Icon.Size;
             set => Icon.Size = value;
         }
@@ -499,7 +595,19 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector TextSelector
         {
-            get => buttonText == null ? null : new StringSelector(buttonText.TextSelector);
+            get
+            {
+                return GetValue(TextSelectorProperty) as StringSelector;
+            }
+            set
+            {
+                SetValue(TextSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private StringSelector InternalTextSelector
+        {
+            get => buttonText?.TextSelector == null ? null : new StringSelector(buttonText.TextSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -521,7 +629,19 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector TranslatableTextSelector
         {
-            get => buttonText == null ? null : new StringSelector(buttonText.TranslatableTextSelector);
+            get
+            {
+                return GetValue(TranslatableTextSelectorProperty) as StringSelector;
+            }
+            set
+            {
+                SetValue(TranslatableTextSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private StringSelector InternalTranslatableTextSelector
+        {
+            get => (buttonText?.TranslatableTextSelector == null) ? null : new StringSelector(buttonText.TranslatableTextSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -543,7 +663,19 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public ColorSelector TextColorSelector
         {
-            get => buttonText == null ? null : new ColorSelector(buttonText.TextColorSelector);
+            get
+            {
+                return GetValue(TextColorSelectorProperty) as ColorSelector;
+            }
+            set
+            {
+                SetValue(TextColorSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private ColorSelector InternalTextColorSelector
+        {
+            get => buttonText?.TextColorSelector == null ? null : new ColorSelector(buttonText.TextColorSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -565,7 +697,19 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public FloatSelector PointSizeSelector
         {
-            get => buttonText == null ? null : new FloatSelector(buttonText.PointSizeSelector);
+            get
+            {
+                return GetValue(PointSizeSelectorProperty) as FloatSelector;
+            }
+            set
+            {
+                SetValue(PointSizeSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private FloatSelector InternalPointSizeSelector
+        {
+            get => buttonText?.PointSizeSelector == null ? null : new FloatSelector(buttonText.PointSizeSelector);
             set
             {
                 if (value == null || buttonText == null)
@@ -587,7 +731,19 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector IconURLSelector
         {
-            get => buttonIcon == null ? null : new StringSelector(buttonIcon.ResourceUrlSelector);
+            get
+            {
+                return GetValue(IconURLSelectorProperty) as StringSelector;
+            }
+            set
+            {
+                SetValue(IconURLSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private StringSelector InternalIconURLSelector
+        {
+            get => buttonIcon?.ResourceUrlSelector == null ? null : new StringSelector(buttonIcon.ResourceUrlSelector);
             set
             {
                 if (value == null || buttonIcon == null)

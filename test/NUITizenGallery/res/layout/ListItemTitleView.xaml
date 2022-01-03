@@ -1,9 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
-<base:View x:Class="NUITizenGallery.ListItemTitleView"
-  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
-  xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
-  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
-
-  <base:TextLabel x:Name="TextLabelTitle" Text="Not set"/>
-  <base:View x:Name="ListItemView" BackgroundColor="#ff0000" Position2D="400, 0" Size2D="40, 40"/>
-</base:View>

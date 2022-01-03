@@ -159,46 +159,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WidgetApplicationReleaseSwigCPtr END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("WidgetApplication RegisterWidgetCreatingFunction.")]
-        //[Property("SPEC", "Tizen.NUI.WidgetApplication.RegisterWidgetCreatingFunction M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WidgetApplicationRegisterWidgetCreatingFunction()
-        //{
-        //    tlog.Debug(tag, $"WidgetApplicationRegisterWidgetCreatingFunction START");
-
-        //    Widget widget = new Widget();
-
-        //    var testingTarget = new MyWidgetApplication(widget.GetIntPtr(), false);
-        //    Assert.IsNotNull(testingTarget, "Can't create success object WidgetApplication");
-        //    Assert.IsInstanceOf<WidgetApplication>(testingTarget, "Should be an instance of WidgetApplication type.");
-
-        //    global::System.Collections.Generic.Dictionary<Type, string> widgetInfo = new global::System.Collections.Generic.Dictionary<Type, string>(){
-        //        { typeof(Widget), "w1@org.tizen.WidgetApp"} };
-
-        //    testingTarget.RegisterWidgetInfo(widgetInfo);
-
-        //    try
-        //    {
-        //        testingTarget.RegisterWidgetCreatingFunction();
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
-
-        //    widget.Dispose();
-        //    widget = null;
-
-        //    testingTarget.Dispose();
-        //    testingTarget = null;
-        //    tlog.Debug(tag, $"WidgetApplicationRegisterWidgetCreatingFunction END (OK)");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("WidgetApplication AddWidgetInstance.")]
@@ -271,46 +231,6 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget = null;
             tlog.Debug(tag, $"WidgetApplicationRegisterWidgetInfo END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("WidgetApplication AddWidgetInfo.")]
-        //[Property("SPEC", "Tizen.Applications.WidgetApplication.AddWidgetInfo M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WidgetApplicationAddWidgetInfo()
-        //{
-        //    tlog.Debug(tag, $"WidgetApplicationAddWidgetInfo START");
-
-        //    Widget widget = new Widget();
-
-        //    var testingTarget = new WidgetApplication(widget.GetIntPtr(), false);
-        //    Assert.IsNotNull(testingTarget, "Can't create success object WidgetApplication");
-        //    Assert.IsInstanceOf<WidgetApplication>(testingTarget, "Should be an instance of WidgetApplication type.");
-
-        //    global::System.Collections.Generic.Dictionary<Type, string> widgetInfo = new global::System.Collections.Generic.Dictionary<Type, string>(){
-        //        { typeof(Widget), "w1@org.tizen.WidgetApp"} };
-        //    testingTarget.RegisterWidgetInfo(widgetInfo);
-            
-        //    try
-        //    {
-        //        testingTarget.AddWidgetInfo(new global::System.Collections.Generic.Dictionary<Type, string>(){
-        //        { typeof(WidgetApplication), "w2@org.tizen.WidgetApp"} });
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
-
-        //    widget.Dispose();
-        //    widget = null;
-
-        //    testingTarget.Dispose();
-        //    testingTarget = null;
-        //    tlog.Debug(tag, $"WidgetApplicationAddWidgetInfo END (OK)");
-        //}
 
         [Test]
         [Category("P1")]

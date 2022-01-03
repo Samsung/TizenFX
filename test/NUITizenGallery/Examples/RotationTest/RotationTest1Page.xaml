@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.RotationTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="RotationTest1Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="10, 10"/>
+            </View.Layout>
+
+            <Button x:Name="btn"
+                      Size2D="600, 100"
+                      Text="WOW!!"
+                      CellHorizontalAlignment="Center"
+                      CellVerticalAlignment="Center"/>
+            <View x:Name="rect"
+                    Size2D="600, 100"
+                    BackgroundColor="Blue"
+                    CellHorizontalAlignment="Center"
+                    CellVerticalAlignment="Center" />
+            <ImageView x:Name="img"
+                         CellHorizontalAlignment="Center"
+                         CellVerticalAlignment="Center"/>
+            <TextLabel x:Name="label"
+                         Text="Rotation"
+                         CellHorizontalAlignment="Center"
+                         CellVerticalAlignment="Center"/>
+            <TextLabel Text="X:"/>
+            <Slider x:Name="sliderX"
+                      Size2D="600, 50"
+                      MinValue="0"
+                      MaxValue="180"
+                      BgTrackColor="#b1b1b1"
+                      SlidedTrackColor="#3db9cc"
+                      TrackThickness="5" />
+            <TextLabel Text="Y:"/>
+            <Slider x:Name="sliderY"
+                      Size2D="600, 50"
+                      MinValue="0"
+                      MaxValue="180"
+                      BgTrackColor="#b1b1b1"
+                      SlidedTrackColor="#3db9cc"
+                      TrackThickness="5"/>
+            <TextLabel Text="Z:"/>
+            <Slider x:Name="sliderZ"
+                      Size2D="600, 50"
+                      MinValue="0"
+                      MaxValue="180"
+                      BgTrackColor="#b1b1b1"
+                      SlidedTrackColor="#3db9cc"
+                      TrackThickness="5"/>
+        </View>
+    </ContentPage.Content>
+</ContentPage>

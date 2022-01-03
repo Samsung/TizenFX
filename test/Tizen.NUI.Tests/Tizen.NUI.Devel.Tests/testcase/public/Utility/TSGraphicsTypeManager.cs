@@ -59,54 +59,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("GraphicsTypeManager ConvertToPixel.")]
-        [Property("SPEC", "Tizen.NUI.GraphicsTypeManager.ConvertToPixel M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void GraphicsTypeManagerConvertToPixel()
-        {
-            tlog.Debug(tag, $"GraphicsTypeManagerConvertToPixel START");
-
-            try
-            {
-                GraphicsTypeManager.Instance.ConvertToPixel(160.0f);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            tlog.Debug(tag, $"GraphicsTypeManagerConvertToPixel END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("GraphicsTypeManager ConvertFromPixel.")]
-        [Property("SPEC", "Tizen.NUI.GraphicsTypeManager.ConvertFromPixel M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void GraphicsTypeManagerConvertFromPixel()
-        {
-            tlog.Debug(tag, $"GraphicsTypeManagerConvertFromPixel START");
-
-            try
-            {
-                GraphicsTypeManager.Instance.ConvertFromPixel(160.0f);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            tlog.Debug(tag, $"GraphicsTypeManagerConvertFromPixel END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("GraphicsTypeManager RegisterCustomConverterForDynamicResourceBinding.")]
         [Property("SPEC", "Tizen.NUI.GraphicsTypeManager.RegisterCustomConverterForDynamicResourceBinding M")]
         [Property("SPEC_URL", "-")]

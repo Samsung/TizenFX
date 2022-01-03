@@ -147,34 +147,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"StringToVoidSignalGetResult END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("StringToVoidSignal SetResult.")]
-        //[Property("SPEC", "Tizen.NUI.StringToVoidSignal.SetResult M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void StringToVoidSignalSetResult()
-        //{
-        //    tlog.Debug(tag, $"StringToVoidSignalSetResult START");
-
-        //    using (TextLabel label = new TextLabel())
-        //    {
-        //        label.Text = "";
-        //        try
-        //        {
-        //            StringToVoidSignal.SetResult(label.SwigCPtr.Handle, "TextLabel");
-        //            tlog.Debug(tag, "GetResult : " + StringToVoidSignal.GetResult(label.SwigCPtr.Handle));
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            tlog.Debug(tag, e.Message.ToString());
-        //            Assert.Fail("Cuaght Exception: Failed!");
-        //        }
-        //    }
-
-        //    tlog.Debug(tag, $"StringToVoidSignalSetResult END (OK)");
-        //}
     }
 }

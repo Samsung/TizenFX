@@ -28,61 +28,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("TextShadow constructor.")]
-        //[Property("SPEC", "Tizen.NUI.TextShadow.TextShadow C")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "CONSTR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void TextShadowConstructor()
-        //{
-        //    tlog.Debug(tag, $"TextShadowConstructor START");
-
-        //    using (Vector2 vector = new Vector2(1.5f, 3.0f))
-        //    {
-        //        var testingTarget = new TextShadow(Color.Cyan, vector, 0.3f);
-        //        Assert.IsNotNull(testingTarget, "Can't create success object TextShadow");
-        //        Assert.IsInstanceOf<TextShadow>(testingTarget, "Should be an instance of TextShadow type.");
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"TextShadowConstructor END (OK)");
-        //}
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("TextShadow constructor. With TextShadow.")]
-        //[Property("SPEC", "Tizen.NUI.TextShadow.TextShadow C")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "CONSTR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void TextShadowConstructorWithTextShadow()
-        //{
-        //    tlog.Debug(tag, $"TextShadowConstructorWithTextShadow START");
-
-        //    using (Vector2 vector = new Vector2(1.5f, 3.0f))
-        //    {
-        //        using (TextShadow shadow = new TextShadow(Color.Cyan, vector, 0.3f))
-        //        {
-        //            try
-        //            {
-        //                var testingTarget = new TextShadow(shadow);
-        //                testingTarget.Dispose();
-        //            }
-        //            catch (Exception e)
-        //            {
-        //                tlog.Debug(tag, e.Message.ToString());
-        //                Assert.Fail("Caught Exception: Failed!");
-        //            }
-
-        //        }
-        //    }
-
-        //    tlog.Debug(tag, $"TextShadowConstructorWithTextShadow END (OK)");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("TextShadow constructor. With PropertyMap.")]
@@ -97,7 +42,7 @@ namespace Tizen.NUI.Devel.Tests
             TextLabel textLabel = new TextLabel()
             {
                 Text = "TextShadowConstructor",
-                Color = Color.Green,
+                Color = new Tizen.NUI.Color("#C3CAD5FF"),
                 PointSize = 15.0f,
             };
             PropertyMap temp = new PropertyMap();
@@ -149,30 +94,26 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void TextShadowCloneWithTextShadow()
+        public static void TextShadowCloneWithTextShadow()
         {
             tlog.Debug(tag, $"TextShadowCloneWithTextShadow START");
 
-            TextLabel textLabel = new TextLabel()
+            using (Vector2 vector = new Vector2(1.5f, 3.0f))
             {
-                Text = "TextShadowConstructor",
-                Color = Color.Green,
-                PointSize = 15.0f,
-            };
-            PropertyMap temp = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((global::System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.SHADOW).Get(temp);
-
-            try
-            {
-                TextShadow.Clone(new TextShadow(temp));
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
+                using (TextShadow textShadow = new TextShadow(new Tizen.NUI.Color("#C3CAD5FF"), vector, 0.3f))
+                {
+                    try
+                    {
+                        TextShadow.Clone(textShadow);
+                    }
+                    catch (Exception e)
+                    {
+                        tlog.Debug(tag, e.Message.ToString());
+                        Assert.Fail("Caught Exception: Failed!");
+                    }
+                }
             }
 
-            textLabel.Dispose();
             tlog.Debug(tag, $"TextShadowCloneWithTextShadow END (OK)");
         }
 
@@ -208,7 +149,7 @@ namespace Tizen.NUI.Devel.Tests
             TextLabel textLabel = new TextLabel()
             {
                 Text = "TextShadowConstructor",
-                Color = Color.Green,
+                Color = new Tizen.NUI.Color("#C3CAD5FF"),
                 PointSize = 15.0f,
             };
             PropertyMap temp = new PropertyMap();

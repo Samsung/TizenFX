@@ -15,6 +15,10 @@ namespace Tizen.NUI.Devel.Tests
         private const string tag = "NUITEST";
         private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
 
+        private static string[] runtimeArgs = { "Tizen.NUI.Devel.Tests", "--enable-dali-window", "--enable-spatial-navigation" };
+        private const string USER_AGENT = "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36";
+        private Tizen.NUI.BaseComponents.WebView webView = null;
+
         private void JsCallback(string arg) { }
         private void VideoCallback (bool arg) { }
         private void GeolocationCallback (string arg1, string arg2) { }
@@ -35,11 +39,22 @@ namespace Tizen.NUI.Devel.Tests
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
+
+            webView = new Tizen.NUI.BaseComponents.WebView(runtimeArgs)
+            {
+                Size = new Size(500, 200),
+                UserAgent = USER_AGENT
+            };
+
+            webView.LoadUrl("http://www.baidu.com");
         }
 
         [TearDown]
         public void Destroy()
         {
+            webView.ClearCache();
+            webView.ClearCookies();
+            webView.Dispose();
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -59,10 +74,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
+            testingTarget?.Dispose();
             tlog.Debug(tag, $"WebViewConstructor END (OK)");
         }
 
@@ -82,10 +94,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
+            testingTarget?.Dispose();
             tlog.Debug(tag, $"WebViewConstructorWithLocaleAndTimezone END (OK)");
         }
 
@@ -101,43 +110,14 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewConstructorWithWebView START");
 
-            Tizen.NUI.BaseComponents.WebView view = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView(view);
+            var testingTarget = new Tizen.NUI.BaseComponents.WebView(webView);
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
 
             testingTarget.ClearCache();
             testingTarget.ClearCookies();
-
-            view.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewConstructorWithWebView END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebView constructor.")]
-        [Property("SPEC", "Tizen.NUI.WebView.WebView C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewConstructorWithArray()
-        {
-            tlog.Debug(tag, $"WebViewConstructorWithArray START");
-
-            string[] arr = new string[1] { "Tizen.NUI.Devel.Tests" };
-
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView(arr);
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"WebViewConstructorWithArray END (OK)");
         }
 
         [Test]
@@ -152,17 +132,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewPageLoadStarted START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.PageLoadStarted += OnLoadStarted;
+            webView.PageLoadStarted -= OnLoadStarted;
 
-            testingTarget.PageLoadStarted += OnLoadStarted;
-            testingTarget.PageLoadStarted -= OnLoadStarted;
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewPageLoadStarted END (OK)");
         }
 
@@ -178,17 +150,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewPageLoading START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.PageLoading += OnLoading;
+            webView.PageLoading -= OnLoading;
 
-            testingTarget.PageLoading += OnLoading;
-            testingTarget.PageLoading -= OnLoading;
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewPageLoading END (OK)");
         }
 
@@ -204,17 +168,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewPageLoadFinished START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.PageLoadFinished += OnLoadFinished;
+            webView.PageLoadFinished -= OnLoadFinished;
 
-            testingTarget.PageLoadFinished += OnLoadFinished;
-            testingTarget.PageLoadFinished -= OnLoadFinished;
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewPageLoadFinished END (OK)");
         }
 
@@ -230,17 +186,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewPageLoadError START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.PageLoadError += OnLoadError;
+            webView.PageLoadError -= OnLoadError;
 
-            testingTarget.PageLoadError += OnLoadError;
-            testingTarget.PageLoadError -= OnLoadError;
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewPageLoadError END (OK)");
         }
 
@@ -256,17 +204,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewScrollEdgeReached START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.ScrollEdgeReached += OnEdgeReached;
+            webView.ScrollEdgeReached -= OnEdgeReached;
 
-            testingTarget.ScrollEdgeReached += OnEdgeReached;
-            testingTarget.ScrollEdgeReached -= OnEdgeReached;
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewPageLoadError END (OK)");
         }
 
@@ -282,17 +222,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewUrlChanged START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.UrlChanged += OnUrlChange;
+            webView.UrlChanged -= OnUrlChange;
 
-            testingTarget.UrlChanged += OnUrlChange;
-            testingTarget.UrlChanged -= OnUrlChange;
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewUrlChanged END (OK)");
         }
 
@@ -308,17 +240,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewFormRepostPolicyDecided START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.FormRepostPolicyDecided += OnFormRepostPolicyDecide;
+            webView.FormRepostPolicyDecided -= OnFormRepostPolicyDecide;
 
-            testingTarget.FormRepostPolicyDecided += OnFormRepostPolicyDecide;
-            testingTarget.FormRepostPolicyDecided -= OnFormRepostPolicyDecide;
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewFormRepostPolicyDecided END (OK)");
         }
 
@@ -334,17 +258,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewFrameRendered START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.FrameRendered += OnFrameRender;
+            webView.FrameRendered -= OnFrameRender;
 
-            testingTarget.FrameRendered += OnFrameRender;
-            testingTarget.FrameRendered -= OnFrameRender;
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewFrameRendered END (OK)");
         }
 
@@ -360,17 +276,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewResponsePolicyDecided START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.ResponsePolicyDecided += OnResponsePolicyDecide;
+            webView.ResponsePolicyDecided -= OnResponsePolicyDecide;
 
-            testingTarget.ResponsePolicyDecided += OnResponsePolicyDecide;
-            testingTarget.ResponsePolicyDecided -= OnResponsePolicyDecide;
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewResponsePolicyDecided END (OK)");
         }
 
@@ -386,17 +294,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewCertificateConfirmed START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.CertificateConfirmed += OnCertificateConfirme;
+            webView.CertificateConfirmed -= OnCertificateConfirme;
 
-            testingTarget.CertificateConfirmed += OnCertificateConfirme;
-            testingTarget.CertificateConfirmed -= OnCertificateConfirme;
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewCertificateConfirmed END (OK)");
         }
 
@@ -412,17 +312,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewSslCertificateChanged START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.SslCertificateChanged += OnSslCertificateChange;
+            webView.SslCertificateChanged -= OnSslCertificateChange;
 
-            testingTarget.SslCertificateChanged += OnSslCertificateChange;
-            testingTarget.SslCertificateChanged -= OnSslCertificateChange;
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewSslCertificateChanged END (OK)");
         }
 
@@ -438,17 +330,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewHttpAuthRequested START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.HttpAuthRequested += OnHttpAuthRequeste;
+            webView.HttpAuthRequested -= OnHttpAuthRequeste;
 
-            testingTarget.HttpAuthRequested += OnHttpAuthRequeste;
-            testingTarget.HttpAuthRequested -= OnHttpAuthRequeste;
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewHttpAuthRequested END (OK)");
         }
 
@@ -464,17 +348,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewHttpAuthRequested START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.ConsoleMessageReceived += OnConsoleMessageReceive;
+            webView.ConsoleMessageReceived -= OnConsoleMessageReceive;
 
-            testingTarget.ConsoleMessageReceived += OnConsoleMessageReceive;
-            testingTarget.ConsoleMessageReceived -= OnConsoleMessageReceive;
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewConsoleMessageReceived END (OK)");
         }
 
@@ -490,17 +366,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewBackForwardList START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var result = testingTarget.BackForwardList;
+            var result = webView.BackForwardList;
             tlog.Debug(tag, "ForwardList : " + result);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewBackForwardList END (OK)");
         }
 
@@ -516,17 +384,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewContext START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var result = testingTarget.Context;
+            var result = webView.Context;
             tlog.Debug(tag, "Context : " + result);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewContext END (OK)");
         }
 
@@ -542,17 +402,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewCookieManager START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var result = testingTarget.CookieManager;
+            var result = webView.CookieManager;
             tlog.Debug(tag, "CookieManager : " + result);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewCookieManager END (OK)");
         }
 
@@ -568,17 +420,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewSettings START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var result = testingTarget.Settings;
+            var result = webView.Settings;
             tlog.Debug(tag, "Settings : " + result);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewSettings END (OK)");
         }
 
@@ -594,17 +438,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewUrl START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.Url = url;
+            tlog.Debug(tag, "Url : " + webView.Url);
 
-            testingTarget.Url = url;
-            tlog.Debug(tag, "Url : " + testingTarget.Url);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewUrl END (OK)");
         }
 
@@ -620,23 +456,15 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewCacheModel START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.CacheModel = Tizen.NUI.CacheModel.DocumentViewer;
+            tlog.Debug(tag, "CacheModel : " + webView.CacheModel);
 
-            testingTarget.CacheModel = Tizen.NUI.CacheModel.DocumentViewer;
-            tlog.Debug(tag, "CacheModel : " + testingTarget.CacheModel);
+            webView.CacheModel = Tizen.NUI.CacheModel.DocumentBrowser;
+            tlog.Debug(tag, "CacheModel : " + webView.CacheModel);
 
-            testingTarget.CacheModel = Tizen.NUI.CacheModel.DocumentBrowser;
-            tlog.Debug(tag, "CacheModel : " + testingTarget.CacheModel);
+            webView.CacheModel = Tizen.NUI.CacheModel.PrimaryWebBrowser;
+            tlog.Debug(tag, "CacheModel : " + webView.CacheModel);
 
-            testingTarget.CacheModel = Tizen.NUI.CacheModel.PrimaryWebBrowser;
-            tlog.Debug(tag, "CacheModel : " + testingTarget.CacheModel);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewCacheModel END (OK)");
         }
 
@@ -652,23 +480,15 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewCookieAcceptPolicy START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.CookieAcceptPolicy = (CookieAcceptPolicy)Tizen.NUI.WebCookieManager.CookieAcceptPolicyType.NoThirdParty;
+            tlog.Debug(tag, "CookieAcceptPolicy : " + webView.CookieAcceptPolicy);
 
-            testingTarget.CookieAcceptPolicy = (CookieAcceptPolicy)Tizen.NUI.WebCookieManager.CookieAcceptPolicyType.NoThirdParty;
-            tlog.Debug(tag, "CookieAcceptPolicy : " + testingTarget.CookieAcceptPolicy);
+            webView.CookieAcceptPolicy = (CookieAcceptPolicy)Tizen.NUI.WebCookieManager.CookieAcceptPolicyType.Always;
+            tlog.Debug(tag, "CookieAcceptPolicy : " + webView.CookieAcceptPolicy);
 
-            testingTarget.CookieAcceptPolicy = (CookieAcceptPolicy)Tizen.NUI.WebCookieManager.CookieAcceptPolicyType.Always;
-            tlog.Debug(tag, "CookieAcceptPolicy : " + testingTarget.CookieAcceptPolicy);
+            webView.CookieAcceptPolicy = (CookieAcceptPolicy)Tizen.NUI.WebCookieManager.CookieAcceptPolicyType.Never;
+            tlog.Debug(tag, "CookieAcceptPolicy : " + webView.CookieAcceptPolicy);
 
-            testingTarget.CookieAcceptPolicy = (CookieAcceptPolicy)Tizen.NUI.WebCookieManager.CookieAcceptPolicyType.Never;
-            tlog.Debug(tag, "CookieAcceptPolicy : " + testingTarget.CookieAcceptPolicy);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewCookieAcceptPolicy END (OK)");
         }
 
@@ -684,17 +504,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewUserAgent START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.UserAgent = "Mozilla/5.0 (Linux; Android 4.2.1; M040 Build/JOP40D) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.59 Mobile Safari/537.36";
+            tlog.Debug(tag, "UserAgent : " + webView.UserAgent);
 
-            testingTarget.UserAgent = "Mozilla/5.0 (Linux; Android 4.2.1; M040 Build/JOP40D) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.59 Mobile Safari/537.36";
-            tlog.Debug(tag, "UserAgent : " + testingTarget.UserAgent);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewUserAgent END (OK)");
         }
 
@@ -710,20 +522,12 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewEnableJavaScript START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.EnableJavaScript = true;
+            tlog.Debug(tag, "EnableJavaScript : " + webView.EnableJavaScript);
 
-            testingTarget.EnableJavaScript = true;
-            tlog.Debug(tag, "EnableJavaScript : " + testingTarget.EnableJavaScript);
+            webView.EnableJavaScript = false;
+            tlog.Debug(tag, "EnableJavaScript : " + webView.EnableJavaScript);
 
-            testingTarget.EnableJavaScript = false;
-            tlog.Debug(tag, "EnableJavaScript : " + testingTarget.EnableJavaScript);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewEnableJavaScript END (OK)");
         }
 
@@ -739,20 +543,12 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewLoadImagesAutomatically START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.LoadImagesAutomatically = true;
+            tlog.Debug(tag, "LoadImagesAutomatically : " + webView.LoadImagesAutomatically);
 
-            testingTarget.LoadImagesAutomatically = true;
-            tlog.Debug(tag, "LoadImagesAutomatically : " + testingTarget.LoadImagesAutomatically);
+            webView.LoadImagesAutomatically = false;
+            tlog.Debug(tag, "LoadImagesAutomatically : " + webView.LoadImagesAutomatically);
 
-            testingTarget.LoadImagesAutomatically = false;
-            tlog.Debug(tag, "LoadImagesAutomatically : " + testingTarget.LoadImagesAutomatically);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewLoadImagesAutomatically END (OK)");
         }
 
@@ -768,20 +564,12 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewDefaultTextEncodingName START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var result = testingTarget.DefaultTextEncodingName;
+            var result = webView.DefaultTextEncodingName;
             tlog.Debug(tag, "DefaultTextEncodingName : " + result);
 
-            testingTarget.DefaultTextEncodingName = "gbk";
+            webView.DefaultTextEncodingName = "gbk";
             tlog.Debug(tag, "DefaultTextEncodingName : " + result);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewDefaultTextEncodingName END (OK)");
         }
 
@@ -797,48 +585,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewDefaultFontSize START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var result = testingTarget.DefaultFontSize;
+            var result = webView.DefaultFontSize;
             tlog.Debug(tag, "DefaultFontSize : " + result);
 
-            testingTarget.DefaultFontSize = 32;
+            webView.DefaultFontSize = 32;
             tlog.Debug(tag, "DefaultFontSize : " + result);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewDefaultFontSize END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebView ScrollPosition.")]
-        [Property("SPEC", "Tizen.NUI.WebView.ScrollPosition A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewScrollPosition()
-        {
-            tlog.Debug(tag, $"WebViewScrollPosition START");
-
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            testingTarget.ScrollPosition = new Position(0.2f, 0.1f);
-            tlog.Debug(tag, "ScrollPositionX : " + testingTarget.ScrollPosition.X);
-            tlog.Debug(tag, "ScrollPositionY : " + testingTarget.ScrollPosition.Y);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"WebViewScrollPosition END (OK)");
         }
 
         [Test]
@@ -853,17 +606,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewScrollSize START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            tlog.Debug(tag, "Width : " + webView.ScrollSize.Width);
+            tlog.Debug(tag, "Height : " + webView.ScrollSize.Height);
 
-            tlog.Debug(tag, "Width : " + testingTarget.ScrollSize.Width);
-            tlog.Debug(tag, "Height : " + testingTarget.ScrollSize.Height);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewScrollSize END (OK)");
         }
 
@@ -879,17 +624,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewContentSize START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            tlog.Debug(tag, "Width : " + webView.ContentSize.Width);
+            tlog.Debug(tag, "Height : " + webView.ContentSize.Height);
 
-            tlog.Debug(tag, "Width : " + testingTarget.ContentSize.Width);
-            tlog.Debug(tag, "Height : " + testingTarget.ContentSize.Height);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewContentSize END (OK)");
         }
 
@@ -905,20 +642,12 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewVideoHoleEnabled START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.VideoHoleEnabled = true;
+            tlog.Debug(tag, "VideoHoleEnabled : " + webView.VideoHoleEnabled);
 
-            testingTarget.VideoHoleEnabled = true;
-            tlog.Debug(tag, "VideoHoleEnabled : " + testingTarget.VideoHoleEnabled);
+            webView.VideoHoleEnabled = false;
+            tlog.Debug(tag, "VideoHoleEnabled : " + webView.VideoHoleEnabled);
 
-            testingTarget.VideoHoleEnabled = false;
-            tlog.Debug(tag, "VideoHoleEnabled : " + testingTarget.VideoHoleEnabled);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewVideoHoleEnabled END (OK)");
         }
 
@@ -934,20 +663,12 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewMouseEventsEnabled START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.MouseEventsEnabled = true;
+            tlog.Debug(tag, "MouseEventsEnabled : " + webView.MouseEventsEnabled);
 
-            testingTarget.MouseEventsEnabled = true;
-            tlog.Debug(tag, "MouseEventsEnabled : " + testingTarget.MouseEventsEnabled);
+            webView.MouseEventsEnabled = false;
+            tlog.Debug(tag, "MouseEventsEnabled : " + webView.MouseEventsEnabled);
 
-            testingTarget.MouseEventsEnabled = false;
-            tlog.Debug(tag, "MouseEventsEnabled : " + testingTarget.MouseEventsEnabled);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewMouseEventsEnabled END (OK)");
         }
 
@@ -963,20 +684,12 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewKeyEventsEnabled START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.KeyEventsEnabled = true;
+            tlog.Debug(tag, "KeyEventsEnabled : " + webView.KeyEventsEnabled);
 
-            testingTarget.KeyEventsEnabled = true;
-            tlog.Debug(tag, "KeyEventsEnabled : " + testingTarget.KeyEventsEnabled);
+            webView.KeyEventsEnabled = false;
+            tlog.Debug(tag, "KeyEventsEnabled : " + webView.KeyEventsEnabled);
 
-            testingTarget.KeyEventsEnabled = false;
-            tlog.Debug(tag, "KeyEventsEnabled : " + testingTarget.KeyEventsEnabled);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewKeyEventsEnabled END (OK)");
         }
 
@@ -992,17 +705,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewContentBackgroundColor START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.ContentBackgroundColor = new Vector4(0.3f, 0.5f, 1.0f, 0.0f);
+            tlog.Debug(tag, "ContentBackgroundColor : " + webView.ContentBackgroundColor);
 
-            testingTarget.ContentBackgroundColor = Color.Cyan;
-            tlog.Debug(tag, "ContentBackgroundColor : " + testingTarget.ContentBackgroundColor);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewContentBackgroundColor END (OK)");
         }
 
@@ -1018,20 +723,12 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewTilesClearedWhenHidden START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.TilesClearedWhenHidden = true;
+            tlog.Debug(tag, "TilesClearedWhenHidden : " + webView.TilesClearedWhenHidden);
 
-            testingTarget.TilesClearedWhenHidden = true;
-            tlog.Debug(tag, "TilesClearedWhenHidden : " + testingTarget.TilesClearedWhenHidden);
+            webView.TilesClearedWhenHidden = false;
+            tlog.Debug(tag, "TilesClearedWhenHidden : " + webView.TilesClearedWhenHidden);
 
-            testingTarget.TilesClearedWhenHidden = false;
-            tlog.Debug(tag, "TilesClearedWhenHidden : " + testingTarget.TilesClearedWhenHidden);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewTilesClearedWhenHidden END (OK)");
         }
 
@@ -1047,17 +744,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewTileCoverAreaMultiplier START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.TileCoverAreaMultiplier = 0.3f;
+            tlog.Debug(tag, "TileCoverAreaMultiplier : " + webView.TileCoverAreaMultiplier);
 
-            testingTarget.TileCoverAreaMultiplier = 0.3f;
-            tlog.Debug(tag, "TileCoverAreaMultiplier : " + testingTarget.TileCoverAreaMultiplier);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewTileCoverAreaMultiplier END (OK)");
         }
 
@@ -1073,20 +762,12 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewCursorEnabledByClient START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.CursorEnabledByClient = true;
+            tlog.Debug(tag, "CursorEnabledByClient : " + webView.CursorEnabledByClient);
 
-            testingTarget.CursorEnabledByClient = true;
-            tlog.Debug(tag, "CursorEnabledByClient : " + testingTarget.CursorEnabledByClient);
+            webView.CursorEnabledByClient = false;
+            tlog.Debug(tag, "CursorEnabledByClient : " + webView.CursorEnabledByClient);
 
-            testingTarget.CursorEnabledByClient = false;
-            tlog.Debug(tag, "CursorEnabledByClient : " + testingTarget.CursorEnabledByClient);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewCursorEnabledByClient END (OK)");
         }
 
@@ -1102,16 +783,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewSelectedText START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            var text = webView.SelectedText;
+            tlog.Debug(tag, "SelectedText : " + text);
 
-            tlog.Debug(tag, "SelectedText : " + testingTarget.SelectedText);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewSelectedText END (OK)");
         }
 
@@ -1127,16 +801,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewTitle START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            var title = webView.Title;
+            tlog.Debug(tag, "Title : " + title);
 
-            tlog.Debug(tag, "Title : " + testingTarget.Title);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewTitle END (OK)");
         }
 
@@ -1152,16 +819,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewFavicon START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            var fav = webView.Favicon;
+            tlog.Debug(tag, "Favicon : " + fav);
 
-            tlog.Debug(tag, "Favicon : " + testingTarget.Favicon);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewFavicon END (OK)");
         }
 
@@ -1177,17 +837,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewPageZoomFactor START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.PageZoomFactor = 0.3f;
+            tlog.Debug(tag, "PageZoomFactor : " + webView.PageZoomFactor);
 
-            testingTarget.PageZoomFactor = 0.3f;
-            tlog.Debug(tag, "PageZoomFactor : " + testingTarget.PageZoomFactor);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewPageZoomFactor END (OK)");
         }
 
@@ -1203,17 +855,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewTextZoomFactor START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            webView.TextZoomFactor = 0.2f;
+            tlog.Debug(tag, "TextZoomFactor : " + webView.TextZoomFactor);
 
-            testingTarget.TextZoomFactor = 0.2f;
-            tlog.Debug(tag, "TextZoomFactor : " + testingTarget.TextZoomFactor);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewTextZoomFactor END (OK)");
         }
 
@@ -1229,49 +873,10 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewLoadProgressPercentage START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            var result = webView.LoadProgressPercentage;
+            tlog.Debug(tag, "LoadProgressPercentage : " + result);
 
-            tlog.Debug(tag, "LoadProgressPercentage : " + testingTarget.LoadProgressPercentage);
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewLoadProgressPercentage END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebView LoadUrl.")]
-        [Property("SPEC", "Tizen.NUI.WebView.LoadUrl M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewLoadUrl()
-        {
-            tlog.Debug(tag, $"WebViewLoadUrl START");
-
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            try
-            {
-                testingTarget.LoadUrl(url);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"WebViewLoadUrl END (OK)");
         }
 
         [Test]
@@ -1286,13 +891,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewLoadHtmlString START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.LoadHtmlString("<html><head lang=\"en\"></head></html>");
+                webView.LoadHtmlString("<html><head lang=\"en\"></head></html>");
             }
             catch (Exception e)
             {
@@ -1300,43 +901,8 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewLoadHtmlString END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("WebView LoadHtmlStringOverrideCurrentEntry.")]
-        //[Property("SPEC", "Tizen.NUI.WebView.LoadHtmlStringOverrideCurrentEntry M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WebViewLoadHtmlStringOverrideCurrentEntry()
-        //{
-        //    tlog.Debug(tag, $"WebViewLoadHtmlStringOverrideCurrentEntry START");
-
-        //    var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-        //    Assert.IsNotNull(testingTarget, "null handle");
-        //    Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-        //    try
-        //    {
-        //        testingTarget.LoadHtmlStringOverrideCurrentEntry("<html><head lang=\"en\"></head></html>", "http://www.runoob.com/jsref/prop-doc-baseuri.html", "");
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception : Failed!");
-        //    }
-
-        //    testingTarget.ClearCache();
-        //    testingTarget.ClearCookies();
-        //    testingTarget.Dispose();
-        //    tlog.Debug(tag, $"WebViewLoadHtmlStringOverrideCurrentEntry END (OK)");
-        //}
 
         [Test]
         [Category("P1")]
@@ -1350,13 +916,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewLoadContents START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.LoadContents("body", 18, " ", "gbk", "http://www.runoob.com/jsref/prop-doc-baseuri.html");
+                webView.LoadContents("body", 18, " ", "gbk", "http://www.runoob.com/jsref/prop-doc-baseuri.html");
             }
             catch (Exception e)
             {
@@ -1364,9 +926,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewLoadContents END (OK)");
         }
 
@@ -1382,13 +941,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewReload START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.Reload();
+                webView.Reload();
             }
             catch (Exception e)
             {
@@ -1396,10 +951,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewReload END (OK)");
         }
 
@@ -1415,13 +966,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewReloadWithoutCache START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.ReloadWithoutCache();
+                webView.ReloadWithoutCache();
             }
             catch (Exception e)
             {
@@ -1429,10 +976,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewReloadWithoutCache END (OK)");
         }
 
@@ -1448,13 +991,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewStopLoading START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.StopLoading();
+                webView.StopLoading();
             }
             catch (Exception e)
             {
@@ -1462,10 +1001,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewStopLoading END (OK)");
         }
 
@@ -1481,14 +1016,10 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewSuspend START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.Suspend();
-                testingTarget.Resume();
+                webView.Suspend();
+                webView.Resume();
             }
             catch (Exception e)
             {
@@ -1496,10 +1027,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewSuspend END (OK)");
         }
 
@@ -1515,14 +1042,10 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewSuspendNetworkLoading START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.SuspendNetworkLoading();
-                testingTarget.ResumeNetworkLoading();
+                webView.SuspendNetworkLoading();
+                webView.ResumeNetworkLoading();
             }
             catch (Exception e)
             {
@@ -1530,10 +1053,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewSuspendNetworkLoading END (OK)");
         }
 
@@ -1549,53 +1068,14 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewAddCustomHeader START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var result = testingTarget.AddCustomHeader("customHeader_title", "font-size: 32rpx");
+            var result = webView.AddCustomHeader("customHeader_title", "font-size: 32rpx");
             tlog.Debug(tag, "AddCustomHeader : " + result);
 
-            result = testingTarget.RemoveCustomHeader("customHeader_title");
+            result = webView.RemoveCustomHeader("customHeader_title");
             tlog.Debug(tag, "RemoveCustomHeader : " + result);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewAddCustomHeader END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("WebView StartInspectorServer.")]
-        //[Property("SPEC", "Tizen.NUI.WebView.StartInspectorServer M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WebViewStartInspectorServer()
-        //{
-        //    tlog.Debug(tag, $"WebViewStartInspectorServer START");
-
-        //    var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-        //    Assert.IsNotNull(testingTarget, "null handle");
-        //    Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-        //    testingTarget.LoadUrl("https://www.cnblogs.com/softidea/p/5745369.html");
-
-        //    var startValue = testingTarget.StartInspectorServer(5678);
-        //    tlog.Debug(tag, "StartInspectorServer : " + startValue);
-
-        //    var stopValue = testingTarget.StopInspectorServer();
-        //    tlog.Debug(tag, "StopInspectorServer : " + stopValue);
-
-        //    testingTarget.ClearCache();
-        //    testingTarget.ClearCookies();
-
-        //    testingTarget.Dispose();
-        //    tlog.Debug(tag, $"WebViewStartInspectorServer END (OK)");
-        //}
 
         [Test]
         [Category("P1")]
@@ -1609,13 +1089,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewScrollBy START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.ScrollBy(1, 1);
+                webView.ScrollBy(1, 1);
             }
             catch (Exception e)
             {
@@ -1623,10 +1099,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewScrollBy END (OK)");
         }
 
@@ -1642,17 +1114,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewScrollEdgeBy START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var result = testingTarget.ScrollEdgeBy(1, 1);
+            var result = webView.ScrollEdgeBy(1, 1);
             tlog.Debug(tag, "ScrollEdgeBy : " + result);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewScrollEdgeBy END (OK)");
         }
 
@@ -1668,13 +1132,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewGoBack START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.GoBack();
+                webView.GoBack();
             }
             catch (Exception e)
             {
@@ -1682,10 +1142,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewGoBack END (OK)");
         }
 
@@ -1701,13 +1157,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewGoForward START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.GoForward();
+                webView.GoForward();
             }
             catch (Exception e)
             {
@@ -1715,10 +1167,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewGoForward END (OK)");
         }
 
@@ -1734,17 +1182,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewCanGoBack START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var result = testingTarget.CanGoBack();
+            var result = webView.CanGoBack();
             tlog.Debug(tag, "CanGoBack : " + result);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewCanGoBack END (OK)");
         }
 
@@ -1760,17 +1200,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewCanGoForward START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var result = testingTarget.CanGoForward();
+            var result = webView.CanGoForward();
             tlog.Debug(tag, "CanGoForward : " + result);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewCanGoForward END (OK)");
         }
 
@@ -1786,13 +1218,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewEvaluateJavaScript START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.EvaluateJavaScript("<script type=\"text / javascript\">document.write(\"page\");</script>");
+                webView.EvaluateJavaScript("<script type=\"text / javascript\">document.write(\"page\");</script>");
             }
             catch (Exception e)
             {
@@ -1800,10 +1228,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewEvaluateJavaScript END (OK)");
         }
 
@@ -1819,13 +1243,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewAddJavaScriptMessageHandler START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.AddJavaScriptMessageHandler("AllowOrigin", JsCallback);
+                webView.AddJavaScriptMessageHandler("AllowOrigin", JsCallback);
             }
             catch (Exception e)
             {
@@ -1833,10 +1253,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewAddJavaScriptMessageHandler END (OK)");
         }
 
@@ -1852,13 +1268,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewRegisterJavaScriptAlertCallback START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.RegisterJavaScriptAlertCallback(JsCallback);
+                webView.RegisterJavaScriptAlertCallback(JsCallback);
             }
             catch (Exception e)
             {
@@ -1866,10 +1278,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewRegisterJavaScriptAlertCallback END (OK)");
         }
 
@@ -1885,13 +1293,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewRegisterJavaScriptConfirmCallback START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.RegisterJavaScriptConfirmCallback(JsCallback);
+                webView.RegisterJavaScriptConfirmCallback(JsCallback);
             }
             catch (Exception e)
             {
@@ -1899,10 +1303,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewRegisterJavaScriptConfirmCallback END (OK)");
         }
 
@@ -1918,13 +1318,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewRegisterJavaScriptPromptCallback START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.RegisterJavaScriptPromptCallback(PromptCallback);
+                webView.RegisterJavaScriptPromptCallback(PromptCallback);
             }
             catch (Exception e)
             {
@@ -1932,10 +1328,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewRegisterJavaScriptPromptCallback END (OK)");
         }
 
@@ -1951,13 +1343,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewClearAllTilesResources START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.ClearAllTilesResources();
+                webView.ClearAllTilesResources();
             }
             catch (Exception e)
             {
@@ -1965,10 +1353,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewClearAllTilesResources END (OK)");
         }
 
@@ -1984,13 +1368,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewClearHistory START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.ClearHistory();
+                webView.ClearHistory();
             }
             catch (Exception e)
             {
@@ -1998,10 +1378,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewClearHistory END (OK)");
         }
 
@@ -2017,17 +1393,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewSetScaleFactor START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
                 using (Vector2 point = new Vector2(1.0f, 1.0f))
                 {
-                    testingTarget.SetScaleFactor(0.2f, point);
+                    webView.SetScaleFactor(0.2f, point);
 
-                    var result = testingTarget.GetScaleFactor();
+                    var result = webView.GetScaleFactor();
                     tlog.Debug(tag, "ScaleFactor : " + result);
                 }
             }
@@ -2037,10 +1409,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewSetScaleFactor END (OK)");
         }
 
@@ -2056,13 +1424,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewActivateAccessibility START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.ActivateAccessibility(false);
+                webView.ActivateAccessibility(false);
             }
             catch (Exception e)
             {
@@ -2070,10 +1434,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewActivateAccessibility END (OK)");
         }
 
@@ -2089,13 +1449,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewHighlightText START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.HighlightText("web", Tizen.NUI.BaseComponents.WebView.FindOption.AtWordStart, 3);
+                webView.HighlightText("web", Tizen.NUI.BaseComponents.WebView.FindOption.AtWordStart, 3);
             }
             catch (Exception e)
             {
@@ -2103,10 +1459,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewHighlightText END (OK)");
         }
 
@@ -2122,13 +1474,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewAddDynamicCertificatePath START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.AddDynamicCertificatePath("127.0.0.0", "/");
+                webView.AddDynamicCertificatePath("127.0.0.0", "/");
             }
             catch (Exception e)
             {
@@ -2136,10 +1484,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewAddDynamicCertificatePath END (OK)");
         }
 
@@ -2155,13 +1499,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewCheckVideoPlayingAsynchronously START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.CheckVideoPlayingAsynchronously(VideoCallback);
+                webView.CheckVideoPlayingAsynchronously(VideoCallback);
             }
             catch (Exception e)
             {
@@ -2169,10 +1509,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewCheckVideoPlayingAsynchronously END (OK)");
         }
 
@@ -2188,13 +1524,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewRegisterGeolocationPermissionCallback START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.RegisterGeolocationPermissionCallback(GeolocationCallback);
+                webView.RegisterGeolocationPermissionCallback(GeolocationCallback);
             }
             catch (Exception e)
             {
@@ -2202,10 +1534,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewRegisterGeolocationPermissionCallback END (OK)");
         }
 
@@ -2221,13 +1549,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewClearCache START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.ClearCache();
+                webView.ClearCache();
             }
             catch (Exception e)
             {
@@ -2235,10 +1559,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewClearCache END (OK)");
         }
 
@@ -2254,13 +1574,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewClearCookies START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.ClearCookies();
+                webView.ClearCookies();
             }
             catch (Exception e)
             {
@@ -2268,42 +1584,8 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewClearCookies END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("WebView SetTtsFocus.")]
-        //[Property("SPEC", "Tizen.NUI.WebView.SetTtsFocus M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WebViewSetTtsFocus()
-        //{
-        //    tlog.Debug(tag, $"WebViewSetTtsFocus START");
-
-        //    var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-        //    Assert.IsNotNull(testingTarget, "null handle");
-        //    Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-        //    try
-        //    {
-        //        testingTarget.SetTtsFocus(false);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception : Failed!");
-        //    }
-
-        //    testingTarget.Dispose();
-        //    tlog.Debug(tag, $"WebViewSetTtsFocus END (OK)");
-        //}
 
         [Test]
         [Category("P1")]
@@ -2317,13 +1599,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewDownCast START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                Tizen.NUI.BaseComponents.WebView.DownCast(testingTarget);
+                Tizen.NUI.BaseComponents.WebView.DownCast(webView);
             }
             catch (Exception e)
             {
@@ -2331,10 +1609,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewDownCast END (OK)");
         }
 
@@ -2350,13 +1624,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebViewAssign START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
             try
             {
-                testingTarget.Assign(testingTarget);
+                webView.Assign(webView);
             }
             catch (Exception e)
             {
@@ -2364,10 +1634,6 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"WebViewAssign END (OK)");
         }
 
@@ -2394,52 +1660,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WebViewDispose END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("WebView ContextMenuShown.")]
-        //[Property("SPEC", "Tizen.NUI.WebView.ContextMenuShown A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WebViewContextMenuShown()
-        //{
-        //    tlog.Debug(tag, $"WebViewContextMenuShown START");
-
-        //    var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-        //    Assert.IsNotNull(testingTarget, "null handle");
-        //    Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-        //    testingTarget.ContextMenuShown += OnContextMenuShow;
-        //    testingTarget.ContextMenuShown -= OnContextMenuShow;
-
-        //    testingTarget.Dispose();
-        //    tlog.Debug(tag, $"WebViewContextMenuShown END (OK)");
-        //}
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("WebView ContextMenuHidden.")]
-        //[Property("SPEC", "Tizen.NUI.WebView.ContextMenuHidden A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WebViewContextMenuHidden()
-        //{
-        //    tlog.Debug(tag, $"WebViewContextMenuHidden START");
-
-        //    var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-        //    Assert.IsNotNull(testingTarget, "null handle");
-        //    Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-        //    testingTarget.ContextMenuHidden += OnContextMenuHide;
-        //    testingTarget.ContextMenuHidden -= OnContextMenuHide;
-
-        //    testingTarget.Dispose();
-        //    tlog.Debug(tag, $"WebViewContextMenuHidden END (OK)");
-        //}
-
         private void OnLoadStarted(object sender, WebViewPageLoadEventArgs e) { }
         private void OnLoading(object sender, WebViewPageLoadEventArgs e) { }
         private void OnLoadFinished(object sender, WebViewPageLoadEventArgs e) { }
@@ -2453,7 +1673,5 @@ namespace Tizen.NUI.Devel.Tests
         private void OnSslCertificateChange(object sender, WebViewCertificateReceivedEventArgs e) {  }
         private void OnHttpAuthRequeste(object sender, WebViewHttpAuthRequestedEventArgs e) { }
         private void OnConsoleMessageReceive(object sender, WebViewConsoleMessageReceivedEventArgs e) { }
-        //private void OnContextMenuShow(object sender, WebViewContextMenuShownEventArgs e) { }
-        //private void OnContextMenuHide(object sender, WebViewContextMenuHiddenEventArgs e) { }
     }
 }

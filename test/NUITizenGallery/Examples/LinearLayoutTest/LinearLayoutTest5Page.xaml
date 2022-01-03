@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.LinearLayoutTest5Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="LinearLayoutTest5Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+          Padding="20,20,20,20">
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Horizontal" CellPadding="20,20"/>
+            </View.Layout>
+
+            <TextLabel Text="abcde"
+                       PointSize="6"
+                       WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                       Weight="0.2"/>
+            <TextLabel Text="12345"
+                       PointSize="6"
+                       WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                       Weight="0.2"/>
+            <TextLabel Text="This is rather looooooonoooooooooooog and looooooooong text"
+                       PointSize="6"
+                       MultiLine="True"
+                       LineWrapMode="Character"
+                       WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                       Weight="0.2"/>
+            <TextLabel Text="This is blue text"
+                       TextColor="0,0,1,1"
+                       PointSize="6"
+                       WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                       Weight="0.2"/>
+            <View BackgroundColor="0,1,0,1"
+                  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                  HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                  Weight="0.2"/>
+        </View>
+    </ContentPage.Content>
+</ContentPage>

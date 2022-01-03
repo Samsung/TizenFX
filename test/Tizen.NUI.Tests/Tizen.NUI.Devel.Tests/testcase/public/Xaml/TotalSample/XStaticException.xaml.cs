@@ -18,42 +18,49 @@ namespace Tizen.NUI.Devel.Tests
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(XStaticException));
         }
 
-		[TestFixture]
-		public class Tests
+	}
+
+
+	[TestFixture]
+	public class XStaticExceptionTests
+	{
+		//{x:Static Member=prefix:typeName.staticMemberName}
+		//{x:Static prefix:typeName.staticMemberName}
+
+		//The code entity that is referenced must be one of the following:
+		// - A constant
+		// - A static property
+		// - A field
+		// - An enumeration value
+		// All other cases should throw
+
+		[SetUp]
+		public void Setup()
 		{
-			//{x:Static Member=prefix:typeName.staticMemberName}
-			//{x:Static prefix:typeName.staticMemberName}
 
-			//The code entity that is referenced must be one of the following:
-			// - A constant
-			// - A static property
-			// - A field
-			// - An enumeration value
-			// All other cases should throw
-
-			[SetUp]
-			public void Setup()
-			{
-
-				//there's a test not resetting the values correctly, but can't find which one...
+			//there's a test not resetting the values correctly, but can't find which one...
 #pragma warning disable 0618
-				ResourceLoader.ExceptionHandler = null;
-                Xaml.Internals.XamlLoader.DoNotThrowOnExceptions = false;
+			ResourceLoader.ExceptionHandler = null;
+			Xaml.Internals.XamlLoader.DoNotThrowOnExceptions = false;
 #pragma warning restore 0618
-			}
+		}
 
-			[TearDown]
-			public void TearDown()
-			{
-			}
+		[TearDown]
+		public void TearDown()
+		{
+		}
 
-			[Test]
-			public void ThrowOnInstanceProperty()
-			{
-				//Assert.Throws<XamlParseException>(() => new XStaticException());
-				var se = new XStaticException();
-				Assert.True(true, "Should go here");
-			}
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void ThrowOnInstanceProperty()
+		{
+			//Assert.Throws<XamlParseException>(() => new XStaticException());
+			var se = new XStaticException();
+			Assert.True(true, "Should go here");
 		}
 	}
 }

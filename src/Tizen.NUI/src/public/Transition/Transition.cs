@@ -15,12 +15,12 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
-    using System;
-    using System.ComponentModel;
-    using Tizen.NUI.BaseComponents;
-
     /// <summary>
     /// Transition class is a cluster of properties for the transition of View pair.
     /// </summary>
@@ -35,9 +35,9 @@ namespace Tizen.NUI
         {
         }
 
-        internal TransitionItem CreateTransition(View source, View destination)
+        internal TransitionItem CreateTransition(View source, View destination, bool useDestinationTarget)
         {
-            return new TransitionItem(source, destination, GetTimePeriod(), GetAlphaFunction());
+            return new TransitionItem(source, destination, useDestinationTarget, GetTimePeriod(), GetAlphaFunction());
         }
     }
 }

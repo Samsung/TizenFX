@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     /// DialogPage contains dialog and dimmed scrim behind the dialog.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public class DialogPage : Page
+    public partial class DialogPage : Page
     {
         private View content = null;
         private View scrim = null;
@@ -86,6 +86,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public View Content
+        {
+            get
+            {
+                return GetValue(ContentProperty) as View;
+            }
+            set
+            {
+                SetValue(ContentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private View InternalContent
         {
             get
             {
@@ -188,6 +200,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (bool)GetValue(EnableScrimProperty);
+            }
+            set
+            {
+                SetValue(EnableScrimProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalEnableScrim
+        {
+            get
+            {
                 return enableScrim;
             }
             set
@@ -217,13 +241,37 @@ namespace Tizen.NUI.Components
         /// Indicates to dismiss dialog by touching on scrim.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public bool EnableDismissOnScrim { get; set; } = true;
+        public bool EnableDismissOnScrim
+        {
+            get
+            {
+                return (bool)GetValue(EnableDismissOnScrimProperty);
+            }
+            set
+            {
+                SetValue(EnableDismissOnScrimProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalEnableDismissOnScrim { get; set; } = true;
 
         /// <summary>
         /// The color of scrim.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Color ScrimColor
+        {
+            get
+            {
+                return GetValue(ScrimColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(ScrimColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalScrimColor
         {
             get
             {

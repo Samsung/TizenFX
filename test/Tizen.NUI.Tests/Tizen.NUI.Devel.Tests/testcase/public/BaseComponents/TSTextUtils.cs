@@ -14,6 +14,7 @@ namespace Tizen.NUI.Devel.Tests
     class PublicTextUtilsTest
     {
         private const string tag = "NUITEST";
+        private string imageurl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
 
         [SetUp]
         public void Init()
@@ -489,6 +490,9 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<RendererParameters>(testingTarget, "Should be an instance of RendererParameters type.");
 
             testingTarget.TextColor = Color.Cyan;
+            tlog.Debug(tag, "IsTextColorSet : " + testingTarget.IsTextColorSet);
+
+            testingTarget.IsTextColorSet = false;
             tlog.Debug(tag, "IsTextColorSet : " + testingTarget.IsTextColorSet);
 
             testingTarget.Dispose();
@@ -1030,6 +1034,60 @@ namespace Tizen.NUI.Devel.Tests
             Assert.AreEqual(0.8f, small, "Should be equal!");
 
             tlog.Debug(tag, $"TextUtilsGetFontSizeScale END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils CopyToClipboard.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.CopyToClipboard M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsCopyToClipboard()
+        {
+            tlog.Debug(tag, $"TextUtilsCopyToClipboard START");
+
+            TextEditor editor = new TextEditor()
+            { 
+                Text = "editor",
+            };
+            var result = TextUtils.CopyToClipboard(editor);
+            tlog.Debug(tag, "CopyToClipboard : " + result);
+
+            result = TextUtils.CutToClipboard(editor);
+            tlog.Debug(tag, "CutToClipboard : " + result);
+
+            try
+            {
+                TextUtils.PasteTo(editor);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            TextField field = new TextField()
+            {
+                Text = "field",
+            };
+            result = TextUtils.CopyToClipboard(field);
+            tlog.Debug(tag, "CopyToClipboard : " + field);
+
+            result = TextUtils.CutToClipboard(field);
+            tlog.Debug(tag, "CutToClipboard : " + field);
+
+            try
+            {
+                TextUtils.PasteTo(field);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"TextUtilsCopyToClipboard END (OK)");
         }
     }
 }

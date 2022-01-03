@@ -424,22 +424,28 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// Registers popup component to accessibility tree.
+        /// Registers component as a source of an accessibility "default label".
+        /// The "Default label" is a text that could be read by screen-reader immediately
+        /// after the navigation context has changed (window activates, popup shows up, tab changes)
+        /// and before first UI element is highlighted.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RegisterPopup()
+        public void RegisterDefaultLabel()
         {
-            Interop.ControlDevel.DaliAccessibilityBridgeRegisterPopup(SwigCPtr);
+            Interop.ControlDevel.DaliAccessibilityBridgeRegisterDefaultLabel(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Removes the previously added popup to accessibility tree.
+        /// Unregisters component that has been registered previously as a source of an accessibility "default label".
+        /// The "Default label" is a text that could be read by screen-reader immediately
+        /// after the navigation context has changed (window activates, popup shows up, tab changes)
+        /// and before first UI element is highlighted.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemovePopup()
+        public void UnregisterDefaultLabel()
         {
-            Interop.ControlDevel.DaliAccessibilityBridgeRemovePopup(SwigCPtr);
+            Interop.ControlDevel.DaliAccessibilityBridgeUnregisterDefaultLabel(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -481,7 +487,7 @@ namespace Tizen.NUI.BaseComponents
                     GetName = () => DuplicateString(AccessibilityGetName()),
                     GetDescription = () => DuplicateString(AccessibilityGetDescription()),
                     DoAction = (name) => AccessibilityDoAction(Marshal.PtrToStringAnsi(name)),
-                    CalculateStates = () => DuplicateStates(AccessibilityCalculateStates()),
+                    CalculateStates = (states) => DuplicateStates(AccessibilityCalculateStates(states)),
                     GetActionCount = () => AccessibilityGetActionCount(),
                     GetActionName = (index) => DuplicateString(AccessibilityGetActionName(index)),
                     ShouldReportZeroChildren = () => AccessibilityShouldReportZeroChildren(),
@@ -626,21 +632,20 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual AccessibilityStates AccessibilityCalculateStates()
+        protected virtual AccessibilityStates AccessibilityCalculateStates(ulong states)
         {
-            AccessibilityStates states = 0;
+            AccessibilityStates accessibilityStates = (AccessibilityStates)states;
 
-            FlagSetter(ref states, AccessibilityStates.Highlightable, this.AccessibilityHighlightable);
-            FlagSetter(ref states, AccessibilityStates.Focusable, this.Focusable);
-            FlagSetter(ref states, AccessibilityStates.Focused, this.State == States.Focused);
-            FlagSetter(ref states, AccessibilityStates.Highlighted, this.IsHighlighted);
-            FlagSetter(ref states, AccessibilityStates.Enabled, this.State != States.Disabled);
-            FlagSetter(ref states, AccessibilityStates.Sensitive, this.Sensitive);
-            FlagSetter(ref states, AccessibilityStates.Visible, true);
-            FlagSetter(ref states, AccessibilityStates.Showing, this.Visibility);
-            FlagSetter(ref states, AccessibilityStates.Defunct, !this.IsOnWindow);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Highlightable, this.AccessibilityHighlightable);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Focusable, this.Focusable);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Focused, this.State == States.Focused);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Highlighted, this.IsHighlighted);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Enabled, this.State != States.Disabled);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Sensitive, this.Sensitive);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Visible, true);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Defunct, !this.IsOnWindow);
 
-            return states;
+            return accessibilityStates;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

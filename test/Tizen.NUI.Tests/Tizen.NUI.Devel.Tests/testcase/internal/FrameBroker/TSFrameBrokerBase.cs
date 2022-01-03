@@ -40,15 +40,15 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"FrameBrokerBaseSendLaunchRequestNullAppControl START");
 
-            using (Window window = new Window(new Rectangle(0, 0, 100, 200), false))
-            {
-                var testingTarget = new DefaultFrameBroker(window);
+            //using (Window window = new Window(new Rectangle(0, 0, 100, 200), false))
+            //{
+                var testingTarget = new DefaultFrameBroker(Window.Instance);
                 Assert.IsNotNull(testingTarget, "Can't create success object CustomView");
                 Assert.IsInstanceOf<DefaultFrameBroker>(testingTarget, "Should be an instance of DefaultFrameBroker type.");
 
                 try
                 {
-                    testingTarget.SendLaunchRequest(null, true);
+                    testingTarget.SendLaunchRequest(null);
                 }
                 catch (Exception e)
                 {
@@ -57,7 +57,7 @@ namespace Tizen.NUI.Devel.Tests
                     tlog.Debug(tag, $"FrameBrokerBaseSendLaunchRequestNullAppControl END (OK)");
                     Assert.Pass("Caught ArgumentException : Passed!");
                 }
-            }
+            //}
         }
     }
 }

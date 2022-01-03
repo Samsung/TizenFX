@@ -434,6 +434,22 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Get the nearest focusable view.
+        /// </summary>
+        /// <param name="rootView">The view group in which to find the next focusable view.</param>
+        /// <param name="focusedView">The current focused view.</param>
+        /// <param name="direction">The direction.</param>
+        /// <returns>The nearest focusable view, or an empty handle if none exists.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View GetNearestFocusableActor(View rootView, View focusedView, View.FocusDirection direction)
+        {
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = Interop.FocusManager.GetNearestFocusableActor(View.getCPtr(rootView), View.getCPtr(focusedView), (int)direction);
+            View ret = this.GetInstanceSafely<View>(cPtr);
+            return ret;
+        }
+
         internal static FocusManager Get()
         {
             FocusManager ret = new FocusManager(Interop.FocusManager.Get(), true);

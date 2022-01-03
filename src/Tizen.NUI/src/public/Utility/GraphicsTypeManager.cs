@@ -29,7 +29,9 @@ namespace Tizen.NUI
     public class GraphicsTypeManager
     {
         private volatile static GraphicsTypeManager graphicsTypeManager;
-        private GraphicsTypeConverter typeConverter;
+        private DpTypeConverter dp;
+        private SpTypeConverter sp;
+        private PointTypeConverter pt;
         private float scalingFactor = 1.0f;
         private int baselineDpi = DensityMedium;
 
@@ -77,7 +79,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Custom scale factor of display metrics.
-        /// ScalingFactor scale Dpi on DpiStable.
+        /// ScalingFactor scale ScaledDpi on Dpi.
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -107,8 +109,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Dpi for GraphicsTypeManager.
-        /// Dpi is scaled from Dpi with custom ScalingFactor.
+        /// Scaled Dpi for GraphicsTypeManager.
+        /// ScaledDpi is scaled from Dpi with custom ScalingFactor.
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -141,6 +143,16 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float Density
         {
+            get => ((float)Dpi / (float)BaselineDpi);
+        }
+
+        /// <summary>
+        /// Scaled Density of display.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ScaledDensity
+        {
             get => ((float)ScaledDpi / (float)BaselineDpi);
         }
 
@@ -164,21 +176,58 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// GraphicsTypeConverter that manager internally use for type converting.
-        /// Default TypeConverter is DpTypeConverter.
-        /// See <see cref="Tizen.NUI.GraphicsTypeConverter" /> and <see cref="Tizen.NUI.DpTypeConverter" />.
+        /// Default DpTypeConverter. use this Converter to convert Dp to/from other types.
+        /// See <see cref="Tizen.NUI.DpTypeConverter" />.
         /// </summary>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public GraphicsTypeConverter TypeConverter
+        public DpTypeConverter Dp
         {
             get
             {
-                return typeConverter;
+                return dp;
             }
             set
             {
-                typeConverter = value;
+                dp = value;
+            }
+        }
+
+
+        /// <summary>
+        /// Default SpTypeConverter. use this Converter to convert Sp to/from other types.
+        /// See <see cref="Tizen.NUI.SpTypeConverter" />.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SpTypeConverter Sp
+        {
+            get
+            {
+                return sp;
+            }
+            set
+            {
+                sp = value;
+            }
+        }
+
+
+        /// <summary>
+        /// Default PointTypeConverter. use this Converter to convert Point to/from other types.
+        /// See <see cref="Tizen.NUI.PointTypeConverter" />.
+        /// </summary>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PointTypeConverter Point
+        {
+            get
+            {
+                return pt;
+            }
+            set
+            {
+                pt = value;
             }
         }
 
@@ -190,7 +239,9 @@ namespace Tizen.NUI
         private GraphicsTypeManager()
         {
             // Get default type converter
-            typeConverter = DpTypeConverter.Instance;
+            dp = DpTypeConverter.Instance;
+            sp = SpTypeConverter.Instance;
+            pt = PointTypeConverter.Instance;
 
             // Get ScalingFactor.
             // FIXME: We need to get ScalingFactor from System.Information model-config firstly.
@@ -206,37 +257,44 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Converts script to px
+        /// Converts script to pixel.
         /// </summary>
         /// <returns>Pixel value that is converted from input string</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float ConvertScriptToPixel(string scriptValue)
         {
-            return typeConverter.ConvertScriptToPixel(scriptValue);
+            float convertedValue = 0;
+            if (scriptValue != null)
+            {
+                if (scriptValue.EndsWith("dp"))
+                {
+                    convertedValue = Dp.ConvertScriptToPixel(scriptValue);
+                }
+                else if (scriptValue.EndsWith("sp"))
+                {
+                    convertedValue = Sp.ConvertScriptToPixel(scriptValue);
+                }
+                else if (scriptValue.EndsWith("pt"))
+                {
+                    convertedValue = Point.ConvertScriptToPixel(scriptValue);
+                }
+                else if (scriptValue.EndsWith("px"))
+                {
+                    convertedValue = float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    if (!float.TryParse(scriptValue, NumberStyles.Any, CultureInfo.InvariantCulture, out convertedValue))
+                    {
+                        NUILog.Error("Cannot convert the script {scriptValue}\n");
+                        convertedValue = 0;
+                    }
+                }
+            }
+            return convertedValue;
         }
 
-        /// <summary>
-        /// Converts other type to px
-        /// </summary>
-        /// <returns>Pixel value that is converted by the the display matric</returns>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual float ConvertToPixel(float value)
-        {
-            return typeConverter.ConvertToPixel(value);
-        }
-
-        /// <summary>
-        /// Converts px to other type
-        /// </summary>
-        /// <returns>An converted value from pixel</returns>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual float ConvertFromPixel(float value)
-        {
-            return typeConverter.ConvertFromPixel(value);
-        }
 
         internal void RegisterCustomConverterForDynamicResourceBinding(global::System.Type type, Tizen.NUI.Binding.TypeConverter userConverter)
         {

@@ -1103,6 +1103,11 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="func">The function to call</param>
         /// <returns>true if added successfully, false otherwise</returns>
+        /// <remarks>
+        /// It will return false when one of the following conditions is met.
+        /// 1) the <see cref="Window"/> is hidden.
+        /// 2) the <see cref="Window"/> is iconified.
+        /// </remarks>
         public bool AddIdle(System.Delegate func)
         {
             System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func);

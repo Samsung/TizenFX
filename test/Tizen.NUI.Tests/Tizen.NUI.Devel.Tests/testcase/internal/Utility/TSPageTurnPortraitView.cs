@@ -140,34 +140,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"PageTurnPortraitViewAssign END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("PageTurnPortraitView constructor.")]
-        //[Property("SPEC", "Tizen.NUI.PageTurnPortraitView.PageTurnPortraitView C")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "CONSTR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void PageTurnPortraitViewConstructorWith2Parameters()
-        //{
-        //    tlog.Debug(tag, $"PageTurnPortraitViewConstructorWith2Parameters START");
-
-        //    using (View view = new View())
-        //    {
-        //        using (PageFactory pageFactory = new PageFactory(view.SwigCPtr.Handle, false))
-        //        {
-        //            using (Vector2 pageSize = new Vector2(100, 50))
-        //            {
-        //                var testingTarget = new PageTurnPortraitView(pageFactory, pageSize);
-        //                Assert.IsNotNull(testingTarget, "Should be not null!");
-        //                Assert.IsInstanceOf<PageTurnPortraitView>(testingTarget, "Should be an Instance of PageTurnPortraitView!");
-
-        //                testingTarget.Dispose();
-        //            }
-        //        }
-        //    }
-
-        //    tlog.Debug(tag, $"PageTurnPortraitViewConstructorWith2Parameters END (OK)");
-        //}
     }
 }

@@ -92,76 +92,35 @@ namespace Tizen.NUI.Devel.Tests
             v8 = global::Tizen.NUI.Binding.NameScopeExtensions.FindByName<MockView>(this, "v8");
         }
 
-		[TestFixture]
-		public class Tests
+		
+	}
+
+	[TestFixture]
+	public class FactoryMethodsTests
+	{
+		[SetUp]
+		public void SetUp()
 		{
-			[SetUp]
-			public void SetUp()
-			{
-			}
+		}
 
-			[Test]
-			public void TestDefaultCtor ()
-			{
-				var layout = new FactoryMethods ();
-				Assert.AreEqual ("default ctor", layout.v0.Content.Content);
-			}
-
-			[Test]
-			public void TestStringCtor ()
-			{
-				var layout = new FactoryMethods ();
-				Assert.AreEqual ("alternate ctor foobar", layout.v1.Content.Content);
-			}
-
-			[Test]
-			public void TestIntCtor ()
-			{
-				var layout = new FactoryMethods ();
-				Assert.AreEqual ("int ctor 42", layout.v2.Content.Content);
-			}
-
-			[Test]
-			public void TestArgumentlessFactoryMethod ()
-			{
-				var layout = new FactoryMethods ();
-				Assert.AreEqual ("parameterless factory", layout.v3.Content.Content);
-			}
-
-			[Test]
-			public void TestFactoryMethod ()
-			{
-				var layout = new FactoryMethods ();
-				Assert.AreEqual ("factory foo42", layout.v4.Content.Content);
-			}
-
-			[Test]
-			public void TestFactoryMethodParametersOrder ()
-			{
-				var layout = new FactoryMethods ();
-				Assert.AreEqual ("factory 42foo", layout.v5.Content.Content);
-			}
-
-			[Test]
-			public void TestCtorWithxStatic()
-			{
-				var layout = new FactoryMethods();
-				Assert.AreEqual("alternate ctor Property", layout.v6.Content.Content);
-			}
-
-			[Test]
-			public void TestCtorWithxStaticAttribute()
-			{
-				var layout = new FactoryMethods();
-				Assert.AreEqual("alternate ctor Property", layout.v7.Content.Content);
-			}
-
-			[Test]
-			public void TestCtorWithArrayParameter()
-			{
-				var layout = new FactoryMethods();
-				Assert.AreEqual("Foo Bar", layout.v8.Content.Content);
-			}
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void FactoryMethodsTestDefaultCtor()
+		{
+			var layout = new FactoryMethods();
+			Assert.AreEqual("default ctor", layout.v0.Content.Content);
+			Assert.AreEqual("alternate ctor foobar", layout.v1.Content.Content);
+			Assert.AreEqual("int ctor 42", layout.v2.Content.Content);
+			Assert.AreEqual("parameterless factory", layout.v3.Content.Content);
+			Assert.AreEqual("factory foo42", layout.v4.Content.Content);
+			Assert.AreEqual("factory 42foo", layout.v5.Content.Content);
+			Assert.AreEqual("alternate ctor Property", layout.v6.Content.Content);
+			Assert.AreEqual("alternate ctor Property", layout.v7.Content.Content);
+			Assert.AreEqual("Foo Bar", layout.v8.Content.Content);
 		}
 	}
 }

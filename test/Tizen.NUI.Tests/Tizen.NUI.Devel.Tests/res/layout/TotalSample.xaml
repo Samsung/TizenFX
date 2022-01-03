@@ -48,8 +48,7 @@
 
     <l:UIElement CustomBindableProperty="View.Position">
     </l:UIElement>
-   
-    <!--Cover CreateLanguagePrimitive-->
+
     <l:UIElement Event="StaticUIElementEvent">
         <x:Arguments>
             <x:List x:TypeArguments="x:Object">
