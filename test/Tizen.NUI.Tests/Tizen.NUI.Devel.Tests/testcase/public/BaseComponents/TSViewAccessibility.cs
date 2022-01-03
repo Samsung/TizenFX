@@ -467,14 +467,14 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("ViewAccessibility.View.RegisterPopup.")]
-        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.RegisterPopup M")]
+        [Description("ViewAccessibility.View.RegisterDefaultLabel.")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.RegisterDefaultLabel M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewAccessibilityRegisterPopup()
+        public void ViewAccessibilityRegisterDefaultLabel()
         {
-            tlog.Debug(tag, $"ViewAccessibilityRegisterPopup START");
+            tlog.Debug(tag, $"ViewAccessibilityRegisterDefaultLabel START");
 
             var testingTarget = new View()
             {
@@ -489,8 +489,8 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                testingTarget.RegisterPopup();
-                testingTarget.RemovePopup();
+                testingTarget.RegisterDefaultLabel();
+                testingTarget.UnregisterDefaultLabel();
             }
             catch (Exception e)
             {
@@ -499,7 +499,7 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewAccessibilityRegisterPopup END (OK)");
+            tlog.Debug(tag, $"ViewAccessibilityRegisterDefaultLabel END (OK)");
         }
 
         [Test]

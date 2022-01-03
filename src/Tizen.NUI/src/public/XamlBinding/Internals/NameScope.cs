@@ -32,7 +32,37 @@ namespace Tizen.NUI.Binding.Internals
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty NameScopeProperty = BindableProperty.CreateAttached("NameScope", typeof(INameScope), typeof(NameScope), default(INameScope));
 
-        readonly Dictionary<string, object> names = new Dictionary<string, object>();
+        private readonly Dictionary<string, object> names = new Dictionary<string, object>();
+        internal Dictionary<string, object> NameToElement
+        {
+            get
+            {
+                return names;
+            }
+        }
+
+        internal bool Equal(NameScope other)
+        {
+            if (null == other)
+            {
+                return false;
+            }
+
+            if (names.Count != other.names.Count)
+            {
+                return false;
+            }
+
+            foreach (var pair in names)
+            {
+                if (!other.names.ContainsKey(pair.Key))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 
         object INameScope.FindByName(string name)
         {
@@ -85,5 +115,8 @@ namespace Tizen.NUI.Binding.Internals
             }
             bindable.SetValue(NameScopeProperty, value);
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Dictionary<string, object> XNames => names;
     }
 }

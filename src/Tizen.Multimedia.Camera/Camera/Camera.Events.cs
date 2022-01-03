@@ -454,8 +454,8 @@ namespace Tizen.Multimedia
 
         private void UnregisterExtraPreviewCallback()
         {
-            Native.UnsetPreviewCallback(_handle).
-                ThrowIfFailed("Failed to unset preview callback.");
+            Native.UnsetExtraPreviewCallback(_handle).
+                ThrowIfFailed("Failed to unset extra preview callback.");
 
             _extraPreviewCallback = null;
         }

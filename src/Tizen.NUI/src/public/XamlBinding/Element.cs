@@ -222,6 +222,12 @@ namespace Tizen.NUI.Binding
             }
         }
 
+        /// <summary>
+        /// Gets the x:Name dictionary of the element.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Dictionary<string, object> XNames => (GetNameScope() as NameScope)?.XNames ?? null;
+
         void IElement.RemoveResourcesChangedListener(Action<object, ResourcesChangedEventArgs> onchanged)
         {
             if (changeHandlers == null)

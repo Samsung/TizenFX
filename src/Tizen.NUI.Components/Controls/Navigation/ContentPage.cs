@@ -35,11 +35,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public ContentPage() : base()
         {
-            Layout = new AbsoluteLayout();
+            Layout = new ContentPageLayout();
 
-            // ContentPage fills to parent by default.
-            WidthResizePolicy = ResizePolicyType.FillToParent;
-            HeightResizePolicy = ResizePolicyType.FillToParent;
+            // ContentPage matches to parent by default.
+            WidthSpecification = LayoutParamPolicies.MatchParent;
+            HeightSpecification = LayoutParamPolicies.MatchParent;
         }
 
         /// <summary>
@@ -122,8 +122,6 @@ namespace Tizen.NUI.Components
                 }
 
                 Add(appBar);
-
-                CalculatePosition();
             }
         }
 
@@ -171,78 +169,90 @@ namespace Tizen.NUI.Components
                 }
 
                 Add(content);
-
-                CalculatePosition();
             }
         }
 
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void OnRelayout(Vector2 size, RelayoutContainer container)
+        private class ContentPageLayout : AbsoluteLayout
         {
-            base.OnRelayout(size, container);
-
-            CalculatePosition();
-        }
-
-        // Calculate appBar and content's positions.
-        private void CalculatePosition()
-        {
-            // If ContentPage size has not been set yet, then content size cannot be calculated.
-            if ((Size2D.Width == 0) && (Size2D.Height == 0))
+            protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
             {
-                return;
-            }
+                float maxWidth = SuggestedMinimumWidth.AsDecimal();
+                float maxHeight = SuggestedMinimumHeight.AsDecimal();
 
-            if (appBar != null)
-            {
-                int appBarPosX = Position2D.X + Padding.Start + appBar.Margin.Top;
-                int appBarPosY = Position2D.Y + Padding.Top + appBar.Margin.Top;
+                MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
+                MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
 
-                appBar.Position2D = new Position2D(appBarPosX, appBarPosY);
+                var appBar = (Owner as ContentPage)?.AppBar;
+                var content = (Owner as ContentPage)?.Content;
 
-                if ((appBar.WidthSpecification == LayoutParamPolicies.MatchParent) || (appBar.HeightSpecification == LayoutParamPolicies.MatchParent))
+                foreach (var childLayout in LayoutChildren)
                 {
-                    int appBarSizeW = appBar.Size2D.Width;
-                    int appBarSizeH = appBar.Size2D.Height;
-
-                    if (appBar.WidthSpecification == LayoutParamPolicies.MatchParent)
+                    if (!childLayout.SetPositionByLayout)
                     {
-                        appBarSizeW = Size2D.Width - Padding.Start - Padding.End - appBar.Margin.Start - appBar.Margin.End;
+                        continue;
                     }
 
-                    if (appBar.HeightSpecification == LayoutParamPolicies.MatchParent)
+                    if ((content != null) && (content == childLayout.Owner) && (content.HeightSpecification == LayoutParamPolicies.MatchParent))
                     {
-                        appBarSizeH = Size2D.Height - Padding.Top - Padding.Bottom - appBar.Margin.Top - appBar.Margin.Bottom;
+                        var contentSizeH = heightMeasureSpec.Size.AsDecimal() - Padding.Top - Padding.Bottom - content.Margin.Top - content.Margin.Bottom - (appBar?.Layout.MeasuredHeight.Size.AsDecimal() ?? 0);
+                        MeasureSpecification contentHeightSpec = new MeasureSpecification(new LayoutLength(contentSizeH), MeasureSpecification.ModeType.Exactly);
+                        MeasureChildWithoutPadding(childLayout, widthMeasureSpec, contentHeightSpec);
+                    }
+                    else
+                    {
+                        MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
                     }
 
-                    appBar.SetSize(new Size2D(appBarSizeW, appBarSizeH));
+                    float childRight = childLayout.MeasuredWidth.Size.AsDecimal() + childLayout.Owner.PositionX;
+                    float childBottom = childLayout.MeasuredHeight.Size.AsDecimal() + childLayout.Owner.PositionY;
+
+                    if (maxWidth < childRight)
+                        maxWidth = childRight;
+
+                    if (maxHeight < childBottom)
+                        maxHeight = childBottom;
+
+                    if (childLayout.MeasuredWidth.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                    {
+                        childWidthState = MeasuredSize.StateType.MeasuredSizeTooSmall;
+                    }
+                    if (childLayout.MeasuredHeight.State == MeasuredSize.StateType.MeasuredSizeTooSmall)
+                    {
+                        childHeightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
+                    }
                 }
+
+                SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(maxWidth), widthMeasureSpec, childWidthState),
+                                      ResolveSizeAndState(new LayoutLength(maxHeight), heightMeasureSpec, childHeightState));
             }
 
-            if (content != null)
+            protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
             {
-                int contentPosX = Position2D.X + Padding.Start + content.Margin.Start;
-                int contentPosY = Position2D.Y + Padding.Top + content.Margin.Top + (appBar?.Size2D.Height ?? 0);
-
-                content.Position2D = new Position2D(contentPosX, contentPosY);
-
-                if ((content.WidthSpecification == LayoutParamPolicies.MatchParent) || (content.HeightSpecification == LayoutParamPolicies.MatchParent))
+                foreach (var childLayout in LayoutChildren)
                 {
-                    int contentSizeW = content.Size2D.Width;
-                    int contentSizeH = content.Size2D.Height;
-
-                    if (content.WidthSpecification == LayoutParamPolicies.MatchParent)
+                    if (!childLayout.SetPositionByLayout)
                     {
-                        contentSizeW = Size2D.Width - Padding.Start - Padding.End - content.Margin.Start - content.Margin.End;
+                        continue;
                     }
 
-                    if (content.HeightSpecification == LayoutParamPolicies.MatchParent)
-                    {
-                        contentSizeH = Size2D.Height - Padding.Top - Padding.Bottom - content.Margin.Top - content.Margin.Bottom - (appBar?.Size2D.Height ?? 0);
-                    }
+                    LayoutLength childWidth = childLayout.MeasuredWidth.Size;
+                    LayoutLength childHeight = childLayout.MeasuredHeight.Size;
 
-                    content.SetSize(new Size2D(contentSizeW, contentSizeH));
+                    LayoutLength childLeft = new LayoutLength(childLayout.Owner.PositionX);
+                    LayoutLength childTop = new LayoutLength(childLayout.Owner.PositionY);
+
+                    var appBar = (Owner as ContentPage)?.AppBar;
+                    var content = (Owner as ContentPage)?.Content;
+
+                    if ((content != null) && (content == childLayout.Owner))
+                    {
+                        childTop = new LayoutLength(Padding.Top + content.Margin.Top + (appBar?.Layout.MeasuredHeight.Size.AsDecimal() ?? 0));
+                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, false);
+                    }
+                    else
+                    {
+                        childLayout.Layout(childLeft, childTop, childLeft + childWidth, childTop + childHeight, true);
+                    }
                 }
             }
         }

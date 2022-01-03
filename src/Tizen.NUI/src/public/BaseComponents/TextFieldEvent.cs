@@ -237,7 +237,7 @@ namespace Tizen.NUI.BaseComponents
         /// };
         /// </code>
         /// </example>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<InputFilteredEventArgs> InputFiltered
         {
             add

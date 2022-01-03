@@ -216,7 +216,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Text property.
+        /// The Text property.<br />
+        /// The text to display in the UTF-8 format.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string Text
@@ -233,7 +234,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The PlaceholderText property.
+        /// The PlaceholderText property.<br />
+        /// The text to display when the TextField is empty and inactive. <br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string PlaceholderText
@@ -250,7 +252,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The PlaceholderTextFocused property.
+        /// The PlaceholderTextFocused property. <br />
+        /// The text to display when the TextField is empty with input focus. <br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string PlaceholderTextFocused
@@ -267,7 +270,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The FontFamily property.
+        /// The FontFamily property.<br />
+        /// The requested font family to use.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string FontFamily
@@ -284,7 +288,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The FontStyle property.
+        /// The FontStyle property.<br />
+        /// The requested font style to use.<br />
         /// The fontStyle map contains the following keys :<br />
         /// <list type="table">
         /// <item><term>width (string)</term><description>The width key defines occupied by each glyph. (values: ultraCondensed, extraCondensed, condensed, semiCondensed, normal, semiExpanded, expanded, extraExpanded, ultraExpanded)</description></item>
@@ -344,7 +349,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The PointSize property.
+        /// The PointSize property.<br />
+        /// The size of font in points.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float PointSize
@@ -361,7 +367,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The MaxLength property.
+        /// The MaxLength property.<br />
+        /// The maximum number of characters that can be inserted.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int MaxLength
@@ -378,7 +385,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The ExceedPolicy property.
+        /// The ExceedPolicy property.<br />
+        /// Specifies how the text is truncated when it does not fit.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public int ExceedPolicy
@@ -395,7 +403,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The HorizontalAlignment property.
+        /// The HorizontalAlignment property.<br />
+        /// The line horizontal alignment.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public HorizontalAlignment HorizontalAlignment
@@ -412,7 +421,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The VerticalAlignment property.
+        /// The VerticalAlignment property.<br />
+        /// The line vertical alignment.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public VerticalAlignment VerticalAlignment
@@ -430,7 +440,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The TextColor property.
+        /// The TextColor property.<br />
+        /// The color of the text.<br />
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (textField.TextColor.X = 0.1f;) is possible.
@@ -552,7 +563,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The PrimaryCursorColor property.
+        /// The PrimaryCursorColor property.<br />
+        /// The color to apply to the primary cursor.<br />
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (textField.PrimaryCursorColor.X = 0.1f;) is possible.
@@ -573,7 +585,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SecondaryCursorColor property.
+        /// The SecondaryCursorColor property.<br />
+        /// The color to apply to the secondary cursor.<br />
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (textField.SecondaryCursorColor.X = 0.1f;) is possible.
@@ -594,7 +607,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The EnableCursorBlink property.
+        /// The EnableCursorBlink property.<br />
+        /// Whether the cursor should blink or not.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool EnableCursorBlink
@@ -611,7 +625,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The CursorBlinkInterval property.
+        /// The CursorBlinkInterval property.<br />
+        /// The time interval in seconds between cursor on/off states.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float CursorBlinkInterval
@@ -628,7 +643,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The CursorBlinkDuration property.
+        /// The CursorBlinkDuration property.<br />
+        /// The cursor will stop blinking after this number of seconds (if non-zero).<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float CursorBlinkDuration
@@ -662,7 +678,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The GrabHandleImage property.
+        /// The GrabHandleImage property.<br />
+        /// The image to display for the grab handle.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string GrabHandleImage
@@ -679,7 +696,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The GrabHandlePressedImage property.
+        /// The GrabHandlePressedImage property.<br />
+        /// The image to display when the grab handle is pressed.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string GrabHandlePressedImage
@@ -696,7 +714,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The ScrollThreshold property.
+        /// The ScrollThreshold property.<br />
+        /// Horizontal scrolling will occur if the cursor is this close to the control border.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float ScrollThreshold
@@ -713,7 +732,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The ScrollSpeed property.
+        /// The ScrollSpeed property.<br />
+        /// The scroll speed in pixels per second.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float ScrollSpeed
@@ -730,7 +750,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionHandleImageLeft property.
+        /// The SelectionHandleImageLeft property.<br />
+        /// The image to display for the left selection handle.<br />
         /// The selectionHandleImageLeft map contains the following key :<br />
         /// <list type="table">
         /// <item><term>filename (string)</term><description>The path of image file</description></item>
@@ -751,7 +772,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionHandleImageRight property.
+        /// The SelectionHandleImageRight property.<br />
+        /// The image to display for the right selection handle.<br />
         /// The selectionHandleImageRight map contains the following key :<br />
         /// <list type="table">
         /// <item><term>filename (string)</term><description>The path of image file</description></item>
@@ -815,7 +837,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionHandlePressedImageLeft property.
+        /// The SelectionHandlePressedImageLeft property.<br />
+        /// The image to display when the left selection handle is pressed.<br />
         /// The selectionHandlePressedImageLeft map contains the following key :<br />
         /// <list type="table">
         /// <item><term>filename (string)</term><description>The path of image file</description></item>
@@ -836,7 +859,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionHandlePressedImageRight property.
+        /// The SelectionHandlePressedImageRight property.<br />
+        /// The image to display when the right selection handle is pressed.<br />
         /// The selectionHandlePressedImageRight map contains the following key :<br />
         /// <list type="table">
         /// <item><term>filename (string)</term><description>The path of image file</description></item>
@@ -900,7 +924,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionHandleMarkerImageLeft property.
+        /// The SelectionHandleMarkerImageLeft property.<br />
+        /// The image to display for the left selection handle marker.<br />
         /// The selectionHandleMarkerImageLeft map contains the following key :<br />
         /// <list type="table">
         /// <item><term>filename (string)</term><description>The path of image file</description></item>
@@ -921,7 +946,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionHandleMarkerImageRight property.
+        /// The SelectionHandleMarkerImageRight property.<br />
+        /// The image to display for the right selection handle marker.<br />
         /// The selectionHandleMarkerImageRight map contains the following key :<br />
         /// <list type="table">
         /// <item><term>filename (string)</term><description>The path of image file</description></item>
@@ -985,7 +1011,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The SelectionHighlightColor property.
+        /// The SelectionHighlightColor property.<br />
+        /// The color of the selection highlight.<br />
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (textField.SelectionHighlightColor.X = 0.1f;) is possible.
@@ -1006,7 +1033,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The DecorationBoundingBox property.
+        /// The DecorationBoundingBox property.<br />
+        /// The decorations (handles etc) will positioned within this area on-screen.<br />
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (textField.DecorationBoundingBox.X = 0.1f;) is possible.
@@ -1027,7 +1055,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputMethodSettings property.
+        /// The InputMethodSettings property.<br />
+        /// The settings to relating to the System's Input Method, Key and Value.<br />
         /// </summary>
         /// <remarks>
         /// <see cref="InputMethod"/> is a class encapsulating the input method map. Please use the <see cref="InputMethod"/> class for this property.
@@ -1058,7 +1087,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputColor property.
+        /// The InputColor property.<br />
+        /// The color of the new input text.<br />
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (textField.InputColor.X = 0.1f;) is possible.
@@ -1079,7 +1109,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The EnableMarkup property.
+        /// The EnableMarkup property.<br />
+        /// Whether the mark-up processing is enabled.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool EnableMarkup
@@ -1096,7 +1127,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputFontFamily property.
+        /// The InputFontFamily property.<br />
+        /// The font's family of the new input text.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string InputFontFamily
@@ -1113,7 +1145,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputFontStyle property.
+        /// The InputFontStyle property.<br />
+        /// The font's style of the new input text.<br />
         /// The inputFontStyle map contains the following keys :<br />
         /// <list type="table">
         /// <item><term>width (string)</term><description>The width key defines occupied by each glyph. (values: ultraCondensed, extraCondensed, condensed, semiCondensed, normal, semiExpanded, expanded, extraExpanded, ultraExpanded)</description></item>
@@ -1173,7 +1206,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputPointSize property.
+        /// The InputPointSize property.<br />
+        /// The font's size of the new input text in points.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float InputPointSize
@@ -1190,7 +1224,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Underline property.
+        /// The Underline property.<br />
+        /// The default underline parameters.<br />
         /// The underline map contains the following keys :<br />
         /// <list type="table">
         /// <item><term>enable (bool)</term><description>Whether the underline is enabled (the default value is false)</description></item>
@@ -1250,7 +1285,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputUnderline property.
+        /// The InputUnderline property.<br />
+        /// The underline parameters of the new input text.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string InputUnderline
@@ -1267,7 +1303,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Shadow property.
+        /// The Shadow property.<br />
+        /// The default shadow parameters.<br />
         /// The shadow map contains the following keys :<br />
         /// <list type="table">
         /// <item><term>color (Color)</term><description>The color of the shadow (the default color is Color.Black)</description></item>
@@ -1326,7 +1363,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputShadow property.
+        /// The InputShadow property.<br />
+        /// The shadow parameters of the new input text.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string InputShadow
@@ -1343,7 +1381,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Emboss property.
+        /// The Emboss property.<br />
+        /// The default emboss parameters.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string Emboss
@@ -1360,7 +1399,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputEmboss property.
+        /// The InputEmboss property.<br />
+        /// The emboss parameters of the new input text.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string InputEmboss
@@ -1377,7 +1417,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Outline property.
+        /// The Outline property.<br />
+        /// The default outline parameters.<br />
         /// The outline map contains the following keys :<br />
         /// <list type="table">
         /// <item><term>color (Color)</term><description>The color of the outline (the default color is Color.White)</description></item>
@@ -1435,7 +1476,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The InputOutline property.
+        /// The InputOutline property.<br />
+        /// The outline parameters of the new input text.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public string InputOutline
@@ -1452,7 +1494,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The HiddenInputSettings property.
+        /// The HiddenInputSettings property.<br />
+        /// Hides the input characters and instead shows a default character for password or pin entry.<br />
         /// The hiddenInputSettings map contains the following keys :<br />
         /// <list type="table">
         /// <item><term>HiddenInputProperty.Mode (int)</term><description>The mode for input text display (Use HiddenInputModeType)</description></item>
@@ -1526,7 +1569,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The PixelSize property.
+        /// The PixelSize property.<br />
+        /// The size of font in pixels.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public float PixelSize
@@ -1543,7 +1587,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Enable selection property.
+        /// The Enable selection property.<br />
+        /// Enables Text selection, such as the cursor, handle, clipboard, and highlight color.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public bool EnableSelection
@@ -1560,10 +1605,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Enable selection property.
+        /// The Enable grab handle property.<br />
+        /// Enables the grab handles for text selection.<br />
+        /// The default value is true, which means the grab handles are enabled by default.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableGrabHandle
         {
@@ -1579,10 +1625,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The Enable selection property.
+        /// The Enable grab handle popup property.<br />
+        /// Enables the grab handle popup for text selection.<br />
+        /// The default value is true, which means the grab handle popup is enabled by default.<br />
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableGrabHandlePopup
         {
@@ -1651,8 +1698,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Enable editing in text control.
         /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        /// This will be public opened in tizen_6.0 after ACR done, Before ACR, need to be hidden as inhouse API.
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableEditing
         {
@@ -1758,20 +1804,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Set InputFilter to TextField. <br />
+        /// Set InputFilter to TextField.
         /// </summary>
         /// <param name="inputFilter">The InputFilter</param>
         /// <remarks>
         /// <see cref="Tizen.NUI.Text.InputFilter"/> filters input based on regular expressions. <br />
-        /// Users can set the Accepted or Rejected regular expression set, or both. <br />
-        /// If both are used, Rejected has higher priority. <br />
-        /// The character set must follow the regular expression rules. <br />
-        /// Behaviour can not be guaranteed for incorrect grammars. <br />
-        /// Refer the link below for detailed rules. <br />
-        /// The functions in std::regex library use the ECMAScript grammar: <br />
-        /// http://cplusplus.com/reference/regex/ECMAScript/ <br />
         /// InputFiltered signal is emitted when the input is filtered by InputFilter <br />
-        /// See <see cref="InputFiltered"/>, <see cref="InputFilterType"/> and <see cref="InputFilteredEventArgs"/> for a detailed description. <br />
+        /// See <see cref="InputFiltered"/>, <see cref="InputFilterType"/> and <see cref="InputFilteredEventArgs"/> for a detailed description.
         /// </remarks>
         /// <example>
         /// The following example demonstrates how to use the SetInputFilter method.
@@ -1782,20 +1821,20 @@ namespace Tizen.NUI.BaseComponents
         /// field.SetInputFilter(inputFilter); // acceptable inputs are 4, 5, 6, 7, 8, 9
         /// </code>
         /// </example>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public void SetInputFilter(InputFilter inputFilter)
         {
             SetProperty(TextField.Property.InputFilter, new PropertyValue(TextMapHelper.GetInputFilterMap(inputFilter)));
         }
 
         /// <summary>
-        /// Get InputFilter from TextField. <br />
+        /// Get InputFilter from TextField.
         /// </summary>
         /// <returns>The InputFilter</returns>
         /// <remarks>
         /// <see cref="Tizen.NUI.Text.InputFilter"/>
         /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public InputFilter GetInputFilter()
         {
             var map = new PropertyMap();
@@ -1844,73 +1883,38 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 PropertyMap map = (PropertyMap)GetValue(PlaceholderProperty);
-                PropertyValue value = null;
+                string defalutText = "";
 
-                // text
-                value = map.Find(0);
-                if (null != value)
+                if (TextMapHelper.IsValue(map, 0))
+                    map.Add("text", TextMapHelper.GetStringFromMap(map, 0, defalutText));
+
+                if (TextMapHelper.IsValue(map, 1))
+                    map.Add("textFocused", TextMapHelper.GetStringFromMap(map, 1, defalutText));
+                
+                if (TextMapHelper.IsValue(map, 2))
+                    map.Add("color", TextMapHelper.GetColorFromMap(map, 2));
+                
+                if (TextMapHelper.IsValue(map, 3))
+                    map.Add("fontFamily", TextMapHelper.GetStringFromMap(map, 3, defalutText));
+
+                if (TextMapHelper.IsValue(map, 4))
                 {
-                    value.Get(out string text);
-                    map.Add("text", new PropertyValue(text));
+                    var fontStyle = new PropertyMap();
+                    map.Find(4).Get(fontStyle);
+                    var fontStyleValue = new PropertyValue(fontStyle);
+                    map.Add("fontStyle", fontStyleValue);
+                    fontStyleValue.Dispose();
+                    fontStyle.Dispose();
                 }
 
-                // textFocused
-                value = map.Find(1);
-                if (null != value)
-                {
-                    value.Get(out string textFocused);
-                    map.Add("textFocused", new PropertyValue(textFocused));
-                }
-
-                // color
-                value = map.Find(2);
-                if (null != value)
-                {
-                    Color color = new Color();
-                    value.Get(color);
-                    map.Add("color", new PropertyValue(color));
-                }
-
-                // fontFamily
-                value = map.Find(3);
-                if (null != value)
-                {
-                    value.Get(out string fontFamily);
-                    map.Add("fontFamily", new PropertyValue(fontFamily));
-                }
-
-                // fontStyle
-                value = map.Find(4);
-                if (null != value)
-                {
-                    PropertyMap fontStyle = new PropertyMap();
-                    value.Get(fontStyle);
-                    map.Add("fontStyle", new PropertyValue(fontStyle));
-                }
-
-                // pointSize
-                value = map.Find(5);
-                if (null != value)
-                {
-                    value.Get(out float pointSize);
-                    map.Add("pointSize", new PropertyValue(pointSize));
-                }
-
-                // pixelSize
-                value = map.Find(6);
-                if (null != value)
-                {
-                    value.Get(out float pixelSize);
-                    map.Add("pixelSize", new PropertyValue(pixelSize));
-                }
-
-                // ellipsis
-                value = map.Find(7);
-                if (null != value)
-                {
-                    value.Get(out bool ellipsis);
-                    map.Add("ellipsis", new PropertyValue(ellipsis));
-                }
+                if (TextMapHelper.IsValue(map, 5))
+                    map.Add("pointSize", TextMapHelper.GetNullableFloatFromMap(map, 5));
+                
+                if (TextMapHelper.IsValue(map, 6))
+                    map.Add("pixelSize", TextMapHelper.GetNullableFloatFromMap(map, 6));
+                
+                if (TextMapHelper.IsValue(map, 7))
+                    map.Add("ellipsis", TextMapHelper.GetBoolFromMap(map, 7, false));
 
                 return map;
             }
@@ -1989,8 +1993,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Enables selection of the text using the Shift key.
         /// </summary>
-        /// <since_tizen> 5 </since_tizen>
-        /// This will be released at Tizen.NET API Level 5, so currently this would be used as inhouse API.
+        /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableShiftSelection
         {
@@ -2006,7 +2009,8 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// The text alignment to match the direction of the system language.
+        /// The text alignment to match the direction of the system language.<br />
+        /// The default value is true.<br />
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public bool MatchSystemLanguageDirection
@@ -2025,6 +2029,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The FontSizeScale property. <br />
         /// The default value is 1.0. <br />
+        /// The given font size scale value is used for multiplying the specified font size before querying fonts. <br />
         /// If FontSizeScale.UseSystemSetting, will use the SystemSettings.FontSize internally. <br />
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
