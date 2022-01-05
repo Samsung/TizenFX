@@ -81,6 +81,41 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Converts script to pixel.
+        /// </summary>
+        /// <returns>Pixel value that is converted from input string</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ConvertScriptToPoint(string scriptValue)
+        {
+            float convertedValue = 0;
+            if (scriptValue != null)
+            {
+                if (scriptValue.EndsWith("sp"))
+                {
+                    convertedValue = ConvertSpToPoint(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("sp")), CultureInfo.InvariantCulture));
+                }
+                else if (scriptValue.EndsWith("dp"))
+                {
+                    convertedValue = ConvertDpToPoint(float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("dp")), CultureInfo.InvariantCulture));
+                }
+                else if (scriptValue.EndsWith("pt"))
+                {
+                    convertedValue = float.Parse(scriptValue.Substring(0, scriptValue.LastIndexOf("px")), CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    if (!float.TryParse(scriptValue, NumberStyles.Any, CultureInfo.InvariantCulture, out convertedValue))
+                    {
+                        NUILog.Error("Cannot convert the script {scriptValue}\n");
+                        convertedValue = 0;
+                    }
+                }
+            }
+            return convertedValue;
+        }
+
+        /// <summary>
         /// Converts point type to pixel.
         /// </summary>
         /// <returns>Pixel value that is converted by the the display matric</returns>
@@ -103,9 +138,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Converts point type to pixel.
+        /// Converts dp type to point type.
         /// </summary>
-        /// <returns>Pixel value that is converted by the the display matric</returns>
+        /// <returns>Point value that is converted from dp.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float ConvertDpToPoint(float value)
@@ -114,14 +149,40 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Converts pixel to point type.
+        /// Converts point type to dp type.
         /// </summary>
-        /// <returns>An converted value from pixel</returns>
+        /// <returns>Dp value that is converted from point.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float ConvertPointToDp(float value)
         {
             return value * ((float)GraphicsTypeManager.Instance.BaselineDpi / (float)pointDpi);
+        }
+
+        /// <summary>
+        /// Converts sp type to point type.
+        /// </summary>
+        /// <returns>Point value that is converted from dp.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ConvertSpToPoint(float value)
+        {
+            float scale = GraphicsTypeManager.Instance.ScalingFactor;
+            if (scale <= 0) scale = 1;
+            return value * ((float)pointDpi / (float)GraphicsTypeManager.Instance.BaselineDpi) * scale;
+        }
+
+        /// <summary>
+        /// Converts point type to sp type.
+        /// </summary>
+        /// <returns>Sp value that is converted from point.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ConvertPointToSp(float value)
+        {
+            float scale = GraphicsTypeManager.Instance.ScalingFactor;
+            if (scale <= 0) scale = 1;
+            return value * ((float)GraphicsTypeManager.Instance.BaselineDpi / (float)pointDpi) / scale;
         }
     }
 }

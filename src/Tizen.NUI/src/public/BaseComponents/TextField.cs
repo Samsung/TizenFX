@@ -361,6 +361,7 @@ namespace Tizen.NUI.BaseComponents
         /// The size of font in points.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Binding.TypeConverter(typeof(PointSizeTypeConverter))]
         public float PointSize
         {
             get
@@ -1286,6 +1287,7 @@ namespace Tizen.NUI.BaseComponents
         /// The font's size of the new input text in points.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Binding.TypeConverter(typeof(PointSizeTypeConverter))]
         public float InputPointSize
         {
             get
