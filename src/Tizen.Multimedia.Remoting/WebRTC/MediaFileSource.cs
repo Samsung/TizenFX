@@ -29,7 +29,7 @@ namespace Tizen.Multimedia.Remoting
     /// </remarks>
     /// <seealso cref="WebRTC.AddSource"/>
     /// <seealso cref="WebRTC.AddSources"/>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 10 </since_tizen>
     public sealed class MediaFileSource : MediaSource
     {
         private string _path;
@@ -40,7 +40,7 @@ namespace Tizen.Multimedia.Remoting
         /// <param name="type">The <see cref="MediaType"/> of file source.</param>
         /// <param name="path">The file path.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public MediaFileSource(MediaType type, string path) : base(type)
         {
             _path = path ?? throw new ArgumentNullException(nameof(path), "path is null");
