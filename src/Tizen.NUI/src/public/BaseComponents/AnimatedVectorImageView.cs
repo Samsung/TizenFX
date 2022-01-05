@@ -331,11 +331,13 @@ namespace Tizen.NUI.BaseComponents
                 case minMaxSetTypes.NotSetByUser:
                     base.SetMinMaxFrame(0, totalFrameNum - 1);
                     base.CurrentFrame = 0;
+                    innerCurrentFrame = 0;
                     break;
 
                 case minMaxSetTypes.SetByMinAndMaxFrameMethod:
                     base.SetMinMaxFrame(minimumFrame, maximumFrame);
                     base.CurrentFrame = minimumFrame;
+                    innerCurrentFrame = minimumFrame;
                     break;
 
                 case minMaxSetTypes.SetByMarker:
@@ -420,31 +422,46 @@ namespace Tizen.NUI.BaseComponents
 
             base.Stop();
 
-            if (endAction == EndActions.StopFinal)
-            {
-                switch (isMinMaxFrameSet)
-                {
-                    case minMaxSetTypes.NotSetByUser:
-                        NUILog.Debug($"isMinMaxFrameSet:{isMinMaxFrameSet}, CurrentFrameNumber:{base.CurrentFrame}, totalFrameNum:{ totalFrameNum}");
-                        base.CurrentFrame = totalFrameNum - 1;
-                        NUILog.Debug($"set CurrentFrameNumber({base.CurrentFrame}) as totalFrameNum({maximumFrame}) - 1 !");
-                        break;
+            NUILog.Debug($"isMinMaxFrameSet:{isMinMaxFrameSet}, base.CurrentFrame:{base.CurrentFrame}, totalFrameNum:{totalFrameNum}, minimumFrame:{minimumFrame}, maximumFrame:{maximumFrame}, StopBehavior:{StopBehavior}, endAction:{endAction}");
 
-                    case minMaxSetTypes.SetByMinAndMaxFrameMethod:
-                        if (base.CurrentFrame != maximumFrame)
-                        {
-                            NUILog.Debug($"isMinMaxFrameSet:{isMinMaxFrameSet}, CurrentFrameNumber:{base.CurrentFrame}, maximumFrame:{ maximumFrame}");
-                            base.CurrentFrame = maximumFrame;
-                            NUILog.Debug($"set CurrentFrameNumber({base.CurrentFrame}) as maximumFrame({maximumFrame})!!!");
-                        }
-                        break;
-                    case minMaxSetTypes.SetByBaseSetMinMaxFrameMethod:
-                    case minMaxSetTypes.SetByMarker:
-                    default:
-                        //do nothing!
-                        break;
-                }
+            switch (isMinMaxFrameSet)
+            {
+                case minMaxSetTypes.NotSetByUser:
+                    switch(endAction)
+                    {
+                        case EndActions.Cancel:
+                            innerCurrentFrame = base.CurrentFrame;
+                            break;
+                        case EndActions.Discard:
+                            base.CurrentFrame = innerCurrentFrame = 0;
+                            break;
+                        case EndActions.StopFinal:
+                            base.CurrentFrame = innerCurrentFrame= totalFrameNum - 1;
+                            break;
+                    }
+                    break;
+
+                case minMaxSetTypes.SetByMinAndMaxFrameMethod:
+                    switch (endAction)
+                    {
+                        case EndActions.Cancel:
+                            innerCurrentFrame = base.CurrentFrame;
+                            break;
+                        case EndActions.Discard:
+                            base.CurrentFrame = innerCurrentFrame = minimumFrame;
+                            break;
+                        case EndActions.StopFinal:
+                            base.CurrentFrame = innerCurrentFrame = maximumFrame;
+                            break;
+                    }
+                    break;
+                case minMaxSetTypes.SetByMarker:
+                case minMaxSetTypes.SetByBaseSetMinMaxFrameMethod:
+                default:
+                    //do nothing!
+                    break;
             }
+            NUILog.Debug($" [{GetId()}] innerCurrentFrame={innerCurrentFrame}, base.CurrentFrame={base.CurrentFrame}");
             NUILog.Debug($" [{GetId()}] ]AnimatedVectorImageView END]");
         }
         #endregion Method
