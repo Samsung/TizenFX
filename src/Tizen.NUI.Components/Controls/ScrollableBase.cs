@@ -1892,6 +1892,69 @@ namespace Tizen.NUI.Components
             }
             return nextFocusedView;
         }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilityScrollToChild(View child)
+        {
+            if (child == null)
+            {
+                return false;
+            }
+
+            if (ScrollingDirection == Direction.Horizontal)
+            {
+                if (child.ScreenPosition.X + child.Size.Width <= this.ScreenPosition.X)
+                {
+                    if (SnapToPage)
+                    {
+                        PageSnap(PageFlickThreshold + 1);
+                    }
+                    else
+                    {
+                        ScrollTo((float)(child.ScreenPosition.X - ContentContainer.ScreenPosition.X), false);
+                    }
+                }
+                else if (child.ScreenPosition.X >= this.ScreenPosition.X + this.Size.Width)
+                {
+                    if (SnapToPage)
+                    {
+                        PageSnap(-(PageFlickThreshold + 1));
+                    }
+                    else
+                    {                        
+                        ScrollTo((float)(child.ScreenPosition.X + child.Size.Width - ContentContainer.ScreenPosition.X - this.Size.Width), false);
+                    }
+                }
+            }
+            else
+            {
+                if (child.ScreenPosition.Y + child.Size.Height <= this.ScreenPosition.Y)
+                {
+                    if (SnapToPage)
+                    {
+                        PageSnap(PageFlickThreshold + 1);
+                    }
+                    else
+                    {                        
+                        ScrollTo((float)(child.ScreenPosition.Y - ContentContainer.ScreenPosition.Y), false);
+                    }
+                }
+                else if (child.ScreenPosition.Y >= this.ScreenPosition.Y + this.Size.Height)
+                {
+                    if (SnapToPage)
+                    {
+                        PageSnap(-(PageFlickThreshold + 1));
+                    }
+                    else
+                    {                       
+                        ScrollTo((float)(child.ScreenPosition.Y + child.Size.Height - ContentContainer.ScreenPosition.Y - this.Size.Height), false);
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 
 } // namespace
