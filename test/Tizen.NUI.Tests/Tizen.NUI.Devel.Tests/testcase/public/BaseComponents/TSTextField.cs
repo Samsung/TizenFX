@@ -1727,9 +1727,35 @@ namespace Tizen.NUI.Devel.Tests
             Assert.AreEqual(2.0f, testingTarget.FontSizeScale, "Should be equal!");
 
             testingTarget.FontSizeScale = Tizen.NUI.FontSizeScale.UseSystemSetting;
+            Assert.AreEqual(Tizen.NUI.FontSizeScale.UseSystemSetting, testingTarget.FontSizeScale, "Should be equal!");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldFontSizeScale END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField EnableFontSizeScale.")]
+        [Property("SPEC", "Tizen.NUI.TextField.EnableFontSizeScale A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextFieldEnableFontSizeScale()
+        {
+            tlog.Debug(tag, $"TextFieldEnableFontSizeScale START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            testingTarget.EnableFontSizeScale = false;
+            Assert.AreEqual(false, testingTarget.EnableFontSizeScale, "Should be equal!");
+
+            testingTarget.EnableFontSizeScale = true;
+            Assert.AreEqual(true, testingTarget.EnableFontSizeScale, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldEnableFontSizeScale END (OK)");
         }
 
         [Test]

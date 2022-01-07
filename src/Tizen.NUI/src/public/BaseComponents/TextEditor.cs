@@ -2111,6 +2111,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The EnableFontSizeScale property.<br />
+        /// Whether the font size scale is enabled. (The default value is true)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableFontSizeScale
+        {
+            get
+            {
+                return (bool)GetValue(EnableFontSizeScaleProperty);
+            }
+            set
+            {
+                SetValue(EnableFontSizeScaleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The InputMethodSettings property.<br />
         /// The settings to relating to the System's Input Method, Key and Value.<br />
         /// </summary>
@@ -2474,6 +2492,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int VerticalScrollPosition = Interop.TextEditor.VerticalScrollPositionGet();
             internal static readonly int PrimaryCursorPosition = Interop.TextEditor.PrimaryCursorPositionGet();
             internal static readonly int FontSizeScale = Interop.TextEditor.FontSizeScaleGet();
+            internal static readonly int EnableFontSizeScale = Interop.TextEditor.EnableFontSizeScaleGet();
             internal static readonly int GrabHandleColor = Interop.TextEditor.GrabHandleColorGet();
             internal static readonly int EnableGrabHandle = Interop.TextEditor.EnableGrabHandleGet();
             internal static readonly int EnableGrabHandlePopup = Interop.TextEditor.EnableGrabHandlePopupGet();

@@ -630,6 +630,27 @@ namespace Tizen.NUI.BaseComponents
             return temp;
         }));
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EnableFontSizeScaleProperty = BindableProperty.Create(nameof(EnableFontSizeScale), typeof(bool), typeof(TextLabel), default(bool), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            if (newValue != null)
+            {
+                using (var property = new Tizen.NUI.PropertyValue((bool)newValue))
+                {
+                    Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.EnableFontSizeScale, property);
+                    textLabel.RequestLayout();
+                }
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            bool temp;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.EnableFontSizeScale).Get(out temp);
+            return temp;
+        }));
+
         /// <summary>
         /// ShadowOffsetProperty
         /// </summary>

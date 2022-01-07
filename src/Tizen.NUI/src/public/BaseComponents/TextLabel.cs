@@ -1339,6 +1339,24 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The EnableFontSizeScale property.<br />
+        /// Whether the font size scale is enabled. (The default value is true)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableFontSizeScale
+        {
+            get
+            {
+                return (bool)GetValue(EnableFontSizeScaleProperty);
+            }
+            set
+            {
+                SetValue(EnableFontSizeScaleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
         private TextLabelSelectorData EnsureSelectorData() => selectorData ?? (selectorData = new TextLabelSelectorData());
 
         /// <summary>
@@ -1512,6 +1530,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int TextFit = Interop.TextLabel.TextFitGet();
             internal static readonly int MinLineSize = Interop.TextLabel.MinLineSizeGet();
             internal static readonly int FontSizeScale = Interop.TextLabel.FontSizeScaleGet();
+            internal static readonly int EnableFontSizeScale = Interop.TextLabel.EnableFontSizeScaleGet();
             internal static readonly int EllipsisPosition = Interop.TextLabel.EllipsisPositionGet();
         }
 

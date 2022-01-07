@@ -2221,6 +2221,24 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// The EnableFontSizeScale property.<br />
+        /// Whether the font size scale is enabled. (The default value is true)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableFontSizeScale
+        {
+            get
+            {
+                return (bool)GetValue(EnableFontSizeScaleProperty);
+            }
+            set
+            {
+                SetValue(EnableFontSizeScaleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
         /// Only used by the IL of xaml, will never changed to not hidden.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool IsCreateByXaml
@@ -2515,6 +2533,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EnableEditing = Interop.TextField.EnableEditingGet();
             internal static readonly int PrimaryCursorPosition = Interop.TextField.PrimaryCursorPositionGet();
             internal static readonly int FontSizeScale = Interop.TextField.FontSizeScaleGet();
+            internal static readonly int EnableFontSizeScale = Interop.TextField.EnableFontSizeScaleGet();
             internal static readonly int GrabHandleColor = Interop.TextField.GrabHandleColorGet();
             internal static readonly int EllipsisPosition = Interop.TextField.EllipsisPositionGet();
             internal static readonly int InputFilter = Interop.TextField.InputFilterGet();
