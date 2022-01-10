@@ -172,7 +172,8 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetLayout(LayoutItem layout)
         {
-            Window.Instance.LayoutController.CreateProcessCallback();
+            LayoutCount++;
+
             this.layout = layout;
             this.layout?.AttachToOwner(this);
             this.layout?.RequestLayout();
@@ -309,6 +310,45 @@ namespace Tizen.NUI.BaseComponents
                 wordMatrix?.Get(returnValue);
                 wordMatrix?.Dispose();
                 return returnValue;
+            }
+        }
+
+        /// <summary>
+        /// The number of layouts including view's layout and children's layouts.
+        /// This can be used to set/unset Process callback to calculate Layout.
+        /// </summary>
+        internal int LayoutCount
+        {
+            get
+            {
+                return layoutCount;
+            }
+
+            set
+            {
+                if (layoutCount == value) return;
+
+                if (value < 0) throw new global::System.ArgumentOutOfRangeException(nameof(LayoutCount), "LayoutCount(" + LayoutCount + ") should not be less than zero");
+
+                int diff = value - layoutCount;
+                layoutCount = value;
+
+                if (InternalParent != null)
+                {
+                    var parentView = InternalParent as View;
+                    if (parentView != null)
+                    {
+                        parentView.LayoutCount += diff;
+                    }
+                    else
+                    {
+                        var parentLayer = InternalParent as Layer;
+                        if (parentLayer != null)
+                        {
+                            parentLayer.LayoutCount += diff;
+                        }
+                    }
+                }
             }
         }
 
@@ -975,6 +1015,7 @@ namespace Tizen.NUI.BaseComponents
 
             Children.Remove(child);
             child.InternalParent = null;
+            LayoutCount -= child.LayoutCount;
 
             OnChildRemoved(child);
             if (ChildRemoved != null)
@@ -992,6 +1033,8 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         internal void ResetLayout()
         {
+            LayoutCount--;
+
             layout = null;
         }
 
@@ -1138,6 +1181,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 view.InternalParent = null;
             }
+
+            LayoutCount = 0;
+
+            NUILog.Debug($"[Dispose] View.Dispose({type}) END");
+            NUILog.Debug($"=============================");
 
             base.Dispose(type);
         }
