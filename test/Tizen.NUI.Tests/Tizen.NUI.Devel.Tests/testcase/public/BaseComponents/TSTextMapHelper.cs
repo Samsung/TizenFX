@@ -113,7 +113,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TextMapHelperGetFontWidthType START");
 
             FontWidthType fontWidthType;
-            
+
             fontWidthType = TextMapHelper.GetFontWidthType("ExtraCondensed");
             Assert.AreEqual(FontWidthType.ExtraCondensed, fontWidthType, "Should be equal!");
 
@@ -135,7 +135,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TextMapHelperGetFontWeightType START");
 
             FontWeightType fontWeightType;
-            
+
             fontWeightType = TextMapHelper.GetFontWeightType("Light");
             Assert.AreEqual(FontWeightType.Light, fontWeightType, "Should be equal!");
 
@@ -157,7 +157,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TextMapHelperGetFontSlantType START");
 
             FontSlantType fontSlantType;
-            
+
             fontSlantType = TextMapHelper.GetFontSlantType("Italic");
             Assert.AreEqual(FontSlantType.Italic, fontSlantType, "Should be equal!");
 
@@ -310,6 +310,68 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"TextMapHelperGetUnderlineMap END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextMapHelper GetStrikethroughStruct.")]
+        [Property("SPEC", "Tizen.NUI.TextMapHelper.GetStrikethroughStruct M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextMapHelperGetStrikethroughStruct()
+        {
+            tlog.Debug(tag, $"TextMapHelperGetStrikethroughStruct START");
+
+            using (var map = new PropertyMap())
+            {
+                var color = new Color("#3498DB");
+                map.Add("enable", true);
+                map.Add("color", color);
+                map.Add("height", (float)2.0f);
+
+                var strikethrough = TextMapHelper.GetStrikethroughStruct(map);
+                Assert.AreEqual(true, strikethrough.Enable, "Should be equal!");
+                Assert.AreEqual(2.0f, strikethrough.Height, "Should be equal!");
+                Assert.AreEqual(true, CheckColor(color, strikethrough.Color), "Should be true!");
+                color.Dispose();
+            }
+
+            tlog.Debug(tag, $"TextMapHelperGetStrikethroughStruct END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextMapHelper GetStrikethroughMap.")]
+        [Property("SPEC", "Tizen.NUI.TextMapHelper.GetStrikethroughMap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextMapHelperGetStrikethroughMap()
+        {
+            tlog.Debug(tag, $"TextMapHelperGetStrikethroughMap START");
+
+            var strikethrough = new Tizen.NUI.Text.Strikethrough()
+            {
+                Enable = true,
+                Color = new Color("#3498DB"),
+                Height = 2.0f
+            };
+
+            using (PropertyMap map = TextMapHelper.GetStrikethroughMap(strikethrough))
+            {
+                var color = new Color();
+                map.Find(0, "enable").Get(out bool enable);
+                map.Find(0, "color").Get(color);
+                map.Find(0, "height").Get(out float height);
+
+                Assert.AreEqual(enable, strikethrough.Enable, "Should be equal!");
+                Assert.AreEqual(height, strikethrough.Height, "Should be equal!");
+                Assert.AreEqual(true, CheckColor(color, strikethrough.Color), "Should be true!");
+                color.Dispose();
+            }
+
+            tlog.Debug(tag, $"TextMapHelperGetStrikethroughMap END (OK)");
         }
 
         [Test]
@@ -499,7 +561,7 @@ namespace Tizen.NUI.Devel.Tests
         public void TextMapHelperGetFontSizeType()
         {
             tlog.Debug(tag, $"TextMapHelperGetFontSizeType START");
- 
+
             FontSizeType fontSizeType;
 
             fontSizeType = TextMapHelper.GetFontSizeType("PointSize");
@@ -510,7 +572,7 @@ namespace Tizen.NUI.Devel.Tests
 
             fontSizeType = TextMapHelper.GetFontSizeType("InvalidType");
             Assert.AreEqual(FontSizeType.PointSize, fontSizeType, "If invalid type, should be PointSize type!");
-      
+
             tlog.Debug(tag, $"TextMapHelperGetFontSizeType END (OK)");
         }
 
@@ -837,7 +899,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.AreEqual(camelCase, expectedResult, "Should be equal!");
 
             string emptyString = "";
-            expectedResult = TextMapHelper.GetCamelCase(emptyString);            
+            expectedResult = TextMapHelper.GetCamelCase(emptyString);
 
             Assert.AreEqual(emptyString, expectedResult, "Should be equal!");
 
@@ -1143,7 +1205,7 @@ namespace Tizen.NUI.Devel.Tests
             var intKey = 1;
             var intInvalidKey = 10;
             var value = "value";
-            
+
             using (var map = new PropertyMap())
             {
                 map.Add(intKey, value);
