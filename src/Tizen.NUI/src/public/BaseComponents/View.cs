@@ -51,6 +51,23 @@ namespace Tizen.NUI.BaseComponents
         // List of constraints
         private Constraint widthConstraint = null;
         private Constraint heightConstraint = null;
+
+        private Size2D internalMaximumSize = null;
+        private Size2D internalMinimumSize = null;
+        private Extents internalMargin = null;
+        private Extents internalPadding = null;
+        private Vector3 internalSizeModeFactor = null;
+        private Vector2 internalCellIndex = null;
+        private Color internalBackgroundColor = null;
+        private Color internalColor = null;
+        private Position internalPivotPoint = null;
+        private Position internalPosition = null;
+        private Position2D internalPosition2D = null;
+        private Vector3 internalScale = null;
+        private Size internalSize = null;
+        private Size2D internalSize2D = null;
+        private int layoutCount = 0;
+
         static View()
         {
             RegisterPropertyGroup(PositionProperty, positionPropertyGroup);

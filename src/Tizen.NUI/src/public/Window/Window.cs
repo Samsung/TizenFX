@@ -918,6 +918,8 @@ namespace Tizen.NUI
             if (null != view)
             {
                 view.InternalParent = this.GetRootLayer();
+
+                this.GetRootLayer().LayoutCount += view.LayoutCount;
             }
         }
 
@@ -933,6 +935,8 @@ namespace Tizen.NUI
             if (null != view)
             {
                 view.InternalParent = null;
+
+                this.GetRootLayer().LayoutCount -= view.LayoutCount;
             }
         }
 
