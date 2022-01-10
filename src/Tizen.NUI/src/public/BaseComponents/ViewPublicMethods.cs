@@ -151,6 +151,7 @@ namespace Tizen.NUI.BaseComponents
                     oldParent.Remove(child);
                 }
                 child.InternalParent = this;
+                LayoutCount += child.LayoutCount;
 
                 Interop.Actor.Add(SwigCPtr, View.getCPtr(child));
 
