@@ -309,19 +309,25 @@ namespace Tizen.NUI.Components
                         else if (source.IsGroupFooter(i))
                         {
                             //currentGroup.hasFooter = true;
-                            currentGroup.Count++;
-                            currentGroup.GroupSize += groupFooterSize;
-                            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
-                                currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
-                            Current += groupFooterSize;
+                            if (currentGroup != null)
+                            {
+                                currentGroup.Count++;
+                                currentGroup.GroupSize += groupFooterSize;
+                                if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                                    currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
+                                Current += groupFooterSize;
+                            }
                         }
                         else
                         {
-                            currentGroup.Count++;
-                            currentGroup.GroupSize += StepCandidate;
-                            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
-                                currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
-                            Current += StepCandidate;
+                            if (currentGroup != null)
+                            {
+                                currentGroup.Count++;
+                                currentGroup.GroupSize += StepCandidate;
+                                if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                                    currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
+                                Current += StepCandidate;
+                            }
                         }
                     }
                 }
