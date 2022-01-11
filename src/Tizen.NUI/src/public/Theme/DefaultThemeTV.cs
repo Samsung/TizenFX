@@ -16,6 +16,7 @@
  */
 #if PROFILE_TV
 using System.Collections.Generic;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
@@ -28,6 +29,10 @@ namespace Tizen.NUI
                 Id = DefaultId,
                 Version = DefaultVersion,
             };
+            // Don't connect control style changed signal as Default.
+            // Cuase current TizenTV don't use this signal.
+            // TODO : Maybe need to move this code some other position.
+            StyleManager.Instance.BlockControlStyleChangeSignalConnect = true;
             return theme;
         }
     }

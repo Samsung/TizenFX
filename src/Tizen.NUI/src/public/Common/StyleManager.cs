@@ -212,6 +212,24 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets or sets whether to block control style change signal connection when we create new Control, or not.<br />
+        /// This property is used from theme manager.<br />
+        /// Also, this property is used only from TV profile.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool BlockControlStyleChangeSignalConnect
+        {
+            get
+            {
+                return Interop.StyleManager.GetBlockControlStyleChangeSignalConnect(SwigCPtr);
+            }
+            set
+            {
+                Interop.StyleManager.SetBlockControlStyleChangeSignalConnect(SwigCPtr, value);
+            }
+        }
+
         internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
