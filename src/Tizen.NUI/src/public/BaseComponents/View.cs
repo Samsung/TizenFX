@@ -2596,7 +2596,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     PropertyMap bgMap = this.Background;
                     var temp = new PropertyValue(backgroundImageSynchronousLoading);
-                    bgMap.Add("synchronousLoading", temp);
+                    bgMap[ImageVisualProperty.SynchronousLoading] = temp;
                     temp.Dispose();
                     Background = bgMap;
                 }

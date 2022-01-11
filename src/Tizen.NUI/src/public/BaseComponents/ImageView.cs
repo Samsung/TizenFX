@@ -1076,36 +1076,53 @@ namespace Tizen.NUI.BaseComponents
         {
             base.ApplyCornerRadius();
 
-            UpdateImage(0, null);
+            if (backgroundExtraData == null) return;
+
+            // Apply corner radius to IMAGE.
+            var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
+            var cornerRadiusPolicyValue = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
+
+            // Make current propertyMap
+            PropertyMap currentPropertyMap = new PropertyMap();
+            currentPropertyMap[Visual.Property.CornerRadius] = cornerRadiusValue;
+            currentPropertyMap[Visual.Property.CornerRadiusPolicy] = cornerRadiusPolicyValue;
+            var temp = new PropertyValue(currentPropertyMap);
+
+            // Update corner radius properties to image by ActionUpdateProperty
+            this.DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, temp);
+
+            temp.Dispose();
+            currentPropertyMap.Dispose();
+            cornerRadiusValue.Dispose();
+            cornerRadiusPolicyValue.Dispose();
         }
 
         internal override void ApplyBorderline()
         {
             base.ApplyBorderline();
 
+            if (backgroundExtraData == null) return;
+
             // Apply borderline to IMAGE.
-            if (backgroundExtraData != null)
-            {
-                var borderlineColor = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+            var borderlineWidthValue = new PropertyValue(backgroundExtraData.BorderlineWidth);
+            var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+            var borderlineOffsetValue = new PropertyValue(backgroundExtraData.BorderlineOffset);
 
-                // Apply to the image visual
-                PropertyMap imageMap = new PropertyMap();
-                PropertyValue imageValue = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
-                if (imageValue.Get(imageMap) && !imageMap.Empty())
-                {
-                    imageMap[Visual.Property.BorderlineWidth] = new PropertyValue(backgroundExtraData.BorderlineWidth);
-                    imageMap[Visual.Property.BorderlineColor] = borderlineColor;
-                    imageMap[Visual.Property.BorderlineOffset] = new PropertyValue(backgroundExtraData.BorderlineOffset);
-                    var temp = new PropertyValue(imageMap);
-                    Tizen.NUI.Object.SetProperty(SwigCPtr, ImageView.Property.IMAGE, temp);
-                    temp.Dispose();
-                }
-                imageMap.Dispose();
-                imageValue.Dispose();
-                borderlineColor.Dispose();
-            }
+            // Make current propertyMap
+            PropertyMap currentPropertyMap = new PropertyMap();
+            currentPropertyMap[Visual.Property.BorderlineWidth] = borderlineWidthValue;
+            currentPropertyMap[Visual.Property.BorderlineColor] = borderlineColorValue;
+            currentPropertyMap[Visual.Property.BorderlineOffset] = borderlineOffsetValue;
+            var temp = new PropertyValue(currentPropertyMap);
 
-            UpdateImage(0, null);
+            // Update borderline properties to image by ActionUpdateProperty
+            this.DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, temp);
+
+            temp.Dispose();
+            currentPropertyMap.Dispose();
+            borderlineWidthValue.Dispose();
+            borderlineColorValue.Dispose();
+            borderlineOffsetValue.Dispose();
         }
 
         internal ResourceLoadingStatusType GetResourceStatus()
