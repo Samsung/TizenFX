@@ -205,7 +205,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void NotifyDataSetChanged()
         {
-            Initialize(ItemsView);
+            if (ItemsView != null)
+            {
+                Initialize(ItemsView);
+            }
         }
 
         /// <summary>
