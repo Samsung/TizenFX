@@ -26,7 +26,7 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
     [ProvideCompiledAttribute("Tizen.NUI.Xaml.Core.XamlC.PointSizeTypeConverter")]
     public class PointSizeTypeConverter : TypeConverter
