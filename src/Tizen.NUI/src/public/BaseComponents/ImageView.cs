@@ -1233,13 +1233,12 @@ namespace Tizen.NUI.BaseComponents
                 // Unregist and dettach Process only if previous resourceUrl was not empty
                 string currentResourceUrl = "";
                 PropertyValue currentResourceUrlValue = _imagePropertyMap?.Find(ImageVisualProperty.URL);
-                if((currentResourceUrlValue?.Get(out currentResourceUrl) ?? false) && string.IsNullOrEmpty(currentResourceUrl))
+                if((currentResourceUrlValue?.Get(out currentResourceUrl) ?? false) && !string.IsNullOrEmpty(currentResourceUrl))
                 {
-                    PropertyValue resourceUrl = new PropertyValue(_resourceUrl);
-                    PropertyMap imageMap = new PropertyMap();
-                    imageMap.Insert(ImageVisualProperty.URL, resourceUrl);
-                    PropertyValue setValue = new PropertyValue(imageMap);
-                    SetProperty(ImageView.Property.IMAGE, setValue);
+                    PropertyValue emptyValue = new PropertyValue();
+
+                    // Remove current registed Image.
+                    SetProperty(ImageView.Property.IMAGE, emptyValue);
 
                     // Image visual is not exist anymore. We should ignore lazy UpdateImage
                     _imagePropertyUpdatedFlag = false;
@@ -1249,11 +1248,9 @@ namespace Tizen.NUI.BaseComponents
                         _imagePropertyUpdateProcessAttachedFlag = false;
                     }
                     // Update resourceUrl as null
-                    _imagePropertyMap[ImageVisualProperty.URL] = resourceUrl;
+                    _imagePropertyMap[ImageVisualProperty.URL] = emptyValue;
 
-                    resourceUrl?.Dispose();
-                    setValue?.Dispose();
-                    imageMap?.Dispose();
+                    emptyValue?.Dispose();
                 }
                 return;
             }
