@@ -515,6 +515,7 @@ namespace Tizen.NUI.Components
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
+            if (colView == null) return;
 
             if (!IsInitialized ||
                 (colView.SizingStrategy == ItemSizingStrategy.MeasureFirst &&
@@ -553,6 +554,7 @@ namespace Tizen.NUI.Components
         {
             // Insert Single item.
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             if (isSourceEmpty)
             {
@@ -708,6 +710,7 @@ namespace Tizen.NUI.Components
         {
              // Insert Group
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             if (isSourceEmpty)
             {
@@ -865,6 +868,7 @@ namespace Tizen.NUI.Components
         {
             // Remove Single
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -993,6 +997,7 @@ namespace Tizen.NUI.Components
         {
             // Remove Group
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -1101,6 +1106,7 @@ namespace Tizen.NUI.Components
         {
             // Reorder Single
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -1174,6 +1180,7 @@ namespace Tizen.NUI.Components
         {
             // Reorder Groups
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -1289,6 +1296,7 @@ namespace Tizen.NUI.Components
             if (source == null) throw new ArgumentNullException(nameof(source));
             IGroupableItemSource gSource = source as IGroupableItemSource;
             if (gSource == null)throw new Exception("Source is not group!");
+            if (colView == null) return;
 
             // Get the first Visible Position to adjust.
             /*

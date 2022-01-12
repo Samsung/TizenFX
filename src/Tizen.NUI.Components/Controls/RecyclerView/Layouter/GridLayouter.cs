@@ -502,6 +502,7 @@ namespace Tizen.NUI.Components
         {
             // Insert Single item.
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
             if (isSourceEmpty)
             {
                 Initialize(colView);
@@ -653,6 +654,7 @@ namespace Tizen.NUI.Components
         {
              // Insert Group
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
             if (isSourceEmpty)
             {
                 Initialize(colView);
@@ -798,6 +800,7 @@ namespace Tizen.NUI.Components
         {
             // Remove Single
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             // Will be null if not a group.
             float currentSize = 0;
@@ -931,6 +934,7 @@ namespace Tizen.NUI.Components
         {
             // Remove Group
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -1031,6 +1035,7 @@ namespace Tizen.NUI.Components
         {
             // Reorder Single
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -1096,6 +1101,7 @@ namespace Tizen.NUI.Components
         {
             // Reorder Groups
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
