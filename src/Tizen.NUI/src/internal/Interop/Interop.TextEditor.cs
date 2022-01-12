@@ -346,6 +346,10 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_PasteText")]
             public static extern void PasteText(global::System.Runtime.InteropServices.HandleRef textEditorRef);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_STRIKETHROUGH_get")]
+            public static extern int StrikethroughGet();
+
         }
     }
 }

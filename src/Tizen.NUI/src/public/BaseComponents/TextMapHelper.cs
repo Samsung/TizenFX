@@ -230,6 +230,49 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// This method converts a Strikethrough struct to a PropertyMap and returns it.
+        /// The returned map can be used for set Strikethrough PropertyMap in the SetStrikethrough method.
+        /// <param name="strikethrough">The Strikethrough struct value.</param>
+        /// <returns> A PropertyMap for Strikethrough property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetStrikethroughMap(Strikethrough strikethrough)
+        {
+            var map = new PropertyMap();
+
+            map.Add("enable", strikethrough.Enable);
+
+            if (strikethrough.Color != null)
+                map.Add("color", strikethrough.Color);
+
+            if (strikethrough.Height != null)
+                map.Add("height", (float)strikethrough.Height);
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a Strikethrough map to a struct and returns it.
+        /// The returned struct can be returned to the user as a Strikethrough in the GetUnderline method.
+        /// <param name="map">The Strikethrough PropertyMap.</param>
+        /// <returns> A Strikethrough struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Strikethrough GetStrikethroughStruct(PropertyMap map)
+        {
+            var strikethrough = new Strikethrough();
+            if (null != map)
+            {
+                strikethrough.Enable = GetBoolFromMap(map, "enable", false);
+                strikethrough.Color = GetColorFromMap(map, "color");
+                strikethrough.Height = GetFloatFromMap(map, "height", 0.0f);
+            }
+
+            return strikethrough;
+        }
+
+
+        /// <summary>
         /// This method converts a Underline struct to a PropertyMap and returns it.
         /// The returned map can be used for set Underline PropertyMap in the SetUnderline method.
         /// <param name="underline">The Underline struct value.</param>
@@ -555,7 +598,7 @@ namespace Tizen.NUI.BaseComponents
             var selectionHandleImage = new SelectionHandleImage();
             if (null != leftImageMap)
                 selectionHandleImage.LeftImageUrl = GetStringFromMap(leftImageMap, "filename", defaultValue);
-            
+
             if (null != rightImageMap)
                 selectionHandleImage.RightImageUrl = GetStringFromMap(rightImageMap, "filename", defaultValue);
 
