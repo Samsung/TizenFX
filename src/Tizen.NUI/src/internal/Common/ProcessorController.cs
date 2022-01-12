@@ -49,7 +49,6 @@ namespace Tizen.NUI
         internal delegate void ProcessorEventHandler();
 
         private ProcessorEventHandler processorCallback = null;
-        private bool awaken = false;
 
         public event EventHandler ProcessorOnceEvent;
         public event EventHandler ProcessorEvent;
@@ -69,7 +68,6 @@ namespace Tizen.NUI
 
         public void Process()
         {
-            awaken = false;
             ProcessorOnceEvent?.Invoke(this, null);
             ProcessorOnceEvent = null;
             ProcessorEvent?.Invoke(this, null);
@@ -89,19 +87,6 @@ namespace Tizen.NUI
             GC.SuppressFinalize(this);
 
             base.Dispose(type);
-        }
-
-        /// <summary>
-        /// Awake ProcessorController. It will call ProcessController.processorCallback hardly
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Awake()
-        {
-            if(!awaken)
-            {
-                Interop.ProcessorController.Awake(SwigCPtr);
-                awaken = true;
-            }
         }
     } // class ProcessorController
 } // namespace Tizen.NUI
