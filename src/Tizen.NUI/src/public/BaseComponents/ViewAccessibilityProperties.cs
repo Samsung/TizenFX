@@ -118,6 +118,26 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Controls whether the view is hidden from the AT-SPI tree.
+        /// </summary>
+        /// <remarks>
+        /// False by default. Hiding an object means that any AT-SPI clients are not able to see it.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool AccessibilityHidden
+        {
+            get
+            {
+                return (bool)GetValue(AccessibilityHiddenProperty);
+            }
+            set
+            {
+                SetValue(AccessibilityHiddenProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a value that allows the automation framework to find and interact with this element.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

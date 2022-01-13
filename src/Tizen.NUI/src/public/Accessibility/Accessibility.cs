@@ -38,11 +38,29 @@ namespace Tizen.NUI.Accessibility
             dummy = new View();
             dummy.Name = "dali-atspi-singleton";
         }
+
+        static Accessibility()
+        {
+            enabledSignalHandler = () =>
+            {
+                Enabled?.Invoke(typeof(Accessibility), EventArgs.Empty);
+            };
+
+            disabledSignalHandler = () =>
+            {
+                Disabled?.Invoke(typeof(Accessibility), EventArgs.Empty);
+            };
+
+            Interop.Accessibility.RegisterEnabledDisabledSignalHandler(enabledSignalHandler, disabledSignalHandler);
+        }
+
         /// <summary>
         /// destructor. This is HiddenAPI. recommended not to use in public.
         /// </summary>
         ~Accessibility()
         {
+            Interop.Accessibility.RegisterEnabledDisabledSignalHandler(null, null);
+
             Tizen.Log.Debug("NUI", $"Accessibility is destroyed\n");
         }
         #endregion Constructor, Destructor, Dispose
@@ -67,7 +85,7 @@ namespace Tizen.NUI.Accessibility
         /// </remarks>
         /// This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool Enabled
+        public static bool IsEnabled
         {
             get
             {
@@ -285,6 +303,21 @@ namespace Tizen.NUI.Accessibility
             add => sayFinishedEventHandler += value;
             remove => sayFinishedEventHandler -= value;
         }
+
+        /// <summary>
+        /// Triggered whenever the value of IsEnabled would change from false to true
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static event EventHandler Enabled;
+
+        /// <summary>
+        /// Triggered whenever the value of IsEnabled would change from true to false
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static event EventHandler Disabled;
+
         #endregion Event, Enum, Struct, ETC
 
 
@@ -319,6 +352,10 @@ namespace Tizen.NUI.Accessibility
         private delegate void SayFinishedEventCallbackType(int result);
 
         private SayFinishedEventCallbackType callback = null;
+
+        private static Interop.Accessibility.EnabledDisabledSignalHandler enabledSignalHandler = null;
+
+        private static Interop.Accessibility.EnabledDisabledSignalHandler disabledSignalHandler = null;
 
         private void SayFinishedEventCallback(int result)
         {

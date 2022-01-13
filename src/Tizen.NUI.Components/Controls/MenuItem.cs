@@ -236,5 +236,15 @@ namespace Tizen.NUI.Components
         {
             Layout = new AbsoluteLayout();
         }
+
+        /// <summary>
+        /// Initialize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.MenuItem);
+        }
     }
 }

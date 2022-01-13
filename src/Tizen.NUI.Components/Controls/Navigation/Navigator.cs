@@ -231,6 +231,9 @@ namespace Tizen.NUI.Components
                    topPage.SetVisible(false);
                 }
 
+                // Need to update Content of the new page
+                ShowContentOfPage(page);
+
                 //Invoke Page events
                 page.InvokeAppeared();
                 topPage.InvokeDisappeared();
@@ -280,6 +283,9 @@ namespace Tizen.NUI.Components
             {
                 Remove(topPage);
                 topPage.SetVisible(true);
+
+                // Need to update Content of the new page
+                ShowContentOfPage(newTopPage);
 
                 //Invoke Page events
                 newTopPage.InvokeAppeared();
@@ -357,11 +363,18 @@ namespace Tizen.NUI.Components
                 newAnimation.EndAction = Animation.EndActions.StopFinal;
                 newAnimation.Finished += (object sender, EventArgs e) =>
                 {
+                    // Need to update Content of the new page
+                    ShowContentOfPage(page);
+
                     //Invoke Page events
                     page.InvokeAppeared();
                     NotifyAccessibilityStatesChangeOfPages(curTop, page);
                 };
                 newAnimation.Play();
+            }
+            else
+            {
+                ShowContentOfPage(page);
             }
         }
 
@@ -431,6 +444,9 @@ namespace Tizen.NUI.Components
                 newAnimation.EndAction = Animation.EndActions.StopFinal;
                 newAnimation.Finished += (object sender, EventArgs e) =>
                 {
+                    // Need to update Content of the new page
+                    ShowContentOfPage(newTop);
+
                     //Invoke Page events
                     newTop.InvokeAppeared();
                     NotifyAccessibilityStatesChangeOfPages(curTop, newTop);
@@ -520,6 +536,8 @@ namespace Tizen.NUI.Components
             //TODO: The following transition codes will be replaced with view transition.
             InitializeAnimation();
 
+            ShowContentOfPage(page);
+
             if (index == PageCount)
             {
                 page.Opacity = 1.0f;
@@ -585,6 +603,8 @@ namespace Tizen.NUI.Components
 
             //TODO: The following transition codes will be replaced with view transition.
             InitializeAnimation();
+
+            HideContentOfPage(page);
 
             if ((page == Peek()) && (PageCount >= 2))
             {
@@ -827,14 +847,14 @@ namespace Tizen.NUI.Components
                 View curHighlightedView = Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView();
                 if (curHighlightedView != null)
                 {
-                    curHighlightedView.NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, false);
+                    curHighlightedView.NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, AccessibilityStatesNotifyMode.Single);
                 }
             }
 
             if (appearedPage != null)
             {
                 appearedPage.RegisterDefaultLabel();
-                appearedPage.NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, false);
+                appearedPage.NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, AccessibilityStatesNotifyMode.Single);
             }
         }
 
@@ -858,6 +878,26 @@ namespace Tizen.NUI.Components
                 newAnimation.Stop();
                 newAnimation.Clear();
                 newAnimation = null;
+            }
+        }
+
+        // Show and Register Content of Page to Accessibility bridge
+        private void ShowContentOfPage(Page page)
+        {
+            View content = (page is DialogPage) ? (page as DialogPage)?.Content : (page as ContentPage)?.Content;
+            if (content != null)
+            {
+                content.Show(); // Calls RegisterDefaultLabel()
+            }
+        }
+
+        // Hide and Remove Content of Page from Accessibility bridge
+        private void HideContentOfPage(Page page)
+        {
+            View content = (page is DialogPage) ? (page as DialogPage)?.Content : (page as ContentPage)?.Content;
+            if (content != null)
+            {
+                content.Hide(); // Calls UnregisterDefaultLabel()
             }
         }
     }
