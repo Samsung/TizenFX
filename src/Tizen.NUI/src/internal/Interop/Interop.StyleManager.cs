@@ -57,6 +57,13 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_GetBrokenImageUrl")]
             public static extern string GetBrokenImageUrl(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_EnableControlStyleChangeSignals")]
+            public static extern void EnableControlStyleChangeSignals(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_StyleManager_IsControlStyleChangeSignalsEnabled")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool IsControlStyleChangeSignalsEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }

@@ -212,6 +212,24 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Gets or sets whether to use control style change signal connection when we create new Control, or not.<br />
+        /// This property is used from theme manager.<br />
+        /// Also, this property is used only from TV profile.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableControlStyleChangeSignals
+        {
+            get
+            {
+                return Interop.StyleManager.IsControlStyleChangeSignalsEnabled(SwigCPtr);
+            }
+            set
+            {
+                Interop.StyleManager.EnableControlStyleChangeSignals(SwigCPtr, value);
+            }
+        }
+
         internal StyleManager(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }

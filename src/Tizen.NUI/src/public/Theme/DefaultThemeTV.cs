@@ -28,6 +28,10 @@ namespace Tizen.NUI
                 Id = DefaultId,
                 Version = DefaultVersion,
             };
+            // Don't connect control style changed signal as Default.
+            // Cause current TizenTV don't use this signal.
+            // TODO : Maybe need to move this code some other position.
+            StyleManager.Instance.EnableControlStyleChangeSignals = false;
             return theme;
         }
     }
