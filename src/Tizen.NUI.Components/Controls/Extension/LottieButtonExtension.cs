@@ -79,7 +79,7 @@ namespace Tizen.NUI.Components.Extension
         internal static void UpdateLottieView(Button button, ControlState previousState, LottieAnimationView lottieView)
         {
             var lottieStyle = ((ILottieButtonStyle)button.Style);
-            if (lottieStyle.PlayRange != null && lottieStyle.PlayRange.GetValue(button.ControlState, out var result))
+            if (lottieStyle != null && lottieStyle.PlayRange != null && lottieStyle.PlayRange.GetValue(button.ControlState, out var result))
             {
                 result.Show(lottieView, !previousState.Contains(ControlState.Pressed));
             }
