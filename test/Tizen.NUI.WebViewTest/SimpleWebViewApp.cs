@@ -234,6 +234,7 @@ namespace Tizen.NUI.WebViewTest
             simpleWebView.ConsoleMessageReceived += OnConsoleMessageReceived;
             simpleWebView.CertificateConfirmed += OnCertificateConfirmed;
             simpleWebView.ResponsePolicyDecided += OnResponsePolicyDecided;
+            simpleWebView.NavigationPolicyDecided += OnNavigationPolicyDecided;
             GetDefaultWindow().Add(simpleWebView);
 
             GetDefaultWindow().KeyEvent += Instance_KeyEvent;
@@ -543,7 +544,25 @@ namespace Tizen.NUI.WebViewTest
             e.Certificate.Allow(true);
         }
 
-        private void OnResponsePolicyDecided(object sender, WebViewResponsePolicyDecidedEventArgs e)
+        private void OnNavigationPolicyDecided(object sender, WebViewPolicyDecidedEventArgs e)
+        {
+            Log.Info("WebView", $"------------response policy decided, Url: {e.ResponsePolicyDecisionMaker.Url}-------");
+            Log.Info("WebView", $"------------response policy decided, Cookie: {e.ResponsePolicyDecisionMaker.Cookie}-------");
+            Log.Info("WebView", $"------------response policy decided, PolicyDecisionType: {e.ResponsePolicyDecisionMaker.PolicyDecisionType}-------");
+            Log.Info("WebView", $"------------response policy decided, ResponseMime: {e.ResponsePolicyDecisionMaker.ResponseMime}-------");
+            Log.Info("WebView", $"------------response policy decided, ResponseStatusCode: {e.ResponsePolicyDecisionMaker.ResponseStatusCode}-------");
+            Log.Info("WebView", $"------------response policy decided, DecisionNavigationType: {e.ResponsePolicyDecisionMaker.DecisionNavigationType}-------");
+            Log.Info("WebView", $"------------response policy decided, Scheme: {e.ResponsePolicyDecisionMaker.Scheme}-------");
+            if (e.ResponsePolicyDecisionMaker.Frame != null)
+            {
+                Log.Info("WebView", $"------------response policy decided, Frame.IsMainFrame: {e.ResponsePolicyDecisionMaker.Frame.IsMainFrame}-------");
+            }
+            //e.ResponsePolicyDecisionMaker.Ignore();
+            //e.ResponsePolicyDecisionMaker.Suspend();
+            //e.ResponsePolicyDecisionMaker.Use();
+        }
+
+        private void OnResponsePolicyDecided(object sender, WebViewPolicyDecidedEventArgs e)
         {
             Log.Info("WebView", $"------------response policy decided, Url: {e.ResponsePolicyDecisionMaker.Url}-------");
             Log.Info("WebView", $"------------response policy decided, Cookie: {e.ResponsePolicyDecisionMaker.Cookie}-------");
