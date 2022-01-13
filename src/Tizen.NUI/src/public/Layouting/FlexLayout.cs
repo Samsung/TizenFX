@@ -670,7 +670,7 @@ namespace Tizen.NUI
                                     new LayoutLength(Padding.Top + Padding.Bottom),
                                     new LayoutLength(child.HeightSpecification));
 
-            childLayout.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
+            childLayout?.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
             measureSize.width = childLayout.MeasuredWidth.Size.AsRoundedValue();
             measureSize.height = childLayout.MeasuredHeight.Size.AsRoundedValue();
