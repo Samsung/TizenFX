@@ -24,9 +24,9 @@ namespace Tizen.NUI
     /// Event arguments that passed via the WebView.ResponsePolicyDecided.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class WebViewResponsePolicyDecidedEventArgs : EventArgs
+    public class WebViewPolicyDecidedEventArgs : EventArgs
     {
-        internal WebViewResponsePolicyDecidedEventArgs(WebPolicyDecisionMaker maker)
+        internal WebViewPolicyDecidedEventArgs(WebPolicyDecisionMaker maker)
         {
             ResponsePolicyDecisionMaker = maker;
         }

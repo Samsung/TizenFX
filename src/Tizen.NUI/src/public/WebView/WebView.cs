@@ -35,28 +35,28 @@ namespace Tizen.NUI.BaseComponents
         private bool cursorEnabledByClient;
 
         private EventHandler<WebViewPageLoadEventArgs> pageLoadStartedEventHandler;
-        private WebViewPageLoadCallbackDelegate pageLoadStartedCallback;
+        private WebViewPageLoadCallback pageLoadStartedCallback;
 
         private EventHandler<WebViewPageLoadEventArgs> pageLoadingEventHandler;
-        private WebViewPageLoadCallbackDelegate pageLoadingCallback;
+        private WebViewPageLoadCallback pageLoadingCallback;
 
         private EventHandler<WebViewPageLoadEventArgs> pageLoadFinishedEventHandler;
-        private WebViewPageLoadCallbackDelegate pageLoadFinishedCallback;
+        private WebViewPageLoadCallback pageLoadFinishedCallback;
 
         private EventHandler<WebViewPageLoadErrorEventArgs> pageLoadErrorEventHandler;
-        private WebViewPageLoadErrorCallbackDelegate pageLoadErrorCallback;
+        private WebViewPageLoadErrorCallback pageLoadErrorCallback;
 
         private EventHandler<WebViewScrollEdgeReachedEventArgs> scrollEdgeReachedEventHandler;
-        private WebViewScrollEdgeReachedCallbackDelegate scrollEdgeReachedCallback;
+        private WebViewScrollEdgeReachedCallback scrollEdgeReachedCallback;
 
         private EventHandler<WebViewUrlChangedEventArgs> urlChangedEventHandler;
-        private WebViewUrlChangedCallbackDelegate urlChangedCallback;
+        private WebViewUrlChangedCallback urlChangedCallback;
 
         private EventHandler<WebViewFormRepostPolicyDecidedEventArgs> formRepostPolicyDecidedEventHandler;
-        private WebViewFormRepostPolicyDecidedCallbackDelegate formRepostPolicyDecidedCallback;
+        private WebViewFormRepostPolicyDecidedCallback formRepostPolicyDecidedCallback;
 
         private EventHandler<EventArgs> frameRenderedEventHandler;
-        private WebViewFrameRenderedCallbackDelegate frameRenderedCallback;
+        private WebViewFrameRenderedCallback frameRenderedCallback;
 
         private ScreenshotAcquiredCallback screenshotAcquiredCallback;
         private readonly WebViewScreenshotAcquiredProxyCallback screenshotAcquiredProxyCallback;
@@ -64,26 +64,29 @@ namespace Tizen.NUI.BaseComponents
         private HitTestFinishedCallback hitTestFinishedCallback;
         private readonly WebViewHitTestFinishedProxyCallback hitTestFinishedProxyCallback;
 
-        private EventHandler<WebViewResponsePolicyDecidedEventArgs> responsePolicyDecidedEventHandler;
-        private WebViewResponsePolicyDecidedCallbackDelegate responsePolicyDecidedCallback;
+        private EventHandler<WebViewPolicyDecidedEventArgs> responsePolicyDecidedEventHandler;
+        private WebViewPolicyDecidedCallback responsePolicyDecidedCallback;
+
+        private EventHandler<WebViewPolicyDecidedEventArgs> navigationPolicyDecidedEventHandler;
+        private WebViewPolicyDecidedCallback navigationPolicyDecidedCallback;
 
         private EventHandler<WebViewCertificateReceivedEventArgs> certificateConfirmedEventHandler;
-        private WebViewCertificateReceivedCallbackDelegate certificateConfirmedCallback;
+        private WebViewCertificateReceivedCallback certificateConfirmedCallback;
 
         private EventHandler<WebViewCertificateReceivedEventArgs> sslCertificateChangedEventHandler;
-        private WebViewCertificateReceivedCallbackDelegate sslCertificateChangedCallback;
+        private WebViewCertificateReceivedCallback sslCertificateChangedCallback;
 
         private EventHandler<WebViewHttpAuthRequestedEventArgs> httpAuthRequestedEventHandler;
-        private WebViewHttpAuthRequestedCallbackDelegate httpAuthRequestedCallback;
+        private WebViewHttpAuthRequestedCallback httpAuthRequestedCallback;
 
         private EventHandler<WebViewConsoleMessageReceivedEventArgs> consoleMessageReceivedEventHandler;
-        private WebViewConsoleMessageReceivedCallbackDelegate consoleMessageReceivedCallback;
+        private WebViewConsoleMessageReceivedCallback consoleMessageReceivedCallback;
 
         private EventHandler<WebViewContextMenuShownEventArgs> contextMenuShownEventHandler;
-        private WebViewContextMenuShownCallbackDelegate contextMenuShownCallback;
+        private WebViewContextMenuShownCallback contextMenuShownCallback;
 
         private EventHandler<WebViewContextMenuHiddenEventArgs> contextMenuHiddenEventHandler;
-        private WebViewContextMenuHiddenCallbackDelegate contextMenuHiddenCallback;
+        private WebViewContextMenuHiddenCallback contextMenuHiddenCallback;
 
         private PlainTextReceivedCallback plainTextReceivedCallback;
 
@@ -235,22 +238,22 @@ namespace Tizen.NUI.BaseComponents
         public delegate void PlainTextReceivedCallback(string plainText);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewPageLoadCallbackDelegate(string pageUrl);
+        private delegate void WebViewPageLoadCallback(string pageUrl);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewPageLoadErrorCallbackDelegate(IntPtr error);
+        private delegate void WebViewPageLoadErrorCallback(IntPtr error);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewScrollEdgeReachedCallbackDelegate(int edge);
+        private delegate void WebViewScrollEdgeReachedCallback(int edge);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewUrlChangedCallbackDelegate(string pageUrl);
+        private delegate void WebViewUrlChangedCallback(string pageUrl);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewFormRepostPolicyDecidedCallbackDelegate(IntPtr maker);
+        private delegate void WebViewFormRepostPolicyDecidedCallback(IntPtr maker);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewFrameRenderedCallbackDelegate();
+        private delegate void WebViewFrameRenderedCallback();
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewScreenshotAcquiredProxyCallback(IntPtr data);
@@ -259,22 +262,22 @@ namespace Tizen.NUI.BaseComponents
         private delegate void WebViewHitTestFinishedProxyCallback(IntPtr data);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewResponsePolicyDecidedCallbackDelegate(IntPtr maker);
+        private delegate void WebViewPolicyDecidedCallback(IntPtr maker);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewCertificateReceivedCallbackDelegate(IntPtr certificate);
+        private delegate void WebViewCertificateReceivedCallback(IntPtr certificate);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewHttpAuthRequestedCallbackDelegate(IntPtr handler);
+        private delegate void WebViewHttpAuthRequestedCallback(IntPtr handler);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewConsoleMessageReceivedCallbackDelegate(IntPtr message);
+        private delegate void WebViewConsoleMessageReceivedCallback(IntPtr message);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewContextMenuShownCallbackDelegate(IntPtr menu);
+        private delegate void WebViewContextMenuShownCallback(IntPtr menu);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewContextMenuHiddenCallbackDelegate(IntPtr menu);
+        private delegate void WebViewContextMenuHiddenCallback(IntPtr menu);
 
         /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
@@ -465,7 +468,7 @@ namespace Tizen.NUI.BaseComponents
         /// This signal is emitted when response policy would be decided.<br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<WebViewResponsePolicyDecidedEventArgs> ResponsePolicyDecided
+        public event EventHandler<WebViewPolicyDecidedEventArgs> ResponsePolicyDecided
         {
             add
             {
@@ -480,6 +483,29 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 responsePolicyDecidedEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// Event for the NavigationPolicyDecided signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when response policy would be decided.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewPolicyDecidedEventArgs> NavigationPolicyDecided
+        {
+            add
+            {
+                if (navigationPolicyDecidedEventHandler == null)
+                {
+                    navigationPolicyDecidedCallback = OnNavigationPolicyDecided;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(navigationPolicyDecidedCallback);
+                    Interop.WebView.RegisterNavigationPolicyDecidedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                navigationPolicyDecidedEventHandler += value;
+            }
+            remove
+            {
+                navigationPolicyDecidedEventHandler -= value;
             }
         }
 
@@ -2107,7 +2133,12 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnResponsePolicyDecided(IntPtr maker)
         {
-            responsePolicyDecidedEventHandler?.Invoke(this, new WebViewResponsePolicyDecidedEventArgs(new WebPolicyDecisionMaker(maker, true)));
+            responsePolicyDecidedEventHandler?.Invoke(this, new WebViewPolicyDecidedEventArgs(new WebPolicyDecisionMaker(maker, true)));
+        }
+
+        private void OnNavigationPolicyDecided(IntPtr maker)
+        {
+            navigationPolicyDecidedEventHandler?.Invoke(this, new WebViewPolicyDecidedEventArgs(new WebPolicyDecisionMaker(maker, true)));
         }
 
         private void OnCertificateConfirmed(IntPtr certificate)
