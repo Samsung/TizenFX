@@ -284,12 +284,19 @@ namespace Tizen.NUI.BaseComponents
             var map = new PropertyMap();
 
             map.Add("enable", underline.Enable);
+            map.Add("type", (int)underline.Type);
 
             if (underline.Color != null)
                 map.Add("color", underline.Color);
 
             if (underline.Height != null)
                 map.Add("height", (float)underline.Height);
+            
+            if (underline.DashWidth != null)
+                map.Add("dashWidth", (float)underline.DashWidth);
+
+            if (underline.DashGap != null)
+                map.Add("dashGap", (float)underline.DashGap);
 
             return map;
         }
@@ -307,8 +314,11 @@ namespace Tizen.NUI.BaseComponents
             if (null != map)
             {
                 underline.Enable = GetBoolFromMap(map, "enable", false);
+                underline.Type = (UnderlineType)GetIntFromMap(map, "type", 0);
                 underline.Color = GetColorFromMap(map, "color");
                 underline.Height = GetFloatFromMap(map, "height", 0.0f);
+                underline.DashWidth = GetNullableFloatFromMap(map, "dashWidth");
+                underline.DashGap = GetNullableFloatFromMap(map, "dashGap");
             }
 
             return underline;
@@ -667,6 +677,16 @@ namespace Tizen.NUI.BaseComponents
             return value;
         }
 
+        internal static int GetIntFromMap(PropertyMap map, string key, int defaultValue)
+        {
+            int value = defaultValue;
+            using (var propertyValue = map.Find(0, key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
+            return value;
+        }
+
         internal static float GetFloatFromMap(PropertyMap map, string key, float defaultValue)
         {
             float value = defaultValue;
@@ -732,6 +752,18 @@ namespace Tizen.NUI.BaseComponents
         internal static float? GetNullableFloatFromMap(PropertyMap map, int key)
         {
             using (var propertyValue = map.Find(key))
+            {
+                if (propertyValue == null)
+                    return null;
+
+                propertyValue.Get(out float value);
+                return value;
+            }
+        }
+
+        internal static float? GetNullableFloatFromMap(PropertyMap map, string key)
+        {
+            using (var propertyValue = map.Find(0, key))
             {
                 if (propertyValue == null)
                     return null;
