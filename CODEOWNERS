@@ -1,0 +1,22 @@
+# TizenFX Code Owners.
+# Add members who own directories and files for automatic Pull Request Reviewers.
+
+# NUI Code Owners List
+/src/Tizen.NUI/ @Samsung/nui
+/src/Tizen.NUI.Components/ @Samsung/nui
+/src/Tizen.NUI/src/public/BaseComponents/Text*.cs @wonst @Samsung/nui
+/src/Tizen.NUI/src/public/Xaml/ @AdunFang @Samsung/nui
+/src/Tizen.NUI/src/public/XamlBinding/ @AdunFang @Samsung/nui
+/src/Tizen.NUI/src/internal/Xaml/ @AdunFang @Samsung/nui
+/src/Tizen.NUI/src/internal/XamlBinding/ @AdunFang @Samsung/nui
+/src/Tizen.NUI/src/internal/EXaml/ @AdunFang @Samsung/nui
+/test/NUITestSample/ @Samsung/nui
+/test/NUITizenGallery/ @Samsung/nui
+/test/Tizen.NUI.ComponentApplication/ @Samsung/nui
+/test/Tizen.NUI.Samples/ @Samsung/nui
+/test/Tizen.NUI.SeamlessSamples/ @Samsung/nui
+/test/Tizen.NUI.Tests/ @Samsung/nui
+/test/Tizen.NUI.WebViewTest/ @Samsung/nui
+/test/Tizen.NUI.WindowSystem.Samples/ @Samsung/nui
+
+# Please Add more Code Owners below.
