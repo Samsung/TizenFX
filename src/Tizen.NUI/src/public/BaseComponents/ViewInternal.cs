@@ -1116,6 +1116,16 @@ namespace Tizen.NUI.BaseComponents
                 {
                     ThemeManager.ThemeChangedInternal -= OnThemeChanged;
                 }
+                if(widthConstraint != null)
+                {
+                    widthConstraint.Remove();
+                    widthConstraint.Dispose();
+                }
+                if(heightConstraint != null)
+                {
+                    heightConstraint.Remove();
+                    heightConstraint.Dispose();
+                }
             }
 
             //Release your own unmanaged resources here.

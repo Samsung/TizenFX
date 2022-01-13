@@ -1180,7 +1180,22 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.WIDTH_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)newValue));
+                if((ResizePolicyType)newValue == ResizePolicyType.KeepSizeFollowingParent)
+                {
+                    if(view.widthConstraint == null)
+                    {
+                        view.widthConstraint = new EqualConstraintWithParentFloat((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SIZE_WIDTH, View.Property.SIZE_WIDTH);
+                        view.widthConstraint.Apply();
+                    }
+                    Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.WIDTH_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)ResizePolicyType.FillToParent));
+                }
+                else
+                {
+                    view.widthConstraint?.Remove();
+                    view.widthConstraint?.Dispose();
+                    view.widthConstraint = null;
+                    Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.WIDTH_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)newValue));
+                }
                 // Match ResizePolicy to new Layouting.
                 // Parent relative policies can not be mapped at this point as parent size unknown.
                 switch ((ResizePolicyType)newValue)
@@ -1225,7 +1240,22 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.HEIGHT_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)newValue));
+                if((ResizePolicyType)newValue == ResizePolicyType.KeepSizeFollowingParent)
+                {
+                    if(view.heightConstraint == null)
+                    {
+                        view.heightConstraint = new EqualConstraintWithParentFloat((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SIZE_HEIGHT, View.Property.SIZE_HEIGHT);
+                        view.heightConstraint.Apply();
+                    }
+                    Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.HEIGHT_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)ResizePolicyType.FillToParent));
+                }
+                else
+                {
+                    view.heightConstraint?.Remove();
+                    view.heightConstraint?.Dispose();
+                    view.heightConstraint = null;
+                    Tizen.NUI.Object.SetProperty(view.swigCPtr, View.Property.HEIGHT_RESIZE_POLICY, new Tizen.NUI.PropertyValue((int)newValue));
+                }
                 // Match ResizePolicy to new Layouting.
                 // Parent relative policies can not be mapped at this point as parent size unknown.
                 switch ((ResizePolicyType)newValue)

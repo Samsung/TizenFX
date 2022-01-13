@@ -66,6 +66,10 @@ namespace Tizen.NUI.BaseComponents
         internal Size2D sizeSetExplicitly = new Size2D(); // Store size set by API, will be used in place of NaturalSize if not set.
         internal BackgroundExtraData backgroundExtraData;
 
+        // List of constraint
+        private Constraint widthConstraint = null;
+        private Constraint heightConstraint = null;
+
         static View() {}
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
