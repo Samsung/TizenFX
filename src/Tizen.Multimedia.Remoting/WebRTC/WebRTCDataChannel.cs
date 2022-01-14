@@ -134,8 +134,8 @@ namespace Tizen.Multimedia.Remoting
         private uint? _bufferThreshold;
         /// <summary>
         /// Gets or sets the threshold of data channel buffered amount.<br/>
-        /// If the amount of buffered data is lower than threshold value, <see cref="BufferUnderflow"/> will be occurred.<br/>
-        /// The default value is 0. and if threshold is 0, <see cref="BufferUnderflow"/> is not occurred.
+        /// If the amount of buffered data is lower than threshold value, <see cref="BufferedAmountLow"/> will be occurred.<br/>
+        /// The default value is 0. and if threshold is 0, <see cref="BufferedAmountLow"/> is not occurred.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public uint BufferedAmountLowThreshold

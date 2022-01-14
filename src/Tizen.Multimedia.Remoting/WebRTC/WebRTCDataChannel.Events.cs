@@ -139,7 +139,7 @@ namespace Tizen.Multimedia.Remoting
         /// If <see cref="BufferedAmountLowThreshold"/> is not set, this event will not occurred.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
-        public event EventHandler<EventArgs> BufferUnderflow
+        public event EventHandler<EventArgs> BufferedAmountLow
         {
             add
             {
