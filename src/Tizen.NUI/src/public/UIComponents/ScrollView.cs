@@ -1201,9 +1201,9 @@ namespace Tizen.NUI
             Interop.ScrollView.ScrollView_SetRulerY(swigCPtr, RulerPtr.getCPtr(ruler));
         }
 
-        internal void ApplyConstraintToChildren(SWIGTYPE_p_Dali__Constraint constraint)
+        internal void ApplyConstraintToChildren(Constraint constraint)
         {
-            Interop.ScrollView.ScrollView_ApplyConstraintToChildren(swigCPtr, SWIGTYPE_p_Dali__Constraint.getCPtr(constraint));
+            Interop.ScrollView.ScrollView_ApplyConstraintToChildren(swigCPtr, Constraint.getCPtr(constraint));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
