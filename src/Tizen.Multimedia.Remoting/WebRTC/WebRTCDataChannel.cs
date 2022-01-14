@@ -113,6 +113,24 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 9 </since_tizen>
         public string Label { get; }
 
+        /// <summary>
+        /// Gets the amount of buffered data.
+        /// </summary>
+        /// <value>The buffered amount in bytes.</value>
+        /// <since_tizen> 10 </since_tizen>
+        public uint BufferedAmount
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativeDataChannel.GetBufferedAmount(Handle, out uint amount).
+                    ThrowIfFailed("Failed to get buffered amount");
+
+                return amount;
+            }
+        }
+
         private uint? _bufferThreshold;
         /// <summary>
         /// Gets or sets the threshold of data channel buffered amount.<br/>
@@ -120,7 +138,7 @@ namespace Tizen.Multimedia.Remoting
         /// The default value is 0. and if threshold is 0, <see cref="BufferUnderflow"/> is not occurred.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
-        public uint BufferThreshold
+        public uint BufferedAmountLowThreshold
         {
             get
             {
