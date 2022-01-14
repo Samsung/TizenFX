@@ -147,7 +147,7 @@ namespace Tizen.Multimedia.Remoting
                 if (!_bufferThreshold.HasValue)
                 {
                     NativeDataChannel.GetBufferedAmountLowThreshold(Handle, out uint threshold).
-                        ThrowIfFailed("Failed to get buffer threshold value");
+                        ThrowIfFailed("Failed to get buffered amount low threshold value");
 
                     _bufferThreshold = threshold;
                 }
