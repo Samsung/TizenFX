@@ -58,40 +58,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-        internal override bool OnAccessibilityActivated()
-        {
-            if (!IsEnabled)
-            {
-                return false;
-            }
-
-            // Touch Down
-            IsPressed = true;
-            UpdateState();
-
-            // Touch Up
-            bool clicked = IsPressed && IsEnabled;
-            IsPressed = false;
-
-            if (IsSelectable)
-            {
-                //IsSelected = !IsSelected;
-            }
-            else
-            {
-                UpdateState();
-            }
-
-            if (clicked)
-            {
-                ClickedEventArgs eventArgs = new ClickedEventArgs();
-                OnClickedInternal(eventArgs);
-            }
-            return true;
-        }
-
-
-
         /// <summary>
         /// Called when the ViewItem need to be updated
         /// </summary>
