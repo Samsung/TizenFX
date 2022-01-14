@@ -21,7 +21,7 @@ using NativeWebRTC = Interop.NativeWebRTC;
 namespace Tizen.Multimedia.Remoting
 {
     /// <summary>
-    /// Represents a file source.
+    /// Represents a media source with contents read from a file.
     /// </summary>
     /// <remarks>
     /// Depending on where the source file is located either the media storage privilege (http://tizen.org/privilege/mediastorage) is required or<br/>
