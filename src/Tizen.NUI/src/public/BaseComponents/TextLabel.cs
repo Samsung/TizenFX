@@ -21,6 +21,8 @@ using System;
 using System.Globalization;
 using System.ComponentModel;
 using Tizen.NUI.Binding;
+using System.Runtime.InteropServices;
+using Tizen.NUI.Text;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -893,14 +895,17 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The text fit parameters.<br />
         /// The textFit map contains the following keys :<br />
-        /// - enable (bool type) : True to enable the text fit or false to disable(the default value is false)<br />
-        /// - minSize (float type) : Minimum Size for text fit(the default value is 10.f)<br />
-        /// - maxSize (float type) : Maximum Size for text fit(the default value is 100.f)<br />
-        /// - stepSize (float type) : Step Size for font increase(the default value is 1.f)<br />
-        /// - fontSize (string type) : The size type of font, You can choose between "pointSize" or "pixelSize". (the default value is "pointSize")<br />
+        /// <list type="table">
+        /// <item><term>enable (bool)</term><description>True to enable the text fit or false to disable (the default value is false)</description></item>
+        /// <item><term>minSize (float)</term><description>Minimum Size for text fit (the default value is 10.f)</description></item>
+        /// <item><term>maxSize (float)</term><description>Maximum Size for text fit (the default value is 100.f)</description></item>
+        /// <item><term>stepSize (float)</term><description>Step Size for font increase (the default value is 1.f)</description></item>
+        /// <item><term>fontSize (string)</term><description>The size type of font, You can choose between "pointSize" or "pixelSize". (the default value is "pointSize")</description></item>
+        /// </list>
         /// </summary>
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1721: Property names should not match get methods")]
         public PropertyMap TextFit
         {
             get
@@ -985,6 +990,18 @@ namespace Tizen.NUI.BaseComponents
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
                 selectorData?.Reset(this);
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+            if (this.HasBody())
+            {
+                if (textLabelTextFitChangedCallbackDelegate != null)
+                {
+                    TextFitChangedSignal().Disconnect(textLabelTextFitChangedCallbackDelegate);
+                    textLabelTextFitChangedCallbackDelegate = null;
+                }
             }
 
             base.Dispose(type);
@@ -1081,5 +1098,107 @@ namespace Tizen.NUI.BaseComponents
         {
             UnderlineColor = new Vector4(x, y, z, w);
         }
+
+
+        /// TextFit related codes
+        /// Note this codes are backpropagated from API 9
+
+        /// <summary>
+        /// Set TextFit to TextLabel. <br />
+        /// </summary>
+        /// <param name="textFit">The TextFit</param>
+        /// <remarks>
+        /// SetTextFit specifies the textFit of the text through <see cref="Tizen.NUI.Text.TextFit"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetTextFit method.
+        /// <code>
+        /// var textFit = new Tizen.NUI.Text.TextFit();
+        /// textFit.Enable = true;
+        /// textFit.MinSize = 10.0f;
+        /// textFit.MaxSize = 100.0f;
+        /// textFit.StepSize = 5.0f;
+        /// textFit.FontSizeType = FontSizeType.PointSize;
+        /// label.SetTextFit(textFit);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetTextFit(TextFit textFit)
+        {
+            using (var textFitMap = TextMapHelper.GetTextFitMap(textFit))
+            {
+                SetValue(TextFitProperty, textFitMap);
+            }
+        }
+
+        /// <summary>
+        /// Get TextFit from TextLabel. <br />
+        /// </summary>
+        /// <returns>The TextFit</returns>
+        /// <remarks>
+        /// TextFit is always returned based on PointSize. <br />
+        /// If the user sets FontSizeType to PixelSize, then MinSize, MaxSize, and StepSize are converted based on PointSize and returned. <br />
+        /// <see cref="Tizen.NUI.Text.TextFit"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextFit GetTextFit()
+        {
+            TextFit textFit;
+            using (var textFitMap = (PropertyMap)GetValue(TextFitProperty))
+            {
+                textFit = TextMapHelper.GetTextFitStruct(textFitMap);
+            }
+            return textFit;
+        }
+        
+        /// Text fit signals
+        
+        private EventHandler textLabelTextFitChangedEventHandler;
+        private TextFitChangedCallbackDelegate textLabelTextFitChangedCallbackDelegate;
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void TextFitChangedCallbackDelegate(IntPtr textLabel);
+
+        /// <summary>
+        /// An event for the TextFitChanged signal which can be used to subscribe or unsubscribe the event handler
+        /// provided by the user. The TextFitChanged signal is emitted when the text fit properties changes.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler TextFitChanged
+        {
+            add
+            {
+                if (textLabelTextFitChangedEventHandler == null)
+                {
+                    textLabelTextFitChangedCallbackDelegate = (OnTextFitChanged);
+                    TextFitChangedSignal().Connect(textLabelTextFitChangedCallbackDelegate);
+                }
+                textLabelTextFitChangedEventHandler += value;
+            }
+            remove
+            {
+                textLabelTextFitChangedEventHandler -= value;
+                if (textLabelTextFitChangedEventHandler == null && TextFitChangedSignal().Empty() == false)
+                {
+                    TextFitChangedSignal().Disconnect(textLabelTextFitChangedCallbackDelegate);
+                    textLabelTextFitChangedCallbackDelegate = null;
+                }
+            }
+        }
+
+        internal TextLabelSignal TextFitChangedSignal()
+        {
+            TextLabelSignal ret = new TextLabelSignal(Interop.TextLabel.TextFitChangedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        private void OnTextFitChanged(IntPtr textLabel)
+        {
+            // no data to be sent to the user, as in NUI there is no event provide old values.
+            textLabelTextFitChangedEventHandler?.Invoke(this, EventArgs.Empty);
+        }
+
+        /// TextFit related codes END
     }
 }

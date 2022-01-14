@@ -1864,6 +1864,28 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// Enumeration for the size type of font. <br />
+    /// </summary>
+    /// <remarks>
+    /// The size type of font used as a property of <see cref="Tizen.NUI.Text.TextFit"/>. <br />
+    /// </remarks>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum FontSizeType
+    {
+        /// <summary>
+        /// The PointSize.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        PointSize,
+
+        /// <summary>
+        /// The PixelSize.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        PixelSize
+    }
+
+    /// <summary>
     /// TODO This is to get TizenFX resource path. It needs to be fixed to use application framework API in the future.
     /// Internal use only. Do not open this API.
     /// </summary>
