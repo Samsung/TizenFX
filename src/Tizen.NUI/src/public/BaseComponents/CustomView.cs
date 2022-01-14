@@ -461,7 +461,17 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public virtual bool OnKeyboardEnter()
         {
-            return false;
+            using var key = new Key();
+
+            key.State = Key.StateType.Down;
+            key.KeyPressedName = "Return";
+
+            // Touch Down
+            OnKey(key);
+
+            // Touch Up
+            key.State = Key.StateType.Up;
+            return OnKey(key);
         }
 
         /// <summary>
@@ -576,7 +586,7 @@ namespace Tizen.NUI.BaseComponents
         /// <returns>True if this control can perform accessibility activation.</returns>
         internal virtual bool OnAccessibilityActivated()
         {
-            return false;
+            return OnKeyboardEnter();
         }
 
         /// <summary>
