@@ -1,0 +1,22 @@
+# TizenFX Code Owners.
+# Add members who own directories and files for automatic Pull Request Reviewers.
+
+# NUI Code Owners List
+/src/Tizen.NUI/ @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub @
+/src/Tizen.NUI.Components/ @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+/src/Tizen.NUI/src/public/BaseComponents/Text*.cs @wonrst @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+/src/Tizen.NUI/src/public/Xaml/ @AdunFang @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+/src/Tizen.NUI/src/public/XamlBinding/ @AdunFang @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+/src/Tizen.NUI/src/internal/Xaml/ @AdunFang @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+/src/Tizen.NUI/src/internal/XamlBinding/ @AdunFang @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+/src/Tizen.NUI/src/internal/EXaml/ @AdunFang @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+/test/NUITestSample/ @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+/test/NUITizenGallery/ @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+/test/Tizen.NUI.ComponentApplication/ @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+/test/Tizen.NUI.Samples/ @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+/test/Tizen.NUI.SeamlessSamples/ @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+/test/Tizen.NUI.Tests/ @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+/test/Tizen.NUI.WebViewTest/ @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+/test/Tizen.NUI.WindowSystem.Samples/ @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
+
+# Please Add more Code Owners below.
