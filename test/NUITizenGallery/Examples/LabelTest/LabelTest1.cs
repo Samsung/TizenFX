@@ -25,14 +25,14 @@ namespace NUITizenGallery
         private Window window;
         public void Activate()
         {
-            Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Activate()");
+            Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Activate()!!!");
 
             window = NUIApplication.GetDefaultWindow();
             window.GetDefaultNavigator().Push(new LabelTest1Page());
         }
         public void Deactivate()
         {
-            Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Deactivate()");
+            Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Deactivate()!!!");
             window.GetDefaultNavigator().Pop();
         }
     }
