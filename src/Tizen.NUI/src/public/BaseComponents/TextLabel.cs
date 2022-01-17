@@ -1027,16 +1027,6 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// SetStrikethrough specifies the strikethrough of the text through <see cref="Tizen.NUI.Text.Strikethrough"/>. <br />
         /// </remarks>
-        /// <example>
-        /// The following example demonstrates how to use the SetStrikethrough method.
-        /// <code>
-        /// var strikethrough = new Tizen.NUI.Text.Strikethrough();
-        /// strikethrough.Enable = true;
-        /// strikethrough.Color = new Color("#3498DB");
-        /// strikethrough.Height = 2.0f;
-        /// label.SetStrikethrough(strikethrough);
-        /// </code>
-        /// </example>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetStrikethrough(Strikethrough strikethrough)
         {
