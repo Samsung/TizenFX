@@ -4,7 +4,7 @@
 # NUI Code Owners List
 /src/Tizen.NUI/ @Samsung/nui
 /src/Tizen.NUI.Components/ @Samsung/nui
-/src/Tizen.NUI/src/public/BaseComponents/Text*.cs @wonst @Samsung/nui
+/src/Tizen.NUI/src/public/BaseComponents/Text*.cs @wonrst @Samsung/nui
 /src/Tizen.NUI/src/public/Xaml/ @AdunFang @Samsung/nui
 /src/Tizen.NUI/src/public/XamlBinding/ @AdunFang @Samsung/nui
 /src/Tizen.NUI/src/internal/Xaml/ @AdunFang @Samsung/nui
