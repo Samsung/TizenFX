@@ -2,5 +2,6 @@
 ## AssemblyName.dll TypeName             ##
 ## AssemblyName.dll TypeName.Preload()   ##
 ## The methods must not have parameters. ##
+## test.... please work!!
 ###########################################
 Tizen.NUI.dll Tizen.NUI.NUIApplication.Preload()
