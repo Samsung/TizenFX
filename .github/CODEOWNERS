@@ -2,21 +2,21 @@
 # Add members who own directories and files for automatic Pull Request Reviewers.
 
 # NUI Code Owners List
-/src/Tizen.NUI/ @Samsung/nui
-/src/Tizen.NUI.Components/ @Samsung/nui
-/src/Tizen.NUI/src/public/BaseComponents/Text*.cs @wonrst @Samsung/nui
-/src/Tizen.NUI/src/public/Xaml/ @AdunFang @Samsung/nui
-/src/Tizen.NUI/src/public/XamlBinding/ @AdunFang @Samsung/nui
-/src/Tizen.NUI/src/internal/Xaml/ @AdunFang @Samsung/nui
-/src/Tizen.NUI/src/internal/XamlBinding/ @AdunFang @Samsung/nui
-/src/Tizen.NUI/src/internal/EXaml/ @AdunFang @Samsung/nui
-/test/NUITestSample/ @Samsung/nui
-/test/NUITizenGallery/ @Samsung/nui
-/test/Tizen.NUI.ComponentApplication/ @Samsung/nui
-/test/Tizen.NUI.Samples/ @Samsung/nui
-/test/Tizen.NUI.SeamlessSamples/ @Samsung/nui
-/test/Tizen.NUI.Tests/ @Samsung/nui
-/test/Tizen.NUI.WebViewTest/ @Samsung/nui
-/test/Tizen.NUI.WindowSystem.Samples/ @Samsung/nui
+/src/Tizen.NUI/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/src/Tizen.NUI.Components/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/src/Tizen.NUI/src/public/BaseComponents/Text*.cs @wonrst @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/src/Tizen.NUI/src/public/Xaml/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/src/Tizen.NUI/src/public/XamlBinding/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/src/Tizen.NUI/src/internal/Xaml/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/src/Tizen.NUI/src/internal/XamlBinding/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/src/Tizen.NUI/src/internal/EXaml/ @AdunFang @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/test/NUITestSample/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/test/NUITizenGallery/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/test/Tizen.NUI.ComponentApplication/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/test/Tizen.NUI.Samples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/test/Tizen.NUI.SeamlessSamples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/test/Tizen.NUI.Tests/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/test/Tizen.NUI.WebViewTest/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/test/Tizen.NUI.WindowSystem.Samples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
 
 # Please Add more Code Owners below.
