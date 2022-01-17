@@ -2,7 +2,7 @@
 # Add members who own directories and files for automatic Pull Request Reviewers.
 
 # NUI Code Owners List
-/src/Tizen.NUI/ @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub @
+/src/Tizen.NUI/ @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
 /src/Tizen.NUI.Components/ @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
 /src/Tizen.NUI/src/public/BaseComponents/Text*.cs @wonrst @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
 /src/Tizen.NUI/src/public/Xaml/ @AdunFang @Samsung/nui @hyunjushin @dongsug-song @jaehyun0cho @everLEEst @Seoyeon2Kim @taehyub
