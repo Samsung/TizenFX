@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<View x:Class="NUITizenGallery.ListItemTitleView"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  Padding="5,5,5,5">
+
+    <View.Layout>
+        <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center" CellPadding="100,10" />
+    </View.Layout>
+
+    <TextLabel x:Name="TextLabelTitle" Text="Not set"/>
+    <View x:Name="ListItemView" BackgroundColor="#ff0000" Position2D="400, 0" Size2D="40, 40"/>
+</View>

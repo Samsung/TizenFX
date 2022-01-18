@@ -94,7 +94,7 @@ namespace Tizen.NUI
             else
             {
                 // If they have same parent, ready to compare!
-                if (parent1 == parent2)
+                if (parent1 == parent2 && comparison1 != null)
                 {
 
                     if (comparison1.GetType().FullName.Contains("Layer"))

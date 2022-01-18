@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     /// and action functions on Page.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public class AppBar : Control
+    public partial class AppBar : Control
     {
         private bool autoNavigationContent = true;
 
@@ -166,6 +166,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(NavigationContentProperty) as View;
+            }
+            set
+            {
+                SetValue(NavigationContentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private View InternalNavigationContent
+        {
+            get
+            {
                 return navigationContent;
             }
             set
@@ -200,6 +212,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(TitleProperty) as string;
+            }
+            set
+            {
+                SetValue(TitleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalTitle
+        {
+            get
+            {
                 return title;
             }
             set
@@ -225,6 +249,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public View TitleContent
+        {
+            get
+            {
+                return GetValue(TitleContentProperty) as View;
+            }
+            set
+            {
+                SetValue(TitleContentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private View InternalTitleContent
         {
             get
             {
@@ -325,6 +361,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(ActionContentProperty) as View;
+            }
+            set
+            {
+                SetValue(ActionContentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private View InternalActionContent
+        {
+            get
+            {
                 return actionContent;
             }
             set
@@ -380,6 +428,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public bool AutoNavigationContent
+        {
+            get
+            {
+                return (bool)GetValue(AutoNavigationContentProperty);
+            }
+            set
+            {
+                SetValue(AutoNavigationContentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalAutoNavigationContent
         {
             get
             {

@@ -15,13 +15,12 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+
 namespace Tizen.NUI
 {
-    using System;
-    using System.ComponentModel;
-
-    using Tizen.NUI.BaseComponents;
-
     /// <summary>
     /// FadeTransitionItem is an object to set Fade transition of a View that will appear or disappear.
     /// FadeTransitionItem object is required to be added to the TransitionSet to play.
@@ -32,10 +31,10 @@ namespace Tizen.NUI
         /// Creates an initialized fade.<br />
         /// </summary>
         /// <remarks>DurationmSeconds must be greater than zero.</remarks>
-        public FadeTransitionItem(View view, float opacity, bool isAppearing, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.FadeTransitionItem.New(view.SwigCPtr, opacity, timePeriod.SwigCPtr), true)
+        public FadeTransitionItem(View view, float opacity, bool appearingTransition, TimePeriod timePeriod, AlphaFunction alphaFunction) : this(Interop.FadeTransitionItem.New(view.SwigCPtr, opacity, timePeriod.SwigCPtr), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            AppearingTransition = isAppearing;
+            AppearingTransition = appearingTransition;
             AlphaFunction = alphaFunction;
         }
 

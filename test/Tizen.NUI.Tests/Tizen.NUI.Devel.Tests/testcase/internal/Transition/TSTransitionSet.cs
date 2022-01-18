@@ -135,10 +135,9 @@ namespace Tizen.NUI.Devel.Tests
             View view = new View()
             {
                 Name = "view",
-                TransitionOptions = new TransitionOptions(Window.Instance)
+                TransitionOptions = new TransitionOptions()
             };
             view.TransitionOptions.TransitionTag = "Transition";
-            view.TransitionOptions.EnableTransition = true;
 
             TransitionItemBase transitionItemBase = null;
             using (TimePeriod timePeriod = new TimePeriod(500))

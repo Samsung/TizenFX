@@ -19,19 +19,20 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
     /// <summary>
-    /// PoppedEventArgs is a class to record popped event arguments which will be sent to user.
+    /// PoppedEventArgs is a class to record <see cref="Navigator.Popped"/> event arguments which will be sent to user.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class PoppedEventArgs : EventArgs
     {
         /// <summary>
         /// Page popped by Navigator.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public Page Page { get; internal set; }
     }
 
@@ -73,6 +74,24 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 9 </since_tizen>
     public class Navigator : Control
     {
+        /// <summary>
+        /// TransitionProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TransitionProperty = BindableProperty.Create(nameof(Transition), typeof(Transition), typeof(Navigator), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Navigator)bindable;
+            if (newValue != null)
+            {
+                instance.InternalTransition = newValue as Transition;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Navigator)bindable;
+            return instance.InternalTransition;
+        });
+
         private const int DefaultTransitionDuration = 500;
 
         //This will be replaced with view transition class instance.
@@ -106,7 +125,16 @@ namespace Tizen.NUI.Components
         {
             Layout = new AbsoluteLayout();
         }
-        
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+
+            SetAccessibilityConstructor(Role.PageTabList);
+        }
+
         /// <summary>
         /// An event fired when Transition has been finished.
         /// </summary>
@@ -115,9 +143,11 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// An event fired when Pop of a page has been finished.
-        /// Notice that Popped event handler should be removed when it is called not to call it duplicate.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// When you free resources in the Popped event handler, please make sure if the popped page is the page you find.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<PoppedEventArgs> Popped;
 
         /// <summary>
@@ -131,6 +161,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Transition Transition
+        {
+            get
+            {
+                return GetValue(TransitionProperty) as Transition;
+            }
+            set
+            {
+                SetValue(TransitionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Transition InternalTransition
         {
             set
             {
@@ -186,12 +228,16 @@ namespace Tizen.NUI.Components
             {
                 if (page is DialogPage == false)
                 {
-                   topPage.SetVisible(false);	   
+                   topPage.SetVisible(false);
                 }
+
+                // Need to update Content of the new page
+                ShowContentOfPage(page);
 
                 //Invoke Page events
                 page.InvokeAppeared();
                 topPage.InvokeDisappeared();
+                NotifyAccessibilityStatesChangeOfPages(topPage, page);
             };
             transitionFinished = false;
         }
@@ -238,9 +284,13 @@ namespace Tizen.NUI.Components
                 Remove(topPage);
                 topPage.SetVisible(true);
 
+                // Need to update Content of the new page
+                ShowContentOfPage(newTopPage);
+
                 //Invoke Page events
                 newTopPage.InvokeAppeared();
                 topPage.InvokeDisappeared();
+                NotifyAccessibilityStatesChangeOfPages(topPage, newTopPage);
 
                 //Invoke Popped event
                 Popped?.Invoke(this, new PoppedEventArgs() { Page = topPage });
@@ -313,10 +363,18 @@ namespace Tizen.NUI.Components
                 newAnimation.EndAction = Animation.EndActions.StopFinal;
                 newAnimation.Finished += (object sender, EventArgs e) =>
                 {
+                    // Need to update Content of the new page
+                    ShowContentOfPage(page);
+
                     //Invoke Page events
                     page.InvokeAppeared();
+                    NotifyAccessibilityStatesChangeOfPages(curTop, page);
                 };
                 newAnimation.Play();
+            }
+            else
+            {
+                ShowContentOfPage(page);
             }
         }
 
@@ -386,8 +444,12 @@ namespace Tizen.NUI.Components
                 newAnimation.EndAction = Animation.EndActions.StopFinal;
                 newAnimation.Finished += (object sender, EventArgs e) =>
                 {
+                    // Need to update Content of the new page
+                    ShowContentOfPage(newTop);
+
                     //Invoke Page events
                     newTop.InvokeAppeared();
+                    NotifyAccessibilityStatesChangeOfPages(curTop, newTop);
                 };
                 newAnimation.Play();
             }
@@ -474,6 +536,8 @@ namespace Tizen.NUI.Components
             //TODO: The following transition codes will be replaced with view transition.
             InitializeAnimation();
 
+            ShowContentOfPage(page);
+
             if (index == PageCount)
             {
                 page.Opacity = 1.0f;
@@ -539,6 +603,8 @@ namespace Tizen.NUI.Components
 
             //TODO: The following transition codes will be replaced with view transition.
             InitializeAnimation();
+
+            HideContentOfPage(page);
 
             if ((page == Peek()) && (PageCount >= 2))
             {
@@ -685,7 +751,7 @@ namespace Tizen.NUI.Components
             TransitionSet newTransitionSet = new TransitionSet();
             foreach(KeyValuePair<View, View> pair in sameTaggedViewPair)
             {
-                TransitionItem pairTransition = transition.CreateTransition(pair.Key, pair.Value);
+                TransitionItem pairTransition = transition.CreateTransition(pair.Key, pair.Value, pushTransition);
                 if(pair.Value.TransitionOptions?.TransitionWithChild ?? false)
                 {
                     pairTransition.TransitionWithChild = true;
@@ -744,29 +810,51 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="taggedViews">Returned tagged view list..</param>
         /// <param name="view">Root View to get tagged child View.</param>
-        /// <param name="isPage">Flag to check current View is page or not</param>
-        private void RetrieveTaggedViews(List<View> taggedViews, View view, bool isPage)
+        /// <param name="isRoot">Flag to check current View is page or not</param>
+        private void RetrieveTaggedViews(List<View> taggedViews, View view, bool isRoot)
         {
-            if (!isPage)
+            if (!isRoot && view.TransitionOptions != null)
             {
                 if (!string.IsNullOrEmpty(view.TransitionOptions?.TransitionTag))
                 {
                     taggedViews.Add((view as View));
+                    if (view.TransitionOptions.TransitionWithChild)
+                    {
+                        return;
+                    }
                 }
 
-                if (view.ChildCount == 0)
-                {
-                    return;
-                }
-
-                if (view.TransitionOptions?.TransitionWithChild ?? false)
-                {
-                    return;
-                }
             }
+
             foreach (View child in view.Children)
             {
                 RetrieveTaggedViews(taggedViews, child, false);
+            }
+        }
+
+        /// <summary>
+        /// Notify accessibility states change of pages.
+        /// </summary>
+        /// <param name="disappearedPage">Disappeared page</param>
+        /// <param name="appearedPage">Appeared page</param>
+        private void NotifyAccessibilityStatesChangeOfPages(Page disappearedPage, Page appearedPage)
+        {
+            if (disappearedPage != null)
+            {
+                disappearedPage.UnregisterDefaultLabel();
+                //We can call disappearedPage.NotifyAccessibilityStatesChange
+                //To reduce accessibility events, we are using currently highlighted view instead
+                View curHighlightedView = Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView();
+                if (curHighlightedView != null)
+                {
+                    curHighlightedView.NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, AccessibilityStatesNotifyMode.Single);
+                }
+            }
+
+            if (appearedPage != null)
+            {
+                appearedPage.RegisterDefaultLabel();
+                appearedPage.NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, AccessibilityStatesNotifyMode.Single);
             }
         }
 
@@ -790,6 +878,26 @@ namespace Tizen.NUI.Components
                 newAnimation.Stop();
                 newAnimation.Clear();
                 newAnimation = null;
+            }
+        }
+
+        // Show and Register Content of Page to Accessibility bridge
+        private void ShowContentOfPage(Page page)
+        {
+            View content = (page is DialogPage) ? (page as DialogPage)?.Content : (page as ContentPage)?.Content;
+            if (content != null)
+            {
+                content.Show(); // Calls RegisterDefaultLabel()
+            }
+        }
+
+        // Hide and Remove Content of Page from Accessibility bridge
+        private void HideContentOfPage(Page page)
+        {
+            View content = (page is DialogPage) ? (page as DialogPage)?.Content : (page as ContentPage)?.Content;
+            if (content != null)
+            {
+                content.Hide(); // Calls UnregisterDefaultLabel()
             }
         }
     }

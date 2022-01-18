@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Property Group for .NET Core Project -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <!-- Property Group for Tizen Project -->
+  <PropertyGroup>
+    <TizenCreateTpkOnBuild>true</TizenCreateTpkOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+
+  <Import Project="..\Common\dependencies.props" />
+  <ItemGroup>
+    <PackageReference Include="Tizen.NET" Version="9.0.0.16715">
+      <ExcludeAssets>Runtime</ExcludeAssets>
+    </PackageReference>
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.1.6" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\Tizen.NUI.Components\Tizen.NUI.Components.csproj" />
+    <ProjectReference Include="..\..\..\src\Tizen.NUI\Tizen.NUI.csproj" />
+    <ProjectReference Include="..\nunit.framework\nunit.framework.csproj" />
+    <ProjectReference Include="..\nunitlite\nunitlite.csproj" />
+  </ItemGroup>
+
+  <!-- Include Nuget Package for Tizen Project building -->
+
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>./NuiTest.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+    <UserSecretsId>5cd04a1b-2080-411b-935e-62d2a4971abc</UserSecretsId>
+  </PropertyGroup>
+
+</Project>

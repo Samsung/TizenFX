@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.IndicatorViewTest1Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="IndicatorViewTest1Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+            <ScrollableBase x:Name="Scroller"
+                              SnapToPage="true"
+                              ScrollingDirection="Horizontal"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+
+                <ScrollableBase.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center"/>
+                </ScrollableBase.Layout>
+
+                <View x:Name="Page0"
+                        Size="{Binding Source={x:Static Window.Instance}, Path=WindowSize }"
+                        BackgroundColor="#ff0000">
+                    <TextLabel Text="Page 0" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center"/>
+                </View>
+                <View x:Name="Page1"
+                        Size="{Binding Source={x:Static Window.Instance}, Path=WindowSize }"
+                        BackgroundColor="#00ff00">
+                    <TextLabel Text="Page 1" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center"/>
+                </View>
+                <View x:Name="Page2"
+                        Size="{Binding Source={x:Static Window.Instance}, Path=WindowSize }"
+                        BackgroundColor="#0000ff">
+                    <TextLabel Text="Page 2" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center"/>
+                </View>
+                <View x:Name="Page3"
+                        Size="{Binding Source={x:Static Window.Instance}, Path=WindowSize }"
+                        BackgroundColor="#ff00ff">
+                    <TextLabel Text="Page 3" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center"/>
+                </View>
+                <View x:Name="Page4"
+                        Size="{Binding Source={x:Static Window.Instance}, Path=WindowSize }"
+                        BackgroundColor="#00ff00">
+                    <TextLabel Text="Page 4" PositionUsesPivotPoint="True" ParentOrigin="Center" PivotPoint="Center"/>
+                </View>
+            </ScrollableBase>
+
+            <Pagination x:Name="Index" Size2D="186,50"/>
+        </View>
+    </ContentPage.Content>
+</ContentPage>

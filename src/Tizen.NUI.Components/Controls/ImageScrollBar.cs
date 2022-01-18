@@ -30,7 +30,7 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     /// This will be deprecated
     [Obsolete("Deprecated in API8; Will be removed in API10")]
-    public class ScrollBar : Control
+    public partial class ScrollBar : Control
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -234,6 +234,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(ThumbSizeProperty) as Size;
+            }
+            set
+            {
+                SetValue(ThumbSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Size InternalThumbSize
+        {
+            get
+            {
                 return thumbImage?.Size;
             }
             set
@@ -253,6 +265,18 @@ namespace Tizen.NUI.Components
         /// This will be deprecated
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public string TrackImageURL
+        {
+            get
+            {
+                return GetValue(TrackImageURLProperty) as string;
+            }
+            set
+            {
+                SetValue(TrackImageURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalTrackImageURL
         {
             get
             {
@@ -278,6 +302,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(TrackColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(TrackColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalTrackColor
+        {
+            get
+            {
                 return trackImage?.BackgroundColor;
             }
             set
@@ -296,6 +332,18 @@ namespace Tizen.NUI.Components
         /// This will be deprecated
         [Obsolete("Deprecated in API8; Will be removed in API10")]
         public Color ThumbColor
+        {
+            get
+            {
+                return GetValue(ThumbColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(ThumbColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalThumbColor
         {
             get
             {

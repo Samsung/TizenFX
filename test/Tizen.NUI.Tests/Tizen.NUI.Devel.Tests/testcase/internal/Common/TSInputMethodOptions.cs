@@ -133,27 +133,5 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"InputMethodOptionsRetrieveProperty END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("InputMethodOptions CompareAndSet")]
-        //[Property("SPEC", "Tizen.NUI.InputMethodOptions.CompareAndSet M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void InputMethodOptionsCompareAndSet()
-        //{
-        //    tlog.Debug(tag, $"InputMethodOptionsCompareAndSet START");
-
-        //    var testingTarget = new InputMethodOptions();
-        //    Assert.IsNotNull(testingTarget, "should be not null");
-        //    Assert.IsInstanceOf<InputMethodOptions>(testingTarget, "should be an instance of InputMethodOptions class!");
-
-        //    var result = testingTarget.CompareAndSet(InputMethod.CategoryType.ActionButtonTitle, testingTarget, new SWIGTYPE_p_int(testingTarget.SwigCPtr.Handle));
-        //    tlog.Debug(tag, result.ToString());
-
-        //    testingTarget.Dispose();
-        //    tlog.Debug(tag, $"InputMethodOptionsCompareAndSet END (OK)");
-        //}
     }
 }

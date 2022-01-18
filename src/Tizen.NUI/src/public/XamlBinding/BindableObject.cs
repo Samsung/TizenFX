@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Reflection;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using Tizen.NUI.Binding.Internals;
 
@@ -67,7 +68,7 @@ namespace Tizen.NUI.Binding
                 }
             }));
 
-        readonly List<BindablePropertyContext> properties = new List<BindablePropertyContext>(4);
+        readonly Dictionary<BindableProperty, BindablePropertyContext> properties = new Dictionary<BindableProperty, BindablePropertyContext>(4);
 
         bool applying;
         object inheritedContext;
@@ -84,6 +85,12 @@ namespace Tizen.NUI.Binding
             get { return inheritedContext ?? GetValue(BindingContextProperty); }
             set { SetValue(BindingContextProperty, value); }
         }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int LineNumber { get; set; } = -1;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int LinePosition { get; set; } = -1;
 
         void IDynamicResourceHandler.SetDynamicResource(BindableProperty property, string key)
         {
@@ -115,7 +122,7 @@ namespace Tizen.NUI.Binding
                 {
                     nameToBindableProperty2.TryGetValue(keyValuePair.Key, out var bindableProperty);
 
-                    if (null != bindableProperty)
+                    if (null != bindableProperty && (SettedPropeties.Contains(bindableProperty) || other.SettedPropeties.Contains(bindableProperty)))
                     {
                         object value = other.GetValue(bindableProperty);
 
@@ -124,6 +131,34 @@ namespace Tizen.NUI.Binding
                             SetValue(keyValuePair.Value, value);
                         }
                     }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Copy all binding from other object.
+        /// </summary>
+        /// <param name="other"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void CopyBindingRelationShip(BindableObject other)
+        {
+            if (null == other)
+            {
+                return;
+            }
+
+            foreach (var property in properties)
+            {
+                RemoveBinding(property.Key);
+            }
+
+            foreach (var property in other.properties)
+            {
+                if (null != property.Value.Binding)
+                {
+                    var binding = property.Value.Binding;
+                    other.RemoveBinding(property.Key);
+                    SetBinding(property.Key, binding);
                 }
             }
         }
@@ -187,6 +222,11 @@ namespace Tizen.NUI.Binding
         {
             if (property == null)
                 throw new ArgumentNullException(nameof(property));
+
+            if (!IsBinded && property.ValueGetter != null)
+            {
+                return property.ValueGetter(this);
+            }
 
             BindablePropertyContext context = property.DefaultValueCreator != null ? GetOrCreateContext(property) : GetContext(property);
 
@@ -286,6 +326,22 @@ namespace Tizen.NUI.Binding
 
                 OnPropertyChanged(property.PropertyName);
                 OnPropertyChangedWithData(property);
+            }
+
+            SettedPropeties.Add(property);
+        }
+
+        private HashSet<BindableProperty> settedPropeties;
+        private HashSet<BindableProperty> SettedPropeties
+        {
+            get
+            {
+                if (null == settedPropeties)
+                {
+                    settedPropeties = new HashSet<BindableProperty>();
+                }
+
+                return settedPropeties;
             }
         }
 
@@ -430,9 +486,8 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UnapplyBindings()
         {
-            for (int i = 0, _propertiesCount = properties.Count; i < _propertiesCount; i++)
+            foreach (var context in properties.Values)
             {
-                BindablePropertyContext context = properties[i];
                 if (context.Binding == null)
                     continue;
 
@@ -459,10 +514,8 @@ namespace Tizen.NUI.Binding
         {
             var values = new object[2];
 
-            for (var i = 0; i < properties.Count; i++)
+            foreach (var context in properties.Values)
             {
-                BindablePropertyContext context = properties[i];
-
                 if (ReferenceEquals(context.Property, property0))
                 {
                     values[0] = context.Value;
@@ -497,10 +550,8 @@ namespace Tizen.NUI.Binding
         {
             var values = new object[3];
 
-            for (var i = 0; i < properties.Count; i++)
+            foreach (var context in properties.Values)
             {
-                BindablePropertyContext context = properties[i];
-
                 if (ReferenceEquals(context.Property, property0))
                 {
                     values[0] = context.Value;
@@ -539,9 +590,8 @@ namespace Tizen.NUI.Binding
         internal object[] GetValues(params BindableProperty[] properties)
         {
             var values = new object[properties.Length];
-            for (var i = 0; i < this.properties.Count; i++)
+            foreach (var context in this.properties.Values)
             {
-                var context = this.properties[i];
                 var index = properties.IndexOf(context.Property);
                 if (index < 0)
                     continue;
@@ -742,7 +792,7 @@ namespace Tizen.NUI.Binding
 
         internal void ApplyBindings(bool skipBindingContext, bool fromBindingContextChanged)
         {
-            var prop = properties.ToArray();
+            var prop = properties.Values.ToArray();
             for (int i = 0, propLength = prop.Length; i < propLength; i++)
             {
                 BindablePropertyContext context = prop[i];
@@ -828,24 +878,12 @@ namespace Tizen.NUI.Binding
             else
                 context.Attributes = BindableContextAttributes.IsDefaultValueCreated;
 
-            properties.Add(context);
+            properties.Add(property, context);
             return context;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        BindablePropertyContext GetContext(BindableProperty property)
-        {
-            List<BindablePropertyContext> propertyList = properties;
-
-            for (var i = 0; i < propertyList.Count; i++)
-            {
-                BindablePropertyContext context = propertyList[i];
-                if (ReferenceEquals(context.Property, property))
-                    return context;
-            }
-
-            return null;
-        }
+        BindablePropertyContext GetContext(BindableProperty property) => properties.TryGetValue(property, out var result) ? result : null;
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         BindablePropertyContext GetOrCreateContext(BindableProperty property)
@@ -855,7 +893,11 @@ namespace Tizen.NUI.Binding
             {
                 context = CreateAndAddContext(property);
             }
-            else if (property.DefaultValueCreator != null)
+            else if (property.ValueGetter != null)
+            {
+                context.Value = property.ValueGetter(this); //Update Value from dali
+            }//added by xiaohui.fang
+            else if (property.DefaultValueCreator != null) //This will be removed in the future.
             {
                 context.Value = property.DefaultValueCreator(this); //Update Value from dali
             }//added by xb.teng
@@ -1065,6 +1107,56 @@ namespace Tizen.NUI.Binding
         internal void RemoveChildBindableObject(BindableObject child)
         {
             children.Remove(child);
+        }
+
+        internal void ReplaceBindingElement(Dictionary<string, object> oldNameScope, Dictionary<string, object> newNameScope)
+        {
+            var xElementToNameOfOld = new Dictionary<object, string>();
+
+            foreach (var pair in oldNameScope)
+            {
+                xElementToNameOfOld.Add(pair.Value, pair.Key);
+            }
+
+            foreach (var property in properties)
+            {
+                if (property.Value.Binding is Binding binding && null != binding.Source)
+                {
+                    string xName;
+                    xElementToNameOfOld.TryGetValue(binding.Source, out xName);
+
+                    if (null != xName)
+                    {
+                        var newObject = newNameScope[xName];
+                        binding.Unapply();
+                        binding.Source = newObject;
+                        SetBinding(property.Key, binding);
+                    }
+                }
+            }
+
+            if (null != BindingContext)
+            {
+                string xName;
+                xElementToNameOfOld.TryGetValue(BindingContext, out xName);
+
+                if (null != xName)
+                {
+                    var newObject = newNameScope[xName];
+                    BindingContext = newObject;
+                }
+            }
+        }
+
+        internal void ClearBinding()
+        {
+            foreach (var property in properties)
+            {
+                if (null != property.Value.Binding)
+                {
+                    property.Value.Binding.Unapply();
+                }
+            }
         }
 
         private List<BindableObject> children = new List<BindableObject>();

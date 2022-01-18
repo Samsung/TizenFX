@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     /// The Progress class is used to show the ongoing status with a long narrow bar.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class Progress : Control
+    public partial class Progress : Control
     {
         /// <summary>
         /// MaxValueProperty
@@ -237,6 +237,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public string TrackImageURL
         {
+            get
+            {
+                return GetValue(TrackImageURLProperty) as string;
+            }
+            set
+            {
+                SetValue(TrackImageURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalTrackImageURL
+        {
             get => trackImage.ResourceUrl;
             set => trackImage.ResourceUrl = value;
         }
@@ -246,6 +258,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string ProgressImageURL
+        {
+            get
+            {
+                return GetValue(ProgressImageURLProperty) as string;
+            }
+            set
+            {
+                SetValue(ProgressImageURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalProgressImageURL
         {
             get => progressImage.ResourceUrl;
             set => progressImage.ResourceUrl = value;
@@ -257,6 +281,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public string BufferImageURL
         {
+            get
+            {
+                return GetValue(BufferImageURLProperty) as string;
+            }
+            set
+            {
+                SetValue(BufferImageURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalBufferImageURL
+        {
             get => bufferImage.ResourceUrl;
             set => bufferImage.ResourceUrl = value;
         }
@@ -267,6 +303,18 @@ namespace Tizen.NUI.Components
         /// <exception cref="NullReferenceException">Thrown when setting null value.</exception>
         /// <since_tizen> 9 </since_tizen>
         public string IndeterminateImageUrl
+        {
+            get
+            {
+                return GetValue(IndeterminateImageUrlProperty) as string;
+            }
+            set
+            {
+                SetValue(IndeterminateImageUrlProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalIndeterminateImageUrl
         {
             get
             {
@@ -298,6 +346,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Color TrackColor
         {
+            get
+            {
+                return GetValue(TrackColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(TrackColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalTrackColor
+        {
             get => trackImage.BackgroundColor;
             set => trackImage.BackgroundColor = value;
         }
@@ -308,6 +368,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Color ProgressColor
         {
+            get
+            {
+                return GetValue(ProgressColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(ProgressColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalProgressColor
+        {
             get => progressImage.BackgroundColor;
             set => progressImage.BackgroundColor = value;
         }
@@ -317,6 +389,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Color BufferColor
+        {
+            get
+            {
+                return GetValue(BufferColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(BufferColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalBufferColor
         {
             get => bufferImage.BackgroundColor;
             set => bufferImage.BackgroundColor = value;
@@ -367,7 +451,7 @@ namespace Tizen.NUI.Components
             set
             {
                 SetValue(CurrentValueProperty, value);
-                if (Accessibility.Accessibility.Enabled && IsHighlighted)
+                if (Accessibility.Accessibility.IsEnabled && IsHighlighted)
                 {
                     EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
                 }

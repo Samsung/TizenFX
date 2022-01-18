@@ -6,10 +6,9 @@
   </PropertyGroup>
 
   <Import Project="..\Common\versions.props" />
-
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Tizen.Applications.Common\Tizen.Applications.Common.csproj" />
-    <ProjectReference Include="..\..\..\src\Tizen.Log\Tizen.Log.csproj" />
+    <PackageReference Include="Tizen.NET" Version="9.0.0.16715">
+      <ExcludeAssets>Runtime</ExcludeAssets>
+    </PackageReference>
   </ItemGroup>
-
 </Project>

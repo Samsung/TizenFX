@@ -46,30 +46,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.Pass("GestureDetectorConstructor");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("GestureDetector constructor")]
-        //[Property("SPEC", "Tizen.NUI.GestureDetector.GestureDetector C")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "CONSTR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void GestureDetectorConstructorWithGestureDetector()
-        //{
-        //    tlog.Debug(tag, $"GestureDetectorConstructorWithGestureDetector START");
-
-        //    using (GestureDetector detector = new GestureDetector())
-        //    {
-        //        var testingTarget = new GestureDetector(detector);
-        //        Assert.IsNotNull(testingTarget, "should be not null");
-        //        Assert.IsInstanceOf<GestureDetector>(testingTarget, "should be an instance of testing target class!");
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"GestureDetectorConstructorWithGestureDetector END (OK)");
-        //    Assert.Pass("GestureDetectorConstructor");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("GestureDetector Attach")]
@@ -178,28 +154,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"GestureDetectorGetAttachedView END (OK)");
             Assert.Pass("GestureDetectorGetAttachedView");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("GestureDetector Assign")]
-        //[Property("SPEC", "Tizen.NUI.GestureDetector.Assign M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void GestureDetectorAssign()
-        //{
-        //    tlog.Debug(tag, $"GestureDetectorAssign START");
-
-        //    using (GestureDetector detector = new GestureDetector())
-        //    {
-        //        var testingTarget = detector.Assign(detector);
-        //        Assert.IsNotNull(testingTarget, "should be not null");
-        //        Assert.IsInstanceOf<GestureDetector>(testingTarget, "should be an instance of testing target class!");
-        //    }
-
-        //    tlog.Debug(tag, $"GestureDetectorAssign END (OK)");
-        //    Assert.Pass("GestureDetectorAssign");
-        //}
 
         [Test]
         [Category("P1")]

@@ -9,24 +9,25 @@ TizenFX API, which allows you to access platform-specific features not covered b
 
 | Branch | API Level | Target Framework | API Reference | Platform          | myget.org | nuget.org  |
 |--------|:---------:|------------------|---------------|-------------------|-----------|------------|
-|master  | 9         | tizen90 | [Link](https://samsung.github.io/TizenFX/master/) | Tizen vNext | [![api9_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API9.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) |  |
-|API8    | 8         | tizen80 | [Link](https://samsung.github.io/TizenFX/API8/) | Tizen 6.0 | [![api8_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API8.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api8_nuget](https://img.shields.io/nuget/v/Tizen.NET.API8.svg)](https://www.nuget.org/packages/Tizen.NET/) |
-|API7    | 7         | tizen70 | [Link](https://samsung.github.io/TizenFX/API7/) | Tizen 5.5 M3 | [![api7_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API7.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api7_nuget](https://img.shields.io/nuget/v/Tizen.NET.API7.svg)](https://www.nuget.org/packages/Tizen.NET/) |
-|API6    | 6         | tizen60 | [Link](https://samsung.github.io/TizenFX/API6/) | Tizen 5.5 M2 | [![api6_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API6.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api6_nuget](https://img.shields.io/nuget/v/Tizen.NET.API6.svg)](https://www.nuget.org/packages/Tizen.NET/) |
-|API5    | 5         | tizen50 | [Link](https://samsung.github.io/TizenFX/API5/) | Tizen 5.0       | [![api5_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API5.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api5_nuget](https://img.shields.io/nuget/v/Tizen.NET.API5.svg)](https://www.nuget.org/packages/Tizen.NET/) |
-|API4    | 4         | tizen40 | [Link](https://samsung.github.io/TizenFX/API4/) | Tizen 4.0         | [![api4_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API4.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api4_nuget](https://img.shields.io/nuget/v/Tizen.NET.API4.svg)](https://www.nuget.org/packages/Tizen.NET/) |
+|master  | 10        | tizen10.0 | [Link](https://samsung.github.io/TizenFX/master/) | Tizen vNext | [![api10_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API10.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) |  |
+|API9    | 9         | tizen90   | [Link](https://samsung.github.io/TizenFX/API9/) | Tizen 6.5 | [![api9_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API9.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api9_nuget](https://img.shields.io/nuget/v/Tizen.NET.API9.svg)](https://www.nuget.org/packages/Tizen.NET/) |
+|API8    | 8         | tizen80   | [Link](https://samsung.github.io/TizenFX/API8/) | Tizen 6.0 | [![api8_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API8.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api8_nuget](https://img.shields.io/nuget/v/Tizen.NET.API8.svg)](https://www.nuget.org/packages/Tizen.NET/) |
+|API7    | 7         | tizen70   | [Link](https://samsung.github.io/TizenFX/API7/) | Tizen 5.5 M3 | [![api7_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API7.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api7_nuget](https://img.shields.io/nuget/v/Tizen.NET.API7.svg)](https://www.nuget.org/packages/Tizen.NET/) |
+|API6    | 6         | tizen60   | [Link](https://samsung.github.io/TizenFX/API6/) | Tizen 5.5 M2 | [![api6_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API6.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api6_nuget](https://img.shields.io/nuget/v/Tizen.NET.API6.svg)](https://www.nuget.org/packages/Tizen.NET/) |
+|API5    | 5         | tizen50   | [Link](https://samsung.github.io/TizenFX/API5/) | Tizen 5.0       | [![api5_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API5.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api5_nuget](https://img.shields.io/nuget/v/Tizen.NET.API5.svg)](https://www.nuget.org/packages/Tizen.NET/) |
+|API4    | 4         | tizen40   | [Link](https://samsung.github.io/TizenFX/API4/) | Tizen 4.0         | [![api4_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API4.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api4_nuget](https://img.shields.io/nuget/v/Tizen.NET.API4.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 
 ### master
-The __master__ branch is the main development branch for the Tizen .NET __API Level 9__.
+The __master__ branch is the main development branch for the Tizen .NET __API Level 10__.
 
 The following NuGet packages will be published to [Tizen MyGet Gallery](https://tizen.myget.org/gallery/dotnet) every day if there are any changes. (Nightly Build)
-* Tizen.NET 9.0.0.#####
-* Tizen.NET.API9 9.0.0.#####
-* Tizen.NET.Internals 9.0.0.#####
+* Tizen.NET 10.0.0.#####
+* Tizen.NET.API10 10.0.0.#####
+* Tizen.NET.Internals 10.0.0.#####
 
 And, This branch is pushed to the [tizen branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen) in the tizen gerrit and submitted for the Tizen vNext platform.
 
-### API4,5,6,7,8 branches
+### API4,5,6,7,8,9 branches
 The __API#__ branches are the release branch for Tizen .NET __API Level #__.
 
 These release branches were __FROZEN__. No new public APIs can be added to these branches, only bug fixes and internal APIs can be added.
@@ -56,5 +57,4 @@ You can download the latest binaries with TizenFX from the link below :
 | Tizen 5.0         | http://download.tizen.org/snapshots/tizen/5.0-unified/latest/ |
 | Tizen 5.5         | http://download.tizen.org/snapshots/tizen/5.5-unified/latest/ |
 | Tizen 6.0         | http://download.tizen.org/snapshots/tizen/6.0-unified/latest/ |
-| Tizen vNext       | http://download.tizen.org/snapshots/tizen/unified/latest/     |
-
+| Tizen 6.5         | http://download.tizen.org/snapshots/tizen/unified/latest/     |

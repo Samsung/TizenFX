@@ -188,7 +188,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object Timer");
             Assert.IsInstanceOf<Timer>(testingTarget, "Should be an instance of Timer type.");
 
-            testingTarget.Start();
             testingTarget.OnDispose(DisposeTypes.Explicit);
 
             try
@@ -231,36 +230,6 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, $"TimerIsRunningWithDisposedInstance END (OK)");
                 Assert.Pass("Caught Exception: Passed!");
             }
-        }
-
-        [Test]
-        [Category("P2")]
-        [Description("Timer Dispose. Timer is disposed.")]
-        [Property("SPEC", "Tizen.NUI.Timer.GetInterval M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void TimerDisposeWithDisposedInstance()
-        {
-            tlog.Debug(tag, $"TimerDisposeWithDisposedInstance START");
-
-            var testingTarget = new MyTimer(100);
-            Assert.IsNotNull(testingTarget, "Can't create success object Timer");
-            Assert.IsInstanceOf<Timer>(testingTarget, "Should be an instance of Timer type.");
-
-            testingTarget.OnDispose(DisposeTypes.Explicit);
-
-            try
-            {
-                testingTarget.OnDispose(DisposeTypes.Explicit);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            tlog.Debug(tag, $"TimerDisposeWithDisposedInstance END (OK)");
         }
 
         private bool MyTickEvent(object source, Timer.TickEventArgs e)

@@ -17,19 +17,24 @@ namespace Tizen.NUI.Devel.Tests
         {
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(FactoryMethodMissingCtor));
         }
-
-        [TestFixture]
-        public class Tests
-        {
-            [SetUp] public void Setup() { }
-
-            [TearDown] public void TearDown() { }
-
-			[Test]
-			public void Throw()
-			{
-				Assert.Throws<MissingMethodException>(() => new FactoryMethodMissingCtor());
-			}
-		}
 	}
+
+    [TestFixture]
+    public class FactoryMethodMissingCtorTests
+    {
+        [SetUp] public void Setup() { }
+
+        [TearDown] public void TearDown() { }
+
+        [Test]
+        [Category("P1")]
+        [Description("Extensions LoadFromXaml.")]
+        [Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void FactoryMethodMissingCtorThrow()
+        {
+            Assert.Throws<MissingMethodException>(() => new FactoryMethodMissingCtor());
+        }
+    }
 }

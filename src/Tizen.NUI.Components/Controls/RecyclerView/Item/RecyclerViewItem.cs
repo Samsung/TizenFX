@@ -191,7 +191,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnKey(Key key)
         {
-            if (!IsEnabled || null == key)
+            if (!IsEnabled || null == key || null == BindingContext)
             {
                 return false;
             }

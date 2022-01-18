@@ -25,7 +25,7 @@ namespace Tizen.NUI.Components
     /// Menu is a class which contains a set of MenuItems and has one of them selected.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
-    public class Menu : Control
+    public partial class Menu : Control
     {
         private Window window = null;
         private Layer layer = null;
@@ -160,6 +160,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(AnchorProperty) as View;
+            }
+            set
+            {
+                SetValue(AnchorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private View InternalAnchor
+        {
+            get
+            {
                 return anchor;
             }
 
@@ -194,6 +206,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (RelativePosition)GetValue(HorizontalPositionToAnchorProperty);
+            }
+            set
+            {
+                SetValue(HorizontalPositionToAnchorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private RelativePosition InternalHorizontalPositionToAnchor
+        {
+            get
+            {
                 return horizontalPosition;
             }
 
@@ -221,6 +245,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public RelativePosition VerticalPositionToAnchor
+        {
+            get
+            {
+                return (RelativePosition)GetValue(VerticalPositionToAnchorProperty);
+            }
+            set
+            {
+                SetValue(VerticalPositionToAnchorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private RelativePosition InternalVerticalPositionToAnchor
         {
             get
             {
@@ -358,6 +394,8 @@ namespace Tizen.NUI.Components
             layer.RaiseToTop();
 
             CalculateSizeAndPosition();
+            RegisterDefaultLabel();
+            NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, AccessibilityStatesNotifyMode.Recursive);
         }
 
         /// <summary>
@@ -368,6 +406,8 @@ namespace Tizen.NUI.Components
         public void Dismiss()
         {
             Hide();
+            UnregisterDefaultLabel();
+            NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, AccessibilityStatesNotifyMode.Recursive);
             Dispose();
         }
 
@@ -603,6 +643,28 @@ namespace Tizen.NUI.Components
             {
                 Scrim.Position2D = new Position2D(-Position2D.X, -Position2D.Y);
             }
+        }
+
+        /// <summary>
+        /// Initialize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.PopupMenu);
+            AppendAccessibilityAttribute("sub-role", "Alert");
+        }
+
+        /// <summary>
+        /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override AccessibilityStates AccessibilityCalculateStates(ulong states)
+        {
+            var accessibilityStates = base.AccessibilityCalculateStates(states);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Modal, true);
+            return accessibilityStates;
         }
     }
 }

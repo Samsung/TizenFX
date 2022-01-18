@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.PerformanceTest3Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="PerformanceTest3Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+          Padding="5,5,5,5">
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" CellPadding="5,5" LinearAlignment="Top"/>
+            </View.Layout>
+
+            <View x:Name="ButtonBox"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="80">
+
+                <View.Layout>
+                    <LinearLayout LinearOrientation="Horizontal" CellPadding="5,5" LinearAlignment="Top"/>
+                </View.Layout>
+
+                <Button x:Name="ScrollBegin" Text="Scroll to 0" Size2D="220,70"/>
+                <Button x:Name="ScrollMiddle" Text="Scroll to 100" Size2D="220,70"/>
+                <Button x:Name="ScrollEnd" Text="Scroll to 199" Size2D="220,70"/>
+            </View>
+
+            <ScrollableBase x:Name="LabelsListView"
+                              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                              ScrollDuration="5000"
+                              BackgroundColor="White">
+
+                <ScrollableBase.Layout>
+                    <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="5,5" />
+                </ScrollableBase.Layout>
+
+            </ScrollableBase>
+        </View>
+    </ContentPage.Content>
+</ContentPage>

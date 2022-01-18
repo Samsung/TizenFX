@@ -24,6 +24,7 @@ namespace Tizen.NUI.Samples
         const int mContents = mRow * mColumn;
 
         Size2D windowSize;
+        TableView table;
 
         public void Activate()
         {
@@ -32,7 +33,7 @@ namespace Tizen.NUI.Samples
             windowSize = window.Size;
 
             // Create Table
-            TableView table = new TableView(mRow, mColumn)
+            table = new TableView(mRow, mColumn)
             {
                 PositionUsesPivotPoint = true,
                 PivotPoint = PivotPoint.Center,
@@ -105,6 +106,8 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
+            AccessibilityManager.Instance.FocusedViewActivated -= OnFocusedView;
+            if(table) { table.Unparent(); }
         }
     }
 }

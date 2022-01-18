@@ -27,7 +27,7 @@ namespace Tizen.NUI.BaseComponents
     /// LottieAnimationView renders an animated vector image (Lottie file).
     /// </summary>
     /// <since_tizen> 7 </since_tizen>
-    public class LottieAnimationView : ImageView
+    public partial class LottieAnimationView : ImageView
     {
         #region Constructor, Destructor, Dispose
         /// <summary>
@@ -48,6 +48,10 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 7 </since_tizen>
         public LottieAnimationView(float scale = 1.0f, bool shown = true) : base()
         {
+            ActionPlay = Interop.LottieAnimationView.AnimatedVectorImageVisualActionPlayGet();
+            ActionPause = Interop.LottieAnimationView.AnimatedVectorImageVisualActionPauseGet();
+            ActionStop = Interop.LottieAnimationView.AnimatedVectorImageVisualActionStopGet();
+
             NUILog.Debug($"< constructor GetId={GetId()} >");
             currentStates.url = "";
             currentStates.frame = -1;
@@ -99,6 +103,19 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <since_tizen> 7 </since_tizen>
         public string URL
+        {
+            get
+            {
+                return GetValue(URLProperty) as string;
+            }
+            set
+            {
+                SetValue(URLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private string InternalURL
         {
             set
             {
@@ -227,11 +244,24 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 7 </since_tizen>
         public int CurrentFrame
         {
+            get
+            {
+                return (int)GetValue(CurrentFrameProperty);
+            }
+            set
+            {
+                SetValue(CurrentFrameProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalCurrentFrame
+        {
             set
             {
                 currentStates.frame = value;
                 NUILog.Debug($"<[{GetId()}]SET frame={currentStates.frame}>");
-                DoAction(ImageView.Property.IMAGE, (int)actionType.jumpTo, new PropertyValue(currentStates.frame));
+                DoAction(ImageView.Property.IMAGE, ActionJumpTo, new PropertyValue(currentStates.frame));
             }
             get
             {
@@ -260,6 +290,19 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 7 </since_tizen>
         public LoopingModeType LoopingMode
         {
+            get
+            {
+                return (LoopingModeType)GetValue(LoopingModeProperty);
+            }
+            set
+            {
+                SetValue(LoopingModeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private LoopingModeType InternalLoopingMode
+        {
             set
             {
                 currentStates.loopMode = (LoopingModeType)value;
@@ -268,7 +311,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Debug($"<[{GetId()}] SET loopMode={currentStates.loopMode}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
-                DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
+                DoAction(ImageView.Property.IMAGE, Interop.Visual.GetActionUpdateProperty(), new PropertyValue(map));
             }
             get
             {
@@ -318,6 +361,19 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 7 </since_tizen>
         public int LoopCount
         {
+            get
+            {
+                return (int)GetValue(LoopCountProperty);
+            }
+            set
+            {
+                SetValue(LoopCountProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private int InternalLoopCount
+        {
             set
             {
                 currentStates.changed = true;
@@ -325,7 +381,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Debug($"<[{GetId()}]SET currentStates.loopCount={currentStates.loopCount}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount));
-                DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
+                DoAction(ImageView.Property.IMAGE, Interop.Visual.GetActionUpdateProperty(), new PropertyValue(map));
             }
             get
             {
@@ -360,6 +416,19 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 7 </since_tizen>
         public StopBehaviorType StopBehavior
         {
+            get
+            {
+                return (StopBehaviorType)GetValue(StopBehaviorProperty);
+            }
+            set
+            {
+                SetValue(StopBehaviorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private StopBehaviorType InternalStopBehavior
+        {
             set
             {
                 currentStates.stopEndAction = (StopBehaviorType)value;
@@ -368,7 +437,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Debug($"<[{GetId()}]SET val={currentStates.stopEndAction}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction));
-                DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
+                DoAction(ImageView.Property.IMAGE, Interop.Visual.GetActionUpdateProperty(), new PropertyValue(map));
             }
             get
             {
@@ -407,6 +476,19 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool RedrawInScalingDown
         {
+            get
+            {
+                return (bool)GetValue(RedrawInScalingDownProperty);
+            }
+            set
+            {
+                SetValue(RedrawInScalingDownProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalRedrawInScalingDown
+        {
             set
             {
                 currentStates.changed = true;
@@ -414,7 +496,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Debug($"<[{GetId()}]SET currentStates.redrawInScalingDown={currentStates.redrawInScalingDown}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.RedrawInScalingDown, new PropertyValue(currentStates.redrawInScalingDown));
-                DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
+                DoAction(ImageView.Property.IMAGE, Interop.Visual.GetActionUpdateProperty(), new PropertyValue(map));
             }
             get
             {
@@ -440,6 +522,14 @@ namespace Tizen.NUI.BaseComponents
                 return currentStates.redrawInScalingDown;
             }
         }
+
+
+        /// <summary>
+        /// Actions property value to Jump to the specified frame.
+        /// This property can be redefined by child class if it use different value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected int ActionJumpTo { get; set; } = Interop.LottieAnimationView.AnimatedVectorImageVisualActionJumpToGet();
         #endregion Property
 
 
@@ -464,7 +554,7 @@ namespace Tizen.NUI.BaseComponents
 
             PropertyMap map = new PropertyMap();
             map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
-            DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
+            DoAction(ImageView.Property.IMAGE, Interop.Visual.GetActionUpdateProperty(), new PropertyValue(map));
             NUILog.Debug($"  [{GetId()}] currentStates.min:({currentStates.framePlayRangeMin}, max:{currentStates.framePlayRangeMax})>");
         }
 
@@ -578,7 +668,7 @@ namespace Tizen.NUI.BaseComponents
 
             PropertyMap map = new PropertyMap();
             map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
-            DoAction(ImageView.Property.IMAGE, (int)actionType.updateProperty, new PropertyValue(map));
+            DoAction(ImageView.Property.IMAGE, Interop.Visual.GetActionUpdateProperty(), new PropertyValue(map));
             NUILog.Debug($"  [{GetId()}] currentStates.mark1:{currentStates.mark1}, mark2:{currentStates.mark2} >");
         }
 
@@ -803,15 +893,6 @@ namespace Tizen.NUI.BaseComponents
             internal bool redrawInScalingDown;
         };
         private states currentStates;
-
-        private enum actionType
-        {
-            play,
-            pause,
-            stop,
-            jumpTo,
-            updateProperty,
-        };
 
         private struct DevelVisual
         {

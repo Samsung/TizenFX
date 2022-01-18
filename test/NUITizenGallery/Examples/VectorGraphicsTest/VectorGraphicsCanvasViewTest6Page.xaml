@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.VectorGraphicsCanvasViewTest6Page"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:vector="clr-namespace:Tizen.NUI.BaseComponents.VectorGraphics;assembly=Tizen.NUI"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+    
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="VectorGraphicsCanvasViewTest6Page"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <View x:Name="contentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+          <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" LinearAlignment="Center" CellPadding="5,5"/>
+          </View.Layout>
+
+          <vector:CanvasView x:Name="canvasView"
+            WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+            HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+            Weight="0.8"/>
+
+          <View x:Name="ButtonView"
+            WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+            HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+            Weight="0.1">
+            <View.Layout>
+              <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center" CellPadding="30,30"/>
+            </View.Layout>
+
+            <Button x:Name="addButton"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    PointSize="20"
+                    Text="Add">
+            </Button>
+
+            <Button x:Name="delButton"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    PointSize="20"
+                    Text="Del">
+            </Button>
+          </View>
+          <View x:Name="ButtonView2"
+            WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+            HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+            Weight="0.1">
+            <View.Layout>
+              <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center" CellPadding="30,30"/>
+            </View.Layout>
+
+            <Button x:Name="opacityIncreaseButton"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    PointSize="15"
+                    Text="Opacity++">
+            </Button>
+
+            <Button x:Name="opacityDecreaseButton"
+                    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                    PointSize="15"
+                    Text="Opacity--">
+            </Button>
+          </View>
+
+        </View>
+    </ContentPage.Content>
+
+</ContentPage>

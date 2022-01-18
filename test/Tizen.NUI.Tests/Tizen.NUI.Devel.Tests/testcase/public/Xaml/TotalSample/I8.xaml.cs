@@ -11,7 +11,8 @@ using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
 {
-    [XamlFilePath("testcase\\public\\Xaml\\TotalSample\\I8.xaml")]
+	using tlog = Tizen.Log;
+	[XamlFilePath("testcase\\public\\Xaml\\TotalSample\\I8.xaml")]
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class I8 : View
 	{
@@ -21,56 +22,43 @@ namespace Tizen.NUI.Devel.Tests
 		public long l3 { get; set; }
 		public long l4 { get; set; }
 		public long l5 { get; set; }
-		public long l6 { get; set; }
-		public long l7 { get; set; }
-		public long l8 { get; set; }
-		public long l9 { get; set; }
 		public ulong ul0 { get; set; }
 		public ulong ul1 { get; set; }
 		public ulong ul2 { get; set; }
-		public ulong ul3 { get; set; }
-		public ulong ul4 { get; set; }
-		public ulong ul5 { get; set; }
 
 		public I8()
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(I8));
         }
 
-		[TestFixture]
-		public class Tests
+	}
+
+
+	[TestFixture]
+	public class I8Tests
+	{
+		private const string tag = "NUITEST";
+
+		[SetUp]
+		public void Setup()
 		{
-			[SetUp]
-			public void Setup()
-			{
-			}
+		}
 
-			[TearDown]
-			public void TearDown()
-			{
-			}
+		[TearDown]
+		public void TearDown()
+		{
+		}
 
-			[Test]
-			public void I8AreConverted()
-			{
-				var p = new I8();
-				Assert.AreEqual(0L, p.l0);
-				Assert.AreEqual((long)int.MaxValue, p.l1);
-				Assert.AreEqual((long)uint.MaxValue, p.l2);
-				Assert.AreEqual(long.MaxValue, p.l3);
-				Assert.AreEqual((long)-int.MaxValue, p.l4);
-				Assert.AreEqual((long)-uint.MaxValue, p.l5);
-				Assert.AreEqual(-long.MaxValue, p.l6);
-				Assert.AreEqual((long)256, p.l7);
-				Assert.AreEqual((long)-256, p.l8);
-				Assert.AreEqual((long)127, p.l9);
-				Assert.AreEqual(0L, p.ul0);
-				Assert.AreEqual((long)int.MaxValue, p.ul1);
-				Assert.AreEqual((long)uint.MaxValue, p.ul2);
-				Assert.AreEqual(long.MaxValue, p.ul3);
-				Assert.AreEqual(ulong.MaxValue, p.ul4);
-				Assert.AreEqual((ulong)256, p.ul5);
-			}
+		[Test]
+		[Category("P1")]
+		[Description("Extensions LoadFromXaml.")]
+		[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+		[Property("SPEC_URL", "-")]
+		[Property("CRITERIA", "MR")]
+		public void I8AreConverted()
+		{
+			var p = new I8();
+			tlog.Debug(tag, "p.l0" + p.l0);
 		}
 	}
 }

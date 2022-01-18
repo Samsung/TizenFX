@@ -146,46 +146,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"ViewVisibilityChangedSignalConnect END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("ViewVisibilityChangedSignal Emit.")]
-        //[Property("SPEC", "Tizen.NUI.ViewVisibilityChangedSignal.Emit M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void ViewVisibilityChangedSignalEmit()
-        //{
-        //    tlog.Debug(tag, $"ViewVisibilityChangedSignalEmit START");
-        //    var currentPid = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-        //    var currentTid = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
-
-        //    tlog.Debug(tag, $"thread check! main pid={App.mainPid}, current pid={currentPid}, main tid={App.mainTid}, current tid={currentTid}");
-
-        //    using (View view = new View())
-        //    {
-        //        var testingTarget = new ViewVisibilityChangedSignal(view.SwigCPtr.Handle, false);
-        //        Assert.IsNotNull(testingTarget, "Should be not null!");
-        //        Assert.IsInstanceOf<ViewVisibilityChangedSignal>(testingTarget, "Should be an Instance of ViewVisibilityChangedSignal!");
-
-        //        using (View parent = new View())
-        //        {
-        //            parent.Add(view);
-        //            try
-        //            {
-        //                testingTarget.Emit(view, true, 1);
-        //            }
-        //            catch (Exception e)
-        //            {
-        //                tlog.Debug(tag, e.Message.ToString());
-        //                Assert.Fail("Caught Exception: Failed!");
-        //            }
-        //        }
-
-        //        testingTarget.Dispose();
-        //    }
-
-        //    tlog.Debug(tag, $"ViewVisibilityChangedSignalEmit END (OK)");
-        //}
     }
 }

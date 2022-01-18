@@ -37,6 +37,13 @@ namespace Tizen.NUI
         /// The instance of ResourceManager.
         /// </summary>
         private static System.Resources.ResourceManager resourceManager = null;
+        private static string currentLoadedXaml = null;
+
+        /// <summary>
+        /// Xaml loaded delegate.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void XamlLoadedHandler(string xamlName);
 
         static NUIApplication()
         {
@@ -183,6 +190,12 @@ namespace Tizen.NUI
         public event EventHandler Paused;
 
         /// <summary>
+        /// Xaml loaded event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static event XamlLoadedHandler XamlLoaded;
+
+        /// <summary>
         /// Enumeration for deciding whether a NUI application window is opaque or transparent.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -227,6 +240,26 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             ThemeChangeSensitive = 1 << 1,
         };
+
+        /// <summary>
+        /// Current loaded xaml's full name.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static string CurrentLoadedXaml
+        {
+            get
+            {
+                return currentLoadedXaml;
+            }
+            set
+            {
+                if (currentLoadedXaml != value)
+                {
+                    currentLoadedXaml = value;
+                    XamlLoaded?.Invoke(value);
+                }
+            }
+        }
 
         /// <summary>
         /// ResourceManager to handle multilingual.
@@ -456,21 +489,6 @@ namespace Tizen.NUI
             ThemeManager.Preload();
             IsPreload = true;
         }
-
-        /// <summary>
-        /// This is used to improve application launch performance.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SendLaunchRequest(AppControl appControl)
-        {
-            TransitionOptions?.SendLaunchRequest(appControl);
-        }
-
-        /// <summary>
-        /// This is used to improve application launch performance.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public TransitionOptions TransitionOptions { get; set; }
 
         /// <summary>
         /// Check if it is loaded as dotnet-loader-nui.

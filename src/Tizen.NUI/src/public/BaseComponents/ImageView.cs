@@ -27,248 +27,23 @@ namespace Tizen.NUI.BaseComponents
     /// An instance of ImageView can be created using a URL or an image instance.<br />
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    public class ImageView : View
+    public partial class ImageView : View
     {
         static ImageView() { }
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ImageView.ResourceUrl), typeof(string), typeof(ImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-
-            if (newValue is Selector<string> selector)
-            {
-                imageView.ResourceUrlSelector = selector;
-            }
-            else
-            {
-                imageView.resourceUrlSelector?.Reset(imageView);
-                imageView.SetResourceUrl((string)newValue);
-            }
-        },
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-            string ret = "";
-
-            PropertyMap imageMap = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-            imageMap.Find(ImageVisualProperty.URL)?.Get(out ret);
-            return ret;
-        }));
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImageProperty = BindableProperty.Create(nameof(ImageView.Image), typeof(PropertyMap), typeof(ImageView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-            if (newValue != null)
-            {
-                PropertyMap map = (PropertyMap)newValue;
-                if (imageView.IsCreateByXaml)
-                {
-                    string url = "", alphaMaskURL = "", auxiliaryImageURL = "";
-                    string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
-                    PropertyValue urlValue = map.Find(NDalic.ImageVisualUrl);
-                    bool ret = false;
-                    if (urlValue != null) ret = urlValue.Get(out url);
-                    PropertyMap mmap = new PropertyMap();
-                    if (ret && url.StartsWith("*Resource*"))
-                    {
-                        url = url.Replace("*Resource*", resource);
-                        mmap.Insert(NDalic.ImageVisualUrl, new PropertyValue(url));
-                    }
-
-                    ret = false;
-                    PropertyValue alphaMaskUrlValue = map.Find(NDalic.ImageVisualAlphaMaskUrl);
-                    if (alphaMaskUrlValue != null) ret = alphaMaskUrlValue.Get(out alphaMaskURL);
-                    if (ret && alphaMaskURL.StartsWith("*Resource*"))
-                    {
-                        alphaMaskURL = alphaMaskURL.Replace("*Resource*", resource);
-                        mmap.Insert(NDalic.ImageVisualUrl, new PropertyValue(alphaMaskURL));
-                    }
-
-                    ret = false;
-                    PropertyValue auxiliaryImageURLValue = map.Find(NDalic.ImageVisualAuxiliaryImageUrl);
-                    if (auxiliaryImageURLValue != null) ret = auxiliaryImageURLValue.Get(out auxiliaryImageURL);
-                    if (ret && auxiliaryImageURL.StartsWith("*Resource*"))
-                    {
-                        auxiliaryImageURL = auxiliaryImageURL.Replace("*Resource*", resource);
-                        mmap.Insert(NDalic.ImageVisualAuxiliaryImageUrl, new PropertyValue(auxiliaryImageURL));
-                    }
-
-                    map.Merge(mmap);
-                }
-                if (imageView._border == null)
-                {
-                    Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(map));
-                }
-            }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-            if (imageView._border == null)
-            {
-                PropertyMap temp = new PropertyMap();
-                Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(temp);
-                return temp;
-            }
-            else
-            {
-                return null;
-            }
-        }));
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PreMultipliedAlphaProperty = BindableProperty.Create(nameof(PreMultipliedAlpha), typeof(bool), typeof(ImageView), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, new Tizen.NUI.PropertyValue((bool)newValue));
-            }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-            bool temp = false;
-            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha).Get(out temp);
-            return temp;
-        }));
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty PixelAreaProperty = BindableProperty.Create(nameof(PixelArea), typeof(RelativeVector4), typeof(ImageView), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-            if (newValue != null)
-            {
-                Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PixelArea, new Tizen.NUI.PropertyValue((RelativeVector4)newValue));
-            }
-        }),
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PixelArea).Get(temp);
-            RelativeVector4 relativeTemp = new RelativeVector4(temp.X, temp.Y, temp.Z, temp.W);
-            return relativeTemp;
-        }));
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderProperty = BindableProperty.Create(nameof(Border), typeof(Rectangle), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-            imageView.borderSelector?.Reset(imageView);
-
-            if (newValue is Selector<Rectangle> selector)
-            {
-                if (selector.HasAll()) imageView.SetBorder(selector.All);
-                else imageView.borderSelector = new TriggerableSelector<Rectangle>(imageView, selector, imageView.SetBorder, true);
-            }
-            else
-            {
-                imageView.SetBorder((Rectangle)newValue);
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-            return imageView._border;
-        });
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderOnlyProperty = BindableProperty.Create(nameof(BorderOnly), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-            if (newValue != null)
-            {
-                imageView.UpdateImage(NpatchImageVisualProperty.BorderOnly, new PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-            bool ret = false;
-            PropertyMap imageMap = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-            imageMap.Find(ImageVisualProperty.BorderOnly)?.Get(out ret);
-            return ret;
-        }));
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SynchronosLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-            if (newValue != null)
-            {
-                imageView._synchronousLoading = (bool)newValue;
-                imageView.UpdateImage(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-            return imageView._synchronousLoading;
-        });
-
-        /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty SynchronousLoadingProperty = BindableProperty.Create(nameof(SynchronousLoading), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-            if (newValue != null)
-            {
-                imageView._synchronousLoading = (bool)newValue;
-                imageView.UpdateImage(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-            return imageView._synchronousLoading;
-        });
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty OrientationCorrectionProperty = BindableProperty.Create(nameof(OrientationCorrection), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var imageView = (ImageView)bindable;
-            if (newValue != null)
-            {
-                imageView.UpdateImage(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)newValue));
-            }
-        },
-        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-        {
-            var imageView = (ImageView)bindable;
-
-            bool ret = false;
-            PropertyMap imageMap = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-            imageMap?.Find(ImageVisualProperty.OrientationCorrection)?.Get(out ret);
-
-            return ret;
-        }));
 
         private EventHandler<ResourceReadyEventArgs> _resourceReadyEventHandler;
         private ResourceReadyEventCallbackType _resourceReadyEventCallback;
         private EventHandler<ResourceLoadedEventArgs> _resourceLoadedEventHandler;
         private _resourceLoadedCallbackType _resourceLoadedCallback;
 
+        // Collection of image-sensitive properties.
+        private bool _imagePropertyUpdatedFlag = false;
+        private bool _imagePropertyUpdateProcessAttachedFlag = false;
+        private PropertyMap _imagePropertyMap;
         private Rectangle _border;
         private string _resourceUrl = "";
-        private bool _synchronousLoading = false;
-        private string _alphaMaskUrl = null;
         private int _desired_width = -1;
         private int _desired_height = -1;
-        private VisualFittingModeType _fittingMode = VisualFittingModeType.Fill;
         private TriggerableSelector<string> resourceUrlSelector;
         private TriggerableSelector<Rectangle> borderSelector;
 
@@ -471,13 +246,24 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return GetValue(ImageMapProperty) as PropertyMap;
+            }
+            set
+            {
+                SetValue(ImageMapProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private PropertyMap InternalImageMap
+        {
+            get
+            {
                 if (_border == null)
                 {
-                    PropertyMap returnValue = new PropertyMap();
-                    PropertyValue image = GetProperty(ImageView.Property.IMAGE);
-                    image?.Get(returnValue);
-                    image?.Dispose();
-                    return returnValue;
+                    // Sync as current properties.
+                    UpdateImage();
+
+                    return _imagePropertyMap == null ? new PropertyMap() : new PropertyMap(_imagePropertyMap);
                 }
                 else
                 {
@@ -490,6 +276,14 @@ namespace Tizen.NUI.BaseComponents
                 {
                     PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                     SetProperty(ImageView.Property.IMAGE, setValue);
+                    // Image properties are changed hardly. We should ignore lazy UpdateImage
+                    _imagePropertyUpdatedFlag = false;
+                    _imagePropertyMap?.Dispose();
+                    _imagePropertyMap = null;
+                    if(value != null)
+                    {
+                        _imagePropertyMap = new PropertyMap(value);
+                    }
                     NotifyPropertyChanged();
                     setValue?.Dispose();
                 }
@@ -634,6 +428,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets whether to synchronous loading the resourceurl of image.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API level 9 and will be removed in API level 11. Please use SynchronousLoading instead!")]
         public bool SynchronosLoading
         {
             get
@@ -647,10 +442,14 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Gets or sets whether to synchronous loading the resourceurl of image.<br />
+        /// Gets or sets whether the image of the ResourceUrl property will be loaded synchronously.<br />
         /// </summary>
-        /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// Changing this property make this ImageView load image synchronously at the next loading
+        /// by following operation: <see cref="Reload"/>, <see cref="SetImage(string)"/>,
+        /// and by some properties those cause reloading: <see cref="ResourceUrl"/>, <see cref="PreMultipliedAlpha"/> and etc.
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
         public bool SynchronousLoading
         {
             get
@@ -763,7 +562,7 @@ namespace Tizen.NUI.BaseComponents
         public void Reload()
         {
             PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(ImageView.Property.IMAGE, Property.ActionReload, attributes);
+            this.DoAction(ImageView.Property.IMAGE, ActionReload, attributes);
             attributes?.Dispose();
         }
 
@@ -774,7 +573,7 @@ namespace Tizen.NUI.BaseComponents
         public void Play()
         {
             PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(ImageView.Property.IMAGE, Property.ActionPlay, attributes);
+            this.DoAction(ImageView.Property.IMAGE, ActionPlay, attributes);
             attributes?.Dispose();
         }
 
@@ -785,7 +584,7 @@ namespace Tizen.NUI.BaseComponents
         public void Pause()
         {
             PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(ImageView.Property.IMAGE, Property.ActionPause, attributes);
+            this.DoAction(ImageView.Property.IMAGE, ActionPause, attributes);
             attributes?.Dispose();
         }
 
@@ -796,7 +595,7 @@ namespace Tizen.NUI.BaseComponents
         public void Stop()
         {
             PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(ImageView.Property.IMAGE, Property.ActionStop, attributes);
+            this.DoAction(ImageView.Property.IMAGE, ActionStop, attributes);
             attributes?.Dispose();
         }
 
@@ -810,30 +609,30 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                string ret = "";
-                PropertyMap imageMap = new PropertyMap();
-                PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
-                image?.Get(imageMap);
-                PropertyValue maskUrl = imageMap?.Find(ImageVisualProperty.AlphaMaskURL);
-                maskUrl?.Get(out ret);
-                _alphaMaskUrl = ret;
+                return GetValue(AlphaMaskURLProperty) as string;
+            }
+            set
+            {
+                SetValue(AlphaMaskURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
 
-                imageMap?.Dispose();
-                image?.Dispose();
+        private string InternalAlphaMaskURL
+        {
+            get
+            {
+                string ret = "";
+
+                PropertyValue maskUrl = _imagePropertyMap?.Find(ImageVisualProperty.AlphaMaskURL);
+                maskUrl?.Get(out ret);
                 maskUrl?.Dispose();
 
                 return ret;
             }
             set
             {
-                if (value == null)
-                {
-                    value = "";
-                }
-
-                _alphaMaskUrl = value;
-
-                PropertyValue setValue = new PropertyValue(value);
+                PropertyValue setValue = new PropertyValue(value ?? "");
                 UpdateImage(ImageVisualProperty.AlphaMaskURL, setValue);
                 setValue?.Dispose();
             }
@@ -848,16 +647,23 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (bool)GetValue(CropToMaskProperty);
+            }
+            set
+            {
+                SetValue(CropToMaskProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalCropToMask
+        {
+            get
+            {
                 bool ret = false;
-                PropertyMap imageMap = new PropertyMap();
-                PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
-                image?.Get(imageMap);
-                PropertyValue cropUrl = imageMap?.Find(ImageVisualProperty.CropToMask);
-                cropUrl?.Get(out ret);
 
-                imageMap?.Dispose();
-                image?.Dispose();
-                cropUrl?.Dispose();
+                PropertyValue cropToMask = _imagePropertyMap?.Find(ImageVisualProperty.CropToMask);
+                cropToMask?.Get(out ret);
+                cropToMask?.Dispose();
 
                 return ret;
             }
@@ -865,11 +671,37 @@ namespace Tizen.NUI.BaseComponents
             {
                 PropertyValue setValue = new PropertyValue(value);
                 UpdateImage(ImageVisualProperty.CropToMask, setValue);
-                setValue.Dispose();
+                setValue?.Dispose();
             }
         }
 
-        internal VisualFittingModeType CovertFittingModetoVisualFittingMode(FittingModeType value)
+        /// <summary>
+        /// Actions property value for Reload image.
+        /// </summary>
+        private int ActionReload { get; set; } = Interop.ImageView.ImageVisualActionReloadGet();
+
+        /// <summary>
+        /// Actions property value to Play animated images.
+        /// This property can be redefined by child class if it use different value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected int ActionPlay { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionPlayGet();
+
+        /// <summary>
+        /// Actions property value to Pause animated images.
+        /// This property can be redefined by child class if it use different value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected int ActionPause { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionPauseGet();
+
+        /// <summary>
+        /// Actions property value to Stop animated images.
+        /// This property can be redefined by child class if it use different value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected int ActionStop { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionStopGet();
+
+        internal VisualFittingModeType ConvertFittingModetoVisualFittingMode(FittingModeType value)
         {
             switch (value)
             {
@@ -884,7 +716,7 @@ namespace Tizen.NUI.BaseComponents
                 case FittingModeType.FitHeight:
                     return VisualFittingModeType.FitHeight;
                 case FittingModeType.FitWidth:
-                    return VisualFittingModeType.FitHeight;
+                    return VisualFittingModeType.FitWidth;
                 default:
                     return VisualFittingModeType.Fill;
             }
@@ -928,29 +760,32 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int ret = (int)_fittingMode;
-                PropertyMap imageMap = new PropertyMap();
-                PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
-                image?.Get(imageMap);
-                PropertyValue fittingMode = imageMap?.Find(Visual.Property.VisualFittingMode);
-                fittingMode?.Get(out ret);
-                _fittingMode = (VisualFittingModeType)ret;
+                return (FittingModeType)GetValue(FittingModeProperty);
+            }
+            set
+            {
+                SetValue(FittingModeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
 
-                imageMap?.Dispose();
-                image?.Dispose();
+        private FittingModeType InternalFittingMode
+        {
+            get
+            {
+                int ret = (int)VisualFittingModeType.Fill;
+
+                PropertyValue fittingMode = _imagePropertyMap?.Find(Visual.Property.VisualFittingMode);
+                fittingMode?.Get(out ret);
                 fittingMode?.Dispose();
 
                 return ConvertVisualFittingModetoFittingMode((VisualFittingModeType)ret);
             }
             set
             {
-                VisualFittingModeType ret = CovertFittingModetoVisualFittingMode(value);
+                VisualFittingModeType ret = ConvertFittingModetoVisualFittingMode(value);
                 PropertyValue setValue = new PropertyValue((int)ret);
-                if(_fittingMode != ret)
-                {
-                    _fittingMode = ret;
-                    UpdateImage(Visual.Property.VisualFittingMode, setValue);
-                }
+                UpdateImage(Visual.Property.VisualFittingMode, setValue);
                 setValue?.Dispose();
             }
         }
@@ -969,15 +804,26 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap imageMap = new PropertyMap();
-                PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
-                image?.Get(imageMap);
-                PropertyValue desireWidth = imageMap?.Find(ImageVisualProperty.DesiredWidth);
-                desireWidth?.Get(out _desired_width);
-
-                imageMap?.Dispose();
-                image?.Dispose();
-                desireWidth?.Dispose();
+                return (int)GetValue(DesiredWidthProperty);
+            }
+            set
+            {
+                SetValue(DesiredWidthProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalDesiredWidth
+        {
+            get
+            {
+                // Sync as current properties only if both _desired_width and _desired_height are setuped.
+                if(_desired_width != -1 && _desired_height != -1)
+                {
+                    UpdateImage();
+                }
+                PropertyValue desirewidth = _imagePropertyMap?.Find(ImageVisualProperty.DesiredWidth);
+                desirewidth?.Get(out _desired_width);
+                desirewidth?.Dispose();
 
                 return _desired_width;
             }
@@ -986,7 +832,9 @@ namespace Tizen.NUI.BaseComponents
                 if (_desired_width != value)
                 {
                     _desired_width = value;
-                    UpdateImage(0, null);
+                    PropertyValue setValue = new PropertyValue(value);
+                    UpdateImage(ImageVisualProperty.DesiredWidth, setValue);
+                    setValue?.Dispose();
                 }
             }
         }
@@ -1003,14 +851,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                PropertyMap imageMap = new PropertyMap();
-                PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
-                image?.Get(imageMap);
-                PropertyValue desireheight = imageMap?.Find(ImageVisualProperty.DesiredHeight);
+                return (int)GetValue(DesiredHeightProperty);
+            }
+            set
+            {
+                SetValue(DesiredHeightProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalDesiredHeight
+        {
+            get
+            {
+                // Sync as current properties only if both _desired_width and _desired_height are setuped.
+                if(_desired_width != -1 && _desired_height != -1)
+                {
+                    UpdateImage();
+                }
+                PropertyValue desireheight = _imagePropertyMap?.Find(ImageVisualProperty.DesiredHeight);
                 desireheight?.Get(out _desired_height);
-
-                imageMap?.Dispose();
-                image?.Dispose();
                 desireheight?.Dispose();
 
                 return _desired_height;
@@ -1020,7 +879,9 @@ namespace Tizen.NUI.BaseComponents
                 if (_desired_height != value)
                 {
                     _desired_height = value;
-                    UpdateImage(0, null);
+                    PropertyValue setValue = new PropertyValue(value);
+                    UpdateImage(ImageVisualProperty.DesiredHeight, setValue);
+                    setValue?.Dispose();
                 }
             }
         }
@@ -1034,15 +895,23 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (ReleasePolicyType)GetValue(ReleasePolicyProperty);
+            }
+            set
+            {
+                SetValue(ReleasePolicyProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        
+        private ReleasePolicyType InternalReleasePolicy
+        {
+            get
+            {
                 int ret = (int)ReleasePolicyType.Detached;
-                PropertyMap imageMap = new PropertyMap();
-                PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
-                image?.Get(imageMap);
-                PropertyValue releasePoli = imageMap?.Find(ImageVisualProperty.ReleasePolicy);
-                releasePoli?.Get(out ret);
 
-                imageMap?.Dispose();
-                image?.Dispose();
+                PropertyValue releasePoli = _imagePropertyMap?.Find(ImageVisualProperty.ReleasePolicy);
+                releasePoli?.Get(out ret);
                 releasePoli?.Dispose();
 
                 return (ReleasePolicyType)ret;
@@ -1068,16 +937,24 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int ret = (int)WrapModeType.Default;
-                PropertyMap imageMap = new PropertyMap();
-                PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
-                image?.Get(imageMap);
-                PropertyValue warpModeU = imageMap?.Find(ImageVisualProperty.WrapModeU);
-                warpModeU?.Get(out ret);
+                return (WrapModeType)GetValue(WrapModeUProperty);
+            }
+            set
+            {
+                SetValue(WrapModeUProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
 
-                imageMap?.Dispose();
-                image?.Dispose();
-                warpModeU?.Dispose();
+        private WrapModeType InternalWrapModeU
+        {
+            get
+            {
+                int ret = (int)WrapModeType.Default;
+
+                PropertyValue wrapModeU = _imagePropertyMap?.Find(ImageVisualProperty.WrapModeU);
+                wrapModeU?.Get(out ret);
+                wrapModeU?.Dispose();
 
                 return (WrapModeType)ret;
             }
@@ -1103,15 +980,23 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int ret = (int)WrapModeType.Default;
-                PropertyMap imageMap = new PropertyMap();
-                PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
-                image?.Get(imageMap);
-                PropertyValue wrapModeV = imageMap?.Find(ImageVisualProperty.WrapModeV);
-                wrapModeV?.Get(out ret);
+                return (WrapModeType)GetValue(WrapModeVProperty);
+            }
+            set
+            {
+                SetValue(WrapModeVProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
 
-                imageMap?.Dispose();
-                image?.Dispose();
+        private WrapModeType InternalWrapModeV
+        {
+            get
+            {
+                int ret = (int)WrapModeType.Default;
+
+                PropertyValue wrapModeV = _imagePropertyMap?.Find(ImageVisualProperty.WrapModeV);
+                wrapModeV?.Get(out ret);
                 wrapModeV?.Dispose();
 
                 return (WrapModeType)ret;
@@ -1126,11 +1011,29 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Gets or sets the mode to adjust view size to preserve the aspect ratio of the image resource.
-        /// If this is set to be true, then the width or height, which is not set by user explicitly, can be adjusted to preserve the aspect ratio of the image resource.
-        /// AdjustViewSize works only if ImageView is added to a View having Layout.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool AdjustViewSize { get; set; } = false;
+        /// <remarks>
+        /// This is false by default.
+        /// If this is set to be true, then the width or height value, which is not set by user explicitly, can be changed automatically
+        /// to preserve the aspect ratio of the image resource.
+        /// AdjustViewSize works only if ImageView is added to a View having Layout.
+        /// e.g. If the image resource size is (100, 100), then the ImageView requests size (100, 100) to its parent layout by default.
+        ///      If the ImageView's HeightSpecification is 50 and AdjustViewSize is true, then the ImageView requests size (50, 50) instead of (100, 50).
+        /// </remarks>
+        /// <since_tizen> 9 </since_tizen>
+        public bool AdjustViewSize
+        {
+            get
+            {
+                return (bool)GetValue(AdjustViewSizeProperty);
+            }
+            set
+            {
+                SetValue(AdjustViewSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool adjustViewSize = false;
 
         internal Selector<string> ResourceUrlSelector
         {
@@ -1179,36 +1082,53 @@ namespace Tizen.NUI.BaseComponents
         {
             base.ApplyCornerRadius();
 
-            UpdateImage(0, null);
+            if (backgroundExtraData == null) return;
+
+            // Apply corner radius to IMAGE.
+            var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
+            var cornerRadiusPolicyValue = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
+
+            // Make current propertyMap
+            PropertyMap currentPropertyMap = new PropertyMap();
+            currentPropertyMap[Visual.Property.CornerRadius] = cornerRadiusValue;
+            currentPropertyMap[Visual.Property.CornerRadiusPolicy] = cornerRadiusPolicyValue;
+            var temp = new PropertyValue(currentPropertyMap);
+
+            // Update corner radius properties to image by ActionUpdateProperty
+            this.DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, temp);
+
+            temp.Dispose();
+            currentPropertyMap.Dispose();
+            cornerRadiusValue.Dispose();
+            cornerRadiusPolicyValue.Dispose();
         }
 
         internal override void ApplyBorderline()
         {
             base.ApplyBorderline();
 
+            if (backgroundExtraData == null) return;
+
             // Apply borderline to IMAGE.
-            if (backgroundExtraData != null)
-            {
-                var borderlineColor = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+            var borderlineWidthValue = new PropertyValue(backgroundExtraData.BorderlineWidth);
+            var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+            var borderlineOffsetValue = new PropertyValue(backgroundExtraData.BorderlineOffset);
 
-                // Apply to the image visual
-                PropertyMap imageMap = new PropertyMap();
-                PropertyValue imageValue = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
-                if (imageValue.Get(imageMap) && !imageMap.Empty())
-                {
-                    imageMap[Visual.Property.BorderlineWidth] = new PropertyValue(backgroundExtraData.BorderlineWidth);
-                    imageMap[Visual.Property.BorderlineColor] = borderlineColor;
-                    imageMap[Visual.Property.BorderlineOffset] = new PropertyValue(backgroundExtraData.BorderlineOffset);
-                    var temp = new PropertyValue(imageMap);
-                    Tizen.NUI.Object.SetProperty(SwigCPtr, ImageView.Property.IMAGE, temp);
-                    temp.Dispose();
-                }
-                imageMap.Dispose();
-                imageValue.Dispose();
-                borderlineColor.Dispose();
-            }
+            // Make current propertyMap
+            PropertyMap currentPropertyMap = new PropertyMap();
+            currentPropertyMap[Visual.Property.BorderlineWidth] = borderlineWidthValue;
+            currentPropertyMap[Visual.Property.BorderlineColor] = borderlineColorValue;
+            currentPropertyMap[Visual.Property.BorderlineOffset] = borderlineOffsetValue;
+            var temp = new PropertyValue(currentPropertyMap);
 
-            UpdateImage(0, null);
+            // Update borderline properties to image by ActionUpdateProperty
+            this.DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, temp);
+
+            temp.Dispose();
+            currentPropertyMap.Dispose();
+            borderlineWidthValue.Dispose();
+            borderlineColorValue.Dispose();
+            borderlineOffsetValue.Dispose();
         }
 
         internal ResourceLoadingStatusType GetResourceStatus()
@@ -1237,6 +1157,14 @@ namespace Tizen.NUI.BaseComponents
                 _border = null;
                 borderSelector?.Reset(this);
                 resourceUrlSelector?.Reset(this);
+                _imagePropertyUpdatedFlag = false;
+                if (_imagePropertyUpdateProcessAttachedFlag)
+                {
+                    ProcessorController.Instance.ProcessorOnceEvent -= UpdateImage;
+                    _imagePropertyUpdateProcessAttachedFlag = false;
+                }
+                _imagePropertyMap?.Dispose();
+                _imagePropertyMap = null;
             }
 
             base.Dispose(type);
@@ -1272,8 +1200,11 @@ namespace Tizen.NUI.BaseComponents
                 string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
                 value = value.Replace("*Resource*", resource);
             }
-            _resourceUrl = value;
-            UpdateImage(ImageVisualProperty.URL, new PropertyValue(value));
+            if(_resourceUrl != value)
+            {
+                _resourceUrl = value;
+                UpdateImage(ImageVisualProperty.URL, new PropertyValue(value));
+            }
         }
 
         private void SetBorder(Rectangle value)
@@ -1282,81 +1213,113 @@ namespace Tizen.NUI.BaseComponents
             {
                 return;
             }
-            _border = new Rectangle(value);
-            UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(_border));
+            if(_border != value)
+            {
+                _border = new Rectangle(value);
+                UpdateImage(NpatchImageVisualProperty.Border, new PropertyValue(_border));
+            }
         }
 
-        private void UpdateImageMap(PropertyMap fromMap)
-        {
-            PropertyMap imageMap = new PropertyMap();
-
-            PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
-            image?.Get(imageMap);
-            imageMap?.Merge(fromMap);
-            PropertyValue setValue = new PropertyValue(imageMap);
-            SetProperty(ImageView.Property.IMAGE, setValue);
-
-            imageMap?.Dispose();
-            image?.Dispose();
-            setValue?.Dispose();
-        }
-
+        /// <summary>
+        /// Lazy call to UpdateImage.
+        /// Collect Properties need to be update, and set properties that starts the Processing.
+        /// </summary>
         private void UpdateImage(int key, PropertyValue value)
         {
-            PropertyMap imageMap = new PropertyMap();
-
-            if (_alphaMaskUrl != null)
+            // If we set ResourceUrl as empty, Unregist visual.
+            if (key == ImageVisualProperty.URL && string.IsNullOrEmpty(_resourceUrl))
             {
-                PropertyValue alphaMaskUrl = new PropertyValue(_alphaMaskUrl);
-                imageMap?.Insert(ImageVisualProperty.AlphaMaskURL, alphaMaskUrl);
-                alphaMaskUrl?.Dispose();
+                // If previous resourceUrl was already empty, we don't need to do anything. just ignore.
+                // Unregist and dettach Process only if previous resourceUrl was not empty
+                string currentResourceUrl = "";
+                PropertyValue currentResourceUrlValue = _imagePropertyMap?.Find(ImageVisualProperty.URL);
+                if((currentResourceUrlValue?.Get(out currentResourceUrl) ?? false) && !string.IsNullOrEmpty(currentResourceUrl))
+                {
+                    PropertyValue emptyValue = new PropertyValue();
+
+                    // Remove current registed Image.
+                    SetProperty(ImageView.Property.IMAGE, emptyValue);
+
+                    // Image visual is not exist anymore. We should ignore lazy UpdateImage
+                    _imagePropertyUpdatedFlag = false;
+                    if(_imagePropertyUpdateProcessAttachedFlag)
+                    {
+                        ProcessorController.Instance.ProcessorOnceEvent -= UpdateImage;
+                        _imagePropertyUpdateProcessAttachedFlag = false;
+                    }
+                    // Update resourceUrl as null
+                    _imagePropertyMap[ImageVisualProperty.URL] = emptyValue;
+
+                    emptyValue?.Dispose();
+                }
+                return;
             }
 
-            if (string.IsNullOrEmpty(_resourceUrl))
+            // Update image property map value as inputed value.
+            if (key != 0)
             {
-                PropertyValue resourceUrl = new PropertyValue(_resourceUrl);
-                imageMap?.Insert(ImageVisualProperty.URL, resourceUrl);
-                PropertyValue setValue = new PropertyValue(imageMap);
-                SetProperty(ImageView.Property.IMAGE, setValue);
-                resourceUrl?.Dispose();
-                setValue?.Dispose();
-                return;
+                if (_imagePropertyMap == null)
+                {
+                    _imagePropertyMap = new PropertyMap();
+                }
+                _imagePropertyUpdatedFlag = true;
+                _imagePropertyMap[key] = value;
+
+                // Lazy update only if _resourceUrl is not empty and ProcessAttachedFlag is false.
+                if (!string.IsNullOrEmpty(_resourceUrl) && !_imagePropertyUpdateProcessAttachedFlag)
+                {
+                    _imagePropertyUpdateProcessAttachedFlag = true;
+                    ProcessorController.Instance.ProcessorOnceEvent += UpdateImage;
+                    // Call process hardly.
+                    ProcessorController.Instance.Awake();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Callback function to Lazy UpdateImage.
+        /// Or, We can call UpdateImage() function directly if we need.
+        /// </summary>
+        private void UpdateImage(object source, EventArgs e)
+        {
+            UpdateImage();
+            _imagePropertyUpdateProcessAttachedFlag = false;
+        }
+
+        private void UpdateImage()
+        {
+            if(!_imagePropertyUpdatedFlag) return;
+
+            _imagePropertyUpdatedFlag = false;
+
+            if(_imagePropertyMap == null)
+            {
+                _imagePropertyMap = new PropertyMap();
             }
 
             if (_border == null)
             {
                 PropertyValue image = new PropertyValue((int)Visual.Type.Image);
-                imageMap?.Insert(Visual.Property.Type, image);
+                _imagePropertyMap[Visual.Property.Type] = image;
                 image?.Dispose();
             }
             else
             {
                 PropertyValue nPatch = new PropertyValue((int)Visual.Type.NPatch);
-                imageMap?.Insert(Visual.Property.Type, nPatch);
+                _imagePropertyMap[Visual.Property.Type] = nPatch;
                 nPatch?.Dispose();
                 PropertyValue border = new PropertyValue(_border);
-                imageMap?.Insert(NpatchImageVisualProperty.Border, border);
+                _imagePropertyMap[NpatchImageVisualProperty.Border] = border;
                 border?.Dispose();
             }
-
-            if(key != Visual.Property.VisualFittingMode && _fittingMode != VisualFittingModeType.Fill)
-            {
-                PropertyValue fittingMode = new PropertyValue((int)_fittingMode);
-                imageMap?.Insert(Visual.Property.VisualFittingMode, fittingMode);
-                fittingMode?.Dispose();
-            }
-
-            PropertyValue synchronousLoading = new PropertyValue(_synchronousLoading);
-            imageMap?.Insert(NpatchImageVisualProperty.SynchronousLoading, synchronousLoading);
-            synchronousLoading?.Dispose();
 
             if (backgroundExtraData != null && backgroundExtraData.CornerRadius != null)
             {
                 using (var cornerRadius = new PropertyValue(backgroundExtraData.CornerRadius))
                 using (var cornerRadiusPolicy = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy))
                 {
-                    imageMap.Insert(Visual.Property.CornerRadius, cornerRadius);
-                    imageMap.Insert(Visual.Property.CornerRadiusPolicy, new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy)));
+                    _imagePropertyMap[Visual.Property.CornerRadius] = cornerRadius;
+                    _imagePropertyMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)(backgroundExtraData.CornerRadiusPolicy));
                 }
             }
 
@@ -1366,15 +1329,10 @@ namespace Tizen.NUI.BaseComponents
                 using (var borderlineColor = new PropertyValue(backgroundExtraData.BorderlineColor))
                 using (var borderlineOffset = new PropertyValue(backgroundExtraData.BorderlineOffset))
                 {
-                    imageMap.Insert(Visual.Property.BorderlineWidth, borderlineWidth);
-                    imageMap.Insert(Visual.Property.BorderlineColor, borderlineColor);
-                    imageMap.Insert(Visual.Property.BorderlineOffset, borderlineOffset);
+                    _imagePropertyMap[Visual.Property.BorderlineWidth] = borderlineWidth;
+                    _imagePropertyMap[Visual.Property.BorderlineColor] = borderlineColor;
+                    _imagePropertyMap[Visual.Property.BorderlineOffset] = borderlineOffset;
                 }
-            }
-
-            if (value != null)
-            {
-                imageMap?.Insert(key, value);
             }
 
             // Do Fitting Buffer when desired dimension is set
@@ -1400,13 +1358,13 @@ namespace Tizen.NUI.BaseComponents
                         }
 
                         PropertyValue returnWidth = new PropertyValue(adjustedDesiredWidth);
-                        imageMap?.Insert(ImageVisualProperty.DesiredWidth, returnWidth);
+                        _imagePropertyMap[ImageVisualProperty.DesiredWidth] = returnWidth;
                         returnWidth?.Dispose();
                         PropertyValue returnHeight = new PropertyValue(adjustedDesiredHeight);
-                        imageMap?.Insert(ImageVisualProperty.DesiredHeight, returnHeight);
+                        _imagePropertyMap[ImageVisualProperty.DesiredHeight] = returnHeight;
                         returnHeight?.Dispose();
                         PropertyValue scaleToFit = new PropertyValue((int)FittingModeType.ScaleToFill);
-                        imageMap?.Insert(ImageVisualProperty.FittingMode, scaleToFit);
+                        _imagePropertyMap[ImageVisualProperty.FittingMode] = scaleToFit;
                         scaleToFit?.Dispose();
                     }
                     else
@@ -1417,12 +1375,27 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
-            UpdateImageMap(imageMap);
+            UpdateImageMap();
+        }
+        private void UpdateImageMap()
+        {
+            PropertyMap imageMap = new PropertyMap();
+
+            PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
+            image?.Get(imageMap);
+            imageMap.Merge(_imagePropertyMap);
+            PropertyValue setValue = new PropertyValue(imageMap);
+            SetProperty(ImageView.Property.IMAGE, setValue);
+
+            // Sync local PropertyMap
+            // TODO: Do we need to use GetProperty(SwigCPtr, ImageView.Property.IMAGE); here?
+            _imagePropertyMap.Dispose();
+            _imagePropertyMap = new PropertyMap(imageMap);
 
             imageMap?.Dispose();
-            imageMap = null;
+            image?.Dispose();
+            setValue?.Dispose();
         }
-
 
         private void OnResourceLoaded(IntPtr view)
         {
@@ -1481,10 +1454,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int IMAGE = Interop.ImageView.ImageGet();
             internal static readonly int PreMultipliedAlpha = Interop.ImageView.PreMultipliedAlphaGet();
             internal static readonly int PixelArea = Interop.ImageView.PixelAreaGet();
-            internal static readonly int ActionReload = Interop.ImageView.ImageVisualActionReloadGet();
-            internal static readonly int ActionPlay = Interop.ImageView.ImageVisualActionPlayGet();
-            internal static readonly int ActionPause = Interop.ImageView.ImageVisualActionPauseGet();
-            internal static readonly int ActionStop = Interop.ImageView.ImageVisualActionStopGet();
         }
 
         private enum ImageType

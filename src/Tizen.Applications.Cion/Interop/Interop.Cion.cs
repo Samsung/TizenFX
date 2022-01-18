@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+using System;
+using System.Runtime.InteropServices;
+
 internal static partial class Interop
 {
     internal static partial class Cion
@@ -21,12 +24,18 @@ internal static partial class Interop
         internal enum ErrorCode : int
         {
             None = Tizen.Internals.Errors.ErrorCode.None,
-            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
-            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
             IoError = Tizen.Internals.Errors.ErrorCode.IoError,
+            OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
             PermissionDenied = Tizen.Internals.Errors.ErrorCode.PermissionDenied,
+            InvalidParameter = Tizen.Internals.Errors.ErrorCode.InvalidParameter,
             InvalidOperation = Tizen.Internals.Errors.ErrorCode.InvalidOperation,
+            AlreadyInProgress = Tizen.Internals.Errors.ErrorCode.AlreadyInProgress,
             NotSupported = Tizen.Internals.Errors.ErrorCode.NotSupported,
+            TimedOut = Tizen.Internals.Errors.ErrorCode.TimedOut,
+            OperationFailed = -0x030C0000 | 0x01,
         }
+
+        [DllImport(Libraries.Libc, EntryPoint = "malloc")]
+        internal static extern IntPtr Malloc(int size);
     }
 }

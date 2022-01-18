@@ -101,30 +101,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"AnyAssign END (OK)");
         }
 
-        //[Test]
-        //[Category("P1")]
-        //[Description("Any AssertAlways.")]
-        //[Property("SPEC", "Tizen.NUI.Any.AssertAlways M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void AnyAssertAlways()
-        //{
-        //    tlog.Debug(tag, $"AnyAssertAlways START");
-
-        //    try
-        //    {
-        //        Any.AssertAlways("This is the test for Any class.");
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception: Failed!");
-        //    }
-           
-        //    tlog.Debug(tag, $"AnyAssertAlways END (OK)");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("Any GetType.")]

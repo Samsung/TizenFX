@@ -17,6 +17,33 @@ namespace Tizen.NUI.Samples
         }
         public void Deactivate()
         {
+            window.KeyEvent -= OnKeyEvent;
+            if (t1)
+            {
+                t1.Unparent();
+                t1.Dispose();
+            }
+            if (t2)
+            {
+                t2.Unparent();
+                t2.Dispose();
+            }
+            if (t3)
+            {
+                t3.Unparent();
+                t3.Dispose();
+            }
+            if (t4)
+            {
+                t4.Unparent();
+                t4.Dispose();
+            }
+            if (scroll)
+            {
+                scroll.RemoveAllChildren(true);
+                scroll.Unparent();
+                scroll.Dispose();
+            }
         }
 
         private TextLabel t1, t2, t3, t4;

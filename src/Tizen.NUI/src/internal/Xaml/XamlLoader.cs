@@ -93,6 +93,7 @@ namespace Tizen.NUI.Xaml
                 if (string.IsNullOrEmpty(xaml))
                     throw new XamlParseException(string.Format("Can't get xaml from type {0}", callingType), new XmlLineInfo());
                 Load(view, xaml);
+                NUIApplication.CurrentLoadedXaml = callingType.FullName;
             }
             catch (XamlParseException e)
             {
@@ -187,18 +188,6 @@ namespace Tizen.NUI.Xaml
                     break;
                 }
             }
-        }
-
-        [Obsolete("Use the XamlFileProvider to provide xaml files. We will remove this when Cycle 8 hits Stable.")]
-        public static object Create(string xaml, bool doNotThrow = false)
-        {
-            object inflatedView = null;
-            using (var textreader = new StringReader(xaml))
-            using (var reader = XmlReader.Create(textreader))
-            {
-                inflatedView = Create(reader, doNotThrow);
-            }
-            return inflatedView;
         }
 
         public static object Create(XmlReader reader, bool doNotThrow = false)

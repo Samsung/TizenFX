@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<Menu x:Class="NUITizenGallery.MenuTestMenu"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Menu.Items>
+        <Array Type="{x:Type MenuItem}">
+           <MenuItem x:Name="menuItem1"
+                       Text="Item1"/>
+           <MenuItem x:Name="menuItem2"
+                       Text="Item2"/>
+           <MenuItem x:Name="menuItem3"
+                       Text="Item3"/>
+           <MenuItem x:Name="menuItem4"
+                       Text="Item4"/>
+        </Array>
+    </Menu.Items>
+</Menu>

@@ -512,33 +512,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Position2D Dispose.")]
-        [Property("SPEC", "Tizen.NUI.Position2D.Dispose M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR MCST")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void Position2DDispose()
-        {
-            tlog.Debug(tag, $"Position2DDispose START");
-
-            var testingTarget = new Position2D();
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Position2D>(testingTarget, "Should return Position2D instance.");
-            
-            try
-            {
-                testingTarget.Dispose();
-            }
-            catch (Exception e)
-            {
-                Assert.Fail("Caught Exception" + e.ToString());
-            }
-
-            tlog.Debug(tag, $"Position2DDispose END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Position2D GetHashCode.")]
         [Property("SPEC", "Tizen.NUI.Position2D.GetHashCode M")]
         [Property("SPEC_URL", "-")]

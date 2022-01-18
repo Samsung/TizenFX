@@ -77,17 +77,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_SWIGUpcast")]
             public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageView_IMAGE_VISUAL_ACTION_RELOAD_get")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_RELOAD_get")]
             public static extern int ImageVisualActionReloadGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageView_IMAGE_VISUAL_ACTION_PLAY_get")]
-            public static extern int ImageVisualActionPlayGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageView_IMAGE_VISUAL_ACTION_PAUSE_get")]
-            public static extern int ImageVisualActionPauseGet();
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageView_IMAGE_VISUAL_ACTION_STOP_get")]
-            public static extern int ImageVisualActionStopGet();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_New__SWIG_0")]
             public static extern global::System.IntPtr ImageView_New__SWIG_0();
@@ -119,16 +110,16 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ImageView_Property_PIXEL_AREA_get")]
             public static extern int ImageView_Property_PIXEL_AREA_get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageView_IMAGE_VISUAL_ACTION_RELOAD_get")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_RELOAD_get")]
             public static extern int ImageView_IMAGE_VISUAL_ACTION_RELOAD_get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageView_IMAGE_VISUAL_ACTION_PLAY_get")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_PLAY_get")]
             public static extern int ImageView_IMAGE_VISUAL_ACTION_PLAY_get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageView_IMAGE_VISUAL_ACTION_PAUSE_get")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_PAUSE_get")]
             public static extern int ImageView_IMAGE_VISUAL_ACTION_PAUSE_get();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageView_IMAGE_VISUAL_ACTION_STOP_get")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_ImageVisual_Actions_STOP_get")]
             public static extern int ImageView_IMAGE_VISUAL_ACTION_STOP_get();
         }
     }

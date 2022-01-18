@@ -142,7 +142,7 @@ namespace Tizen.NUI.Components
     /// This class provides a View that can scroll a single View with a layout. This View can be a nest of Views.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
-    public class ScrollableBase : Control
+    public partial class ScrollableBase : Control
     {
         static bool LayoutDebugScrollableBase = false; // Debug flag
         private Direction mScrollingDirection = Direction.Vertical;
@@ -254,6 +254,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (Direction)GetValue(ScrollingDirectionProperty);
+            }
+            set
+            {
+                SetValue(ScrollingDirectionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Direction InternalScrollingDirection
+        {
+            get
+            {
                 return mScrollingDirection;
             }
             set
@@ -280,6 +292,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public bool ScrollEnabled
+        {
+            get
+            {
+                return (bool)GetValue(ScrollEnabledProperty);
+            }
+            set
+            {
+                SetValue(ScrollEnabledProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalScrollEnabled
         {
             get
             {
@@ -316,7 +340,19 @@ namespace Tizen.NUI.Components
         /// Default is false.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public bool SnapToPage { set; get; } = false;
+        public bool SnapToPage
+        {
+            get
+            {
+                return (bool)GetValue(SnapToPageProperty);
+            }
+            set
+            {
+                SetValue(SnapToPageProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalSnapToPage { set; get; } = false;
 
         /// <summary>
         /// Get current page.
@@ -332,6 +368,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public int ScrollDuration
         {
+            get
+            {
+                return (int)GetValue(ScrollDurationProperty);
+            }
+            set
+            {
+                SetValue(ScrollDurationProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalScrollDuration
+        {
             set
             {
                 mScrollDuration = value >= 0 ? value : mScrollDuration;
@@ -346,7 +394,19 @@ namespace Tizen.NUI.Components
         /// Scroll Available area.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public Vector2 ScrollAvailableArea { set; get; }
+        public Vector2 ScrollAvailableArea
+        {
+            get
+            {
+                return GetValue(ScrollAvailableAreaProperty) as Vector2;
+            }
+            set
+            {
+                SetValue(ScrollAvailableAreaProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Vector2 InternalScrollAvailableArea { set; get; }
 
         /// <summary>
         /// An event emitted when user starts dragging ScrollableBase, user can subscribe or unsubscribe to this event handler.<br />
@@ -392,6 +452,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(ScrollbarProperty) as ScrollbarBase;
+            }
+            set
+            {
+                SetValue(ScrollbarProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private ScrollbarBase InternalScrollbar
+        {
+            get
+            {
                 return scrollBar;
             }
             set
@@ -429,6 +501,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (bool)GetValue(HideScrollbarProperty);
+            }
+            set
+            {
+                SetValue(HideScrollbarProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalHideScrollbar
+        {
+            get
+            {
                 return hideScrollbar;
             }
             set
@@ -463,6 +547,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(LayoutProperty) as LayoutItem;
+            }
+            set
+            {
+                SetValue(LayoutProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private LayoutItem InternalLayout
+        {
+            get
+            {
                 return ContentContainer.Layout;
             }
             set
@@ -493,6 +589,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (float)GetValue(DecelerationRateProperty);
+            }
+            set
+            {
+                SetValue(DecelerationRateProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalDecelerationRate
+        {
+            get
+            {
                 return decelerationRate;
             }
             set
@@ -506,7 +614,19 @@ namespace Tizen.NUI.Components
         /// Threshold not to go infinite at the end of scrolling animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float DecelerationThreshold { get; set; } = 0.1f;
+        public float DecelerationThreshold
+        {
+            get
+            {
+                return (float)GetValue(DecelerationThresholdProperty);
+            }
+            set
+            {
+                SetValue(DecelerationThresholdProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalDecelerationThreshold { get; set; } = 0.1f;
 
         /// <summary>
         /// Scrolling event will be thrown when this amount of scroll position is changed.
@@ -516,6 +636,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float ScrollingEventThreshold
+        {
+            get
+            {
+                return (float)GetValue(ScrollingEventThresholdProperty);
+            }
+            set
+            {
+                SetValue(ScrollingEventThresholdProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalScrollingEventThreshold
         {
             get
             {
@@ -542,6 +674,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (float)GetValue(PageFlickThresholdProperty);
+            }
+            set
+            {
+                SetValue(PageFlickThresholdProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalPageFlickThreshold
+        {
+            get
+            {
                 return mPageFlickThreshold;
             }
             set
@@ -558,6 +702,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(PaddingProperty) as Extents;
+            }
+            set
+            {
+                SetValue(PaddingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Extents InternalPadding
+        {
+            get
+            {
                 return ContentContainer.Padding;
             }
             set
@@ -570,7 +726,19 @@ namespace Tizen.NUI.Components
         /// Alphafunction for scroll animation.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AlphaFunction ScrollAlphaFunction { get; set; } = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
+        public AlphaFunction ScrollAlphaFunction
+        {
+            get
+            {
+                return GetValue(ScrollAlphaFunctionProperty) as AlphaFunction;
+            }
+            set
+            {
+                SetValue(ScrollAlphaFunctionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private AlphaFunction InternalScrollAlphaFunction { get; set; } = new AlphaFunction(AlphaFunction.BuiltinFunctions.Linear);
 
         private bool hideScrollbar = true;
         private float maxScrollDistance;
@@ -592,6 +760,18 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         // Let's consider more whether this needs to be set as protected.
         public float NoticeAnimationEndBeforePosition
+        {
+            get
+            {
+                return (float)GetValue(NoticeAnimationEndBeforePositionProperty);
+            }
+            set
+            {
+                SetValue(NoticeAnimationEndBeforePositionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float InternalNoticeAnimationEndBeforePosition
         {
             get => noticeAnimationEndBeforePosition;
             set => noticeAnimationEndBeforePosition = value;
@@ -645,10 +825,13 @@ namespace Tizen.NUI.Components
                 WidthSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.MatchParent : LayoutParamPolicies.WrapContent,
                 HeightSpecification = ScrollingDirection == Direction.Vertical ? LayoutParamPolicies.WrapContent : LayoutParamPolicies.MatchParent,
             };
+            // Check if children's sizes change to update Scrollbar
             ContentContainer.Relayout += OnScrollingChildRelayout;
             propertyNotification = ContentContainer.AddPropertyNotification("position", PropertyCondition.Step(mScrollingEventThreshold));
             propertyNotification.Notified += OnPropertyChanged;
             base.Add(ContentContainer);
+            // Check if ScrollableBase's size changes to update Scrollbar
+            base.Relayout += OnScrollingChildRelayout;
 
             Scrollbar = new Scrollbar();
 
@@ -755,8 +938,8 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            previousContainerSize = ContentContainer.Size;
-            previousSize = Size;
+            previousContainerSize = new Size(ContentContainer.Size);
+            previousSize = new Size(Size);
         }
 
         private bool ReviseContainerPositionIfNeed()
@@ -1107,7 +1290,19 @@ namespace Tizen.NUI.Components
         /// Enable/Disable overshooting effect. default is disabled.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool EnableOverShootingEffect { get; set; } = false;
+        public bool EnableOverShootingEffect
+        {
+            get
+            {
+                return (bool)GetValue(EnableOverShootingEffectProperty);
+            }
+            set
+            {
+                SetValue(EnableOverShootingEffectProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private bool InternalEnableOverShootingEffect { get; set; } = false;
 
         private void AttachOverShootingShadowView()
         {
@@ -1326,25 +1521,19 @@ namespace Tizen.NUI.Components
 
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
         {
-            OnPanGesture(e.PanGesture);
-            if(!((SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing) || e.PanGesture.State == Gesture.StateType.Started))
-            {
-                e.Handled = !((int)finalTargetPosition == 0 || -(int)finalTargetPosition == (int)maxScrollDistance);
-            }
+            e.Handled = OnPanGesture(e.PanGesture);
         }
 
-        private void OnPanGesture(PanGesture panGesture)
+        private bool OnPanGesture(PanGesture panGesture)
         {
+            bool handled = true;
             if (SnapToPage && scrollAnimation != null && scrollAnimation.State == Animation.States.Playing)
             {
-                return;
+                return handled;
             }
-
             if (panGesture.State == Gesture.StateType.Started)
             {
                 readyToNotice = false;
-                //Interrupt touching when panning is started
-                this.InterceptTouchEvent += OnInterruptTouchingChildTouched;
                 AttachOverShootingShadowView();
                 Debug.WriteLineIf(LayoutDebugScrollableBase, "Gesture Start");
                 if (scrolling && !SnapToPage)
@@ -1352,6 +1541,21 @@ namespace Tizen.NUI.Components
                     StopScroll();
                 }
                 totalDisplacementForPan = 0.0f;
+
+                // check if gesture need to propagation
+                var checkDisplacement = (ScrollingDirection == Direction.Horizontal) ? panGesture.Displacement.X : panGesture.Displacement.Y;
+                var checkChildCurrentPosition = (ScrollingDirection == Direction.Horizontal) ? ContentContainer.PositionX : ContentContainer.PositionY;
+                var checkChildTargetPosition = checkChildCurrentPosition + checkDisplacement;
+                var checkFinalTargetPosition = BoundScrollPosition(checkChildTargetPosition);
+                handled = !((int)checkFinalTargetPosition == 0 || -(int)checkFinalTargetPosition == (int)maxScrollDistance);
+                // If you propagate a gesture event, return;
+                if(!handled)
+                {
+                    return handled;
+                }
+
+                //Interrupt touching when panning is started
+                this.InterceptTouchEvent += OnInterruptTouchingChildTouched;
                 OnScrollDragStarted();
             }
             else if (panGesture.State == Gesture.StateType.Continuing)
@@ -1418,6 +1622,7 @@ namespace Tizen.NUI.Components
                 readyToNotice = true;
                 OnScrollAnimationStarted();
             }
+            return handled;
         }
 
         internal void BaseRemove(View view)
@@ -1625,80 +1830,130 @@ namespace Tizen.NUI.Components
             }
         }
 
-
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
-            View nextFocusedView = null;
-
-            int currentIndex = ContentContainer.Children.IndexOf(currentFocusedView);
-
-            switch (direction)
+            if (currentFocusedView == this)
             {
-                case View.FocusDirection.Left:
-                case View.FocusDirection.Up:
-                {
-                    if (currentIndex > 0)
-                    {
-                        nextFocusedView = ContentContainer.Children[--currentIndex];
-                    }
-                    break;
-                }
-                case View.FocusDirection.Right:
-                case View.FocusDirection.Down:
-                {
-                    if (currentIndex < ContentContainer.Children.Count - 1)
-                    {
-                        nextFocusedView =  ContentContainer.Children[++currentIndex];
-                    }
-                    break;
-                }
+                return null;
             }
+
+            View nextFocusedView = FocusManager.Instance.GetNearestFocusableActor(this, currentFocusedView, direction);
 
             if (nextFocusedView != null)
             {
-                // Check next focused view is inside of visible area.
-                // If it is not, move scroll position to make it visible.
-                Position scrollPosition = ContentContainer.CurrentPosition;
-                float targetPosition = -(ScrollingDirection == Direction.Horizontal ? scrollPosition.X : scrollPosition.Y);
-
-                float left = nextFocusedView.Position.X;
-                float right = nextFocusedView.Position.X + nextFocusedView.Size.Width;
-                float top = nextFocusedView.Position.Y;
-                float bottom = nextFocusedView.Position.Y + nextFocusedView.Size.Height;
-
-                float visibleRectangleLeft = -scrollPosition.X;
-                float visibleRectangleRight = -scrollPosition.X + Size.Width;
-                float visibleRectangleTop = -scrollPosition.Y;
-                float visibleRectangleBottom = -scrollPosition.Y + Size.Height;
-
-                if (ScrollingDirection == Direction.Horizontal)
+                View view = nextFocusedView;
+                while (view.GetParent() is View && view.GetParent() != ContentContainer)
                 {
-                    if (left < visibleRectangleLeft)
-                    {
-                        targetPosition = left;
-                    }
-                    else if (right > visibleRectangleRight)
-                    {
-                        targetPosition = right - Size.Width;
-                    }
+                    view = (View)view.GetParent();
                 }
-                else
+                if (view.GetParent() == ContentContainer)
                 {
-                    if (top < visibleRectangleTop)
+                    // Check next focused view is inside of visible area.
+                    // If it is not, move scroll position to make it visible.
+                    Position scrollPosition = ContentContainer.CurrentPosition;
+                    float targetPosition = -(ScrollingDirection == Direction.Horizontal ? scrollPosition.X : scrollPosition.Y);
+
+                    float left = view.Position.X;
+                    float right = view.Position.X + view.Size.Width;
+                    float top = view.Position.Y;
+                    float bottom = view.Position.Y + view.Size.Height;
+
+                    float visibleRectangleLeft = -scrollPosition.X;
+                    float visibleRectangleRight = -scrollPosition.X + Size.Width;
+                    float visibleRectangleTop = -scrollPosition.Y;
+                    float visibleRectangleBottom = -scrollPosition.Y + Size.Height;
+
+                    if (ScrollingDirection == Direction.Horizontal)
                     {
-                        targetPosition = top;
+                        if (left < visibleRectangleLeft)
+                        {
+                            targetPosition = left;
+                        }
+                        else if (right > visibleRectangleRight)
+                        {
+                            targetPosition = right - Size.Width;
+                        }
                     }
-                    else if (bottom > visibleRectangleBottom)
+                    else
                     {
-                        targetPosition = bottom - Size.Height;
+                        if (top < visibleRectangleTop)
+                        {
+                            targetPosition = top;
+                        }
+                        else if (bottom > visibleRectangleBottom)
+                        {
+                            targetPosition = bottom - Size.Height;
+                        }
                     }
+                    ScrollTo(targetPosition, true);
                 }
-                ScrollTo(targetPosition, true);
+            }
+            return nextFocusedView;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool AccessibilityScrollToChild(View child)
+        {
+            if (child == null)
+            {
+                return false;
             }
 
-            return nextFocusedView;
+            if (ScrollingDirection == Direction.Horizontal)
+            {
+                if (child.ScreenPosition.X + child.Size.Width <= this.ScreenPosition.X)
+                {
+                    if (SnapToPage)
+                    {
+                        PageSnap(PageFlickThreshold + 1);
+                    }
+                    else
+                    {
+                        ScrollTo((float)(child.ScreenPosition.X - ContentContainer.ScreenPosition.X), false);
+                    }
+                }
+                else if (child.ScreenPosition.X >= this.ScreenPosition.X + this.Size.Width)
+                {
+                    if (SnapToPage)
+                    {
+                        PageSnap(-(PageFlickThreshold + 1));
+                    }
+                    else
+                    {                        
+                        ScrollTo((float)(child.ScreenPosition.X + child.Size.Width - ContentContainer.ScreenPosition.X - this.Size.Width), false);
+                    }
+                }
+            }
+            else
+            {
+                if (child.ScreenPosition.Y + child.Size.Height <= this.ScreenPosition.Y)
+                {
+                    if (SnapToPage)
+                    {
+                        PageSnap(PageFlickThreshold + 1);
+                    }
+                    else
+                    {                        
+                        ScrollTo((float)(child.ScreenPosition.Y - ContentContainer.ScreenPosition.Y), false);
+                    }
+                }
+                else if (child.ScreenPosition.Y >= this.ScreenPosition.Y + this.Size.Height)
+                {
+                    if (SnapToPage)
+                    {
+                        PageSnap(-(PageFlickThreshold + 1));
+                    }
+                    else
+                    {                       
+                        ScrollTo((float)(child.ScreenPosition.Y + child.Size.Height - ContentContainer.ScreenPosition.Y - this.Size.Height), false);
+                    }
+                }
+            }
+
+            return true;
         }
     }
 

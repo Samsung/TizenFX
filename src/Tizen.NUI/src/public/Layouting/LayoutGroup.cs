@@ -138,31 +138,20 @@ namespace Tizen.NUI
             RequestLayout();
         }
 
-
         /// <summary>
-        /// Sets the sibling order of the layout item so the layout can be defined within the same parent.
+        /// Sets the order of the child layout in the layout group.
         /// </summary>
-        /// <param name="order">the sibling order of the layout item</param>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <param name="child">the child layout in the layout group</param>
+        /// <param name="order">the order of the child layout in the layout group</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void ChangeLayoutSiblingOrder(int order)
+        public void ChangeLayoutChildOrder(LayoutItem child, int order)
         {
-            if (Owner != null)
+            if ((child != null) && (LayoutChildren.Count > order))
             {
-                var ownerParent = Owner.GetParent() as View;
-                if (ownerParent != null)
-                {
-                    var parent = ownerParent.Layout as LayoutGroup;
-
-                    if (parent != null && parent.LayoutChildren.Count > order)
-                    {
-                        parent.LayoutChildren.Remove(this);
-                        parent.LayoutChildren.Insert(order, this);
-                    }
-                }
+                LayoutChildren.Remove(child);
+                LayoutChildren.Insert(order, child);
+                RequestLayout();
             }
-            RequestLayout();
         }
 
         // Attaches to View ChildAdded signal so called when a View is added to a view.
@@ -180,13 +169,9 @@ namespace Tizen.NUI
             // If child already has a Layout then don't change it.
             if (null == child.Layout)
             {
-                // Only wrap View with a Layout if a child a pure View or Layout explicitly set on this Layout
-                if ((true == Owner.LayoutSet || GetType() == typeof(View)))
-                {
-                    // If child of this layout is a pure View then assign it a LayoutGroup
-                    // If the child is derived from a View then it may be a legacy or existing container hence will do layouting itself.
-                    child.Layout = child.CreateDefaultLayout();
-                }
+                // If child view does not have Layout, then default layout is automatically set to the child view.
+                // The Layout is automatically added to this LayoutGroup when child view sets Layout.
+                child.Layout = child.CreateDefaultLayout();
             }
             else
             {

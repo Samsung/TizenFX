@@ -564,6 +564,26 @@ namespace Tizen.NUI.BaseComponents
     };
 
     /// <summary>
+    /// Notify mode for AccessibilityStates.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum AccessibilityStatesNotifyMode
+    {
+        /// <summary>
+        /// Notify about the change of states in this object only.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", Justification = "Single is the most descriptive name for sending a single event")]
+        Single = 0,
+
+        /// <summary>
+        /// Notify about the change of states in this object and all its children.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Recursive = 1,
+    }
+
+    /// <summary>
     /// The relation between accessible objects.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]

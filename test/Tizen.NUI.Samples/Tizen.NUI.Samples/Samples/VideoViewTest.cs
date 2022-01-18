@@ -1,6 +1,7 @@
 ﻿
 using global::System;
 using Tizen.NUI.BaseComponents;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI.Samples
 {
@@ -23,11 +24,11 @@ namespace Tizen.NUI.Samples
             }
         }
 
-        Window win;
-        myPlayer player;
+        Window win = null;
+        myPlayer player = null;
         string resourcePath;
         const string tag = "NUITEST";
-        View dummy;
+        View dummy = null;
         public void Activate()
         {
             win = NUIApplication.GetDefaultWindow();
@@ -53,9 +54,8 @@ namespace Tizen.NUI.Samples
 
             tlog.Fatal(tag, $"Deactivate()!");
 
-            dummy.Unparent();
-
-            videoView.Unparent();
+            if (dummy) { dummy.Unparent(); }
+            if (videoView) { videoView.Unparent(); }
 
             // currently it is crashed when Dispose() is called. need to check.
             //videoView.Dispose();
@@ -125,8 +125,18 @@ namespace Tizen.NUI.Samples
             videoView.PivotPoint = PivotPoint.Center;
             win.Add(videoView);
 
-            var playerHandle = new SafeNativePlayerHandle(videoView);
-            player = new myPlayer(playerHandle.DangerousGetHandle());
+            try
+            {
+                var playerHandle = videoView.NativeHandle;
+                player = new myPlayer(playerHandle.DangerousGetHandle());
+            }
+            catch( Exception e)
+            {
+                if (e is global::System.ArgumentException)
+                {
+                    Tizen.Log.Fatal("NUI", $"[ERROR] could not get NativePlayerHandle!");
+                }
+            }
             if (player != null)
             {
                 player.Start();

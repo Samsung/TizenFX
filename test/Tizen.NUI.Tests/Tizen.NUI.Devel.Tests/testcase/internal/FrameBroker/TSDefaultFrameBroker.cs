@@ -116,79 +116,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("DefaultFrameBroker ForwardAnimation.")]
-        [Property("SPEC", "Tizen.NUI.DefaultFrameBroker.ForwardAnimation A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void DefaultFrameBrokerForwardAnimation()
-        {
-            tlog.Debug(tag, $"DefaultFrameBrokerForwardAnimation START");
-
-            var testingTarget = new DefaultFrameBroker(Window.Instance);
-            Assert.IsNotNull(testingTarget, "Can't create success object CustomView");
-            Assert.IsInstanceOf<DefaultFrameBroker>(testingTarget, "Should be an instance of DefaultFrameBroker type.");
-
-            try
-            {
-                var result = testingTarget.ForwardAnimation;
-                tlog.Debug(tag, "ForwardAnimation.ForwardAnimation : " + result);
-
-                using (TransitionAnimation forwardAni = new TransitionAnimation(300))
-                {
-                    testingTarget.ForwardAnimation = forwardAni;
-                    tlog.Debug(tag, "ForwardAnimation.ForwardAnimation : " + testingTarget.ForwardAnimation);
-                }
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"DefaultFrameBrokerForwardAnimation END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("DefaultFrameBroker BackwardAnimation.")]
-        [Property("SPEC", "Tizen.NUI.DefaultFrameBroker.BackwardAnimation A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void DefaultFrameBrokerBackwardAnimation()
-        {
-            tlog.Debug(tag, $"DefaultFrameBrokerBackwardAnimation START");
-
-            var testingTarget = new DefaultFrameBroker(Window.Instance);
-            Assert.IsNotNull(testingTarget, "Can't create success object CustomView");
-            Assert.IsInstanceOf<DefaultFrameBroker>(testingTarget, "Should be an instance of DefaultFrameBroker type.");
-
-            try
-            {
-                var result = testingTarget.BackwardAnimation;
-                tlog.Debug(tag, "ForwardAnimation.BackwardAnimation : " + result);
-
-                using (TransitionAnimation backAni = new TransitionAnimation(300))
-                {
-                    testingTarget.BackwardAnimation = backAni;
-                    tlog.Debug(tag, "ForwardAnimation.BackwardAnimation : " + testingTarget.BackwardAnimation);
-                }
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-
-            tlog.Debug(tag, $"DefaultFrameBrokerBackwardAnimation END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("DefaultFrameBroker OnFrameCreated.")]
         [Property("SPEC", "Tizen.NUI.DefaultFrameBroker.OnFrameCreated M")]
         [Property("SPEC_URL", "-")]
@@ -306,38 +233,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"DefaultFrameBrokerOnFrameErred END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("DefaultFrameBroker SendLaunchRequest.")]
-        //[Property("SPEC", "Tizen.NUI.DefaultFrameBroker.SendLaunchRequest M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void DefaultFrameBrokerSendLaunchRequest()
-        //{
-        //    tlog.Debug(tag, $"DefaultFrameBrokerSendLaunchRequest START");
-
-        //    var testingTarget = new DefaultFrameBroker(Window.Instance);
-        //    Assert.IsNotNull(testingTarget, "Can't create success object CustomView");
-        //    Assert.IsInstanceOf<DefaultFrameBroker>(testingTarget, "Should be an instance of DefaultFrameBroker type.");
-
-        //    try
-        //    {
-        //        Tizen.Applications.AppControl appControl = new Tizen.Applications.AppControl();
-        //        appControl.Operation = Tizen.Applications.AppControlOperations.Call;
-        //        appControl.ApplicationId = MyAppId;
-        //        testingTarget.SendLaunchRequest(appControl, true);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception : Failed!");
-        //    }
-
-        //    testingTarget.Dispose();
-
-        //    tlog.Debug(tag, $"DefaultFrameBrokerSendLaunchRequest END (OK)");
-        //}
     }
 }

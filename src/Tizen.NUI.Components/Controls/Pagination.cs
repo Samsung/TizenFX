@@ -28,7 +28,7 @@ namespace Tizen.NUI.Components
     /// Pagination shows the number of pages available and the currently active page.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
-    public class Pagination : Control
+    public partial class Pagination : Control
     {
         /// <summary>The IndicatorSize bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -150,6 +150,18 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Selector<string> LastIndicatorImageUrl
         {
+            get
+            {
+                return GetValue(LastIndicatorImageUrlProperty) as Selector<string>;
+            }
+            set
+            {
+                SetValue(LastIndicatorImageUrlProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Selector<string> InternalLastIndicatorImageUrl
+        {
             get => lastIndicatorImageUrl;
             set
             {
@@ -178,6 +190,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when the given value is negative.</exception>
         public int IndicatorCount
+        {
+            get
+            {
+                return (int)GetValue(IndicatorCountProperty);
+            }
+            set
+            {
+                SetValue(IndicatorCountProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalIndicatorCount
         {
             get
             {
@@ -252,6 +276,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(IndicatorColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(IndicatorColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalIndicatorColor
+        {
+            get
+            {
                 return new Color(OnIndicatorColorChanged, indicatorColor);
             }
             set
@@ -307,6 +343,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return GetValue(SelectedIndicatorColorProperty) as Color;
+            }
+            set
+            {
+                SetValue(SelectedIndicatorColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Color InternalSelectedIndicatorColor
+        {
+            get
+            {
                 return new Color(OnSelectedIndicatorColorChanged, selectedIndicatorColor);
             }
             set
@@ -347,6 +395,18 @@ namespace Tizen.NUI.Components
         {
             get
             {
+                return (int)GetValue(SelectedIndexProperty);
+            }
+            set
+            {
+                SetValue(SelectedIndexProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private int InternalSelectedIndex
+        {
+            get
+            {
                 return selectedIndex;
             }
             set
@@ -367,7 +427,7 @@ namespace Tizen.NUI.Components
 
                 SelectIn(indicatorList[selectedIndex]);
 
-                if (Accessibility.Accessibility.Enabled && IsHighlighted)
+                if (Accessibility.Accessibility.IsEnabled && IsHighlighted)
                 {
                     EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
                 }

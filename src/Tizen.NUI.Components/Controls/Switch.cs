@@ -27,7 +27,7 @@ namespace Tizen.NUI.Components
     /// The icon part consists of track and thumb.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class Switch : Button
+    public partial class Switch : Button
     {
         private ImageView thumb = null;
 
@@ -78,11 +78,11 @@ namespace Tizen.NUI.Components
         /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override AccessibilityStates AccessibilityCalculateStates()
+        protected override AccessibilityStates AccessibilityCalculateStates(ulong states)
         {
-            var states = base.AccessibilityCalculateStates();
-            FlagSetter(ref states, AccessibilityStates.Checked, this.IsSelected);
-            return states;
+            var accessibilityStates = base.AccessibilityCalculateStates(states);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Checked, this.IsSelected);
+            return accessibilityStates;
         }
 
         /// <summary>
@@ -172,7 +172,19 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchBackgroundImageURLSelector
         {
-            get => new StringSelector(Icon.ResourceUrlSelector);
+            get
+            {
+                return GetValue(SwitchBackgroundImageURLSelectorProperty) as StringSelector;
+            }
+            set
+            {
+                SetValue(SwitchBackgroundImageURLSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private StringSelector InternalSwitchBackgroundImageURLSelector
+        {
+            get => Icon?.ResourceUrlSelector == null ? null : new StringSelector(Icon.ResourceUrlSelector);
             set
             {
                 Debug.Assert(Icon != null);
@@ -185,6 +197,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public string SwitchHandlerImageURL
+        {
+            get
+            {
+                return GetValue(SwitchHandlerImageURLProperty) as string;
+            }
+            set
+            {
+                SetValue(SwitchHandlerImageURLProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private string InternalSwitchHandlerImageURL
         {
             get
             {
@@ -203,6 +227,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public StringSelector SwitchHandlerImageURLSelector
         {
+            get
+            {
+                return GetValue(SwitchHandlerImageURLSelectorProperty) as StringSelector;
+            }
+            set
+            {
+                SetValue(SwitchHandlerImageURLSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private StringSelector InternalSwitchHandlerImageURLSelector
+        {
             get => new StringSelector(thumb.ResourceUrlSelector);
             set
             {
@@ -216,6 +252,18 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public Size SwitchHandlerImageSize
+        {
+            get
+            {
+                return GetValue(SwitchHandlerImageSizeProperty) as Size;
+            }
+            set
+            {
+                SetValue(SwitchHandlerImageSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private Size InternalSwitchHandlerImageSize
         {
             get
             {
@@ -317,7 +365,7 @@ namespace Tizen.NUI.Components
 
         private void OnSelect()
         {
-            if (Accessibility.Accessibility.Enabled && IsHighlighted)
+            if (Accessibility.Accessibility.IsEnabled && IsHighlighted)
             {
                 EmitAccessibilityStatesChangedEvent(AccessibilityStates.Checked, IsSelected);
             }

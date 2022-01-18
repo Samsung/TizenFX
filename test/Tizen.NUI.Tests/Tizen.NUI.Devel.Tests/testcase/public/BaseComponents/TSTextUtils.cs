@@ -14,6 +14,23 @@ namespace Tizen.NUI.Devel.Tests
     class PublicTextUtilsTest
     {
         private const string tag = "NUITEST";
+        private string imageurl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
+
+        public bool CheckColor(Vector4 colorSrc, Vector4 colorDst)
+        {
+            if (colorSrc.X == colorDst.X && colorSrc.Y == colorDst.Y && colorSrc.Z == colorDst.Z && colorSrc.W == colorDst.W)
+                return true;
+
+            return false;
+        }
+
+        public bool CheckVector2(Vector2 vectorSrc, Vector2 vectorDst)
+        {
+            if (vectorSrc.X == vectorDst.X && vectorSrc.Y == vectorDst.Y)
+                return true;
+
+            return false;
+        }
 
         [SetUp]
         public void Init()
@@ -284,11 +301,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<RendererParameters>(testingTarget, "Should be an instance of RendererParameters type.");
 
             testingTarget.TextColor = new Vector4(0.3f, 0.8f, 1.0f, 0.0f);
-            Assert.AreEqual(0.3f, testingTarget.TextColor.R, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.TextColor.G, "Should be equal!");
-            Assert.AreEqual(1.0f, testingTarget.TextColor.B, "Should be equal!");
-            Assert.AreEqual(0.0f, testingTarget.TextColor.A, "Should be equal!");
+            var color = new Vector4(0.3f, 0.8f, 1.0f, 0.0f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.TextColor), "Should be true!");
 
+            color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextUtilsRendererParametersTextColor END (OK)");
         }
@@ -491,6 +507,9 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.TextColor = Color.Cyan;
             tlog.Debug(tag, "IsTextColorSet : " + testingTarget.IsTextColorSet);
 
+            testingTarget.IsTextColorSet = false;
+            tlog.Debug(tag, "IsTextColorSet : " + testingTarget.IsTextColorSet);
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextUtilsRendererParametersIsTextColorSet END (OK)");
         }
@@ -621,9 +640,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<EmbeddedItemInfo>(testingTarget, "Should be an instance of EmbeddedItemInfo type.");
 
             testingTarget.Position = new Vector2(100.0f, 200.0f);
-            Assert.AreEqual(100.0f, testingTarget.Position.X, "Should be equal!");
-            Assert.AreEqual(200.0f, testingTarget.Position.Y, "Should be equal!");
+            var position = new Vector2(100.0f, 200.0f); 
+            Assert.AreEqual(true, CheckVector2(position, testingTarget.Position), "Should be true!");
 
+            position.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextUtilsEmbeddedItemInfoPosition END (OK)");
         }
@@ -780,11 +800,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<ShadowParameters>(testingTarget, "Should be an instance of ShadowParameters type.");
 
             testingTarget.TextColor = new Vector4(0.3f, 0.8f, 1.0f, 0.0f);
-            Assert.AreEqual(0.3f, testingTarget.TextColor.R, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.TextColor.G, "Should be equal!");
-            Assert.AreEqual(1.0f, testingTarget.TextColor.B, "Should be equal!");
-            Assert.AreEqual(0.0f, testingTarget.TextColor.A, "Should be equal!");
+            var color = new Vector4(0.3f, 0.8f, 1.0f, 0.0f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.TextColor), "Should be true!");
 
+            color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextUtilsShadowParametersTextColor END (OK)");
         }
@@ -807,11 +826,10 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Input = new PixelBuffer(30, 50, PixelFormat.A8);
 
             testingTarget.Color = new Vector4(0.3f, 0.8f, 1.0f, 0.0f);
-            Assert.AreEqual(0.3f, testingTarget.Color.R, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.Color.G, "Should be equal!");
-            Assert.AreEqual(1.0f, testingTarget.Color.B, "Should be equal!");
-            Assert.AreEqual(0.0f, testingTarget.Color.A, "Should be equal!");
+            var color = new Vector4(0.3f, 0.8f, 1.0f, 0.0f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.Color), "Should be true!");
 
+            color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextUtilsShadowParametersColor END (OK)");
         }
@@ -832,9 +850,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<ShadowParameters>(testingTarget, "Should be an instance of ShadowParameters type.");
 
             testingTarget.Offset = new Vector2(0.3f, 0.8f);
-            Assert.AreEqual(0.3f, testingTarget.Offset.X, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.Offset.Y, "Should be equal!");
+            var offset = new Vector2(0.3f, 0.8f);
+            Assert.AreEqual(true, CheckVector2(offset, testingTarget.Offset), "Should be true!");
 
+            offset.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextUtilsShadowParametersOffset END (OK)");
         }
@@ -1030,6 +1049,60 @@ namespace Tizen.NUI.Devel.Tests
             Assert.AreEqual(0.8f, small, "Should be equal!");
 
             tlog.Debug(tag, $"TextUtilsGetFontSizeScale END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextUtils CopyToClipboard.")]
+        [Property("SPEC", "Tizen.NUI.TextUtils.CopyToClipboard M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextUtilsCopyToClipboard()
+        {
+            tlog.Debug(tag, $"TextUtilsCopyToClipboard START");
+
+            TextEditor editor = new TextEditor()
+            { 
+                Text = "editor",
+            };
+            var result = TextUtils.CopyToClipboard(editor);
+            tlog.Debug(tag, "CopyToClipboard : " + result);
+
+            result = TextUtils.CutToClipboard(editor);
+            tlog.Debug(tag, "CutToClipboard : " + result);
+
+            try
+            {
+                TextUtils.PasteTo(editor);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            TextField field = new TextField()
+            {
+                Text = "field",
+            };
+            result = TextUtils.CopyToClipboard(field);
+            tlog.Debug(tag, "CopyToClipboard : " + field);
+
+            result = TextUtils.CutToClipboard(field);
+            tlog.Debug(tag, "CutToClipboard : " + field);
+
+            try
+            {
+                TextUtils.PasteTo(field);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"TextUtilsCopyToClipboard END (OK)");
         }
     }
 }

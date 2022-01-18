@@ -181,32 +181,5 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"ComponentApplicationAssign END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("ComponentApplication CreateNative.")]
-        //[Property("SPEC", "Tizen.NUI.ComponentApplication.CreateNative A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void ComponentApplicationCreateNative()
-        //{
-        //    tlog.Debug(tag, $"ComponentApplicationCreateNative START");
-
-        //    var testingTarget = new ComponentApplication(widget.SwigCPtr.Handle, true);
-        //    Assert.IsNotNull(testingTarget, "should be not null");
-        //    Assert.IsInstanceOf<ComponentApplication>(testingTarget, "should be an instance of testing target class!");
-
-        //    testingTarget.CreateNative += OnApplicationCreateNative;
-        //    testingTarget.CreateNative -= OnApplicationCreateNative;
-
-        //    testingTarget.Dispose();
-        //    tlog.Debug(tag, $"ComponentApplicationCreateNative END (OK)");
-        //}
-
-        //private IntPtr OnApplicationCreateNative()
-        //{
-        //    return IntPtr.Zero;
-        //}
     }
 }

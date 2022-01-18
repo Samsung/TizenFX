@@ -28,7 +28,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("View.AnimateBackgroundColor method")]
+        [Category("P1")]
+        [Description("View.AnimateBackgroundColor")]
+        [Property("SPEC", "Tizen.NUI.View.AnimateBackgroundColor M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "dongsug.song@samsung.com")]
         public void ViewAnimateBackgroundColor()
         {
@@ -46,7 +50,8 @@ namespace Tizen.NUI.Devel.Tests
 
             Assert.IsNotNull(view, "should be not null");
 
-            var animation = view.AnimateBackgroundColor(new Color(0, 0, 0, 1), 0, 300);
+            var animation = view.AnimateBackgroundColor(new Color(0, 0, 0, 1), 0, 300, 
+                                                        AlphaFunction.BuiltinFunctions.Bounce, new Color("#F1C40F"));
 
             Assert.IsNotNull(animation, "should be not null");
 
@@ -56,7 +61,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("View.AnimateColor method")]
+        [Category("P1")]
+        [Description("View.AnimateColor")]
+        [Property("SPEC", "Tizen.NUI.View.AnimateColor M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "dongsug.song@samsung.com")]
         public void ViewAnimateColor()
         {
@@ -84,7 +93,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("View.Add method, child null")]
+        [Category("P1")]
+        [Description("View.Add, child null")]
+        [Property("SPEC", "Tizen.NUI.View.Add M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "dongsug.song@samsung.com")]
         public void ViewAddArgumentNull()
         {
@@ -108,7 +121,7 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                tlog.Fatal(tag, $"Exception occured, e={e}");
+                tlog.Debug(tag, $"Exception occured, e={e}");
                 Assert.Fail("No Exception required!");
             }
             finally
@@ -120,7 +133,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("View.HasFocus method")]
+        [Category("P1")]
+        [Description("View.HasFocus")]
+        [Property("SPEC", "Tizen.NUI.View.HasFocus M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "dongsug.song@samsung.com")]
         public void ViewHasFocus()
         {
@@ -143,8 +160,13 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"ViewHasFocus END (OK)");
         }
 
+
         [Test]
-        [Description("View.RotateBy method")]
+        [Category("P1")]
+        [Description("View.RotateBy")]
+        [Property("SPEC", "Tizen.NUI.View.RotateBy M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ViewRotateBy()
         {
@@ -183,7 +205,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("View.RotateBy method")]
+        [Category("P1")]
+        [Description("View.RotateBy")]
+        [Property("SPEC", "Tizen.NUI.View.RotateBy M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ViewRotateByRadian()
         {
@@ -222,7 +248,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("View.Rotation method")]
+        [Category("P1")]
+        [Description("View.Rotation")]
+        [Property("SPEC", "Tizen.NUI.View.Rotation M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ViewRotateByRotation()
         {
@@ -264,7 +294,11 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
-        [Description("View.ScaleBy method")]
+        [Category("P1")]
+        [Description("View.ScaleBy")]
+        [Property("SPEC", "Tizen.NUI.View.ScaleBy M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void ViewScaleBy()
         {
@@ -297,6 +331,43 @@ namespace Tizen.NUI.Devel.Tests
             NUIApplication.GetDefaultWindow().Remove(view);
             view.Dispose();
             tlog.Debug(tag, $"ViewScaleBy END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("View.FindDescendantByID")]
+        [Property("SPEC", "Tizen.NUI.View.FindDescendantByID M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewFindDescendantByID()
+        {
+            tlog.Debug(tag, $"ViewFindDescendantByID START");
+
+            var view = new View()
+            {
+                Size = new Size2D(200, 200),
+            };
+            NUIApplication.GetDefaultWindow().Add(view);
+
+            var child = new View()
+            {
+                Size = new Size2D(100, 100),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = ParentOrigin.CenterRight,
+                PivotPoint = PivotPoint.CenterRight,
+                BackgroundColor = Color.Azure,
+                Focusable = true,
+            };
+
+            view.Add(child);
+
+            var result = view.FindDescendantByID(child.ID);
+            Assert.IsNotNull(result, "should be not null");
+
+            NUIApplication.GetDefaultWindow().Remove(view);
+            view.Dispose();
+            tlog.Debug(tag, $"ViewFindDescendantByID END (OK)");
         }
     }
 }

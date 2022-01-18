@@ -23,6 +23,7 @@
     <None Remove="res\layout\BaseXamlSample3.xaml" />
     <None Remove="res\layout\BindingSample.xaml" />
     <None Remove="res\layout\MyResourceDictionary.xaml" />
+    <None Remove="res\layout\Transition.xaml" />
     <None Remove="testcase\public\Xaml\TotalSample\BaseXamlSample2.xaml" />
     <None Remove="testcase\public\Xaml\TotalSample\BindablePropertiesAccessModifiers.xaml" />
     <None Remove="testcase\public\Xaml\TotalSample\BindingsCompiler.xaml" />
@@ -68,6 +69,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="res\layout\BindingSample.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Include="res\layout\Transition.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="res\layout\XamlStyleSample.xaml">
@@ -165,7 +169,7 @@
 
   <Import Project="..\Common\dependencies.props" />
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="$(TizenNETVersion)">
+    <PackageReference Include="Tizen.NET" Version="9.0.0.16796">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Tizen.NET.Sdk" Version="$(TizenNETSdkVersion)" />

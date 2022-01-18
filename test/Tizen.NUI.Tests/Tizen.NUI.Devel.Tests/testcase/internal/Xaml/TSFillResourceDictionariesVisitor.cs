@@ -163,35 +163,5 @@ namespace Tizen.NUI.Devel.Tests
                 throw new NotImplementedException();
             }
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("FillResourceDictionariesVisitor IsResourceDictionary")]
-        //[Property("SPEC", "Tizen.NUI.FillResourceDictionariesVisitor.IsResourceDictionary M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //public void FillResourceDictionariesVisitorIsResourceDictionary()
-        //{
-        //    tlog.Debug(tag, $"FillResourceDictionariesVisitorVisitNodeOnDataTemplate START");
-
-        //    try
-        //    {
-        //        IList<XmlType> list = null;
-        //        XmlType xmlType = new XmlType("myNameSpace", "myName", list);
-        //        Assert.IsNotNull(xmlType, "null XmlType");
-        //        IXmlNamespaceResolverImplement i1 = new IXmlNamespaceResolverImplement();
-        //        Assert.IsNotNull(i1, "null IXmlNamespaceResolverImplement");
-        //        ElementNode n1 = new ElementNode(xmlType, "myNameSpace", i1);
-        //        Assert.IsNotNull(n1, "null ElementNode");
-        //        bool b1 = f1.IsResourceDictionary(n1);
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        tlog.Debug(tag, e.Message.ToString());
-        //        Assert.Fail("Caught Exception" + e.ToString());
-        //    }
-        //    tlog.Debug(tag, $"FillResourceDictionariesVisitorVisitNodeOnDataTemplate END");
-        //}
-
     }
 }
