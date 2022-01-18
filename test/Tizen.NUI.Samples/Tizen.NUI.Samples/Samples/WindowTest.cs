@@ -3,6 +3,7 @@ using global::System;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.System;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 namespace Tizen.NUI.Samples
@@ -16,6 +17,7 @@ namespace Tizen.NUI.Samples
         int screenHeight;
 
         int addingInput;
+        Timer tm;
 
         void Initialize()
         {
@@ -41,11 +43,32 @@ namespace Tizen.NUI.Samples
             text.WidthResizePolicy = ResizePolicyType.FillToParent;
             mainWin.Add(text);
 
+            List<Window.WindowOrientation> list = new List<Window.WindowOrientation>();
+
+            list.Add(Window.WindowOrientation.Landscape);
+            list.Add(Window.WindowOrientation.LandscapeInverse);
+            list.Add(Window.WindowOrientation.NoOrientationPreference);
+            list.Add(Window.WindowOrientation.Portrait);
+            list.Add(Window.WindowOrientation.PortraitInverse);
+
+            mainWin.SetAvailableOrientations(list);
+
             Animation animation = new Animation(2000);
             animation.AnimateTo(text, "Orientation", new Rotation(new Radian(new Degree(180.0f)), PositionAxis.X), 0, 500);
             animation.AnimateTo(text, "Orientation", new Rotation(new Radian(new Degree(0.0f)), PositionAxis.X), 500, 1000);
             animation.Looping = true;
             animation.Play();
+
+            tm = new Timer(100);
+            tm.Tick += Tm_Tick;
+            tm.Start();
+        }
+
+        private bool Tm_Tick(object source, Timer.TickEventArgs e)
+        {
+            bool rotating = mainWin.IsWindowRotating();
+            log.Fatal(tag, $"window is Rotating: {rotating}");
+            return true;
         }
 
         private void WinTouchEvent(object sender, Window.TouchEventArgs e)
