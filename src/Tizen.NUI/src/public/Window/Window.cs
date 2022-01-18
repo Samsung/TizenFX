@@ -1539,6 +1539,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Query whether window is rotating or not.
+        /// </summary>
+        /// <returns>True if window is rotating, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsWindowRotating()
+        {
+            bool ret = Interop.Window.IsWindowRotating(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Add FrameUpdateCallback
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
