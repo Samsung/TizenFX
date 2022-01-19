@@ -400,7 +400,7 @@ namespace Tizen.NUI.Devel.Tests
                 testingTarget.FontStyle = fontStyle;
                 Assert.IsNotNull(testingTarget.FontStyle, "Should not be null!");
             }
-            
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldFontFamily END (OK)");
         }
@@ -1842,6 +1842,39 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"TextFieldDispose END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField Strikethrough.")]
+        [Property("SPEC", "Tizen.NUI.TextField.GetStrikethrough M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "s.sabah@samsung.com")]
+        public void TextFieldStrikethrough()
+        {
+            tlog.Debug(tag, $"TextFieldStrikethrough START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var setStrikethrough = new Tizen.NUI.Text.Strikethrough()
+            {
+                Enable = true,
+                Color = new Color("#3498DB"),
+                Height = 2.0f
+            };
+
+            testingTarget.SetStrikethrough(setStrikethrough);
+
+            var getStrikethrough = testingTarget.GetStrikethrough();
+            Assert.AreEqual(getStrikethrough.Enable, setStrikethrough.Enable, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(getStrikethrough.Color, setStrikethrough.Color), "Should be true!");
+            Assert.AreEqual(getStrikethrough.Height, setStrikethrough.Height, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldStrikethrough END (OK)");
         }
     }
 }

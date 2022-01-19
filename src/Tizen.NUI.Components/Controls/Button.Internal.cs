@@ -452,23 +452,5 @@ namespace Tizen.NUI.Components
             ClickEvent?.Invoke(this, nestedEventArgs);
             Clicked?.Invoke(this, eventArgs);
         }
-
-        internal override bool OnAccessibilityActivated()
-        {
-            using (var key = new Key())
-            {
-                key.State = Key.StateType.Down;
-                key.KeyPressedName = "Return";
-
-                // Touch Down
-                OnKey(key);
-
-                // Touch Up
-                key.State = Key.StateType.Up;
-                OnKey(key);
-            }
-
-            return true;
-        }
     }
 }

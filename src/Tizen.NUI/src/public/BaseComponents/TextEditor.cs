@@ -22,6 +22,7 @@ using System;
 using System.Globalization;
 using System.ComponentModel;
 using Tizen.NUI.Text;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -294,6 +295,7 @@ namespace Tizen.NUI.BaseComponents
         /// The size of font in points.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Binding.TypeConverter(typeof(PointSizeTypeConverter))]
         public float PointSize
         {
             get
@@ -985,6 +987,7 @@ namespace Tizen.NUI.BaseComponents
         /// The font's size of the new input text in points.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Binding.TypeConverter(typeof(PointSizeTypeConverter))]
         public float InputPointSize
         {
             get
@@ -1485,7 +1488,7 @@ namespace Tizen.NUI.BaseComponents
                 using (var propertyValue = GetProperty(TextEditor.Property.SelectedText))
                 {
                     propertyValue.Get(out selectedText);
-                }                
+                }
                 return selectedText;
             }
         }
@@ -1544,7 +1547,7 @@ namespace Tizen.NUI.BaseComponents
                 using (var propertyValue = GetProperty(TextEditor.Property.SelectedTextStart))
                 {
                     propertyValue.Get(out selectedTextStart);
-                }                
+                }
                 return selectedTextStart;
             }
         }
@@ -1564,7 +1567,7 @@ namespace Tizen.NUI.BaseComponents
                 using (var propertyValue = GetProperty(TextEditor.Property.SelectedTextEnd))
                 {
                     propertyValue.Get(out selectedTextEnd);
-                }                
+                }
                 return selectedTextEnd;
             }
         }
@@ -1788,6 +1791,53 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set Strikethrough to TextEditor. <br />
+        /// </summary>
+        /// <param name="strikethrough">The Strikethrough</param>
+        /// <remarks>
+        /// SetStrikethrough specifies the strikethrough of the text through <see cref="Tizen.NUI.Text.Strikethrough"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetStrikethrough method.
+        /// <code>
+        /// var strikethrough = new Tizen.NUI.Text.Strikethrough();
+        /// strikethrough.Enable = true;
+        /// strikethrough.Color = new Color("#3498DB");
+        /// strikethrough.Height = 2.0f;
+        /// editor.SetStrikethrough(strikethrough);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetStrikethrough(Strikethrough strikethrough)
+        {
+            using (var map = TextMapHelper.GetStrikethroughMap(strikethrough))
+            using (var propertyValue = new PropertyValue(map))
+            {
+                SetProperty(TextEditor.Property.Strikethrough, propertyValue);
+            }
+        }
+
+        /// <summary>
+        /// Get Strikethrough from TextEditor. <br />
+        /// </summary>
+        /// <returns>The Strikethrough</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Strikethrough"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Strikethrough GetStrikethrough()
+        {
+            Strikethrough strikethrough;
+            using (var propertyValue = GetProperty(TextEditor.Property.Strikethrough))
+            using (var map = new PropertyMap())
+            {
+                propertyValue.Get(map);
+                strikethrough = TextMapHelper.GetStrikethroughStruct(map);
+            }
+            return strikethrough;
+        }
+
+        /// <summary>
         /// The Placeholder property.
         /// The placeholder map contains the following keys :<br />
         /// <list type="table">
@@ -1835,7 +1885,7 @@ namespace Tizen.NUI.BaseComponents
 
                 if (TextMapHelper.IsValue(map, 1))
                     map.Add("textFocused", TextMapHelper.GetStringFromMap(map, 1, defalutText));
-                
+
                 if (TextMapHelper.IsValue(map, 2))
                 {
                     using (var color = TextMapHelper.GetColorFromMap(map, 2))
@@ -1843,7 +1893,7 @@ namespace Tizen.NUI.BaseComponents
                         map.Add("color", color);
                     }
                 }
-                
+
                 if (TextMapHelper.IsValue(map, 3))
                     map.Add("fontFamily", TextMapHelper.GetStringFromMap(map, 3, defalutText));
 
@@ -1862,10 +1912,10 @@ namespace Tizen.NUI.BaseComponents
 
                 if (TextMapHelper.IsValue(map, 5))
                     map.Add("pointSize", TextMapHelper.GetNullableFloatFromMap(map, 5));
-                
+
                 if (TextMapHelper.IsValue(map, 6))
                     map.Add("pixelSize", TextMapHelper.GetNullableFloatFromMap(map, 6));
-                
+
                 if (TextMapHelper.IsValue(map, 7))
                     map.Add("ellipsis", TextMapHelper.GetBoolFromMap(map, 7, false));
 
@@ -2355,6 +2405,18 @@ namespace Tizen.NUI.BaseComponents
             Interop.TextEditor.DeleteTextEditor(swigCPtr);
         }
 
+        internal override LayoutItem CreateDefaultLayout()
+        {
+            return new TextEditorLayout();
+        }
+
+        internal void SetTextWithoutTextChanged(string text)
+        {
+            invokeTextChanged = false;
+            Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextEditor.Property.TEXT, new Tizen.NUI.PropertyValue(text));
+            invokeTextChanged = true;
+        }
+
         private string SetTranslatable(string textEditorSid)
         {
             string translatableText = null;
@@ -2501,6 +2563,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int EllipsisPosition = Interop.TextEditor.EllipsisPositionGet();
             internal static readonly int MinLineSize = Interop.TextEditor.MinLineSizeGet();
             internal static readonly int InputFilter = Interop.TextEditor.InputFilterGet();
+            internal static readonly int Strikethrough = Interop.TextEditor.StrikethroughGet();
         }
 
         internal class InputStyle
@@ -2551,6 +2614,66 @@ namespace Tizen.NUI.BaseComponents
         private void OnGrabHandleColorChanged(float r, float g, float b, float a)
         {
             GrabHandleColor = new Color(r, g, b, a);
+        }
+
+        private class TextEditorLayout : LayoutItem
+        {
+            protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
+            {
+                // Padding will be automatically applied by DALi TextEditor.
+                var totalWidth = widthMeasureSpec.Size.AsDecimal();
+                var totalHeight = heightMeasureSpec.Size.AsDecimal();
+                var minSize = Owner.MinimumSize;
+                var maxSize = Owner.MaximumSize;
+                var naturalSize = Owner.GetNaturalSize();
+
+                if (((TextEditor)Owner).Text.Length == 0)
+                {
+                    // Calculate height of TextEditor by setting Text with " ".
+                    // By calling SetTextWithoutTextChanged, TextChanged callback is not called for this.
+                    ((TextEditor)Owner).SetTextWithoutTextChanged(" ");
+
+                    // Store original WidthSpecification to restore it after setting ResizePolicy.
+                    var widthSpecification = Owner.WidthSpecification;
+
+                    // In DALi's Size logic, if Width or Height is set to be 0, then
+                    // ResizePolicy is not changed to Fixed.
+                    // This causes Size changes after NUI Layout's OnMeasure is finished.
+                    // e.g. TextEditor's Width fills to its parent although Text is null and
+                    //      WidthSpecification is WrapContent.
+                    // To prevent the Size changes, WidthResizePolicy is set to be Fixed
+                    // in advance if Text is null.
+                    Owner.WidthResizePolicy = ResizePolicyType.Fixed;
+
+                    // Restore WidthSpecification because ResizePolicy changes WidthSpecification.
+                    Owner.WidthSpecification = widthSpecification;
+
+                    naturalSize = Owner.GetNaturalSize();
+
+                    // Restore TextEditor's Text after calculating height of TextEditor.
+                    // By calling SetTextWithoutTextChanged, TextChanged callback is not called for this.
+                    ((TextEditor)Owner).SetTextWithoutTextChanged("");
+                }
+
+                if (widthMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
+                {
+                    totalWidth = Math.Min(Math.Max(naturalSize.Width, minSize.Width), maxSize.Width);
+                }
+
+                if (heightMeasureSpec.Mode != MeasureSpecification.ModeType.Exactly)
+                {
+                    totalHeight = Math.Min(Math.Max(naturalSize.Height, minSize.Height), maxSize.Height);
+                }
+
+                widthMeasureSpec = new MeasureSpecification(new LayoutLength(totalWidth), MeasureSpecification.ModeType.Exactly);
+                heightMeasureSpec = new MeasureSpecification(new LayoutLength(totalHeight), MeasureSpecification.ModeType.Exactly);
+
+                MeasuredSize.StateType childWidthState = MeasuredSize.StateType.MeasuredSizeOK;
+                MeasuredSize.StateType childHeightState = MeasuredSize.StateType.MeasuredSizeOK;
+
+                SetMeasuredDimensions(ResolveSizeAndState(new LayoutLength(totalWidth), widthMeasureSpec, childWidthState),
+                                      ResolveSizeAndState(new LayoutLength(totalHeight), heightMeasureSpec, childHeightState));
+            }
         }
     }
 }
