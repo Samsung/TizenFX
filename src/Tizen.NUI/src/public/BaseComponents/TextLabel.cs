@@ -22,6 +22,7 @@ using System;
 using System.Globalization;
 using System.ComponentModel;
 using Tizen.NUI.Text;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -293,7 +294,7 @@ namespace Tizen.NUI.BaseComponents
         /// </example>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFontStyle(FontStyle fontStyle)
-        {            
+        {
             using (var fontStyleMap = TextMapHelper.GetFontStyleMap(fontStyle))
             {
                 SetValue(FontStyleProperty, fontStyleMap);
@@ -323,6 +324,7 @@ namespace Tizen.NUI.BaseComponents
         /// The size of font in points.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Binding.TypeConverter(typeof(PointSizeTypeConverter))]
         public float PointSize
         {
             get
@@ -1019,6 +1021,53 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Set Strikethrough to TextLabel. <br />
+        /// </summary>
+        /// <param name="strikethrough">The Strikethrough</param>
+        /// <remarks>
+        /// SetStrikethrough specifies the strikethrough of the text through <see cref="Tizen.NUI.Text.Strikethrough"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetStrikethrough method.
+        /// <code>
+        /// var strikethrough = new Tizen.NUI.Text.Strikethrough();
+        /// strikethrough.Enable = true;
+        /// strikethrough.Color = new Color("#3498DB");
+        /// strikethrough.Height = 2.0f;
+        /// label.SetStrikethrough(strikethrough);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetStrikethrough(Strikethrough strikethrough)
+        {
+            using (var map = TextMapHelper.GetStrikethroughMap(strikethrough))
+            using (var propertyValue = new PropertyValue(map))
+            {
+                SetProperty(TextLabel.Property.Strikethrough, propertyValue);
+            }
+        }
+
+        /// <summary>
+        /// Get Strikethrough from TextLabel. <br />
+        /// </summary>
+        /// <returns>The Strikethrough</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Strikethrough"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Strikethrough GetStrikethrough()
+        {
+            Strikethrough strikethrough;
+            using (var propertyValue = GetProperty(TextLabel.Property.Strikethrough))
+            using (var map = new PropertyMap())
+            {
+                propertyValue.Get(map);
+                strikethrough = TextMapHelper.GetStrikethroughStruct(map);
+            }
+            return strikethrough;
+        }
+
+        /// <summary>
         /// The PixelSize property.<br />
         /// The size of font in pixels.<br />
         /// </summary>
@@ -1532,6 +1581,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int FontSizeScale = Interop.TextLabel.FontSizeScaleGet();
             internal static readonly int EnableFontSizeScale = Interop.TextLabel.EnableFontSizeScaleGet();
             internal static readonly int EllipsisPosition = Interop.TextLabel.EllipsisPositionGet();
+            internal static readonly int Strikethrough = Interop.TextLabel.StrikethroughGet();
         }
 
         private void OnShadowColorChanged(float x, float y, float z, float w)
