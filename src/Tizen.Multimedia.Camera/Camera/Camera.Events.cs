@@ -16,6 +16,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 using Native = Interop.Camera;
 
 namespace Tizen.Multimedia
@@ -398,7 +399,12 @@ namespace Tizen.Multimedia
         {
             _previewCallback = (frame, _) =>
             {
-                _preview?.Invoke(this, new PreviewEventArgs(new PreviewFrame(frame)));
+                Log.Info(CameraLog.Tag, "Invoke C# Preview event - START");
+
+                _preview?.Invoke(this,
+                    new PreviewEventArgs(new PreviewFrame(frame, ref _previewBuffer)));
+
+                Log.Info(CameraLog.Tag, "Invoke C# Preview event - DONE");
             };
 
             Native.SetPreviewCallback(_handle, _previewCallback).
@@ -445,7 +451,8 @@ namespace Tizen.Multimedia
         {
             _extraPreviewCallback = (frame, streamId, _) =>
             {
-                _extraPreview?.Invoke(this, new ExtraPreviewEventArgs(new PreviewFrame(frame), streamId));
+                _extraPreview?.Invoke(this,
+                    new ExtraPreviewEventArgs(new PreviewFrame(frame, ref _previewBuffer), streamId));
             };
 
             Native.SetExtraPreviewCallback(_handle, _extraPreviewCallback).
@@ -458,6 +465,53 @@ namespace Tizen.Multimedia
                 ThrowIfFailed("Failed to unset extra preview callback.");
 
             _extraPreviewCallback = null;
+        }
+    }
+
+    internal class PreviewBuffer<T> : IDisposable
+    {
+        private readonly GCHandle[] _gcHandles;
+        private readonly T[][] _buffers;
+
+        internal PreviewBuffer(params uint[] sizes)
+        {
+            _buffers = new T[sizes.Length][];
+            _gcHandles = new GCHandle[sizes.Length];
+
+            for (int i = 0 ; i < sizes.Length; i++)
+            {
+                _buffers[i] = new T[sizes[i]];
+                _gcHandles[i] = GCHandle.Alloc(_buffers[i], GCHandleType.Pinned);
+            }
+        }
+
+        ~PreviewBuffer()
+        {
+            Dispose(false);
+        }
+
+        internal T[] this[int index] => _buffers[index];
+
+        private bool disposedValue = false;
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                foreach (var handle in _gcHandles)
+                {
+                    handle.Free();
+                }
+
+                Log.Info(CameraLog.Tag, $"Disposed : {disposing})");
+                disposedValue = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
     }
 }
