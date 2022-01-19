@@ -11959,6 +11959,11 @@
     "title": "Enum InputHints",
     "keywords": ""
   },
+  "API10/api/Tizen.Uix.InputMethod.InputHintSetEventArgs.html": {
+    "href": "API10/api/Tizen.Uix.InputMethod.InputHintSetEventArgs.html",
+    "title": "Class InputHintSetEventArgs",
+    "keywords": ""
+  },
   "API10/api/Tizen.Uix.InputMethod.InputMethodContext.html": {
     "href": "API10/api/Tizen.Uix.InputMethod.InputMethodContext.html",
     "title": "Class InputMethodContext",
@@ -11972,6 +11977,11 @@
   "API10/api/Tizen.Uix.InputMethod.InputMethodEditor.BoolAction-3.html": {
     "href": "API10/api/Tizen.Uix.InputMethod.InputMethodEditor.BoolAction-3.html",
     "title": "Delegate InputMethodEditor.BoolAction<T, T1, T2>",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Uix.InputMethod.InputMethodEditor.BoolAction-4.html": {
+    "href": "API10/api/Tizen.Uix.InputMethod.InputMethodEditor.BoolAction-4.html",
+    "title": "Delegate InputMethodEditor.BoolAction<T, T1, T2, T3>",
     "keywords": ""
   },
   "API10/api/Tizen.Uix.InputMethod.InputMethodEditor.ContextId.html": {
