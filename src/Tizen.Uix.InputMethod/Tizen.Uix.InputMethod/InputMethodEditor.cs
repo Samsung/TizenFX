@@ -1001,6 +1001,10 @@ namespace Tizen.Uix.InputMethod
         private static OutArrayAction<byte> _imDataRequestedDelegate;
         private static ImeGeometryRequestedCb _imeGeometryRequestedDelegate;
         private static OutAction<Rect> _geometryRequestedDelegate;
+        private static ImeProcessKeyEventWithKeycodeCb _imeProcessKeyWithKeycodeDelegate;
+        private static BoolAction<uint, KeyCode, KeyMask, InputMethodDeviceInformation> _processKeyWithKeycodeDelagate;
+        private static event EventHandler<InputHintSetEventArgs> _inputHintSet;
+        private static ImeInputHintSetCb _imeInputHintSetDelegate;
         private static Action _userCreate;
         private static Action _userTerminate;
         private static Action<ContextId, InputMethodContext> _userShow;
@@ -1115,6 +1119,21 @@ namespace Tizen.Uix.InputMethod
         /// <returns></returns>
         /// <since_tizen> 4 </since_tizen>
         public delegate bool BoolAction<T, T1, T2>(T a, T1 b, T2 c);
+
+        /// <summary>
+        /// An action with 4 input parameters returning a bool.
+        /// </summary>
+        /// <typeparam name="T">Generic type for parameter 1.</typeparam>
+        /// <typeparam name="T1">Generic type for parameter 2.</typeparam>
+        /// <typeparam name="T2">Generic type for parameter 3.</typeparam>
+        /// <typeparam name="T3">Generic type for parameter 4.</typeparam>
+        /// <param name="a">The input parameter 1.</param>
+        /// <param name="b">The input parameter 2.</param>
+        /// <param name="c">The input parameter 3.</param>
+        /// <param name="d">The input parameter 4.</param>
+        /// <returns></returns>
+        /// <since_tizen> 10 </since_tizen>
+        public delegate bool BoolAction<T, T1, T2, T3>(T a, T1 b, T2 c, T3 d);
 
         /// <summary>
         /// Called when an associated text input UI control has focus.
@@ -2325,6 +2344,108 @@ namespace Tizen.Uix.InputMethod
             {
                 Log.Error(LogTag, "SetSize Failed with error " + error);
                 throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Sets the processKey action.
+        /// If the key event is from the external device, DeviceInfo will have its name, class, and subclass information.
+        /// </summary>
+        /// <param name="processKey">
+        /// <c>true</c> if the event was processed, otherwise the event was not processed and was forwarded to the client application.
+        /// The first parameter is X11 key code and the second parameter is key symbol.
+        /// The action is called when the key event is received from the external devices or the SendKey function.
+        /// This Event processes the key event before an associated text input UI control does.
+        /// </param>
+        /// <since_tizen> 10 </since_tizen>
+        public static void SetProcessKeyCallback(BoolAction<uint, KeyCode, KeyMask, InputMethodDeviceInformation> processKey)
+        {
+            _imeProcessKeyWithKeycodeDelegate = (uint keyCode, KeyCode keySymbol, KeyMask keyMask, IntPtr devInfo, IntPtr userData) =>
+            {
+                return _processKeyWithKeycodeDelagate(keyCode, keySymbol, keyMask, new InputMethodDeviceInformation(devInfo));
+            };
+            ErrorCode error = ImeEventSetProcessKeyEventWithKeycodeCb(_imeProcessKeyWithKeycodeDelegate, IntPtr.Zero);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "Add ProcessKeyWithKeycode Failed with error " + error);
+            }
+            _processKeyWithKeycodeDelagate = processKey;
+        }
+
+        /// <summary>
+        /// Updates the cursor position in the preedit string.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <param name="position">The cursor position in the preedit string.</param>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not started yet.
+        /// </exception>
+        /// <since_tizen> 10 </since_tizen>
+        public static void UpdatePreeditCursor(uint position)
+        {
+            ErrorCode error = ImeUpdatePreeditCursor(position);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "UpdatePreeditCursor Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Sets whether candidate strings will be shown or not.
+        /// </summary>
+        /// <privilege>
+        /// http://tizen.org/privilege/ime
+        /// </privilege>
+        /// <param name="visible"><c>true</c> to show candidate strings, <c>false</c> otherwise.</param>
+        /// <exception cref="InvalidOperationException">
+        /// This can occur due to the following reasons:
+        /// 1) The application does not have the privilege to call this function.
+        /// 2) The IME main loop has not started yet.
+        /// </exception>
+        /// <since_tizen> 10 </since_tizen>
+        public static void SetCandidateVisibilityState(bool visible)
+        {
+            ErrorCode error = ImeSetCandidateVisibilityState(visible);
+            if (error != ErrorCode.None)
+            {
+                Log.Error(LogTag, "SetCandidateVisibilityState Failed with error " + error);
+                throw InputMethodExceptionFactory.CreateException(error);
+            }
+        }
+
+        /// <summary>
+        /// Called when an associated text input UI control requests the input panel to set its input hint.
+        /// It will only be called when the client application changes the edit field's input hint attribute after the input panel is shown.
+        /// </summary>
+        /// <seealso cref="InputHints"/>
+        /// <since_tizen> 10 </since_tizen>
+        public static event EventHandler<InputHintSetEventArgs> InputHintSet
+        {
+            add
+            {
+                _imeInputHintSetDelegate = (InputHints hint, IntPtr userData) =>
+                {
+                    InputHintSetEventArgs args = new InputHintSetEventArgs(hint);
+                    _inputHintSet?.Invoke(null, args);
+                };
+                ErrorCode error = ImeEventSetInputHintSetCb(_imeInputHintSetDelegate, IntPtr.Zero);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Add InputHintSet Failed with error " + error);
+                }
+                else
+                {
+                    _inputHintSet += value;
+                }
+            }
+            remove
+            {
+                _inputHintSet -= value;
             }
         }
     }
