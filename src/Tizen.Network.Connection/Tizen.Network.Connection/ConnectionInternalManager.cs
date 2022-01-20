@@ -97,9 +97,9 @@ namespace Tizen.Network.Connection
                     {
                         s_instance = new ConnectionInternalManager();
                     }
+                    Log.Info(Globals.LogTag, "ConnectionInternalManager.Instance");
+                    return s_instance;
                 }
-                Log.Info(Globals.LogTag, "ConnectionInternalManager.Instance");
-                return s_instance;
             }
         }
 
