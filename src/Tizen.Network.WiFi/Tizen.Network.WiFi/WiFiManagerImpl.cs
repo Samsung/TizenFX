@@ -334,7 +334,11 @@ namespace Tizen.Network.WiFi
                 Log.Info(Globals.LogTag, "Interop.WiFi.ActivateAsync");
                 try
                 {
-                    int ret = Interop.WiFi.Activate(GetSafeHandle(), _callback_map[id], id);
+                    int ret = (int)WiFiError.None;
+                    lock (_callback_map)
+                    {
+                        ret = Interop.WiFi.Activate(GetSafeHandle(), _callback_map[id], id);
+                    }
                     CheckReturnValue(ret, "Activate", "");
                 }
                 catch (Exception e)
