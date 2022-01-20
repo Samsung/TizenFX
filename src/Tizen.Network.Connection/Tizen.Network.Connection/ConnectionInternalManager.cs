@@ -70,8 +70,8 @@ namespace Tizen.Network.Connection
 
     internal class ConnectionInternalManager
     {
-        private static readonly Lazy<ConnectionInternalManager> s_instance =
-            new Lazy<ConnectionInternalManager>(() => new ConnectionInternalManager());
+        private static ConnectionInternalManager s_instance = null;
+        private static readonly object _lock = new object();
 
         private EventHandler<ConnectionTypeEventArgs> _ConnectionTypeChanged = null;
         private EventHandler<AddressEventArgs> _IPAddressChanged = null;
@@ -91,8 +91,15 @@ namespace Tizen.Network.Connection
         {
             get
             {
+                lock (_lock)
+                {
+                    if (s_instance == null)
+                    {
+                        s_instance = new ConnectionInternalManager();
+                    }
+                }
                 Log.Info(Globals.LogTag, "ConnectionInternalManager.Instance");
-                return s_instance.Value;
+                return s_instance;
             }
         }
 
