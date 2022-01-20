@@ -45,7 +45,7 @@ namespace Tizen.Multimedia
         private IntPtr _handle = IntPtr.Zero;
         private bool _disposed = false;
         private CameraState _state = CameraState.None;
-        PreviewBuffer<byte> _previewBuffer;
+        PinnedPreviewBuffer<byte> _previewBuffer;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> class.

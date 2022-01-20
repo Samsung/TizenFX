@@ -27,9 +27,7 @@ namespace Tizen.Multimedia
     /// <since_tizen> 4 </since_tizen>
     public class PreviewFrame
     {
-        private byte[] _y, _u, _v;
-
-        internal PreviewFrame(IntPtr ptr, ref PreviewBuffer<byte> buffers)
+        internal PreviewFrame(IntPtr ptr, ref PinnedPreviewBuffer<byte> buffers)
         {
             var unmanagedStruct = Marshal.PtrToStructure<CameraPreviewDataStruct>(ptr);
 
@@ -69,7 +67,7 @@ namespace Tizen.Multimedia
             return PlaneType.TriplePlane;
         }
 
-        internal void CreatePlane(CameraPreviewDataStruct unmanagedStruct, ref PreviewBuffer<byte> buffers)
+        internal void CreatePlane(CameraPreviewDataStruct unmanagedStruct, ref PinnedPreviewBuffer<byte> buffers)
         {
             Log.Info(CameraLog.Tag, "Enter");
             switch (PlaneType)
@@ -81,7 +79,7 @@ namespace Tizen.Multimedia
                     if (buffers == null)
                     {
                         Log.Info(CameraLog.Tag, "SinglePlane - Alloc buffer");
-                        buffers = new PreviewBuffer<byte>(singlePlane.DataLength);
+                        buffers = new PinnedPreviewBuffer<byte>(singlePlane.DataLength);
                     }
                     Log.Info(CameraLog.Tag, "SinglePlane - Marshal copy");
                     Marshal.Copy(singlePlane.Data, buffers[0], 0, (int)singlePlane.DataLength);
@@ -100,7 +98,7 @@ namespace Tizen.Multimedia
                     if (buffers == null)
                     {
                         Log.Info(CameraLog.Tag, "DoublePlane - Alloc buffer");
-                        buffers = new PreviewBuffer<byte>(doublePlane.YLength, doublePlane.UVLength);
+                        buffers = new PinnedPreviewBuffer<byte>(doublePlane.YLength, doublePlane.UVLength);
                     }
 
                     Log.Info(CameraLog.Tag, $"DoublePlane - Marshal copy");
@@ -118,7 +116,7 @@ namespace Tizen.Multimedia
                     if (buffers == null)
                     {
                         Log.Info(CameraLog.Tag, "TriplePlane - Alloc buffer");
-                        buffers = new PreviewBuffer<byte>(triplePlane.YLength, triplePlane.ULength, triplePlane.VLength);
+                        buffers = new PinnedPreviewBuffer<byte>(triplePlane.YLength, triplePlane.ULength, triplePlane.VLength);
                     }
                     Log.Info(CameraLog.Tag, "TriplePlane - Marshal copy");
                     Marshal.Copy(triplePlane.Y, buffers[0], 0, (int)triplePlane.YLength);
@@ -136,7 +134,7 @@ namespace Tizen.Multimedia
                     if (buffers == null)
                     {
                         Log.Info(CameraLog.Tag, "EncodedPlane - Alloc buffer");
-                        buffers = new PreviewBuffer<byte>(encodedPlane.DataLength * 2);
+                        buffers = new PinnedPreviewBuffer<byte>(encodedPlane.DataLength * 2);
                     }
                     Log.Info(CameraLog.Tag, "EncodedPlane - Marshal copy");
                     Marshal.Copy(encodedPlane.Data, buffers[0], 0, (int)encodedPlane.DataLength);
@@ -152,7 +150,7 @@ namespace Tizen.Multimedia
                     if (buffers == null)
                     {
                         Log.Info(CameraLog.Tag, "DepthPlane - Alloc buffer");
-                        buffers = new PreviewBuffer<byte>(depthPlane.DataLength);
+                        buffers = new PinnedPreviewBuffer<byte>(depthPlane.DataLength);
                     }
                     Log.Info(CameraLog.Tag, "DepthPlane - Marshal copy");
                     Marshal.Copy(depthPlane.Data, buffers[0], 0, (int)depthPlane.DataLength);
@@ -167,7 +165,7 @@ namespace Tizen.Multimedia
                     if (buffers == null)
                     {
                         Log.Info(CameraLog.Tag, "RgbPlane - Alloc buffer");
-                        buffers = new PreviewBuffer<byte>(rgbPlane.DataLength);
+                        buffers = new PinnedPreviewBuffer<byte>(rgbPlane.DataLength);
                     }
                     Marshal.Copy(rgbPlane.Data, buffers[0], 0, (int)rgbPlane.DataLength);
 

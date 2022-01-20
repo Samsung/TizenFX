@@ -451,8 +451,12 @@ namespace Tizen.Multimedia
         {
             _extraPreviewCallback = (frame, streamId, _) =>
             {
+                Log.Info(CameraLog.Tag, "Invoke C# Extra Preview event - START");
+
                 _extraPreview?.Invoke(this,
                     new ExtraPreviewEventArgs(new PreviewFrame(frame, ref _previewBuffer), streamId));
+
+                Log.Info(CameraLog.Tag, "Invoke C# Extra Preview event - DONE");
             };
 
             Native.SetExtraPreviewCallback(_handle, _extraPreviewCallback).
@@ -468,12 +472,12 @@ namespace Tizen.Multimedia
         }
     }
 
-    internal class PreviewBuffer<T> : IDisposable
+    internal class PinnedPreviewBuffer<T> : IDisposable
     {
         private readonly GCHandle[] _gcHandles;
         private readonly T[][] _buffers;
 
-        internal PreviewBuffer(params uint[] sizes)
+        internal PinnedPreviewBuffer(params uint[] sizes)
         {
             _buffers = new T[sizes.Length][];
             _gcHandles = new GCHandle[sizes.Length];
@@ -485,7 +489,7 @@ namespace Tizen.Multimedia
             }
         }
 
-        ~PreviewBuffer()
+        ~PinnedPreviewBuffer()
         {
             Dispose(false);
         }
