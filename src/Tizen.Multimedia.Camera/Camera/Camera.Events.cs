@@ -16,7 +16,6 @@
 
 using System;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 using Native = Interop.Camera;
 
 namespace Tizen.Multimedia
@@ -469,53 +468,6 @@ namespace Tizen.Multimedia
                 ThrowIfFailed("Failed to unset extra preview callback.");
 
             _extraPreviewCallback = null;
-        }
-    }
-
-    internal class PinnedPreviewBuffer<T> : IDisposable
-    {
-        private readonly GCHandle[] _gcHandles;
-        private readonly T[][] _buffers;
-
-        internal PinnedPreviewBuffer(params uint[] sizes)
-        {
-            _buffers = new T[sizes.Length][];
-            _gcHandles = new GCHandle[sizes.Length];
-
-            for (int i = 0 ; i < sizes.Length; i++)
-            {
-                _buffers[i] = new T[sizes[i]];
-                _gcHandles[i] = GCHandle.Alloc(_buffers[i], GCHandleType.Pinned);
-            }
-        }
-
-        ~PinnedPreviewBuffer()
-        {
-            Dispose(false);
-        }
-
-        internal T[] this[int index] => _buffers[index];
-
-        private bool disposedValue = false;
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposedValue)
-            {
-                foreach (var handle in _gcHandles)
-                {
-                    handle.Free();
-                }
-
-                Log.Info(CameraLog.Tag, $"Disposed : {disposing})");
-                disposedValue = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }
