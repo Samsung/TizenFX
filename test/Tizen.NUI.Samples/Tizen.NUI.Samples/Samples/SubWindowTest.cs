@@ -1,102 +1,142 @@
-﻿
-using global::System;
-using Tizen.NUI;
+﻿/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
 using Tizen.NUI.BaseComponents;
-using NUnit.Framework;
 
 namespace Tizen.NUI.Samples
 {
     using log = Tizen.Log;
     public class SubWindowTest : IExample
     {
-        string tag = "NUITEST";
-        Window mainWin;
-        Window subWin1;
-        Window subWin2;
-        Window subWin3;
-        Timer tm;
-        bool belowParent;
-        void Initialize()
+        private const string tag = "NUITEST";
+        private const string KEY_BACK = "XF86Back";
+        private const string KEY_ESCAPE = "Escape";
+        private const string KEY_NUM_1 = "1";
+        private const string KEY_NUM_2 = "2";
+        private const string KEY_NUM_3 = "3";
+        private const string KEY_NUM_4 = "4";
+        private const string KEY_NUM_5 = "5";
+        private const string KEY_PARENT_ABOVE = "6";
+        private const string KEY_PARENT_BELOW = "7";
+        private Window mainWin;
+        private Window subWinFirst;
+        private Window subWinSecond;
+        private Window subWinThird;
+        private Timer disposeTimer;
+        private bool belowParent;
+        private const int oneSecond = 1000;
+        private const int testSize = 100;
+        private const int testPosition = 100;
+        private const float testPointSize = 12.0f;
+
+        public void Activate()
+        {
+            Initialize();
+        }
+
+        public void Deactivate()
+        {
+        }
+
+        private void Initialize()
         {
             mainWin = NUIApplication.GetDefaultWindow();
             mainWin.KeyEvent += OnKeyEvent;
             mainWin.BackgroundColor = Color.Cyan;
-            mainWin.WindowSize = new Size2D(500, 500);
+            mainWin.WindowSize = new Size2D(5 * testSize, 5 * testSize);
             mainWin.TouchEvent += WinTouchEvent;
             belowParent = false;
 
-            TextLabel text = new TextLabel("Hello Tizen NUI World");
-            text.HorizontalAlignment = HorizontalAlignment.Center;
-            text.VerticalAlignment = VerticalAlignment.Center;
-            text.TextColor = Color.Blue;
-            text.PointSize = 12.0f;
-            text.HeightResizePolicy = ResizePolicyType.FillToParent;
-            text.WidthResizePolicy = ResizePolicyType.FillToParent;
-            mainWin.Add(text);
+            TextLabel testText = new TextLabel("Hello Tizen NUI World")
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                TextColor = Color.Blue,
+                PointSize = testPointSize,
+                HeightResizePolicy = ResizePolicyType.FillToParent,
+                WidthResizePolicy = ResizePolicyType.FillToParent
+            };
+            mainWin.Add(testText);
 
-            Animation animation = new Animation(2000);
-            animation.AnimateTo(text, "Orientation", new Rotation(new Radian(new Degree(180.0f)), PositionAxis.X), 0, 500);
-            animation.AnimateTo(text, "Orientation", new Rotation(new Radian(new Degree(0.0f)), PositionAxis.X), 500, 1000);
-            animation.Looping = true;
-            animation.Play();
+            Animation testRotationAnim = new Animation(2 * oneSecond);
+            testRotationAnim.AnimateTo(testText, "Orientation", new Rotation(new Radian(new Degree(180.0f)), PositionAxis.X), 0, oneSecond);
+            testRotationAnim.AnimateTo(testText, "Orientation", new Rotation(new Radian(new Degree(0.0f)), PositionAxis.X), oneSecond, 2 * oneSecond);
+            testRotationAnim.Looping = true;
+            testRotationAnim.Play();
 
-            log.Fatal(tag, "animation play!");
+            log.Debug(tag, "animation play!");
         }
 
-        void CreateSubWin3()
+        private void CreateSubWinThird()
         {
-            if(subWin3)
+            if (subWinThird)
             {
-                log.Fatal(tag, $"Sub Window3 is already created");
+                log.Debug(tag, $"subWinThird is already created");
                 return;
             }
-            subWin3 = new Window("subWin3", new Rectangle(0, 0, 300, 300), false);
-            subWin3.BackgroundColor = Color.Blue;
-            View dummy = new View()
+            subWinThird = new Window("subWinThird", new Rectangle(0, 0, 3 * testSize, 3 * testSize), false)
             {
-                Size = new Size(100, 100),
-                Position = new Position(50, 50),
+                BackgroundColor = Color.Blue
+            };
+            View childDummyView = new View()
+            {
+                Size = new Size(testSize, testSize),
+                Position = new Position(testPosition, testPosition),
                 BackgroundColor = Color.Yellow,
             };
-            subWin3.Add(dummy);
-            subWin3.KeyEvent += subWin3_KeyEvent;
+            subWinThird.Add(childDummyView);
+            subWinThird.KeyEvent += SubWinThirdKeyEvent;
         }
 
-        void SetParentAbove()
+        private void SetParentAbove()
         {
-            CreateSubWin3();
-            subWin3.SetParent(mainWin, false);
+            CreateSubWinThird();
+            subWinThird.SetParent(mainWin, false);
         }
 
-        void SetParentBelow()
+        private void SetParentBelow()
         {
-            CreateSubWin3();
-            subWin3.SetParent(mainWin, true);
+            CreateSubWinThird();
+            subWinThird.SetParent(mainWin, true);
         }
 
-        public void subWin3_KeyEvent(object sender, Window.KeyEventArgs e)
+        private void SubWinThirdKeyEvent(object sender, Window.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Down)
             {
-                log.Fatal(tag, $"key down! key={e.Key.KeyPressedName}");
+                log.Debug(tag, $"key down! key={e.Key.KeyPressedName}");
 
                 switch (e.Key.KeyPressedName)
                 {
-                    case "6":
+                    case KEY_PARENT_ABOVE:
                         SetParentAbove();
                         break;
-                    case "7":
+                    case KEY_PARENT_BELOW:
                         SetParentBelow();
                         break;
                 }
             }
         }
 
-        public void WinTouchEvent(object sender, Window.TouchEventArgs e)
+        private void WinTouchEvent(object sender, Window.TouchEventArgs e)
         {
             if (e.Touch.GetState(0) == PointStateType.Up)
             {
-                if(belowParent == false)
+                if (belowParent == false)
                 {
                     SetParentBelow();
                     belowParent = true;
@@ -109,144 +149,142 @@ namespace Tizen.NUI.Samples
             }
         }
 
-        public void OnKeyEvent(object sender, Window.KeyEventArgs e)
+        private void OnKeyEvent(object sender, Window.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Down)
             {
-                log.Fatal(tag, $"key down! key={e.Key.KeyPressedName}");
+                log.Debug(tag, $"key down! key={e.Key.KeyPressedName}");
 
                 switch (e.Key.KeyPressedName)
                 {
-                    case "XF86Back":
-                    case "Escape":
-                        //Exit();
+                    case KEY_BACK:
+                    case KEY_ESCAPE:
                         break;
 
-                    case "1":
-                        TestCase1();
+                    case KEY_NUM_1:
+                        TestMakeSubWindowAndAddSomeDummyObject();
                         break;
 
-                    case "2":
-                        TestCase2();
+                    case KEY_NUM_2:
+                        TestDisposeSubWindowFirstWhichWasCreatedInPrivousTestCase();
                         break;
 
-                    case "3":
-                        TestCase3();
+                    case KEY_NUM_3:
+                        TestCreateSubWindowSecondWhichDoesNotHaveAnySettingAndDisposeItAfterThreeSecondsDelay();
                         break;
 
-                    case "4":
-                        TestCase4();
+                    case KEY_NUM_4:
+                        TestCreateSubWindowSecondWhichHasSomeSettingAndDisposeItAfterThreeSecondsDelay();
                         break;
 
-                    case "5":
-                        TestCase5();
+                    case KEY_NUM_5:
+                        TestCreateSubWindowSecondWhichHasSomeSettingAndAddSomeDummyObjectAndDisposeItAfterThreeSecondsDelay();
                         break;
 
-                    case "6":
+                    case KEY_PARENT_ABOVE:
                         SetParentAbove();
                         break;
 
-                    case "7":
+                    case KEY_PARENT_BELOW:
                         SetParentBelow();
                         break;
 
                     default:
-                        log.Fatal(tag, $"no test!");
+                        log.Debug(tag, $"no test!");
                         break;
                 }
             }
         }
 
         //TDD
-        void TestCase1()
+        private void TestMakeSubWindowAndAddSomeDummyObject()
         {
-            log.Fatal(tag, "test 1 : 1) make sub window-1 2) add some dummy object");
-
-            subWin1 = new Window("subwin1", new Rectangle(500, 500, 300, 300), false);
-            subWin1.BackgroundColor = Color.Blue;
-            View dummy = new View()
+            subWinFirst = new Window("subWinFirst", new Rectangle(5 * testPosition, 5 * testPosition, 3 * testSize, 3 * testSize), false)
             {
-                Size = new Size(100, 100),
-                Position = new Position(50, 50),
+                BackgroundColor = Color.Blue
+            };
+            View childView = new View()
+            {
+                Size = new Size(testSize, testSize),
+                Position = new Position(testPosition, testPosition),
                 BackgroundColor = Color.Yellow,
             };
-            subWin1.Add(dummy);
-            subWin1.KeyEvent += SubWin1_KeyEvent;
+            subWinFirst.Add(childView);
+            subWinFirst.KeyEvent += SubWinFirstKeyEvent;
         }
-        void TestCase2()
+
+        private void TestDisposeSubWindowFirstWhichWasCreatedInPrivousTestCase()
         {
-            log.Fatal(tag, "test 2 : 1) do dispose of sub window-1 created in #1");
-            subWin1?.Dispose();
+            subWinFirst?.Dispose();
         }
-        void TestCase3()
+
+        private void TestCreateSubWindowSecondWhichDoesNotHaveAnySettingAndDisposeItAfterThreeSecondsDelay()
         {
-            log.Fatal(tag, $"test 3 : 1) create sub window2 which doesn't have any setting 2) dispose it after 3 second delay");
-            subWin2 = null;
-            subWin2 = new Window();
-            tm = new Timer(3000);
-            tm.Tick += Tm_Tick;
-            tm.Start();
+            subWinSecond = null;
+            subWinSecond = new Window();
+            disposeTimer = new Timer(3 * oneSecond);
+            disposeTimer.Tick += OnDisposeTimerTick;
+            disposeTimer.Start();
         }
-        void TestCase4()
+
+        private void TestCreateSubWindowSecondWhichHasSomeSettingAndDisposeItAfterThreeSecondsDelay()
         {
-            log.Fatal(tag, $"test 4 : 1) create sub window2 which has some setting 2) dispose it after 3 second delay");
-            subWin2 = null;
-            subWin2 = new Window("subWin2", new Rectangle(100, 100, 100, 100), false);
-            subWin2.BackgroundColor = Color.Red;
-            tm = new Timer(3000);
-            tm.Tick += Tm_Tick;
-            tm.Start();
-        }
-        void TestCase5()
-        {
-            log.Fatal(tag, $"test 5 : 1) create sub window2 which has some setting 2) add some dummy object 3) dispose it after 3 second delay");
-            subWin2 = null;
-            subWin2 = new Window("subWin2", new Rectangle(500, 500, 300, 300), false);
-            subWin2.BackgroundColor = Color.Red;
-            View v1 = new View()
+            subWinSecond = null;
+            subWinSecond = new Window("subWinSecond", new Rectangle(testPosition, testPosition, testSize, testSize), false)
             {
-                Size = new Size(50, 50),
-                Position = new Position(50, 50),
+                BackgroundColor = Color.Red
+            };
+            disposeTimer = new Timer(3 * oneSecond);
+            disposeTimer.Tick += OnDisposeTimerTick;
+            disposeTimer.Start();
+        }
+
+        private void TestCreateSubWindowSecondWhichHasSomeSettingAndAddSomeDummyObjectAndDisposeItAfterThreeSecondsDelay()
+        {
+            subWinSecond = null;
+            subWinSecond = new Window("subWinSecond", new Rectangle(5 * testPosition, 5 * testPosition, 3 * testSize, 3 * testSize), false)
+            {
+                BackgroundColor = Color.Red
+            };
+            View testView = new View()
+            {
+                Size = new Size(testSize, testSize),
+                Position = new Position(testPosition, testPosition),
                 BackgroundColor = Color.Yellow,
             };
-            subWin2.Add(v1);
+            subWinSecond.Add(testView);
 
-            tm = new Timer(3000);
-            tm.Tick += Tm_Tick;
-            tm.Start();
+            disposeTimer = new Timer(3 * oneSecond);
+            disposeTimer.Tick += OnDisposeTimerTick;
+            disposeTimer.Start();
         }
 
-        private bool Tm_Tick(object source, Timer.TickEventArgs e)
+        private bool OnDisposeTimerTick(object source, Timer.TickEventArgs e)
         {
-            log.Fatal(tag, $"after 3000ms, subwin2 dispose!");
-            subWin2?.Dispose();
+            log.Debug(tag, $"after 3000ms, subWinSecond dispose!");
+            subWinSecond?.Dispose();
             return false;
         }
 
-        private void SubWin1_KeyEvent(object sender, Window.KeyEventArgs e)
+        private void SubWinFirstKeyEvent(object sender, Window.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Down)
             {
-                log.Fatal(tag, $"subWin1 key down! key={e.Key.KeyPressedName}");
+                log.Debug(tag, $"subWinFirst key down! key={e.Key.KeyPressedName}");
 
                 switch (e.Key.KeyPressedName)
                 {
-                    case "XF86Back":
-                    case "Escape":
-                        //Exit();
+                    case KEY_BACK:
+                    case KEY_ESCAPE:
                         break;
-                    case "1":
+                    case KEY_NUM_1:
                         mainWin.Raise();
                         break;
                     default:
-                        log.Fatal(tag, $"default!");
+                        log.Debug(tag, $"default!");
                         break;
                 }
             }
         }
-
-
-        public void Activate() { Initialize(); }
-        public void Deactivate() { }
     }
 }
