@@ -628,14 +628,9 @@ namespace Tizen.NUI.BaseComponents
         {
             AccessibilityStates accessibilityStates = (AccessibilityStates)states;
 
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Highlightable, this.AccessibilityHighlightable);
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Focusable, this.Focusable);
             FlagSetter(ref accessibilityStates, AccessibilityStates.Focused, this.State == States.Focused);
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Highlighted, this.IsHighlighted);
             FlagSetter(ref accessibilityStates, AccessibilityStates.Enabled, this.State != States.Disabled);
             FlagSetter(ref accessibilityStates, AccessibilityStates.Sensitive, this.Sensitive);
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Visible, true);
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Defunct, !this.IsOnWindow);
 
             return accessibilityStates;
         }
