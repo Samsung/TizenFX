@@ -260,11 +260,7 @@ namespace Tizen.Network.WiFi
                 Log.Info(Globals.LogTag, "Interop.WiFi.Connect");
                 try
                 {
-                    int ret = (int)WiFiError.None;
-                    lock (_callback_map)
-                    {
-                        ret = Interop.WiFi.Connect(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle, _callback_map[id], id);
-                    }
+                    int ret = Interop.WiFi.Connect(WiFiManagerImpl.Instance.GetSafeHandle(), _apHandle, _callback_map[id], id);
                     if (ret != (int)WiFiError.None)
                     {
                         Log.Error(Globals.LogTag, "Failed to connect wifi, Error - " + (WiFiError)ret);
