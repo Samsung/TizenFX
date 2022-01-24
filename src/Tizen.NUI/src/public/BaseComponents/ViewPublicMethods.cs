@@ -307,13 +307,13 @@ namespace Tizen.NUI.BaseComponents
         {
             SetVisible(true);
 
-            if (((GetAccessibilityStates() & AccessibilityStates.Modal) != 0))
+            if (GetAccessibilityStates()[AccessibilityState.Modal])
             {
                 RegisterDefaultLabel();
 
                 if (Accessibility.Accessibility.IsEnabled)
                 {
-                    EmitAccessibilityStatesChangedEvent(AccessibilityStates.Showing, true);
+                    EmitAccessibilityStateChangedEvent(AccessibilityState.Showing, true);
                 }
             }
         }
@@ -331,13 +331,13 @@ namespace Tizen.NUI.BaseComponents
         {
             SetVisible(false);
 
-            if (((GetAccessibilityStates() & AccessibilityStates.Modal) != 0))
+            if (GetAccessibilityStates()[AccessibilityState.Modal])
             {
                 UnregisterDefaultLabel();
 
                 if (Accessibility.Accessibility.IsEnabled)
                 {
-                    EmitAccessibilityStatesChangedEvent(AccessibilityStates.Showing, false);
+                    EmitAccessibilityStateChangedEvent(AccessibilityState.Showing, false);
                 }
             }
         }
