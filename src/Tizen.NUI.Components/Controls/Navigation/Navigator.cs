@@ -290,7 +290,6 @@ namespace Tizen.NUI.Components
                 //Invoke Page events
                 newTopPage.InvokeAppeared();
                 topPage.InvokeDisappeared();
-                NotifyAccessibilityStatesChangeOfPages(topPage, newTopPage);
 
                 //Invoke Popped event
                 Popped?.Invoke(this, new PoppedEventArgs() { Page = topPage });
@@ -449,7 +448,6 @@ namespace Tizen.NUI.Components
 
                     //Invoke Page events
                     newTop.InvokeAppeared();
-                    NotifyAccessibilityStatesChangeOfPages(curTop, newTop);
                 };
                 newAnimation.Play();
             }
@@ -552,6 +550,17 @@ namespace Tizen.NUI.Components
             navigationPages.Insert(index, page);
             Add(page);
             page.Navigator = this;
+            if (index == PageCount - 1)
+            {
+                if (PageCount > 1)
+                {
+                    NotifyAccessibilityStatesChangeOfPages(navigationPages[PageCount - 2], page);
+                }
+                else
+                {
+                    NotifyAccessibilityStatesChangeOfPages(null, page);
+                }
+            }
         }
 
         /// <summary>
@@ -606,12 +615,19 @@ namespace Tizen.NUI.Components
 
             HideContentOfPage(page);
 
-            if ((page == Peek()) && (PageCount >= 2))
+            if (page == Peek())
             {
-                navigationPages[PageCount - 2].Opacity = 1.0f;
-                navigationPages[PageCount - 2].SetVisible(true);
+                if (PageCount >= 2)
+                {
+                    navigationPages[PageCount - 2].Opacity = 1.0f;
+                    navigationPages[PageCount - 2].SetVisible(true);
+                    NotifyAccessibilityStatesChangeOfPages(page, navigationPages[PageCount - 2]);
+                }
+                else if (PageCount == 1)
+                {
+                    NotifyAccessibilityStatesChangeOfPages(page, null);
+                }
             }
-
             page.Navigator = null;
             navigationPages.Remove(page);
             base.Remove(page);
