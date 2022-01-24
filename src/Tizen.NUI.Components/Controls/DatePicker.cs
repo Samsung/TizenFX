@@ -294,9 +294,8 @@ namespace Tizen.NUI.Components
         //FIXME: There is no way to know when system locale changed in NUI.
         //       Pickers order and Month text has to be follow system locale.
         private void PickersOrderSet()
-        {           
-            String locale = Environment.GetEnvironmentVariable("LC_TIME");
-            DateTimeFormatInfo DateFormat = new CultureInfo(locale, false ).DateTimeFormat;
+        {
+            DateTimeFormatInfo DateFormat = CultureInfo.CurrentCulture.DateTimeFormat;
             String temp = DateFormat.ShortDatePattern;
             String[] strArray = temp.Split(' ', '/');
             foreach (String format in strArray) {
@@ -308,8 +307,7 @@ namespace Tizen.NUI.Components
 
         private void SetMonthText()
         {
-            String locale = Environment.GetEnvironmentVariable("LC_TIME");
-            CultureInfo info = new CultureInfo(locale);
+            CultureInfo info = CultureInfo.CurrentCulture;
             monthPicker.DisplayedValues = new ReadOnlyCollection<string>(info.DateTimeFormat.AbbreviatedMonthNames);
         }
     }
