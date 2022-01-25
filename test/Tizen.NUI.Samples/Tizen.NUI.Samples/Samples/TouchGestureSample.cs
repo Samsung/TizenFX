@@ -19,14 +19,43 @@ namespace Tizen.NUI.Samples
             Window window = NUIApplication.GetDefaultWindow();
             root = new View();
 
+            window.WheelEvent += (s, e) =>
+            {
+                Tizen.Log.Error("NUI", $"window WheelEvent!!!!{e.Wheel.Type}\n");
+            };
 
-           frontView = new View
+            frontView = new View
             {
                 Size = new Size(300, 300),
                 Position = new Position(150, 170),
                 BackgroundColor = new Color(1.0f, 0.0f, 0.0f, 1.0f),
+                Focusable = true,
+                FocusableInTouch = true,
             };
             frontView.TouchEvent += OnFrontTouchEvent;
+            frontView.WheelEvent += (s, e) =>
+            {
+                Tizen.Log.Error("NUI", $"frontView WheelEvent!!!!{e.Wheel.Type}\n");
+                if (e.Wheel.Type == Wheel.WheelType.CustomWheel)
+                {
+                       // rotary event
+                }
+                else if (e.Wheel.Type == Wheel.WheelType.MouseWheel)
+                {
+                      // mouse wheel event
+                }
+                return false;
+            };
+
+            var middleView = new View
+            {
+                Size = new Size(300, 300),
+                Position = new Position(110, 120),
+                BackgroundColor = new Color(0.0f, 1.0f, 0.0f, 1.0f),
+                Focusable = true,
+                FocusableInTouch = true,
+            };
+
 
             // The default the maximum allowed time is 500ms.
             // If you want to change this time, do as below.
@@ -47,8 +76,15 @@ namespace Tizen.NUI.Samples
                 Position = new Position(50, 70),
                 PointSize = 11,
                 BackgroundColor = new Color(1.0f, 1.0f, 0.0f, 1.0f),
+                Focusable = true,
+                FocusableInTouch = true,
             };
             backView.TouchEvent += OnBackTouchEvent;
+            backView.WheelEvent += (s, e) =>
+            {
+                Tizen.Log.Error("NUI", $"backView WheelEvent!!!!{e.Wheel.Type}\n");
+                return true;
+            };
 
             // The default the minimum holding time is 500ms.
             // If you want to change this time, do as below.
@@ -62,6 +98,7 @@ namespace Tizen.NUI.Samples
               Tizen.Log.Error("NUI", $"OnLongPress\n");
             };
 
+            backView.Add(middleView);
             backView.Add(frontView);
             root.Add(backView);
             window.Add(root);
