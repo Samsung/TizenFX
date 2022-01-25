@@ -1233,12 +1233,6 @@ namespace Tizen.NUI.BaseComponents
                 wheelEventCallback = null;
             }
 
-            if (WindowWheelEventHandler != null)
-            {
-                NUIApplication.GetDefaultWindow().WheelEvent -= OnWindowWheelEvent;
-                WindowWheelEventHandler = null;
-            }
-
             if (hoverEventCallback != null)
             {
                 using HoverSignal signal = new HoverSignal(Interop.ActorSignal.ActorHoveredSignal(GetBaseHandleCPtrHandleRef), false);

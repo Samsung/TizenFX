@@ -391,12 +391,6 @@ namespace Tizen.NUI.BaseComponents
                     signal?.Connect(wheelEventCallback);
                 }
                 wheelEventHandler += value;
-
-                if (WindowWheelEventHandler == null)
-                {
-                    NUIApplication.GetDefaultWindow().WheelEvent += OnWindowWheelEvent;
-                }
-                WindowWheelEventHandler += value;
             }
 
             remove
@@ -413,12 +407,6 @@ namespace Tizen.NUI.BaseComponents
                             wheelEventCallback = null;
                         }
                     }
-                }
-
-                WindowWheelEventHandler -= value;
-                if (WindowWheelEventHandler == null)
-                {
-                    NUIApplication.GetDefaultWindow().WheelEvent -= OnWindowWheelEvent;
                 }
             }
         }
@@ -1411,22 +1399,6 @@ namespace Tizen.NUI.BaseComponents
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public ControlState CurrentState { get; }
-        }
-
-        private EventHandlerWithReturnType<object, WheelEventArgs, bool> WindowWheelEventHandler;
-        private void OnWindowWheelEvent(object sender, Window.WheelEventArgs e)
-        {
-            if (e != null)
-            {
-                if (e.Wheel.Type == Wheel.WheelType.CustomWheel)
-                {
-                    var arg = new WheelEventArgs()
-                    {
-                        Wheel = e.Wheel,
-                    };
-                    WindowWheelEventHandler?.Invoke(this, arg);
-                }
-            }
         }
 
         /// <summary>
