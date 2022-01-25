@@ -1321,14 +1321,6 @@ namespace Tizen.NUI.BaseComponents
                 wheelEventCallback = null;
             }
 
-            if (WindowWheelEventHandler != null)
-            {
-                NUILog.Debug($"[Dispose] WindowWheelEventHandler");
-
-                NUIApplication.GetDefaultWindow().WheelEvent -= OnWindowWheelEvent;
-                WindowWheelEventHandler = null;
-            }
-
             if (hoverEventCallback != null)
             {
                 NUILog.Debug($"[Dispose] hoverEventCallback");
