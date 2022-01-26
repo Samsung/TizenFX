@@ -22,6 +22,7 @@ namespace Tizen.NUI.Devel.Tests
         private void OnMaxLengthReached(object sender, TextField.MaxLengthReachedEventArgs e) { }
         private void OnSelectionChanged(object sender, EventArgs e) { }
         private void OnAnchorClicked(object sender, AnchorClickedEventArgs e) { }
+        private void OnSelectionStarted(object sender, EventArgs e) { }
         private void OnSelectionCleared(object sender, EventArgs e) { }
         private void OnInputFiltered(object sender, InputFilteredEventArgs e) { }
 
@@ -60,6 +61,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 testingTarget.TextChanged += OnTextChanged;
                 testingTarget.MaxLengthReached += OnMaxLengthReached;
+                testingTarget.SelectionStarted += OnSelectionStarted;
                 testingTarget.SelectionCleared += OnSelectionCleared;
                 testingTarget.AnchorClicked += OnAnchorClicked;
                 testingTarget.SelectionChanged += OnSelectionChanged;
@@ -67,6 +69,7 @@ namespace Tizen.NUI.Devel.Tests
 
                 testingTarget.TextChanged -= OnTextChanged;
                 testingTarget.MaxLengthReached -= OnMaxLengthReached;
+                testingTarget.SelectionStarted -= OnSelectionStarted;
                 testingTarget.SelectionCleared -= OnSelectionCleared;
                 testingTarget.AnchorClicked -= OnAnchorClicked;
                 testingTarget.SelectionChanged -= OnSelectionChanged;

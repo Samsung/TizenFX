@@ -51,6 +51,9 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.AnchorClicked += OnAnchorClicked;
             testingTarget.AnchorClicked -= OnAnchorClicked;
 
+            testingTarget.SelectionStarted += OnSelectionStarted;
+            testingTarget.SelectionStarted -= OnSelectionStarted;
+                        
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextEditorEventEvents END (OK)");
         }
@@ -65,6 +68,10 @@ namespace Tizen.NUI.Devel.Tests
 
         private void OnTextChanged(object sender, TextEditor.TextChangedEventArgs e)
         {
+        }
+        
+        private void OnSelectionStarted(object sender, EventArgs e) 
+        { 
         }
     }
 }
