@@ -2003,6 +2003,28 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// Enumeration for the type of Underline.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum UnderlineType
+    {
+        /// <summary>
+        /// The default underline type.
+        /// </summary>
+        Solid,
+
+        /// <summary>
+        /// The dashed underline type.
+        /// </summary>
+        Dashed,
+
+        /// <summary>
+        /// The double underline type.
+        /// </summary>
+        Double
+    }
+
+    /// <summary>
     /// Enumeration for the size type of font. <br />
     /// </summary>
     /// <remarks>

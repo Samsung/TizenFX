@@ -245,6 +245,11 @@ namespace Tizen.NUI.Text
         public bool Enable { get; set; }
 
         /// <summary>
+        /// The type of the underline (the default type is Solid).
+        /// </summary>
+        public UnderlineType Type { get; set; }
+
+        /// <summary>
         /// The color of the underline (if not provided then the color of the text is used).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -255,6 +260,18 @@ namespace Tizen.NUI.Text
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? Height { get; set; }
+        
+        /// <summary>
+        /// The width of the dashes of the dashed underline (if null, the default value is 2.0f). <br />
+        /// Only valid when "UnderlineType.Dashed" type is used.
+        /// </summary>
+        public float? DashWidth { get; set; }
+
+        /// <summary>
+        /// The gap between the dashes of the dashed underline (if null, the default value is 1.0f). <br />
+        /// Only valid when "UnderlineType.Dashed" type is used.
+        /// </summary>
+        public float? DashGap { get; set; }
 
         /// <summary>
         /// Determines whether the specified object is equal to the current object.
