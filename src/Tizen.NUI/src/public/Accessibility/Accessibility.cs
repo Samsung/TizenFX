@@ -226,10 +226,10 @@ namespace Tizen.NUI.Accessibility
         public View GetCurrentlyHighlightedView()
         {
             var ptr = Interop.ControlDevel.DaliAccessibilityAccessibleGetCurrentlyHighlightedActor();
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if (ptr == IntPtr.Zero)
-                return null;
-            return new View(ptr, true);
+
+            return this.GetInstanceSafely<View>(ptr);
         }
 
         /// <summary>
@@ -239,10 +239,9 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool ClearCurrentlyHighlightedView()
         {
-            using (View view = GetCurrentlyHighlightedView())
-            {
-                return view?.ClearAccessibilityHighlight() ?? false;
-            }
+            var view = GetCurrentlyHighlightedView();
+
+            return view?.ClearAccessibilityHighlight() ?? false;
         }
         #endregion Method
 

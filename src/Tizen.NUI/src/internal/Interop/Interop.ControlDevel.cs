@@ -134,10 +134,6 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr DaliToolkitDevelControlNotifyAccessibilityStatesChange(global::System.Runtime.InteropServices.HandleRef arg1, ulong arg2, int arg3);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_GetBoundAccessibilityObject")]
-            public static extern global::System.IntPtr DaliToolkitDevelControlGetBoundAccessibilityObject(global::System.Runtime.InteropServices.HandleRef arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitAccessibilityEvent")]
             public static extern global::System.IntPtr DaliAccessibilityEmitAccessibilityEvent(global::System.Runtime.InteropServices.HandleRef arg1, int arg2_event);
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="9" package="Tizen.NUI.Devel.Tests" version="1.0.0">
+    <profile name="common" />
+    <ui-application appid="Tizen.NUI.Devel.Tests"
+                    exec="Tizen.NUI.Devel.Tests.dll"
+                    type="dotnet"
+                    multiple="false"
+                    taskmanage="true"
+                    launch_mode="single">
+    <icon>Tizen.NUI.Devel.Tests.png</icon>
+    <label>Tizen.NUI.Devel.Tests</label>
+    </ui-application>
+    <privileges>
+          <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+  </privileges>
+</manifest>

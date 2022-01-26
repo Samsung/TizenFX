@@ -293,7 +293,10 @@ namespace Tizen.NUI.Devel.Tests
             {
                 Enable = true,
                 Color = new Color("#3498DB"),
-                Height = 2.0f
+                Height = 2.0f,
+                Type = UnderlineType.Solid,
+                DashWidth = 5.0f,
+                DashGap = 3.0f,
             };
 
             using (PropertyMap map = TextMapHelper.GetUnderlineMap(underline))
@@ -302,10 +305,17 @@ namespace Tizen.NUI.Devel.Tests
                 map.Find(0, "enable").Get(out bool enable);
                 map.Find(0, "color").Get(color);
                 map.Find(0, "height").Get(out float height);
+                map.Find(0, "type").Get(out int type);
+                map.Find(0, "dashWidth").Get(out float dashWidth);
+                map.Find(0, "dashGap").Get(out float dashGap);
 
                 Assert.AreEqual(enable, underline.Enable, "Should be equal!");
                 Assert.AreEqual(height, underline.Height, "Should be equal!");
                 Assert.AreEqual(true, CheckColor(color, underline.Color), "Should be true!");
+                Assert.AreEqual(type, (int)underline.Type, "Should be equal!");
+                Assert.AreEqual(dashWidth, underline.DashWidth, "Should be equal!");
+                Assert.AreEqual(dashGap, underline.DashGap, "Should be equal!");
+
                 color.Dispose();
             }
 
@@ -995,6 +1005,8 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"TextMapHelperGetIntFromMap START");
 
+            var stringKey = "width";
+            var stringInvalidKey = "invalidKey";
             var intKey = 1;
             var intInvalidKey = 10;
             var value = 3080;
@@ -1002,9 +1014,16 @@ namespace Tizen.NUI.Devel.Tests
 
             using (var map = new PropertyMap())
             {
+                map.Add(stringKey, value);
                 map.Add(intKey, value);
 
-                var result = TextMapHelper.GetIntFromMap(map, intKey, defaultValue);
+                var result = TextMapHelper.GetIntFromMap(map, stringKey, defaultValue);
+                Assert.AreEqual(value, result, "Should be equal!");
+
+                result = TextMapHelper.GetIntFromMap(map, stringInvalidKey, defaultValue);
+                Assert.AreEqual(defaultValue, result, "Should be equal!");
+
+                result = TextMapHelper.GetIntFromMap(map, intKey, defaultValue);
                 Assert.AreEqual(value, result, "Should be equal!");
 
                 result = TextMapHelper.GetIntFromMap(map, intInvalidKey, defaultValue);
@@ -1172,6 +1191,8 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"TextMapHelperGetNullableFloatFromMap START");
 
+            var stringKey = "width";
+            var stringInvalidKey = "invalidKey";
             var intKey = 1;
             var intInvalidKey = 10;
             float value = 3.14f;
@@ -1179,7 +1200,14 @@ namespace Tizen.NUI.Devel.Tests
 
             using (var map = new PropertyMap())
             {
+                map.Add(stringKey, value);
                 map.Add(intKey, value);
+
+                result = TextMapHelper.GetNullableFloatFromMap(map, stringKey);
+                Assert.AreEqual(value, result, "Should be equal!");
+
+                result = TextMapHelper.GetNullableFloatFromMap(map, stringInvalidKey);
+                Assert.AreEqual(null, result, "Should be equal!");
 
                 result = TextMapHelper.GetNullableFloatFromMap(map, intKey);
                 Assert.AreEqual(value, result, "Should be equal!");

@@ -110,15 +110,10 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (imageView._border == null)
             {
+                // Get current properties force.
+                // TODO: Need to make some flag that we only need cached property map.
                 PropertyMap temp = new PropertyMap();
-
-                // Sync as current properties.
-                imageView.UpdateImage();
-                if(imageView._imagePropertyMap != null)
-                {
-                    temp.Merge(imageView._imagePropertyMap);
-                }
-
+                Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(temp);
                 return temp;
             }
             else
