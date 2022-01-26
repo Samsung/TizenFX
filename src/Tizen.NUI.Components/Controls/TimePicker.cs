@@ -426,8 +426,7 @@ namespace Tizen.NUI.Components
             Remove(ampmPicker);
 
             //Get current system locale's time pattern
-            String locale = Environment.GetEnvironmentVariable("LC_TIME");
-            DateTimeFormatInfo timeFormatInfo = new CultureInfo(locale, false ).DateTimeFormat;
+            DateTimeFormatInfo timeFormatInfo = CultureInfo.CurrentCulture.DateTimeFormat;
             String timePattern = timeFormatInfo.ShortTimePattern;
             String[] timePatternArray = timePattern.Split(' ', ':');
 
@@ -449,8 +448,7 @@ namespace Tizen.NUI.Components
         {
             //FIXME: There is no localeChanged Event for Component now
             //       AMPM text has to update when system locale changed.
-            String locale = Environment.GetEnvironmentVariable("LC_TIME");
-            CultureInfo info = new CultureInfo(locale);
+            CultureInfo info = CultureInfo.CurrentCulture;
             ampmText = new string[] {info.DateTimeFormat.AMDesignator, info.DateTimeFormat.PMDesignator};
             ampmPicker.DisplayedValues = new ReadOnlyCollection<string>(ampmText);
         }

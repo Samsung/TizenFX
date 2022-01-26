@@ -66,6 +66,7 @@ namespace Tizen.NUI.BaseComponents
         private Vector3 internalScale = null;
         private Size internalSize = null;
         private Size2D internalSize2D = null;
+        private int layoutCount = 0;
 
         static View()
         {

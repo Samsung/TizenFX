@@ -295,7 +295,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int ret = -1;
-                PropertyMap map = Image;
+                PropertyMap map = base.Image;
                 if (map != null)
                 {
                     PropertyValue val = map.Find(ImageVisualProperty.TotalFrameNumber);
@@ -340,7 +340,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int ret = -1;
-                PropertyMap map = Image;
+                PropertyMap map = base.Image;
                 if (map != null)
                 {
                     PropertyValue val = map.Find(ImageVisualProperty.CurrentFrameNumber);

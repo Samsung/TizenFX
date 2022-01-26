@@ -191,6 +191,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnKey(Key key)
         {
+            bool clicked = false;
+
             if (!IsEnabled || null == key || null == BindingContext)
             {
                 return false;
@@ -208,7 +210,7 @@ namespace Tizen.NUI.Components
             {
                 if (key.KeyPressedName == "Return")
                 {
-                    bool clicked = IsPressed && IsEnabled;
+                    clicked = IsPressed && IsEnabled;
 
                     IsPressed = false;
 
@@ -246,7 +248,7 @@ namespace Tizen.NUI.Components
                     UpdateState();
                 }
             }
-            return base.OnKey(key);
+            return base.OnKey(key) || clicked;
         }
 
         /// <summary>

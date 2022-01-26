@@ -151,6 +151,7 @@ namespace Tizen.NUI.BaseComponents
                     oldParent.Remove(child);
                 }
                 child.InternalParent = this;
+                LayoutCount += child.LayoutCount;
 
                 Interop.Actor.Add(SwigCPtr, View.getCPtr(child));
 
@@ -186,6 +187,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 //throw new System.InvalidOperationException("You have deleted a view that is not a child of this view.");
                 Tizen.Log.Error("NUI", "You have deleted a view that is not a child of this view.");
+                return;
             }
 
             bool hasLayout = (layout != null);

@@ -1,0 +1,34 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp3.1/Tizen.NUI.Devel.Tests.dll",
+            "args": [],
+            "env": {
+                "DESKTOP_PREFIX":"/home/{should be fixed}/dali-env/opt",
+                "PATH":"/home/{should be fixed}/dali-env/opt/bin:$PATH",
+                "LD_LIBRARY_PATH":"/home/{should be fixed}/dali-env/opt/lib:$LD_LIBRARY_PATH",
+                "INCLUDEDIR":"/home/{should be fixed}/dali-env/opt/include",
+                "PKG_CONFIG_PATH":"/home/{should be fixed}/dali-env/opt/lib/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig",
+                "DOTNET_CLI_TELEMETRY_OPTOUT":"1",
+                "DALI_WINDOW_WIDTH":"720",
+                "DALI_WINDOW_HEIGHT":"1080",
+            },
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopAtEntry": false
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach"
+        }
+    ]
+}
