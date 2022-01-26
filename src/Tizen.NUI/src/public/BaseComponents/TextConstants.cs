@@ -260,6 +260,18 @@ namespace Tizen.NUI.Text
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? Height { get; set; }
+        
+        /// <summary>
+        /// The width of the dashes of the dashed underline (if null, the default value is 2.0f). <br />
+        /// Only valid when "UnderlineType.Dashed" type is used.
+        /// </summary>
+        public float? DashWidth { get; set; }
+
+        /// <summary>
+        /// The gap between the dashes of the dashed underline (if null, the default value is 1.0f). <br />
+        /// Only valid when "UnderlineType.Dashed" type is used.
+        /// </summary>
+        public float? DashGap { get; set; }
 
         /// <summary>
         /// Determines whether the specified object is equal to the current object.
@@ -301,18 +313,6 @@ namespace Tizen.NUI.Text
         /// <returns>The hash code.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => (Enable, Color, Height).GetHashCode();
-
-        /// <summary>
-        /// The width of the dashes of the dashed underline (if null, the default value is 2.0f). <br />
-        /// Only valid when "UnderlineType.Dashed" type is used.
-        /// </summary>
-        public float? DashWidth { get; set; }
-
-        /// <summary>
-        /// The gap between the dashes of the dashed underline (if null, the default value is 1.0f). <br />
-        /// Only valid when "UnderlineType.Dashed" type is used.
-        /// </summary>
-        public float? DashGap { get; set; }
     }
 
     /// <summary>
