@@ -247,6 +247,7 @@ namespace Tizen.NUI.Text
         /// <summary>
         /// The type of the underline (the default type is Solid).
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public UnderlineType Type { get; set; }
 
         /// <summary>
@@ -265,12 +266,14 @@ namespace Tizen.NUI.Text
         /// The width of the dashes of the dashed underline (if null, the default value is 2.0f). <br />
         /// Only valid when "UnderlineType.Dashed" type is used.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float? DashWidth { get; set; }
 
         /// <summary>
         /// The gap between the dashes of the dashed underline (if null, the default value is 1.0f). <br />
         /// Only valid when "UnderlineType.Dashed" type is used.
         /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public float? DashGap { get; set; }
 
         /// <summary>
@@ -287,7 +290,8 @@ namespace Tizen.NUI.Text
         /// <param name="other">The Underline to compare with the current Underline.</param>
         /// <returns>true if equal Underline, else false.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Equals(Underline other) => Enable == other.Enable && Color == other.Color && Height == other.Height;
+        public bool Equals(Underline other) => Enable == other.Enable && Type == other.Type && Color == other.Color &&
+         Height == other.Height && DashWidth == other.DashWidth && DashGap == other.DashGap;
 
         /// <summary>
         /// The == operator.
@@ -312,7 +316,7 @@ namespace Tizen.NUI.Text
         /// </summary>
         /// <returns>The hash code.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override int GetHashCode() => (Enable, Color, Height).GetHashCode();
+        public override int GetHashCode() => (Enable, Type, Color, Height, DashWidth, DashGap).GetHashCode();
     }
 
     /// <summary>
