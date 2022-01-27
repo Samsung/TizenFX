@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-using System.Runtime.InteropServices;
-using static Interop.Camera;
-
 namespace Tizen.Multimedia
 {
     /// <summary>
@@ -25,10 +22,9 @@ namespace Tizen.Multimedia
     /// <since_tizen> 3 </since_tizen>
     public class SinglePlane : IPreviewPlane
     {
-        internal SinglePlane(SinglePlaneStruct unmanaged)
+        internal SinglePlane(byte[] y)
         {
-            Data = new byte[unmanaged.DataLength];
-            Marshal.Copy(unmanaged.Data, Data, 0, (int)unmanaged.DataLength);
+            Data = y;
         }
 
         /// <summary>

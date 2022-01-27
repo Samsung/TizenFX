@@ -398,7 +398,12 @@ namespace Tizen.Multimedia
         {
             _previewCallback = (frame, _) =>
             {
-                _preview?.Invoke(this, new PreviewEventArgs(new PreviewFrame(frame)));
+                Log.Info(CameraLog.Tag, "Invoke C# Preview event - START");
+
+                _preview?.Invoke(this,
+                    new PreviewEventArgs(new PreviewFrame(frame, ref _previewBuffer)));
+
+                Log.Info(CameraLog.Tag, "Invoke C# Preview event - DONE");
             };
 
             Native.SetPreviewCallback(_handle, _previewCallback).
@@ -445,7 +450,12 @@ namespace Tizen.Multimedia
         {
             _extraPreviewCallback = (frame, streamId, _) =>
             {
-                _extraPreview?.Invoke(this, new ExtraPreviewEventArgs(new PreviewFrame(frame), streamId));
+                Log.Info(CameraLog.Tag, "Invoke C# Extra Preview event - START");
+
+                _extraPreview?.Invoke(this,
+                    new ExtraPreviewEventArgs(new PreviewFrame(frame, ref _previewBuffer), streamId));
+
+                Log.Info(CameraLog.Tag, "Invoke C# Extra Preview event - DONE");
             };
 
             Native.SetExtraPreviewCallback(_handle, _extraPreviewCallback).
