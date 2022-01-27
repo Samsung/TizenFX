@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage x:Class="NUITizenGallery.GraphicsTypeTestPage"
+  xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
+    <ContentPage.AppBar>
+        <AppBar x:Name="appBar" Title="GraphicsTypeTestPage"/>
+    </ContentPage.AppBar>
+
+    <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
+    <ContentPage.Content>
+        <ScrollableBase x:Name="ContentView"
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+          HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+          ScrollingDirection="Vertical"
+          HideScrollbar="false" >
+
+            <View.Layout>
+                <LinearLayout LinearOrientation="Vertical" CellPadding="10sp,10sp"/>
+            </View.Layout>
+
+            <TextLabel x:Name="InfoText"
+              WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+              HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
+              PointSize="20"/>
+
+            <View x:Name="PixelTypeView"
+              WidthSpecification="500"
+              HeightSpecification="500"
+              BackgroundColor="#D3D6DD">
+
+                <TextLabel Text="This View is pixel based view." PointSize="12" Position2D="73,130"/>
+                <View BackgroundColor="#FF0000" Position2D="32,108" Size2D="400,5"/>
+                <View BackgroundColor="#00FF00" Position2D="32,120" Size="400,5"/>
+                <View BackgroundColor="#0000FF" Position="42,100" Size2D="5,100"/>
+                <View BackgroundColor="#FF00FF" Position="54,100" Size="5,100"/>
+                <View x:Name="PixelRect" BackgroundColor="#FFFFFF"/>
+                <TextLabel x:Name="PixelText" PixelSize="20"/>
+                <TextLabel x:Name="PointText" PointSize="20"/>
+            </View>
+
+            <View x:Name="DpTypeView"
+              WidthSpecification="500dp"
+              HeightSpecification="500dp"
+              BackgroundColor="#96D3DE">
+
+                <TextLabel Text="This View is Dp based view." PointSize="12dp" Position2D="73dp,130dp"/>
+                <View BackgroundColor="#FF0000" Position2D="32dp,108dp" Size2D="400dp,5dp"/>
+                <View BackgroundColor="#00FF00" Position2D="32dp,120dp" Size="400dp,5dp"/>
+                <View BackgroundColor="#0000FF" Position="42dp,100dp" Size2D="5dp,100dp"/>
+                <View BackgroundColor="#FF00FF" Position="54dp,100dp" Size="5dp,100dp"/>
+                <View x:Name="DpRect" BackgroundColor="#FFFFFF"/>
+                <TextLabel x:Name="DpPixelText" PixelSize="20dp"/>
+                <TextLabel x:Name="DpPointText" PointSize="20dp"/>
+            </View>
+
+            <View x:Name="SpTypeView"
+              WidthSpecification="500sp"
+              HeightSpecification="500sp"
+              BackgroundColor="#B2DAB8">
+
+                <TextLabel Text="This View is Sp based view." PointSize="12sp" Position2D="73sp,130sp"/>
+                <View BackgroundColor="#FF0000" Position2D="32sp,108sp" Size2D="400sp,5sp"/>
+                <View BackgroundColor="#00FF00" Position2D="32sp,120sp" Size="400sp,5sp"/>
+                <View BackgroundColor="#0000FF" Position="42sp,100sp" Size2D="5sp,100sp"/>
+                <View x:Name="SpRect" BackgroundColor="#FFFFFF"/>
+                <TextLabel x:Name="SpPixelText" PixelSize="20sp"/>
+                <TextLabel x:Name="SpPointText" PointSize="20sp"/>
+            </View>
+        </ScrollableBase>
+    </ContentPage.Content>
+
+</ContentPage>
