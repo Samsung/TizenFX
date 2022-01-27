@@ -28,8 +28,8 @@ namespace Tizen.NUI.Binding
 {
     /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [ProvideCompiledAttribute("Tizen.NUI.Xaml.Core.XamlC.IntDpTypeConverter")]
-    public class IntDpTypeConverter : TypeConverter
+    [ProvideCompiledAttribute("Tizen.NUI.Xaml.Core.XamlC.IntGraphicsTypeConverter")]
+    public class IntGraphicsTypeConverter : TypeConverter
     {
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
