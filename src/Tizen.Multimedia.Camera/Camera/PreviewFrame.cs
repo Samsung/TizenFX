@@ -69,27 +69,21 @@ namespace Tizen.Multimedia
 
         internal void CreatePlane(CameraPreviewDataStruct unmanagedStruct, ref PinnedPreviewBuffer<byte> buffers)
         {
-            Log.Info(CameraLog.Tag, "Enter");
             switch (PlaneType)
             {
                 case PlaneType.SinglePlane:
-                    Log.Info(CameraLog.Tag, "SinglePlane - START");
                     var singlePlane = unmanagedStruct.Plane.SinglePlane;
 
                     if (buffers == null)
                     {
-                        Log.Info(CameraLog.Tag, "SinglePlane - Alloc buffer");
                         buffers = new PinnedPreviewBuffer<byte>(singlePlane.DataLength);
                     }
-                    Log.Info(CameraLog.Tag, "SinglePlane - Marshal copy");
-                    Marshal.Copy(singlePlane.Data, buffers[0], 0, (int)singlePlane.DataLength);
 
-                    Log.Info(CameraLog.Tag, "SinglePlane - Create SinglePlane instance");
+                    Marshal.Copy(singlePlane.Data, buffers[0], 0, (int)singlePlane.DataLength);
                     Plane = new SinglePlane(buffers[0]);
-                    Log.Info(CameraLog.Tag, "SinglePlane - DONE");
+
                     break;
                 case PlaneType.DoublePlane:
-                    Log.Info(CameraLog.Tag, "DoublePlane - START");
                     var doublePlane = unmanagedStruct.Plane.DoublePlane;
 
                     doublePlane.YLength = (uint)(Resolution.Width * Resolution.Height);
@@ -97,74 +91,57 @@ namespace Tizen.Multimedia
 
                     if (buffers == null)
                     {
-                        Log.Info(CameraLog.Tag, "DoublePlane - Alloc buffer");
                         buffers = new PinnedPreviewBuffer<byte>(doublePlane.YLength, doublePlane.UVLength);
                     }
 
-                    Log.Info(CameraLog.Tag, $"DoublePlane - Marshal copy");
                     Marshal.Copy(doublePlane.Y, buffers[0], 0, (int)doublePlane.YLength);
                     Marshal.Copy(doublePlane.UV, buffers[1], 0, (int)doublePlane.UVLength);
-
-                    Log.Info(CameraLog.Tag, "DoublePlane - Create DoublePlane instance");
                     Plane =  new DoublePlane(buffers[0], buffers[1]);
-                    Log.Info(CameraLog.Tag, "DoublePlane - DONE");
+
                     break;
                 case PlaneType.TriplePlane:
-                    Log.Info(CameraLog.Tag, "TriplePlane - START");
                     var triplePlane = unmanagedStruct.Plane.TriplePlane;
 
                     if (buffers == null)
                     {
-                        Log.Info(CameraLog.Tag, "TriplePlane - Alloc buffer");
                         buffers = new PinnedPreviewBuffer<byte>(triplePlane.YLength, triplePlane.ULength, triplePlane.VLength);
                     }
-                    Log.Info(CameraLog.Tag, "TriplePlane - Marshal copy");
+
                     Marshal.Copy(triplePlane.Y, buffers[0], 0, (int)triplePlane.YLength);
                     Marshal.Copy(triplePlane.U, buffers[1], 0, (int)triplePlane.ULength);
                     Marshal.Copy(triplePlane.V, buffers[2], 0, (int)triplePlane.VLength);
-
-                    Log.Info(CameraLog.Tag, "TriplePlane - Create TriplePlane instance");
                     Plane =  new TriplePlane(buffers[0], buffers[1], buffers[2]);
-                    Log.Info(CameraLog.Tag, "TriplePlane - DONE");
+
                     break;
                 case PlaneType.EncodedPlane:
-                    Log.Info(CameraLog.Tag, "EncodedPlane - START");
                     var encodedPlane = unmanagedStruct.Plane.EncodedPlane;
 
                     if (buffers == null)
                     {
-                        Log.Info(CameraLog.Tag, "EncodedPlane - Alloc buffer");
                         buffers = new PinnedPreviewBuffer<byte>(encodedPlane.DataLength * 2);
                     }
-                    Log.Info(CameraLog.Tag, "EncodedPlane - Marshal copy");
-                    Marshal.Copy(encodedPlane.Data, buffers[0], 0, (int)encodedPlane.DataLength);
 
-                    Log.Info(CameraLog.Tag, "EncodedPlane - Create EncodedPlane instance");
+                    Marshal.Copy(encodedPlane.Data, buffers[0], 0, (int)encodedPlane.DataLength);
                     Plane = new EncodedPlane(buffers[0], encodedPlane.IsDeltaFrame);
-                    Log.Info(CameraLog.Tag, "EncodedPlane - DONE");
+
                     break;
                 case PlaneType.DepthPlane:
-                    Log.Info(CameraLog.Tag, "DepthPlane - START");
                     var depthPlane = unmanagedStruct.Plane.DepthPlane;
 
                     if (buffers == null)
                     {
-                        Log.Info(CameraLog.Tag, "DepthPlane - Alloc buffer");
                         buffers = new PinnedPreviewBuffer<byte>(depthPlane.DataLength);
                     }
-                    Log.Info(CameraLog.Tag, "DepthPlane - Marshal copy");
-                    Marshal.Copy(depthPlane.Data, buffers[0], 0, (int)depthPlane.DataLength);
 
-                    Log.Info(CameraLog.Tag, "DepthPlane - Create DepthPlane instance");
+                    Marshal.Copy(depthPlane.Data, buffers[0], 0, (int)depthPlane.DataLength);
                     Plane = new DepthPlane(buffers[0]);
-                    Log.Info(CameraLog.Tag, "DepthPlane - DONE");
+
                     break;
                 case PlaneType.RgbPlane:
                     var rgbPlane = unmanagedStruct.Plane.RgbPlane;
 
                     if (buffers == null)
                     {
-                        Log.Info(CameraLog.Tag, "RgbPlane - Alloc buffer");
                         buffers = new PinnedPreviewBuffer<byte>(rgbPlane.DataLength);
                     }
                     Marshal.Copy(rgbPlane.Data, buffers[0], 0, (int)rgbPlane.DataLength);
@@ -175,7 +152,6 @@ namespace Tizen.Multimedia
                     Debug.Fail("Unknown preview data!");
                     break;
             }
-            Log.Info(CameraLog.Tag, "Leave");
         }
 
         internal static uint GetMaxPreviewPlaneSize(IntPtr ptr)
@@ -190,7 +166,6 @@ namespace Tizen.Multimedia
                     break;
                 case PlaneType.DoublePlane:
                     size = unmanagedStruct.Plane.DoublePlane.UVLength;
-                    Log.Info(CameraLog.Tag, $"Size : {size}");
                     break;
                 case PlaneType.TriplePlane:
                     size = unmanagedStruct.Plane.TriplePlane.YLength;
