@@ -163,8 +163,6 @@ namespace Tizen.Multimedia
         private int _connectionCallbackId = -1;
         private void RegisterDeviceConnectionChangedCallback()
         {
-            Log.Debug(CameraLog.Tag, "Enter");
-
             _deviceConnectionChangedCallback = (ref Native.CameraDeviceStruct device, bool status, IntPtr userData) =>
             {
                 Log.Debug(CameraLog.Tag, "Invoke DeviceConnectionChanged event");
@@ -174,12 +172,12 @@ namespace Tizen.Multimedia
             Native.SetDeviceConnectionChangedCallback(Handle, _deviceConnectionChangedCallback, IntPtr.Zero, out _connectionCallbackId).
                 ThrowIfFailed("Failed to set device connection changed callback");
 
-            Log.Debug(CameraLog.Tag, $"Leave. callbackId[{_connectionCallbackId}]");
+            Log.Debug(CameraLog.Tag, $"callbackId[{_connectionCallbackId}]");
         }
 
         private void UnregisterDeviceConnectionChangedCallback()
         {
-            Log.Debug(CameraLog.Tag, $"Enter. callbackId[{_connectionCallbackId}]");
+            Log.Debug(CameraLog.Tag, $"callbackId[{_connectionCallbackId}]");
 
             if (_connectionCallbackId >= 0)
             {
