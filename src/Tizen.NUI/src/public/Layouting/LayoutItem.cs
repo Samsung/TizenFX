@@ -348,7 +348,15 @@ namespace Tizen.NUI
         public void RequestLayout()
         {
             flags = flags | LayoutFlags.ForceLayout;
-            if (parent != null)
+            if (parent == null)
+            {
+                // If RequestLayout() is called while main loop is in idle state,
+                // then Awake() is required to awake main loop again and
+                // Layout can be re-calculated correctly.
+                // For performance, Awake() is called only by the root layout.
+                ProcessorController.Instance.Awake();
+            }
+            else
             {
                 LayoutGroup layoutGroup = parent as LayoutGroup;
                 if (layoutGroup != null && !layoutGroup.LayoutRequested)
