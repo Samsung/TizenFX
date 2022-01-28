@@ -230,6 +230,49 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// This method converts a Strikethrough struct to a PropertyMap and returns it.
+        /// The returned map can be used for set Strikethrough PropertyMap in the SetStrikethrough method.
+        /// <param name="strikethrough">The Strikethrough struct value.</param>
+        /// <returns> A PropertyMap for Strikethrough property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetStrikethroughMap(Strikethrough strikethrough)
+        {
+            var map = new PropertyMap();
+
+            map.Add("enable", strikethrough.Enable);
+
+            if (strikethrough.Color != null)
+                map.Add("color", strikethrough.Color);
+
+            if (strikethrough.Height != null)
+                map.Add("height", (float)strikethrough.Height);
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a Strikethrough map to a struct and returns it.
+        /// The returned struct can be returned to the user as a Strikethrough in the GetUnderline method.
+        /// <param name="map">The Strikethrough PropertyMap.</param>
+        /// <returns> A Strikethrough struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Strikethrough GetStrikethroughStruct(PropertyMap map)
+        {
+            var strikethrough = new Strikethrough();
+            if (null != map)
+            {
+                strikethrough.Enable = GetBoolFromMap(map, "enable", false);
+                strikethrough.Color = GetColorFromMap(map, "color");
+                strikethrough.Height = GetFloatFromMap(map, "height", 0.0f);
+            }
+
+            return strikethrough;
+        }
+
+
+        /// <summary>
         /// This method converts a Underline struct to a PropertyMap and returns it.
         /// The returned map can be used for set Underline PropertyMap in the SetUnderline method.
         /// <param name="underline">The Underline struct value.</param>
@@ -241,12 +284,19 @@ namespace Tizen.NUI.BaseComponents
             var map = new PropertyMap();
 
             map.Add("enable", underline.Enable);
+            map.Add("type", (int)underline.Type);
 
             if (underline.Color != null)
                 map.Add("color", underline.Color);
 
             if (underline.Height != null)
                 map.Add("height", (float)underline.Height);
+            
+            if (underline.DashWidth != null)
+                map.Add("dashWidth", (float)underline.DashWidth);
+
+            if (underline.DashGap != null)
+                map.Add("dashGap", (float)underline.DashGap);
 
             return map;
         }
@@ -264,8 +314,11 @@ namespace Tizen.NUI.BaseComponents
             if (null != map)
             {
                 underline.Enable = GetBoolFromMap(map, "enable", false);
+                underline.Type = (UnderlineType)GetIntFromMap(map, "type", 0);
                 underline.Color = GetColorFromMap(map, "color");
                 underline.Height = GetFloatFromMap(map, "height", 0.0f);
+                underline.DashWidth = GetNullableFloatFromMap(map, "dashWidth");
+                underline.DashGap = GetNullableFloatFromMap(map, "dashGap");
             }
 
             return underline;
@@ -555,7 +608,7 @@ namespace Tizen.NUI.BaseComponents
             var selectionHandleImage = new SelectionHandleImage();
             if (null != leftImageMap)
                 selectionHandleImage.LeftImageUrl = GetStringFromMap(leftImageMap, "filename", defaultValue);
-            
+
             if (null != rightImageMap)
                 selectionHandleImage.RightImageUrl = GetStringFromMap(rightImageMap, "filename", defaultValue);
 
@@ -618,6 +671,16 @@ namespace Tizen.NUI.BaseComponents
         {
             int value = defaultValue;
             using (var propertyValue = map.Find(key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
+            return value;
+        }
+
+        internal static int GetIntFromMap(PropertyMap map, string key, int defaultValue)
+        {
+            int value = defaultValue;
+            using (var propertyValue = map.Find(0, key))
             {
                 if (null != propertyValue) propertyValue.Get(out value);
             }
@@ -689,6 +752,18 @@ namespace Tizen.NUI.BaseComponents
         internal static float? GetNullableFloatFromMap(PropertyMap map, int key)
         {
             using (var propertyValue = map.Find(key))
+            {
+                if (propertyValue == null)
+                    return null;
+
+                propertyValue.Get(out float value);
+                return value;
+            }
+        }
+
+        internal static float? GetNullableFloatFromMap(PropertyMap map, string key)
+        {
+            using (var propertyValue = map.Find(0, key))
             {
                 if (propertyValue == null)
                     return null;

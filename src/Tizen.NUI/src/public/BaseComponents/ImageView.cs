@@ -260,10 +260,13 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (_border == null)
                 {
-                    // Sync as current properties.
-                    UpdateImage();
-
-                    return _imagePropertyMap == null ? new PropertyMap() : new PropertyMap(_imagePropertyMap);
+                    // Get current properties force.
+                    // TODO: Need to make some flag that we only need cached property map.
+                    PropertyMap returnValue = new PropertyMap();
+                    PropertyValue image = GetProperty(ImageView.Property.IMAGE);
+                    image?.Get(returnValue);
+                    image?.Dispose();
+                    return returnValue;
                 }
                 else
                 {

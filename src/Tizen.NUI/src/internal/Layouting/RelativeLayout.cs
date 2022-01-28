@@ -145,7 +145,7 @@ namespace Tizen.NUI
             Relative cacheTo;
             float RelativeOffsetFrom = propertyGetters.GetRelativeOffsetFrom(view);
             float RelativeOffsetTo = propertyGetters.GetRelativeOffsetTo(view);
-            float viewSize = propertyGetters.GetMeasuredSize(view.Layout);
+            float viewSize = view.Layout != null ? propertyGetters.GetMeasuredSize(view.Layout) : 0;
 
             if (propertyGetters.GetTargetFrom(view) is View targetFrom && targetFrom != Owner)
             {

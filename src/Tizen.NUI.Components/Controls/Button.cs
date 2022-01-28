@@ -855,6 +855,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public override bool OnKey(Key key)
         {
+            bool clicked = false;
+
             if (!IsEnabled || null == key)
             {
                 return false;
@@ -872,7 +874,7 @@ namespace Tizen.NUI.Components
             {
                 if (key.KeyPressedName == "Return")
                 {
-                    bool clicked = isPressed && IsEnabled;
+                    clicked = isPressed && IsEnabled;
 
                     isPressed = false;
 
@@ -892,7 +894,7 @@ namespace Tizen.NUI.Components
                     }
                 }
             }
-            return base.OnKey(key);
+            return base.OnKey(key) || clicked;
         }
 
         /// <summary>

@@ -358,7 +358,7 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {
-            int widthSize;
+            int widthSize = 0;
             int heightSize;
             var widthMode = widthMeasureSpec.Mode;
             var heightMode = heightMeasureSpec.Mode;
@@ -366,9 +366,16 @@ namespace Tizen.NUI
             InitChildren(widthMeasureSpec, heightMeasureSpec);
 
             if (widthMode == MeasureSpecification.ModeType.Exactly)
+            {
                 widthSize = (int)widthMeasureSpec.Size.AsRoundedValue();
+            }
             else
-                widthSize = (int)(hLocations[maxColumnConut] - hLocations[0] - columnSpacing);
+            {
+                if (hLocations.Length > maxColumnConut)
+                {
+                    widthSize = (int)(hLocations[maxColumnConut] - hLocations[0] - columnSpacing);
+                }
+            }
 
             if (heightMode == MeasureSpecification.ModeType.Exactly)
                 heightSize = (int)heightMeasureSpec.Size.AsRoundedValue();

@@ -35,7 +35,7 @@ namespace Tizen.NUI
         private float windowHeight;
         private LayoutTransitionManager transitionManager;
 
-        private bool subscribed;
+        private int layoutCount = 0;
 
         /// <summary>
         /// Constructs a LayoutController which controls the measuring and layouting.<br />
@@ -59,11 +59,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (subscribed)
-            {
-                ProcessorController.Instance.LayoutProcessorEvent -= Process;
-                subscribed = false;
-            }
+            LayoutCount = 0;
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
@@ -154,18 +150,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Create and set process callback
-        /// </summary>
-        internal void CreateProcessCallback()
-        {
-            if (!subscribed)
-            {
-                ProcessorController.Instance.LayoutProcessorEvent += Process;
-                subscribed = true;
-            }
-        }
-
-        /// <summary>
         /// Add transition data for a LayoutItem to the transition stack.
         /// </summary>
         /// <param name="transitionDataEntry">Transition data for a LayoutItem.</param>
@@ -181,6 +165,36 @@ namespace Tizen.NUI
         internal void AddToRemovalStack(LayoutItem itemToRemove)
         {
             transitionManager.AddToRemovalStack(itemToRemove);
+        }
+
+        /// <summary>
+        /// The number of layouts.
+        /// This can be used to set/unset Process callback to calculate Layout.
+        /// </summary>
+        internal int LayoutCount
+        {
+            get
+            {
+                return layoutCount;
+            }
+
+            set
+            {
+                if (layoutCount == value) return;
+
+                if (value < 0) throw new global::System.ArgumentOutOfRangeException(nameof(LayoutCount), "LayoutCount(" + LayoutCount + ") should not be less than zero");
+
+                if (layoutCount == 0)
+                {
+                    ProcessorController.Instance.LayoutProcessorEvent += Process;
+                }
+                else if (value == 0)
+                {
+                    ProcessorController.Instance.LayoutProcessorEvent -= Process;
+                }
+
+                layoutCount = value;
+            }
         }
 
         // Traverse the tree looking for a root node that is a layout.
