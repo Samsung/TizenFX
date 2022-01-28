@@ -29,8 +29,7 @@ namespace NUnit.Framework.TUnit
 
         public static void Write(string logTag, string message)
         {
-            Tizen.Log.Info(TUnitTag, message);
-            Console.WriteLine(logTag + message);
+            Tizen.Log.Debug(logTag, message + "\n");
         }
 
         public static void Write(string message)
@@ -40,11 +39,11 @@ namespace NUnit.Framework.TUnit
 
         public static void WriteError(string message)
         {
-            Tizen.Log.Error(TUnitTag, message);
+            Tizen.Log.Error(TUnitTag, message + "\n");
         }
         public static void WriteError(string tag, string message)
         {
-            Tizen.Log.Error(tag, message);
+            Tizen.Log.Error(tag, message + "\n");
         }
     }
 
@@ -57,30 +56,26 @@ namespace NUnit.Framework.TUnit
 
         static public void Write(string level, string tag, string msg)
         {
-            foreach (string line in msg.Split('\n'))
-            {
-                Console.WriteLine(tag + "[" + level + "] | " + line);
-                WriteDlog(level, tag, line);
-           }
+            WriteDlog(level, tag, msg);
         }
 
         static private void WriteDlog(string level, string tag, string msg)
         {
             if (level.Equals(DEBUG))
             {
-                Tizen.Log.Debug(tag, msg);
+                Tizen.Log.Debug(tag, msg + "\n");
             }
             else if (level.Equals(INFO))
             {
-                Tizen.Log.Info(tag, msg);
+                Tizen.Log.Info(tag, msg + "\n");
             }
             else if (level.Equals(ERROR))
             {
-                Tizen.Log.Error(tag, msg);
+                Tizen.Log.Error(tag, msg + "\n");
             }
             else
             {
-                Tizen.Log.Info(tag, msg);
+                Tizen.Log.Info(tag, msg + "\n");
             }
         }
     }

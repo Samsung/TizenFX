@@ -1150,19 +1150,16 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-#if NUI_DEBUG_ON
-            NUILog.Debug($"[Dispose] View.Dispose({type}) START");
-            NUILog.Debug($"[Dispose] type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
+            DebugFileLogging.Instance.WriteLog($"View.Dispose({type}) START");
+            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
             if(HasBody())
             {
-                NUILog.Debug($"[Dispose] ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
+                DebugFileLogging.Instance.WriteLog($"ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
             }
             else
             {
-                NUILog.Debug($"has no native body!");
+                DebugFileLogging.Instance.WriteLog($"has no native body!");
             }
-#endif
-
 
             //_mergedStyle = null;
 

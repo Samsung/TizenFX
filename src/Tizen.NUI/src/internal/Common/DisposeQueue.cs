@@ -53,6 +53,8 @@ namespace Tizen.NUI
                 disposeQueueProcessDisposablesDelegate = new EventThreadCallback.CallbackDelegate(ProcessDisposables);
                 eventThreadCallback = new EventThreadCallback(disposeQueueProcessDisposablesDelegate);
                 isCalled = true;
+
+                DebugFileLogging.Instance.WriteLog("DiposeTest START");
             }
         }
 
@@ -76,6 +78,7 @@ namespace Tizen.NUI
                 foreach (IDisposable disposable in disposables)
                 {
                     disposable.Dispose();
+                    DebugFileLogging.Instance.WriteLog($"disposable.Dispose(); type={disposable.GetType().FullName}, hash={disposable.GetHashCode()}");
                 }
                 disposables.Clear();
             }
