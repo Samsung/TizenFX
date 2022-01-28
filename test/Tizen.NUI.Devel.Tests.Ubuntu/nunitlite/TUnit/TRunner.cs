@@ -29,8 +29,8 @@ namespace NUnitLite.TUnit
     public class TRunner
     {
         private Assembly _testAssembly;
-        private TextRunner _textRunner;
-        private string[] args;
+        public TextRunner _textRunner;
+        public string[] args;
         public static string TESTCASE_XML_NAME = "test";
         private string pkgName = "";
 
@@ -128,7 +128,7 @@ namespace NUnitLite.TUnit
             //TLogger.Write("Executing the application: " + pkgName + "...");
             Tizen.Log.Fatal("NUITEST", $"Executing the application: {pkgName}");
             string exeFilePathName = "";
-            if(dllPath.Contains("netcoreapp"))
+            if (dllPath.Contains("netcoreapp"))
             {
                 exeFilePathName = string.Format(dllPath + "Tizen.{0}Tests.dll", pkgName);
             }
@@ -150,12 +150,12 @@ namespace NUnitLite.TUnit
             }
 
             string outputFilePathName = string.Format("{0}/{1}.xml", pkgShareDir, TESTCASE_XML_NAME);
-            
+
             TSettings.GetInstance().SetOutputFilePathName(outputFilePathName);
             string[] s = new string[1] { exeFilePathName };
 
             Tizen.Log.Fatal("NUITEST", $"outputFilePathName : {outputFilePathName}");
-            
+
             //new TextRunner(_testAssembly).Execute(s);
             LoadTestsuite(s, outputFilePathName);
         }
@@ -208,6 +208,8 @@ namespace NUnitLite.TUnit
 
             Task t = Task.Run(() =>
                 {
+                    Thread.CurrentThread.Name = "tRunner";
+
                     _textRunner.Execute(args);
                     asyncThreadMgr.SetData(null, null, null, null, false);
                     methodExecutionResetEvent.Set();
@@ -259,7 +261,7 @@ namespace NUnitLite.TUnit
             }
             catch (Exception e)
             {
-                TLogger.WriteError(TLogger.ExceptionTag , e.Message + e.ToString() + ". Please edit packageId as per guideline");
+                TLogger.WriteError(TLogger.ExceptionTag, e.Message + e.ToString() + ". Please edit packageId as per guideline");
             }
 
             return returnValue;
