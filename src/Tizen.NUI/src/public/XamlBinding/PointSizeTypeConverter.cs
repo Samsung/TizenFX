@@ -37,10 +37,10 @@ namespace Tizen.NUI.Binding
         {
             if(!string.IsNullOrEmpty(value))
             {
-                return (int)GraphicsTypeManager.Instance.Point.ConvertScriptToPoint(value.Trim());
+                return (float)GraphicsTypeManager.Instance.Point.ConvertScriptToPoint(value.Trim());
             }
 
-            throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(int)}");
+            throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(float)}");
         }
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
