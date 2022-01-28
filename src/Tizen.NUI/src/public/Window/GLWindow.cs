@@ -136,16 +136,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Sets egl configuration for GLWindow
+        /// Sets graphics configuration for GLWindow
         /// </summary>
         /// <param name="depth">The flag of depth buffer. If true is set, 24bit depth buffer is enabled.</param>
         /// <param name="stencil">The flag of stencil. it true is set, 8bit stencil buffer is enabled.</param>
         /// <param name="msaa">The bit of msaa.</param>
         /// <param name="version">The GLES version.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetEglConfig(bool depth, bool stencil, int msaa, GLESVersion version)
+        public void SetGraphicsConfig(bool depth, bool stencil, int msaa, GLESVersion version)
         {
-            Interop.GLWindow.GlWindowSetEglConfig(SwigCPtr, depth, stencil, msaa, (int)version);
+            Interop.GLWindow.GlWindowSetGraphicsConfig(SwigCPtr, depth, stencil, msaa, (int)version);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -443,13 +443,13 @@ namespace Tizen.NUI
         HandleRef TerminateHandlerRef;
 
         /// <summary>
-        /// Registers a GL callback function for application.
+        /// Registers GL callback functions for application.
         /// </summary>
         /// <param name="glInit">The callback function for application initialize</param>
         /// <param name="glRenderFrame">The callback function to render to the frame</param>
         /// <param name="glTerminate">The callback function to clean-up application GL resource</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RegisterGlCallback(GLInitializeCallbackType glInit, GLRenderFrameCallbackType glRenderFrame, GLTerminateCallbackType glTerminate)
+        public void RegisterGLCallbacks(GLInitializeCallbackType glInit, GLRenderFrameCallbackType glRenderFrame, GLTerminateCallbackType glTerminate)
         {
             GLInitializeCallback = glInit;
             InitHandleRef = new HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(GLInitializeCallback));
@@ -460,7 +460,7 @@ namespace Tizen.NUI
             GLTerminateCallback = glTerminate;
             TerminateHandlerRef = new HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(GLTerminateCallback));
 
-            Interop.GLWindow.GlWindowRegisterGlCallback(SwigCPtr, InitHandleRef, RenderHandlerRef, TerminateHandlerRef);
+            Interop.GLWindow.GlWindowRegisterGlCallbacks(SwigCPtr, InitHandleRef, RenderHandlerRef, TerminateHandlerRef);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }

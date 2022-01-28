@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Property Group for .NET Core Project -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>Tizen.NUI.Devel.Tests</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+	<Folder Include="lib\" />
+  </ItemGroup>
+
+  <!-- Include Nuget Package for Tizen Project building -->
+  <ItemGroup>
+    <ProjectReference Include="..\nunit.framework\nunit.framework.csproj" />
+    <ProjectReference Include="..\nunitlite\nunitlite.csproj" />
+    <ProjectReference Include="..\..\..\src\Tizen.NUI.Components\Tizen.NUI.Components.csproj" />
+    <ProjectReference Include="..\..\..\src\Tizen.NUI\Tizen.NUI.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>./NuiTest.snk</AssemblyOriginatorKeyFile>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+  </PropertyGroup>
+
+</Project>

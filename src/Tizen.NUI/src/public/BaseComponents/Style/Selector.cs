@@ -483,7 +483,7 @@ namespace Tizen.NUI.BaseComponents
 
             foreach (var item in SelectorItems)
             {
-                var found = SelectorItems.Find(i => i.State == item.State);
+                var found = x.SelectorItems.Find(i => i.State == item.State);
 
                 if (found == null || !EqualsItem(item.Value, found.Value))
                 {

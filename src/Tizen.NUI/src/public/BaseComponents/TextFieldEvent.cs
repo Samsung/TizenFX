@@ -65,6 +65,8 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void SelectionClearedCallbackDelegate(IntPtr textField);
 
+        private bool invokeTextChanged = true;
+
         /// <summary>
         /// The TextChanged event.
         /// </summary>
@@ -316,7 +318,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnTextChanged(IntPtr textField)
         {
-            if (textFieldTextChangedEventHandler != null)
+            if (textFieldTextChangedEventHandler != null && invokeTextChanged)
             {
                 TextChangedEventArgs e = new TextChangedEventArgs();
 

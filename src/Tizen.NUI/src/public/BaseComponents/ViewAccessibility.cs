@@ -229,10 +229,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (View view = Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView())
-                {
-                    return view == this;
-                }
+                return (this == Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView());
             }
         }
 
@@ -510,12 +507,7 @@ namespace Tizen.NUI.BaseComponents
                     InsertText = (startPosition, text) => AccessibilityInsertText(startPosition, Marshal.PtrToStringAnsi(text)),
                     SetTextContents = (newContents) => AccessibilitySetTextContents(Marshal.PtrToStringAnsi(newContents)),
                     DeleteText = (startPosition, endPosition) => AccessibilityDeleteText(startPosition, endPosition),
-                    ScrollToChild = (child) => {
-                        using (var view = new View(child, true))
-                        {
-                            return AccessibilityScrollToChild(view);
-                        }
-                    },
+                    ScrollToChild = (child) => AccessibilityScrollToChild(this.GetInstanceSafely<View>(child)),
                     GetSelectedChildrenCount = () => AccessibilityGetSelectedChildrenCount(),
                     GetSelectedChild = (selectedChildIndex) => View.getCPtr(AccessibilityGetSelectedChild(selectedChildIndex)).Handle,
                     SelectChild = (childIndex) => AccessibilitySelectChild(childIndex),

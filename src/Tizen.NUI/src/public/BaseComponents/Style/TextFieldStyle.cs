@@ -387,6 +387,7 @@ namespace Tizen.NUI.BaseComponents
             var textFieldStyle = (TextFieldStyle)bindable;
             return textFieldStyle.inputUnderline;
         });
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty InputShadowProperty = BindableProperty.Create(nameof(InputShadow), typeof(string), typeof(TextFieldStyle), String.Empty, propertyChanged: (bindable, oldValue, newValue) =>
