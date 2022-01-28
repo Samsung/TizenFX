@@ -43,7 +43,14 @@ namespace Tizen.NUI
         static internal bool IsSupportedMultiWindow()
         {
             bool isSupported = false;
-            Information.TryGetValue("http://tizen.org/feature/opengles.surfaceless_context", out isSupported);
+            try
+            {
+                Information.TryGetValue("http://tizen.org/feature/opengles.surfaceless_context", out isSupported);
+            }
+            catch (DllNotFoundException e)
+            {
+                Tizen.Log.Fatal("NUI", $"{e}\n");
+            }
             return isSupported;
         }
 
