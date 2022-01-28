@@ -42,13 +42,16 @@ namespace Tizen.NUI
         internal ProcessorController(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             processorCallback = new ProcessorEventHandler(Process);
+            processorPostCallback = new ProcessorEventHandler(PostProcess);
             Interop.ProcessorController.SetCallback(SwigCPtr, processorCallback);
+            Interop.ProcessorController.SetPostCallback(SwigCPtr, processorPostCallback);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         internal delegate void ProcessorEventHandler();
 
         private ProcessorEventHandler processorCallback = null;
+        private ProcessorEventHandler processorPostCallback = null;
 
         public event EventHandler ProcessorOnceEvent;
         public event EventHandler ProcessorEvent;
@@ -74,6 +77,12 @@ namespace Tizen.NUI
             LayoutProcessorEvent?.Invoke(this, null);
         }
 
+        public void PostProcess()
+        {
+            ProcessorOnceEvent?.Invoke(this, null);
+            ProcessorOnceEvent = null;
+        }
+
         /// <summary>
         /// Dispose ProcessorController.
         /// </summary>
@@ -81,6 +90,7 @@ namespace Tizen.NUI
         protected override void Dispose(DisposeTypes type)
         {
             Interop.ProcessorController.RemoveCallback(SwigCPtr, processorCallback);
+            Interop.ProcessorController.RemovePostCallback(SwigCPtr, processorPostCallback);
             ProcessorOnceEvent = null;
             ProcessorEvent = null;
             LayoutProcessorEvent = null;
@@ -90,8 +100,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Awake ProcessorController. It will call ProcessController.processorCallback hardly
+        /// Awake ProcessorController.
+        /// It will call ProcessController.processorCallback and ProcessController.processorPostCallback hardly.
         /// </summary>
+        /// <note>
+        /// When event thread is not in idle state, This function will be ignored.
+        /// </note>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Awake()
         {
