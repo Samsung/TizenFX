@@ -87,17 +87,19 @@ namespace NUnit.Framework.TUnit
         }
 
         /* Invoke async test method in main thread*/
-        public void RunTestMethod()
+        public bool RunTestMethod()
         {
             if (testCommand == null || testMethod == null || context == null)
             {
-                return;
+                return false;
             }
             TLogger.Write("##### RunTestMethod in TAsyncThreadMgr class #####");
             if (IsAsyncOperation)
                 RunAsyncTestMethod();
             else
                 RunNonAsyncTestMethod();
+
+            return true;
         }
 
         public void RunAsyncTestMethod()
@@ -148,7 +150,7 @@ namespace NUnit.Framework.TUnit
 
         public void RunNonAsyncTestMethod()
         {
-            TLogger.Write("##### RunNonAsyncTestMethod in TAsyncThreadMgr class #####");
+            TLogger.Write("##### RunNonAsyncTestMethod in TAsyncThreadMgr class #####\n");
             try
             {
                 runSetup();
@@ -160,12 +162,10 @@ namespace NUnit.Framework.TUnit
             }
             #region nguyen.vtan add TearDown
             runTearDown();
-            Thread.Sleep(50);
             #endregion
             testCommand._testMethodRunComplete.Set();
             _methodExecutionResetEvent.Reset();
             _methodExecutionResetEvent.WaitOne();
-            RunTestMethod();
         }
 
         public object GetResult()
