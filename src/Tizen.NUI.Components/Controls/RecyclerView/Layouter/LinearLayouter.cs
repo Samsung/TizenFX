@@ -792,28 +792,35 @@ namespace Tizen.NUI.Components
                     }
                 }
 
-                if (parentIndex >= groups.Count)
+                if (groupInfo != null)
                 {
-                    groupInfo.GroupPosition = ScrollContentSize;
-                    groups.Add(groupInfo);
+                    if (parentIndex >= groups.Count)
+                    {
+                        groupInfo.GroupPosition = ScrollContentSize;
+                        groups.Add(groupInfo);
+                    }
+                    else
+                    {
+                        groupInfo.GroupPosition = groups[parentIndex].GroupPosition;
+                        groups.Insert(parentIndex, groupInfo);
+                    }
+
+                    // Update other below group's position
+                    if (parentIndex + 1 < groups.Count)
+                    {
+                        for(int i = parentIndex + 1; i < groups.Count; i++)
+                        {
+                            groups[i].GroupPosition += groupInfo.GroupSize;
+                            groups[i].StartIndex += count;
+                        }
+                    }
+
+                    ScrollContentSize += groupInfo.GroupSize;
                 }
                 else
                 {
-                    groupInfo.GroupPosition = groups[parentIndex].GroupPosition;
-                    groups.Insert(parentIndex, groupInfo);
+                    Tizen.Log.Error("NUI", "groupInfo is null! Check count = 0");
                 }
-
-                // Update other below group's position
-                if (parentIndex + 1 < groups.Count)
-                {
-                    for(int i = parentIndex + 1; i < groups.Count; i++)
-                    {
-                        groups[i].GroupPosition += groupInfo.GroupSize;
-                        groups[i].StartIndex += count;
-                    }
-                }
-
-                ScrollContentSize += groupInfo.GroupSize;
             }
             else
             {
