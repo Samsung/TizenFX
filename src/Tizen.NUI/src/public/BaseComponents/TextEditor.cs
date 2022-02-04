@@ -2377,6 +2377,11 @@ namespace Tizen.NUI.BaseComponents
                     this.MaxLengthReachedSignal().Disconnect(textEditorMaxLengthReachedCallbackDelegate);
                 }
 
+                if (textEditorSelectionStartedCallbackDelegate != null)
+                {
+                    this.SelectionStartedSignal().Disconnect(textEditorSelectionStartedCallbackDelegate);
+                }
+
                 if (textEditorSelectionClearedCallbackDelegate != null)
                 {
                     this.SelectionClearedSignal().Disconnect(textEditorSelectionClearedCallbackDelegate);
