@@ -84,6 +84,8 @@ namespace Tizen.NUI.BaseComponents
             RegisterPropertyGroup(ScaleXProperty, scalePropertyGroup);
             RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
             RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
+
+            RegisterAccessibilityDelegate();
         }
 
         /// <summary>

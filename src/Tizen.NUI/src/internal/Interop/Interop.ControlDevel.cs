@@ -184,18 +184,40 @@ namespace Tizen.NUI
             [StructLayout(LayoutKind.Sequential)]
             public class AccessibilityDelegate
             {
+                private AccessibilityDelegate()
+                {
+                }
+
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public static AccessibilityDelegate Instance { get; } = new AccessibilityDelegate();
+
+                // TODO (C# 9.0):
+                // Replace the following syntax (3 lines of code per field):
+                //
+                //     [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                //     public delegate ReturnType AccessibilityMethodName(IntPtr self, ArgumentTypes...)
+                //     public AccessibilityMethodName MethodName;
+                //
+                // with the function pointer syntax (1 line of code per field):
+                //
+                //     public delegate* unmanaged[Cdecl]<ReturnType, ArgumentTypes...> MethodName;
+                //
+                // This will make it easier to verify that the structures are compatible between C# and C++
+                // when adding new fields (preferably at the end), because the C# syntax will look very similar
+                // to the C++ syntax.
+
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate IntPtr AccessibilityGetName();
+                public delegate IntPtr AccessibilityGetName(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetName GetName; // 1
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate IntPtr AccessibilityGetDescription();
+                public delegate IntPtr AccessibilityGetDescription(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetDescription GetDescription; // 2
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilityDoAction(IntPtr name);
+                public delegate bool AccessibilityDoAction(IntPtr self, IntPtr name);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityDoAction DoAction; // 3
 
@@ -204,171 +226,174 @@ namespace Tizen.NUI
                 // calculated by ControlAccessible::CalculateStates are passed here
                 // as a parameter.
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate ulong AccessibilityCalculateStates(ulong states);
+                public delegate ulong AccessibilityCalculateStates(IntPtr self, ulong states);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityCalculateStates CalculateStates; // 4
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate int AccessibilityGetActionCount();
+                public delegate int AccessibilityGetActionCount(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetActionCount GetActionCount; // 5
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate IntPtr AccessibilityGetActionName(int index);
+                public delegate IntPtr AccessibilityGetActionName(IntPtr self, int index);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetActionName GetActionName; // 6
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilityShouldReportZeroChildren();
+                public delegate bool AccessibilityShouldReportZeroChildren(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityShouldReportZeroChildren ShouldReportZeroChildren; // 7
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate double AccessibilityGetMinimum();
+                public delegate double AccessibilityGetMinimum(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetMinimum GetMinimum; // 8
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate double AccessibilityGetCurrent();
+                public delegate double AccessibilityGetCurrent(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetCurrent GetCurrent; // 9
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate double AccessibilityGetMaximum();
+                public delegate double AccessibilityGetMaximum(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetMaximum GetMaximum; // 10
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilitySetCurrent(double value);
+                public delegate bool AccessibilitySetCurrent(IntPtr self, double value);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilitySetCurrent SetCurrent; // 11
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate double AccessibilityGetMinimumIncrement();
+                public delegate double AccessibilityGetMinimumIncrement(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetMinimumIncrement GetMinimumIncrement; // 12
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilityIsScrollable();
+                public delegate bool AccessibilityIsScrollable(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityIsScrollable IsScrollable; // 13
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate IntPtr AccessibilityGetText(int startOffset, int endOffset);
+                public delegate IntPtr AccessibilityGetText(IntPtr self, int startOffset, int endOffset);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetText GetText; // 14
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate int AccessibilityGetCharacterCount();
+                public delegate int AccessibilityGetCharacterCount(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetCharacterCount GetCharacterCount; // 15
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate int AccessibilityGetCursorOffset();
+                public delegate int AccessibilityGetCursorOffset(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetCursorOffset GetCursorOffset; // 16
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilitySetCursorOffset(int offset);
+                public delegate bool AccessibilitySetCursorOffset(IntPtr self, int offset);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilitySetCursorOffset SetCursorOffset; // 17
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate IntPtr AccessibilityGetTextAtOffset(int offset, int boundary);
+                public delegate IntPtr AccessibilityGetTextAtOffset(IntPtr self, int offset, int boundary);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetTextAtOffset GetTextAtOffset; // 18
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate IntPtr AccessibilityGetSelection(int selectionNum);
+                public delegate IntPtr AccessibilityGetSelection(IntPtr self, int selectionNum);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetSelection GetSelection; // 19
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilityRemoveSelection(int selectionNum);
+                public delegate bool AccessibilityRemoveSelection(IntPtr self, int selectionNum);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityRemoveSelection RemoveSelection; // 20
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilitySetSelection(int selectionNum, int startOffset, int endOffset);
+                public delegate bool AccessibilitySetSelection(IntPtr self, int selectionNum, int startOffset, int endOffset);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilitySetSelection SetSelection; // 21
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilityCopyText(int startPosition, int endPosition);
+                public delegate bool AccessibilityCopyText(IntPtr self, int startPosition, int endPosition);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityCopyText CopyText; // 22
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilityCutText(int startPosition, int endPosition);
+                public delegate bool AccessibilityCutText(IntPtr self, int startPosition, int endPosition);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityCutText CutText; // 23
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilityInsertText(int startPosition, IntPtr text);
+                public delegate bool AccessibilityInsertText(IntPtr self, int startPosition, IntPtr text);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityInsertText InsertText; // 24
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilitySetTextContents(IntPtr newContents);
+                public delegate bool AccessibilitySetTextContents(IntPtr self, IntPtr newContents);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilitySetTextContents SetTextContents; // 25
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilityDeleteText(int startPosition, int endPosition);
+                public delegate bool AccessibilityDeleteText(IntPtr self, int startPosition, int endPosition);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityDeleteText DeleteText; // 26
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilityScrollToChild(IntPtr child);
+                public delegate bool AccessibilityScrollToChild(IntPtr self, IntPtr child);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityScrollToChild ScrollToChild; // 27
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate int AccessibilityGetSelectedChildrenCount();
+                public delegate int AccessibilityGetSelectedChildrenCount(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetSelectedChildrenCount GetSelectedChildrenCount; // 28
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate IntPtr AccessibilityGetSelectedChild(int selectedChildIndex);
+                public delegate IntPtr AccessibilityGetSelectedChild(IntPtr self, int selectedChildIndex);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetSelectedChild GetSelectedChild; // 29
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilitySelectChild(int childIndex);
+                public delegate bool AccessibilitySelectChild(IntPtr self, int childIndex);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilitySelectChild SelectChild; // 30
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilityDeselectSelectedChild(int selectedChildIndex);
+                public delegate bool AccessibilityDeselectSelectedChild(IntPtr self, int selectedChildIndex);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityDeselectSelectedChild DeselectSelectedChild; // 31
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilityIsChildSelected(int childIndex);
+                public delegate bool AccessibilityIsChildSelected(IntPtr self, int childIndex);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityIsChildSelected IsChildSelected; // 32
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilitySelectAll();
+                public delegate bool AccessibilitySelectAll(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilitySelectAll SelectAll; // 33
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilityClearSelection();
+                public delegate bool AccessibilityClearSelection(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityClearSelection ClearSelection; // 34
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilityDeselectChild(int childIndex);
+                public delegate bool AccessibilityDeselectChild(IntPtr self, int childIndex);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityDeselectChild DeselectChild; // 35
             }
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_SetAccessibilityConstructor_NUI")]
-            public static extern void DaliToolkitDevelControlSetAccessibilityConstructor(HandleRef arg1_self, int arg2_role, int arg3_iface, IntPtr arg4_vtable, int arg5_vtableSize);
+            public static extern void DaliToolkitDevelControlSetAccessibilityConstructor(HandleRef arg1_self, int arg2_role, int arg3_iface);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AccessibleImpl_NUI_DuplicateString")]
-            public static extern IntPtr DaliToolkitDevelControlAccessibleImplNUIDuplicateString(string arg);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_DuplicateString")]
+            public static extern IntPtr DaliAccessibilityDuplicateString(string arg);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_SetAccessibilityDelegate")]
+            public static extern IntPtr DaliAccessibilitySetAccessibilityDelegate(IntPtr arg1_accessibilityDelegate, int arg2_accessibilityDelegateSize);
         }
     }
 }

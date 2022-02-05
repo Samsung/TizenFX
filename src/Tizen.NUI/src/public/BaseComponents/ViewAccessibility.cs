@@ -452,31 +452,6 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private IntPtr DuplicateString(string value)
-        {
-            return Interop.ControlDevel.DaliToolkitDevelControlAccessibleImplNUIDuplicateString(value ?? "");
-        }
-
-        private IntPtr DuplicateRange(AccessibilityRange range)
-        {
-            return Interop.ControlDevel.DaliAccessibilityNewRange(range.StartOffset, range.EndOffset, range.Content);
-        }
-
-        private static AccessibilityStates AccessibilityInitialStates = new AccessibilityStates();
-
-        private ulong AccessibilityCalculateStatesWrapper(ulong initialStates)
-        {
-            lock (AccessibilityInitialStates)
-            {
-                AccessibilityInitialStates.BitMask = initialStates;
-
-                return AccessibilityCalculateStates().BitMask;
-            }
-        }
-
-        private Interop.ControlDevel.AccessibilityDelegate accessibilityDelegate = null;
-        private IntPtr accessibilityDelegatePtr;
-
         /// <summary>
         /// Sets the specific constructor for creating accessibility structure with its role and interface.
         /// </summary>
@@ -488,55 +463,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAccessibilityConstructor(Role role, AccessibilityInterface accessibilityInterface = AccessibilityInterface.None)
         {
-            var size = Marshal.SizeOf<Interop.ControlDevel.AccessibilityDelegate>();
-
-            if (accessibilityDelegate == null)
-            {
-                accessibilityDelegate = new Interop.ControlDevel.AccessibilityDelegate()
-                {
-                    GetName = () => DuplicateString(AccessibilityGetName()),
-                    GetDescription = () => DuplicateString(AccessibilityGetDescription()),
-                    DoAction = (name) => AccessibilityDoAction(Marshal.PtrToStringAnsi(name)),
-                    CalculateStates = (states) => AccessibilityCalculateStatesWrapper(states),
-                    GetActionCount = () => AccessibilityGetActionCount(),
-                    GetActionName = (index) => DuplicateString(AccessibilityGetActionName(index)),
-                    ShouldReportZeroChildren = () => AccessibilityShouldReportZeroChildren(),
-                    GetMinimum = () => AccessibilityGetMinimum(),
-                    GetCurrent = () => AccessibilityGetCurrent(),
-                    GetMaximum = () => AccessibilityGetMaximum(),
-                    SetCurrent = (value) => AccessibilitySetCurrent(value),
-                    GetMinimumIncrement = () => AccessibilityGetMinimumIncrement(),
-                    IsScrollable = () => AccessibilityIsScrollable(),
-                    GetText = (startOffset, endOffset) => DuplicateString(AccessibilityGetText(startOffset, endOffset)),
-                    GetCharacterCount = () => AccessibilityGetCharacterCount(),
-                    GetCursorOffset = () => AccessibilityGetCursorOffset(),
-                    SetCursorOffset = (offset) => AccessibilitySetCursorOffset(offset),
-                    GetTextAtOffset = (offset, boundary) => DuplicateRange(AccessibilityGetTextAtOffset(offset, (AccessibilityTextBoundary)boundary)),
-                    GetSelection = (selectionNumber) => DuplicateRange(AccessibilityGetSelection(selectionNumber)),
-                    RemoveSelection = (selectionNumber) => AccessibilityRemoveSelection(selectionNumber),
-                    SetSelection = (selectionNumber, startOffset, endOffset) => AccessibilitySetSelection(selectionNumber, startOffset, endOffset),
-                    CopyText = (startPosition, endPosition) => AccessibilityCopyText(startPosition, endPosition),
-                    CutText = (startPosition, endPosition) => AccessibilityCutText(startPosition, endPosition),
-                    InsertText = (startPosition, text) => AccessibilityInsertText(startPosition, Marshal.PtrToStringAnsi(text)),
-                    SetTextContents = (newContents) => AccessibilitySetTextContents(Marshal.PtrToStringAnsi(newContents)),
-                    DeleteText = (startPosition, endPosition) => AccessibilityDeleteText(startPosition, endPosition),
-                    ScrollToChild = (child) => AccessibilityScrollToChild(this.GetInstanceSafely<View>(child)),
-                    GetSelectedChildrenCount = () => AccessibilityGetSelectedChildrenCount(),
-                    GetSelectedChild = (selectedChildIndex) => View.getCPtr(AccessibilityGetSelectedChild(selectedChildIndex)).Handle,
-                    SelectChild = (childIndex) => AccessibilitySelectChild(childIndex),
-                    DeselectSelectedChild = (selectedChildIndex) => AccessibilityDeselectSelectedChild(selectedChildIndex),
-                    IsChildSelected = (childIndex) => AccessibilityIsChildSelected(childIndex),
-                    SelectAll = () => AccessibilitySelectAll(),
-                    ClearSelection = () => AccessibilityClearSelection(),
-                    DeselectChild = (childIndex) => AccessibilityDeselectChild(childIndex),
-                };
-
-                accessibilityDelegatePtr = Marshal.AllocHGlobal(size);
-                Marshal.StructureToPtr(accessibilityDelegate, accessibilityDelegatePtr, false);
-            }
-
-            Interop.ControlDevel.DaliToolkitDevelControlSetAccessibilityConstructor(SwigCPtr, (int)role, (int)accessibilityInterface, accessibilityDelegatePtr, size);
-
+            Interop.ControlDevel.DaliToolkitDevelControlSetAccessibilityConstructor(SwigCPtr, (int)role, (int)accessibilityInterface);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -561,13 +488,6 @@ namespace Tizen.NUI.BaseComponents
             if (disposing)
             {
                 Unparent();
-            }
-
-            if (accessibilityDelegate != null)
-            {
-                Marshal.DestroyStructure<Interop.ControlDevel.AccessibilityDelegate>(accessibilityDelegatePtr);
-                Marshal.FreeHGlobal(accessibilityDelegatePtr);
-                accessibilityDelegate = null;
             }
 
             base.Dispose(disposing);
