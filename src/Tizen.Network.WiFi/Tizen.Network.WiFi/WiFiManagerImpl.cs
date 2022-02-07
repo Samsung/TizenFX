@@ -383,7 +383,11 @@ namespace Tizen.Network.WiFi
                 Log.Info(Globals.LogTag, "Interop.WiFi.ActivateWithWiFiPickerTestedAsync");
                 try
                 {
-                    int ret = Interop.WiFi.ActivateWithWiFiPickerTested(GetSafeHandle(), _callback_map[id], id);
+                    int ret = (int)WiFiError.None;
+                    lock (_callback_map)
+                    {
+                        ret = Interop.WiFi.ActivateWithWiFiPickerTested(GetSafeHandle(), _callback_map[id], id);
+                    }
                     CheckReturnValue(ret, "ActivateWithWiFiPickerTested", "");
                 }
                 catch (Exception e)
@@ -428,7 +432,11 @@ namespace Tizen.Network.WiFi
                 Log.Info(Globals.LogTag, "Interop.WiFi.Deactivate");
                 try
                 {
-                    int ret = Interop.WiFi.Deactivate(GetSafeHandle(), _callback_map[id], id);
+                    int ret = (int)WiFiError.None;
+                    lock (_callback_map)
+                    {
+                        ret = Interop.WiFi.Deactivate(GetSafeHandle(), _callback_map[id], id);
+                    }
                     CheckReturnValue(ret, "Deactivate", "");
                 }
                 catch (Exception e)
