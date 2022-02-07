@@ -16,6 +16,8 @@
  */
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 
@@ -111,6 +113,8 @@ namespace Tizen.NUI.WebViewTest
             "https://terms.account.samsung.com/contents/legal/kor/kor/customizedservicecontent.html",
             "https://www.youtube.com"
         };
+
+        private string invalidUrl = "https://test/";
 
         private const string USER_AGENT = "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36";
 
@@ -377,9 +381,32 @@ namespace Tizen.NUI.WebViewTest
         {
             Log.Info("WebView", $"------------http request intercepted, Url: {interceptor.Url}-------");
 
-            interceptor.Ignore();
+            //interceptor.Ignore();
+            if (interceptor.Url.Equals(invalidUrl))
+            {
+                byte[] bData = Encoding.UTF8.GetBytes("<html><body><img src='test.jpg'></body></html>");
+                interceptor.SetResponseStatus(200, "OK");
+                interceptor.AddResponseHeader("Content-Type", "text/html; charset=UTF-8");
+                interceptor.AddResponseHeader("Content-Length", bData.Length.ToString());
+                interceptor.SetResponseBody(bData);
+                Log.Info("WebView", $"------------http request intercepted set response body end-------");
+            }
+            else if (interceptor.Url.Equals($"{invalidUrl}test.jpg"))
+            {
+                string path = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "Tizen.NUI.WebViewTest.png";
+                using (FileStream fs = File.OpenRead(path))
+                {
+                    byte[] bData = new byte[1024];
+                    while (fs.Read(bData, 0, bData.Length) > 0)
+                    {
+                        interceptor.WriteResponseChunk(bData);
+                    }
+                    interceptor.WriteResponseChunk((byte[])null);
+                    Log.Info("WebView", $"------------http request intercepted write chunk end-------");
+                }
+            }
 
-            Log.Info("WebView", $"------------http request intercepted-------");
+            Log.Info("WebView", $"------------http request intercepted end-------");
         }
 
         private void OnSslCertificateChanged(object sender, WebViewCertificateReceivedEventArgs e)
@@ -724,18 +751,14 @@ namespace Tizen.NUI.WebViewTest
                 //    succeeded = simpleWebView.HitTestAsynchronously(100, 100, BaseComponents.WebView.HitTestMode.Default, OnHitTestFinished);
                 //    Log.Info("WebView", $"HitTestAsynchronously, {succeeded}");
                 //}
+                else if (args.Key.KeyPressedName == "1")
+                {
+                    simpleWebView.Context.RegisterHttpRequestInterceptedCallback(OnHttpRequestIntercepted);
+                    simpleWebView.LoadUrl(invalidUrl);
+                    result = true;
+                }
                 else if (args.Key.KeyPressedName == "XF86Red")
                 {
-                    if (redKeyPressedCount % 2 == 0)
-                    {
-                        simpleWebView.Context.RegisterHttpRequestInterceptedCallback(OnHttpRequestIntercepted);
-                        redKeyPressedCount = 0;
-                    }
-                    else
-                    {
-                        simpleWebView.Context.RegisterHttpRequestInterceptedCallback(null);
-                    }
-                    redKeyPressedCount++;
                     FocusManager.Instance.SetCurrentFocusView(addressBar);
                     result = true;
                 }

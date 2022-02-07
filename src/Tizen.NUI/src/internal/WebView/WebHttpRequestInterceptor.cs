@@ -188,6 +188,23 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Writes whole response body at once.
+        /// To call it, application should have full response body ready for the intercepted request.
+        /// This function can be used inside or outside WebContext.HttpRequestIntercepted.
+        /// After this call, any further call on WebHttpRequestInterceptor results in undefined behavior.
+        /// </summary>
+        /// <param name="body">Contents of response</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SetResponseBody(byte[] body)
+        {
+            if (body == null)
+                return false;
+            bool result = Interop.WebHttpRequestInterceptor.AddResponseBody(interceptorHandle, body, (uint)body.Length);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
         /// Writes whole response body with headers at once.
         /// To call it, application should have full response headers and body ready for the intercepted request.
         /// This function can be used inside or outside WebContext.HttpRequestIntercepted.
@@ -197,6 +214,24 @@ namespace Tizen.NUI
         /// <param name="body">Contents of response</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SetResponse(string headers, string body)
+        {
+            if (body == null)
+                return false;
+            bool result = Interop.WebHttpRequestInterceptor.AddResponse(interceptorHandle, headers, body, (uint)body.Length);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Writes whole response body with headers at once.
+        /// To call it, application should have full response headers and body ready for the intercepted request.
+        /// This function can be used inside or outside WebContext.HttpRequestIntercepted.
+        /// After this call, any further call on WebHttpRequestInterceptor results in undefined behavior.
+        /// </summary>
+        /// <param name="headers">Headers of response</param>
+        /// <param name="body">Contents of response</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool SetResponse(string headers, byte[] body)
         {
             if (body == null)
                 return false;
@@ -219,6 +254,31 @@ namespace Tizen.NUI
         /// <param name="chunk">Chunk of response</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool WriteResponseChunk(string chunk)
+        {
+            int length = 0;
+            if (chunk != null)
+            {
+                length = chunk.Length;
+            }
+            bool result = Interop.WebHttpRequestInterceptor.WriteResponseChunk(interceptorHandle, chunk, (uint)length);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Writes a part of response body.
+        /// This function can be called only OUTSIDE WebContext.HttpRequestIntercepted.
+        /// If it returns false, handling the request is done.
+        /// Any further calls result in undefined behavior.
+        /// User should always check return value, because response to this request might not be needed any more,
+        /// and the function can return false even though user still has data to write.
+        ///
+        /// After writing full response body in chunks using this function,
+        /// call it again with null as chunk, to signal that response body is finished.
+        /// </summary>
+        /// <param name="chunk">Chunk of response</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool WriteResponseChunk(byte[] chunk)
         {
             int length = 0;
             if (chunk != null)
