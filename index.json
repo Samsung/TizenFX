@@ -5124,6 +5124,11 @@
     "title": "Class MediaControlServerStoppedEventArgs",
     "keywords": ""
   },
+  "API10/api/Tizen.Multimedia.Remoting.MediaFileSource.html": {
+    "href": "API10/api/Tizen.Multimedia.Remoting.MediaFileSource.html",
+    "title": "Class MediaFileSource",
+    "keywords": ""
+  },
   "API10/api/Tizen.Multimedia.Remoting.MediaMicrophoneSource.html": {
     "href": "API10/api/Tizen.Multimedia.Remoting.MediaMicrophoneSource.html",
     "title": "Class MediaMicrophoneSource",
