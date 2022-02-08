@@ -78,11 +78,13 @@ namespace Tizen.NUI.Components
         /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override AccessibilityStates AccessibilityCalculateStates(ulong states)
+        protected override AccessibilityStates AccessibilityCalculateStates()
         {
-            var accessibilityStates = base.AccessibilityCalculateStates(states);
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Checked, this.IsSelected);
-            return accessibilityStates;
+            var states = base.AccessibilityCalculateStates();
+
+            states[AccessibilityState.Checked] = this.IsSelected;
+
+            return states;
         }
 
         /// <summary>
@@ -367,7 +369,7 @@ namespace Tizen.NUI.Components
         {
             if (Accessibility.Accessibility.IsEnabled && IsHighlighted)
             {
-                EmitAccessibilityStatesChangedEvent(AccessibilityStates.Checked, IsSelected);
+                EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, IsSelected);
             }
 
             ((SwitchExtension)Extension)?.OnSelectedChanged(this);

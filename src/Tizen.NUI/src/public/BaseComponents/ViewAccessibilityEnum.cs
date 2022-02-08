@@ -321,247 +321,288 @@ namespace Tizen.NUI.BaseComponents
     };
 
     /// <summary>
-    /// The states of accessibility object.
+    /// Enumeration of possible AT-SPI states for an object.
     /// </summary>
+    /// <seealso cref="AccessibilityStates"/>
     /// <remarks>
     /// Object can be in many states at the same time.
     /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [Flags]
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1028:EnumStorageShouldBeInt32", Justification = "System.Int32 type wouldn't have sufficient capacity")]
-    public enum AccessibilityStates : ulong
+    public enum AccessibilityState
     {
         /// <summary>
         /// Invalid state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Invalid                = (1UL << 0),
+        Invalid                = 0,
         /// <summary>
         /// Active state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Active                 = (1UL << 1),
+        Active                 = 1,
         /// <summary>
         /// Armed state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Armed                  = (1UL << 2),
+        Armed                  = 2,
         /// <summary>
         /// Busy state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Busy                   = (1UL << 3),
+        Busy                   = 3,
         /// <summary>
         /// Checked state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Checked                = (1UL << 4),
+        Checked                = 4,
         /// <summary>
         /// Collapsed state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Collapsed              = (1UL << 5),
+        Collapsed              = 5,
         /// <summary>
         /// Defunct state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Defunct                = (1UL << 6),
+        Defunct                = 6,
         /// <summary>
         /// Editable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Editable               = (1UL << 7),
+        Editable               = 7,
         /// <summary>
         /// Enabled state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Enabled                = (1UL << 8),
+        Enabled                = 8,
         /// <summary>
         /// Expandable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Expandable             = (1UL << 9),
+        Expandable             = 9,
         /// <summary>
         /// Expanded state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Expanded               = (1UL << 10),
+        Expanded               = 10,
         /// <summary>
         /// Focusable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Focusable              = (1UL << 11),
+        Focusable              = 11,
         /// <summary>
         /// Focused state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Focused                = (1UL << 12),
+        Focused                = 12,
         /// <summary>
         /// Had tooltip state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        HasTooltip             = (1UL << 13),
+        HasTooltip             = 13,
         /// <summary>
         /// Horizontal state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Horizontal             = (1UL << 14),
+        Horizontal             = 14,
         /// <summary>
         /// Iconified state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Iconified              = (1UL << 15),
+        Iconified              = 15,
         /// <summary>
         /// Modal state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Modal                  = (1UL << 16),
+        Modal                  = 16,
         /// <summary>
         /// Multi-line state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        MultiLine              = (1UL << 17),
+        MultiLine              = 17,
         /// <summary>
         /// Multi-selectable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        MultiSelectable        = (1UL << 18),
+        MultiSelectable        = 18,
         /// <summary>
         /// Opaque state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Opaque                 = (1UL << 19),
+        Opaque                 = 19,
         /// <summary>
         /// Pressed state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Pressed                = (1UL << 20),
+        Pressed                = 20,
         /// <summary>
         /// Resizeable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Resizeable             = (1UL << 21),
+        Resizeable             = 21,
         /// <summary>
         /// Selectable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Selectable             = (1UL << 22),
+        Selectable             = 22,
         /// <summary>
         /// Selected state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Selected               = (1UL << 23),
+        Selected               = 23,
         /// <summary>
         /// Sensitive state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Sensitive              = (1UL << 24),
+        Sensitive              = 24,
         /// <summary>
         /// Showing state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Showing                = (1UL << 25),
+        Showing                = 25,
         /// <summary>
         /// Single line state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        SingleLine             = (1UL << 26),
+        SingleLine             = 26,
         /// <summary>
         /// Stale state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Stale                  = (1UL << 27),
+        Stale                  = 27,
         /// <summary>
         /// Transient state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Transient              = (1UL << 28),
+        Transient              = 28,
         /// <summary>
         /// Vertical state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Vertical               = (1UL << 29),
+        Vertical               = 29,
         /// <summary>
         /// Visible state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Visible                = (1UL << 30),
+        Visible                = 30,
         /// <summary>
         /// Managed descendants state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        ManagesDescendants     = (1UL << 31),
+        ManagesDescendants     = 31,
         /// <summary>
         /// Indeterminate state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Indeterminate          = (1UL << 32),
+        Indeterminate          = 32,
         /// <summary>
         /// Required state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Required               = (1UL << 33),
+        Required               = 33,
         /// <summary>
         /// Truncated state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Truncated              = (1UL << 34),
+        Truncated              = 34,
         /// <summary>
         /// Animated state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Animated               = (1UL << 35),
+        Animated               = 35,
         /// <summary>
         /// Invalid entry state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        InvalidEntry           = (1UL << 36),
+        InvalidEntry           = 36,
         /// <summary>
         /// Supported auto completion state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        SupportsAutocompletion = (1UL << 37),
+        SupportsAutocompletion = 37,
         /// <summary>
         /// Selectable text state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        SelectableText         = (1UL << 38),
+        SelectableText         = 38,
         /// <summary>
         /// Default state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        IsDefault              = (1UL << 39),
+        IsDefault              = 39,
         /// <summary>
         /// Visited state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Visited                = (1UL << 40),
+        Visited                = 40,
         /// <summary>
         /// Checkable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Checkable              = (1UL << 41),
+        Checkable              = 41,
         /// <summary>
         /// Had popup state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        HasPopup               = (1UL << 42),
+        HasPopup               = 42,
         /// <summary>
         /// Read only state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        ReadOnly               = (1UL << 43),
+        ReadOnly               = 43,
         /// <summary>
         /// Highlighted state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Highlighted            = (1UL << 44),
+        Highlighted            = 44,
         /// <summary>
         /// Highlightable state.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Highlightable          = (1UL << 45),
+        Highlightable          = 45,
     };
+
+    /// <summary>
+    /// A collection of AccessibilityStates
+    /// </summary>
+    /// <seealso cref="AccessibilityState"/>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class AccessibilityStates
+    {
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AccessibilityStates(params AccessibilityState[] states)
+        {
+            foreach (var state in states)
+            {
+                BitMask |= (1UL << (int)state);
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal ulong BitMask { get; set; } = 0UL;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool this[AccessibilityState state]
+        {
+            get
+            {
+                return Convert.ToBoolean(BitMask & (1UL << (int)state));
+            }
+            set
+            {
+                if (value)
+                {
+                    // Set N-th bit
+                    BitMask |= (1UL << (int)state);
+                }
+                else
+                {
+                    // Clear N-th bit
+                    BitMask &= ~(1UL << (int)state);
+                }
+            }
+        }
+    }
 
     /// <summary>
     /// Notify mode for AccessibilityStates.
