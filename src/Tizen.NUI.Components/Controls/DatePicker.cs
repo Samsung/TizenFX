@@ -240,7 +240,7 @@ namespace Tizen.NUI.Components
 
             PickersOrderSet();
             SetMonthText();
-            MaxDaySet();
+            MaxDaySet(currentDate.Year, currentDate.Month);
         }
 
         private void OnDayValueChanged(object sender, ValueChangedEventArgs e)
@@ -256,8 +256,7 @@ namespace Tizen.NUI.Components
         { 
             if (currentDate.Month == e.Value) return;
 
-            currentDate = new DateTime(currentDate.Year, e.Value, currentDate.Day);
-            MaxDaySet();
+            MaxDaySet(currentDate.Year, e.Value);
 
             OnDateChanged();
         }
@@ -266,8 +265,7 @@ namespace Tizen.NUI.Components
         { 
             if (currentDate.Year == e.Value) return;
 
-            currentDate = new DateTime(e.Value, currentDate.Month, currentDate.Day);
-            MaxDaySet();
+            MaxDaySet(e.Value, currentDate.Month);
 
             OnDateChanged();
         }
@@ -278,17 +276,17 @@ namespace Tizen.NUI.Components
             DateChanged?.Invoke(this, eventArgs);
         }
 
-        private void MaxDaySet()
+        private void MaxDaySet(int year, int month)
         {
-            int maxDaysInMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
+            int maxDaysInMonth = DateTime.DaysInMonth(year, month);
             dayPicker.MaxValue = maxDaysInMonth;
             if (currentDate.Day > maxDaysInMonth)
             {
-                currentDate = new DateTime(currentDate.Year, currentDate.Month, maxDaysInMonth);
+                currentDate = new DateTime(year, month, maxDaysInMonth);
                 dayPicker.CurrentValue = maxDaysInMonth;
                 return;
             }
-            currentDate = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day);
+            currentDate = new DateTime(year, month, currentDate.Day);
         }
 
         //FIXME: There is no way to know when system locale changed in NUI.

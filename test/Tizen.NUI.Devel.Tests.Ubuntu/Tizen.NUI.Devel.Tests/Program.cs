@@ -22,6 +22,8 @@ using Tizen.NUI.BaseComponents;
 using System.Threading;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using NUnit.Framework.TUnit;
+using NUnit.Framework.Interfaces;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -44,6 +46,10 @@ namespace Tizen.NUI.Devel.Tests
         public static int mainPid;
         public static int mainTid;
         Timer timer;
+        private EventThreadCallback eventThreadCallback;
+        private NUnitLite.TUnit.TRunner trunner;
+        private ManualResetEvent methodExecutionResetEvent;
+        private TAsyncThreadMgr asyncThreadMgr;
 
         protected override void OnCreate()
         {
@@ -82,25 +88,47 @@ namespace Tizen.NUI.Devel.Tests
             };
             root.Add(mainTitle);
 
-            tlog.Debug(tag, "OnCreate() END!");
+            Thread.CurrentThread.Name = "main";
+            trunner = new NUnitLite.TUnit.TRunner();
+            trunner.LoadTestsuite();
 
-            timer = new Timer(1000);
-            timer.Tick += OnTick;
-            timer.Start();
+            asyncThreadMgr = TAsyncThreadMgr.GetInstance();
+            methodExecutionResetEvent = asyncThreadMgr.GetMethodExecutionResetEvent();
+            methodExecutionResetEvent.Reset();
 
+            Task t = Task.Run(() =>
+                {
+                    Thread.CurrentThread.Name = "textRunner";
+                    trunner._textRunner.Execute(trunner.args);
+                    asyncThreadMgr.SetData(null, null, null, null, false);
+                    methodExecutionResetEvent.Set();
+                });
+
+            eventThreadCallback = new EventThreadCallback(new EventThreadCallback.CallbackDelegate(ProcessTest));
+            eventThreadCallback.Trigger();
+        }
+
+        private void ProcessTest()
+        {
+            methodExecutionResetEvent.WaitOne();
+
+            if (asyncThreadMgr.RunTestMethod() == false)
+            {
+                mainTitle.Text = title + "Finished!\nWill be terminated after 5 seconds";
+                timer = new Timer(300);
+                timer.Tick += OnTick;
+                timer.Start();
+                return;
+            }
+            eventThreadCallback.Trigger();
         }
 
         private bool OnTick(object obj, EventArgs e)
         {
-            TRunner t = new TRunner();
-            t.LoadTestsuite();
-            t.Execute();
-
-            App.MainTitleChangeText("Finished!");
+            Thread.Sleep(5000);
+            Exit();
             return false;
         }
-
-
 
         static public async Task MainTitleChangeBackgroundColor(Color color)
         {
@@ -135,13 +163,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             base.OnResume();
 
-            tlog.Debug(tag, $"### OnResume() START!");
-
-            // TRunner t = new TRunner();
-            // t.LoadTestsuite();
-            // t.Execute();
-
-            tlog.Debug(tag, $"OnResume() END!");
+            tlog.Debug(tag, $"OnResume()");
         }
 
         protected override void OnPause()
@@ -151,12 +173,9 @@ namespace Tizen.NUI.Devel.Tests
 
         protected override void OnTerminate()
         {
-            timer.Tick -= OnTick;
-            mainTitle.GetParent().Remove(mainTitle);
-            mainTitle = null;
-            root.GetParent().Remove(root);
-            root = null;
-
+            timer.Dispose();
+            mainTitle.Unparent();
+            root.Unparent();
             base.OnTerminate();
             Exit();
         }

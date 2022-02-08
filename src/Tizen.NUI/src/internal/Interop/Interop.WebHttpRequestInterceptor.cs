@@ -15,6 +15,8 @@
  *
  */
 
+using System.Runtime.InteropServices;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -50,13 +52,25 @@ namespace Tizen.NUI
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool AddResponseBody(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, uint jarg3);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "CSharp_Dali_WebRequestInterceptor_AddResponseBody")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool AddResponseBody(global::System.Runtime.InteropServices.HandleRef jarg1, [MarshalAs(UnmanagedType.LPArray)] byte[] jarg2, uint jarg3);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebRequestInterceptor_AddResponse")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool AddResponse(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, string jarg3, uint jarg4);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "CSharp_Dali_WebRequestInterceptor_AddResponse")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool AddResponse(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, [MarshalAs(UnmanagedType.LPArray)] byte[] jarg3, uint jarg4);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebRequestInterceptor_WriteResponseChunk")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool WriteResponseChunk(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, uint jarg3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "CSharp_Dali_WebRequestInterceptor_WriteResponseChunk")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool WriteResponseChunk(global::System.Runtime.InteropServices.HandleRef jarg1, [MarshalAs(UnmanagedType.LPArray)] byte[] jarg2, uint jarg3);
         }
     }
 }

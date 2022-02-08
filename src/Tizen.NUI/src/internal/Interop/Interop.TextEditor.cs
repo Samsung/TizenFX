@@ -186,6 +186,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_SelectionClearedSignal")]
             public static extern global::System.IntPtr SelectionClearedSignal(global::System.Runtime.InteropServices.HandleRef pTextEditor);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_SelectionStartedSignal")]
+            public static extern global::System.IntPtr SelectionStartedSignal(global::System.Runtime.InteropServices.HandleRef pTextEditor);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_AnchorClickedSignal")]
             public static extern global::System.IntPtr AnchorClickedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -350,6 +353,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_STRIKETHROUGH_get")]
             public static extern int StrikethroughGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_CHARACTER_SPACING_get")]
+            public static extern int CharacterSpacingGet();
         }
     }
 }

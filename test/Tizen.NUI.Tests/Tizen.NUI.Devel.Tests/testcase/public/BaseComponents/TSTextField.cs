@@ -1876,5 +1876,32 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldStrikethrough END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField CharacterSpacing.")]
+        [Property("SPEC", "Tizen.NUI.TextField.CharacterSpacing A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "s.sabah@samsung.com")]
+        public void TextFieldCharacterSpacing()
+        {
+            tlog.Debug(tag, $"TextFieldCharacterSpacing START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            float expandedValue = 1.5f;
+            testingTarget.CharacterSpacing = expandedValue;
+            Assert.AreEqual(expandedValue, testingTarget.CharacterSpacing, "Should be equal!");
+
+            float condensedValue = -1.5f;
+            testingTarget.CharacterSpacing = condensedValue;
+            Assert.AreEqual(condensedValue, testingTarget.CharacterSpacing, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldCharacterSpacing END (OK)");
+        }
     }
 }
