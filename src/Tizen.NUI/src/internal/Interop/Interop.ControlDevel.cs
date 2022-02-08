@@ -122,24 +122,20 @@ namespace Tizen.NUI
             public static extern bool DaliToolkitDevelControlGrabAccessibilityHighlight(global::System.Runtime.InteropServices.HandleRef arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_GetAccessibilityState")]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_GetAccessibilityStates")]
             public static extern ulong DaliToolkitDevelControlGetAccessibilityStates(global::System.Runtime.InteropServices.HandleRef arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_ConvertState")]
-            public static extern IntPtr DaliToolkitDevelControlConvertState(ulong arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_NotifyAccessibilityStateChange2")]
-            public static extern global::System.IntPtr DaliToolkitDevelControlNotifyAccessibilityStatesChange(global::System.Runtime.InteropServices.HandleRef arg1, ulong arg2, int arg3);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_NotifyAccessibilityStateChange")]
+            public static extern global::System.IntPtr DaliToolkitDevelControlNotifyAccessibilityStateChange(global::System.Runtime.InteropServices.HandleRef arg1, ulong arg2, int arg3);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitAccessibilityEvent")]
             public static extern global::System.IntPtr DaliAccessibilityEmitAccessibilityEvent(global::System.Runtime.InteropServices.HandleRef arg1, int arg2_event);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitAccessibilityStateChangedEvent2")]
-            public static extern global::System.IntPtr DaliAccessibilityEmitAccessibilityStatesChangedEvent(global::System.Runtime.InteropServices.HandleRef arg1, ulong arg2_state, int arg3);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitAccessibilityStateChangedEvent")]
+            public static extern global::System.IntPtr DaliAccessibilityEmitAccessibilityStateChangedEvent(global::System.Runtime.InteropServices.HandleRef arg1, int arg2_state, int arg3);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitTextInsertedEvent")]
@@ -203,8 +199,12 @@ namespace Tizen.NUI
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityDoAction DoAction; // 3
 
+                // Note: this method departs from the usual idiom of having the same
+                // parameter types as the Accessible method in DALi, because states
+                // calculated by ControlAccessible::CalculateStates are passed here
+                // as a parameter.
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate IntPtr AccessibilityCalculateStates(ulong states);
+                public delegate ulong AccessibilityCalculateStates(ulong states);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityCalculateStates CalculateStates; // 4
 
