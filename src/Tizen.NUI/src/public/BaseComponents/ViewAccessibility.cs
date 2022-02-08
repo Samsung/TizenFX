@@ -229,10 +229,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                using (View view = Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView())
-                {
-                    return view == this;
-                }
+                return (this == Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView());
             }
         }
 
@@ -335,11 +332,11 @@ namespace Tizen.NUI.BaseComponents
         /// If recursive is true, all children of the Accessibility object will also re-emit the states.
         /// </remarks>
         /// <param name="states">Accessibility States</param>
-        /// <param name="recursive">Flag to point if notifications of children's state would be sent</param>
+        /// <param name="notifyMode">Controls the notification strategy</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void NotifyAccessibilityStatesChange(AccessibilityStates states, bool recursive)
+        public void NotifyAccessibilityStatesChange(AccessibilityStates states, AccessibilityStatesNotifyMode notifyMode)
         {
-            Interop.ControlDevel.DaliToolkitDevelControlNotifyAccessibilityStatesChange(SwigCPtr, (ulong)states, Convert.ToInt32(recursive));
+            Interop.ControlDevel.DaliToolkitDevelControlNotifyAccessibilityStatesChange(SwigCPtr, (ulong)states, (int)notifyMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -424,22 +421,28 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// Registers popup component to accessibility tree.
+        /// Registers component as a source of an accessibility "default label".
+        /// The "Default label" is a text that could be read by screen-reader immediately
+        /// after the navigation context has changed (window activates, popup shows up, tab changes)
+        /// and before first UI element is highlighted.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RegisterPopup()
+        public void RegisterDefaultLabel()
         {
-            Interop.ControlDevel.DaliAccessibilityBridgeRegisterPopup(SwigCPtr);
+            Interop.ControlDevel.DaliAccessibilityBridgeRegisterDefaultLabel(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Removes the previously added popup to accessibility tree.
+        /// Unregisters component that has been registered previously as a source of an accessibility "default label".
+        /// The "Default label" is a text that could be read by screen-reader immediately
+        /// after the navigation context has changed (window activates, popup shows up, tab changes)
+        /// and before first UI element is highlighted.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemovePopup()
+        public void UnregisterDefaultLabel()
         {
-            Interop.ControlDevel.DaliAccessibilityBridgeRemovePopup(SwigCPtr);
+            Interop.ControlDevel.DaliAccessibilityBridgeUnregisterDefaultLabel(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -504,12 +507,7 @@ namespace Tizen.NUI.BaseComponents
                     InsertText = (startPosition, text) => AccessibilityInsertText(startPosition, Marshal.PtrToStringAnsi(text)),
                     SetTextContents = (newContents) => AccessibilitySetTextContents(Marshal.PtrToStringAnsi(newContents)),
                     DeleteText = (startPosition, endPosition) => AccessibilityDeleteText(startPosition, endPosition),
-                    ScrollToChild = (child) => {
-                        using (var view = new View(child, true))
-                        {
-                            return AccessibilityScrollToChild(view);
-                        }
-                    },
+                    ScrollToChild = (child) => AccessibilityScrollToChild(this.GetInstanceSafely<View>(child)),
                     GetSelectedChildrenCount = () => AccessibilityGetSelectedChildrenCount(),
                     GetSelectedChild = (selectedChildIndex) => View.getCPtr(AccessibilityGetSelectedChild(selectedChildIndex)).Handle,
                     SelectChild = (childIndex) => AccessibilitySelectChild(childIndex),
@@ -628,18 +626,13 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual AccessibilityStates AccessibilityCalculateStates(ulong states)
         {
-            AccessibilityStates _states = (AccessibilityStates)states;
+            AccessibilityStates accessibilityStates = (AccessibilityStates)states;
 
-            FlagSetter(ref _states, AccessibilityStates.Highlightable, this.AccessibilityHighlightable);
-            FlagSetter(ref _states, AccessibilityStates.Focusable, this.Focusable);
-            FlagSetter(ref _states, AccessibilityStates.Focused, this.State == States.Focused);
-            FlagSetter(ref _states, AccessibilityStates.Highlighted, this.IsHighlighted);
-            FlagSetter(ref _states, AccessibilityStates.Enabled, this.State != States.Disabled);
-            FlagSetter(ref _states, AccessibilityStates.Sensitive, this.Sensitive);
-            FlagSetter(ref _states, AccessibilityStates.Visible, true);
-            FlagSetter(ref _states, AccessibilityStates.Defunct, !this.IsOnWindow);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Focused, this.State == States.Focused);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Enabled, this.State != States.Disabled);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Sensitive, this.Sensitive);
 
-            return _states;
+            return accessibilityStates;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

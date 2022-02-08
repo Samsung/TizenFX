@@ -44,9 +44,8 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             string ret = "";
 
-            PropertyMap imageMap = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-            imageMap.Find(ImageVisualProperty.URL)?.Get(out ret);
+            imageView._imagePropertyMap?.Find(ImageVisualProperty.URL)?.Get(out ret);
+
             return ret;
         }));
 
@@ -94,6 +93,14 @@ namespace Tizen.NUI.BaseComponents
                 }
                 if (imageView._border == null)
                 {
+                    // Image properties are changed hardly. We should ignore lazy UpdateImage
+                    imageView._imagePropertyUpdatedFlag = false;
+                    imageView._imagePropertyMap?.Dispose();
+                    imageView._imagePropertyMap = null;
+                    if(map != null)
+                    {
+                        imageView._imagePropertyMap = new PropertyMap(map);
+                    }
                     Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(map));
                 }
             }
@@ -103,6 +110,8 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (imageView._border == null)
             {
+                // Get current properties force.
+                // TODO: Need to make some flag that we only need cached property map.
                 PropertyMap temp = new PropertyMap();
                 Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(temp);
                 return temp;
@@ -180,6 +189,15 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
+                if(oldValue != null)
+                {
+                    bool oldBool = (bool)oldValue;
+                    bool newBool = (bool)newValue;
+                    if(oldBool == newBool)
+                    {
+                        return;
+                    }
+                }
                 imageView.UpdateImage(NpatchImageVisualProperty.BorderOnly, new PropertyValue((bool)newValue));
             }
         },
@@ -187,9 +205,9 @@ namespace Tizen.NUI.BaseComponents
         {
             var imageView = (ImageView)bindable;
             bool ret = false;
-            PropertyMap imageMap = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-            imageMap.Find(ImageVisualProperty.BorderOnly)?.Get(out ret);
+
+            imageView._imagePropertyMap?.Find(NpatchImageVisualProperty.BorderOnly)?.Get(out ret);
+
             return ret;
         }));
 
@@ -200,14 +218,26 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                imageView._synchronousLoading = (bool)newValue;
-                imageView.UpdateImage(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
+                if(oldValue != null)
+                {
+                    bool oldBool = (bool)oldValue;
+                    bool newBool = (bool)newValue;
+                    if(oldBool == newBool)
+                    {
+                        return;
+                    }
+                }
+                imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            return imageView._synchronousLoading;
+            bool ret = false;
+
+            imageView._imagePropertyMap?.Find(ImageVisualProperty.SynchronousLoading)?.Get(out ret);
+
+            return ret;
         });
 
         /// This will be public opened in tizen_7.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -217,14 +247,26 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                imageView._synchronousLoading = (bool)newValue;
-                imageView.UpdateImage(NpatchImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
+                if(oldValue != null)
+                {
+                    bool oldBool = (bool)oldValue;
+                    bool newBool = (bool)newValue;
+                    if(oldBool == newBool)
+                    {
+                        return;
+                    }
+                }
+                imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var imageView = (ImageView)bindable;
-            return imageView._synchronousLoading;
+            bool ret = false;
+
+            imageView._imagePropertyMap?.Find(ImageVisualProperty.SynchronousLoading)?.Get(out ret);
+
+            return ret;
         });
 
         /// Intenal used, will never be opened.
@@ -234,6 +276,15 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
+                if(oldValue != null)
+                {
+                    bool oldBool = (bool)oldValue;
+                    bool newBool = (bool)newValue;
+                    if(oldBool == newBool)
+                    {
+                        return;
+                    }
+                }
                 imageView.UpdateImage(ImageVisualProperty.OrientationCorrection, new PropertyValue((bool)newValue));
             }
         },
@@ -242,9 +293,8 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
 
             bool ret = false;
-            PropertyMap imageMap = new PropertyMap();
-            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(imageMap);
-            imageMap?.Find(ImageVisualProperty.OrientationCorrection)?.Get(out ret);
+
+            imageView._imagePropertyMap?.Find(ImageVisualProperty.OrientationCorrection)?.Get(out ret);
 
             return ret;
         }));

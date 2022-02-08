@@ -574,7 +574,7 @@ namespace Tizen.NUI.Components
         ///  DataTemplate of group header.
         /// </summary>
         /// <remarks>Please note that, internal index will be increased by group header.
-        /// GroupHeaderTemplate is essential for groupable view.</remarks>        
+        /// GroupHeaderTemplate is essential for groupable view.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DataTemplate GroupHeaderTemplate
         {
@@ -694,121 +694,6 @@ namespace Tizen.NUI.Components
             }
 
             base.NotifyDataSetChanged();
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
-        {
-            View nextFocusedView = null;
-
-            if (focusedView == null)
-            {
-                // If focusedView is null, find child which has previous data index
-                if (ContentContainer.Children.Count > 0 && InternalItemSource.Count > 0)
-                {
-                    for (int i = 0; i < ContentContainer.Children.Count; i++)
-                    {
-                        RecyclerViewItem item = Children[i] as RecyclerViewItem;
-                        if (item?.Index == prevFocusedDataIndex)
-                        {
-                            nextFocusedView = item;
-                            break;
-                        }
-                    }
-                }
-            }
-            else
-            {
-                // If this is not first focus, request next focus to Layouter
-                nextFocusedView = ItemsLayouter?.RequestNextFocusableView(currentFocusedView, direction, loopEnabled);
-            }
-
-            if (nextFocusedView != null)
-            {
-                // Check next focused view is inside of visible area.
-                // If it is not, move scroll position to make it visible.
-                Position scrollPosition = ContentContainer.CurrentPosition;
-                float targetPosition = -(ScrollingDirection == Direction.Horizontal ? scrollPosition.X : scrollPosition.Y);
-
-                float left = nextFocusedView.Position.X;
-                float right = nextFocusedView.Position.X + nextFocusedView.Size.Width;
-                float top = nextFocusedView.Position.Y;
-                float bottom = nextFocusedView.Position.Y + nextFocusedView.Size.Height;
-
-                float visibleRectangleLeft = -scrollPosition.X;
-                float visibleRectangleRight = -scrollPosition.X + Size.Width;
-                float visibleRectangleTop = -scrollPosition.Y;
-                float visibleRectangleBottom = -scrollPosition.Y + Size.Height;
-
-                if (ScrollingDirection == Direction.Horizontal)
-                {
-                    if ((direction == View.FocusDirection.Left || direction == View.FocusDirection.Up) && left < visibleRectangleLeft)
-                    {
-                        targetPosition = left;
-                    }
-                    else if ((direction == View.FocusDirection.Right || direction == View.FocusDirection.Down) && right > visibleRectangleRight)
-                    {
-                        targetPosition = right - Size.Width;
-                    }
-                }
-                else
-                {
-                    if ((direction == View.FocusDirection.Up || direction == View.FocusDirection.Left) && top < visibleRectangleTop)
-                    {
-                        targetPosition = top;
-                    }
-                    else if ((direction == View.FocusDirection.Down || direction == View.FocusDirection.Right) && bottom > visibleRectangleBottom)
-                    {
-                        targetPosition = bottom - Size.Height;
-                    }
-                }
-
-                focusedView = nextFocusedView;
-                prevFocusedDataIndex = (nextFocusedView as RecyclerViewItem)?.Index ?? -1;
-
-                ScrollTo(targetPosition, true);
-            }
-            else
-            {
-                // If nextView is null, it means that we should move focus to outside of Control.
-                // Return FocusableView depending on direction.
-                switch (direction)
-                {
-                    case View.FocusDirection.Left:
-                        {
-                            nextFocusedView = LeftFocusableView;
-                            break;
-                        }
-                    case View.FocusDirection.Right:
-                        {
-                            nextFocusedView = RightFocusableView;
-                            break;
-                        }
-                    case View.FocusDirection.Up:
-                        {
-                            nextFocusedView = UpFocusableView;
-                            break;
-                        }
-                    case View.FocusDirection.Down:
-                        {
-                            nextFocusedView = DownFocusableView;
-                            break;
-                        }
-                }
-
-                if (nextFocusedView != null)
-                {
-                    focusedView = null;
-                }
-                else
-                {
-                    //If FocusableView doesn't exist, not move focus.
-                    nextFocusedView = focusedView;
-                }
-            }
-
-            return nextFocusedView;
         }
 
         /// <summary>
@@ -1121,7 +1006,7 @@ namespace Tizen.NUI.Components
             {
                 item.Index = -1;
                 item.ParentItemsView = null;
-                item.BindingContext = null; 
+                item.BindingContext = null;
                 item.IsPressed = false;
                 item.IsSelected = false;
                 item.IsEnabled = true;
@@ -1253,7 +1138,7 @@ namespace Tizen.NUI.Components
                 groupHeaderTemplate = null;
                 groupFooterTemplate = null;
 
-                if (selectedItem != null) 
+                if (selectedItem != null)
                 {
                     selectedItem = null;
                 }
@@ -1457,7 +1342,7 @@ namespace Tizen.NUI.Components
                         {
                             selectedItem = null;
                         }
-                        
+
                         if (selectedItems != null)
                         {
                             foreach (object removed in args.OldItems)

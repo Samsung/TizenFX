@@ -394,6 +394,8 @@ namespace Tizen.NUI.Components
             layer.RaiseToTop();
 
             CalculateSizeAndPosition();
+            RegisterDefaultLabel();
+            NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, AccessibilityStatesNotifyMode.Recursive);
         }
 
         /// <summary>
@@ -404,6 +406,8 @@ namespace Tizen.NUI.Components
         public void Dismiss()
         {
             Hide();
+            UnregisterDefaultLabel();
+            NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, AccessibilityStatesNotifyMode.Recursive);
             Dispose();
         }
 
@@ -639,6 +643,28 @@ namespace Tizen.NUI.Components
             {
                 Scrim.Position2D = new Position2D(-Position2D.X, -Position2D.Y);
             }
+        }
+
+        /// <summary>
+        /// Initialize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            SetAccessibilityConstructor(Role.PopupMenu);
+            AppendAccessibilityAttribute("sub-role", "Alert");
+        }
+
+        /// <summary>
+        /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override AccessibilityStates AccessibilityCalculateStates(ulong states)
+        {
+            var accessibilityStates = base.AccessibilityCalculateStates(states);
+            FlagSetter(ref accessibilityStates, AccessibilityStates.Modal, true);
+            return accessibilityStates;
         }
     }
 }

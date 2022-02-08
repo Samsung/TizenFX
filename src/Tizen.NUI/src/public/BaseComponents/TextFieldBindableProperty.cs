@@ -169,10 +169,6 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                if (GraphicsTypeManager.Instance.ScalingFactor != 0.0f)
-                {
-                    newValue = (float)newValue * GraphicsTypeManager.Instance.ScalingFactor;
-                }
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.PointSize, new Tizen.NUI.PropertyValue((float)newValue));
             }
         }),
@@ -181,10 +177,6 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.PointSize).Get(out temp);
-            if (GraphicsTypeManager.Instance.ScalingFactor != 0.0f)
-            {
-                temp = (float)temp / GraphicsTypeManager.Instance.ScalingFactor;
-            }
             return temp;
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -729,10 +721,6 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
-                if (GraphicsTypeManager.Instance.ScalingFactor != 0.0f)
-                {
-                    newValue = (float)newValue * GraphicsTypeManager.Instance.ScalingFactor;
-                }
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputPointSize, new Tizen.NUI.PropertyValue((float)newValue));
             }
         }),
@@ -741,10 +729,6 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputPointSize).Get(out temp);
-            if (GraphicsTypeManager.Instance.ScalingFactor != 0.0f)
-            {
-                temp = (float)temp / GraphicsTypeManager.Instance.ScalingFactor;
-            }
             return temp;
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -781,6 +765,7 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputUnderline).Get(out temp);
             return temp;
         }));
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ShadowProperty = BindableProperty.Create(nameof(TextField.Shadow), typeof(PropertyMap), typeof(TextField), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -1039,6 +1024,27 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.FontSizeScale).Get(out temp);
             return temp;
         }));
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EnableFontSizeScaleProperty = BindableProperty.Create(nameof(EnableFontSizeScale), typeof(bool), typeof(TextField), default(bool), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            if (newValue != null)
+            {
+                using (var property = new Tizen.NUI.PropertyValue((bool)newValue))
+                {
+                    Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableFontSizeScale, property);
+                }
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textField = (TextField)bindable;
+            bool temp;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableFontSizeScale).Get(out temp);
+            return temp;
+        }));
+
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty GrabHandleColorProperty = BindableProperty.Create(nameof(TextField.GrabHandleColor), typeof(Color), typeof(TextField), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -1128,5 +1134,22 @@ namespace Tizen.NUI.BaseComponents
             var instance = (Tizen.NUI.BaseComponents.TextField)bindable;
             return instance.InternalPrimaryCursorPosition;
         });
+        /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CharacterSpacingProperty = BindableProperty.Create(nameof(CharacterSpacing), typeof(float), typeof(TextField), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textField = (TextField)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.CharacterSpacing, new Tizen.NUI.PropertyValue((float)newValue));
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textField = (TextField)bindable;
+            float temp = 0;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.CharacterSpacing).Get(out temp);
+            return temp;
+        }));
     }
 }

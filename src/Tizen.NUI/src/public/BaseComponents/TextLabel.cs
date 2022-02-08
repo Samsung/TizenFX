@@ -22,6 +22,7 @@ using System;
 using System.Globalization;
 using System.ComponentModel;
 using Tizen.NUI.Text;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -294,7 +295,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetFontStyle(FontStyle fontStyle)
         {
-            SetValue(FontStyleProperty, TextMapHelper.GetFontStyleMap(fontStyle));
+            using (var fontStyleMap = TextMapHelper.GetFontStyleMap(fontStyle))
+            {
+                SetValue(FontStyleProperty, fontStyleMap);
+            }
         }
 
         /// <summary>
@@ -307,7 +311,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontStyle GetFontStyle()
         {
-            return TextMapHelper.GetFontStyleStruct((PropertyMap)GetValue(FontStyleProperty));
+            FontStyle fontStyle;
+            using (var fontStyleMap = (PropertyMap)GetValue(FontStyleProperty))
+            {
+                fontStyle = TextMapHelper.GetFontStyleStruct(fontStyleMap);
+            }
+            return fontStyle;
         }
 
         /// <summary>
@@ -315,6 +324,7 @@ namespace Tizen.NUI.BaseComponents
         /// The size of font in points.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Binding.TypeConverter(typeof(PointSizeTypeConverter))]
         public float PointSize
         {
             get
@@ -432,20 +442,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector2 shadowOffset = new Vector2();
-                Shadow.Find(TextLabel.Property.SHADOW, "offset")?.Get(shadowOffset);
-                return new Vector2(OnShadowOffsetChanged, shadowOffset.X, shadowOffset.Y);
+                float x = 0.0f, y = 0.0f;
+                using (var propertyValue = Shadow.Find(TextLabel.Property.SHADOW, "offset"))
+                using (var shadowOffset = new Vector2())
+                {
+                    if (null != propertyValue)
+                    {
+                        propertyValue.Get(shadowOffset);
+                        x = shadowOffset.X;
+                        y = shadowOffset.Y;
+                    }
+                }
+                return new Vector2(OnShadowOffsetChanged, x, y);
             }
             set
             {
-                PropertyMap temp = new PropertyMap();
-                temp.Insert("offset", new PropertyValue(value));
+                using (var map = new PropertyMap())
+                {
+                    map.Add("offset", value);
 
-                PropertyMap shadowMap = Shadow;
-                shadowMap.Merge(temp);
+                    var shadowMap = Shadow;
+                    shadowMap.Merge(map);
 
-                SetValue(ShadowProperty, shadowMap);
-                NotifyPropertyChanged();
+                    SetValue(ShadowProperty, shadowMap);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -475,20 +496,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector4 shadowColor = new Vector4();
-                Shadow.Find(TextLabel.Property.SHADOW, "color")?.Get(shadowColor);
-                return new Vector4(OnShadowColorChanged, shadowColor.X, shadowColor.Y, shadowColor.Z, shadowColor.W);
+                float x = 0.0f, y = 0.0f, z = 0.0f, w = 0.0f;
+                using (var propertyValue = Shadow.Find(TextLabel.Property.SHADOW, "color"))
+                using (var shadowColor = new Vector4())
+                {
+                    if (null != propertyValue)
+                    {
+                        propertyValue.Get(shadowColor);
+                        x = shadowColor.X;
+                        y = shadowColor.Y;
+                        z = shadowColor.Z;
+                        w = shadowColor.W;
+                    }
+                }
+                return new Vector4(OnShadowColorChanged, x, y, z, w);
             }
             set
             {
-                PropertyMap temp = new PropertyMap();
-                temp.Insert("color", new PropertyValue(value));
-
-                PropertyMap shadowMap = Shadow;
-                shadowMap.Merge(temp);
-
-                SetValue(ShadowProperty, shadowMap);
-                NotifyPropertyChanged();
+                using (var map = new PropertyMap())
+                {
+                    map.Add("color", value);
+                    var shadowMap = Shadow;
+                    shadowMap.Merge(map);
+                    SetValue(ShadowProperty, shadowMap);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -518,20 +550,22 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 bool underlineEnabled = false;
-                Underline.Find(TextLabel.Property.UNDERLINE, "enable")?.Get(out underlineEnabled);
+                using (var propertyValue = Underline.Find(TextLabel.Property.UNDERLINE, "enable"))
+                {
+                    propertyValue.Get(out underlineEnabled);
+                }
                 return underlineEnabled;
             }
             set
             {
-                PropertyMap temp = new PropertyMap();
-                temp.Add("enable", new PropertyValue(value));
-
-                PropertyMap undelineMap = Underline;
-                undelineMap.Merge(temp);
-
-                SetValue(UnderlineProperty, undelineMap);
-                NotifyPropertyChanged();
-
+                using (var map = new PropertyMap())
+                {
+                    map.Add("enable", value);
+                    var undelineMap = Underline;
+                    undelineMap.Merge(map);
+                    SetValue(UnderlineProperty, undelineMap);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -561,20 +595,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector4 underlineColor = new Vector4();
-                Underline.Find(TextLabel.Property.UNDERLINE, "color")?.Get(underlineColor);
-                return new Vector4(OnUnderlineColorChanged, underlineColor.X, underlineColor.Y, underlineColor.Z, underlineColor.W);
+                float x = 0.0f, y = 0.0f, z = 0.0f, w = 0.0f;
+                using (var propertyValue = Underline.Find(TextLabel.Property.UNDERLINE, "color"))
+                using (var underlineColor = new Vector4())
+                {
+                    if (null != propertyValue)
+                    {
+                        propertyValue.Get(underlineColor);
+                        x = underlineColor.X;
+                        y = underlineColor.Y;
+                        z = underlineColor.Z;
+                        w = underlineColor.W;
+                    }
+                }
+                return new Vector4(OnUnderlineColorChanged, x, y, z, w);
             }
             set
             {
-                PropertyMap temp = new PropertyMap();
-                temp.Insert("color", new PropertyValue(value));
-
-                PropertyMap undelineMap = Underline;
-                undelineMap.Merge(temp);
-
-                SetValue(UnderlineProperty, undelineMap);
-                NotifyPropertyChanged();
+                using (var map = new PropertyMap())
+                {
+                    map.Add("color", value);
+                    var undelineMap = Underline;
+                    undelineMap.Merge(map);
+                    SetValue(UnderlineProperty, undelineMap);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -604,19 +649,25 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 float underlineHeight = 0.0f;
-                Underline.Find(TextLabel.Property.UNDERLINE, "height")?.Get(out underlineHeight);
+                using (var propertyValue = Underline.Find(TextLabel.Property.UNDERLINE, "height"))
+                {
+                    if (null != propertyValue)
+                    {
+                        propertyValue.Get(out underlineHeight);
+                    }
+                }
                 return underlineHeight;
             }
             set
             {
-                PropertyMap temp = new PropertyMap();
-                temp.Insert("height", new PropertyValue(value));
-
-                PropertyMap undelineMap = Underline;
-                undelineMap.Merge(temp);
-
-                SetValue(UnderlineProperty, undelineMap);
-                NotifyPropertyChanged();
+                using (var map = new PropertyMap())
+                {
+                    map.Add("height", value);
+                    var undelineMap = Underline;
+                    undelineMap.Merge(map);
+                    SetValue(UnderlineProperty, undelineMap);
+                    NotifyPropertyChanged();
+                }
             }
         }
 
@@ -773,7 +824,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetUnderline(Underline underline)
         {
-            SetValue(UnderlineProperty, TextMapHelper.GetUnderlineMap(underline));
+            using (var underlineMap = TextMapHelper.GetUnderlineMap(underline))
+            {
+                SetValue(UnderlineProperty, underlineMap);
+            }
         }
 
         /// <summary>
@@ -786,7 +840,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Underline GetUnderline()
         {
-            return TextMapHelper.GetUnderlineStruct((PropertyMap)GetValue(UnderlineProperty));
+            Underline underline;
+            using (var underlineMap = (PropertyMap)GetValue(UnderlineProperty))
+            {
+                underline = TextMapHelper.GetUnderlineStruct(underlineMap);
+            }
+            return underline;
         }
 
         /// <summary>
@@ -834,7 +893,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetShadow(Tizen.NUI.Text.Shadow shadow)
         {
-            SetValue(ShadowProperty, TextMapHelper.GetShadowMap(shadow));
+            using (var shadowMap = TextMapHelper.GetShadowMap(shadow))
+            {
+                SetValue(ShadowProperty, shadowMap);
+            }
         }
 
         /// <summary>
@@ -847,7 +909,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Tizen.NUI.Text.Shadow GetShadow()
         {
-            return TextMapHelper.GetShadowStruct((PropertyMap)GetValue(ShadowProperty));
+            Tizen.NUI.Text.Shadow shadow;
+            using (var shadowMap = (PropertyMap)GetValue(ShadowProperty))
+            {
+                shadow = TextMapHelper.GetShadowStruct(shadowMap);
+            }
+            return shadow;
         }
 
         /// <summary>
@@ -929,7 +996,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetOutline(Outline outline)
         {
-            SetValue(OutlineProperty, TextMapHelper.GetOutlineMap(outline));
+            using (var outlineMap = TextMapHelper.GetOutlineMap(outline))
+            {
+                SetValue(OutlineProperty, outlineMap);
+            }
         }
 
         /// <summary>
@@ -942,7 +1012,59 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Outline GetOutline()
         {
-            return TextMapHelper.GetOutlineStruct((PropertyMap)GetValue(OutlineProperty));
+            Outline outline;
+            using (var outlineMap = (PropertyMap)GetValue(OutlineProperty))
+            {
+                outline = TextMapHelper.GetOutlineStruct(outlineMap);
+            }
+            return outline;
+        }
+
+        /// <summary>
+        /// Set Strikethrough to TextLabel. <br />
+        /// </summary>
+        /// <param name="strikethrough">The Strikethrough</param>
+        /// <remarks>
+        /// SetStrikethrough specifies the strikethrough of the text through <see cref="Tizen.NUI.Text.Strikethrough"/>. <br />
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the SetStrikethrough method.
+        /// <code>
+        /// var strikethrough = new Tizen.NUI.Text.Strikethrough();
+        /// strikethrough.Enable = true;
+        /// strikethrough.Color = new Color("#3498DB");
+        /// strikethrough.Height = 2.0f;
+        /// label.SetStrikethrough(strikethrough);
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetStrikethrough(Strikethrough strikethrough)
+        {
+            using (var map = TextMapHelper.GetStrikethroughMap(strikethrough))
+            using (var propertyValue = new PropertyValue(map))
+            {
+                SetProperty(TextLabel.Property.Strikethrough, propertyValue);
+            }
+        }
+
+        /// <summary>
+        /// Get Strikethrough from TextLabel. <br />
+        /// </summary>
+        /// <returns>The Strikethrough</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.Strikethrough"/>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Strikethrough GetStrikethrough()
+        {
+            Strikethrough strikethrough;
+            using (var propertyValue = GetProperty(TextLabel.Property.Strikethrough))
+            using (var map = new PropertyMap())
+            {
+                propertyValue.Get(map);
+                strikethrough = TextMapHelper.GetStrikethroughStruct(map);
+            }
+            return strikethrough;
         }
 
         /// <summary>
@@ -1044,9 +1166,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(TextLabel.Property.LineCount).Get(out temp);
-                return temp;
+                int lineCount = 0;
+                using (var propertyValue = GetProperty(TextLabel.Property.LineCount))
+                {
+                    propertyValue.Get(out lineCount);
+                }
+                return lineCount;
             }
         }
 
@@ -1077,9 +1202,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                int temp = 0;
-                GetProperty(TextLabel.Property.TextDirection).Get(out temp);
-                return (TextDirection)temp;
+                int textDirection = 0;
+                using (var propertyValue = GetProperty(TextLabel.Property.TextDirection))
+                {
+                    propertyValue.Get(out textDirection);
+                }
+                return (TextDirection)textDirection;
             }
         }
 
@@ -1167,7 +1295,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetTextFit(TextFit textFit)
         {
-            SetValue(TextFitProperty, TextMapHelper.GetTextFitMap(textFit));
+            using (var textFitMap = TextMapHelper.GetTextFitMap(textFit))
+            {
+                SetValue(TextFitProperty, textFitMap);
+            }
         }
 
         /// <summary>
@@ -1182,7 +1313,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextFit GetTextFit()
         {
-            return TextMapHelper.GetTextFitStruct((PropertyMap)GetValue(TextFitProperty));
+            TextFit textFit;
+            using (var textFitMap = (PropertyMap)GetValue(TextFitProperty))
+            {
+                textFit = TextMapHelper.GetTextFitStruct(textFitMap);
+            }
+            return textFit;
         }
 
         /// <summary>
@@ -1201,6 +1337,27 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(MinLineSizeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The spaces between characters in Pixels.
+        /// <remarks>
+        /// A positive value will make the characters far apart (expanded) and a negative value will bring them closer (condensed).<br />
+        /// The default value is 0.f which does nothing.
+        ///</remarks>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float CharacterSpacing
+        {
+            get
+            {
+                return (float)GetValue(CharacterSpacingProperty);
+            }
+            set
+            {
+                SetValue(CharacterSpacingProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1248,6 +1405,24 @@ namespace Tizen.NUI.BaseComponents
                 }
 
                 SetValue(FontSizeScaleProperty, newFontSizeScale);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The EnableFontSizeScale property.<br />
+        /// Whether the font size scale is enabled. (The default value is true)
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableFontSizeScale
+        {
+            get
+            {
+                return (bool)GetValue(EnableFontSizeScaleProperty);
+            }
+            set
+            {
+                SetValue(EnableFontSizeScaleProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1425,7 +1600,10 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int TextFit = Interop.TextLabel.TextFitGet();
             internal static readonly int MinLineSize = Interop.TextLabel.MinLineSizeGet();
             internal static readonly int FontSizeScale = Interop.TextLabel.FontSizeScaleGet();
+            internal static readonly int EnableFontSizeScale = Interop.TextLabel.EnableFontSizeScaleGet();
             internal static readonly int EllipsisPosition = Interop.TextLabel.EllipsisPositionGet();
+            internal static readonly int Strikethrough = Interop.TextLabel.StrikethroughGet();
+            internal static readonly int CharacterSpacing = Interop.TextLabel.CharacterSpacingGet();
         }
 
         private void OnShadowColorChanged(float x, float y, float z, float w)

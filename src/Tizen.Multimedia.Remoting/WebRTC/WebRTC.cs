@@ -229,11 +229,15 @@ namespace Tizen.Multimedia.Remoting
                 tcsSdpCreated.TrySetResult(sdp);
             };
 
-            NativeWebRTC.CreateSDPOfferAsync(Handle, new SafeBundleHandle(), cb, IntPtr.Zero).
+            string offer = null;
+            using (var cbKeeper = ObjectKeeper.Get(cb))
+            {
+                NativeWebRTC.CreateSDPOfferAsync(Handle, new SafeBundleHandle(), cb, IntPtr.Zero).
                     ThrowIfFailed("Failed to create offer asynchronously");
 
-            var offer = await tcsSdpCreated.Task.ConfigureAwait(false);
-            await Task.Yield();
+                offer = await tcsSdpCreated.Task.ConfigureAwait(false);
+                await Task.Yield();
+            }
 
             return offer;
         }
@@ -258,11 +262,15 @@ namespace Tizen.Multimedia.Remoting
                 tcsSdpCreated.TrySetResult(sdp);
             };
 
-            NativeWebRTC.CreateSDPAnswerAsync(Handle, new SafeBundleHandle(), cb, IntPtr.Zero).
+            string answer = null;
+            using (var cbKeeper = ObjectKeeper.Get(cb))
+            {
+                NativeWebRTC.CreateSDPAnswerAsync(Handle, new SafeBundleHandle(), cb, IntPtr.Zero).
                     ThrowIfFailed("Failed to create answer asynchronously");
 
-            var answer = await tcsSdpCreated.Task.ConfigureAwait(false);
-            await Task.Yield();
+                answer = await tcsSdpCreated.Task.ConfigureAwait(false);
+                await Task.Yield();
+            }
 
             return answer;
         }

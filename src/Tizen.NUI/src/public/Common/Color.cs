@@ -917,8 +917,6 @@ namespace Tizen.NUI
         public static readonly Color YellowGreen = NDalic.YELLOW_GREEN;
 
 
-        private readonly bool hashDummy;
-
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -1065,7 +1063,6 @@ namespace Tizen.NUI
 
         internal Color(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            hashDummy = false;
         }
 
         internal Color(ColorChangedCallback cb, float r, float g, float b, float a) : this(Interop.Vector4.NewVector4(ValueCheck(r), ValueCheck(g), ValueCheck(b), ValueCheck(a)), true)
@@ -1619,11 +1616,40 @@ namespace Tizen.NUI
             return equal;
         }
 
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="arg1">Color to compare</param>
+        /// <param name="arg2">Color to be compared</param>
+        /// <returns>true if Colors are equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(Color arg1, Color arg2)
+        {
+            if (arg1 is null)
+            {
+                if (arg2 is null)
+                    return true;
+                
+                return false;
+            }
+
+            return arg1.Equals(arg2);
+        }
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        /// <param name="arg1">Color to compare</param>
+        /// <param name="arg2">Color to be compared</param>
+        /// <returns>true if Colors are not equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(Color arg1, Color arg2) => !(arg1 == arg2);
+
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode()
         {
-            return hashDummy.GetHashCode();
+            return base.GetHashCode();
         }
 
         private float ValueOfIndex(uint index)

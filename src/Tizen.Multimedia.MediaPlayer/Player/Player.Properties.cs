@@ -325,8 +325,8 @@ namespace Tizen.Multimedia
         ///     The player must be in the <see cref="PlayerState.Idle"/> state.<br/>
         ///     The raw video feature(http://tizen.org/feature/multimedia.raw_video) is required if
         ///     the display is created with <see cref="MediaView"/>.<br/>
-        ///     If user want to use video and UI sync mode, please use <see cref="Tizen.Multimedia.Display(NUI.Window, bool)"/>.(Since tizen 6.5)<br/>
-        ///     But in UI sync mode, please note that <see cref="Tizen.Multimedia.Player.DisplaySettings"/> is not supported.
+        ///     If a user wants to use video and UI sync mode, please use <see cref="Tizen.Multimedia.Display(NUI.Window, bool)"/>.(Since tizen 6.5)<br/>
+        ///     But <see cref="Tizen.Multimedia.Player.DisplaySettings"/> is not supported in UI sync mode.
         /// </remarks>
         /// <exception cref="ObjectDisposedException">The player has already been disposed of.</exception>
         /// <exception cref="ArgumentException">The value has already been assigned to another player.</exception>

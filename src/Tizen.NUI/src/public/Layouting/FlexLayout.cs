@@ -670,7 +670,7 @@ namespace Tizen.NUI
                                     new LayoutLength(Padding.Top + Padding.Bottom),
                                     new LayoutLength(child.HeightSpecification));
 
-            childLayout.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
+            childLayout?.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
             measureSize.width = childLayout.MeasuredWidth.Size.AsRoundedValue();
             measureSize.height = childLayout.MeasuredHeight.Size.AsRoundedValue();
@@ -825,7 +825,7 @@ namespace Tizen.NUI
                     // To resolve the above issue, child layout's measured size is set with the child view's size calculated by dali-toolkit's YOGA APIs.
                     MeasureSpecification widthSpec = new MeasureSpecification(new LayoutLength(frame.Z - frame.X), MeasureSpecification.ModeType.Exactly);
                     MeasureSpecification heightSpec = new MeasureSpecification(new LayoutLength(frame.W - frame.Y), MeasureSpecification.ModeType.Exactly);
-                    MeasureChildWithMargins(childLayout, widthSpec, new LayoutLength(0), heightSpec, new LayoutLength(0));
+                    MeasureChildWithoutPadding(childLayout, widthSpec, heightSpec);
 
                     childLayout.Layout(new LayoutLength(frame.X), new LayoutLength(frame.Y), new LayoutLength(frame.Z), new LayoutLength(frame.W));
                     frame.Dispose();

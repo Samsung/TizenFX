@@ -1,4 +1,21 @@
-﻿using System.ComponentModel;
+﻿/*
+ * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -481,7 +498,7 @@ namespace Tizen.NUI
         /// <returns>The float pixel unit value.</returns>
         /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static float PtToPixel(this float pt)
+        public static float PtToPx(this float pt)
         {
             return GraphicsTypeManager.Instance.Point.ConvertToPixel(pt);
         }
@@ -510,6 +527,30 @@ namespace Tizen.NUI
         public static float PtToDp(this float pt)
         {
             return GraphicsTypeManager.Instance.Point.ConvertPointToDp(pt);
+        }
+
+        /// <summary>
+        /// Converter float font sp size to point size.
+        /// </summary>
+        /// <param name="sp">The float sp unit value to be converted point unit.</param>
+        /// <returns>The float point unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float SpToPt(this float sp)
+        {
+            return GraphicsTypeManager.Instance.Point.ConvertSpToPoint(sp);
+        }
+
+        /// <summary>
+        /// Converter float font point size to sp size.
+        /// </summary>
+        /// <param name="pt">The float point unit value to be converted sp unit.</param>
+        /// <returns>The float dp unit value.</returns>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static float PtToSp(this float pt)
+        {
+            return GraphicsTypeManager.Instance.Point.ConvertPointToSp(pt);
         }
     }
 }

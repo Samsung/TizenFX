@@ -98,7 +98,7 @@ namespace Tizen.NUI.Components
                         instance.UpdateState();
                     }
 
-                    if (Accessibility.Accessibility.Enabled && instance.IsHighlighted)
+                    if (Accessibility.Accessibility.IsEnabled && instance.IsHighlighted)
                     {
                         instance.EmitAccessibilityStatesChangedEvent(AccessibilityStates.Checked, newSelected);
                     }
@@ -374,7 +374,7 @@ namespace Tizen.NUI.Components
             {
                 TextLabel.Text = value;
 
-                if (Accessibility.Accessibility.Enabled && IsHighlighted && String.IsNullOrEmpty(AccessibilityName) && GetAccessibilityNameSignal().Empty())
+                if (Accessibility.Accessibility.IsEnabled && IsHighlighted && String.IsNullOrEmpty(AccessibilityName) && GetAccessibilityNameSignal().Empty())
                 {
                     EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Name);
                 }
@@ -855,6 +855,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public override bool OnKey(Key key)
         {
+            bool clicked = false;
+
             if (!IsEnabled || null == key)
             {
                 return false;
@@ -872,7 +874,7 @@ namespace Tizen.NUI.Components
             {
                 if (key.KeyPressedName == "Return")
                 {
-                    bool clicked = isPressed && IsEnabled;
+                    clicked = isPressed && IsEnabled;
 
                     isPressed = false;
 
@@ -892,7 +894,7 @@ namespace Tizen.NUI.Components
                     }
                 }
             }
-            return base.OnKey(key);
+            return base.OnKey(key) || clicked;
         }
 
         /// <summary>

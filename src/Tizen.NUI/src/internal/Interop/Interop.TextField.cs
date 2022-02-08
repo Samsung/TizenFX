@@ -201,6 +201,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectionClearedSignal")]
             public static extern global::System.IntPtr SelectionClearedSignal(global::System.Runtime.InteropServices.HandleRef pTextField);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_SelectionStartedSignal")]
+            public static extern global::System.IntPtr SelectionStartedSignal(global::System.Runtime.InteropServices.HandleRef pTextField);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_AnchorClickedSignal")]
             public static extern global::System.IntPtr AnchorClickedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -289,6 +292,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_FONT_SIZE_SCALE_get")]
             public static extern int FontSizeScaleGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_ENABLE_FONT_SIZE_SCALE_get")]
+            public static extern int EnableFontSizeScaleGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_GRAB_HANDLE_COLOR_get")]
             public static extern int GrabHandleColorGet();
 
@@ -298,6 +304,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_InputFilteredSignal")]
             public static extern global::System.IntPtr InputFilteredSignal(global::System.Runtime.InteropServices.HandleRef textFieldRef);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_GetTextSize")]
+            public static extern global::System.IntPtr GetTextSize(global::System.Runtime.InteropServices.HandleRef textFieldRef, uint start, uint end);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_GetTextPosition")]
+            public static extern global::System.IntPtr GetTextPosition(global::System.Runtime.InteropServices.HandleRef textFieldRef, uint start, uint end);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_CopyText")]
             public static extern string CopyText(global::System.Runtime.InteropServices.HandleRef textFieldRef);
 
@@ -306,6 +318,11 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_PasteText")]
             public static extern void PasteText(global::System.Runtime.InteropServices.HandleRef textFieldRef);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_STRIKETHROUGH_get")]
+            public static extern int StrikethroughGet();
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_CHARACTER_SPACING_get")]
+            public static extern int CharacterSpacingGet();
         }
     }
 }

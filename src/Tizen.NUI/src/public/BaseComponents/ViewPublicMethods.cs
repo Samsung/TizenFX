@@ -151,6 +151,7 @@ namespace Tizen.NUI.BaseComponents
                     oldParent.Remove(child);
                 }
                 child.InternalParent = this;
+                LayoutCount += child.LayoutCount;
 
                 Interop.Actor.Add(SwigCPtr, View.getCPtr(child));
 
@@ -186,6 +187,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 //throw new System.InvalidOperationException("You have deleted a view that is not a child of this view.");
                 Tizen.Log.Error("NUI", "You have deleted a view that is not a child of this view.");
+                return;
             }
 
             bool hasLayout = (layout != null);
@@ -303,12 +305,17 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void Show()
         {
-            if (Accessibility.Accessibility.Enabled && ((GetAccessibilityStates() & AccessibilityStates.Modal) != 0))
-            {
-                RegisterPopup();
-            }
-
             SetVisible(true);
+
+            if (((GetAccessibilityStates() & AccessibilityStates.Modal) != 0))
+            {
+                RegisterDefaultLabel();
+
+                if (Accessibility.Accessibility.IsEnabled)
+                {
+                    EmitAccessibilityStatesChangedEvent(AccessibilityStates.Showing, true);
+                }
+            }
         }
 
         /// <summary>
@@ -324,9 +331,14 @@ namespace Tizen.NUI.BaseComponents
         {
             SetVisible(false);
 
-            if (Accessibility.Accessibility.Enabled && ((GetAccessibilityStates() & AccessibilityStates.Modal) != 0))
+            if (((GetAccessibilityStates() & AccessibilityStates.Modal) != 0))
             {
-                RemovePopup();
+                UnregisterDefaultLabel();
+
+                if (Accessibility.Accessibility.IsEnabled)
+                {
+                    EmitAccessibilityStatesChangedEvent(AccessibilityStates.Showing, false);
+                }
             }
         }
 

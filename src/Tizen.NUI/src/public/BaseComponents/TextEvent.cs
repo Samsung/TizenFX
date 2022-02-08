@@ -36,7 +36,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// InputFilteredEventArgs is a class to record input filter event arguments which will be sent to user.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public class InputFilteredEventArgs : EventArgs
     {
         /// <summary>
@@ -44,7 +44,7 @@ namespace Tizen.NUI.BaseComponents
         /// If the input is filtered by the Accepted Regex of the InputFilter, the Accept type is stored. <br />
         /// If the input is filtered by the Rejected Regex of the InputFilter, the Reject type is stored. <br />
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public InputFilterType Type { get; set; }
     }
 }

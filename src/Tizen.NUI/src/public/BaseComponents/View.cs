@@ -66,6 +66,7 @@ namespace Tizen.NUI.BaseComponents
         private Vector3 internalScale = null;
         private Size internalSize = null;
         private Size2D internalSize2D = null;
+        private int layoutCount = 0;
 
         static View()
         {
@@ -2882,7 +2883,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     PropertyMap bgMap = this.Background;
                     var temp = new PropertyValue(backgroundImageSynchronousLoading);
-                    bgMap.Add("synchronousLoading", temp);
+                    bgMap[ImageVisualProperty.SynchronousLoading] = temp;
                     temp.Dispose();
                     Background = bgMap;
                 }

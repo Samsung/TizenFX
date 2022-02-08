@@ -34,6 +34,22 @@ namespace Tizen.NUI.Devel.Tests
             }
         }
 
+        public bool CheckColor(Color colorSrc, Color colorDst)
+        {
+            if (colorSrc.R == colorDst.R && colorSrc.G == colorDst.G && colorSrc.B == colorDst.B && colorSrc.A == colorDst.A)
+                return true;
+
+            return false;
+        }
+
+        public bool CheckColor(Vector4 colorSrc, Vector4 colorDst)
+        {
+            if (colorSrc.X == colorDst.X && colorSrc.Y == colorDst.Y && colorSrc.Z == colorDst.Z && colorSrc.W == colorDst.W)
+                return true;
+
+            return false;
+        }
+
         [SetUp]
         public void Init()
         {
@@ -384,7 +400,7 @@ namespace Tizen.NUI.Devel.Tests
                 testingTarget.FontStyle = fontStyle;
                 Assert.IsNotNull(testingTarget.FontStyle, "Should not be null!");
             }
-            
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldFontFamily END (OK)");
         }
@@ -527,11 +543,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
 
             testingTarget.TextColor = new Color(1.0f, 1.0f, 0.8f, 0.0f);
-            Assert.AreEqual(1.0f, testingTarget.TextColor.R, "Should be equal!");
-            Assert.AreEqual(1.0f, testingTarget.TextColor.G, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.TextColor.B, "Should be equal!");
-            Assert.AreEqual(0.0f, testingTarget.TextColor.A, "Should be equal!");
+            var color = new Color(1.0f, 1.0f, 0.8f, 0.0f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.TextColor), "Should be true!");
 
+            color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldTextColor END (OK)");
         }
@@ -552,11 +567,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
 
             testingTarget.PlaceholderTextColor = new Vector4(1.0f, 1.0f, 0.8f, 0.0f);
-            Assert.AreEqual(1.0f, testingTarget.PlaceholderTextColor.X, "Should be equal!");
-            Assert.AreEqual(1.0f, testingTarget.PlaceholderTextColor.Y, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.PlaceholderTextColor.Z, "Should be equal!");
-            Assert.AreEqual(0.0f, testingTarget.PlaceholderTextColor.W, "Should be equal!");
+            var color = new Vector4(1.0f, 1.0f, 0.8f, 0.0f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.PlaceholderTextColor), "Should be true!");
 
+            color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldPlaceholderTextColor END (OK)");
         }
@@ -602,11 +616,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
 
             testingTarget.ShadowColor = new Vector4(1.0f, 1.0f, 0.8f, 0.0f);
-            Assert.AreEqual(1.0f, testingTarget.ShadowColor.X, "Should be equal!");
-            Assert.AreEqual(1.0f, testingTarget.ShadowColor.Y, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.ShadowColor.Z, "Should be equal!");
-            Assert.AreEqual(0.0f, testingTarget.ShadowColor.W, "Should be equal!");
+            var color = new Vector4(1.0f, 1.0f, 0.8f, 0.0f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.ShadowColor), "Should be true!");
 
+            color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldShadowColor END (OK)");
         }
@@ -628,11 +641,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
 
             testingTarget.PrimaryCursorColor = new Vector4(1.0f, 1.0f, 0.8f, 0.0f);
-            Assert.AreEqual(1.0f, testingTarget.PrimaryCursorColor.X, "Should be equal!");
-            Assert.AreEqual(1.0f, testingTarget.PrimaryCursorColor.Y, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.PrimaryCursorColor.Z, "Should be equal!");
-            Assert.AreEqual(0.0f, testingTarget.PrimaryCursorColor.W, "Should be equal!");
+            var color = new Vector4(1.0f, 1.0f, 0.8f, 0.0f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.PrimaryCursorColor), "Should be true!");
 
+            color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldPrimaryCursorColor END (OK)");
         }
@@ -654,11 +666,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
 
             testingTarget.SecondaryCursorColor = new Vector4(1.0f, 0.5f, 0.0f, 0.8f);
-            Assert.AreEqual(1.0f, testingTarget.SecondaryCursorColor.X, "Should be equal!");
-            Assert.AreEqual(0.5f, testingTarget.SecondaryCursorColor.Y, "Should be equal!");
-            Assert.AreEqual(0.0f, testingTarget.SecondaryCursorColor.Z, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.SecondaryCursorColor.W, "Should be equal!");
+            var color = new Vector4(1.0f, 0.5f, 0.0f, 0.8f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.SecondaryCursorColor), "Should be true!");
 
+            color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldSecondaryCursorColor END (OK)");
         }
@@ -1053,11 +1064,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
 
             testingTarget.SelectionHighlightColor = new Vector4(0.3f, 0.5f, 0.8f, 0.0f);
-            Assert.AreEqual(0.3f, testingTarget.SelectionHighlightColor.X, "Should be equal!");
-            Assert.AreEqual(0.5f, testingTarget.SelectionHighlightColor.Y, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.SelectionHighlightColor.Z, "Should be equal!");
-            Assert.AreEqual(0.0f, testingTarget.SelectionHighlightColor.W, "Should be equal!");
+            var color = new Vector4(0.3f, 0.5f, 0.8f, 0.0f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.SelectionHighlightColor), "Should be true!");
 
+            color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldSelectionHighlightColor END (OK)");
         }
@@ -1136,11 +1146,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
 
             testingTarget.InputColor = new Vector4(0.3f, 0.5f, 0.8f, 0.0f);
-            Assert.AreEqual(0.3f, testingTarget.InputColor.X, "Should be equal!");
-            Assert.AreEqual(0.5f, testingTarget.InputColor.Y, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.InputColor.Z, "Should be equal!");
-            Assert.AreEqual(0.0f, testingTarget.InputColor.W, "Should be equal!");
+            var color = new Vector4(0.3f, 0.5f, 0.8f, 0.0f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.InputColor), "Should be true!");
 
+            color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldInputColor END (OK)");
         }
@@ -1586,11 +1595,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
 
             testingTarget.GrabHandleColor = new Color(1.0f, 1.0f, 0.8f, 0.0f);
-            Assert.AreEqual(1.0f, testingTarget.GrabHandleColor.R, "Should be equal!");
-            Assert.AreEqual(1.0f, testingTarget.GrabHandleColor.G, "Should be equal!");
-            Assert.AreEqual(0.8f, testingTarget.GrabHandleColor.B, "Should be equal!");
-            Assert.AreEqual(0.0f, testingTarget.GrabHandleColor.A, "Should be equal!");
+            var color = new Color(1.0f, 1.0f, 0.8f, 0.0f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.GrabHandleColor), "Should be true!");
 
+            color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldGrabHandleColor END (OK)");
         }
@@ -1719,9 +1727,35 @@ namespace Tizen.NUI.Devel.Tests
             Assert.AreEqual(2.0f, testingTarget.FontSizeScale, "Should be equal!");
 
             testingTarget.FontSizeScale = Tizen.NUI.FontSizeScale.UseSystemSetting;
+            Assert.AreEqual(Tizen.NUI.FontSizeScale.UseSystemSetting, testingTarget.FontSizeScale, "Should be equal!");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldFontSizeScale END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField EnableFontSizeScale.")]
+        [Property("SPEC", "Tizen.NUI.TextField.EnableFontSizeScale A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextFieldEnableFontSizeScale()
+        {
+            tlog.Debug(tag, $"TextFieldEnableFontSizeScale START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            testingTarget.EnableFontSizeScale = false;
+            Assert.AreEqual(false, testingTarget.EnableFontSizeScale, "Should be equal!");
+
+            testingTarget.EnableFontSizeScale = true;
+            Assert.AreEqual(true, testingTarget.EnableFontSizeScale, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldEnableFontSizeScale END (OK)");
         }
 
         [Test]
@@ -1808,6 +1842,66 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"TextFieldDispose END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField Strikethrough.")]
+        [Property("SPEC", "Tizen.NUI.TextField.GetStrikethrough M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "s.sabah@samsung.com")]
+        public void TextFieldStrikethrough()
+        {
+            tlog.Debug(tag, $"TextFieldStrikethrough START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var setStrikethrough = new Tizen.NUI.Text.Strikethrough()
+            {
+                Enable = true,
+                Color = new Color("#3498DB"),
+                Height = 2.0f
+            };
+
+            testingTarget.SetStrikethrough(setStrikethrough);
+
+            var getStrikethrough = testingTarget.GetStrikethrough();
+            Assert.AreEqual(getStrikethrough.Enable, setStrikethrough.Enable, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(getStrikethrough.Color, setStrikethrough.Color), "Should be true!");
+            Assert.AreEqual(getStrikethrough.Height, setStrikethrough.Height, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldStrikethrough END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField CharacterSpacing.")]
+        [Property("SPEC", "Tizen.NUI.TextField.CharacterSpacing A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "s.sabah@samsung.com")]
+        public void TextFieldCharacterSpacing()
+        {
+            tlog.Debug(tag, $"TextFieldCharacterSpacing START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            float expandedValue = 1.5f;
+            testingTarget.CharacterSpacing = expandedValue;
+            Assert.AreEqual(expandedValue, testingTarget.CharacterSpacing, "Should be equal!");
+
+            float condensedValue = -1.5f;
+            testingTarget.CharacterSpacing = condensedValue;
+            Assert.AreEqual(condensedValue, testingTarget.CharacterSpacing, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldCharacterSpacing END (OK)");
         }
     }
 }

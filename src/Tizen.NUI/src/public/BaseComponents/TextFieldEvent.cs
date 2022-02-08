@@ -44,6 +44,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler textFieldSelectionClearedEventHandler;
         private SelectionClearedCallbackDelegate textFieldSelectionClearedCallbackDelegate;
 
+        private EventHandler textFieldSelectionStartedEventHandler;
+        private SelectionStartedCallbackDelegate textFieldSelectionStartedCallbackDelegate;
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TextChangedCallbackDelegate(IntPtr textField);
 
@@ -64,6 +67,11 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void SelectionClearedCallbackDelegate(IntPtr textField);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void SelectionStartedCallbackDelegate(IntPtr textField);
+
+        private bool invokeTextChanged = true;
 
         /// <summary>
         /// The TextChanged event.
@@ -137,6 +145,32 @@ namespace Tizen.NUI.BaseComponents
                     this.MaxLengthReachedSignal().Disconnect(textFieldMaxLengthReachedCallbackDelegate);
                 }
                 textFieldMaxLengthReachedEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// The SelectionStarted event is emitted when the selection start.
+        /// </summary>
+        /// This will be public opened in after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler SelectionStarted
+        {
+            add
+            {
+                if (textFieldSelectionStartedEventHandler == null)
+                {
+                    textFieldSelectionStartedCallbackDelegate = (OnSelectionStarted);
+                    SelectionStartedSignal().Connect(textFieldSelectionStartedCallbackDelegate);
+                }
+                textFieldSelectionStartedEventHandler += value;
+            }
+            remove
+            {
+                if (textFieldSelectionStartedEventHandler == null && SelectionStartedSignal().Empty() == false)
+                {
+                    this.SelectionStartedSignal().Disconnect(textFieldSelectionStartedCallbackDelegate);
+                }
+                textFieldSelectionStartedEventHandler -= value;
             }
         }
 
@@ -237,7 +271,7 @@ namespace Tizen.NUI.BaseComponents
         /// };
         /// </code>
         /// </example>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public event EventHandler<InputFilteredEventArgs> InputFiltered
         {
             add
@@ -257,6 +291,13 @@ namespace Tizen.NUI.BaseComponents
                     InputFilteredSignal().Disconnect(textFieldInputFilteredCallbackDelegate);
                 }
             }
+        }
+
+        internal TextFieldSignal SelectionStartedSignal()
+        {
+            TextFieldSignal ret = new TextFieldSignal(Interop.TextField.SelectionStartedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         internal TextFieldSignal SelectionClearedSignal()
@@ -308,6 +349,12 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+        private void OnSelectionStarted(IntPtr textField)
+        {
+            //no data to be sent to the user
+            textFieldSelectionStartedEventHandler?.Invoke(this, EventArgs.Empty);
+        }
+
         private void OnSelectionCleared(IntPtr textField)
         {
             //no data to be sent to the user
@@ -316,7 +363,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnTextChanged(IntPtr textField)
         {
-            if (textFieldTextChangedEventHandler != null)
+            if (textFieldTextChangedEventHandler != null && invokeTextChanged)
             {
                 TextChangedEventArgs e = new TextChangedEventArgs();
 

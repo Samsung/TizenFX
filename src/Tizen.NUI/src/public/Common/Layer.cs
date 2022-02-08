@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2019 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -29,6 +29,8 @@ namespace Tizen.NUI
     {
         private Window window;
 
+        private int layoutCount = 0;
+
         /// <summary>
         /// Creates a Layer object.
         /// </summary>
@@ -42,6 +44,22 @@ namespace Tizen.NUI
 
         internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+        }
+
+        /// <summary>
+        /// Dispose Explicit or Implicit
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            LayoutCount = 0;
+
+            base.Dispose(type);
         }
 
         /// <summary>
@@ -299,6 +317,9 @@ namespace Tizen.NUI
                 {
                     child.InternalParent = this;
                 }
+
+                LayoutCount += child.LayoutCount;
+
                 Interop.Actor.Add(SwigCPtr, View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -320,12 +341,23 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(child));
             }
+            if (child.GetParent() == null) // Early out if child parent is null.
+                return;
+
+            if (child.GetParent() != this)
+            {
+                //throw new System.InvalidOperationException("You have deleted a view that is not a child of this layer.");
+                Tizen.Log.Error("NUI", "You have deleted a view that is not a child of this layer.");
+                return;
+            }
             Interop.Actor.Remove(SwigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             Children.Remove(child);
             child.InternalParent = null;
+
+            LayoutCount -= child.LayoutCount;
         }
 
         /// <summary>
@@ -696,7 +728,19 @@ namespace Tizen.NUI
 
         internal void SetWindow(Window win)
         {
+            if (window == win) return;
+
+            if (window != null)
+            {
+                window.LayoutController.LayoutCount -= LayoutCount;
+            }
+
             window = win;
+
+            if (window != null)
+            {
+                window.LayoutController.LayoutCount += LayoutCount;
+            }
         }
 
         internal uint GetId()
@@ -705,6 +749,33 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// The number of layouts of children views.
+        /// This can be used to set/unset Process callback to calculate Layout.
+        /// </summary>
+        internal int LayoutCount
+        {
+            get
+            {
+                return layoutCount;
+            }
+
+            set
+            {
+                if (layoutCount == value) return;
+
+                if (value < 0) throw new global::System.ArgumentOutOfRangeException(nameof(LayoutCount), "LayoutCount(" + LayoutCount + ") should not be less than zero");
+
+                int diff = value - layoutCount;
+                layoutCount = value;
+
+                if (window != null)
+                {
+                    window.LayoutController.LayoutCount += diff;
+                }
+            }
         }
 
         /// This will not be public opened.

@@ -133,7 +133,7 @@ namespace Tizen.NUI
             {
                 float ret = Interop.Vector2.WidthGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return (int)ret;
+                return ClampToInt(ret);
             }
         }
 
@@ -166,7 +166,7 @@ namespace Tizen.NUI
             {
                 float ret = Interop.Vector2.HeightGet(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-                return (int)ret;
+                return ClampToInt(ret);
             }
         }
 
@@ -457,5 +457,10 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        private static int ClampToInt(double v) =>
+            v > int.MaxValue ? int.MaxValue
+            : v < int.MinValue ? int.MinValue
+            : (int)v;
     }
 }

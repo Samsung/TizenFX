@@ -309,19 +309,25 @@ namespace Tizen.NUI.Components
                         else if (source.IsGroupFooter(i))
                         {
                             //currentGroup.hasFooter = true;
-                            currentGroup.Count++;
-                            currentGroup.GroupSize += groupFooterSize;
-                            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
-                                currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
-                            Current += groupFooterSize;
+                            if (currentGroup != null)
+                            {
+                                currentGroup.Count++;
+                                currentGroup.GroupSize += groupFooterSize;
+                                if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                                    currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
+                                Current += groupFooterSize;
+                            }
                         }
                         else
                         {
-                            currentGroup.Count++;
-                            currentGroup.GroupSize += StepCandidate;
-                            if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
-                                currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
-                            Current += StepCandidate;
+                            if (currentGroup != null)
+                            {
+                                currentGroup.Count++;
+                                currentGroup.GroupSize += StepCandidate;
+                                if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
+                                    currentGroup.ItemPosition.Add(Current - currentGroup.GroupPosition);
+                                Current += StepCandidate;
+                            }
                         }
                     }
                 }
@@ -509,6 +515,7 @@ namespace Tizen.NUI.Components
         {
             if (item == null)
                 throw new ArgumentNullException(nameof(item));
+            if (colView == null) return;
 
             if (!IsInitialized ||
                 (colView.SizingStrategy == ItemSizingStrategy.MeasureFirst &&
@@ -547,6 +554,7 @@ namespace Tizen.NUI.Components
         {
             // Insert Single item.
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             if (isSourceEmpty)
             {
@@ -702,6 +710,7 @@ namespace Tizen.NUI.Components
         {
              // Insert Group
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             if (isSourceEmpty)
             {
@@ -792,28 +801,35 @@ namespace Tizen.NUI.Components
                     }
                 }
 
-                if (parentIndex >= groups.Count)
+                if (groupInfo != null)
                 {
-                    groupInfo.GroupPosition = ScrollContentSize;
-                    groups.Add(groupInfo);
+                    if (parentIndex >= groups.Count)
+                    {
+                        groupInfo.GroupPosition = ScrollContentSize;
+                        groups.Add(groupInfo);
+                    }
+                    else
+                    {
+                        groupInfo.GroupPosition = groups[parentIndex].GroupPosition;
+                        groups.Insert(parentIndex, groupInfo);
+                    }
+
+                    // Update other below group's position
+                    if (parentIndex + 1 < groups.Count)
+                    {
+                        for(int i = parentIndex + 1; i < groups.Count; i++)
+                        {
+                            groups[i].GroupPosition += groupInfo.GroupSize;
+                            groups[i].StartIndex += count;
+                        }
+                    }
+
+                    ScrollContentSize += groupInfo.GroupSize;
                 }
                 else
                 {
-                    groupInfo.GroupPosition = groups[parentIndex].GroupPosition;
-                    groups.Insert(parentIndex, groupInfo);
+                    Tizen.Log.Error("NUI", "groupInfo is null! Check count = 0");
                 }
-
-                // Update other below group's position
-                if (parentIndex + 1 < groups.Count)
-                {
-                    for(int i = parentIndex + 1; i < groups.Count; i++)
-                    {
-                        groups[i].GroupPosition += groupInfo.GroupSize;
-                        groups[i].StartIndex += count;
-                    }
-                }
-
-                ScrollContentSize += groupInfo.GroupSize;
             }
             else
             {
@@ -859,6 +875,7 @@ namespace Tizen.NUI.Components
         {
             // Remove Single
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -987,6 +1004,7 @@ namespace Tizen.NUI.Components
         {
             // Remove Group
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -1095,6 +1113,7 @@ namespace Tizen.NUI.Components
         {
             // Reorder Single
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -1168,6 +1187,7 @@ namespace Tizen.NUI.Components
         {
             // Reorder Groups
             if (source == null) throw new ArgumentNullException(nameof(source));
+            if (colView == null) return;
 
             // Will be null if not a group.
             float currentSize = StepCandidate;
@@ -1283,6 +1303,7 @@ namespace Tizen.NUI.Components
             if (source == null) throw new ArgumentNullException(nameof(source));
             IGroupableItemSource gSource = source as IGroupableItemSource;
             if (gSource == null)throw new Exception("Source is not group!");
+            if (colView == null) return;
 
             // Get the first Visible Position to adjust.
             /*

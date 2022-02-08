@@ -36,19 +36,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetFontWidthString(FontWidthType fontWidthType)
         {
-            string value = fontWidthType.ToString();
-            if (!string.IsNullOrEmpty(value))
-            {
-                char[] charArray = value.ToCharArray();
-                charArray[0] = Char.ToLower(charArray[0]);
-                value = new string(charArray);
-            }
-            else
-            {
-                value = "none"; // The default value.
-            }
-
-            return value;
+            string value = GetCamelCase(fontWidthType.ToString());
+            return string.IsNullOrEmpty(value) ? "none" : value;
         }
 
         /// <summary>
@@ -60,19 +49,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetFontWeightString(FontWeightType fontWeightType)
         {
-            string value = fontWeightType.ToString();
-            if (!string.IsNullOrEmpty(value))
-            {
-                char[] charArray = value.ToCharArray();
-                charArray[0] = Char.ToLower(charArray[0]);
-                value = new string(charArray);
-            }
-            else
-            {
-                value = "none"; // The default value.
-            }
-
-            return value;
+            string value = GetCamelCase(fontWeightType.ToString());
+            return string.IsNullOrEmpty(value) ? "none" : value;
         }
 
         /// <summary>
@@ -84,19 +62,21 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string GetFontSlantString(FontSlantType fontSlantType)
         {
-            string value = fontSlantType.ToString();
-            if (!string.IsNullOrEmpty(value))
-            {
-                char[] charArray = value.ToCharArray();
-                charArray[0] = Char.ToLower(charArray[0]);
-                value = new string(charArray);
-            }
-            else
-            {
-                value = "none"; // The default value.
-            }
+            string value = GetCamelCase(fontSlantType.ToString());
+            return string.IsNullOrEmpty(value) ? "none" : value;
+        }
 
-            return value;
+        /// <summary>
+        /// It returns a string value according to FontSizeType.
+        /// The returned value can be used for TextFit PropertyMap.
+        /// <param name="fontSizeType">The FontSizeType enum value.</param>
+        /// <returns> A string value for TextFit.FontSizeType property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static string GetFontSizeString(FontSizeType fontSizeType)
+        {
+            string value = GetCamelCase(fontSizeType.ToString());
+            return string.IsNullOrEmpty(value) ? "pointSize" : value;
         }
 
         /// <summary>
@@ -109,7 +89,6 @@ namespace Tizen.NUI.BaseComponents
         public static FontWidthType GetFontWidthType(string fontWidthString)
         {
             FontWidthType value;
-
             if (!(Enum.TryParse(fontWidthString, true, out value) && Enum.IsDefined(typeof(FontWidthType), value)))
             {
                 value = FontWidthType.None; // If parsing fails, set a default value.
@@ -128,7 +107,6 @@ namespace Tizen.NUI.BaseComponents
         public static FontWeightType GetFontWeightType(string fontWeightString)
         {
             FontWeightType value;
-
             if (!(Enum.TryParse(fontWeightString, true, out value) && Enum.IsDefined(typeof(FontWeightType), value)))
             {
                 value = FontWeightType.None; // If parsing fails, set a default value.
@@ -147,10 +125,27 @@ namespace Tizen.NUI.BaseComponents
         public static FontSlantType GetFontSlantType(string fontSlantString)
         {
             FontSlantType value;
-
             if (!(Enum.TryParse(fontSlantString, true, out value) && Enum.IsDefined(typeof(FontSlantType), value)))
             {
                 value = FontSlantType.None; // If parsing fails, set a default value.
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// It returns a FontSizeType value according to fontSizeString.
+        /// The returned value can be used for FontStyle PropertyMap.
+        /// <param name="fontSizeString">The FontSizeType string value.</param>
+        /// <returns> A FontSizeType value for TextFit.FontSizeType property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static FontSizeType GetFontSizeType(string fontSizeString)
+        {
+            FontSizeType value;
+            if (!(Enum.TryParse(fontSizeString, true, out value) && Enum.IsDefined(typeof(FontSizeType), value)))
+            {
+                value = FontSizeType.PointSize; // If parsing fails, set a default value.
             }
 
             return value;
@@ -166,13 +161,9 @@ namespace Tizen.NUI.BaseComponents
         public static PropertyMap GetFontStyleMap(FontStyle fontStyle)
         {
             var map = new PropertyMap();
-            var width = new PropertyValue(GetFontWidthString(fontStyle.Width));
-            var weight = new PropertyValue(GetFontWeightString(fontStyle.Weight));
-            var slant = new PropertyValue(GetFontSlantString(fontStyle.Slant));
-
-            map.Add("width", width);
-            map.Add("weight", weight);
-            map.Add("slant", slant);
+            map.Add("width", GetFontWidthString(fontStyle.Width));
+            map.Add("weight", GetFontWeightString(fontStyle.Weight));
+            map.Add("slant", GetFontSlantString(fontStyle.Slant));
 
             return map;
         }
@@ -186,17 +177,14 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static FontStyle GetFontStyleStruct(PropertyMap map)
         {
-            string width = "none";
-            string weight = "none";
-            string slant = "none";
-            map.Find(0, "width")?.Get(out width);
-            map.Find(0, "weight")?.Get(out weight);
-            map.Find(0, "slant")?.Get(out slant);
-
             var fontStyle = new FontStyle();
-            fontStyle.Width = GetFontWidthType(width);
-            fontStyle.Weight = GetFontWeightType(weight);
-            fontStyle.Slant = GetFontSlantType(slant);
+            if (null != map)
+            {
+                var defaultValue = "none";
+                fontStyle.Width = GetFontWidthType(GetStringFromMap(map, "width", defaultValue));
+                fontStyle.Weight = GetFontWeightType(GetStringFromMap(map, "weight", defaultValue));
+                fontStyle.Slant = GetFontSlantType(GetStringFromMap(map, "slant", defaultValue));
+            }
 
             return fontStyle;
         }
@@ -210,9 +198,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PropertyMap GetInputFilterMap(InputFilter inputFilter)
         {
+            var defaultValue = "";
+
             var map = new PropertyMap();
-            var accepted = inputFilter.Accepted != null ? new PropertyValue(inputFilter.Accepted) : new PropertyValue("");
-            var rejected = inputFilter.Rejected != null ? new PropertyValue(inputFilter.Rejected) : new PropertyValue("");
+            var accepted = inputFilter.Accepted == null ? defaultValue : inputFilter.Accepted;
+            var rejected = inputFilter.Rejected == null ? defaultValue : inputFilter.Rejected;
             map.Add(0, accepted);
             map.Add(1, rejected);
 
@@ -228,18 +218,59 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static InputFilter GetInputFilterStruct(PropertyMap map)
         {
-            string accepted = "";
-            string rejected = "";
-            map.Find(0)?.Get(out accepted);
-            map.Find(1)?.Get(out rejected);
-
             var inputFilter = new InputFilter();
-            inputFilter.Accepted = accepted;
-            inputFilter.Rejected = rejected;
+            if (null != map)
+            {
+                var defaultValue = "";
+                inputFilter.Accepted = GetStringFromMap(map, 0, defaultValue);
+                inputFilter.Rejected = GetStringFromMap(map, 1, defaultValue);
+            }
 
             return inputFilter;
-
         }
+
+        /// <summary>
+        /// This method converts a Strikethrough struct to a PropertyMap and returns it.
+        /// The returned map can be used for set Strikethrough PropertyMap in the SetStrikethrough method.
+        /// <param name="strikethrough">The Strikethrough struct value.</param>
+        /// <returns> A PropertyMap for Strikethrough property. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static PropertyMap GetStrikethroughMap(Strikethrough strikethrough)
+        {
+            var map = new PropertyMap();
+
+            map.Add("enable", strikethrough.Enable);
+
+            if (strikethrough.Color != null)
+                map.Add("color", strikethrough.Color);
+
+            if (strikethrough.Height != null)
+                map.Add("height", (float)strikethrough.Height);
+
+            return map;
+        }
+
+        /// <summary>
+        /// This method converts a Strikethrough map to a struct and returns it.
+        /// The returned struct can be returned to the user as a Strikethrough in the GetUnderline method.
+        /// <param name="map">The Strikethrough PropertyMap.</param>
+        /// <returns> A Strikethrough struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Strikethrough GetStrikethroughStruct(PropertyMap map)
+        {
+            var strikethrough = new Strikethrough();
+            if (null != map)
+            {
+                strikethrough.Enable = GetBoolFromMap(map, "enable", false);
+                strikethrough.Color = GetColorFromMap(map, "color");
+                strikethrough.Height = GetFloatFromMap(map, "height", 0.0f);
+            }
+
+            return strikethrough;
+        }
+
 
         /// <summary>
         /// This method converts a Underline struct to a PropertyMap and returns it.
@@ -252,13 +283,20 @@ namespace Tizen.NUI.BaseComponents
         {
             var map = new PropertyMap();
 
-            map.Add("enable", new PropertyValue(underline.Enable));
+            map.Add("enable", underline.Enable);
+            map.Add("type", (int)underline.Type);
 
             if (underline.Color != null)
-                map.Add("color", new PropertyValue(underline.Color));
+                map.Add("color", underline.Color);
 
             if (underline.Height != null)
-                map.Add("height", new PropertyValue((float)underline.Height));
+                map.Add("height", (float)underline.Height);
+            
+            if (underline.DashWidth != null)
+                map.Add("dashWidth", (float)underline.DashWidth);
+
+            if (underline.DashGap != null)
+                map.Add("dashGap", (float)underline.DashGap);
 
             return map;
         }
@@ -272,15 +310,16 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Underline GetUnderlineStruct(PropertyMap map)
         {
-            Color color = new Color();
-            map.Find(0, "enable").Get(out bool enable);
-            map.Find(0, "color").Get(color);
-            map.Find(0, "height").Get(out float height);
-
             var underline = new Underline();
-            underline.Enable = enable;
-            underline.Color = color;
-            underline.Height = height;
+            if (null != map)
+            {
+                underline.Enable = GetBoolFromMap(map, "enable", false);
+                underline.Type = (UnderlineType)GetIntFromMap(map, "type", 0);
+                underline.Color = GetColorFromMap(map, "color");
+                underline.Height = GetFloatFromMap(map, "height", 0.0f);
+                underline.DashWidth = GetNullableFloatFromMap(map, "dashWidth");
+                underline.DashGap = GetNullableFloatFromMap(map, "dashGap");
+            }
 
             return underline;
         }
@@ -297,13 +336,13 @@ namespace Tizen.NUI.BaseComponents
             var map = new PropertyMap();
 
             if (shadow.Offset != null)
-                map.Add("offset", new PropertyValue(shadow.Offset));
+                map.Add("offset", shadow.Offset);
 
             if (shadow.Color != null)
-                map.Add("color", new PropertyValue(shadow.Color));
+                map.Add("color", shadow.Color);
 
             if (shadow.BlurRadius != null)
-                map.Add("blurRadius", new PropertyValue((float)shadow.BlurRadius));
+                map.Add("blurRadius", (float)shadow.BlurRadius);
 
             return map;
         }
@@ -317,16 +356,13 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Tizen.NUI.Text.Shadow GetShadowStruct(PropertyMap map)
         {
-            Vector2 offset = new Vector2();
-            Color color = new Color();
-            map.Find(0, "offset").Get(offset);
-            map.Find(0, "color").Get(color);
-            map.Find(0, "blurRadius").Get(out float blurRadius);
-
             var shadow = new Tizen.NUI.Text.Shadow();
-            shadow.Offset = offset;
-            shadow.Color = color;
-            shadow.BlurRadius = blurRadius;
+            if (null != map)
+            {
+                shadow.Offset = GetVector2FromMap(map, "offset");
+                shadow.Color = GetColorFromMap(map, "color");
+                shadow.BlurRadius = GetFloatFromMap(map, "blurRadius", 0.0f);
+            }
 
             return shadow;
         }
@@ -343,10 +379,10 @@ namespace Tizen.NUI.BaseComponents
             var map = new PropertyMap();
 
             if (outline.Color != null)
-                map.Add("color", new PropertyValue(outline.Color));
+                map.Add("color", outline.Color);
 
             if (outline.Width != null)
-                map.Add("width", new PropertyValue((float)outline.Width));
+                map.Add("width", (float)outline.Width);
 
             return map;
         }
@@ -360,58 +396,14 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Outline GetOutlineStruct(PropertyMap map)
         {
-            Color color = new Color();
-            map.Find(0, "color").Get(color);
-            map.Find(0, "width").Get(out float width);
-
             var outline = new Outline();
-            outline.Color = color;
-            outline.Width = width;
+            if (null != map)
+            {
+                outline.Color = GetColorFromMap(map, "color");
+                outline.Width = GetFloatFromMap(map, "width", 0.0f);
+            }
 
             return outline;
-        }
-
-        /// <summary>
-        /// It returns a string value according to FontSizeType.
-        /// The returned value can be used for TextFit PropertyMap.
-        /// <param name="fontSizeType">The FontSizeType enum value.</param>
-        /// <returns> A string value for TextFit.FontSizeType property. </returns>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static string GetFontSizeString(FontSizeType fontSizeType)
-        {
-            string value = fontSizeType.ToString();
-            if (!string.IsNullOrEmpty(value))
-            {
-                char[] charArray = value.ToCharArray();
-                charArray[0] = Char.ToLower(charArray[0]);
-                value = new string(charArray);
-            }
-            else
-            {
-                value = "pointSize"; // The default value.
-            }
-
-            return value;
-        }
-
-        /// <summary>
-        /// It returns a FontSizeType value according to fontSizeString.
-        /// The returned value can be used for FontStyle PropertyMap.
-        /// <param name="fontSizeString">The FontSizeType string value.</param>
-        /// <returns> A FontSizeType value for TextFit.FontSizeType property. </returns>
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static FontSizeType GetFontSizeType(string fontSizeString)
-        {
-            FontSizeType value;
-
-            if (!(Enum.TryParse(fontSizeString, true, out value) && Enum.IsDefined(typeof(FontSizeType), value)))
-            {
-                value = FontSizeType.PointSize; // If parsing fails, set a default value.
-            }
-
-            return value;
         }
 
         /// <summary>
@@ -424,17 +416,17 @@ namespace Tizen.NUI.BaseComponents
         public static PropertyMap GetTextFitMap(TextFit textFit)
         {
             var map = new PropertyMap();
-            map.Add("enable", new PropertyValue(textFit.Enable));
-            map.Add("fontSizeType", new PropertyValue(GetFontSizeString(textFit.FontSizeType)));
+            map.Add("enable", textFit.Enable);
+            map.Add("fontSizeType", GetFontSizeString(textFit.FontSizeType));
 
             if (textFit.MinSize != null)
-                map.Add("minSize", new PropertyValue((float)textFit.MinSize));
+                map.Add("minSize", (float)textFit.MinSize);
 
             if (textFit.MaxSize != null)
-                map.Add("maxSize", new PropertyValue((float)textFit.MaxSize));
+                map.Add("maxSize", (float)textFit.MaxSize);
 
             if (textFit.StepSize != null)
-                map.Add("stepSize", new PropertyValue((float)textFit.StepSize));
+                map.Add("stepSize", (float)textFit.StepSize);
 
             return map;
         }
@@ -448,26 +440,17 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static TextFit GetTextFitStruct(PropertyMap map)
         {
-            bool enable = false;
-            float minSize = 0.0f;
-            float maxSize = 0.0f;
-            float stepSize = 0.0f;
-            float fontSize = 0.0f;
-            string fontSizeType = null;
-            map.Find(0, "enable")?.Get(out enable);
-            map.Find(0, "minSize")?.Get(out minSize);
-            map.Find(0, "maxSize")?.Get(out maxSize);
-            map.Find(0, "stepSize")?.Get(out stepSize);
-            map.Find(0, "fontSize")?.Get(out fontSize);
-            map.Find(0, "fontSizeType")?.Get(out fontSizeType);
-
             var textFit = new TextFit();
-            textFit.Enable = enable;
-            textFit.MinSize = minSize;
-            textFit.MaxSize = maxSize;
-            textFit.StepSize = stepSize;
-            textFit.FontSize = fontSize;
-            textFit.FontSizeType = GetFontSizeType(fontSizeType);
+            if (null != map)
+            {
+                var defaultValue = "PointSize";
+                textFit.Enable = GetBoolFromMap(map, "enable", false);
+                textFit.MinSize = GetFloatFromMap(map, "minSize", 0.0f);
+                textFit.MaxSize = GetFloatFromMap(map, "maxSize", 0.0f);
+                textFit.StepSize = GetFloatFromMap(map, "stepSize", 0.0f);
+                textFit.FontSize = GetFloatFromMap(map, "fontSize", 0.0f);
+                textFit.FontSizeType = GetFontSizeType(GetStringFromMap(map, "fontSizeType", defaultValue));
+            }
 
             return textFit;
         }
@@ -484,30 +467,36 @@ namespace Tizen.NUI.BaseComponents
             var map = new PropertyMap();
 
             if (placeholder.Text != null)
-                map.Add("text", new PropertyValue(placeholder.Text));
+                map.Add("text", placeholder.Text);
 
             if (placeholder.TextFocused != null)
-                map.Add("textFocused", new PropertyValue(placeholder.TextFocused));
+                map.Add("textFocused", placeholder.TextFocused);
 
             if (placeholder.Color != null)
-                map.Add("color", new PropertyValue(placeholder.Color));
+                map.Add("color", placeholder.Color);
 
             if (placeholder.FontFamily != null)
-                map.Add("fontFamily", new PropertyValue(placeholder.FontFamily));
+                map.Add("fontFamily", placeholder.FontFamily);
 
             if (placeholder.FontStyle != null)
-                map.Add("fontStyle", new PropertyValue(GetFontStyleMap((FontStyle)placeholder.FontStyle)));
+            {
+                using (var fontStyleMap = GetFontStyleMap((FontStyle)placeholder.FontStyle))
+                using (var fontStyleValue = new PropertyValue(fontStyleMap))
+                {
+                    map.Add("fontStyle", fontStyleValue);
+                }
+            }
 
             if (placeholder.PointSize != null && placeholder.PixelSize != null)
-                map.Add("pointSize", new PropertyValue((float)placeholder.PointSize));
+                map.Add("pointSize", (float)placeholder.PointSize);
 
             else if (placeholder.PointSize != null)
-                map.Add("pointSize", new PropertyValue((float)placeholder.PointSize));
+                map.Add("pointSize", (float)placeholder.PointSize);
 
             else if (placeholder.PixelSize != null)
-                map.Add("pixelSize", new PropertyValue((float)placeholder.PixelSize));
+                map.Add("pixelSize", (float)placeholder.PixelSize);
 
-            map.Add("ellipsis", new PropertyValue(placeholder.Ellipsis));
+            map.Add("ellipsis", placeholder.Ellipsis);
 
             return map;
         }
@@ -521,42 +510,21 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Placeholder GetPlaceholderStruct(PropertyMap map)
         {
-            string text = "";
-            string textFocused = "";
-            Color color = new Color();
-            string fontFamily = null;
-            var fontStyle = new PropertyMap();
-            PropertyValue pointSizeValue = null;
-            PropertyValue pixelSizeValue = null;
-            bool ellipsis = false;
-
-            map.Find(0)?.Get(out text);
-            map.Find(1)?.Get(out textFocused);
-            map.Find(2)?.Get(color);
-            map.Find(3)?.Get(out fontFamily);
-            map.Find(4)?.Get(fontStyle);
-            pointSizeValue = map.Find(5);
-            pixelSizeValue = map.Find(6);
-            map.Find(7)?.Get(out ellipsis);
-
             var placeholder = new Placeholder();
-            placeholder.Text = text;
-            placeholder.TextFocused = textFocused;
-            placeholder.Color = color;
-            placeholder.FontFamily = fontFamily;
-            placeholder.Ellipsis = ellipsis;
-            placeholder.FontStyle = GetFontStyleStruct(fontStyle);
-
-            if (pointSizeValue != null)
+            if (null != map)
             {
-                pointSizeValue.Get(out float pointSize);
-                placeholder.PointSize = pointSize;
-            }
-
-            if (pixelSizeValue != null)
-            {
-                pixelSizeValue.Get(out float pixelSize);
-                placeholder.PixelSize = pixelSize;
+                var defaultText = "";
+                placeholder.Text = GetStringFromMap(map, 0, defaultText);
+                placeholder.TextFocused = GetStringFromMap(map, 1, defaultText);
+                placeholder.Color = GetColorFromMap(map, 2);
+                placeholder.FontFamily = GetStringFromMap(map, 3, defaultText);
+                using (var fontStyleMap = GetMapFromMap(map, 4))
+                {
+                    placeholder.FontStyle = GetFontStyleStruct(fontStyleMap);
+                }
+                placeholder.PointSize = GetNullableFloatFromMap(map, 5);
+                placeholder.PixelSize = GetNullableFloatFromMap(map, 6);
+                placeholder.Ellipsis = GetBoolFromMap(map, 7, false);
             }
 
             return placeholder;
@@ -573,16 +541,16 @@ namespace Tizen.NUI.BaseComponents
         {
             var map = new PropertyMap();
 
-            map.Add(0, new PropertyValue((int)hiddenInput.Mode));
+            map.Add(0, (int)hiddenInput.Mode);
 
             if (hiddenInput.SubstituteCharacter != null)
-                map.Add(1, new PropertyValue(Convert.ToInt32(hiddenInput.SubstituteCharacter)));
+                map.Add(1, Convert.ToInt32(hiddenInput.SubstituteCharacter));
 
             if (hiddenInput.SubstituteCount != null)
-                map.Add(2, new PropertyValue((int)hiddenInput.SubstituteCount));
+                map.Add(2, (int)hiddenInput.SubstituteCount);
 
             if (hiddenInput.ShowLastCharacterDuration != null)
-                map.Add(3, new PropertyValue((int)hiddenInput.ShowLastCharacterDuration));
+                map.Add(3, (int)hiddenInput.ShowLastCharacterDuration);
 
             return map;
         }
@@ -596,36 +564,18 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static HiddenInput GetHiddenInputStruct(PropertyMap map)
         {
-            PropertyValue value = null;
-
             var hiddenInput = new HiddenInput();
-
-            value = map.Find(0);
-            if (value != null)
+            if (null != map)
             {
-                value.Get(out int mode);
-                hiddenInput.Mode = (HiddenInputModeType)mode;
-            }
+                int defaultVlaue = 0;
+                hiddenInput.Mode = (HiddenInputModeType)GetIntFromMap(map, 0, defaultVlaue);
 
-            value = map.Find(1);
-            if (value != null)
-            {
-                value.Get(out int substituteCharacter);
-                hiddenInput.SubstituteCharacter = Convert.ToChar(substituteCharacter);
-            }
+                int? substituteCharacter = GetNullableIntFromMap(map, 1);
+                if (substituteCharacter != null)
+                    hiddenInput.SubstituteCharacter = Convert.ToChar(substituteCharacter);
 
-            value = map.Find(2);
-            if (value != null)
-            {
-                value.Get(out int substituteCount);
-                hiddenInput.SubstituteCount = substituteCount;
-            }
-
-            value = map.Find(3);
-            if (value != null)
-            {
-                value.Get(out int showLastCharacterDuration);
-                hiddenInput.ShowLastCharacterDuration = showLastCharacterDuration;
+                hiddenInput.SubstituteCount = GetNullableIntFromMap(map, 2);
+                hiddenInput.ShowLastCharacterDuration = GetNullableIntFromMap(map, 3);
             }
 
             return hiddenInput;
@@ -640,7 +590,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static PropertyMap GetFileNameMap(string fileName)
         {
-            return new PropertyMap().Add("filename", new PropertyValue(fileName));
+            return new PropertyMap().Add("filename", fileName);
         }
 
         /// <summary>
@@ -653,18 +603,185 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static SelectionHandleImage GetSelectionHandleImageStruct(PropertyMap leftImageMap, PropertyMap rightImageMap)
         {
-            string leftImageUrl = null;
-            string rightImageUrl = null;
+            var defaultValue = "";
 
             var selectionHandleImage = new SelectionHandleImage();
+            if (null != leftImageMap)
+                selectionHandleImage.LeftImageUrl = GetStringFromMap(leftImageMap, "filename", defaultValue);
 
-            leftImageMap.Find(0, "filename")?.Get(out leftImageUrl);
-            rightImageMap.Find(0, "filename")?.Get(out rightImageUrl);
-
-            selectionHandleImage.LeftImageUrl = leftImageUrl;
-            selectionHandleImage.RightImageUrl = rightImageUrl;
+            if (null != rightImageMap)
+                selectionHandleImage.RightImageUrl = GetStringFromMap(rightImageMap, "filename", defaultValue);
 
             return selectionHandleImage;
+        }
+
+        internal static string GetCamelCase(string pascalCase)
+        {
+            if (!string.IsNullOrEmpty(pascalCase))
+            {
+                char[] charArray = pascalCase.ToCharArray();
+                charArray[0] = Char.ToLower(charArray[0]);
+                pascalCase = new string(charArray);
+            }
+
+            return pascalCase;
+        }
+
+        internal static string GetStringFromMap(PropertyMap map, string key, string defaultValue)
+        {
+            string value = defaultValue;
+            using (var propertyValue = map.Find(0, key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
+            return value;
+        }
+
+        internal static string GetStringFromMap(PropertyMap map, int key, string defaultValue)
+        {
+            string value = defaultValue;
+            using (var propertyValue = map.Find(key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
+            return value;
+        }
+
+        internal static bool GetBoolFromMap(PropertyMap map, string key, bool defaultValue)
+        {
+            bool value = defaultValue;
+            using (var propertyValue = map.Find(0, key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
+            return value;
+        }
+
+        internal static bool GetBoolFromMap(PropertyMap map, int key, bool defaultValue)
+        {
+            bool value = defaultValue;
+            using (var propertyValue = map.Find(key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
+            return value;
+        }
+
+        internal static int GetIntFromMap(PropertyMap map, int key, int defaultValue)
+        {
+            int value = defaultValue;
+            using (var propertyValue = map.Find(key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
+            return value;
+        }
+
+        internal static int GetIntFromMap(PropertyMap map, string key, int defaultValue)
+        {
+            int value = defaultValue;
+            using (var propertyValue = map.Find(0, key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
+            return value;
+        }
+
+        internal static float GetFloatFromMap(PropertyMap map, string key, float defaultValue)
+        {
+            float value = defaultValue;
+            using (var propertyValue = map.Find(0, key))
+            {
+                if (null != propertyValue) propertyValue.Get(out value);
+            }
+            return value;
+        }
+
+        internal static Color GetColorFromMap(PropertyMap map, string key)
+        {
+            Color value = new Color();
+            using (var propertyValue = map.Find(0, key))
+            {
+                if (null != propertyValue) propertyValue.Get(value);
+            }
+            return value;
+        }
+
+        internal static Color GetColorFromMap(PropertyMap map, int key)
+        {
+            Color value = new Color();
+            using (var propertyValue = map.Find(key))
+            {
+                if (null != propertyValue) propertyValue.Get(value);
+            }
+            return value;
+        }
+
+        internal static Vector2 GetVector2FromMap(PropertyMap map, string key)
+        {
+            Vector2 value = new Vector2();
+            using (var propertyValue = map.Find(0, key))
+            {
+                if (null != propertyValue) propertyValue.Get(value);
+            }
+            return value;
+        }
+
+        internal static PropertyMap GetMapFromMap(PropertyMap map, int key)
+        {
+            PropertyMap value = new PropertyMap();
+            using (var propertyValue = map.Find(key))
+            {
+                if (null != propertyValue) propertyValue.Get(value);
+            }
+            return value;
+        }
+
+        internal static int? GetNullableIntFromMap(PropertyMap map, int key)
+        {
+            using (var propertyValue = map.Find(key))
+            {
+                if (propertyValue == null)
+                    return null;
+
+                propertyValue.Get(out int value);
+                return value;
+            }
+        }
+
+        internal static float? GetNullableFloatFromMap(PropertyMap map, int key)
+        {
+            using (var propertyValue = map.Find(key))
+            {
+                if (propertyValue == null)
+                    return null;
+
+                propertyValue.Get(out float value);
+                return value;
+            }
+        }
+
+        internal static float? GetNullableFloatFromMap(PropertyMap map, string key)
+        {
+            using (var propertyValue = map.Find(0, key))
+            {
+                if (propertyValue == null)
+                    return null;
+
+                propertyValue.Get(out float value);
+                return value;
+            }
+        }
+
+        internal static bool IsValue(PropertyMap map, int key)
+        {
+            using (var propertyValue = map.Find(key))
+            {
+                if (propertyValue == null)
+                    return false;
+
+                return true;
+            }
         }
     }
 }

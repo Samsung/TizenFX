@@ -106,8 +106,8 @@ namespace Tizen.NUI
                 return;
             }
 
-            var xNameToElementsOfOther = nameScopeOfOther.NameToElement;
-            var xNameToElements = nameScope.NameToElement;
+            var xNameToElementsOfOther = nameScopeOfOther?.NameToElement;
+            var xNameToElements = nameScope?.NameToElement;
 
             if (null != xNameToElements)
             {

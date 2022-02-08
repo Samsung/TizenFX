@@ -189,7 +189,8 @@ namespace Tizen.NUI.BaseComponents
 
         internal void SetLayout(LayoutItem layout)
         {
-            Window.Instance.LayoutController.CreateProcessCallback();
+            LayoutCount++;
+
             this.layout = layout;
             this.layout?.AttachToOwner(this);
             this.layout?.RequestLayout();
@@ -326,6 +327,45 @@ namespace Tizen.NUI.BaseComponents
                 wordMatrix?.Get(returnValue);
                 wordMatrix?.Dispose();
                 return returnValue;
+            }
+        }
+
+        /// <summary>
+        /// The number of layouts including view's layout and children's layouts.
+        /// This can be used to set/unset Process callback to calculate Layout.
+        /// </summary>
+        internal int LayoutCount
+        {
+            get
+            {
+                return layoutCount;
+            }
+
+            set
+            {
+                if (layoutCount == value) return;
+
+                if (value < 0) throw new global::System.ArgumentOutOfRangeException(nameof(LayoutCount), "LayoutCount(" + LayoutCount + ") should not be less than zero");
+
+                int diff = value - layoutCount;
+                layoutCount = value;
+
+                if (InternalParent != null)
+                {
+                    var parentView = InternalParent as View;
+                    if (parentView != null)
+                    {
+                        parentView.LayoutCount += diff;
+                    }
+                    else
+                    {
+                        var parentLayer = InternalParent as Layer;
+                        if (parentLayer != null)
+                        {
+                            parentLayer.LayoutCount += diff;
+                        }
+                    }
+                }
             }
         }
 
@@ -992,6 +1032,7 @@ namespace Tizen.NUI.BaseComponents
 
             Children.Remove(child);
             child.InternalParent = null;
+            LayoutCount -= child.LayoutCount;
 
             RemoveChildBindableObject(child);
 
@@ -1010,6 +1051,8 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         internal void ResetLayout()
         {
+            LayoutCount--;
+
             layout = null;
         }
 
@@ -1023,37 +1066,23 @@ namespace Tizen.NUI.BaseComponents
         {
             if (backgroundExtraData == null) return;
 
-            var cornerRadius = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
+            var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
+            var cornerRadiusPolicyValue = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
 
-            // Apply to the background visual
-            PropertyMap backgroundMap = new PropertyMap();
-            PropertyValue background = Tizen.NUI.Object.GetProperty(SwigCPtr, View.Property.BACKGROUND);
+            // Make current propertyMap
+            PropertyMap currentPropertyMap = new PropertyMap();
+            currentPropertyMap[Visual.Property.CornerRadius] = cornerRadiusValue;
+            currentPropertyMap[Visual.Property.CornerRadiusPolicy] = cornerRadiusPolicyValue;
+            var temp = new PropertyValue(currentPropertyMap);
 
-            if (background.Get(backgroundMap) && !backgroundMap.Empty())
-            {
-                backgroundMap[Visual.Property.CornerRadius] = cornerRadius;
-                backgroundMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
-                var temp = new PropertyValue(backgroundMap);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, temp);
-                temp.Dispose();
-            }
-            backgroundMap.Dispose();
-            background.Dispose();
+            // Update corner radius properties to background and shadow by ActionUpdateProperty
+            DoAction(View.Property.BACKGROUND, ActionUpdateProperty, temp);
+            DoAction(View.Property.SHADOW, ActionUpdateProperty, temp);
 
-            // Apply to the shadow visual
-            PropertyMap shadowMap = new PropertyMap();
-            PropertyValue shadow = Tizen.NUI.Object.GetProperty(SwigCPtr, View.Property.SHADOW);
-            if (shadow.Get(shadowMap) && !shadowMap.Empty())
-            {
-                shadowMap[Visual.Property.CornerRadius] = cornerRadius;
-                shadowMap[Visual.Property.CornerRadiusPolicy] = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
-                var temp = new PropertyValue(shadowMap);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.SHADOW, temp);
-                temp.Dispose();
-            }
-            shadowMap.Dispose();
-            shadow.Dispose();
-            cornerRadius.Dispose();
+            temp.Dispose();
+            currentPropertyMap.Dispose();
+            cornerRadiusValue.Dispose();
+            cornerRadiusPolicyValue.Dispose();
         }
 
         /// TODO open as a protected level
@@ -1061,23 +1090,25 @@ namespace Tizen.NUI.BaseComponents
         {
             if (backgroundExtraData == null) return;
 
-            var borderlineColor = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+            var borderlineWidthValue = new PropertyValue(backgroundExtraData.BorderlineWidth);
+            var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
+            var borderlineOffsetValue = new PropertyValue(backgroundExtraData.BorderlineOffset);
 
-            // Apply to the background visual
-            PropertyMap backgroundMap = new PropertyMap();
-            PropertyValue background = Tizen.NUI.Object.GetProperty(SwigCPtr, View.Property.BACKGROUND);
-            if (background.Get(backgroundMap) && !backgroundMap.Empty())
-            {
-                backgroundMap[Visual.Property.BorderlineWidth] = new PropertyValue(backgroundExtraData.BorderlineWidth);
-                backgroundMap[Visual.Property.BorderlineColor] = borderlineColor;
-                backgroundMap[Visual.Property.BorderlineOffset] = new PropertyValue(backgroundExtraData.BorderlineOffset);
-                var temp = new PropertyValue(backgroundMap);
-                Tizen.NUI.Object.SetProperty(SwigCPtr, View.Property.BACKGROUND, temp);
-                temp.Dispose();
-            }
-            backgroundMap.Dispose();
-            background.Dispose();
-            borderlineColor.Dispose();
+            // Make current propertyMap
+            PropertyMap currentPropertyMap = new PropertyMap();
+            currentPropertyMap[Visual.Property.BorderlineWidth] = borderlineWidthValue;
+            currentPropertyMap[Visual.Property.BorderlineColor] = borderlineColorValue;
+            currentPropertyMap[Visual.Property.BorderlineOffset] = borderlineOffsetValue;
+            var temp = new PropertyValue(currentPropertyMap);
+
+            // Update borderline properties to background  by ActionUpdateProperty
+            DoAction(View.Property.BACKGROUND, ActionUpdateProperty, temp);
+
+            temp.Dispose();
+            currentPropertyMap.Dispose();
+            borderlineWidthValue.Dispose();
+            borderlineColorValue.Dispose();
+            borderlineOffsetValue.Dispose();
         }
 
         /// <summary>
@@ -1119,19 +1150,16 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-#if NUI_DEBUG_ON
-            NUILog.Debug($"[Dispose] View.Dispose({type}) START");
-            NUILog.Debug($"[Dispose] type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
+            DebugFileLogging.Instance.WriteLog($"View.Dispose({type}) START");
+            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
             if(HasBody())
             {
-                NUILog.Debug($"[Dispose] ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
+                DebugFileLogging.Instance.WriteLog($"ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
             }
             else
             {
-                NUILog.Debug($"has no native body!");
+                DebugFileLogging.Instance.WriteLog($"has no native body!");
             }
-#endif
-
 
             //_mergedStyle = null;
 
@@ -1199,6 +1227,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 view.InternalParent = null;
             }
+
+            LayoutCount = 0;
 
             NUILog.Debug($"[Dispose] View.Dispose({type}) END");
             NUILog.Debug($"=============================");

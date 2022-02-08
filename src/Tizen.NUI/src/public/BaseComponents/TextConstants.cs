@@ -33,20 +33,129 @@ namespace Tizen.NUI.Text
     /// The InputFilter struct is used as an argument to SetInputFilter and GetInputFilter methods. <br />
     /// See <see cref="Tizen.NUI.BaseComponents.TextField.SetInputFilter"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetInputFilter"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetInputFilter"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetInputFilter"/>. <br />
     /// </remarks>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct InputFilter
+    /// <since_tizen> 9 </since_tizen>
+    public struct InputFilter : IEquatable<InputFilter>
     {
         /// <summary>
         /// A regular expression in the set of characters to be accepted by the inputFilter.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Accepted { get; set; }
 
         /// <summary>
         /// A regular expression in the set of characters to be rejected by the inputFilter.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public string Rejected { get; set; }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal InputFilter, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => obj is InputFilter other && this.Equals(other);
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The InputFilter to compare with the current InputFilter.</param>
+        /// <returns>true if equal InputFilter, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(InputFilter other) => Accepted == other.Accepted && Rejected == other.Rejected;
+
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="lhsInputFilter">InputFilter to compare</param>
+        /// <param name="rhsInputFilter">InputFilter to be compared</param>
+        /// <returns>true if InputFilters are equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(InputFilter lhsInputFilter, InputFilter rhsInputFilter) => lhsInputFilter.Equals(rhsInputFilter);
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        /// <param name="lhsInputFilter">InputFilter to compare</param>
+        /// <param name="rhsInputFilter">InputFilter to be compared</param>
+        /// <returns>true if InputFilters are not equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(InputFilter lhsInputFilter, InputFilter rhsInputFilter) => !lhsInputFilter.Equals(rhsInputFilter);
+
+        /// <summary>
+        /// Gets the hash code of this InputFilter.
+        /// </summary>
+        /// <returns>The hash code.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => (Accepted, Rejected).GetHashCode();
+    }
+
+    /// <summary>
+    /// A struct to pass data of Strikethrough PropertyMap. <br />
+    /// </summary>
+    /// <remarks>
+    /// The Strikethrough struct is used as an argument to SetStrikethrough and GetStrikethrough methods. <br />
+    /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetStrikethrough"/>, <see cref="Tizen.NUI.BaseComponents.TextLabel.GetStrikethrough"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetStrikethrough"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetStrikethrough"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetStrikethrough"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetStrikethrough"/>. <br />
+    /// </remarks>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct Strikethrough : IEquatable<Strikethrough>
+    {
+        /// <summary>
+        /// Whether the strikethrough is enabled (the default value is false).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Enable { get; set; }
+
+        /// <summary>
+        /// The color of the strikethrough (if not provided then the color of the text is used).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color Color { get; set; }
+
+        /// <summary>
+        /// The height in pixels of the strikethrough (if null, the default value is 1.0f).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? Height { get; set; }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal Strikethrough, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => obj is Strikethrough other && this.Equals(other);
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The Strikethrough to compare with the current Strikethrough.</param>
+        /// <returns>true if equal Strikethrough, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(Strikethrough other) => Enable == other.Enable && Color == other.Color && Height == other.Height;
+
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="lhsStrikethrough">Strikethrough to compare</param>
+        /// <param name="rhsStrikethrough">Strikethrough to be compared</param>
+        /// <returns>true if Strikethroughs are equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(Strikethrough lhsStrikethrough, Strikethrough rhsStrikethrough) => lhsStrikethrough.Equals(rhsStrikethrough);
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        /// <param name="lhsStrikethrough">Strikethrough to compare</param>
+        /// <param name="rhsStrikethrough">Strikethrough to be compared</param>
+        /// <returns>true if Strikethroughs are not equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(Strikethrough lhsStrikethrough, Strikethrough rhsStrikethrough) => !lhsStrikethrough.Equals(rhsStrikethrough);
+
+        /// <summary>
+        /// Gets the hash code of this Strikethrough.
+        /// </summary>
+        /// <returns>The hash code.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => (Enable, Color, Height).GetHashCode();
     }
 
     /// <summary>
@@ -57,7 +166,7 @@ namespace Tizen.NUI.Text
     /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetFontStyle"/>, <see cref="Tizen.NUI.BaseComponents.TextLabel.GetFontStyle"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetFontStyle"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetFontStyle"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetFontStyle"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetFontStyle"/>. <br />
     /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct FontStyle
+    public struct FontStyle : IEquatable<FontStyle>
     {
         /// <summary>
         /// The Width defines occupied by each glyph.
@@ -76,6 +185,47 @@ namespace Tizen.NUI.Text
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public FontSlantType Slant { get; set; }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal FontStyle, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => obj is FontStyle other && this.Equals(other);
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The FontStyle to compare with the current FontStyle.</param>
+        /// <returns>true if equal FontStyle, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(FontStyle other) => Width == other.Width && Weight == other.Weight && Slant == other.Slant;
+
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="lhsFontStyle">FontStyle to compare</param>
+        /// <param name="rhsFontStyle">FontStyle to be compared</param>
+        /// <returns>true if FontStyles are equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(FontStyle lhsFontStyle, FontStyle rhsFontStyle) => lhsFontStyle.Equals(rhsFontStyle);
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        /// <param name="lhsFontStyle">FontStyle to compare</param>
+        /// <param name="rhsFontStyle">FontStyle to be compared</param>
+        /// <returns>true if FontStyles are not equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(FontStyle lhsFontStyle, FontStyle rhsFontStyle) => !lhsFontStyle.Equals(rhsFontStyle);
+
+        /// <summary>
+        /// Gets the hash code of this FontStyle.
+        /// </summary>
+        /// <returns>The hash code.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => (Width, Weight, Slant).GetHashCode();
     }
 
     /// <summary>
@@ -86,13 +236,19 @@ namespace Tizen.NUI.Text
     /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetUnderline"/>, <see cref="Tizen.NUI.BaseComponents.TextLabel.GetUnderline"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetUnderline"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetUnderline"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetUnderline"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetUnderline"/>. <br />
     /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct Underline
+    public struct Underline : IEquatable<Underline>
     {
         /// <summary>
         /// Whether the underline is enabled (the default value is false).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Enable { get; set; }
+
+        /// <summary>
+        /// The type of the underline (the default type is Solid).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public UnderlineType Type { get; set; }
 
         /// <summary>
         /// The color of the underline (if not provided then the color of the text is used).
@@ -105,6 +261,62 @@ namespace Tizen.NUI.Text
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? Height { get; set; }
+        
+        /// <summary>
+        /// The width of the dashes of the dashed underline (if null, the default value is 2.0f). <br />
+        /// Only valid when "UnderlineType.Dashed" type is used.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? DashWidth { get; set; }
+
+        /// <summary>
+        /// The gap between the dashes of the dashed underline (if null, the default value is 1.0f). <br />
+        /// Only valid when "UnderlineType.Dashed" type is used.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? DashGap { get; set; }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal Underline, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => obj is Underline other && this.Equals(other);
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The Underline to compare with the current Underline.</param>
+        /// <returns>true if equal Underline, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(Underline other) => Enable == other.Enable && Type == other.Type && Color == other.Color &&
+         Height == other.Height && DashWidth == other.DashWidth && DashGap == other.DashGap;
+
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="lhsUnderline">Underline to compare</param>
+        /// <param name="rhsUnderline">Underline to be compared</param>
+        /// <returns>true if Underlines are equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(Underline lhsUnderline, Underline rhsUnderline) => lhsUnderline.Equals(rhsUnderline);
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        /// <param name="lhsUnderline">Underline to compare</param>
+        /// <param name="rhsUnderline">Underline to be compared</param>
+        /// <returns>true if Underlines are not equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(Underline lhsUnderline, Underline rhsUnderline) => !lhsUnderline.Equals(rhsUnderline);
+
+        /// <summary>
+        /// Gets the hash code of this Underline.
+        /// </summary>
+        /// <returns>The hash code.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => (Enable, Type, Color, Height, DashWidth, DashGap).GetHashCode();
     }
 
     /// <summary>
@@ -115,7 +327,7 @@ namespace Tizen.NUI.Text
     /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetShadow"/>, <see cref="Tizen.NUI.BaseComponents.TextLabel.GetShadow"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetShadow"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetShadow"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetShadow"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetShadow"/>. <br />
     /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct Shadow
+    public struct Shadow : IEquatable<Shadow>
     {
         /// <summary>
         /// The color of the shadow (the default color is Color.Black).
@@ -137,6 +349,47 @@ namespace Tizen.NUI.Text
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? BlurRadius { get; set; }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal Shadow, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => obj is Shadow other && this.Equals(other);
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The Shadow to compare with the current Shadow.</param>
+        /// <returns>true if equal Shadow, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(Shadow other) => Color == other.Color && Offset == other.Offset && BlurRadius == other.BlurRadius;
+
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="lhsShadow">Shadow to compare</param>
+        /// <param name="rhsShadow">Shadow to be compared</param>
+        /// <returns>true if Shadows are equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(Shadow lhsShadow, Shadow rhsShadow) => lhsShadow.Equals(rhsShadow);
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        /// <param name="lhsShadow">Shadow to compare</param>
+        /// <param name="rhsShadow">Shadow to be compared</param>
+        /// <returns>true if Shadows are not equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(Shadow lhsShadow, Shadow rhsShadow) => !lhsShadow.Equals(rhsShadow);
+
+        /// <summary>
+        /// Gets the hash code of this Shadow.
+        /// </summary>
+        /// <returns>The hash code.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => (Color, Offset, BlurRadius).GetHashCode();
     }
 
     /// <summary>
@@ -147,7 +400,7 @@ namespace Tizen.NUI.Text
     /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetOutline"/>, <see cref="Tizen.NUI.BaseComponents.TextLabel.GetOutline"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetOutline"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetOutline"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetOutline"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetOutline"/>. <br />
     /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct Outline
+    public struct Outline : IEquatable<Outline>
     {
         /// <summary>
         /// The color of the outline (the default color is Color.White).
@@ -161,6 +414,47 @@ namespace Tizen.NUI.Text
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? Width { get; set; }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal Outline, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => obj is Outline other && this.Equals(other);
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The Outline to compare with the current Outline.</param>
+        /// <returns>true if equal Outline, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(Outline other) => Color == other.Color && Width == other.Width;
+
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="lhsOutline">Outline to compare</param>
+        /// <param name="rhsOutline">Outline to be compared</param>
+        /// <returns>true if Outlines are equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(Outline lhsOutline, Outline rhsOutline) => lhsOutline.Equals(rhsOutline);
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        /// <param name="lhsOutline">Outline to compare</param>
+        /// <param name="rhsOutline">Outline to be compared</param>
+        /// <returns>true if Outlines are not equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(Outline lhsOutline, Outline rhsOutline) => !lhsOutline.Equals(rhsOutline);
+
+        /// <summary>
+        /// Gets the hash code of this Outline.
+        /// </summary>
+        /// <returns>The hash code.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => (Color, Width).GetHashCode();
     }
 
     /// <summary>
@@ -171,7 +465,7 @@ namespace Tizen.NUI.Text
     /// See <see cref="Tizen.NUI.BaseComponents.TextLabel.SetTextFit"/> and <see cref="Tizen.NUI.BaseComponents.TextLabel.GetTextFit"/>. <br />
     /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct TextFit
+    public struct TextFit : IEquatable<TextFit>
     {
         /// <summary>
         /// True to enable the text fit or false to disable (the default value is false).
@@ -208,6 +502,48 @@ namespace Tizen.NUI.Text
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public float? FontSize { get; set; }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal TextFit, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => obj is TextFit other && this.Equals(other);
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The TextFit to compare with the current TextFit.</param>
+        /// <returns>true if equal TextFit, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(TextFit other) => Enable == other.Enable && MinSize == other.MinSize && MaxSize == other.MaxSize &&
+         StepSize == other.StepSize && FontSizeType == other.FontSizeType && FontSize == other.FontSize;
+
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="lhsTextFit">TextFit to compare</param>
+        /// <param name="rhsTextFit">TextFit to be compared</param>
+        /// <returns>true if TextFits are equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(TextFit lhsTextFit, TextFit rhsTextFit) => lhsTextFit.Equals(rhsTextFit);
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        /// <param name="lhsTextFit">TextFit to compare</param>
+        /// <param name="rhsTextFit">TextFit to be compared</param>
+        /// <returns>true if TextFits are not equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(TextFit lhsTextFit, TextFit rhsTextFit) => !lhsTextFit.Equals(rhsTextFit);
+
+        /// <summary>
+        /// Gets the hash code of this TextFit.
+        /// </summary>
+        /// <returns>The hash code.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => (Enable, MinSize, MaxSize, StepSize, FontSizeType, FontSize).GetHashCode();
     }
 
     /// <summary>
@@ -218,7 +554,7 @@ namespace Tizen.NUI.Text
     /// See <see cref="Tizen.NUI.BaseComponents.TextField.SetPlaceholder"/>, <see cref="Tizen.NUI.BaseComponents.TextField.SetPlaceholder"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetPlaceholder"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.SetPlaceholder"/>. <br />
     /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct Placeholder
+    public struct Placeholder : IEquatable<Placeholder>
     {
         /// <summary>
         /// The text to display when the TextField is empty and inactive.
@@ -271,6 +607,49 @@ namespace Tizen.NUI.Text
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool Ellipsis { get; set; }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal Placeholder, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => obj is Placeholder other && this.Equals(other);
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The Placeholder to compare with the current Placeholder.</param>
+        /// <returns>true if equal Placeholder, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(Placeholder other) =>
+         Text == other.Text && TextFocused == other.TextFocused && Color == other.Color && FontFamily == other.FontFamily &&
+          FontStyle == other.FontStyle && PointSize == other.PointSize && PixelSize == other.PixelSize && Ellipsis == other.Ellipsis;
+
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="lhsPlaceholder">Placeholder to compare</param>
+        /// <param name="rhsPlaceholder">Placeholder to be compared</param>
+        /// <returns>true if Placeholders are equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(Placeholder lhsPlaceholder, Placeholder rhsPlaceholder) => lhsPlaceholder.Equals(rhsPlaceholder);
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        /// <param name="lhsPlaceholder">Placeholder to compare</param>
+        /// <param name="rhsPlaceholder">Placeholder to be compared</param>
+        /// <returns>true if Placeholders are not equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(Placeholder lhsPlaceholder, Placeholder rhsPlaceholder) => !lhsPlaceholder.Equals(rhsPlaceholder);
+
+        /// <summary>
+        /// Gets the hash code of this Placeholder.
+        /// </summary>
+        /// <returns>The hash code.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => (Text, TextFocused, Color, FontFamily, FontStyle, PointSize, PixelSize, Ellipsis).GetHashCode();
     }
 
     /// <summary>
@@ -281,7 +660,7 @@ namespace Tizen.NUI.Text
     /// See <see cref="Tizen.NUI.BaseComponents.TextField.SetHiddenInput"/> and <see cref="Tizen.NUI.BaseComponents.TextField.GetHiddenInput"/>. <br />
     /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct HiddenInput
+    public struct HiddenInput : IEquatable<HiddenInput>
     {
         /// <summary>
         /// The mode for input text display. <br />
@@ -306,6 +685,48 @@ namespace Tizen.NUI.Text
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public int? ShowLastCharacterDuration { get; set; }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal HiddenInput, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => obj is HiddenInput other && this.Equals(other);
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The HiddenInput to compare with the current HiddenInput.</param>
+        /// <returns>true if equal HiddenInput, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(HiddenInput other) => Mode == other.Mode && SubstituteCharacter == other.SubstituteCharacter &&
+         SubstituteCount == other.SubstituteCount && ShowLastCharacterDuration == other.ShowLastCharacterDuration;
+
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="lhsHiddenInput">HiddenInput to compare</param>
+        /// <param name="rhsHiddenInput">HiddenInput to be compared</param>
+        /// <returns>true if HiddenInputs are equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(HiddenInput lhsHiddenInput, HiddenInput rhsHiddenInput) => lhsHiddenInput.Equals(rhsHiddenInput);
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        /// <param name="lhsHiddenInput">HiddenInput to compare</param>
+        /// <param name="rhsHiddenInput">HiddenInput to be compared</param>
+        /// <returns>true if HiddenInputs are not equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(HiddenInput lhsHiddenInput, HiddenInput rhsHiddenInput) => !lhsHiddenInput.Equals(rhsHiddenInput);
+
+        /// <summary>
+        /// Gets the hash code of this HiddenInput.
+        /// </summary>
+        /// <returns>The hash code.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => (Mode, SubstituteCharacter, SubstituteCount, ShowLastCharacterDuration).GetHashCode();
     }
 
     /// <summary>
@@ -317,7 +738,7 @@ namespace Tizen.NUI.Text
     /// <see cref="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandleImage"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandleImage"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandlePressedImage"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandlePressedImage"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetSelectionHandleMarkerImage"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetSelectionHandleMarkerImage"/>. <br />
     /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public struct SelectionHandleImage
+    public struct SelectionHandleImage : IEquatable<SelectionHandleImage>
     {
         /// <summary>
         /// The image path to display for the left selection handle. <br />
@@ -336,5 +757,48 @@ namespace Tizen.NUI.Text
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string RightImageUrl { get; set; }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal SelectionHandleImage, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => obj is SelectionHandleImage other && this.Equals(other);
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The SelectionHandleImage to compare with the current SelectionHandleImage.</param>
+        /// <returns>true if equal SelectionHandleImage, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(SelectionHandleImage other) => LeftImageUrl == other.LeftImageUrl && RightImageUrl == other.RightImageUrl;
+
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="lhsSelectionHandleImage">SelectionHandleImage to compare</param>
+        /// <param name="rhsSelectionHandleImage">SelectionHandleImage to be compared</param>
+        /// <returns>true if SelectionHandleImages are equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(SelectionHandleImage lhsSelectionHandleImage, SelectionHandleImage rhsSelectionHandleImage)
+         => lhsSelectionHandleImage.Equals(rhsSelectionHandleImage);
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        /// <param name="lhsSelectionHandleImage">SelectionHandleImage to compare</param>
+        /// <param name="rhsSelectionHandleImage">SelectionHandleImage to be compared</param>
+        /// <returns>true if SelectionHandleImages are not equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(SelectionHandleImage lhsSelectionHandleImage, SelectionHandleImage rhsSelectionHandleImage)
+         => !lhsSelectionHandleImage.Equals(rhsSelectionHandleImage);
+
+        /// <summary>
+        /// Gets the hash code of this SelectionHandleImage.
+        /// </summary>
+        /// <returns>The hash code.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => (LeftImageUrl, RightImageUrl).GetHashCode();
     }
 }

@@ -143,6 +143,14 @@ namespace Tizen.NUI.BaseComponents
             PageDown
         }
 
+        /// <summary>
+        /// Actions property value to update visual property.
+        /// Note : Only few kind of properies can be update. Update with invalid property action is undefined.
+        /// This property can be redefined by child class if it use different value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected int ActionUpdateProperty { get; set; } = Interop.Visual.GetActionUpdateProperty();
+
         internal enum PropertyRange
         {
             PROPERTY_START_INDEX = PropertyRanges.PROPERTY_REGISTRATION_START_INDEX,
@@ -227,6 +235,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int AccessibilityHighlightable = Interop.ViewProperty.AccessibilityHighlightableGet();
             internal static readonly int AccessibilityAttributes = Interop.ViewProperty.AccessibilityAttributesGet();
             internal static readonly int DispatchKeyEvents = Interop.ViewProperty.DispatchKeyEventsGet();
+            internal static readonly int AccessibilityHidden = Interop.ViewProperty.AccessibilityHiddenGet();
         }
     }
 }

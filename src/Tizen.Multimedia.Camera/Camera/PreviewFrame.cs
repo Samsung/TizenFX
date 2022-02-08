@@ -27,7 +27,7 @@ namespace Tizen.Multimedia
     /// <since_tizen> 4 </since_tizen>
     public class PreviewFrame
     {
-        internal PreviewFrame(IntPtr ptr)
+        internal PreviewFrame(IntPtr ptr, ref PinnedPreviewBuffer<byte> buffers)
         {
             var unmanagedStruct = Marshal.PtrToStructure<CameraPreviewDataStruct>(ptr);
 
@@ -35,7 +35,7 @@ namespace Tizen.Multimedia
             Resolution = new Size(unmanagedStruct.Width, unmanagedStruct.Height);
             TimeStamp = unmanagedStruct.TimeStamp;
             PlaneType = GetPlaneType(unmanagedStruct);
-            Plane = ConvertPlane(unmanagedStruct);
+            CreatePlane(unmanagedStruct, ref buffers);
         }
 
         private static PlaneType GetPlaneType(CameraPreviewDataStruct unmanagedStruct)
@@ -67,29 +67,124 @@ namespace Tizen.Multimedia
             return PlaneType.TriplePlane;
         }
 
-        private IPreviewPlane ConvertPlane(CameraPreviewDataStruct unmanagedStruct)
+        internal void CreatePlane(CameraPreviewDataStruct unmanagedStruct, ref PinnedPreviewBuffer<byte> buffers)
         {
             switch (PlaneType)
             {
                 case PlaneType.SinglePlane:
-                    return new SinglePlane(unmanagedStruct.Plane.SinglePlane);
+                    var singlePlane = unmanagedStruct.Plane.SinglePlane;
+
+                    if (buffers == null)
+                    {
+                        buffers = new PinnedPreviewBuffer<byte>(singlePlane.DataLength);
+                    }
+
+                    Marshal.Copy(singlePlane.Data, buffers[0], 0, (int)singlePlane.DataLength);
+                    Plane = new SinglePlane(buffers[0]);
+
+                    break;
                 case PlaneType.DoublePlane:
-                    var size = Resolution.Width * Resolution.Height;
-                    unmanagedStruct.Plane.DoublePlane.YLength = (uint)size;
-                    unmanagedStruct.Plane.DoublePlane.UVLength = (uint)size / 2;
-                    return new DoublePlane(unmanagedStruct.Plane.DoublePlane);
+                    var doublePlane = unmanagedStruct.Plane.DoublePlane;
+
+                    doublePlane.YLength = (uint)(Resolution.Width * Resolution.Height);
+                    doublePlane.UVLength = (uint)(Resolution.Width * Resolution.Height) / 2;
+
+                    if (buffers == null)
+                    {
+                        buffers = new PinnedPreviewBuffer<byte>(doublePlane.YLength, doublePlane.UVLength);
+                    }
+
+                    Marshal.Copy(doublePlane.Y, buffers[0], 0, (int)doublePlane.YLength);
+                    Marshal.Copy(doublePlane.UV, buffers[1], 0, (int)doublePlane.UVLength);
+                    Plane =  new DoublePlane(buffers[0], buffers[1]);
+
+                    break;
                 case PlaneType.TriplePlane:
-                    return new TriplePlane(unmanagedStruct.Plane.TriplePlane);
+                    var triplePlane = unmanagedStruct.Plane.TriplePlane;
+
+                    if (buffers == null)
+                    {
+                        buffers = new PinnedPreviewBuffer<byte>(triplePlane.YLength, triplePlane.ULength, triplePlane.VLength);
+                    }
+
+                    Marshal.Copy(triplePlane.Y, buffers[0], 0, (int)triplePlane.YLength);
+                    Marshal.Copy(triplePlane.U, buffers[1], 0, (int)triplePlane.ULength);
+                    Marshal.Copy(triplePlane.V, buffers[2], 0, (int)triplePlane.VLength);
+                    Plane =  new TriplePlane(buffers[0], buffers[1], buffers[2]);
+
+                    break;
                 case PlaneType.EncodedPlane:
-                    return new EncodedPlane(unmanagedStruct.Plane.EncodedPlane);
+                    var encodedPlane = unmanagedStruct.Plane.EncodedPlane;
+
+                    if (buffers == null)
+                    {
+                        buffers = new PinnedPreviewBuffer<byte>(encodedPlane.DataLength * 2);
+                    }
+
+                    Marshal.Copy(encodedPlane.Data, buffers[0], 0, (int)encodedPlane.DataLength);
+                    Plane = new EncodedPlane(buffers[0], encodedPlane.IsDeltaFrame);
+
+                    break;
                 case PlaneType.DepthPlane:
-                    return new DepthPlane(unmanagedStruct.Plane.DepthPlane);
+                    var depthPlane = unmanagedStruct.Plane.DepthPlane;
+
+                    if (buffers == null)
+                    {
+                        buffers = new PinnedPreviewBuffer<byte>(depthPlane.DataLength);
+                    }
+
+                    Marshal.Copy(depthPlane.Data, buffers[0], 0, (int)depthPlane.DataLength);
+                    Plane = new DepthPlane(buffers[0]);
+
+                    break;
                 case PlaneType.RgbPlane:
-                    return new RgbPlane(unmanagedStruct.Plane.RgbPlane);
+                    var rgbPlane = unmanagedStruct.Plane.RgbPlane;
+
+                    if (buffers == null)
+                    {
+                        buffers = new PinnedPreviewBuffer<byte>(rgbPlane.DataLength);
+                    }
+                    Marshal.Copy(rgbPlane.Data, buffers[0], 0, (int)rgbPlane.DataLength);
+
+                    Plane = new RgbPlane(buffers[0]);
+                    break;
+                default:
+                    Debug.Fail("Unknown preview data!");
+                    break;
+            }
+        }
+
+        internal static uint GetMaxPreviewPlaneSize(IntPtr ptr)
+        {
+            uint size = 0;
+            var unmanagedStruct = Marshal.PtrToStructure<CameraPreviewDataStruct>(ptr);
+
+            switch (GetPlaneType(unmanagedStruct))
+            {
+                case PlaneType.SinglePlane:
+                    size = unmanagedStruct.Plane.SinglePlane.DataLength;
+                    break;
+                case PlaneType.DoublePlane:
+                    size = unmanagedStruct.Plane.DoublePlane.UVLength;
+                    break;
+                case PlaneType.TriplePlane:
+                    size = unmanagedStruct.Plane.TriplePlane.YLength;
+                    break;
+                case PlaneType.EncodedPlane:
+                    size = unmanagedStruct.Plane.EncodedPlane.DataLength;
+                    break;
+                case PlaneType.DepthPlane:
+                    size = unmanagedStruct.Plane.DepthPlane.DataLength;
+                    break;
+                case PlaneType.RgbPlane:
+                    size = unmanagedStruct.Plane.RgbPlane.DataLength;
+                    break;
+                default:
+                    Debug.Fail("Unknown preview data!");
+                    break;
             }
 
-            Debug.Fail("Unknown preview data!");
-            return null;
+            return size;
         }
 
         /// <summary>
@@ -120,6 +215,6 @@ namespace Tizen.Multimedia
         /// The buffer including the preview frame.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        public IPreviewPlane Plane { get; }
+        public IPreviewPlane Plane { get; private set;}
     }
 }
