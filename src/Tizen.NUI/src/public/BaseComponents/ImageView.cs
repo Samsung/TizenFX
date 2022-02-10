@@ -637,6 +637,15 @@ namespace Tizen.NUI.BaseComponents
             {
                 PropertyValue setValue = new PropertyValue(value ?? "");
                 UpdateImage(ImageVisualProperty.AlphaMaskURL, setValue);
+                // When we never set CropToMask property before, we should set default value as true.
+                using(PropertyValue cropToMask = _imagePropertyMap?.Find(ImageVisualProperty.CropToMask))
+                {
+                    if(cropToMask == null)
+                    {
+                        using PropertyValue setCropValue = new PropertyValue(true);
+                        UpdateImage(ImageVisualProperty.CropToMask, setCropValue);
+                    }
+                }
                 setValue?.Dispose();
             }
         }
@@ -1227,7 +1236,8 @@ namespace Tizen.NUI.BaseComponents
         /// Lazy call to UpdateImage.
         /// Collect Properties need to be update, and set properties that starts the Processing.
         /// </summary>
-        private void UpdateImage(int key, PropertyValue value)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void UpdateImage(int key, PropertyValue value)
         {
             // If we set ResourceUrl as empty, Unregist visual.
             if (key == ImageVisualProperty.URL && string.IsNullOrEmpty(_resourceUrl))
@@ -1281,7 +1291,6 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Callback function to Lazy UpdateImage.
-        /// Or, We can call UpdateImage() function directly if we need.
         /// </summary>
         private void UpdateImage(object source, EventArgs e)
         {
@@ -1289,7 +1298,17 @@ namespace Tizen.NUI.BaseComponents
             _imagePropertyUpdateProcessAttachedFlag = false;
         }
 
-        private void UpdateImage()
+        /// <summary>
+        /// Update image-relative properties synchronously.
+        /// After call this API, All image properties updated.
+        /// </summary>
+        /// <remarks>
+        /// Current version ImageView property update asynchronously.
+        /// If you want to guarantee that ImageView property setuped,
+        /// Please call this ImageView.UpdateImage() API.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void UpdateImage()
         {
             if(!_imagePropertyUpdatedFlag) return;
 
@@ -1398,6 +1417,17 @@ namespace Tizen.NUI.BaseComponents
             imageMap?.Dispose();
             image?.Dispose();
             setValue?.Dispose();
+        }
+
+        /// <summary>
+        /// GetNaturalSize() should be guaranteed that ResourceUrl property setuped.
+        /// So before get base.GetNaturalSize(), we should synchronous image properties
+        /// </summary>
+        internal override Vector3 GetNaturalSize()
+        {
+            // Sync as current properties
+            UpdateImage();
+            return base.GetNaturalSize();
         }
 
         private void OnResourceLoaded(IntPtr view)
