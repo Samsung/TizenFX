@@ -54,7 +54,7 @@ namespace Tizen.Multimedia
                     gcHandle.Free();
                 }
 
-                Log.Info(CameraLog.Tag, $"Disposed : {disposing})");
+                Log.Info(CameraLog.Tag, $"Disposed : {disposing}");
                 disposedValue = true;
             }
         }
