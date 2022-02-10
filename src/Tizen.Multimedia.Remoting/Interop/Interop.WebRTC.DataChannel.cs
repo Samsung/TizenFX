@@ -38,6 +38,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ClosedCallback(IntPtr dataChanndelHandle, IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void BufferedAmountLowThresholdCallback(IntPtr dataChanndelHandle, IntPtr userData);
+
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create_data_channel")]
         internal static extern WebRTCErrorCode Create(IntPtr handle, string label, SafeBundleHandle bundle, out IntPtr dataChanndelHandle);
@@ -56,6 +59,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_data")]
         internal static extern WebRTCErrorCode GetData(IntPtr byteDataHandle, out IntPtr data, out ulong size);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_data_channel_get_buffered_amount")]
+        internal static extern WebRTCErrorCode GetBufferedAmount(IntPtr handle, out uint amount);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_data_channel_get_buffered_amount_low_threshold")]
+        internal static extern WebRTCErrorCode GetBufferedAmountLowThreshold(IntPtr handle, out uint threshold);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_data_channel_cb")]
         internal static extern WebRTCErrorCode SetCreatedByPeerCb(IntPtr handle, CreatedCallback callback, IntPtr userData = default);
@@ -86,5 +95,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_data_channel_unset_close_cb")]
         internal static extern WebRTCErrorCode UnsetClosedCb(IntPtr handle);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_data_channel_set_buffered_amount_low_cb")]
+        internal static extern WebRTCErrorCode SetBufferedAmountLowThresholdCb(IntPtr handle, uint threshold, BufferedAmountLowThresholdCallback callback,
+            IntPtr userData = default);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_data_channel_unset_buffered_amount_low_cb")]
+        internal static extern WebRTCErrorCode UnsetBufferedAmountLowThresholdCb(IntPtr handle);
     }
 }
