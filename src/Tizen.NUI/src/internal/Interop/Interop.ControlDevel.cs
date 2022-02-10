@@ -384,10 +384,15 @@ namespace Tizen.NUI
                 public delegate bool AccessibilityDeselectChild(IntPtr self, int childIndex);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityDeselectChild DeselectChild; // 35
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate uint AccessibilityGetInterfaces(IntPtr self);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetInterfaces GetInterfaces; // 36
             }
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_SetAccessibilityConstructor_NUI")]
-            public static extern void DaliToolkitDevelControlSetAccessibilityConstructor(HandleRef arg1_self, int arg2_role, int arg3_iface);
+            public static extern void DaliToolkitDevelControlSetAccessibilityConstructor(HandleRef arg1_self, int arg2_role);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_DuplicateString")]
             public static extern IntPtr DaliAccessibilityDuplicateString(string arg);
