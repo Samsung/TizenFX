@@ -24,6 +24,9 @@ namespace Tizen.NUI.BaseComponents
     {
         private static AccessibilityStates AccessibilityInitialStates = new AccessibilityStates();
 
+        // To be removed when native C# AT-SPI interfaces are implemented.
+        private uint? AtspiInterfaceFlags = null;
+
         private static void RegisterAccessibilityDelegate()
         {
             InitializeAccessibilityDelegateAccessibleInterface();
@@ -68,6 +71,7 @@ namespace Tizen.NUI.BaseComponents
 
             ad.CalculateStates = AccessibilityCalculateStatesWrapper;
             ad.GetDescription  = AccessibilityGetDescriptionWrapper;
+            ad.GetInterfaces   = AccessibilityGetInterfaces; // Not a wrapper, entirely private implementation
             ad.GetName         = AccessibilityGetNameWrapper;
         }
 
@@ -91,6 +95,29 @@ namespace Tizen.NUI.BaseComponents
             string description = GetViewFromRefObject(self).AccessibilityGetDescription();
 
             return DuplicateString(description);
+        }
+
+        private static uint AccessibilityGetInterfaces(IntPtr self)
+        {
+            // Currently a maximum of one AccessibilityInterface per View is supported.
+            // This will change when we implement AT-SPI interfaces as native C# interfaces.
+            // Then, this method will look like:
+            //
+            // uint flags = 0U;
+            // if (view is IAtspiSelection) flags |= (1U << (int)AccessibilityInterface.Selection)
+            // if (view is IAtspiValue) flags |= (1U << (int)AccessibilityInterface.Value)
+            // ...
+            // return flags;
+
+            View view = GetViewFromRefObject(self);
+
+            if (!view.AtspiInterfaceFlags.HasValue)
+            {
+                NUILog.Error("AtspiInterfaceFlags are not set!");
+                return 0U;
+            }
+
+            return view.AtspiInterfaceFlags.Value;
         }
 
         private static IntPtr AccessibilityGetNameWrapper(IntPtr self)
