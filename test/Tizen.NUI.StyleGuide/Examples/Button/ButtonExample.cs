@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,11 +22,11 @@ using Tizen.NUI.Components;
 
 namespace Tizen.NUI.StyleGuide
 {
+    // IExample inehrited class will be automatically added in the main examples list.
     internal class ButtonExample : IExample
     {
         private Window window;
         private ContentPage examplePage;
-
         public void Activate()
         {
             Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Activate()");
@@ -50,17 +50,22 @@ namespace Tizen.NUI.StyleGuide
             window = null;
         }
 
+        /// Modify this method for adding other examples.
         private void DecorateExamplePage()
         {
+            // Navigator bar title is added here.
             examplePage.AppBar = new AppBar()
             {
                 Title = "Button Default Style",
             };
 
-            var exampleContent = new View()
+            // Example root content view.
+            // you can decorate, add children on this view.
+            var rootContent = new View()
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
+
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
@@ -70,6 +75,8 @@ namespace Tizen.NUI.StyleGuide
                 },
             };
 
+            // Button style examples.
+
             var enabledButton = new Button()
             {
                 Text = "Enabled"
@@ -78,7 +85,7 @@ namespace Tizen.NUI.StyleGuide
             {
                 Tizen.Log.Info("ButtonExample", "Enabled Button Clicked\n");
             };
-            exampleContent.Add(enabledButton);
+            rootContent.Add(enabledButton);
 
             var disabledButton = new Button()
             {
@@ -91,7 +98,7 @@ namespace Tizen.NUI.StyleGuide
                 Tizen.Log.Fatal("ButtonExample", "Disabled Button Clicked\n");
 
             };
-            exampleContent.Add(disabledButton);
+            rootContent.Add(disabledButton);
 
             var selectableButton = new Button()
             {
@@ -113,9 +120,9 @@ namespace Tizen.NUI.StyleGuide
                     }
                 }
             };
-            exampleContent.Add(selectableButton);
+            rootContent.Add(selectableButton);
 
-            examplePage.Content = exampleContent;
+            examplePage.Content = rootContent;
         }
     }
 }
