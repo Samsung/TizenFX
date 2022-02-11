@@ -12,29 +12,13 @@
         <DebugType>None</DebugType>
     </PropertyGroup>
 
-
-  <ItemGroup>
-    <EmbeddedResource Include="Examples\**\*.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
   <ItemGroup>
     <Folder Include="lib\" />
   </ItemGroup>
-
-
-    <ItemGroup>
-        <PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.32" />
-    </ItemGroup>
 
     <ItemGroup>
         <ProjectReference Include="../../src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
         <ProjectReference Include="../../src/Tizen.NUI/Tizen.NUI.csproj" />
     </ItemGroup>
-
-    <PropertyGroup>
-        <NeedInjection>False</NeedInjection>
-    </PropertyGroup>
 
 </Project>
