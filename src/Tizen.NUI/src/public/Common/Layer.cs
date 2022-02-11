@@ -462,6 +462,9 @@ namespace Tizen.NUI
             var parentChildren = window?.LayersChildren;
             if (parentChildren != null)
             {
+                //ToDo: need check whether BorderWindow
+                if (window.IsBorderEnabled) { }
+
                 int currentIdx = parentChildren.IndexOf(this);
 
                 if (currentIdx >= 0 && currentIdx < parentChildren.Count - 1)
@@ -481,6 +484,9 @@ namespace Tizen.NUI
             var parentChildren = window?.LayersChildren;
             if (parentChildren != null)
             {
+                //ToDo: need check whether BorderWindow
+                if (window.IsBorderEnabled) { }
+
                 int currentIdx = parentChildren.IndexOf(this);
 
                 if (currentIdx > 0 && currentIdx < parentChildren.Count)
@@ -519,6 +525,9 @@ namespace Tizen.NUI
 
             if (parentChildren != null)
             {
+                //ToDo: need check whether BorderWindow
+                if (window.IsBorderEnabled) { }
+
                 parentChildren.Remove(this);
                 parentChildren.Insert(0, this);
 

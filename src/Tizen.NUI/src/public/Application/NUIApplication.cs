@@ -39,6 +39,9 @@ namespace Tizen.NUI
         private static System.Resources.ResourceManager resourceManager = null;
         private static string currentLoadedXaml = null;
 
+        private bool borderEnabled = false;
+        // private Window.BorderStyle borderStyle;
+
         /// <summary>
         /// Xaml loaded delegate.
         /// </summary>
@@ -277,6 +280,26 @@ namespace Tizen.NUI
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool BorderEnabled
+        {
+            get
+            {
+                return borderEnabled;
+            }
+            set
+            {
+                borderEnabled = value;
+            }
+        }
+
+        // [EditorBrowsable(EditorBrowsableState.Never)]
+        // public void SetBorderStyle(Window.BorderStyle style)
+        // {
+        //     borderEnabled = true;
+        //     borderStyle = style;
+        // }
+
         /// <summary>
         /// Gets the window instance.
         /// </summary>
@@ -454,6 +477,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreCreate()
         {
+            if (borderEnabled)
+            {
+                // GetDefaultWindow().EnableBorderWindow(borderStyle);
+            }
         }
 
         /// <summary>
