@@ -1076,7 +1076,7 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void FeedKey(Key keyEvent)
         {
-            Interop.Window.FeedKeyEvent(Key.getCPtr(keyEvent));
+            Interop.Window.FeedKeyEvent(SwigCPtr, Key.getCPtr(keyEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1085,10 +1085,9 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="touchPoint">The touch point to feed.</param>
         /// <param name="timeStamp">The timeStamp.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal void FeedTouch(TouchPoint touchPoint, int timeStamp)
         {
-            Interop.Window.FeedTouchPoint(TouchPoint.getCPtr(touchPoint), timeStamp);
+            Interop.Window.FeedTouchPoint(SwigCPtr, TouchPoint.getCPtr(touchPoint), timeStamp);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1096,10 +1095,9 @@ namespace Tizen.NUI
         /// Feeds a wheel event into the window.
         /// </summary>
         /// <param name="wheelEvent">The wheel event to feed.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         internal void FeedWheel(Wheel wheelEvent)
         {
-            Interop.Window.FeedWheelEvent(Wheel.getCPtr(wheelEvent));
+            Interop.Window.FeedWheelEvent(SwigCPtr, Wheel.getCPtr(wheelEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
