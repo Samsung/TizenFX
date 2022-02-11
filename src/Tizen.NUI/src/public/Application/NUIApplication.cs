@@ -39,6 +39,9 @@ namespace Tizen.NUI
         private static System.Resources.ResourceManager resourceManager = null;
         private static string currentLoadedXaml = null;
 
+        private bool borderEnabled = false;
+        private BorderInterface borderWindow = null;
+
         /// <summary>
         /// Xaml loaded delegate.
         /// </summary>
@@ -278,6 +281,33 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// If set to true, borderWindow can be used for MainWindow of Application.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool BorderEnabled
+        {
+            get
+            {
+                return borderEnabled;
+            }
+            set
+            {
+                borderEnabled = value;
+            }
+        }
+
+        /// <summary>
+        /// By implementing and setting a BorderInterface, you can use a BorderWindow for the MainWindow and use the CustomBorderUI through the BorderInterface.
+        /// </summary>
+        /// <param name="borderInterface"><see cref="Tizen.NUI.BorderInterface"/></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetBorderInterface(BorderInterface borderInterface)
+        {
+            borderEnabled = true;
+            borderWindow = borderInterface;
+        }
+
+        /// <summary>
         /// Gets the window instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -454,6 +484,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreCreate()
         {
+            if (borderEnabled)
+            {
+                GetDefaultWindow().EnableBorderWindow(borderWindow);
+            }
         }
 
         /// <summary>

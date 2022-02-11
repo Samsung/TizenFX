@@ -458,8 +458,9 @@ namespace Tizen.NUI
             if (parentChildren != null)
             {
                 int currentIdx = parentChildren.IndexOf(this);
+                int idx = window.IsBorderEnabled ? 1 : 0;
 
-                if (currentIdx > 0 && currentIdx < parentChildren.Count)
+                if (currentIdx > idx && currentIdx < parentChildren.Count)
                 {
                     var low = parentChildren[currentIdx - 1];
                     LowerBelow(low);
@@ -499,6 +500,14 @@ namespace Tizen.NUI
                 parentChildren.Insert(0, this);
 
                 Interop.Layer.LowerToBottom(SwigCPtr);
+
+                if (window.IsBorderEnabled)
+                {
+                    Layer bottomLayer = window.GetBorderWindowBottomLayer();
+                    parentChildren.Remove(bottomLayer);
+                    parentChildren.Insert(0, bottomLayer);
+                    Interop.Layer.LowerToBottom(Layer.getCPtr(bottomLayer));
+                }
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -754,7 +763,16 @@ namespace Tizen.NUI
 
                 if (window != null)
                 {
-                    window.LayoutController.LayoutCount += diff;
+                    int temp = window.LayoutController.LayoutCount;
+                    temp += diff;
+                    if(temp < 0)
+                    {
+                        window.LayoutController.LayoutCount = 0;
+                    }
+                    else
+                    {
+                        window.LayoutController.LayoutCount += diff;
+                    }
                 }
             }
         }
