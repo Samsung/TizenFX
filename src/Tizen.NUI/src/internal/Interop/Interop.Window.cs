@@ -182,6 +182,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_FeedKeyEvent")]
             public static extern void FeedKeyEvent(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_FeedTouchPoint")]
+            public static extern void FeedTouchPoint(global::System.Runtime.InteropServices.HandleRef touchPoint, int timeStamp);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_FeedWheelEvent")]
+            public static extern void FeedWheelEvent(global::System.Runtime.InteropServices.HandleRef wheelEvent);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Adaptor_RenderOnce")]
             public static extern void RenderOnce(global::System.Runtime.InteropServices.HandleRef jarg1);
 
