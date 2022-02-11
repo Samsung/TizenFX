@@ -1032,7 +1032,6 @@ namespace Tizen.NUI.BaseComponents
 
             Children.Remove(child);
             child.InternalParent = null;
-            LayoutCount -= child.LayoutCount;
 
             RemoveChildBindableObject(child);
 
