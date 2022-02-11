@@ -641,6 +641,11 @@ namespace Tizen.NUI.WebViewTest
             }
         }
 
+        private void OnJavaScriptEvaluated(string message)
+        {
+            Log.Info("WebView", $"------------javascript evaluation result: {message}-------");
+        }
+
         private void OnJavaScriptAlert(string message)
         {
             Log.Info("WebView", $"------------javascript alert {message}-------");
@@ -850,6 +855,7 @@ namespace Tizen.NUI.WebViewTest
                         //simpleWebView.ClearAllTilesResources();
                         //simpleWebView.ClearHistory();
                         simpleWebView.EvaluateJavaScript("document.body.style.backgroundColor='yellow';");
+                        simpleWebView.EvaluateJavaScript("document.body.innerHTML", OnJavaScriptEvaluated);
                         Log.Info("WebView", $"web view, ScaleFactor is {simpleWebView.GetScaleFactor()}");
 
                         //Rectangle viewArea = new Rectangle(0, 0, 20, 20);
