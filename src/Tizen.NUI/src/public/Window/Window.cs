@@ -1081,6 +1081,29 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Feeds a touch point into the window.
+        /// </summary>
+        /// <param name="touchPoint">The touch point to feed.</param>
+        /// <param name="timeStamp">The timeStamp.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal void FeedTouch(TouchPoint touchPoint, int timeStamp)
+        {
+            Interop.Window.FeedTouchPoint(TouchPoint.getCPtr(touchPoint), timeStamp);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Feeds a wheel event into the window.
+        /// </summary>
+        /// <param name="wheelEvent">The wheel event to feed.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal void FeedWheel(Wheel wheelEvent)
+        {
+            Interop.Window.FeedWheelEvent(Wheel.getCPtr(wheelEvent));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Allows at least one more render, even when paused.
         /// The window should be shown, not minimised.
         /// </summary>
