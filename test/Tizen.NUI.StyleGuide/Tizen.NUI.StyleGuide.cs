@@ -170,24 +170,24 @@ namespace Tizen.NUI.StyleGuide
         private Navigator navigator;
         private CollectionView colView;
         private ItemSelectionMode selMode;
-        private IExample currentExample = null;
         private ContentPage page;
         private SearchField field;
         private List<ControlMenu> testSource;
 
         public void OnKeyEvent(object sender, Window.KeyEventArgs e)
         {
+            // FIXME:: Navigator should provide Back/Escape event processing.
             if (e.Key.State == Key.StateType.Up)
             {
                 if (e.Key.KeyPressedName == "Escape" || e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "BackSpace")
                 {
-                    if (null != currentExample)
+                    if (navigator == null) return;
+
+                    ExitSample();
+
+                    if (navigator.PageCount == 0)
                     {
-                        ExitSample();
-                    }
-                    else
-                    {
-                        Exit();
+                         Exit();
                     }
                 }
             }
@@ -197,40 +197,14 @@ namespace Tizen.NUI.StyleGuide
         {
             Console.WriteLine($"@@@ OnSelectionChanged() {ev.CurrentSelection}");
 
-            foreach (object item in ev.CurrentSelection)
-            {
-                if (item == null)
-                {
-                    break;
-                }
+            if (ev.CurrentSelection.Count == 0) return;
 
-                var selItem = item as ControlMenu;
+            if (ev.CurrentSelection[0] is ControlMenu selItem)
+            {
                 Console.WriteLine($"@@@ selItem.Name={selItem.Name}, selItem.FullName={selItem.FullName}");
                 RunSample(selItem?.FullName);
-                colView.SelectedItem = null;
             }
-
-            /* Use the following code when it is actually required.
-            foreach (object item in ev.PreviousSelection)
-            {
-                if (item == null)
-                {
-                    break;
-                }
-
-                var unselItem = item as ControlMenu;
-            }
-
-            foreach (object item in ev.CurrentSelection)
-            {
-                if (item == null)
-                {
-                    break;
-                }
-
-                var selItem = item as ControlMenu;
-            }
-            */
+            colView.SelectedItem = null;
         }
 
         protected override void OnCreate()
@@ -342,20 +316,26 @@ namespace Tizen.NUI.StyleGuide
             if (example != null)
             {
                 example.Activate();
+                if (example is Page examplePage)
+                {
+                    navigator.Push((examplePage));
+                }
             }
             else
             {
                 Console.WriteLine($"@@@ examle is null!");
             }
-            currentExample = example;
         }
 
         private void ExitSample()
         {
-            currentExample?.Deactivate();
-            currentExample = null;
+            if (navigator.Peek() is IExample currentExample)
+            {
+                currentExample.Deactivate();
+            }
 
-            FullGC();
+            navigator.Pop();
+            // FullGC();
         }
 
         private void FullGC()
