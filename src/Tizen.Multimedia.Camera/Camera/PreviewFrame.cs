@@ -27,6 +27,8 @@ namespace Tizen.Multimedia
     /// <since_tizen> 4 </since_tizen>
     public class PreviewFrame
     {
+        private const uint _variableBufferMargin = 2;
+
         internal PreviewFrame(IntPtr ptr, ref PinnedPreviewBuffer<byte> buffers)
         {
             var unmanagedStruct = Marshal.PtrToStructure<CameraPreviewDataStruct>(ptr);
@@ -74,7 +76,7 @@ namespace Tizen.Multimedia
                 case PlaneType.SinglePlane:
                     var singlePlane = unmanagedStruct.Plane.SinglePlane;
 
-                    if (buffers == null)
+                    if (buffers == null || CheckReallocation(unmanagedStruct, ref buffers))
                     {
                         buffers = new PinnedPreviewBuffer<byte>(singlePlane.DataLength);
                     }
@@ -89,7 +91,7 @@ namespace Tizen.Multimedia
                     doublePlane.YLength = (uint)(Resolution.Width * Resolution.Height);
                     doublePlane.UVLength = (uint)(Resolution.Width * Resolution.Height) / 2;
 
-                    if (buffers == null)
+                    if (buffers == null || CheckReallocation(unmanagedStruct, ref buffers))
                     {
                         buffers = new PinnedPreviewBuffer<byte>(doublePlane.YLength, doublePlane.UVLength);
                     }
@@ -102,7 +104,7 @@ namespace Tizen.Multimedia
                 case PlaneType.TriplePlane:
                     var triplePlane = unmanagedStruct.Plane.TriplePlane;
 
-                    if (buffers == null)
+                    if (buffers == null || CheckReallocation(unmanagedStruct, ref buffers))
                     {
                         buffers = new PinnedPreviewBuffer<byte>(triplePlane.YLength, triplePlane.ULength, triplePlane.VLength);
                     }
@@ -116,9 +118,10 @@ namespace Tizen.Multimedia
                 case PlaneType.EncodedPlane:
                     var encodedPlane = unmanagedStruct.Plane.EncodedPlane;
 
-                    if (buffers == null)
+                    if (buffers == null || CheckReallocation(unmanagedStruct, ref buffers))
                     {
-                        buffers = new PinnedPreviewBuffer<byte>(encodedPlane.DataLength * 2);
+                        // We take buffer margin to avoid reallocation as much as possible.
+                        buffers = new PinnedPreviewBuffer<byte>(encodedPlane.DataLength * _variableBufferMargin);
                     }
 
                     Marshal.Copy(encodedPlane.Data, buffers[0], 0, (int)encodedPlane.DataLength);
@@ -128,7 +131,7 @@ namespace Tizen.Multimedia
                 case PlaneType.DepthPlane:
                     var depthPlane = unmanagedStruct.Plane.DepthPlane;
 
-                    if (buffers == null)
+                    if (buffers == null || CheckReallocation(unmanagedStruct, ref buffers))
                     {
                         buffers = new PinnedPreviewBuffer<byte>(depthPlane.DataLength);
                     }
@@ -140,7 +143,7 @@ namespace Tizen.Multimedia
                 case PlaneType.RgbPlane:
                     var rgbPlane = unmanagedStruct.Plane.RgbPlane;
 
-                    if (buffers == null)
+                    if (buffers == null || CheckReallocation(unmanagedStruct, ref buffers))
                     {
                         buffers = new PinnedPreviewBuffer<byte>(rgbPlane.DataLength);
                     }
@@ -185,6 +188,86 @@ namespace Tizen.Multimedia
             }
 
             return size;
+        }
+
+        internal bool CheckReallocation(CameraPreviewDataStruct unmanagedStruct, ref PinnedPreviewBuffer<byte> buffers)
+        {
+            bool isReallocation = false;
+
+            switch (PlaneType)
+            {
+                case PlaneType.SinglePlane:
+                    var singlePlane = unmanagedStruct.Plane.SinglePlane;
+
+                    if (buffers[0].Length < singlePlane.DataLength)
+                    {
+                        isReallocation = true;
+                    }
+
+                    break;
+                case PlaneType.DoublePlane:
+                    var doublePlane = unmanagedStruct.Plane.DoublePlane;
+
+                    doublePlane.YLength = (uint)(Resolution.Width * Resolution.Height);
+                    doublePlane.UVLength = (uint)(Resolution.Width * Resolution.Height) / 2;
+
+                    if (buffers[0].Length < doublePlane.YLength || buffers[1].Length < doublePlane.UVLength)
+                    {
+                        isReallocation = true;
+                    }
+
+                    break;
+                case PlaneType.TriplePlane:
+                    var triplePlane = unmanagedStruct.Plane.TriplePlane;
+
+                    if (buffers[0].Length < triplePlane.YLength || buffers[1].Length < triplePlane.ULength || buffers[2].Length < triplePlane.VLength)
+                    {
+                        isReallocation = true;
+                    }
+
+                    break;
+                case PlaneType.EncodedPlane:
+                    var encodedPlane = unmanagedStruct.Plane.EncodedPlane;
+
+                    if (buffers[0].Length < encodedPlane.DataLength)
+                    {
+                        Log.Debug(CameraLog.Tag, $"Cur size:{buffers[0].Length} -> New size:{encodedPlane.DataLength * _variableBufferMargin}");
+                        isReallocation = true;
+                    }
+
+                    break;
+                case PlaneType.DepthPlane:
+                    var depthPlane = unmanagedStruct.Plane.DepthPlane;
+
+                    if (buffers[0].Length < depthPlane.DataLength)
+                    {
+                        isReallocation = true;
+                    }
+
+                    break;
+                case PlaneType.RgbPlane:
+                    var rgbPlane = unmanagedStruct.Plane.RgbPlane;
+
+                    if (buffers[0].Length < rgbPlane.DataLength)
+                    {
+                        isReallocation = true;
+                    }
+
+                    break;
+                default:
+                    Debug.Fail("Unknown preview data!");
+                    break;
+            }
+
+            if (isReallocation)
+            {
+                Log.Debug(CameraLog.Tag, "Reallocate preview buffer.");
+
+                // Dispose current buffer to free GCHandle.
+                buffers.Dispose();
+            }
+
+            return isReallocation;
         }
 
         /// <summary>
