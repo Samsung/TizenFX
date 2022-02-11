@@ -776,7 +776,11 @@ namespace Tizen.NUI
         /// <remarks>
         /// See <see cref="NUIApplication" /> for this type. <br />
         /// </remarks>
-        Ime
+        Ime,
+        /// <summary>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Border,
     }
 
     /// <since_tizen> 3 </since_tizen>
