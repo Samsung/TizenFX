@@ -142,10 +142,15 @@ namespace Tizen.NUI.BaseComponents
             using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
             signal?.Connect(onWindowSendEventCallback);
 
+            hitTestResultDataCallback = OnHitTestResult;
+            using TouchDataSignal touchDataSignal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(SwigCPtr), false);
+            touchDataSignal?.Connect(hitTestResultDataCallback);
+
             if (!shown)
             {
                 SetVisible(false);
             }
+
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
@@ -3151,7 +3156,20 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-
+        /// <summary>
+        /// Called when the view is hit through TouchEvent or GestureEvent.
+        /// If it returns true, it means that it was hit, and the touch/gesture event is called from the view.
+        /// If it returns false, it means that it will not be hit, and the hit-test continues to the next view.
+        /// User can override whether hit or not in HitTest.
+        /// You can get the coordinates relative to tthe top-left of the hit view by touch.GetLocalPosition(0).
+        /// or you can get the coordinates relative to the top-left of the screen by touch.GetScreenPosition(0).
+        /// </summary>
+        // <param name="touch"><see cref="Tizen.NUI.Touch"/>The touch data</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool HitTest(Touch touch)
+        {
+            return true;
+        }
 
 
     }

@@ -1316,6 +1316,16 @@ namespace Tizen.NUI.BaseComponents
                 hoverEventCallback = null;
             }
 
+            if (hitTestResultDataCallback != null)
+            {
+                NUILog.Debug($"[Dispose] hitTestResultDataCallback");
+
+                using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(hitTestResultDataCallback);
+                hitTestResultDataCallback = null;
+            }
+
+
             if (interceptTouchDataCallback != null)
             {
                 NUILog.Debug($"[Dispose] interceptTouchDataCallback");
