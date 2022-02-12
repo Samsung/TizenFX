@@ -43,6 +43,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_ActorSignal")]
             public static extern void DeleteActorSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_HitTestResultSignal")]
+            public static extern global::System.IntPtr ActorHitTestResultSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InterceptTouchSignal")]
             public static extern global::System.IntPtr ActorInterceptTouchSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
