@@ -33,6 +33,8 @@ namespace Tizen.NUI.BaseComponents
         private WheelEventCallbackType wheelEventCallback;
         private EventHandlerWithReturnType<object, KeyEventArgs, bool> keyEventHandler;
         private KeyCallbackType keyCallback;
+        private EventHandlerWithReturnType<object, TouchEventArgs, bool> hitTestResultDataEventHandler;
+        private TouchDataCallbackType hitTestResultDataCallback;
         private EventHandlerWithReturnType<object, TouchEventArgs, bool> interceptTouchDataEventHandler;
         private TouchDataCallbackType interceptTouchDataCallback;
         private EventHandlerWithReturnType<object, TouchEventArgs, bool> touchDataEventHandler;
@@ -246,6 +248,38 @@ namespace Tizen.NUI.BaseComponents
                         if (signal?.Empty() == true)
                         {
                             onRelayoutEventCallback = null;
+                        }
+                    }
+                }
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandlerWithReturnType<object, TouchEventArgs, bool> HitTestResult
+        {
+            add
+            {
+                if (hitTestResultDataEventHandler == null)
+                {
+                    hitTestResultDataCallback = OnHitTestResult;
+                    using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(SwigCPtr), false);
+                    signal?.Connect(hitTestResultDataCallback);
+                }
+                hitTestResultDataEventHandler += value;
+            }
+
+            remove
+            {
+                hitTestResultDataEventHandler -= value;
+                if (hitTestResultDataEventHandler == null)
+                {
+                    using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(SwigCPtr), false);
+                    if (signal?.Empty() == false)
+                    {
+                        signal?.Disconnect(hitTestResultDataCallback);
+                        if (signal?.Empty() == true)
+                        {
+                            hitTestResultDataCallback = null;
                         }
                     }
                 }
@@ -660,6 +694,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        internal TouchDataSignal HitTestResultSignal()
+        {
+            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal TouchDataSignal InterceptTouchSignal()
         {
             TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(SwigCPtr), false);
@@ -925,6 +967,23 @@ namespace Tizen.NUI.BaseComponents
             {
                 onRelayoutEventHandler(this, null);
             }
+        }
+
+        // Callback for View HitTestResultSignal
+        private bool OnHitTestResult(IntPtr view, IntPtr touchData)
+        {
+            bool hitted = true;
+
+            TouchEventArgs e = new TouchEventArgs();
+
+            e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
+
+            if (hitTestResultDataEventHandler != null)
+            {
+                hitted = hitTestResultDataEventHandler(this, e);
+            }
+
+            return hitted;
         }
 
         // Callback for View TouchSignal
