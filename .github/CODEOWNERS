@@ -15,6 +15,7 @@
 /test/Tizen.NUI.ComponentApplication/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
 /test/Tizen.NUI.Samples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
 /test/Tizen.NUI.SeamlessSamples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
+/test/Tizen.NUI.StyleGuide/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
 /test/Tizen.NUI.Tests/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
 /test/Tizen.NUI.WebViewTest/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
 /test/Tizen.NUI.WindowSystem.Samples/ @hyunjushin @dongsug-song @Seoyeon2Kim @taehyub @jaehyun0cho @everLEEst
