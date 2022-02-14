@@ -373,6 +373,15 @@ namespace Tizen.NUI.Xaml
             Exception xpe = null;
             var xKey = node is IElementNode && ((IElementNode)node).Properties.ContainsKey(XmlName.xKey) ? ((ValueNode)((IElementNode)node).Properties[XmlName.xKey]).Value as string : null;
 
+            if (xpe == null
+                &&
+                propertyName.LocalName.Contains(".")
+                &&
+                SetIteratorProperty(xamlelement, propertyName, value, rootElement, node, context, lineInfo))
+            {
+                return;
+            }
+
             //If it's an attached BP, update elementType and propertyName
             var bpOwnerType = xamlelement.GetType();
             var attached = GetRealNameAndType(ref bpOwnerType, propertyName.NamespaceURI, ref localName, context, lineInfo);
@@ -799,6 +808,46 @@ namespace Tizen.NUI.Xaml
             SetPropertyValue(source, new XmlName("", runTimeName.Name), value, Context.RootElement, node, Context, node);
             return true;
         }
+
+        private static bool SetIteratorProperty(object xamlelement, XmlName propertyName, object value, object rootElement, INode node, HydrationContext context, IXmlLineInfo lineInfo)
+        {
+            var index = propertyName.LocalName.IndexOf('.');
+
+            if (0 < index)
+            {
+                var currentPropertyName = propertyName.LocalName.Substring(0, index);
+                var remainPropertyName = propertyName.LocalName.Substring(index + 1);
+
+                var property = xamlelement.GetType().GetProperty(currentPropertyName);
+
+                if (null != property && null != property.GetMethod)
+                {
+                    var instanceOfProperty = property.GetMethod.Invoke(xamlelement, new object[] { });
+                    return SetIteratorProperty(instanceOfProperty, new XmlName(propertyName.NamespaceURI, remainPropertyName), value, rootElement, node, context, lineInfo);
+                }
+                else
+                {
+                    var xmlType = new XmlType(propertyName.NamespaceURI, currentPropertyName, null);
+                    XamlParseException xpe;
+                    var type = XamlParser.GetElementType(xmlType, lineInfo, context.RootElement?.GetType().GetTypeInfo().Assembly, out xpe);
+
+                    if (type.IsAssignableFrom(xamlelement.GetType()))
+                    {
+                        return SetIteratorProperty(xamlelement, new XmlName(propertyName.NamespaceURI, remainPropertyName), value, rootElement, node, context, lineInfo);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                SetPropertyValue(xamlelement, propertyName, value, rootElement, node, context, lineInfo);
+                return true;
+            }
+        }
+
 
         private PropertyInfo GetIndexer(object source, Type keyType, Type valueType) => source.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).FirstOrDefault(p => p.Name == "Item" && p.PropertyType.IsAssignableFrom(valueType) && p.GetIndexParameters().Length != 0 && p.GetIndexParameters()[0].ParameterType == keyType);
     }
