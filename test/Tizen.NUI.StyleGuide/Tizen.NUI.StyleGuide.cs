@@ -179,6 +179,7 @@ namespace Tizen.NUI.StyleGuide
             // FIXME:: Navigator should provide Back/Escape event processing.
             if (e.Key.State == Key.StateType.Up)
             {
+                Log.Info("StyleGuide", $"[{e.Key.KeyPressedName}] is pressed!\n");
                 if (e.Key.KeyPressedName == "Escape" || e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "BackSpace")
                 {
                     if (navigator == null) return;

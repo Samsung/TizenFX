@@ -23,38 +23,28 @@ using Tizen.NUI.Components;
 namespace Tizen.NUI.StyleGuide
 {
     // IExample inehrited class will be automatically added in the main examples list.
-    internal class ButtonExample : IExample
+    internal class ButtonExample : ContentPage, IExample
     {
         private Window window;
-        private ContentPage examplePage;
         public void Activate()
         {
-            Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Activate()");
-
-            window = NUIApplication.GetDefaultWindow();
-
-            examplePage = new ContentPage()
-            {
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.MatchParent,
-            };
-            DecorateExamplePage();
-
-            window.GetDefaultNavigator().Push(examplePage);
+           Log.Info(this.GetType().Name, $"@@@ this.GetType().Name={this.GetType().Name}, Activate()\n");
         }
         public void Deactivate()
         {
-            Console.WriteLine($"@@@ this.GetType().Name={this.GetType().Name}, Deactivate()");
-            window.GetDefaultNavigator().Pop();
-            examplePage = null;
+            Log.Info(this.GetType().Name, $"@@@ this.GetType().Name={this.GetType().Name}, Deactivate()\n");
             window = null;
         }
 
         /// Modify this method for adding other examples.
-        private void DecorateExamplePage()
+        public ButtonExample() : base()
         {
+            Log.Info(this.GetType().Name, $"{this.GetType().Name} is contructed\n");
+
+            WidthSpecification = LayoutParamPolicies.MatchParent;
+            HeightSpecification = LayoutParamPolicies.MatchParent;
             // Navigator bar title is added here.
-            examplePage.AppBar = new AppBar()
+            AppBar = new AppBar()
             {
                 Title = "Button Default Style",
             };
@@ -83,7 +73,7 @@ namespace Tizen.NUI.StyleGuide
             };
             enabledButton.Clicked += (object obj, ClickedEventArgs ev) =>
             {
-                Tizen.Log.Info("ButtonExample", "Enabled Button Clicked\n");
+                Log.Info(this.GetType().Name, "Enabled Button Clicked\n");
             };
             rootContent.Add(enabledButton);
 
@@ -95,7 +85,7 @@ namespace Tizen.NUI.StyleGuide
             disabledButton.Clicked += (object obj, ClickedEventArgs ev) =>
             {
                 // This event should not be recieved. button is disabled.
-                Tizen.Log.Fatal("ButtonExample", "Disabled Button Clicked\n");
+                Log.Info(this.GetType().Name, "Disabled Button Clicked\n");
 
             };
             rootContent.Add(disabledButton);
@@ -107,7 +97,7 @@ namespace Tizen.NUI.StyleGuide
             };
             selectableButton.Clicked += (object obj, ClickedEventArgs ev) =>
             {
-                Tizen.Log.Info("ButtonExample", "Selected Button Clicked\n");
+                Log.Info(this.GetType().Name, "Selected Button Clicked\n");
                 if (obj is Button button)
                 {
                    if (button.IsSelected)
@@ -121,8 +111,7 @@ namespace Tizen.NUI.StyleGuide
                 }
             };
             rootContent.Add(selectableButton);
-
-            examplePage.Content = rootContent;
+            Content = rootContent;
         }
     }
 }

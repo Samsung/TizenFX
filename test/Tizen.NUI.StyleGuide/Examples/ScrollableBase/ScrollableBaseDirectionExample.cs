@@ -25,12 +25,15 @@ namespace Tizen.NUI.StyleGuide
     // IExample inehrited class will be automatically added in the main examples list.
     internal class ScrollableBaseDirectionExample : ContentPage
     {
+        int SCROLLMAX = 20;
         public ScrollableBaseDirectionExample(string dir)  : base()
         {
             Log.Info(this.GetType().Name, $"{this.GetType().Name} is contructed\n");
 
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
+
+            bool isHorizontal = (dir == "Horizontal");
 
             // Navigator bar title is added here.
             AppBar = new AppBar()
@@ -40,17 +43,46 @@ namespace Tizen.NUI.StyleGuide
 
             // Example root content view.
             // you can decorate, add children on this view.
-            var rootContent = new View()
+            var scrollView = new ScrollableBase()
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
-
-                Layout = new AbsoluteLayout(),
+                HideScrollbar = false,
             };
 
-            // Need to fill this area.
+            if (isHorizontal)
+            {
+                scrollView.ScrollingDirection = ScrollableBase.Direction.Horizontal;
+                scrollView.Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    CellPadding = new Size2D(10, 10),
+                };
+            }
+            else
+            {
+                scrollView.ScrollingDirection = ScrollableBase.Direction.Vertical;
+                scrollView.Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    CellPadding = new Size2D(10, 10),
+                };
+            }
 
-            Content = rootContent;
+            Random rnd = new Random();
+
+            for (int i = 0; i < SCROLLMAX; i++)
+            {
+                var colorView = new View();
+                colorView.WidthSpecification = (isHorizontal? 200 : LayoutParamPolicies.MatchParent);
+                colorView.HeightSpecification = (isHorizontal? LayoutParamPolicies.MatchParent : 200);
+                colorView.BackgroundColor = new Color((float)rnd.Next(256)/256f, (float)rnd.Next(256)/256f, (float)rnd.Next(256)/256f, 1);
+                scrollView.Add(colorView);
+            }
+
+            Content = scrollView;
         }
     }
 }

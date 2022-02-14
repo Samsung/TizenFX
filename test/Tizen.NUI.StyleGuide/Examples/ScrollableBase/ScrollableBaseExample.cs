@@ -51,23 +51,14 @@ namespace Tizen.NUI.StyleGuide
                 Title = "ScrollableBase Default Style",
             };
 
-            // Example root content view.
-            // you can decorate, add children on this view.
-            var rootContent = new View()
-            {
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.MatchParent,
-
-                Layout = new AbsoluteLayout(),
-            };
-
-            // ScrollableBase need two different style guide.
-            // so here we adding new CollectionView for 2-depth option.
-
             directionMenu = new List<DirectionOption>();
             directionMenu.Add(new DirectionOption("Vertical"));
             directionMenu.Add(new DirectionOption("Horizontal"));
 
+            // Example root content view.
+            // you can decorate, add children on this view.
+            // ScrollableBase need two different style guide.
+            // so here we adding new CollectionView for 2-depth option.
             var directionListView = new CollectionView()
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent,
@@ -99,9 +90,8 @@ namespace Tizen.NUI.StyleGuide
                 }
                 directionListView.SelectedItem = null;
             };
-            rootContent.Add(directionListView);
 
-            Content = rootContent;
+            Content = directionListView;
         }
     }
 
