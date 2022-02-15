@@ -465,8 +465,7 @@ namespace Tizen.NUI.BaseComponents
         {
             // We have to store the interface flags until we remove SetAccessibilityConstructor and switch to native C# interfaces
             AtspiInterfaceFlags = (1U << (int)accessibilityInterface);
-            Interop.ControlDevel.DaliToolkitDevelControlSetAccessibilityConstructor(SwigCPtr, (int)role);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            AccessibilityRole = role;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
