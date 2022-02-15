@@ -177,8 +177,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_SetHighlightActor")]
             public static extern void DaliAccessibilityAccessibleSetHighlightActor(global::System.Runtime.InteropServices.HandleRef arg1);
 
-            // SetAccessibilityConstructor
-
             // Keep this structure layout binary compatible with the respective C++ structure!
             [EditorBrowsable(EditorBrowsableState.Never)]
             [StructLayout(LayoutKind.Sequential)]
@@ -395,9 +393,6 @@ namespace Tizen.NUI
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetRangeExtents GetRangeExtents; // 37
             }
-
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_SetAccessibilityConstructor_NUI")]
-            public static extern void DaliToolkitDevelControlSetAccessibilityConstructor(HandleRef arg1_self, int arg2_role);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_DuplicateString")]
             public static extern IntPtr DaliAccessibilityDuplicateString(string arg);
