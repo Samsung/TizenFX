@@ -26,6 +26,67 @@ using System.Reflection;
 
 namespace Tizen.NUI.StyleGuide
 {
+
+    /// Helder static extension class for Focusable.
+    /// NUI default behavior is unfocusable in key or touch,
+    /// this class help to setting focusable features easily.
+    public static class FocusableExtension
+    {
+        public static FocusManager FocusManager;
+        public static void EnableFocus(this View view)
+        {
+            view.Focusable = true;
+            view.FocusableInTouch = true;
+        }
+
+        public static void EnableAutoFocusable()
+        {
+            FocusManager = FocusManager.Instance;
+            FocusManager.EnableDefaultAlgorithm(true);
+            FocusManager.FocusIndicator = new View()
+            {
+                PositionUsesPivotPoint = true,
+                PivotPoint = new Position(0, 0, 0),
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent,
+                BorderlineColor = Color.Orange,
+                BorderlineWidth = 4.0f,
+                BorderlineOffset = -1f,
+                BackgroundColor = new Color(0.2f, 0.2f, 0.2f, 0.2f),
+            };
+        }
+
+        public static void SetFocusOnPage(Page page)
+        {
+            View focusCandidate = null;
+            if (page == null) return;
+
+            if (page is ContentPage contentPage)
+            {
+                focusCandidate = contentPage.AppBar?.NavigationContent;
+                focusCandidate.Focusable = true;
+            }
+
+            if (focusCandidate == null)
+            {
+                foreach (View child in page.Children)
+                {
+                    if (child.Focusable)
+                    {
+                        focusCandidate = child;
+                    }
+                }
+            }
+
+            Log.Info("FocusableExtension", $"Focus candidate {focusCandidate}\n");
+
+            if (focusCandidate != null)
+            {
+                FocusManager.SetCurrentFocusView(focusCandidate);
+            }
+        }
+    }
+
     public class SearchField : View
     {
         public TextField SearchTextField;
@@ -47,12 +108,14 @@ namespace Tizen.NUI.StyleGuide
 
             var searchTextBox = CreateSearchText();
             SearchTextField = CreateTextField();
+            SearchTextField.EnableFocus();
             var underline = CreateUnderline();
 
             searchTextBox.Add(SearchTextField);
             searchTextBox.Add(underline);
 
             SearchButton = CreateSearchButton();
+            SearchButton.EnableFocus();
 
             Add(searchTextBox);
             Add(SearchButton);
@@ -173,6 +236,7 @@ namespace Tizen.NUI.StyleGuide
         private ContentPage page;
         private SearchField field;
         private List<ControlMenu> testSource;
+        private FocusManager focusManager;
 
         public void OnKeyEvent(object sender, Window.KeyEventArgs e)
         {
@@ -220,7 +284,14 @@ namespace Tizen.NUI.StyleGuide
             window.Title = "NUI Style Guide";
             window.KeyEvent += OnKeyEvent;
 
+            FocusableExtension.EnableAutoFocusable();
+
             navigator = window.GetDefaultNavigator();
+            navigator.Popped += (object obj, PoppedEventArgs ev) =>
+            {
+                Page top = navigator.Peek();
+                FocusableExtension.SetFocusOnPage(top);
+            };
         }
 
         void OnSearchBtnClicked(object sender, ClickedEventArgs e)
@@ -248,6 +319,7 @@ namespace Tizen.NUI.StyleGuide
             var appBarStyle = ThemeManager.GetStyle("Tizen.NUI.Components.AppBar");
             var moreButton = new Button(((AppBarStyle)appBarStyle).BackButton);
             moreButton.Icon.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "menu.png";
+            moreButton.EnableFocus();
             appBar.NavigationContent = moreButton;
 
 
@@ -287,6 +359,7 @@ namespace Tizen.NUI.StyleGuide
                     };
                     item.Label.SetBinding(TextLabel.TextProperty, "ViewLabel");
                     item.Label.HorizontalAlignment = HorizontalAlignment.Begin;
+                    item.EnableFocus();
                     return item;
                 }),
                 Header = myTitle,
@@ -305,12 +378,16 @@ namespace Tizen.NUI.StyleGuide
                 AppBar = appBar,
                 Content = pageContent,
             };
+            page.Focusable = true;
+
             navigator.Push(page);
+            FocusableExtension.SetFocusOnPage(page);
         }
 
         private void RunSample(string name)
         {
             IExample example = typeof(Program).Assembly?.CreateInstance(name) as IExample;
+
 
             Console.WriteLine($"@@@ typeof(Program).Assembly={typeof(Program).Assembly}, name={name}");
 
@@ -319,7 +396,9 @@ namespace Tizen.NUI.StyleGuide
                 example.Activate();
                 if (example is Page examplePage)
                 {
-                    navigator.Push((examplePage));
+                    examplePage.Focusable = true;
+                    navigator.Push(examplePage);
+                    FocusableExtension.SetFocusOnPage(examplePage);
                 }
             }
             else

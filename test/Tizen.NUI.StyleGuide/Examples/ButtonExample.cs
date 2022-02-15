@@ -71,6 +71,7 @@ namespace Tizen.NUI.StyleGuide
             {
                 Text = "Enabled"
             };
+            enabledButton.EnableFocus();
             enabledButton.Clicked += (object obj, ClickedEventArgs ev) =>
             {
                 Log.Info(this.GetType().Name, "Enabled Button Clicked\n");
@@ -95,6 +96,7 @@ namespace Tizen.NUI.StyleGuide
                 Text = "Unselected",
                 IsSelectable = true,
             };
+            selectableButton.EnableFocus();
             selectableButton.Clicked += (object obj, ClickedEventArgs ev) =>
             {
                 Log.Info(this.GetType().Name, "Selected Button Clicked\n");
