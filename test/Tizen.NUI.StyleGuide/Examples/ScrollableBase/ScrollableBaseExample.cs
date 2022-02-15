@@ -73,6 +73,7 @@ namespace Tizen.NUI.StyleGuide
                     };
                     item.Label.SetBinding(TextLabel.TextProperty, "Direction");
                     item.Label.HorizontalAlignment = HorizontalAlignment.Begin;
+                    item.EnableFocus();
                     return item;
                 }),
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
@@ -87,6 +88,7 @@ namespace Tizen.NUI.StyleGuide
                     Page scrollDirPage = new ScrollableBaseDirectionExample(directionItem.Direction);
                     window = NUIApplication.GetDefaultWindow();
                     window.GetDefaultNavigator().Push(scrollDirPage);
+                    FocusableExtension.SetFocusOnPage(scrollDirPage);
                 }
                 directionListView.SelectedItem = null;
             };
