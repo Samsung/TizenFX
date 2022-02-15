@@ -49,6 +49,8 @@ namespace Tizen.NUI.StyleGuide
                 HeightSpecification = LayoutParamPolicies.MatchParent,
                 HideScrollbar = false,
             };
+            // FIXME: should work focus on ScrollableBase.
+            // scrollView.EnableFocus();
 
             if (isHorizontal)
             {
@@ -79,6 +81,7 @@ namespace Tizen.NUI.StyleGuide
                 colorView.WidthSpecification = (isHorizontal? 200 : LayoutParamPolicies.MatchParent);
                 colorView.HeightSpecification = (isHorizontal? LayoutParamPolicies.MatchParent : 200);
                 colorView.BackgroundColor = new Color((float)rnd.Next(256)/256f, (float)rnd.Next(256)/256f, (float)rnd.Next(256)/256f, 1);
+                colorView.EnableFocus();
                 scrollView.Add(colorView);
             }
 
