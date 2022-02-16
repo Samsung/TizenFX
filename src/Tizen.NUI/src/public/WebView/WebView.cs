@@ -1642,6 +1642,19 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Evaluates JavaScript code represented as a string.
+        /// </summary>
+        /// <param name="script">The JavaScript code</param>
+        /// <param name="handler">The callback for result of JavaScript code evaluation</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void EvaluateJavaScript(string script, JavaScriptMessageHandler handler)
+        {
+            System.IntPtr ip = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(handler);
+            Interop.WebView.EvaluateJavaScript(SwigCPtr, script, new global::System.Runtime.InteropServices.HandleRef(this, ip));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Add a message handler into the WebView.
         /// </summary>
         /// <param name="objectName">The name of exposed object</param>
