@@ -36,7 +36,14 @@ namespace Tizen.NUI.Binding
         public IStyle Style
         {
             get { return style; }
-            set { SetStyle(ImplicitStyle, ClassStyles, value); }
+            set
+            {
+                if (style == value)
+                    return;
+                if (value != null && !value.TargetType.IsAssignableFrom(TargetType))
+                    NUILog.Error($"Style TargetType {value.TargetType.FullName} is not compatible with element target type {TargetType}");
+                SetStyle(ImplicitStyle, ClassStyles, value);
+            }
         }
 
         public IList<string> StyleClass
@@ -47,7 +54,7 @@ namespace Tizen.NUI.Binding
                 if (styleClass == value)
                     return;
 
-                if (styleClass != null && classStyles != null)
+                if (styleClass != null && classStyleProperties != null)
                     foreach (var classStyleProperty in classStyleProperties)
                         Target.RemoveDynamicResource(classStyleProperty);
 

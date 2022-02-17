@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,6 +17,8 @@
 
 using System;
 using System.ComponentModel;
+using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI.Xaml
@@ -28,10 +30,11 @@ namespace Tizen.NUI.Xaml
     {
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public XamlFilePathAttribute([CallerFilePath] string filePath = "")
-        {
-            // Unused parameter
-            _ = filePath;
-        }
+        public XamlFilePathAttribute([CallerFilePath] string filePath = "") => FilePath = filePath;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string FilePath { get; }
+
+        internal static string GetFilePathForObject(object view) => (view?.GetType().GetTypeInfo().GetCustomAttributes(typeof(XamlFilePathAttribute), false).FirstOrDefault() as XamlFilePathAttribute)?.FilePath;
     }
 }
