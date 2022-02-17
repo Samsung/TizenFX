@@ -17,7 +17,6 @@
 using System;
 using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -242,20 +241,6 @@ namespace Tizen.NUI
             }
         }
 
-        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ResourceDictionary XamlResources
-        {
-            get
-            {
-                return Application.Current.XamlResources;
-            }
-            set
-            {
-                Application.Current.XamlResources = value;
-            }
-        }
-
         /// <summary>
         /// Gets the Layer's ID
         /// Readonly
@@ -303,7 +288,7 @@ namespace Tizen.NUI
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
-                BindableObject.SetInheritedBindingContext(child, this?.BindingContext);
+                OnChildAdded(child);
             }
         }
 
@@ -326,6 +311,7 @@ namespace Tizen.NUI
 
             Children.Remove(child);
             child.InternalParent = null;
+            OnChildRemoved(child);
         }
 
         /// <summary>

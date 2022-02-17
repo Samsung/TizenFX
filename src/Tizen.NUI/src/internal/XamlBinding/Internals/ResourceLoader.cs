@@ -1,5 +1,5 @@
-﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,29 +23,39 @@ namespace Tizen.NUI.Binding.Internals
 {
     internal static class ResourceLoader
     {
-        static Func<AssemblyName, string, string> resourceProvider = (asmName, path) =>
-        {
-            if (typeof(Theme).Assembly.GetName().FullName != asmName.FullName)
+        static Func<ResourceLoadingQuery, ResourceLoadingResponse> _resourceProvider = (resourceLoadingQuery) => {
+            if (typeof(Theme).Assembly.GetName().FullName != resourceLoadingQuery.AssemblyName.FullName)
             {
                 string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
-                path = resource + path;
+                resourceLoadingQuery.ResourcePath = resource + resourceLoadingQuery.ResourcePath;
             }
 
-            string ret = File.ReadAllText(path);
-            return ret;
+            string ret = File.ReadAllText(resourceLoadingQuery.ResourcePath);
+            return new ResourceLoadingResponse { ResourceContent = ret };
         };
-
-        //takes a resource path, returns string content
-        public static Func<AssemblyName, string, string> ResourceProvider
+        public static Func<ResourceLoadingQuery, ResourceLoadingResponse> ResourceProvider
         {
-            get => resourceProvider;
+            get => _resourceProvider;
             internal set
             {
-                DesignMode.IsDesignModeEnabled = true;
-                resourceProvider = value;
+                DesignMode.IsDesignModeEnabled = value != null;
+                _resourceProvider = value;
             }
         }
 
-        internal static Action<Exception> ExceptionHandler { get; set; }
+        internal static Action<(Exception exception, string filepath)> ExceptionHandler { get; set; }
+
+        public class ResourceLoadingQuery
+        {
+            public AssemblyName AssemblyName { get; set; }
+            public string ResourcePath { get; set; }
+            public object Instance { get; set; }
+        }
+
+        public class ResourceLoadingResponse
+        {
+            public string ResourceContent { get; set; }
+            public bool UseDesignProperties { get; set; }
+        }
     }
 }

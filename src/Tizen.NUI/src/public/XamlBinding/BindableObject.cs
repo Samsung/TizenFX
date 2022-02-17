@@ -1,5 +1,5 @@
-﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,36 +36,8 @@ namespace Tizen.NUI.Binding
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BindingContextProperty =
-            BindableProperty.Create(nameof(BindingContext), typeof(object), typeof(BindableObject), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
-            {
-                var bindableObject = (BindableObject)bindable;
-                if (newValue != null)
-                {
-                    bindableObject.bindingContext = newValue;
-                    bindableObject.FlushBinding();
-
-                    if (newValue is BindableObject targetBindableObject)
-                    {
-                        targetBindableObject.IsBinded = true;
-                    }
-                }
-            }),
-            defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-            {
-                if (null != bindable.bindingContext)
-                {
-                    return bindable.bindingContext;
-                }
-
-                if (bindable is Container container)
-                {
-                    return container.Parent?.BindingContext;
-                }
-                else
-                {
-                    return null;
-                }
-            }));
+            BindableProperty.Create(nameof(BindingContext), typeof(object), typeof(BindableObject),  default(object), BindingMode.OneWay, null, BindingContextPropertyChanged,
+            null, null, BindingContextPropertyBindingChanging);
 
         readonly List<BindablePropertyContext> properties = new List<BindablePropertyContext>(4);
 
@@ -764,6 +736,18 @@ namespace Tizen.NUI.Binding
             set;
         } = false;
 
+        static void BindingContextPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
+        {
+            bindable.inheritedContext = null;
+            bindable.ApplyBindings(skipBindingContext: true, fromBindingContextChanged: true);
+            bindable.OnBindingContextChanged();
+
+            if (newvalue is BindableObject targetBindableObject)
+            {
+                targetBindableObject.IsBinded = true;
+            }
+        }
+
         static void BindingContextPropertyBindingChanging(BindableObject bindable, BindingBase oldBindingBase, BindingBase newBindingBase)
         {
             object context = bindable.inheritedContext;
@@ -1050,33 +1034,6 @@ namespace Tizen.NUI.Binding
                 Value = value;
                 CurrentlyApplying = currentlyApplying;
                 Attributes = attributes;
-            }
-        }
-
-        internal void AddChildBindableObject(BindableObject child)
-        {
-            if (null != child)
-            {
-                children.Add(child);
-                child.FlushBinding();
-            }
-        }
-
-        internal void RemoveChildBindableObject(BindableObject child)
-        {
-            children.Remove(child);
-        }
-
-        private List<BindableObject> children = new List<BindableObject>();
-
-        private void FlushBinding()
-        {
-            ApplyBindings(skipBindingContext: true, fromBindingContextChanged: true);
-            OnBindingContextChanged();
-
-            foreach (var child in children)
-            {
-                child.FlushBinding();
             }
         }
     }
