@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,8 +39,13 @@ namespace Tizen.NUI.Binding
                     if (ve.XamlResources != null)
                     {
                         foreach (KeyValuePair<string, object> res in ve.XamlResources.MergedResources)
-                            if (!resources.ContainsKey(res.Key))
-                                resources.Add(res.Key, res.Value);
+                        {
+                            // If a MergedDictionary value is overridden for a DynamicResource, 
+                            // it comes out later in the enumeration of MergedResources
+                            // TryGetValue ensures we pull the up-to-date value for the key
+                            if (!resources.ContainsKey(res.Key) && ve.XamlResources.TryGetValue(res.Key, out object value))
+                                resources.Add(res.Key, value);
+                        }
                     }
                 }
 

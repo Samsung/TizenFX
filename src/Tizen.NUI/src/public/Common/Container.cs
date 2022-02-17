@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
@@ -26,14 +28,74 @@ namespace Tizen.NUI
     /// added to them.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    public abstract class Container : Animatable
+    public abstract class Container : Animatable, IResourcesProvider
     {
+        /// <summary> XamlStyleProperty </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty XamlStyleProperty = BindableProperty.Create(nameof(XamlStyle), typeof(XamlStyle), typeof(Container), default(XamlStyle), propertyChanged: (bindable, oldvalue, newvalue) => ((View)bindable).MergedStyle.Style = (XamlStyle)newvalue);
+
         internal BaseHandle InternalParent;
         private List<View> childViews = new List<View>();
+        private MergedStyle mergedStyle = null;
+        ResourceDictionary _resources;
+        bool IResourcesProvider.IsResourcesCreated => _resources != null;
 
         internal Container(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             // No un-managed data hence no need to store a native ptr
+        }
+
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ResourceDictionary XamlResources
+        {
+            get
+            {
+                if (_resources != null)
+                    return _resources;
+                _resources = new ResourceDictionary();
+                ((IResourceDictionary)_resources).ValuesChanged += OnResourcesChanged;
+                return _resources;
+            }
+            set
+            {
+                if (_resources == value)
+                    return;
+                OnPropertyChanging();
+                if (_resources != null)
+                    ((IResourceDictionary)_resources).ValuesChanged -= OnResourcesChanged;
+                _resources = value;
+                OnResourcesChanged(value);
+                if (_resources != null)
+                    ((IResourceDictionary)_resources).ValuesChanged += OnResourcesChanged;
+                OnPropertyChanged();
+            }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public XamlStyle XamlStyle
+        {
+            get
+            {
+                return (XamlStyle)GetValue(XamlStyleProperty);
+            }
+            set
+            {
+                SetValue(XamlStyleProperty, value);
+            }
+        }
+
+        internal MergedStyle MergedStyle
+        {
+            get
+            {
+                if (null == mergedStyle)
+                {
+                    mergedStyle = new MergedStyle(GetType(), this);
+                }
+
+                return mergedStyle;
+            }
         }
 
         /// <summary>
@@ -125,5 +187,54 @@ namespace Tizen.NUI
         public abstract UInt32 GetChildCount();
 
         internal abstract View FindCurrentChildById(uint id);
+
+        internal override void OnParentResourcesChanged(IEnumerable<KeyValuePair<string, object>> values)
+        {
+            if (values == null)
+                return;
+
+            if (!((IResourcesProvider)this).IsResourcesCreated || XamlResources.Count == 0)
+            {
+                base.OnParentResourcesChanged(values);
+                return;
+            }
+
+            var innerKeys = new HashSet<string>();
+            var changedResources = new List<KeyValuePair<string, object>>();
+            foreach (KeyValuePair<string, object> c in XamlResources)
+                innerKeys.Add(c.Key);
+            foreach (KeyValuePair<string, object> value in values)
+            {
+                if (innerKeys.Add(value.Key))
+                    changedResources.Add(value);
+            }
+            if (changedResources.Count != 0)
+                OnResourcesChanged(changedResources);
+        }
+
+        /// <summary>
+        /// Invoked whenever the binding context of the element changes. Implement this method to add class handling for this event.
+        /// </summary>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnBindingContextChanged()
+        {
+            var gotBindingContext = false;
+            object bc = null;
+
+            for (var index = 0; index < Children.Count; index++)
+            {
+                Element child = Children[index];
+
+                if (!gotBindingContext)
+                {
+                    bc = BindingContext;
+                    gotBindingContext = true;
+                }
+
+                SetChildInheritedBindingContext(child, bc);
+            }
+            base.OnBindingContextChanged();
+        }
     }
 } // namespace Tizen.NUI
