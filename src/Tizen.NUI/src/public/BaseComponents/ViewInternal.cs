@@ -1270,6 +1270,29 @@ namespace Tizen.NUI.BaseComponents
             return false;
         }
 
+        /// <summary>
+        /// Internal callback of enabled property changes.
+        /// Inherited view can override this method to implements enabled property changes.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool OnEnabled(bool enabled)
+        {
+            if (enableControlState)
+            {
+                if (enabled)
+                {
+                    ControlState -= ControlState.Disabled;
+                }
+                else
+                {
+                    ControlState += ControlState.Disabled;
+                }
+            }
+            return enabled;
+        }
+
+
+        
         private void DisConnectFromSignals()
         {
             if (HasBody() == false)
