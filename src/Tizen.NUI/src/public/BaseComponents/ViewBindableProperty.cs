@@ -1166,6 +1166,27 @@ namespace Tizen.NUI.BaseComponents
         }));
 
         /// <summary>
+        /// IsEnabledProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(Sensitive), typeof(bool), typeof(View), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                newValue = view.OnEnabled((bool)newValue);
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.Enabled, new Tizen.NUI.PropertyValue((bool)newValue));
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var view = (View)bindable;
+            bool temp = true;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.Enabled).Get(out temp);
+            return temp;
+        }));
+
+        /// <summary>
         /// DispatchKeyEventsProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

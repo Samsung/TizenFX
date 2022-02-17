@@ -75,7 +75,9 @@ namespace Tizen.NUI.Components
                 if (instance.isEnabled != newEnabled)
                 {
                     instance.isEnabled = newEnabled;
+                    // FIXME : InsEnabled Property should not change other property value.
                     instance.Sensitive = newEnabled;
+                    ((Control)instance).IsEnabled = newEnabled;
                     instance.UpdateState();
                 }
             }

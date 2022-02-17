@@ -150,6 +150,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_SENSITIVE_get")]
             public static extern int SensitiveGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_ENABLED_get")]
+            public static extern int EnabledGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_LEAVE_REQUIRED_get")]
             public static extern int LeaveRequiredGet();
 
