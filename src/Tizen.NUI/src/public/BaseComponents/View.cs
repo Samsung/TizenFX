@@ -1815,6 +1815,25 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Gets or sets the status of whether the view should be enabled user interactions.
+        /// If a View is made disabled, then user interactions including touch, focus, and actiavation is disabled.
+        /// </summary>
+        /// <since_tizen> tizen_next </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsEnabled
+        {
+            get
+            {
+                return (bool)GetValue(IsEnabledProperty);
+            }
+            set
+            {
+                SetValue(IsEnabledProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the status of whether the view should receive a notification when touch or hover motion events leave the boundary of the view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
