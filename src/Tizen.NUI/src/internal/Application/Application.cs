@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -308,12 +308,9 @@ namespace Tizen.NUI
 
         public delegate void resChangeCb(object sender, ResourcesChangedEventArgs e);
 
-        internal event EventHandler<ResourcesChangedEventArgs> XamlResourceChanged;
-
         internal override void OnResourcesChanged(object sender, ResourcesChangedEventArgs e)
         {
             base.OnResourcesChanged(sender, e);
-            XamlResourceChanged?.Invoke(sender, e);
         }
 
         public ResourceDictionary XamlResources
@@ -358,6 +355,9 @@ namespace Tizen.NUI
 
         internal override void OnParentResourcesChanged(IEnumerable<KeyValuePair<string, object>> values)
         {
+            if (values == null)
+                return;
+
             if (!((IResourcesProvider)this).IsResourcesCreated || XamlResources.Count == 0)
             {
                 base.OnParentResourcesChanged(values);
@@ -373,7 +373,8 @@ namespace Tizen.NUI
                 if (innerKeys.Add(value.Key))
                     changedResources.Add(value);
             }
-            OnResourcesChanged(changedResources);
+            if (changedResources.Count != 0)
+                OnResourcesChanged(changedResources);
         }
 
         internal Application(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

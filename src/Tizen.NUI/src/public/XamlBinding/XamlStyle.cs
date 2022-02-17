@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using Tizen.NUI.StyleSheets;
 using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Binding
 {
@@ -11,6 +12,9 @@ namespace Tizen.NUI.Binding
     public sealed class XamlStyle : IStyle
     {
         internal const string StyleClassPrefix = "Tizen.NUI.Binding.StyleClass.";
+
+		const int CleanupTrigger = 128;
+		int cleanupThreshold = CleanupTrigger;
 
         readonly BindableProperty basedOnResourceProperty = BindableProperty.CreateAttached("BasedOnResource", typeof(XamlStyle), typeof(XamlStyle), default(XamlStyle),
             propertyChanged: OnBasedOnResourceChanged);
@@ -106,6 +110,7 @@ namespace Tizen.NUI.Binding
             if (BaseResourceKey != null)
                 bindable.SetDynamicResource(basedOnResourceProperty, BaseResourceKey);
             ApplyCore(bindable, BasedOn ?? GetBasedOnResource(bindable));
+            CleanUpWeakReferences();
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -168,11 +173,11 @@ namespace Tizen.NUI.Binding
 
         static void OnBasedOnResourceChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            // Style style = (bindable as BaseHandle).Style;
-            // if (style == null)
-            // 	return;
-            // style.UnApplyCore(bindable, (Style)oldValue);
-            // style.ApplyCore(bindable, (Style)newValue);
+            XamlStyle style = (bindable as View).XamlStyle;
+            if (style == null)
+                return;
+            style.UnApplyCore(bindable, (XamlStyle)oldValue);
+            style.ApplyCore(bindable, (XamlStyle)newValue);
         }
 
         void UnApplyCore(BindableObject bindable, XamlStyle basedOn)
@@ -192,5 +197,16 @@ namespace Tizen.NUI.Binding
                 return true;
             return value.TargetType.IsAssignableFrom(TargetType);
         }
-    }
+
+		void CleanUpWeakReferences()
+		{
+			if (targets.Count < cleanupThreshold)
+			{
+				return;
+			}
+
+			targets.RemoveAll(t => !t.TryGetTarget(out _));
+			cleanupThreshold = targets.Count + CleanupTrigger;
+		}
+	}
 }

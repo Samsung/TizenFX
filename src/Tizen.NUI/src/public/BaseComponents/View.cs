@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -286,30 +286,6 @@ namespace Tizen.NUI.BaseComponents
                     Layout.SetPositionByLayout = !value;
                     Layout.RequestLayout();
                 }
-            }
-        }
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsResourcesCreated
-        {
-            get
-            {
-                return Application.Current.IsResourcesCreated;
-            }
-        }
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ResourceDictionary XamlResources
-        {
-            get
-            {
-                return Application.Current.XamlResources;
-            }
-            set
-            {
-                Application.Current.XamlResources = value;
             }
         }
 
@@ -2635,19 +2611,6 @@ namespace Tizen.NUI.BaseComponents
                 temp.Dispose();
                 NotifyPropertyChanged();
                 layout?.RequestLayout();
-            }
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public XamlStyle XamlStyle
-        {
-            get
-            {
-                return (XamlStyle)GetValue(XamlStyleProperty);
-            }
-            set
-            {
-                SetValue(XamlStyleProperty, value);
             }
         }
 
