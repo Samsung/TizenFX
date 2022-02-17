@@ -481,7 +481,11 @@ namespace Tizen.Network.WiFi
                 Log.Info(Globals.LogTag, "Interop.WiFi.Scan");
                 try
                 {
-                    int ret = Interop.WiFi.Scan(GetSafeHandle(), _callback_map[id], id);
+                    int ret = (int)WiFiError.None;
+                    lock (_callback_map)
+                    {
+                        ret = Interop.WiFi.Scan(GetSafeHandle(), _callback_map[id], id);
+                    }
                     CheckReturnValue(ret, "Scan", "");
                 }
                 catch (Exception e)
@@ -526,7 +530,11 @@ namespace Tizen.Network.WiFi
                 Log.Info(Globals.LogTag, "Interop.WiFi.ScanSpecificAPAsync");
                 try
                 {
-                    int ret = Interop.WiFi.ScanSpecificAP(GetSafeHandle(), essid, _callback_map[id], id);
+                    int ret = (int)WiFiError.None;
+                    lock (_callback_map)
+                    {
+                        ret = Interop.WiFi.ScanSpecificAP(GetSafeHandle(), essid, _callback_map[id], id);
+                    }
                     CheckReturnValue(ret, "ScanSpecificAP", "");
                 }
                 catch (Exception e)
@@ -571,7 +579,11 @@ namespace Tizen.Network.WiFi
                 Log.Info(Globals.LogTag, "Interop.WiFi.BssidScan");
                 try
                 {
-                    int ret = Interop.WiFi.BssidScan(GetSafeHandle(), _callback_map[id], id);
+                    int ret = (int)WiFiError.None;
+                    lock (_callback_map)
+                    {
+                        ret = Interop.WiFi.BssidScan(GetSafeHandle(), _callback_map[id], id);
+                    }
                     CheckReturnValue(ret, "BssidScan", "");
                 }
                 catch (Exception e)
