@@ -66,23 +66,8 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(Button), true, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Button)bindable;
-            if (newValue != null)
-            {
-                bool newEnabled = (bool)newValue;
-                if (instance.isEnabled != newEnabled)
-                {
-                    instance.isEnabled = newEnabled;
-                    // FIXME : InsEnabled Property should not change other property value.
-                    instance.Sensitive = newEnabled;
-                    ((Control)instance).IsEnabled = newEnabled;
-                    instance.UpdateState();
-                }
-            }
-        },
-        defaultValueCreator: (bindable) => ((Button)bindable).isEnabled);
+        public static readonly BindableProperty IsEnabledProperty = View.IsEnabledProperty;
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
@@ -183,7 +168,6 @@ namespace Tizen.NUI.Components
         private IconOrientation? iconRelativeOrientation = IconOrientation.Left;
         private bool isSelected = false;
         private bool isSelectable = false;
-        private bool isEnabled = true;
         private Size2D itemSpacing;
         private LinearLayout.Alignment itemAlignment = LinearLayout.Alignment.Center;
 
@@ -786,13 +770,10 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public bool IsEnabled
         {
-            get
-            {
-                return (bool)GetValue(IsEnabledProperty);
-            }
+            get => base.IsEnabled;
             set
             {
-                SetValue(IsEnabledProperty, value);
+                base.IsEnabled = value;
             }
         }
 
