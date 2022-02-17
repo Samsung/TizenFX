@@ -1174,8 +1174,8 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-                newValue = view.OnEnabled((bool)newValue);
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.Enabled, new Tizen.NUI.PropertyValue((bool)newValue));
+                view.OnEnabled((bool)newValue);
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
