@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/netcoreapp3.1/Tizen.NUI.Devel.Tests.dll",
+            "program": "${workspaceFolder}/bin/Debug/netcoreapp3.1/Tizen.NUI.StyleGuide.dll",
             "args": [],
             "env": {
                 "DESKTOP_PREFIX":"${env:HOME}/dali-env/opt",

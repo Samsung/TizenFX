@@ -1072,6 +1072,7 @@ namespace Tizen.NUI.BaseComponents
         /// The size of font in pixels.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Binding.TypeConverter(typeof(FloatGraphicsTypeConverter))]
         public float PixelSize
         {
             get

@@ -329,14 +329,20 @@ namespace Tizen.NUI.BaseComponents
         /// Notifies sending notifications about the current states to accessibility clients.
         /// </summary>
         /// <remarks>
-        /// If recursive is true, all children of the Accessibility object will also re-emit the states.
+        /// In essence, this is equivalent to calling EmitAccessibilityStateChangedEvent in a loop for all specified states.
+        /// If recursive mode is specified, all children of the Accessibility object will also re-emit the states.
         /// </remarks>
         /// <param name="states">Accessibility States</param>
         /// <param name="notifyMode">Controls the notification strategy</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void NotifyAccessibilityStatesChange(AccessibilityStates states, AccessibilityStatesNotifyMode notifyMode)
         {
-            Interop.ControlDevel.DaliToolkitDevelControlNotifyAccessibilityStatesChange(SwigCPtr, (ulong)states, (int)notifyMode);
+            if (states is null)
+            {
+                throw new ArgumentNullException(nameof(states));
+            }
+
+            Interop.ControlDevel.DaliToolkitDevelControlNotifyAccessibilityStateChange(SwigCPtr, states.BitMask, (int)notifyMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -347,7 +353,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AccessibilityStates GetAccessibilityStates()
         {
-            AccessibilityStates result = (AccessibilityStates) Interop.ControlDevel.DaliToolkitDevelControlGetAccessibilityStates(SwigCPtr);
+            var result = new AccessibilityStates {BitMask = Interop.ControlDevel.DaliToolkitDevelControlGetAccessibilityStates(SwigCPtr)};
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -373,9 +379,9 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="state">Accessibility state</param>
         /// <param name="equal">True if the state is set or enabled, otherwise false</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void EmitAccessibilityStatesChangedEvent(AccessibilityStates state, bool equal)
+        public void EmitAccessibilityStateChangedEvent(AccessibilityState state, bool equal)
         {
-            Interop.ControlDevel.DaliAccessibilityEmitAccessibilityStatesChangedEvent(SwigCPtr, (ulong)state, Convert.ToInt32(equal));
+            Interop.ControlDevel.DaliAccessibilityEmitAccessibilityStateChangedEvent(SwigCPtr, (int)state, Convert.ToInt32(equal));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -451,14 +457,21 @@ namespace Tizen.NUI.BaseComponents
             return Interop.ControlDevel.DaliToolkitDevelControlAccessibleImplNUIDuplicateString(value ?? "");
         }
 
-        private IntPtr DuplicateStates(AccessibilityStates states)
-        {
-            return Interop.ControlDevel.DaliToolkitDevelControlConvertState((ulong)states);
-        }
-
         private IntPtr DuplicateRange(AccessibilityRange range)
         {
             return Interop.ControlDevel.DaliAccessibilityNewRange(range.StartOffset, range.EndOffset, range.Content);
+        }
+
+        private static AccessibilityStates AccessibilityInitialStates = new AccessibilityStates();
+
+        private ulong AccessibilityCalculateStatesWrapper(ulong initialStates)
+        {
+            lock (AccessibilityInitialStates)
+            {
+                AccessibilityInitialStates.BitMask = initialStates;
+
+                return AccessibilityCalculateStates().BitMask;
+            }
         }
 
         private Interop.ControlDevel.AccessibilityDelegate accessibilityDelegate = null;
@@ -484,7 +497,7 @@ namespace Tizen.NUI.BaseComponents
                     GetName = () => DuplicateString(AccessibilityGetName()),
                     GetDescription = () => DuplicateString(AccessibilityGetDescription()),
                     DoAction = (name) => AccessibilityDoAction(Marshal.PtrToStringAnsi(name)),
-                    CalculateStates = (states) => DuplicateStates(AccessibilityCalculateStates(states)),
+                    CalculateStates = (states) => AccessibilityCalculateStatesWrapper(states),
                     GetActionCount = () => AccessibilityGetActionCount(),
                     GetActionName = (index) => DuplicateString(AccessibilityGetActionName(index)),
                     ShouldReportZeroChildren = () => AccessibilityShouldReportZeroChildren(),
@@ -525,28 +538,6 @@ namespace Tizen.NUI.BaseComponents
             Interop.ControlDevel.DaliToolkitDevelControlSetAccessibilityConstructor(SwigCPtr, (int)role, (int)accessibilityInterface, accessibilityDelegatePtr, size);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// A helper method to manipulate individual bit flags (e.g. turn them on or off)
-        /// </summary>
-        /// <param name="obj">An object that accumulates combination of bit flags</param>
-        /// <param name="bit">A bit flag to be operated</param>
-        /// <param name="state">A state of the bit flag to be set (0 == off, 1 == on)</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void FlagSetter<T>(ref T obj ,T bit, bool state)
-        {
-            dynamic result = obj;
-            dynamic param = bit;
-            if (state)
-            {
-                result |= param;
-            }
-            else
-            {
-                result &= (~param);
-            }
-            obj = result;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -624,15 +615,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual AccessibilityStates AccessibilityCalculateStates(ulong states)
+        protected virtual AccessibilityStates AccessibilityCalculateStates()
         {
-            AccessibilityStates accessibilityStates = (AccessibilityStates)states;
+            var states = AccessibilityInitialStates;
 
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Focused, this.State == States.Focused);
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Enabled, this.State != States.Disabled);
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Sensitive, this.Sensitive);
+            states[AccessibilityState.Focused] = this.State == States.Focused;
+            states[AccessibilityState.Enabled] = this.State != States.Disabled;
+            states[AccessibilityState.Sensitive] = this.Sensitive;
 
-            return accessibilityStates;
+            return states;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
