@@ -1275,7 +1275,7 @@ namespace Tizen.NUI.BaseComponents
         /// Inherited view can override this method to implements enabled property changes.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool OnEnabled(bool enabled)
+        protected virtual void OnEnabled(bool enabled)
         {
             if (enableControlState)
             {
@@ -1288,7 +1288,6 @@ namespace Tizen.NUI.BaseComponents
                     ControlState += ControlState.Disabled;
                 }
             }
-            return enabled;
         }
 
 
