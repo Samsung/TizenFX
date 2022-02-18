@@ -177,6 +177,10 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_Accessible_SetHighlightActor")]
             public static extern void DaliAccessibilityAccessibleSetHighlightActor(global::System.Runtime.InteropServices.HandleRef arg1);
 
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_SetBlockMoveOutedEvent")]
+            public static extern global::System.IntPtr DaliAccessibilitySetBlockMoveOutedEvent(global::System.Runtime.InteropServices.HandleRef arg1, bool arg2);
+
             // SetAccessibilityConstructor
 
             // Keep this structure layout binary compatible with the respective C++ structure!

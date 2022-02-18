@@ -422,6 +422,17 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Blocks "MoveOuted" event.
+        /// </summary>
+        /// <param name="isBlockEvent">The flag pointing if object blocks event</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetBlockMoveOutedEvent(bool isBlockEvent)
+        {
+            Interop.ControlDevel.DaliAccessibilitySetBlockMoveOutedEvent(SwigCPtr, isBlockEvent);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         ///////////////////////////////////////////////////////////////////
         // ************************** Bridge *************************** //
         ///////////////////////////////////////////////////////////////////

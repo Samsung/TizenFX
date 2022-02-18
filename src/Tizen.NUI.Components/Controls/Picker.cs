@@ -406,6 +406,9 @@ namespace Tizen.NUI.Components
             ValueChangedEventArgs eventArgs =
                 new ValueChangedEventArgs(displayedValuesUpdate ? Int32.Parse(itemList[currentValue].Name) : Int32.Parse(itemList[currentValue].Text));
             ValueChanged?.Invoke(this, eventArgs);
+
+            //TODO: Make this work only if screen-reader is enabled
+            itemList[currentValue].GrabAccessibilityHighlight();
         }
 
         private void PageAdjust(float positionY)
@@ -509,6 +512,7 @@ namespace Tizen.NUI.Components
                 Name = idx.ToString(),
             };
 
+            temp.SetBlockMoveOutedEvent(true);
             itemList.Add(temp);
             pickerScroller.Add(temp);
         }
