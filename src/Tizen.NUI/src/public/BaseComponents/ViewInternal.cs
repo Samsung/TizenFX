@@ -582,7 +582,11 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal Vector3 GetNaturalSize()
+        /// <summary>
+        /// GetNaturalSize() function behaviour can be changed for each subclass of View.
+        /// So we make GetNaturalSize() function virtual, and make subclass can define it's owned logic
+        /// </summary>
+        internal virtual Vector3 GetNaturalSize()
         {
             Vector3 ret = new Vector3(Interop.Actor.GetNaturalSize(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)

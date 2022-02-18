@@ -1292,7 +1292,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 ret = new Vector3(Interop.Actor.GetNaturalSize(SwigCPtr), true);
+                Vector3 ret = GetNaturalSize();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -1309,7 +1309,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 temp = new Vector3(Interop.Actor.GetNaturalSize(SwigCPtr), true);
+                Vector3 temp = GetNaturalSize();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
 
                 Size2D sz = new Size2D((int)temp.Width, (int)temp.Height);
