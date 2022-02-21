@@ -1299,7 +1299,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
 
-        
         private void DisConnectFromSignals()
         {
             if (HasBody() == false)
