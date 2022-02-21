@@ -216,7 +216,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int WorldMatrix = Interop.ActorProperty.WorldMatrixGet();
             internal static readonly int NAME = Interop.ActorProperty.NameGet();
             internal static readonly int SENSITIVE = Interop.ActorProperty.SensitiveGet();
-            internal static readonly int Enabled = Interop.ActorProperty.EnabledGet();
+            internal static readonly int UserInteractionEnabled = Interop.ActorProperty.UserInteractionEnabledGet();
             internal static readonly int LeaveRequired = Interop.ActorProperty.LeaveRequiredGet();
             internal static readonly int InheritOrientation = Interop.ActorProperty.InheritOrientationGet();
             internal static readonly int InheritScale = Interop.ActorProperty.InheritScaleGet();
