@@ -1285,13 +1285,21 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnEnabled(bool enabled)
         {
-            if (enableControlState)
+            if (enabled)
             {
-                if (enabled)
+                if (State == View.States.Disabled)
+                {
+                    State = View.States.Normal;
+                }
+                if (enableControlState)
                 {
                     ControlState -= ControlState.Disabled;
                 }
-                else
+            }
+            else
+            {
+                State = View.States.Disabled;
+                if (enableControlState)
                 {
                     ControlState += ControlState.Disabled;
                 }
