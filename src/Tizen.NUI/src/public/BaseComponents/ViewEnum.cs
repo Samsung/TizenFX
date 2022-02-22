@@ -140,7 +140,17 @@ namespace Tizen.NUI.BaseComponents
             /// Move keyboard focus towards the next page direction.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            PageDown
+            PageDown,
+            /// <summary>
+            /// Move keyboard focus towards the forward direction.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Forward,
+            /// <summary>
+            /// Move keyboard focus towards the backward direction.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Backward,
         }
 
         internal enum PropertyRange
