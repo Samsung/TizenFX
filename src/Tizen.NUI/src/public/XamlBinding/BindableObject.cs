@@ -332,7 +332,7 @@ namespace Tizen.NUI.Binding
         }
 
         private HashSet<BindableProperty> settedPropeties;
-        private HashSet<BindableProperty> SettedPropeties
+        protected HashSet<BindableProperty> SettedPropeties
         {
             get
             {
