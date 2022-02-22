@@ -38,7 +38,23 @@ namespace Tizen.NUI.EXaml
         public void Do()
         {
             var type = globalDataList.GatheredTypes[typeIndex];
-            globalDataList.GatheredProperties.Add(type.GetProperty(propertyName));
+            PropertyInfo propertyInfo = null;
+            try
+            {
+                propertyInfo = type.GetProperty(propertyName);
+            }
+#pragma warning disable CA1031 // Do not catch general exception types
+            catch (Exception)
+#pragma warning restore CA1031 // Do not catch general exception types
+            {
+                propertyInfo = type.GetProperty(propertyName, BindingFlags.DeclaredOnly | BindingFlags.Public | BindingFlags.Instance);
+            }
+
+            if (null == propertyInfo)
+            {
+                throw new Exception($"Can't find property {propertyName} from type {type.FullName}");
+            }
+            globalDataList.GatheredProperties.Add(propertyInfo);
         }
 
         private int typeIndex;
