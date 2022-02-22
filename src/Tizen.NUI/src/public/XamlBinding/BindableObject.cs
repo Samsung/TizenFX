@@ -94,13 +94,13 @@ namespace Tizen.NUI.Binding
                 {
                     nameToBindableProperty2.TryGetValue(keyValuePair.Key, out var bindableProperty);
 
-                    if (null != bindableProperty && (SettedPropeties.Contains(bindableProperty) || other.SettedPropeties.Contains(bindableProperty)))
+                    if (null != bindableProperty && (ChangedPropertiesSet.Contains(bindableProperty) || other.ChangedPropertiesSet.Contains(bindableProperty)))
                     {
                         object value = other.GetValue(bindableProperty);
 
                         if (null != value)
                         {
-                            SetValue(keyValuePair.Value, value);
+                            InternalSetValue(keyValuePair.Value, value);
                         }
                     }
                 }
@@ -268,6 +268,12 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetValue(BindableProperty property, object value)
         {
+            InternalSetValue(property, value);
+            ChangedPropertiesSetExcludingStyle.Add(property);
+        }
+
+        internal void InternalSetValue(BindableProperty property, object value)
+        {
             if (true == IsBinded)
             {
                 SetValue(property, value, false, true);
@@ -300,20 +306,34 @@ namespace Tizen.NUI.Binding
                 OnPropertyChangedWithData(property);
             }
 
-            SettedPropeties.Add(property);
+            ChangedPropertiesSet.Add(property);
         }
 
-        private HashSet<BindableProperty> settedPropeties;
-        private HashSet<BindableProperty> SettedPropeties
+        private HashSet<BindableProperty> changedPropertiesSet;
+        private HashSet<BindableProperty> ChangedPropertiesSet
         {
             get
             {
-                if (null == settedPropeties)
+                if (null == changedPropertiesSet)
                 {
-                    settedPropeties = new HashSet<BindableProperty>();
+                    changedPropertiesSet = new HashSet<BindableProperty>();
                 }
 
-                return settedPropeties;
+                return changedPropertiesSet;
+            }
+        }
+
+        private HashSet<BindableProperty> changedPropertiesSetExcludingStyle;
+        internal protected HashSet<BindableProperty> ChangedPropertiesSetExcludingStyle
+        {
+            get
+            {
+                if (null == changedPropertiesSetExcludingStyle)
+                {
+                    changedPropertiesSetExcludingStyle = new HashSet<BindableProperty>();
+                }
+
+                return changedPropertiesSetExcludingStyle;
             }
         }
 
