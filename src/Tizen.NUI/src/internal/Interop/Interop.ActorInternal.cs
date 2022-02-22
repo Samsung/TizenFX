@@ -218,13 +218,6 @@ namespace Tizen.NUI
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsFocusableInTouch(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetUserInteractionEnabled")]
-            public static extern void SetUserInteractionEnabled(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_IsUserInteractionEnabled")]
-            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
-            public static extern bool IsUserInteractionEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetSizeScalePolicy")]
             public static extern void SetSizeScalePolicy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
