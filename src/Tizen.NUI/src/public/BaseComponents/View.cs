@@ -47,6 +47,7 @@ namespace Tizen.NUI.BaseComponents
         private LayoutTransition layoutTransition;
         private TransitionOptions transitionOptions = null;
         private ThemeData themeData;
+        private bool isThemeChanged = false;
 
         // List of constraints
         private Constraint widthConstraint = null;
@@ -3032,8 +3033,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnThemeChanged(object sender, ThemeChangedEventArgs e)
         {
+            isThemeChanged = true;
             if (string.IsNullOrEmpty(styleName)) ApplyStyle(ThemeManager.GetUpdateStyleWithoutClone(GetType()));
             else ApplyStyle(ThemeManager.GetUpdateStyleWithoutClone(styleName));
+            isThemeChanged = false;
         }
 
         /// <summary>
@@ -3076,9 +3079,15 @@ namespace Tizen.NUI.BaseComponents
 
                 bindablePropertyOfView.TryGetValue(sourceProperty.PropertyName, out var destinationProperty);
 
+                // Do not set value again when theme is changed and the value has been set already.
+                if (isThemeChanged && ChangedPropertiesSetExcludingStyle.Contains(destinationProperty))
+                {
+                    continue;
+                }
+
                 if (destinationProperty != null)
                 {
-                    SetValue(destinationProperty, sourceValue);
+                    InternalSetValue(destinationProperty, sourceValue);
                 }
             }
         }

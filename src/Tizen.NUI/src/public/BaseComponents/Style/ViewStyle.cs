@@ -565,7 +565,7 @@ namespace Tizen.NUI.BaseComponents
 
                 if (destinationProperty != null)
                 {
-                    SetValue(destinationProperty, sourceValue);
+                    InternalSetValue(destinationProperty, sourceValue);
                 }
             }
 
