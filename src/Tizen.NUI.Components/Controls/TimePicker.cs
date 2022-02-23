@@ -148,7 +148,8 @@ namespace Tizen.NUI.Components
                     else 
                     {
                         isAm = true;
-                        hourPicker.CurrentValue = currentTime.Hour;
+                        if (currentTime.Hour == 0) hourPicker.CurrentValue = 12;
+                        else hourPicker.CurrentValue = currentTime.Hour;
                         ampmPicker.CurrentValue = 1;
                     }
                 }
@@ -227,14 +228,16 @@ namespace Tizen.NUI.Components
             ampmPicker.ValueChanged += OnAmpmValueChanged;
 
             currentTime = DateTime.Now;
-            Console.WriteLine(" Time " + currentTime.Hour + " " + currentTime.Minute);
             if (currentTime.Hour > 12)
             {
                 ampmPicker.CurrentValue = 2;
                 hourPicker.CurrentValue = currentTime.Hour - 12;
             }
             else
+            {
+                ampmPicker.CurrentValue = 1;
                 hourPicker.CurrentValue = currentTime.Hour;
+            }
 
             minutePicker.CurrentValue = currentTime.Minute;
 
@@ -301,12 +304,12 @@ namespace Tizen.NUI.Components
             {
                 if (isAm) 
                 {
-                    if (e.Value == 12) ChangeTime(12, 0, true);
+                    if (e.Value == 12) ChangeTime(0, 0, true);
                     else ChangeTime(e.Value, 0, true);
                 }
                 else 
                 {
-                    if (e.Value == 12) ChangeTime(0, 0, true);
+                    if (e.Value == 12) ChangeTime(12, 0, true);
                     else ChangeTime(e.Value + 12, 0, true);
                 }
             }
@@ -331,20 +334,16 @@ namespace Tizen.NUI.Components
 
             if (e.Value == 1)
             { //AM
-                if (currentTime.Hour > 12 || currentTime.Hour == 0)
-                { 
-                    if (currentTime.Hour == 0) ChangeTime(12, 0, true);
-                    else ChangeTime(currentTime.Hour - 12, 0, true);
-                }
+                if (currentTime.Hour == 12) ChangeTime(0, 0, true);
+                else ChangeTime(currentTime.Hour - 12, 0, true);
+
                 isAm = true;
             }
             else 
             { //PM
-                if (currentTime.Hour > 0 && currentTime.Hour <= 12)
-                {
-                     if (currentTime.Hour == 12) ChangeTime(0, 0, true);
-                     else ChangeTime(currentTime.Hour + 12, 0, true);
-                }
+                if (currentTime.Hour == 0) ChangeTime(12, 0, true);
+                else ChangeTime(currentTime.Hour + 12, 0, true);
+
                 isAm = false;
             }
 
