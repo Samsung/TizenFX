@@ -30,7 +30,10 @@ namespace Tizen.NUI.EXaml
         GatherBindableProperty,
         CreateObject,
         CreateArrayObject,
+<<<<<<< Updated upstream
         CreateDPObject,
+=======
+>>>>>>> Stashed changes
         CreateDataTemplate,
         GetStaticObject,
         GetTypeObject,
@@ -48,6 +51,10 @@ namespace Tizen.NUI.EXaml
         AddToResourceDictionary,
         RegisterXName,
         GetLongString,
+<<<<<<< Updated upstream
+=======
+        CreateDPObject,
+>>>>>>> Stashed changes
         MAX
     }
 }
