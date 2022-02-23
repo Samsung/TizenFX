@@ -53,7 +53,7 @@
   Container
   </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L29" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L31" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -68,7 +68,7 @@ added to them.</p>
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class Container : Animatable, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class Container : Animatable, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable, IResourcesProvider</code></pre>
   </div>
 
   
@@ -112,7 +112,7 @@ added to them.</p>
   <a id="Tizen_NUI_Container_ChildCount_" data-uid="Tizen.NUI.Container.ChildCount*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L74">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L136">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Container_ChildCount" data-uid="Tizen.NUI.Container.ChildCount">ChildCount</h4>
     <section>
@@ -150,7 +150,7 @@ Read only</p>
   <a id="Tizen_NUI_Container_Children_" data-uid="Tizen.NUI.Container.Children*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L43">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L105">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Container_Children" data-uid="Tizen.NUI.Container.Children">Children</h4>
     <section>
@@ -185,7 +185,7 @@ Read only</p>
   <a id="Tizen_NUI_Container_Parent_" data-uid="Tizen.NUI.Container.Parent*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L58">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L120">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Container_Parent" data-uid="Tizen.NUI.Container.Parent">Parent</h4>
     <section>
@@ -225,7 +225,7 @@ Read only</p>
   <a id="Tizen_NUI_Container_Add_" data-uid="Tizen.NUI.Container.Add*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L90">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L152">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Container_Add_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.Container.Add(Tizen.NUI.BaseComponents.View)">Add(View)</h4>
     <section>
@@ -268,7 +268,7 @@ Read only</p>
   <a id="Tizen_NUI_Container_GetChildAt_" data-uid="Tizen.NUI.Container.GetChildAt*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L107">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L169">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Container_GetChildAt_System_UInt32_" data-uid="Tizen.NUI.Container.GetChildAt(System.UInt32)">GetChildAt(UInt32)</h4>
     <section>
@@ -323,7 +323,7 @@ Read only</p>
   <a id="Tizen_NUI_Container_GetChildCount_" data-uid="Tizen.NUI.Container.GetChildCount*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L124">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L186">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Container_GetChildCount" data-uid="Tizen.NUI.Container.GetChildCount" data-obsolete="Deprecated in API9, will be removed in API11. Please use ChildCount property instead!" class="obsolete">GetChildCount()</h4>
     <section>
@@ -361,7 +361,7 @@ public abstract uint GetChildCount()</code></pre>
   <a id="Tizen_NUI_Container_GetParent_" data-uid="Tizen.NUI.Container.GetParent*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L115">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L177">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Container_GetParent" data-uid="Tizen.NUI.Container.GetParent">GetParent()</h4>
     <section>
@@ -398,7 +398,7 @@ public abstract uint GetChildCount()</code></pre>
   <a id="Tizen_NUI_Container_Remove_" data-uid="Tizen.NUI.Container.Remove*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L98">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Common/Container.cs/#L160">View Source</a>
     </span>
     <h4 id="Tizen_NUI_Container_Remove_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.Container.Remove(Tizen.NUI.BaseComponents.View)">Remove(View)</h4>
     <section>
