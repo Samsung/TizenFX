@@ -15,6 +15,7 @@
   <files>
     <file src="pkg\Tizen.NET.API9\build\**" target="build" />
     <file src="pkg\Tizen.NET.API9\design\*.dll" target="ref\netstandard2.0\Design" />
+    <file src="pkg\Tizen.NET.API9\xamlbuild\**" target="buildTransitive" />
     <file src="Artifacts\bin\dummy\*.dll"  target="ref\netstandard2.0" />
     <file src="Artifacts\bin\public\*.xml"  target="ref\netstandard2.0" />
   </files>

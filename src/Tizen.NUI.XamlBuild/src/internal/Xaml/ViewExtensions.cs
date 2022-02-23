@@ -1,0 +1,67 @@
+//
+// ViewExtensions.cs
+//
+// Author:
+//       Stephane Delcroix <stephane@mi8.be>
+//
+// Copyright (c) 2013 Mobile Inception
+// Copyright (c) 2013 Xamarin, Inc
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
+
+using System;
+using System.Reflection;
+using System.ComponentModel;
+using Tizen.NUI.Binding;
+
+namespace Tizen.NUI.Xaml
+{
+    /// <summary>
+    /// Extension class for View defining Tizen.NUI.Xaml.Extensions.LoadFromXaml{TView} method.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    internal static class Extensions
+    {
+        /// <summary>
+        /// Returns a TXaml with the properties that are defined in the application manifest for callingType.
+        /// </summary>
+        /// <typeparam name="TXaml">The type of view to initialize with state from XAML.</typeparam>
+        /// <param name="view">The view on which this method operates.</param>
+        /// <param name="xaml">The XAML that encodes the view state.</param>
+        /// <returns>A TXaml with the properties that are defined in the application manifest for callingType.</returns>
+        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static TXaml LoadFromXaml<TXaml>(this TXaml view, string xaml)
+        {
+            if (view is Element)
+            {
+                NameScopeExtensions.PushElement(view);
+            }
+
+            XamlLoader.Load(view, xaml);
+
+            if (view is Element)
+            {
+                NameScopeExtensions.PopElement();
+            }
+
+            return view;
+        }
+    }
+}
