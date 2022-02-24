@@ -76259,6 +76259,11 @@
     "title": "Class BindableObject",
     "keywords": ""
   },
+  "API9/api/Tizen.NUI.Binding.CollectionSynchronizationCallback.html": {
+    "href": "API9/api/Tizen.NUI.Binding.CollectionSynchronizationCallback.html",
+    "title": "Delegate CollectionSynchronizationCallback",
+    "keywords": ""
+  },
   "API9/api/Tizen.NUI.Binding.DataTemplate.html": {
     "href": "API9/api/Tizen.NUI.Binding.DataTemplate.html",
     "title": "Class DataTemplate",
@@ -78072,6 +78077,21 @@
   "API9/api/Tizen.NUI.WrapModeType.html": {
     "href": "API9/api/Tizen.NUI.WrapModeType.html",
     "title": "Enum WrapModeType",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.Xaml.Build.Tasks.CecilExtensions.html": {
+    "href": "API9/api/Tizen.NUI.Xaml.Build.Tasks.CecilExtensions.html",
+    "title": "Class CecilExtensions",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.Xaml.Build.Tasks.html": {
+    "href": "API9/api/Tizen.NUI.Xaml.Build.Tasks.html",
+    "title": "Namespace Tizen.NUI.Xaml.Build.Tasks",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.Xaml.Build.Tasks.XamlTask.html": {
+    "href": "API9/api/Tizen.NUI.Xaml.Build.Tasks.XamlTask.html",
+    "title": "Class XamlTask",
     "keywords": ""
   },
   "API9/api/Tizen.PhonenumberUtils.html": {
