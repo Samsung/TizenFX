@@ -43,12 +43,12 @@ namespace Tizen.NUI.Accessibility
         {
             enabledSignalHandler = () =>
             {
-                Enabled?.Invoke(typeof(Accessibility), EventArgs.Empty);
+                isBridgeEnabled?.Invoke(typeof(Accessibility), EventArgs.Empty);
             };
 
             disabledSignalHandler = () =>
             {
-                Disabled?.Invoke(typeof(Accessibility), EventArgs.Empty);
+                isBridgeDisabled?.Invoke(typeof(Accessibility), EventArgs.Empty);
             };
 
             Interop.Accessibility.RegisterEnabledDisabledSignalHandler(enabledSignalHandler, disabledSignalHandler);
@@ -308,14 +308,22 @@ namespace Tizen.NUI.Accessibility
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static event EventHandler Enabled;
+        public event EventHandler Enabled
+        {
+            add => isBridgeEnabled += value;
+            remove => isBridgeEnabled -= value;
+        }
 
         /// <summary>
         /// Triggered whenever the value of IsEnabled would change from true to false
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static event EventHandler Disabled;
+        public event EventHandler Disabled
+        {
+            add => isBridgeDisabled += value;
+            remove => isBridgeDisabled -= value;
+        }
 
         #endregion Event, Enum, Struct, ETC
 
@@ -346,6 +354,10 @@ namespace Tizen.NUI.Accessibility
         private static readonly Accessibility accessibility = new Accessibility();
 
         private event EventHandler<SayFinishedEventArgs> sayFinishedEventHandler;
+
+        private static event EventHandler isBridgeEnabled;
+
+        private static event EventHandler isBridgeDisabled;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void SayFinishedEventCallbackType(int result);
