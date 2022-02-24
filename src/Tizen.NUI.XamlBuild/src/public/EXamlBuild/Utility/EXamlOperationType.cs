@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright(c) 2021 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -30,10 +30,6 @@ namespace Tizen.NUI.EXaml
         GatherBindableProperty,
         CreateObject,
         CreateArrayObject,
-<<<<<<< Updated upstream
-        CreateDPObject,
-=======
->>>>>>> Stashed changes
         CreateDataTemplate,
         GetStaticObject,
         GetTypeObject,
@@ -51,10 +47,8 @@ namespace Tizen.NUI.EXaml
         AddToResourceDictionary,
         RegisterXName,
         GetLongString,
-<<<<<<< Updated upstream
-=======
         CreateDPObject,
->>>>>>> Stashed changes
         MAX
     }
 }
+ 
