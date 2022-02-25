@@ -5,10 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageConflictPlatformManifests Include="$(MSBuildThisFileDirectory)tizen90\PlatformManifest.txt" />
+    <PackageConflictPlatformManifests Include="$(MSBuildThisFileDirectory)PlatformManifest.txt" />
   </ItemGroup>
 
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(MSBuildThisFileDirectory)..\buildTransitive\Tizen.NUI.XamlBuild.props" Condition="Exists('$(MSBuildThisFileDirectory)..\buildTransitive\Tizen.NUI.XamlBuild.props')" />
+    <Import Project="$(MSBuildThisFileDirectory)..\..\buildTransitive\Tizen.NUI.XamlBuild.props" Condition="Exists('$(MSBuildThisFileDirectory)..\..\buildTransitive\Tizen.NUI.XamlBuild.props')" />
   </ImportGroup>
 </Project>
