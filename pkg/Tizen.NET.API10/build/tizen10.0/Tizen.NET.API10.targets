@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="$(MSBuildThisFileDirectory)tizen10.0\ref\*.dll">
+    <Reference Include="$(MSBuildThisFileDirectory)ref\*.dll">
       <Private>false</Private>
       <Visible>false</Visible>
       <NuGetPackageId>Microsoft.NETCore.App.Ref</NuGetPackageId>
@@ -18,6 +18,6 @@
   </ItemGroup>
 
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(MSBuildThisFileDirectory)..\buildTransitive\Tizen.NUI.XamlBuild.targets" Condition="Exists('$(MSBuildThisFileDirectory)..\buildTransitive\Tizen.NUI.XamlBuild.targets')" />
+    <Import Project="$(MSBuildThisFileDirectory)..\..\buildTransitive\Tizen.NUI.XamlBuild.targets" Condition="Exists('$(MSBuildThisFileDirectory)..\..\buildTransitive\Tizen.NUI.XamlBuild.targets')" />
   </ImportGroup>
 </Project>
