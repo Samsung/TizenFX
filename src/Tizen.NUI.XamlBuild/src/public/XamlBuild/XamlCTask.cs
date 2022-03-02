@@ -203,13 +203,10 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             else
                 LoggingHelper.LogMessage(Low, $"{new string(' ', 2)}Ignoring dependency and reference paths due to an unsupported resolver");
 
-            var debug = DebugSymbols || (!string.IsNullOrEmpty(DebugType) && DebugType.ToLowerInvariant() != "none");
-
             var readerParameters = new ReaderParameters
             {
                 AssemblyResolver = resolver,
                 ReadWrite = !ReadOnly,
-                ReadSymbols = debug,
             };
 
             using (var assemblyDefinition = AssemblyDefinition.ReadAssembly(System.IO.Path.GetFullPath(Assembly), readerParameters))
@@ -358,7 +355,6 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 {
                     assemblyDefinition.Write(new WriterParameters
                     {
-                        WriteSymbols = debug,
                     });
                     LoggingHelper.LogMessage(Low, $"{new string(' ', 2)}done.");
                 }
