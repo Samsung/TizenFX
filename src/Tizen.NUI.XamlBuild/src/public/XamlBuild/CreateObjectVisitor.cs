@@ -284,7 +284,25 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                     var ctor = Module.ImportReference(ctorinforef);
                     //                    IL_0001:  newobj instance void class [Tizen.NUI.Xaml.UIComponents]Tizen.NUI.Xaml.UIComponents.Button::'.ctor'()
                     //                    IL_0006:  stloc.0 
-                    Context.IL.Emit(OpCodes.Newobj, ctor);
+                    bool isConvertValue = false;
+                    if (node.CollectionItems.Count == 1 && node.CollectionItems.First() is ValueNode valueNode)
+                    {
+                        if (valueNode.CanConvertValue(Context.Module, typeref, (TypeReference)null))
+                        {
+                            var converterType = valueNode.GetConverterType(new ICustomAttributeProvider[] { typeref.Resolve() });
+                            if (null != converterType)
+                            {
+                                isConvertValue = true;
+                                Context.IL.Append(vnode.PushConvertedValue(Context, typeref, new ICustomAttributeProvider[] { typedef },
+                                    node.PushServiceProvider(Context), false, true));
+                            }
+                        }
+                    }
+                    
+                    if (false == isConvertValue)
+                    {
+                        Context.IL.Emit(OpCodes.Newobj, ctor);
+                    }
                     Context.IL.Emit(OpCodes.Stloc, vardef);
                 }
                 else if (ctorInfo != null && node.Properties.ContainsKey(XmlName.xArguments) &&
@@ -511,7 +529,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             for (var i = arguments.Count; i < factoryCtorInfo.Parameters.Count; i++)
             {
                 var parameter = factoryCtorInfo.Parameters[i];
-                var arg = new ValueNode(parameter.Constant.ToString(), node.NamespaceResolver);
+                var arg = new ValueNode(parameter.Constant?.ToString(), node.NamespaceResolver);
 
                 foreach (var instruction in arg.PushConvertedValue(Context,
                         parameter.ParameterType,
@@ -526,7 +544,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             if (node.NamespaceURI == XamlParser.X2009Uri)
             {
                 var n = node.XmlType.Name.Split(':')[1];
-                return n != "Array";
+                return n != "Array" && n != "Nullable";
             }
             if (node.NamespaceURI != "clr-namespace:System;assembly=mscorlib")
                 return false;

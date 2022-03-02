@@ -342,8 +342,16 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             if (compiledConverterName != null && (compiledConverterType = Type.GetType (compiledConverterName)) != null) {
                 var compiledConverter = Activator.CreateInstance (compiledConverterType);
                 var converter = typeof(ICompiledTypeConverter).GetMethods ().FirstOrDefault (md => md.Name == "ConvertFromString");
-                IEnumerable<Instruction> instructions = (IEnumerable<Instruction>)converter.Invoke (compiledConverter, new object[] {
-                    node.Value as string, context, node as BaseNode});
+                IEnumerable<Instruction> instructions = null;
+
+                try
+                {
+                    instructions = (IEnumerable<Instruction>)converter.Invoke(compiledConverter, new object[] {
+                        node.Value as string, context, node as BaseNode});
+                }
+                catch 
+                {
+                }
 
                 if (null != instructions)
                 {
