@@ -23,24 +23,6 @@ namespace Tizen.NUI.BaseComponents
     public partial class AnimatedImageView
     {
         /// <summary>
-        /// ResourceUrlProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static new readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(AnimatedImageView), string.Empty, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
-            if (newValue != null)
-            {
-                instance.InternalResourceUrl = (string)newValue;
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (Tizen.NUI.BaseComponents.AnimatedImageView)bindable;
-            return instance.InternalResourceUrl;
-        });
-
-        /// <summary>
         /// BatchSizeProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
