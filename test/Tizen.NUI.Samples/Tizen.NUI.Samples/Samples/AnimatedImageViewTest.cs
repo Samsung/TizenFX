@@ -167,6 +167,7 @@ namespace Tizen.NUI.Samples
             {
                 box2.image.URLs.Add(resPath + "images/AGIF/dog-anim-00" + i + ".png");
             }
+            box2.image.SetValues();
             box2.image.Play();
 
             box2.but1.Clicked += But1_Clicked1;
