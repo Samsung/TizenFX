@@ -268,6 +268,7 @@ namespace Tizen.NUI.BaseComponents
         private string _alphaMaskUrl = null;
         private int _desired_width = -1;
         private int _desired_height = -1;
+         private bool _cropToMask = false;
         private VisualFittingModeType _fittingMode = VisualFittingModeType.Fill;
         private TriggerableSelector<string> resourceUrlSelector;
         private TriggerableSelector<Rectangle> borderSelector;
@@ -853,12 +854,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                bool ret = false;
+                bool ret =  _cropToMask;
                 PropertyMap imageMap = new PropertyMap();
                 PropertyValue image = Tizen.NUI.Object.GetProperty(SwigCPtr, ImageView.Property.IMAGE);
                 image?.Get(imageMap);
                 PropertyValue cropUrl = imageMap?.Find(ImageVisualProperty.CropToMask);
                 cropUrl?.Get(out ret);
+                _cropToMask = ret;
 
                 imageMap?.Dispose();
                 image?.Dispose();
@@ -868,6 +870,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+                _cropToMask = value;
                 PropertyValue setValue = new PropertyValue(value);
                 UpdateImage(ImageVisualProperty.CropToMask, setValue);
                 setValue.Dispose();
@@ -1347,6 +1350,13 @@ namespace Tizen.NUI.BaseComponents
                 PropertyValue alphaMaskUrl = new PropertyValue(_alphaMaskUrl);
                 imageMap?.Insert(ImageVisualProperty.AlphaMaskURL, alphaMaskUrl);
                 alphaMaskUrl?.Dispose();
+            }
+
+            if(key != ImageVisualProperty.CropToMask)
+            {
+                PropertyValue cropToMask = new PropertyValue(_cropToMask);
+                imageMap?.Insert(ImageVisualProperty.CropToMask, cropToMask);
+                cropToMask?.Dispose();
             }
 
             if (string.IsNullOrEmpty(_resourceUrl))
