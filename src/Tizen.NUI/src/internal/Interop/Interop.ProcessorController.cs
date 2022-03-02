@@ -33,6 +33,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_RemoveCallback")]
             public static extern void RemoveCallback(global::System.Runtime.InteropServices.HandleRef processorController, Tizen.NUI.ProcessorController.ProcessorEventHandler processorCallback);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ProcessorController_Awake")]
+            public static extern void Awake(global::System.Runtime.InteropServices.HandleRef processorController);
         }
     }
 }

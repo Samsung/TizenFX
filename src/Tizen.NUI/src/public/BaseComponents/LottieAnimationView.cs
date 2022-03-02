@@ -133,7 +133,7 @@ namespace Tizen.NUI.BaseComponents
                 string ret = currentStates.url;
                 NUILog.Debug($"<[{GetId()}] GET");
 
-                PropertyMap map = Image;
+                PropertyMap map = base.Image;
                 if (map != null)
                 {
                     PropertyValue val = map.Find(ImageVisualProperty.URL);
@@ -191,7 +191,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int ret = -1;
-                PropertyMap map = Image;
+                PropertyMap map = base.Image;
                 if (map != null)
                 {
                     PropertyValue val = map.Find(ImageVisualProperty.TotalFrameNumber);
@@ -240,7 +240,7 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int ret = 0;
-                PropertyMap map = Image;
+                PropertyMap map = base.Image;
                 if (map != null)
                 {
                     PropertyValue val = map.Find(ImageVisualProperty.CurrentFrameNumber);
@@ -272,7 +272,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Debug($"<[{GetId()}] SET loopMode={currentStates.loopMode}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
-                DoAction(ImageView.Property.IMAGE, Interop.Visual.GetActionUpdateProperty(), new PropertyValue(map));
+                DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, new PropertyValue(map));
             }
             get
             {
@@ -329,7 +329,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Debug($"<[{GetId()}]SET currentStates.loopCount={currentStates.loopCount}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount));
-                DoAction(ImageView.Property.IMAGE, Interop.Visual.GetActionUpdateProperty(), new PropertyValue(map));
+                DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, new PropertyValue(map));
             }
             get
             {
@@ -372,7 +372,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Debug($"<[{GetId()}]SET val={currentStates.stopEndAction}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction));
-                DoAction(ImageView.Property.IMAGE, Interop.Visual.GetActionUpdateProperty(), new PropertyValue(map));
+                DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, new PropertyValue(map));
             }
             get
             {
@@ -418,7 +418,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Debug($"<[{GetId()}]SET currentStates.redrawInScalingDown={currentStates.redrawInScalingDown}>");
                 PropertyMap map = new PropertyMap();
                 map.Add(ImageVisualProperty.RedrawInScalingDown, new PropertyValue(currentStates.redrawInScalingDown));
-                DoAction(ImageView.Property.IMAGE, Interop.Visual.GetActionUpdateProperty(), new PropertyValue(map));
+                DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, new PropertyValue(map));
             }
             get
             {
@@ -476,7 +476,7 @@ namespace Tizen.NUI.BaseComponents
 
             PropertyMap map = new PropertyMap();
             map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
-            DoAction(ImageView.Property.IMAGE, Interop.Visual.GetActionUpdateProperty(), new PropertyValue(map));
+            DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, new PropertyValue(map));
             NUILog.Debug($"  [{GetId()}] currentStates.min:({currentStates.framePlayRangeMin}, max:{currentStates.framePlayRangeMax})>");
         }
 
@@ -590,7 +590,7 @@ namespace Tizen.NUI.BaseComponents
 
             PropertyMap map = new PropertyMap();
             map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
-            DoAction(ImageView.Property.IMAGE, Interop.Visual.GetActionUpdateProperty(), new PropertyValue(map));
+            DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, new PropertyValue(map));
             NUILog.Debug($"  [{GetId()}] currentStates.mark1:{currentStates.mark1}, mark2:{currentStates.mark2} >");
         }
 
