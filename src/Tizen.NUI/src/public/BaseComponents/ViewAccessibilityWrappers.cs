@@ -61,6 +61,11 @@ namespace Tizen.NUI.BaseComponents
             return Interop.ControlDevel.DaliAccessibilityNewRange(range.StartOffset, range.EndOffset, range.Content);
         }
 
+        private static IntPtr DuplicateAccessibilityRectangle(Rectangle rect)
+        {
+            return Interop.Rectangle.NewRectangle(rect.X, rect.Y, rect.Width, rect.Height);
+        }
+
         //
         // Accessible interface
         //
@@ -283,6 +288,7 @@ namespace Tizen.NUI.BaseComponents
 
             ad.GetCharacterCount = AccessibilityGetCharacterCountWrapper;
             ad.GetCursorOffset   = AccessibilityGetCursorOffsetWrapper;
+            ad.GetRangeExtents   = AccessibilityGetRangeExtentsWrapper;
             ad.GetSelection      = AccessibilityGetSelectionWrapper;
             ad.GetText           = AccessibilityGetTextWrapper;
             ad.GetTextAtOffset   = AccessibilityGetTextAtOffsetWrapper;
@@ -299,6 +305,13 @@ namespace Tizen.NUI.BaseComponents
         private static int AccessibilityGetCursorOffsetWrapper(IntPtr self)
         {
             return GetViewFromRefObject(self).AccessibilityGetCursorOffset();
+        }
+
+        private static IntPtr AccessibilityGetRangeExtentsWrapper(IntPtr self, int startOffset, int endOffset, int coordType)
+        {
+            using Rectangle rect = GetViewFromRefObject(self).AccessibilityGetRangeExtents(startOffset, endOffset, (AccessibilityCoordinateType)coordType);
+
+            return DuplicateAccessibilityRectangle(rect);
         }
 
         private static IntPtr AccessibilityGetSelectionWrapper(IntPtr self, int selectionNumber)
