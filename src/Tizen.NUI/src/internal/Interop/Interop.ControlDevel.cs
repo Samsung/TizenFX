@@ -389,6 +389,11 @@ namespace Tizen.NUI
                 public delegate uint AccessibilityGetInterfaces(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetInterfaces GetInterfaces; // 36
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate IntPtr AccessibilityGetRangeExtents(IntPtr self, int startOffset, int endOffset, int coordType);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetRangeExtents GetRangeExtents; // 37
             }
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_SetAccessibilityConstructor_NUI")]

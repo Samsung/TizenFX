@@ -1456,4 +1456,23 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         Paragraph,
     }
+
+    /// <summary>
+    /// Accessibility coordinate type describing if coordinates are relative to screen or window
+    /// </summary>
+    /// <seealso cref="View.AccessibilityGetRangeExtents" />
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum AccessibilityCoordinateType
+    {
+        /// <summary>
+        /// Specifies xy coordinates relative to the screen.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Screen,
+        /// <summary>
+        /// Specifies xy coordinates relative to the component's top-level window.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Window,
+    }
 }
