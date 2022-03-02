@@ -658,6 +658,12 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual Rectangle AccessibilityGetRangeExtents(int startOffset, int endOffset, AccessibilityCoordinateType coordType)
+        {
+            return new Rectangle(0, 0, 0, 0);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool AccessibilityCopyText(int startPosition, int endPosition)
         {
             return false;
