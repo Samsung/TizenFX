@@ -150,8 +150,6 @@ namespace Tizen.NUI.Components
                         layoutChanged = true;
                         Add(itemLabel);
                     }
-                    itemLabel.AppendAccessibilityRelation(this, AccessibilityRelationType.ControlledBy);
-                    this.AppendAccessibilityRelation(itemLabel, AccessibilityRelationType.LabelledBy);
                 }
                 return itemLabel;
             }
@@ -305,7 +303,8 @@ namespace Tizen.NUI.Components
                         //need to consider horizontal/vertical!
                         WidthSpecification = LayoutParamPolicies.MatchParent,
                         HeightSpecification = 2,
-                        ExcludeLayouting = true
+                        ExcludeLayouting = true,
+                        AccessibilityHidden = true
                     };
                     layoutChanged = true;
                     Add(itemSeperator);
@@ -361,6 +360,15 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Get accessibility name.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override string AccessibilityGetName()
+        {
+            return Label.Text + ", " + SubLabel.Text;
+        }
+
+        /// <summary>
         /// Creates Item's text part.
         /// </summary>
         /// <return>The created Item's text part.</return>
@@ -370,7 +378,8 @@ namespace Tizen.NUI.Components
             return new TextLabel(style)
             {
                 HorizontalAlignment = HorizontalAlignment.Begin,
-                VerticalAlignment = VerticalAlignment.Center
+                VerticalAlignment = VerticalAlignment.Center,
+                AccessibilityHidden = true
             };
         }
 
