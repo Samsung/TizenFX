@@ -30,7 +30,6 @@ namespace Tizen.Applications
         private static readonly Dictionary<string, string> _cultureNames = new Dictionary<string, string>();
         private static readonly object _lock = new object();
         private const string _pathCultureInfoXml = "/usr/share/dotnet.tizen/framework/i18n/CultureInfo.xml";
-        private static readonly CultureInfo _cultureInfo = new CultureInfo("en-US");
 
         public static void Initialize()
         {
@@ -86,7 +85,7 @@ namespace Tizen.Applications
                     Initialize();
                 }
 
-                if (_cultureNames.TryGetValue(locale.ToLower(_cultureInfo), out string cultureName))
+                if (_cultureNames.TryGetValue(locale.ToLowerInvariant(), out string cultureName))
                 {
                     return cultureName;
                 }
