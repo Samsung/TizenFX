@@ -60,6 +60,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Returns the total number of points in this TouchData.
+        /// Point means the touched point.
+        /// If there is one touch point, the point index is 0.
+        /// If there are two touch points, the point index has 0 and 1.
         /// </summary>
         /// <returns>The total number of points.</returns>
         /// <since_tizen> 3 </since_tizen>
@@ -76,7 +79,7 @@ namespace Tizen.NUI
         /// point. This is returned by this method.<br />
         /// If a point is greater than GetPointCount(), then this method will return -1.<br />
         /// </summary>
-        /// <param name="point">The point required.</param>
+        /// <param name="point">The index of a touch point</param>
         /// <returns>The device ID of this point.</returns>
         /// <since_tizen> 3 </since_tizen>
         public int GetDeviceId(uint point)
@@ -90,7 +93,7 @@ namespace Tizen.NUI
         /// Retrieves the state of the point specified.<br />
         /// If a point is greater than GetPointCount(), then this method will return PointState.Finished.<br />
         /// </summary>
-        /// <param name="point">The point required.</param>
+        /// <param name="point">The index of a touch point.</param>
         /// <returns>The state of the point specified.</returns>
         /// <since_tizen> 3 </since_tizen>
         public PointStateType GetState(uint point)
@@ -101,11 +104,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the actor that was underneath the point specified.<br />
+        /// Retrieves the view that was underneath the point specified.<br />
         /// If a point is greater than GetPointCount(), then this method will return an empty handle.<br />
         /// </summary>
-        /// <param name="point">The point required.</param>
-        /// <returns>The actor that was underneath the point specified.</returns>
+        /// <param name="point">The index of a touch point.</param>
+        /// <returns>The view that was underneath the point specified.</returns>
         /// <since_tizen> 3 </since_tizen>
         public View GetHitView(uint point)
         {
@@ -117,14 +120,14 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Retrieves the coordinates relative to the top-left of the hit actor at the point specified.<br />
-        /// The top-left of an actor is (0.0, 0.0, 0.5).<br />
-        /// If you require the local coordinates of another actor (for example, the parent of the hit actor),
-        /// then you should use Actor::ScreenToLocal().<br />
+        /// Retrieves the coordinates relative to the top-left of the hit view at the point specified.<br />
+        /// The top-left of an view is (0.0, 0.0, 0.5).<br />
+        /// If you require the local coordinates of another view (for example, the parent of the hit view),
+        /// then you should use ScreenToLocal().<br />
         /// If a point is greater than GetPointCount(), then this method will return Vector2.Zero.<br />
         /// </summary>
-        /// <param name="point">The point required.</param>
-        /// <returns>The coordinates relative to the top-left of the hit actor of the point specified.</returns>
+        /// <param name="point">The index of a touch point.</param>
+        /// <returns>The coordinates relative to the top-left of the hit view of the point specified.</returns>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetLocalPosition(uint point)
         {
@@ -137,7 +140,7 @@ namespace Tizen.NUI
         /// Retrieves the coordinates relative to the top-left of the screen of the point specified.<br />
         /// If a point is greater than GetPointCount(), then this method will return Vector2.Zero.<br />
         /// </summary>
-        /// <param name="point">The point required.</param>
+        /// <param name="point">The index of a touch point.</param>
         /// <returns>The coordinates relative to the top-left of the screen of the point specified.</returns>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetScreenPosition(uint point)
@@ -152,7 +155,7 @@ namespace Tizen.NUI
         /// This is the average of both the horizontal and vertical radii of the press point.<br />
         /// If point is greater than GetPointCount(), then this method will return 0.0f.<br />
         /// </summary>
-        /// <param name="point">The point required.</param>
+        /// <param name="point">The index of a touch point.</param>
         /// <returns>The radius of the press point.</returns>
         /// <since_tizen> 3 </since_tizen>
         public float GetRadius(uint point)
@@ -166,7 +169,7 @@ namespace Tizen.NUI
         /// Retrieves both the horizontal and the vertical radii of the press point.<br />
         /// If a point is greater than GetPointCount(), then this method will return Vector2.Zero.<br />
         /// </summary>
-        /// <param name="point">The point required.</param>
+        /// <param name="point">The index of a touch point.</param>
         /// <returns>The horizontal and vertical radii of the press point.</returns>
         /// <since_tizen> 3 </since_tizen>
         public Vector2 GetEllipseRadius(uint point)
@@ -184,7 +187,7 @@ namespace Tizen.NUI
         /// A value greater than 1.0f means more pressure than normal has been applied.<br />
         /// If point is greater than GetPointCount(), then this method will return 1.0f.<br />
         /// </summary>
-        /// <param name="point">The point required.</param>
+        /// <param name="point">The index of a touch point.</param>
         /// <returns>The touch pressure.</returns>
         /// <since_tizen> 3 </since_tizen>
         public float GetPressure(uint point)
@@ -197,7 +200,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Get mouse device's button value (for example, right or left button)
         /// </summary>
-        /// <param name="point">The point required.</param>
+        /// <param name="point">The index of a touch point.</param>
         /// <returns></returns>
         /// <since_tizen> 5 </since_tizen>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
