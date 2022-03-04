@@ -237,6 +237,7 @@ namespace Tizen.NUI
             View GetNextFocusableView(View current, View proposed, View.FocusDirection direction);
         }
 
+
         /// <summary>
         /// Gets or sets the status of whether the focus movement should be looped within the same focus group.<br />
         /// The focus movement is not looped by default.<br />
@@ -811,14 +812,21 @@ namespace Tizen.NUI
                 this.customFocusAlgorithm = customFocusAlgorithm;
             }
 
-            public override View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
+            public override View GetNextFocusableView(View current, View proposed, View.FocusDirection direction, string deviceName)
             {
                 if (customFocusAlgorithm == null)
                 {
                     Tizen.Log.Error("NUI", $"[ERROR] User defined ICustomFocusAlgorithm interface class becomes unreachable. Null will be proposed for next focusing!");
                     return null;
                 }
-                return customFocusAlgorithm.GetNextFocusableView(current, proposed, direction);
+                if (customFocusAlgorithm is ICustomAwareDeviceFocusAlgorithm deviceAwared)
+                {
+                    return deviceAwared.GetNextFocusableView(current, proposed, direction, deviceName);
+                }
+                else
+                {
+                    return customFocusAlgorithm.GetNextFocusableView(current, proposed, direction);
+                }
             }
         }
     }
