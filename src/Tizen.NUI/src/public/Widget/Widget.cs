@@ -82,6 +82,16 @@ namespace Tizen.NUI
             widgetImpl.SetContentInfo(contentInfo);
         }
 
+        /// <summary>
+        /// Set the flag that widget is using keyEvent
+        /// </summary>
+        /// <param name="flag"> The flag that widget is using keyEvent. </param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetUsingKeyEvent(bool flag)
+        {
+            widgetImpl.SetUsingKeyEvent(flag);
+        }
+
         internal System.IntPtr GetIntPtr()
         {
             return SwigCPtr.Handle;
