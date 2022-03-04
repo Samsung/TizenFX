@@ -50,11 +50,12 @@ namespace NUITizenGallery
         {
             InitializeComponent();
             BindingContext = new TestSourceModel(50);
-
+            /*
             ColView.ItemTemplate = new DataTemplate(() =>
             {
                 return new CollectionViewCustomItem();;
             });
+            */
         }
 
         protected override void Dispose(DisposeTypes type)

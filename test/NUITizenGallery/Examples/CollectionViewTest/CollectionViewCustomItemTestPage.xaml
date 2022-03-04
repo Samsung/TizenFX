@@ -2,6 +2,7 @@
 <ContentPage x:Class="NUITizenGallery.CollectionViewCustomItemTestPage"
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:gallery="clr-namespace:NUITizenGallery;assembly=NUITizenGallery"
   WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
   HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
 
@@ -21,8 +22,14 @@
                           ItemsSource="{Binding TestSource}">
 
             <CollectionView.ItemsLayouter>
-                  <LinearLayouter />
+                <LinearLayouter />
             </CollectionView.ItemsLayouter>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <gallery:CollectionViewCustomItem />
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
 
         </CollectionView>
         </ContentPage.Content>
