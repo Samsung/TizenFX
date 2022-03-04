@@ -17,19 +17,6 @@
 {
   "styles":
   {
-    "ConfirmationPopup":{
-      "popupBackgroundImage":"{APPLICATION_RESOURCE_PATH}/images/00_popup_bg.9.png"
-    },
-
-    "CustomPopupStyle":{
-      "popupBackgroundImage":"{APPLICATION_RESOURCE_PATH}/images/popup.9.png",
-      "popupBackgroundBorder":[0,4,4,0],
-      "tailUpImage":"{APPLICATION_RESOURCE_PATH}/images/popup-tail-up.png",
-      "tailDownImage":"{APPLICATION_RESOURCE_PATH}/images/popup-tail-down.png",
-      "tailLeftImage":"{APPLICATION_RESOURCE_PATH}/images/popup-tail-left.png",
-      "tailRightImage":"{APPLICATION_RESOURCE_PATH}/images/popup-tail-right.png"
-    },
-
     "DemoTile":
     {
       "states":
@@ -41,7 +28,6 @@
           {
             "image":
             {
-              "url":"{APPLICATION_RESOURCE_PATH}/images/demo-tile-texture.9.png",
 // TILE_BACKGROUND_ALPHA
 // This shader takes a texture.
 // An alpha discard is performed.
@@ -79,7 +65,6 @@
           {
             "image":
             {
-              "url":"{APPLICATION_RESOURCE_PATH}/images/demo-tile-texture-focused.9.png",
 // TILE_BACKGROUND_ALPHA
 // This shader takes a texture.
 // An alpha discard is performed.
@@ -109,26 +94,6 @@
               }
             }
           }
-        }
-      }
-    },
-    "FocusActor":
-    {
-      "visuals":
-      {
-        "image":
-        {
-          "url":"{APPLICATION_RESOURCE_PATH}/images/tile-focus.9.png"
-        }
-      }
-    },
-    "DemoTileBorder":
-    {
-      "visuals":
-      {
-        "image":
-        {
-          "url":"{APPLICATION_RESOURCE_PATH}/images/item-background.9.png" // TILE_BACKGROUND
         }
       }
     },
@@ -182,35 +147,6 @@
         "radius": 932,
         "units": "USER_SPACE",
         "stopColor": [[0.247,0.38,0.52,1.0],[0.055,0.18,0.286,1.0]]
-      }
-    },
-//
-// Simple Visuals Application Style section
-//
-    "MyControl":
-    {
-      "states":
-      {
-        "NORMAL":
-        {
-          "visuals":
-          {
-            "iconVisual":
-            {
-              "url":"{APPLICATION_RESOURCE_PATH}/images/application-icon-13.png"
-            }
-          }
-        },
-        "FOCUSED":
-        {
-          "visuals":
-          {
-            "iconVisual":
-            {
-              "url":"{APPLICATION_RESOURCE_PATH}/images/application-icon-83.png"
-            }
-          }
-        }
       }
     }
   }
