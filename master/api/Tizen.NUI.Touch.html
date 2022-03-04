@@ -147,7 +147,7 @@ Calling member functions with an uninitialized touch handle is not allowed.<br><
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L82">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L85">View Source</a>
   </span>
   <a id="Tizen_NUI_Touch_GetDeviceId_" data-uid="Tizen.NUI.Touch.GetDeviceId*"></a>
   <h4 id="Tizen_NUI_Touch_GetDeviceId_System_UInt32_" data-uid="Tizen.NUI.Touch.GetDeviceId(System.UInt32)">GetDeviceId(UInt32)</h4>
@@ -174,7 +174,7 @@ If a point is greater than GetPointCount(), then this method will return -1.<br>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
         <td><span class="parametername">point</span></td>
-        <td><p>The point required.</p>
+        <td><p>The index of a touch point</p>
 </td>
       </tr>
     </tbody>
@@ -201,7 +201,7 @@ If a point is greater than GetPointCount(), then this method will return -1.<br>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L172">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L175">View Source</a>
   </span>
   <a id="Tizen_NUI_Touch_GetEllipseRadius_" data-uid="Tizen.NUI.Touch.GetEllipseRadius*"></a>
   <h4 id="Tizen_NUI_Touch_GetEllipseRadius_System_UInt32_" data-uid="Tizen.NUI.Touch.GetEllipseRadius(System.UInt32)">GetEllipseRadius(UInt32)</h4>
@@ -226,7 +226,7 @@ If a point is greater than GetPointCount(), then this method will return Vector2
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
         <td><span class="parametername">point</span></td>
-        <td><p>The point required.</p>
+        <td><p>The index of a touch point.</p>
 </td>
       </tr>
     </tbody>
@@ -253,11 +253,11 @@ If a point is greater than GetPointCount(), then this method will return Vector2
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L110">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L113">View Source</a>
   </span>
   <a id="Tizen_NUI_Touch_GetHitView_" data-uid="Tizen.NUI.Touch.GetHitView*"></a>
   <h4 id="Tizen_NUI_Touch_GetHitView_System_UInt32_" data-uid="Tizen.NUI.Touch.GetHitView(System.UInt32)">GetHitView(UInt32)</h4>
-  <div class="markdown level1 summary"><p>Retrieves the actor that was underneath the point specified.<br>
+  <div class="markdown level1 summary"><p>Retrieves the view that was underneath the point specified.<br>
 If a point is greater than GetPointCount(), then this method will return an empty handle.<br></p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -278,7 +278,7 @@ If a point is greater than GetPointCount(), then this method will return an empt
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
         <td><span class="parametername">point</span></td>
-        <td><p>The point required.</p>
+        <td><p>The index of a touch point.</p>
 </td>
       </tr>
     </tbody>
@@ -294,7 +294,7 @@ If a point is greater than GetPointCount(), then this method will return an empt
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
-        <td><p>The actor that was underneath the point specified.</p>
+        <td><p>The view that was underneath the point specified.</p>
 </td>
       </tr>
     </tbody>
@@ -305,14 +305,14 @@ If a point is greater than GetPointCount(), then this method will return an empt
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L129">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L132">View Source</a>
   </span>
   <a id="Tizen_NUI_Touch_GetLocalPosition_" data-uid="Tizen.NUI.Touch.GetLocalPosition*"></a>
   <h4 id="Tizen_NUI_Touch_GetLocalPosition_System_UInt32_" data-uid="Tizen.NUI.Touch.GetLocalPosition(System.UInt32)">GetLocalPosition(UInt32)</h4>
-  <div class="markdown level1 summary"><p>Retrieves the coordinates relative to the top-left of the hit actor at the point specified.<br>
-The top-left of an actor is (0.0, 0.0, 0.5).<br>
-If you require the local coordinates of another actor (for example, the parent of the hit actor),
-then you should use Actor::ScreenToLocal().<br>
+  <div class="markdown level1 summary"><p>Retrieves the coordinates relative to the top-left of the hit view at the point specified.<br>
+The top-left of an view is (0.0, 0.0, 0.5).<br>
+If you require the local coordinates of another view (for example, the parent of the hit view),
+then you should use ScreenToLocal().<br>
 If a point is greater than GetPointCount(), then this method will return Vector2.Zero.<br></p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -333,7 +333,7 @@ If a point is greater than GetPointCount(), then this method will return Vector2
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
         <td><span class="parametername">point</span></td>
-        <td><p>The point required.</p>
+        <td><p>The index of a touch point.</p>
 </td>
       </tr>
     </tbody>
@@ -349,7 +349,7 @@ If a point is greater than GetPointCount(), then this method will return Vector2
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Vector2.html">Vector2</a></td>
-        <td><p>The coordinates relative to the top-left of the hit actor of the point specified.</p>
+        <td><p>The coordinates relative to the top-left of the hit view of the point specified.</p>
 </td>
       </tr>
     </tbody>
@@ -360,11 +360,14 @@ If a point is greater than GetPointCount(), then this method will return Vector2
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L66">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L69">View Source</a>
   </span>
   <a id="Tizen_NUI_Touch_GetPointCount_" data-uid="Tizen.NUI.Touch.GetPointCount*"></a>
   <h4 id="Tizen_NUI_Touch_GetPointCount" data-uid="Tizen.NUI.Touch.GetPointCount">GetPointCount()</h4>
-  <div class="markdown level1 summary"><p>Returns the total number of points in this TouchData.</p>
+  <div class="markdown level1 summary"><p>Returns the total number of points in this TouchData.
+Point means the touched point.
+If there is one touch point, the point index is 0.
+If there are two touch points, the point index has 0 and 1.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -393,7 +396,7 @@ If a point is greater than GetPointCount(), then this method will return Vector2
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L190">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L193">View Source</a>
   </span>
   <a id="Tizen_NUI_Touch_GetPressure_" data-uid="Tizen.NUI.Touch.GetPressure*"></a>
   <h4 id="Tizen_NUI_Touch_GetPressure_System_UInt32_" data-uid="Tizen.NUI.Touch.GetPressure(System.UInt32)">GetPressure(UInt32)</h4>
@@ -422,7 +425,7 @@ If point is greater than GetPointCount(), then this method will return 1.0f.<br>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
         <td><span class="parametername">point</span></td>
-        <td><p>The point required.</p>
+        <td><p>The index of a touch point.</p>
 </td>
       </tr>
     </tbody>
@@ -449,7 +452,7 @@ If point is greater than GetPointCount(), then this method will return 1.0f.<br>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L158">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L161">View Source</a>
   </span>
   <a id="Tizen_NUI_Touch_GetRadius_" data-uid="Tizen.NUI.Touch.GetRadius*"></a>
   <h4 id="Tizen_NUI_Touch_GetRadius_System_UInt32_" data-uid="Tizen.NUI.Touch.GetRadius(System.UInt32)">GetRadius(UInt32)</h4>
@@ -475,7 +478,7 @@ If point is greater than GetPointCount(), then this method will return 0.0f.<br>
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
         <td><span class="parametername">point</span></td>
-        <td><p>The point required.</p>
+        <td><p>The index of a touch point.</p>
 </td>
       </tr>
     </tbody>
@@ -502,7 +505,7 @@ If point is greater than GetPointCount(), then this method will return 0.0f.<br>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L143">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L146">View Source</a>
   </span>
   <a id="Tizen_NUI_Touch_GetScreenPosition_" data-uid="Tizen.NUI.Touch.GetScreenPosition*"></a>
   <h4 id="Tizen_NUI_Touch_GetScreenPosition_System_UInt32_" data-uid="Tizen.NUI.Touch.GetScreenPosition(System.UInt32)">GetScreenPosition(UInt32)</h4>
@@ -527,7 +530,7 @@ If a point is greater than GetPointCount(), then this method will return Vector2
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
         <td><span class="parametername">point</span></td>
-        <td><p>The point required.</p>
+        <td><p>The index of a touch point.</p>
 </td>
       </tr>
     </tbody>
@@ -554,7 +557,7 @@ If a point is greater than GetPointCount(), then this method will return Vector2
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L96">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Events/Touch.cs/#L99">View Source</a>
   </span>
   <a id="Tizen_NUI_Touch_GetState_" data-uid="Tizen.NUI.Touch.GetState*"></a>
   <h4 id="Tizen_NUI_Touch_GetState_System_UInt32_" data-uid="Tizen.NUI.Touch.GetState(System.UInt32)">GetState(UInt32)</h4>
@@ -579,7 +582,7 @@ If a point is greater than GetPointCount(), then this method will return PointSt
       <tr>
         <td><a class="xref" href="https://docs.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
         <td><span class="parametername">point</span></td>
-        <td><p>The point required.</p>
+        <td><p>The index of a touch point.</p>
 </td>
       </tr>
     </tbody>
