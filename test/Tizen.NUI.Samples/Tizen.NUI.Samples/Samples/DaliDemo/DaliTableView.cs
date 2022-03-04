@@ -288,7 +288,6 @@ namespace Tizen.NUI.Samples
 
             // Create an ImageView for the 9-patch border around the tile.
             ImageView borderImage = new ImageView();
-            borderImage.SetStyleName("DemoTileBorder");
             borderImage.ResourceUrl = CommonResource.GetDaliResourcePath() + "DaliDemo/item-background.9.png";
             borderImage.PositionUsesPivotPoint = true;
             borderImage.PivotPoint = PivotPoint.Center;
