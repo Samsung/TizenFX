@@ -860,7 +860,7 @@ namespace Tizen.NUI.Components
                 disappearedPage.UnregisterDefaultLabel();
                 //We can call disappearedPage.NotifyAccessibilityStatesChange
                 //To reduce accessibility events, we are using currently highlighted view instead
-                View curHighlightedView = Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView();
+                View curHighlightedView = Accessibility.Accessibility.GetCurrentlyHighlightedView();
                 if (curHighlightedView != null)
                 {
                     curHighlightedView.NotifyAccessibilityStatesChange(new AccessibilityStates(AccessibilityState.Visible, AccessibilityState.Showing), AccessibilityStatesNotifyMode.Single);
