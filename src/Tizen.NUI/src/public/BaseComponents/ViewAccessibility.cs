@@ -229,7 +229,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (this == Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView());
+                return (this == Accessibility.Accessibility.GetCurrentlyHighlightedView());
             }
         }
 
