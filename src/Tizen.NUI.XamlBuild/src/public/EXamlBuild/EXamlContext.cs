@@ -374,9 +374,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
             if (0 < longStrings.Length)
             {
-                ret += String.Format("({0} ({1}))\n",
-                                GetValueString((int)EXamlOperationType.GetLongString),
-                                GetValueString(longStrings));
+                ret += String.Format("/{0}\n", longStrings);
             }
 
             return ret;

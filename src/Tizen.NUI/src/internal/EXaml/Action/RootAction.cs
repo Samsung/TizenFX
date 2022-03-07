@@ -232,6 +232,12 @@ namespace Tizen.NUI.EXaml
             {
                 globalDataList.LongStrings = opInfo[0] as string;
             };
+
+            createOperations[(int)EXamlOperationType.CreateDPObject] = (GlobalDataList globalDataList, List<object> opInfo) =>
+            {
+                var operation = new CreateDPObject(globalDataList, opInfo);
+                globalDataList.Operations.Add(operation);
+            };
         }
     }
 }

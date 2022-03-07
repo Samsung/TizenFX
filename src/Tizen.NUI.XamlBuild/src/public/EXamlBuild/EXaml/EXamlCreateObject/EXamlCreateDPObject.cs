@@ -24,10 +24,10 @@ namespace Tizen.NUI.EXaml
 {
     internal class EXamlCreateDPObject : EXamlCreateObject
     {
-        public EXamlCreateDPObject(EXamlContext context, object value, TypeReference type, string prefix) : base(context, null, type)
+        public EXamlCreateDPObject(EXamlContext context, object value, TypeReference type, string subfix) : base(context, null, type)
         {
             this.value = value;
-            this.prefix = prefix;
+            this.subfix = subfix;
         }
 
         internal override string Write()
@@ -39,14 +39,14 @@ namespace Tizen.NUI.EXaml
 
             string ret = String.Format("({0} ({1} {2}))\n",
                          eXamlContext.GetValueString((int)EXamlOperationType.CreateDPObject),
-                         eXamlContext.GetValueString(value.ToString() + prefix),
+                         eXamlContext.GetValueString(value.ToString() + subfix),
                          eXamlContext.GetValueString(eXamlContext.GetTypeIndex(Type)));
 
             return ret;
         }
 
         private object value;
-        private string prefix;
+        private string subfix;
     }
 }
  

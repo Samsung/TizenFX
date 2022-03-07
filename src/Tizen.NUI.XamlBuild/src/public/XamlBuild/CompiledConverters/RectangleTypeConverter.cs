@@ -38,7 +38,7 @@ namespace Tizen.NUI.Xaml.Core.XamlC
 
             foreach (var thick in xywh)
             {
-                if (thick.EndsWith("dp") || thick.EndsWith("px"))
+                if (null != NodeILExtensions.GetDPValueSubFix(thick))
                 {
                     return null;
                 }

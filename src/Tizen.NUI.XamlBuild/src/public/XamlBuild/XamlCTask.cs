@@ -207,6 +207,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             {
                 AssemblyResolver = resolver,
                 ReadWrite = !ReadOnly,
+                ReadSymbols = NeedDebug,
             };
 
             using (var assemblyDefinition = AssemblyDefinition.ReadAssembly(System.IO.Path.GetFullPath(Assembly), readerParameters))
@@ -355,6 +356,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 {
                     assemblyDefinition.Write(new WriterParameters
                     {
+                        WriteSymbols = NeedDebug,
                     });
                     LoggingHelper.LogMessage(Low, $"{new string(' ', 2)}done.");
                 }

@@ -245,6 +245,20 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             return null;
         }
 
+        private static string[] dpValueSubFixes = { "dp", "sp", "pt", "px"};
+        internal static string GetDPValueSubFix(string valueStr)
+        {
+            foreach (var subFix in dpValueSubFixes)
+            {
+                if (valueStr.EndsWith(subFix))
+                {
+                    return subFix;
+                }
+            }
+
+            return null;
+        }
+
         public static object GetBaseValue(this ValueNode node, EXamlContext context, TypeReference targetTypeRef)
         {
             var str = (string)node.Value;
@@ -252,15 +266,12 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
             if ("System.String" != targetTypeRef.FullName)
             {
-                if (str.EndsWith("dp"))
+                string subFix = GetDPValueSubFix(str);
+
+                if (null != subFix)
                 {
-                    var value = GetBaseValue(context, str.Substring(0, str.Length - "dp".Length), targetTypeRef);
-                    ret = new EXamlCreateDPObject(context, value, targetTypeRef, "dp");
-                }
-                else if (str.EndsWith("px"))
-                {
-                    var value = GetBaseValue(context, str.Substring(0, str.Length - "px".Length), targetTypeRef);
-                    ret = new EXamlCreateDPObject(context, value, targetTypeRef, "px");
+                        var value = GetBaseValue(context, str.Substring(0, str.Length - subFix.Length), targetTypeRef);
+                        ret = new EXamlCreateDPObject(context, value, targetTypeRef, subFix);
                 }
             }
 
@@ -419,7 +430,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 yield return Instruction.Create(OpCodes.Ldc_I4, SByte.Parse(str, CultureInfo.InvariantCulture));
             else if (targetTypeRef.FullName == "System.Int16")
             {
-                if (str.EndsWith("dp") || str.EndsWith("px"))
+                if (null != GetDPValueSubFix(str))
                 {
                     var insOfDPValue = GetDPValue(module, node, targetTypeRef, str);
 

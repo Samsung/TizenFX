@@ -27,10 +27,27 @@ namespace Tizen.NUI.EXaml
             var globalDataList = new GlobalDataList();
 
             Action currentAction = new RootAction(globalDataList);
+            var rootAction = currentAction;
 
-            foreach (char c in xaml)
+            int index = 0;
+
+            for (; index < xaml.Length; index++)
             {
-                currentAction = currentAction.DealChar(c);
+                var c = xaml[index];
+
+                if (currentAction == rootAction && '/' == c)
+                {
+                    break;
+                }
+                else
+                {
+                    currentAction = currentAction.DealChar(c);
+                }
+            }
+
+            for (index++; index < xaml.Length; index++)
+            {
+                globalDataList.LongStrings += xaml[index];
             }
 
             foreach (var op in globalDataList.PreLoadOperations)
