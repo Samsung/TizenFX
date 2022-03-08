@@ -1076,6 +1076,24 @@ namespace Tizen.NUI.BaseComponents
         {
             if (backgroundExtraData == null) return;
 
+            // ActionUpdateProperty works well only if BACKGROUND visual setup before.
+            // If view don't have BACKGROUND visual, we set transparent background color in default.
+            using(PropertyMap backgroundPropertyMap = new PropertyMap())
+            {
+                using(PropertyValue propertyValue = Object.GetProperty(SwigCPtr, Property.BACKGROUND))
+                {
+                    propertyValue?.Get(backgroundPropertyMap);
+                    if(backgroundPropertyMap.Empty())
+                    {
+                        // BACKGROUND visual doesn't exist.
+                        SetBackgroundColor(Color.Transparent);
+                        // SetBackgroundColor function apply borderline internally.
+                        // So we can just return now.
+                        return;
+                    }
+                }
+            }
+
             var borderlineWidthValue = new PropertyValue(backgroundExtraData.BorderlineWidth);
             var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
             var borderlineOffsetValue = new PropertyValue(backgroundExtraData.BorderlineOffset);
