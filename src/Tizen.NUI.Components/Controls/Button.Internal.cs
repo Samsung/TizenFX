@@ -157,7 +157,10 @@ namespace Tizen.NUI.Components
                     return true;
                 case PointStateType.Up:
                     {
-                        bool clicked = isPressed && IsEnabled;
+                        if (!isPressed)
+                        {
+                            return true;
+                        }
 
                         isPressed = false;
 
@@ -172,11 +175,8 @@ namespace Tizen.NUI.Components
                             UpdateState();
                         }
 
-                        if (clicked)
-                        {
-                            ClickedEventArgs eventArgs = new ClickedEventArgs();
-                            OnClickedInternal(eventArgs);
-                        }
+                        ClickedEventArgs eventArgs = new ClickedEventArgs();
+                        OnClickedInternal(eventArgs);
 
                         return true;
                     }
