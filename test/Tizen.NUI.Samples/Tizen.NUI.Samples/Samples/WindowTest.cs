@@ -19,6 +19,12 @@ namespace Tizen.NUI.Samples
         int addingInput;
         Timer tm;
 
+        private const string KEY_NUM_1 = "1";
+        private const string KEY_NUM_2 = "2";
+        private const string KEY_NUM_3 = "3";
+        private const string KEY_NUM_4 = "4";
+        private const string KEY_NUM_5 = "5";
+
         void Initialize()
         {
             mainWin = NUIApplication.GetDefaultWindow();
@@ -116,8 +122,19 @@ namespace Tizen.NUI.Samples
                         //Exit();
                         break;
 
-                    case "1":
-                        log.Fatal(tag, $"pressed 1!");
+                    case KEY_NUM_1:
+                        log.Fatal(tag, $"pressed Key Num 1!");
+                        break;
+
+                    case KEY_NUM_2:
+                        mainWin.Maximize(true);
+                        break;
+
+                    case KEY_NUM_3:
+                        if(mainWin.IsMaximized())
+                        {
+                            mainWin.Maximize(false);
+                        }
                         break;
 
                     default:
