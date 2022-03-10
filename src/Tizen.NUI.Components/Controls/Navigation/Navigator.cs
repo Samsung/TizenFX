@@ -228,7 +228,7 @@ namespace Tizen.NUI.Components
             {
                 if (page is DialogPage == false)
                 {
-                   topPage.SetVisible(false);
+                    topPage.SetVisible(false);
                 }
 
                 // Need to update Content of the new page
@@ -338,6 +338,20 @@ namespace Tizen.NUI.Components
             page.InvokeAppearing();
             curTop.InvokeDisappearing();
 
+            //test.
+            // if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
+            // {
+            //     curTop.LastFocusedView = FocusManager.Instance.GetCurrentFocusView();
+            //     if(page.LastFocusedView)
+            //     {
+            //         FocusManager.Instance.SetCurrentFocusView(page.LastFocusedView);
+            //     }
+            //     else
+            //     {
+            //         FocusManager.Instance.ClearFocus();
+            //     }
+            // }
+
             //TODO: The following transition codes will be replaced with view transition.
             InitializeAnimation();
 
@@ -368,6 +382,15 @@ namespace Tizen.NUI.Components
                     //Invoke Page events
                     page.InvokeAppeared();
                     NotifyAccessibilityStatesChangeOfPages(curTop, page);
+
+                    //test.
+                    // if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
+                    // {
+                    //     FocusManager.Instance.ClearFocus();
+                    //     FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
+                    //     //FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
+                    // }
+
                 };
                 newAnimation.Play();
             }
@@ -375,6 +398,14 @@ namespace Tizen.NUI.Components
             {
                 ShowContentOfPage(page);
             }
+
+            //test.
+            // if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
+            // {
+            //     FocusManager.Instance.ClearFocus();
+            //     FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
+            //     FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
+            // }
         }
 
         /// <summary>
@@ -414,6 +445,20 @@ namespace Tizen.NUI.Components
             newTop.InvokeAppearing();
             curTop.InvokeDisappearing();
 
+            //test.
+            // if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
+            // {
+            //     curTop.LastFocusedView = FocusManager.Instance.GetCurrentFocusView();
+            //     if(newTop.LastFocusedView)
+            //     {
+            //         FocusManager.Instance.SetCurrentFocusView(newTop.LastFocusedView);
+            //     }
+            //     else
+            //     {
+            //         FocusManager.Instance.ClearFocus();
+            //     }
+            // }
+
             //TODO: The following transition codes will be replaced with view transition.
             InitializeAnimation();
 
@@ -448,6 +493,17 @@ namespace Tizen.NUI.Components
 
                     //Invoke Page events
                     newTop.InvokeAppeared();
+
+
+                    //test.
+                    // if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
+                    // {
+                    //     FocusManager.Instance.ClearFocus();
+                    //     FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
+                    //     //FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
+                    // }
+
+
                 };
                 newAnimation.Play();
             }
@@ -455,6 +511,23 @@ namespace Tizen.NUI.Components
             {
                 Remove(curTop);
             }
+
+            //test.
+            // if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
+            // {
+            //     if(newTop.LastFocusedView)
+            //     {
+            //         FocusManager.Instance.SetCurrentFocusView(newTop.LastFocusedView);
+            //     }
+            // }
+
+            // //test.
+            // if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
+            // {
+            //     FocusManager.Instance.ClearFocus();
+            //     FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
+            //     FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
+            // }
 
             return curTop;
         }
@@ -741,12 +814,12 @@ namespace Tizen.NUI.Components
             RetrieveTaggedViews(taggedViewsInCurrentTopPage, currentTopPage, true);
 
             List<KeyValuePair<View, View>> sameTaggedViewPair = new List<KeyValuePair<View, View>>();
-            foreach(View currentTopPageView in taggedViewsInCurrentTopPage)
+            foreach (View currentTopPageView in taggedViewsInCurrentTopPage)
             {
                 bool findPair = false;
-                foreach(View newTopPageView in taggedViewsInNewTopPage)
+                foreach (View newTopPageView in taggedViewsInNewTopPage)
                 {
-                    if((currentTopPageView.TransitionOptions != null) && (newTopPageView.TransitionOptions != null) &&
+                    if ((currentTopPageView.TransitionOptions != null) && (newTopPageView.TransitionOptions != null) &&
                         currentTopPageView.TransitionOptions?.TransitionTag == newTopPageView.TransitionOptions?.TransitionTag)
                     {
                         sameTaggedViewPair.Add(new KeyValuePair<View, View>(currentTopPageView, newTopPageView));
@@ -754,21 +827,21 @@ namespace Tizen.NUI.Components
                         break;
                     }
                 }
-                if(findPair)
+                if (findPair)
                 {
                     taggedViewsInNewTopPage.Remove(sameTaggedViewPair[sameTaggedViewPair.Count - 1].Value);
                 }
             }
-            foreach(KeyValuePair<View, View> pair in sameTaggedViewPair)
+            foreach (KeyValuePair<View, View> pair in sameTaggedViewPair)
             {
                 taggedViewsInCurrentTopPage.Remove(pair.Key);
             }
 
             TransitionSet newTransitionSet = new TransitionSet();
-            foreach(KeyValuePair<View, View> pair in sameTaggedViewPair)
+            foreach (KeyValuePair<View, View> pair in sameTaggedViewPair)
             {
                 TransitionItem pairTransition = transition.CreateTransition(pair.Key, pair.Value, pushTransition);
-                if(pair.Value.TransitionOptions?.TransitionWithChild ?? false)
+                if (pair.Value.TransitionOptions?.TransitionWithChild ?? false)
                 {
                     pairTransition.TransitionWithChild = true;
                 }
@@ -777,11 +850,11 @@ namespace Tizen.NUI.Components
 
             newTransitionSet.Finished += (object sender, EventArgs e) =>
             {
-                if(newTopPage.Layout != null)
+                if (newTopPage.Layout != null)
                 {
                     newTopPage.Layout.RequestLayout();
                 }
-                if(currentTopPage.Layout != null)
+                if (currentTopPage.Layout != null)
                 {
                     currentTopPage.Layout.RequestLayout();
                 }

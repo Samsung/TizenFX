@@ -72,6 +72,8 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void FocusedViewEnterKeyEventCallback2(IntPtr view);
 
+        private View internalFocusIndicator = null;
+
         /// <summary>
         /// PreFocusChange will be triggered before the focus is going to be changed.<br />
         /// The FocusManager makes the best guess for which view to focus towards the given direction, but applications might want to change that.<br />
@@ -474,14 +476,15 @@ namespace Tizen.NUI
         {
             Interop.FocusManager.SetFocusIndicatorActor(SwigCPtr, View.getCPtr(indicator));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            internalFocusIndicator = indicator;
         }
 
         internal View GetFocusIndicatorView()
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.FocusManager.GetFocusIndicatorActor(SwigCPtr);
-            View ret = this.GetInstanceSafely<View>(cPtr);
-            return ret;
+            internalFocusIndicator = this.GetInstanceSafely<View>(cPtr);
+            return internalFocusIndicator;
         }
 
         internal PreFocusChangeSignal PreFocusChangeSignal()
