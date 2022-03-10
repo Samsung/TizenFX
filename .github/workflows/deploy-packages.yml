@@ -27,6 +27,10 @@ jobs:
       with:
         ref: ${{ env.TARGET_BRANCH }}
         fetch-depth: 0
+    
+    - uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '6.0.102'
 
     - name: Git Config
       run: |
