@@ -526,6 +526,7 @@ namespace Tizen.NUI.Components
                 Name = idx.ToString(),
             };
 
+            temp.SetAccessibilityEventSuppressed(AccessibilityEvent.MovedOut, true);
             itemList.Add(temp);
             pickerScroller.Add(temp);
         }

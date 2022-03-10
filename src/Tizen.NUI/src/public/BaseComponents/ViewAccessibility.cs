@@ -422,6 +422,31 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets a value indicating given accessibility event is suppressed.
+        /// </summary>
+        /// <param name="accessibilityEvent">The accessibility event</param>
+        /// <returns>True if given accessibility event is suppressed, otherwise false</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsAccessibilityEventSuppressed(AccessibilityEvent accessibilityEvent)
+        {
+            bool result = Interop.ControlDevel.DaliAccessibilityIsSuppressedEvent(SwigCPtr, (int)accessibilityEvent);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Sets a suppressed value of given accessibility event.
+        /// </summary>
+        /// <param name="accessibilityEvent">The accessibility event</param>
+        /// <param name="isSuppressed">The value indicating given accessibility event is suppressed</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetAccessibilityEventSuppressed(AccessibilityEvent accessibilityEvent, bool isSuppressed)
+        {
+            Interop.ControlDevel.DaliAccessibilitySetSuppressedEvent(SwigCPtr, (int)accessibilityEvent, isSuppressed);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         ///////////////////////////////////////////////////////////////////
         // ************************** Bridge *************************** //
         ///////////////////////////////////////////////////////////////////

@@ -150,6 +150,14 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr DaliAccessibilityEmitTextCursorMovedEvent(global::System.Runtime.InteropServices.HandleRef arg1, int arg2_pos);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_IsSuppressedEvent")]
+            public static extern bool DaliAccessibilityIsSuppressedEvent(global::System.Runtime.InteropServices.HandleRef arg1, int accessibilityEvent);
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_SetSuppressedEvent")]
+            public static extern void DaliAccessibilitySetSuppressedEvent(global::System.Runtime.InteropServices.HandleRef arg1, int accessibilityEvent, bool isSuppressed);
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_new_Range")]
             public static extern global::System.IntPtr DaliAccessibilityNewRange(int arg1_start, int arg2_end, string arg3_content);
 
