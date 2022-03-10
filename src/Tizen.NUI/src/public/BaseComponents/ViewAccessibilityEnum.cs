@@ -606,6 +606,132 @@ namespace Tizen.NUI.BaseComponents
     }
 
     /// <summary>
+    /// Enumeration of possible AT-SPI events.
+    /// </summary>
+    /// <remarks>
+    /// Accessible can emit differty type of event.
+    /// </remarks>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum AccessibilityEvent
+    {
+        /// <summary>
+        /// Property changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        PropertyChanged         = 0,
+        /// <summary>
+        /// Bounds changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        BoundsChanged           = 1,
+        /// <summary>
+        /// Link selected event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        LinkSelected            = 2,
+        /// <summary>
+        /// State changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        StateChanged            = 3,
+        /// <summary>
+        /// Children changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ChildrenChanged         = 4,
+        /// <summary>
+        /// Visible data changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        VisibleDataChanged      = 5,
+        /// <summary>
+        /// Selection changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        SelectionChanged        = 6,
+        /// <summary>
+        /// Model changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ModelChanged            = 7,
+        /// <summary>
+        /// Active descendant changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ActiveDescendantChanged = 8,
+        /// <summary>
+        /// Row inserted event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RowInserted             = 9,
+        /// <summary>
+        /// Row reordered event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RowReordered            = 10,
+        /// <summary>
+        /// Row deleted event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RowDeleted              = 11,
+        /// <summary>
+        /// Column inserted event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ColumnInserted          = 12,
+        /// <summary>
+        /// Column reordered event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ColumnReordered         = 13,
+        /// <summary>
+        /// Column deleted event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ColumnDeleted           = 14,
+        /// <summary>
+        /// Text bounds changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        TextBoundsChanged       = 15,
+        /// <summary>
+        /// Text selection changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        TextSelectionChanged    = 16,
+        /// <summary>
+        /// Text changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        TextChanged             = 17,
+        /// <summary>
+        /// Text attributes changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        TextAttributesChanged   = 18,
+        /// <summary>
+        /// Text caret moved event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        TextCaretMoved          = 19,
+        /// <summary>
+        /// Attributes changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        AttributesChanged       = 20,
+        /// <summary>
+        /// Moved out event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        MovedOut                = 21,
+        /// <summary>
+        /// Window changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        WindowChanged           = 22,
+    };
+
+    /// <summary>
     /// Notify mode for AccessibilityStates.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
