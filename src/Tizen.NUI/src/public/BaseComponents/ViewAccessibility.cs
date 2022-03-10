@@ -422,6 +422,25 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating suppressed events.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AccessibilityEvents AccessibilitySuppressedEvents
+        {
+            get
+            {
+                return new AccessibilityEvents {BitMask = Interop.ControlDevel.DaliAccessibilityGetSuppressedEvents(SwigCPtr), Owner = this};
+            }
+            set
+            {
+                if (value != null)
+                {
+                    Interop.ControlDevel.DaliAccessibilitySetSuppressedEvents(SwigCPtr, value.BitMask);
+                }
+            }
+        }
+
         ///////////////////////////////////////////////////////////////////
         // ************************** Bridge *************************** //
         ///////////////////////////////////////////////////////////////////
