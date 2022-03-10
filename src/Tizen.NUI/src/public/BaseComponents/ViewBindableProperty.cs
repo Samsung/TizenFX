@@ -608,6 +608,40 @@ namespace Tizen.NUI.BaseComponents
         });
 
         /// <summary>
+        /// ClockwiseFocusableViewProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ClockwiseFocusableViewProperty = BindableProperty.Create(nameof(View.ClockwiseFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null && (newValue is View)) { view.ClockwiseFocusableViewId = (int)(newValue as View)?.GetId(); }
+            else { view.ClockwiseFocusableViewId = -1; }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            if (view.ClockwiseFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.ClockwiseFocusableViewId); }
+            return null;
+        });
+
+        /// <summary>
+        /// CounterClockwiseFocusableViewProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CounterClockwiseFocusableViewProperty = BindableProperty.Create(nameof(View.CounterClockwiseFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null && (newValue is View)) { view.CounterClockwiseFocusableViewId = (int)(newValue as View)?.GetId(); }
+            else { view.CounterClockwiseFocusableViewId = -1; }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            if (view.CounterClockwiseFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.CounterClockwiseFocusableViewId); }
+            return null;
+        });
+
+        /// <summary>
         /// FocusableProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
