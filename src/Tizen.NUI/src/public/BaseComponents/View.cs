@@ -948,6 +948,46 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The clockwise focusable view by rotary wheel.<br />
+        /// This will return null if not set.<br />
+        /// This will also return null if the specified clockwise focusable view is not on a window.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View ClockwiseFocusableView
+        {
+            // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
+            get
+            {
+                return (View)GetValue(ClockwiseFocusableViewProperty);
+            }
+            set
+            {
+                SetValue(ClockwiseFocusableViewProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The counter clockwise focusable view by rotary wheel.<br />
+        /// This will return null if not set.<br />
+        /// This will also return null if the specified counter clockwise focusable view is not on a window.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View CounterClockwiseFocusableView
+        {
+            // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
+            get
+            {
+                return (View)GetValue(CounterClockwiseFocusableViewProperty);
+            }
+            set
+            {
+                SetValue(CounterClockwiseFocusableViewProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Whether the view should be focusable by keyboard navigation.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>

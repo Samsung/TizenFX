@@ -429,6 +429,42 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private int ClockwiseFocusableViewId
+        {
+            get
+            {
+                int returnValue = -1;
+                PropertyValue clockwiseFocusableViewId = GetProperty(View.Property.ClockwiseFocusableViewId);
+                clockwiseFocusableViewId?.Get(out returnValue);
+                clockwiseFocusableViewId?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.ClockwiseFocusableViewId, setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private int CounterClockwiseFocusableViewId
+        {
+            get
+            {
+                int returnValue = -1;
+                PropertyValue counterClockwiseFocusableViewId = GetProperty(View.Property.CounterClockwiseFocusableViewId);
+                counterClockwiseFocusableViewId?.Get(out returnValue);
+                counterClockwiseFocusableViewId?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.CounterClockwiseFocusableViewId, setValue);
+                setValue.Dispose();
+            }
+        }
+
         internal string GetName()
         {
             string ret = Interop.Actor.GetName(SwigCPtr);
