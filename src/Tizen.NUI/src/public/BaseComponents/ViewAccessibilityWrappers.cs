@@ -17,15 +17,13 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.BaseComponents
 {
     public partial class View
     {
         private static AccessibilityStates AccessibilityInitialStates = new AccessibilityStates();
-
-        // To be removed when native C# AT-SPI interfaces are implemented.
-        private uint? AtspiInterfaceFlags = null;
 
         private static void RegisterAccessibilityDelegate()
         {
@@ -49,6 +47,20 @@ namespace Tizen.NUI.BaseComponents
         private static View GetViewFromRefObject(IntPtr refObjectPtr)
         {
             return Registry.GetManagedBaseHandleFromRefObject(refObjectPtr) as View;
+        }
+
+        private static T GetInterfaceFromRefObject<T>(IntPtr refObjectPtr)
+        {
+            var view = GetViewFromRefObject(refObjectPtr);
+
+            // NUIViewAccessible::CallMethod<T> checks whether a given interface is implemented
+            // before jumping to managed code, so this condition should always be true.
+            if (view is T atspiInterface)
+            {
+                return atspiInterface;
+            }
+
+            return default(T);
         }
 
         private static IntPtr DuplicateString(string value)
@@ -104,25 +116,30 @@ namespace Tizen.NUI.BaseComponents
 
         private static uint AccessibilityGetInterfaces(IntPtr self)
         {
-            // Currently a maximum of one AccessibilityInterface per View is supported.
-            // This will change when we implement AT-SPI interfaces as native C# interfaces.
-            // Then, this method will look like:
-            //
-            // uint flags = 0U;
-            // if (view is IAtspiSelection) flags |= (1U << (int)AccessibilityInterface.Selection)
-            // if (view is IAtspiValue) flags |= (1U << (int)AccessibilityInterface.Value)
-            // ...
-            // return flags;
-
             View view = GetViewFromRefObject(self);
+            uint flags = 0U;
 
-            if (!view.AtspiInterfaceFlags.HasValue)
+            if (view is IAtspiEditableText)
             {
-                NUILog.Error("AtspiInterfaceFlags are not set!");
-                return 0U;
+                flags |= (1U << (int)AccessibilityInterface.EditableText);
             }
 
-            return view.AtspiInterfaceFlags.Value;
+            if (view is IAtspiSelection)
+            {
+                flags |= (1U << (int)AccessibilityInterface.Selection);
+            }
+
+            if (view is IAtspiText)
+            {
+                flags |= (1U << (int)AccessibilityInterface.Text);
+            }
+
+            if (view is IAtspiValue)
+            {
+                flags |= (1U << (int)AccessibilityInterface.Value);
+            }
+
+            return flags;
         }
 
         private static IntPtr AccessibilityGetNameWrapper(IntPtr self)
@@ -195,27 +212,27 @@ namespace Tizen.NUI.BaseComponents
 
         private static bool AccessibilityCopyTextWrapper(IntPtr self, int startPosition, int endPosition)
         {
-            return GetViewFromRefObject(self).AccessibilityCopyText(startPosition, endPosition);
+            return GetInterfaceFromRefObject<IAtspiEditableText>(self).AccessibilityCopyText(startPosition, endPosition);
         }
 
         private static bool AccessibilityCutTextWrapper(IntPtr self, int startPosition, int endPosition)
         {
-            return GetViewFromRefObject(self).AccessibilityCutText(startPosition, endPosition);
+            return GetInterfaceFromRefObject<IAtspiEditableText>(self).AccessibilityCutText(startPosition, endPosition);
         }
 
         private static bool AccessibilityDeleteTextWrapper(IntPtr self, int startPosition, int endPosition)
         {
-            return GetViewFromRefObject(self).AccessibilityDeleteText(startPosition, endPosition);
+            return GetInterfaceFromRefObject<IAtspiEditableText>(self).AccessibilityDeleteText(startPosition, endPosition);
         }
 
         private static bool AccessibilityInsertTextWrapper(IntPtr self, int startPosition, IntPtr text)
         {
-            return GetViewFromRefObject(self).AccessibilityInsertText(startPosition, Marshal.PtrToStringAnsi(text));
+            return GetInterfaceFromRefObject<IAtspiEditableText>(self).AccessibilityInsertText(startPosition, Marshal.PtrToStringAnsi(text));
         }
 
         private static bool AccessibilitySetTextContentsWrapper(IntPtr self, IntPtr newContents)
         {
-            return GetViewFromRefObject(self).AccessibilitySetTextContents(Marshal.PtrToStringAnsi(newContents));
+            return GetInterfaceFromRefObject<IAtspiEditableText>(self).AccessibilitySetTextContents(Marshal.PtrToStringAnsi(newContents));
         }
 
         //
@@ -238,44 +255,44 @@ namespace Tizen.NUI.BaseComponents
 
         private static bool AccessibilityClearSelectionWrapper(IntPtr self)
         {
-            return GetViewFromRefObject(self).AccessibilityClearSelection();
+            return GetInterfaceFromRefObject<IAtspiSelection>(self).AccessibilityClearSelection();
         }
 
         private static bool AccessibilityDeselectChildWrapper(IntPtr self, int childIndex)
         {
-            return GetViewFromRefObject(self).AccessibilityDeselectChild(childIndex);
+            return GetInterfaceFromRefObject<IAtspiSelection>(self).AccessibilityDeselectChild(childIndex);
         }
 
         private static bool AccessibilityDeselectSelectedChildWrapper(IntPtr self, int selectedChildIndex)
         {
-            return GetViewFromRefObject(self).AccessibilityDeselectSelectedChild(selectedChildIndex);
+            return GetInterfaceFromRefObject<IAtspiSelection>(self).AccessibilityDeselectSelectedChild(selectedChildIndex);
         }
 
         private static IntPtr AccessibilityGetSelectedChildWrapper(IntPtr self, int selectedChildIndex)
         {
-            View child = GetViewFromRefObject(self).AccessibilityGetSelectedChild(selectedChildIndex);
+            View child = GetInterfaceFromRefObject<IAtspiSelection>(self).AccessibilityGetSelectedChild(selectedChildIndex);
 
             return View.getCPtr(child).Handle;
         }
 
         private static int AccessibilityGetSelectedChildrenCountWrapper(IntPtr self)
         {
-            return GetViewFromRefObject(self).AccessibilityGetSelectedChildrenCount();
+            return GetInterfaceFromRefObject<IAtspiSelection>(self).AccessibilityGetSelectedChildrenCount();
         }
 
         private static bool AccessibilityIsChildSelectedWrapper(IntPtr self, int childIndex)
         {
-            return GetViewFromRefObject(self).AccessibilityIsChildSelected(childIndex);
+            return GetInterfaceFromRefObject<IAtspiSelection>(self).AccessibilityIsChildSelected(childIndex);
         }
 
         private static bool AccessibilitySelectAllWrapper(IntPtr self)
         {
-            return GetViewFromRefObject(self).AccessibilitySelectAll();
+            return GetInterfaceFromRefObject<IAtspiSelection>(self).AccessibilitySelectAll();
         }
 
         private static bool AccessibilitySelectChildWrapper(IntPtr self, int childIndex)
         {
-            return GetViewFromRefObject(self).AccessibilitySelectChild(childIndex);
+            return GetInterfaceFromRefObject<IAtspiSelection>(self).AccessibilitySelectChild(childIndex);
         }
 
         //
@@ -299,55 +316,55 @@ namespace Tizen.NUI.BaseComponents
 
         private static int AccessibilityGetCharacterCountWrapper(IntPtr self)
         {
-            return GetViewFromRefObject(self).AccessibilityGetCharacterCount();
+            return GetInterfaceFromRefObject<IAtspiText>(self).AccessibilityGetCharacterCount();
         }
 
         private static int AccessibilityGetCursorOffsetWrapper(IntPtr self)
         {
-            return GetViewFromRefObject(self).AccessibilityGetCursorOffset();
+            return GetInterfaceFromRefObject<IAtspiText>(self).AccessibilityGetCursorOffset();
         }
 
         private static IntPtr AccessibilityGetRangeExtentsWrapper(IntPtr self, int startOffset, int endOffset, int coordType)
         {
-            using Rectangle rect = GetViewFromRefObject(self).AccessibilityGetRangeExtents(startOffset, endOffset, (AccessibilityCoordinateType)coordType);
+            using Rectangle rect = GetInterfaceFromRefObject<IAtspiText>(self).AccessibilityGetRangeExtents(startOffset, endOffset, (AccessibilityCoordinateType)coordType);
 
             return DuplicateAccessibilityRectangle(rect);
         }
 
         private static IntPtr AccessibilityGetSelectionWrapper(IntPtr self, int selectionNumber)
         {
-            AccessibilityRange range = GetViewFromRefObject(self).AccessibilityGetSelection(selectionNumber);
+            AccessibilityRange range = GetInterfaceFromRefObject<IAtspiText>(self).AccessibilityGetSelection(selectionNumber);
 
             return DuplicateAccessibilityRange(range);
         }
 
         private static IntPtr AccessibilityGetTextWrapper(IntPtr self, int startOffset, int endOffset)
         {
-            string text = GetViewFromRefObject(self).AccessibilityGetText(startOffset, endOffset);
+            string text = GetInterfaceFromRefObject<IAtspiText>(self).AccessibilityGetText(startOffset, endOffset);
 
             return DuplicateString(text);
         }
 
         private static IntPtr AccessibilityGetTextAtOffsetWrapper(IntPtr self, int offset, int boundary)
         {
-            AccessibilityRange range = GetViewFromRefObject(self).AccessibilityGetTextAtOffset(offset, (AccessibilityTextBoundary)boundary);
+            AccessibilityRange range = GetInterfaceFromRefObject<IAtspiText>(self).AccessibilityGetTextAtOffset(offset, (AccessibilityTextBoundary)boundary);
 
             return DuplicateAccessibilityRange(range);
         }
 
         private static bool AccessibilityRemoveSelectionWrapper(IntPtr self, int selectionNumber)
         {
-            return GetViewFromRefObject(self).AccessibilityRemoveSelection(selectionNumber);
+            return GetInterfaceFromRefObject<IAtspiText>(self).AccessibilityRemoveSelection(selectionNumber);
         }
 
         private static bool AccessibilitySetCursorOffsetWrapper(IntPtr self, int offset)
         {
-            return GetViewFromRefObject(self).AccessibilitySetCursorOffset(offset);
+            return GetInterfaceFromRefObject<IAtspiText>(self).AccessibilitySetCursorOffset(offset);
         }
 
         private static bool AccessibilitySetSelectionWrapper(IntPtr self, int selectionNumber, int startOffset, int endOffset)
         {
-            return GetViewFromRefObject(self).AccessibilitySetSelection(selectionNumber, startOffset, endOffset);
+            return GetInterfaceFromRefObject<IAtspiText>(self).AccessibilitySetSelection(selectionNumber, startOffset, endOffset);
         }
 
         //
@@ -367,27 +384,27 @@ namespace Tizen.NUI.BaseComponents
 
         private static double AccessibilityGetCurrentWrapper(IntPtr self)
         {
-            return GetViewFromRefObject(self).AccessibilityGetCurrent();
+            return GetInterfaceFromRefObject<IAtspiValue>(self).AccessibilityGetCurrent();
         }
 
         private static double AccessibilityGetMaximumWrapper(IntPtr self)
         {
-            return GetViewFromRefObject(self).AccessibilityGetMaximum();
+            return GetInterfaceFromRefObject<IAtspiValue>(self).AccessibilityGetMaximum();
         }
 
         private static double AccessibilityGetMinimumWrapper(IntPtr self)
         {
-            return GetViewFromRefObject(self).AccessibilityGetMinimum();
+            return GetInterfaceFromRefObject<IAtspiValue>(self).AccessibilityGetMinimum();
         }
 
         private static double AccessibilityGetMinimumIncrementWrapper(IntPtr self)
         {
-            return GetViewFromRefObject(self).AccessibilityGetMinimumIncrement();
+            return GetInterfaceFromRefObject<IAtspiValue>(self).AccessibilityGetMinimumIncrement();
         }
 
         private static bool AccessibilitySetCurrentWrapper(IntPtr self, double value)
         {
-            return GetViewFromRefObject(self).AccessibilitySetCurrent(value);
+            return GetInterfaceFromRefObject<IAtspiValue>(self).AccessibilitySetCurrent(value);
         }
 
         //

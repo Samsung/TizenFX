@@ -544,7 +544,7 @@ namespace Tizen.NUI.Components
         {
             base.OnInitialize();
 
-            SetAccessibilityConstructor(Role.TitleBar);
+            AccessibilityRole = Role.TitleBar;
         }
 
         /// <summary>

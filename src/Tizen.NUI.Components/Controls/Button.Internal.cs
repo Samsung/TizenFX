@@ -275,8 +275,8 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.PushButton);
 
+            AccessibilityRole = Role.PushButton;
             AccessibilityHighlightable = true;
             EnableControlStatePropagation = true;
 

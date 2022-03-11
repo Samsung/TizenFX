@@ -782,7 +782,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.Dialog);
+            AccessibilityRole = Role.Dialog;
             AppendAccessibilityAttribute("sub-role", "Alert");
 
             container.Add(this);

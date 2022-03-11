@@ -848,7 +848,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.List);
+            AccessibilityRole = Role.List;
         }
 
         /// <summary>
