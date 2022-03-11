@@ -38,9 +38,28 @@ namespace Tizen.NUI.Samples
             navigator.Push(page);
 
             var menuItem = new MenuItem() { Text = "Menu" };
+            menuItem.SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+            {
+                global::System.Console.WriteLine($"1st MenuItem's IsSelected is changed to {args.IsSelected}.");
+            };
+
             var menuItem2 = new MenuItem() { Text = "Menu2" };
+            menuItem2.SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+            {
+                global::System.Console.WriteLine($"2nd MenuItem's IsSelected is changed to {args.IsSelected}.");
+            };
+
             var menuItem3 = new MenuItem() { Text = "Menu3" };
+            menuItem3.SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+            {
+                global::System.Console.WriteLine($"3rd MenuItem's IsSelected is changed to {args.IsSelected}.");
+            };
+
             var menuItem4 = new MenuItem() { Text = "Menu4" };
+            menuItem4.SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+            {
+                global::System.Console.WriteLine($"4th MenuItem's IsSelected is changed to {args.IsSelected}.");
+            };
 
             moreButton.Clicked += (object sender, ClickedEventArgs args) =>
             {
