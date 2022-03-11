@@ -145,7 +145,7 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public virtual void OnInitialize()
         {
-            SetAccessibilityConstructor(Role.Unknown);
+            AccessibilityRole = Role.Unknown;
             AppendAccessibilityAttribute("class", this.GetType().Name);
         }
 

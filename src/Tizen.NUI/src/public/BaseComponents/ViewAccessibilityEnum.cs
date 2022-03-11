@@ -27,7 +27,7 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     // Values are from Dali::Accessibility::AtspiInterface
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum AccessibilityInterface
+    internal enum AccessibilityInterface
     {
         /// <summary>
         /// Common accessibility interface
@@ -39,6 +39,11 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Value = 26,
+        /// <summary>
+        /// Accessibility interface which can store text
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Text = 25,
         /// <summary>
         /// Accessibility interface which can store editable texts
         /// </summary>
@@ -1537,7 +1542,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// Accessibility text boundary is used in text controls.
     /// </summary>
-    /// <seealso cref="View.AccessibilityGetTextAtOffset" />
+    /// <seealso cref="Accessibility.IAtspiText.AccessibilityGetTextAtOffset" />
     /// <remarks>
     /// Currently, only AccessibilityTextBoundary.Character is supported.
     /// </remarks>
@@ -1586,7 +1591,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// Accessibility coordinate type describing if coordinates are relative to screen or window
     /// </summary>
-    /// <seealso cref="View.AccessibilityGetRangeExtents" />
+    /// <seealso cref="Accessibility.IAtspiText.AccessibilityGetRangeExtents" />
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum AccessibilityCoordinateType
     {

@@ -244,7 +244,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.MenuItem);
+            AccessibilityRole = Role.MenuItem;
         }
     }
 }
