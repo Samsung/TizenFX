@@ -187,6 +187,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
         public string RootClrNamespace { get; private set; }
         public string RootType { get; private set; }
         public bool AddXamlCompilationAttribute { get; set; }
+        public int XamlOptimization { get; set; }
         bool GenerateDefaultCtor { get; set; }
         bool HideFromIntellisense { get; set; }
         bool XamlResourceIdOnly { get; set; }
@@ -357,16 +358,26 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             declType.Members.Add(initcomp);
 
             //Create and initialize fields
-            var loadExaml_invoke = new CodeMethodInvokeExpression(
-                new CodeTypeReferenceExpression(new CodeTypeReference($"global::Tizen.NUI.EXaml.EXamlExtensions")),
-                "LoadFromEXamlByRelativePath", new CodeThisReferenceExpression(), 
-                new CodeMethodInvokeExpression()
-                { Method = new CodeMethodReferenceExpression() { MethodName = "GetEXamlPath" } });
 
-            CodeAssignStatement assignEXamlObject = new CodeAssignStatement(
-                    new CodeVariableReferenceExpression("eXamlData"), loadExaml_invoke);
+			if(0 == XamlOptimization)
+			{
+                initcomp.Statements.Add(new CodeMethodInvokeExpression(
+                    new CodeTypeReferenceExpression(new CodeTypeReference($"global::{typeof(Extensions).FullName}")),
+                    "LoadFromXaml", new CodeThisReferenceExpression(), new CodeTypeOfExpression(declType.Name)));
+			}
+            else
+			{
+                var loadExaml_invoke = new CodeMethodInvokeExpression(
+                    new CodeTypeReferenceExpression(new CodeTypeReference($"global::Tizen.NUI.EXaml.EXamlExtensions")),
+                    "LoadFromEXamlByRelativePath", new CodeThisReferenceExpression(),
+                    new CodeMethodInvokeExpression()
+                    { Method = new CodeMethodReferenceExpression() { MethodName = "GetEXamlPath" } });
 
-            initcomp.Statements.Add(assignEXamlObject);
+                CodeAssignStatement assignEXamlObject = new CodeAssignStatement(
+                        new CodeVariableReferenceExpression("eXamlData"), loadExaml_invoke);
+
+                initcomp.Statements.Add(assignEXamlObject);
+			}
 
             foreach (var namedField in NamedFields) {
                 declType.Members.Add(namedField);
@@ -383,27 +394,29 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 initcomp.Statements.Add(assign);
             }
 
-            declType.Members.Add(new CodeMemberField
-            {
-                Name = "eXamlData",
-                Type = new CodeTypeReference("System.Object"),
-                Attributes = MemberAttributes.Private,
-                CustomAttributes = { GeneratedCodeAttrDecl }
-            });
+			if(0 != XamlOptimization)
+			{
+                declType.Members.Add(new CodeMemberField
+                {
+                    Name = "eXamlData",
+                    Type = new CodeTypeReference("System.Object"),
+                    Attributes = MemberAttributes.Private,
+                    CustomAttributes = { GeneratedCodeAttrDecl }
+                });
 
-            var getEXamlPathcomp = new CodeMemberMethod()
-            {
-                Name = "GetEXamlPath",
-                ReturnType = new CodeTypeReference(typeof(string)),
-                CustomAttributes = { GeneratedCodeAttrDecl }
-            };
+                var getEXamlPathcomp = new CodeMemberMethod()
+                {
+                    Name = "GetEXamlPath",
+                    ReturnType = new CodeTypeReference(typeof(string)),
+                    CustomAttributes = { GeneratedCodeAttrDecl }
+                };
 
-            getEXamlPathcomp.Statements.Add(new CodeMethodReturnStatement(new CodeDefaultValueExpression(new CodeTypeReference(typeof(string)))));
+                getEXamlPathcomp.Statements.Add(new CodeMethodReturnStatement(new CodeDefaultValueExpression(new CodeTypeReference(typeof(string)))));
 
-            declType.Members.Add(getEXamlPathcomp);
+                declType.Members.Add(getEXamlPathcomp);
 
-            GenerateMethodExitXaml(declType);
-
+                GenerateMethodExitXaml(declType);
+			}
         writeAndExit:
             //write the result
             using (var writer = new StreamWriter(outFilePath))
