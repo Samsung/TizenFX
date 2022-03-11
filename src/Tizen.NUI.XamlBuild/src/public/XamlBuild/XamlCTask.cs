@@ -47,6 +47,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
         public bool UseInjection { get; set; }
 
+        public int XamlOptimization { get; set; } = 2;
+
         public IAssemblyResolver DefaultAssemblyResolver { get; set; }
 
         public string Type { get; set; }
@@ -284,10 +286,16 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                             continue;
                         }
 
-                        bool currentRetOfType;
-                        IList<Exception> currentExceptionsOfType;
+                        bool currentRetOfType = false;
+                        IList<Exception> currentExceptionsOfType = null;
 
-                        if (UseInjection)
+                        if(UseInjection) XamlOptimization = 1;
+                        LoggingHelper.LogWarning($"XamlOptimization is {XamlOptimization}.");
+                        if (0 == XamlOptimization)
+                        {//Use Xaml
+                            currentRetOfType = true;
+                        }
+                        else if (1 == XamlOptimization)
                         {
                             currentRetOfType = DoInjection(typeDef, resource, out currentExceptionsOfType);
                         }
