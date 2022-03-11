@@ -226,7 +226,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.ProgressBar);
+            AccessibilityRole = Role.ProgressBar;
 
             imageVisual = new AnimatedImageVisual()
             {

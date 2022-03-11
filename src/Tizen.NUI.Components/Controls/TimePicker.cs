@@ -268,7 +268,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.DateEditor);
+            AccessibilityRole = Role.DateEditor;
 
             hourPicker = new Picker()
             {

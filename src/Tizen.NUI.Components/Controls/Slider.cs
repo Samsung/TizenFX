@@ -14,9 +14,11 @@
  * limitations under the License.
  *
  */
+
 using System;
-using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
+using Tizen.NUI.Accessibility;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
@@ -64,7 +66,7 @@ namespace Tizen.NUI.Components
     /// A slider lets users select a value from a continuous or discrete range of values by moving the slider thumb.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public partial class Slider : Control
+    public partial class Slider : Control, IAtspiValue
     {
         /// <summary>
         /// SpaceBetweenTrackAndIndicatorProperty
@@ -1536,7 +1538,7 @@ namespace Tizen.NUI.Components
         /// Gets minimum value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetMinimum()
+        double IAtspiValue.AccessibilityGetMinimum()
         {
             return (double)MinValue;
         }
@@ -1545,7 +1547,7 @@ namespace Tizen.NUI.Components
         /// Gets the current value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetCurrent()
+        double IAtspiValue.AccessibilityGetCurrent()
         {
             return (double)CurrentValue;
         }
@@ -1554,7 +1556,7 @@ namespace Tizen.NUI.Components
         /// Gets maximum value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetMaximum()
+        double IAtspiValue.AccessibilityGetMaximum()
         {
             return (double)MaxValue;
         }
@@ -1563,7 +1565,7 @@ namespace Tizen.NUI.Components
         /// Sets the current value using Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool AccessibilitySetCurrent(double value)
+        bool IAtspiValue.AccessibilitySetCurrent(double value)
         {
             var current = (float)value;
 
@@ -1584,7 +1586,7 @@ namespace Tizen.NUI.Components
         /// Gets minimum increment for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetMinimumIncrement()
+        double IAtspiValue.AccessibilityGetMinimumIncrement()
         {
             // FIXME
             return (MaxValue - MinValue) / 20.0;
@@ -1597,7 +1599,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.Slider, AccessibilityInterface.Value);
+            AccessibilityRole = Role.Slider;
         }
 
         /// <summary>
