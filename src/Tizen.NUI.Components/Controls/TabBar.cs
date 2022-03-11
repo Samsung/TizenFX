@@ -99,7 +99,7 @@ namespace Tizen.NUI.Components
         {
             base.OnInitialize();
 
-            SetAccessibilityConstructor(Role.PageTabList);
+            AccessibilityRole = Role.PageTabList;
         }
 
         /// <summary>

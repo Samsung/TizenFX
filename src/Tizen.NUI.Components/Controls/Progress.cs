@@ -14,11 +14,13 @@
  * limitations under the License.
  *
  */
+
 using System;
-using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
 using System.ComponentModel;
 using System.Diagnostics;
+using Tizen.NUI.Accessibility;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -26,7 +28,7 @@ namespace Tizen.NUI.Components
     /// The Progress class is used to show the ongoing status with a long narrow bar.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public partial class Progress : Control
+    public partial class Progress : Control, IAtspiValue
     {
         /// <summary>
         /// MaxValueProperty
@@ -474,7 +476,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.ProgressBar, AccessibilityInterface.Value);
+            AccessibilityRole = Role.ProgressBar;
             // create necessary components
             InitializeTrack();
             InitializeBuffer();
@@ -521,7 +523,7 @@ namespace Tizen.NUI.Components
         /// Gets minimum value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetMinimum()
+        double IAtspiValue.AccessibilityGetMinimum()
         {
             if (this.ProgressState == Progress.ProgressStatusType.Determinate)
             {
@@ -537,7 +539,7 @@ namespace Tizen.NUI.Components
         /// Gets the current value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetCurrent()
+        double IAtspiValue.AccessibilityGetCurrent()
         {
             if (this.ProgressState == Progress.ProgressStatusType.Determinate)
             {
@@ -549,11 +551,17 @@ namespace Tizen.NUI.Components
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        bool IAtspiValue.AccessibilitySetCurrent(double value)
+        {
+            return false;
+        }
+
         /// <summary>
         /// Gets maximum value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetMaximum()
+        double IAtspiValue.AccessibilityGetMaximum()
         {
             if (this.ProgressState == Progress.ProgressStatusType.Determinate)
             {
@@ -563,6 +571,12 @@ namespace Tizen.NUI.Components
             {
                 return 0.0;
             }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        double IAtspiValue.AccessibilityGetMinimumIncrement()
+        {
+            return 0.0;
         }
 
         /// <summary>

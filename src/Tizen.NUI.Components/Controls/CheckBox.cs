@@ -51,7 +51,7 @@ namespace Tizen.NUI.Components
         {
             base.OnInitialize();
 
-            SetAccessibilityConstructor(Role.CheckBox);
+            AccessibilityRole = Role.CheckBox;
             WidthSpecification = LayoutParamPolicies.WrapContent;
             HeightSpecification = LayoutParamPolicies.WrapContent;
         }
