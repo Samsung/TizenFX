@@ -94,7 +94,7 @@ namespace Tizen.NUI.Components
             return instance.InternalDisappearingTransition;
         });
 
-        internal BaseComponents.View LastFocusedView = null;
+        protected internal BaseComponents.View LastFocusedView = null;
 
         private Navigator navigator = null;
 
@@ -232,5 +232,69 @@ namespace Tizen.NUI.Components
         {
             Disappeared?.Invoke(this, new PageDisappearedEventArgs());
         }
+
+        /// <summary>
+        /// works only when DefaultAlgorithm is enabled.
+        /// to save the currentl focused View when disappeared.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal virtual void SaveKeyFocus()
+        {
+            if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
+            {
+                var currentFocusedView = FocusManager.Instance.GetCurrentFocusView();
+                if (currentFocusedView)
+                {
+                    var findChild = this.FindDescendantByID(currentFocusedView.ID);
+                    if (findChild)
+                    {
+                        this.LastFocusedView = findChild;
+                        return;
+                    }
+                }
+                this.LastFocusedView = null;
+            }
+        }
+
+        /// <summary>
+        /// works only when DefaultAlgorithm is enabled.
+        /// to set key focused View when showing.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal virtual void RestoreKeyFocus()
+        {
+            if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
+            {
+                if (this.LastFocusedView)
+                {
+                    FocusManager.Instance.SetCurrentFocusView(this.LastFocusedView);
+                }
+                else
+                {
+                    var temp = new Tizen.NUI.BaseComponents.View()
+                    {
+                        Size = new Size(0.1f, 0.1f, 0.0f),
+                        Position = new Position(0, 0, 0),
+                        Focusable = true,
+                    };
+                    this.Add(temp);
+                    temp.LowerToBottom();
+                    FocusManager.Instance.SetCurrentFocusView(temp);
+                    var focused = FocusManager.Instance.GetNearestFocusableActor(this, temp, Tizen.NUI.BaseComponents.View.FocusDirection.Down);
+                    if (focused)
+                    {
+                        FocusManager.Instance.SetCurrentFocusView(focused);
+                    }
+                    else
+                    {
+                        FocusManager.Instance.ClearFocus();
+                    }
+                    temp.Unparent();
+                    temp.Dispose();
+                }
+            }
+
+        }
+
     }
 }
