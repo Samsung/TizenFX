@@ -338,19 +338,7 @@ namespace Tizen.NUI.Components
             page.InvokeAppearing();
             curTop.InvokeDisappearing();
 
-            //test.
-            // if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
-            // {
-            //     curTop.LastFocusedView = FocusManager.Instance.GetCurrentFocusView();
-            //     if(page.LastFocusedView)
-            //     {
-            //         FocusManager.Instance.SetCurrentFocusView(page.LastFocusedView);
-            //     }
-            //     else
-            //     {
-            //         FocusManager.Instance.ClearFocus();
-            //     }
-            // }
+            curTop.SaveKeyFocus();
 
             //TODO: The following transition codes will be replaced with view transition.
             InitializeAnimation();
@@ -383,29 +371,15 @@ namespace Tizen.NUI.Components
                     page.InvokeAppeared();
                     NotifyAccessibilityStatesChangeOfPages(curTop, page);
 
-                    //test.
-                    // if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
-                    // {
-                    //     FocusManager.Instance.ClearFocus();
-                    //     FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
-                    //     //FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
-                    // }
-
+                    page.RestoreKeyFocus();
                 };
                 newAnimation.Play();
             }
             else
             {
                 ShowContentOfPage(page);
+                page.RestoreKeyFocus();
             }
-
-            //test.
-            // if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
-            // {
-            //     FocusManager.Instance.ClearFocus();
-            //     FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
-            //     FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
-            // }
         }
 
         /// <summary>
@@ -444,20 +418,7 @@ namespace Tizen.NUI.Components
             //Invoke Page events
             newTop.InvokeAppearing();
             curTop.InvokeDisappearing();
-
-            //test.
-            // if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
-            // {
-            //     curTop.LastFocusedView = FocusManager.Instance.GetCurrentFocusView();
-            //     if(newTop.LastFocusedView)
-            //     {
-            //         FocusManager.Instance.SetCurrentFocusView(newTop.LastFocusedView);
-            //     }
-            //     else
-            //     {
-            //         FocusManager.Instance.ClearFocus();
-            //     }
-            // }
+            curTop.SaveKeyFocus();
 
             //TODO: The following transition codes will be replaced with view transition.
             InitializeAnimation();
@@ -494,16 +455,7 @@ namespace Tizen.NUI.Components
                     //Invoke Page events
                     newTop.InvokeAppeared();
 
-
-                    //test.
-                    // if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
-                    // {
-                    //     FocusManager.Instance.ClearFocus();
-                    //     FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
-                    //     //FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
-                    // }
-
-
+                    newTop.RestoreKeyFocus();
                 };
                 newAnimation.Play();
             }
@@ -511,23 +463,6 @@ namespace Tizen.NUI.Components
             {
                 Remove(curTop);
             }
-
-            //test.
-            // if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
-            // {
-            //     if(newTop.LastFocusedView)
-            //     {
-            //         FocusManager.Instance.SetCurrentFocusView(newTop.LastFocusedView);
-            //     }
-            // }
-
-            // //test.
-            // if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
-            // {
-            //     FocusManager.Instance.ClearFocus();
-            //     FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
-            //     FocusManager.Instance.MoveFocus(View.FocusDirection.Down);
-            // }
 
             return curTop;
         }
