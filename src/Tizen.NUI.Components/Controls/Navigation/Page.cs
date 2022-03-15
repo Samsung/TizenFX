@@ -94,8 +94,6 @@ namespace Tizen.NUI.Components
             return instance.InternalDisappearingTransition;
         });
 
-        internal BaseComponents.View LastFocusedView = null;
-
         private Navigator navigator = null;
 
         // Default transition is Fade.
