@@ -54,6 +54,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
         public bool DebugSymbols { get; set; }
         public string DebugType { get; set; }
         public string XamlFilePath { get; set; }
+        public bool NeedDebug { get; set; } = false;
 
         protected TaskLoggingHelper LoggingHelper { get; }
 
