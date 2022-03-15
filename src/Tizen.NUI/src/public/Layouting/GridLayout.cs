@@ -371,7 +371,7 @@ namespace Tizen.NUI
             }
             else
             {
-                if (hLocations.Length > maxColumnConut)
+                if (hLocations?.Length > maxColumnConut)
                 {
                     widthSize = (int)(hLocations[maxColumnConut] - hLocations[0] - columnSpacing);
                 }
