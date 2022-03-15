@@ -46,7 +46,18 @@ namespace Tizen.NUI.Accessibility
                 Disabled?.Invoke(typeof(Accessibility), EventArgs.Empty);
             };
 
+            screenReaderEnabledSignalHandler = () =>
+            {
+                ScreenReaderEnabled?.Invoke(typeof(Accessibility), EventArgs.Empty);
+            };
+
+            screenReaderDisabledSignalHandler = () =>
+            {
+                ScreenReaderDisabled?.Invoke(typeof(Accessibility), EventArgs.Empty);
+            };
+
             Interop.Accessibility.RegisterEnabledDisabledSignalHandler(enabledSignalHandler, disabledSignalHandler);
+            Interop.Accessibility.RegisterScreenReaderEnabledDisabledSignalHandler(screenReaderEnabledSignalHandler, screenReaderDisabledSignalHandler);
         }
         #endregion Constructor
 
@@ -64,6 +75,22 @@ namespace Tizen.NUI.Accessibility
             get
             {
                 return (bool)Interop.Accessibility.IsEnabled();
+            }
+        }
+
+        /// <summary>
+        /// Flag to check whether the state of Screen Reader is enabled or not.
+        /// </summary>
+        /// <remarks>
+        /// Getter returns true if Screen Reader is enabled, false otherwise.
+        /// </remarks>
+        /// This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool IsScreenReaderEnabled
+        {
+            get
+            {
+                return (bool)Interop.Accessibility.IsScreenReaderEnabled();
             }
         }
 
@@ -270,6 +297,20 @@ namespace Tizen.NUI.Accessibility
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static event EventHandler Disabled;
 
+        /// <summary>
+        /// Triggered whenever the value of IsScreenReaderEnabled would change from false to true
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static event EventHandler ScreenReaderEnabled;
+
+        /// <summary>
+        /// Triggered whenever the value of IsScreenReaderEnabled would change from true to false
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static event EventHandler ScreenReaderDisabled;
+
         #endregion Event, Enum, Struct, ETC
 
         #region Private
@@ -282,6 +323,10 @@ namespace Tizen.NUI.Accessibility
         private static Interop.Accessibility.EnabledDisabledSignalHandler enabledSignalHandler = null;
 
         private static Interop.Accessibility.EnabledDisabledSignalHandler disabledSignalHandler = null;
+
+        private static Interop.Accessibility.EnabledDisabledSignalHandler screenReaderEnabledSignalHandler = null;
+
+        private static Interop.Accessibility.EnabledDisabledSignalHandler screenReaderDisabledSignalHandler = null;
 
         private static void SayFinishedEventCallback(int result)
         {
