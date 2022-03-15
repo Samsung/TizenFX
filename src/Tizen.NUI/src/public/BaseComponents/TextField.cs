@@ -1872,9 +1872,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Specify primary cursor (caret) position in text control.
+        /// PrimaryCursorPosition property.<br />
+        /// Specify the position of the primary cursor (caret) in text control.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// If the value set is out of range (negative or greater than or equal the number of characters in Text) then the PrimaryCursorPosition is moved to the end of Text (the number of characters in Text).
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
         public int PrimaryCursorPosition
         {
             get
