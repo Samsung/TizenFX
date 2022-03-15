@@ -2280,13 +2280,14 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TextFieldEnableEditing END (OK)");
         }
 
+
         [Test]
         [Category("P1")]
         [Description("TextField PrimaryCursorPosition.")]
         [Property("SPEC", "Tizen.NUI.TextField.PrimaryCursorPosition A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        [Property("AUTHOR", "s.sabah@samsung.com")]
         public void TextFieldPrimaryCursorPosition()
         {
             tlog.Debug(tag, $"TextFieldPrimaryCursorPosition START");
@@ -2295,9 +2296,31 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object TextField");
             Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
 
-            testingTarget.Text = "0123456789";
-            testingTarget.PrimaryCursorPosition = 5;
-            Assert.AreEqual(5, testingTarget.PrimaryCursorPosition, "Should be equal!");
+            testingTarget.Text ="Hello World!";
+            int textLen = testingTarget.Text.Length;
+
+            int expectedValue = textLen;
+            Assert.AreEqual(expectedValue, testingTarget.PrimaryCursorPosition, "Should be equal!");
+
+            expectedValue = 5;
+            testingTarget.PrimaryCursorPosition = expectedValue;
+            Assert.AreEqual(expectedValue, testingTarget.PrimaryCursorPosition, "Should be equal!");
+
+            expectedValue = 0;
+            testingTarget.PrimaryCursorPosition = expectedValue;
+            Assert.AreEqual(expectedValue, testingTarget.PrimaryCursorPosition, "Should be equal!");
+
+            expectedValue = textLen ;
+            testingTarget.PrimaryCursorPosition = textLen + 1;
+            Assert.AreEqual(expectedValue, testingTarget.PrimaryCursorPosition, "Should be equal!");
+
+            expectedValue = 6;
+            testingTarget.PrimaryCursorPosition = expectedValue;
+            Assert.AreEqual(expectedValue, testingTarget.PrimaryCursorPosition, "Should be equal!");
+
+            expectedValue = textLen ;
+            testingTarget.PrimaryCursorPosition = -1;
+            Assert.AreEqual(expectedValue, testingTarget.PrimaryCursorPosition, "Should be equal!");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldPrimaryCursorPosition END (OK)");
