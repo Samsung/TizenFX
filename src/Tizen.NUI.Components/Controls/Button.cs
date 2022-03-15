@@ -193,7 +193,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Button() : base()
         {
-            Focusable = true;
         }
 
         /// <summary>
@@ -203,7 +202,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Button(string style) : base(style)
         {
-            Focusable = true;
         }
 
         /// <summary>
@@ -213,7 +211,6 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Button(ButtonStyle buttonStyle) : base(buttonStyle)
         {
-            Focusable = true;
         }
 
         /// <summary>
