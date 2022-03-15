@@ -709,7 +709,7 @@ namespace Tizen.NUI.Wearable
                     // If the center image is set before, then should update the center visual separately.
                     if (isCurrentIndicatorCentered)
                     {
-                        indicator.URL = circularPaginationStyle.CenterIndicatorImageURL.Selected;
+                        indicator.URL = circularPaginationStyle.CenterIndicatorImageURL?.Selected;
                     }
                     else
                     {
@@ -722,7 +722,7 @@ namespace Tizen.NUI.Wearable
                     // If the center image is set before, then should update the center visual separately.
                     if (isCurrentIndicatorCentered)
                     {
-                        indicator.URL = circularPaginationStyle.CenterIndicatorImageURL.Normal;
+                        indicator.URL = circularPaginationStyle.CenterIndicatorImageURL?.Normal;
                     }
                     else
                     {
@@ -774,7 +774,7 @@ namespace Tizen.NUI.Wearable
 
                 if (isCenterImageSet && !isSymmetrical && (i == leftIndicatorCount))
                 {
-                    newOne.URL = circularPaginationStyle.CenterIndicatorImageURL.Normal;
+                    newOne.URL = circularPaginationStyle.CenterIndicatorImageURL?.Normal;
                 }
                 else
                 {
@@ -793,7 +793,7 @@ namespace Tizen.NUI.Wearable
 
             if (isCenterImageSet && (selectedIndex == leftIndicatorCount))
             {
-                indicatorList[selectedIndex].URL = circularPaginationStyle.CenterIndicatorImageURL.Selected;
+                indicatorList[selectedIndex].URL = circularPaginationStyle.CenterIndicatorImageURL?.Selected;
                 indicatorList[selectedIndex].Opacity = 1.0f;
             }
             else
