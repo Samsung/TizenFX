@@ -310,18 +310,24 @@ namespace Tizen.NUI.Components
                         else if (source.IsGroupFooter(i))
                         {
                             //currentGroup.hasFooter = true;
-                            currentGroup.Count++;
-                            currentGroup.GroupSize += groupFooterSize;
-                            Current += groupFooterSize;
+                            if (currentGroup != null)
+                            {
+                                currentGroup.Count++;
+                                currentGroup.GroupSize += groupFooterSize;
+                                Current += groupFooterSize;
+                            }
                         }
                         else
                         {
-                            currentGroup.Count++;
-                            int index = i - currentGroup.StartIndex - ((colView.GroupHeaderTemplate != null)? 1: 0);
-                            if ((index % spanSize) == 0)
+                            if (currentGroup != null)
                             {
-                                currentGroup.GroupSize += StepCandidate;
-                                Current += StepCandidate;
+                                currentGroup.Count++;
+                                int index = i - currentGroup.StartIndex - ((colView.GroupHeaderTemplate != null) ? 1 : 0);
+                                if ((index % spanSize) == 0)
+                                {
+                                    currentGroup.GroupSize += StepCandidate;
+                                    Current += StepCandidate;
+                                }
                             }
                         }
                     }
