@@ -19,6 +19,7 @@ using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Xml;
 using Microsoft.Build.Framework;
@@ -369,6 +370,10 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             initcomp.Statements.Add(assignEXamlObject);
 
             foreach (var namedField in NamedFields) {
+                if(namedField.Type.BaseType.Contains("-"))
+                {
+                    namedField.Type.BaseType = namedField.Type.BaseType.Replace("-", ".");
+                }
                 declType.Members.Add(namedField);
 
                 var find_invoke = new CodeMethodInvokeExpression(
