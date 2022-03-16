@@ -26,67 +26,6 @@ using System.Reflection;
 
 namespace Tizen.NUI.StyleGuide
 {
-
-    /// Helder static extension class for Focusable.
-    /// NUI default behavior is unfocusable in key or touch,
-    /// this class help to setting focusable features easily.
-    public static class FocusableExtension
-    {
-        public static FocusManager FocusManager;
-        public static void EnableFocus(this View view)
-        {
-            view.Focusable = true;
-            view.FocusableInTouch = true;
-        }
-
-        public static void EnableAutoFocusable()
-        {
-            FocusManager = FocusManager.Instance;
-            FocusManager.EnableDefaultAlgorithm(true);
-            FocusManager.FocusIndicator = new View()
-            {
-                PositionUsesPivotPoint = true,
-                PivotPoint = new Position(0, 0, 0),
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
-                BorderlineColor = Color.Orange,
-                BorderlineWidth = 4.0f,
-                BorderlineOffset = -1f,
-                BackgroundColor = new Color(0.2f, 0.2f, 0.2f, 0.2f),
-            };
-        }
-
-        public static void SetFocusOnPage(Page page)
-        {
-            View focusCandidate = null;
-            if (page == null) return;
-
-            if (page is ContentPage contentPage)
-            {
-                focusCandidate = contentPage.AppBar?.NavigationContent;
-                focusCandidate.Focusable = true;
-            }
-
-            if (focusCandidate == null)
-            {
-                foreach (View child in page.Children)
-                {
-                    if (child.Focusable)
-                    {
-                        focusCandidate = child;
-                    }
-                }
-            }
-
-            Log.Info("FocusableExtension", $"Focus candidate {focusCandidate}\n");
-
-            if (focusCandidate != null)
-            {
-                FocusManager.SetCurrentFocusView(focusCandidate);
-            }
-        }
-    }
-
     public class SearchField : View
     {
         public TextField SearchTextField;
@@ -108,14 +47,12 @@ namespace Tizen.NUI.StyleGuide
 
             var searchTextBox = CreateSearchText();
             SearchTextField = CreateTextField();
-            SearchTextField.EnableFocus();
             var underline = CreateUnderline();
 
             searchTextBox.Add(SearchTextField);
             searchTextBox.Add(underline);
 
             SearchButton = CreateSearchButton();
-            SearchButton.EnableFocus();
 
             Add(searchTextBox);
             Add(SearchButton);
@@ -143,6 +80,7 @@ namespace Tizen.NUI.StyleGuide
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.WrapContent,
                 MinimumSize = new Size2D(0, 40),
+                Focusable = true, //BaseComponents' Focusable is false as a default value, true should be set to navigate key focus and edit text.
             };
         }
 
@@ -218,7 +156,7 @@ namespace Tizen.NUI.StyleGuide
 
             foreach (Type type in assembly.GetTypes())
             {
-                Console.WriteLine($"@@@ type.Name={type.Name}, type.FullName={type.FullName}");
+                Console.WriteLine($"type.Name={type.Name}, type.FullName={type.FullName}");
                 if (exampleType.IsAssignableFrom(type) && type.Name != "SampleMain" && this.GetType() != type && type.IsClass)
                 {
                     NamePool.Add(new Tuple<string, string>(type.Name, type.FullName));
@@ -252,7 +190,7 @@ namespace Tizen.NUI.StyleGuide
 
                     if (navigator.PageCount == 0)
                     {
-                         Exit();
+                        Exit();
                     }
                 }
             }
@@ -260,13 +198,13 @@ namespace Tizen.NUI.StyleGuide
 
         public void OnSelectionChanged(object sender, SelectionChangedEventArgs ev)
         {
-            Console.WriteLine($"@@@ OnSelectionChanged() {ev.CurrentSelection}");
+            Console.WriteLine($"OnSelectionChanged() {ev.CurrentSelection}");
 
             if (ev.CurrentSelection.Count == 0) return;
 
             if (ev.CurrentSelection[0] is ControlMenu selItem)
             {
-                Console.WriteLine($"@@@ selItem.Name={selItem.Name}, selItem.FullName={selItem.FullName}");
+                Console.WriteLine($"selItem.Name={selItem.Name}, selItem.FullName={selItem.FullName}");
                 RunSample(selItem?.FullName);
             }
             colView.SelectedItem = null;
@@ -277,6 +215,27 @@ namespace Tizen.NUI.StyleGuide
             base.OnCreate();
             Initialize();
             SetMainPage();
+
+            focusManager = FocusManager.Instance;
+
+            //set user customized focus indicator
+            if (!focusManager.FocusIndicator)
+            {
+                focusManager.FocusIndicator = new View()
+                {
+                    PositionUsesPivotPoint = true,
+                    PivotPoint = new Position(0, 0, 0),
+                    WidthResizePolicy = ResizePolicyType.FillToParent,
+                    HeightResizePolicy = ResizePolicyType.FillToParent,
+                    BorderlineColor = Color.Orange,
+                    BorderlineWidth = 4.0f,
+                    BorderlineOffset = -1f,
+                    BackgroundColor = new Color(0.2f, 0.2f, 0.2f, 0.2f),
+                };
+            }
+
+            //enable FocusManger default algorithm
+            focusManager.EnableDefaultAlgorithm(true);
         }
         private void Initialize()
         {
@@ -284,13 +243,10 @@ namespace Tizen.NUI.StyleGuide
             window.Title = "NUI Style Guide";
             window.KeyEvent += OnKeyEvent;
 
-            FocusableExtension.EnableAutoFocusable();
-
             navigator = window.GetDefaultNavigator();
             navigator.Popped += (object obj, PoppedEventArgs ev) =>
             {
                 Page top = navigator.Peek();
-                FocusableExtension.SetFocusOnPage(top);
             };
         }
 
@@ -319,7 +275,6 @@ namespace Tizen.NUI.StyleGuide
             var appBarStyle = ThemeManager.GetStyle("Tizen.NUI.Components.AppBar");
             var moreButton = new Button(((AppBarStyle)appBarStyle).BackButton);
             moreButton.Icon.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "menu.png";
-            moreButton.EnableFocus();
             appBar.NavigationContent = moreButton;
 
 
@@ -359,7 +314,7 @@ namespace Tizen.NUI.StyleGuide
                     };
                     item.Label.SetBinding(TextLabel.TextProperty, "ViewLabel");
                     item.Label.HorizontalAlignment = HorizontalAlignment.Begin;
-                    item.EnableFocus();
+                    item.Focusable = true; //BaseComponents' Focusable is false as a default value, true should be set to navigate key focus.
                     return item;
                 }),
                 Header = myTitle,
@@ -378,10 +333,8 @@ namespace Tizen.NUI.StyleGuide
                 AppBar = appBar,
                 Content = pageContent,
             };
-            page.Focusable = true;
 
             navigator.Push(page);
-            FocusableExtension.SetFocusOnPage(page);
         }
 
         private void RunSample(string name)
@@ -389,21 +342,19 @@ namespace Tizen.NUI.StyleGuide
             IExample example = typeof(Program).Assembly?.CreateInstance(name) as IExample;
 
 
-            Console.WriteLine($"@@@ typeof(Program).Assembly={typeof(Program).Assembly}, name={name}");
+            Console.WriteLine($"typeof(Program).Assembly={typeof(Program).Assembly}, name={name}");
 
             if (example != null)
             {
                 example.Activate();
                 if (example is Page examplePage)
                 {
-                    examplePage.Focusable = true;
                     navigator.Push(examplePage);
-                    FocusableExtension.SetFocusOnPage(examplePage);
                 }
             }
             else
             {
-                Console.WriteLine($"@@@ examle is null!");
+                Console.WriteLine($"examle is null!");
             }
         }
 

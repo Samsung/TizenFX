@@ -23,33 +23,35 @@ using Tizen.NUI.Components;
 namespace Tizen.NUI.StyleGuide
 {
     // IExample inehrited class will be automatically added in the main examples list.
-    internal class ButtonExample : ContentPage, IExample
+    internal class LoadingExample : ContentPage, IExample
     {
-        private Window window;
+        private const int testSizeWidth = 150;
+        private const int testSizeHeight = 150;
+        private View rootContent;
+        private Loading loading;
+
         public void Activate()
         {
         }
         public void Deactivate()
         {
-            window = null;
         }
 
         /// Modify this method for adding other examples.
-        public ButtonExample() : base()
+        public LoadingExample() : base()
         {
-            Log.Info(this.GetType().Name, $"{this.GetType().Name} is contructed\n");
-
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
+
             // Navigator bar title is added here.
             AppBar = new AppBar()
             {
-                Title = "Button Default Style",
+                Title = "Loading Default Style",
             };
 
             // Example root content view.
             // you can decorate, add children on this view.
-            var rootContent = new View()
+            rootContent = new View()
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
@@ -63,52 +65,29 @@ namespace Tizen.NUI.StyleGuide
                 },
             };
 
-            // Button style examples.
-
-            var enabledButton = new Button()
+            // Loading examples.
+            var path = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+            var imageArray = new string[36];
+            for (int i = 0; i < 36; i++)
             {
-                Text = "Enabled"
-            };
-            enabledButton.Clicked += (object obj, ClickedEventArgs ev) =>
-            {
-                Log.Info(this.GetType().Name, "Enabled Button Clicked\n");
-            };
-            rootContent.Add(enabledButton);
-
-            var disabledButton = new Button()
-            {
-                Text = "Disabled",
-                IsEnabled = false,
-            };
-            disabledButton.Clicked += (object obj, ClickedEventArgs ev) =>
-            {
-                // This event should not be recieved. button is disabled.
-                Log.Info(this.GetType().Name, "Disabled Button Clicked\n");
-
-            };
-            rootContent.Add(disabledButton);
-
-            var selectableButton = new Button()
-            {
-                Text = "Unselected",
-                IsSelectable = true,
-            };
-            selectableButton.Clicked += (object obj, ClickedEventArgs ev) =>
-            {
-                Log.Info(this.GetType().Name, "Selected Button Clicked\n");
-                if (obj is Button button)
+                if (i < 10)
                 {
-                   if (button.IsSelected)
-                    {
-                        button.Text = "Selected";
-                    }
-                    else
-                    {
-                        button.Text = "Unselected";
-                    }
+                    imageArray[i] = path + "loading/loading_0" + i + ".png";
                 }
+                else
+                {
+                    imageArray[i] = path + "loading/loading_" + i + ".png";
+                }
+            }
+
+            loading = new Loading()
+            {
+                WidthSpecification = testSizeWidth,
+                HeightSpecification = testSizeHeight,
+                ImageArray = imageArray,
             };
-            rootContent.Add(selectableButton);
+            rootContent.Add(loading);
+
             Content = rootContent;
         }
     }

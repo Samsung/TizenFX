@@ -23,33 +23,33 @@ using Tizen.NUI.Components;
 namespace Tizen.NUI.StyleGuide
 {
     // IExample inehrited class will be automatically added in the main examples list.
-    internal class ButtonExample : ContentPage, IExample
+    internal class CheckBoxExample : ContentPage, IExample
     {
-        private Window window;
+        private View rootContent;
+        private CheckBox checkBox1, checkBox2, checkBox3;
+
         public void Activate()
         {
         }
         public void Deactivate()
         {
-            window = null;
         }
 
         /// Modify this method for adding other examples.
-        public ButtonExample() : base()
+        public CheckBoxExample() : base()
         {
-            Log.Info(this.GetType().Name, $"{this.GetType().Name} is contructed\n");
-
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
+
             // Navigator bar title is added here.
             AppBar = new AppBar()
             {
-                Title = "Button Default Style",
+                Title = "CheckBox Default Style",
             };
 
             // Example root content view.
             // you can decorate, add children on this view.
-            var rootContent = new View()
+            rootContent = new View()
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
@@ -63,52 +63,25 @@ namespace Tizen.NUI.StyleGuide
                 },
             };
 
-            // Button style examples.
+            // CheckBox examples.
+            checkBox1 = new CheckBox()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+            };
+            rootContent.Add(checkBox1);
 
-            var enabledButton = new Button()
+            checkBox2 = new CheckBox()
             {
-                Text = "Enabled"
+                WidthSpecification = LayoutParamPolicies.MatchParent,
             };
-            enabledButton.Clicked += (object obj, ClickedEventArgs ev) =>
-            {
-                Log.Info(this.GetType().Name, "Enabled Button Clicked\n");
-            };
-            rootContent.Add(enabledButton);
+            rootContent.Add(checkBox2);
 
-            var disabledButton = new Button()
+            checkBox3 = new CheckBox()
             {
-                Text = "Disabled",
-                IsEnabled = false,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
             };
-            disabledButton.Clicked += (object obj, ClickedEventArgs ev) =>
-            {
-                // This event should not be recieved. button is disabled.
-                Log.Info(this.GetType().Name, "Disabled Button Clicked\n");
+            rootContent.Add(checkBox3);
 
-            };
-            rootContent.Add(disabledButton);
-
-            var selectableButton = new Button()
-            {
-                Text = "Unselected",
-                IsSelectable = true,
-            };
-            selectableButton.Clicked += (object obj, ClickedEventArgs ev) =>
-            {
-                Log.Info(this.GetType().Name, "Selected Button Clicked\n");
-                if (obj is Button button)
-                {
-                   if (button.IsSelected)
-                    {
-                        button.Text = "Selected";
-                    }
-                    else
-                    {
-                        button.Text = "Unselected";
-                    }
-                }
-            };
-            rootContent.Add(selectableButton);
             Content = rootContent;
         }
     }
