@@ -14,10 +14,15 @@
  * limitations under the License.
  *
  */
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
-    internal interface IThemeCreator
+    /// <summary>
+    /// It is an interface that creates a theme.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public interface IThemeCreator
     {
         Theme Create();
     }

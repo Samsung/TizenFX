@@ -348,7 +348,13 @@ namespace Tizen.NUI
 #endif
         }
 
-        internal static void AddPackageTheme(IThemeCreator themeCreator)
+        /// <summary>
+        /// Add default theme. The default theme is applied to the entire application.
+        /// If userTheme is applied through ThemeManager.ApplyTheme(userTheme), defaultTheme and userTheme are merged and applied.
+        /// </summary>
+        /// <param name="themeCreator">The interface that creates a theme.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void AddPackageTheme(IThemeCreator themeCreator)
         {
             if (packages.Contains(themeCreator))
             {

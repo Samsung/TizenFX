@@ -427,5 +427,14 @@ namespace Tizen.NUI.BaseComponents
             propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).themeChangeSensitive = (bool?)newValue,
             defaultValueCreator: (bindable) => ((ViewStyle)bindable).themeChangeSensitive
         );
+
+        /// <summary> Bindable property of GrabTouchAfterLeaveProperty. Please do not open it. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty GrabTouchAfterLeaveProperty = BindableProperty.Create(nameof(GrabTouchAfterLeave), typeof(bool?), typeof(ViewStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).grabTouchAfterLeave = (bool?)newValue,
+            defaultValueCreator: (bindable) => ((ViewStyle)bindable).grabTouchAfterLeave
+        );
+
+
     }
 }

@@ -274,11 +274,11 @@ namespace Tizen.NUI
 
             do
             {
-                if (currentType.Equals(typeof(View))) break;
-                resultStyle = GetStyle(currentType.FullName);
+                var currentStyle = GetStyle(currentType.FullName);
+                resultStyle = (resultStyle == null) ? currentStyle : currentStyle?.Merge(resultStyle) ?? resultStyle;
                 currentType = currentType.BaseType;
             }
-            while (resultStyle == null && currentType != null);
+            while (currentType != null);
 
             return resultStyle;
         }
