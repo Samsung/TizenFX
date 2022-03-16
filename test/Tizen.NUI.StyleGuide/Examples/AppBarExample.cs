@@ -23,33 +23,36 @@ using Tizen.NUI.Components;
 namespace Tizen.NUI.StyleGuide
 {
     // IExample inehrited class will be automatically added in the main examples list.
-    internal class ButtonExample : ContentPage, IExample
+    internal class AppBarExample : ContentPage, IExample
     {
-        private Window window;
+        private View rootContent;
+        private AppBar appBar;
+        private TextLabel label;
+        private Button button;
+        private int count;
+
         public void Activate()
         {
         }
         public void Deactivate()
         {
-            window = null;
         }
 
         /// Modify this method for adding other examples.
-        public ButtonExample() : base()
+        public AppBarExample() : base()
         {
-            Log.Info(this.GetType().Name, $"{this.GetType().Name} is contructed\n");
-
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
+
             // Navigator bar title is added here.
             AppBar = new AppBar()
             {
-                Title = "Button Default Style",
+                Title = "AppBar Default Style",
             };
 
             // Example root content view.
             // you can decorate, add children on this view.
-            var rootContent = new View()
+            rootContent = new View()
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
@@ -63,52 +66,35 @@ namespace Tizen.NUI.StyleGuide
                 },
             };
 
-            // Button style examples.
+            // AppBar examples.
+            appBar = new AppBar()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                Title = "This is AppBar",
+                AutoNavigationContent = false,
+            };
+            rootContent.Add(appBar);
 
-            var enabledButton = new Button()
+            label = new TextLabel
             {
-                Text = "Enabled"
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                Text = $"title: {appBar.Title}"
             };
-            enabledButton.Clicked += (object obj, ClickedEventArgs ev) =>
-            {
-                Log.Info(this.GetType().Name, "Enabled Button Clicked\n");
-            };
-            rootContent.Add(enabledButton);
+            rootContent.Add(label);
 
-            var disabledButton = new Button()
+            button = new Tizen.NUI.Components.Button
             {
-                Text = "Disabled",
-                IsEnabled = false,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                Text = "change title"
             };
-            disabledButton.Clicked += (object obj, ClickedEventArgs ev) =>
-            {
-                // This event should not be recieved. button is disabled.
-                Log.Info(this.GetType().Name, "Disabled Button Clicked\n");
+            rootContent.Add(button);
 
+            button.Clicked += (s, e) =>
+            {
+                appBar.Title = $"This is AppBar(clk {count++})";
+                label.Text = $"title: {appBar.Title}";
             };
-            rootContent.Add(disabledButton);
 
-            var selectableButton = new Button()
-            {
-                Text = "Unselected",
-                IsSelectable = true,
-            };
-            selectableButton.Clicked += (object obj, ClickedEventArgs ev) =>
-            {
-                Log.Info(this.GetType().Name, "Selected Button Clicked\n");
-                if (obj is Button button)
-                {
-                   if (button.IsSelected)
-                    {
-                        button.Text = "Selected";
-                    }
-                    else
-                    {
-                        button.Text = "Unselected";
-                    }
-                }
-            };
-            rootContent.Add(selectableButton);
             Content = rootContent;
         }
     }
