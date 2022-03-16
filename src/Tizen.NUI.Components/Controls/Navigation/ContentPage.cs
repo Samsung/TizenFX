@@ -144,6 +144,32 @@ namespace Tizen.NUI.Components
                 NotifyPropertyChanged();
             }
         }
+
+        /// <summary>
+        /// for the case of ContentPage, it sets key focus on AppBar's NavigationContent
+        /// </summary>
+        protected internal override void RestoreKeyFocus()
+        {
+            if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
+            {
+                if (LastFocusedView)
+                {
+                    FocusManager.Instance.SetCurrentFocusView(LastFocusedView);
+                }
+                else
+                {
+                    if (AppBar != null)
+                    {
+                        FocusManager.Instance.SetCurrentFocusView(AppBar.PassFocusableViewInsideIfNeeded());
+                    }
+                    else
+                    {
+                        FocusManager.Instance.ClearFocus();
+                    }
+                }
+            }
+        }
+
         private View InternalContent
         {
             get
