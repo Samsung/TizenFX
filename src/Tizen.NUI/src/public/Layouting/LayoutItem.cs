@@ -602,7 +602,8 @@ namespace Tizen.NUI
                     else
                     {
                         Owner.SetSize(right - left, bottom - top);
-                        Owner.SetPosition(left, top);
+                        Vector3 frameOffset = Owner.LayoutedPositionOffset;
+                        Owner.SetPosition(left + frameOffset.X, top + frameOffset.Y);
                     }
                 }
 

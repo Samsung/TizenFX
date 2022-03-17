@@ -68,6 +68,9 @@ namespace Tizen.NUI.BaseComponents
         private Size2D internalSize2D = null;
         private int layoutCount = 0;
 
+        // For test
+        private Vector3 layoutedPositionOffset = null;
+
         static View()
         {
             RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
@@ -138,6 +141,8 @@ namespace Tizen.NUI.BaseComponents
                 PositionUsesPivotPoint = false;
             }
 
+            layoutedPositionOffset = new Vector3(0, 0, 0);
+
             onWindowSendEventCallback = SendViewAddedEventToWindow;
             using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
             signal?.Connect(onWindowSendEventCallback);
@@ -150,7 +155,6 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
-
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
@@ -2779,6 +2783,37 @@ namespace Tizen.NUI.BaseComponents
             {
                 weight = value;
                 layout?.RequestLayout();
+            }
+        }
+
+        /// <summary>
+        ///  Offset of position after OnMeasure calculate finished
+        /// </summary>
+        /// <remarks>
+        /// Hidden-API (Inhouse-API).
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector3 LayoutedPositionOffset
+        {
+            get
+            {
+                return layoutedPositionOffset;
+            }
+            set
+            {
+                Vector3 diff;
+                if(value != null)
+                {
+                    diff = value - layoutedPositionOffset;
+                    layoutedPositionOffset = value;
+                }
+                else
+                {
+                    diff = -layoutedPositionOffset;
+                    layoutedPositionOffset = Vector3.Zero;
+                }
+                Position pos = Position;
+                Position = new Position(pos.X + diff.X, pos.Y + diff.Y, pos.Z + diff.Z);
             }
         }
 
