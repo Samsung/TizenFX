@@ -1426,6 +1426,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void InitializeStyle(ViewStyle style = null)
         {
+            ApplyStyle(defaultStyle);
+
             var initialStyle = ThemeManager.GetInitialStyleWithoutClone(GetType());
             if (style == null)
             {

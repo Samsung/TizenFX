@@ -62,6 +62,7 @@ namespace Tizen.NUI.BaseComponents
         private Selector<Rectangle> backgroundImageBorderSelector;
         private Selector<Color> colorSelector;
         private VisualTransformPolicyType? cornerRadiusPolicy;
+        private bool? grabTouchAfterLeave;
 
         static ViewStyle() { }
 
@@ -508,6 +509,17 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool SolidNull { get; set; } = false;
+
+        /// <summary>
+        /// Whether the view grab all touches even if touch leaves its boundary.
+        /// The view that is touched down receives all touch events until it is touched up.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? GrabTouchAfterLeave
+        {
+            get => (bool?)GetValue(GrabTouchAfterLeaveProperty);
+            set => SetValue(GrabTouchAfterLeaveProperty, value);
+        }
 
         /// <summary>
         /// HashSet of dirty properties. Internal use only.
