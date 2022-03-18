@@ -427,5 +427,18 @@ namespace Tizen.NUI.BaseComponents
             propertyChanged: (bindable, oldValue, newValue) => ((ViewStyle)bindable).themeChangeSensitive = (bool?)newValue,
             defaultValueCreator: (bindable) => ((ViewStyle)bindable).themeChangeSensitive
         );
+
+        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var buttonStyle = (ViewStyle)bindable;
+            buttonStyle.isEnabled = (bool?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var buttonStyle = (ViewStyle)bindable;
+            return buttonStyle.isEnabled;
+        });
     }
 }

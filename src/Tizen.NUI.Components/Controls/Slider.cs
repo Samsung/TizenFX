@@ -190,26 +190,6 @@ namespace Tizen.NUI.Components
             }
         );
 
-        /// <summary>
-        /// IsEnabledProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(Slider), true, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Slider)bindable;
-            if (newValue != null)
-            {
-                bool newEnabled = (bool)newValue;
-                if (instance.isEnabled != newEnabled)
-                {
-                    instance.isEnabled = newEnabled;
-                    instance.Sensitive = newEnabled;
-                    instance.UpdateValue();
-                }
-            }
-        },
-        defaultValueCreator: (bindable) => ((Slider)bindable).isEnabled);
-
         static Slider() { }
 
         /// <summary>
@@ -1277,22 +1257,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-        /// <summary>
-        /// Flag to decide enable or disable in Slider.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsEnabled
-        {
-            get
-            {
-                return (bool)GetValue(IsEnabledProperty);
-            }
-            set
-            {
-                SetValue(IsEnabledProperty, value);
-            }
-        }
-
         private Extents spaceBetweenTrackAndIndicator
         {
             get
@@ -1697,6 +1661,14 @@ namespace Tizen.NUI.Components
             UpdateBgTrackPosition();
             UpdateWarningTrackSize();
             UpdateLowIndicatorSize();
+            UpdateValue();
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnEnabled(bool enabled)
+        {
+            base.OnEnabled(enabled);
             UpdateValue();
         }
 
