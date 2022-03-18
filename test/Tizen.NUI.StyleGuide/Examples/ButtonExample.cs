@@ -80,7 +80,6 @@ namespace Tizen.NUI.StyleGuide
                 Text = "Disabled",
                 IsEnabled = false,
             };
-            disabledButton.EnableFocus();
             disabledButton.Clicked += (object obj, ClickedEventArgs ev) =>
             {
                 // This event should not be recieved. button is disabled.
@@ -99,8 +98,8 @@ namespace Tizen.NUI.StyleGuide
                 Log.Info(this.GetType().Name, "Selected Button Clicked\n");
                 if (obj is Button button)
                 {
-                   disabledButton.IsEnabled = button.IsSelected;
-                   if (button.IsSelected)
+                    disabledButton.IsEnabled = button.IsSelected;
+                    if (button.IsSelected)
                     {
                         button.Text = "Selected";
                     }
