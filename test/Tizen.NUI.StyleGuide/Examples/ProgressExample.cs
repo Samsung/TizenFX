@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-using System;
 using System.ComponentModel;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
@@ -23,10 +22,10 @@ using Tizen.NUI.Components;
 namespace Tizen.NUI.StyleGuide
 {
     // IExample inehrited class will be automatically added in the main examples list.
-    internal class CheckBoxExample : ContentPage, IExample
+    internal class ProgressExample : ContentPage, IExample
     {
         private View rootContent;
-        private CheckBox checkBox, disabledCheckBox, selectedCheckBox;
+        private Tizen.NUI.Components.Progress bufferingProgress, disabledProgress, determinatedProgress, indeterminatedProgress;
 
         public void Activate()
         {
@@ -36,7 +35,7 @@ namespace Tizen.NUI.StyleGuide
         }
 
         /// Modify this method for adding other examples.
-        public CheckBoxExample() : base()
+        public ProgressExample() : base()
         {
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
@@ -44,7 +43,7 @@ namespace Tizen.NUI.StyleGuide
             // Navigator bar title is added here.
             AppBar = new AppBar()
             {
-                Title = "CheckBox Default Style",
+                Title = "Slider Default Style",
             };
 
             // Example root content view.
@@ -64,29 +63,41 @@ namespace Tizen.NUI.StyleGuide
             };
 
             // CheckBox examples.
-            checkBox = new CheckBox();
-            rootContent.Add(checkBox);
-
-            disabledCheckBox = new CheckBox()
+            bufferingProgress = new Progress()
             {
+                MinValue = 0,
+                MaxValue = 100,
+                BufferValue = 10,
+                ProgressState = Progress.ProgressStatusType.Buffering,
+            };
+            rootContent.Add(bufferingProgress);
+
+            determinatedProgress = new Progress()
+            {
+                MinValue = 0,
+                MaxValue = 100,
+                CurrentValue = 80,
+                ProgressState = Progress.ProgressStatusType.Determinate,
+            };
+            rootContent.Add(determinatedProgress);
+
+            indeterminatedProgress = new Progress()
+            {
+                MinValue = 0,
+                MaxValue = 100,
+                ProgressState = Progress.ProgressStatusType.Indeterminate,
+            };
+            rootContent.Add(indeterminatedProgress);
+
+
+            disabledProgress = new Progress()
+            {
+                MinValue = 0,
+                MaxValue = 100,
                 IsEnabled = false,
+                ProgressState = Progress.ProgressStatusType.Indeterminate,
             };
-            rootContent.Add(disabledCheckBox);
-
-            selectedCheckBox = new CheckBox()
-            {
-                IsSelected = true,
-            };
-            selectedCheckBox.Clicked += (object obj, ClickedEventArgs ev) =>
-            {
-                Log.Info(this.GetType().Name, "Selected CheckBox Clicked\n");
-                if (obj is CheckBox cb)
-                {
-                    disabledCheckBox.IsEnabled = !cb.IsSelected;
-                }
-            };
-            rootContent.Add(selectedCheckBox);
-
+            rootContent.Add(disabledProgress);
             Content = rootContent;
         }
     }
