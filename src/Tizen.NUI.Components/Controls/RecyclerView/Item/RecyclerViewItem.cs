@@ -141,7 +141,7 @@ namespace Tizen.NUI.Components
         /// Set enabled state false makes item untouchable and unfocusable.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public bool IsEnabled
+        public new bool IsEnabled
         {
             get => base.IsEnabled;
             set
