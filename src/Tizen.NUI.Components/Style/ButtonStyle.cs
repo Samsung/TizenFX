@@ -53,18 +53,6 @@ namespace Tizen.NUI.Components
         });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var buttonStyle = (ButtonStyle)bindable;
-            buttonStyle.isEnabled = (bool?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var buttonStyle = (ButtonStyle)bindable;
-            return buttonStyle.isEnabled;
-        });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IconRelativeOrientationProperty = BindableProperty.Create(nameof(IconRelativeOrientation), typeof(Button.IconOrientation?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var buttonStyle = (ButtonStyle)bindable;
@@ -116,7 +104,6 @@ namespace Tizen.NUI.Components
 
         private bool? isSelectable;
         private bool? isSelected;
-        private bool? isEnabled;
         private Button.IconOrientation? iconRelativeOrientation;
         private Extents iconPadding;
         private Extents textPadding;
@@ -186,8 +173,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public bool? IsEnabled
         {
-            get => (bool?)GetValue(IsEnabledProperty);
-            set => SetValue(IsEnabledProperty, value);
+            get => (bool?)base.IsEnabled;
+            set
+            {
+                base.IsEnabled = value;
+            }
         }
 
         /// <summary>

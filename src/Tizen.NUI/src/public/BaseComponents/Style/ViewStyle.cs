@@ -53,6 +53,7 @@ namespace Tizen.NUI.BaseComponents
         private float? borderlineWidth;
         private Color borderlineColor;
         private float? borderlineOffset;
+        private bool? isEnabled;
 
         private Selector<ImageShadow> imageShadow;
         private Selector<Shadow> boxShadow;
@@ -496,6 +497,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (bool?)GetValue(ThemeChangeSensitiveProperty);
             set => SetValue(ThemeChangeSensitiveProperty, value);
+        }
+
+        /// <summary>
+        /// Flag to decide View can be enabled user interaction or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? IsEnabled
+        {
+            get => (bool?)GetValue(IsEnabledProperty);
+            set => SetValue(IsEnabledProperty, value);
         }
 
 

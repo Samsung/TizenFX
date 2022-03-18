@@ -30,20 +30,7 @@ namespace Tizen.NUI.Components
         /// Property of boolean Enable flag.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(RecyclerViewItem), true, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (RecyclerViewItem)bindable;
-            if (newValue != null)
-            {
-                bool newEnabled = (bool)newValue;
-                if (instance.isEnabled != newEnabled)
-                {
-                    instance.isEnabled = newEnabled;
-                    instance.UpdateState();
-                }
-            }
-        },
-        defaultValueCreator: (bindable) => ((RecyclerViewItem)bindable).isEnabled);
+        public static readonly BindableProperty IsEnabledProperty = View.IsEnabledProperty;
 
         /// <summary>
         /// Property of boolean Selected flag.
@@ -93,7 +80,6 @@ namespace Tizen.NUI.Components
 
         private bool isSelected = false;
         private bool isSelectable = true;
-        private bool isEnabled = true;
         private RecyclerViewItemStyle ItemStyle => ViewStyle as RecyclerViewItemStyle;
 
         static RecyclerViewItem() { }
@@ -157,8 +143,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public bool IsEnabled
         {
-            get => (bool)GetValue(IsEnabledProperty);
-            set => SetValue(IsEnabledProperty, value);
+            get => base.IsEnabled;
+            set
+            {
+                base.IsEnabled = value;
+            }
         }
 
         /// <summary>
@@ -262,7 +251,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Called when the control loses key input focus. 
+        /// Called when the control loses key input focus.
         /// Should be overridden by derived classes if they need to customize
         /// what happens when the focus is lost.
         /// </summary>
@@ -286,7 +275,7 @@ namespace Tizen.NUI.Components
             if (viewStyle != null)
             {
                 //Extension = RecyclerViewItemStyle.CreateExtension();
-                //FIXME : currently padding and margin are not applied by ApplyStyle automatically as missing binding features.               
+                //FIXME : currently padding and margin are not applied by ApplyStyle automatically as missing binding features.
                 Padding = new Extents(viewStyle.Padding);
                 Margin = new Extents(viewStyle.Margin);
             }
