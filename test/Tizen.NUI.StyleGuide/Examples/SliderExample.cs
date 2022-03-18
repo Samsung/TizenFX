@@ -23,10 +23,10 @@ using Tizen.NUI.Components;
 namespace Tizen.NUI.StyleGuide
 {
     // IExample inehrited class will be automatically added in the main examples list.
-    internal class CheckBoxExample : ContentPage, IExample
+    internal class SliderExample : ContentPage, IExample
     {
         private View rootContent;
-        private CheckBox checkBox, disabledCheckBox, selectedCheckBox;
+        private Slider slider, disabledSlider, completedSlider;
 
         public void Activate()
         {
@@ -36,7 +36,7 @@ namespace Tizen.NUI.StyleGuide
         }
 
         /// Modify this method for adding other examples.
-        public CheckBoxExample() : base()
+        public SliderExample() : base()
         {
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
@@ -44,7 +44,7 @@ namespace Tizen.NUI.StyleGuide
             // Navigator bar title is added here.
             AppBar = new AppBar()
             {
-                Title = "CheckBox Default Style",
+                Title = "Slider Default Style",
             };
 
             // Example root content view.
@@ -64,28 +64,28 @@ namespace Tizen.NUI.StyleGuide
             };
 
             // CheckBox examples.
-            checkBox = new CheckBox();
-            rootContent.Add(checkBox);
-
-            disabledCheckBox = new CheckBox()
+            slider = new Slider()
             {
+                MinValue = 0,
+                MaxValue = 100,
+            };
+            rootContent.Add(slider);
+
+            disabledSlider = new Slider()
+            {
+                MinValue = 0,
+                MaxValue = 100,
                 IsEnabled = false,
             };
-            rootContent.Add(disabledCheckBox);
+            rootContent.Add(disabledSlider);
 
-            selectedCheckBox = new CheckBox()
+            completedSlider = new Slider()
             {
-                IsSelected = true,
+                MinValue = 0,
+                MaxValue = 100,
+                CurrentValue = 100,
             };
-            selectedCheckBox.Clicked += (object obj, ClickedEventArgs ev) =>
-            {
-                Log.Info(this.GetType().Name, "Selected CheckBox Clicked\n");
-                if (obj is CheckBox cb)
-                {
-                    disabledCheckBox.IsEnabled = !cb.IsSelected;
-                }
-            };
-            rootContent.Add(selectedCheckBox);
+            rootContent.Add(completedSlider);
 
             Content = rootContent;
         }
