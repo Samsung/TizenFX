@@ -25,11 +25,6 @@ using Microsoft.Build.Utilities;
 
 using Mono.Cecil;
 
-using Tizen.NUI.Xaml;
-using Mono.Cecil.Cil;
-using Mono.Cecil.Pdb;
-using Mono.Cecil.Mdb;
-
 namespace Tizen.NUI.Xaml.Build.Tasks
 {
     [LoadInSeparateAppDomain]
