@@ -290,6 +290,34 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             return typeRef.InheritsFromOrImplements(baseClass);
         }
 
+        public static TypeReference GetRealTypeIfIsMarkupExtension(this TypeReference typeRef)
+        {
+            TypeReference ret = null;
+
+            var typeDef = typeRef.ResolveCached();
+
+            foreach (var @interface in typeDef.Interfaces)
+            {
+                if (@interface.InterfaceType is GenericInstanceType instanceType)
+                {
+                    if ("Tizen.NUI.Xaml.IMarkupExtension`1" == instanceType.ElementType.FullName
+                        &&
+                        1 == instanceType.GenericArguments.Count)
+                    {
+                        ret = instanceType.GenericArguments[0];
+                        break;
+                    }
+                }
+            }
+
+            if (null == ret)
+            {
+                ret = typeDef.BaseType?.GetRealTypeIfIsMarkupExtension();
+            }
+
+            return ret;
+        }
+
         static CustomAttribute GetCustomAttribute(this TypeReference typeRef, TypeReference attribute)
         {
             var typeDef = typeRef.ResolveCached();
