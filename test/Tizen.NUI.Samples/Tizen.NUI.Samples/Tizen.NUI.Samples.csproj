@@ -18,10 +18,8 @@
   <ItemGroup>
     <Compile Remove="Samples\AnimatedVectorImageViewTest.cs" />
     <Compile Remove="Samples\ButtonSample.cs" />
-    <Compile Remove="Samples\CheckBoxSample.cs" />
     <Compile Remove="Samples\DropDownSample.cs" />
     <Compile Remove="Samples\PopupSample.cs" />
-    <Compile Remove="Samples\RadioButtonSample.cs" />
     <Compile Remove="Samples\ThemeResourceSample.cs" />
   </ItemGroup>
 

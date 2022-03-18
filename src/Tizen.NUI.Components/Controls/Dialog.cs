@@ -142,11 +142,13 @@ namespace Tizen.NUI.Components
         /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override AccessibilityStates AccessibilityCalculateStates(ulong states)
+        protected override AccessibilityStates AccessibilityCalculateStates()
         {
-            var accessibilityStates = base.AccessibilityCalculateStates(states);
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Modal, true);
-            return accessibilityStates;
+            var states = base.AccessibilityCalculateStates();
+
+            states[AccessibilityState.Modal] = true;
+
+            return states;
         }
 
         private void OnRelayout(object sender, EventArgs e)

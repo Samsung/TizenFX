@@ -100,7 +100,7 @@ namespace Tizen.NUI.Components
 
                     if (Accessibility.Accessibility.IsEnabled && instance.IsHighlighted)
                     {
-                        instance.EmitAccessibilityStatesChangedEvent(AccessibilityStates.Checked, newSelected);
+                        instance.EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, newSelected);
                     }
                 }
             }
@@ -217,12 +217,14 @@ namespace Tizen.NUI.Components
         /// Calculates current states for the button<br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override AccessibilityStates AccessibilityCalculateStates(ulong states)
+        protected override AccessibilityStates AccessibilityCalculateStates()
         {
-            var accessibilityStates = base.AccessibilityCalculateStates(states);
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Checked, this.IsSelected);
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Enabled, this.IsEnabled);
-            return accessibilityStates;
+            var states = base.AccessibilityCalculateStates();
+
+            states[AccessibilityState.Checked] = this.IsSelected;
+            states[AccessibilityState.Enabled] = this.IsEnabled;
+
+            return states;
         }
 
         /// <summary>

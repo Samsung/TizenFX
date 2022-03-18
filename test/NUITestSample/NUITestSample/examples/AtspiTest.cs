@@ -76,35 +76,35 @@ namespace Tizen.TV.NUI.Example
                 //var accessbilityStatus = NDalicPINVOKE.accessibility_get_status(View.getCPtr(view));
                 if (e.Key.KeyPressedName == "Return")
                 {
-                    Accessibility.Instance.SayFinished -= Instance_SayFinished;
-                    Accessibility.Instance.Say("", true);
+                    Accessibility.SayFinished -= Instance_SayFinished;
+                    Accessibility.Say("", true);
                     repeatFlag = false;
                 }
                 else if (e.Key.KeyPressedName == "Right")
                 {
-                    Accessibility.Instance.Say(testScript1, true);
+                    Accessibility.Say(testScript1, true);
                 }
                 else if (e.Key.KeyPressedName == "Left")
                 {
-                    Accessibility.Instance.Say(testScript2, true);
+                    Accessibility.Say(testScript2, true);
                 }
                 else if (e.Key.KeyPressedName == "Up")
                 {
-                    Accessibility.Instance.Say(testScript3, true);
+                    Accessibility.Say(testScript3, true);
                 }
                 else if (e.Key.KeyPressedName == "Down")
                 {
                     repeatFlag = true;
-                    Accessibility.Instance.SayFinished += Instance_SayFinished;
-                    Accessibility.Instance.Say("my name is say api !!!", true);
+                    Accessibility.SayFinished += Instance_SayFinished;
+                    Accessibility.Say("my name is say api !!!", true);
                 }
                 else if (e.Key.KeyPressedName == "1")
                 {
-                    Accessibility.Instance.PauseResume(true);
+                    Accessibility.PauseResume(true);
                 }
                 else if (e.Key.KeyPressedName == "2")
                 {
-                    Accessibility.Instance.PauseResume(false);
+                    Accessibility.PauseResume(false);
                 }
             }
             return false;
@@ -115,7 +115,7 @@ namespace Tizen.TV.NUI.Example
             tlog.Fatal(tag, $"Instance_SayFinished()! State={e.State}");
             if (e.State == Accessibility.SayFinishedState.Stopped)
             {
-                Accessibility.Instance.Say("이건 콜백 테스트 입니다. this is callback test!  콜백을 빼려면 확인키를 누르세요. to remove callback please push Return key", true);
+                Accessibility.Say("이건 콜백 테스트 입니다. this is callback test!  콜백을 빼려면 확인키를 누르세요. to remove callback please push Return key", true);
             }
         }
 

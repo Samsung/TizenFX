@@ -702,6 +702,7 @@ namespace Tizen.NUI.Components
                         Focused = new Color("#00338B"),
                         Pressed = new Color("#1B69CA"),
                         Disabled = new Color("#C3CAD2"),
+                        Selected = new Color("#1B69CA"),
                     },
                     ThemeChangeSensitive = false
                 },
@@ -714,6 +715,7 @@ namespace Tizen.NUI.Components
                         Focused = new Color("#00338B"),
                         Pressed = new Color("#1B69CA"),
                         Disabled = new Color("#C3CAD2"),
+                        Selected = new Color("#1B69CA"),
                     },
                 },
             });

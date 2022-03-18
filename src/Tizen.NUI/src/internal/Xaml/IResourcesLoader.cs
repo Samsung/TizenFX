@@ -1,5 +1,5 @@
-﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,6 +25,6 @@ namespace Tizen.NUI
     internal interface IResourcesLoader
     {
         T CreateFromResource<T>(string resourcePath, Assembly assembly, IXmlLineInfo lineInfo) where T : new();
-        string GetResource(string resourcePath, Assembly assembly, IXmlLineInfo lineInfo);
+        string GetResource(string resourcePath, Assembly assembly, object target, IXmlLineInfo lineInfo);
     }
 }

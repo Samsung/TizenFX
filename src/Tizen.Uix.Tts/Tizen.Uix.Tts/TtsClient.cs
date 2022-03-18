@@ -1115,11 +1115,11 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// Repeats the last played text.
+        /// Repeats the last added text.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         /// <returns>
-        /// The RepeatedText value that stores the text to repeat and utterance ID.
+        /// The RepeatedText instance which stores the text to repeat and its utterance ID.
         /// </returns>
         /// <feature>
         /// http://tizen.org/feature/speech.synthesis

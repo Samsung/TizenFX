@@ -32,8 +32,6 @@ namespace Tizen.NUI.Components
     {
         private SelectGroup itemGroup = null;
 
-        private bool invokeSelectedChanged = false;
-
         /// <summary>
         /// Item group which is used to manager all SelectButton in it.
         /// </summary>
@@ -147,18 +145,6 @@ namespace Tizen.NUI.Components
                 return false;
             }
 
-            if (key.State == Key.StateType.Up)
-            {
-                if (key.KeyPressedName == "Return")
-                {
-                    invokeSelectedChanged = true;
-                }
-            }
-            else
-            {
-                invokeSelectedChanged = false;
-            }
-
             return base.OnKey(key);
         }
 
@@ -185,17 +171,6 @@ namespace Tizen.NUI.Components
                 return false;
             }
 
-            PointStateType state = touch.GetState(0);
-            switch (state)
-            {
-                case PointStateType.Up:
-                    invokeSelectedChanged = true;
-                    break;
-                default:
-                    invokeSelectedChanged = false;
-                    break;
-            }
-
             return base.HandleControlStateOnTouch(touch);
         }
 
@@ -216,13 +191,7 @@ namespace Tizen.NUI.Components
             {
                 if (Accessibility.Accessibility.IsEnabled && IsHighlighted)
                 {
-                    EmitAccessibilityStatesChangedEvent(AccessibilityStates.Checked, info.CurrentState.Contains(ControlState.Selected));
-                }
-
-                // SelectedChanged is invoked when button or key is unpressed.
-                if (invokeSelectedChanged == false)
-                {
-                    return;
+                    EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, info.CurrentState.Contains(ControlState.Selected));
                 }
 
                 OnSelectedChanged();

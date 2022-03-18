@@ -179,7 +179,7 @@ namespace Tizen.NUI.Devel.Tests
             var testingTarget = new AccessibilityRange();
             Assert.IsNotNull(testingTarget, "Can't create success object AccessibilityRange");
             Assert.IsInstanceOf<AccessibilityRange>(testingTarget, "Should be an instance of AccessibilityRange type.");
-                
+
             testingTarget.StartOffset = 10;
             Assert.AreEqual(10, testingTarget.StartOffset, "Should be equal!");
 
@@ -354,7 +354,7 @@ namespace Tizen.NUI.Devel.Tests
                     testingTarget.AppendAccessibilityRelation(child, AccessibilityRelationType.MemberOf);
                     var result = testingTarget.GetAccessibilityRelations();
                     tlog.Debug(tag, "AccessibilityRelations : " + result);
-                    
+
                     testingTarget.RemoveAccessibilityRelation(child, AccessibilityRelationType.MemberOf);
                     testingTarget.ClearAccessibilityRelations();
                 }
@@ -426,7 +426,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object View");
             Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
 
-           
+
             testingTarget.SetAccessibilityReadingInfoTypes(AccessibilityReadingInfoTypes.Description);
             var result = testingTarget.GetAccessibilityReadingInfoTypes();
             tlog.Debug(tag, "AccessibilityReadingInfoTypes : " + result);
@@ -457,7 +457,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object View");
             Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
 
-            testingTarget.NotifyAccessibilityStatesChange(AccessibilityStates.Busy, AccessibilityStatesNotifyMode.Recursive);
+            testingTarget.NotifyAccessibilityStatesChange(new AccessibilityStates(AccessibilityState.Busy), AccessibilityStatesNotifyMode.Recursive);
             var result = testingTarget.GetAccessibilityStates();
             tlog.Debug(tag, "AccessibilityStates : " + result);
 
@@ -540,14 +540,14 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("ViewAccessibility.EmitAccessibilityStatesChangedEvent.")]
-        [Property("SPEC", "Tizen.NUI.ViewAccessibility.EmitAccessibilityStatesChangedEvent M")]
+        [Description("ViewAccessibility.EmitAccessibilityStateChangedEvent.")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.EmitAccessibilityStateChangedEvent M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewAccessibilityEmitAccessibilityStatesChangedEvent()
+        public void ViewAccessibilityEmitAccessibilityStateChangedEvent()
         {
-            tlog.Debug(tag, $"ViewAccessibilityEmitAccessibilityStatesChangedEvent START");
+            tlog.Debug(tag, $"ViewAccessibilityEmitAccessibilityStateChangedEvent START");
 
             var testingTarget = new CheckBox()
             {
@@ -560,7 +560,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                testingTarget.EmitAccessibilityStatesChangedEvent(AccessibilityStates.Checked, true);
+                testingTarget.EmitAccessibilityStateChangedEvent(AccessibilityState.Checked, true);
             }
             catch (Exception e)
             {
@@ -569,7 +569,7 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewAccessibilityEmitAccessibilityStatesChangedEvent END (OK)");
+            tlog.Debug(tag, $"ViewAccessibilityEmitAccessibilityStateChangedEvent END (OK)");
         }
 
         [Test]

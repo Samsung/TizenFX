@@ -1,5 +1,5 @@
-﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,7 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -30,21 +26,8 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        private MergedStyle mergedStyle = null;
         internal string styleName;
 
-        internal MergedStyle MergedStyle
-        {
-            get
-            {
-                if (null == mergedStyle)
-                {
-                    mergedStyle = new MergedStyle(GetType(), this);
-                }
-
-                return mergedStyle;
-            }
-        }
         internal virtual LayoutItem CreateDefaultLayout()
         {
             return new AbsoluteLayout();
@@ -582,7 +565,11 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal Vector3 GetNaturalSize()
+        /// <summary>
+        /// GetNaturalSize() function behaviour can be changed for each subclass of View.
+        /// So we make GetNaturalSize() function virtual, and make subclass can define it's owned logic
+        /// </summary>
+        internal virtual Vector3 GetNaturalSize()
         {
             Vector3 ret = new Vector3(Interop.Actor.GetNaturalSize(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -1034,8 +1021,7 @@ namespace Tizen.NUI.BaseComponents
             child.InternalParent = null;
             LayoutCount -= child.LayoutCount;
 
-            RemoveChildBindableObject(child);
-
+            OnChildRemoved(child);
             if (ChildRemoved != null)
             {
                 ChildRemovedEventArgs e = new ChildRemovedEventArgs
@@ -1089,6 +1075,24 @@ namespace Tizen.NUI.BaseComponents
         internal virtual void ApplyBorderline()
         {
             if (backgroundExtraData == null) return;
+
+            // ActionUpdateProperty works well only if BACKGROUND visual setup before.
+            // If view don't have BACKGROUND visual, we set transparent background color in default.
+            using(PropertyMap backgroundPropertyMap = new PropertyMap())
+            {
+                using(PropertyValue propertyValue = Object.GetProperty(SwigCPtr, Property.BACKGROUND))
+                {
+                    propertyValue?.Get(backgroundPropertyMap);
+                    if(backgroundPropertyMap.Empty())
+                    {
+                        // BACKGROUND visual doesn't exist.
+                        SetBackgroundColor(Color.Transparent);
+                        // SetBackgroundColor function apply borderline internally.
+                        // So we can just return now.
+                        return;
+                    }
+                }
+            }
 
             var borderlineWidthValue = new PropertyValue(backgroundExtraData.BorderlineWidth);
             var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
@@ -1321,14 +1325,6 @@ namespace Tizen.NUI.BaseComponents
                 wheelEventCallback = null;
             }
 
-            if (WindowWheelEventHandler != null)
-            {
-                NUILog.Debug($"[Dispose] WindowWheelEventHandler");
-
-                NUIApplication.GetDefaultWindow().WheelEvent -= OnWindowWheelEvent;
-                WindowWheelEventHandler = null;
-            }
-
             if (hoverEventCallback != null)
             {
                 NUILog.Debug($"[Dispose] hoverEventCallback");
@@ -1337,6 +1333,16 @@ namespace Tizen.NUI.BaseComponents
                 signal?.Disconnect(hoverEventCallback);
                 hoverEventCallback = null;
             }
+
+            if (hitTestResultDataCallback != null)
+            {
+                NUILog.Debug($"[Dispose] hitTestResultDataCallback");
+
+                using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(hitTestResultDataCallback);
+                hitTestResultDataCallback = null;
+            }
+
 
             if (interceptTouchDataCallback != null)
             {

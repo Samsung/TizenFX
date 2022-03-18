@@ -34,7 +34,7 @@
     </ItemGroup>
 
     <PropertyGroup>
-        <NeedInjection>True</NeedInjection>
+        <NeedInjection>False</NeedInjection>
     </PropertyGroup>
 
 </Project>

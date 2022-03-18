@@ -1,5 +1,5 @@
-﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,10 +28,16 @@ namespace Tizen.NUI.Xaml
     {
         public T CreateFromResource<T>(string resourcePath, Assembly assembly, IXmlLineInfo lineInfo) where T : new()
         {
-            var alternateResource = ResourceLoader.ResourceProvider?.Invoke(assembly.GetName(), resourcePath);
+            var rd = new T();
+            var resourceLoadingResponse = ResourceLoader.ResourceProvider?.Invoke(new ResourceLoader.ResourceLoadingQuery
+            {
+                AssemblyName = assembly.GetName(),
+                ResourcePath = resourcePath,
+                Instance = rd
+            });
+            var alternateResource = resourceLoadingResponse?.ResourceContent;
             if (alternateResource != null)
             {
-                var rd = new T();
                 rd.LoadFromXaml(alternateResource);
                 return rd;
             }
@@ -46,16 +52,20 @@ namespace Tizen.NUI.Xaml
                     throw new XamlParseException($"No resource found for '{resourceId}'.", lineInfo);
                 using (var reader = new StreamReader(stream))
                 {
-                    var rd = new T();
                     rd.LoadFromXaml(reader.ReadToEnd());
                     return rd;
                 }
             }
         }
 
-        public string GetResource(string resourcePath, Assembly assembly, IXmlLineInfo lineInfo)
+        public string GetResource(string resourcePath, Assembly assembly, object target, IXmlLineInfo lineInfo)
         {
-            var alternateResource = ResourceLoader.ResourceProvider?.Invoke(assembly.GetName(), resourcePath);
+            var resourceLoadingResponse = ResourceLoader.ResourceProvider?.Invoke(new ResourceLoader.ResourceLoadingQuery {
+                AssemblyName = assembly.GetName(),
+                ResourcePath = resourcePath,
+                Instance = target
+            });
+            var alternateResource = resourceLoadingResponse?.ResourceContent;
             if (alternateResource != null)
                 return alternateResource;
 

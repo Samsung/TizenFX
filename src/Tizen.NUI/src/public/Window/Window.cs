@@ -188,6 +188,8 @@ namespace Tizen.NUI
         /// </summary>
         [Obsolete("Please do not use! This will be removed. Please use Window.EffectState instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        //  This is already deprecated, so suppress warning here.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
         public enum EffectStates
         {
             /// <summary>
@@ -238,6 +240,8 @@ namespace Tizen.NUI
         /// </summary>
         [Obsolete("Please do not use! This will be removed. Please use Window.EffectType instead!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
+        //  This is already deprecated, so suppress warning here.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
         public enum EffectTypes
         {
             /// <summary>
@@ -1087,7 +1091,28 @@ namespace Tizen.NUI
         /// <since_tizen> 5 </since_tizen>
         public void FeedKey(Key keyEvent)
         {
-            Interop.Window.FeedKeyEvent(Key.getCPtr(keyEvent));
+            Interop.Window.FeedKeyEvent(SwigCPtr, Key.getCPtr(keyEvent));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Feeds a touch point into the window.
+        /// </summary>
+        /// <param name="touchPoint">The touch point to feed.</param>
+        /// <param name="timeStamp">The timeStamp.</param>
+        internal void FeedTouch(TouchPoint touchPoint, int timeStamp)
+        {
+            Interop.Window.FeedTouchPoint(SwigCPtr, TouchPoint.getCPtr(touchPoint), timeStamp);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Feeds a wheel event into the window.
+        /// </summary>
+        /// <param name="wheelEvent">The wheel event to feed.</param>
+        internal void FeedWheel(Wheel wheelEvent)
+        {
+            Interop.Window.FeedWheelEvent(SwigCPtr, Wheel.getCPtr(wheelEvent));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1344,6 +1369,7 @@ namespace Tizen.NUI
             var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
             Vector2 ret = new Vector2(val.GetWidth(), val.GetHeight());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            val.Dispose();
             return ret;
         }
 
@@ -1442,6 +1468,7 @@ namespace Tizen.NUI
             var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            val.Dispose();
             return ret;
         }
 
@@ -1547,6 +1574,60 @@ namespace Tizen.NUI
         {
             Interop.Window.ExcludeInputRegion(SwigCPtr, Rectangle.getCPtr(inputRegion));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Maximizes window's size.
+        /// If this function is called with true, window will be resized with screen size.
+        /// Otherwise window will be resized with previous size.
+        /// It is for the window's MAX button in window's border.
+        /// If window border is supported by display server, it is not necessary.
+        /// </summary>
+        /// <param name="max">If window is maximized or unmaximized.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Maximize(bool max)
+        {
+            Interop.Window.Maximize(SwigCPtr, max);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns whether the window is maximized or not.
+        /// </summary>
+        /// <returns>True if the window is maximized, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsMaximized()
+        {
+            bool ret = Interop.Window.IsMaximized(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Minimizes window's size.
+        /// If this function is called with true, window will be iconified.
+        /// Otherwise window will be activated.
+        /// It is for the window's MIN button in window border.
+        /// If window border is supported by display server, it is not necessary.
+        /// </summary>
+        /// <param name="min">If window is minimized or unminimized.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Minimize(bool min)
+        {
+            Interop.Window.Minimize(SwigCPtr, min);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns whether the window is minimized or not.
+        /// </summary>
+        /// <returns>True if the window is minimized, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsMinimized()
+        {
+            bool ret = Interop.Window.IsMinimized(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>

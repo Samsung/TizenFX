@@ -520,7 +520,11 @@ namespace Tizen.NUI.Components
 
             if (loopEnabled) startY = ((dummyItemsForLoop + startItemIdx) * itemHeight) + startScrollOffset;
             // + 2 for non loop picker center align
-            else startY = ((2 + startItemIdx) * itemHeight) + startScrollOffset;
+            else
+            {
+                startY = ((2 + startItemIdx) * itemHeight) + startScrollOffset;
+                currentValue = currentValue - minValue + 2;
+            }
             pickerScroller.ScrollTo(startY, false);
         }
 

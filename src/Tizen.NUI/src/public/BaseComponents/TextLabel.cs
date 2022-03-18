@@ -552,7 +552,10 @@ namespace Tizen.NUI.BaseComponents
                 bool underlineEnabled = false;
                 using (var propertyValue = Underline.Find(TextLabel.Property.UNDERLINE, "enable"))
                 {
-                    propertyValue.Get(out underlineEnabled);
+                    if (propertyValue != null)
+                    {
+                        propertyValue.Get(out underlineEnabled);
+                    }
                 }
                 return underlineEnabled;
             }
@@ -1072,6 +1075,7 @@ namespace Tizen.NUI.BaseComponents
         /// The size of font in pixels.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Binding.TypeConverter(typeof(FloatGraphicsTypeConverter))]
         public float PixelSize
         {
             get

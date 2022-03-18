@@ -411,6 +411,8 @@ namespace Tizen.Multimedia
             Native.UnsetPreviewCallback(_handle).
                 ThrowIfFailed("Failed to unset preview callback.");
 
+            _previewBuffer?.Dispose();
+            _previewBuffer = null;
             _previewCallback = null;
         }
 
@@ -459,6 +461,8 @@ namespace Tizen.Multimedia
             Native.UnsetExtraPreviewCallback(_handle).
                 ThrowIfFailed("Failed to unset extra preview callback.");
 
+            _previewBuffer?.Dispose();
+            _previewBuffer = null;
             _extraPreviewCallback = null;
         }
     }

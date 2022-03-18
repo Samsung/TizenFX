@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -161,11 +161,6 @@ namespace Tizen.NUI.Xaml
                         }
                         if (value is Element element)
                         {
-                            if (null != Application.Current)
-                            {
-                                Application.Current.XamlResourceChanged += element.OnResourcesChanged;
-                            }
-
                             element.IsCreateByXaml = true;
                             element.LineNumber = node.LineNumber;
                             element.LinePosition = node.LinePosition;
@@ -288,11 +283,6 @@ namespace Tizen.NUI.Xaml
                 object ret = Activator.CreateInstance(nodeType, BindingFlags.CreateInstance | BindingFlags.Public | BindingFlags.Instance | BindingFlags.OptionalParamBinding, null, arguments, CultureInfo.CurrentCulture);
                 if (ret is Element element)
                 {
-                    if (null != Application.Current)
-                    {
-                        Application.Current.XamlResourceChanged += element.OnResourcesChanged;
-                    }
-
                     element.IsCreateByXaml = true;
                     element.LineNumber = (node as ElementNode)?.LineNumber ?? -1;
                     element.LinePosition = (node as ElementNode)?.LinePosition ?? -1;
@@ -430,11 +420,6 @@ namespace Tizen.NUI.Xaml
                 value = Activator.CreateInstance(nodeType);
                 if (value is Element element)
                 {
-                    if (null != Application.Current)
-                    {
-                        Application.Current.XamlResourceChanged += element.OnResourcesChanged;
-                    }
-
                     element.IsCreateByXaml = true;
                     element.LineNumber = (node as ElementNode)?.LineNumber ?? -1;
                     element.LinePosition = (node as ElementNode)?.LinePosition ?? -1;

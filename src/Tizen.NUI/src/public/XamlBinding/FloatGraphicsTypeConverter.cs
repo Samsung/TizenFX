@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,31 +26,38 @@ using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
-    /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+    /// <summary>
+    /// A TypeConverter of float variable as it's graphics type suffix.
+    /// dp, sp suffix is converted to pixel value with Dpi and ScalingFactors by GraphicsTypeManager.
+    /// <seealso cref="Tizen.NUI.GraphicsTypeManager" />
+    /// </summary>
+    /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [ProvideCompiledAttribute("Tizen.NUI.Xaml.Core.XamlC.IntDpTypeConverter")]
-    public class IntDpTypeConverter : TypeConverter
+    [ProvideCompiledAttribute("Tizen.NUI.Xaml.Core.XamlC.FloatGraphicsTypeConverter")]
+    public class FloatGraphicsTypeConverter : TypeConverter
     {
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <inheritdoc/>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override object ConvertFromInvariantString(string value)
         {
             if(!string.IsNullOrEmpty(value))
             {
-                return (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(value.Trim());
+                return (float)GraphicsTypeManager.Instance.ConvertScriptToPixel(value.Trim());
             }
 
-            throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(int)}");
+            throw new InvalidOperationException($"Cannot convert \"{value}\" into {typeof(float)}");
         }
 
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// <inheritdoc/>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ConvertToString(object value)
         {
             if (value != null)
             {
-                int integer = (int)value;
-                return integer.ToString();
+                float floatVal = (float)value;
+                return floatVal.ToString();
             }
             return "";
         }

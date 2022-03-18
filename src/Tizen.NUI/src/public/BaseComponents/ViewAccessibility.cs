@@ -229,7 +229,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (this == Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView());
+                return (this == Accessibility.Accessibility.GetCurrentlyHighlightedView());
             }
         }
 
@@ -329,14 +329,20 @@ namespace Tizen.NUI.BaseComponents
         /// Notifies sending notifications about the current states to accessibility clients.
         /// </summary>
         /// <remarks>
-        /// If recursive is true, all children of the Accessibility object will also re-emit the states.
+        /// In essence, this is equivalent to calling EmitAccessibilityStateChangedEvent in a loop for all specified states.
+        /// If recursive mode is specified, all children of the Accessibility object will also re-emit the states.
         /// </remarks>
         /// <param name="states">Accessibility States</param>
         /// <param name="notifyMode">Controls the notification strategy</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void NotifyAccessibilityStatesChange(AccessibilityStates states, AccessibilityStatesNotifyMode notifyMode)
         {
-            Interop.ControlDevel.DaliToolkitDevelControlNotifyAccessibilityStatesChange(SwigCPtr, (ulong)states, (int)notifyMode);
+            if (states is null)
+            {
+                throw new ArgumentNullException(nameof(states));
+            }
+
+            Interop.ControlDevel.DaliToolkitDevelControlNotifyAccessibilityStateChange(SwigCPtr, states.BitMask, (int)notifyMode);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -347,7 +353,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AccessibilityStates GetAccessibilityStates()
         {
-            AccessibilityStates result = (AccessibilityStates) Interop.ControlDevel.DaliToolkitDevelControlGetAccessibilityStates(SwigCPtr);
+            var result = new AccessibilityStates {BitMask = Interop.ControlDevel.DaliToolkitDevelControlGetAccessibilityStates(SwigCPtr)};
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
@@ -373,9 +379,9 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="state">Accessibility state</param>
         /// <param name="equal">True if the state is set or enabled, otherwise false</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void EmitAccessibilityStatesChangedEvent(AccessibilityStates state, bool equal)
+        public void EmitAccessibilityStateChangedEvent(AccessibilityState state, bool equal)
         {
-            Interop.ControlDevel.DaliAccessibilityEmitAccessibilityStatesChangedEvent(SwigCPtr, (ulong)state, Convert.ToInt32(equal));
+            Interop.ControlDevel.DaliAccessibilityEmitAccessibilityStateChangedEvent(SwigCPtr, (int)state, Convert.ToInt32(equal));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -446,24 +452,6 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private IntPtr DuplicateString(string value)
-        {
-            return Interop.ControlDevel.DaliToolkitDevelControlAccessibleImplNUIDuplicateString(value ?? "");
-        }
-
-        private IntPtr DuplicateStates(AccessibilityStates states)
-        {
-            return Interop.ControlDevel.DaliToolkitDevelControlConvertState((ulong)states);
-        }
-
-        private IntPtr DuplicateRange(AccessibilityRange range)
-        {
-            return Interop.ControlDevel.DaliAccessibilityNewRange(range.StartOffset, range.EndOffset, range.Content);
-        }
-
-        private Interop.ControlDevel.AccessibilityDelegate accessibilityDelegate = null;
-        private IntPtr accessibilityDelegatePtr;
-
         /// <summary>
         /// Sets the specific constructor for creating accessibility structure with its role and interface.
         /// </summary>
@@ -475,78 +463,9 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAccessibilityConstructor(Role role, AccessibilityInterface accessibilityInterface = AccessibilityInterface.None)
         {
-            var size = Marshal.SizeOf<Interop.ControlDevel.AccessibilityDelegate>();
-
-            if (accessibilityDelegate == null)
-            {
-                accessibilityDelegate = new Interop.ControlDevel.AccessibilityDelegate()
-                {
-                    GetName = () => DuplicateString(AccessibilityGetName()),
-                    GetDescription = () => DuplicateString(AccessibilityGetDescription()),
-                    DoAction = (name) => AccessibilityDoAction(Marshal.PtrToStringAnsi(name)),
-                    CalculateStates = (states) => DuplicateStates(AccessibilityCalculateStates(states)),
-                    GetActionCount = () => AccessibilityGetActionCount(),
-                    GetActionName = (index) => DuplicateString(AccessibilityGetActionName(index)),
-                    ShouldReportZeroChildren = () => AccessibilityShouldReportZeroChildren(),
-                    GetMinimum = () => AccessibilityGetMinimum(),
-                    GetCurrent = () => AccessibilityGetCurrent(),
-                    GetMaximum = () => AccessibilityGetMaximum(),
-                    SetCurrent = (value) => AccessibilitySetCurrent(value),
-                    GetMinimumIncrement = () => AccessibilityGetMinimumIncrement(),
-                    IsScrollable = () => AccessibilityIsScrollable(),
-                    GetText = (startOffset, endOffset) => DuplicateString(AccessibilityGetText(startOffset, endOffset)),
-                    GetCharacterCount = () => AccessibilityGetCharacterCount(),
-                    GetCursorOffset = () => AccessibilityGetCursorOffset(),
-                    SetCursorOffset = (offset) => AccessibilitySetCursorOffset(offset),
-                    GetTextAtOffset = (offset, boundary) => DuplicateRange(AccessibilityGetTextAtOffset(offset, (AccessibilityTextBoundary)boundary)),
-                    GetSelection = (selectionNumber) => DuplicateRange(AccessibilityGetSelection(selectionNumber)),
-                    RemoveSelection = (selectionNumber) => AccessibilityRemoveSelection(selectionNumber),
-                    SetSelection = (selectionNumber, startOffset, endOffset) => AccessibilitySetSelection(selectionNumber, startOffset, endOffset),
-                    CopyText = (startPosition, endPosition) => AccessibilityCopyText(startPosition, endPosition),
-                    CutText = (startPosition, endPosition) => AccessibilityCutText(startPosition, endPosition),
-                    InsertText = (startPosition, text) => AccessibilityInsertText(startPosition, Marshal.PtrToStringAnsi(text)),
-                    SetTextContents = (newContents) => AccessibilitySetTextContents(Marshal.PtrToStringAnsi(newContents)),
-                    DeleteText = (startPosition, endPosition) => AccessibilityDeleteText(startPosition, endPosition),
-                    ScrollToChild = (child) => AccessibilityScrollToChild(this.GetInstanceSafely<View>(child)),
-                    GetSelectedChildrenCount = () => AccessibilityGetSelectedChildrenCount(),
-                    GetSelectedChild = (selectedChildIndex) => View.getCPtr(AccessibilityGetSelectedChild(selectedChildIndex)).Handle,
-                    SelectChild = (childIndex) => AccessibilitySelectChild(childIndex),
-                    DeselectSelectedChild = (selectedChildIndex) => AccessibilityDeselectSelectedChild(selectedChildIndex),
-                    IsChildSelected = (childIndex) => AccessibilityIsChildSelected(childIndex),
-                    SelectAll = () => AccessibilitySelectAll(),
-                    ClearSelection = () => AccessibilityClearSelection(),
-                    DeselectChild = (childIndex) => AccessibilityDeselectChild(childIndex),
-                };
-
-                accessibilityDelegatePtr = Marshal.AllocHGlobal(size);
-                Marshal.StructureToPtr(accessibilityDelegate, accessibilityDelegatePtr, false);
-            }
-
-            Interop.ControlDevel.DaliToolkitDevelControlSetAccessibilityConstructor(SwigCPtr, (int)role, (int)accessibilityInterface, accessibilityDelegatePtr, size);
-
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// A helper method to manipulate individual bit flags (e.g. turn them on or off)
-        /// </summary>
-        /// <param name="obj">An object that accumulates combination of bit flags</param>
-        /// <param name="bit">A bit flag to be operated</param>
-        /// <param name="state">A state of the bit flag to be set (0 == off, 1 == on)</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        static public void FlagSetter<T>(ref T obj ,T bit, bool state)
-        {
-            dynamic result = obj;
-            dynamic param = bit;
-            if (state)
-            {
-                result |= param;
-            }
-            else
-            {
-                result &= (~param);
-            }
-            obj = result;
+            // We have to store the interface flags until we remove SetAccessibilityConstructor and switch to native C# interfaces
+            AtspiInterfaceFlags = (1U << (int)accessibilityInterface);
+            AccessibilityRole = role;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -570,13 +489,6 @@ namespace Tizen.NUI.BaseComponents
             if (disposing)
             {
                 Unparent();
-            }
-
-            if (accessibilityDelegate != null)
-            {
-                Marshal.DestroyStructure<Interop.ControlDevel.AccessibilityDelegate>(accessibilityDelegatePtr);
-                Marshal.FreeHGlobal(accessibilityDelegatePtr);
-                accessibilityDelegate = null;
             }
 
             base.Dispose(disposing);
@@ -624,15 +536,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual AccessibilityStates AccessibilityCalculateStates(ulong states)
+        protected virtual AccessibilityStates AccessibilityCalculateStates()
         {
-            AccessibilityStates accessibilityStates = (AccessibilityStates)states;
+            var states = AccessibilityInitialStates;
 
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Focused, this.State == States.Focused);
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Enabled, this.State != States.Disabled);
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Sensitive, this.Sensitive);
+            states[AccessibilityState.Focused] = this.State == States.Focused;
+            states[AccessibilityState.Enabled] = this.State != States.Disabled;
+            states[AccessibilityState.Sensitive] = this.Sensitive;
 
-            return accessibilityStates;
+            return states;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -742,6 +654,12 @@ namespace Tizen.NUI.BaseComponents
         protected virtual bool AccessibilitySetSelection(int selectionNumber, int startOffset, int endOffset)
         {
             return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual Rectangle AccessibilityGetRangeExtents(int startOffset, int endOffset, AccessibilityCoordinateType coordType)
+        {
+            return new Rectangle(0, 0, 0, 0);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

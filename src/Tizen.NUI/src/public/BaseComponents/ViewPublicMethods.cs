@@ -1,5 +1,5 @@
-﻿/*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -158,6 +158,7 @@ namespace Tizen.NUI.BaseComponents
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 Children.Add(child);
+                OnChildAdded(child);
 
                 if (ChildAdded != null)
                 {
@@ -167,8 +168,6 @@ namespace Tizen.NUI.BaseComponents
                     };
                     ChildAdded(this, e);
                 }
-
-                AddChildBindableObject(child);
             }
         }
 
@@ -307,13 +306,13 @@ namespace Tizen.NUI.BaseComponents
         {
             SetVisible(true);
 
-            if (((GetAccessibilityStates() & AccessibilityStates.Modal) != 0))
+            if (GetAccessibilityStates()[AccessibilityState.Modal])
             {
                 RegisterDefaultLabel();
 
                 if (Accessibility.Accessibility.IsEnabled)
                 {
-                    EmitAccessibilityStatesChangedEvent(AccessibilityStates.Showing, true);
+                    EmitAccessibilityStateChangedEvent(AccessibilityState.Showing, true);
                 }
             }
         }
@@ -331,13 +330,13 @@ namespace Tizen.NUI.BaseComponents
         {
             SetVisible(false);
 
-            if (((GetAccessibilityStates() & AccessibilityStates.Modal) != 0))
+            if (GetAccessibilityStates()[AccessibilityState.Modal])
             {
                 UnregisterDefaultLabel();
 
                 if (Accessibility.Accessibility.IsEnabled)
                 {
-                    EmitAccessibilityStatesChangedEvent(AccessibilityStates.Showing, false);
+                    EmitAccessibilityStateChangedEvent(AccessibilityState.Showing, false);
                 }
             }
         }

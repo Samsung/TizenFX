@@ -395,7 +395,7 @@ namespace Tizen.NUI.Components
 
             CalculateSizeAndPosition();
             RegisterDefaultLabel();
-            NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, AccessibilityStatesNotifyMode.Recursive);
+            NotifyAccessibilityStatesChange(new AccessibilityStates(AccessibilityState.Visible, AccessibilityState.Showing), AccessibilityStatesNotifyMode.Recursive);
         }
 
         /// <summary>
@@ -407,7 +407,7 @@ namespace Tizen.NUI.Components
         {
             Hide();
             UnregisterDefaultLabel();
-            NotifyAccessibilityStatesChange(AccessibilityStates.Visible | AccessibilityStates.Showing, AccessibilityStatesNotifyMode.Recursive);
+            NotifyAccessibilityStatesChange(new AccessibilityStates(AccessibilityState.Visible, AccessibilityState.Showing), AccessibilityStatesNotifyMode.Recursive);
             Dispose();
         }
 
@@ -660,11 +660,13 @@ namespace Tizen.NUI.Components
         /// Informs AT-SPI bridge about the set of AT-SPI states associated with this object.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override AccessibilityStates AccessibilityCalculateStates(ulong states)
+        protected override AccessibilityStates AccessibilityCalculateStates()
         {
-            var accessibilityStates = base.AccessibilityCalculateStates(states);
-            FlagSetter(ref accessibilityStates, AccessibilityStates.Modal, true);
-            return accessibilityStates;
+            var states = base.AccessibilityCalculateStates();
+
+            states[AccessibilityState.Modal] = true;
+
+            return states;
         }
     }
 }

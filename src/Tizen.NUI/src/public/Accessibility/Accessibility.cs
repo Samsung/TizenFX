@@ -30,15 +30,10 @@ namespace Tizen.NUI.Accessibility
     [SuppressMessage("Microsoft.Design", "CA1724: Type names should not match namespaces")]
     [SuppressMessage("Microsoft.Design", "CA1001:Types that own disposable fields should be disposable", Justification = "This is a singleton class and is not disposed")]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Accessibility
+    public static class Accessibility
     {
-        #region Constructor, Destructor, Dispose
-        private Accessibility()
-        {
-            dummy = new View();
-            dummy.Name = "dali-atspi-singleton";
-        }
-
+        #region Constructor
+        [SuppressMessage("Microsoft.Performance", "CA1810: Initialize reference type static fields inline", Justification = "Need to call native code")]
         static Accessibility()
         {
             enabledSignalHandler = () =>
@@ -53,30 +48,9 @@ namespace Tizen.NUI.Accessibility
 
             Interop.Accessibility.RegisterEnabledDisabledSignalHandler(enabledSignalHandler, disabledSignalHandler);
         }
-
-        /// <summary>
-        /// destructor. This is HiddenAPI. recommended not to use in public.
-        /// </summary>
-        ~Accessibility()
-        {
-            Interop.Accessibility.RegisterEnabledDisabledSignalHandler(null, null);
-
-            Tizen.Log.Debug("NUI", $"Accessibility is destroyed\n");
-        }
-        #endregion Constructor, Destructor, Dispose
-
+        #endregion Constructor
 
         #region Property
-        /// <summary>
-        /// Instance for singleton
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Accessibility Instance
-        {
-            get => accessibility;
-        }
-
         /// <summary>
         /// Flag to check whether the state of Accessibility is enabled or not.
         /// </summary>
@@ -95,19 +69,7 @@ namespace Tizen.NUI.Accessibility
 
         #endregion Property
 
-
         #region Method
-        /// <summary>
-        /// Get the current status
-        /// </summary>
-        /// <returns>Current enabled status</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        static public bool GetStatus()
-        {
-            return true;
-        }
-
         /// <summary>
         /// Start to speak
         /// </summary>
@@ -116,15 +78,10 @@ namespace Tizen.NUI.Accessibility
         /// <returns></returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool Say(string sentence, bool discardable)
+        public static bool Say(string sentence, bool discardable)
         {
-            IntPtr callbackIntPtr = IntPtr.Zero;
-            if (sayFinishedEventHandler != null)
-            {
-                callback = SayFinishedEventCallback;
-                callbackIntPtr = Marshal.GetFunctionPointerForDelegate<Delegate>(callback);
-            }
-            bool ret = Interop.Accessibility.Say(View.getCPtr(dummy), sentence, discardable, callbackIntPtr);
+            bool ret = Interop.Accessibility.Say(sentence, discardable, Marshal.GetFunctionPointerForDelegate<Delegate>(callback));
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -135,9 +92,9 @@ namespace Tizen.NUI.Accessibility
         /// <param name="pause">true to be paused, false to be resumed</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void PauseResume(bool pause)
+        public static void PauseResume(bool pause)
         {
-            Interop.Accessibility.PauseResume(View.getCPtr(dummy), pause);
+            Interop.Accessibility.PauseResume(pause);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -147,9 +104,9 @@ namespace Tizen.NUI.Accessibility
         /// <param name="alsoNonDiscardable">whether to cancel non-discardable readings as well</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void StopReading(bool alsoNonDiscardable)
+        public static void StopReading(bool alsoNonDiscardable)
         {
-            Interop.Accessibility.StopReading(View.getCPtr(dummy), alsoNonDiscardable);
+            Interop.Accessibility.StopReading(alsoNonDiscardable);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -159,9 +116,9 @@ namespace Tizen.NUI.Accessibility
         /// <param name="suppress">whether to suppress reading of screen-reader</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool SuppressScreenReader(bool suppress)
+        public static bool SuppressScreenReader(bool suppress)
         {
-            bool ret = Interop.Accessibility.SuppressScreenReader(View.getCPtr(dummy), suppress);
+            bool ret = Interop.Accessibility.SuppressScreenReader(suppress);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -198,7 +155,7 @@ namespace Tizen.NUI.Accessibility
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public View GetHighlightFrameView()
+        public static View GetHighlightFrameView()
         {
             var ptr = Interop.ControlDevel.DaliAccessibilityAccessibleGetHighlightActor();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -212,7 +169,7 @@ namespace Tizen.NUI.Accessibility
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetHighlightFrameView(View view)
+        public static void SetHighlightFrameView(View view)
         {
             Interop.ControlDevel.DaliAccessibilityAccessibleSetHighlightActor(View.getCPtr(view));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -223,13 +180,13 @@ namespace Tizen.NUI.Accessibility
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public View GetCurrentlyHighlightedView()
+        public static View GetCurrentlyHighlightedView()
         {
             var ptr = Interop.ControlDevel.DaliAccessibilityAccessibleGetCurrentlyHighlightedActor();
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            return this.GetInstanceSafely<View>(ptr);
+            return dummyHandle.GetInstanceSafely<View>(ptr);
         }
 
         /// <summary>
@@ -237,7 +194,7 @@ namespace Tizen.NUI.Accessibility
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool ClearCurrentlyHighlightedView()
+        public static bool ClearCurrentlyHighlightedView()
         {
             var view = GetCurrentlyHighlightedView();
 
@@ -297,11 +254,7 @@ namespace Tizen.NUI.Accessibility
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<SayFinishedEventArgs> SayFinished
-        {
-            add => sayFinishedEventHandler += value;
-            remove => sayFinishedEventHandler -= value;
-        }
+        public static event EventHandler<SayFinishedEventArgs> SayFinished;
 
         /// <summary>
         /// Triggered whenever the value of IsEnabled would change from false to true
@@ -319,50 +272,24 @@ namespace Tizen.NUI.Accessibility
 
         #endregion Event, Enum, Struct, ETC
 
-
-        #region Internal
-        internal void PauseResume(View target, bool pause)
-        {
-            Interop.Accessibility.PauseResume(View.getCPtr(target), pause);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal bool Say(View target, string sentence, bool discardable)
-        {
-            IntPtr callbackIntPtr = IntPtr.Zero;
-            if (sayFinishedEventHandler != null)
-            {
-                callback = SayFinishedEventCallback;
-                callbackIntPtr = Marshal.GetFunctionPointerForDelegate<Delegate>(callback);
-            }
-            bool ret = Interop.Accessibility.Say(View.getCPtr(target), sentence, discardable, callbackIntPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-        #endregion Internal
-
-
         #region Private
-        private static readonly Accessibility accessibility = new Accessibility();
-
-        private event EventHandler<SayFinishedEventArgs> sayFinishedEventHandler;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void SayFinishedEventCallbackType(int result);
 
-        private SayFinishedEventCallbackType callback = null;
+        private static SayFinishedEventCallbackType callback = SayFinishedEventCallback;
 
         private static Interop.Accessibility.EnabledDisabledSignalHandler enabledSignalHandler = null;
 
         private static Interop.Accessibility.EnabledDisabledSignalHandler disabledSignalHandler = null;
 
-        private void SayFinishedEventCallback(int result)
+        private static void SayFinishedEventCallback(int result)
         {
             NUILog.Debug($"sayFinishedEventCallback(res={result}) called!");
-            sayFinishedEventHandler?.Invoke(this, new SayFinishedEventArgs(result));
+            SayFinished?.Invoke(typeof(Accessibility), new SayFinishedEventArgs(result));
         }
 
-        private View dummy;
+        private static BaseHandle dummyHandle = new BaseHandle();
 
         #endregion Private
     }

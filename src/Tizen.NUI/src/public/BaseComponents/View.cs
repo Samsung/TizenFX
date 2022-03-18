@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -84,6 +84,8 @@ namespace Tizen.NUI.BaseComponents
             RegisterPropertyGroup(ScaleXProperty, scalePropertyGroup);
             RegisterPropertyGroup(ScaleYProperty, scalePropertyGroup);
             RegisterPropertyGroup(ScaleZProperty, scalePropertyGroup);
+
+            RegisterAccessibilityDelegate();
         }
 
         /// <summary>
@@ -140,10 +142,15 @@ namespace Tizen.NUI.BaseComponents
             using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
             signal?.Connect(onWindowSendEventCallback);
 
+            hitTestResultDataCallback = OnHitTestResult;
+            using TouchDataSignal touchDataSignal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(SwigCPtr), false);
+            touchDataSignal?.Connect(hitTestResultDataCallback);
+
             if (!shown)
             {
                 SetVisible(false);
             }
+
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
@@ -284,30 +291,6 @@ namespace Tizen.NUI.BaseComponents
                     Layout.SetPositionByLayout = !value;
                     Layout.RequestLayout();
                 }
-            }
-        }
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsResourcesCreated
-        {
-            get
-            {
-                return Application.Current.IsResourcesCreated;
-            }
-        }
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ResourceDictionary XamlResources
-        {
-            get
-            {
-                return Application.Current.XamlResources;
-            }
-            set
-            {
-                Application.Current.XamlResources = value;
             }
         }
 
@@ -1290,7 +1273,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 ret = new Vector3(Interop.Actor.GetNaturalSize(SwigCPtr), true);
+                Vector3 ret = GetNaturalSize();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
@@ -1307,7 +1290,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector3 temp = new Vector3(Interop.Actor.GetNaturalSize(SwigCPtr), true);
+                Vector3 temp = GetNaturalSize();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
 
                 Size2D sz = new Size2D((int)temp.Width, (int)temp.Height);
@@ -2436,7 +2419,7 @@ namespace Tizen.NUI.BaseComponents
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
-        [Binding.TypeConverter(typeof(IntDpTypeConverter))]
+        [Binding.TypeConverter(typeof(IntGraphicsTypeConverter))]
         public int WidthSpecification
         {
             get
@@ -2493,7 +2476,7 @@ namespace Tizen.NUI.BaseComponents
         /// </code>
         /// </example>
         /// <since_tizen> 6 </since_tizen>
-        [Binding.TypeConverter(typeof(IntDpTypeConverter))]
+        [Binding.TypeConverter(typeof(IntGraphicsTypeConverter))]
         public int HeightSpecification
         {
             get
@@ -2633,19 +2616,6 @@ namespace Tizen.NUI.BaseComponents
                 temp.Dispose();
                 NotifyPropertyChanged();
                 layout?.RequestLayout();
-            }
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public XamlStyle XamlStyle
-        {
-            get
-            {
-                return (XamlStyle)GetValue(XamlStyleProperty);
-            }
-            set
-            {
-                SetValue(XamlStyleProperty, value);
             }
         }
 
@@ -3186,7 +3156,20 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-
+        /// <summary>
+        /// Called when the view is hit through TouchEvent or GestureEvent.
+        /// If it returns true, it means that it was hit, and the touch/gesture event is called from the view.
+        /// If it returns false, it means that it will not be hit, and the hit-test continues to the next view.
+        /// User can override whether hit or not in HitTest.
+        /// You can get the coordinates relative to tthe top-left of the hit view by touch.GetLocalPosition(0).
+        /// or you can get the coordinates relative to the top-left of the screen by touch.GetScreenPosition(0).
+        /// </summary>
+        // <param name="touch"><see cref="Tizen.NUI.Touch"/>The touch data</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool HitTest(Touch touch)
+        {
+            return true;
+        }
 
 
     }

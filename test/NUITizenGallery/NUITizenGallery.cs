@@ -179,7 +179,7 @@ namespace NUITizenGallery
         public void OnSelectionChanged(object sender, SelectionChangedEventArgs ev)
         {
             Console.WriteLine($"@@@ OnSelectionChanged() {ev.CurrentSelection}");
-            
+
             foreach (object item in ev.CurrentSelection)
             {
                 if (item == null)
@@ -350,8 +350,19 @@ namespace NUITizenGallery
 
         static void Main(string[] args)
         {
+            string[] emptyArgs = new string[0];
+            foreach(string arg in args)
+            {
+                Console.WriteLine(arg);
+                if (arg.ToString() == "--implicit-scaling-factor")
+                {
+                    Console.WriteLine("NOTE: Scaling Factor is implicitly declaired as 1.5");
+                    System.Environment.SetEnvironmentVariable("NUI_SCALING_FACTOR","1.5");
+                }
+            }
+
             var app = new Program();
-            app.Run(args);
+            app.Run(emptyArgs);
         }
     }
 }
