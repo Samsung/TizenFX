@@ -171,7 +171,7 @@ namespace Tizen.NUI.Components
         /// Flag to decide button can be selected or not.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public bool? IsEnabled
+        public new bool? IsEnabled
         {
             get => (bool?)base.IsEnabled;
             set
