@@ -95,7 +95,6 @@ namespace Tizen.NUI.Components
 
         bool isFocused = false;
         bool isPressed = false;
-        bool isEnabled = true;
 
         private void Initialize()
         {

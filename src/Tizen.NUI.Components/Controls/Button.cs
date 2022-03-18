@@ -66,10 +66,6 @@ namespace Tizen.NUI.Components
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = View.IsEnabledProperty;
-
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty IsSelectedProperty = BindableProperty.Create(nameof(IsSelected), typeof(bool), typeof(Button), false, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Button)bindable;
