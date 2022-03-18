@@ -128,7 +128,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                     VariableDefinition vardef = new VariableDefinition(typeref);
                     Context.Variables[node] = vardef;
 
-                    var argumentList = GetCtorXArguments(node, factoryCtorInfo.Parameters.Count);
+                    var argumentList = GetCtorXArguments(node, factoryCtorInfo.Parameters.Count, true);
                     Context.Values[node] = new EXamlCreateObject(Context, null, typedef, argumentList.ToArray());
                     return;
                 }
@@ -164,7 +164,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 VariableDefinition vardef = new VariableDefinition(typeref);
                 Context.Variables[node] = vardef;
 
-                var argumentList = GetCtorXArguments(node, factoryMethodInfo.Parameters.Count);
+                var argumentList = GetCtorXArguments(node, factoryMethodInfo.Parameters.Count, false);
                 Context.Values[node] = new EXamlCreateObject(Context, null, typedef, factoryMethodInfo, argumentList?.ToArray());
                 return;
             }
@@ -454,7 +454,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             return true;
         }
 
-        List<object> GetCtorXArguments(ElementNode enode, int paramsCount)
+        List<object> GetCtorXArguments(ElementNode enode, int paramsCount, bool isConstructor)
         {
             if (!enode.Properties.ContainsKey(XmlName.xArguments))
             {
@@ -483,9 +483,12 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 argumentList.Add(Context.Values[arguments[i]]);
             }
 
-            for (int i = arguments.Count; i < paramsCount; i++)
+            if (!isConstructor)
             {
-                argumentList.Add(null);
+                for (int i = arguments.Count; i < paramsCount; i++)
+                {
+                    argumentList.Add(Type.Missing);
+                }
             }
 
             return argumentList;
