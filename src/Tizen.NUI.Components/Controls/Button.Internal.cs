@@ -186,13 +186,11 @@ namespace Tizen.NUI.Components
             return base.HandleControlStateOnTouch(touch);
         }
 
-
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnEnabled(bool enabled)
         {
             base.OnEnabled(enabled);
-            //Sensitive = false;
             UpdateState();
         }
 

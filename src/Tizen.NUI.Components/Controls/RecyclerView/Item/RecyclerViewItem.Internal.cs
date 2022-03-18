@@ -203,9 +203,16 @@ namespace Tizen.NUI.Components
         {
             MeasureChild();
             LayoutChild();
-
-            Sensitive = IsEnabled;
         }
+
+                /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnEnabled(bool enabled)
+        {
+            base.OnEnabled(enabled);
+            UpdateState();
+        }
+
 
 
         /// FIXME!! This has to be done in Element or View class.

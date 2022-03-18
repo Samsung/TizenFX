@@ -52,22 +52,9 @@ namespace Tizen.NUI.Components
             var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
             return RecyclerViewItemStyle.isSelected;
         });
-        /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(RecyclerViewItemStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
-            RecyclerViewItemStyle.isEnabled = (bool?)newValue;
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var RecyclerViewItemStyle = (RecyclerViewItemStyle)bindable;
-            return RecyclerViewItemStyle.isEnabled;
-        });
 
         private bool? isSelectable;
         private bool? isSelected;
-        private bool? isEnabled;
 
         static RecyclerViewItemStyle() { }
 
@@ -106,16 +93,6 @@ namespace Tizen.NUI.Components
         {
             get => (bool?)GetValue(IsSelectedProperty);
             set => SetValue(IsSelectedProperty, value);
-        }
-
-        /// <summary>
-        /// Flag to decide RecyclerViewItem can be selected or not.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool? IsEnabled
-        {
-            get => (bool?)GetValue(IsEnabledProperty);
-            set => SetValue(IsEnabledProperty, value);
         }
 
         /// <inheritdoc/>
