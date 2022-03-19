@@ -18,6 +18,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Tizen.NUI.Binding;
+using global::System.Diagnostics;
 
 namespace Tizen.NUI
 {
@@ -88,11 +89,7 @@ namespace Tizen.NUI
                 Registry.Register(this);
             }
 
-            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")}");
-            if (this is BaseComponents.View view)
-            {
-                  DebugFileLogging.Instance.WriteLog($"ID:{view.ID} Name:{view.Name}");
-            }
+            disposeDebuggingCtor();
             DebugFileLogging.Instance.WriteLog($" BaseHandle.contructor with cMemeryOwn END");
             DebugFileLogging.Instance.WriteLog($"=============================");
         }
@@ -115,11 +112,7 @@ namespace Tizen.NUI
                 Registry.Register(this);
             }
 
-            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")}");
-            if (this is BaseComponents.View view)
-            {
-                DebugFileLogging.Instance.WriteLog($"ID:{view.ID} Name:{view.Name}");
-            }
+            disposeDebuggingCtor();
             DebugFileLogging.Instance.WriteLog($"BaseHandle.contructor END");
             DebugFileLogging.Instance.WriteLog($"=============================");
         }
@@ -356,15 +349,22 @@ namespace Tizen.NUI
                     DebugFileLogging.Instance.WriteLog("[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
                         $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
 
-                    throw new global::System.InvalidOperationException("[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
+                    Tizen.Log.Fatal("NUI", $"[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
                         $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
+
+                    //to fix ArtApp black screen issue. this will be enabled after talking with ArtApp team and fixing it.
+                    // throw new global::System.InvalidOperationException("[NUI][BaseHandle] This API called from separate thread. This API must be called from MainThread. \n" +
+                    //     $" process:{process} thread:{thread}, disposing:{disposing}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
                 }
 
                 if (isDisposeQueued)
                 {
                     DebugFileLogging.Instance.WriteLog($"should not be here! (dead code) this will be removed!");
 
-                    throw new global::System.Exception($"[NUI] should not be here! (dead code) this will be removed!");
+                    Tizen.Log.Fatal("NUI", $"[NUI] should not be here! (dead code) this will be removed!");
+
+                    //to fix ArtApp black screen issue. this will be enabled after talking with ArtApp team and fixing it.
+                    // throw new global::System.Exception($"[NUI] should not be here! (dead code) this will be removed!");
                     Dispose(DisposeTypes.Implicit);
                 }
                 else
@@ -544,39 +544,7 @@ namespace Tizen.NUI
                 Registry.Unregister(this);
             }
 
-            DebugFileLogging.Instance.WriteLog($"swigCMemOwn:{swigCMemOwn} type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")}");
-
-            // this is temporary test code. will be removed laster
-            {
-                if (swigCPtr.Handle != IntPtr.Zero && swigCPtrCopy.Handle != IntPtr.Zero)
-                {
-                    var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
-                    var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
-                    var me = this.GetType().FullName;
-                    var daliId = "unknown";
-                    var hash = this.GetType().GetHashCode();
-                    var name = "unknown";
-
-                    if (this is BaseComponents.View)
-                    {
-                        daliId = Interop.Actor.GetId(swigCPtrCopy).ToString();
-                        name = Interop.Actor.GetName(swigCPtrCopy);
-                        BaseObject tmp = new BaseObject(Interop.BaseHandle.GetBaseObject(swigCPtrCopy), false);
-                        var refCnt = tmp.ReferenceCount();
-                        tmp.Dispose();
-                        if (refCnt > 2)
-                        {
-                            DebugFileLogging.Instance.WriteLog($"[ERR] reference count is over than 2. Could be a memory leak. Need to check! \n" +
-                                $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me} \n" +
-                                $" disposeType:{type}, name:{name}, daliID:{daliId}, hash:{hash}, refCnt:{refCnt}");
-
-                            Log.Error("NUI", $"[ERR] reference count is over than 2. Could be a memory leak. Need to check! \n" +
-                                $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me} \n" +
-                                $" disposeType:{type}, name:{name}, daliID:{daliId}, hash:{hash}, refCnt:{refCnt}");
-                        }
-                    }
-                }
-            }
+            disposeDebuggingDispose(type);
 
             if (SwigCPtr.Handle != IntPtr.Zero)
             {
@@ -652,9 +620,14 @@ namespace Tizen.NUI
                     var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                     var me = this.GetType().FullName;
 
-                    throw new ObjectDisposedException(nameof(SwigCPtr), $"Error! NUI's native dali object is already disposed. " +
+                    Tizen.Log.Fatal("NUI", $"SwigCPtr Error! NUI's native dali object is already disposed. " +
                         $"OR the native dali object handle of NUI becomes null! \n" +
                         $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
+
+                    //to fix ArtApp black screen issue. this will be enabled after talking with ArtApp team and fixing it.
+                    // throw new ObjectDisposedException(nameof(SwigCPtr), $"Error! NUI's native dali object is already disposed. " +
+                    //     $"OR the native dali object handle of NUI becomes null! \n" +
+                    //     $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
                 }
                 return swigCPtr;
             }
@@ -682,6 +655,58 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool IsDisposeQueued => isDisposeQueued;
+
+        [Conditional("NUI_DEBUG_ON")]
+        private void disposeDebuggingCtor()
+        {
+            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")}");
+            if (this is BaseComponents.View view)
+            {
+                DebugFileLogging.Instance.WriteLog($"ID:{view.ID} Name:{view.Name}");
+                //back trace
+                global::System.Diagnostics.StackTrace st = new global::System.Diagnostics.StackTrace(true);
+                for (int i = 0; i < st.FrameCount; i++)
+                {
+                    global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
+                    DebugFileLogging.Instance.WriteLog($"[{i}] {sf.GetMethod()}");
+                }
+            }
+        }
+
+        [Conditional("NUI_DEBUG_ON")]
+        private void disposeDebuggingDispose(DisposeTypes type)
+        {
+            DebugFileLogging.Instance.WriteLog($"swigCMemOwn:{swigCMemOwn} type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")} HasBody:{HasBody()}");
+
+            if (swigCPtr.Handle != IntPtr.Zero && swigCPtrCopy.Handle != IntPtr.Zero && HasBody())
+            {
+                var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                var me = this.GetType().FullName;
+                var daliId = "unknown";
+                var hash = this.GetType().GetHashCode();
+                var name = "unknown";
+
+                if (this is BaseComponents.View)
+                {
+                    daliId = Interop.Actor.GetId(swigCPtrCopy).ToString();
+                    name = Interop.Actor.GetName(swigCPtrCopy);
+                    BaseObject tmp = new BaseObject(Interop.BaseHandle.GetBaseObject(swigCPtrCopy), false);
+                    var refCnt = tmp.ReferenceCount();
+                    tmp.Dispose();
+                    if (refCnt > 2)
+                    {
+                        DebugFileLogging.Instance.WriteLog($"[ERR] reference count is over than 2. Could be a memory leak. Need to check! \n" +
+                            $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me} \n" +
+                            $" disposeType:{type}, name:{name}, daliID:{daliId}, hash:{hash}, refCnt:{refCnt}");
+
+                        Log.Error("NUI", $"[ERR] reference count is over than 2. Could be a memory leak. Need to check! \n" +
+                            $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me} \n" +
+                            $" disposeType:{type}, name:{name}, daliID:{daliId}, hash:{hash}, refCnt:{refCnt}");
+                    }
+                }
+            }
+        }
 
     }
 }
