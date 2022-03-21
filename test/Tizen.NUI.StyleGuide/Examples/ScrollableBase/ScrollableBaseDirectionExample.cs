@@ -25,7 +25,7 @@ namespace Tizen.NUI.StyleGuide
     // IExample inehrited class will be automatically added in the main examples list.
     internal class ScrollableBaseDirectionExample : ContentPage
     {
-        int SCROLLMAX = 20;
+        int SCROLLMAX = 50;
         public ScrollableBaseDirectionExample(string dir)  : base()
         {
             Log.Info(this.GetType().Name, $"{this.GetType().Name} is contructed\n");
@@ -73,6 +73,8 @@ namespace Tizen.NUI.StyleGuide
                 };
             }
 
+            scrollView.Focusable = true;
+
             Random rnd = new Random();
 
             for (int i = 0; i < SCROLLMAX; i++)
@@ -81,6 +83,10 @@ namespace Tizen.NUI.StyleGuide
                 colorView.WidthSpecification = (isHorizontal? 200 : LayoutParamPolicies.MatchParent);
                 colorView.HeightSpecification = (isHorizontal? LayoutParamPolicies.MatchParent : 200);
                 colorView.BackgroundColor = new Color((float)rnd.Next(256)/256f, (float)rnd.Next(256)/256f, (float)rnd.Next(256)/256f, 1);
+                if ((i < 30) || i == SCROLLMAX - 1)
+                {
+                    //colorView.Focusable = true;
+                }
                 scrollView.Add(colorView);
             }
 

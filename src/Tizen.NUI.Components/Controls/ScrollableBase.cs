@@ -145,6 +145,7 @@ namespace Tizen.NUI.Components
     public partial class ScrollableBase : Control
     {
         static bool LayoutDebugScrollableBase = false; // Debug flag
+        static bool FocusDebugScrollableBase = true; // Debug flag
         private Direction mScrollingDirection = Direction.Vertical;
         private bool mScrollEnabled = true;
         private int mScrollDuration = 125;
@@ -1830,6 +1831,29 @@ namespace Tizen.NUI.Components
             }
         }
 
+        internal bool IsChildNearlyVisble(View child, float offset = 0)
+        {
+            Debug.WriteLineIf(FocusDebugScrollableBase, $"{this}({this.ID}) : Geometry({ScreenPosition.X},{ScreenPosition.Y},{ScreenPosition.X + SizeWidth},{ScreenPosition.Y + SizeHeight})"+
+                            $"{child}({child.ID}) Geometry({child.ScreenPosition.X},{child.ScreenPosition.Y},{child.ScreenPosition.X + child.SizeWidth},{child.ScreenPosition.Y + child.SizeHeight})");
+            if (ScreenPosition.X - offset < child.ScreenPosition.X + child.SizeWidth &&
+                ScreenPosition.X + SizeWidth + offset > child.ScreenPosition.X &&
+                ScreenPosition.Y - offset < child.ScreenPosition.Y + child.SizeHeight &&
+                ScreenPosition.Y + SizeHeight + offset > child.ScreenPosition.Y)
+            {
+                Debug.WriteLineIf(FocusDebugScrollableBase, $"{child}({child.ID}) is visible");
+                return true;
+            }
+            else
+            {
+                Debug.WriteLineIf(FocusDebugScrollableBase, $"{child}({child.ID}) is invisible");
+                return false;
+            }
+        }
+
+
+        private float stepDistance = 200f;
+
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
@@ -1839,9 +1863,107 @@ namespace Tizen.NUI.Components
                 return null;
             }
 
-            View nextFocusedView = FocusManager.Instance.GetNearestFocusableActor(this, currentFocusedView, direction);
+            bool needScroll = false;
+            bool isHorizontal = (ScrollingDirection == Direction.Horizontal);
+            Position scrollPosition = ContentContainer.CurrentPosition;
+            float targetPosition = -(isHorizontal ? scrollPosition.X : scrollPosition.Y);
+            float visibleOffset = (SnapToPage ? 0f : stepDistance);
 
-            if (nextFocusedView != null)
+            View nextFocusedView = FocusManager.Instance.GetNearestFocusableActor(this, currentFocusedView, direction);
+            Debug.WriteLineIf(FocusDebugScrollableBase, $"current({currentFocusedView}({currentFocusedView.ID})) next{nextFocusedView}"+ (nextFocusedView!=null?$"({nextFocusedView.ID}) is found":" is not found") + $" to direction({direction}) in position({targetPosition}) end({maxScrollDistance})");
+
+
+            if (nextFocusedView == null || !IsChildNearlyVisble(nextFocusedView, visibleOffset))
+            {
+                Debug.WriteLineIf(FocusDebugScrollableBase, "=========================!!KEY MOVE!!!==========================");
+
+                if (nextFocusedView == null && Focusable) nextFocusedView = ContentContainer;
+                else nextFocusedView = currentFocusedView;
+                //nextFocusedView = currentFocusedView;
+                //maxScrollDistance
+                switch (direction)
+                {
+                    case FocusDirection.Left:
+                        if (isHorizontal && targetPosition > 0)
+                        {
+                            needScroll = true;
+                            targetPosition -= stepDistance;
+                            if (targetPosition < 0) targetPosition = 0;
+                            Debug.WriteLineIf(FocusDebugScrollableBase, $"{direction} target [{targetPosition}]");
+                        }
+                        else if (isHorizontal)
+                        {
+                            return null;
+                        }
+                        break;
+                    case FocusDirection.Right:
+                        if (isHorizontal && targetPosition < maxScrollDistance)
+                        {
+                            needScroll = true;
+                            targetPosition += stepDistance;
+                            if (targetPosition > maxScrollDistance) targetPosition = maxScrollDistance;
+                            Debug.WriteLineIf(FocusDebugScrollableBase, $"{direction} target [{targetPosition}]");
+                        }
+                        else if (isHorizontal)
+                        {
+                            return null;
+                        }
+                        break;
+                    case FocusDirection.Up:
+                        if (!isHorizontal && targetPosition > 0)
+                        {
+                            needScroll = true;
+                            targetPosition -= stepDistance;
+                            if (targetPosition < 0) targetPosition = 0;
+                            Debug.WriteLineIf(FocusDebugScrollableBase, $"{direction} target [{targetPosition}]");
+                        }
+                        else if (!isHorizontal)
+                        {
+                            return null;
+                        }
+                        break;
+                    case FocusDirection.Down:
+                        if (!isHorizontal && targetPosition < maxScrollDistance)
+                        {
+                            needScroll = true;
+                            targetPosition += stepDistance;
+                            if (targetPosition > maxScrollDistance) targetPosition = maxScrollDistance;
+                            Debug.WriteLineIf(FocusDebugScrollableBase, $"{direction} target [{targetPosition}]");
+                        }
+                        else if (!isHorizontal)
+                        {
+                            return null;
+                        }
+                        break;
+                    case FocusDirection.PageUp:
+                        if (targetPosition > 0)
+                        {
+                            needScroll = true;
+                            targetPosition -= (isHorizontal? SizeWidth : SizeHeight);
+                            if (targetPosition < 0) targetPosition = 0;
+                            Debug.WriteLineIf(FocusDebugScrollableBase, $"{direction} target [{targetPosition}]");
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                        break;
+                    case FocusDirection.PageDown:
+                        if (targetPosition < maxScrollDistance)
+                        {
+                            needScroll = true;
+                            targetPosition += (isHorizontal? SizeWidth : SizeHeight);
+                            if (targetPosition > maxScrollDistance) targetPosition = maxScrollDistance;
+                            Debug.WriteLineIf(FocusDebugScrollableBase, $"{direction} target [{targetPosition}]");
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                        break;
+                }
+            }
+            else if (!SnapToPage)
             {
                 View view = nextFocusedView;
                 while (view.GetParent() is View && view.GetParent() != ContentContainer)
@@ -1852,8 +1974,6 @@ namespace Tizen.NUI.Components
                 {
                     // Check next focused view is inside of visible area.
                     // If it is not, move scroll position to make it visible.
-                    Position scrollPosition = ContentContainer.CurrentPosition;
-                    float targetPosition = -(ScrollingDirection == Direction.Horizontal ? scrollPosition.X : scrollPosition.Y);
 
                     float left = view.Position.X;
                     float right = view.Position.X + view.Size.Width;
@@ -1864,6 +1984,8 @@ namespace Tizen.NUI.Components
                     float visibleRectangleRight = -scrollPosition.X + Size.Width;
                     float visibleRectangleTop = -scrollPosition.Y;
                     float visibleRectangleBottom = -scrollPosition.Y + Size.Height;
+
+                    needScroll = true;
 
                     if (ScrollingDirection == Direction.Horizontal)
                     {
@@ -1887,9 +2009,16 @@ namespace Tizen.NUI.Components
                             targetPosition = bottom - Size.Height;
                         }
                     }
-                    ScrollTo(targetPosition, true);
                 }
             }
+
+            if (needScroll)
+            {
+                Debug.WriteLineIf(FocusDebugScrollableBase, $"ScrollTo position({targetPosition})");
+
+                ScrollTo(targetPosition, true);
+            }
+
             return nextFocusedView;
         }
 
@@ -1922,7 +2051,7 @@ namespace Tizen.NUI.Components
                         PageSnap(-(PageFlickThreshold + 1));
                     }
                     else
-                    {                        
+                    {
                         ScrollTo((float)(child.ScreenPosition.X + child.Size.Width - ContentContainer.ScreenPosition.X - this.Size.Width), false);
                     }
                 }
@@ -1936,7 +2065,7 @@ namespace Tizen.NUI.Components
                         PageSnap(PageFlickThreshold + 1);
                     }
                     else
-                    {                        
+                    {
                         ScrollTo((float)(child.ScreenPosition.Y - ContentContainer.ScreenPosition.Y), false);
                     }
                 }
@@ -1947,7 +2076,7 @@ namespace Tizen.NUI.Components
                         PageSnap(-(PageFlickThreshold + 1));
                     }
                     else
-                    {                       
+                    {
                         ScrollTo((float)(child.ScreenPosition.Y + child.Size.Height - ContentContainer.ScreenPosition.Y - this.Size.Height), false);
                     }
                 }
