@@ -672,8 +672,8 @@ namespace Tizen.NUI
 
             childLayout?.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
-            measureSize.width = (childLayout == null) ? 0 : MeasuredWidth.Size.AsRoundedValue();
-            measureSize.height = (childLayout == null) ? 0 : MeasuredHeight.Size.AsRoundedValue();
+            measureSize.width = (childLayout == null) ? 0 : childLayout.MeasuredWidth.Size.AsRoundedValue();
+            measureSize.height = (childLayout == null) ? 0 : childLayout.MeasuredHeight.Size.AsRoundedValue();
         }
 
         void InsertChild(LayoutItem child)
