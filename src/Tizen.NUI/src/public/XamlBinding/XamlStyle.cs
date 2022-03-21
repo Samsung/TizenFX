@@ -173,7 +173,7 @@ namespace Tizen.NUI.Binding
 
         static void OnBasedOnResourceChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            XamlStyle style = (bindable as View).XamlStyle;
+            XamlStyle style = (bindable as View)?.XamlStyle;
             if (style == null)
                 return;
             style.UnApplyCore(bindable, (XamlStyle)oldValue);
