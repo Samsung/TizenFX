@@ -25,7 +25,7 @@ namespace Tizen.NUI.Components
     /// Enumeration for describing the states of the view.
     /// </summary>
     [FlagsAttribute]
-    // Please remove this enum when 'Tizen.NUI.BaseComponents.Button.StateChangedEventArgs' and 'Tizen.NUI.BaseComponents.Slider.StateChangedArgs' are removed.
+    // Please remove this enum when 'Tizen.NUI.BaseComponents.Button.StateChangedEventArgs' is removed.
     [Obsolete("This will be removed in API10. Please use Tizen.NUI.BaseComponents.ControlState instead!")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum ControlStates

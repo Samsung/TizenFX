@@ -16,18 +16,6 @@ namespace Tizen.NUI.Components.Devel.Tests
         private const string tag = "NUITEST";
         private string image_path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
 
-        [Obsolete]
-        private EventHandler<Slider.ValueChangedArgs> OnValueChangedEvent()
-        {
-            return null;
-        }
-
-        [Obsolete]
-        private EventHandler<Slider.SlidingFinishedArgs> OnSlidingFinishedEvent()
-        {
-            return null;
-        }
-
         private EventHandler<SliderValueChangedEventArgs> OnValueChanged()
         {
             return null;
@@ -39,12 +27,6 @@ namespace Tizen.NUI.Components.Devel.Tests
         }
 
         private EventHandler<SliderSlidingFinishedEventArgs> OnSlidingFinished()
-        {
-            return null;
-        }
-
-        [Obsolete]
-        private EventHandler<Slider.StateChangedArgs> OnStateChangedEvent()
         {
             return null;
         }
@@ -324,62 +306,6 @@ namespace Tizen.NUI.Components.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Slider ValueChangedEvent.")]
-        [Property("SPEC", "Tizen.NUI.Components.Slider.ValueChangedEvent A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        [Obsolete]
-        public void SliderValueChangedEvent()
-        {
-            tlog.Debug(tag, $"SliderValueChangedEvent START");
-
-            var testingTarget = new Slider()
-            {
-                Direction = Slider.DirectionType.Vertical,
-                IsEnabled = true,
-            };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Slider>(testingTarget, "Should return Slider instance.");
-
-            testingTarget.ValueChangedEvent += OnValueChangedEvent();
-            testingTarget.ValueChangedEvent -= OnValueChangedEvent();
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"SliderValueChangedEvent END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Slider SlidingFinishedEvent.")]
-        [Property("SPEC", "Tizen.NUI.Components.Slider.SlidingFinishedEvent A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        [Obsolete]
-        public void SliderSlidingFinishedEvent()
-        {
-            tlog.Debug(tag, $"SliderSlidingFinishedEvent START");
-
-            var testingTarget = new Slider()
-            {
-                Direction = Slider.DirectionType.Vertical,
-                IsEnabled = true,
-            };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Slider>(testingTarget, "Should return Slider instance.");
-
-            testingTarget.SlidingFinishedEvent += OnSlidingFinishedEvent();
-            testingTarget.SlidingFinishedEvent -= OnSlidingFinishedEvent();
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"SliderValueChangedEvent END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("SliderSlidingStartedEventArgs CurrentValue.")]
         [Property("SPEC", "Tizen.NUI.Components.Slider.OnKey A")]
         [Property("SPEC_URL", "-")]
@@ -482,34 +408,6 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"SliderSlidingFinished END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Slider StateChangedEvent.")]
-        [Property("SPEC", "Tizen.NUI.Components.Slider.StateChangedEvent A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        [Obsolete]
-        public void SliderStateChangedEvent()
-        {
-            tlog.Debug(tag, $"SliderStateChangedEvent START");
-
-            var testingTarget = new Slider()
-            {
-                Direction = Slider.DirectionType.Vertical,
-                IsEnabled = true,
-            };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Slider>(testingTarget, "Should return Slider instance.");
-
-            testingTarget.StateChangedEvent += OnStateChangedEvent();
-            testingTarget.StateChangedEvent -= OnStateChangedEvent();
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"SliderStateChangedEvent END (OK)");
         }
 
         [Test]

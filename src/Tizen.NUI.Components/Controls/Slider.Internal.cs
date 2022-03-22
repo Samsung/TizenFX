@@ -86,12 +86,9 @@ namespace Tizen.NUI.Components
 
         private PanGestureDetector panGestureDetector = null;
         private float currentSlidedOffset;
-        private EventHandler<ValueChangedArgs> valueChangedHandler;
-        private EventHandler<SlidingFinishedArgs> slidingFinishedHandler;
         private EventHandler<SliderValueChangedEventArgs> sliderValueChangedHandler;
         private EventHandler<SliderSlidingStartedEventArgs> sliderSlidingStartedHandler;
         private EventHandler<SliderSlidingFinishedEventArgs> sliderSlidingFinishedHandler;
-        private EventHandler<StateChangedArgs> stateChangedHandler;
 
         bool isFocused = false;
         bool isPressed = false;
@@ -357,13 +354,6 @@ namespace Tizen.NUI.Components
                 if (isValueShown)
                 {
                     valueIndicatorImage.Hide();
-                }
-
-                if (null != slidingFinishedHandler)
-                {
-                    SlidingFinishedArgs args = new SlidingFinishedArgs();
-                    args.CurrentValue = curValue;
-                    slidingFinishedHandler(this, args);
                 }
 
                 if (null != sliderSlidingFinishedHandler)
