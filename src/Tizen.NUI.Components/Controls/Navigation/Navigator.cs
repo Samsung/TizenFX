@@ -732,6 +732,17 @@ namespace Tizen.NUI.Components
             return defaultNavigator;
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool HitTest(Touch touch)
+        {
+            // Navigator itself is not required to handle touch events.
+            // If Navigator has a Page, then the Page handles touch events.
+            // If Navigator does not have a Page, then objects behind the
+            // Navigator handle touch events.
+            return false;
+        }
+
         /// <summary>
         /// Create Transitions between currentTopPage and newTopPage
         /// </summary>
