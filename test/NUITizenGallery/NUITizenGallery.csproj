@@ -465,16 +465,15 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.30" />
-    </ItemGroup>
-
-    <ItemGroup>
         <ProjectReference Include="../../src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
         <ProjectReference Include="../../src/Tizen.NUI/Tizen.NUI.csproj" />
     </ItemGroup>
 
     <PropertyGroup>
-        <NeedInjection>True</NeedInjection>
+        <NeedInjection>False</NeedInjection>
     </PropertyGroup>
 
+    <ImportGroup>
+        <Import Project="..\..\pkg\Tizen.NET.API9\xamlbuild\Tizen.NUI.XamlBuild.ForExample.targets" />
+    </ImportGroup>
 </Project>
