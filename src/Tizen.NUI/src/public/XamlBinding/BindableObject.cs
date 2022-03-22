@@ -272,7 +272,7 @@ namespace Tizen.NUI.Binding
             if (property == null)
                 throw new ArgumentNullException(nameof(property));
 
-            if (true == isCreateByXaml)
+            if (true == IsBinded)
             {
                 if (property.IsReadOnly)
                     throw new InvalidOperationException(string.Format("The BindableProperty \"{0}\" is readonly.", property.PropertyName));
