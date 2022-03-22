@@ -280,6 +280,9 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// If set to true, borderWindow can be used for MainWindow of Application.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool BorderEnabled
         {
@@ -293,11 +296,15 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// By implementing and setting a BorderWindowInterface, you can use a BorderWindow for the MainWindow and use the CustomBorderUI through the BorderWindowInterface.
+        /// </summary>
+        /// <param name="borderInterface"><see cref="Tizen.NUI.BorderWindowInterface"/></param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetBorderWindowInterface(BorderWindowInterface border)
+        public void SetBorderWindowInterface(BorderWindowInterface borderInterface)
         {
             borderEnabled = true;
-            borderWindow = border;
+            borderWindow = borderInterface;
         }
 
         /// <summary>

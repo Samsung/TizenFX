@@ -117,18 +117,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        // [EditorBrowsable(EditorBrowsableState.Never)]
-        // public Window(string name, BorderStyle borderStyle, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.Window.New(Rectangle.getCPtr(windowPosition), name, isTranslucent), true)
-        // {
-        //     if (IsSupportedMultiWindow() == false)
-        //     {
-        //         NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
-        //     }
-        //     this.windowTitle = name;
-        //     this.EnableBorderWindow(borderStyle);
-        //     if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        // }
-
         /// <summary>
         /// Enumeration for orientation of the window is the way in which a rectangular page is oriented for normal viewing.
         /// </summary>
@@ -362,6 +350,11 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             BottomRight = 8,
+            /// <summary>
+            /// Move type.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Move = 9,
         }
 
 
@@ -1409,9 +1402,6 @@ namespace Tizen.NUI
             if (LayersChildren == null || LayersChildren.Count < 0)
                 return 0;
 
-            //ToDo: need check the isBorderWindow
-            if (isBorderWindow) {}
-
             return (uint)LayersChildren.Count;
         }
 
@@ -1717,6 +1707,11 @@ namespace Tizen.NUI
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
+
+                if (IsBorderEnabled)
+                {
+                    DisposeBorder();
+                }
 
                 if (rootLayer != null)
                 {

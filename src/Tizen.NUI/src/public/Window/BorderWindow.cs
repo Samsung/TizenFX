@@ -22,7 +22,6 @@ using System.Linq;
 using System.Threading;
 using Tizen.NUI.BaseComponents;
 
-
 namespace Tizen.NUI
 {
     public partial class Window
@@ -45,9 +44,9 @@ namespace Tizen.NUI
         private Timer timer;
 
         private CurrentGesture currentGesture = CurrentGesture.None;
-        private Size2D preSize;
         private float preScale = 1;
         private ResizeDirection direction = ResizeDirection.None;
+        private CurrentStyle currentStyle = CurrentStyle.DefaultStyle;
         #endregion //Fields
 
         #region Constructors
@@ -67,6 +66,11 @@ namespace Tizen.NUI
         #endregion //Events
 
         #region Enums
+        private enum CurrentStyle
+        {
+            DefaultStyle = 1,
+            CustomStyle = 2,
+        }
         private enum CurrentGesture
         {
           None = 0,
@@ -110,8 +114,17 @@ namespace Tizen.NUI
             }
             if (borderInterface == null)
             {
+                // default border window style
+                currentStyle = CurrentStyle.DefaultStyle;
+                SetTransparency(true);
+                BackgroundColor = Color.Transparent;
                 borderInterface = new BorderWindow();
             }
+            else
+            {
+                currentStyle = CurrentStyle.CustomStyle;
+            }
+
             GetDefaultLayer().Name = "OriginalRootLayer";
             borderInterface.SetWindow(this);
             borderWindowInterface = borderInterface;
@@ -120,21 +133,29 @@ namespace Tizen.NUI
 
             isBorderWindow = true;
 
-            WindowSize += new Size2D(0, borderWindowInterface.Height);
+            // The current window is as below
+            //    *****
+            //    *****
+            // Increase the window size as much as the border area.
+            ///  #######
+            ///  #*****#
+            ///  #*****#
+            ///  #$$$$$#
+            ///  #$$$$$#
+            /// '#' is BorderLineThickness
+            /// '$' is BorderHeight
+            WindowSize += new Size2D((int)borderWindowInterface.BorderLineThickness * 2, (int)(borderWindowInterface.Height + borderWindowInterface.BorderLineThickness));
 
             if (CreateBorder() == false)
             {
-                WindowSize -= new Size2D(0, borderWindowInterface.Height);
+                WindowSize -= new Size2D((int)borderWindowInterface.BorderLineThickness * 2, (int)(borderWindowInterface.Height + borderWindowInterface.BorderLineThickness));
                 Resized -= OnBorderWindowResized;
                 isBorderWindow = false;
                 return false;
             }
 
+            // This is necessary to intercept window gestures.
             AddInterceptGesture();
-
-            preSize = WindowSize;
-
-            isWinGestures = false;
 
             EnableFloatingMode(true);
 
@@ -144,27 +165,43 @@ namespace Tizen.NUI
         /// Create the border UI.
         private bool CreateBorder()
         {
-            rootView = borderWindowInterface.CreateBorderView();
+            rootView = new View()
+            {
+                WidthResizePolicy = ResizePolicyType.FillToParent,
+                HeightResizePolicy = ResizePolicyType.FillToParent,
+                BackgroundColor = borderWindowInterface.BackgroundColor,
+            };
+
+            // Gets the Border's UI.
+            borderWindowInterface.CreateBorderView(rootView);
             if (rootView == null)
             {
                 return false;
             }
             else
             {
+                // The user may have directly changed the backgroundColor of the rootView. So, we save the BackgroundColor again.
+                borderWindowInterface.BackgroundColor = new Color(rootView.BackgroundColor);
+
+                // Add a view to the border layer.
+                GetBorderWindowBottomLayer().Add(rootView);
+
+                // Register to resize and move through pan gestures.
                 borderPanGestureDetector = new PanGestureDetector();
                 borderPanGestureDetector.Attach(rootView);
                 borderPanGestureDetector.Detected += OnPanGestureDetected;
 
-                GetBorderWindowBottomLayer().Add(rootView);
-
-                rootView.GrabTouchAfterLeave = true;
+                // Register touch event for effect when border is touched.
+                rootView.LeaveRequired = true;
                 rootView.TouchEvent += (s, e) =>
                 {
-                    Tizen.Log.Error("gab_test", $"TouchEvent {e.Touch.GetState(0) }\n");
                     if (e.Touch.GetState(0) == PointStateType.Down || e.Touch.GetState(0) == PointStateType.Motion)
                     {
                         Color bgColor = new Color(borderWindowInterface.BackgroundColor);
-                        bgColor.A *= 1.4f;
+                        bgColor.R = bgColor.R + 0.3f > 1.0f ? 1.0f : bgColor.R + 0.3f;
+                        bgColor.G = bgColor.G + 0.3f > 1.0f ? 1.0f : bgColor.G + 0.3f;
+                        bgColor.B = bgColor.B + 0.3f > 1.0f ? 1.0f : bgColor.B + 0.3f;
+                        bgColor.A = bgColor.A + 0.1f > 1.0f ? 1.0f : bgColor.A + 0.1f;
                         rootView.BackgroundColor = bgColor;
                     }
                     else
@@ -175,7 +212,6 @@ namespace Tizen.NUI
                 };
                 return true;
             }
-
         }
 
         /// Determines the behavior of borders.
@@ -183,39 +219,29 @@ namespace Tizen.NUI
         {
             PanGesture panGesture = e.PanGesture;
 
-            Tizen.Log.Error("gab_test", $"OnPanGestureDetected {panGesture.State}\n");
-
             if (panGesture.State == Gesture.StateType.Started)
             {
                 SetDirection(panGesture);
             }
-            else if (panGesture.State == Gesture.StateType.Continuing)
-            {
-                if (direction == ResizeDirection.BottomLeft)
-                {
-                    WindowSize += new Size2D((int)panGesture.ScreenDisplacement.X, (int)panGesture.ScreenDisplacement.Y);
-                }
-                if (direction == ResizeDirection.BottomRight)
-                {
-                    WindowSize += new Size2D((int)panGesture.ScreenDisplacement.X, (int)panGesture.ScreenDisplacement.Y);
-                }
-                else if (direction == ResizeDirection.Left)
-                {
-                    WindowSize += new Size2D((int)panGesture.ScreenDisplacement.X, 0);
-                }
-                else if (direction == ResizeDirection.Right)
-                {
-                    WindowSize += new Size2D((int)panGesture.ScreenDisplacement.X, 0);
-                }
-                else if (direction == ResizeDirection.Bottom)
-                {
-                    WindowSize += new Size2D(0, (int)panGesture.ScreenDisplacement.Y);
-                }
-                else if (direction == ResizeDirection.None)
-                {
-                    WindowPosition += new Position2D((int)panGesture.ScreenDisplacement.X, (int)panGesture.ScreenDisplacement.Y);
-                }
-            }
+            // else if (panGesture.State == Gesture.StateType.Continuing)
+            // {
+            //     if (direction == ResizeDirection.BottomLeft || direction == ResizeDirection.BottomRight || direction == ResizeDirection.TopLeft || direction == ResizeDirection.TopRight)
+            //     {
+            //         WindowSize += new Size2D((int)panGesture.ScreenDisplacement.X, (int)panGesture.ScreenDisplacement.Y);
+            //     }
+            //     else if (direction == ResizeDirection.Left || direction == ResizeDirection.Right)
+            //     {
+            //         WindowSize += new Size2D((int)panGesture.ScreenDisplacement.X, 0);
+            //     }
+            //     else if (direction == ResizeDirection.Bottom || direction == ResizeDirection.Top)
+            //     {
+            //         WindowSize += new Size2D(0, (int)panGesture.ScreenDisplacement.Y);
+            //     }
+            //     else if (direction == ResizeDirection.Move)
+            //     {
+            //         WindowPosition += new Position2D((int)panGesture.ScreenDisplacement.X, (int)panGesture.ScreenDisplacement.Y);
+            //     }
+            // }
             else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
             {
                 direction = ResizeDirection.None;
@@ -229,15 +255,26 @@ namespace Tizen.NUI
             float yPosition = panGesture.Position.Y;
             direction = ResizeDirection.None;
 
-            // check left corner
-            if (xPosition < borderWindowInterface.TouchThickness && yPosition > borderWindowInterface.Height - borderWindowInterface.TouchThickness)
+
+            // check bottom left corner
+            if (xPosition < borderWindowInterface.TouchThickness && yPosition > WindowSize.Height + borderWindowInterface.Height - borderWindowInterface.TouchThickness)
             {
                 direction = ResizeDirection.BottomLeft;
             }
-            // check right corner
-            else if (xPosition > WindowSize.Width - borderWindowInterface.TouchThickness && yPosition > borderWindowInterface.Height - borderWindowInterface.TouchThickness)
+            // check bottom right corner
+            else if (xPosition > WindowSize.Width + borderWindowInterface.BorderLineThickness*2 - borderWindowInterface.TouchThickness && yPosition > WindowSize.Height + borderWindowInterface.Height - borderWindowInterface.TouchThickness)
             {
                 direction = ResizeDirection.BottomRight;
+            }
+            // check top left corner
+            else if (xPosition < borderWindowInterface.TouchThickness && yPosition <  borderWindowInterface.TouchThickness)
+            {
+                direction = ResizeDirection.TopLeft;
+            }
+            // check top right corner
+            else if (xPosition > WindowSize.Width + borderWindowInterface.BorderLineThickness*2 - borderWindowInterface.TouchThickness && yPosition < borderWindowInterface.TouchThickness)
+            {
+                direction = ResizeDirection.TopRight;
             }
             // check left side
             else if (xPosition < borderWindowInterface.TouchThickness)
@@ -245,26 +282,31 @@ namespace Tizen.NUI
                 direction = ResizeDirection.Left;
             }
             // check right side
-            else if (xPosition > WindowSize.Width - borderWindowInterface.TouchThickness)
+            else if (xPosition > WindowSize.Width + borderWindowInterface.BorderLineThickness*2 - borderWindowInterface.TouchThickness)
             {
                 direction = ResizeDirection.Right;
             }
             // check bottom side
-            else if (yPosition > borderWindowInterface.Height - borderWindowInterface.TouchThickness + 10)
+            else if (yPosition > WindowSize.Height + borderWindowInterface.Height + borderWindowInterface.BorderLineThickness - borderWindowInterface.TouchThickness)
             {
                 direction = ResizeDirection.Bottom;
             }
-            // check move
-            else
+            // check top side
+            else if (yPosition < borderWindowInterface.TouchThickness)
             {
-                direction = ResizeDirection.None;
+                direction = ResizeDirection.Top;
+            }
+            // check move
+            else if (yPosition > WindowSize.Height)
+            {
+                direction = ResizeDirection.Move;
             }
 
-            if (direction == ResizeDirection.None)
+            if (direction == ResizeDirection.Move)
             {
                 RequestMoveToServer();
             }
-            else
+            else if (direction != ResizeDirection.None)
             {
                 RequestResizeToServer(direction);
             }
@@ -273,6 +315,7 @@ namespace Tizen.NUI
         // Register an intercept touch event on the window.
         private void AddInterceptGesture()
         {
+            isWinGestures = false;
             this.InterceptTouchEvent += OnWinInterceptedTouch;
         }
 
@@ -304,8 +347,6 @@ namespace Tizen.NUI
         // then, Register a gesture on the windowView to do a resize or move.
         private bool OnTick(object o, Timer.TickEventArgs e)
         {
-            Tizen.Log.Error("gab_test", $"OnTick\n");
-
             windowView = new View()
             {
                 WidthResizePolicy = ResizePolicyType.FillToParent,
@@ -336,11 +377,12 @@ namespace Tizen.NUI
             return false;
         }
 
-        internal void Clear()
+        internal void DisposeBorder()
         {
             ClearWindowGesture();
             InterceptTouchEvent -= OnWinInterceptedTouch;
             Resized -= OnBorderWindowResized;
+            GetBorderWindowBottomLayer().Dispose();
         }
 
         internal void ClearWindowGesture()
@@ -365,14 +407,14 @@ namespace Tizen.NUI
               currentGesture = CurrentGesture.TapGesture;
               if (e.TapGesture.NumberOfTaps == 2)
               {
-                  preSize = this.WindowSize;
-
-                  // TODO
-                  this.WindowSize = new Size2D(800, 600-borderWindowInterface.Height);
-              }
-              else if (e.TapGesture.NumberOfTaps == 3)
-              {
-                  this.WindowSize = preSize;
+                  if (IsMaximized() == false)
+                  {
+                    Maximize(true);
+                  }
+                  else
+                  {
+                    Maximize(false);
+                  }
               }
               else
               {
@@ -387,12 +429,10 @@ namespace Tizen.NUI
         {
             if (currentGesture <= CurrentGesture.PinchGesture)
             {
-                Tizen.Log.Error("gab_test", $"OnPinchGestureDetected \n");
                 if (e.PinchGesture.State == Gesture.StateType.Started)
                 {
                     currentGesture = CurrentGesture.PinchGesture;
                     preScale = 1;
-                    preSize = this.WindowSize;
                 }
                 else if (e.PinchGesture.State == Gesture.StateType.Finished || e.PinchGesture.State == Gesture.StateType.Cancelled)
                 {
@@ -424,11 +464,7 @@ namespace Tizen.NUI
                 if (panGesture.State == Gesture.StateType.Started)
                 {
                     currentGesture = CurrentGesture.PanGesture;
-                    this.RequestMoveToServer();
-                }
-                else if (panGesture.State == Gesture.StateType.Continuing)
-                {
-                    this.WindowPosition += new Position2D((int)panGesture.ScreenDisplacement.X, (int)panGesture.ScreenDisplacement.Y);
+                    RequestMoveToServer();
                 }
                 else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
                 {
@@ -441,9 +477,9 @@ namespace Tizen.NUI
         // Called when the window size has changed.
         private void OnBorderWindowResized(object sender, Window.ResizedEventArgs e)
         {
-            Tizen.Log.Error("gab_test", $"OnBorderWindowResized {WindowSize.Width},{WindowSize.Height}\n");
-            int resizeWidth = WindowSize.Width;
-            int resizeHeight = WindowSize.Height;
+            Tizen.Log.Error("gab_test", $"OnBorderWindowResized {e.WindowSize.Width},{e.WindowSize.Height}\n");
+            int resizeWidth = e.WindowSize.Width;
+            int resizeHeight = e.WindowSize.Height;
             if (borderWindowInterface.MinSize != null)
             {
                 resizeWidth = borderWindowInterface.MinSize.Width > resizeWidth ? (int)borderWindowInterface.MinSize.Width : resizeWidth;
@@ -456,12 +492,12 @@ namespace Tizen.NUI
                 resizeHeight = borderWindowInterface.MaxSize.Height < resizeHeight ? (int)borderWindowInterface.MaxSize.Height : resizeHeight;
             }
 
-            if (resizeWidth != WindowSize.Width || resizeHeight != WindowSize.Height)
+            if (resizeWidth != e.WindowSize.Width || resizeHeight != e.WindowSize.Height)
             {
                 WindowSize = new Size2D(resizeWidth, resizeHeight);
             }
             Interop.ActorInternal.SetSize(GetBorderWindowRootLayer().SwigCPtr, resizeWidth, resizeHeight);
-            Interop.ActorInternal.SetSize(GetBorderWindowBottomLayer().SwigCPtr, resizeWidth, borderWindowInterface.Height);
+            Interop.ActorInternal.SetSize(GetBorderWindowBottomLayer().SwigCPtr, resizeWidth+borderWindowInterface.BorderLineThickness*2, resizeHeight+borderWindowInterface.Height+borderWindowInterface.BorderLineThickness);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) { throw NDalicPINVOKE.SWIGPendingException.Retrieve(); }
         }
@@ -472,10 +508,10 @@ namespace Tizen.NUI
             {
                 borderWindowBottomLayer = new Layer();
                 borderWindowBottomLayer.Name = "BorderWindowBottomLayer";
-                Interop.ActorInternal.SetParentOrigin(borderWindowBottomLayer.SwigCPtr, Tizen.NUI.ParentOrigin.BottomCenter.SwigCPtr);
-                Interop.Actor.SetAnchorPoint(borderWindowBottomLayer.SwigCPtr, Tizen.NUI.PivotPoint.BottomCenter.SwigCPtr);
+                Interop.ActorInternal.SetParentOrigin(borderWindowBottomLayer.SwigCPtr, Tizen.NUI.ParentOrigin.TopCenter.SwigCPtr);
+                Interop.Actor.SetAnchorPoint(borderWindowBottomLayer.SwigCPtr, Tizen.NUI.PivotPoint.TopCenter.SwigCPtr);
                 Interop.Actor.Add(rootLayer.SwigCPtr, borderWindowBottomLayer.SwigCPtr);
-                Interop.ActorInternal.SetSize(borderWindowBottomLayer.SwigCPtr, WindowSize.Width, borderWindowInterface.Height);
+                Interop.ActorInternal.SetSize(borderWindowBottomLayer.SwigCPtr, WindowSize.Width+borderWindowInterface.BorderLineThickness*2, WindowSize.Height+borderWindowInterface.BorderLineThickness);
                 borderWindowBottomLayer.SetWindow(this);
                 borderWindowBottomLayer.LowerToBottom();
 
@@ -490,10 +526,11 @@ namespace Tizen.NUI
             {
                 borderWindowRootLayer = new Layer();
                 borderWindowRootLayer.Name = "RootLayer";
-                Interop.ActorInternal.SetParentOrigin(borderWindowRootLayer.SwigCPtr, Tizen.NUI.ParentOrigin.TopLeft.SwigCPtr);
-                Interop.Actor.SetAnchorPoint(borderWindowRootLayer.SwigCPtr, Tizen.NUI.PivotPoint.TopLeft.SwigCPtr);
+                Interop.ActorInternal.SetParentOrigin(borderWindowRootLayer.SwigCPtr, Tizen.NUI.ParentOrigin.TopCenter.SwigCPtr);
+                Interop.Actor.SetAnchorPoint(borderWindowRootLayer.SwigCPtr, Tizen.NUI.PivotPoint.TopCenter.SwigCPtr);
                 Interop.Actor.Add(rootLayer.SwigCPtr, borderWindowRootLayer.SwigCPtr);
-                Interop.ActorInternal.SetSize(borderWindowRootLayer.SwigCPtr, WindowSize.Width, WindowSize.Height-borderWindowInterface.Height);
+                Interop.ActorInternal.SetSize(borderWindowRootLayer.SwigCPtr, WindowSize.Width, WindowSize.Height-borderWindowInterface.Height-borderWindowInterface.BorderLineThickness);
+                Interop.ActorInternal.SetPosition(borderWindowRootLayer.SwigCPtr, 0, borderWindowInterface.BorderLineThickness);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) { throw NDalicPINVOKE.SWIGPendingException.Retrieve(); }
             }
 
@@ -504,8 +541,10 @@ namespace Tizen.NUI
         {
             if (isBorderWindow == true)
             {
-                var height = (ushort)(size.GetHeight() + borderWindowInterface.Height);
+                var height = (ushort)(size.GetHeight() + borderWindowInterface.Height+borderWindowInterface.BorderLineThickness);
+                var width = (ushort)(size.GetWidth() + borderWindowInterface.BorderLineThickness*2);
                 size.SetHeight(height);
+                size.SetWidth(width);
             }
         }
 
@@ -513,8 +552,10 @@ namespace Tizen.NUI
         {
             if (isBorderWindow == true)
             {
-                var height = (ushort)(size.GetHeight() - borderWindowInterface.Height);
+                var height = (ushort)(size.GetHeight() - borderWindowInterface.Height-borderWindowInterface.BorderLineThickness);
+                var width = (ushort)(size.GetWidth() - borderWindowInterface.BorderLineThickness*2);
                 size.SetHeight(height);
+                size.SetWidth(width);
             }
         }
         #endregion //Methods
@@ -528,4 +569,7 @@ namespace Tizen.NUI
         }
         #endregion //Classes
     }
+
+
+
 }

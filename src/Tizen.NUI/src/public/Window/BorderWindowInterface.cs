@@ -16,35 +16,43 @@
  */
 
 using System;
-// using System.Reflection;
 using System.ComponentModel;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
     /// <summary>
+    /// This abstract class is needed to configure borderWindowUI.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class BorderWindowInterface
     {
         #region Constant Fields
         private static readonly string ResourcePath = FrameworkInformation.ResourcePath;
-        // private static readonly string ResourcePath = "/home/puro/workspace/tizen/submit/TizenFX/src/Tizen.NUI/res/";
-        private static readonly string DefaultMinimalizeIcon = ResourcePath + "minimalize.png";
-        private static readonly string DefaultMaximalizeIcon = ResourcePath + "maximalize.png";
-        private static readonly string DefaultPreviousIcon = ResourcePath + "smallwindow.png";
-        private static readonly string DefaultCloseIcon = ResourcePath + "close.png";
+        private static readonly string MinimalizeIcon = ResourcePath + "minimalize.png";
+        private static readonly string MaximalizeIcon = ResourcePath + "maximalize.png";
+        private static readonly string PreviousIcon = ResourcePath + "smallwindow.png";
+        private static readonly string CloseIcon = ResourcePath + "close.png";
+        private static readonly string LeftCornerIcon = ResourcePath + "leftCorner.png";
+        private static readonly string RightCornerIcon = ResourcePath + "rightCorner.png";
+        private static readonly uint DefaultHeight = 50;
+        private static readonly uint DefaultLineThickness = 10;
+        private static readonly uint DefaultTouchThickness = 20;
+        private static readonly Color DefaultBackgroundColor = new Color(1, 1, 1, 0.3f);
+        private static readonly Size2D DefaultMinSize = new Size2D(200, (int)DefaultHeight);
+
+
         #endregion //Constant Fields
 
         #region Fields
-        private int height = 50;
-        private int touchThickness = 20;
-        private Color backgroundColor = new Color(1, 1, 1, 0.3f);
+        private uint height = DefaultHeight;
+        private uint borderLineThickness = DefaultLineThickness;
+        private uint touchThickness = DefaultTouchThickness;
+        private Color backgroundColor = DefaultBackgroundColor;
         private Window window = null;
 
-        private Size2D minSize = null;
+        private Size2D minSize = DefaultMinSize;
         private Size2D maxSize = null;
-
 
         private ImageView minimalizeIcon;
         private ImageView maximalizeIcon;
@@ -94,7 +102,7 @@ namespace Tizen.NUI
         /// Sets the height of the border.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int Height
+        public uint Height
         {
           get
           {
@@ -110,7 +118,7 @@ namespace Tizen.NUI
         /// Sets the thickness of the edge being touched.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public int TouchThickness
+        public uint TouchThickness
         {
           get
           {
@@ -119,6 +127,22 @@ namespace Tizen.NUI
           set
           {
             touchThickness = value;
+          }
+        }
+
+        /// <summary>
+        /// Sets the borderLineThickness of the edge being touched.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint BorderLineThickness
+        {
+          get
+          {
+            return borderLineThickness;
+          }
+          set
+          {
+            borderLineThickness = value;
           }
         }
 
@@ -138,6 +162,18 @@ namespace Tizen.NUI
           }
         }
 
+        public Window Window 
+        {
+            get
+            {
+                return window;
+            }
+            internal set
+            {
+                this.window = value;
+            }
+        }
+
         internal void SetWindow(Window window)
         {
           this.window = window;
@@ -147,14 +183,11 @@ namespace Tizen.NUI
         /// Create border UI. Users can override this method to draw border UI.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual View CreateBorderView()
+        public virtual void CreateBorderView(View rootView)
         {
-            View rootView = new View()
-            {
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
-                BackgroundColor = this.BackgroundColor,
-            };
+
+            rootView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
+            rootView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
 
             View borderView = new View()
             {
@@ -169,27 +202,42 @@ namespace Tizen.NUI
 
             minimalizeIcon = new ImageView()
             {
-                ResourceUrl = DefaultMinimalizeIcon,
+                ResourceUrl = MinimalizeIcon,
+                PositionUsesPivotPoint = true,
+                PivotPoint = PivotPoint.BottomLeft,
+                ParentOrigin = ParentOrigin.BottomLeft,
             };
 
             maximalizeIcon = new ImageView()
             {
-                ResourceUrl = DefaultMaximalizeIcon,
+                ResourceUrl = MaximalizeIcon,
+                PositionUsesPivotPoint = true,
+                PivotPoint = PivotPoint.BottomLeft,
+                ParentOrigin = ParentOrigin.BottomLeft,
             };
 
             closeIcon = new ImageView()
             {
-                ResourceUrl = DefaultCloseIcon,
+                ResourceUrl = CloseIcon,
+                PositionUsesPivotPoint = true,
+                PivotPoint = PivotPoint.BottomLeft,
+                ParentOrigin = ParentOrigin.BottomLeft,
             };
 
             var leftCorner = new ImageView()
             {
-              ResourceUrl = ResourcePath + "leftCorner.png",
+                ResourceUrl = LeftCornerIcon,
+                PositionUsesPivotPoint = true,
+                PivotPoint = PivotPoint.BottomLeft,
+                ParentOrigin = ParentOrigin.BottomLeft,
             };
 
             var rightCorner = new ImageView()
             {
-              ResourceUrl = ResourcePath + "rightCorner.png",
+              ResourceUrl = RightCornerIcon,
+              PositionUsesPivotPoint = true,
+              PivotPoint = PivotPoint.BottomLeft,
+              ParentOrigin = ParentOrigin.BottomLeft,
             };
 
             rootView.Add(leftCorner);
@@ -204,10 +252,11 @@ namespace Tizen.NUI
             closeIcon.TouchEvent += OnCloseTouched;
             leftCorner.TouchEvent += OnLeftCornerTouched;
             rightCorner.TouchEvent += OnRightCornerTouched;
-
-            return rootView;
         }
 
+        /// <summary>
+        /// This is an event callback when the left corner icon is touched.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnLeftCornerTouched(object sender, View.TouchEventArgs e)
         {
@@ -219,7 +268,9 @@ namespace Tizen.NUI
             return true;
         }
 
-
+        /// <summary>
+        ///This is an event callback when the right corner icon is touched.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnRightCornerTouched(object sender, View.TouchEventArgs e)
         {
@@ -240,7 +291,6 @@ namespace Tizen.NUI
         {
             if (e.Touch.GetState(0) == PointStateType.Up)
             {
-                Tizen.Log.Error("gab_test", $"OnMinTouched \n");
                 window.ClearWindowGesture();
                 window.Minimize(true);
             }
@@ -256,17 +306,16 @@ namespace Tizen.NUI
             if (e.Touch.GetState(0) == PointStateType.Up)
             {
                 bool isMax = window.IsMaximized();
-                Tizen.Log.Error("gab_test", $"OnMaxTouched {isMax}\n");
                 window.ClearWindowGesture();
                 if (window.IsMaximized())
                 {
                   window.Maximize(false);
-                  maximalizeIcon.ResourceUrl = DefaultMaximalizeIcon;
+                  maximalizeIcon.ResourceUrl = MaximalizeIcon;
                 }
                 else
                 {
                   window.Maximize(true);
-                  maximalizeIcon.ResourceUrl = DefaultPreviousIcon;
+                  maximalizeIcon.ResourceUrl = PreviousIcon;
                 }
             }
             return true;
@@ -280,7 +329,6 @@ namespace Tizen.NUI
         {
             if (e.Touch.GetState(0) == PointStateType.Up)
             {
-                Tizen.Log.Error("gab_test", $"OnTerminateTouched \n");
                 window.Destroy();
             }
             return true;
