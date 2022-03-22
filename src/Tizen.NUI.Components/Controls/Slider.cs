@@ -224,40 +224,6 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// The value changed event handler.
         /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API8; Will be removed in API10. Please use ValueChanged event instead.")]
-        public event EventHandler<ValueChangedArgs> ValueChangedEvent
-        {
-            add
-            {
-                valueChangedHandler += value;
-            }
-            remove
-            {
-                valueChangedHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// The sliding finished event handler.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SlidingFinished event instead.")]
-        public event EventHandler<SlidingFinishedArgs> SlidingFinishedEvent
-        {
-            add
-            {
-                slidingFinishedHandler += value;
-            }
-            remove
-            {
-                slidingFinishedHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// The value changed event handler.
-        /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public event EventHandler<SliderValueChangedEventArgs> ValueChanged
         {
@@ -300,23 +266,6 @@ namespace Tizen.NUI.Components
             remove
             {
                 sliderSlidingFinishedHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// The state changed event handler.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEvent")]
-        public event EventHandler<StateChangedArgs> StateChangedEvent
-        {
-            add
-            {
-                stateChangedHandler += value;
-            }
-            remove
-            {
-                stateChangedHandler -= value;
             }
         }
 
@@ -1698,13 +1647,6 @@ namespace Tizen.NUI.Components
                 this.CurrentValue = CalculateDiscreteValue(this.CurrentValue);
             }
 
-            if (valueChangedHandler != null)
-            {
-                ValueChangedArgs args = new ValueChangedArgs();
-                args.CurrentValue = this.CurrentValue;
-                valueChangedHandler(this, args);
-            }
-
             if (sliderValueChangedHandler != null)
             {
                 SliderValueChangedEventArgs args = new SliderValueChangedEventArgs();
@@ -1731,12 +1673,6 @@ namespace Tizen.NUI.Components
                 Vector2 pos = e.Touch.GetLocalPosition(0);
                 CalculateCurrentValueByTouch(pos);
                 UpdateValue();
-                if (null != slidingFinishedHandler)
-                {
-                    SlidingFinishedArgs args = new SlidingFinishedArgs();
-                    args.CurrentValue = curValue;
-                    slidingFinishedHandler(this, args);
-                }
 
                 if (null != sliderSlidingFinishedHandler)
                 {
@@ -1790,13 +1726,6 @@ namespace Tizen.NUI.Components
                     this.CurrentValue = CalculateDiscreteValue(this.CurrentValue);
                 }
 
-                if (null != valueChangedHandler)
-                {
-                    ValueChangedArgs args = new ValueChangedArgs();
-                    args.CurrentValue = this.CurrentValue;
-                    valueChangedHandler(this, args);
-                }
-
                 if (null != sliderValueChangedHandler)
                 {
                     SliderValueChangedEventArgs args = new SliderValueChangedEventArgs();
@@ -1827,46 +1756,18 @@ namespace Tizen.NUI.Components
             if(!IsEnabled) // Disabled
             {
                 ControlState = ControlState.Disabled;
-
-                if (stateChangedHandler != null)
-                {
-                    StateChangedArgs args = new StateChangedArgs();
-                    args.CurrentState = (ControlStates)ControlStates.Disabled;
-                    stateChangedHandler(this, args);
-                }
             }
             else if (!isFocused && !isPressed)
             {
                 ControlState = ControlState.Normal;
-
-                if (stateChangedHandler != null)
-                {
-                    StateChangedArgs args = new StateChangedArgs();
-                    args.CurrentState = (ControlStates)ControlStates.Normal;
-                    stateChangedHandler(this, args);
-                }
             }
             else if (isPressed)
             {
                 ControlState = ControlState.Pressed;
-
-                if (stateChangedHandler != null)
-                {
-                    StateChangedArgs args = new StateChangedArgs();
-                    args.CurrentState = (ControlStates)ControlStates.Pressed;
-                    stateChangedHandler(this, args);
-                }
             }
             else if (!isPressed && isFocused)
             {
                 ControlState = ControlState.Focused;
-
-                if (stateChangedHandler != null)
-                {
-                    StateChangedArgs args = new StateChangedArgs();
-                    args.CurrentState = (ControlStates)ControlStates.Focused;
-                    stateChangedHandler(this, args);
-                }
             }
         }
 
@@ -1930,60 +1831,6 @@ namespace Tizen.NUI.Components
                     highIndicatorImage.Hide();
                 }
             }
-        }
-
-        /// <summary>
-        /// Value Changed event data.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderValueChangedEventArgs instead.")]
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
-        public class ValueChangedArgs : EventArgs
-        {
-            /// <summary>
-            /// Current value
-            /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// It will be removed in API10
-            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
-            [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderValueChangedEventArgs.CurrentValue instead.")]
-            public float CurrentValue;
-        }
-
-        /// <summary>
-        /// Value Changed event data.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderSlidingFinishedEventArgs instead.")]
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
-        public class SlidingFinishedArgs : EventArgs
-        {
-            /// <summary>
-            /// Current value
-            /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// It will be removed in API10
-            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
-            [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderSlidingFinishedEventArgs.CurrentValue instead.")]
-            public float CurrentValue;
-        }
-
-        /// <summary>
-        /// State Changed event data.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEventArgs")]
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
-        public class StateChangedArgs : EventArgs
-        {
-            /// <summary>
-            /// Current state
-            /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// It will be removed in API10
-            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
-            [Obsolete("Deprecated in API8; Will be removed in API10")]
-            public ControlStates CurrentState;
         }
     }
 }
