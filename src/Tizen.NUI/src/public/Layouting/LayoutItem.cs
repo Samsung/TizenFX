@@ -584,7 +584,7 @@ namespace Tizen.NUI
 
                 View ownerView = Owner.GetParent() as View;
 
-                if (ownerView?.Layout?.LayoutWithTransition ?? false)
+                if ((ownerView?.Layout?.LayoutWithTransition ?? false) && (Math.Abs(Owner.Position2D.X - left) >= (Owner.SizeWidth / 2) || Math.Abs(Owner.Position2D.Y - top) >= (Owner.SizeHeight / 2)))
                 {
                     var win = Window.Get(Owner);
                     if (win == null)
