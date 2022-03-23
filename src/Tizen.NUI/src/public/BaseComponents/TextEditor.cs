@@ -150,7 +150,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValueAndForceSendChangeSignal(TextProperty, value);
+                SetValue(TextProperty, value);
                 NotifyPropertyChanged();
             }
         }
