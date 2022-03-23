@@ -388,7 +388,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (!imagePropertyUpdatedFlag) return;
 
-            if (resourceURLs?.Count != 0 && resourceURLs != null)
+            if (resourceURLs != null && resourceURLs.Count != 0)
             {
                 using (PropertyArray indexPropertyArray = new PropertyArray())
                 {
