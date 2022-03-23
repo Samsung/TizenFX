@@ -260,25 +260,6 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        internal void SetValueAndForceSendChangeSignal(BindableProperty property, object value)
-        {
-            if (property == null)
-                throw new ArgumentNullException(nameof(property));
-
-            if (true == IsBinded)
-            {
-                if (property.IsReadOnly)
-                    throw new InvalidOperationException(string.Format("The BindableProperty \"{0}\" is readonly.", property.PropertyName));
-
-                SetValueCore(property, value, SetValueFlags.ClearOneWayBindings | SetValueFlags.ClearDynamicResource,
-                    SetValuePrivateFlags.ManuallySet | SetValuePrivateFlags.CheckAccess, true);
-            }
-            else
-            {
-                property.PropertyChanged?.Invoke(this, null, value);
-            }
-        }
-
         /// This will be public opened in next ACR.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void ForceNotifyBindedInstance(BindableProperty property)
