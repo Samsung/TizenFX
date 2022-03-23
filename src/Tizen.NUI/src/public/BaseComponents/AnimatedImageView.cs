@@ -386,16 +386,16 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void UpdateImage()
         {
-            if(!imagePropertyUpdatedFlag) return;
+            if (!imagePropertyUpdatedFlag) return;
 
-            if (resourceURLs?.Count != 0)
+            if (resourceURLs?.Count != 0 && resourceURLs != null)
             {
-                using(PropertyArray indexPropertyArray = new PropertyArray())
+                using (PropertyArray indexPropertyArray = new PropertyArray())
                 {
                     PropertyArray returnedArr = new PropertyArray();
                     foreach (var iter in resourceURLs)
                     {
-                        using(PropertyValue index = new PropertyValue(iter))
+                        using (PropertyValue index = new PropertyValue(iter))
                         {
                             returnedArr = indexPropertyArray.Add(index);
                         }
@@ -424,15 +424,15 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void MergeCachedImageVisualProperty(PropertyMap map)
         {
-            if(map == null) return;
-            if(cachedImagePropertyMap == null)
+            if (map == null) return;
+            if (cachedImagePropertyMap == null)
             {
                 cachedImagePropertyMap = new PropertyMap();
             }
-            foreach(var key in cachedAnimatedImagePropertyKeyList)
+            foreach (var key in cachedAnimatedImagePropertyKeyList)
             {
                 PropertyValue value = map.Find(key);
-                if(value != null)
+                if (value != null)
                 {
                     // Update-or-Insert new value
                     cachedImagePropertyMap[key] = value;
