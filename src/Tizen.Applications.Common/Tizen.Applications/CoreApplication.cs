@@ -168,6 +168,11 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnCreate()
         {
+            if (_task != null)
+            {
+                TizenSynchronizationContext.Initialize();
+            }
+
             _context = SynchronizationContext.Current;
             if (!GlobalizationMode.Invariant)
             {
