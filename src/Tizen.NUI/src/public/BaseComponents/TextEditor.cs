@@ -1843,26 +1843,30 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// Only used by the IL of xaml, will never changed to not hidden.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool IsCreateByXaml
+        internal override bool IsBinded
         {
             get
             {
-                return base.IsCreateByXaml;
+                return base.IsBinded;
             }
             set
             {
-                base.IsCreateByXaml = value;
+                base.IsBinded = value;
 
                 if (value == true)
                 {
-                    this.TextChanged += (obj, e) =>
-                    {
-                        this.Text = e.TextEditor.Text;
-                    };
+                    TextChanged += TextEditorTextChanged;
+                }
+                else
+                {
+                    TextChanged -= TextEditorTextChanged;
                 }
             }
+        }
+
+        private void TextEditorTextChanged(object sender, TextChangedEventArgs e)
+        {
+            ForceNotifyBindedInstance(TextProperty);
         }
 
         /// <summary>
@@ -2113,6 +2117,11 @@ namespace Tizen.NUI.BaseComponents
                 {
                     this.SelectionChangedSignal().Disconnect(textEditorSelectionChangedCallbackDelegate);
                 }
+            }
+
+            if (IsBinded)
+            {
+                TextChanged -= TextEditorTextChanged;
             }
 
             base.Dispose(type);

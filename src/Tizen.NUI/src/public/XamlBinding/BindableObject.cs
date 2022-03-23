@@ -209,19 +209,12 @@ namespace Tizen.NUI.Binding
             SetBinding(targetProperty, binding, false);
         }
 
-        private bool isCreateByXaml = false;
         /// Only used by the IL of xaml, will never changed to not hidden.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual bool IsCreateByXaml
+        public bool IsCreateByXaml
         {
-            get
-            {
-                return isCreateByXaml;
-            }
-            set
-            {
-                isCreateByXaml = value;
-            }
+            get;
+            set;
         }
 
         /// <summary>
@@ -283,6 +276,48 @@ namespace Tizen.NUI.Binding
             else
             {
                 property.PropertyChanged?.Invoke(this, null, value);
+            }
+        }
+
+        /// This will be public opened in next ACR.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ForceNotifyBindedInstance(BindableProperty property)
+        {
+            if (null != property)
+            {
+                BindablePropertyContext context = GetOrCreateContext(property);
+
+                if (null != context?.Binding)
+                {
+                    applying = true;
+                    context.Binding.Apply(true);
+                    applying = false;
+                }
+
+                OnPropertyChanged(property.PropertyName);
+
+                PropertyToGroup.TryGetValue(property, out HashSet<BindableProperty> propertyGroup);
+
+                if (null != propertyGroup)
+                {
+                    foreach (var relativeProperty in propertyGroup)
+                    {
+                        if (relativeProperty != property)
+                        {
+                            var relativeContext = GetOrCreateContext(relativeProperty);
+                            var relativeBinding = relativeContext.Binding;
+
+                            if (null != relativeBinding)
+                            {
+                                applying = true;
+                                relativeBinding.Apply(true);
+                                applying = false;
+                            }
+
+                            OnPropertyChanged(relativeProperty.PropertyName);
+                        }
+                    }
+                }
             }
         }
 
@@ -736,7 +771,7 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        internal bool IsBinded
+        internal virtual bool IsBinded
         {
             get;
             set;
