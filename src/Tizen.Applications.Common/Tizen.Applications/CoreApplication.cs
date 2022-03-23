@@ -15,9 +15,11 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Timers;
 using Tizen.Applications.CoreBackend;
 
@@ -30,9 +32,11 @@ namespace Tizen.Applications
     public class CoreApplication : Application
     {
         private readonly ICoreBackend _backend;
+        private readonly ICoreTask _task;
         private bool _disposedValue = false;
+        private static SynchronizationContext _context;
 
-        private static Timer sTimer;
+        private static System.Timers.Timer sTimer;
 
         /// <summary>
         /// Initializes the CoreApplication class.
@@ -42,6 +46,19 @@ namespace Tizen.Applications
         public CoreApplication(ICoreBackend backend)
         {
             _backend = backend;
+            _task = null;
+        }
+
+        /// <summary>
+        /// Initializes the CoreApplication class.
+        /// </summary>
+        /// <param name="backend">The backend instance implementing ICoreBackend interface.</param>
+        /// <param name="task">The backend instance implmenting ICoreTask interface.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CoreApplication(ICoreBackend backend, ICoreTask task)
+        {
+            _backend = backend;
+            _task = task;
         }
 
         /// <summary>
@@ -116,14 +133,23 @@ namespace Tizen.Applications
             _backend.AddEventHandler<RegionFormatChangedEventArgs>(EventType.RegionFormatChanged, OnRegionFormatChanged);
             _backend.AddEventHandler<DeviceOrientationEventArgs>(EventType.DeviceOrientationChanged, OnDeviceOrientationChanged);
 
-            string[] argsClone = new string[args.Length + 1];
-            if (args.Length > 1)
+            string[] argsClone = new string[args == null ? 1 : args.Length + 1];
+            if (args != null && args.Length > 1)
             {
                 args.CopyTo(argsClone, 1);
             }
             argsClone[0] = string.Empty;
 
-            _backend.Run(argsClone);
+            if (_task != null)
+            {
+                ICoreTaskBackend backend = (ICoreTaskBackend)_backend;
+                backend.SetCoreTask(_task);
+                backend.Run(argsClone);
+            }
+            else
+            {
+                _backend.Run(argsClone);
+            }
         }
 
         /// <summary>
@@ -142,6 +168,7 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnCreate()
         {
+            _context = SynchronizationContext.Current;
             if (!GlobalizationMode.Invariant)
             {
                 string locale = ULocale.GetDefaultLocale();
@@ -190,7 +217,7 @@ namespace Tizen.Applications
             if (interval <= 0)
                 interval = 10 * 1000;
 
-            sTimer = new Timer(interval);
+            sTimer = new System.Timers.Timer(interval);
             sTimer.Elapsed += OnTimedEvent;
             sTimer.AutoReset = false;
             sTimer.Enabled = true;
@@ -253,6 +280,26 @@ namespace Tizen.Applications
         protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
         {
             DeviceOrientationChanged?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// Runner callback for dispatching a message to the main loop of the CoreApplication.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="msg"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void Runner<T>(T msg);
+
+        /// <summary>
+        /// Dispatches an asynchronous message to the main loop of the CoreApplication.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="runner"></param>
+        /// <param name="msg"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Post<T>(Runner<T> runner, T msg)
+        {
+            _context.Post((o) => { runner(msg); }, null);
         }
 
         /// <summary>

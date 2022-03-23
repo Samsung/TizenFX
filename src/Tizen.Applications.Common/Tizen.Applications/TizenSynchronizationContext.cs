@@ -26,6 +26,8 @@ namespace Tizen.Applications
     /// <since_tizen> 3 </since_tizen>
     public class TizenSynchronizationContext : SynchronizationContext
     {
+        private readonly GMainContext _context = new GMainContext();
+
         /// <summary>
         /// Initilizes a new TizenSynchronizationContext and install into the current thread.
         /// </summary>
@@ -54,7 +56,7 @@ namespace Tizen.Applications
             GSourceManager.Post(() =>
             {
                 d(state);
-            });
+            }, _context);
         }
 
         /// <summary>
@@ -83,12 +85,22 @@ namespace Tizen.Applications
                 {
                     mre.Set();
                 }
-            });
+            }, _context);
             mre.WaitOne();
             if (err != null)
             {
                 throw err;
             }
+        }
+
+        internal class GMainContext
+        {
+            public GMainContext()
+            {
+                Handle = Interop.Glib.MainContextGetThreadDefault();
+            }
+
+            public IntPtr Handle { get; private set; }
         }
 
         private static class GSourceManager
@@ -106,7 +118,7 @@ namespace Tizen.Applications
                 _transactionId = 0;
             }
 
-            public static void Post(Action action)
+            public static void Post(Action action, GMainContext context)
             {
                 int id = 0;
                 lock (_transactionLock)
@@ -114,7 +126,10 @@ namespace Tizen.Applications
                     id = _transactionId++;
                 }
                 _handlerMap.TryAdd(id, action);
-                Interop.Glib.IdleAdd(_wrapperHandler, (IntPtr)id);
+                IntPtr source = Interop.Glib.IdleSourceNew();
+                Interop.Glib.SourceSetCallback(source, _wrapperHandler, (IntPtr)id, IntPtr.Zero);
+                Interop.Glib.SourceAttach(source, context.Handle);
+                Interop.Glib.SourceUnref(source);
             }
 
             private static bool Handler(IntPtr userData)
