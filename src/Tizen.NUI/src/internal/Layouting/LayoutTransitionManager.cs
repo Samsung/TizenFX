@@ -144,7 +144,8 @@ namespace Tizen.NUI
                 foreach (LayoutTransition transition in transitionsToAnimate)
                 {
                     if (transition.AnimatableProperty != AnimatableProperties.Position &&
-                        transition.AnimatableProperty != AnimatableProperties.Size)
+                        transition.AnimatableProperty != AnimatableProperties.Size &&
+                        transition.AnimatableProperty != AnimatableProperties.Opacity)
                     {
                         coreAnimation.AnimateTo(view,
                                                  transition.AnimatableProperty.ToString(),
@@ -190,8 +191,6 @@ namespace Tizen.NUI
         /// </summary>
         private void AddAnimatorsToAnimation(LayoutData layoutPositionData)
         {
-            LayoutTransition positionTransition = new LayoutTransition();
-            LayoutTransition sizeTransition = new LayoutTransition();
             TransitionCondition conditionForAnimators = layoutPositionData.ConditionForAnimation;
 
             // LayoutChanged transitions overrides ChangeOnAdd and ChangeOnRemove as siblings will
@@ -204,6 +203,7 @@ namespace Tizen.NUI
             // Set up a default transitions, will be overwritten if inherited from parent or set explicitly.
             TransitionComponents positionTransitionComponents = CreateDefaultTransitionComponent(0, 300);
             TransitionComponents sizeTransitionComponents = CreateDefaultTransitionComponent(0, 300);
+            TransitionComponents opacityTransitionComponents = CreateDefaultTransitionComponent(0, 300);
 
             bool matchedCustomTransitions = false;
 
@@ -257,6 +257,11 @@ namespace Tizen.NUI
                                                         AnimatableProperties.Size,
                                                         ref sizeTransitionComponents);
 
+            // Opacity
+            FindAndReplaceAnimatorComponentsForProperty(transitionsForCurrentCondition,
+                                                        AnimatableProperties.Opacity,
+                                                        ref opacityTransitionComponents);
+
             // Add animators to the core Animation,
 
             SetupAnimationForCustomTransitions(transitionsForCurrentCondition, layoutPositionData.Item.Owner);
@@ -265,9 +270,12 @@ namespace Tizen.NUI
 
             SetupAnimationForSize(layoutPositionData, sizeTransitionComponents);
 
+            SetupAnimationForOpacity(layoutPositionData.Item.Owner, 1.0f, 0.1f, 1.0f, opacityTransitionComponents);
+
             // Dispose components
             positionTransitionComponents.Dispose();
             sizeTransitionComponents.Dispose();
+            opacityTransitionComponents.Dispose();
         }
 
         private void AnimationFinished(object sender, EventArgs e)
@@ -356,6 +364,26 @@ namespace Tizen.NUI
                 vector.Dispose();
                 vector = null;
             }
+        }
+
+        private void SetupAnimationForOpacity(View owner, float opacityStart, float opacity, float opacityEnd, TransitionComponents opacityTransitionComponents)
+        {
+            KeyFrames frames = new KeyFrames();
+            frames.Add(0.0f, opacityStart);
+            frames.Add(0.5f, opacity);
+            frames.Add(1.0f, opacityEnd);
+
+            coreAnimation.AnimateBetween(owner, "Opacity",
+                                         frames,
+                                         opacityTransitionComponents.Delay,
+                                         opacityTransitionComponents.Delay + opacityTransitionComponents.Duration,
+                                         Animation.Interpolation.Linear,
+                                         opacityTransitionComponents.AlphaFunction);
+
+            NUILog.Debug("LayoutController SetupAnimationForOpacity View:" + owner.Name +
+                         " opacity:" + opacity +
+                         " delay:" + opacityTransitionComponents.Delay +
+                         " duration:" + opacityTransitionComponents.Duration);
         }
     }
 }
