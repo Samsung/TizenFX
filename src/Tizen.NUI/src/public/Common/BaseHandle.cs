@@ -680,7 +680,8 @@ namespace Tizen.NUI
 
             if (swigCPtr.Handle != IntPtr.Zero && swigCPtrCopy.Handle != IntPtr.Zero && HasBody())
             {
-                var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                using var currentProcess = global::System.Diagnostics.Process.GetCurrentProcess();
+                var process = currentProcess.Id;
                 var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                 var me = this.GetType().FullName;
                 var daliId = "unknown";
