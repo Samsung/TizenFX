@@ -87,6 +87,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public DatePicker()
         {
+            SetKeyboardNavigationSupport(true);
         }
 
         /// <summary>
@@ -96,6 +97,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public DatePicker(string style) : base(style)
         {
+            SetKeyboardNavigationSupport(true);
         }
 
         /// <summary>
@@ -105,6 +107,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public DatePicker(DatePickerStyle datePickerStyle) : base(datePickerStyle)
         {
+            SetKeyboardNavigationSupport(true);
         }
 
 
@@ -234,7 +237,8 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// ToDo : only key navigation is enabled, but value editing is not yet added. for example, after enter key and up/down key the value need be changed.
+        /// ToDo : only key navigation is enabled, and value editing is added as an very simple operation. by toggling enter key, it switches edit mode. 
+        /// ToDo : this should be fixed and changed properly by owner. (And UX SPEC should be referenced also)
         /// </summary>
         /// <param name="currentFocusedView"></param>
         /// <param name="direction"></param>
@@ -248,10 +252,6 @@ namespace Tizen.NUI.Components
                 if (direction == View.FocusDirection.Right)
                 {
                     return monthPicker;
-                }
-                else if (direction == View.FocusDirection.Left)
-                {
-                    return null;
                 }
             }
             else if (currentFocusedView == monthPicker)
@@ -267,11 +267,7 @@ namespace Tizen.NUI.Components
             }
             else if (currentFocusedView == dayPicker)
             {
-                if (direction == View.FocusDirection.Right)
-                {
-                    return null;
-                }
-                else if (direction == View.FocusDirection.Left)
+                if (direction == View.FocusDirection.Left)
                 {
                     return monthPicker;
                 }
