@@ -2241,7 +2241,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (!isSettingTextInCSharp)
             {
-                ForceNotifyBindedInstance(TextProperty);
+                EnforceNotifyBindedInstance(TextProperty);
             }
         }
 
