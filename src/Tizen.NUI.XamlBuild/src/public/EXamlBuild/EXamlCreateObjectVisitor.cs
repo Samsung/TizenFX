@@ -585,7 +585,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                     break;
                 case "System.Boolean":
                     if (hasValue && bool.TryParse(valueString, out bool outbool))
-                        ret = true;
+                        ret = outbool;
                     else
                         ret = false;
                     break;
