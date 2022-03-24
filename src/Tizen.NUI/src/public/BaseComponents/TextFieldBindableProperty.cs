@@ -84,7 +84,9 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             if (newValue != null)
             {
+                textField.isSettingTextInCSharp = true;
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.TEXT, new Tizen.NUI.PropertyValue((string)newValue));
+                textField.isSettingTextInCSharp = false;
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>

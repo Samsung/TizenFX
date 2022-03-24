@@ -37,6 +37,7 @@ namespace Tizen.NUI.BaseComponents
         private InputMethodContext inputMethodContext = null;
         private float fontSizeScale = 1.0f;
         private bool hasFontSizeChangedCallback = false;
+        private bool isSettingTextInCSharp = false;
 
         static TextEditor() { }
 
@@ -77,6 +78,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+
+            TextChanged += TextEditorTextChanged;
         }
 
         internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true, TextEditorStyle style = null) : base(cPtr, cMemoryOwn, style)
@@ -85,6 +88,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+
+            TextChanged += TextEditorTextChanged;
         }
 
         /// <summary>
@@ -1843,32 +1848,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal override bool IsBinded
-        {
-            get
-            {
-                return base.IsBinded;
-            }
-            set
-            {
-                base.IsBinded = value;
-
-                if (value == true)
-                {
-                    TextChanged += TextEditorTextChanged;
-                }
-                else
-                {
-                    TextChanged -= TextEditorTextChanged;
-                }
-            }
-        }
-
-        private void TextEditorTextChanged(object sender, TextChangedEventArgs e)
-        {
-            ForceNotifyBindedInstance(TextProperty);
-        }
-
         /// <summary>
         /// The FontSizeScale property. <br />
         /// The default value is 1.0. <br />
@@ -2119,10 +2098,7 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
-            if (IsBinded)
-            {
-                TextChanged -= TextEditorTextChanged;
-            }
+            TextChanged -= TextEditorTextChanged;
 
             base.Dispose(type);
         }
@@ -2206,6 +2182,14 @@ namespace Tizen.NUI.BaseComponents
                     Console.WriteLine("{0} Exception caught.", e);
                     hasFontSizeChangedCallback = true;
                 }
+            }
+        }
+
+        private void TextEditorTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!isSettingTextInCSharp)
+            {
+                ForceNotifyBindedInstance(TextProperty);
             }
         }
 

@@ -667,7 +667,7 @@ namespace Tizen.NUI
             if (bindable == null)
                 throw new ArgumentNullException(nameof(bindable));
 
-            bindable.SetValueCore(property, value, SetValueFlags.None, SetValuePrivateFlags.ManuallySet, false);
+            bindable.SetValueCore(property, value, SetValueFlags.None, SetValuePrivateFlags.ManuallySet);
         }
         internal static void OnChildPropertyChanged(Binding.BindableObject bindable, object oldValue, object newValue)
         {

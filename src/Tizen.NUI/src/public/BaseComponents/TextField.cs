@@ -38,6 +38,7 @@ namespace Tizen.NUI.BaseComponents
         private InputMethodContext inputMethodCotext = null;
         private float fontSizeScale = 1.0f;
         private bool hasFontSizeChangedCallback = false;
+        private bool isSettingTextInCSharp = false;
 
         static TextField() { }
 
@@ -77,6 +78,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+
+            TextChanged += TextEditorTextChanged;
         }
 
         internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn, null)
@@ -85,6 +88,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+
+            TextChanged += TextEditorTextChanged;
         }
 
         internal TextField(TextField handle, bool shown = true) : this(Interop.TextField.NewTextField(TextField.getCPtr(handle)), true)
@@ -95,6 +100,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+
+            TextChanged += TextEditorTextChanged;
         }
 
         internal enum ExceedPolicyType
@@ -2017,32 +2024,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        internal override bool IsBinded
-        {
-            get
-            {
-                return base.IsBinded;
-            }
-            set
-            {
-                base.IsBinded = value;
-
-                if (value == true)
-                {
-                    TextChanged += TextEditorTextChanged;
-                }
-                else
-                {
-                    TextChanged -= TextEditorTextChanged;
-                }
-            }
-        }
-
-        private void TextEditorTextChanged(object sender, TextChangedEventArgs e)
-        {
-            ForceNotifyBindedInstance(TextProperty);
-        }
-
         /// <summary>
         /// Get the InputMethodContext instance.
         /// </summary>
@@ -2165,10 +2146,7 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
-            if (IsBinded)
-            {
-                TextChanged -= TextEditorTextChanged;
-            }
+            TextChanged -= TextEditorTextChanged;
 
             base.Dispose(type);
         }
@@ -2256,6 +2234,14 @@ namespace Tizen.NUI.BaseComponents
                     Console.WriteLine("{0} Exception caught.", e);
                     hasFontSizeChangedCallback = true;
                 }
+            }
+        }
+
+        private void TextEditorTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!isSettingTextInCSharp)
+            {
+                ForceNotifyBindedInstance(TextProperty);
             }
         }
 
