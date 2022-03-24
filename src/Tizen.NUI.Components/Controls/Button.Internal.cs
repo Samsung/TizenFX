@@ -352,7 +352,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    LinearAlignment = itemAlignment,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
                     CellPadding = cellPadding
                 };
 
@@ -364,7 +365,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    LinearAlignment = itemAlignment,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
                     CellPadding = cellPadding
                 };
 
@@ -376,7 +378,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
-                    LinearAlignment = itemAlignment,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
                     CellPadding = cellPadding
                 };
 
@@ -388,7 +391,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
-                    LinearAlignment = itemAlignment,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
                     CellPadding = cellPadding
                 };
 
