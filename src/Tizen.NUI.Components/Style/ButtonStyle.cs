@@ -91,8 +91,52 @@ namespace Tizen.NUI.Components
         internal static readonly BindableProperty ItemAlignmentProperty = BindableProperty.Create(nameof(ItemAlignment), typeof(LinearLayout.Alignment?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((ButtonStyle)bindable).itemAlignment = (LinearLayout.Alignment?)newValue;
+
+            switch (newValue)
+            {
+                case LinearLayout.Alignment.Begin:
+                    ((ButtonStyle)bindable).itemHorizontalAlignment = HorizontalAlignment.Begin;
+                    break;
+                case LinearLayout.Alignment.End:
+                    ((ButtonStyle)bindable).itemHorizontalAlignment = HorizontalAlignment.End;
+                    break;
+                case LinearLayout.Alignment.CenterHorizontal:
+                    ((ButtonStyle)bindable).itemHorizontalAlignment = HorizontalAlignment.Center;
+                    break;
+                case LinearLayout.Alignment.Top:
+                    ((ButtonStyle)bindable).itemVerticalAlignment = VerticalAlignment.Top;
+                    break;
+                case LinearLayout.Alignment.Bottom:
+                    ((ButtonStyle)bindable).itemVerticalAlignment = VerticalAlignment.Bottom;
+                    break;
+                case LinearLayout.Alignment.CenterVertical:
+                    ((ButtonStyle)bindable).itemVerticalAlignment = VerticalAlignment.Center;
+                    break;
+                case LinearLayout.Alignment.Center:
+                    ((ButtonStyle)bindable).itemHorizontalAlignment = HorizontalAlignment.Center;
+                    ((ButtonStyle)bindable).itemVerticalAlignment = VerticalAlignment.Center;
+                    break;
+                default:
+                    break;
+            }
         },
         defaultValueCreator: (bindable) => ((ButtonStyle)bindable).itemAlignment);
+
+        /// <summary> The bindable property of ItemHorizontalAlignment. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemHorizontalAlignmentProperty = BindableProperty.Create(nameof(ItemHorizontalAlignment), typeof(HorizontalAlignment?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ButtonStyle)bindable).itemHorizontalAlignment = (HorizontalAlignment?)newValue;
+        },
+        defaultValueCreator: (bindable) => ((ButtonStyle)bindable).itemHorizontalAlignment);
+
+        /// <summary> The bindable property of ItemVerticalAlignment. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemVerticalAlignmentProperty = BindableProperty.Create(nameof(ItemVerticalAlignment), typeof(VerticalAlignment?), typeof(ButtonStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ButtonStyle)bindable).itemVerticalAlignment = (VerticalAlignment?)newValue;
+        },
+        defaultValueCreator: (bindable) => ((ButtonStyle)bindable).itemVerticalAlignment);
 
         /// <summary> The bindable property of ItemSpacing. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -109,6 +153,8 @@ namespace Tizen.NUI.Components
         private Extents textPadding;
         private Size2D itemSpacing;
         private LinearLayout.Alignment? itemAlignment;
+        private HorizontalAlignment? itemHorizontalAlignment;
+        private VerticalAlignment? itemVerticalAlignment;
 
         static ButtonStyle() { }
 
@@ -220,6 +266,26 @@ namespace Tizen.NUI.Components
         {
             get => (LinearLayout.Alignment?)GetValue(ItemAlignmentProperty);
             set => SetValue(ItemAlignmentProperty, value);
+        }
+
+        /// <summary>
+        /// The item (text or icon or both) horizontal alignment.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public HorizontalAlignment? ItemHorizontalAlignment
+        {
+            get => (HorizontalAlignment?)GetValue(ItemHorizontalAlignmentProperty);
+            set => SetValue(ItemHorizontalAlignmentProperty, value);
+        }
+
+        /// <summary>
+        /// The item (text or icon or both) vertical alignment.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VerticalAlignment? ItemVerticalAlignment
+        {
+            get => (VerticalAlignment?)GetValue(ItemVerticalAlignmentProperty);
+            set => SetValue(ItemVerticalAlignmentProperty, value);
         }
 
         /// <summary>

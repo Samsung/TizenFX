@@ -146,10 +146,69 @@ namespace Tizen.NUI.Components
             if (instance.itemAlignment != newAlignment)
             {
                 instance.itemAlignment = newAlignment;
+
+                switch (newAlignment)
+                {
+                    case LinearLayout.Alignment.Begin:
+                        instance.itemHorizontalAlignment = HorizontalAlignment.Begin;
+                        break;
+                    case LinearLayout.Alignment.End:
+                        instance.itemHorizontalAlignment = HorizontalAlignment.End;
+                        break;
+                    case LinearLayout.Alignment.CenterHorizontal:
+                        instance.itemHorizontalAlignment = HorizontalAlignment.Center;
+                        break;
+                    case LinearLayout.Alignment.Top:
+                        instance.itemVerticalAlignment = VerticalAlignment.Top;
+                        break;
+                    case LinearLayout.Alignment.Bottom:
+                        instance.itemVerticalAlignment = VerticalAlignment.Bottom;
+                        break;
+                    case LinearLayout.Alignment.CenterVertical:
+                        instance.itemVerticalAlignment = VerticalAlignment.Center;
+                        break;
+                    case LinearLayout.Alignment.Center:
+                        instance.itemHorizontalAlignment = HorizontalAlignment.Center;
+                        instance.itemVerticalAlignment = VerticalAlignment.Center;
+                        break;
+                    default:
+                        break;
+                }
+
                 instance.LayoutItems();
             }
         },
         defaultValueCreator: (bindable) => ((Button)bindable).itemAlignment);
+
+        /// <summary> The bindable property of ItemHorizontalAlignment. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemHorizontalAlignmentProperty = BindableProperty.Create(nameof(ItemHorizontalAlignment), typeof(HorizontalAlignment), typeof(Button), HorizontalAlignment.Center, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Button)bindable;
+            var newHorizontalAlignment = (HorizontalAlignment)newValue;
+
+            if (instance.itemHorizontalAlignment != newHorizontalAlignment)
+            {
+                instance.itemHorizontalAlignment = newHorizontalAlignment;
+                instance.LayoutItems();
+            }
+        },
+        defaultValueCreator: (bindable) => ((Button)bindable).itemHorizontalAlignment);
+
+        /// <summary> The bindable property of ItemVerticalAlignment. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty ItemVerticalAlignmentProperty = BindableProperty.Create(nameof(ItemVerticalAlignment), typeof(VerticalAlignment), typeof(Button), VerticalAlignment.Center, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Button)bindable;
+            var newVerticalAlignment = (VerticalAlignment)newValue;
+
+            if (instance.itemVerticalAlignment != newVerticalAlignment)
+            {
+                instance.itemVerticalAlignment = newVerticalAlignment;
+                instance.LayoutItems();
+            }
+        },
+        defaultValueCreator: (bindable) => ((Button)bindable).itemVerticalAlignment);
 
         /// <summary> The bindable property of ItemSpacing. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -166,6 +225,8 @@ namespace Tizen.NUI.Components
         private bool isSelectable = false;
         private Size2D itemSpacing;
         private LinearLayout.Alignment itemAlignment = LinearLayout.Alignment.Center;
+        private HorizontalAlignment itemHorizontalAlignment = HorizontalAlignment.Center;
+        private VerticalAlignment itemVerticalAlignment = VerticalAlignment.Center;
 
         static Button() { }
 
@@ -817,6 +878,26 @@ namespace Tizen.NUI.Components
         {
             get => (LinearLayout.Alignment)GetValue(ItemAlignmentProperty);
             set => SetValue(ItemAlignmentProperty, value);
+        }
+
+        /// <summary>
+        /// The item (text or icon or both) horizontal alignment.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public HorizontalAlignment ItemHorizontalAlignment
+        {
+            get => (HorizontalAlignment)GetValue(ItemHorizontalAlignmentProperty);
+            set => SetValue(ItemHorizontalAlignmentProperty, value);
+        }
+
+        /// <summary>
+        /// The item (text or icon or both) vertical alignment.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VerticalAlignment ItemVerticalAlignment
+        {
+            get => (VerticalAlignment)GetValue(ItemVerticalAlignmentProperty);
+            set => SetValue(ItemVerticalAlignmentProperty, value);
         }
 
         /// <summary>
