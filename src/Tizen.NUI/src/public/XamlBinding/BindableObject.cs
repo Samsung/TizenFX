@@ -219,7 +219,7 @@ namespace Tizen.NUI.Binding
 
         /// This will be public opened in next ACR.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void ForceNotifyBindedInstance(BindableProperty property)
+        public void EnforceNotifyBindedInstance(BindableProperty property)
         {
             if (null != property)
             {
