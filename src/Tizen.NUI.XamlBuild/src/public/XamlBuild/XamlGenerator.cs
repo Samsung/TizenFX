@@ -529,6 +529,10 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             Func<string, string> getNamespaceOfPrefix = null)
         {
             var type = xmlType.Name;
+            if (type.Contains("-"))
+            {
+                type = type.Replace('-', '.');
+            }
             var ns = GetClrNamespace(xmlType.NamespaceUri, xmlType.Name);
             if (ns != null)
                 type = $"{ns}.{type}";
