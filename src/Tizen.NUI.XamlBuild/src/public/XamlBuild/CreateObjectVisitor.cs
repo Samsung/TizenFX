@@ -529,7 +529,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             for (var i = arguments.Count; i < factoryCtorInfo.Parameters.Count; i++)
             {
                 var parameter = factoryCtorInfo.Parameters[i];
-                var arg = new ValueNode(parameter.Constant?.ToString(), node.NamespaceResolver);
+                var arg = new ValueNode(parameter.Constant?.ToString(), node?.NamespaceResolver);
 
                 foreach (var instruction in arg.PushConvertedValue(Context,
                         parameter.ParameterType,
