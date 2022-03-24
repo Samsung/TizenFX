@@ -410,7 +410,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 Provider.GenerateCodeFromCompileUnit(ccu, writer, new CodeGeneratorOptions());
         }
 
-        private static void GenerateMethodExitXaml(CodeTypeDeclaration declType)
+        private void GenerateMethodExitXaml(CodeTypeDeclaration declType)
         {
             var removeEventsComp = new CodeMemberMethod()
             {
@@ -440,6 +440,19 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 "DisposeXamlElements", new CodeThisReferenceExpression());
 
             exitXamlComp.Statements.Add(disposeXamlElements_invoke);
+
+            CodeAssignStatement eXamlDataAssign = new CodeAssignStatement(
+                    new CodeVariableReferenceExpression("eXamlData"), new CodeDefaultValueExpression(new CodeTypeReference(typeof(object))));
+
+            exitXamlComp.Statements.Add(eXamlDataAssign);
+
+            foreach (var namedField in NamedFields)
+            {
+                CodeAssignStatement assign = new CodeAssignStatement(
+                    new CodeVariableReferenceExpression(namedField.Name), new CodeDefaultValueExpression(namedField.Type));
+
+                exitXamlComp.Statements.Add(assign);
+            }
 
             declType.Members.Add(exitXamlComp);
         }
