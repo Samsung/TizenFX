@@ -198,6 +198,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Slider()
         {
+            Focusable = true;
             Initialize();
         }
 
@@ -208,6 +209,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Slider(string style) : base(style)
         {
+            Focusable = true;
             Initialize();
         }
 
@@ -218,6 +220,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Slider(SliderStyle sliderStyle) : base(sliderStyle)
         {
+            Focusable = true;
             Initialize();
         }
 
@@ -1401,6 +1404,48 @@ namespace Tizen.NUI.Components
             base.OnFocusLost();
         }
 
+        private bool editMode = false;
+        private View recoverIndicator;
+        private View editModeIndicator;
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool OnKeyboardEnter()
+        {
+            if (!IsEnabled)
+            {
+                return false;
+            }
+            if (editMode)
+            {
+                //set editMode false (toggle the mode)
+                editMode = false;
+                FocusManager.Instance.FocusIndicator = recoverIndicator;
+            }
+            else
+            {
+                //set editMode true (toggle the mode)
+                editMode = true;
+                if (editModeIndicator == null)
+                {
+                    editModeIndicator = new View()
+                    {
+                        PositionUsesPivotPoint = true,
+                        PivotPoint = new Position(0, 0, 0),
+                        WidthResizePolicy = ResizePolicyType.FillToParent,
+                        HeightResizePolicy = ResizePolicyType.FillToParent,
+                        BorderlineColor = Color.Red,
+                        BorderlineWidth = 6.0f,
+                        BorderlineOffset = -1f,
+                        BackgroundColor = new Color(0.2f, 0.2f, 0.2f, 0.4f),
+                    };
+                }
+                recoverIndicator = FocusManager.Instance.FocusIndicator;
+                FocusManager.Instance.FocusIndicator = editModeIndicator;
+            }
+            return true;
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnKey(Key key)
@@ -1415,17 +1460,20 @@ namespace Tizen.NUI.Components
                 if ((direction == DirectionType.Horizontal && key.KeyPressedName == "Left") ||
                     (direction == DirectionType.Vertical && key.KeyPressedName == "Down"))
                 {
-                    if (MinValue < CurrentValue)
+                    if (editMode)
                     {
-                        isPressed = true;
-                        if (IsDiscrete)
+                        if (MinValue < CurrentValue)
                         {
-                            float value = CurrentValue - discreteValue;
-                            CurrentValue = value < MinValue ? MinValue : value;
-                        }
-                        else
-                        {
-                            CurrentValue -= 1;
+                            isPressed = true;
+                            if (IsDiscrete)
+                            {
+                                float value = CurrentValue - discreteValue;
+                                CurrentValue = value < MinValue ? MinValue : value;
+                            }
+                            else
+                            {
+                                CurrentValue -= 1;
+                            }
                         }
                         return true; // Consumed
                     }
@@ -1433,17 +1481,20 @@ namespace Tizen.NUI.Components
                 else if ((direction == DirectionType.Horizontal && key.KeyPressedName == "Right") ||
                          (direction == DirectionType.Vertical && key.KeyPressedName == "Up"))
                 {
-                    if (MaxValue > CurrentValue)
+                    if (editMode)
                     {
-                        isPressed = true;
-                        if (IsDiscrete)
+                        if (MaxValue > CurrentValue)
                         {
-                            float value = CurrentValue + discreteValue;
-                            CurrentValue = value > MaxValue ? MaxValue : value;
-                        }
-                        else
-                        {
-                            CurrentValue += 1;
+                            isPressed = true;
+                            if (IsDiscrete)
+                            {
+                                float value = CurrentValue + discreteValue;
+                                CurrentValue = value > MaxValue ? MaxValue : value;
+                            }
+                            else
+                            {
+                                CurrentValue += 1;
+                            }
                         }
                         return true; // Consumed
                     }
@@ -1454,6 +1505,13 @@ namespace Tizen.NUI.Components
                 isPressed = false;
             }
 
+            if (key.KeyPressedName == "Up" || key.KeyPressedName == "Right" || key.KeyPressedName == "Down" || key.KeyPressedName == "Left")
+            {
+                if (editMode)
+                {
+                    return true;
+                }
+            }
             return false;
         }
 
@@ -1642,6 +1700,10 @@ namespace Tizen.NUI.Components
                 Utility.Dispose(valueIndicatorText);
 
                 this.TouchEvent -= OnTouchEventForTrack;
+
+                recoverIndicator = null;
+                editModeIndicator.Dispose();
+                editModeIndicator = null;
             }
 
             base.Dispose(type);
@@ -1824,7 +1886,7 @@ namespace Tizen.NUI.Components
             isFocused = isFocusedNew;
             isPressed = isPressedNew;
 
-            if(!IsEnabled) // Disabled
+            if (!IsEnabled) // Disabled
             {
                 ControlState = ControlState.Disabled;
 
