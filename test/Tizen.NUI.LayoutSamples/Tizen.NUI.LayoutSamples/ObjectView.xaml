@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<SelectButton x:Class="Tizen.NUI.LayoutSamples.ObjectView"
+    xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:m="clr-namespace:Tizen.NUI.LayoutSamples"
+    WidthSpecification="100"
+    HeightSpecification="100"
+    TextColor="Black"
+    TextAlignment="Center"
+    BackgroundColor="Transparent"
+    BorderlineColor="Black"
+    BorderlineWidth="1"
+    BorderlineOffset="-1"
+    CornerRadius="0">
+    <View.Layout>
+        <m:ObjectLinearLayout/>
+    </View.Layout>
+</SelectButton>
