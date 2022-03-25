@@ -64,17 +64,25 @@ namespace Tizen.NUI.StyleGuide
             };
 
             // CheckBox examples.
-            checkBox = new CheckBox();
+            checkBox = new CheckBox()
+            {
+                WidthSpecification = 100,
+                HeightSpecification = 100,
+            };
             rootContent.Add(checkBox);
 
             disabledCheckBox = new CheckBox()
             {
+                WidthSpecification = 100,
+                HeightSpecification = 100,
                 IsEnabled = false,
             };
             rootContent.Add(disabledCheckBox);
 
             selectedCheckBox = new CheckBox()
             {
+                WidthSpecification = 100,
+                HeightSpecification = 100,
                 IsSelected = true,
             };
             selectedCheckBox.Clicked += (object obj, ClickedEventArgs ev) =>
