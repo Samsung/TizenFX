@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<View x:Class="Tizen.NUI.LayoutSamples.LinearOrientationView"
+    xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <View.Layout>
+        <LinearLayout LinearOrientation="Vertical"/>
+    </View.Layout>
+
+    <TextLabel x:Name="linearOrientText"
+        Text="LinearOrientation"
+        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+
+    <View x:Name="linearOrientOptions"
+        WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+        <View.Layout>
+            <LinearLayout LinearOrientation="Horizontal" CellPadding="20,0"/>
+        </View.Layout>
+
+        <RadioButton x:Name="linearOrientH"
+            Text="Horizontal"
+            SelectedChanged="LinearOrientHSelectedChanged"/>
+
+        <RadioButton x:Name="linearOrientV"
+            Text="Vertical"
+            SelectedChanged="LinearOrientVSelectedChanged"/>
+    </View>
+</View>

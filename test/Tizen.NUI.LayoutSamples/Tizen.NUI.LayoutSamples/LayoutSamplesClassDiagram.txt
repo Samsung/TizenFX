@@ -1,0 +1,101 @@
+@startuml
+
+scale 2
+
+interface IObjectView {
+    +WidthSpecificationView: int
+    +HeightSpecificationView: int
+    +Margin: Extents
+    +Padding: Extents
+    <<event>>
+    +WidthSpecificationChanged: EventHandler<EventArgs>
+    +HeightSpecificationChanged: EventHandler<EventArgs>
+    +MarginSpecificationChanged: EventHandler<EventArgs>
+    +PaddingSpecificationChanged: EventHandler<EventArgs>
+}
+
+class ObjectView {
+}
+
+interface IObjectProperty<T> {
+    +PropertyValue: T
+    +void SetView(IObjectView view)
+}
+
+class ObjectControlView {
+}
+
+class WidthSpecificationView {
+}
+
+class HeightSpecificationView {
+}
+
+class MarginView {
+}
+
+class PaddingView {
+}
+
+IObjectView <|.. ObjectView
+IObjectProperty <|.. ObjectControlView
+IObjectProperty <|.. WidthSpecificationView
+IObjectProperty <|.. HeightSpecificationView
+IObjectProperty <|.. MarginView
+IObjectProperty <|.. PaddingView
+IObjectProperty o-- IObjectView
+ObjectControlView *-- WidthSpecificationView
+ObjectControlView *-- HeightSpecificationView
+ObjectControlView *-- MarginView
+ObjectControlView *-- PaddingView
+
+interface ILayoutProperty<T> {
+    +PropertyValue: T
+    +void SetLayout(IObjectLayout layout)
+}
+
+interface IObjectLayout {
+}
+
+class ObjectLinearLayout {
+    +LinearOrientation: LinearLayout.Orientation
+    +CellPadding: Size2D
+    <<event>>
+    +LinearOrientationChanged: EventHandler<EventArgs>
+    +CellPaddingChanged: EventHandler<EventArgs>
+}
+
+class LinearLayoutControlView {
+}
+
+class LinearOrientationView {
+}
+
+class CellPaddingView {
+}
+
+class HorizontalAlignmentView {
+}
+
+class VerticalAlignmentView {
+}
+
+IObjectLayout <|.. ObjectLinearLayout
+ILayoutProperty <|.. LinearLayoutControlView
+ILayoutProperty <|.. LinearOrientationView
+ILayoutProperty <|.. CellPaddingView
+ILayoutProperty <|.. HorizontalAlignmentView
+ILayoutProperty <|.. VerticalAlignmentView
+ILayoutProperty o-- IObjectLayout
+LinearLayoutControlView *-- LinearOrientationView
+LinearLayoutControlView *-- CellPaddingView
+LinearLayoutControlView *-- HorizontalAlignmentView
+LinearLayoutControlView *-- VerticalAlignmentView
+
+class ControlView {
+}
+
+ControlView *-- LinearLayoutControlView
+ControlView *-- ObjectControlView
+
+@enduml
