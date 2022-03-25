@@ -25,7 +25,7 @@ namespace Tizen.NUI.StyleGuide
     internal class ProgressExample : ContentPage, IExample
     {
         private View rootContent;
-        private Tizen.NUI.Components.Progress bufferingProgress, disabledProgress, determinatedProgress, indeterminatedProgress;
+        private Progress bufferingProgress, disabledProgress, determinatedProgress, indeterminatedProgress;
 
         public void Activate()
         {
@@ -43,7 +43,7 @@ namespace Tizen.NUI.StyleGuide
             // Navigator bar title is added here.
             AppBar = new AppBar()
             {
-                Title = "Slider Default Style",
+                Title = "Progress Default Style",
             };
 
             // Example root content view.
