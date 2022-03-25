@@ -182,7 +182,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 try
                 {
                     type = new XmlType(namespaceuri, name + "Extension", null);
-                    type.GetTypeReference(contextProvider.Context.Module, null);
+                    type.GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, contextProvider.Context.Module, null);
                 }
                 catch (XamlParseException)
                 {

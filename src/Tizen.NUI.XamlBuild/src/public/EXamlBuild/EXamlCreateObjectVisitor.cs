@@ -67,7 +67,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
         public void Visit(ElementNode node, INode parentNode)
         {
-            var typeref = Module.ImportReference(node.XmlType.GetTypeReference(Module, node));
+            var typeref = Module.ImportReference(node.XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, Module, node));
 
             if (IsXaml2009LanguagePrimitive(node))
             {
@@ -143,7 +143,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
                 if (factoryMethodInfo == null)
                 {
-                    var typeExtensionRef = Module.ImportReference(node.XmlType.GetTypeExtensionReference(Module, node));
+                    var typeExtensionRef = Module.ImportReference(node.XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.OnlyGetTypeExtension, Module, node));
                     typeExtensionRef = typeExtensionRef?.ResolveCached();
 
                     if (null != typeExtensionRef)
@@ -286,10 +286,9 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                     if (typeref.FullName == "Tizen.NUI.Xaml.ArrayExtension")
                     {
                         typeref = Module.ImportReference(typeof(ArrayExtension));
-                        typedef = typeref.ResolveCached();
                     }
 
-                    var accordingType = this.GetType().Assembly.GetType(typedef.FullName);
+                    var accordingType = this.GetType().Assembly.GetType(typeref.FullName);
 
                     if (null != accordingType && accordingType != typeof(Binding.Setter))
                     {
@@ -632,7 +631,6 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 case "System.TimeSpan":
                     if (hasValue && TimeSpan.TryParse(valueString, CultureInfo.InvariantCulture, out TimeSpan outspan))
                     {
-
                         ret = outspan;
                     }
                     else
@@ -678,7 +676,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
                     if ("System.Type" == valueType.FullName)
                     {
-                        var typeRef = XmlTypeExtensions.GetTypeReference(valueNode.Value as string, Module, node as BaseNode);
+                        var typeRef = XmlTypeExtensions.GetTypeReference(valueNode.Value as string, Module, node as BaseNode, XmlTypeExtensions.ModeOfGetType.Both);
                         context.Values[node] = new EXamlCreateObject(context, typeRef);
                     }
                     else

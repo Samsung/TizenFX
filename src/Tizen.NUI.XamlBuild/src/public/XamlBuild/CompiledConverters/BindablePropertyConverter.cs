@@ -78,7 +78,7 @@ namespace Tizen.NUI.Xaml.Core.XamlC
             if (typeName == null || propertyName == null)
                 throw new XamlParseException($"Cannot convert \"{value}\" into {typeof(BindableProperty)}", node);
 
-            var typeRef = XmlTypeExtensions.GetTypeReference(typeName, module, node);
+            var typeRef = XmlTypeExtensions.GetTypeReference(typeName, module, node, XmlTypeExtensions.ModeOfGetType.Both);
             if (typeRef == null)
                 throw new XamlParseException($"Can't resolve {typeName}", node);
             bpRef = GetBindablePropertyFieldReference(typeRef, propertyName, module);
