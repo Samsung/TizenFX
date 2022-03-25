@@ -156,7 +156,11 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
                 bool isAdded = false;
 
-                if (CanAddToResourceDictionary(parentVar, parentVar.VariableType, node, node, Context))
+                if (parentVar.VariableType.IsArray)
+                {
+                    isAdded = true;
+                }
+                else if (CanAddToResourceDictionary(parentVar, parentVar.VariableType, node, node, Context))
                 {
                     Context.IL.Emit(Ldloc, parentVar);
                     Context.IL.Append(AddToResourceDictionary(node, node, Context));
@@ -434,7 +438,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
             var dtXType = new XmlType(namespaceuri, dataType, null);
 
-            var tSourceRef = dtXType.GetTypeReference(module, (IXmlLineInfo)node);
+            var tSourceRef = dtXType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, module, (IXmlLineInfo)node);
             if (tSourceRef == null)
                 yield break; //throw
 
@@ -1421,7 +1425,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             {
                 var typename = localname.Substring(0, dotIdx);
                 localname = localname.Substring(dotIdx + 1);
-                elementType = new XmlType(namespaceURI, typename, null).GetTypeReference(context.Body.Method.Module, lineInfo);
+                elementType = new XmlType(namespaceURI, typename, null).GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, context.Body.Method.Module, lineInfo);
                 return true;
             }
             return false;

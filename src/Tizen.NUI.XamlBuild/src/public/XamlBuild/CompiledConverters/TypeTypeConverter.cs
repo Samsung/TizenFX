@@ -47,7 +47,7 @@ namespace Tizen.NUI.Xaml.Core.XamlC
             else
                 xmlType = new XmlType(node.NamespaceResolver.LookupNamespace(""), split[0], null);
 
-            var typeRef = xmlType.GetTypeReference(module, (IXmlLineInfo)node, true);
+            var typeRef = xmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, module, (IXmlLineInfo)node, true);
             if (typeRef == null)
                 goto error;
 

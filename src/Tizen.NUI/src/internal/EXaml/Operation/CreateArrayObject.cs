@@ -42,8 +42,8 @@ namespace Tizen.NUI.EXaml
 
         public void Do()
         {
-            var type = globalDataList.GatheredTypes[typeIndex];
-            var array = Array.CreateInstance(type, null == items ? 0 : items.Count);
+            var type = typeIndex < 0 ? GetBaseType.GetBaseTypeByIndex(typeIndex) : globalDataList.GatheredTypes[typeIndex];
+            IList array = Array.CreateInstance(type, null == items ? 0 : items.Count);
 
             if (null != items)
             {
@@ -51,7 +51,11 @@ namespace Tizen.NUI.EXaml
                 {
                     if (items[i] is Instance instance)
                     {
-                        ((IList)array)[i] = globalDataList.GatheredInstances[instance.Index];
+                        array[i] = globalDataList.GatheredInstances[instance.Index];
+                    }
+                    else
+                    {
+                        array[i] = items[i];
                     }
                 }
             }
