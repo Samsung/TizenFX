@@ -65,10 +65,15 @@ namespace Tizen.NUI.EXaml.Build.Tasks
         public bool IsResourceDictionary(ElementNode node)
         {
             var parentVar = Context.Values[node] as EXamlCreateObject;
-            return null != parentVar
-                    &&
-                    (parentVar.GetType().FullName == "Tizen.NUI.Binding.ResourceDictionary"
-                    || parentVar.GetType().Resolve().BaseType?.FullName == "Tizen.NUI.Binding.ResourceDictionary");
+
+            if (null != parentVar && !parentVar.GetType().IsLocalType())
+            {
+                return parentVar.GetType().FullName == "Tizen.NUI.Binding.ResourceDictionary"
+                       ||
+                       parentVar.GetType().Resolve().BaseType?.FullName == "Tizen.NUI.Binding.ResourceDictionary";
+            }
+
+            return false;
         }
 
         ModuleDefinition Module { get; }
@@ -286,15 +291,22 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
         internal static string GetContentProperty(TypeReference typeRef)
         {
-            var typeDef = typeRef.ResolveCached();
-            var attributes = typeDef.CustomAttributes;
-            var attr =
-                attributes.FirstOrDefault(cad => ContentPropertyAttribute.ContentPropertyTypes.Contains(cad.AttributeType.FullName));
-            if (attr != null)
-                return attr.ConstructorArguments[0].Value as string;
-            if (typeDef.BaseType == null)
-                return null;
-            return GetContentProperty(typeDef.BaseType);
+            if (typeRef.IsLocalType())
+            {
+                return typeRef.GetContentPropertyNameOfLocalType();
+            }
+            else
+            {
+                var typeDef = typeRef.ResolveCached();
+                var attributes = typeDef.CustomAttributes;
+                var attr =
+                    attributes.FirstOrDefault(cad => ContentPropertyAttribute.ContentPropertyTypes.Contains(cad.AttributeType.FullName));
+                if (attr != null)
+                    return attr.ConstructorArguments[0].Value as string;
+                if (typeDef.BaseType == null)
+                    return null;
+                return GetContentProperty(typeDef.BaseType);
+            }
         }
 
         public static object ProvideValue(EXamlCreateObject instance, EXamlContext context,
@@ -315,9 +327,10 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             else if (instance.GetType().ImplementsGenericInterface("Tizen.NUI.Xaml.IMarkupExtension`1", out markupExtension, out genericArguments))
             {
                 var nodeValue = context.Values[node] as EXamlCreateObject;
-                if (nodeValue?.Instance is BindingExtension)
+                if (nodeValue?.Instance is BindingExtension bindingExtension)
                 {
-                    var newValue = (nodeValue.Instance as BindingExtension).ProvideValue(context, module);
+                    bindingExtension.XmlType = new XmlType(node.XmlType.NamespaceUri, "Binding", node.XmlType.TypeArguments);
+                    var newValue = bindingExtension.ProvideValue(context, module);
                     return newValue;
                 }
                 else if (nodeValue?.Instance is DynamicResourceExtension)
@@ -436,11 +449,41 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             return properties;
         }
 
+        private static bool SetPropertyValueToLocalType(EXamlCreateObject parent, XmlName propertyName, INode valueNode, EXamlContext context)
+        {
+            if (parent.Instance is Tizen.NUI.Xaml.Build.Tasks.ArrayExtension arrayExtension)
+            {
+                if ("Type" == propertyName.LocalName)
+                {
+                    var value = context.Values[valueNode] as EXamlCreateObject;
+                    if (null != value)
+                    {
+                        arrayExtension.Type = value.Instance as TypeReference;
+                        parent.IsValid = false;
+                    }
+                }
+                else if ("Items" == propertyName.LocalName)
+                {
+                    arrayExtension.Items = context.Values[valueNode];
+                    parent.IsValid = false;
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
         public static void SetPropertyValue(EXamlCreateObject parent, XmlName propertyName, INode valueNode, EXamlContext context, IXmlLineInfo iXmlLineInfo)
         {
             var module = context.Module;
             var localName = propertyName.LocalName;
             bool attached;
+
+            if (SetPropertyValueToLocalType(parent, propertyName, valueNode, context))
+            {
+                return;
+            }
 
             var bpRef = GetBindablePropertyReference(parent, propertyName.NamespaceURI, ref localName, out attached, context, iXmlLineInfo);
 
@@ -667,7 +710,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             if (implicitOperator != null)
                 return true;
 
-            return valueInstance.GetType().InheritsFromOrImplements(XamlTask.bindingNameSpace + ".BindingBase");
+            return valueInstance.GetType().InheritsFromOrImplements(module.ImportReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindingBase")));
         }
 
         static void SetBinding(EXamlCreateObject parent, MemberReference bpRef, IElementNode elementNode, IXmlLineInfo iXmlLineInfo, EXamlContext context)
@@ -813,6 +856,11 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 var realTypeFromMarkupExtension = valueTypeRef.GetRealTypeIfIsMarkupExtension();
 
                 if (true == realTypeFromMarkupExtension?.InheritsFromOrImplements(propertyType))
+                {
+                    return true;
+                }
+
+                if ("System.Type" == valueTypeRef.FullName && "Mono.Cecil.TypeReference" == propertyType.FullName)
                 {
                     return true;
                 }
@@ -967,6 +1015,11 @@ namespace Tizen.NUI.EXaml.Build.Tasks
         static Dictionary<EXamlCreateObject, IList<string>> resourceNamesInUse = new Dictionary<EXamlCreateObject, IList<string>>();
         static bool CanAddToResourceDictionary(EXamlCreateObject parent, TypeReference collectionType, IElementNode node, IXmlLineInfo lineInfo, EXamlContext context)
         {
+            if (collectionType.IsLocalType())
+            {
+                return false;
+            }
+
             if (   collectionType.FullName != "Tizen.NUI.Binding.ResourceDictionary"
                 && collectionType.ResolveCached().BaseType?.FullName != "Tizen.NUI.Binding.ResourceDictionary")
                 return false;
@@ -1087,7 +1140,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             {
                 var typename = localname.Substring(0, dotIdx);
                 localname = localname.Substring(dotIdx + 1);
-                elementType = new XmlType(namespaceURI, typename, null).GetTypeReference(context.Module, lineInfo);
+                elementType = new XmlType(namespaceURI, typename, null).GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, context.Module, lineInfo);
                 return true;
             }
             return false;
@@ -1096,7 +1149,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
         static void SetDataTemplate(ElementNode parentNode, ElementNode rootnode, EXamlContext parentContext,
             IXmlLineInfo xmlLineInfo)
         {
-            var typeref = parentContext.Module.ImportReference(rootnode.XmlType.GetTypeReference(parentContext.Module, rootnode));
+            var typeref = parentContext.Module.ImportReference(rootnode.XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, parentContext.Module, rootnode));
             var visitorContext = new EXamlContext(typeref.ResolveCached(), typeref.Module);
 
             rootnode.Accept(new XamlNodeVisitor((node, parent) => node.Parent = parent), null);
@@ -1110,7 +1163,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
             var eXamlString = visitorContext.GenerateEXamlString();
 
-            var parentTyperef = parentContext.Module.ImportReference(parentNode.XmlType.GetTypeReference(parentContext.Module, parentNode));
+            var parentTyperef = parentContext.Module.ImportReference(parentNode.XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, parentContext.Module, parentNode));
 
             if (parentContext.Values[parentNode] is EXamlCreateObject eXamlObject)
             {

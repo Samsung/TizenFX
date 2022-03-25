@@ -240,6 +240,11 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             {
                 return true;
             }
+            else if (typeRef.IsLocalType())
+            {
+                //Avoid to resolve the type reference of XamlBuild
+                return false;
+            }
             else
             {
                 var typeDef = typeRef.ResolveCached();
@@ -376,6 +381,11 @@ namespace Tizen.NUI.Xaml.Build.Tasks
         public static IEnumerable<Tuple<MethodDefinition, TypeReference>> GetMethods(this TypeReference typeRef,
             Func<MethodDefinition, TypeReference, bool> predicate, ModuleDefinition module)
         {
+            if (typeRef.IsLocalType())
+            {
+                yield break;
+            }
+
             var typeDef = typeRef.ResolveCached();
             foreach (var method in typeDef.Methods.Where(md => predicate(md, typeRef)))
                 yield return new Tuple<MethodDefinition, TypeReference>(method, typeRef);
@@ -457,6 +467,26 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                     args.Add(genericdeclType.GenericArguments[(genericself.GenericArguments[i] as GenericParameter).Position]);
             }
             return self.GetElementType().MakeGenericInstanceType(args.ToArray());
+        }
+
+        public static string GetContentPropertyNameOfLocalType(this TypeReference typeReference)
+        {
+            if ("Tizen.NUI.Xaml.Build.Tasks.ArrayExtension" == typeReference.FullName)
+            {
+                return "Items";
+            }
+
+            return null;
+        }
+
+        public static bool IsLocalType(this TypeReference typeReference)
+        {
+            if ("Tizen.NUI.Xaml.Build.Tasks.ArrayExtension" == typeReference.FullName)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         static Dictionary<TypeReference, TypeDefinition> resolves = new Dictionary<TypeReference, TypeDefinition>();
