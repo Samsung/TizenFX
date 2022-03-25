@@ -29,6 +29,17 @@ namespace Tizen.NUI.EXaml
             {
                 return typeReference1 == typeReference2;
             }
+            else if (typeReference1.IsArray || typeReference2.IsArray)
+            {
+                if (typeReference1.IsArray != typeReference2.IsArray)
+                {
+                    return false;
+                }
+                else
+                {
+                    return typeReference1.Resolve() == typeReference2.Resolve();
+                }
+            }
             else if (typeReference1.Resolve() != typeReference2.Resolve())
             {
                 return false;
@@ -62,7 +73,6 @@ namespace Tizen.NUI.EXaml
                     return false;
                 }
             }
-
             else
             {
                 return true;

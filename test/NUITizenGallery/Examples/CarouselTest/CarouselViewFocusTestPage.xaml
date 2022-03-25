@@ -15,7 +15,7 @@
         <ScrollableBase x:Name="Scroller"
                           ScrollingDirection="Horizontal"
                           WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
-                          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">>
+                          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
             <ScrollableBase.Layout>
               <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center" CellPadding="120,0"/>
             </ScrollableBase.Layout>

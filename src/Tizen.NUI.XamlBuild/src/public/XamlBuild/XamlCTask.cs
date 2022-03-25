@@ -509,7 +509,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
                 if (null != e.StackTrace)
                 {
-                    LoggingHelper.LogMessage(Low, e.StackTrace);
+                    LoggingHelper.LogError(e.StackTrace);
                 }
 
                 return false;

@@ -65,7 +65,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
         public void Visit(ElementNode node, INode parentNode)
         {
-            var typeref = Module.ImportReference(node.XmlType.GetTypeReference(Module, node));
+            var typeref = Module.ImportReference(node.XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, Module, node));
             TypeDefinition typedef = typeref.ResolveCached();
 
             if (IsXaml2009LanguagePrimitive(node))
@@ -138,7 +138,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                                                                               md.MatchXArguments(node, typeref, Module, Context));
                 if (factoryMethodInfo == null)
                 {
-                    var typeExtensionRef = Module.ImportReference(node.XmlType.GetTypeExtensionReference(Module, node));
+                    var typeExtensionRef = Module.ImportReference(node.XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.OnlyGetTypeExtension, Module, node));
                     typeExtensionRef = typeExtensionRef?.ResolveCached();
 
                     if (null != typeExtensionRef?.Resolve())
@@ -358,7 +358,6 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                     foreach (var prop in node.Properties)
                         if (!node.SkipProperties.Contains(prop.Key))
                             node.SkipProperties.Add(prop.Key);
-                    node.CollectionItems.Clear();
 
                     return;
                 }
