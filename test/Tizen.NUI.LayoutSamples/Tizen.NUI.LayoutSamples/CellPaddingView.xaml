@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<View x:Class="Tizen.NUI.LayoutSamples.CellPaddingView"
+    xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+    <View.Layout>
+        <LinearLayout LinearOrientation="Vertical"/>
+    </View.Layout>
+
+    <TextLabel x:Name="cellPaddingText"
+        Text="CellPadding"
+        WidthSpecification="{Static LayoutParamPolicies.MatchParent}"/>
+
+    <View x:Name="cellPaddingValue"
+        WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
+
+        <View.Layout>
+            <LinearLayout LinearOrientation="Horizontal" CellPadding="20,0"/>
+        </View.Layout>
+
+        <TextField x:Name="cellPaddingW"
+            Text="0"
+            WidthSpecification="100"
+            BorderlineColor="Black"
+            BorderlineOffset="-1"
+            BorderlineWidth="1"
+            TextChanged="CellPaddingWTextChanged"/>
+
+        <TextField x:Name="cellPaddingH"
+            Text="0"
+            WidthSpecification="100"
+            BorderlineColor="Black"
+            BorderlineOffset="-1"
+            BorderlineWidth="1"
+            TextChanged="CellPaddingHTextChanged"/>
+    </View>
+</View>
