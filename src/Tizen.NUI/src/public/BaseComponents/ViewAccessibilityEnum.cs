@@ -25,6 +25,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// Accessibility interface.
     /// </summary>
+    // Values are from Dali::Accessibility::AtspiInterface
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum AccessibilityInterface
     {
@@ -37,17 +38,17 @@ namespace Tizen.NUI.BaseComponents
         /// Accessibility interface which can store numeric value
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Value = 1,
+        Value = 26,
         /// <summary>
         /// Accessibility interface which can store editable texts
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        EditableText = 2,
+        EditableText = 9,
         /// <summary>
         /// Accessibility interface which can store a set of selected items
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Selection = 3,
+        Selection = 21,
     }
 
     /// <summary>
@@ -1454,5 +1455,24 @@ namespace Tizen.NUI.BaseComponents
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Paragraph,
+    }
+
+    /// <summary>
+    /// Accessibility coordinate type describing if coordinates are relative to screen or window
+    /// </summary>
+    /// <seealso cref="View.AccessibilityGetRangeExtents" />
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum AccessibilityCoordinateType
+    {
+        /// <summary>
+        /// Specifies xy coordinates relative to the screen.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Screen,
+        /// <summary>
+        /// Specifies xy coordinates relative to the component's top-level window.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Window,
     }
 }

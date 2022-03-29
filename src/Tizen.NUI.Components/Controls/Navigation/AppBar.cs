@@ -55,6 +55,8 @@ namespace Tizen.NUI.Components
         public AppBar() : base()
         {
             Initialize();
+            //to use GetNextFocusableView
+            SetKeyboardNavigationSupport(true);
         }
 
         /// <summary>
@@ -65,6 +67,8 @@ namespace Tizen.NUI.Components
         public AppBar(string style) : base(style)
         {
             Initialize();
+            //to use GetNextFocusableView
+            SetKeyboardNavigationSupport(true);
         }
 
         /// <summary>
@@ -75,6 +79,8 @@ namespace Tizen.NUI.Components
         public AppBar(AppBarStyle appBarStyle) : base(appBarStyle)
         {
             Initialize();
+            //to use GetNextFocusableView
+            SetKeyboardNavigationSupport(true);
         }
 
         /// <summary>
@@ -197,7 +203,7 @@ namespace Tizen.NUI.Components
                 {
                     return;
                 }
-
+                navigationContent.Focusable = true;
                 ResetContent();
             }
         }
@@ -287,6 +293,10 @@ namespace Tizen.NUI.Components
                 if (titleContent is TextLabel textLabel)
                 {
                     textLabel.Text = Title;
+                }
+                else
+                {
+                    titleContent.Focusable = true;
                 }
 
                 ResetContent();
@@ -604,7 +614,7 @@ namespace Tizen.NUI.Components
 
             if (actionViewStyle == null) actionViewStyle = (ViewStyle)appBarStyle.ActionView?.Clone();
             else actionViewStyle.MergeDirectly(appBarStyle.ActionView);
-            
+
 
             styleApplied = true;
 
@@ -749,5 +759,105 @@ namespace Tizen.NUI.Components
                 }
             }
         }
+
+        /// <summary>
+        /// ToDo : only key navigation is enabled, but value editing is not yet added. for example, after enter key and up/down key the value need be changed.
+        /// </summary>
+        /// <param name="currentFocusedView"></param>
+        /// <param name="direction"></param>
+        /// <param name="loopEnabled"></param>
+        /// <returns></returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
+        {
+            if (currentFocusedView == null)
+            {
+                if (navigationContent != null && navigationContent.Focusable)
+                {
+                    return navigationContent;
+                }
+                else if (titleContent != null && titleContent.Focusable)
+                {
+                    return titleContent;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            else if (currentFocusedView == this)
+            {
+                return null;
+            }
+            else if (currentFocusedView == navigationContent)
+            {
+                if (direction == View.FocusDirection.Up)
+                {
+                    return null;
+                }
+                else if (direction == View.FocusDirection.Right)
+                {
+                    if (titleContent != null && titleContent.Focusable)
+                    {
+                        return titleContent;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else if (direction == View.FocusDirection.Down)
+                {
+                    return null;
+                }
+                else if (direction == View.FocusDirection.Left)
+                {
+                    return null;
+                }
+            }
+            else if (currentFocusedView == titleContent)
+            {
+                if (direction == View.FocusDirection.Up)
+                {
+                    return null;
+                }
+                else if (direction == View.FocusDirection.Right)
+                {
+                    return null;
+                }
+                else if (direction == View.FocusDirection.Down)
+                {
+                    return null;
+                }
+                else if (direction == View.FocusDirection.Left)
+                {
+                    if (navigationContent != null && navigationContent.Focusable)
+                    {
+                        return navigationContent;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            return null;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal override View PassFocusableViewInsideIfNeeded()
+        {
+            if (navigationContent != null && navigationContent.Focusable)
+            {
+                return navigationContent;
+            }
+            else if (titleContent != null && titleContent.Focusable)
+            {
+                return titleContent;
+            }
+            return this;
+        }
+
     }
 }

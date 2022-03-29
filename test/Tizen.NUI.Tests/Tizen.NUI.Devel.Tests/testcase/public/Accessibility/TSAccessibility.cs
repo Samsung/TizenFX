@@ -28,24 +28,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Accessibility constructor.")]
-        [Property("SPEC", "Tizen.NUI.Accessibility.Accessibility C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AccessibilityConstructor()
-        {
-            tlog.Debug(tag, $"AccessibilityConstructor START");
-
-            var testingTarget = Accessibility.Accessibility.Instance; ;
-            Assert.IsNotNull(testingTarget, "Can't create success object Accessibility");
-            Assert.IsInstanceOf<Accessibility.Accessibility>(testingTarget, "Should be an instance of Accessibility type.");
-
-            tlog.Debug(tag, $"AccessibilityConstructor END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Accessibility GetStatus.")]
         [Property("SPEC", "Tizen.NUI.Accessibility.GetStatus M")]
         [Property("SPEC_URL", "-")]
@@ -80,11 +62,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"AccessibilitySay START");
 
-            var testingTarget = Accessibility.Accessibility.Instance; ;
-            Assert.IsNotNull(testingTarget, "Can't create success object Accessibility");
-            Assert.IsInstanceOf<Accessibility.Accessibility>(testingTarget, "Should be an instance of Accessibility type.");
-
-            var result = testingTarget.Say("Hi,Bixby! Please help to order a sandwich.", true);
+            var result = Accessibility.Accessibility.Say("Hi,Bixby! Please help to order a sandwich.", true);
             tlog.Debug(tag, "Status : " + result);
 
             tlog.Debug(tag, $"AccessibilitySay END (OK)");
@@ -101,13 +79,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"AccessibilityPauseResume START");
 
-            var testingTarget = Accessibility.Accessibility.Instance; ;
-            Assert.IsNotNull(testingTarget, "Can't create success object Accessibility");
-            Assert.IsInstanceOf<Accessibility.Accessibility>(testingTarget, "Should be an instance of Accessibility type.");
-
             try
             {
-                testingTarget.PauseResume(true);
+                Accessibility.Accessibility.PauseResume(true);
             }
             catch (Exception e)
             {
@@ -129,13 +103,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"AccessibilityStopReading START");
 
-            var testingTarget = Accessibility.Accessibility.Instance; ;
-            Assert.IsNotNull(testingTarget, "Can't create success object Accessibility");
-            Assert.IsInstanceOf<Accessibility.Accessibility>(testingTarget, "Should be an instance of Accessibility type.");
-
             try
             {
-                testingTarget.StopReading(true);
+                Accessibility.Accessibility.StopReading(true);
             }
             catch (Exception e)
             {
@@ -157,13 +127,9 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"AccessibilitySuppressScreenReader START");
 
-            var testingTarget = Accessibility.Accessibility.Instance; ;
-            Assert.IsNotNull(testingTarget, "Can't create success object Accessibility");
-            Assert.IsInstanceOf<Accessibility.Accessibility>(testingTarget, "Should be an instance of Accessibility type.");
-
             try
             {
-                testingTarget.SuppressScreenReader(false);
+                Accessibility.Accessibility.SuppressScreenReader(false);
             }
             catch (Exception e)
             {
@@ -233,10 +199,6 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"AccessibilitySetHighlightFrameView START");
 
-            var testingTarget = Accessibility.Accessibility.Instance; ;
-            Assert.IsNotNull(testingTarget, "Can't create success object Accessibility");
-            Assert.IsInstanceOf<Accessibility.Accessibility>(testingTarget, "Should be an instance of Accessibility type.");
-
             using (View view = new View())
             {
                 view.Size = new Size(100, 50);
@@ -246,11 +208,11 @@ namespace Tizen.NUI.Devel.Tests
 
                 try
                 {
-                    testingTarget.SetHighlightFrameView(view);
+                    Accessibility.Accessibility.SetHighlightFrameView(view);
 
-                    var result = testingTarget.GetHighlightFrameView();
+                    var result = Accessibility.Accessibility.GetHighlightFrameView();
                     tlog.Debug(tag, "HighlightFrameView : " + result);
-                    tlog.Debug(tag, "ClearCurrentlyHighlightedView : " + testingTarget.ClearCurrentlyHighlightedView());
+                    tlog.Debug(tag, "ClearCurrentlyHighlightedView : " + Accessibility.Accessibility.ClearCurrentlyHighlightedView());
                 }
                 catch (Exception e)
                 {
@@ -275,12 +237,8 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"AccessibilitySayFinished START");
 
-            var testingTarget = Accessibility.Accessibility.Instance;
-            Assert.IsNotNull(testingTarget, "Can't create success object Accessibility");
-            Assert.IsInstanceOf<Accessibility.Accessibility>(testingTarget, "Should be an instance of Accessibility type.");
-
-            testingTarget.SayFinished += OnSayFinished;
-            testingTarget.SayFinished -= OnSayFinished;
+            Accessibility.Accessibility.SayFinished += OnSayFinished;
+            Accessibility.Accessibility.SayFinished -= OnSayFinished;
 
             tlog.Debug(tag, $"AccessibilitySayFinished END (OK)");
         }

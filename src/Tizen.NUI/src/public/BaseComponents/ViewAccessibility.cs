@@ -229,7 +229,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                return (this == Accessibility.Accessibility.Instance.GetCurrentlyHighlightedView());
+                return (this == Accessibility.Accessibility.GetCurrentlyHighlightedView());
             }
         }
 
@@ -463,8 +463,9 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetAccessibilityConstructor(Role role, AccessibilityInterface accessibilityInterface = AccessibilityInterface.None)
         {
-            Interop.ControlDevel.DaliToolkitDevelControlSetAccessibilityConstructor(SwigCPtr, (int)role, (int)accessibilityInterface);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            // We have to store the interface flags until we remove SetAccessibilityConstructor and switch to native C# interfaces
+            AtspiInterfaceFlags = (1U << (int)accessibilityInterface);
+            AccessibilityRole = role;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -653,6 +654,12 @@ namespace Tizen.NUI.BaseComponents
         protected virtual bool AccessibilitySetSelection(int selectionNumber, int startOffset, int endOffset)
         {
             return false;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual Rectangle AccessibilityGetRangeExtents(int startOffset, int endOffset, AccessibilityCoordinateType coordType)
+        {
+            return new Rectangle(0, 0, 0, 0);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]

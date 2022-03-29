@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,7 +42,7 @@ namespace Tizen.NUI.Xaml
 
         public void Visit(ValueNode node, INode parentNode)
         {
-            if (!typeof(ResourceDictionary).IsAssignableFrom(Context.Types[((IElementNode)parentNode)]))
+			if (!Context.Types.TryGetValue((IElementNode)parentNode, out var type) || !typeof(ResourceDictionary).IsAssignableFrom(type))
                 return;
 
             node.Accept(new ApplyPropertiesVisitor(Context, stopOnResourceDictionary: false), parentNode);
@@ -54,13 +54,14 @@ namespace Tizen.NUI.Xaml
 
         public void Visit(ElementNode node, INode parentNode)
         {
-            var value = Values[node];
+            if (!Values.TryGetValue(node, out var value) && Context.ExceptionHandler != null)
+				return;
             XmlName propertyName;
             //Set RD to VE
             if (typeof(ResourceDictionary).IsAssignableFrom(Context.Types[node]) && ApplyPropertiesVisitor.TryGetPropertyName(node, parentNode, out propertyName))
             {
-                if ((propertyName.LocalName == "Resources" ||
-                     propertyName.LocalName.EndsWith(".Resources", StringComparison.Ordinal)) && value is ResourceDictionary)
+                if ((propertyName.LocalName == "XamlResources" ||
+                     propertyName.LocalName.EndsWith(".XamlResources", StringComparison.Ordinal)) && value is ResourceDictionary)
                 {
                     var source = Values[parentNode];
                     ApplyPropertiesVisitor.SetPropertyValue(source, propertyName, value, Context.RootElement, node, Context, node);
@@ -70,7 +71,8 @@ namespace Tizen.NUI.Xaml
 
             //Only proceed further if the node is a keyless RD
             if (parentNode is IElementNode
-                && typeof(ResourceDictionary).IsAssignableFrom(Context.Types[((IElementNode)parentNode)])
+				&& Context.Types.TryGetValue((IElementNode)parentNode, out var parentType)
+				&& typeof(ResourceDictionary).IsAssignableFrom(parentType)
                 && !((IElementNode)parentNode).Properties.ContainsKey(XmlName.xKey))
                 node.Accept(new ApplyPropertiesVisitor(Context, stopOnResourceDictionary: false), parentNode);
             else if (parentNode is ListNode
@@ -93,7 +95,8 @@ namespace Tizen.NUI.Xaml
             if (enode is null)
                 return false;
             if (parentNode is IElementNode
-                && typeof(ResourceDictionary).IsAssignableFrom(Context.Types[((IElementNode)parentNode)])
+				&& Context.Types.TryGetValue((IElementNode)parentNode, out var parentType)
+				&& typeof(ResourceDictionary).IsAssignableFrom(parentType)
                 && !((IElementNode)parentNode).Properties.ContainsKey(XmlName.xKey))
                 return true;
             if (parentNode is ListNode

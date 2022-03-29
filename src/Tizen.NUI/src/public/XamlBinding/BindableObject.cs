@@ -1,5 +1,5 @@
-﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,36 +37,8 @@ namespace Tizen.NUI.Binding
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BindingContextProperty =
-            BindableProperty.Create(nameof(BindingContext), typeof(object), typeof(BindableObject), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
-            {
-                var bindableObject = (BindableObject)bindable;
-                if (newValue != null)
-                {
-                    bindableObject.bindingContext = newValue;
-                    bindableObject.FlushBinding();
-
-                    if (newValue is BindableObject targetBindableObject)
-                    {
-                        targetBindableObject.IsBinded = true;
-                    }
-                }
-            }),
-            defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
-            {
-                if (null != bindable.bindingContext)
-                {
-                    return bindable.bindingContext;
-                }
-
-                if (bindable is Container container)
-                {
-                    return container.Parent?.BindingContext;
-                }
-                else
-                {
-                    return null;
-                }
-            }));
+            BindableProperty.Create(nameof(BindingContext), typeof(object), typeof(BindableObject),  default(object), BindingMode.OneWay, null, BindingContextPropertyChanged,
+            null, null, BindingContextPropertyBindingChanging);
 
         readonly Dictionary<BindableProperty, BindablePropertyContext> properties = new Dictionary<BindableProperty, BindablePropertyContext>(4);
 
@@ -122,13 +94,13 @@ namespace Tizen.NUI.Binding
                 {
                     nameToBindableProperty2.TryGetValue(keyValuePair.Key, out var bindableProperty);
 
-                    if (null != bindableProperty && (SettedPropeties.Contains(bindableProperty) || other.SettedPropeties.Contains(bindableProperty)))
+                    if (null != bindableProperty && (ChangedPropertiesSet.Contains(bindableProperty) || other.ChangedPropertiesSet.Contains(bindableProperty)))
                     {
                         object value = other.GetValue(bindableProperty);
 
                         if (null != value)
                         {
-                            SetValue(keyValuePair.Value, value);
+                            InternalSetValue(keyValuePair.Value, value);
                         }
                     }
                 }
@@ -296,6 +268,12 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetValue(BindableProperty property, object value)
         {
+            InternalSetValue(property, value);
+            ChangedPropertiesSetExcludingStyle.Add(property);
+        }
+
+        internal void InternalSetValue(BindableProperty property, object value)
+        {
             if (true == IsBinded)
             {
                 SetValue(property, value, false, true);
@@ -328,20 +306,34 @@ namespace Tizen.NUI.Binding
                 OnPropertyChangedWithData(property);
             }
 
-            SettedPropeties.Add(property);
+            ChangedPropertiesSet.Add(property);
         }
 
-        private HashSet<BindableProperty> settedPropeties;
-        private HashSet<BindableProperty> SettedPropeties
+        private HashSet<BindableProperty> changedPropertiesSet;
+        private HashSet<BindableProperty> ChangedPropertiesSet
         {
             get
             {
-                if (null == settedPropeties)
+                if (null == changedPropertiesSet)
                 {
-                    settedPropeties = new HashSet<BindableProperty>();
+                    changedPropertiesSet = new HashSet<BindableProperty>();
                 }
 
-                return settedPropeties;
+                return changedPropertiesSet;
+            }
+        }
+
+        private HashSet<BindableProperty> changedPropertiesSetExcludingStyle;
+        internal protected HashSet<BindableProperty> ChangedPropertiesSetExcludingStyle
+        {
+            get
+            {
+                if (null == changedPropertiesSetExcludingStyle)
+                {
+                    changedPropertiesSetExcludingStyle = new HashSet<BindableProperty>();
+                }
+
+                return changedPropertiesSetExcludingStyle;
             }
         }
 
@@ -350,7 +342,7 @@ namespace Tizen.NUI.Binding
             if (property == null)
                 throw new ArgumentNullException(nameof(property));
 
-            if (true == isCreateByXaml)
+            if (true == IsBinded)
             {
                 if (property.IsReadOnly)
                     throw new InvalidOperationException(string.Format("The BindableProperty \"{0}\" is readonly.", property.PropertyName));
@@ -814,6 +806,18 @@ namespace Tizen.NUI.Binding
             set;
         } = false;
 
+        static void BindingContextPropertyChanged(BindableObject bindable, object oldvalue, object newvalue)
+        {
+            bindable.inheritedContext = null;
+            bindable.ApplyBindings(skipBindingContext: true, fromBindingContextChanged: true);
+            bindable.OnBindingContextChanged();
+
+            if (newvalue is BindableObject targetBindableObject)
+            {
+                targetBindableObject.IsBinded = true;
+            }
+        }
+
         static void BindingContextPropertyBindingChanging(BindableObject bindable, BindingBase oldBindingBase, BindingBase newBindingBase)
         {
             object context = bindable.inheritedContext;
@@ -1095,20 +1099,6 @@ namespace Tizen.NUI.Binding
             }
         }
 
-        internal void AddChildBindableObject(BindableObject child)
-        {
-            if (null != child)
-            {
-                children.Add(child);
-                child.FlushBinding();
-            }
-        }
-
-        internal void RemoveChildBindableObject(BindableObject child)
-        {
-            children.Remove(child);
-        }
-
         internal void ReplaceBindingElement(Dictionary<string, object> oldNameScope, Dictionary<string, object> newNameScope)
         {
             var xElementToNameOfOld = new Dictionary<object, string>();
@@ -1156,19 +1146,6 @@ namespace Tizen.NUI.Binding
                 {
                     property.Value.Binding.Unapply();
                 }
-            }
-        }
-
-        private List<BindableObject> children = new List<BindableObject>();
-
-        private void FlushBinding()
-        {
-            ApplyBindings(skipBindingContext: true, fromBindingContextChanged: true);
-            OnBindingContextChanged();
-
-            foreach (var child in children)
-            {
-                child.FlushBinding();
             }
         }
     }

@@ -334,5 +334,17 @@ namespace Tizen.NUI.Components
             // If the OnThemeChangedEvent is not implemented, ApplyStyle()
             base.OnThemeChanged(sender, e);
         }
+
+        /// <summary>
+        /// when the derived class of Control is used as container and itself is not Focusable, this can be used when calling SetCurrentFocusView()
+        /// this can return Focusable View inside of itself. this can be utilized when default algorithm is enabled and when the case of setting first key focus in container.
+        /// </summary>
+        /// <returns>Focusable View inside of container</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal virtual View PassFocusableViewInsideIfNeeded()
+        {
+            return this;
+        }
+
     }
 }

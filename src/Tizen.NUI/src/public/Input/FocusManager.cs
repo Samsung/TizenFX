@@ -72,6 +72,8 @@ namespace Tizen.NUI
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void FocusedViewEnterKeyEventCallback2(IntPtr view);
 
+        private View internalFocusIndicator = null;
+
         /// <summary>
         /// PreFocusChange will be triggered before the focus is going to be changed.<br />
         /// The FocusManager makes the best guess for which view to focus towards the given direction, but applications might want to change that.<br />
@@ -234,6 +236,7 @@ namespace Tizen.NUI
             /// <since_tizen> 3 </since_tizen>
             View GetNextFocusableView(View current, View proposed, View.FocusDirection direction);
         }
+
 
         /// <summary>
         /// Gets or sets the status of whether the focus movement should be looped within the same focus group.<br />
@@ -474,14 +477,15 @@ namespace Tizen.NUI
         {
             Interop.FocusManager.SetFocusIndicatorActor(SwigCPtr, View.getCPtr(indicator));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            internalFocusIndicator = indicator;
         }
 
         internal View GetFocusIndicatorView()
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.FocusManager.GetFocusIndicatorActor(SwigCPtr);
-            View ret = this.GetInstanceSafely<View>(cPtr);
-            return ret;
+            internalFocusIndicator = this.GetInstanceSafely<View>(cPtr);
+            return internalFocusIndicator;
         }
 
         internal PreFocusChangeSignal PreFocusChangeSignal()
@@ -808,14 +812,21 @@ namespace Tizen.NUI
                 this.customFocusAlgorithm = customFocusAlgorithm;
             }
 
-            public override View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
+            public override View GetNextFocusableView(View current, View proposed, View.FocusDirection direction, string deviceName)
             {
                 if (customFocusAlgorithm == null)
                 {
                     Tizen.Log.Error("NUI", $"[ERROR] User defined ICustomFocusAlgorithm interface class becomes unreachable. Null will be proposed for next focusing!");
                     return null;
                 }
-                return customFocusAlgorithm.GetNextFocusableView(current, proposed, direction);
+                if (customFocusAlgorithm is ICustomAwareDeviceFocusAlgorithm deviceAwared)
+                {
+                    return deviceAwared.GetNextFocusableView(current, proposed, direction, deviceName);
+                }
+                else
+                {
+                    return customFocusAlgorithm.GetNextFocusableView(current, proposed, direction);
+                }
             }
         }
     }

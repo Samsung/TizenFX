@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -157,7 +157,10 @@ namespace Tizen.NUI.Components
                     return true;
                 case PointStateType.Up:
                     {
-                        bool clicked = isPressed && IsEnabled;
+                        if (!isPressed)
+                        {
+                            return false;
+                        }
 
                         isPressed = false;
 
@@ -172,11 +175,8 @@ namespace Tizen.NUI.Components
                             UpdateState();
                         }
 
-                        if (clicked)
-                        {
-                            ClickedEventArgs eventArgs = new ClickedEventArgs();
-                            OnClickedInternal(eventArgs);
-                        }
+                        ClickedEventArgs eventArgs = new ClickedEventArgs();
+                        OnClickedInternal(eventArgs);
 
                         return true;
                     }
@@ -184,6 +184,14 @@ namespace Tizen.NUI.Components
                     break;
             }
             return base.HandleControlStateOnTouch(touch);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnEnabled(bool enabled)
+        {
+            base.OnEnabled(enabled);
+            UpdateState();
         }
 
         /// <summary>
@@ -344,7 +352,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    LinearAlignment = itemAlignment,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
                     CellPadding = cellPadding
                 };
 
@@ -356,7 +365,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    LinearAlignment = itemAlignment,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
                     CellPadding = cellPadding
                 };
 
@@ -368,7 +378,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
-                    LinearAlignment = itemAlignment,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
                     CellPadding = cellPadding
                 };
 
@@ -380,7 +391,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
-                    LinearAlignment = itemAlignment,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
                     CellPadding = cellPadding
                 };
 

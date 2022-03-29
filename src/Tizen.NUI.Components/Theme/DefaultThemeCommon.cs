@@ -41,7 +41,8 @@ namespace Tizen.NUI.Components
             {
                 Size = new Size(339, 96),
                 CornerRadius = 28.0f,
-                ItemAlignment = LinearLayout.Alignment.Center,
+                ItemHorizontalAlignment = HorizontalAlignment.Center,
+                ItemVerticalAlignment = VerticalAlignment.Center,
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = new Color(0.039f, 0.055f, 0.29f, 1),
@@ -60,7 +61,8 @@ namespace Tizen.NUI.Components
             theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", new ButtonStyle()
             {
                 ItemSpacing = new Size2D(32, 32),
-                ItemAlignment = LinearLayout.Alignment.CenterVertical,
+                ItemHorizontalAlignment = HorizontalAlignment.Begin,
+                ItemVerticalAlignment = VerticalAlignment.Center,
                 Icon = new ImageViewStyle()
                 {
                     Size = new Size(36, 36),
@@ -152,7 +154,8 @@ namespace Tizen.NUI.Components
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RadioButton", new ButtonStyle()
             {
                 ItemSpacing = new Size2D(32, 32),
-                ItemAlignment = LinearLayout.Alignment.CenterVertical,
+                ItemHorizontalAlignment = HorizontalAlignment.Begin,
+                ItemVerticalAlignment = VerticalAlignment.Center,
                 Icon = new ImageViewStyle()
                 {
                     Size = new Size(36, 36),
@@ -222,7 +225,8 @@ namespace Tizen.NUI.Components
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Switch", new SwitchStyle()
             {
                 ItemSpacing = new Size2D(32, 32),
-                ItemAlignment = LinearLayout.Alignment.CenterVertical,
+                ItemHorizontalAlignment = HorizontalAlignment.Begin,
+                ItemVerticalAlignment = VerticalAlignment.Center,
                 Track = new ImageViewStyle()
                 {
                     Size = new Size(80, 40),
@@ -702,6 +706,7 @@ namespace Tizen.NUI.Components
                         Focused = new Color("#00338B"),
                         Pressed = new Color("#1B69CA"),
                         Disabled = new Color("#C3CAD2"),
+                        Selected = new Color("#1B69CA"),
                     },
                     ThemeChangeSensitive = false
                 },
@@ -714,6 +719,7 @@ namespace Tizen.NUI.Components
                         Focused = new Color("#00338B"),
                         Pressed = new Color("#1B69CA"),
                         Disabled = new Color("#C3CAD2"),
+                        Selected = new Color("#1B69CA"),
                     },
                 },
             });

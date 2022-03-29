@@ -31,9 +31,9 @@ namespace Tizen.NUI
             Interop.CustomAlgorithmInterface.DeleteCustomAlgorithmInterface(swigCPtr);
         }
 
-        public virtual View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
+        public virtual View GetNextFocusableView(View current, View proposed, View.FocusDirection direction, string deviceName = "")
         {
-            View ret = new View(Interop.CustomAlgorithmInterface.GetNextFocusableActor(SwigCPtr, View.getCPtr(current), View.getCPtr(proposed), (int)direction), true);
+            View ret = new View(Interop.CustomAlgorithmInterface.GetNextFocusableActor(SwigCPtr, View.getCPtr(current), View.getCPtr(proposed), (int)direction, deviceName), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -58,7 +58,7 @@ namespace Tizen.NUI
             return hasDerivedMethod && (methodInfo != null);
         }
 
-        private global::System.IntPtr SwigDirectorGetNextFocusableView(global::System.IntPtr current, global::System.IntPtr proposed, int direction)
+        private global::System.IntPtr SwigDirectorGetNextFocusableView(global::System.IntPtr current, global::System.IntPtr proposed, int direction, string deviceName)
         {
             if (current == global::System.IntPtr.Zero && proposed == global::System.IntPtr.Zero)
             {
@@ -70,19 +70,19 @@ namespace Tizen.NUI
                 View currentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
                 View proposedView = Registry.GetManagedBaseHandleFromNativePtr(proposed) as View;
 
-                return View.getCPtr(GetNextFocusableView(currentView, proposedView, (View.FocusDirection)direction)).Handle;
+                return View.getCPtr(GetNextFocusableView(currentView, proposedView, (View.FocusDirection)direction, deviceName)).Handle;
             }
             catch (global::System.Exception ex)
             {
                 Tizen.Log.Error("NUI", "Registry Error: " + ex);
+                throw;
             }
-            return global::System.IntPtr.Zero;
         }
 
-        internal delegate global::System.IntPtr SwigDelegateCustomAlgorithmInterface_0(global::System.IntPtr current, global::System.IntPtr proposed, int direction);
+        internal delegate global::System.IntPtr SwigDelegateCustomAlgorithmInterface_0(global::System.IntPtr current, global::System.IntPtr proposed, int direction, string deviceName);
 
         private SwigDelegateCustomAlgorithmInterface_0 swigDelegate0;
 
-        private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] { typeof(View), typeof(View), typeof(View.FocusDirection) };
+        private static global::System.Type[] swigMethodTypes0 = new global::System.Type[] { typeof(View), typeof(View), typeof(View.FocusDirection), typeof(string) };
     }
 }

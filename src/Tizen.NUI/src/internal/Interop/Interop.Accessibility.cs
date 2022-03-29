@@ -24,23 +24,19 @@ namespace Tizen.NUI
     {
         internal static partial class Accessibility
         {
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_get_status")]
-            [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool GetStatus(HandleRef jarg1);
-
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_say")]
             [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool Say(HandleRef jarg1, string jarg2, bool jarg3, IntPtr jarg4);
+            public static extern bool Say(string jarg1, bool jarg2, IntPtr jarg3);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_pause_resume")]
-            public static extern void PauseResume(HandleRef jarg1, bool jarg2);
+            public static extern void PauseResume(bool jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_stop_reading")]
-            public static extern void StopReading(HandleRef jarg1, bool jarg2);
+            public static extern void StopReading(bool jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_suppress_screen_reader")]
             [return: MarshalAs(UnmanagedType.U1)]
-            public static extern bool SuppressScreenReader(HandleRef jarg1, bool jarg2);
+            public static extern bool SuppressScreenReader(bool jarg1);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_BridgeEnableAutoInit")]
             public static extern void BridgeEnableAutoInit();
@@ -52,11 +48,18 @@ namespace Tizen.NUI
             [return: MarshalAs(UnmanagedType.U1)]
             public static extern bool IsEnabled();
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_IsScreenReaderEnabled")]
+            [return: MarshalAs(UnmanagedType.U1)]
+            public static extern bool IsScreenReaderEnabled();
+
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate void EnabledDisabledSignalHandler();
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_RegisterEnabledDisabledSignalHandler")]
             public static extern void RegisterEnabledDisabledSignalHandler(EnabledDisabledSignalHandler enabledSignalHandler, EnabledDisabledSignalHandler disabledSignalHandler);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "csharp_dali_accessibility_RegisterScreenReaderEnabledDisabledSignalHandler")]
+            public static extern void RegisterScreenReaderEnabledDisabledSignalHandler(EnabledDisabledSignalHandler enabledSignalHandler, EnabledDisabledSignalHandler disabledSignalHandler);
         }
     }
 }

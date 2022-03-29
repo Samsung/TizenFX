@@ -552,7 +552,10 @@ namespace Tizen.NUI.BaseComponents
                 bool underlineEnabled = false;
                 using (var propertyValue = Underline.Find(TextLabel.Property.UNDERLINE, "enable"))
                 {
-                    propertyValue.Get(out underlineEnabled);
+                    if (propertyValue != null)
+                    {
+                        propertyValue.Get(out underlineEnabled);
+                    }
                 }
                 return underlineEnabled;
             }

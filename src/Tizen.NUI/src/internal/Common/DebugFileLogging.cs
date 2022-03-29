@@ -22,10 +22,10 @@ using global::System.Diagnostics;
 
 namespace Tizen.NUI
 {
-    internal class DebugFileLogging
+    internal class DebugFileLogging : Disposable
     {
         #region Constant Fields
-        private const string logFolderPath = "/home/ssong2best/Downloads/0128/";//"/run/user/5001/nui/"; //need fix as for target (tv, ubuntu, and etc)
+        private string logFolderPath;
         #endregion //Constant Fields
 
         #region Fields
@@ -38,6 +38,15 @@ namespace Tizen.NUI
         #region Constructors
         private DebugFileLogging()
         {
+            if (Environment.OSVersion.Platform == PlatformID.Unix || Environment.OSVersion.Platform == PlatformID.MacOSX)
+            {
+                logFolderPath = Environment.GetEnvironmentVariable("HOME") + "/nui/";
+            }
+            else
+            {
+                logFolderPath = Environment.ExpandEnvironmentVariables("%HOMEDRIVE%%HOMEPATH%") + "/owner/share/nui/";
+            }
+
             Directory.CreateDirectory(logFolderPath);
 
             var id = Process.GetCurrentProcess().Id;

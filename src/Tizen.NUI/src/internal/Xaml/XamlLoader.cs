@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -130,11 +130,13 @@ namespace Tizen.NUI.Xaml
 
                     var rootnode = new RuntimeRootNode(new XmlType(reader.NamespaceURI, reader.Name, null), ret, (IXmlNamespaceResolver)reader);
                     XamlParser.ParseXaml(rootnode, reader);
+                    var doNotThrow = ResourceLoader.ExceptionHandler != null || Internals.XamlLoader.DoNotThrowOnExceptions;
+                    void ehandler(Exception e) => ResourceLoader.ExceptionHandler?.Invoke((e, path));
                     Visit(rootnode, new HydrationContext
                     {
                         RootElement = ret,
 #pragma warning disable 0618
-                        ExceptionHandler = ResourceLoader.ExceptionHandler ?? (Internals.XamlLoader.DoNotThrowOnExceptions ? e => { } : (Action<Exception>)null)
+                        ExceptionHandler = doNotThrow ? ehandler : (Action<Exception>)null
 #pragma warning restore 0618
                     });
                     break;
@@ -178,11 +180,13 @@ namespace Tizen.NUI.Xaml
 
                     var rootnode = new RuntimeRootNode(new XmlType(reader.NamespaceURI, reader.Name, null), view, (IXmlNamespaceResolver)reader);
                     XamlParser.ParseXaml(rootnode, reader);
+                    var doNotThrow = ResourceLoader.ExceptionHandler != null || Internals.XamlLoader.DoNotThrowOnExceptions;
+                    void ehandler(Exception e) => ResourceLoader.ExceptionHandler?.Invoke((e, XamlFilePathAttribute.GetFilePathForObject(view)));
                     Visit(rootnode, new HydrationContext
                     {
                         RootElement = view,
 #pragma warning disable 0618
-                        ExceptionHandler = ResourceLoader.ExceptionHandler ?? (Internals.XamlLoader.DoNotThrowOnExceptions ? e => { } : (Action<Exception>)null)
+                        ExceptionHandler = doNotThrow ? ehandler : (Action<Exception>)null
 #pragma warning restore 0618
                     });
                     break;

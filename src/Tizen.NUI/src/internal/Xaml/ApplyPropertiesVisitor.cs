@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,13 +53,14 @@ namespace Tizen.NUI.Xaml
         public bool StopOnResourceDictionary { get; }
         public bool VisitNodeOnDataTemplate => true;
         public bool SkipChildren(INode node, INode parentNode) => false;
-        public bool IsResourceDictionary(ElementNode node) => typeof(ResourceDictionary).IsAssignableFrom(Context.Types[node]);
+        public bool IsResourceDictionary(ElementNode node) => Context.Types.TryGetValue(node, out var type) && typeof(ResourceDictionary).IsAssignableFrom(type);
 
         public void Visit(ValueNode node, INode parentNode)
         {
             var parentElement = parentNode as IElementNode;
             var value = Values[node];
-            var source = Values[parentNode];
+            if (!Values.TryGetValue(parentNode, out var source) && Context.ExceptionHandler != null)
+                return;
             XmlName propertyName;
 
             if (TryGetPropertyName(node, parentNode, out propertyName))
@@ -119,7 +120,8 @@ namespace Tizen.NUI.Xaml
                 parentElement = parentNode as IElementNode;
             }
 
-            var value = Values[node];
+            if (!Values.TryGetValue(node, out var value) && Context.ExceptionHandler != null)
+                return;
 
             if (propertyName != XmlName.Empty || TryGetPropertyName(node, parentNode, out propertyName))
             {
@@ -130,13 +132,15 @@ namespace Tizen.NUI.Xaml
                 if (parentElement.SkipProperties.Contains(propertyName))
                     return;
 
-                var source = Values[parentNode];
+                if (!Values.TryGetValue(parentNode, out var source) && Context.ExceptionHandler != null)
+                    return;
                 ProvideValue(ref value, node, source, propertyName);
                 SetPropertyValue(source, propertyName, value, Context.RootElement, node, Context, node);
             }
             else if (IsCollectionItem(node, parentNode) && parentNode is IElementNode)
             {
-                var source = Values[parentNode];
+                if (!Values.TryGetValue(parentNode, out var source) && Context.ExceptionHandler != null)
+                    return;
                 ProvideValue(ref value, node, source, XmlName.Empty);
                 string contentProperty;
                 Exception xpe = null;
@@ -189,11 +193,13 @@ namespace Tizen.NUI.Xaml
                 xpe = xpe ?? new XamlParseException($"Can not set the content of {((IElementNode)parentNode).XmlType.Name} as it doesn't have a ContentPropertyAttribute", node);
                 if (Context.ExceptionHandler != null)
                     Context.ExceptionHandler(xpe);
-                throw xpe;
+                else
+                    throw xpe;
             }
             else if (IsCollectionItem(node, parentNode) && parentNode is ListNode)
             {
-                var source = Values[parentNode.Parent];
+                if (!Values.TryGetValue(parentNode.Parent, out var source) && Context.ExceptionHandler != null)
+                    return;
                 ProvideValue(ref value, node, source, XmlName.Empty);
                 var parentList = (ListNode)parentNode;
                 if (Skips.Contains(parentList.XmlName))
@@ -285,11 +291,17 @@ namespace Tizen.NUI.Xaml
             {
                 (serviceProvider.IProvideValueTarget as XamlValueTargetProvider).TargetProperty = GetTargetProperty(source, propertyName, Context, node);
             }
-
-            if (markupExtension != null)
-                value = markupExtension.ProvideValue(serviceProvider);
-            else if (valueProvider != null)
-                value = valueProvider.ProvideValue(serviceProvider);
+            try {
+                if (markupExtension != null)
+                    value = markupExtension.ProvideValue(serviceProvider);
+                else if (valueProvider != null)
+                    value = valueProvider.ProvideValue(serviceProvider);
+            } catch (Exception e) {
+                if (Context.ExceptionHandler != null)
+                    Context.ExceptionHandler(e);
+                else
+                    throw;
+            }
         }
 
         static string GetContentPropertyName(IEnumerable<CustomAttributeData> attributes)
@@ -722,6 +734,8 @@ namespace Tizen.NUI.Xaml
 
             if (xKey != null)
                 resourceDictionary.Add(xKey, value);
+            else if (value is XamlStyle)
+                resourceDictionary.Add((XamlStyle)value);
             else if (value is ResourceDictionary)
                 resourceDictionary.Add((ResourceDictionary)value);
             else

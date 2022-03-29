@@ -142,9 +142,16 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnCreate()
         {
-            string locale = ULocale.GetDefaultLocale();
-            ChangeCurrentUICultureInfo(locale);
-            ChangeCurrentCultureInfo(locale);
+            if (!GlobalizationMode.Invariant)
+            {
+                string locale = ULocale.GetDefaultLocale();
+                ChangeCurrentUICultureInfo(locale);
+                ChangeCurrentCultureInfo(locale);
+            }
+            else
+            {
+                Log.Warn(LogTag, "Run in invariant mode");
+            }
 
             Created?.Invoke(this, EventArgs.Empty);
         }
@@ -213,7 +220,11 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
-            ChangeCurrentUICultureInfo(e.Locale);
+            if (!GlobalizationMode.Invariant)
+            {
+                ChangeCurrentUICultureInfo(e.Locale);
+            }
+
             LocaleChanged?.Invoke(this, e);
         }
 
@@ -225,7 +236,11 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
-            ChangeCurrentCultureInfo(e.Region);
+            if (!GlobalizationMode.Invariant)
+            {
+                ChangeCurrentCultureInfo(e.Region);
+            }
+
             RegionFormatChanged?.Invoke(this, e);
         }
 
@@ -394,6 +409,25 @@ namespace Tizen.Applications
             }
 
             return fallbackCultureInfo;
+        }
+    }
+
+    internal static class GlobalizationMode
+    {
+        private static int _invariant = -1;
+
+        internal static bool Invariant
+        {
+            get
+            {
+                if (_invariant == -1)
+                {
+                    string value = Environment.GetEnvironmentVariable("DOTNET_SYSTEM_GLOBALIZATION_INVARIANT");
+                    _invariant = value != null ? (value.Equals("1") ? 1 : 0) : 0;
+                }
+
+                return _invariant != 0;
+            }
         }
     }
 

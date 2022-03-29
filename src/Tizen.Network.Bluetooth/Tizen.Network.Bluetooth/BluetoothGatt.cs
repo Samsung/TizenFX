@@ -239,7 +239,7 @@ namespace Tizen.Network.Bluetooth
 
         internal bool IsValid()
         {
-            return _impl.GetHandle().IsInvalid == false;
+            return _impl?.GetHandle()?.IsInvalid == false;
         }
 
         /// <summary>
@@ -456,7 +456,7 @@ namespace Tizen.Network.Bluetooth
         [Obsolete("Deprecated since API level 6. Please use Dispose() method on BluetoothGattClient.")]
         public void DestroyClient()
         {
-            _impl.GetHandle().Dispose();
+            _impl?.GetHandle()?.Dispose();
         }
 
         /// <summary>
@@ -598,7 +598,7 @@ namespace Tizen.Network.Bluetooth
 
         internal bool Isvalid()
         {
-            return _impl.GetHandle().IsInvalid == false;
+            return _impl?.GetHandle()?.IsInvalid == false;
         }
 
         /// <summary>

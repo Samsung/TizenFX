@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,6 +53,7 @@ namespace Tizen.NUI.BaseComponents
         private float? borderlineWidth;
         private Color borderlineColor;
         private float? borderlineOffset;
+        private bool? isEnabled;
 
         private Selector<ImageShadow> imageShadow;
         private Selector<Shadow> boxShadow;
@@ -498,6 +499,16 @@ namespace Tizen.NUI.BaseComponents
             set => SetValue(ThemeChangeSensitiveProperty, value);
         }
 
+        /// <summary>
+        /// Flag to decide View can be enabled user interaction or not.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool? IsEnabled
+        {
+            get => (bool?)GetValue(IsEnabledProperty);
+            set => SetValue(IsEnabledProperty, value);
+        }
+
 
         /// <summary>
         /// Allow null properties when merging it into other Theme.
@@ -565,7 +576,7 @@ namespace Tizen.NUI.BaseComponents
 
                 if (destinationProperty != null)
                 {
-                    SetValue(destinationProperty, sourceValue);
+                    InternalSetValue(destinationProperty, sourceValue);
                 }
             }
 

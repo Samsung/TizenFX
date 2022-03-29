@@ -65,6 +65,7 @@ namespace Tizen.NUI.BaseComponents
             _ = data;
             NUIApplication.GetDefaultWindow()?.SendViewAdded(this);
         }
+        private TouchDataCallbackType hitTestResultDataCallback;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void OffWindowEventCallbackType(IntPtr control);
@@ -913,6 +914,14 @@ namespace Tizen.NUI.BaseComponents
             {
                 onRelayoutEventHandler(this, null);
             }
+        }
+
+        // Callback for View HitTestResultSignal
+        private bool OnHitTestResult(IntPtr view, IntPtr touchData)
+        {
+            TouchEventArgs e = new TouchEventArgs();
+            e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
+            return HitTest(e.Touch);
         }
 
         // Callback for View TouchSignal

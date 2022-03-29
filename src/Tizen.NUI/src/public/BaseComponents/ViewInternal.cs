@@ -1,5 +1,5 @@
-﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,11 +16,8 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Runtime.CompilerServices;
-using Tizen.NUI.Binding;
+using global::System.Diagnostics;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -30,21 +27,8 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
-        private MergedStyle mergedStyle = null;
         internal string styleName;
 
-        internal MergedStyle MergedStyle
-        {
-            get
-            {
-                if (null == mergedStyle)
-                {
-                    mergedStyle = new MergedStyle(GetType(), this);
-                }
-
-                return mergedStyle;
-            }
-        }
         internal virtual LayoutItem CreateDefaultLayout()
         {
             return new AbsoluteLayout();
@@ -442,6 +426,42 @@ namespace Tizen.NUI.BaseComponents
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.DownFocusableViewId, setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private int ClockwiseFocusableViewId
+        {
+            get
+            {
+                int returnValue = -1;
+                PropertyValue clockwiseFocusableViewId = GetProperty(View.Property.ClockwiseFocusableViewId);
+                clockwiseFocusableViewId?.Get(out returnValue);
+                clockwiseFocusableViewId?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.ClockwiseFocusableViewId, setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private int CounterClockwiseFocusableViewId
+        {
+            get
+            {
+                int returnValue = -1;
+                PropertyValue counterClockwiseFocusableViewId = GetProperty(View.Property.CounterClockwiseFocusableViewId);
+                counterClockwiseFocusableViewId?.Get(out returnValue);
+                counterClockwiseFocusableViewId?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.CounterClockwiseFocusableViewId, setValue);
                 setValue.Dispose();
             }
         }
@@ -1038,8 +1058,7 @@ namespace Tizen.NUI.BaseComponents
             child.InternalParent = null;
             LayoutCount -= child.LayoutCount;
 
-            RemoveChildBindableObject(child);
-
+            OnChildRemoved(child);
             if (ChildRemoved != null)
             {
                 ChildRemovedEventArgs e = new ChildRemovedEventArgs
@@ -1093,6 +1112,24 @@ namespace Tizen.NUI.BaseComponents
         internal virtual void ApplyBorderline()
         {
             if (backgroundExtraData == null) return;
+
+            // ActionUpdateProperty works well only if BACKGROUND visual setup before.
+            // If view don't have BACKGROUND visual, we set transparent background color in default.
+            using (PropertyMap backgroundPropertyMap = new PropertyMap())
+            {
+                using (PropertyValue propertyValue = Object.GetProperty(SwigCPtr, Property.BACKGROUND))
+                {
+                    propertyValue?.Get(backgroundPropertyMap);
+                    if (backgroundPropertyMap.Empty())
+                    {
+                        // BACKGROUND visual doesn't exist.
+                        SetBackgroundColor(Color.Transparent);
+                        // SetBackgroundColor function apply borderline internally.
+                        // So we can just return now.
+                        return;
+                    }
+                }
+            }
 
             var borderlineWidthValue = new PropertyValue(backgroundExtraData.BorderlineWidth);
             var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
@@ -1154,16 +1191,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            DebugFileLogging.Instance.WriteLog($"View.Dispose({type}) START");
-            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
-            if(HasBody())
-            {
-                DebugFileLogging.Instance.WriteLog($"ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
-            }
-            else
-            {
-                DebugFileLogging.Instance.WriteLog($"has no native body!");
-            }
+            disposeDebugging(type);
 
             //_mergedStyle = null;
 
@@ -1278,6 +1306,35 @@ namespace Tizen.NUI.BaseComponents
             return false;
         }
 
+        /// <summary>
+        /// Internal callback of enabled property changes.
+        /// Inherited view can override this method to implements enabled property changes.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnEnabled(bool enabled)
+        {
+            if (enabled)
+            {
+                if (State == View.States.Disabled)
+                {
+                    State = View.States.Normal;
+                }
+                if (enableControlState)
+                {
+                    ControlState -= ControlState.Disabled;
+                }
+            }
+            else
+            {
+                State = View.States.Disabled;
+                if (enableControlState)
+                {
+                    ControlState += ControlState.Disabled;
+                }
+            }
+        }
+
+
         private void DisConnectFromSignals()
         {
             if (HasBody() == false)
@@ -1333,6 +1390,16 @@ namespace Tizen.NUI.BaseComponents
                 signal?.Disconnect(hoverEventCallback);
                 hoverEventCallback = null;
             }
+
+            if (hitTestResultDataCallback != null)
+            {
+                NUILog.Debug($"[Dispose] hitTestResultDataCallback");
+
+                using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(hitTestResultDataCallback);
+                hitTestResultDataCallback = null;
+            }
+
 
             if (interceptTouchDataCallback != null)
             {
@@ -1516,5 +1583,21 @@ namespace Tizen.NUI.BaseComponents
 
             return themeData.selectorData ?? (themeData.selectorData = new ViewSelectorData());
         }
+
+        [Conditional("NUI_DEBUG_ON")]
+        private void disposeDebugging(DisposeTypes type)
+        {
+            DebugFileLogging.Instance.WriteLog($"View.Dispose({type}) START");
+            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
+            if (HasBody())
+            {
+                DebugFileLogging.Instance.WriteLog($"ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
+            }
+            else
+            {
+                DebugFileLogging.Instance.WriteLog($"has no native body!");
+            }
+        }
+
     }
 }

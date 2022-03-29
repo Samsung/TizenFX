@@ -1,4 +1,4 @@
-/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
+/* Copyright (c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -203,9 +203,16 @@ namespace Tizen.NUI.Components
         {
             MeasureChild();
             LayoutChild();
-
-            Sensitive = IsEnabled;
         }
+
+                /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnEnabled(bool enabled)
+        {
+            base.OnEnabled(enabled);
+            UpdateState();
+        }
+
 
 
         /// FIXME!! This has to be done in Element or View class.

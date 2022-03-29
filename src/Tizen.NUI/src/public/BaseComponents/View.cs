@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,6 +47,7 @@ namespace Tizen.NUI.BaseComponents
         private LayoutTransition layoutTransition;
         private TransitionOptions transitionOptions = null;
         private ThemeData themeData;
+        private bool isThemeChanged = false;
 
         // List of constraints
         private Constraint widthConstraint = null;
@@ -142,10 +143,15 @@ namespace Tizen.NUI.BaseComponents
             using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
             signal?.Connect(onWindowSendEventCallback);
 
+            hitTestResultDataCallback = OnHitTestResult;
+            using TouchDataSignal touchDataSignal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(SwigCPtr), false);
+            touchDataSignal?.Connect(hitTestResultDataCallback);
+
             if (!shown)
             {
                 SetVisible(false);
             }
+
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
@@ -286,30 +292,6 @@ namespace Tizen.NUI.BaseComponents
                     Layout.SetPositionByLayout = !value;
                     Layout.RequestLayout();
                 }
-            }
-        }
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsResourcesCreated
-        {
-            get
-            {
-                return Application.Current.IsResourcesCreated;
-            }
-        }
-
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ResourceDictionary XamlResources
-        {
-            get
-            {
-                return Application.Current.XamlResources;
-            }
-            set
-            {
-                Application.Current.XamlResources = value;
             }
         }
 
@@ -967,6 +949,46 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(DownFocusableViewProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The clockwise focusable view by rotary wheel.<br />
+        /// This will return null if not set.<br />
+        /// This will also return null if the specified clockwise focusable view is not on a window.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View ClockwiseFocusableView
+        {
+            // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
+            get
+            {
+                return (View)GetValue(ClockwiseFocusableViewProperty);
+            }
+            set
+            {
+                SetValue(ClockwiseFocusableViewProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The counter clockwise focusable view by rotary wheel.<br />
+        /// This will return null if not set.<br />
+        /// This will also return null if the specified counter clockwise focusable view is not on a window.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View CounterClockwiseFocusableView
+        {
+            // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
+            get
+            {
+                return (View)GetValue(CounterClockwiseFocusableViewProperty);
+            }
+            set
+            {
+                SetValue(CounterClockwiseFocusableViewProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1834,6 +1856,25 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Gets or sets the status of whether the view should be enabled user interactions.
+        /// If a View is made disabled, then user interactions including touch, focus, and actiavation is disabled.
+        /// </summary>
+        /// <since_tizen> tizen_next </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsEnabled
+        {
+            get
+            {
+                return (bool)GetValue(IsEnabledProperty);
+            }
+            set
+            {
+                SetValue(IsEnabledProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the status of whether the view should receive a notification when touch or hover motion events leave the boundary of the view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -2638,19 +2679,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public XamlStyle XamlStyle
-        {
-            get
-            {
-                return (XamlStyle)GetValue(XamlStyleProperty);
-            }
-            set
-            {
-                SetValue(XamlStyleProperty, value);
-            }
-        }
-
         /// <summary>
         /// The Color of View. This is an RGBA value.
         /// </summary>
@@ -3069,8 +3097,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnThemeChanged(object sender, ThemeChangedEventArgs e)
         {
+            isThemeChanged = true;
             if (string.IsNullOrEmpty(styleName)) ApplyStyle(ThemeManager.GetUpdateStyleWithoutClone(GetType()));
             else ApplyStyle(ThemeManager.GetUpdateStyleWithoutClone(styleName));
+            isThemeChanged = false;
         }
 
         /// <summary>
@@ -3113,9 +3143,15 @@ namespace Tizen.NUI.BaseComponents
 
                 bindablePropertyOfView.TryGetValue(sourceProperty.PropertyName, out var destinationProperty);
 
+                // Do not set value again when theme is changed and the value has been set already.
+                if (isThemeChanged && ChangedPropertiesSetExcludingStyle.Contains(destinationProperty))
+                {
+                    continue;
+                }
+
                 if (destinationProperty != null)
                 {
-                    SetValue(destinationProperty, sourceValue);
+                    InternalSetValue(destinationProperty, sourceValue);
                 }
             }
         }
@@ -3188,7 +3224,20 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-
+        /// <summary>
+        /// Called when the view is hit through TouchEvent or GestureEvent.
+        /// If it returns true, it means that it was hit, and the touch/gesture event is called from the view.
+        /// If it returns false, it means that it will not be hit, and the hit-test continues to the next view.
+        /// User can override whether hit or not in HitTest.
+        /// You can get the coordinates relative to tthe top-left of the hit view by touch.GetLocalPosition(0).
+        /// or you can get the coordinates relative to the top-left of the screen by touch.GetScreenPosition(0).
+        /// </summary>
+        // <param name="touch"><see cref="Tizen.NUI.Touch"/>The touch data</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool HitTest(Touch touch)
+        {
+            return true;
+        }
 
 
     }

@@ -29,6 +29,10 @@ namespace Tizen.NUI.Samples
             {
                 Text = "Tab#1"
             };
+            tabButton.SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+            {
+                global::System.Console.WriteLine($"1st TabButton's IsSelected is changed to {args.IsSelected}.");
+            };
 
             content = new TextLabel()
             {
@@ -47,6 +51,10 @@ namespace Tizen.NUI.Samples
             {
                 Text = "Tab#2"
             };
+            tabButton2.SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+            {
+                global::System.Console.WriteLine($"2nd TabButton's IsSelected is changed to {args.IsSelected}.");
+            };
 
             content2 = new TextLabel()
             {
@@ -64,6 +72,10 @@ namespace Tizen.NUI.Samples
             tabButton3 = new TabButton()
             {
                 Text = "Tab#3"
+            };
+            tabButton3.SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+            {
+                global::System.Console.WriteLine($"3rd TabButton's IsSelected is changed to {args.IsSelected}.");
             };
 
             content3 = new TextLabel()
@@ -97,6 +109,12 @@ namespace Tizen.NUI.Samples
                     var newTabButton = new TabButton()
                     {
                         Text = "Tab#" + tabCount.ToString()
+                    };
+
+                    int curCount = tabCount;
+                    newTabButton.SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                    {
+                        global::System.Console.WriteLine($"{curCount}th TabButton's IsSelected is changed to {args.IsSelected}.");
                     };
 
                     var newContent = new TextLabel()

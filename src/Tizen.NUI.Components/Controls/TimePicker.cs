@@ -34,7 +34,7 @@ namespace Tizen.NUI.Components
         /// TimeChangedEventArgs default constructor.
         /// <param name="time">time value of TimePicker.</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]   
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public TimeChangedEventArgs(DateTime time)
         {
             Time = time;
@@ -106,6 +106,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public TimePicker()
         {
+            SetKeyboardNavigationSupport(true);
         }
 
         /// <summary>
@@ -115,6 +116,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public TimePicker(string style) : base(style)
         {
+            SetKeyboardNavigationSupport(true);
         }
 
         /// <summary>
@@ -124,6 +126,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public TimePicker(TimePickerStyle timePickerStyle) : base(timePickerStyle)
         {
+            SetKeyboardNavigationSupport(true);
         }
 
         /// <summary>
@@ -194,10 +197,11 @@ namespace Tizen.NUI.Components
                         else hourPicker.CurrentValue = currentTime.Hour - 12;
                         ampmPicker.CurrentValue = 2;
                     }
-                    else 
+                    else
                     {
                         isAm = true;
-                        hourPicker.CurrentValue = currentTime.Hour;
+                        if (currentTime.Hour == 0) hourPicker.CurrentValue = 12;
+                        else hourPicker.CurrentValue = currentTime.Hour;
                         ampmPicker.CurrentValue = 1;
                     }
                 }
@@ -242,7 +246,7 @@ namespace Tizen.NUI.Components
                     hourPicker.MaxValue = 23;
                     hourPicker.CurrentValue = currentTime.Hour;
                 }
-                else 
+                else
                 {
                     hourPicker.MinValue = 1;
                     hourPicker.MaxValue = 12;
@@ -270,6 +274,7 @@ namespace Tizen.NUI.Components
             {
                 MinValue = 1,
                 MaxValue = 12,
+                Focusable = true,
             };
             hourPicker.ValueChanged += OnHourValueChanged;
 
@@ -277,6 +282,7 @@ namespace Tizen.NUI.Components
             {
                 MinValue = 0,
                 MaxValue = 59,
+                Focusable = true,
             };
             minutePicker.ValueChanged += OnMinuteValueChanged;
 
@@ -284,18 +290,21 @@ namespace Tizen.NUI.Components
             {
                 MinValue = 1,
                 MaxValue = 2,
+                Focusable = true,
             };
             ampmPicker.ValueChanged += OnAmpmValueChanged;
 
             currentTime = DateTime.Now;
-            Console.WriteLine(" Time " + currentTime.Hour + " " + currentTime.Minute);
             if (currentTime.Hour > 12)
             {
                 ampmPicker.CurrentValue = 2;
                 hourPicker.CurrentValue = currentTime.Hour - 12;
             }
             else
+            {
+                ampmPicker.CurrentValue = 1;
                 hourPicker.CurrentValue = currentTime.Hour;
+            }
 
             minutePicker.CurrentValue = currentTime.Minute;
 
@@ -318,7 +327,7 @@ namespace Tizen.NUI.Components
             //Apply CellPadding.
             if (timePickerStyle?.CellPadding != null && Layout != null)
                 ((LinearLayout)Layout).CellPadding = new Size2D(timePickerStyle.CellPadding.Width, timePickerStyle.CellPadding.Height);
-            
+
             //Apply Internal Pickers style.
             if (timePickerStyle?.Pickers != null && hourPicker != null && minutePicker != null && ampmPicker != null)
             {
@@ -327,7 +336,54 @@ namespace Tizen.NUI.Components
                 ampmPicker.ApplyStyle(timePickerStyle.Pickers);
             }
         }
-                
+
+        /// <summary>
+        /// ToDo : only key navigation is enabled, but value editing is not yet added. for example, after enter key and up/down key the value need be changed.
+        /// </summary>
+        /// <param name="currentFocusedView"></param>
+        /// <param name="direction"></param>
+        /// <param name="loopEnabled"></param>
+        /// <returns></returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
+        {
+            if (currentFocusedView == hourPicker)
+            {
+                if (direction == View.FocusDirection.Right)
+                {
+                    return minutePicker;
+                }
+                else if (direction == View.FocusDirection.Left)
+                {
+                    return null;
+                }
+            }
+            else if (currentFocusedView == minutePicker)
+            {
+                if (direction == View.FocusDirection.Right)
+                {
+                    return ampmPicker;
+                }
+                else if (direction == View.FocusDirection.Left)
+                {
+                    return hourPicker;
+                }
+            }
+            else if (currentFocusedView == ampmPicker)
+            {
+                if (direction == View.FocusDirection.Right)
+                {
+                    return null;
+                }
+                else if (direction == View.FocusDirection.Left)
+                {
+                    return minutePicker;
+                }
+            }
+            return null;
+        }
+
+
         [SuppressMessage("Microsoft.Reliability",
                          "CA2000:DisposeObjectsBeforeLosingScope",
                          Justification = "The CellPadding will be dispose when the time picker disposed")]
@@ -335,7 +391,8 @@ namespace Tizen.NUI.Components
         {
             HeightSpecification = LayoutParamPolicies.MatchParent;
 
-            Layout = new LinearLayout() { 
+            Layout = new LinearLayout()
+            {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
             };
             Console.WriteLine("initialize");
@@ -360,25 +417,25 @@ namespace Tizen.NUI.Components
 
             if (!is24HourView)
             {
-                if (isAm) 
-                {
-                    if (e.Value == 12) ChangeTime(12, 0, true);
-                    else ChangeTime(e.Value, 0, true);
-                }
-                else 
+                if (isAm)
                 {
                     if (e.Value == 12) ChangeTime(0, 0, true);
+                    else ChangeTime(e.Value, 0, true);
+                }
+                else
+                {
+                    if (e.Value == 12) ChangeTime(12, 0, true);
                     else ChangeTime(e.Value + 12, 0, true);
                 }
             }
             else
                 ChangeTime(e.Value, 0, true);
-            
+
             OnTimeChanged();
         }
 
         private void OnMinuteValueChanged(object sender, ValueChangedEventArgs e)
-        { 
+        {
             if (currentTime.Minute == e.Value) return;
 
             ChangeTime(0, e.Value, false);
@@ -387,25 +444,21 @@ namespace Tizen.NUI.Components
         }
 
         private void OnAmpmValueChanged(object sender, ValueChangedEventArgs e)
-        { 
+        {
             if ((isAm && e.Value == 1) || (!isAm && e.Value == 2)) return;
 
             if (e.Value == 1)
             { //AM
-                if (currentTime.Hour > 12 || currentTime.Hour == 0)
-                { 
-                    if (currentTime.Hour == 0) ChangeTime(12, 0, true);
-                    else ChangeTime(currentTime.Hour - 12, 0, true);
-                }
+                if (currentTime.Hour == 12) ChangeTime(0, 0, true);
+                else ChangeTime(currentTime.Hour - 12, 0, true);
+
                 isAm = true;
             }
-            else 
+            else
             { //PM
-                if (currentTime.Hour > 0 && currentTime.Hour <= 12)
-                {
-                     if (currentTime.Hour == 12) ChangeTime(0, 0, true);
-                     else ChangeTime(currentTime.Hour + 12, 0, true);
-                }
+                if (currentTime.Hour == 0) ChangeTime(12, 0, true);
+                else ChangeTime(currentTime.Hour + 12, 0, true);
+
                 isAm = false;
             }
 
@@ -413,7 +466,7 @@ namespace Tizen.NUI.Components
         }
 
         private void OnTimeChanged()
-        { 
+        {
             TimeChangedEventArgs eventArgs = new TimeChangedEventArgs(currentTime);
             TimeChanged?.Invoke(this, eventArgs);
         }
@@ -430,10 +483,11 @@ namespace Tizen.NUI.Components
             String timePattern = timeFormatInfo.ShortTimePattern;
             String[] timePatternArray = timePattern.Split(' ', ':');
 
-            foreach (String format in timePatternArray) {
-                if (format.IndexOf("H") != -1|| format.IndexOf("h") != -1)  Add(hourPicker);
+            foreach (String format in timePatternArray)
+            {
+                if (format.IndexOf("H") != -1 || format.IndexOf("h") != -1) Add(hourPicker);
                 else if (format.IndexOf("M") != -1 || format.IndexOf("m") != -1) Add(minutePicker);
-                else if (format.IndexOf("t") != -1) 
+                else if (format.IndexOf("t") != -1)
                 {
                     is24HourView = false;
                     ampmForceSet = false;
@@ -449,7 +503,7 @@ namespace Tizen.NUI.Components
             //FIXME: There is no localeChanged Event for Component now
             //       AMPM text has to update when system locale changed.
             CultureInfo info = CultureInfo.CurrentCulture;
-            ampmText = new string[] {info.DateTimeFormat.AMDesignator, info.DateTimeFormat.PMDesignator};
+            ampmText = new string[] { info.DateTimeFormat.AMDesignator, info.DateTimeFormat.PMDesignator };
             ampmPicker.DisplayedValues = new ReadOnlyCollection<string>(ampmText);
         }
     }
