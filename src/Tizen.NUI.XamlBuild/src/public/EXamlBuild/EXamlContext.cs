@@ -622,11 +622,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             //Fang: How to deal the Enum
             string ret = "";
 
-            if (System.Type.Missing == valueObject)
-            {
-                ret += "yy ";
-            }
-            else if (null == valueObject)
+            if (null == valueObject)
             {
                 ret += "zz ";
             }
