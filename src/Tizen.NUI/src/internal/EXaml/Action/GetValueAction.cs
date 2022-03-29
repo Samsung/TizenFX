@@ -167,10 +167,6 @@ namespace Tizen.NUI.EXaml
                         Value = valueString[0];
                         break;
 
-                    case 'y':
-                        Value = Type.Missing;
-                        break;
-
                     case 'z':
                         Value = null;
                         break;
