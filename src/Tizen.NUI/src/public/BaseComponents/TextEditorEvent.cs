@@ -214,8 +214,7 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// The SelectionStarted event is emitted when the selection start.
         /// </summary>
-        /// This will be public opened in after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public event EventHandler SelectionStarted
         {
             add
