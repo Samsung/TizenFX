@@ -16,7 +16,6 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Reflection;
 using System.Text;
 using Tizen.NUI.BaseComponents;
@@ -84,7 +83,7 @@ namespace Tizen.NUI.EXaml
 
                     if (null == xFactoryMethod)
                     {
-                        obj = Activator.CreateInstance(type, BindingFlags.CreateInstance | BindingFlags.Public | BindingFlags.Instance | BindingFlags.OptionalParamBinding, null, paramList.ToArray(), CultureInfo.CurrentCulture);
+                        obj = Activator.CreateInstance(type, paramList.ToArray());
                     }
                     else
                     {

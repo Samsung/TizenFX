@@ -804,15 +804,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             var realValue = context.Values[elementNode] as EXamlCreateObject;
             if (null != realValue)
             {
-                var valueTypeRef = realValue.GetType();
-                if (valueTypeRef.InheritsFromOrImplements(propertyType))
-                {
-                    return true;
-                }
-
-                var realTypeFromMarkupExtension = valueTypeRef.GetRealTypeIfIsMarkupExtension();
-
-                if (true == realTypeFromMarkupExtension?.InheritsFromOrImplements(propertyType))
+                if (realValue.GetType().InheritsFromOrImplements(propertyType))
                 {
                     return true;
                 }
