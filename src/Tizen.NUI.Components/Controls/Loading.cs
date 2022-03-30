@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -304,8 +304,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Play Loading Animation.
         /// </summary>
-        /// This may be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public void Play()
         {
             PropertyValue attributes = new PropertyValue(0);
@@ -316,8 +315,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Pause Loading Animation.
         /// </summary>
-        /// This may be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public void Pause()
         {
             PropertyValue attributes = new PropertyValue(0);
@@ -328,8 +326,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Stop Loading Animation.
         /// </summary>
-        /// This may be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public void Stop()
         {
             PropertyValue attributes = new PropertyValue(0);
