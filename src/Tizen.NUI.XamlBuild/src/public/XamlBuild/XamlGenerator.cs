@@ -194,6 +194,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
         bool XamlResourceIdOnly { get; set; }
         internal IEnumerable<CodeMemberField> NamedFields { get; set; }
         internal CodeTypeReference BaseType { get; set; }
+        string classModifier { get; set; }
 
         public XamlGenerator(
             string xamlFile,
@@ -284,6 +285,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
             NamedFields = GetCodeMemberFields(root, nsmgr);
             var typeArguments = GetAttributeValue(root, "TypeArguments", XamlParser.X2006Uri, XamlParser.X2009Uri);
+            classModifier = GetAttributeValue(root, "ClassModifier", XamlParser.X2006Uri, XamlParser.X2009Uri);
             var xmlType = new XmlType(root.NamespaceURI, root.LocalName, typeArguments != null ? TypeArgumentsParser.ParseExpression(typeArguments, nsmgr, null) : null);
             BaseType = GetType(xmlType, root.GetNamespaceOfPrefix);
 
@@ -319,6 +321,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
             var declType = new CodeTypeDeclaration(RootType) {
                 IsPartial = true,
+                TypeAttributes = GetTypeAttributes(classModifier),
                 CustomAttributes = {
                     new CodeAttributeDeclaration(new CodeTypeReference(XamlCTask.xamlNameSpace + ".XamlFilePathAttribute"),
                          new CodeAttributeArgument(new CodePrimitiveExpression(XamlFile))),
@@ -473,6 +476,26 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             }
 
             declType.Members.Add(exitXamlComp);
+        }
+
+        static System.Reflection.TypeAttributes GetTypeAttributes(string classModifier)
+        {
+            var access = System.Reflection.TypeAttributes.Public;
+            if (classModifier != null)
+            {
+                switch (classModifier.ToLowerInvariant())
+                {
+                    default:
+                    case "public":
+                        access = System.Reflection.TypeAttributes.Public;
+                        break;
+                    case "internal":
+                    case "notpublic": //WPF syntax
+                        access = System.Reflection.TypeAttributes.NotPublic;
+                        break;
+                }
+            }
+            return access;
         }
 
         static IEnumerable<CodeMemberField> GetCodeMemberFields(XmlNode root, XmlNamespaceManager nsmgr)
