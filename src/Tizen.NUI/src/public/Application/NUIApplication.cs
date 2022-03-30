@@ -507,6 +507,17 @@ namespace Tizen.NUI
                 ThemeManager.ApplicationThemeChangeSensitive = true;
             }
         }
+
+        /// <summary>
+        /// This can designate a style that is applied as a default when creating a View.
+        /// When creating a View, This default style is applied first, followed by the Theme and user ViewStyle.
+        /// </summary>
+        /// <param name="viewStyle">The ViewStyle to be applied when View is created</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetDefaultStyle(Tizen.NUI.BaseComponents.ViewStyle viewStyle)
+        {
+            Tizen.NUI.BaseComponents.View.SetDefaultStyle(viewStyle);
+        }
     }
 
     /// <summary>

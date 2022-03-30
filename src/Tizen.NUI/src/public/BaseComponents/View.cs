@@ -68,6 +68,8 @@ namespace Tizen.NUI.BaseComponents
         private Size internalSize = null;
         private Size2D internalSize2D = null;
         private int layoutCount = 0;
+        private static ViewStyle defaultStyle = null;
+
 
         static View()
         {
@@ -127,13 +129,14 @@ namespace Tizen.NUI.BaseComponents
             backgroundExtraData = uiControl.backgroundExtraData == null ? null : new BackgroundExtraData(uiControl.backgroundExtraData);
         }
 
-        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
+        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : this(cPtr, cMemoryOwn, null, shown)
         {
-            InitializeStyle(viewStyle);
         }
 
-        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn)
+        internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : base(cPtr, cMemoryOwn)
         {
+            InitializeStyle(viewStyle);
+
             if (HasBody())
             {
                 PositionUsesPivotPoint = false;
@@ -194,6 +197,17 @@ namespace Tizen.NUI.BaseComponents
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool LayoutingDisabled { get; set; } = true;
+
+        /// <summary>
+        /// This can designate a style that is applied as a default when creating a View.
+        /// When creating a View, This default style is applied first, followed by the Theme and user ViewStyle.
+        /// </summary>
+        /// <param name="viewStyle">The ViewStyle to be applied when View is created</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static void SetDefaultStyle(ViewStyle viewStyle)
+        {
+            defaultStyle = defaultStyle?.Merge(viewStyle) ?? viewStyle;
+        }
 
         /// <summary>
         /// Deprecate. Please do not use this.

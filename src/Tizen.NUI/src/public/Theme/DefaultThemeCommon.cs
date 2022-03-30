@@ -40,7 +40,7 @@ namespace Tizen.NUI
             {
                 FontFamily = "BreezeSans",
                 PixelSize = 32,
-                TextColor = new Color(0.00f, 0.05f, 0.17f, 1),
+                // TextColor = new Color(0.00f, 0.05f, 0.17f, 1),
                 FontStyle = new PropertyMap().Add("weight", new PropertyValue("light")),
             });
 
