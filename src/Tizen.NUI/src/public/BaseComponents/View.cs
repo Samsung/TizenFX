@@ -31,6 +31,7 @@ namespace Tizen.NUI.BaseComponents
         private static HashSet<BindableProperty> positionPropertyGroup = new HashSet<BindableProperty>();
         private static HashSet<BindableProperty> sizePropertyGroup = new HashSet<BindableProperty>();
         private static HashSet<BindableProperty> scalePropertyGroup = new HashSet<BindableProperty>();
+        private static bool defaultGrabTouchAfterLeave = false;
 
         internal BackgroundExtraData backgroundExtraData;
 
@@ -152,6 +153,7 @@ namespace Tizen.NUI.BaseComponents
                 SetVisible(false);
             }
 
+            GrabTouchAfterLeave = defaultGrabTouchAfterLeave;
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
@@ -194,6 +196,16 @@ namespace Tizen.NUI.BaseComponents
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool LayoutingDisabled { get; set; } = true;
+
+        /// <summary>
+        /// If set to true, the <see cref="GrabTouchAfterLeave"/> property value is set to true when all Views are created.
+        /// </summary>
+        /// <param name="enable">Sets value of GrabTouchAfterLeave property</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetDefaultGrabTouchAfterLeave(bool enable)
+        {
+            defaultGrabTouchAfterLeave = enable;
+        }
 
         /// <summary>
         /// Deprecate. Please do not use this.
