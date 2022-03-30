@@ -36,6 +36,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
         public string AssemblyName { get; set; }
         public string DependencyPaths { get; set; }
         public string ReferencePath { get; set; }
+        public int XamlOptimization {get; set;} = 2;
         public bool AddXamlCompilationAttribute { get; set; }
         public bool PrintReferenceAssemblies { get; set; }
 
@@ -88,6 +89,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
                 var generator = new XamlGenerator(xamlFile, Language, AssemblyName, outputFile, ReferencePath, Log);
                 generator.AddXamlCompilationAttribute = AddXamlCompilationAttribute;
+                generator.XamlOptimization = XamlOptimization;
                 generator.ReferencePath = ReferencePath;
 
                 try {
