@@ -176,7 +176,7 @@ namespace Tizen.NUI.Components
                         }
 
                         ClickedEventArgs eventArgs = new ClickedEventArgs();
-                        OnClickedInternal(eventArgs);
+                        OnClickedInternal(eventArgs, touch);
 
                         return true;
                     }
@@ -452,6 +452,23 @@ namespace Tizen.NUI.Components
             {
                 buttonText.MaximumSize = new Size2D((int)Math.Max(size.Width - lengthWithoutText, Math.Max(buttonText.MinimumSize.Width, 1)), (int)size.Height);
             }
+        }
+
+        private void OnClickedInternal(ClickedEventArgs eventArgs, Touch touch)
+        {
+            // If GrabTouchAfterLeave is true, Up will result in Finished rather than Interrupted even if it is out of the button area.
+            // So, it is necessary to check whether it is Up in the button area.
+            if (GrabTouchAfterLeave == true)
+            {
+                Vector2 localPosition = touch.GetLocalPosition(0);
+                if ((localPosition != null && Size != null &&
+                    0 <= localPosition.X && localPosition.X <= Size.Width &&
+                    0 <= localPosition.Y && localPosition.Y <= Size.Height) == false)
+                {
+                    return;
+                }
+            }
+            OnClickedInternal(eventArgs);
         }
 
         private void OnClickedInternal(ClickedEventArgs eventArgs)
