@@ -246,7 +246,6 @@ namespace Tizen.NUI.Samples
             source.FocusableInTouch =  true;
             source.MinValue = MIN_VALUE;
             source.MaxValue = MAX_VALUE;
-            source.StateChangedEvent += OnStateChanged;
             source.ValueChanged += OnValueChanged;
             source.SlidingStarted += OnSlidingStarted;
             source.SlidingFinished += OnSlidingFinished;
@@ -264,7 +263,6 @@ namespace Tizen.NUI.Samples
             source.FocusableInTouch = true;
             source.MinValue = MIN_VALUE;
             source.MaxValue = MAX_VALUE;
-            source.StateChangedEvent += OnStateChanged;
             source.ValueChanged += OnValueChanged;
             source.SlidingStarted += OnSlidingStarted;
             source.SlidingFinished += OnSlidingFinished;
@@ -317,18 +315,6 @@ namespace Tizen.NUI.Samples
                 else
                 {
                     inforText[0].Text = "Finished currentValue = " + args.CurrentValue;
-                }
-            }
-        }
-
-        private void OnStateChanged(object sender, Slider.StateChangedArgs args)
-        {
-            if (sender is Tizen.NUI.Components.Slider)
-            {
-                Tizen.NUI.Components.Slider slider = sender as Tizen.NUI.Components.Slider;
-                if (slider != null)
-                {
-                    // Do something
                 }
             }
         }
