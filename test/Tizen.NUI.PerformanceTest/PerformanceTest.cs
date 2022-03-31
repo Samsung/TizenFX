@@ -25,7 +25,7 @@ using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Constants;
 
 
-class PerfNewExample : NUIApplication
+class PerformanceTestExample : NUIApplication
 {
     const uint ROWS_COUNT = 32;
     const uint COLUMNS_COUNT = 32;
@@ -33,10 +33,10 @@ class PerfNewExample : NUIApplication
     const uint DURATION_PER_COLUMNS = 50; // miliseconds
     const float VIEW_MARGIN_RATE = 0.1f;
     enum ViewTestType{
-        TEST_TYPE_COLOR = 0,     ///< Test with simple color
-        TEST_TYPE_IMAGE,         ///< Test with simple image
-        TEST_TYPE_TEXT,          ///< Test with simple text label
-        TEST_TYPE_ROUNDED_COLOR, ///< Test with rounded color
+        TEST_TYPE_COLOR = 0,            ///< Test with simple color
+        TEST_TYPE_IMAGE,                ///< Test with simple image
+        TEST_TYPE_TEXT,                 ///< Test with simple text label
+        TEST_TYPE_ROUNDED_COLOR,        ///< Test with rounded color
 #if ALLOW_BORDER_AND_BLUR
         TEST_TYPE_BORDER_COLOR,         ///< Test with borderline color
         TEST_TYPE_ROUNDED_BORDER_COLOR, ///< Test with rounded borderline color
@@ -169,12 +169,15 @@ class PerfNewExample : NUIApplication
         }
     };
     Statistic mCreationStatistic;
-    global::System.Collections.Generic.LinkedList<View> mViewList;
-    global::System.Collections.Generic.LinkedList<Timer> mTimerList;
     Window mWindow;
     Vector2 mWindowSize;
     Vector2 mSize;
     ViewTestType mTestType = ViewTestType.TEST_TYPE_COLOR;
+
+    // To keep reference count.
+    global::System.Collections.Generic.LinkedList<View> mViewList;
+    global::System.Collections.Generic.LinkedList<Timer> mTimerList;
+    global::System.Collections.Generic.LinkedList<Animation> mAnimationList;
 
     uint mColumnsCount = ROWS_COUNT;
     uint mRowsCount = COLUMNS_COUNT;
@@ -192,6 +195,7 @@ class PerfNewExample : NUIApplication
 
         mViewList  = new global::System.Collections.Generic.LinkedList<View>();
         mTimerList = new global::System.Collections.Generic.LinkedList<Timer>();
+        mAnimationList = new global::System.Collections.Generic.LinkedList<Animation>();
 
         mWindow = Window.Instance;
         mWindow.BackgroundColor = Color.White;
@@ -299,6 +303,8 @@ class PerfNewExample : NUIApplication
         animation.Finished += OnAnimationFinished;
         animation.Play();
 
+        mAnimationList.AddLast(animation);
+
         endTime = DateTime.Now;
 
         mCreationStatistic.add((endTime - startTime).TotalMilliseconds);
@@ -344,7 +350,13 @@ class PerfNewExample : NUIApplication
         mTimerList.First.Value.Dispose();
         mTimerList.RemoveFirst();
 
+        // Dereference animation safety
+        mAnimationList.RemoveFirst();
+
         deleteCount++;
+
+        Animation me = o as Animation;
+        me.Dispose();
 
         // If all views are deleted, quit this application. byebye~
         if(deleteCount == mTotalColumnsCount * (int)ViewTestType.TEST_TYPE_MAX)
@@ -352,6 +364,7 @@ class PerfNewExample : NUIApplication
             appEndTime = DateTime.Now;
             Tizen.Log.Error("NUI.PerfNew", $"Duration of all app running time : {((appEndTime - appStartTime)).TotalMilliseconds} ms\n");
             Deactivate();
+            FullGC();
             Exit();
         }
     }
@@ -475,7 +488,7 @@ class PerfNewExample : NUIApplication
     [STAThread] // Forces app to use one thread to access NUI
     static void Main(string[] args)
     {
-        PerfNewExample example = new PerfNewExample();
+        PerformanceTestExample example = new PerformanceTestExample();
         example.Run(args);
     }
 }
