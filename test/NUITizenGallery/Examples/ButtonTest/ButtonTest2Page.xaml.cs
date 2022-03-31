@@ -41,7 +41,8 @@ namespace NUITizenGallery
         public ButtonTest2Page()
         {
             InitializeComponent();
-            imageview1.ResourceUrl = ImageURL + "NUITizenGallery.png";
+            coloredButton.Icon.Size2D = new Size2D(60, 60);
+            coloredButton.Icon.ResourceUrl = ImageURL + "NUITizenGallery.png";
             coloredButton.Clicked += OnColoredButtonClicked;
             button3.Clicked += OnButton3Clicked;
         }

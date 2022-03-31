@@ -22,7 +22,7 @@
 
 			<Button x:Name="btn1" Text="Change"
 			          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
-			          HeightSpecification="100" CellHorizontalAlignment="Left"/>
+			          HeightSpecification="100" TextAlignment="Begin"/>
 			<View x:Name="lblView">
 				<ScrollableBase x:Name="Scroller" ScrollingDirection="Vertical" HideScrollbar="false" >
 
