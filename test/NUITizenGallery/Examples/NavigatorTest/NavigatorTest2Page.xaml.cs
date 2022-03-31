@@ -24,6 +24,7 @@ namespace NUITizenGallery
         public NavigatorTest2Page()
         {
             InitializeComponent();
+            ContentView.SizeHeight = Window.Instance.WindowSize.Height - appBar.SizeHeight;
         }
 
         private void SetButtonColor(NavigatorTest2Page page, int type)

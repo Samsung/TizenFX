@@ -26,9 +26,6 @@
                       TextColor="#ffffff"
                       WidthSpecification="{Static LayoutParamPolicies.WrapContent}"
                       HeightSpecification="{Static LayoutParamPolicies.WrapContent}" >
-                <Button.Icon>
-                    <ImageView x:Name="imageview1" Size2D="300, 300" />
-                </Button.Icon>
             </Button>
             <TextLabel x:Name="text1"
                          Text="ImageButton Status"

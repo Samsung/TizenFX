@@ -28,9 +28,9 @@
                       Opacity="0.5"
                       PointSize="8">
 
-                <Button.Icon>
+                <!--<Button.Icon>
                     <ImageView x:Name="imageview1" Size2D="60,60" />
-                </Button.Icon>
+                </Button.Icon>-->
 
             </Button>
 
