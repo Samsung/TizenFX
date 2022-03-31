@@ -32,15 +32,15 @@
                 <TextLabel x:Name="txtLbl1"
                              Text="This is what a ScrollView widget looks like."
                              TextColor="Blue"
-                             CellHorizontalAlignment="Left"/>
+                             HorizontalAlignment="Begin"/>
                 <TextLabel x:Name="txtLbl2"
                              Text="Please use the widgets to test ScrollView's behavior."
                              TextColor="Green"
-                             CellHorizontalAlignment="Left" />
+                             HorizontalAlignment="Begin" />
                 <TextLabel x:Name="txtLbl3"
                              Text="This is long horizontal text."
                              TextColor="Cyan"
-                             CellHorizontalAlignment="Left"
+                             HorizontalAlignment="Begin"
                              FontSizeScale="0.8"/>
             </ScrollableBase>
             <TextLabel x:Name="widthLbl"

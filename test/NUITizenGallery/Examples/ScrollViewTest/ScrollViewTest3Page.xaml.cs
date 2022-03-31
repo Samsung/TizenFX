@@ -42,13 +42,13 @@ namespace NUITizenGallery
             Random rand = new Random();
             for (int i = 0; i <= 60; ++i)
             {
-                float r = (float)rand.NextDouble();
-                float g = (float)rand.NextDouble();
-                float b = (float)rand.NextDouble();
+                float r = (float)rand.NextDouble() / 255f;
+                float g = (float)rand.NextDouble() / 255f;
+                float b = (float)rand.NextDouble() / 255f;
                 var t = new View
                 {
                     Size2D = new Size2D(200, 200),
-                    BackgroundColor = new Color(r, g, b, 255),
+                    BackgroundColor = new Color(r, g, b, 1f),
                 };
                 box.Add(t);
             }
