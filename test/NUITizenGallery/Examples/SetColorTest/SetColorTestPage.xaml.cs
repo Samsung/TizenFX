@@ -33,8 +33,13 @@ namespace NUITizenGallery
             ButtonColorName.Text = GetColorValues(ChangeColorButton.BackgroundColor);
             CheckBoxColorName.Text = GetColorValues(CheckBox2.BackgroundColor);
             ProgressBarColorName.Text = GetColorValues(ProgressBar.BackgroundColor);
+            RadioColorName.Text = GetColorValues(RadioButton2.BackgroundColor);
 
             ChangeColorButton.Clicked += OnChangeColorClicked;
+
+            RadioButtonGroup group = new RadioButtonGroup();
+            group.Add(RadioButton1);
+            group.Add(RadioButton2);
         }
 
         private Color GenerateColor(View component, TextLabel label)
