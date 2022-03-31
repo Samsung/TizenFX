@@ -23,7 +23,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-namespace Tizen.NUI.Devel.Tests
+namespace Tizen.NUI.Components.Devel.Tests
 {
     using tlog = Tizen.Log;
     public class App : Tizen.NUI.NUIApplication
