@@ -34,9 +34,9 @@
                       PointSize="10"
                       TextColor="#ffffff"
                       Weight="0.12">
-                <Button.Icon>
+                <!--<Button.Icon>
                     <ImageView x:Name="imageview1" Size2D="60,60" />
-                </Button.Icon>
+                </Button.Icon>-->
             </Button>
 
             <Button x:Name="button3"
@@ -46,9 +46,9 @@
                       Text="Image and Text Button"
                       TextColor="#ffffff"
                       Weight="0.12">
-                <Button.Icon>
+                <!--<Button.Icon>
                     <ImageView x:Name="imageview2" Size2D="60,60" />
-                </Button.Icon>
+                </Button.Icon>-->
             </Button>
 
             <Button x:Name="button4"
@@ -58,9 +58,9 @@
                       Text="Color Change"
                       TextColor="#52c7d9"
                       Weight="0.12">
-                <Button.Icon>
+                <!--<Button.Icon>
                     <ImageView x:Name="imageview3" Size2D="60,60" />
-                </Button.Icon>
+                </Button.Icon>-->
             </Button>
 
             <Button x:Name="button5"
@@ -70,9 +70,9 @@
                       Text="Text Toggle"
                       TextColor="#ffffff"
                       Weight="0.12">
-                <Button.Icon>
+                <!--<Button.Icon>
                     <ImageView x:Name="imageview4" Size2D="60,60" />
-                </Button.Icon>
+                </Button.Icon>-->
             </Button>
 
             <Button x:Name="button6"
@@ -82,9 +82,9 @@
                       Text="Image Toggle"
                       TextColor="#ffffff"
                       Weight="0.12">
-                <Button.Icon>
+                <!--<Button.Icon>
                     <ImageView x:Name="imageview5" Size2D="60,60" />
-                </Button.Icon>
+                </Button.Icon>-->
             </Button>
 
             <Button x:Name="button7"
