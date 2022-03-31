@@ -88,7 +88,7 @@ namespace Tizen.NUI.Components
                 NotifyPropertyChanged();
             }
         }
-        private IEnumerable InternalItemsSource { get; set; }
+        internal virtual IEnumerable InternalItemsSource { get; set; }
 
         /// <summary>
         /// DataTemplate for items.
@@ -106,7 +106,7 @@ namespace Tizen.NUI.Components
                 NotifyPropertyChanged();
             }
         }
-        private DataTemplate InternalItemTemplate { get; set; }
+        internal virtual DataTemplate InternalItemTemplate { get; set; }
 
         /// <summary>
         /// Internal encapsulated items data source.
@@ -123,7 +123,7 @@ namespace Tizen.NUI.Components
         /// Internal Items Layouter.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected ItemsLayouter InternalItemsLayouter { get; set; }
+        protected virtual ItemsLayouter InternalItemsLayouter { get; set; }
 
         /// <summary>
         /// Max size of RecycleCache. Default is 50.
@@ -333,7 +333,7 @@ namespace Tizen.NUI.Components
             if (item == null) return;
             item.Index = -1;
             item.ParentItemsView = null;
-            item.BindingContext = null; 
+            item.BindingContext = null;
             item.IsPressed = false;
             item.IsSelected = false;
             item.IsEnabled = true;
@@ -412,7 +412,7 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// On scroll event callback.
-        /// </summary>        
+        /// </summary>
         /// <since_tizen> 9 </since_tizen>
         protected virtual void OnScrolling(object source, ScrollEventArgs args)
         {
