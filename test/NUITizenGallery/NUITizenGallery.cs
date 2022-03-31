@@ -150,6 +150,8 @@ namespace NUITizenGallery
     class Program : NUIApplication
     {
         private Window window;
+        private AppBar appBar;
+        private View pageContent;
         private Navigator navigator;
         private CollectionView colView;
         private ItemSelectionMode selMode;
@@ -179,7 +181,7 @@ namespace NUITizenGallery
         public void OnSelectionChanged(object sender, SelectionChangedEventArgs ev)
         {
             Console.WriteLine($"@@@ OnSelectionChanged() {ev.CurrentSelection}");
-
+            
             foreach (object item in ev.CurrentSelection)
             {
                 if (item == null)
@@ -221,6 +223,7 @@ namespace NUITizenGallery
             base.OnCreate();
             Initialize();
             SetMainPage();
+            pageContent.SizeHeight = Window.Instance.WindowSize.Height - appBar.SizeHeight;
         }
         private void Initialize()
         {
@@ -247,7 +250,7 @@ namespace NUITizenGallery
 
         private void SetMainPage()
         {
-            var appBar = new AppBar()
+            appBar = new AppBar()
             {
                 Title = "NUI Tizen Gallery",
                 AutoNavigationContent = false,
@@ -259,7 +262,7 @@ namespace NUITizenGallery
             appBar.NavigationContent = moreButton;
 
 
-            var pageContent = new View()
+            pageContent = new View()
             {
                 Layout = new LinearLayout()
                 {
@@ -299,6 +302,7 @@ namespace NUITizenGallery
                 }),
                 Header = myTitle,
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
+                HideScrollbar = false,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
                 SelectionMode = selMode,
@@ -362,7 +366,7 @@ namespace NUITizenGallery
             }
 
             var app = new Program();
-            app.Run(emptyArgs);
+            app.Run(args);
         }
     }
 }

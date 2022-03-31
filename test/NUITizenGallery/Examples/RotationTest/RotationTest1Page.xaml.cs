@@ -27,6 +27,7 @@ namespace NUITizenGallery
         public RotationTest1Page()
         {
             InitializeComponent();
+            ContentView.SizeHeight = Window.Instance.WindowSize.Height - appBar.SizeHeight;
             img.SetImage(ResourcePath + "a.jpg");
 
             int count = 0;

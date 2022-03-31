@@ -27,11 +27,12 @@ namespace NUITizenGallery
             InitializeComponent();
 
             // FIXME: For now, menuItem1, 2, 3, 4 handles are not found by FindByName.
-
+            /*
             menuItem1.Clicked += MenuItem1Clicked;
             menuItem2.Clicked += MenuItem2Clicked;
             menuItem3.Clicked += MenuItem3Clicked;
             menuItem4.Clicked += MenuItem4Clicked;
+            */
         }
 
         private void MenuItem1Clicked(object sender, ClickedEventArgs args)

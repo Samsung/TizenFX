@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <RecyclerViewItem x:Class="NUITizenGallery.CollectionViewCustomItem"
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -28,8 +28,8 @@
         <TextLabel x:Name="MainLabel"
                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
                      HeightSpecification="{Static LayoutParamPolicies.WrapContent}"
-                     CellHorizontalAlignment="Left"
-                     CellVerticalAlignment="Center"
+                     HorizontalAlignment="Begin"
+                     VerticalAlignment="Center"
                      Text="{Binding Name}"/>
 
         <CheckBox x:Name="Checkbox"
@@ -45,8 +45,8 @@
             </View.Layout>
 
             <TextLabel x:Name="IndexLebel"
-                         CellVerticalAlignment="Center"
-                         CellHorizontalAlignment="Center"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center"
                          Text="{Binding Index}"
                          TextColor="{Binding BgColor}"/>
             <ImageView x:Name="SubIcon"

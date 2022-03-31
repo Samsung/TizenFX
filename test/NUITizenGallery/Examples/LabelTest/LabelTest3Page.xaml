@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage x:Class="NUITizenGallery.LabelTest3Page"
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -26,7 +26,7 @@
                     <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Begin"/>
                 </View.Layout>
                 <TextLabel Text="LeftAligned"
-                        CellHorizontalAlignment="Left"
+                        HorizontalAlignment="Begin"
                         BackgroundColor="#00ffff"/>
             </View>
             <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" >
@@ -34,7 +34,7 @@
                     <LinearLayout LinearOrientation="Horizontal" LinearAlignment="Center"/>
                 </View.Layout>
                 <TextLabel Text="CenterAligned"
-                           CellHorizontalAlignment="Center"
+                           HorizontalAlignment="Center"
                            BackgroundColor="#00ffff"/>
             </View>
             <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}" >
@@ -42,7 +42,7 @@
                     <LinearLayout LinearOrientation="Horizontal" LinearAlignment="End"/>
                 </View.Layout>
                 <TextLabel Text="RightAligned"
-                           CellHorizontalAlignment="Right"
+                           HorizontalAlignment="End"
                            BackgroundColor="#00ffff"/>
             </View>
             <TextLabel WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
