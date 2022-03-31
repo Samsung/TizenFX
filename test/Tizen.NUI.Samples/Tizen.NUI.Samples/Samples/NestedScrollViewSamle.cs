@@ -69,7 +69,7 @@ namespace Tizen.NUI.Samples
                 LinearOrientation = LinearLayout.Orientation.Vertical
             };
 
-            for(int i=0; i<50; i++)
+            for(int i=0; i<30; i++)
             {
                 scroll2.ContentContainer.Add(new TextLabel
                 {
@@ -77,6 +77,17 @@ namespace Tizen.NUI.Samples
                     WidthResizePolicy = ResizePolicyType.FillToParent,
                     Focusable = true,
                     FocusableInTouch = true,
+                    // Position = new Position(0, i*50+200),
+                });
+            }
+            for(int i=30; i<50; i++)
+            {
+                scroll2.ContentContainer.Add(new TextLabel
+                {
+                    Text = $"Text {i}",
+                    WidthResizePolicy = ResizePolicyType.FillToParent,
+                    // Focusable = true,
+                    // FocusableInTouch = true,
                     // Position = new Position(0, i*50+200),
                 });
             }

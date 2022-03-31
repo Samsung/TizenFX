@@ -800,6 +800,7 @@ namespace Tizen.NUI.Components
         private Animation overShootingShadowAnimation;
         private bool isOverShootingShadowShown = false;
         private float startShowShadowDisplacement;
+        private float stepDistance = 200f;
 
         /// <summary>
         /// Default Constructor
@@ -877,6 +878,81 @@ namespace Tizen.NUI.Components
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
 
             SetKeyboardNavigationSupport(true);
+            // Focusable = true;
+
+            KeyEvent += (s, e) =>
+            {
+                Tizen.Log.Error("NUI", $"gab_test KeyEvent {e.Key.State} {e.Key.KeyString} {e.Key.KeyCode}\n");
+
+
+                View.FocusDirection direction = View.FocusDirection.Down;
+
+                if (e.Key.KeyCode == 116)
+                {
+                    direction = View.FocusDirection.Down;
+                }
+                else if (e.Key.KeyCode == 111)
+                {
+                    direction = View.FocusDirection.Up;
+                }
+
+                View nextFocusedView = FocusManager.Instance.GetNearestFocusableActor(this, FocusManager.Instance.GetCurrentFocusView(), direction);
+                float visibleOffset = (SnapToPage ? 0f : stepDistance);
+                if (nextFocusedView != null)
+                {
+                    View view = nextFocusedView;
+                    while (view.GetParent() is View && view.GetParent() != ContentContainer)
+                    {
+                        view = (View)view.GetParent();
+                    }
+                    if (view.GetParent() == ContentContainer)
+                    {
+                        if (IsChildNearlyVisble(nextFocusedView, visibleOffset))
+                        {
+                            return false;
+                        }
+                    }
+                }
+
+                if (direction == View.FocusDirection.Down)
+                {
+                    ScrollBy(-10, false);
+                }
+                else if (direction == View.FocusDirection.Up)
+                {
+                    ScrollBy(10, false);
+                }
+
+                var checkDisplacement = (ScrollingDirection == Direction.Horizontal) ? (direction == View.FocusDirection.Down? -10 : 10) : (direction == View.FocusDirection.Down? -10 : 10);
+                var checkChildCurrentPosition = (ScrollingDirection == Direction.Horizontal) ? ContentContainer.PositionX : ContentContainer.PositionY;
+                var checkChildTargetPosition = checkChildCurrentPosition + checkDisplacement;
+                var checkFinalTargetPosition = BoundScrollPosition(checkChildTargetPosition);
+                if (!((int)checkFinalTargetPosition == 0 || -(int)checkFinalTargetPosition == (int)maxScrollDistance))
+                {
+                    return true;
+                }
+                else
+                {
+                    // FocusManager.Instance.SetCurrentFocusView(this);
+                    return false;
+                }
+
+            };
+        }
+
+        internal bool IsChildNearlyVisble(View child, float offset = 0)
+        {
+            if (ScreenPosition.X - offset < child.ScreenPosition.X + child.SizeWidth &&
+                ScreenPosition.X + SizeWidth + offset > child.ScreenPosition.X &&
+                ScreenPosition.Y - offset < child.ScreenPosition.Y + child.SizeHeight &&
+                ScreenPosition.Y + SizeHeight + offset > child.ScreenPosition.Y)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private bool OnInterruptTouchingChildTouched(object source, View.TouchEventArgs args)
@@ -1834,6 +1910,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
+            Tizen.Log.Error("NUI", $"gab_test GetNextFocusableView \n");
             if (currentFocusedView == this)
             {
                 return null;
@@ -1922,7 +1999,7 @@ namespace Tizen.NUI.Components
                         PageSnap(-(PageFlickThreshold + 1));
                     }
                     else
-                    {                        
+                    {
                         ScrollTo((float)(child.ScreenPosition.X + child.Size.Width - ContentContainer.ScreenPosition.X - this.Size.Width), false);
                     }
                 }
@@ -1936,7 +2013,7 @@ namespace Tizen.NUI.Components
                         PageSnap(PageFlickThreshold + 1);
                     }
                     else
-                    {                        
+                    {
                         ScrollTo((float)(child.ScreenPosition.Y - ContentContainer.ScreenPosition.Y), false);
                     }
                 }
@@ -1947,7 +2024,7 @@ namespace Tizen.NUI.Components
                         PageSnap(-(PageFlickThreshold + 1));
                     }
                     else
-                    {                       
+                    {
                         ScrollTo((float)(child.ScreenPosition.Y + child.Size.Height - ContentContainer.ScreenPosition.Y - this.Size.Height), false);
                     }
                 }
