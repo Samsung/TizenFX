@@ -42,7 +42,9 @@ namespace NUITizenGallery
             mDrawableGroup = new DrawableGroup();
             canvasView.AddDrawable(mDrawableGroup);
 
-            for(int i = 0; i < NumberOfPictures; i++)
+            contentView.SizeHeight = Window.Instance.WindowSize.Height - appBar.SizeHeight;
+
+            for (int i = 0; i < NumberOfPictures; i++)
             {
                 mPicture[i] = new Picture();
                 mPicture[i].Load(ResourcePath + Files[i]);

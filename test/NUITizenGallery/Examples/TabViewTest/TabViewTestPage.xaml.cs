@@ -28,6 +28,8 @@ namespace NUITizenGallery
         {
             InitializeComponent();
 
+            tabView.SizeHeight = Window.Instance.WindowSize.Height - appBar.SizeHeight;
+
             tabView.AddTab(CreateTabButton(), CreateView());
             tabCount++;
 
