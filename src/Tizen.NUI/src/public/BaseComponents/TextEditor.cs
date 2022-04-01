@@ -86,6 +86,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+            Focusable = true;
         }
 
         /// <summary>
