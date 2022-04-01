@@ -77,6 +77,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+            Focusable = true;
         }
 
         internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn, null)
@@ -85,6 +86,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+            Focusable = true;
         }
 
         internal TextField(TextField handle, bool shown = true) : this(Interop.TextField.NewTextField(TextField.getCPtr(handle)), true)
