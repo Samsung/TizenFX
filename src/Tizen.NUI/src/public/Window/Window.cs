@@ -229,7 +229,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for transition effect's type.
         /// </summary>
-        [Obsolete("Please do not use! This will be removed. Please use Window.EffectType instead!")]
+        //  This is already deprecated, so suppress warning here.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum EffectTypes
         {
@@ -306,6 +306,11 @@ namespace Tizen.NUI
         public enum ResizeDirection
         {
             /// <summary>
+            /// None type.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
+            /// <summary>
             /// Start resizing window to the top-left edge.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
@@ -345,6 +350,11 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             BottomRight = 8,
+            /// <summary>
+            /// Move type.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Move = 9,
         }
 
 
@@ -901,6 +911,8 @@ namespace Tizen.NUI
             if (null != view)
             {
                 view.InternalParent = this.GetRootLayer();
+
+                this.GetRootLayer().LayoutCount += view.LayoutCount;
             }
         }
 
@@ -916,6 +928,8 @@ namespace Tizen.NUI
             if (null != view)
             {
                 view.InternalParent = null;
+
+                this.GetRootLayer().LayoutCount -= view.LayoutCount;
             }
         }
 
@@ -1329,8 +1343,17 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(layer));
             }
-            Interop.Window.Add(SwigCPtr, Layer.getCPtr(layer));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (isBorderWindow)
+            {
+                Interop.Actor.Add(GetBorderWindowRootLayer().SwigCPtr, layer.SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) { throw NDalicPINVOKE.SWIGPendingException.Retrieve(); }
+            }
+            else
+            {
+                Interop.Window.Add(SwigCPtr, Layer.getCPtr(layer));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
 
             LayersChildren?.Add(layer);
             layer.SetWindow(this);
@@ -1352,6 +1375,9 @@ namespace Tizen.NUI
         internal Vector2 GetSize()
         {
             var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
+
+            convertRealWindowSizeToBorderWindowSize(val);
+
             Vector2 ret = new Vector2(val.GetWidth(), val.GetHeight());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -1381,16 +1407,26 @@ namespace Tizen.NUI
 
         internal Layer GetRootLayer()
         {
-            // Window.IsInstalled() is actually true only when called from event thread and
-            // Core has been initialized, not when Stage is ready.
-            if (rootLayer == null && Window.IsInstalled())
+            if (isBorderWindow)
             {
-                rootLayer = new Layer(Interop.Window.GetRootLayer(SwigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                LayersChildren?.Add(rootLayer);
-                rootLayer.SetWindow(this);
+                var borderRootLayer = GetBorderWindowRootLayer();
+                LayersChildren?.Add(borderRootLayer);
+                borderRootLayer.SetWindow(this);
+                return borderRootLayer;
             }
-            return rootLayer;
+            else
+            {
+                // Window.IsInstalled() is actually true only when called from event thread and
+                // Core has been initialized, not when Stage is ready.
+                if (rootLayer == null && Window.IsInstalled())
+                {
+                    rootLayer = new Layer(Interop.Window.GetRootLayer(SwigCPtr), true);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    LayersChildren?.Add(rootLayer);
+                    rootLayer.SetWindow(this);
+                }
+                return rootLayer;
+            }
         }
 
         internal void SetBackgroundColor(Vector4 color)
@@ -1441,6 +1477,9 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(size));
             }
             var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
+
+            convertBorderWindowSizeToRealWindowSize(val);
+
             Interop.Window.SetSize(SwigCPtr, Uint16Pair.getCPtr(val));
             val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1450,8 +1489,12 @@ namespace Tizen.NUI
         internal Size2D GetWindowSize()
         {
             var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
+
+            convertRealWindowSizeToBorderWindowSize(val);
+
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            val.Dispose();
             return ret;
         }
 
@@ -1479,6 +1522,13 @@ namespace Tizen.NUI
 
         internal void SetPositionSize(Rectangle positionSize)
         {
+            var val = new Uint16Pair((uint)positionSize.Width, (uint)positionSize.Height);
+
+            convertBorderWindowSizeToRealWindowSize(val);
+
+            positionSize.Width = val.GetX();
+            positionSize.Height = val.GetY();
+
             Interop.Window.SetPositionSize(SwigCPtr, Rectangle.getCPtr(positionSize));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1570,6 +1620,58 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+        /// Maximizes window's size.
+        /// If this function is called with true, window will be resized with screen size.
+        /// Otherwise window will be resized with previous size.
+        /// It is for the window's MAX button in window's border.
+        /// If window border is supported by display server, it is not necessary.
+        /// </summary>
+        /// <param name="max">If window is maximized or unmaximized.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Maximize(bool max)
+        {
+            Interop.Window.Maximize(SwigCPtr, max);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns whether the window is maximized or not.
+        /// </summary>
+        /// <returns>True if the window is maximized, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsMaximized()
+        {
+            bool ret = Interop.Window.IsMaximized(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Minimizes window's size.
+        /// If this function is called with true, window will be iconified.
+        /// Otherwise window will be activated.
+        /// It is for the window's MIN button in window border.
+        /// If window border is supported by display server, it is not necessary.
+        /// </summary>
+        /// <param name="min">If window is minimized or unminimized.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Minimize(bool min)
+        {
+            Interop.Window.Minimize(SwigCPtr, min);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns whether the window is minimized or not.
+        /// </summary>
+        /// <returns>True if the window is minimized, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsMinimized()
+        {
+            bool ret = Interop.Window.IsMinimized(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
         /// <summary>
         /// Add FrameUpdateCallback
@@ -1605,6 +1707,11 @@ namespace Tizen.NUI
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
+
+                if (IsBorderEnabled)
+                {
+                    DisposeBorder();
+                }
 
                 if (rootLayer != null)
                 {

@@ -28,6 +28,8 @@ namespace Tizen.NUI
     {
         private Window window;
 
+        private int layoutCount = 0;
+
         /// <summary>
         /// Creates a Layer object.
         /// </summary>
@@ -41,6 +43,22 @@ namespace Tizen.NUI
 
         internal Layer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+        }
+
+        /// <summary>
+        /// Dispose Explicit or Implicit
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            LayoutCount = 0;
+
+            base.Dispose(type);
         }
 
         /// <summary>
@@ -284,6 +302,9 @@ namespace Tizen.NUI
                 {
                     child.InternalParent = this;
                 }
+
+                LayoutCount += child.LayoutCount;
+
                 Interop.Actor.Add(SwigCPtr, View.getCPtr(child));
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -311,7 +332,8 @@ namespace Tizen.NUI
 
             Children.Remove(child);
             child.InternalParent = null;
-            OnChildRemoved(child);
+
+            LayoutCount -= child.LayoutCount;
         }
 
         /// <summary>
@@ -436,8 +458,9 @@ namespace Tizen.NUI
             if (parentChildren != null)
             {
                 int currentIdx = parentChildren.IndexOf(this);
+                int idx = window.IsBorderEnabled ? 1 : 0;
 
-                if (currentIdx > 0 && currentIdx < parentChildren.Count)
+                if (currentIdx > idx && currentIdx < parentChildren.Count)
                 {
                     var low = parentChildren[currentIdx - 1];
                     LowerBelow(low);
@@ -477,6 +500,14 @@ namespace Tizen.NUI
                 parentChildren.Insert(0, this);
 
                 Interop.Layer.LowerToBottom(SwigCPtr);
+
+                if (window.IsBorderEnabled)
+                {
+                    Layer bottomLayer = window.GetBorderWindowBottomLayer();
+                    parentChildren.Remove(bottomLayer);
+                    parentChildren.Insert(0, bottomLayer);
+                    Interop.Layer.LowerToBottom(Layer.getCPtr(bottomLayer));
+                }
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
@@ -682,7 +713,19 @@ namespace Tizen.NUI
 
         internal void SetWindow(Window win)
         {
+            if (window == win) return;
+
+            if (window != null)
+            {
+                window.LayoutController.LayoutCount -= LayoutCount;
+            }
+
             window = win;
+
+            if (window != null)
+            {
+                window.LayoutController.LayoutCount += LayoutCount;
+            }
         }
 
         internal uint GetId()
@@ -691,6 +734,33 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// The number of layouts of children views.
+        /// This can be used to set/unset Process callback to calculate Layout.
+        /// </summary>
+        internal int LayoutCount
+        {
+            get
+            {
+                return layoutCount;
+            }
+
+            set
+            {
+                if (layoutCount == value) return;
+
+                if (value < 0) throw new global::System.ArgumentOutOfRangeException(nameof(LayoutCount), "LayoutCount(" + LayoutCount + ") should not be less than zero");
+
+                int diff = value - layoutCount;
+                layoutCount = value;
+
+                if (window != null)
+                {
+                    window.LayoutController.LayoutCount += diff;
+                }
+            }
         }
 
         /// This will not be public opened.
