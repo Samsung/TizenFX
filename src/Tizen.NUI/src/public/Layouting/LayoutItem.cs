@@ -586,7 +586,15 @@ namespace Tizen.NUI
 
                 if (ownerView?.Layout?.LayoutWithTransition ?? false)
                 {
-                    NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(layoutPositionData);
+                    var win = Window.Get(Owner);
+                    if (win == null)
+                    {
+                        NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(layoutPositionData);
+                    }
+                    else
+                    {
+                        win.LayoutController.AddTransitionDataEntry(layoutPositionData);
+                    }
                 }
                 else
                 {
