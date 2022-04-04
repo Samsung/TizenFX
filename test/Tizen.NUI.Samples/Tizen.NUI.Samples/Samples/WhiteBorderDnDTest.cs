@@ -82,11 +82,6 @@ namespace Tizen.NUI.Samples
       itemView.Add(child);
       itemView.Add(itemName);
 
-      GridLayout.SetHorizontalStretch(itemView, GridLayout.StretchFlags.Expand);
-      GridLayout.SetVerticalStretch(itemView, GridLayout.StretchFlags.Expand);
-      GridLayout.SetHorizontalAlignment(itemView, GridLayout.Alignment.Center);
-      GridLayout.SetVerticalAlignment(itemView, GridLayout.Alignment.Center);
-
       return itemView;
     }
 
@@ -119,10 +114,11 @@ namespace Tizen.NUI.Samples
 
         var view = new View()
         {
-          Layout = new GridLayout()
+          Layout = new FlexLayout()
           {
-            Columns = 1,
-            Rows = 1,
+            Direction = FlexLayout.FlexDirection.Row,
+            WrapType = FlexLayout.FlexWrapType.Wrap,
+            LayoutWithTransition = true,
           },
           WidthSpecification = LayoutParamPolicies.MatchParent,
           HeightSpecification = LayoutParamPolicies.MatchParent,
@@ -507,7 +503,7 @@ namespace Tizen.NUI.Samples
     {
       if (allAppsWindow == null)
       {
-        allAppsWindow = new Window("subwin1", new Rectangle(100, 207, 550, 500), false);
+        allAppsWindow = new Window("subwin1", new Rectangle(100, 207, 450, 500), false);
         allAppsWindow.EnableBorderWindow();
 
         var mainView = new View()
@@ -533,10 +529,11 @@ namespace Tizen.NUI.Samples
         // Create All Apps Items
         var view = new View()
         {
-          Layout = new GridLayout()
+          Layout = new FlexLayout()
           {
-            Columns = 3,
-            Rows = 3,
+            Direction = FlexLayout.FlexDirection.Row,
+            WrapType = FlexLayout.FlexWrapType.Wrap,
+            LayoutWithTransition = true,
           },
           WidthSpecification = LayoutParamPolicies.MatchParent,
           HeightSpecification = LayoutParamPolicies.MatchParent,
@@ -653,6 +650,22 @@ namespace Tizen.NUI.Samples
               Tizen.Log.Error("WhiteboardDnDDemo", "KTH Drop " + dragEvent.Position.X + " " + dragEvent.Position.Y + " " + itemData[0] + " " + itemData[1]);
               var itemView = CreateItem(itemData[0], itemData[1]);
               myAppsView.Add(itemView);
+              itemView.SiblingOrder = 1;
+
+              /*
+              foreach (var item in myAppsView.Children)
+              {
+                  if (item == itemView) continue;
+
+                  if ((item.Position2D.X < dragEvent.Position.X) && (item.Position2D.Y < dragEvent.Position.Y) &&
+                      (item.Position2D.X + item.SizeWidth > dragEvent.Position.X) && (item.Position2D.Y + item.SizeHeight > dragEvent.Position.Y))
+                  {
+                      itemView.SiblingOrder = item.SiblingOrder;
+                      break;
+                  }
+              }
+              myAppsView.Layout?.RequestLayout();
+              */
           }
           else if (dragEvent.MimeType == "text/uri-list/fbimage")
           {
@@ -675,7 +688,7 @@ namespace Tizen.NUI.Samples
     {
       if (myAppsWindow == null)
       {
-        myAppsWindow = new Window("subwin1", new Rectangle(800, 250, 600, 350), false);
+        myAppsWindow = new Window("subwin1", new Rectangle(800, 250, 450, 350), false);
         myAppsWindow.EnableBorderWindow();
 
         var mainView = new View()
@@ -705,10 +718,11 @@ namespace Tizen.NUI.Samples
         // Create My Apps Items
         myAppsView = new View()
         {
-          Layout = new GridLayout()
+          Layout = new FlexLayout()
           {
-            Columns = 3,
-            Rows = 1,
+            Direction = FlexLayout.FlexDirection.Row,
+            WrapType = FlexLayout.FlexWrapType.Wrap,
+            LayoutWithTransition = true,
           },
           WidthSpecification = LayoutParamPolicies.MatchParent,
           HeightSpecification = LayoutParamPolicies.MatchParent,
