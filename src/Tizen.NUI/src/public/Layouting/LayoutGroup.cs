@@ -110,14 +110,30 @@ namespace Tizen.NUI
 
                     if (LayoutWithTransition)
                     {
+                        var win = Owner.GetWindow();
+
                         if (!childLayout.IsReplaceFlag())
                         {
-                            NUIApplication.GetDefaultWindow().LayoutController.AddToRemovalStack(childLayout);
+                            if (win == null)
+                            {
+                                NUIApplication.GetDefaultWindow().LayoutController.AddToRemovalStack(childLayout);
+                            }
+                            else
+                            {
+                                win.LayoutController.AddToRemovalStack(childLayout);
+                            }
                         }
 
                         childLayout.ConditionForAnimation = childLayout.ConditionForAnimation | TransitionCondition.Remove;
                         // Add LayoutItem to the transition stack so can animate it out.
-                        NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0, 0, 0, 0));
+                        if (win == null)
+                        {
+                            NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0, 0, 0, 0));
+                        }
+                        else
+                        {
+                            win.LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0, 0, 0, 0));
+                        }
                     }
 
                     // Reset condition for animation ready for next transition when required.
