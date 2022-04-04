@@ -113,6 +113,7 @@ namespace Tizen.Applications
         /// This method is to handle behavior when the application is resumed or paused.
         /// </summary>
         /// <param name="e"></param>
+        /// <since_tizen> 10 </since_tizen>
         public virtual void OnUIEvent(UIEventArgs e)
         {
         }
@@ -122,6 +123,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="msg"></param>
+        /// <since_tizen> 10 </since_tizen>
         public delegate void Runner<T>(T msg);
 
         /// <summary>
@@ -130,6 +132,7 @@ namespace Tizen.Applications
         /// <typeparam name="T"></typeparam>
         /// <param name="runner"></param>
         /// <param name="msg"></param>
+        /// <since_tizen> 10 </since_tizen>
         public void Post<T>(Runner<T> runner, T msg)
         {
             _context.Post((o) => { runner(msg); }, null);

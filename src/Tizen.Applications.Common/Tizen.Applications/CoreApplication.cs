@@ -292,6 +292,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="msg"></param>
+        /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public delegate void Runner<T>(T msg);
 
@@ -301,6 +302,7 @@ namespace Tizen.Applications
         /// <typeparam name="T"></typeparam>
         /// <param name="runner"></param>
         /// <param name="msg"></param>
+        /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Post<T>(Runner<T> runner, T msg)
         {
