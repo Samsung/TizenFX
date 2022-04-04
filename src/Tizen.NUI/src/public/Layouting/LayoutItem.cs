@@ -574,7 +574,15 @@ namespace Tizen.NUI
 
                 if ((ownerView?.Layout?.LayoutWithTransition ?? false) && (Math.Abs(Owner.Position2D.X - left) >= (Owner.SizeWidth / 2) || Math.Abs(Owner.Position2D.Y - top) >= (Owner.SizeHeight / 2)))
                 {
-                    NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(layoutPositionData);
+                    var win = Owner.GetWindow();
+                    if (win == null)
+                    {
+                        NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(layoutPositionData);
+                    }
+                    else
+                    {
+                        win.LayoutController.AddTransitionDataEntry(layoutPositionData);
+                    }
                 }
                 else
                 {
