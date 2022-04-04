@@ -1237,6 +1237,30 @@ namespace Tizen.NUI.BaseComponents
             return false;
         }
 
+        internal Window GetWindow()
+        {
+            Window win = null;
+
+            Container temp = GetParent();
+            Container parent = temp;
+
+            while (parent != null)
+            {
+                temp = parent.GetParent();
+                if (temp == null) break;
+
+                parent = temp;
+            }
+
+            if (parent != null)
+            {
+                var rootLayer = parent as Layer;
+                win = rootLayer.GetWindow();
+            }
+
+            return win;
+        }
+
         private void DisConnectFromSignals()
         {
             if (onRelayoutEventCallback != null)

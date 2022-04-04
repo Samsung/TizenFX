@@ -728,6 +728,11 @@ namespace Tizen.NUI
             }
         }
 
+        internal Window GetWindow()
+        {
+            return window;
+        }
+
         internal uint GetId()
         {
             uint ret = Interop.Actor.GetId(SwigCPtr);
