@@ -63,7 +63,7 @@ namespace Tizen.NUI.Devel.Tests
 
             testView.IsEnabled = false;
 
-            Assert.AreEqual(false, isEnabled, "View IsEnabled should be changed by set value");
+            Assert.AreEqual(false, testView.IsEnabled, "View IsEnabled should be changed by set value");
 
             testView.Dispose();
         }
