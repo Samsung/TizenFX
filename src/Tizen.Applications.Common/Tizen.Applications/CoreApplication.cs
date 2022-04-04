@@ -170,7 +170,7 @@ namespace Tizen.Applications
         {
             if (_task != null)
             {
-                TizenSynchronizationContext.Initialize();
+                TizenUISynchronizationContext.Initialize();
             }
 
             _context = SynchronizationContext.Current;
