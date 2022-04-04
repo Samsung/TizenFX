@@ -34,9 +34,14 @@ namespace Tizen.NUI
         private delegate void InternalDragAndDropEventHandler(global::System.IntPtr dragEvent);
         private Dictionary<View, InternalDragAndDropEventHandler> targetEventDictionary = new Dictionary<View, InternalDragAndDropEventHandler>();
 
+        private Window shadowLayoutWindow;
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         private DragAndDrop() : this(Interop.DragAndDrop.New(), true)
         {
+            shadowLayoutWindow = new Window("shadowLayoutWindow", new Rectangle(0, 0, 150, 150), false);
+            shadowLayoutWindow.Hide();
+
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -57,6 +62,9 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void StartDragAndDrop(View sourceView, View shadowView, DragData dragData)
         {
+            shadowLayoutWindow.Add(shadowView);
+            shadowLayoutWindow.Hide();
+
             if (!Interop.DragAndDrop.StartDragAndDrop(SwigCPtr, View.getCPtr(sourceView), View.getCPtr(shadowView), dragData.MimeType, dragData.Data))
             {
                 throw new InvalidOperationException("Fail to StartDragAndDrop");
