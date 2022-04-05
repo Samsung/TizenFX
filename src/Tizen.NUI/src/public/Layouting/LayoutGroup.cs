@@ -626,9 +626,15 @@ namespace Tizen.NUI
         /// <param name="child">The child to measure.</param>
         /// <param name="parentWidthMeasureSpec">The width requirements for this view.</param>
         /// <param name="parentHeightMeasureSpec">The height requirements for this view.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void MeasureChildWithoutPadding(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, MeasureSpecification parentHeightMeasureSpec)
         {
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
+
             View childOwner = child.Owner;
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
