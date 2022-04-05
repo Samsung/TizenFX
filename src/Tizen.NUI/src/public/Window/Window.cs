@@ -531,7 +531,10 @@ namespace Tizen.NUI
             }
             set
             {
-                SetPositionSize(value);
+                if (value != null)
+                {
+                    SetPositionSize(value);
+                }
             }
         }
 
