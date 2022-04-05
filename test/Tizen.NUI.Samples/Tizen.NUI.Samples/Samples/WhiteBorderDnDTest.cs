@@ -21,7 +21,7 @@ namespace Tizen.NUI.Samples
     private ImageView galleryView = null;
     private TextEditor inputContent = null;
     private int startAppFlag = 0;
-
+    private ImageView [] trayItem = new ImageView[4];
     private LongPressGestureDetector [] itemLongPressed = new LongPressGestureDetector[10];
     private LongPressGestureDetector textLongPressed = null;
     private LongPressGestureDetector itemLongPressed1 = null;
@@ -35,8 +35,25 @@ namespace Tizen.NUI.Samples
                                "chrome", "instagram", "pinterest",
                                "hbo", "linkedin", "youtube"};
 
+    private TextLabel content = null;
+    private bool bAnglingUI = false;
+
+    //for TV font scale
     private float fontScale = 5;
+    //for Emulator font scale
+    //private float fontScale = 1;
     DragAndDrop dnd;
+
+    //Angling UI Logic
+    private View originPoint = null;
+    private double originPointX = 400;
+    private double originPointY = 505;
+    private View mousePoint = null;
+    private View circleCenter = null;
+    private double circleRadius = 50;
+    private double circlePositionX = 1750;
+    private double [] circlePositionY = new double[4]{300, 460, 620, 780};
+    private View [] TrayPoint = new View[4];
 
     View CreateItem(string file, string name)
     {
@@ -319,7 +336,7 @@ namespace Tizen.NUI.Samples
         };
         profileView.Add(labelSender);
 
-        var content = new TextLabel() {
+        content = new TextLabel() {
             Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus imperdiet bibendum eros eu faucibus. Maecenas malesuada tempor felis, ac aliquam libero interdum ut.",
             PointSize = 3 * fontScale,
             Padding = new Extents(10,0,10,0),
@@ -334,6 +351,9 @@ namespace Tizen.NUI.Samples
         {
           if(e.LongPressGesture.State == Gesture.StateType.Started)
           {
+            originPointX = e.LongPressGesture.ScreenPoint.X + facebookWindow.WindowPosition.X;
+            originPointY = e.LongPressGesture.ScreenPoint.Y + facebookWindow.WindowPosition.Y;
+            Tizen.Log.Error("WhiteboardDnDDemo", "KTH Facebook Angling UI Text: " + originPointX + " " + originPointY);
             shadowView = new TextLabel()
             {
               Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus imperdiet bibendum eros eu faucibus. Maecenas malesuada tempor felis, ac aliquam libero interdum ut.",
@@ -346,8 +366,36 @@ namespace Tizen.NUI.Samples
             dragData.MimeType = "text/uri-list/fbtext";
             dragData.Data = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus imperdiet bibendum eros eu faucibus. Maecenas malesuada tempor felis, ac aliquam libero interdum ut.";
             dnd.StartDragAndDrop(content, shadowView, dragData);
+            bAnglingUI = true;
           }
         };
+
+/*
+        content.TouchEvent += (s, e) =>
+        {
+          if (e.Touch.GetState(0) == PointStateType.Stationary && e.Touch.GetPointCount() == 2)
+          {
+            originPointX = e.Touch.GetScreenPosition(0).X + facebookWindow.WindowPosition.X;
+            originPointY = e.Touch.GetScreenPosition(0).Y + facebookWindow.WindowPosition.Y;
+            Tizen.Log.Error("WhiteboardDnDDemo", "KTH Facebook Angling UI Text !!!: " + originPointX + " " + originPointY);
+            shadowView = new TextLabel()
+            {
+              Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus imperdiet bibendum eros eu faucibus. Maecenas malesuada tempor felis, ac aliquam libero interdum ut.",
+              PointSize = 1 * fontScale,
+              MultiLine = true,
+              WidthSpecification = LayoutParamPolicies.MatchParent,
+              HeightSpecification = LayoutParamPolicies.WrapContent,
+            };
+            DragData dragData;
+            dragData.MimeType = "text/uri-list/fbtext";
+            dragData.Data = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus imperdiet bibendum eros eu faucibus. Maecenas malesuada tempor felis, ac aliquam libero interdum ut.";
+            dnd.StartDragAndDrop(content, shadowView, dragData);
+            bAnglingUI = true;
+          }
+          
+          return true;
+        };
+*/
 
         var attachImageView = new View()
         {
@@ -391,6 +439,9 @@ namespace Tizen.NUI.Samples
         {
           if(e.LongPressGesture.State == Gesture.StateType.Started)
           {
+            originPointX = e.LongPressGesture.ScreenPoint.X + facebookWindow.WindowPosition.X;
+            originPointY = e.LongPressGesture.ScreenPoint.Y + facebookWindow.WindowPosition.Y;
+            Tizen.Log.Error("WhiteboardDnDDemo", "KTH Facebook Angling UI Text: " + originPointX + " " + originPointY);
             shadowView = new ImageView()
             {
               ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "fbmaldives.png",
@@ -411,6 +462,9 @@ namespace Tizen.NUI.Samples
         {
           if(e.LongPressGesture.State == Gesture.StateType.Started)
           {
+            originPointX = e.LongPressGesture.ScreenPoint.X + facebookWindow.WindowPosition.X;
+            originPointY = e.LongPressGesture.ScreenPoint.Y + facebookWindow.WindowPosition.Y;
+            Tizen.Log.Error("WhiteboardDnDDemo", "KTH Facebook Angling UI Text: " + originPointX + " " + originPointY);
             shadowView = new ImageView()
             {
               ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "fbfood.png",
@@ -618,6 +672,38 @@ namespace Tizen.NUI.Samples
         return 0;
     }
 
+    void changeTrayItemBackground(int itemID, bool isPressed)
+    {
+      if (itemID == 0)
+      {
+        if (isPressed)
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "galleryp.png";
+        else
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "gallery.png";
+      }
+      else if(itemID == 1)
+      {
+        if (isPressed)
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "emailp.png";
+        else
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "email.png";
+      }
+      else if(itemID == 2)
+      {
+        if (isPressed)
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "memop.png";
+        else
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "memo.png";
+      }
+      else if(itemID == 3)
+      {
+        if (isPressed)
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "allappsp.png";
+        else
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "allapps.png";
+      }
+    }
+
     void OnRootViewDnDFunc(View targetView, DragEvent dragEvent)
     {
         //currently target view will not be used because of input issue
@@ -638,11 +724,44 @@ namespace Tizen.NUI.Samples
         else if (dragEvent.DragType == DragType.Move)
         {
           Tizen.Log.Error("WhiteboardDnDDemo", "KTH Move " + dragEvent.Position.X + " " + dragEvent.Position.Y);
+
+          if (bAnglingUI) {
+            Position currentPos =  new Position(dragEvent.Position.X + facebookWindow.WindowPosition.X, dragEvent.Position.Y + facebookWindow.WindowPosition.Y);
+
+            double [] vec = new double[2];
+            vec[0] = (double)(currentPos.X - originPointX);
+            vec[1] = (double)(currentPos.Y - originPointY);
+
+            //normalize
+            double length = Math.Sqrt((vec[0] * vec[0] + vec[1] * vec[1]));
+            vec[0] /= length;
+            vec[1] /= length;
+
+            for (int i = 0; i < 4; i++)
+            {
+              double [] h = new double[2];
+              h[0] = circlePositionX - originPointX;
+              h[1] = circlePositionY[i] - originPointY;
+              double lf = (vec[0] * h[0]) + (vec[1] * h[1]);
+              double result = (circleRadius * circleRadius) - ((h[0] * h[0]) +( h[1] * h[1])) + (lf * lf);
+
+              if (result < 0.0)
+              {
+                Tizen.Log.Error("WhiteboardDnDDemo", "KTH MainWin Circle Collision: No");
+                changeTrayItemBackground(i, false);
+              }
+              else
+              {
+                Tizen.Log.Error("WhiteboardDnDDemo", "KTH MainWin Circle Collision: Collision");
+                changeTrayItemBackground(i, true);
+              }
+            }
+          }
         }
         else if (dragEvent.DragType == DragType.Drop)
         {
-          int demoAppID = GetDemoAppID(dragEvent.Position);
-          Tizen.Log.Error("WhiteboardDnDDemo", "KTH Drop Window : " + demoAppID);
+//          int demoAppID = GetDemoAppID(dragEvent.Position);
+//          Tizen.Log.Error("WhiteboardDnDDemo", "KTH Drop Window : " + demoAppID);
 
           if (dragEvent.MimeType == "text/uri-list/allaps")
           {
@@ -669,18 +788,37 @@ namespace Tizen.NUI.Samples
           }
           else if (dragEvent.MimeType == "text/uri-list/fbimage")
           {
+            if (galleryWindow == null && bAnglingUI)
+            {
+              CreateGallery();
+            }
+
             if (galleryView)
             {
+              Tizen.Log.Error("WhiteboardDnDDemo", "KTH Gallery Add : ", dragEvent.Data);
               galleryView.ResourceUrl = dragEvent.Data;
             }
+
           }
           else if (dragEvent.MimeType == "text/uri-list/fbtext")
           {
+            if (emailWindow == null && bAnglingUI)
+            {
+              CreateEmail();
+            }
             if (inputContent)
             {
               inputContent.Text = dragEvent.Data;
             }
+
           }
+
+          //Reset Angling UI
+          for(int i = 0 ; i < 4; i++)
+          {
+            changeTrayItemBackground(i, false);
+          }
+          bAnglingUI = false;
         }
     }
 
@@ -779,84 +917,84 @@ namespace Tizen.NUI.Samples
 
         trayWindow.Add(mainView);
 
-        var galleryItem = new ImageView()
+        trayItem[0] = new ImageView()
         {
           Size = new Size(160, 160),
           ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "gallery.png",
         };
-        mainView.Add(galleryItem);
-        galleryItem.TouchEvent += (s, e) =>
+        mainView.Add(trayItem[0]);
+        trayItem[0].TouchEvent += (s, e) =>
         {
           if (e.Touch.GetState(0) == PointStateType.Up)
           {
             CreateGallery();
-            galleryItem.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "gallery.png";
+            trayItem[0].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "gallery.png";
           }
           else if (e.Touch.GetState(0) == PointStateType.Down)
           {
-            galleryItem.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "galleryp.png";
+            trayItem[0].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "galleryp.png";
           }
           return true;
         };
 
-        var emailItem = new ImageView()
+        trayItem[1] = new ImageView()
         {
           Size = new Size(160, 160),
           ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "email.png",
         };
-        mainView.Add(emailItem);
-        emailItem.TouchEvent += (s, e) =>
+        mainView.Add(trayItem[1]);
+        trayItem[1].TouchEvent += (s, e) =>
         {
           if (e.Touch.GetState(0) == PointStateType.Up)
           {
             CreateEmail();
-            emailItem.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "email.png";
+            trayItem[1].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "email.png";
           }
           else if (e.Touch.GetState(0) == PointStateType.Down)
           {
-            emailItem.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "emailp.png";
+            trayItem[1].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "emailp.png";
           }
           return true;
         };
 
-        var memoItem = new ImageView()
+        trayItem[2] = new ImageView()
         {
           Size = new Size(160, 160),
           ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "memo.png"          
         };
-        mainView.Add(memoItem);
-        memoItem.TouchEvent += (s, e) =>
+        mainView.Add(trayItem[2]);
+        trayItem[2].TouchEvent += (s, e) =>
         {
           if (e.Touch.GetState(0) == PointStateType.Up)
           {
             CreateMyApps();
-            memoItem.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "memo.png";
+            trayItem[2].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "memo.png";
           }
           else if (e.Touch.GetState(0) == PointStateType.Down)
           {
-            memoItem.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "memop.png";
+            trayItem[2].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "memop.png";
           }
           return true;
         };
 
-        var allAppsItem = new ImageView()
+        trayItem[3] = new ImageView()
         {
           Size = new Size(160, 160),
           ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "allapps.png",
         };
-        mainView.Add(allAppsItem);
+        mainView.Add(trayItem[3]);
         
 
-        allAppsItem.TouchEvent += (s, e) =>
+        trayItem[3].TouchEvent += (s, e) =>
         {
           if (e.Touch.GetState(0) == PointStateType.Up)
           {
             CreateAllApps();
-            allAppsItem.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "allapps.png";
+            trayItem[3].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "allapps.png";
           }
           else if (e.Touch.GetState(0) == PointStateType.Down)
           {
-            allAppsItem.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "allappsp.png";
+            trayItem[3].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "allappsp.png";
           }
           return true;
         };
@@ -873,7 +1011,7 @@ namespace Tizen.NUI.Samples
       Vector2 position = e.Touch.GetScreenPosition(0);
       if (e.Touch.GetState(0) == PointStateType.Motion)
       {
-      //  Tizen.Log.Error("WhiteboardDnDDemo", "KTH Main Window Move " + position.X + " " + position.Y);
+        Tizen.Log.Error("WhiteboardDnDDemo", "KTH Main Window Move " + position.X + " " + position.Y);
       }
     }
 
