@@ -24,7 +24,7 @@ namespace Tizen.NUI
         internal static partial class GLView
         {
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_New_SWIG")]
-            public static extern global::System.IntPtr New(int nuiColorFormat);
+            public static extern global::System.IntPtr New(int nuiColorFormat, int backendMode);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GlView_SWIG_0")]
             public static extern global::System.IntPtr NewGlView();

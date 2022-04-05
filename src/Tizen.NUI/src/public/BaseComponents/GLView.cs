@@ -57,7 +57,18 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="colorFormat">The format of the color buffer</param>
         /// <since_tizen> 10 </since_tizen>
-        public GLView(ColorFormat colorFormat) : this(Interop.GLView.New((int)colorFormat), true)
+        public GLView(ColorFormat colorFormat) : this(Interop.GLView.New((int)colorFormat, (int)BackendMode.DEFAULT), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        
+        /// <summary>
+        /// Creates an initialized GLView.
+        /// </summary>
+        /// <param name="colorFormat">The format of the color buffer</param>
+        /// <param name="backendMode">The backend mode to be used with GLView (Direct Rendering or EGL Image)</param>
+        /// <since_tizen> 10 </since_tizen>
+        public GLView(ColorFormat colorFormat, BackendMode backendMode) : this(Interop.GLView.New((int)colorFormat,(int)backendMode), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -77,6 +88,29 @@ namespace Tizen.NUI.BaseComponents
             /// 8 red bits, 8 green bits, 8 blue bits, alpha 8 bits
             /// </summary>
             RGBA8888
+        }
+
+
+        /// <summary>
+        /// Enumeration for the backend mode
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        public enum BackendMode
+        {            
+            /// <summary>
+            /// Using DirectRendering
+            /// </summary>
+            DIRECT_RENDERING = 0,
+
+            /// <summary>
+            /// Using EGL Image to render offscreen first, then to the surface (legacy)
+            /// </summary>
+            EGL_IMAGE_OFFSCREEN_RENDERING = 1,
+
+            /// <summary>
+            /// Default backend mode is DIRECT_RENDERING
+            /// </summary>
+            DEFAULT = DIRECT_RENDERING
         }
 
         /// <summary>
