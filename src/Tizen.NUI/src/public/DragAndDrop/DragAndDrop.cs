@@ -34,6 +34,7 @@ namespace Tizen.NUI
         private delegate void InternalDragAndDropEventHandler(global::System.IntPtr dragEvent);
         private Dictionary<View, InternalDragAndDropEventHandler> targetEventDictionary = new Dictionary<View, InternalDragAndDropEventHandler>();
 
+        private View _shadowView = null;
         private Window shadowLayoutWindow;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -64,6 +65,7 @@ namespace Tizen.NUI
         {
             shadowLayoutWindow.Add(shadowView);
             shadowLayoutWindow.Hide();
+            _shadowView = shadowView;
 
             if (!Interop.DragAndDrop.StartDragAndDrop(SwigCPtr, View.getCPtr(sourceView), View.getCPtr(shadowView), dragData.MimeType, dragData.Data))
             {
