@@ -120,6 +120,7 @@ namespace Tizen.NUI.Samples
          BackgroundColor = Color.White,
          CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f),
          CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+         ClippingMode = ClippingModeType.ClipToBoundingBox,
         };
 
         var title = new TextLabel() {
@@ -181,6 +182,7 @@ namespace Tizen.NUI.Samples
          BackgroundColor = Color.White,
          CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f),
          CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+         ClippingMode = ClippingModeType.ClipToBoundingBox,
         };
 
         var title = new TextLabel() {
@@ -190,6 +192,7 @@ namespace Tizen.NUI.Samples
             Padding = new Extents(35,0,20,0),
         };
 
+        mainView.ClippingMode = ClippingModeType.ClipToBoundingBox;
         emailWindow.Add(mainView);
         mainView.Add(title);
 
@@ -292,6 +295,7 @@ namespace Tizen.NUI.Samples
          BackgroundColor = Color.White,
          CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f),
          CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+         ClippingMode = ClippingModeType.ClipToBoundingBox,
         };
 
         var title = new TextLabel() {
@@ -571,6 +575,7 @@ namespace Tizen.NUI.Samples
          BackgroundColor = Color.White,
          CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f),
          CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+         ClippingMode = ClippingModeType.ClipToBoundingBox,
         };
 
         var title = new TextLabel() {
@@ -842,6 +847,7 @@ namespace Tizen.NUI.Samples
          BackgroundColor = Color.White,
          CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f),
          CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+         ClippingMode = ClippingModeType.ClipToBoundingBox,
         };
 
         var title = new TextLabel() {
@@ -914,6 +920,7 @@ namespace Tizen.NUI.Samples
          BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.5f),
          CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f),
          CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+         ClippingMode = ClippingModeType.ClipToBoundingBox,
         };
 
         trayWindow.Add(mainView);
@@ -1038,7 +1045,8 @@ namespace Tizen.NUI.Samples
               LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
               LinearOrientation = LinearLayout.Orientation.Horizontal,
               CellPadding = new Size(10, 10),
-          }
+          },
+          ClippingMode = ClippingModeType.ClipToBoundingBox,
         };
         win.Add(root);
         dnd.AddListener(root, OnRootViewDnDFunc);
