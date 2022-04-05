@@ -753,6 +753,14 @@ namespace Tizen.NUI.Samples
       }
     }
 
+    private void LaunchWhiteBoard()
+    {
+        var appControl = new Tizen.Applications.AppControl();
+        appControl.Operation = Tizen.Applications.AppControlOperations.Default;
+        appControl.ApplicationId = "org.tizen.NUI_Whiteboard";
+        Tizen.Applications.AppControl.SendLaunchRequest(appControl);
+    }
+
     void CreateTrayApps()
     {
       if (trayWindow == null)
@@ -835,6 +843,27 @@ namespace Tizen.NUI.Samples
           else if (e.Touch.GetState(0) == PointStateType.Down)
           {
             memoItem.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "memop.png";
+          }
+          return true;
+        };
+
+        var whiteboardItem = new ImageView()
+        {
+          Size = new Size(160, 160),
+          ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "whiteboard.png",
+        };
+        mainView.Add(whiteboardItem);
+
+        whiteboardItem.TouchEvent += (s, e) =>
+        {
+          if (e.Touch.GetState(0) == PointStateType.Up)
+          {
+            LaunchWhiteBoard();
+            whiteboardItem.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "whiteboard.png";
+          }
+          else if (e.Touch.GetState(0) == PointStateType.Down)
+          {
+            whiteboardItem.ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "whiteboardp.png";
           }
           return true;
         };
