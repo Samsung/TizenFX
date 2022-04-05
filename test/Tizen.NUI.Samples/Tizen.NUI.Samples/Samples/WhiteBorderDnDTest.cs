@@ -35,7 +35,6 @@ namespace Tizen.NUI.Samples
                                "chrome", "instagram", "pinterest",
                                "hbo", "linkedin", "youtube"};
 
-    private TextLabel content = null;
     private bool bAnglingUI = false;
 
     //for TV font scale
@@ -340,7 +339,7 @@ namespace Tizen.NUI.Samples
         };
         profileView.Add(labelSender);
 
-        content = new TextLabel() {
+        var content = new TextLabel() {
             Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus imperdiet bibendum eros eu faucibus. Maecenas malesuada tempor felis, ac aliquam libero interdum ut.",
             PointSize = 3 * fontScale,
             Padding = new Extents(10,0,10,0),
