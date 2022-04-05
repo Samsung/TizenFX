@@ -366,7 +366,7 @@ namespace Tizen.NUI.Samples
             dragData.MimeType = "text/uri-list/fbtext";
             dragData.Data = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus imperdiet bibendum eros eu faucibus. Maecenas malesuada tempor felis, ac aliquam libero interdum ut.";
             dnd.StartDragAndDrop(content, shadowView, dragData);
-            bAnglingUI = true;
+            //bAnglingUI = true;
           }
         };
 
@@ -788,7 +788,7 @@ namespace Tizen.NUI.Samples
           }
           else if (dragEvent.MimeType == "text/uri-list/fbimage")
           {
-            if (galleryWindow == null && bAnglingUI)
+            if (galleryWindow == null )
             {
               CreateGallery();
             }
@@ -802,7 +802,7 @@ namespace Tizen.NUI.Samples
           }
           else if (dragEvent.MimeType == "text/uri-list/fbtext")
           {
-            if (emailWindow == null && bAnglingUI)
+            if (emailWindow == null)
             {
               CreateEmail();
             }
@@ -882,6 +882,7 @@ namespace Tizen.NUI.Samples
 
         var spotifyItem = CreateItem(Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "spoti.png", "spotify");
         myAppsView.Add(spotifyItem);
+        
         var instagramItem = CreateItem(Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "instagram.png", "instagram");
         myAppsView.Add(instagramItem);
       }
@@ -1042,6 +1043,101 @@ namespace Tizen.NUI.Samples
         win.Add(root);
         dnd.AddListener(root, OnRootViewDnDFunc);
         CreateTrayApps();
+        //Angling UI Logic
+        originPoint = new View()
+        {
+          Position = new Position(-100, -100),
+          Size = new Size(30, 30),
+          BackgroundColor = Color.Red,
+          CornerRadius = new Vector4(0.5f, 0.5f, 0.5f, 0.5f),
+          CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+        };
+        win.Add(originPoint);
+
+        float y = 300;
+        for (int i = 0;  i < 4; i++)
+        {  
+          
+          TrayPoint[i] = new View()
+          {
+            Position = new Position((float)circlePositionX - 50.0f, (float)circlePositionY[i] - 50.0f),
+            Size = new Size(100, 100),
+            BackgroundColor = Color.Orange,
+            CornerRadius = new Vector4(0.5f, 0.5f, 0.5f, 0.5f),
+            CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+          };
+          win.Add(TrayPoint[i]);
+          y += 160;
+        }
+
+        mousePoint = new View()
+        {
+          Position = new Position(-100, -100),
+          Size = new Size(30, 30),
+          BackgroundColor = Color.Blue,
+          CornerRadius = new Vector4(0.5f, 0.5f, 0.5f, 0.5f),
+          CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+        };
+        win.Add(mousePoint);
+
+        win.TouchEvent += async (s, e) =>
+        {
+          if (e.Touch.GetState(0) == PointStateType.Down)
+          {
+             Position currentPos =  new Position(e.Touch.GetScreenPosition(0).X, e.Touch.GetScreenPosition(0).Y);
+             originPoint.PositionX = currentPos.X - 15.0f;
+             originPoint.PositionY = currentPos.Y - 15.0f;
+             
+             originPointX = currentPos.X;
+             originPointY = currentPos.Y;
+          }
+          else if (e.Touch.GetState(0) == PointStateType.Motion)
+          {
+             Tizen.Log.Error("WhiteboardDnDDemo", "KTH MainWin Point0: " + e.Touch.GetScreenPosition(0).X + " " + e.Touch.GetScreenPosition(0).Y);
+             Position currentPos =  new Position(e.Touch.GetScreenPosition(0).X, e.Touch.GetScreenPosition(0).Y);
+             mousePoint.PositionX = currentPos.X - 15.0f;
+             mousePoint.PositionY = currentPos.Y - 15.0f;
+
+             double [] vec = new double[2];
+             vec[0] = (double)(currentPos.X - originPointX);
+             vec[1] = (double)(currentPos.Y - originPointY);
+
+             //normalize
+             double length = Math.Sqrt((vec[0] * vec[0] + vec[1] * vec[1]));
+             vec[0] /= length;
+             vec[1] /= length;
+
+             for (int i = 0; i < 4; i++)
+             {
+               double [] h = new double[2];
+               h[0] = circlePositionX - originPointX;
+               h[1] = circlePositionY[i] - originPointY;
+               double lf = (vec[0] * h[0]) + (vec[1] * h[1]);
+               double result = (circleRadius * circleRadius) - ((h[0] * h[0]) +( h[1] * h[1])) + (lf * lf);
+
+               if (result < 0.0)
+               {
+                 Tizen.Log.Error("WhiteboardDnDDemo", "KTH MainWin Circle Collision: No");
+                 TrayPoint[i].BackgroundColor = Color.Orange;
+                 changeTrayItemBackground(i, false);
+               }
+               else
+               {
+                 Tizen.Log.Error("WhiteboardDnDDemo", "KTH MainWin Circle Collision: Collision");
+                 TrayPoint[i].BackgroundColor = Color.Green;
+                 changeTrayItemBackground(i, true);
+               }
+             }
+          }
+          else if (e.Touch.GetState(0) == PointStateType.Up)
+          {
+            for (int i = 0; i < 4; i++)
+             {
+                 TrayPoint[i].BackgroundColor = Color.Orange;
+                 changeTrayItemBackground(i, false);
+             }
+          }
+        };
     }
 
     public void Activate()
