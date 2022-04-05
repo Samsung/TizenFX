@@ -23,7 +23,7 @@ using Tizen.NUI.Components;
 namespace Tizen.NUI.StyleGuide
 {
     // IExample inehrited class will be automatically added in the main examples list.
-    internal class AlertDialogExample : ContentPage, IExample
+    internal class DialogAndAlertDialogExample : ContentPage, IExample
     {
         private View rootContent;
         private Button buttonOneAction, buttonTwoAction, buttonNoTitle, buttonNoMessage;
@@ -36,7 +36,7 @@ namespace Tizen.NUI.StyleGuide
         }
 
         /// Modify this method for adding other examples.
-        public AlertDialogExample() : base()
+        public DialogAndAlertDialogExample() : base()
         {
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
@@ -44,7 +44,7 @@ namespace Tizen.NUI.StyleGuide
             // Navigator bar title is added here.
             AppBar = new AppBar()
             {
-                Title = "AlertDialog Default Style",
+                Title = "Dialog AlertDialog Default Style",
             };
 
             // Example root content view.
