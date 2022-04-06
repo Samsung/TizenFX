@@ -134,7 +134,7 @@ namespace NUnitLite.TUnit
             }
             else
             {
-                exeFilePathName = string.Format(dllPath + "Debug/netcoreapp3.1/Tizen.{0}dll", pkgName);
+                exeFilePathName = string.Format(dllPath + "Debug/netcoreapp3.1/Tizen.{0}.Tests.dll", pkgName);
             }
             //TLogger.Write("exeFilePathName : " + exeFilePathName);
             Tizen.Log.Fatal("NUITEST", $"exeFilePathName : {exeFilePathName}");
