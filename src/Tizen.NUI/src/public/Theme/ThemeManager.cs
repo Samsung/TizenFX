@@ -53,7 +53,9 @@ namespace Tizen.NUI
 
         static ThemeManager()
         {
+#if ExternalThemeEnabled
             ExternalThemeManager.Initialize();
+#endif
             AddPackageTheme(DefaultThemeCreator.Instance);
         }
 
