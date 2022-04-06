@@ -1085,10 +1085,10 @@ namespace Tizen.NUI
         /// The red component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use the new Color(...) constructor.
         /// </remarks>
         /// <code>
-        /// // DO NOT use like the followings!
+        /// // DO NOT use as follows:
         /// Color color = new Color();
         /// color.R = 0.1f; 
         /// // Please USE like this
@@ -1098,7 +1098,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float R
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. Use the new Color(...) constructor")]
             set
             {
                 Interop.Vector4.RSet(SwigCPtr, ValueCheck(value));
@@ -1118,10 +1118,10 @@ namespace Tizen.NUI
         /// The green component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use the new Color(...) constructor.
         /// </remarks>
         /// <code>
-        /// // DO NOT use like the followings!
+        /// // DO NOT use as follows:
         /// Color color = new Color();
         /// color.G = 0.5f; 
         /// // Please USE like this
@@ -1131,7 +1131,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float G
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. Use the new Color(...) constructor")]
             set
             {
                 Interop.Vector4.GSet(SwigCPtr, ValueCheck(value));
@@ -1151,10 +1151,10 @@ namespace Tizen.NUI
         /// The blue component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use the new Color(...) constructor.
         /// </remarks>
         /// <code>
-        /// // DO NOT use like the followings!
+        /// // DO NOT use as follows:
         /// Color color = new Color();
         /// color.B = 0.9f; 
         /// // Please USE like this
@@ -1164,7 +1164,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float B
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. Use the new Color(...) constructor")]
             set
             {
                 Interop.Vector4.BSet(SwigCPtr, ValueCheck(value));
@@ -1184,10 +1184,10 @@ namespace Tizen.NUI
         /// The alpha component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Color(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use the new Color(...) constructor.
         /// </remarks>
         /// <code>
-        /// // DO NOT use like the followings!
+        /// // DO NOT use as follows:
         /// Color color = new Color();
         /// color.A = 1.0f; 
         /// // Please USE like this
@@ -1197,7 +1197,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public float A
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Color(...) constructor")]
+            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. Use the new Color(...) constructor")]
             set
             {
                 Interop.Vector4.ASet(SwigCPtr, ValueCheck(value));
