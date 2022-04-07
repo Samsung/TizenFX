@@ -445,7 +445,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             var exitXamlComp = new CodeMemberMethod()
             {
                 Name = "ExitXaml",
-                CustomAttributes = { GeneratedCodeAttrDecl }
+                CustomAttributes = { GeneratedCodeAttrDecl },
+                Attributes = MemberAttributes.Assembly | MemberAttributes.Final
             };
 
             exitXamlComp.Statements.Add(new CodeMethodInvokeExpression(new CodeMethodReferenceExpression()
