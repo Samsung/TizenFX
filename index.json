@@ -12129,6 +12129,56 @@
     "title": "Class Manager",
     "keywords": ""
   },
+  "API10/api/Tizen.Uix.Sticker.DeletedEventArgs.html": {
+    "href": "API10/api/Tizen.Uix.Sticker.DeletedEventArgs.html",
+    "title": "Class DeletedEventArgs",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Uix.Sticker.DisplayType.html": {
+    "href": "API10/api/Tizen.Uix.Sticker.DisplayType.html",
+    "title": "Enum DisplayType",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Uix.Sticker.GroupImage.html": {
+    "href": "API10/api/Tizen.Uix.Sticker.GroupImage.html",
+    "title": "Struct GroupImage",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Uix.Sticker.html": {
+    "href": "API10/api/Tizen.Uix.Sticker.html",
+    "title": "Namespace Tizen.Uix.Sticker",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Uix.Sticker.InsertedEventArgs.html": {
+    "href": "API10/api/Tizen.Uix.Sticker.InsertedEventArgs.html",
+    "title": "Class InsertedEventArgs",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Uix.Sticker.StickerConsumer.html": {
+    "href": "API10/api/Tizen.Uix.Sticker.StickerConsumer.html",
+    "title": "Class StickerConsumer",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Uix.Sticker.StickerData.html": {
+    "href": "API10/api/Tizen.Uix.Sticker.StickerData.html",
+    "title": "Class StickerData",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Uix.Sticker.StickerProvider.html": {
+    "href": "API10/api/Tizen.Uix.Sticker.StickerProvider.html",
+    "title": "Class StickerProvider",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Uix.Sticker.UpdatedEventArgs.html": {
+    "href": "API10/api/Tizen.Uix.Sticker.UpdatedEventArgs.html",
+    "title": "Class UpdatedEventArgs",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Uix.Sticker.UriType.html": {
+    "href": "API10/api/Tizen.Uix.Sticker.UriType.html",
+    "title": "Enum UriType",
+    "keywords": ""
+  },
   "API10/api/Tizen.Uix.Stt.DefaultLanguageChangedEventArgs.html": {
     "href": "API10/api/Tizen.Uix.Stt.DefaultLanguageChangedEventArgs.html",
     "title": "Class DefaultLanguageChangedEventArgs",
