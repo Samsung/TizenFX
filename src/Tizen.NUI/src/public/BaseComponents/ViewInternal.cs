@@ -614,27 +614,6 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
-        internal void SetPosition(float x, float y)
-        {
-            Interop.ActorInternal.SetPosition(SwigCPtr, x, y);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetPosition(float x, float y, float z)
-        {
-            Interop.ActorInternal.SetPosition(SwigCPtr, x, y, z);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetPosition(Vector3 position)
-        {
-            Interop.ActorInternal.SetPosition(SwigCPtr, Vector3.getCPtr(position));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal void SetX(float x)
         {
             Interop.ActorInternal.SetX(SwigCPtr, x);
