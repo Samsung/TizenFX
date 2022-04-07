@@ -79,8 +79,9 @@ namespace Tizen.NUI
                 return null;
             }
 
-            Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Window.Get(View.getCPtr(view))) as Window;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            //to fix memory leak issue, match the handle count with native side.
+            Window ret = view.GetInstanceSafely<Window>(Interop.Window.Get(View.getCPtr(view)));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1211,7 +1212,7 @@ namespace Tizen.NUI
             {
                 NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
             }
-            Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Window.GetParent(SwigCPtr)) as Window;
+            Window ret = this.GetInstanceSafely<Window>(Interop.Window.GetParent(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
