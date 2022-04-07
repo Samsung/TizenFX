@@ -24,11 +24,14 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Devel.Manual.Tests
 {
+    using tlog = Tizen.Log;
 
     [TestFixture]
     [Description("Tizen.NUI.Components.Button manual test")]
     public class TSButton
     {
+        private static string tag = "NUITEST";
+
         Window window;
         Navigator navigator;
         ManualTest test;
@@ -40,45 +43,34 @@ namespace Tizen.NUI.Devel.Manual.Tests
         [SetUp]
         public void Init()
         {
-
-            Console.WriteLine("Button Init!");
+            tlog.Debug(tag, "Button Init!");
 
             window = NUIApplication.GetDefaultWindow();
             navigator = window.GetDefaultNavigator();
 
             test = ManualTest.GetInstance();
             testList = ManualTestList.GetInstance();
-
             testItem = test.CurrentTest;
-            testPage = new ManualTestPage(testItem);
-
-            if (testPage != null)
-            {
-                testPage.BindingContext = testItem;
-                navigator.Push(testPage);
-                test.CurrentPage = testPage;
-            }
-
-            testView = test.CurrentPage.TestContent;
+            testPage = test.CurrentPage;
+            testView = testPage.TestContent;
             testView.HeightSpecification = 300;
         }
 
         [TearDown]
         public void Destroy()
         {
-            Console.WriteLine("Button Destroy!");
+            tlog.Debug(tag, "Button Destroy!");
         }
-
 
         public void OnClicked(object sender, EventArgs e)
         {
-            Console.WriteLine("Button OnClicked!");
+            tlog.Debug(tag, "Button OnClicked!");
             //ManualTest.Confirm();
         }
 
         public void OnSelectedChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("Button OnSelectionChanged!");
+            tlog.Debug(tag, "Button OnSelectionChanged!");
 
             if (sender is Button button)
             {
@@ -101,7 +93,7 @@ namespace Tizen.NUI.Devel.Manual.Tests
         [Postcondition(1, "NA")]
         public async Task ClickedCallBackTest()
         {
-            Console.WriteLine("ClickedCallBackTest begin!");
+            tlog.Debug(tag, "ClickedCallBackTest begin!");
             var button = new Button()
             {
                 Text = "Click Me!",
@@ -127,7 +119,7 @@ namespace Tizen.NUI.Devel.Manual.Tests
         [Postcondition(1, "NA")]
         public async Task SelectedChangedCallBackTest()
         {
-            Console.WriteLine("SelectedChangedCallBackTest begin!");
+            tlog.Debug(tag, "SelectedChangedCallBackTest begin!");
             var button = new SelectButton()
             {
                 Text = "Unselected",

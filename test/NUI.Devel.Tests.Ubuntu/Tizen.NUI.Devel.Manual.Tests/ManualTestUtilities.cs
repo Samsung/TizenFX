@@ -47,6 +47,8 @@ namespace Tizen.NUI.Devel.Manual.Tests
 
     public class ManualTestItem : INotifyPropertyChanged
     {
+        private static string tag = "NUITEST";
+
         private int testIndex;
         private string testCaseName;
         private List<string> preConditions;
@@ -284,8 +286,23 @@ namespace Tizen.NUI.Devel.Manual.Tests
 
         public ManualTestPage CurrentPage
         {
-            get => currentPage;
-            set => currentPage = value;
+            get
+            {
+                if (currentPage != null && currentPage.BindingContext == currentTest) return currentPage;
+
+                currentPage = new ManualTestPage(currentTest);
+                if (currentPage != null)
+                {
+                    currentPage.BindingContext = currentTest;
+                    NUIApplication.GetDefaultWindow().GetDefaultNavigator().Push(currentPage);
+                }
+                return currentPage;
+            }
+            internal set
+            {
+                currentPage?.Dispose();
+                currentPage = value;
+            }
         }
 
         public static async Task WaitForConfirm()
