@@ -119,25 +119,10 @@ namespace Tizen.NUI.Devel.Manual.Tests
             */
         }
 
-        private void RunSample(ManualTestItem item)
+        private void RunTest(ManualTestItem item)
         {
-            ManualTestPage testPage = new ManualTestPage(item);
-
-            tlog.Debug(tag, $"typeof(Program).Assembly={typeof(App).Assembly}, name={item.TestCaseName}");
-
-            if (testPage != null)
-            {
-                //testPage.TestName = item.TestCaseName;
-                testPage.BindingContext = item;
-                navigator.Push(testPage);
-                manualTest.CurrentPage = testPage;
-                manualTest.CurrentIndex = item.TestIndex;
-                tRunner.Execute();
-            }
-            else
-            {
-                tlog.Debug(tag, $"test is null!");
-            }
+            manualTest.CurrentTest = item;
+            tRunner.Execute();
         }
 
         protected override void OnCreate()
@@ -160,7 +145,7 @@ namespace Tizen.NUI.Devel.Manual.Tests
                 if (top is ManualTestPage testPage)
                 {
                     manualTest.CurrentPage = null;
-                    manualTest.CurrentIndex = -1;
+                    manualTest.CurrentTest = null;
                 }
             };
             var testBar = new AppBar()
@@ -234,7 +219,7 @@ namespace Tizen.NUI.Devel.Manual.Tests
                     tlog.Debug(tag, $"selItem.TestIndex={selItem.TestIndex}, selItem.TestCaseName={selItem.TestCaseName}");
                     if (selItem != null)
                     {
-                        RunSample(selItem);
+                        RunTest(selItem);
                     }
                 }
                 testListView.SelectedItem = null;

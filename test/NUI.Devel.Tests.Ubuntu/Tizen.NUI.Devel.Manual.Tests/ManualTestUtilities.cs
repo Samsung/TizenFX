@@ -44,6 +44,7 @@ namespace Tizen.NUI.Devel.Manual.Tests
         Blocked,
     }
 
+
     public class ManualTestItem : INotifyPropertyChanged
     {
         private int testIndex;
@@ -123,14 +124,14 @@ namespace Tizen.NUI.Devel.Manual.Tests
                 switch (testState)
                 {
                     case TestState.Passed :
-                        return Color.Green;
+                        return new Color(ManualTest.COLOR_PASSED);
                     case TestState.Failed :
-                        return Color.Red;
+                        return new Color(ManualTest.COLOR_FAILED);
                     case TestState.Blocked :
-                        return Color.Blue;
+                        return new Color(ManualTest.COLOR_BLOCKED);
                     case TestState.Untested :
                     default :
-                        return Color.Grey;
+                        return new Color(ManualTest.COLOR_UNTESTED);
                 }
             }
         }
@@ -241,11 +242,15 @@ namespace Tizen.NUI.Devel.Manual.Tests
 
     public class ManualTest
     {
-        int currentIndex = -1;
+        ManualTestItem currentTest;
         ManualTestPage currentPage;
         private static ManualTest instance = null;
         private static Object lockObject = new object();
         public static ManualTestList TestList = ManualTestList.GetInstance();
+        public static readonly string COLOR_PASSED = "#0B5345";
+        public static readonly string COLOR_FAILED = "#922B21";
+        public static readonly string COLOR_BLOCKED = "#76448A";
+        public static readonly string COLOR_UNTESTED = "#909497";
 
         public static ManualTest GetInstance()
         {
@@ -271,10 +276,10 @@ namespace Tizen.NUI.Devel.Manual.Tests
             testConfirmed = true;
         }
 
-        public int CurrentIndex
+        public ManualTestItem CurrentTest
         {
-            get => currentIndex;
-            set => currentIndex = value;
+            get => currentTest;
+            set => currentTest = value;
         }
 
         public ManualTestPage CurrentPage

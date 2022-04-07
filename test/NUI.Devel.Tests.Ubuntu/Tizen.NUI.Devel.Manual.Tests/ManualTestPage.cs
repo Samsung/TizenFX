@@ -35,7 +35,60 @@ namespace Tizen.NUI.Devel.Manual.Tests
         private ManualTestItem testItem;
         private TextEditor scenario;
         private View content;
-        private View testContent;
+        private string resourcePath = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+
+
+        private Button CreateIcon(string resourceUrl)
+        {
+            AppBarStyle appBarStyle = (AppBarStyle)ThemeManager.GetStyle("Tizen.NUI.Components.AppBar");
+            var iconButton = new Button(appBarStyle.BackButton)
+            {
+                IconURL = resourceUrl,
+            };
+
+            return iconButton;
+        }
+
+        private Button CreateButton(string title)
+        {
+            ButtonStyle buttonStyle = (ButtonStyle)(ThemeManager.GetStyle("Tizen.NUI.Components.Button").Clone());
+            Color normalColor;
+            switch (title)
+            {
+                case "PASS":
+                normalColor = new Color(ManualTest.COLOR_PASSED);
+                break;
+
+                case "FAIL":
+                normalColor = new Color(ManualTest.COLOR_FAILED);
+                break;
+
+                case "BLOCK":
+                normalColor = new Color(ManualTest.COLOR_BLOCKED);
+                break;
+
+                case "DONE": default:
+                normalColor = new Color(Color.Black);
+                break;
+            }
+
+            buttonStyle.BackgroundColor = new Selector<Color>()
+            {
+                Normal = normalColor,
+                Pressed = normalColor + new Color(0.2f, 0.2f, 0.2f, 0f),
+                Focused = normalColor + new Color(0.2f, 0.2f, 0.2f, 0f),
+                Disabled = new Color(0.765f, 0.792f, 0.824f, 1),
+            };
+
+            var button = new Button(buttonStyle)
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                Text = title,
+            };
+
+            return button;
+        }
+
 
         public ManualTestPage(ManualTestItem item) : base()
         {
@@ -62,9 +115,34 @@ namespace Tizen.NUI.Devel.Manual.Tests
 
             var navigator = NUIApplication.GetDefaultWindow().GetDefaultNavigator();
 
+            var prevIcon = CreateIcon(resourcePath + "ic_left.svg");
+            prevIcon.Clicked += (object sender, ClickedEventArgs ev) =>
+            {
+                var currentPage = navigator.Peek();
+
+            };
+
+            var homeIcon = CreateIcon(resourcePath + "ic_home.svg");
+            homeIcon.Clicked += (object sender, ClickedEventArgs ev) =>
+            {
+                while (navigator.Peek() is ManualTestPage page)
+                {
+                    navigator.Remove(page);
+                }
+            };
+
+            var nextIcon = CreateIcon(resourcePath + "ic_right.svg");
+            nextIcon.Clicked += (object sender, ClickedEventArgs ev) =>
+            {
+                var currentPage = navigator.Peek();
+            };
+
             AppBar = new AppBar()
             {
-                Title = testName
+                Title = testName,
+                AutoNavigationContent = false,
+                NavigationContent = prevIcon,
+                Actions = new View[] {homeIcon, nextIcon},
             };
 
             var scrollableContent = new ScrollableBase()
@@ -103,48 +181,62 @@ namespace Tizen.NUI.Devel.Manual.Tests
                     VerticalAlignment = VerticalAlignment.Center,
                 }
             };
-            if (testContent != null)
-            {
-                content.Add(testContent);
-            }
             scrollableContent.Add(content);
+
+            var resultField = new TextLabel()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                PointSize = 18,
+                Padding = new Extents(30, 30, 0, 0),
+                TextColor = Color.White,
+            };
+            resultField.SetBinding(TextLabel.TextProperty, "TestStateName");
+            resultField.SetBinding(TextLabel.BackgroundColorProperty, "TestStateColor");
+            resultField.BindingContext = testItem;
+            scrollableContent.Add(resultField);
 
             var buttonBox = new View()
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.WrapContent,
+                HeightSpecification = 200,
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
+                    CellPadding = new Size2D(20, 0),
+                    Padding = new Extents(30, 30, 0, 0),
                 }
             };
 
-            var passButton = new Button()
-            {
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                Text = "PASS",
-            };
+            var passButton = CreateButton("PASS");
             passButton.Clicked += (object obj, ClickedEventArgs ev) =>
             {
                 TestResult(TestState.Passed);
-                navigator.Pop();
 
             };
             buttonBox.Add(passButton);
 
-            var failButton = new Button()
-            {
-                WidthSpecification = LayoutParamPolicies.WrapContent,
-                Text = "FAIL",
-            };
+            var failButton = CreateButton("FAIL");
             failButton.Clicked += (object obj, ClickedEventArgs ev) =>
             {
                 TestResult(TestState.Failed);
-                navigator.Pop();
             };
             buttonBox.Add(failButton);
+
+            var blockButton = CreateButton("BLOCK");
+            blockButton.Clicked += (object obj, ClickedEventArgs ev) =>
+            {
+                TestResult(TestState.Blocked);
+            };
+            buttonBox.Add(blockButton);
+
+            var doneButton = CreateButton("DONE");
+            doneButton.Clicked += (object obj, ClickedEventArgs ev) =>
+            {
+                navigator.Pop();
+            };
+            buttonBox.Add(doneButton);
 
             scrollableContent.Add(buttonBox);
 

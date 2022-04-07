@@ -29,15 +29,36 @@ namespace Tizen.NUI.Devel.Manual.Tests
     [Description("Tizen.NUI.Components.Button manual test")]
     public class TSButton
     {
-
+        Window window;
+        Navigator navigator;
+        ManualTest test;
+        ManualTestList testList;
+        ManualTestItem testItem;
+        ManualTestPage testPage;
         View testView;
 
         [SetUp]
         public void Init()
         {
+
             Console.WriteLine("Button Init!");
-            ManualTest test = ManualTest.GetInstance();
-            ManualTestList list = ManualTestList.GetInstance();
+
+            window = NUIApplication.GetDefaultWindow();
+            navigator = window.GetDefaultNavigator();
+
+            test = ManualTest.GetInstance();
+            testList = ManualTestList.GetInstance();
+
+            testItem = test.CurrentTest;
+            testPage = new ManualTestPage(testItem);
+
+            if (testPage != null)
+            {
+                testPage.BindingContext = testItem;
+                navigator.Push(testPage);
+                test.CurrentPage = testPage;
+            }
+
             testView = test.CurrentPage.TestContent;
             testView.HeightSpecification = 300;
         }
