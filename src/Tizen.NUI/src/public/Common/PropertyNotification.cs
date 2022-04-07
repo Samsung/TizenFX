@@ -176,9 +176,10 @@ namespace Tizen.NUI
         /// <since_tizen> 4 </since_tizen>
         public Animatable GetTarget()
         {
-            BaseHandle ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.PropertyNotification.GetTarget(SwigCPtr));
+            //to fix memory leak issue, match the handle count with native side.
+            Animatable ret = this.GetInstanceSafely<Animatable>(Interop.PropertyNotification.GetTarget(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret as Animatable;
+            return ret;
         }
 
         /// <summary>
