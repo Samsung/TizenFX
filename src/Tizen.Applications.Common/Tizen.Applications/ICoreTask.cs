@@ -15,6 +15,7 @@
  */
 
 using System.ComponentModel;
+using System.Threading;
 
 namespace Tizen.Applications
 {
@@ -40,49 +41,57 @@ namespace Tizen.Applications
         /// <summary>
         /// This method is to handle behavior when the task of the application receives the appcontrol message.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The received app control event argument.</param>
         /// <since_tizen> 10 </since_tizen>
         void OnAppControlReceived(AppControlReceivedEventArgs e);
 
         /// <summary>
         /// This method is to handle behavior when the system memory is low.
         /// </summary>
-        /// <param name="e">The low memory event argument</param>
+        /// <param name="e">The low memory event argument.</param>
         /// <since_tizen> 10 </since_tizen>
         void OnLowMemory(LowMemoryEventArgs e);
 
         /// <summary>
         /// This method is to handle behavior when the system battery is low.
         /// </summary>
-        /// <param name="e">The low battery event argument</param>
+        /// <param name="e">The low battery event argument.</param>
         /// <since_tizen> 10 </since_tizen>
         void OnLowBattery(LowBatteryEventArgs e);
 
         /// <summary>
         /// This method is to handle behavior when the system language is changed.
         /// </summary>
-        /// <param name="e">The locale changed event argument</param>
+        /// <param name="e">The locale changed event argument.</param>
         /// <since_tizen> 10 </since_tizen>
         void OnLocaleChanged(LocaleChangedEventArgs e);
 
         /// <summary>
         /// This method is to handle behavior when the region format is changed.
         /// </summary>
-        /// <param name="e">The region format changed event argument</param>
+        /// <param name="e">The region format changed event argument.</param>
         /// <since_tizen> 10 </since_tizen>
         void OnRegionFormatChanged(RegionFormatChangedEventArgs e);
 
         /// <summary>
         /// This method is to handle behavior when the device orientation is changed.
         /// </summary>
-        /// <param name="e">The device orientation changed event argument</param>
+        /// <param name="e">The device orientation changed event argument.</param>
         /// <since_tizen> 10 </since_tizen>
         void OnDeviceOrientationChanged(DeviceOrientationEventArgs e);
 
         /// <summary>
         /// This method is to handle behavior when the application is resumed or paused.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The UI event argument.</param>
+        /// <since_tizen> 10 </since_tizen>
         void OnUIEvent(UIEventArgs e);
+
+        /// <summary>
+        /// Sets the SynchronizationContext of the application.
+        /// </summary>
+        /// <param name="context">The SynchronizationContext instance.</param>
+        /// <since_tizen> 10 </since_tizen>
+        void SetApplicationSynchronizationContext(SynchronizationContext context);
     }
 }

@@ -112,30 +112,48 @@ namespace Tizen.Applications
         /// <summary>
         /// This method is to handle behavior when the application is resumed or paused.
         /// </summary>
-        /// <param name="e"></param>
+        /// <param name="e">The UI event argument.</param>
         /// <since_tizen> 10 </since_tizen>
         public virtual void OnUIEvent(UIEventArgs e)
         {
         }
 
         /// <summary>
-        /// Runner callback for dispatching a message to the main loop of the CoreTask.
+        /// Sets the SynchronizationContext of the application.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="msg"></param>
+        /// <param name="context">The SynchronizationContext instance.</param>
         /// <since_tizen> 10 </since_tizen>
-        public delegate void Runner<T>(T msg);
+        public virtual void SetApplicationSynchronizationContext(SynchronizationContext context)
+        {
+            ApplicationSynchronizationContext = context;
+        }
 
         /// <summary>
-        /// Dispatches an asynchronous message to the main loop of the CoreTask.
+        /// Runner callback for dispatching a message to the main loop of the CoreApplication.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="runner"></param>
-        /// <param name="msg"></param>
+        /// <typeparam name="T">The typename of the object.</typeparam>
+        /// <param name="obj">The object argument.</param>
         /// <since_tizen> 10 </since_tizen>
-        public void Post<T>(Runner<T> runner, T msg)
+        public delegate void Runner<T>(T obj);
+
+        /// <summary>
+        /// Dispatches an asynchronous message to the main loop of the CoreApplication.
+        /// </summary>
+        /// <typeparam name="T">The typename of the object.</typeparam>
+        /// <param name="runner">The runner callback.</param>
+        /// <param name="obj">The object argument.</param>
+        /// <since_tizen> 10 </since_tizen>
+        public void Post<T>(Runner<T> runner, T obj)
         {
-            _context.Post((o) => { runner(msg); }, null);
+            var context = ApplicationSynchronizationContext;
+            if (context != null)
+            {
+                context = SynchronizationContext.Current;
+            }
+
+            context.Post((o) => { runner(obj); }, null);
         }
+
+        private SynchronizationContext ApplicationSynchronizationContext { set; get; }
     }
 }

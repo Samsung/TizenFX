@@ -113,7 +113,7 @@ namespace Tizen.Applications
         /// The backend instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        protected ICoreBackend Backend { get { return _backend; } }
+        protected ICoreBackend Backend { get { return _backend; } }      
 
         /// <summary>
         /// Runs the application's main loop.
@@ -142,6 +142,7 @@ namespace Tizen.Applications
 
             if (_task != null)
             {
+                TaskSynchronizationContext = SynchronizationContext.Current;
                 ICoreTaskBackend backend = (ICoreTaskBackend)_backend;
                 backend.SetCoreTask(_task);
                 backend.Run(argsClone);
@@ -173,7 +174,8 @@ namespace Tizen.Applications
                 TizenUISynchronizationContext.Initialize();
             }
 
-            _context = SynchronizationContext.Current;
+            _task.SetApplicationSynchronizationContext(SynchronizationContext.Current);
+
             if (!GlobalizationMode.Invariant)
             {
                 string locale = ULocale.GetDefaultLocale();
@@ -288,26 +290,34 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Runner callback for dispatching a message to the main loop of the CoreApplication.
+        /// Runner callback for dispatching a message to the main loop of the CoreTask.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="msg"></param>
+        /// <typeparam name="T">The typename of the object.</typeparam>
+        /// <param name="obj">The object argument.</param>
         /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void Runner<T>(T msg);
+        public delegate void Runner<T>(T obj);
 
         /// <summary>
-        /// Dispatches an asynchronous message to the main loop of the CoreApplication.
+        /// Dispatches an asynchronous message to the main loop of the CoreTask.
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="runner"></param>
-        /// <param name="msg"></param>
+        /// <typeparam name="T">The typename of the object.</typeparam>
+        /// <param name="runner">The runner callaback.</param>
+        /// <param name="obj">The object argument.</param>
         /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Post<T>(Runner<T> runner, T msg)
+        public void Post<T>(Runner<T> runner, T obj)
         {
-            _context.Post((o) => { runner(msg); }, null);
+            var context = TaskSynchronizationContext;
+            if (context == null)
+            {
+                context = SynchronizationContext.Current;
+            }
+
+            context.Post((o) => { runner(obj); }, null);
         }
+
+        internal SynchronizationContext TaskSynchronizationContext { set; get; }
 
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
