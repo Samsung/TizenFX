@@ -1651,8 +1651,11 @@ namespace Tizen.NUI.Components
                 this.TouchEvent -= OnTouchEventForTrack;
 
                 recoverIndicator = null;
-                editModeIndicator.Dispose();
-                editModeIndicator = null;
+                if (editModeIndicator != null)
+                {
+                    editModeIndicator.Dispose();
+                    editModeIndicator = null;
+                }
             }
 
             base.Dispose(type);
