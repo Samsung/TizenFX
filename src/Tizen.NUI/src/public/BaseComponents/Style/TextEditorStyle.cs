@@ -69,6 +69,12 @@ namespace Tizen.NUI.BaseComponents
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).horizontalAlignment = (HorizontalAlignment?)newValue,
             defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).horizontalAlignment);
 
+        /// <summary> The bindable property of VerticalAlignment. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.Create(nameof(VerticalAlignment), typeof(VerticalAlignment?), typeof(TextEditorStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).verticalAlignment = (VerticalAlignment?)newValue,
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).verticalAlignment);
+
         /// <summary> The bindable property of SecondaryCursorColor. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty SecondaryCursorColorProperty = BindableProperty.Create(nameof(SecondaryCursorColor), typeof(Vector4), typeof(TextEditorStyle), null,
@@ -258,6 +264,7 @@ namespace Tizen.NUI.BaseComponents
         });
 
         private HorizontalAlignment? horizontalAlignment;
+        private VerticalAlignment? verticalAlignment;
         private Vector4 secondaryCursorColor;
         private bool? enableCursorBlink;
         private float? cursorBlinkInterval;
@@ -321,6 +328,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (HorizontalAlignment?)GetValue(HorizontalAlignmentProperty);
             set => SetValue(HorizontalAlignmentProperty, value);
+        }
+
+        /// <summary>
+        /// The VerticalAlignment property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VerticalAlignment? VerticalAlignment
+        {
+            get => (VerticalAlignment?)GetValue(VerticalAlignmentProperty);
+            set => SetValue(VerticalAlignmentProperty, value);
         }
 
         /// <summary>

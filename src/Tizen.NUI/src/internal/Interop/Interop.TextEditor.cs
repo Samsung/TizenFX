@@ -39,6 +39,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_HORIZONTAL_ALIGNMENT_get")]
             public static extern int HorizontalAlignmentGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_VERTICAL_ALIGNMENT_get")]
+            public static extern int VerticalAlignmentGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_SCROLL_THRESHOLD_get")]
             public static extern int ScrollThresholdGet();
 
