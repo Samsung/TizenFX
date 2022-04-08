@@ -21,7 +21,7 @@ internal static partial class Interop
 {
     internal static partial class AppCoreUI
     {
-        [DllImport(Libraries.Glib, EntryPoint = "app_core_ui_base_get_tizen_glib_context", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.AppCoreUI, EntryPoint = "app_core_ui_base_get_tizen_glib_context", CallingConvention = CallingConvention.Cdecl)]
         internal static extern IntPtr GetTizenGlibContext();
     }
 }

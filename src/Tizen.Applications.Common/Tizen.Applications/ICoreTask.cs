@@ -86,12 +86,5 @@ namespace Tizen.Applications
         /// <param name="e">The UI event argument.</param>
         /// <since_tizen> 10 </since_tizen>
         void OnUIEvent(UIEventArgs e);
-
-        /// <summary>
-        /// Sets the SynchronizationContext of the application.
-        /// </summary>
-        /// <param name="context">The SynchronizationContext instance.</param>
-        /// <since_tizen> 10 </since_tizen>
-        void SetApplicationSynchronizationContext(SynchronizationContext context);
     }
 }

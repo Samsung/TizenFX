@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Globalization;
 using System.Runtime.InteropServices;
@@ -172,9 +173,7 @@ namespace Tizen.Applications
             if (_task != null)
             {
                 TizenUISynchronizationContext.Initialize();
-            }
-
-            _task.SetApplicationSynchronizationContext(SynchronizationContext.Current);
+            }            
 
             if (!GlobalizationMode.Invariant)
             {
@@ -308,13 +307,7 @@ namespace Tizen.Applications
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Post<T>(Runner<T> runner, T obj)
         {
-            var context = TaskSynchronizationContext;
-            if (context == null)
-            {
-                context = SynchronizationContext.Current;
-            }
-
-            context.Post((o) => { runner(obj); }, null);
+            GSourceManager.Post(() => { runner(obj); });
         }
 
         internal SynchronizationContext TaskSynchronizationContext { set; get; }
@@ -473,6 +466,43 @@ namespace Tizen.Applications
             }
 
             return fallbackCultureInfo;
+        }
+
+        private static class GSourceManager
+        {
+            private static Interop.Glib.GSourceFunc _wrapperHandler;
+            private static Object _transactionLock;
+            private static ConcurrentDictionary<int, Action> _handlerMap;
+            private static int _transactionId;
+
+            static GSourceManager()
+            {
+                _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
+                _transactionLock = new Object();
+                _handlerMap = new ConcurrentDictionary<int, Action>();
+                _transactionId = 0;
+            }
+
+            public static void Post(Action action)
+            {
+                int id = 0;
+                lock (_transactionLock)
+                {
+                    id = _transactionId++;
+                }
+                _handlerMap.TryAdd(id, action);
+                Interop.Glib.IdleAdd(_wrapperHandler, (IntPtr)id);
+            }
+
+            private static bool Handler(IntPtr userData)
+            {
+                int key = (int)userData;
+                if (_handlerMap.TryRemove(key, out Action action))
+                {
+                    action?.Invoke();
+                }
+                return false;
+            }
         }
     }
 

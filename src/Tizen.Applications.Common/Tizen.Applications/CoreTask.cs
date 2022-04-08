@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Concurrent;
 using System.ComponentModel;
 using System.Threading;
 using static Tizen.Applications.TizenSynchronizationContext;
@@ -28,8 +29,6 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CoreTask : ICoreTask
     {
-        static SynchronizationContext _context;
-
         /// <summary>
         /// Initializes the CoreTask class. 
         /// </summary>
@@ -44,7 +43,6 @@ namespace Tizen.Applications
         /// <since_tizen> 10 </since_tizen>
         public virtual void OnCreate()
         {
-            _context = SynchronizationContext.Current;
         }
 
         /// <summary>
@@ -119,16 +117,6 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Sets the SynchronizationContext of the application.
-        /// </summary>
-        /// <param name="context">The SynchronizationContext instance.</param>
-        /// <since_tizen> 10 </since_tizen>
-        public virtual void SetApplicationSynchronizationContext(SynchronizationContext context)
-        {
-            ApplicationSynchronizationContext = context;
-        }
-
-        /// <summary>
         /// Runner callback for dispatching a message to the main loop of the CoreApplication.
         /// </summary>
         /// <typeparam name="T">The typename of the object.</typeparam>
@@ -145,15 +133,49 @@ namespace Tizen.Applications
         /// <since_tizen> 10 </since_tizen>
         public void Post<T>(Runner<T> runner, T obj)
         {
-            var context = ApplicationSynchronizationContext;
-            if (context != null)
-            {
-                context = SynchronizationContext.Current;
-            }
-
-            context.Post((o) => { runner(obj); }, null);
+            GSourceManager.Post(() => { runner(obj); });
         }
 
-        private SynchronizationContext ApplicationSynchronizationContext { set; get; }
+        private static class GSourceManager
+        {
+            private static Interop.Glib.GSourceFunc _wrapperHandler;
+            private static Object _transactionLock;
+            private static ConcurrentDictionary<int, Action> _handlerMap;
+            private static int _transactionId;
+            private static IntPtr _context;
+
+            static GSourceManager()
+            {
+                _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
+                _transactionLock = new Object();
+                _handlerMap = new ConcurrentDictionary<int, Action>();
+                _transactionId = 0;
+                _context = Interop.AppCoreUI.GetTizenGlibContext();
+            }
+
+            public static void Post(Action action)
+            {
+                int id = 0;
+                lock (_transactionLock)
+                {
+                    id = _transactionId++;
+                }
+                _handlerMap.TryAdd(id, action);
+                IntPtr source = Interop.Glib.IdleSourceNew();
+                Interop.Glib.SourceSetCallback(source, Handler, (IntPtr)id, IntPtr.Zero);
+                Interop.Glib.SourceAttach(source, _context);
+                Interop.Glib.SourceUnref(source);
+            }
+
+            private static bool Handler(IntPtr userData)
+            {
+                int key = (int)userData;
+                if (_handlerMap.TryRemove(key, out Action action))
+                {
+                    action?.Invoke();
+                }
+                return false;
+            }
+        }
     }
 }
