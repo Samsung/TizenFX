@@ -100,6 +100,7 @@ namespace Tizen.NUI
 
             Resized += OnBorderWindowResized;
             this.borderInterface = borderInterface;
+            borderInterface.SetWindow(this);
 
             isBorderWindow = true;
 
@@ -128,7 +129,6 @@ namespace Tizen.NUI
 
             SetTransparency(true);
             BackgroundColor = Color.Transparent;
-            borderInterface.SetWindow(this);
 
             EnableFloatingMode(true);
 
