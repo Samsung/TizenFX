@@ -229,5 +229,33 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextEditorCharacterSpacing END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEditor VerticalAlignment.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.VerticalAlignment A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextEditorVerticalAlignment()
+        {
+            tlog.Debug(tag, $"TextEditorVerticalAlignment START");
+
+            var testingTarget = new TextEditor(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            testingTarget.VerticalAlignment = VerticalAlignment.Bottom;
+            Assert.AreEqual(VerticalAlignment.Bottom, testingTarget.VerticalAlignment, "Should be equal!");
+
+            testingTarget.VerticalAlignment = VerticalAlignment.Top;
+            Assert.AreEqual(VerticalAlignment.Top, testingTarget.VerticalAlignment, "Should be equal!");
+
+            testingTarget.VerticalAlignment = VerticalAlignment.Center;
+            Assert.AreEqual(VerticalAlignment.Center, testingTarget.VerticalAlignment, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextEditorVerticalAlignment END (OK)");
+        }
     }
 }
