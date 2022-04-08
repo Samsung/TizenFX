@@ -15,9 +15,12 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
-    internal class Matrix : Disposable
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class Matrix : Disposable
     {
         internal Matrix(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -179,12 +182,21 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public SWIGTYPE_p_float AsFloat()
+        internal SWIGTYPE_p_float AsFloat()
         {
             global::System.IntPtr cPtr = Interop.Matrix.AsFloat(SwigCPtr);
             SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        public float[] ToArray()
+        {
+            global::System.IntPtr cPtr = Interop.Matrix.AsFloat(SwigCPtr);
+            float[] result = new float[16];
+            System.Runtime.InteropServices.Marshal.Copy(cPtr, result, 0, 16);
+
+            return result;
         }
 
         public static void Multiply(Matrix result, Matrix lhs, Matrix rhs)
@@ -242,6 +254,13 @@ namespace Tizen.NUI
         {
             Interop.Matrix.GetTransformComponents(SwigCPtr, Vector3.getCPtr(position), Rotation.getCPtr(rotation), Vector3.getCPtr(scale));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal static Matrix GetMatrixFromPtr(global::System.IntPtr cPtr)
+        {
+            Matrix ret = new Matrix(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
     }
 }
