@@ -57,7 +57,18 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="colorFormat">The format of the color buffer</param>
         /// <since_tizen> 10 </since_tizen>
-        public GLView(ColorFormat colorFormat) : this(Interop.GLView.New((int)colorFormat), true)
+        public GLView(ColorFormat colorFormat) : this(Interop.GLView.New((int)colorFormat, (int)GLBackendMode.Default), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        
+        /// <summary>
+        /// Creates an initialized GLView.
+        /// </summary>
+        /// <param name="backendMode">The backend mode to be used with GLView (Direct Rendering or EGL Image)</param>        
+        /// <param name="colorFormat">The format of the color buffer</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public GLView(GLBackendMode backendMode, ColorFormat colorFormat) : this(Interop.GLView.New((int)backendMode, (int)colorFormat), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -77,6 +88,42 @@ namespace Tizen.NUI.BaseComponents
             /// 8 red bits, 8 green bits, 8 blue bits, alpha 8 bits
             /// </summary>
             RGBA8888
+        }
+
+
+        /// <summary>
+        /// Enumeration for the backend mode
+        /// </summary>
+        public enum GLBackendMode
+        {            
+            /// <summary>
+            /// Using DirectRendering
+            /// </summary>
+            DirectRendering = 0,
+
+            /// <summary>
+            /// Using EGL Image to render offscreen first, then to the surface (legacy)
+            /// </summary>
+            EglImageOffscreenRendering = 1,
+
+            /// <summary>
+            /// Default backend mode is EglImageOffscreenRendering
+            /// </summary>
+            Default = EglImageOffscreenRendering
+        }
+
+        /// <summary>
+        /// Gets backend mode of GLView
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        public GLBackendMode BackendMode
+        {
+            get
+            {
+                GLBackendMode ret = (GLBackendMode)Interop.GLView.GlViewGetBackendMode(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
         }
 
         /// <summary>

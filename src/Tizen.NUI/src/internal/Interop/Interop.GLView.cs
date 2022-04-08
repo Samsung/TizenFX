@@ -26,6 +26,9 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_New_SWIG")]
             public static extern global::System.IntPtr New(int nuiColorFormat);
 
+	    [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_New2_SWIG")]
+            public static extern global::System.IntPtr New(int backendMode, int nuiColorFormat);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_GlView_SWIG_0")]
             public static extern global::System.IntPtr NewGlView();
 
@@ -53,6 +56,9 @@ namespace Tizen.NUI
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_GetRenderingMode")]
             public static extern global::System.IntPtr GlViewGetRenderingMode(HandleRef nuiGlView);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_GetBackendMode")]
+            public static extern global::System.IntPtr GlViewGetBackendMode(HandleRef nuiGlView);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlView_RenderOnce")]
             public static extern void GlViewRenderOnce(HandleRef nuiGlView);
