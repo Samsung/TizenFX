@@ -9,50 +9,88 @@ namespace Tizen.NUI.Samples
 {
   public class WhiteboardDnDTest : IExample
   {
+    // MainWindow
     private Window win;
-    private Window allAppsWindow = null;
-    private Window myAppsWindow = null;
+
+    // DemoApp Window and Position
     private Window trayWindow = null;
-    private Window galleryWindow = null;
-    private Window emailWindow = null;
-    private Window facebookWindow = null;
+    private Window [] SubWindows = new Window[5];
+    private Rectangle allAppsWinPosition = new Rectangle(300, 207, 450, 500);
+    private Rectangle myAppsWinPosition = new Rectangle(1000, 250, 450, 350);
+    private Rectangle trayWinPosition = new Rectangle(300, 200, 400, 400);
+    private Rectangle galleryWinPosition = new Rectangle(1100, 50, 400, 400);
+    private Rectangle emailWinPosition = new Rectangle(1100, 550, 400, 400);
+    private Rectangle facebookWinPosition = new Rectangle(350, 250, 400, 400);
+    //    
+
+    // DragAndDrop
+    DragAndDrop dnd;
     private View shadowView = null;
+    //
+
+    // MyApps App View
     private View myAppsView = null;
+    private View faceBookItem = null;
+    // Gallery App View
     private ImageView galleryView = null;
-    private TextEditor inputContent = null;
-    private int startAppFlag = 0;
-    private ImageView [] trayItem = new ImageView[4];
+    
+    // TrayItem App View    
+    private ImageView [] trayItem = new ImageView[8];
+
+    // AllApps Item Longpressed Event
     private LongPressGestureDetector [] itemLongPressed = new LongPressGestureDetector[10];
+
+    // Email App TextField
+    private TextEditor inputContent = null;
+    // Email Apps Item LongPressed Event
     private LongPressGestureDetector textLongPressed = null;
     private LongPressGestureDetector itemLongPressed1 = null;
-    private LongPressGestureDetector itemLongPressed2 = null;
-    
+    private LongPressGestureDetector itemLongPressed2 = null;    
+    //
 
-    private static readonly string imagePath = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "/images/Dali/";
-
+    // AllApps and MyApps Item Image Resources
     private string [] itemNameArr = new string [] {
                                "facebook", "netflix", "spoti",
                                "chrome", "instagram", "pinterest",
                                "hbo", "linkedin", "youtube"};
 
-    private bool bAnglingUI = false;
 
     //for TV font scale
-    private float fontScale = 5;
+    //private float fontScale = 5;
     //for Emulator font scale
-    //private float fontScale = 1;
-    DragAndDrop dnd;
+    private float fontScale = 1.5f;
 
-    //Angling UI Logic
+    // <Angling UI Logic>
     private View originPoint = null;
     private double originPointX = 400;
     private double originPointY = 505;
     private View mousePoint = null;
-    private View circleCenter = null;
-    private double circleRadius = 50;
-    private double circlePositionX = 1750;
-    private double [] circlePositionY = new double[4]{300, 460, 620, 780};
-    private View [] TrayPoint = new View[4];
+
+    // Circle Center Position
+    private double [] circlePositionX = new double[8]{1800, 1800, 1800, 1800, 550, 800, 1050, 1300};
+    private double [] circlePositionY = new double[8]{300, 460, 620, 780, 100, 100, 100, 100};
+    
+    // Tray Items
+    private View [] TrayPoint = new View[8];
+    private float trayPointSize = 150.0f;
+    private double circleRadius = 75.0f;
+
+     // Window Center Position
+    private View [] myAppsPoint = new View[5];
+    private View [] myAppsMainView = new View[5];
+    private double [] windowCenterX = new double[5]{-500, -500, -500, -500, -500};
+    private double [] windowCenterY = new double[5]{-500, -500, -500, -500, -500};
+    private double windowRadius = 175.0f;
+
+    private int topTrayItemSize = 160;
+
+    private double [] topItemPositionX = new double[4]{300, 500, 700, 900};
+    private double [] topItemPositionY = new double[4]{200, 200, 200, 200};
+
+    private bool enableTrayCircle = true;
+    private bool enableMouseCircle = true;
+
+    // </Angling UI Logic>
 
     View CreateItem(string file, string name)
     {
@@ -98,17 +136,22 @@ namespace Tizen.NUI.Samples
       itemView.Add(child);
       itemView.Add(itemName);
 
+      GridLayout.SetHorizontalStretch(itemView, GridLayout.StretchFlags.Expand);
+      GridLayout.SetVerticalStretch(itemView, GridLayout.StretchFlags.Expand);
+      GridLayout.SetHorizontalAlignment(itemView, GridLayout.Alignment.Center);
+      GridLayout.SetVerticalAlignment(itemView, GridLayout.Alignment.Center);
+
       return itemView;
     }
 
     void CreateGallery()
     {
-      if (galleryWindow == null)
+      if (SubWindows[2] == null)
       {
-        galleryWindow = new Window("GalleryWindow", new Rectangle(1250, 100, 400, 400), false);
-        galleryWindow.EnableBorderWindow();
+        SubWindows[2] = new Window("GalleryWindow", galleryWinPosition, false);
+        SubWindows[2].EnableBorderWindow();
 
-        var mainView = new View()
+        myAppsMainView[2] = new View()
         {
          Layout = new LinearLayout()
          {
@@ -131,19 +174,18 @@ namespace Tizen.NUI.Samples
 
         var view = new View()
         {
-          Layout = new FlexLayout()
+          Layout = new GridLayout()
           {
-            Direction = FlexLayout.FlexDirection.Row,
-            WrapType = FlexLayout.FlexWrapType.Wrap,
-            LayoutWithTransition = true,
+            Columns = 1,
+            Rows = 1,
           },
           WidthSpecification = LayoutParamPolicies.MatchParent,
           HeightSpecification = LayoutParamPolicies.MatchParent,
         };
 
-        galleryWindow.Add(mainView);
-        mainView.Add(title);
-        mainView.Add(view);
+        SubWindows[2].Add(myAppsMainView[2]);
+        myAppsMainView[2].Add(title);
+        myAppsMainView[2].Add(view);
 
         galleryView = new ImageView()
         {
@@ -159,18 +201,18 @@ namespace Tizen.NUI.Samples
       }
       else
       {
-        galleryWindow.Minimize(false);
+        SubWindows[2].Minimize(false);
       }
     }
 
     void CreateEmail()
     {
-      if (emailWindow == null)
+      if (SubWindows[3] == null)
       {
-        emailWindow = new Window("EmailWindow", new Rectangle(1250, 100, 400, 400), false);
-        emailWindow.EnableBorderWindow();
+        SubWindows[3] = new Window("EmailWindow", emailWinPosition, false);
+        SubWindows[3].EnableBorderWindow();
 
-        var mainView = new View()
+        myAppsMainView[3] = new View()
         {
          Layout = new LinearLayout()
          {
@@ -191,9 +233,9 @@ namespace Tizen.NUI.Samples
             Padding = new Extents(35,0,20,0),
         };
 
-        mainView.ClippingMode = ClippingModeType.ClipToBoundingBox;
-        emailWindow.Add(mainView);
-        mainView.Add(title);
+        myAppsMainView[3].ClippingMode = ClippingModeType.ClipToBoundingBox;
+        SubWindows[3].Add(myAppsMainView[3]);
+        myAppsMainView[3].Add(title);
 
         var labelSender = new TextLabel() {
             Text = "sender : taehyub.kim@samsung.com",
@@ -201,7 +243,7 @@ namespace Tizen.NUI.Samples
             HorizontalAlignment = HorizontalAlignment.Begin,
             Padding = new Extents(10,0,10,0),
         };
-        mainView.Add(labelSender);
+        myAppsMainView[3].Add(labelSender);
 
         var labelReceiver = new TextLabel() {
             Text = "receiver : hyunju.shin@samsung.com",
@@ -209,7 +251,7 @@ namespace Tizen.NUI.Samples
             HorizontalAlignment = HorizontalAlignment.Begin,
             Padding = new Extents(10,0,10,0),
         };
-        mainView.Add(labelReceiver);
+        myAppsMainView[3].Add(labelReceiver);
 
         var labelTitle = new TextLabel() {
             Text = "title : DnD and Window Border!",
@@ -217,7 +259,7 @@ namespace Tizen.NUI.Samples
             HorizontalAlignment = HorizontalAlignment.Begin,
             Padding = new Extents(10,0,10,0),
         };
-        mainView.Add(labelTitle);
+        myAppsMainView[3].Add(labelTitle);
 
         var menuView = new View()
         {
@@ -255,7 +297,7 @@ namespace Tizen.NUI.Samples
         menuView.Add(menuImage);
         menuView.Add(menuFile);
         menuView.Add(menuOption);
-        mainView.Add(menuView);
+        myAppsMainView[3].Add(menuView);
 
         inputContent = new TextEditor()
         {
@@ -269,21 +311,21 @@ namespace Tizen.NUI.Samples
           Margin = 10,
           LineWrapMode = LineWrapMode.Mixed,
         };
-        mainView.Add(inputContent); 
+        myAppsMainView[3].Add(inputContent); 
       }
       else
       {
-        emailWindow.Minimize(false);
+        SubWindows[3].Minimize(false);
       }
     }
     void CreateFacebook()
     {
-      if (facebookWindow == null)
+      if (SubWindows[4] == null)
       {
-        facebookWindow = new Window("FacebookWindow", new Rectangle(1250, 100, 400, 400), false);
-        facebookWindow.EnableBorderWindow();
+        SubWindows[4] = new Window("FacebookWindow", facebookWinPosition, false);
+        SubWindows[4].EnableBorderWindow();
 
-        var mainView = new View()
+        myAppsMainView[4] = new View()
         {
          Layout = new LinearLayout()
          {
@@ -304,8 +346,8 @@ namespace Tizen.NUI.Samples
             Padding = new Extents(35,0,20,0),
         };
 
-        facebookWindow.Add(mainView);
-        mainView.Add(title);
+        SubWindows[4].Add(myAppsMainView[4]);
+        myAppsMainView[4].Add(title);
 
         var profileView = new View()
         {
@@ -318,7 +360,7 @@ namespace Tizen.NUI.Samples
           WidthSpecification = LayoutParamPolicies.MatchParent,
           HeightSpecification = 60,
         };
-        mainView.Add(profileView);
+        myAppsMainView[4].Add(profileView);
 
         var profileImage = new ImageView()
         {
@@ -347,15 +389,15 @@ namespace Tizen.NUI.Samples
             WidthSpecification = LayoutParamPolicies.MatchParent,
             HeightSpecification = LayoutParamPolicies.WrapContent,
         };
-        mainView.Add(content);
+        myAppsMainView[4].Add(content);
         textLongPressed = new LongPressGestureDetector();
         textLongPressed.Attach(content);
         textLongPressed.Detected += (s, e) =>
         {
           if(e.LongPressGesture.State == Gesture.StateType.Started)
           {
-            originPointX = e.LongPressGesture.ScreenPoint.X + facebookWindow.WindowPosition.X;
-            originPointY = e.LongPressGesture.ScreenPoint.Y + facebookWindow.WindowPosition.Y;
+            originPointX = e.LongPressGesture.ScreenPoint.X + SubWindows[4].WindowPosition.X;
+            originPointY = e.LongPressGesture.ScreenPoint.Y + SubWindows[4].WindowPosition.Y;
             Tizen.Log.Error("WhiteboardDnDDemo", "KTH Facebook Angling UI Text: " + originPointX + " " + originPointY);
             shadowView = new TextLabel()
             {
@@ -369,7 +411,6 @@ namespace Tizen.NUI.Samples
             dragData.MimeType = "text/uri-list/fbtext";
             dragData.Data = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus imperdiet bibendum eros eu faucibus. Maecenas malesuada tempor felis, ac aliquam libero interdum ut.";
             dnd.StartDragAndDrop(content, shadowView, dragData);
-            //bAnglingUI = true;
           }
         };
 
@@ -378,8 +419,8 @@ namespace Tizen.NUI.Samples
         {
           if (e.Touch.GetState(0) == PointStateType.Stationary && e.Touch.GetPointCount() == 2)
           {
-            originPointX = e.Touch.GetScreenPosition(0).X + facebookWindow.WindowPosition.X;
-            originPointY = e.Touch.GetScreenPosition(0).Y + facebookWindow.WindowPosition.Y;
+            originPointX = e.Touch.GetScreenPosition(0).X + SubWindows[4].WindowPosition.X;
+            originPointY = e.Touch.GetScreenPosition(0).Y + SubWindows[4].WindowPosition.Y;
             Tizen.Log.Error("WhiteboardDnDDemo", "KTH Facebook Angling UI Text !!!: " + originPointX + " " + originPointY);
             shadowView = new TextLabel()
             {
@@ -393,7 +434,6 @@ namespace Tizen.NUI.Samples
             dragData.MimeType = "text/uri-list/fbtext";
             dragData.Data = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus imperdiet bibendum eros eu faucibus. Maecenas malesuada tempor felis, ac aliquam libero interdum ut.";
             dnd.StartDragAndDrop(content, shadowView, dragData);
-            bAnglingUI = true;
           }
           
           return true;
@@ -411,7 +451,7 @@ namespace Tizen.NUI.Samples
           WidthSpecification = LayoutParamPolicies.MatchParent,
           HeightSpecification = LayoutParamPolicies.MatchParent,
         };
-        mainView.Add(attachImageView);
+        myAppsMainView[4].Add(attachImageView);
 
         var attachImage1 = new ImageView()
         {
@@ -442,8 +482,8 @@ namespace Tizen.NUI.Samples
         {
           if(e.LongPressGesture.State == Gesture.StateType.Started)
           {
-            originPointX = e.LongPressGesture.ScreenPoint.X + facebookWindow.WindowPosition.X;
-            originPointY = e.LongPressGesture.ScreenPoint.Y + facebookWindow.WindowPosition.Y;
+            originPointX = e.LongPressGesture.ScreenPoint.X + SubWindows[4].WindowPosition.X;
+            originPointY = e.LongPressGesture.ScreenPoint.Y + SubWindows[4].WindowPosition.Y;
             Tizen.Log.Error("WhiteboardDnDDemo", "KTH Facebook Angling UI Text: " + originPointX + " " + originPointY);
             shadowView = new ImageView()
             {
@@ -465,8 +505,8 @@ namespace Tizen.NUI.Samples
         {
           if(e.LongPressGesture.State == Gesture.StateType.Started)
           {
-            originPointX = e.LongPressGesture.ScreenPoint.X + facebookWindow.WindowPosition.X;
-            originPointY = e.LongPressGesture.ScreenPoint.Y + facebookWindow.WindowPosition.Y;
+            originPointX = e.LongPressGesture.ScreenPoint.X + SubWindows[4].WindowPosition.X;
+            originPointY = e.LongPressGesture.ScreenPoint.Y + SubWindows[4].WindowPosition.Y;
             Tizen.Log.Error("WhiteboardDnDDemo", "KTH Facebook Angling UI Text: " + originPointX + " " + originPointY);
             shadowView = new ImageView()
             {
@@ -493,7 +533,7 @@ namespace Tizen.NUI.Samples
           WidthSpecification = LayoutParamPolicies.MatchParent,
           HeightSpecification = LayoutParamPolicies.MatchParent,
         };
-        mainView.Add(menuView);
+        myAppsMainView[4].Add(menuView);
 
         var menuIcon1 = new ImageView()
         {
@@ -552,18 +592,19 @@ namespace Tizen.NUI.Samples
       }
       else
       {
-        facebookWindow.Minimize(false);
+        SubWindows[4].Minimize(false);
       }
     }
 
     void CreateAllApps()
     {
-      if (allAppsWindow == null)
+      if (SubWindows[0] == null)
       {
-        allAppsWindow = new Window("subwin1", new Rectangle(100, 207, 450, 500), false);
-        allAppsWindow.EnableBorderWindow();
+        Tizen.Log.Error("WhiteboardDnDDemo", "KTH Create AllApps 1");
+        SubWindows[0] = new Window("AllApps", allAppsWinPosition, false);
+        SubWindows[0].EnableBorderWindow();
 
-        var mainView = new View()
+        myAppsMainView[0] = new View()
         {
          Layout = new LinearLayout()
          {
@@ -587,32 +628,32 @@ namespace Tizen.NUI.Samples
         // Create All Apps Items
         var view = new View()
         {
-          Layout = new FlexLayout()
+          Layout = new GridLayout()
           {
-            Direction = FlexLayout.FlexDirection.Row,
-            WrapType = FlexLayout.FlexWrapType.Wrap,
-            LayoutWithTransition = true,
+            Columns = 3,
+            Rows = 3,
           },
           WidthSpecification = LayoutParamPolicies.MatchParent,
           HeightSpecification = LayoutParamPolicies.MatchParent,
         };
 
-        allAppsWindow.Add(mainView);
-        mainView.Add(title);
-        mainView.Add(view);
+        SubWindows[0].Add(myAppsMainView[0]);
+        myAppsMainView[0].Add(title);
+        myAppsMainView[0].Add(view);
 
         for(int i = 0;  i < 9; i++)
         {
           var itemView = CreateItem(Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + itemNameArr[i] + ".png", itemNameArr[i]);
           itemView.Name = itemNameArr[i];
 
+          if (itemLongPressed[i] == null)
           itemLongPressed[i] = new LongPressGestureDetector();
           itemLongPressed[i].Attach(itemView);
           itemLongPressed[i].Detected += (s, e) =>
           {
             if(e.LongPressGesture.State == Gesture.StateType.Started)
             {
-              Tizen.Log.Error("WhiteboardDnDDemo", "KTH StartDragAndDrop with LongPress!!! " + itemView.Name);
+              Tizen.Log.Error("WhiteboardDnDDemo", "KTH AllApps Item Longpressed " + itemView.Name);
               shadowView = CreateItem(Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + itemView.Name + ".png", itemView.Name);
               DragData dragData;
               dragData.MimeType = "text/uri-list/allaps";
@@ -625,19 +666,10 @@ namespace Tizen.NUI.Samples
       }
       else
       {
-        allAppsWindow.Minimize(false);
+        Tizen.Log.Error("WhiteboardDnDDemo", "KTH Create AllApps 2");
+        SubWindows[0].Minimize(false);
       }
     }
-
-    // allAppsWindow
-    // myAppsWindow
-    // trayWindow
-    // galleryWindow
-    // emailWindow
-    // facebookWindow
-    // Start DnD ID?
-    // Data Type Text or Image
-    // if Drop Position == Window then add window's app
 
     bool IsDroppedInWindow(Window window, Position position)
     {
@@ -657,19 +689,19 @@ namespace Tizen.NUI.Samples
     int GetDemoAppID(Position position)
     {
       
-      if (IsDroppedInWindow(myAppsWindow, position))
+      if (IsDroppedInWindow(SubWindows[1], position))
         return 1;
 
       /*
-      else if(IsDroppedInWindow(myAppsWindow, position))
+      else if(IsDroppedInWindow(SubWindows[1], position))
         return 2;
       else if(IsDroppedInWindow(trayWindow, position))
         return 3;
-      else if(IsDroppedInWindow(galleryWindow, position))
+      else if(IsDroppedInWindow(SubWindows[2], position))
         return 4;
-      else if(IsDroppedInWindow(emailWindow, position))
+      else if(IsDroppedInWindow(SubWindows[3], position))
         return 5;
-      else if(IsDroppedInWindow(facebookWindow, position))
+      else if(IsDroppedInWindow(SubWindows[4], position))
         return 6;
         */
       else
@@ -706,6 +738,34 @@ namespace Tizen.NUI.Samples
         else
           trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "allapps.png";
       }
+      else if(itemID == 4)
+      {
+        if (isPressed)
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "homep.png";
+        else
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "home.png";
+      }
+      else if(itemID == 5)
+      {
+        if (isPressed)
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "favoritep.png";
+        else
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "favorite.png";
+      }
+      else if(itemID == 6)
+      {
+        if (isPressed)
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "painterp.png";
+        else
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "painter.png";
+      }
+      else if(itemID == 7)
+      {
+        if (isPressed)
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "settingp.png";
+        else
+          trayItem[itemID].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "setting.png";
+      }
     }
 
     void OnRootViewDnDFunc(View targetView, DragEvent dragEvent)
@@ -729,8 +789,9 @@ namespace Tizen.NUI.Samples
         {
           Tizen.Log.Error("WhiteboardDnDDemo", "KTH Move " + dragEvent.Position.X + " " + dragEvent.Position.Y);
 
+/*
           if (bAnglingUI) {
-            Position currentPos =  new Position(dragEvent.Position.X + facebookWindow.WindowPosition.X, dragEvent.Position.Y + facebookWindow.WindowPosition.Y);
+            Position currentPos =  new Position(dragEvent.Position.X + SubWindows[4].WindowPosition.X, dragEvent.Position.Y + SubWindows[4].WindowPosition.Y);
 
             double [] vec = new double[2];
             vec[0] = (double)(currentPos.X - originPointX);
@@ -760,13 +821,10 @@ namespace Tizen.NUI.Samples
                 changeTrayItemBackground(i, true);
               }
             }
-          }
+          }*/
         }
         else if (dragEvent.DragType == DragType.Drop)
         {
-//          int demoAppID = GetDemoAppID(dragEvent.Position);
-//          Tizen.Log.Error("WhiteboardDnDDemo", "KTH Drop Window : " + demoAppID);
-
           if (dragEvent.MimeType == "text/uri-list/allaps")
           {
               string[] itemData = dragEvent.Data.Split(',');
@@ -792,7 +850,7 @@ namespace Tizen.NUI.Samples
           }
           else if (dragEvent.MimeType == "text/uri-list/fbimage")
           {
-            if (galleryWindow == null )
+            if (SubWindows[2] == null )
             {
               CreateGallery();
             }
@@ -806,7 +864,7 @@ namespace Tizen.NUI.Samples
           }
           else if (dragEvent.MimeType == "text/uri-list/fbtext")
           {
-            if (emailWindow == null)
+            if (SubWindows[3] == null)
             {
               CreateEmail();
             }
@@ -814,7 +872,6 @@ namespace Tizen.NUI.Samples
             {
               inputContent.Text = dragEvent.Data;
             }
-
           }
 
           //Reset Angling UI
@@ -822,24 +879,21 @@ namespace Tizen.NUI.Samples
           {
             changeTrayItemBackground(i, false);
           }
-          bAnglingUI = false;
         }
     }
 
     void CreateMyApps()
     {
-      if (myAppsWindow == null)
+      if (SubWindows[1] == null)
       {
-        myAppsWindow = new Window("subwin1", new Rectangle(800, 250, 450, 350), false);
-        myAppsWindow.EnableBorderWindow();
+        SubWindows[1] = new Window("MyAppsWindow", myAppsWinPosition, false);
+        SubWindows[1].EnableBorderWindow();
 
-        var mainView = new View()
+        myAppsMainView[1] = new View()
         {
          Layout = new LinearLayout()
          {
            LinearOrientation = LinearLayout.Orientation.Vertical,
-           //HorizontalAlignment = HorizontalAlignment.Center,
-           //VerticalAlignment = VerticalAlignment.Center,
          },
          WidthSpecification = LayoutParamPolicies.MatchParent,
          HeightSpecification = LayoutParamPolicies.MatchParent,
@@ -856,25 +910,24 @@ namespace Tizen.NUI.Samples
             Padding = new Extents(35,0,20,0),
         };
 
-        mainView.Add(title);
+        myAppsMainView[1].Add(title);
 
         // Create My Apps Items
         myAppsView = new View()
         {
-          Layout = new FlexLayout()
+          Layout = new GridLayout()
           {
-            Direction = FlexLayout.FlexDirection.Row,
-            WrapType = FlexLayout.FlexWrapType.Wrap,
-            LayoutWithTransition = true,
+            Columns = 3,
+            Rows = 1,
           },
           WidthSpecification = LayoutParamPolicies.MatchParent,
           HeightSpecification = LayoutParamPolicies.MatchParent,
         };
 
-        myAppsWindow.Add(mainView);
-        mainView.Add(myAppsView);
+        SubWindows[1].Add(myAppsMainView[1]);
+        myAppsMainView[1].Add(myAppsView);
 
-        var faceBookItem = CreateItem(Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "facebook.png", "facebook");
+        faceBookItem = CreateItem(Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "facebook.png", "facebook");
         myAppsView.Add(faceBookItem);
         faceBookItem.TouchEvent += (s, e) =>
         {
@@ -893,7 +946,7 @@ namespace Tizen.NUI.Samples
       }
       else
       {
-        myAppsWindow.Minimize(false);
+        SubWindows[1].Minimize(false);
       }
     }
 
@@ -902,7 +955,6 @@ namespace Tizen.NUI.Samples
       if (trayWindow == null)
       {
         trayWindow = new Window("TrayWindow", new Rectangle(1700, 167, 200, 750), false);
-        //myAppsWindow.EnableBorderWindow();
         trayWindow.BackgroundColor = Color.Transparent;
         trayWindow.SetTransparency(true);
         
@@ -1012,20 +1064,118 @@ namespace Tizen.NUI.Samples
       }
     }
 
-    private void OnMainViewTouch(object sender, Window.TouchEventArgs e)
+    void CreateTopTrayItems(Window win)
     {
-      Tizen.Log.Error("WhiteboardDnDDemo", "KTH Main Window Move ");
-      Vector2 position = e.Touch.GetScreenPosition(0);
-      if (e.Touch.GetState(0) == PointStateType.Motion)
-      {
-        Tizen.Log.Error("WhiteboardDnDDemo", "KTH Main Window Move " + position.X + " " + position.Y);
-      }
-    }
+        trayItem[4] = new ImageView()
+        {
+          Position = new Position((float)circlePositionX[4] - (topTrayItemSize/2.0f), (float)circlePositionY[4]  - (topTrayItemSize/2.0f)), 
+          Size = new Size(topTrayItemSize, topTrayItemSize),
+          ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "home.png",
+        };
+        
+        trayItem[4].TouchEvent += (s, e) =>
+        {
+          if (e.Touch.GetState(0) == PointStateType.Up)
+          {
+            trayItem[4].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "home.png";
+            enableTrayCircle = !enableTrayCircle;
+            for(int i = 0; i < 8; i++)
+            {
+              if (enableTrayCircle)
+                TrayPoint[i].Show();
+              else
+                TrayPoint[i].Hide();
+            }
+            for(int i = 0; i < 5; i++)
+            {
+              if (enableTrayCircle)
+                myAppsPoint[i].Show();
+              else
+                myAppsPoint[i].Hide();
+            }
+          }
+          else if (e.Touch.GetState(0) == PointStateType.Down)
+          {
+            trayItem[4].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "homep.png";
+          }
+          return true;
+        };
 
-    private bool OnHoverEvent(object source, View.HoverEventArgs e)
-    {
-        Tizen.Log.Error("WhiteboardDnDDemo", "KTH HoverEvent"); 
-        return false;
+        trayItem[5] = new ImageView()
+        {
+          Position = new Position((float)circlePositionX[5] - (topTrayItemSize/2.0f), (float)circlePositionY[5] - (topTrayItemSize/2.0f)), 
+          Size = new Size(topTrayItemSize, topTrayItemSize),
+          ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "favorite.png",
+        };
+        
+        trayItem[5].TouchEvent += (s, e) =>
+        {
+          if (e.Touch.GetState(0) == PointStateType.Up)
+          {
+            trayItem[5].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "favorite.png";
+            enableMouseCircle = !enableMouseCircle;
+            if (enableMouseCircle)
+            {
+              originPoint.Show();
+              mousePoint.Show();
+            }
+            else
+            {
+              originPoint.Hide();
+              mousePoint.Hide();
+            }
+          }
+          else if (e.Touch.GetState(0) == PointStateType.Down)
+          {
+            trayItem[5].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "favoritep.png";
+          }
+          return true;
+        };
+
+        trayItem[6] = new ImageView()
+        {
+          Position = new Position((float)circlePositionX[6] -  (topTrayItemSize/2.0f), (float)circlePositionY[6] - (topTrayItemSize/2.0f)), 
+          Size = new Size(topTrayItemSize, topTrayItemSize),
+          ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "painter.png",
+        };
+        
+        trayItem[6].TouchEvent += (s, e) =>
+        {
+          if (e.Touch.GetState(0) == PointStateType.Up)
+          {
+            trayItem[6].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "painter.png";
+          }
+          else if (e.Touch.GetState(0) == PointStateType.Down)
+          {
+            trayItem[6].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "painterp.png";
+          }
+          return true;
+        };
+
+        trayItem[7] = new ImageView()
+        {
+          Position = new Position((float)circlePositionX[7] - (topTrayItemSize/2.0f), (float)circlePositionY[7]- (topTrayItemSize/2.0f)), 
+          Size = new Size(topTrayItemSize, topTrayItemSize),
+          ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "setting.png",
+        };
+        
+        trayItem[7].TouchEvent += (s, e) =>
+        {
+          if (e.Touch.GetState(0) == PointStateType.Up)
+          {
+            trayItem[7].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "settingp.png";
+          }
+          else if (e.Touch.GetState(0) == PointStateType.Down)
+          {
+            trayItem[7].ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "setting.png";
+          }
+          return true;
+        };
+
+        win.Add(trayItem[4]);
+        win.Add(trayItem[5]);
+        win.Add(trayItem[6]);
+        win.Add(trayItem[7]);
     }
 
     void Initialize()
@@ -1050,6 +1200,7 @@ namespace Tizen.NUI.Samples
         win.Add(root);
         dnd.AddListener(root, OnRootViewDnDFunc);
         CreateTrayApps();
+
         //Angling UI Logic
         originPoint = new View()
         {
@@ -1061,21 +1212,20 @@ namespace Tizen.NUI.Samples
         };
         win.Add(originPoint);
 
-        float y = 300;
-        for (int i = 0;  i < 4; i++)
-        {  
-          
+        for (int i = 0;  i < 8; i++)
+        {            
           TrayPoint[i] = new View()
           {
-            Position = new Position((float)circlePositionX - 50.0f, (float)circlePositionY[i] - 50.0f),
-            Size = new Size(100, 100),
+            Position = new Position((float)circlePositionX[i] - (trayPointSize/2), (float)circlePositionY[i] - (trayPointSize/2)),
+            Size = new Size(trayPointSize, trayPointSize),
             BackgroundColor = Color.Orange,
             CornerRadius = new Vector4(0.5f, 0.5f, 0.5f, 0.5f),
             CornerRadiusPolicy = VisualTransformPolicyType.Relative,
           };
           win.Add(TrayPoint[i]);
-          y += 160;
         }
+        //Create Top Tray Items
+        CreateTopTrayItems(win);
 
         mousePoint = new View()
         {
@@ -1087,10 +1237,24 @@ namespace Tizen.NUI.Samples
         };
         win.Add(mousePoint);
 
-        win.TouchEvent += async (s, e) =>
+        for (int i=0; i < 5; i++)
+        {
+          myAppsPoint[i] = new View()
+          {
+            Position = new Position((float)windowCenterX[i], (float)windowCenterY[i]),
+            Size = new Size((float)windowRadius * 2.0f, (float)windowRadius * 2.0f),
+            BackgroundColor = Color.Orange,
+            CornerRadius = new Vector4(0.5f, 0.5f, 0.5f, 0.5f),
+            CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+          };
+          win.Add(myAppsPoint[i]);
+        }
+
+        win.TouchEvent += (s, e) =>
         {
           if (e.Touch.GetState(0) == PointStateType.Down)
           {
+             Tizen.Log.Error("WhiteboardDnDDemo", "KTH MainWin Touch Down: " + e.Touch.GetScreenPosition(0).X + " " + e.Touch.GetScreenPosition(0).Y);
              Position currentPos =  new Position(e.Touch.GetScreenPosition(0).X, e.Touch.GetScreenPosition(0).Y);
              originPoint.PositionX = currentPos.X - 15.0f;
              originPoint.PositionY = currentPos.Y - 15.0f;
@@ -1100,7 +1264,7 @@ namespace Tizen.NUI.Samples
           }
           else if (e.Touch.GetState(0) == PointStateType.Motion)
           {
-             Tizen.Log.Error("WhiteboardDnDDemo", "KTH MainWin Point0: " + e.Touch.GetScreenPosition(0).X + " " + e.Touch.GetScreenPosition(0).Y);
+             Tizen.Log.Error("WhiteboardDnDDemo", "KTH MainWin Touch Motion: " + e.Touch.GetScreenPosition(0).X + " " + e.Touch.GetScreenPosition(0).Y);
              Position currentPos =  new Position(e.Touch.GetScreenPosition(0).X, e.Touch.GetScreenPosition(0).Y);
              mousePoint.PositionX = currentPos.X - 15.0f;
              mousePoint.PositionY = currentPos.Y - 15.0f;
@@ -1114,10 +1278,10 @@ namespace Tizen.NUI.Samples
              vec[0] /= length;
              vec[1] /= length;
 
-             for (int i = 0; i < 4; i++)
+             for (int i = 0; i < 8; i++)
              {
                double [] h = new double[2];
-               h[0] = circlePositionX - originPointX;
+               h[0] = circlePositionX[i] - originPointX;
                h[1] = circlePositionY[i] - originPointY;
                double lf = (vec[0] * h[0]) + (vec[1] * h[1]);
                double result = (circleRadius * circleRadius) - ((h[0] * h[0]) +( h[1] * h[1])) + (lf * lf);
@@ -1135,10 +1299,45 @@ namespace Tizen.NUI.Samples
                  changeTrayItemBackground(i, true);
                }
              }
+
+             //MyApps Point
+             for (int i=0; i<5; i++)
+             {
+                if (SubWindows[i])
+                {
+                    myAppsPoint[i].PositionX = SubWindows[i].WindowPosition.X + (SubWindows[i].WindowSize.Width / 2) - (myAppsPoint[i].Size.Width / 2);
+                    myAppsPoint[i].PositionY = SubWindows[i].WindowPosition.Y + (SubWindows[i].WindowSize.Height / 2)- (myAppsPoint[i].Size.Height / 2);
+
+                    windowCenterX[i] = SubWindows[i].WindowPosition.X + (SubWindows[i].WindowSize.Width / 2);
+                    windowCenterY[i] = SubWindows[i].WindowPosition.Y + (SubWindows[i].WindowSize.Height / 2);
+                    double [] h = new double[2];
+                    h[0] = windowCenterX[i] - originPointX;
+                    h[1] = windowCenterY[i] - originPointY;
+                    double lf = (vec[0] * h[0]) + (vec[1] * h[1]);
+                    double result = (windowRadius * windowRadius) - ((h[0] * h[0]) +( h[1] * h[1])) + (lf * lf);
+
+                    if (result < 0.0)
+                    {
+                      Tizen.Log.Error("WhiteboardDnDDemo", "KTH MainWin Window Collision: No");
+                      myAppsPoint[i].BackgroundColor = Color.Orange;
+                      myAppsMainView[i].BackgroundColor = Color.White;
+                      //changeTrayItemBackground(i, false);
+                    }
+                    else
+                    {
+                      Tizen.Log.Error("WhiteboardDnDDemo", "KTH MainWin Window Collision: Collision");
+                      myAppsPoint[i].BackgroundColor = Color.Green;
+                      myAppsMainView[i].BackgroundColor = new Color(0.984f, 0.862f, 0.784f, 1.0f);
+                      //changeTrayItemBackground(i, true);
+                    }
+                }
+             }
+             
           }
           else if (e.Touch.GetState(0) == PointStateType.Up)
           {
-            for (int i = 0; i < 4; i++)
+            Tizen.Log.Error("WhiteboardDnDDemo", "KTH MainWin Touch Up: " + e.Touch.GetScreenPosition(0).X + " " + e.Touch.GetScreenPosition(0).Y);
+            for (int i = 0; i < 8; i++)
              {
                  TrayPoint[i].BackgroundColor = Color.Orange;
                  changeTrayItemBackground(i, false);
