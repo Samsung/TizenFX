@@ -26,7 +26,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 {
     class ILContext
     {
-        public ILContext(ILProcessor il, MethodBody body, List<Instruction> insOfAddEvent, ModuleDefinition module, FieldDefinition parentContextValues = null)
+        public ILContext(ILProcessor il, MethodBody body, List<Instruction> insOfAddEvent, ModuleDefinition module, string embeddedResourceNameSpace, FieldDefinition parentContextValues = null)
         {
             IL = il;
             Body = body;
@@ -35,6 +35,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             Variables = new Dictionary<IElementNode, VariableDefinition>();
             Scopes = new Dictionary<INode, Tuple<VariableDefinition, IList<string>>>();
             TypeExtensions = new Dictionary<INode, TypeReference>();
+            EmbeddedResourceNameSpace = embeddedResourceNameSpace;
             ParentContextValues = parentContextValues;
             Module = module;
         }
@@ -46,6 +47,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
         public Dictionary<INode, Tuple<VariableDefinition, IList<string>>> Scopes { get; private set; }
 
         public Dictionary<INode, TypeReference> TypeExtensions { get; }
+
+        public string EmbeddedResourceNameSpace { get; }
 
         public FieldDefinition ParentContextValues { get; private set; }
 

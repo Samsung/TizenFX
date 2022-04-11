@@ -1482,7 +1482,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             //Fill the loadTemplate Body
             var templateIl = loadTemplate.Body.GetILProcessor();
             templateIl.Emit(OpCodes.Nop);
-            var templateContext = new ILContext(templateIl, loadTemplate.Body, null, module, parentValues)
+            var templateContext = new ILContext(templateIl, loadTemplate.Body, null, module, parentContext.EmbeddedResourceNameSpace, parentValues)
             {
                 Root = root
             };

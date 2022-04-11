@@ -238,6 +238,12 @@ namespace Tizen.NUI.EXaml
                 var operation = new CreateDPObject(globalDataList, opInfo);
                 globalDataList.Operations.Add(operation);
             };
+
+            createOperations[(int)EXamlOperationType.CreateResourceDictionary] = (GlobalDataList globalDataList, List<object> opInfo) =>
+            {
+                var operation = new CreateResourceDictionary(globalDataList, opInfo);
+                globalDataList.Operations.Add(operation);
+            };
         }
     }
 }
