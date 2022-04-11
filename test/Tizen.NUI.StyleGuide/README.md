@@ -15,6 +15,7 @@
 ### csproj file
 - Set the target framework installed in your environment.
 - Tizen.NUI.StyleGuide.csproj
+- Please check .NET version like below. Should be 3.1 version.
 ![](./.pic/csproj-file.png)
 
 ### Start debugging
