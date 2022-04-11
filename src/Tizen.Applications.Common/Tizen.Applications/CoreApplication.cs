@@ -35,7 +35,7 @@ namespace Tizen.Applications
         private readonly ICoreBackend _backend;
         private readonly ICoreTask _task;
         private bool _disposedValue = false;
-        private static SynchronizationContext _context;
+        private GSourceManager _gSourceManager = new GSourceManager();
 
         private static System.Timers.Timer sTimer;
 
@@ -143,7 +143,6 @@ namespace Tizen.Applications
 
             if (_task != null)
             {
-                TaskSynchronizationContext = SynchronizationContext.Current;
                 ICoreTaskBackend backend = (ICoreTaskBackend)_backend;
                 backend.SetCoreTask(_task);
                 backend.Run(argsClone);
@@ -307,10 +306,8 @@ namespace Tizen.Applications
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Post<T>(Runner<T> runner, T obj)
         {
-            GSourceManager.Post(() => { runner(obj); });
+            _gSourceManager.Post(() => { runner(obj); });
         }
-
-        internal SynchronizationContext TaskSynchronizationContext { set; get; }
 
         /// <summary>
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
@@ -466,43 +463,6 @@ namespace Tizen.Applications
             }
 
             return fallbackCultureInfo;
-        }
-
-        private static class GSourceManager
-        {
-            private static Interop.Glib.GSourceFunc _wrapperHandler;
-            private static Object _transactionLock;
-            private static ConcurrentDictionary<int, Action> _handlerMap;
-            private static int _transactionId;
-
-            static GSourceManager()
-            {
-                _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
-                _transactionLock = new Object();
-                _handlerMap = new ConcurrentDictionary<int, Action>();
-                _transactionId = 0;
-            }
-
-            public static void Post(Action action)
-            {
-                int id = 0;
-                lock (_transactionLock)
-                {
-                    id = _transactionId++;
-                }
-                _handlerMap.TryAdd(id, action);
-                Interop.Glib.IdleAdd(_wrapperHandler, (IntPtr)id);
-            }
-
-            private static bool Handler(IntPtr userData)
-            {
-                int key = (int)userData;
-                if (_handlerMap.TryRemove(key, out Action action))
-                {
-                    action?.Invoke();
-                }
-                return false;
-            }
         }
     }
 

@@ -28,6 +28,7 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TizenUISynchronizationContext : SynchronizationContext
     {
+        private GSourceManager _gSourceManager = new GSourceManager(true);
         /// <summary>
         /// Initilizes a new TizenUISynchronizationContext and install into the current thread.
         /// </summary>
@@ -40,6 +41,7 @@ namespace Tizen.Applications
         /// <since_tizen> 10 </since_tizen>
         public static void Initialize()
         {
+            Log.Error("Tizen.Applications", "TizenUISynchronizationContext()");
             SetSynchronizationContext(new TizenUISynchronizationContext());
         }
 
@@ -53,7 +55,7 @@ namespace Tizen.Applications
         /// <since_tizen> 10 </since_tizen>
         public override void Post(SendOrPostCallback d, object state)
         {
-            GSourceManager.Post(() =>
+            _gSourceManager.Post(() =>
             {
                 d(state);
             });
@@ -71,7 +73,7 @@ namespace Tizen.Applications
         {
             var mre = new ManualResetEvent(false);
             Exception err = null;
-            GSourceManager.Post(() =>
+            _gSourceManager.Post(() =>
             {
                 try
                 {
@@ -90,48 +92,6 @@ namespace Tizen.Applications
             if (err != null)
             {
                 throw err;
-            }
-        }
-
-        private static class GSourceManager
-        {
-            private static Interop.Glib.GSourceFunc _wrapperHandler;
-            private static Object _transactionLock;
-            private static ConcurrentDictionary<int, Action> _handlerMap;
-            private static int _transactionId;
-            private static IntPtr _context;
-
-            static GSourceManager()
-            {
-                _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
-                _transactionLock = new Object();
-                _handlerMap = new ConcurrentDictionary<int, Action>();
-                _transactionId = 0;
-                _context = Interop.AppCoreUI.GetTizenGlibContext();
-            }
-
-            public static void Post(Action action)
-            {
-                int id = 0;
-                lock (_transactionLock)
-                {
-                    id = _transactionId++;
-                }
-                _handlerMap.TryAdd(id, action);
-                IntPtr source = Interop.Glib.IdleSourceNew();
-                Interop.Glib.SourceSetCallback(source, Handler, (IntPtr)id, IntPtr.Zero);
-                Interop.Glib.SourceAttach(source, _context);
-                Interop.Glib.SourceUnref(source);
-            }
-
-            private static bool Handler(IntPtr userData)
-            {
-                int key = (int)userData;
-                if (_handlerMap.TryRemove(key, out Action action))
-                {
-                    action?.Invoke();
-                }
-                return false;
             }
         }
     }

@@ -29,6 +29,8 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CoreTask : ICoreTask
     {
+        private GSourceManager _gSourceManager = null;
+
         /// <summary>
         /// Initializes the CoreTask class. 
         /// </summary>
@@ -133,49 +135,12 @@ namespace Tizen.Applications
         /// <since_tizen> 10 </since_tizen>
         public void Post<T>(Runner<T> runner, T obj)
         {
-            GSourceManager.Post(() => { runner(obj); });
-        }
-
-        private static class GSourceManager
-        {
-            private static Interop.Glib.GSourceFunc _wrapperHandler;
-            private static Object _transactionLock;
-            private static ConcurrentDictionary<int, Action> _handlerMap;
-            private static int _transactionId;
-            private static IntPtr _context;
-
-            static GSourceManager()
+            if (_gSourceManager == null)
             {
-                _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
-                _transactionLock = new Object();
-                _handlerMap = new ConcurrentDictionary<int, Action>();
-                _transactionId = 0;
-                _context = Interop.AppCoreUI.GetTizenGlibContext();
+                _gSourceManager = new GSourceManager(true);
             }
 
-            public static void Post(Action action)
-            {
-                int id = 0;
-                lock (_transactionLock)
-                {
-                    id = _transactionId++;
-                }
-                _handlerMap.TryAdd(id, action);
-                IntPtr source = Interop.Glib.IdleSourceNew();
-                Interop.Glib.SourceSetCallback(source, Handler, (IntPtr)id, IntPtr.Zero);
-                Interop.Glib.SourceAttach(source, _context);
-                Interop.Glib.SourceUnref(source);
-            }
-
-            private static bool Handler(IntPtr userData)
-            {
-                int key = (int)userData;
-                if (_handlerMap.TryRemove(key, out Action action))
-                {
-                    action?.Invoke();
-                }
-                return false;
-            }
+            _gSourceManager.Post(() => { runner(obj); });
         }
     }
 }
