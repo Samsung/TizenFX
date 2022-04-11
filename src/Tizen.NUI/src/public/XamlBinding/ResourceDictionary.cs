@@ -25,6 +25,8 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+
+using Tizen.NUI.Binding.Internals;
 using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
@@ -77,19 +79,25 @@ namespace Tizen.NUI.Binding
         }
 
         /// <summary>
-        /// Gets or sets the URI of the merged resource dictionary.
+        /// Gets or sets the resource dictionary.
         /// </summary>
-        /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
+        /// Internal using, will never open.
         [EditorBrowsable(EditorBrowsableState.Never)]
         [TypeConverter(typeof(RDSourceTypeConverter))]
-        public Uri Source
+        public ResourceDictionary Source
         {
-            get { return source; }
+            get
+            {
+                return this;
+            }
             set
             {
-                if (source == value)
-                    return;
-                throw new InvalidOperationException("Source can only be set from XAML."); //through the RDSourceTypeConverter
+                OnValuesChanged(value.ToArray());
+
+                foreach (var pair in value)
+                {
+                    Add(pair.Key, pair.Value);
+                }
             }
         }
 
