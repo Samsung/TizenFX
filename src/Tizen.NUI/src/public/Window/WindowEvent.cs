@@ -32,6 +32,7 @@ namespace Tizen.NUI
     {
         private WindowFocusChangedEventCallbackType windowFocusChangedEventCallback;
         private RootLayerTouchDataCallbackType rootLayerTouchDataCallback;
+        private RootLayerTouchDataCallbackType rootLayerInterceptTouchDataCallback;
         private WheelEventCallbackType wheelEventCallback;
         private EventCallbackDelegateType1 stageKeyCallbackDelegate;
         private EventCallbackDelegateType0 stageEventProcessingFinishedEventCallbackDelegate;
@@ -48,6 +49,8 @@ namespace Tizen.NUI
         private KeyboardRepeatSettingsChangedEventCallbackType keyboardRepeatSettingsChangedEventCallback;
         private KeyboardRepeatSettingsChangedSignal keyboardRepeatSettingsChangedSignal;
         private AuxiliaryMessageEventCallbackType auxiliaryMessageEventCallback;
+        private TouchDataSignal interceptTouchDataSignal;
+        private TouchSignal interceptTouchSignal;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
@@ -128,6 +131,40 @@ namespace Tizen.NUI
                     if(touchDataSignal?.Empty() == true)
                     {
                         rootLayerTouchDataCallback = null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// An event for the touched signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
+        /// The touched signal is emitted when the touch input is received.<br />
+        /// This can receive touch events before child. <br />
+        /// If it returns false, the child can receive the touch event. If it returns true, the touch event is intercepted. So child cannot receive touch event.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event ReturnTypeEventHandler<object, TouchEventArgs, bool> InterceptTouchEvent
+        {
+            add
+            {
+                if (rootLayerInterceptTouchDataEventHandler == null)
+                {
+                    rootLayerInterceptTouchDataCallback = OnWindowInterceptTouch;
+                    interceptTouchDataSignal = this.InterceptTouchDataSignal();
+                    interceptTouchDataSignal?.Connect(rootLayerInterceptTouchDataCallback);
+                }
+                rootLayerInterceptTouchDataEventHandler += value;
+            }
+            remove
+            {
+                rootLayerInterceptTouchDataEventHandler -= value;
+                interceptTouchSignal = TouchSignal();
+                if (rootLayerInterceptTouchDataEventHandler == null && interceptTouchSignal?.Empty() == false && rootLayerInterceptTouchDataCallback != null)
+                {
+                    interceptTouchDataSignal?.Disconnect(rootLayerInterceptTouchDataCallback);
+                    if (interceptTouchDataSignal?.Empty() == true)
+                    {
+                        rootLayerInterceptTouchDataCallback = null;
                     }
                 }
             }
@@ -354,6 +391,7 @@ namespace Tizen.NUI
         public event EventHandler ViewAdded;
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler;
         private event EventHandler<TouchEventArgs> rootLayerTouchDataEventHandler;
+        private ReturnTypeEventHandler<object, TouchEventArgs, bool> rootLayerInterceptTouchDataEventHandler;
         private event EventHandler<WheelEventArgs> stageWheelHandler;
         private event EventHandler<KeyEventArgs> stageKeyHandler;
         private event EventHandler stageEventProcessingFinishedEventHandler;
@@ -524,6 +562,15 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal TouchDataSignal InterceptTouchDataSignal()
+        {
+            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(Layer.getCPtr(GetRootLayer())), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+
         internal VoidSignal ContextLostSignal()
         {
             VoidSignal ret = new VoidSignal(Interop.StageSignal.ContextLostSignal(stageCPtr), false);
@@ -583,6 +630,12 @@ namespace Tizen.NUI
                     touchDataSignal?.Disconnect(rootLayerTouchDataCallback);
                     rootLayerTouchDataCallback = null;
                 }
+            }
+
+            if (rootLayerInterceptTouchDataCallback != null)
+            {
+                interceptTouchDataSignal?.Disconnect(rootLayerInterceptTouchDataCallback);
+                rootLayerInterceptTouchDataCallback = null;
             }
 
             if (wheelEventCallback != null)
@@ -764,6 +817,24 @@ namespace Tizen.NUI
                 rootLayerTouchDataEventHandler(this, e);
             }
             return false;
+        }
+
+        private bool OnWindowInterceptTouch(IntPtr view, IntPtr touchData)
+        {
+            if (touchData == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("touchData should not be null!");
+                return true;
+            }
+
+            bool consumed = false;
+            if (rootLayerInterceptTouchDataEventHandler != null)
+            {
+                TouchEventArgs e = new TouchEventArgs();
+                e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
+                consumed = rootLayerInterceptTouchDataEventHandler(this, e);
+            }
+            return consumed;
         }
 
         private bool OnStageWheel(IntPtr rootLayer, IntPtr wheelEvent)
