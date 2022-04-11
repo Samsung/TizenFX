@@ -35,7 +35,7 @@ namespace Tizen.NUI.Binding
             // Orientation="R:23, 0, 0, 1"
             if (value != null)
             {
-                string[] parts = value.Split(',');
+                string[] parts = value.Split(TypeConverter.UnifiedDelimiter);
                 if (parts.Length == 4)
                 {
                     bool useDefault = true;
