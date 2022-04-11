@@ -24,6 +24,8 @@ namespace Tizen.NUI.Binding
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class TypeConverter
     {
+        internal const char UnifiedDelimiter = ',';
+
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool CanConvertFrom(Type sourceType)

@@ -29,7 +29,7 @@ namespace Tizen.NUI.Binding
         {
             if (value != null)
             {
-                string[] parts = value.Split(',');
+                string[] parts = value.Split(TypeConverter.UnifiedDelimiter);
                 if (parts.Length == 4)
                 {
                     return new Extents((ushort)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[0].Trim()),
@@ -49,7 +49,7 @@ namespace Tizen.NUI.Binding
         public override string ConvertToString(object value)
         {
             Extents extents = (Extents)value;
-            return extents.Start.ToString() + " " + extents.End.ToString() + " " + extents.Top.ToString() + " " + extents.Bottom.ToString();
+            return extents.Start.ToString() + TypeConverter.UnifiedDelimiter + extents.End.ToString() + TypeConverter.UnifiedDelimiter + extents.Top.ToString() + TypeConverter.UnifiedDelimiter + extents.Bottom.ToString();
         }
     }
 }

@@ -50,7 +50,7 @@ namespace Tizen.NUI.Binding
 
         internal static Vector2 FromString(string value)
         {
-            var parts = value.Split(',');
+            var parts = value.Split(TypeConverter.UnifiedDelimiter);
 
             if (parts.Length == 2)
             {
@@ -69,7 +69,7 @@ namespace Tizen.NUI.Binding
         {
             if (null != value)
             {
-                return value.X.ToString() + " " + value.Y.ToString();
+                return value.X.ToString() + TypeConverter.UnifiedDelimiter + value.Y.ToString();
             }
             else
             {
@@ -88,7 +88,7 @@ namespace Tizen.NUI.Binding
         {
             if (value != null)
             {
-                string[] parts = value.Split(',');
+                string[] parts = value.Split(TypeConverter.UnifiedDelimiter);
                 if (parts.Length == 3)
                 {
                     return new Vector3(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
@@ -120,7 +120,7 @@ namespace Tizen.NUI.Binding
             Vector3 vector = value as Vector3;
             if (null != vector)
             {
-                return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString();
+                return vector.X.ToString() + TypeConverter.UnifiedDelimiter + vector.Y.ToString() + TypeConverter.UnifiedDelimiter + vector.Z.ToString();
             }
             else
             {
@@ -139,7 +139,7 @@ namespace Tizen.NUI.Binding
         {
             if (value != null)
             {
-                string[] parts = value.Split(',');
+                string[] parts = value.Split(TypeConverter.UnifiedDelimiter);
                 if (parts.Length == 4)
                 {
                     return new Vector4(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
@@ -181,7 +181,7 @@ namespace Tizen.NUI.Binding
             Vector4 vector = value as Vector4;
             if (null != vector)
             {
-                return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString() + " " + vector.W.ToString();
+                return vector.X.ToString() + TypeConverter.UnifiedDelimiter + vector.Y.ToString() + TypeConverter.UnifiedDelimiter + vector.Z.ToString() + TypeConverter.UnifiedDelimiter + vector.W.ToString();
             }
             else
             {
@@ -200,7 +200,7 @@ namespace Tizen.NUI.Binding
         {
             if (value != null)
             {
-                string[] parts = value.Split(',');
+                string[] parts = value.Split(TypeConverter.UnifiedDelimiter);
                 if (parts.Length == 2)
                 {
                     return new RelativeVector2(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
@@ -223,7 +223,7 @@ namespace Tizen.NUI.Binding
             RelativeVector2 vector = value as RelativeVector2;
             if (null != vector)
             {
-                return vector.X.ToString() + " " + vector.Y.ToString();
+                return vector.X.ToString() + TypeConverter.UnifiedDelimiter + vector.Y.ToString();
             }
             else
             {
@@ -242,7 +242,7 @@ namespace Tizen.NUI.Binding
         {
             if (value != null)
             {
-                string[] parts = value.Split(',');
+                string[] parts = value.Split(TypeConverter.UnifiedDelimiter);
                 if (parts.Length == 3)
                 {
                     return new RelativeVector3(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
@@ -274,7 +274,7 @@ namespace Tizen.NUI.Binding
             RelativeVector3 vector = value as RelativeVector3;
             if (null != vector)
             {
-                return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString();
+                return vector.X.ToString() + TypeConverter.UnifiedDelimiter + vector.Y.ToString() + TypeConverter.UnifiedDelimiter + vector.Z.ToString();
             }
             else
             {
@@ -293,7 +293,7 @@ namespace Tizen.NUI.Binding
         {
             if (value != null)
             {
-                string[] parts = value.Split(',');
+                string[] parts = value.Split(TypeConverter.UnifiedDelimiter);
                 if (parts.Length == 4)
                 {
                     return new RelativeVector4(Single.Parse(parts[0].Trim(), CultureInfo.InvariantCulture),
@@ -335,7 +335,7 @@ namespace Tizen.NUI.Binding
             RelativeVector4 vector = value as RelativeVector4;
             if (null != vector)
             {
-                return vector.X.ToString() + " " + vector.Y.ToString() + " " + vector.Z.ToString() + " " + vector.W.ToString();
+                return vector.X.ToString() + TypeConverter.UnifiedDelimiter + vector.Y.ToString() + TypeConverter.UnifiedDelimiter + vector.Z.ToString() + TypeConverter.UnifiedDelimiter + vector.W.ToString();
             }
             else
             {
