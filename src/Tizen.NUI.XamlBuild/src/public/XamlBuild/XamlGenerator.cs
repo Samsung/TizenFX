@@ -365,7 +365,15 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 initcomp.Statements.Add(new CodeMethodInvokeExpression(
                     new CodeTypeReferenceExpression(new CodeTypeReference($"global::{typeof(Extensions).FullName}")),
                     "LoadFromXaml", new CodeThisReferenceExpression(), new CodeTypeOfExpression(declType.Name)));
-			}
+
+                var exitXamlComp = new CodeMemberMethod()
+                {
+                    Name = "ExitXaml",
+                    CustomAttributes = { GeneratedCodeAttrDecl },
+                    Attributes = MemberAttributes.Assembly | MemberAttributes.Final
+                };
+                declType.Members.Add(exitXamlComp);
+            }
             else
 			{
                 var loadExaml_invoke = new CodeMethodInvokeExpression(
