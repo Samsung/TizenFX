@@ -44,7 +44,7 @@ namespace Tizen.NUI.Binding
                     return FromHex(value);
                 }
 
-                string[] parts = value.Split(',');
+                string[] parts = value.Split(TypeConverter.UnifiedDelimiter);
                 if (parts.Length == 1) //like Red or Color.Red
                 {
                     parts = value.Split('.');
@@ -159,7 +159,7 @@ namespace Tizen.NUI.Binding
             if (value != null)
             {
                 Color color = (Color)value;
-                return color.R.ToString() + " " + color.G.ToString() + " " + color.B.ToString() + " " + color.A.ToString();
+                return color.R.ToString() + TypeConverter.UnifiedDelimiter + color.G.ToString() + TypeConverter.UnifiedDelimiter + color.B.ToString() + TypeConverter.UnifiedDelimiter + color.A.ToString();
             }
             return "";
         }

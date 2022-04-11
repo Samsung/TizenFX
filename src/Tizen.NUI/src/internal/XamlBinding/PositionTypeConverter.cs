@@ -73,7 +73,7 @@ namespace Tizen.NUI.Binding
                     }
                 }
 
-                parts = value.Split(',');
+                parts = value.Split(TypeConverter.UnifiedDelimiter);
                 if (parts.Length == 3)
                 {
                     int x = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[0].Trim());
@@ -99,7 +99,7 @@ namespace Tizen.NUI.Binding
             Position position = value as Position;
             if (null != position)
             {
-                return position.X.ToString() + " " + position.Y.ToString() + " " + position.Z.ToString();
+                return position.X.ToString() + TypeConverter.UnifiedDelimiter + position.Y.ToString() + TypeConverter.UnifiedDelimiter + position.Z.ToString();
             }
             else
             {
@@ -126,7 +126,7 @@ namespace Tizen.NUI.Binding
             Position2D position = value as Position2D;
             if (null != position)
             {
-                return position.X.ToString() + " " + position.Y.ToString();
+                return position.X.ToString() + TypeConverter.UnifiedDelimiter + position.Y.ToString();
             }
             else
             {
