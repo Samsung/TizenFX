@@ -124,6 +124,42 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
     public static class CecilExtensions
     {
+        public static bool IsResourceDictionaryXaml(this EmbeddedResource resource, ModuleDefinition module, out string classname)
+        {
+            classname = null;
+
+            if (!resource.Name.EndsWith(".xaml", StringComparison.InvariantCulture))
+                return false;
+
+            using (var resourceStream = resource.GetResourceStream())
+            {
+                var xmlDoc = new XmlDocument();
+                xmlDoc.Load(resourceStream);
+
+                var nsmgr = new XmlNamespaceManager(xmlDoc.NameTable);
+
+                var root = xmlDoc.SelectSingleNode("/*", nsmgr);
+                if (root == null)
+                    return false;
+
+                var rootClass = root.Attributes["Class", XamlParser.X2006Uri] ??
+                                root.Attributes["Class", XamlParser.X2009Uri];
+                if (rootClass != null)
+                {
+                    classname = rootClass.Value;
+                    return true;
+                }
+
+                if ("ResourceDictionary" == root.Name)
+                {
+                    classname = "Tizen.NUI.Binding.ResourceDictionary";
+                    return true;
+                }
+
+                return false;
+            }
+        }
+
         public static bool IsXaml(this EmbeddedResource resource, ModuleDefinition module, out string classname)
         {
             classname = null;

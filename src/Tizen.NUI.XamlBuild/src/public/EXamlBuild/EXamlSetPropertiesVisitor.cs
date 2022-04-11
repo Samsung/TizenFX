@@ -924,6 +924,10 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                     var fieldRef = bindableProperty.DeclaringType.ResolveCached().Fields.FirstOrDefault(a => a.FullName == bindableProperty.FullName);
                     context.Values[node] = new EXamlCreateObject(context, bindableProperty.DeclaringType, fieldRef, null);
                 }
+                else if ("Tizen.NUI.Binding.ResourceDictionary" == propertyType.FullName)
+                {
+                    context.Values[node] = GetResourceDictionaryByXaml(parent, node, context, iXmlLineInfo);
+                }
                 else
                 {
                     var converterType = valueNode.GetConverterType(new ICustomAttributeProvider[] { property, propertyType.ResolveCached() });
@@ -1146,11 +1150,10 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             return false;
         }
 
-        static void SetDataTemplate(ElementNode parentNode, ElementNode rootnode, EXamlContext parentContext,
-            IXmlLineInfo xmlLineInfo)
+        static void SetDataTemplate(ElementNode parentNode, ElementNode rootnode, EXamlContext parentContext, IXmlLineInfo xmlLineInfo)
         {
             var typeref = parentContext.Module.ImportReference(rootnode.XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, parentContext.Module, rootnode));
-            var visitorContext = new EXamlContext(typeref.ResolveCached(), typeref.Module);
+            var visitorContext = new EXamlContext(typeref.ResolveCached(), typeref.Module, parentContext.EmbeddedResourceNameSpace);
 
             rootnode.Accept(new XamlNodeVisitor((node, parent) => node.Parent = parent), null);
             rootnode.Accept(new EXamlExpandMarkupsVisitor(visitorContext), null);
@@ -1170,6 +1173,77 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 eXamlObject.IsValid = false;
                 parentContext.Values[parentNode] = new EXamlCreateDataTemplate(parentContext, parentTyperef, eXamlString);
             }
+        }
+
+        static EXamlCreateResourceDictionary GetResourceDictionaryByXaml(EXamlCreateObject parentObject, INode nodeOfXaml, EXamlContext parentContext, IXmlLineInfo xmlLineInfo)
+        {
+            var module = parentContext.Module;
+
+            string xamlName = "";
+
+            if (nodeOfXaml is ValueNode valueNode)
+            {
+                xamlName = valueNode.Value as string;
+            }
+
+            EmbeddedResource matchedResource = null;
+
+            foreach (var resource in module.Resources.OfType<EmbeddedResource>())
+            {
+                if (resource.Name.StartsWith(parentContext.EmbeddedResourceNameSpace) && resource.Name.EndsWith(xamlName))
+                {
+                    matchedResource = resource;
+                    break;
+                }
+            }
+
+            if (null == matchedResource)
+            {
+                foreach (var resource in module.Resources.OfType<EmbeddedResource>())
+                {
+                    if (resource.Name.EndsWith(xamlName))
+                    {
+                        matchedResource = resource;
+                        break;
+                    }
+                }
+            }
+
+            if (null != matchedResource)
+            {
+                string classname;
+
+                if (matchedResource.IsResourceDictionaryXaml(module, out classname))
+                {
+                    int lastIndex = classname.LastIndexOf('.');
+                    var realClassName = classname.Substring(lastIndex + 1);
+                    var typeref = XmlTypeExtensions.GetTypeReference(realClassName, module, nodeOfXaml as BaseNode, XmlTypeExtensions.ModeOfGetType.Both);
+
+                    var visitorContext = new EXamlContext(typeref.ResolveCached(), typeref.Module, parentContext.EmbeddedResourceNameSpace);
+                    var rootnode = XamlTask.ParseXaml(matchedResource.GetResourceStream(), typeref);
+
+                    var rootInstance =  new EXamlCreateObject(visitorContext, null, typeref);
+                    visitorContext.Values[rootnode] = rootInstance;
+
+                    rootnode.Accept(new XamlNodeVisitor((node, parent) => node.Parent = parent), null);
+                    rootnode.Accept(new EXamlExpandMarkupsVisitor(visitorContext), null);
+                    rootnode.Accept(new PruneIgnoredNodesVisitor(), null);
+                    rootnode.Accept(new EXamlCreateObjectVisitor(visitorContext), null);
+                    rootnode.Accept(new EXamlSetNamescopesAndRegisterNamesVisitor(visitorContext), null);
+                    rootnode.Accept(new EXamlSetFieldVisitor(visitorContext), null);
+                    rootnode.Accept(new EXamlSetResourcesVisitor(visitorContext), null);
+                    rootnode.Accept(new EXamlSetPropertiesVisitor(visitorContext, true), null);
+
+                    foreach (var pair in visitorContext.resourceDictionary)
+                    {
+                        parentContext.resourceDictionary.Add(pair.Key, pair.Value);
+                    }
+
+                    return new EXamlCreateResourceDictionary(parentContext, typeref, visitorContext.GenerateEXamlString());
+                }
+            }
+
+            return null;
         }
 
         bool TrySetRuntimeName(XmlName propertyName, EXamlCreateObject variableDefinition, ValueNode node)

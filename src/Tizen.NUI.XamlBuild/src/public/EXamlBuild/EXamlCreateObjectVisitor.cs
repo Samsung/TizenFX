@@ -27,6 +27,7 @@ using static Mono.Cecil.Cil.Instruction;
 using static Mono.Cecil.Cil.OpCodes;
 using Tizen.NUI.Xaml.Build.Tasks;
 using ArrayExtension = Tizen.NUI.Xaml.Build.Tasks.ArrayExtension;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.EXaml.Build.Tasks
 {
@@ -290,7 +291,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
                     var accordingType = this.GetType().Assembly.GetType(typeref.FullName);
 
-                    if (null != accordingType && accordingType != typeof(Binding.Setter))
+                    if (null != accordingType && accordingType != typeof(Binding.Setter) && accordingType != typeof(ResourceDictionary))
                     {
                         Context.Values[node] = new EXamlCreateObject(Context, Activator.CreateInstance(accordingType), typeref);
                     }
