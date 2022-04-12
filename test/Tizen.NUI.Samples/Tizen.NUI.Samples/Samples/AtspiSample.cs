@@ -42,6 +42,13 @@ namespace Tizen.NUI.Samples
                 Tizen.Log.Error("NUITEST", "Cannot set to false\n");
                 return;
             }
+
+            window.AccessibilityHighlight += OnWindowAccessibilityHighlight;
+        }
+
+        private void OnWindowAccessibilityHighlight(object sender, Window.AccessibilityHighlightEventArgs e)
+        {
+            Tizen.Log.Info("NUITEST", "Accessibility Highlight: " + e.AccessibilityHighlight + "\n");
         }
 
         public void Deactivate()
