@@ -119,28 +119,24 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Runner callback for dispatching a message to the main loop of the CoreApplication.
-        /// </summary>
-        /// <typeparam name="T">The typename of the object.</typeparam>
-        /// <param name="obj">The object argument.</param>
-        /// <since_tizen> 10 </since_tizen>
-        public delegate void Runner<T>(T obj);
-
-        /// <summary>
         /// Dispatches an asynchronous message to the main loop of the CoreApplication.
         /// </summary>
-        /// <typeparam name="T">The typename of the object.</typeparam>
         /// <param name="runner">The runner callback.</param>
-        /// <param name="obj">The object argument.</param>
+        /// /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
         /// <since_tizen> 10 </since_tizen>
-        public void Post<T>(Runner<T> runner, T obj)
+        public void Post(Action runner)
         {
+            if (runner == null)
+            {
+                throw new ArgumentNullException(nameof(runner));
+            }
+
             if (_gSourceManager == null)
             {
                 _gSourceManager = new GSourceManager(true);
             }
 
-            _gSourceManager.Post(() => { runner(obj); });
+            _gSourceManager.Post(runner);
         }
     }
 }

@@ -299,14 +299,18 @@ namespace Tizen.Applications
         /// <summary>
         /// Dispatches an asynchronous message to the main loop of the CoreTask.
         /// </summary>
-        /// <typeparam name="T">The typename of the object.</typeparam>
         /// <param name="runner">The runner callaback.</param>
-        /// <param name="obj">The object argument.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
         /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Post<T>(Runner<T> runner, T obj)
+        public void Post(Action runner)
         {
-            _gSourceManager.Post(() => { runner(obj); });
+            if (runner == null)
+            {
+                throw new ArgumentNullException(nameof(runner));
+            }
+
+            _gSourceManager.Post(runner);
         }
 
         /// <summary>
