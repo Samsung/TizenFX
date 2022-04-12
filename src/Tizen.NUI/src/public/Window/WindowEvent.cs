@@ -1224,6 +1224,79 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// AccessibilityHighlightArgs
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class AccessibilityHighlightEventArgs : EventArgs
+        {
+            private bool accessibilityHighlight;
+            /// <summary>
+            /// accessibilityHighlight
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public bool AccessibilityHighlight
+            {
+                get => accessibilityHighlight;
+                set
+                {
+                    accessibilityHighlight = value;
+                }
+            }
+        }
 
+        private void OnAccessibilityHighlight(IntPtr window, bool highlight)
+        {
+            if (window == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("[ERR] OnAccessibilityHighlight() window is null");
+                return;
+            }
+
+            AccessibilityHighlightEventArgs e = new AccessibilityHighlightEventArgs();
+            e.AccessibilityHighlight = highlight;
+            if (AccessibilityHighlightEventHandler != null)
+            {
+                AccessibilityHighlightEventHandler.Invoke(this, e);
+            }
+        }
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void AccessibilityHighlightEventCallbackType(IntPtr window, bool highlight);
+        private AccessibilityHighlightEventCallbackType AccessibilityHighlightEventCallback;
+        private event EventHandler<AccessibilityHighlightEventArgs> AccessibilityHighlightEventHandler;
+        private WindowAccessibilityHighlightEvent AccessibilityHighlightEventSignal;
+
+        /// <summary>
+        /// Emits the event when the window needs to grab or clear highlight.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<AccessibilityHighlightEventArgs> AccessibilityHighlight
+        {
+            add
+            {
+                if (AccessibilityHighlightEventHandler == null)
+                {
+                    AccessibilityHighlightEventCallback = OnAccessibilityHighlight;
+                    AccessibilityHighlightEventSignal = new WindowAccessibilityHighlightEvent(this);
+                    AccessibilityHighlightEventSignal.Connect(AccessibilityHighlightEventCallback);
+                }
+                AccessibilityHighlightEventHandler += value;
+            }
+            remove
+            {
+                AccessibilityHighlightEventHandler -= value;
+                if (AccessibilityHighlightEventHandler == null)
+                {
+                    if (AccessibilityHighlightEventSignal != null)
+                    {
+                        if (AccessibilityHighlightEventSignal.Empty() == false)
+                        {
+                            AccessibilityHighlightEventSignal.Disconnect(AccessibilityHighlightEventCallback);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
