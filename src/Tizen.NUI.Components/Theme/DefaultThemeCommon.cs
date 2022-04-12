@@ -724,6 +724,13 @@ namespace Tizen.NUI.Components
                 },
             });
 
+            // AlertDialog base style
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.DialogPage.Scrim", new ViewStyle()
+            {
+                BackgroundColor = new Color("#090E21"),
+                Opacity = 0.5f,
+            });
+
             return theme;
         }
     }
