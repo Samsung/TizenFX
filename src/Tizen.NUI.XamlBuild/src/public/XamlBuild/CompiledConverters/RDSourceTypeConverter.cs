@@ -26,6 +26,7 @@ using static Mono.Cecil.Cil.OpCodes;
 using Tizen.NUI.Xaml.Build.Tasks;
 using Tizen.NUI.Xaml;
 using Tizen.NUI.Binding;
+using System.Linq;
 
 namespace Tizen.NUI.Xaml.Core.XamlC
 {
@@ -33,55 +34,89 @@ namespace Tizen.NUI.Xaml.Core.XamlC
     {
         public IEnumerable<Instruction> ConvertFromString(string value, ILContext context, BaseNode node)
         {
-            var module = context.Body.Method.Module;
-            var body = context.Body;
+            var module = context.Module;
 
-            INode rootNode = node;
-            while (!(rootNode is ILRootNode))
-                rootNode = rootNode.Parent;
+            EmbeddedResource matchedResource = null;
 
-            var rdNode = node.Parent as IElementNode;
+            foreach (var resource in module.Resources.OfType<EmbeddedResource>())
+            {
+                if (resource.Name.StartsWith(context.EmbeddedResourceNameSpace) && resource.Name.EndsWith(value))
+                {
+                    matchedResource = resource;
+                    break;
+                }
+            }
 
-            var rootTargetPath = XamlTask.GetPathForType(module, ((ILRootNode)rootNode).TypeReference);
-            var uri = new Uri(value, UriKind.Relative);
+            if (null == matchedResource)
+            {
+                foreach (var resource in module.Resources.OfType<EmbeddedResource>())
+                {
+                    if (resource.Name.EndsWith(value))
+                    {
+                        matchedResource = resource;
+                        break;
+                    }
+                }
+            }
 
-            var resourcePath = ResourceDictionary.RDSourceTypeConverter.GetResourcePath(uri, rootTargetPath);
+            if (null != matchedResource)
+            {
+                string classname;
+                if (matchedResource.IsResourceDictionaryXaml(module, out classname))
+                {
+                    int lastIndex = classname.LastIndexOf('.');
+                    var realClassName = classname.Substring(lastIndex + 1);
+                    var typeref = XmlTypeExtensions.GetTypeReference(realClassName, module, node, XmlTypeExtensions.ModeOfGetType.Both);
 
-            //fail early
-            var resourceId = XamlTask.GetResourceIdForPath(module, resourcePath);
-            if (resourceId == null)
-                throw new XamlParseException($"Resource '{value}' not found.", node);
+                    var typeName = matchedResource.Name.Replace('.', '_');
+                    var typeDefOfGetResource = module.Types.FirstOrDefault(type => type.FullName == "GetResource." + typeName);
+                    if (null != typeDefOfGetResource)
+                    {
+                        module.Types.Remove(typeDefOfGetResource);
+                        typeDefOfGetResource = null;
+                    }
 
+                    if (null == typeDefOfGetResource)
+                    {
+                        typeDefOfGetResource = new TypeDefinition("GetResource", typeName, TypeAttributes.NotPublic);
+                        typeDefOfGetResource.BaseType = typeref;
+                        module.Types.Add(typeDefOfGetResource);
 
-            //abuse the converter, produce some side effect, but leave the stack untouched
-            //public void SetAndLoadSource(Uri value, string resourceID, Assembly assembly, System.Xml.IXmlLineInfo lineInfo)
-            yield return Create(Ldloc, context.Variables[rdNode]); //the resourcedictionary
-            foreach (var instruction in (new UriTypeConverter()).ConvertFromString(value, context, node))
-                yield return instruction; //the Uri
+                        typeDefOfGetResource.AddDefaultConstructor(typeref);
+                    }
 
-            //keep the Uri for later
-            yield return Create(Dup);
-            var uriVarDef = new VariableDefinition(module.ImportReference(("System", "System", "Uri")));
-            body.Variables.Add(uriVarDef);
-            yield return Create(Stloc, uriVarDef);
-            yield return Create(Ldstr, resourcePath); //resourcePath
-            yield return Create(Ldtoken, module.ImportReference(((ILRootNode)rootNode).TypeReference));
-            yield return Create(Call, module.ImportMethodReference(("mscorlib", "System", "Type"), methodName: "GetTypeFromHandle", parameterTypes: new[] { ("mscorlib", "System", "RuntimeTypeHandle") }, isStatic: true));
-            yield return Create(Call, module.ImportMethodReference(("mscorlib", "System.Reflection", "IntrospectionExtensions"), methodName: "GetTypeInfo", parameterTypes: new[] { ("mscorlib", "System", "Type") }, isStatic: true));
-            yield return Create(Callvirt, module.ImportPropertyGetterReference(("mscorlib", "System.Reflection", "TypeInfo"), propertyName: "Assembly", flatten: true));
+                    var methodName = "GetResource";
+                    var methodOfGetResource = typeDefOfGetResource.Methods.FirstOrDefault(m => m.Name == methodName);
 
-            foreach (var instruction in node.PushXmlLineInfo(context))
-                yield return instruction; //lineinfo
-            yield return Create(Callvirt, module.ImportMethodReference((XamlTask.bindingAssemblyName, XamlTask.bindingNameSpace, "ResourceDictionary"),
-                                                                       methodName: "SetAndLoadSource",
-                                                                       parameterTypes: new[] { ("System", "System", "Uri"), ("mscorlib", "System", "String"), ("mscorlib", "System.Reflection", "Assembly"), ("System.Xml.ReaderWriter", "System.Xml", "IXmlLineInfo") }));
-            //ldloc the stored uri as return value
-            yield return Create(Ldloc, uriVarDef);
+                    if (null == methodOfGetResource)
+                    {
+                        methodOfGetResource = new MethodDefinition(methodName, MethodAttributes.Public, typeref);
+                        typeDefOfGetResource.Methods.Add(methodOfGetResource);
+                    }
+
+                    var constructor = typeDefOfGetResource.Methods.FirstOrDefault(m => m.IsConstructor);
+
+                    if (null != constructor)
+                    {
+                        constructor.Body.Instructions.Insert(constructor.Body.Instructions.Count - 1, Instruction.Create(OpCodes.Ldarg_0));
+                        constructor.Body.Instructions.Insert(constructor.Body.Instructions.Count - 1, Instruction.Create(OpCodes.Call, methodOfGetResource));
+                        constructor.Body.Instructions.Insert(constructor.Body.Instructions.Count - 1, Instruction.Create(OpCodes.Pop));
+                    }
+
+                    var rootnode = XamlTask.ParseXaml(matchedResource.GetResourceStream(), typeref);
+
+                    Exception exception;
+                    TryCoreCompile(methodOfGetResource, rootnode, context.EmbeddedResourceNameSpace, out exception);
+
+                    yield return Create(Newobj, constructor);
+                }
+            }
         }
 
         internal static string GetPathForType(ModuleDefinition module, TypeReference type)
         {
-            foreach (var ca in type.Module.GetCustomAttributes()) {
+            foreach (var ca in type.Module.GetCustomAttributes())
+            {
                 if (!TypeRefComparer.Default.Equals(ca.AttributeType, module.ImportReference((XamlTask.xamlAssemblyName, XamlTask.xamlNameSpace, "XamlResourceIdAttribute"))))
                     continue;
                 if (!TypeRefComparer.Default.Equals(ca.ConstructorArguments[2].Value as TypeReference, type))
@@ -90,6 +125,57 @@ namespace Tizen.NUI.Xaml.Core.XamlC
             }
             return null;
         }
+
+        private bool TryCoreCompile(MethodDefinition initComp, ILRootNode rootnode, string resourceName, out Exception exception)
+        {
+            try
+            {
+                var body = new MethodBody(initComp);
+                var module = body.Method.Module;
+                var type = initComp.DeclaringType;
+
+                body.InitLocals = true;
+                var il = body.GetILProcessor();
+                il.Emit(OpCodes.Ldarg_0);
+                var resourcePath = GetPathForType(module, type);
+
+                il.Emit(Nop);
+
+                List<Instruction> insOfAddEvent = new List<Instruction>();
+
+                var visitorContext = new ILContext(il, body, insOfAddEvent, module, resourceName);
+
+                rootnode.Accept(new XamlNodeVisitor((node, parent) => node.Parent = parent), null);
+                rootnode.Accept(new Tizen.NUI.Xaml.Build.Tasks.ExpandMarkupsVisitor(visitorContext), null);
+                rootnode.Accept(new PruneIgnoredNodesVisitor(), null);
+                rootnode.Accept(new CreateObjectVisitor(visitorContext), null);
+
+                rootnode.Accept(new SetNamescopesAndRegisterNamesVisitor(visitorContext), null);
+                rootnode.Accept(new SetFieldVisitor(visitorContext), null);
+                rootnode.Accept(new SetResourcesVisitor(visitorContext), null);
+                rootnode.Accept(new SetPropertiesVisitor(visitorContext, true), null);
+
+                il.Emit(Ret);
+                initComp.Body = body;
+                exception = null;
+                return true;
+            }
+            catch (Exception e)
+            {
+                XamlParseException xamlParseException = e as XamlParseException;
+                if (null != xamlParseException)
+                {
+                    XamlParseException ret = new XamlParseException(xamlParseException.Message, xamlParseException.XmlInfo, xamlParseException.InnerException);
+                    exception = ret;
+                }
+                else
+                {
+                    exception = e;
+                }
+
+                return false;
+            }
+        }
     }
 }
- 
+
