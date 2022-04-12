@@ -29,8 +29,6 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class CoreTask : ICoreTask
     {
-        private GSourceManager _gSourceManager = null;
-
         /// <summary>
         /// Initializes the CoreTask class. 
         /// </summary>
@@ -131,12 +129,7 @@ namespace Tizen.Applications
                 throw new ArgumentNullException(nameof(runner));
             }
 
-            if (_gSourceManager == null)
-            {
-                _gSourceManager = new GSourceManager(true);
-            }
-
-            _gSourceManager.Post(runner);
+            GSourceManager.Post(runner, true);
         }
     }
 }

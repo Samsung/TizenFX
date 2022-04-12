@@ -26,8 +26,6 @@ namespace Tizen.Applications
     /// <since_tizen> 3 </since_tizen>
     public class TizenSynchronizationContext : SynchronizationContext
     {
-        private GSourceManager _gSourceManager = new GSourceManager();
-
         /// <summary>
         /// Initilizes a new TizenSynchronizationContext and install into the current thread.
         /// </summary>
@@ -40,7 +38,6 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public static void Initialize()
         {
-            Log.Error("Tizen.Applications", "TizenSynchronizationContext()");
             SetSynchronizationContext(new TizenSynchronizationContext());
         }
 
@@ -54,7 +51,7 @@ namespace Tizen.Applications
         /// <since_tizen> 3 </since_tizen>
         public override void Post(SendOrPostCallback d, object state)
         {
-            _gSourceManager.Post(() =>
+            GSourceManager.Post(() =>
             {
                 d(state);
             });
@@ -72,7 +69,7 @@ namespace Tizen.Applications
         {
             var mre = new ManualResetEvent(false);
             Exception err = null;
-            _gSourceManager.Post(() =>
+            GSourceManager.Post(() =>
             {
                 try
                 {

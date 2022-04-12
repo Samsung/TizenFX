@@ -35,7 +35,6 @@ namespace Tizen.Applications
         private readonly ICoreBackend _backend;
         private readonly ICoreTask _task;
         private bool _disposedValue = false;
-        private GSourceManager _gSourceManager = new GSourceManager();
 
         private static System.Timers.Timer sTimer;
 
@@ -288,15 +287,6 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Runner callback for dispatching a message to the main loop of the CoreTask.
-        /// </summary>
-        /// <typeparam name="T">The typename of the object.</typeparam>
-        /// <param name="obj">The object argument.</param>
-        /// <since_tizen> 10 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void Runner<T>(T obj);
-
-        /// <summary>
         /// Dispatches an asynchronous message to the main loop of the CoreTask.
         /// </summary>
         /// <param name="runner">The runner callaback.</param>
@@ -310,7 +300,7 @@ namespace Tizen.Applications
                 throw new ArgumentNullException(nameof(runner));
             }
 
-            _gSourceManager.Post(runner);
+            GSourceManager.Post(runner);
         }
 
         /// <summary>

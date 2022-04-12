@@ -28,7 +28,6 @@ namespace Tizen.Applications
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class TizenUISynchronizationContext : SynchronizationContext
     {
-        private GSourceManager _gSourceManager = new GSourceManager(true);
         /// <summary>
         /// Initilizes a new TizenUISynchronizationContext and install into the current thread.
         /// </summary>
@@ -41,7 +40,6 @@ namespace Tizen.Applications
         /// <since_tizen> 10 </since_tizen>
         public static void Initialize()
         {
-            Log.Error("Tizen.Applications", "TizenUISynchronizationContext()");
             SetSynchronizationContext(new TizenUISynchronizationContext());
         }
 
@@ -55,10 +53,10 @@ namespace Tizen.Applications
         /// <since_tizen> 10 </since_tizen>
         public override void Post(SendOrPostCallback d, object state)
         {
-            _gSourceManager.Post(() =>
+            GSourceManager.Post(() =>
             {
                 d(state);
-            });
+            }, true);
         }
 
         /// <summary>
@@ -73,7 +71,7 @@ namespace Tizen.Applications
         {
             var mre = new ManualResetEvent(false);
             Exception err = null;
-            _gSourceManager.Post(() =>
+            GSourceManager.Post(() =>
             {
                 try
                 {
@@ -87,7 +85,7 @@ namespace Tizen.Applications
                 {
                     mre.Set();
                 }
-            });
+            }, true);
             mre.WaitOne();
             if (err != null)
             {

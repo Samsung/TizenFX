@@ -19,32 +19,22 @@ using System.Collections.Concurrent;
 
 namespace Tizen.Applications
 {
-    internal class GSourceManager
+    internal static class GSourceManager
     {
         private static Interop.Glib.GSourceFunc _wrapperHandler;
         private static Object _transactionLock;
         private static ConcurrentDictionary<int, Action> _handlerMap;
         private static int _transactionId;
-        private IntPtr _context;
 
-        public GSourceManager(bool useTizenGlibContext = false)
+        static GSourceManager()
         {
             _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
             _transactionLock = new Object();
             _handlerMap = new ConcurrentDictionary<int, Action>();
             _transactionId = 0;
-
-            if (useTizenGlibContext)
-            {
-                _context = Interop.AppCoreUI.GetTizenGlibContext();
-            }
-            else
-            {
-                _context = IntPtr.Zero;
-            }
         }
 
-        public void Post(Action action)
+        public static void Post(Action action, bool useTizenGlibContext = false)
         {
             int id = 0;
             lock (_transactionLock)
@@ -54,7 +44,7 @@ namespace Tizen.Applications
             _handlerMap.TryAdd(id, action);
             IntPtr source = Interop.Glib.IdleSourceNew();
             Interop.Glib.SourceSetCallback(source, _wrapperHandler, (IntPtr)id, IntPtr.Zero);
-            Interop.Glib.SourceAttach(source, _context);
+            Interop.Glib.SourceAttach(source, useTizenGlibContext ? Interop.AppCoreUI.GetTizenGlibContext() : IntPtr.Zero);
             Interop.Glib.SourceUnref(source);
         }
 
