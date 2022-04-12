@@ -27,6 +27,7 @@ using static Mono.Cecil.Cil.Instruction;
 using static Mono.Cecil.Cil.OpCodes;
 using Tizen.NUI.Xaml.Build.Tasks;
 using ArrayExtension = Tizen.NUI.Xaml.Build.Tasks.ArrayExtension;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.EXaml.Build.Tasks
 {
@@ -290,7 +291,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
                     var accordingType = this.GetType().Assembly.GetType(typeref.FullName);
 
-                    if (null != accordingType && accordingType != typeof(Binding.Setter))
+                    if (null != accordingType && accordingType != typeof(Binding.Setter) && accordingType != typeof(ResourceDictionary))
                     {
                         Context.Values[node] = new EXamlCreateObject(Context, Activator.CreateInstance(accordingType), typeref);
                     }
@@ -363,23 +364,14 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 else if (ctorInfo != null && node.Properties.ContainsKey(XmlName.xArguments) &&
                          !node.Properties.ContainsKey(XmlName.xFactoryMethod) && ctorInfo.MatchXArguments(node, typeref, Module, Context))
                 {
-                    //IL_0008:  ldloca.s 1
-                    //IL_000a:  ldc.i4.1 
-                    //IL_000b:  call instance void valuetype Test/Foo::'.ctor'(bool)
-
-                    //Fang
-                    //var ctor = Module.ImportReference(ctorinforef);
-                    //Context.IL.Emit(OpCodes.Ldloca, vardef);
-                    //Context.IL.Append(PushCtorXArguments(factoryCtorInfo, node));
-                    //Context.IL.Emit(OpCodes.Call, ctor);
+                    var argumentList = GetCtorXArguments(node, factoryCtorInfo.Parameters.Count, true);
+                    Context.Values[node] = new EXamlCreateObject(Context, null, typedef, argumentList.ToArray());
+                    return;
                 }
                 else
                 {
-                    //IL_0000:  ldloca.s 0
-                    //IL_0002:  initobj Test/Foo
-                    //Fang
-                    //Context.IL.Emit(OpCodes.Ldloca, vardef);
-                    //Context.IL.Emit(OpCodes.Initobj, Module.ImportReference(typedef));
+                    Context.Values[node] = new EXamlCreateObject(Context, null, typedef, null);
+                    return;
                 }
 
                 if (typeref.FullName == "Tizen.NUI.Xaml.ArrayExtension")
@@ -498,7 +490,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             if (node.NamespaceURI == XamlParser.X2009Uri)
             {
                 var n = node.XmlType.Name.Split(':')[1];
-                return n != "Array";
+                return n != "Array" && n != "DateTime";
             }
             if (node.NamespaceURI != "clr-namespace:System;assembly=mscorlib")
                 return false;

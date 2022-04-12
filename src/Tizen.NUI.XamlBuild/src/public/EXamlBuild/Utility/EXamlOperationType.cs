@@ -48,6 +48,7 @@ namespace Tizen.NUI.EXaml
         RegisterXName,
         GetLongString,
         CreateDPObject,
+        CreateResourceDictionary,
         MAX
     }
 }
