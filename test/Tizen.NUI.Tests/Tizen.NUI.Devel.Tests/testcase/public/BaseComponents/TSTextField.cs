@@ -50,6 +50,14 @@ namespace Tizen.NUI.Devel.Tests
             return false;
         }
 
+        public bool CheckVector2(Vector2 vectorSrc, Vector2 vectorDst)
+        {
+            if (vectorSrc.X == vectorDst.X && vectorSrc.Y == vectorDst.Y)
+                return true;
+
+            return false;
+        }
+
         [SetUp]
         public void Init()
         {
@@ -1902,6 +1910,348 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldCharacterSpacing END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField GetFontStyle.")]
+        [Property("SPEC", "Tizen.NUI.TextField.GetFontStyle M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextFieldGetFontStyle()
+        {
+            tlog.Debug(tag, $"TextFieldGetFontStyle START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var setFontStyle = new Tizen.NUI.Text.FontStyle()
+            {
+                Width = FontWidthType.Condensed,
+                Weight = FontWeightType.Light,
+                Slant = FontSlantType.Italic,
+            };
+
+            testingTarget.SetFontStyle(setFontStyle);
+
+            var getFontStyle = testingTarget.GetFontStyle();
+            Assert.AreEqual(getFontStyle.Width, setFontStyle.Width, "Should be equal!");
+            Assert.AreEqual(getFontStyle.Weight, setFontStyle.Weight, "Should be equal!");
+            Assert.AreEqual(getFontStyle.Slant, setFontStyle.Slant, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldGetFontStyle END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField GetUnderline.")]
+        [Property("SPEC", "Tizen.NUI.TextField.GetUnderline M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextFieldGetUnderline()
+        {
+            tlog.Debug(tag, $"TextFieldGetUnderline START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var setUnderline = new Tizen.NUI.Text.Underline()
+            {
+                Enable = true,
+                Color = new Color("#3498DB"),
+                Height = 2.0f,
+                Type = UnderlineType.Dashed,
+                DashWidth = 4.0f,
+                DashGap = 6.0f,
+            };
+
+            testingTarget.SetUnderline(setUnderline);
+
+            var getUnderline = testingTarget.GetUnderline();
+            Assert.AreEqual(getUnderline.Enable, setUnderline.Enable, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(getUnderline.Color, setUnderline.Color), "Should be true!");
+            Assert.AreEqual(getUnderline.Height, setUnderline.Height, "Should be equal!");
+            Assert.AreEqual(getUnderline.Type, setUnderline.Type, "Should be equal!");
+            Assert.AreEqual(getUnderline.DashWidth, setUnderline.DashWidth, "Should be equal!");
+            Assert.AreEqual(getUnderline.DashGap, setUnderline.DashGap, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldGetUnderline END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField GetShadow.")]
+        [Property("SPEC", "Tizen.NUI.TextField.GetShadow M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextFieldGetShadow()
+        {
+            tlog.Debug(tag, $"TextFieldGetShadow START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var setShadow = new Tizen.NUI.Text.Shadow()
+            {
+                BlurRadius = 5.0f,
+                Color = Color.Red,
+                Offset = new Vector2(3, 3),
+            };
+
+            testingTarget.SetShadow(setShadow);
+
+            var getShadow = testingTarget.GetShadow();
+            Assert.AreEqual(getShadow.BlurRadius, setShadow.BlurRadius, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(getShadow.Color, setShadow.Color), "Should be true!");
+            Assert.AreEqual(true, CheckVector2(getShadow.Offset, setShadow.Offset), "Should be true!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldGetShadow END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField GetOutline.")]
+        [Property("SPEC", "Tizen.NUI.TextField.GetOutline M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextFieldGetOutline()
+        {
+            tlog.Debug(tag, $"TextFieldGetOutline START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var setOutline = new Tizen.NUI.Text.Outline()
+            {
+                Width = 2.0f,
+                Color = Color.Red,
+            };
+
+            testingTarget.SetOutline(setOutline);
+
+            var getOutline = testingTarget.GetOutline();
+            Assert.AreEqual(getOutline.Width, setOutline.Width, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(getOutline.Color, setOutline.Color), "Should be true!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldGetOutline END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField GetSelectionHandleImage.")]
+        [Property("SPEC", "Tizen.NUI.TextField.GetSelectionHandleImage M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextFieldGetSelectionHandleImage()
+        {
+            tlog.Debug(tag, $"TextFieldGetSelectionHandleImage START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var setSelectionHandleImage = new Tizen.NUI.Text.SelectionHandleImage()
+            {
+                LeftImageUrl = "leftImage",
+                RightImageUrl = "rightImage",
+            };
+
+            testingTarget.SetSelectionHandleImage(setSelectionHandleImage);
+
+            var getSelectionHandleImage = testingTarget.GetSelectionHandleImage();
+            Assert.AreEqual(getSelectionHandleImage.LeftImageUrl, setSelectionHandleImage.LeftImageUrl, "Should be equal!");
+            Assert.AreEqual(getSelectionHandleImage.RightImageUrl, setSelectionHandleImage.RightImageUrl, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldGetSelectionHandleImage END (OK)");
+        }
+
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField GetSelectionHandlePressedImage.")]
+        [Property("SPEC", "Tizen.NUI.TextField.GetSelectionHandlePressedImage M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextFieldGetSelectionHandlePressedImage()
+        {
+            tlog.Debug(tag, $"TextFieldGetSelectionHandlePressedImage START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var setSelectionHandleImage = new Tizen.NUI.Text.SelectionHandleImage()
+            {
+                LeftImageUrl = "leftImage",
+                RightImageUrl = "rightImage",
+            };
+
+            testingTarget.SetSelectionHandlePressedImage(setSelectionHandleImage);
+
+            var getSelectionHandleImage = testingTarget.GetSelectionHandlePressedImage();
+            Assert.AreEqual(getSelectionHandleImage.LeftImageUrl, setSelectionHandleImage.LeftImageUrl, "Should be equal!");
+            Assert.AreEqual(getSelectionHandleImage.RightImageUrl, setSelectionHandleImage.RightImageUrl, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldGetSelectionHandlePressedImage END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField GetSelectionHandleMarkerImage.")]
+        [Property("SPEC", "Tizen.NUI.TextField.GetSelectionHandleMarkerImage M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextFieldGetSelectionHandleMarkerImage()
+        {
+            tlog.Debug(tag, $"TextFieldGetSelectionHandleMarkerImage START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var setSelectionHandleImage = new Tizen.NUI.Text.SelectionHandleImage()
+            {
+                LeftImageUrl = "leftImage",
+                RightImageUrl = "rightImage",
+            };
+
+            testingTarget.SetSelectionHandleMarkerImage(setSelectionHandleImage);
+
+            var getSelectionHandleImage = testingTarget.GetSelectionHandleMarkerImage();
+            Assert.AreEqual(getSelectionHandleImage.LeftImageUrl, setSelectionHandleImage.LeftImageUrl, "Should be equal!");
+            Assert.AreEqual(getSelectionHandleImage.RightImageUrl, setSelectionHandleImage.RightImageUrl, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldGetSelectionHandleMarkerImage END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField GetHiddenInput.")]
+        [Property("SPEC", "Tizen.NUI.TextField.GetHiddenInput M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextFieldGetHiddenInput()
+        {
+            tlog.Debug(tag, $"TextFieldGetHiddenInput START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var setHiddenInput = new Tizen.NUI.Text.HiddenInput()
+            {
+                Mode = HiddenInputModeType.ShowLastCharacter,
+                SubstituteCharacter = '★',
+                SubstituteCount = 0,
+                ShowLastCharacterDuration = 1000,
+            };
+
+            testingTarget.SetHiddenInput(setHiddenInput);
+
+            var getHiddenInput = testingTarget.GetHiddenInput();
+            Assert.AreEqual(getHiddenInput.Mode, setHiddenInput.Mode, "Should be equal!");
+            Assert.AreEqual(getHiddenInput.SubstituteCharacter, setHiddenInput.SubstituteCharacter, "Should be equal!");
+            Assert.AreEqual(getHiddenInput.SubstituteCount, setHiddenInput.SubstituteCount, "Should be equal!");
+            Assert.AreEqual(getHiddenInput.ShowLastCharacterDuration, setHiddenInput.ShowLastCharacterDuration, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldGetHiddenInput END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField GetInputFilter.")]
+        [Property("SPEC", "Tizen.NUI.TextField.GetInputFilter M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextFieldGetInputFilter()
+        {
+            tlog.Debug(tag, $"TextFieldGetInputFilter START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var setInputFilter = new Tizen.NUI.Text.InputFilter()
+            {
+                Accepted = @"[\d]",
+                Rejected = "[0-3]",
+            };
+
+            testingTarget.SetInputFilter(setInputFilter);
+
+            var getInputFilter = testingTarget.GetInputFilter();
+            Assert.AreEqual(getInputFilter.Accepted, setInputFilter.Accepted, "Should be equal!");
+            Assert.AreEqual(getInputFilter.Rejected, setInputFilter.Rejected, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldGetInputFilter END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField GetPlaceholder.")]
+        [Property("SPEC", "Tizen.NUI.TextField.GetPlaceholder M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextFieldGetPlaceholder()
+        {
+            tlog.Debug(tag, $"TextFieldGetPlaceholder START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var setPlaceholder = new Tizen.NUI.Text.Placeholder()
+            {
+                Text = "placeholder text",
+                TextFocused = "placeholder TextFocused",
+                Color = Color.Red,
+                FontFamily = "BreezeSans",
+                FontStyle = new Tizen.NUI.Text.FontStyle()
+                {
+                    Width = FontWidthType.Expanded,
+                    Weight = FontWeightType.ExtraLight,
+                    Slant = FontSlantType.Italic,
+                },
+                PointSize = 15.0f,
+                Ellipsis = true,
+            };
+
+            testingTarget.SetPlaceholder(setPlaceholder);
+
+            var getPlaceholder = testingTarget.GetPlaceholder();
+            Assert.AreEqual(getPlaceholder.Text, setPlaceholder.Text, "Should be equal!");
+            Assert.AreEqual(getPlaceholder.TextFocused, setPlaceholder.TextFocused, "Should be equal!");
+            Assert.AreEqual(true, CheckColor(getPlaceholder.Color, setPlaceholder.Color), "Should be true!");
+            Assert.AreEqual(getPlaceholder.FontFamily, setPlaceholder.FontFamily, "Should be equal!");
+            Assert.AreEqual(true, getPlaceholder.FontStyle == setPlaceholder.FontStyle, "Should be true!");
+            Assert.AreEqual(getPlaceholder.PointSize, setPlaceholder.PointSize, "Should be equal!");
+            Assert.AreEqual(getPlaceholder.Ellipsis, setPlaceholder.Ellipsis, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldGetPlaceholder END (OK)");
         }
     }
 }
