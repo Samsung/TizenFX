@@ -414,7 +414,10 @@ namespace Tizen.NUI.Components
             // ContentPage base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.ContentPage", new ViewStyle()
             {
-                BackgroundColor = new Color("#EEEFF1"),
+                BackgroundColor = new Color("#FAFAFA"),
+                CornerRadius = new Vector4(24.0f, 24.0f, 24.0f ,24.0f),
+                CornerRadiusPolicy = VisualTransformPolicyType.Absolute,
+                BoxShadow = new Shadow(8.0f, new Color(0.0f, 0.0f, 0.0f, 0.16f), new Vector2(0.0f, 2.0f)),
             });
 
             // AppBar base style
