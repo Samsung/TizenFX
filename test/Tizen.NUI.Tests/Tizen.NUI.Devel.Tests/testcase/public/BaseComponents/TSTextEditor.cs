@@ -4,6 +4,7 @@ using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -739,6 +740,96 @@ namespace Tizen.NUI.Devel.Tests
             color.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextEditorGrabHandleColor END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEditor SelectText.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.SelectText M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public async Task TextEditorSelectText()
+        {
+            tlog.Debug(tag, $"TextEditorSelectText START");
+
+            var testingTarget = new TextEditor();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            testingTarget.Text = "0123456789";
+            testingTarget.EnableSelection = true;
+            Window.Instance.GetDefaultLayer().Add(testingTarget);
+
+            testingTarget.SelectText(2, 6);
+            await Task.Delay(500);
+            Assert.AreEqual(testingTarget.SelectedText, "2345", "Should be equal!");
+            Assert.AreEqual(testingTarget.SelectedTextStart, 2, "Should be equal!");
+            Assert.AreEqual(testingTarget.SelectedTextEnd, 6, "Should be equal!");
+
+            tlog.Debug(tag, $"TextEditorSelectText END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEditor SelectText.StartIndexException")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.SelectText M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public async Task TextEditorSelectTextStartIndexException()
+        {
+            tlog.Debug(tag, $"TextEditorSelectTextStartIndexException START");
+
+            var testingTarget = new TextEditor();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            testingTarget.Text = "0123456789";
+            testingTarget.EnableSelection = true;
+            Window.Instance.GetDefaultLayer().Add(testingTarget);
+
+            try
+            {
+                testingTarget.SelectText(-1, 6);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Pass("Caught ArgumentOutOfRangeException: Passed!");
+                tlog.Debug(tag, $"TextEditorSelectTextStartIndexException END (OK)");
+            }
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEditor SelectText.EndIndexException")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.SelectText M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public async Task TextEditorSelectTextEndIndexException()
+        {
+            tlog.Debug(tag, $"TextEditorSelectTextEndIndexException START");
+
+            var testingTarget = new TextEditor();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            testingTarget.Text = "0123456789";
+            testingTarget.EnableSelection = true;
+            Window.Instance.GetDefaultLayer().Add(testingTarget);
+
+            try
+            {
+                testingTarget.SelectText(1, -1);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Pass("Caught ArgumentOutOfRangeException: Passed!");
+                tlog.Debug(tag, $"TextEditorSelectTextEndIndexException END (OK)");
+            }
         }
     }
 }

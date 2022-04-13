@@ -5,6 +5,7 @@ using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -2300,6 +2301,96 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldPrimaryCursorPosition END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField SelectText.")]
+        [Property("SPEC", "Tizen.NUI.TextField.SelectText M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public async Task TextFieldSelectText()
+        {
+            tlog.Debug(tag, $"TextFieldSelectText START");
+
+            var testingTarget = new TextField();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            testingTarget.Text = "0123456789";
+            testingTarget.EnableSelection = true;
+            Window.Instance.GetDefaultLayer().Add(testingTarget);
+
+            testingTarget.SelectText(2, 6);
+            await Task.Delay(500);
+            Assert.AreEqual(testingTarget.SelectedText, "2345", "Should be equal!");
+            Assert.AreEqual(testingTarget.SelectedTextStart, 2, "Should be equal!");
+            Assert.AreEqual(testingTarget.SelectedTextEnd, 6, "Should be equal!");
+
+            tlog.Debug(tag, $"TextFieldSelectText END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField SelectText.StartIndexException")]
+        [Property("SPEC", "Tizen.NUI.TextField.SelectText M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public async Task TextFieldSelectTextStartIndexException()
+        {
+            tlog.Debug(tag, $"TextFieldSelectTextStartIndexException START");
+
+            var testingTarget = new TextField();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            testingTarget.Text = "0123456789";
+            testingTarget.EnableSelection = true;
+            Window.Instance.GetDefaultLayer().Add(testingTarget);
+
+            try
+            {
+                testingTarget.SelectText(-1, 6);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Pass("Caught ArgumentOutOfRangeException: Passed!");
+                tlog.Debug(tag, $"TextFieldSelectTextStartIndexException END (OK)");
+            }
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField SelectText.EndIndexException")]
+        [Property("SPEC", "Tizen.NUI.TextField.SelectText M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public async Task TextFieldSelectTextEndIndexException()
+        {
+            tlog.Debug(tag, $"TextFieldSelectTextEndIndexException START");
+
+            var testingTarget = new TextField();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            testingTarget.Text = "0123456789";
+            testingTarget.EnableSelection = true;
+            Window.Instance.GetDefaultLayer().Add(testingTarget);
+
+            try
+            {
+                testingTarget.SelectText(1, -1);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Pass("Caught ArgumentOutOfRangeException: Passed!");
+                tlog.Debug(tag, $"TextFieldSelectTextEndIndexException END (OK)");
+            }
         }
     }
 }
