@@ -350,6 +350,7 @@ namespace Tizen.NUI
             if (e.Touch.GetState(0) == PointStateType.Up)
             {
                 window.Destroy();
+                window = null;
             }
             return true;
         }
