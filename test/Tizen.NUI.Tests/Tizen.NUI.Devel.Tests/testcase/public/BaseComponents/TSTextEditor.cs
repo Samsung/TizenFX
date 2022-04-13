@@ -571,5 +571,174 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextEditorGetPlaceholder END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEditor MinLineSize.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.MinLineSize A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextEditorMinLineSize()
+        {
+            tlog.Debug(tag, $"TextEditorMinLineSize START");
+
+            var testingTarget = new TextEditor(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            testingTarget.MinLineSize = 20;
+            Assert.AreEqual(20, testingTarget.MinLineSize, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextEditorMinLineSize END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEditor EnableEditing.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.EnableEditing A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextEditorEnableEditing()
+        {
+            tlog.Debug(tag, $"TextEditorEnableEditing START");
+
+            var testingTarget = new TextEditor(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            testingTarget.EnableEditing = false;
+            Assert.AreEqual(false, testingTarget.EnableEditing, "Should be equal!");
+
+            testingTarget.EnableEditing = true;
+            Assert.AreEqual(true, testingTarget.EnableEditing, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextEditorEnableEditing END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEditor PrimaryCursorPosition.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.PrimaryCursorPosition A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextEditorPrimaryCursorPosition()
+        {
+            tlog.Debug(tag, $"TextEditorPrimaryCursorPosition START");
+
+            var testingTarget = new TextEditor(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            testingTarget.Text = "0123456789";
+            testingTarget.PrimaryCursorPosition = 5;
+            Assert.AreEqual(5, testingTarget.PrimaryCursorPosition, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextEditorPrimaryCursorPosition END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEditor EnableSelection.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.EnableSelection A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextEditorEnableSelection()
+        {
+            tlog.Debug(tag, $"TextEditorEnableSelection START");
+
+            var testingTarget = new TextEditor(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            testingTarget.EnableSelection = true;
+            Assert.AreEqual(true, testingTarget.EnableSelection, "Should be equal!");
+
+            testingTarget.EnableSelection = false;
+            Assert.AreEqual(false, testingTarget.EnableSelection, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextEditorEnableSelection END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEditor EnableGrabHandle.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.EnableGrabHandle A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextEditorEnableGrabHandle()
+        {
+            tlog.Debug(tag, $"TextEditorEnableGrabHandle START");
+
+            var testingTarget = new TextEditor(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            testingTarget.EnableGrabHandle = true;
+            Assert.AreEqual(true, testingTarget.EnableGrabHandle, "Should be equal!");
+
+            testingTarget.EnableGrabHandle = false;
+            Assert.AreEqual(false, testingTarget.EnableGrabHandle, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextEditorEnableGrabHandle END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEditor EnableGrabHandlePopup.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.EnableGrabHandlePopup A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextEditorEnableGrabHandlePopup()
+        {
+            tlog.Debug(tag, $"TextEditorEnableGrabHandlePopup START");
+
+            var testingTarget = new TextEditor(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            testingTarget.EnableGrabHandlePopup = true;
+            Assert.AreEqual(true, testingTarget.EnableGrabHandlePopup, "Should be equal!");
+
+            testingTarget.EnableGrabHandlePopup = false;
+            Assert.AreEqual(false, testingTarget.EnableGrabHandlePopup, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextEditorEnableGrabHandlePopup END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEditor GrabHandleColor.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.GrabHandleColor A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextEditorGrabHandleColor()
+        {
+            tlog.Debug(tag, $"TextEditorGrabHandleColor START");
+
+            var testingTarget = new TextEditor(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            testingTarget.GrabHandleColor = new Color(1.0f, 1.0f, 0.8f, 0.0f);
+            var color = new Color(1.0f, 1.0f, 0.8f, 0.0f);
+            Assert.AreEqual(true, CheckColor(color, testingTarget.GrabHandleColor), "Should be true!");
+
+            color.Dispose();
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextEditorGrabHandleColor END (OK)");
+        }
     }
 }

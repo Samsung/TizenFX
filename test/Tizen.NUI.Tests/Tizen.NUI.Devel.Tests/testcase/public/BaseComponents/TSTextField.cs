@@ -2253,5 +2253,53 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextFieldGetPlaceholder END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField EnableEditing.")]
+        [Property("SPEC", "Tizen.NUI.TextField.EnableEditing A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextFieldEnableEditing()
+        {
+            tlog.Debug(tag, $"TextFieldEnableEditing START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            testingTarget.EnableEditing = false;
+            Assert.AreEqual(false, testingTarget.EnableEditing, "Should be equal!");
+
+            testingTarget.EnableEditing = true;
+            Assert.AreEqual(true, testingTarget.EnableEditing, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldEnableEditing END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextField PrimaryCursorPosition.")]
+        [Property("SPEC", "Tizen.NUI.TextField.PrimaryCursorPosition A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextFieldPrimaryCursorPosition()
+        {
+            tlog.Debug(tag, $"TextFieldPrimaryCursorPosition START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            testingTarget.Text = "0123456789";
+            testingTarget.PrimaryCursorPosition = 5;
+            Assert.AreEqual(5, testingTarget.PrimaryCursorPosition, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldPrimaryCursorPosition END (OK)");
+        }
     }
 }
