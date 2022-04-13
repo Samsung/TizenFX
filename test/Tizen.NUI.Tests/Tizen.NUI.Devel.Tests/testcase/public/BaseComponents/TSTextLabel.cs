@@ -333,5 +333,27 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextLabelGetTextFit END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextLabel MinLineSize.")]
+        [Property("SPEC", "Tizen.NUI.TextLabel.MinLineSize A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextLabelMinLineSize()
+        {
+            tlog.Debug(tag, $"TextLabelMinLineSize START");
+
+            var testingTarget = new TextLabel(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextLabel");
+            Assert.IsInstanceOf<TextLabel>(testingTarget, "Should be an instance of TextLabel type.");
+
+            testingTarget.MinLineSize = 20;
+            Assert.AreEqual(20, testingTarget.MinLineSize, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextLabelMinLineSize END (OK)");
+        }
     }
 }
