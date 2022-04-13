@@ -43,11 +43,11 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Tizen.NUI.Text.InputFilter>(inputFilter, "Should be an instance of inputFilter type.");
 
             var compare = new Tizen.NUI.Text.InputFilter();
-            Assert.AreEqual(true, inputFilter == compare, "Should be true!");
+            Assert.IsTrue(inputFilter == compare, "Should be true!");
             Assert.AreEqual(inputFilter.GetHashCode(), compare.GetHashCode(), "Should be true!");
 
             compare.Accepted = @"[\d]";
-            Assert.AreEqual(true, inputFilter != compare, "Should be true!");
+            Assert.IsTrue(inputFilter != compare, "Should be true!");
 
             tlog.Debug(tag, $"InputFilterEquals END (OK)");
         }
@@ -68,11 +68,11 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Tizen.NUI.Text.Strikethrough>(strikethrough, "Should be an instance of strikethrough type.");
 
             var compare = new Tizen.NUI.Text.Strikethrough();
-            Assert.AreEqual(true, strikethrough == compare, "Should be true!");
+            Assert.IsTrue(strikethrough == compare, "Should be true!");
             Assert.AreEqual(strikethrough.GetHashCode(), compare.GetHashCode(), "Should be true!");
 
             compare.Height = 2.0f;
-            Assert.AreEqual(true, strikethrough != compare, "Should be true!");
+            Assert.IsTrue(strikethrough != compare, "Should be true!");
 
             tlog.Debug(tag, $"StrikethroughEquals END (OK)");
         }
@@ -93,11 +93,11 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Tizen.NUI.Text.FontStyle>(fontStyle, "Should be an instance of fontStyle type.");
 
             var compare = new Tizen.NUI.Text.FontStyle();
-            Assert.AreEqual(true, fontStyle == compare, "Should be true!");
+            Assert.IsTrue(fontStyle == compare, "Should be true!");
             Assert.AreEqual(fontStyle.GetHashCode(), compare.GetHashCode(), "Should be true!");
 
             compare.Slant = FontSlantType.Italic;
-            Assert.AreEqual(true, fontStyle != compare, "Should be true!");
+            Assert.IsTrue(fontStyle != compare, "Should be true!");
 
             tlog.Debug(tag, $"FontStyleEquals END (OK)");
         }
@@ -115,14 +115,14 @@ namespace Tizen.NUI.Devel.Tests
 
             var underline = new Tizen.NUI.Text.Underline();
             Assert.IsNotNull(underline, "Can't create success object strikethrough");
-            Assert.IsInstanceOf<Tizen.NUI.Text.Underline>(underline, "Should be an instance of fontStyle type.");
+            Assert.IsInstanceOf<Tizen.NUI.Text.Underline>(underline, "Should be an instance of underline type.");
 
             var compare = new Tizen.NUI.Text.Underline();
-            Assert.AreEqual(true, underline == compare, "Should be true!");
+            Assert.IsTrue(underline == compare, "Should be true!");
             Assert.AreEqual(underline.GetHashCode(), compare.GetHashCode(), "Should be true!");
 
             compare.Color = Color.Red;
-            Assert.AreEqual(true, underline != compare, "Should be true!");
+            Assert.IsTrue(underline != compare, "Should be true!");
 
             tlog.Debug(tag, $"UnderlineEquals END (OK)");
         }
@@ -140,14 +140,14 @@ namespace Tizen.NUI.Devel.Tests
 
             var shadow = new Tizen.NUI.Text.Shadow();
             Assert.IsNotNull(shadow, "Can't create success object strikethrough");
-            Assert.IsInstanceOf<Tizen.NUI.Text.Shadow>(shadow, "Should be an instance of fontStyle type.");
+            Assert.IsInstanceOf<Tizen.NUI.Text.Shadow>(shadow, "Should be an instance of shadow type.");
 
             var compare = new Tizen.NUI.Text.Shadow();
-            Assert.AreEqual(true, shadow == compare, "Should be true!");
+            Assert.IsTrue(shadow == compare, "Should be true!");
             Assert.AreEqual(shadow.GetHashCode(), compare.GetHashCode(), "Should be true!");
 
             compare.BlurRadius = 5.0f;
-            Assert.AreEqual(true, shadow != compare, "Should be true!");
+            Assert.IsTrue(shadow != compare, "Should be true!");
 
             tlog.Debug(tag, $"ShadowEquals END (OK)");
         }
@@ -165,14 +165,14 @@ namespace Tizen.NUI.Devel.Tests
 
             var outline = new Tizen.NUI.Text.Outline();
             Assert.IsNotNull(outline, "Can't create success object strikethrough");
-            Assert.IsInstanceOf<Tizen.NUI.Text.Outline>(outline, "Should be an instance of fontStyle type.");
+            Assert.IsInstanceOf<Tizen.NUI.Text.Outline>(outline, "Should be an instance of outline type.");
 
             var compare = new Tizen.NUI.Text.Outline();
-            Assert.AreEqual(true, outline == compare, "Should be true!");
+            Assert.IsTrue(outline == compare, "Should be true!");
             Assert.AreEqual(outline.GetHashCode(), compare.GetHashCode(), "Should be true!");
 
             compare.Width = 2.0f;
-            Assert.AreEqual(true, outline != compare, "Should be true!");
+            Assert.IsTrue(outline != compare, "Should be true!");
 
             tlog.Debug(tag, $"OutlineEquals END (OK)");
         }
@@ -190,14 +190,14 @@ namespace Tizen.NUI.Devel.Tests
 
             var textFit = new Tizen.NUI.Text.TextFit();
             Assert.IsNotNull(textFit, "Can't create success object strikethrough");
-            Assert.IsInstanceOf<Tizen.NUI.Text.TextFit>(textFit, "Should be an instance of fontStyle type.");
+            Assert.IsInstanceOf<Tizen.NUI.Text.TextFit>(textFit, "Should be an instance of textFit type.");
 
             var compare = new Tizen.NUI.Text.TextFit();
-            Assert.AreEqual(true, textFit == compare, "Should be true!");
+            Assert.IsTrue(textFit == compare, "Should be true!");
             Assert.AreEqual(textFit.GetHashCode(), compare.GetHashCode(), "Should be true!");
 
             compare.StepSize = 10.0f;
-            Assert.AreEqual(true, textFit != compare, "Should be true!");
+            Assert.IsTrue(textFit != compare, "Should be true!");
 
             tlog.Debug(tag, $"TextFitEquals END (OK)");
         }
@@ -215,14 +215,14 @@ namespace Tizen.NUI.Devel.Tests
 
             var placeholder = new Tizen.NUI.Text.Placeholder();
             Assert.IsNotNull(placeholder, "Can't create success object strikethrough");
-            Assert.IsInstanceOf<Tizen.NUI.Text.Placeholder>(placeholder, "Should be an instance of fontStyle type.");
+            Assert.IsInstanceOf<Tizen.NUI.Text.Placeholder>(placeholder, "Should be an instance of placeholder type.");
 
             var compare = new Tizen.NUI.Text.Placeholder();
-            Assert.AreEqual(true, placeholder == compare, "Should be true!");
+            Assert.IsTrue(placeholder == compare, "Should be true!");
             Assert.AreEqual(placeholder.GetHashCode(), compare.GetHashCode(), "Should be true!");
 
             compare.Ellipsis = true;
-            Assert.AreEqual(true, placeholder != compare, "Should be true!");
+             Assert.IsTrue(placeholder != compare, "Should be true!");
 
             tlog.Debug(tag, $"PlaceholderEquals END (OK)");
         }
@@ -240,14 +240,14 @@ namespace Tizen.NUI.Devel.Tests
 
             var hiddenInput = new Tizen.NUI.Text.HiddenInput();
             Assert.IsNotNull(hiddenInput, "Can't create success object strikethrough");
-            Assert.IsInstanceOf<Tizen.NUI.Text.HiddenInput>(hiddenInput, "Should be an instance of fontStyle type.");
+            Assert.IsInstanceOf<Tizen.NUI.Text.HiddenInput>(hiddenInput, "Should be an instance of hiddenInput type.");
 
             var compare = new Tizen.NUI.Text.HiddenInput();
-            Assert.AreEqual(true, hiddenInput == compare, "Should be true!");
+            Assert.IsTrue(hiddenInput == compare, "Should be true!");
             Assert.AreEqual(hiddenInput.GetHashCode(), compare.GetHashCode(), "Should be true!");
 
             compare.ShowLastCharacterDuration = 10000;
-            Assert.AreEqual(true, hiddenInput != compare, "Should be true!");
+            Assert.IsTrue(hiddenInput != compare, "Should be true!");
 
             tlog.Debug(tag, $"HiddenInputEquals END (OK)");
         }
@@ -265,14 +265,14 @@ namespace Tizen.NUI.Devel.Tests
 
             var selectionHandleImage = new Tizen.NUI.Text.SelectionHandleImage();
             Assert.IsNotNull(selectionHandleImage, "Can't create success object strikethrough");
-            Assert.IsInstanceOf<Tizen.NUI.Text.SelectionHandleImage>(selectionHandleImage, "Should be an instance of fontStyle type.");
+            Assert.IsInstanceOf<Tizen.NUI.Text.SelectionHandleImage>(selectionHandleImage, "Should be an instance of selectionHandleImage type.");
 
             var compare = new Tizen.NUI.Text.SelectionHandleImage();
-            Assert.AreEqual(true, selectionHandleImage == compare, "Should be true!");
+            Assert.IsTrue(selectionHandleImage == compare, "Should be true!");
             Assert.AreEqual(selectionHandleImage.GetHashCode(), compare.GetHashCode(), "Should be true!");
 
             compare.LeftImageUrl = "left image url";
-            Assert.AreEqual(true, selectionHandleImage != compare, "Should be true!");
+            Assert.IsTrue(selectionHandleImage != compare, "Should be true!");
 
             tlog.Debug(tag, $"SelectionHandleImageEquals END (OK)");
         }
