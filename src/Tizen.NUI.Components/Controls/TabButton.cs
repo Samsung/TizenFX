@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
@@ -31,9 +32,6 @@ namespace Tizen.NUI.Components
         private TabButtonStyle tabButtonStyle = null;
 
         private bool styleApplied = false;
-
-        private View topLine = null;
-        private View bottomLine = null; // Visible only if TabButton is selected or pressed.
 
         /// <summary>
         /// Creates a new instance of TabButton.
@@ -82,18 +80,6 @@ namespace Tizen.NUI.Components
             base.ApplyStyle(viewStyle);
 
             tabButtonStyle = viewStyle as TabButtonStyle;
-
-            //Apply TopLine style.
-            if (tabButtonStyle?.TopLine != null)
-            {
-                topLine?.ApplyStyle(tabButtonStyle.TopLine);
-            }
-
-            //Apply BottomLine style.
-            if (tabButtonStyle?.BottomLine != null)
-            {
-                bottomLine?.ApplyStyle(tabButtonStyle.BottomLine);
-            }
 
             styleApplied = true;
 
@@ -151,15 +137,7 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                if (topLine != null)
-                {
-                    Utility.Dispose(topLine);
-                }
-
-                if (bottomLine != null)
-                {
-                    Utility.Dispose(bottomLine);
-                }
+                // Dispose children explicitly
             }
 
             base.Dispose(type);
@@ -233,33 +211,19 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void LayoutItems()
         {
-            if ((Icon == null) && (TextLabel == null))
-            {
-                return;
-            }
-
-            // Icon is added in Button.LayoutItems().
-            if ((Icon != null) && (Children.Contains(Icon) == false))
-            {
-                Add(Icon);
-            }
-
-            // TextLabel is added in Button.LayoutItems().
-            if ((TextLabel != null) && (Children.Contains(TextLabel) == false))
-            {
-                Add(TextLabel);
-            }
+            UpdateSizeAndSpacing();
         }
 
         private void Initialize()
         {
-            Layout = new AbsoluteLayout();
+            Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Vertical,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
 
-            topLine = new View(tabButtonStyle?.TopLine);
-            Add(topLine);
-
-            bottomLine = new View(tabButtonStyle?.BottomLine);
-            Add(bottomLine);
+            WidthSpecification = LayoutParamPolicies.MatchParent;
 
             AccessibilityHighlightable = true;
         }
@@ -271,97 +235,75 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            if ((Icon == null) && (TextLabel == null))
+            bool isEmptyIcon = false;
+            bool isEmptyText = false;
+
+            if (String.IsNullOrEmpty(Icon.ResourceUrl))
             {
-                return;
+                isEmptyIcon = true;
             }
 
-            // FIXME: set Selector<Extents> to padding
-            var padding = new Extents(40, 40, 24, 24);
-            var iconPadding = IconPadding;
-            var textPadding = TextPadding;
-
-            // Calculate size of TextLabel.
-            if (TextLabel != null)
+            if (String.IsNullOrEmpty(TextLabel.Text))
             {
-                // TODO: Other orientation cases are not implemented yet.
-                if ((IconRelativeOrientation == IconOrientation.Left) || (IconRelativeOrientation == IconOrientation.Right))
-                {
-                    var naturalWidthSum = (ushort)padding?.Start + (ushort)padding?.End + iconPadding.Start + iconPadding.End + (float)Icon?.SizeWidth + TextLabel.GetNaturalSize().Width;
-                    var naturalWidthDiff = SizeWidth - naturalWidthSum;
+                isEmptyText = true;
+            }
 
-                    if (naturalWidthDiff > 0)
-                    {
-                        TextLabel.SizeWidth = TextLabel.GetNaturalSize().Width;
-                    }
-                    else
-                    {
-                        TextLabel.SizeWidth = SizeWidth - (ushort)padding?.Start - (ushort)padding?.End - iconPadding.Start - iconPadding.End - textPadding.Start - textPadding.End - (float)Icon?.SizeWidth;
-                    }
+            if (isEmptyIcon)
+            {
+                if (Children.Contains(Icon))
+                {
+                    Remove(Icon);
                 }
             }
-
-            // Calculate positions of Icon and TextLabel.
-            switch (IconRelativeOrientation)
+            else if (Children.Contains(Icon) == false)
             {
-                // TODO: Other orientation cases are not implemented yet.
-                case IconOrientation.Left:
-                    if (LayoutDirection == ViewLayoutDirectionType.LTR)
-                    {
-                        if (Icon != null)
-                        {
-                            float iconX = 0;
-                            float iconY = (ushort)padding?.Top + iconPadding.Top;
-
-                            if (string.IsNullOrEmpty(TextLabel?.Text))
-                            {
-                                iconX = (SizeWidth - Icon.SizeWidth) / 2;
-                            }
-                            else
-                            {
-                                var widthSum = (ushort)padding?.Start + (ushort)padding?.End + iconPadding.Start + iconPadding.End + textPadding.Start + textPadding.End + Icon.SizeWidth + (float)TextLabel?.SizeWidth;
-                                var widthDiff = SizeWidth - widthSum;
-
-                                if (widthDiff > 0)
-                                {
-                                    iconX = (ushort)padding?.Start + iconPadding.Start + (widthDiff / 2);
-                                }
-                                else
-                                {
-                                    iconX = (ushort)padding?.Start + iconPadding.Start;
-                                }
-                            }
-
-                            Icon.Position = new Position(iconX, iconY);
-                        }
-
-                        if (TextLabel != null)
-                        {
-                            TextLabel.HorizontalAlignment = HorizontalAlignment.Begin;
-
-                            float textX = 0;
-                            float textY = 0;
-
-                            if (string.IsNullOrEmpty(Icon?.ResourceUrl))
-                            {
-                                textX = (SizeWidth - TextLabel.SizeWidth) / 2;
-                                textY = (ushort)padding?.Top + textPadding.Top;
-                            }
-                            else
-                            {
-                                textX = (float)Icon?.PositionX + (float)Icon?.SizeWidth;
-                                textY = (ushort)padding?.Top + textPadding.Top + (((float)Icon?.SizeHeight - TextLabel.SizeHeight) / 2);
-                            }
-
-                            TextLabel.Position = new Position(textX, textY);
-                        }
-                    }
-                    break;
-                default:
-                    break;
+                Add(Icon);
             }
 
-            padding?.Dispose();
+            if (isEmptyText)
+            {
+                if (Children.Contains(TextLabel))
+                {
+                    Remove(TextLabel);
+                }
+            }
+            else if (Children.Contains(TextLabel) == false)
+            {
+                Add(TextLabel);
+            }
+
+            // Icon and Text
+            if (!isEmptyIcon && !isEmptyText)
+            {
+                WidthSpecification = (int)tabButtonStyle.Size.Width;
+                HeightSpecification = (int)tabButtonStyle.Size.Height;
+                Padding = tabButtonStyle.Padding;
+            }
+            // Icon only
+            else if (!isEmptyIcon && isEmptyText)
+            {
+                WidthSpecification = (int)tabButtonStyle.SizeWithIconOnly.Width;
+                HeightSpecification = (int)tabButtonStyle.SizeWithIconOnly.Height;
+                Padding = tabButtonStyle.PaddingWithIconOnly;
+                Icon.WidthSpecification = (int)tabButtonStyle.IconSizeWithIconOnly.Width;
+                Icon.HeightSpecification = (int)tabButtonStyle.IconSizeWithIconOnly.Height;
+            }
+            // Text only
+            else if (isEmptyIcon && !isEmptyText)
+            {
+                WidthSpecification = (int)tabButtonStyle.SizeWithTextOnly.Width;
+                HeightSpecification = (int)tabButtonStyle.SizeWithTextOnly.Height;
+                Padding = tabButtonStyle.PaddingWithTextOnly;
+                Icon.WidthSpecification = (int)tabButtonStyle.Icon.Size.Width;
+                Icon.HeightSpecification = (int)tabButtonStyle.Icon.Size.Height;
+            }
+            // Nothing
+            else
+            {
+                WidthSpecification = (int)tabButtonStyle.Size.Width;
+                HeightSpecification = (int)tabButtonStyle.Size.Height;
+                Padding = tabButtonStyle.Padding;
+            }
         }
     }
 }
