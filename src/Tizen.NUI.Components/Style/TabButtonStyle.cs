@@ -47,16 +47,34 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Gets or Sets the Line Style at the top of TabButton.
+        /// Gets or sets the size of a view with text only for the width, the height, and the depth.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewStyle TopLine { get; set; } = new ViewStyle();
+        public Size SizeWithTextOnly { get; set; } = new Size();
 
         /// <summary>
-        /// Gets or Sets the Line Style at the bottom of TabButton.
+        /// Gets or sets the size of a view with icon only for the width, the height, and the depth.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewStyle BottomLine { get; set; } = new ViewStyle();
+        public Size SizeWithIconOnly { get; set; } = new Size();
+
+        /// <summary>
+        /// Gets or sets the padding with text only for use in layout.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Extents PaddingWithTextOnly { get; set; } = new Extents();
+
+        /// <summary>
+        /// Gets or sets the padding with icon only for use in layout.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Extents PaddingWithIconOnly { get; set; } = new Extents();
+
+        /// <summary>
+        /// Gets or sets the size of icon with icon only for the width, the height, and the depth.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size IconSizeWithIconOnly { get; set; } = new Size();
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -66,8 +84,11 @@ namespace Tizen.NUI.Components
 
             if (bindableObject is TabButtonStyle tabButtonStyle)
             {
-                TopLine.CopyFrom(tabButtonStyle.TopLine);
-                BottomLine.CopyFrom(tabButtonStyle.BottomLine);
+                SizeWithTextOnly = new Size(tabButtonStyle.SizeWithTextOnly);
+                SizeWithIconOnly = new Size(tabButtonStyle.SizeWithIconOnly);
+                PaddingWithTextOnly = new Extents(tabButtonStyle.PaddingWithTextOnly);
+                PaddingWithIconOnly = new Extents(tabButtonStyle.PaddingWithIconOnly);
+                IconSizeWithIconOnly = new Size(tabButtonStyle.IconSizeWithIconOnly);
             }
         }
     }
