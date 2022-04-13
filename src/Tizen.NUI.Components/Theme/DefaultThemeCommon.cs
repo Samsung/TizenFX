@@ -420,57 +420,57 @@ namespace Tizen.NUI.Components
             // AppBar base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.AppBar", new AppBarStyle()
             {
-                Size = new Size(-1, 120),
-                BackgroundColor = new Color("#EEEFF1"),
+                Size = new Size(-1, 64),
+                BackgroundColor = Color.Transparent,
                 BackButton = new ButtonStyle()
                 {
                     Size = new Size(48, 48),
                     CornerRadius = 0,
-                    BackgroundColor = new Color(0, 0, 0, 0),
+                    BackgroundColor = Color.Transparent,
                     Icon = new ImageViewStyle()
                     {
                         Size = new Size(48, 48),
                         ResourceUrl = FrameworkInformation.ResourcePath + "nui_component_default_back_button.png",
                         Color = new Selector<Color>()
                         {
-                            Normal = new Color("#0A0E4A"),
-                            Focused = new Color("#00338B"),
-                            Pressed = new Color("#1B69CA"),
-                            Disabled = new Color("#C3CAD2"),
+                            Normal = new Color("#17234D"),
+                            Focused = new Color("#17234D"),
+                            Pressed = new Color("#FF6200"),
+                            Disabled = new Color("#CACACA"),
                         },
                     },
                     ThemeChangeSensitive = false
                 },
                 TitleTextLabel = new TextLabelStyle()
                 {
-                    PixelSize = 40,
+                    PixelSize = 24,
                     VerticalAlignment = VerticalAlignment.Center,
                     TextColor = new Selector<Color>()
                     {
-                        Normal = new Color("#000C2B"),
+                        Normal = new Color("#17234D"),
                     },
                     ThemeChangeSensitive = false
                 },
                 ActionView = new ViewStyle()
                 {
-                    Size = new Size(48, 120),
+                    Size = new Size(48, 64),
                     CornerRadius = 0,
-                    BackgroundColor = new Color(0, 0, 0, 0),
+                    BackgroundColor = Color.Transparent,
                 },
                 ActionButton = new ButtonStyle()
                 {
-                    Size = new Size(-2, 120),
+                    Size = new Size(-2, 64),
                     CornerRadius = 0,
-                    BackgroundColor = new Color(0, 0, 0, 0),
+                    BackgroundColor = Color.Transparent,
                     Text = new TextLabelStyle()
                     {
-                        PixelSize = 26,
+                        PixelSize = 24,
                         TextColor = new Selector<Color>()
                         {
-                            Normal = new Color("#0A0E4A"),
-                            Focused = new Color("#00338B"),
-                            Pressed = new Color("#1B69CA"),
-                            Disabled = new Color("#C3CAD2"),
+                            Normal = new Color("#FF6200"),
+                            Focused = new Color("#FF6200"),
+                            Pressed = new Color("#D95300"),
+                            Disabled = new Color("#CACACA"),
                         },
                     },
                     Icon = new ImageViewStyle()
@@ -478,18 +478,18 @@ namespace Tizen.NUI.Components
                         Size = new Size(48, 48),
                         Color = new Selector<Color>()
                         {
-                            Normal = new Color("#0A0E4A"),
-                            Focused = new Color("#00338B"),
-                            Pressed = new Color("#1B69CA"),
-                            Disabled = new Color("#C3CAD2"),
+                            Normal = new Color("#17234D"),
+                            Focused = new Color("#17234D"),
+                            Pressed = new Color("#FF6200"),
+                            Disabled = new Color("#CACACA"),
                         },
                     },
                     ThemeChangeSensitive = false,
                 },
-                Padding = new Extents(64, 64, 0, 0),
-                NavigationPadding = new Extents(0, 24, 0, 0),
-                ActionPadding = new Extents(40, 0, 0, 0),
-                ActionCellPadding = new Size2D(40, 0),
+                Padding = new Extents(16, 16, 0, 0),
+                NavigationPadding = new Extents(0, 8, 0, 0),
+                ActionPadding = new Extents(16, 0, 0, 0),
+                ActionCellPadding = new Size2D(16, 0),
             });
 
             // Picker base style
