@@ -150,8 +150,11 @@ namespace Tizen.NUI.Components
                 Utility.Dispose(downLine);
 
                 recoverIndicator = null;
-                editModeIndicator.Dispose();
-                editModeIndicator = null;
+                if (editModeIndicator)
+                {
+                    editModeIndicator.Dispose();
+                    editModeIndicator = null;
+                }
             }
 
             base.Dispose(type);
