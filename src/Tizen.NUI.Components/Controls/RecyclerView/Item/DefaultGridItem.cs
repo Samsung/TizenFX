@@ -205,7 +205,6 @@ namespace Tizen.NUI.Components
             {
                 itemLabel = value;
                 layoutChanged = true;
-                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, itemLabel.Text);
             }
         }
 
@@ -474,6 +473,15 @@ namespace Tizen.NUI.Components
             }
 
 
+        }
+
+        /// <summary>
+        /// Gets accessibility name.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override string AccessibilityGetName()
+        {
+            return itemLabel.Text;
         }
 
         /// <summary>

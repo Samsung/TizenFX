@@ -37,7 +37,7 @@ namespace Tizen.NUI.Components
         private bool styleApplied = false;
 
         /// <summary>
-        /// Get accessibility name.
+        /// Gets accessibility name.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override string AccessibilityGetName()

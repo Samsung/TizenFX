@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -441,7 +441,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// AccessibilityGetName.
+        /// Gets accessibility name.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override string AccessibilityGetName()
@@ -454,6 +454,15 @@ namespace Tizen.NUI.Components
             {
                 return Message;
             }
+        }
+
+        /// <summary>
+        /// Gets accessibility description.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override string AccessibilityGetDescription()
+        {
+            return Message;
         }
 
         /// <summary>
