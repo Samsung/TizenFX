@@ -56,10 +56,11 @@ namespace Tizen.NUI.EXaml
                 {
                     var child = container.Children[i];
 
+                    DisposeXamlElements(child);
+
                     if (child.IsCreateByXaml)
                     {
                         child.Unparent();
-                        DisposeXamlElements(child);
                         child.Dispose();
                     }
                 }
