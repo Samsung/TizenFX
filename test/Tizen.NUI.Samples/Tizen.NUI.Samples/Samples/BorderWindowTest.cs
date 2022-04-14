@@ -26,13 +26,12 @@ namespace Tizen.NUI.Samples
 
       public CustomBorder() : base()
       {
+        BorderHeight = 60;
       }
-
 
       public override void CreateBorderView(View rootView)
       {
           this.rootView = rootView;
-          // rootView.BackgroundColor = new Color(1, 1, 1, 0.3f);
           rootView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
           rootView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
 
@@ -150,51 +149,10 @@ namespace Tizen.NUI.Samples
         }
       }
 
-      public override uint GetBorderLineThickness()
-      {
-        return base.GetBorderLineThickness();
-      }
-
-      public override uint GetTouchThickness()
-      {
-        return base.GetTouchThickness();
-      }
-
-      public override uint GetBorderHeight()
-      {
-        return base.GetBorderHeight();
-      }
-
-      public override Size2D GetMinSize()
-      {
-        return base.GetMinSize();
-      }
-
-      public override Size2D GetMaxSize()
-      {
-        return base.GetMaxSize();
-      }
-
-      public override void SetWindow(Window window)
-      {
-        base.SetWindow(window);
-      }
-
-      public override Window GetWindow()
-      {
-        return base.GetWindow();
-      }
-
       public override void Dispose()
       {
         base.Dispose();
       }
-
-      public override bool IsOverlayMode()
-      {
-        return true;
-      }
-
 
     }
 
