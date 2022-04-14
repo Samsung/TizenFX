@@ -20,23 +20,23 @@ namespace Tizen.NUI.Samples
             text.WidthResizePolicy = ResizePolicyType.FillToParent;
             window.Add(text);
 
-            if (text.IsAccessibilityEventSuppressed(AccessibilityEvent.MovedOut))
+            if (text.AccessibilitySuppressedEvents[AccessibilityEvent.MovedOut])
             {
                 text.Text = "FAIL";
                 Tizen.Log.Error("NUITEST", "Default value shoud be false\n");
                 return;
             }
 
-            text.SetAccessibilityEventSuppressed(AccessibilityEvent.MovedOut, true);
-            if (!text.IsAccessibilityEventSuppressed(AccessibilityEvent.MovedOut))
+            text.AccessibilitySuppressedEvents[AccessibilityEvent.MovedOut] = true;
+            if (!text.AccessibilitySuppressedEvents[AccessibilityEvent.MovedOut])
             {
                 text.Text = "FAIL";
                 Tizen.Log.Error("NUITEST", "Cannot set to true\n");
                 return;
             }
 
-            text.SetAccessibilityEventSuppressed(AccessibilityEvent.MovedOut, false);
-            if (text.IsAccessibilityEventSuppressed(AccessibilityEvent.MovedOut))
+            text.AccessibilitySuppressedEvents[AccessibilityEvent.MovedOut] = false;
+            if (text.AccessibilitySuppressedEvents[AccessibilityEvent.MovedOut])
             {
                 text.Text = "FAIL";
                 Tizen.Log.Error("NUITEST", "Cannot set to false\n");
