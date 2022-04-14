@@ -156,7 +156,6 @@ namespace Tizen.NUI.Components
             internal set
             {
                 itemLabel = value;
-                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, itemLabel.Text);
             }
         }
 
@@ -210,7 +209,6 @@ namespace Tizen.NUI.Components
             internal set
             {
                 itemSubLabel = value;
-                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, itemSubLabel.Text);
             }
         }
 
@@ -360,7 +358,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get accessibility name.
+        /// Gets accessibility name.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override string AccessibilityGetName()
