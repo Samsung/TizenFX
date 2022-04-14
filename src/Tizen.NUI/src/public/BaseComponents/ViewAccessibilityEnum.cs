@@ -569,7 +569,7 @@ namespace Tizen.NUI.BaseComponents
     };
 
     /// <summary>
-    /// A collection of AccessibilityStates
+    /// AccessibilityStates is a collection of AccessibilityState's
     /// </summary>
     /// <seealso cref="AccessibilityState"/>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -613,6 +613,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// Enumeration of possible AT-SPI events.
     /// </summary>
+    /// <seealso cref="AccessibilityEvents"/>
     /// <remarks>
     /// Accessible can emit differty type of event.
     /// </remarks>
@@ -735,6 +736,35 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         WindowChanged           = 22,
     };
+
+    /// <summary>
+    /// AccessibilityEvents is a collection of AccessibilityEvent's
+    /// </summary>
+    /// <seealso cref="AccessibilityEvent"/>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class AccessibilityEvents
+    {
+        // Target object for interop call
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal View Owner { get; set; }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool this[AccessibilityEvent accessibilityEvent]
+        {
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1065:DoNotRaiseExceptionsInUnexpectedLocations", Justification = "SWIG boilerplate, no exceptions are expected")]
+            get
+            {
+                bool result = Interop.ControlDevel.DaliAccessibilityIsSuppressedEvent(Owner.SwigCPtr, (int)accessibilityEvent);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return result;
+            }
+            set
+            {
+                Interop.ControlDevel.DaliAccessibilitySetSuppressedEvent(Owner.SwigCPtr, (int)accessibilityEvent, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+    }
 
     /// <summary>
     /// Notify mode for AccessibilityStates.
