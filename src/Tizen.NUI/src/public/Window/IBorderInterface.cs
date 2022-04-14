@@ -28,12 +28,57 @@ namespace Tizen.NUI
     public interface IBorderInterface
     {
         /// <summary>
+        /// The thickness of the border.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint BorderLineThickness {get;}
+
+        /// <summary>
+        /// The thickness of the border's touch area.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint TouchThickness {get;}
+
+        /// <summary>
+        /// The height of the border.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint BorderHeight {get;}
+
+        /// <summary>
+        /// The minimum size by which the window will small.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size2D MinSize {get;}
+
+        /// <summary>
+        /// The maximum size by which the window will big.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size2D MaxSize {get;}
+
+        /// <summary>
+        /// The window with borders added.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window BorderWindow {get; set;}
+
+        /// <summary>
+        /// Whether overlay mode.
+        /// If overlay mode is true, the border area is hidden when the window is maximized.
+        /// And if you touched at screen, the border area is shown on the screen.
+        /// Default value is false;
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool OverlayMode {get;}
+
+
+        /// <summary>
         /// Create border UI. User can override this method to draw border UI.
         /// </summary>
         /// <param name="rootView">The root view on which the border.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void CreateBorderView(View rootView);
-
 
         /// <summary>
         /// Called after the border UI is created.
@@ -49,57 +94,6 @@ namespace Tizen.NUI
         /// <param name="height">The height of the resized window</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void OnResized(int width, int height);
-
-        /// <summary>
-        /// Returns the thickness of the border.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint GetBorderLineThickness();
-
-        /// <summary>
-        /// Returns the thickness of the border's touch area.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint GetTouchThickness();
-
-        /// <summary>
-        /// Returns the height of the border.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint GetBorderHeight();
-
-        /// <summary>
-        /// Returns the minimum size by which the window will small.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D GetMinSize();
-
-        /// <summary>
-        /// Returns the maximum size by which the window will big.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D GetMaxSize();
-
-        /// <summary>
-        /// Sets The window to which the border is added.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetWindow(Window window);
-
-        /// <summary>
-        /// Returns the window with borders added.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Window GetWindow();
-
-        /// <summary>
-        /// Returns whether overlay mode is present.
-        /// If overlay mode is true, the border area is hidden when the window is maximized.
-        /// And if you touched at screen, the border area is shown on the screen.
-        /// Default value is false;
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsOverlayMode();
 
         /// <summary>
         /// Dispose
