@@ -490,6 +490,12 @@ namespace Tizen.NUI
             borderPinchGestureDetector.Detected += OnPinchGestureDetected;
 
             AddInterceptGesture();
+
+
+            if (BorderWindow.Size.Width >= 1920 && BorderWindow.Size.Height >= 1080)
+            {
+                BorderWindow.Maximize(true);
+            }
         }
 
 

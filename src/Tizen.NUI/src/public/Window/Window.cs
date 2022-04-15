@@ -40,6 +40,10 @@ namespace Tizen.NUI
         private string windowTitle;
         private List<Layer> childLayers = new List<Layer>();
         private LayoutController localController;
+        private bool isMin = false;
+        private bool isMax = false;
+        private Rectangle preWinPositonSize;
+        private Size2D preWinSize;
 
         static internal bool IsSupportedMultiWindow()
         {
@@ -1660,8 +1664,29 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Maximize(bool max)
         {
-            Interop.Window.Maximize(SwigCPtr, max);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            isMax = max;
+            isMin = false;
+            if(isMax == true)
+            {
+                preWinPositonSize = new Rectangle(WindowPositionSize);
+                WindowPositionSize = new Rectangle(0, 0, 1910, 1025);
+                Tizen.Log.Error("gab_test", $"Maximize true 0, 0, 1910, 1025\n");
+            }
+            else
+            {
+                if (preWinPositonSize == null || (preWinPositonSize.Width >= 1910 && preWinPositonSize.Height >= 1025))
+                {
+                    WindowPositionSize = new Rectangle(50, 50, 1528, 820);
+                    Tizen.Log.Error("gab_test", $"Maximize Rectangle(50, 50, 1528, 820) \n");
+                }
+                else
+                {
+                    WindowPositionSize = preWinPositonSize;
+                    Tizen.Log.Error("gab_test", $"Maximize false \n");
+                }
+            }
+            // Interop.Window.Maximize(SwigCPtr, max);
+            // if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1671,9 +1696,16 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsMaximized()
         {
-            bool ret = Interop.Window.IsMaximized(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return isMax;
+            // bool ret = Interop.Window.IsMaximized(SwigCPtr);
+            // if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            // return ret;
+        }
+
+        public void ResetMinMax()
+        {
+            isMax = false;
+            isMin = false;
         }
 
         /// <summary>
@@ -1687,8 +1719,27 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Minimize(bool min)
         {
-            Interop.Window.Minimize(SwigCPtr, min);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            isMin = min;
+            isMax = false;
+            if (isMin == true)
+            {
+                preWinPositonSize = new Rectangle(WindowPositionSize);
+                WindowPositionSize = new Rectangle(preWinPositonSize.X, preWinPositonSize.Y+preWinPositonSize.Height, 500, 0);
+
+            }
+            else
+            {
+                if (preWinPositonSize == null)
+                {
+                    WindowPositionSize = new Rectangle(100, 100, 700, 700);
+                }
+                else
+                {
+                    WindowPositionSize = preWinPositonSize;
+                }
+            }
+            // Interop.Window.Minimize(SwigCPtr, min);
+            // if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
@@ -1698,9 +1749,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsMinimized()
         {
-            bool ret = Interop.Window.IsMinimized(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return isMin;
+            // bool ret = Interop.Window.IsMinimized(SwigCPtr);
+            // if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            // return ret;
         }
 
         /// <summary>
