@@ -197,8 +197,7 @@ namespace Tizen.NUI.Samples
 
       if (SubWindows[2] == null)
       {
-        SubWindows[2] = new Window("GalleryWindow", galleryWinPosition, false);
-        SubWindows[2].EnableBorderWindow();
+        SubWindows[2] = new Window("GalleryWindow", null, galleryWinPosition, false);
 
         windowMainView[2] = new View()
         {
@@ -264,8 +263,7 @@ namespace Tizen.NUI.Samples
 
       if (SubWindows[3] == null)
       {
-        SubWindows[3] = new Window("EmailWindow", emailWinPosition, false);
-        SubWindows[3].EnableBorderWindow();
+        SubWindows[3] = new Window("EmailWindow", null, emailWinPosition, false);
 
         windowMainView[3] = new View()
         {
@@ -380,8 +378,7 @@ namespace Tizen.NUI.Samples
 
       if (SubWindows[4] == null)
       {
-        SubWindows[4] = new Window("FacebookWindow", facebookWinPosition, false);
-        SubWindows[4].EnableBorderWindow();
+        SubWindows[4] = new Window("FacebookWindow", null, facebookWinPosition, false);
 
         windowMainView[4] = new View()
         {
@@ -631,8 +628,7 @@ namespace Tizen.NUI.Samples
         
       if (SubWindows[0] == null)
       {
-        SubWindows[0] = new Window("AllApps", allAppsWinPosition, false);
-        SubWindows[0].EnableBorderWindow();
+        SubWindows[0] = new Window("AllApps", null, allAppsWinPosition, false);
 
         windowMainView[0] = new View()
         {
@@ -810,8 +806,7 @@ namespace Tizen.NUI.Samples
 
       if (SubWindows[1] == null)
       {
-        SubWindows[1] = new Window("MyAppsWindow", myAppsWinPosition, false);
-        SubWindows[1].EnableBorderWindow();
+        SubWindows[1] = new Window("MyAppsWindow", null, myAppsWinPosition, false);
 
         windowMainView[1] = new View()
         {
