@@ -1653,8 +1653,8 @@ namespace Tizen.NUI
             {
                 if (preWinPositonSize == null || (preWinPositonSize.Width >= 1910 && preWinPositonSize.Height >= 1025))
                 {
-                    WindowPositionSize = new Rectangle(50, 50, 1528, 820);
-                    Tizen.Log.Error("gab_test", $"Maximize Rectangle(50, 50, 1528, 820) \n");
+                    WindowPositionSize = new Rectangle(100, 100, 700, 700);
+                    Tizen.Log.Error("gab_test", $"Maximize Rectangle(100, 100, 700, 700) \n");
                 }
                 else
                 {
