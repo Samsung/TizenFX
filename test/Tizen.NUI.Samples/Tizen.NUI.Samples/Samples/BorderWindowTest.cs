@@ -232,15 +232,6 @@ namespace Tizen.NUI.Samples
     void Initialize()
     {
         win = NUIApplication.GetDefaultWindow();
-
-             List<Window.WindowOrientation> list = new List<Window.WindowOrientation>();
-        list.Add(Window.WindowOrientation.Landscape);
-        list.Add(Window.WindowOrientation.LandscapeInverse);
-        list.Add(Window.WindowOrientation.NoOrientationPreference);
-        list.Add(Window.WindowOrientation.Portrait);
-        list.Add(Window.WindowOrientation.PortraitInverse);
-        win.SetAvailableOrientations(list);
-
         var root = new ImageView()
         {
           WidthResizePolicy = ResizePolicyType.FillToParent,
