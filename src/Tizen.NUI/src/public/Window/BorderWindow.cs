@@ -37,6 +37,7 @@ namespace Tizen.NUI
         private bool isInterceptTouch = false;
 
         private Timer overlayTimer;
+        private Color overlayBackgroundColor;
 
         // for border area
         private View rootView = null;
@@ -295,6 +296,8 @@ namespace Tizen.NUI
                     InterceptTouchEvent += OnWinInterceptTouch;
                     if (rootView != null)
                     {
+                        overlayBackgroundColor = new Color(rootView.BackgroundColor);
+                        rootView.BackgroundColor = new Color(1, 1, 1, 0.3f);
                         rootView.Hide();
                     }
                 }
@@ -311,6 +314,7 @@ namespace Tizen.NUI
                     GetBorderWindowBottomLayer().LowerToBottom();
                     if (rootView != null)
                     {
+                        rootView.BackgroundColor = overlayBackgroundColor;
                         rootView.Show();
                     }
                 }

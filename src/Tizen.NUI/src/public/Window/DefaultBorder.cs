@@ -272,6 +272,7 @@ namespace Tizen.NUI
                 }
                 else if (direction != Window.BorderDirection.None)
                 {
+                    OnRequestResize();
                     BorderWindow.RequestResizeToServer((Window.ResizeDirection)direction);
                 }
             }
@@ -311,14 +312,8 @@ namespace Tizen.NUI
             if (e.Touch.GetState(0) == PointStateType.Down)
             {
               ClearWindowGesture();
-              if (BorderWindow.IsMinimized() == true)
-              {
-                BorderWindow.RequestResizeToServer(Window.ResizeDirection.TopLeft);
-              }
-              else
-              {
-                BorderWindow.RequestResizeToServer(Window.ResizeDirection.BottomLeft);
-              }
+              OnRequestResize();
+              BorderWindow.RequestResizeToServer(Window.ResizeDirection.BottomLeft);
             }
             return true;
         }
@@ -332,14 +327,8 @@ namespace Tizen.NUI
             if (e.Touch.GetState(0) == PointStateType.Down)
             {
               ClearWindowGesture();
-              if (BorderWindow.IsMinimized() == true)
-              {
-                BorderWindow.RequestResizeToServer(Window.ResizeDirection.TopRight);
-              }
-              else
-              {
-                BorderWindow.RequestResizeToServer(Window.ResizeDirection.BottomRight);
-              }
+              OnRequestResize();
+              BorderWindow.RequestResizeToServer(Window.ResizeDirection.BottomRight);
             }
             return true;
         }
@@ -616,6 +605,14 @@ namespace Tizen.NUI
                 BorderWindow.Remove(windowView);
                 BorderWindow.InterceptTouchEvent += OnWinInterceptedTouch;
             }
+        }
+
+        /// <summary>
+        /// Called when requesting a resize
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnRequestResize()
+        {
         }
 
         /// <summary>
