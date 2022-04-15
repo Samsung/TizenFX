@@ -88,6 +88,12 @@ namespace Tizen.NUI
         public void OnCreated(View rootView);
 
         /// <summary>
+        /// Called when requesting a resize
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void OnRequestResize();
+
+        /// <summary>
         /// Called when the window is resized.
         /// </summary>
         /// <param name="width">The width of the resized window</param>
