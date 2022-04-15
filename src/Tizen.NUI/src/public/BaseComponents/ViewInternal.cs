@@ -1033,11 +1033,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         internal void ResetLayout()
         {
-            if (LayoutCount > 0)
-            {
             LayoutCount--;
-
-            }
 
             layout = null;
         }
