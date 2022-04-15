@@ -87,6 +87,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void OnCreated(View rootView);
 
+        
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void OnRequestResize();
+
         /// <summary>
         /// Called when the window is resized.
         /// </summary>

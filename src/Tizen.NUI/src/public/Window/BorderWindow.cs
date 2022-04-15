@@ -37,6 +37,7 @@ namespace Tizen.NUI
         private bool isInterceptTouch = false;
 
         private Timer overlayTimer;
+        private Color currentBackgroundColor;
 
         // for border area
         private View rootView = null;
@@ -109,11 +110,13 @@ namespace Tizen.NUI
             {
                 borderInterface = new DefaultBorder();
             }
-            this.borderInterface = borderInterface;
 
             GetDefaultLayer().Name = "OriginalRootLayer";
 
             Resized += OnBorderWindowResized;
+
+            this.borderInterface = borderInterface;
+            borderInterface.BorderWindow = this;
 
             isBorderWindow = true;
 
@@ -142,7 +145,6 @@ namespace Tizen.NUI
 
             SetTransparency(true);
             BackgroundColor = Color.Transparent;
-            borderInterface.BorderWindow = this;
 
             EnableFloatingMode(true);
 
@@ -295,6 +297,8 @@ namespace Tizen.NUI
                     InterceptTouchEvent += OnWinInterceptTouch;
                     if (rootView != null)
                     {
+                        currentBackgroundColor = new Color(rootView.BackgroundColor);
+                        rootView.BackgroundColor = new Color(1, 1, 1, 0.3f);
                         rootView.Hide();
                     }
                 }
@@ -311,6 +315,7 @@ namespace Tizen.NUI
                     GetBorderWindowBottomLayer().LowerToBottom();
                     if (rootView != null)
                     {
+                        rootView.BackgroundColor = currentBackgroundColor;
                         rootView.Show();
                     }
                 }
@@ -324,16 +329,20 @@ namespace Tizen.NUI
             Tizen.Log.Info("NUI", $"OnBorderWindowResized {e.WindowSize.Width},{e.WindowSize.Height}\n");
             int resizeWidth = e.WindowSize.Width;
             int resizeHeight = e.WindowSize.Height;
-            if (borderInterface.MinSize != null)
-            {
-                resizeWidth = borderInterface.MinSize.Width > resizeWidth ? (int)borderInterface.MinSize.Width : resizeWidth;
-                resizeHeight = borderInterface.MinSize.Height > resizeHeight ? (int)borderInterface.MinSize.Height : resizeHeight;
-            }
 
-            if (borderInterface.MaxSize != null)
+            if (borderInterface != null)
             {
-                resizeWidth = borderInterface.MaxSize.Width < resizeWidth ? (int)borderInterface.MaxSize.Width : resizeWidth;
-                resizeHeight = borderInterface.MaxSize.Height < resizeHeight ? (int)borderInterface.MaxSize.Height : resizeHeight;
+                if (borderInterface.MinSize != null)
+                {
+                    resizeWidth = borderInterface.MinSize.Width > resizeWidth ? (int)borderInterface.MinSize.Width : resizeWidth;
+                    resizeHeight = borderInterface.MinSize.Height > resizeHeight ? (int)borderInterface.MinSize.Height : resizeHeight;
+                }
+
+                if (borderInterface.MaxSize != null)
+                {
+                    resizeWidth = borderInterface.MaxSize.Width < resizeWidth ? (int)borderInterface.MaxSize.Width : resizeWidth;
+                    resizeHeight = borderInterface.MaxSize.Height < resizeHeight ? (int)borderInterface.MaxSize.Height : resizeHeight;
+                }
             }
 
             if (resizeWidth != e.WindowSize.Width || resizeHeight != e.WindowSize.Height)
@@ -341,7 +350,12 @@ namespace Tizen.NUI
                 WindowSize = new Size2D(resizeWidth, resizeHeight);
             }
 
-            if (borderInterface.OverlayMode == true && IsMaximized() == true)
+            if (borderInterface != null)
+            {
+                borderInterface.OnResized(resizeWidth, resizeHeight);
+            }
+            
+            if (borderInterface != null && borderInterface.OverlayMode == true && IsMaximized() == true)
             {
                 Interop.ActorInternal.SetSize(GetBorderWindowRootLayer().SwigCPtr, resizeWidth, resizeHeight);
                 Interop.ActorInternal.SetSize(GetBorderWindowBottomLayer().SwigCPtr, resizeWidth, resizeHeight);
@@ -354,7 +368,6 @@ namespace Tizen.NUI
                 OverlayMode(false);
             }
 
-            borderInterface.OnResized(resizeWidth, resizeHeight);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) { throw NDalicPINVOKE.SWIGPendingException.Retrieve(); }
         }

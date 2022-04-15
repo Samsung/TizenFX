@@ -49,7 +49,7 @@ namespace Tizen.NUI
         private static readonly uint DefaultTouchThickness = 20;
         private static readonly Color DefaultBackgroundColor = new Color(1, 1, 1, 0.3f);
         private static readonly Color DefaultClickedBackgroundColor = new Color(1, 1, 1, 0.4f);
-        private static readonly Size2D DefaultMinSize = new Size2D(500, 0);
+        private static readonly Size2D DefaultMinSize = new Size2D(100, 0);
         #endregion //Constant Fields
 
 
@@ -272,6 +272,8 @@ namespace Tizen.NUI
                 }
                 else if (direction != Window.BorderDirection.None)
                 {
+                    OnRequestResize();
+                    BorderWindow.ResetMinMax();
                     BorderWindow.RequestResizeToServer((Window.ResizeDirection)direction);
                 }
             }
@@ -311,6 +313,7 @@ namespace Tizen.NUI
             if (e.Touch.GetState(0) == PointStateType.Down)
             {
               ClearWindowGesture();
+              OnRequestResize();
               if (BorderWindow.IsMinimized() == true)
               {
                 BorderWindow.RequestResizeToServer(Window.ResizeDirection.TopLeft);
@@ -319,6 +322,7 @@ namespace Tizen.NUI
               {
                 BorderWindow.RequestResizeToServer(Window.ResizeDirection.BottomLeft);
               }
+              BorderWindow.ResetMinMax();
             }
             return true;
         }
@@ -332,6 +336,7 @@ namespace Tizen.NUI
             if (e.Touch.GetState(0) == PointStateType.Down)
             {
               ClearWindowGesture();
+              OnRequestResize();
               if (BorderWindow.IsMinimized() == true)
               {
                 BorderWindow.RequestResizeToServer(Window.ResizeDirection.TopRight);
@@ -340,6 +345,7 @@ namespace Tizen.NUI
               {
                 BorderWindow.RequestResizeToServer(Window.ResizeDirection.BottomRight);
               }
+              BorderWindow.ResetMinMax();
             }
             return true;
         }
@@ -424,6 +430,7 @@ namespace Tizen.NUI
                     rootView.CornerRadius = new Vector4(0, 0, 0, 0);
                     rootView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
                     BorderWindow.SetTransparency(false);
+                    BorderWindow.BackgroundColor = Color.White;
                 }
                 else
                 {
@@ -450,6 +457,7 @@ namespace Tizen.NUI
                     rootView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
                     rootView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
                     BorderWindow.SetTransparency(true);
+                    BorderWindow.BackgroundColor = Color.Transparent;
                 }
             }
         }
@@ -622,6 +630,11 @@ namespace Tizen.NUI
                 BorderWindow.Remove(windowView);
                 BorderWindow.InterceptTouchEvent += OnWinInterceptedTouch;
             }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnRequestResize()
+        {
         }
 
         /// <summary>
