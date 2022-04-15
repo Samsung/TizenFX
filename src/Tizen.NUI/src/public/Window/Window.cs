@@ -1647,20 +1647,10 @@ namespace Tizen.NUI
             {
                 preWinPositonSize = new Rectangle(WindowPositionSize);
                 WindowPositionSize = new Rectangle(0, 0, 1910, 1025);
-                Tizen.Log.Error("gab_test", $"Maximize true 0, 0, 1910, 1025\n");
             }
             else
             {
-                if (preWinPositonSize == null || (preWinPositonSize.Width >= 1910 && preWinPositonSize.Height >= 1025))
-                {
-                    WindowPositionSize = new Rectangle(100, 100, 700, 700);
-                    Tizen.Log.Error("gab_test", $"Maximize Rectangle(100, 100, 700, 700) \n");
-                }
-                else
-                {
-                    WindowPositionSize = preWinPositonSize;
-                    Tizen.Log.Error("gab_test", $"Maximize false \n");
-                }
+                WindowPositionSize = preWinPositonSize;
             }
             // Interop.Window.Maximize(SwigCPtr, max);
             // if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1706,14 +1696,7 @@ namespace Tizen.NUI
             }
             else
             {
-                if (preWinPositonSize == null)
-                {
-                    WindowPositionSize = new Rectangle(100, 100, 700, 700);
-                }
-                else
-                {
-                    WindowPositionSize = preWinPositonSize;
-                }
+                WindowPositionSize = preWinPositonSize;
             }
             // Interop.Window.Minimize(SwigCPtr, min);
             // if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

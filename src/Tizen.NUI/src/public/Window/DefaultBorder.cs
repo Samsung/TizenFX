@@ -325,7 +325,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnMaxTouched(object sender, View.TouchEventArgs e)
         {
-            Tizen.Log.Error("gab_test", $"OnMaxTouched\n");
             if (e.Touch.GetState(0) == PointStateType.Up)
             {
                 ClearWindowGesture();
@@ -452,12 +451,6 @@ namespace Tizen.NUI
             borderPinchGestureDetector.Detected += OnPinchGestureDetected;
 
             AddInterceptGesture();
-
-            Tizen.Log.Error("gab_test", $"OnCreated {window.Size.Width},{window.Size.Height}\n");
-            if (window.Size.Width >= 1920 && window.Size.Height >= 1080)
-            {
-                window.Maximize(true);
-            }
         }
 
 
@@ -593,7 +586,7 @@ namespace Tizen.NUI
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void OnResized(int width, int height)
+        public virtual void OnResized(int width, int hegith)
         {
             ChangedMax();
         }
