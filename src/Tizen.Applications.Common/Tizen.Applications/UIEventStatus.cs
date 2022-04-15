@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+using System.ComponentModel;
+
 namespace Tizen.Applications
 {
     /// <summary>
     /// Enumeration for the UI event status.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public enum UIEventStatus
     {
         /// <summary>

@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Applications
 {
@@ -22,6 +23,7 @@ namespace Tizen.Applications
     /// The class for event arguments of the UIEvent.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class UIEventArgs : EventArgs
     {
         /// <summary>

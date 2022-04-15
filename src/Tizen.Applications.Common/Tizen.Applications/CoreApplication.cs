@@ -54,6 +54,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <param name="backend">The backend instance implementing ICoreBackend interface.</param>
         /// <param name="task">The backend instance implmenting ICoreTask interface.</param>
+        /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public CoreApplication(ICoreBackend backend, ICoreTask task)
         {
