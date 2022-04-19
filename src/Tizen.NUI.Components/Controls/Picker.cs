@@ -66,6 +66,7 @@ namespace Tizen.NUI.Components
         private int startY;
         private int pageSize;
         private int currentValue;
+        private int previousValue;
         private int maxValue;
         private int minValue;
         private int lastScrollPosion;
@@ -400,7 +401,7 @@ namespace Tizen.NUI.Components
 
             itemList = new List<TextLabel>();
 
-            minValue = maxValue = currentValue = 0;
+            minValue = maxValue = currentValue = previousValue = 0;
             displayedValues = null;
             //Those many flags for min, max, value method calling sequence dependency.
             needItemUpdate = true;
@@ -420,6 +421,8 @@ namespace Tizen.NUI.Components
             ValueChangedEventArgs eventArgs =
                 new ValueChangedEventArgs(displayedValuesUpdate ? Int32.Parse(itemList[currentValue].Name) : Int32.Parse(itemList[currentValue].Text));
             ValueChanged?.Invoke(this, eventArgs);
+
+            UpdateAccessibilityHidden();
         }
 
         private void PageAdjust(float positionY)
@@ -464,6 +467,7 @@ namespace Tizen.NUI.Components
                 }
                 if (currentValue != ((int)(-e.Position.Y / itemHeight) + 2))
                 {
+                    previousValue = currentValue;
                     currentValue = ((int)(-e.Position.Y / itemHeight) + 2);
                     OnValueChanged();
                 }
@@ -481,6 +485,7 @@ namespace Tizen.NUI.Components
             {
                 if (currentValue != ((int)(-e.Position.Y / itemHeight) + 2))
                 {
+                    previousValue = currentValue;
                     currentValue = ((int)(-e.Position.Y / itemHeight) + 2);
                     OnValueChanged();
                 }
@@ -527,6 +532,7 @@ namespace Tizen.NUI.Components
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 Text = GetItemText(loopEnabled, idx),
                 Name = idx.ToString(),
+                //AccessibilityHidden = true,
             };
 
             temp.AccessibilitySuppressedEvents[AccessibilityEvent.MovedOut] = true;
@@ -547,6 +553,8 @@ namespace Tizen.NUI.Components
                 currentValue = currentValue - minValue + 2;
             }
             pickerScroller.ScrollTo(startY, false);
+
+            UpdateAccessibilityHidden();
         }
 
         private void UpdateValueList()
@@ -628,6 +636,7 @@ namespace Tizen.NUI.Components
                         //Todo: sometimes this gets wrong. the currentValue is not correct. need to be fixed.
                         if (currentValue != ((int)(-pickerScroller.Position.Y / itemHeight) + 2))
                         {
+                            previousValue = currentValue;
                             currentValue = ((int)(-pickerScroller.Position.Y / itemHeight) + 2);
                             OnValueChanged();
                         }
@@ -685,6 +694,25 @@ namespace Tizen.NUI.Components
             return false;
         }
 
+        // Updates AccessibilityHidden property for each item.
+        private void UpdateAccessibilityHidden()
+        {
+            for (int i = previousValue - 3; i <= previousValue + 3; i++)
+            {
+                if (i >= 0 && itemList[i] != null)
+                {
+                    itemList[i].AccessibilityHidden = true;
+                }
+            }
+
+            for (int i = currentValue - 3; i <= currentValue + 3; i++)
+            {
+                if (i >= 0 && itemList[i] != null)
+                {
+                    itemList[i].AccessibilityHidden = false;
+                }
+            }
+        }
 
         internal class PickerScroller : ScrollableBase
         {

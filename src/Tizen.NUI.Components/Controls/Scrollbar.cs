@@ -270,7 +270,8 @@ namespace Tizen.NUI.Components
             trackView = new View()
             {
                 PositionUsesPivotPoint = true,
-                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.15f)
+                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.15f),
+                AccessibilityHidden = true
             };
             Add(trackView);
 
