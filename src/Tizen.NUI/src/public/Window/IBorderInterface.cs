@@ -25,7 +25,7 @@ namespace Tizen.NUI
     /// This is the interface used to draw the border UI.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public interface IBorderInterface
+    public interface IBorderInterface : IDisposable
     {
         /// <summary>
         /// The thickness of the border.
@@ -101,10 +101,5 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void OnResized(int width, int height);
 
-        /// <summary>
-        /// Dispose
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Dispose();
     }
 }
