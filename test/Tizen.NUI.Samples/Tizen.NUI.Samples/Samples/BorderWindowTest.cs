@@ -149,11 +149,6 @@ namespace Tizen.NUI.Samples
         }
       }
 
-      public override void Dispose()
-      {
-        base.Dispose();
-      }
-
     }
 
     void CreateSubWindowOne()
