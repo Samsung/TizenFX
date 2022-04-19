@@ -342,7 +342,6 @@ namespace Tizen.NUI
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
                 float childMarginWidth = childMargin.Start + childMargin.End;
-                float childMarginHeight = childMargin.Top + childMargin.Bottom;
                 bool useRemainingWidth = (childDesiredWidth == 0) && (childWeight > 0);
 
                 if ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (useRemainingWidth))
@@ -383,16 +382,6 @@ namespace Tizen.NUI
                 {
                     childState.heightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                 }
-
-                float childMeasuredHeight = childLayout.MeasuredHeight.Size.AsDecimal();
-                if (childMeasuredHeight < 0)
-                {
-                    maxHeight = Math.Max(maxHeight, childMarginHeight);
-                }
-                else
-                {
-                    maxHeight = Math.Max(maxHeight, childMeasuredHeight + childMarginHeight);
-                }
             } // 1ST PHASE foreach
 
             totalLength = Math.Max(totalLength, totalLength + CellPadding.Width * (childrenCount - 1) + Padding.Start + Padding.End);
@@ -426,7 +415,6 @@ namespace Tizen.NUI
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
-                float childMarginHeight = childMargin.Top + childMargin.Bottom;
                 bool useRemainingWidth = (childDesiredWidth == 0) && (childWeight > 0);
                 bool needToMeasure = false;
 
@@ -487,16 +475,6 @@ namespace Tizen.NUI
                 if (needToMeasure == true)
                 {
                     MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
-
-                    float childMeasuredHeight = childLayout.MeasuredHeight.Size.AsDecimal();
-                    if (childMeasuredHeight < 0)
-                    {
-                        maxHeight = Math.Max(maxHeight, childMarginHeight);
-                    }
-                    else
-                    {
-                        maxHeight = Math.Max(maxHeight, childMeasuredHeight + childMarginHeight);
-                    }
                 }
 
                 if ((childWeight > 0) && ((childDesiredWidth == LayoutParamPolicies.MatchParent) || (childDesiredWidth == 0)))
@@ -555,9 +533,33 @@ namespace Tizen.NUI
                             }
                         }
                     }
-                } // 3RD PHASE foreach
+                }
+            }
+            // 3RD PHASE foreach
+
+            // Decide the max height among children.
+            foreach (var childLayout in LayoutChildren)
+            {
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
+
+                Extents childMargin = childLayout.Margin;
+                float childMarginHeight = childMargin.Top + childMargin.Bottom;
+                float childMeasuredHeight = childLayout.MeasuredHeight.Size.AsDecimal();
+
+                if (childMeasuredHeight < 0)
+                {
+                    maxHeight = Math.Max(maxHeight, childMarginHeight);
+                }
+                else
+                {
+                    maxHeight = Math.Max(maxHeight, childMeasuredHeight + childMarginHeight);
+                }
             }
 
+            // Decide the max height compared with paddings and its suggested height.
             maxHeight = Math.Max(maxHeight, maxHeight + (Padding.Top + Padding.Bottom));
             maxHeight = Math.Max(maxHeight, SuggestedMinimumHeight.AsRoundedValue());
 
@@ -604,7 +606,6 @@ namespace Tizen.NUI
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
-                float childMarginWidth = childMargin.Start + childMargin.End;
                 float childMarginHeight = childMargin.Top + childMargin.Bottom;
                 bool useRemainingHeight = (childDesiredHeight == 0) && (childWeight > 0);
 
@@ -646,16 +647,6 @@ namespace Tizen.NUI
                 {
                     childState.heightState = MeasuredSize.StateType.MeasuredSizeTooSmall;
                 }
-
-                float childMeasuredWidth = childLayout.MeasuredWidth.Size.AsDecimal();
-                if (childMeasuredWidth < 0)
-                {
-                    maxWidth = Math.Max(maxWidth, childMarginWidth);
-                }
-                else
-                {
-                    maxWidth = Math.Max(maxWidth, childMeasuredWidth + childMarginWidth);
-                }
             } // 1ST PHASE foreach
 
             totalLength = Math.Max(totalLength, totalLength + CellPadding.Height * (childrenCount - 1) + Padding.Top + Padding.Bottom);
@@ -689,7 +680,6 @@ namespace Tizen.NUI
                 int childDesiredHeight = childLayout.Owner.HeightSpecification;
                 float childWeight = childLayout.Owner.Weight;
                 Extents childMargin = childLayout.Margin;
-                float childMarginWidth = childMargin.Start + childMargin.End;
                 bool useRemainingHeight = (childDesiredHeight == 0) && (childWeight > 0);
                 bool needToMeasure = false;
 
@@ -750,16 +740,6 @@ namespace Tizen.NUI
                 if (needToMeasure == true)
                 {
                     MeasureChildWithMargins(childLayout, widthMeasureSpec, new LayoutLength(0), heightMeasureSpec, new LayoutLength(0));
-
-                    float childMeasuredWidth = childLayout.MeasuredWidth.Size.AsDecimal();
-                    if (childMeasuredWidth < 0)
-                    {
-                        maxWidth = Math.Max(maxWidth, childMarginWidth);
-                    }
-                    else
-                    {
-                        maxWidth = Math.Max(maxWidth, childMeasuredWidth + childMarginWidth);
-                    }
                 }
 
                 if ((childWeight > 0) && ((childDesiredHeight == LayoutParamPolicies.MatchParent) || (childDesiredHeight == 0)))
@@ -818,9 +798,32 @@ namespace Tizen.NUI
                             }
                         }
                     }
-                } // 3RD PHASE foreach
+                }
+            } // 3RD PHASE foreach
+
+            // Decide the max width among children.
+            foreach (var childLayout in LayoutChildren)
+            {
+                if (!childLayout.SetPositionByLayout)
+                {
+                    continue;
+                }
+
+                Extents childMargin = childLayout.Margin;
+                float childMarginWidth = childMargin.Start + childMargin.End;
+                float childMeasuredWidth = childLayout.MeasuredWidth.Size.AsDecimal();
+
+                if (childMeasuredWidth < 0)
+                {
+                    maxWidth = Math.Max(maxWidth, childMarginWidth);
+                }
+                else
+                {
+                    maxWidth = Math.Max(maxWidth, childMeasuredWidth + childMarginWidth);
+                }
             }
 
+            // Decide the max width compared with paddings and its suggested width.
             maxWidth = Math.Max(maxWidth, maxWidth + (Padding.Start + Padding.End));
             maxWidth = Math.Max(maxWidth, SuggestedMinimumWidth.AsRoundedValue());
 
