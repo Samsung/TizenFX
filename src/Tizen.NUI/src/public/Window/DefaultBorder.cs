@@ -31,31 +31,30 @@ namespace Tizen.NUI
         private static readonly string ResourcePath = FrameworkInformation.ResourcePath;
         private static readonly string MinimalizeIcon = ResourcePath + "minimalize.png";
         private static readonly string MaximalizeIcon = ResourcePath + "maximalize.png";
-        private static readonly string PreviousIcon = ResourcePath + "smallwindow.png";
         private static readonly string CloseIcon = ResourcePath + "close.png";
         private static readonly string LeftCornerIcon = ResourcePath + "leftCorner.png";
         private static readonly string RightCornerIcon = ResourcePath + "rightCorner.png";
 
         private static readonly string DarkMinimalizeIcon = ResourcePath + "dark_minimalize.png";
-        private static readonly string DarkMaximalizeIcon = ResourcePath + "dark_maximalize.png";
         private static readonly string DarkPreviousIcon = ResourcePath + "dark_smallwindow.png";
         private static readonly string DarkCloseIcon = ResourcePath + "dark_close.png";
         private static readonly string DarkLeftCornerIcon = ResourcePath + "dark_leftCorner.png";
         private static readonly string DarkRightCornerIcon = ResourcePath + "dark_rightCorner.png";
 
 
-        private static readonly uint DefaultHeight = 50;
-        private static readonly uint DefaultLineThickness = 5;
-        private static readonly uint DefaultTouchThickness = 20;
+        private const uint DefaultHeight = 50;
+        private const uint DefaultLineThickness = 5;
+        private const uint DefaultTouchThickness = 20;
         private static readonly Color DefaultBackgroundColor = new Color(1, 1, 1, 0.3f);
         private static readonly Color DefaultClickedBackgroundColor = new Color(1, 1, 1, 0.4f);
-        private static readonly Size2D DefaultMinSize = new Size2D(500, 0);
+        private static readonly Size2D DefaultMinSize = new Size2D(100, 0);
         #endregion //Constant Fields
 
 
         #region Fields
         private Color backgroundColor;
         private View rootView;
+        private View borderView;
 
         private ImageView minimalizeIcon;
         private ImageView maximalizeIcon;
@@ -71,6 +70,7 @@ namespace Tizen.NUI
         private Timer timer;
 
         private CurrentGesture currentGesture = CurrentGesture.None;
+        private bool disposed = false;
         #endregion //Fields
 
         #region Events
@@ -154,12 +154,16 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void CreateBorderView(View rootView)
         {
+            if (rootView == null)
+            {
+                return;
+            }
             this.rootView = rootView;
             rootView.BackgroundColor = DefaultBackgroundColor;
             rootView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
             rootView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
 
-            View borderView = new View()
+            borderView = new View()
             {
                 Layout = new LinearLayout()
                 {
@@ -227,6 +231,10 @@ namespace Tizen.NUI
         /// Determines the behavior of pinch gesture.
         private void OnPinchGestureDetected(object source, PinchGestureDetector.DetectedEventArgs e)
         {
+            if (e == null)
+            {
+                return;
+            }
             if (e.PinchGesture.State == Gesture.StateType.Started)
             {
                 preScale = e.PinchGesture.Scale;
@@ -254,6 +262,10 @@ namespace Tizen.NUI
         /// Determines the behavior of borders.
         private void OnPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
         {
+            if (e == null)
+            {
+                return;
+            }
             PanGesture panGesture = e.PanGesture;
 
             if (panGesture.State == Gesture.StateType.Started)
@@ -309,6 +321,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnLeftCornerIconTouched(object sender, View.TouchEventArgs e)
         {
+            if (e == null)
+            {
+                return false;
+            }
             if (e.Touch.GetState(0) == PointStateType.Down)
             {
               ClearWindowGesture();
@@ -324,6 +340,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnRightCornerIconTouched(object sender, View.TouchEventArgs e)
         {
+            if (e == null)
+            {
+                return false;
+            }
             if (e.Touch.GetState(0) == PointStateType.Down)
             {
               ClearWindowGesture();
@@ -340,6 +360,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnMinimizeIconTouched(object sender, View.TouchEventArgs e)
         {
+            if (e == null)
+            {
+                return false;
+            }
             if (e.Touch.GetState(0) == PointStateType.Up)
             {
                 ClearWindowGesture();
@@ -354,6 +378,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnMaximizeIconTouched(object sender, View.TouchEventArgs e)
         {
+            if (e == null)
+            {
+                return false;
+            }
             if (e.Touch.GetState(0) == PointStateType.Up)
             {
                 ClearWindowGesture();
@@ -375,6 +403,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnCloseIconTouched(object sender, View.TouchEventArgs e)
         {
+            if (e == null)
+            {
+                return false;
+            }
             if (e.Touch.GetState(0) == PointStateType.Up)
             {
                 BorderWindow.Destroy();
@@ -451,6 +483,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnCreated(View rootView)
         {
+            if (rootView == null)
+            {
+                return;
+            }
             // Register to resize and move through pan gestures.
             borderPanGestureDetector = new PanGestureDetector();
             borderPanGestureDetector.Attach(rootView);
@@ -508,6 +544,7 @@ namespace Tizen.NUI
                 {
                     timer.Stop();
                     timer.Dispose();
+                    timer = null;
                 }
             }
             return false;
@@ -521,7 +558,7 @@ namespace Tizen.NUI
             {
                 WidthResizePolicy = ResizePolicyType.FillToParent,
                 HeightResizePolicy = ResizePolicyType.FillToParent,
-                BackgroundColor = new Vector4(1, 1, 1, 0.5f),
+                BackgroundColor = new Color(1, 1, 1, 0.5f),
             };
             windowView.TouchEvent += (s, e) =>
             {
@@ -626,24 +663,44 @@ namespace Tizen.NUI
             UpdateIcons();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                ClearWindowGesture();
+                if (BorderWindow != null)
+                {
+                    BorderWindow.InterceptTouchEvent -= OnWinInterceptedTouch;
+                }
+                borderPanGestureDetector?.Dispose();
+                borderPinchGestureDetector?.Dispose();
+                backgroundColor?.Dispose();
+                minimalizeIcon?.Dispose();
+                maximalizeIcon?.Dispose();
+                closeIcon?.Dispose();
+                leftCornerIcon?.Dispose();
+                rightCornerIcon?.Dispose();
+                timer?.Dispose();
+                windowView?.Dispose();
+                borderView?.Dispose();
+                rootView?.Dispose();
+            }
+            disposed = true;
+        }
+
         /// <summary>
         /// Dispose
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void Dispose()
+        public void Dispose()
         {
-            ClearWindowGesture();
-            BorderWindow.InterceptTouchEvent -= OnWinInterceptedTouch;
-            borderPanGestureDetector.Dispose();
-            borderPinchGestureDetector.Dispose();
-            if (windowView != null)
-            {
-                windowView.Dispose();
-            }
-            if (rootView != null)
-            {
-                rootView.Dispose();
-            }
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
         }
         #endregion //Methods
 

@@ -22,7 +22,7 @@ namespace Tizen.NUI.Samples
                                "hbo", "linkedin", "youtube"
                                };
 
-    class TestWindow : BorderWindowInterface
+    class TestWindow : DefaultBorder
     {
       public override void CreateBorderView(View rootView)
       {
@@ -70,9 +70,9 @@ namespace Tizen.NUI.Samples
         borderView.Add(closeIcon);
         rootView.Add(borderView);
 
-        minimalizeIcon.TouchEvent += OnMinTouched;
-        maximalizeIcon.TouchEvent += OnMaxTouched;
-        closeIcon.TouchEvent += OnCloseTouched;
+        minimalizeIcon.TouchEvent += OnMinimizeIconTouched;
+        maximalizeIcon.TouchEvent += OnMaximizeIconTouched;
+        closeIcon.TouchEvent += OnCloseIconTouched;
       }
     }
 
@@ -120,8 +120,7 @@ namespace Tizen.NUI.Samples
     {
       if (subWindowOne == null)
       {
-        subWindowOne = new Window("subwin1", new Rectangle(1300, 250, 550, 500), false);
-        subWindowOne.EnableBorderWindow();
+        subWindowOne = new Window("subwin1", null, new Rectangle(1300, 250, 550, 500), false);
 
         var mainView = new View()
         {
@@ -175,8 +174,7 @@ namespace Tizen.NUI.Samples
     {
       if (subWindowTwo == null)
       {
-        subWindowTwo = new Window("subwin1", new Rectangle(60, 600, 600, 250), false);
-        subWindowTwo.EnableBorderWindow();
+        subWindowTwo = new Window("subwin1", null, new Rectangle(60, 600, 600, 250), false);
 
         var mainView = new View()
         {
