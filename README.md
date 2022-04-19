@@ -32,6 +32,29 @@ The __API#__ branches are the release branch for Tizen .NET __API Level #__.
 
 These release branches were __FROZEN__. No new public APIs can be added to these branches, only bug fixes and internal APIs can be added.
 
+## Using `tizen` target framework
+If you want to use the `tizen` target framework, you need to use `Tizen.NET.Sdk` package as the project sdk.
+```xml
+<Project Sdk="Tizen.NET.Sdk/1.1.7">
+  <PropertyGroup>
+    <TargetFramework>tizen90</TargetFramework>
+  </PropertyGroup>
+</Project>
+```
+For more information, please see [Using Tizen.NET.Sdk as SDK-style](https://developer.samsung.com/tizen/blog/en-us/2019/06/13/using-tizennetsdk-as-sdk-style).
+
+### Minimum required versions of Tizen.NET.Sdk and Visual Studio
+| API Level | Target Framework | Tizen.NET.Sdk | Visual Studio     |
+|:---------:|------------------|---------------|-------------------|
+| API10     | tizen10.0        | 1.1.8 (not yet) | 2019            |
+| API9      | tizen90          | 1.1.7 (recommend)        | 2019              |
+| API8      | tizen80          | 1.1.6         | 2019              |
+| API7      | tizen70          | 1.0.9         | 2019              |
+| API6      | tizen60          | 1.0.9         | 2019              |
+| API5      | tizen50          | 1.0.1         | 2017              |
+| API4      | tizen40          | 1.0.1         | 2017              |
+
+
 ## Quick Start
 ### Prerequisites
 Install .NET Core SDK : https://www.microsoft.com/net/download/
