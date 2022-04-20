@@ -496,5 +496,86 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             tlog.Debug(tag, $"GridLayouterRequestNextFocusableView END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("GridLayouter GetVisibleItem.")]
+        [Property("SPEC", "Tizen.NUI.Components.GridLayouter.GetVisibleItem M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void GridLayouterGetVisibleItem()
+        {
+            tlog.Debug(tag, $"GridLayouterGetVisibleItem START");
+
+            var view = new CollectionView(new List<string>() { "123" }) // 4. Get item if visible or realize new.
+            {
+                Header = new RecyclerViewItem(),
+                Footer = new RecyclerViewItem(),
+                IsGrouped = true,
+            };
+            Assert.IsNotNull(view, "Should not be null");
+
+            view.GroupFooterTemplate = new DataTemplate(typeof(RecyclerViewItem));
+            view.GroupHeaderTemplate = new DataTemplate(typeof(RecyclerViewItem));
+            view.ItemTemplate = new DataTemplate(typeof(RecyclerViewItem));
+
+            var gridLayouter = new GridLayouter();
+            Assert.IsNotNull(gridLayouter, "Should not be null");
+
+            gridLayouter.Initialize(view);
+
+            gridLayouter.RequestLayout(5.0f);
+            gridLayouter.RequestLayout(150.0f, true);
+
+            view.Dispose();
+            gridLayouter.Dispose();
+
+            tlog.Debug(tag, $"GridLayouterGetVisibleItem END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("GridLayouter GetItemSize.")]
+        [Property("SPEC", "Tizen.NUI.Components.GridLayouter.GetItemSize M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void GridLayouterGetItemSize()
+        {
+            tlog.Debug(tag, $"GridLayouterGetItemSize START");
+
+            var view = new CollectionView(new List<string>() { "123", "456", "789" })
+            {
+                Header = new RecyclerViewItem(),
+                Footer = new RecyclerViewItem(),
+                IsGrouped = true,
+            };
+            Assert.IsNotNull(view, "Should not be null");
+
+            view.GroupFooterTemplate = new DataTemplate(typeof(RecyclerViewItem));
+            view.GroupHeaderTemplate = new DataTemplate(typeof(RecyclerViewItem));
+            view.ItemTemplate = new DataTemplate(typeof(RecyclerViewItem));
+
+            var gridLayouter = new GridLayouter();
+            Assert.IsNotNull(gridLayouter, "Should not be null");
+
+            gridLayouter.Initialize(view);
+
+            try
+            {
+                gridLayouter.GetItemSize(1);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            view.Dispose();
+            gridLayouter.Dispose();
+
+            tlog.Debug(tag, $"GridLayouterGetItemSize END (OK)");
+        }
     }
 }

@@ -25,6 +25,11 @@ namespace Tizen.NUI.Components.Devel.Tests
             {
                 base.Dispose(types);
             }
+
+            public void OnCreateViewStyle()
+            {
+                base.CreateViewStyle();
+            }
         }
 
         [SetUp]
@@ -122,6 +127,36 @@ namespace Tizen.NUI.Components.Devel.Tests
             }
 
             tlog.Debug(tag, $"AppBarDispose END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("AppBar CreateViewStyle.")]
+        [Property("SPEC", "Tizen.NUI.Components.AppBar.CreateViewStyle M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AppBarCreateViewStyle()
+        {
+            tlog.Debug(tag, $"AppBarCreateViewStyle START");
+
+            var testingTarget = new MyAppBar();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<AppBar>(testingTarget, "Should return AppBar instance.");
+
+            try
+            {
+                testingTarget.OnCreateViewStyle();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"AppBarCreateViewStyle END (OK)");
         }
     }
 }

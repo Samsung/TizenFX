@@ -165,6 +165,35 @@ namespace Tizen.NUI.Components.Devel.Tests
         }
 
         [Test]
+        [Category("P2")]
+        [Description("StyleManager RegisterComponentStyle.")]
+        [Property("SPEC", "Tizen.NUI.Components.StyleManager.RegisterComponentStyle M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void StyleManagerRegisterComponentStyleWithNullStyle()
+        {
+            tlog.Debug(tag, $"StyleManagerRegisterComponentStyleWithNullStyle START");
+
+            var testingTarget = StyleManager.Instance;
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<StyleManager>(testingTarget, "Should return StyleManager instance.");
+            
+            try
+            {
+                StyleManager.Instance.RegisterComponentStyle("RadioButton", typeof(RadioButton), null);
+            }
+            catch (ArgumentException e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"StyleManagerRegisterComponentStyleWithNullStyle END (OK)");
+                Assert.Pass("Caught Exception : Passed!");
+            }
+        }
+
+        [Test]
         [Category("P1")]
         [Description("ThemeChangeEventArgs CurrentTheme.")]
         [Property("SPEC", "Tizen.NUI.Components.ThemeChangeEventArgs.CurrentTheme M")]
