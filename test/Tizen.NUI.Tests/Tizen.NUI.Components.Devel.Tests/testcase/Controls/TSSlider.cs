@@ -4,6 +4,7 @@ using NUnit.Framework.TUnit;
 using Tizen.NUI;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Accessibility;
 
 namespace Tizen.NUI.Components.Devel.Tests
 {
@@ -15,6 +16,16 @@ namespace Tizen.NUI.Components.Devel.Tests
     {
         private const string tag = "NUITEST";
         private string image_path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
+
+        private EventHandler<SliderValueChangedEventArgs> OnValueChangedEvent()
+        {
+            return null;
+        }
+
+        private EventHandler<SliderSlidingFinishedEventArgs> OnSlidingFinishedEvent()
+        {
+            return null;
+        }
 
         private EventHandler<SliderValueChangedEventArgs> OnValueChanged()
         {
@@ -31,6 +42,11 @@ namespace Tizen.NUI.Components.Devel.Tests
             return null;
         }
 
+        private EventHandler<View.ControlStateChangedEventArgs> OnStateChangedEvent()
+        {
+            return null;
+        }
+
         internal class MySlider : Slider
         {
             public MySlider() : base()
@@ -40,36 +56,6 @@ namespace Tizen.NUI.Components.Devel.Tests
             {
                 return base.AccessibilityShouldReportZeroChildren();
             }
-
-            //Todo: no symbol error, should be fixed.
-            //public double OnAccessibilityGetMinimum()
-            //{
-            //    return base.AccessibilityGetMinimum();
-            //}
-
-            //Todo: no symbol error, should be fixed.
-            //public double OnAccessibilityGetCurrent()
-            //{
-            //    return base.AccessibilityGetCurrent();
-            //}
-
-            //Todo: no symbol error, should be fixed.
-            //public double OnAccessibilityGetMaximum()
-            //{
-            //    return base.AccessibilityGetMaximum();
-            //}
-
-            //Todo: no symbol error, should be fixed.
-            //public bool OnAccessibilitySetCurrent(double value)
-            //{
-            //    return base.AccessibilitySetCurrent(value);
-            //}
-
-            //Todo: no symbol error, should be fixed.
-            //public double OnAccessibilityGetMinimumIncrement()
-            //{
-            //    return base.AccessibilityGetMinimumIncrement();
-            //}
 
             public void MyOnUpdate()
             {
@@ -108,8 +94,9 @@ namespace Tizen.NUI.Components.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Slider>(testingTarget, "Should return Slider instance.");
 
-            testingTarget.IsEnabled = true;
-            tlog.Debug(tag, "IsEnabled : " + testingTarget.IsEnabled);
+            testingTarget.MinValue = 0.0f;
+            testingTarget.MaxValue = 100.0f;
+            testingTarget.CurrentValue = 30.0f;
 
             testingTarget.TrackThickness = 30;
             tlog.Debug(tag, "TrackThickness : " + testingTarget.TrackThickness);
@@ -311,6 +298,58 @@ namespace Tizen.NUI.Components.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("Slider ValueChangedEvent.")]
+        [Property("SPEC", "Tizen.NUI.Components.Slider.ValueChangedEvent A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void SliderValueChangedEvent()
+        {
+            tlog.Debug(tag, $"SliderValueChangedEvent START");
+
+            var testingTarget = new Slider()
+            {
+                Direction = Slider.DirectionType.Vertical,
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Slider>(testingTarget, "Should return Slider instance.");
+
+            testingTarget.ValueChanged += OnValueChangedEvent();
+            testingTarget.ValueChanged -= OnValueChangedEvent();
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"SliderValueChangedEvent END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Slider SlidingFinishedEvent.")]
+        [Property("SPEC", "Tizen.NUI.Components.Slider.SlidingFinishedEvent A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void SliderSlidingFinishedEvent()
+        {
+            tlog.Debug(tag, $"SliderSlidingFinishedEvent START");
+
+            var testingTarget = new Slider()
+            {
+                Direction = Slider.DirectionType.Vertical,
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Slider>(testingTarget, "Should return Slider instance.");
+
+            testingTarget.SlidingFinished += OnSlidingFinishedEvent();
+            testingTarget.SlidingFinished -= OnSlidingFinishedEvent();
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"SliderValueChangedEvent END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("SliderSlidingStartedEventArgs CurrentValue.")]
         [Property("SPEC", "Tizen.NUI.Components.Slider.OnKey A")]
         [Property("SPEC_URL", "-")]
@@ -417,6 +456,32 @@ namespace Tizen.NUI.Components.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("Slider StateChangedEvent.")]
+        [Property("SPEC", "Tizen.NUI.Components.Slider.StateChangedEvent A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void SliderStateChangedEvent()
+        {
+            tlog.Debug(tag, $"SliderStateChangedEvent START");
+
+            var testingTarget = new Slider()
+            {
+                Direction = Slider.DirectionType.Vertical,
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Slider>(testingTarget, "Should return Slider instance.");
+
+            testingTarget.ControlStateChangedEvent += OnStateChangedEvent();
+            testingTarget.ControlStateChangedEvent -= OnStateChangedEvent();
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"SliderStateChangedEvent END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("Slider ThumbImageUrl.")]
         [Property("SPEC", "Tizen.NUI.Components.Slider.ThumbImageUrl A")]
         [Property("SPEC_URL", "-")]
@@ -508,111 +573,6 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"SliderAccessibilityShouldReportZeroChildren END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Slider AccessibilityGetMinimum.")]
-        [Property("SPEC", "Tizen.NUI.Components.Slider.AccessibilityGetMinimum M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        [Obsolete]
-        public void SliderAccessibilityGetMinimum()
-        {
-            tlog.Debug(tag, $"SliderAccessibilityGetMinimum START");
-
-            var testingTarget = new MySlider()
-            {
-                Direction = Slider.DirectionType.Vertical,
-                IsEnabled = true,
-            };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Slider>(testingTarget, "Should return Slider instance.");
-
-            testingTarget.MinValue = 0.0f;
-            testingTarget.MaxValue = 100.0f;
-            testingTarget.CurrentValue = 30.0f;
-
-            //Todo: no symbol error, should be fixed.
-            //var result = testingTarget.OnAccessibilityGetMinimum();
-            //tlog.Debug(tag, "AccessibilityGetMinimum : " + result);
-
-            //Todo: no symbol error, should be fixed.
-            //result = testingTarget.OnAccessibilityGetMaximum();
-            //tlog.Debug(tag, "AccessibilityGetMaximum : " + result);
-
-            //Todo: no symbol error, should be fixed.
-            //result = testingTarget.OnAccessibilityGetCurrent();
-            //tlog.Debug(tag, "AccessibilityGetCurrent : " + result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"SliderAccessibilityGetMinimum END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Slider AccessibilitySetCurrent.")]
-        [Property("SPEC", "Tizen.NUI.Components.Slider.AccessibilitySetCurrent M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        [Obsolete]
-        public void SliderAccessibilitySetCurrent()
-        {
-            tlog.Debug(tag, $"SliderAccessibilitySetCurrent START");
-
-            var testingTarget = new MySlider()
-            {
-                Direction = Slider.DirectionType.Vertical,
-                IsEnabled = true,
-            };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Slider>(testingTarget, "Should return Slider instance.");
-
-            testingTarget.MinValue = 0.0f;
-            testingTarget.MaxValue = 100.0f;
-
-            //Todo: no symbol error, should be fixed.
-            //var result = testingTarget.OnAccessibilitySetCurrent(30.0f);
-            //tlog.Debug(tag, "AccessibilitySetCurrent : " + result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"SliderAccessibilitySetCurrent END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Slider AccessibilityGetMinimumIncrement.")]
-        [Property("SPEC", "Tizen.NUI.Components.Slider.AccessibilityGetMinimumIncrement M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        [Obsolete]
-        public void SliderAccessibilityGetMinimumIncrement()
-        {
-            tlog.Debug(tag, $"SliderAccessibilityGetMinimumIncrement START");
-
-            var testingTarget = new MySlider()
-            {
-                Direction = Slider.DirectionType.Vertical,
-                IsEnabled = true,
-            };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Slider>(testingTarget, "Should return Slider instance.");
-
-            testingTarget.MinValue = 0.0f;
-            testingTarget.MaxValue = 100.0f;
-
-            //Todo: no symbol error, should be fixed.
-            //var result = testingTarget.OnAccessibilityGetMinimumIncrement();
-            //tlog.Debug(tag, "AccessibilityGetMinimumIncrement : " + result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"SliderAccessibilityGetMinimumIncrement END (OK)");
         }
 
         [Test]

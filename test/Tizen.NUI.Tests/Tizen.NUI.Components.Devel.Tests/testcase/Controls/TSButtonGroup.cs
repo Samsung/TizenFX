@@ -375,5 +375,284 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             tlog.Debug(tag, $"ButtonGroupItemImageShadow END (OK)");
         }
+
+        [Test]
+        [Category("P2")]
+        [Description("ButtonGroup GetItem.")]
+        [Property("SPEC", "Tizen.NUI.Components.ButtonGroup.GetItem M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ButtonGroupGetItemWithWrongIndex()
+        {
+            tlog.Debug(tag, $"ButtonGroupGetItemWithWrongIndex START");
+
+            using (View view = new View() { Size = new Size(100, 200) })
+            {
+                var testingTarget = new ButtonGroup(view);
+                Assert.IsNotNull(testingTarget, "null handle");
+                Assert.IsInstanceOf<ButtonGroup>(testingTarget, "Should return ButtonGroup instance.");
+
+                using (Button bt = new Button() { Size = new Size(20, 30) })
+                {
+                    testingTarget.AddItem(bt);
+                    tlog.Debug(tag, "Count : " + testingTarget.Count);
+                    tlog.Debug(tag, "Contains : " + testingTarget.Contains(bt));
+
+                    try
+                    {
+                        testingTarget.GetItem(-1);
+                    }
+                    catch (Exception e)
+                    {
+                        testingTarget.Dispose();
+                        tlog.Debug(tag, e.Message.ToString());
+                        tlog.Debug(tag, $"ButtonGroupGetItemWithWrongIndex End");
+                        Assert.Pass("Caught exception : Passed!");
+                    }
+                }
+            }
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("ButtonGroup AddItem.")]
+        [Property("SPEC", "Tizen.NUI.Components.ButtonGroup.AddItem M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ButtonGroupAddItemPrexisting()
+        {
+            tlog.Debug(tag, $"ButtonGroupAddItemPrexisting START");
+
+            using (View view = new View() { Size = new Size(100, 200) })
+            {
+                var testingTarget = new ButtonGroup(view);
+                Assert.IsNotNull(testingTarget, "null handle");
+                Assert.IsInstanceOf<ButtonGroup>(testingTarget, "Should return ButtonGroup instance.");
+
+                using (Button bt = new Button() { Size = new Size(20, 30) })
+                {
+                    testingTarget.AddItem(bt);
+                    tlog.Debug(tag, "Count : " + testingTarget.Count);
+                    tlog.Debug(tag, "Contains : " + testingTarget.Contains(bt));
+
+                    testingTarget.AddItem(bt);
+                    Assert.AreEqual(1, testingTarget.Count, "Should be equal!");
+                }
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ButtonGroupAddItemPrexisting End");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ButtonGroup RemoveItem.")]
+        [Property("SPEC", "Tizen.NUI.Components.ButtonGroup.RemoveItem M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ButtonGroupRemoveItem()
+        {
+            tlog.Debug(tag, $"ButtonGroupRemoveItem START");
+
+            using (View view = new View() { Size = new Size(100, 200) })
+            {
+                var testingTarget = new ButtonGroup(view);
+                Assert.IsNotNull(testingTarget, "null handle");
+                Assert.IsInstanceOf<ButtonGroup>(testingTarget, "Should return ButtonGroup instance.");
+
+                using (Button bt = new Button() { Size = new Size(20, 30) })
+                {
+                    testingTarget.AddItem(bt);
+                    tlog.Debug(tag, "Count : " + testingTarget.Count);
+                    tlog.Debug(tag, "Contains : " + testingTarget.Contains(bt));
+
+                    testingTarget.RemoveItem(bt);
+                    Assert.AreEqual(0, testingTarget.Count, "Should be equal!");
+                }
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ButtonGroupRemoveItem End");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("ButtonGroup RemoveItem.")]
+        [Property("SPEC", "Tizen.NUI.Components.ButtonGroup.RemoveItem M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ButtonGroupRemoveItemWithNull()
+        {
+            tlog.Debug(tag, $"ButtonGroupRemoveItemWithNull START");
+
+            using (View view = new View() { Size = new Size(100, 200) })
+            {
+                var testingTarget = new ButtonGroup(view);
+                Assert.IsNotNull(testingTarget, "null handle");
+                Assert.IsInstanceOf<ButtonGroup>(testingTarget, "Should return ButtonGroup instance.");
+
+                try
+                {
+                    Button bt = null;
+                    testingTarget.RemoveItem(bt);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ButtonGroupRemoveItemWithNull End");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("ButtonGroup RemoveItem.")]
+        [Property("SPEC", "Tizen.NUI.Components.ButtonGroup.RemoveItem M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ButtonGroupRemoveItemNotBelongToTheGroup()
+        {
+            tlog.Debug(tag, $"ButtonGroupRemoveItemNotBelongToTheGroup START");
+
+            using (View view = new View() { Size = new Size(100, 200) })
+            {
+                var testingTarget = new ButtonGroup(view);
+                Assert.IsNotNull(testingTarget, "null handle");
+                Assert.IsInstanceOf<ButtonGroup>(testingTarget, "Should return ButtonGroup instance.");
+
+                try
+                {
+                    using (Button bt = new Button() { Size = new Size(20, 30) })
+                    {
+                        // bt not added into the group
+                        testingTarget.RemoveItem(bt);
+                    }
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ButtonGroupRemoveItemNotBelongToTheGroup End");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("ButtonGroup RemoveItem.")]
+        [Property("SPEC", "Tizen.NUI.Components.ButtonGroup.GetItem M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ButtonGroupRemoveItemWithWrongIndex()
+        {
+            tlog.Debug(tag, $"ButtonGroupRemoveItemWithWrongIndex START");
+
+            using (View view = new View() { Size = new Size(100, 200) })
+            {
+                var testingTarget = new ButtonGroup(view);
+                Assert.IsNotNull(testingTarget, "null handle");
+                Assert.IsInstanceOf<ButtonGroup>(testingTarget, "Should return ButtonGroup instance.");
+
+                using (Button bt = new Button() { Size = new Size(20, 30) })
+                {
+                    testingTarget.AddItem(bt);
+                    tlog.Debug(tag, "Count : " + testingTarget.Count);
+                    tlog.Debug(tag, "Contains : " + testingTarget.Contains(bt));
+
+                    try
+                    {
+                        testingTarget.RemoveItem(-1);
+                    }
+                    catch (Exception e)
+                    {
+                        testingTarget.Dispose();
+                        tlog.Debug(tag, e.Message.ToString());
+                        tlog.Debug(tag, $"ButtonGroupRemoveItemWithWrongIndex End");
+                        Assert.Pass("Caught exception : Passed!");
+                    }
+                }
+            }
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ButtonGroup UpdateButton.")]
+        [Property("SPEC", "Tizen.NUI.Components.ButtonGroup.UpdateButton M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ButtonGroupUpdateButton()
+        {
+            tlog.Debug(tag, $"ButtonGroupUpdateButton START");
+
+            using (View view = new View() { Size = new Size(100, 200) , LayoutDirection = ViewLayoutDirectionType.RTL})
+            {
+                var testingTarget = new ButtonGroup(view);
+                Assert.IsNotNull(testingTarget, "null handle");
+                Assert.IsInstanceOf<ButtonGroup>(testingTarget, "Should return ButtonGroup instance.");
+
+                Button bt1 = new Button()
+                {
+                    Size = new Size(20, 30)
+                };
+                testingTarget.AddItem(bt1);
+                tlog.Debug(tag, "Count : " + testingTarget.Count);
+
+                Button bt2 = new Button()
+                {
+                    Size = new Size(20, 40)
+                };
+                testingTarget.AddItem(bt2);
+                tlog.Debug(tag, "Count : " + testingTarget.Count);
+
+                try
+                {
+                    ButtonStyle btStyle = new ButtonStyle()
+                    {
+                        Size = new Size(100, 80),
+                        Text = new TextLabelStyle()
+                        {
+                            TextColor = new Selector<Color> { All = Color.Yellow },
+                        }
+                    };
+                    testingTarget.UpdateButton(btStyle);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+
+                testingTarget.RemoveAll();
+
+                bt1.Dispose();
+                bt2.Dispose();
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ButtonGroupUpdateButton End");
+        }
     }
 }
