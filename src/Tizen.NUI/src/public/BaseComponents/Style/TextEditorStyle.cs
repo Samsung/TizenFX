@@ -263,6 +263,19 @@ namespace Tizen.NUI.BaseComponents
             return textEditorStyle.minLineSize;
         });
 
+        /// <summary> The bindable property of RelativeLineHeightProperty. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty RelativeLineHeightProperty = BindableProperty.Create(nameof(RelativeLineHeight), typeof(float?), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textEditorStyle = (TextEditorStyle)bindable;
+            textEditorStyle.relativeLineHeight = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textEditorStyle = (TextEditorStyle)bindable;
+            return textEditorStyle.relativeLineHeight;
+        });
+
         private HorizontalAlignment? horizontalAlignment;
         private VerticalAlignment? verticalAlignment;
         private Vector4 secondaryCursorColor;
@@ -299,6 +312,7 @@ namespace Tizen.NUI.BaseComponents
         private bool? ellipsis;
         private float? lineSpacing;
         private float? minLineSize;
+        private float? relativeLineHeight;
 
         static TextEditorStyle() { }
 
@@ -673,6 +687,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (float?)GetValue(MinLineSizeProperty);
             set => SetValue(MinLineSizeProperty, value);
+        }
+
+        /// <summary>
+        /// the relative line height to be used.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? RelativeLineHeight
+        {
+            get => (float?)GetValue(RelativeLineHeightProperty);
+            set => SetValue(RelativeLineHeightProperty, value);
         }
     }
 }

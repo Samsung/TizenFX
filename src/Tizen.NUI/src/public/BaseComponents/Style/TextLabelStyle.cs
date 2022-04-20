@@ -185,6 +185,18 @@ namespace Tizen.NUI.BaseComponents
             var textLabelStyle = (TextLabelStyle)bindable;
             return textLabelStyle.lineSpacing;
         });
+        /// <summary> The bindable property of RelativeLineHeightProperty. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty RelativeLineHeightProperty = BindableProperty.Create(nameof(RelativeLineHeight), typeof(float?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.relativeLineHeight = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.relativeLineHeight;
+        });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty EmbossProperty = BindableProperty.Create(nameof(Emboss), typeof(string), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -335,6 +347,7 @@ namespace Tizen.NUI.BaseComponents
         private int? autoScrollLoopCount;
         private float? autoScrollGap;
         private float? lineSpacing;
+        private float? relativeLineHeight;
         private string emboss;
         private Selector<float?> pixelSizeSelector;
         private bool? ellipsis;
@@ -457,6 +470,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (float?)GetValue(LineSpacingProperty);
             set => SetValue(LineSpacingProperty, value);
+        }
+
+        /// <summary>
+        /// the relative line height to be used.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? RelativeLineHeight
+        {
+            get => (float?)GetValue(RelativeLineHeightProperty);
+            set => SetValue(RelativeLineHeightProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
