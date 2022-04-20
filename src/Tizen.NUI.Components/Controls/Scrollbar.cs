@@ -270,15 +270,15 @@ namespace Tizen.NUI.Components
             trackView = new View()
             {
                 PositionUsesPivotPoint = true,
-                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.15f),
                 AccessibilityHidden = true
             };
             Add(trackView);
 
-            thumbView = new ImageView()
+            var scrollbarStyle = ViewStyle as ScrollbarStyle;
+
+            thumbView = new ImageView(scrollbarStyle?.Thumb)
             {
                 PositionUsesPivotPoint = true,
-                BackgroundColor = new Color(0.6f, 0.6f, 0.6f, 1.0f)
             };
             Add(thumbView);
 
@@ -459,6 +459,10 @@ namespace Tizen.NUI.Components
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
+            if (viewStyle is ScrollbarStyle scrollbarStyle)
+            {
+                thumbView?.ApplyStyle(scrollbarStyle.Thumb);
+            }
         }
 
         /// <inheritdoc/>
@@ -675,7 +679,7 @@ namespace Tizen.NUI.Components
             }
 
             public override Position CalculateThumbScrollPosition(Size trackSize, Position thumbCurrentPosition, PaddingType trackPadding)
-            { 
+            {
                 return new Position(trackPadding.Item1 + (IsScrollable() ? (trackSize.Width * (Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength)) / contentLength) : 0.0f), thumbCurrentPosition.Y);
             }
         }
