@@ -320,7 +320,7 @@ namespace Tizen.NUI.BaseComponents
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1721: Property names should not match get methods")]
         public new virtual Size2D GetNaturalSize()
         {
-            return (Size2D)GetValue(Size2DProperty);
+            return GetUserSize2D();
         }
 
         /// <summary>
