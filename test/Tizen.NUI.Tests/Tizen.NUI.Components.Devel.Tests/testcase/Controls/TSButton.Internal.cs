@@ -180,5 +180,48 @@ namespace Tizen.NUI.Components.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"ButtonOnRelayout END (OK)");
         }
+
+        [Test]
+        [Category("P2")]
+        [Description("Button OnRelayout.")]
+        [Property("SPEC", "Tizen.NUI.Components.Button.OnRelayout M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task ButtonOnRelayoutOriginalSize()
+        {
+            tlog.Debug(tag, $"ButtonOnRelayoutOriginalSize START");
+
+            var testingTarget = new MyButton()
+            {
+                Text = "Button",
+                Size = new Size(100, 200),
+                BackgroundColor = Color.Green,
+                IsEnabled = true,
+                IconURL = image_path,
+                IconPadding = 4,
+                IconRelativeOrientation = Button.IconOrientation.Right
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Button>(testingTarget, "Should return Button instance.");
+
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(testingTarget);
+
+            try
+            {
+                testingTarget.Size = new Size(100, 200);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+            }
+
+            await Task.Delay(200);
+            NUIApplication.GetDefaultWindow().GetDefaultLayer().Remove(testingTarget);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ButtonOnRelayoutOriginalSize END (OK)");
+        }
     }
 }

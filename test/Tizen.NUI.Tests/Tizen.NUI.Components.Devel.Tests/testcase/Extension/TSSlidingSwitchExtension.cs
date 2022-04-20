@@ -93,5 +93,34 @@ namespace Tizen.NUI.Components.Devel.Tests
             testingTarget.MyDispose(true);
             tlog.Debug(tag, $"SlidingSwitchExtensionOnSelectedChanged END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("SlidingSwitchExtension Dispose.")]
+        [Property("SPEC", "Tizen.NUI.Components.SlidingSwitchExtension.Dispose M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void SlidingSwitchExtensionDispose()
+        {
+            tlog.Debug(tag, $"SlidingSwitchExtensionDispose START");
+
+            var testingTarget = new SlidingSwitchExtension();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<SlidingSwitchExtension>(testingTarget, "Should return SlidingSwitchExtension instance.");
+
+            try
+            {
+                testingTarget.Dispose();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"SlidingSwitchExtensionDispose END (OK)");
+        }
     }
 }

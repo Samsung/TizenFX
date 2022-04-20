@@ -121,6 +121,10 @@ namespace Tizen.NUI.Components.Devel.Tests
             testingTarget.VerticalPositionToAnchor = Menu.RelativePosition.Center;
             tlog.Debug(tag, "HorizontalPositionToAnchor :" + testingTarget.HorizontalPositionToAnchor);
 
+            // horizontalPosition == value
+            testingTarget.HorizontalPositionToAnchor = Menu.RelativePosition.Center;
+            tlog.Debug(tag, "HorizontalPositionToAnchor :" + testingTarget.HorizontalPositionToAnchor);
+
             List<MenuItem> items = new List<MenuItem>();
             MenuItem item = new MenuItem();
             items.Add(item);
@@ -157,6 +161,20 @@ namespace Tizen.NUI.Components.Devel.Tests
             };
             testingTarget.Anchor = anchor2;
 
+            // anchor == value
+            testingTarget.Anchor = anchor2;
+
+            try
+            {
+                // anchor == null
+                testingTarget.Anchor = null;
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
             NUIApplication.GetDefaultWindow().GetDefaultLayer().Remove(testingTarget);
 
             testingTarget.OnDispose(DisposeTypes.Explicit);
@@ -184,11 +202,28 @@ namespace Tizen.NUI.Components.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Menu>(testingTarget, "Should return Menu instance.");
 
+            View scrim = new View()
+            {
+                BackgroundColor = Color.Red,
+            };
+            testingTarget.MyScrim = scrim;
+
             View content = new View()
             {
                 Size = new Size2D(100, 30),
             };
             testingTarget.MyContent = content;
+
+            // content == value
+            testingTarget.MyContent = content;
+
+            View content2 = new View()
+            {
+                Size = new Size2D(200, 60),
+                BackgroundColor = Color.Yellow
+            };
+            // content != null
+            testingTarget.MyContent = content2;
 
             NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(testingTarget);
 
@@ -200,6 +235,77 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"MenuOnRelayout END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Menu Post.")]
+        [Property("SPEC", "Tizen.NUI.Components.Menu.Post M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void MenuPost()
+        {
+            tlog.Debug(tag, $"MenuPost START");
+
+            var testingTarget = new MyMenu()
+            {
+                Size = new Size(100, 200),
+                BackgroundColor = Color.Green,
+                LayoutDirection = ViewLayoutDirectionType.LTR
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object Menu");
+            Assert.IsInstanceOf<Menu>(testingTarget, "Costruct Menu Fail");
+
+            View anchor = new View()
+            {
+                Size = new Size(100, 30),
+                BackgroundColor = Color.Cyan
+            };
+            testingTarget.Anchor = anchor;
+
+            View content = new View()
+            {
+                Size = new Size2D(100, 30),
+            };
+            testingTarget.MyContent = content;
+
+            List<MenuItem> items = new List<MenuItem>();
+            MenuItem item = new MenuItem();
+            items.Add(item);
+            testingTarget.Items = items;
+
+            testingTarget.HorizontalPositionToAnchor = Menu.RelativePosition.Start;
+            testingTarget.VerticalPositionToAnchor = Menu.RelativePosition.Start;
+            testingTarget.Post();
+            testingTarget.Dismiss();
+
+            testingTarget.HorizontalPositionToAnchor = Menu.RelativePosition.Center;
+            testingTarget.VerticalPositionToAnchor = Menu.RelativePosition.Center;
+            testingTarget.Post();
+            testingTarget.Dismiss();
+
+            testingTarget.HorizontalPositionToAnchor = Menu.RelativePosition.End;
+            testingTarget.VerticalPositionToAnchor = Menu.RelativePosition.End;
+            testingTarget.Post();
+            testingTarget.Dismiss();
+
+            // LayoutDirection == ViewLayoutDirectionType.LTR
+            testingTarget.LayoutDirection = ViewLayoutDirectionType.RTL;
+
+            testingTarget.HorizontalPositionToAnchor = Menu.RelativePosition.Start;
+            testingTarget.VerticalPositionToAnchor = Menu.RelativePosition.Start;
+            testingTarget.Post();
+            testingTarget.Dismiss();
+
+            testingTarget.HorizontalPositionToAnchor = Menu.RelativePosition.End;
+            testingTarget.VerticalPositionToAnchor = Menu.RelativePosition.End;
+            testingTarget.Post();
+            testingTarget.Dismiss();
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"MenuPost END (OK)");
         }
     }
 }

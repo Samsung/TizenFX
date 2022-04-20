@@ -116,7 +116,7 @@ namespace Tizen.NUI.Components.Devel.Tests
         [Obsolete]
         public void RadioHandleControlStateOnTouch()
         {
-            tlog.Debug(tag, $"RadioButtonOnKey START");
+            tlog.Debug(tag, $"RadioHandleControlStateOnTouch START");
 
             var testingTarget = new MyRadioButton();
             Assert.IsNotNull(testingTarget, "null handle");
@@ -136,7 +136,7 @@ namespace Tizen.NUI.Components.Devel.Tests
             }
 
             testingTarget.Dispose();
-            tlog.Debug(tag, $"RadioButtonOnKey END (OK)");
+            tlog.Debug(tag, $"RadioHandleControlStateOnTouch END (OK)");
         }
     }
 }
