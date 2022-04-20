@@ -8374,21 +8374,6 @@
     "title": "Enum Slider.IndicatorType",
     "keywords": ""
   },
-  "API10/api/Tizen.NUI.Components.Slider.SlidingFinishedArgs.html": {
-    "href": "API10/api/Tizen.NUI.Components.Slider.SlidingFinishedArgs.html",
-    "title": "Class Slider.SlidingFinishedArgs",
-    "keywords": ""
-  },
-  "API10/api/Tizen.NUI.Components.Slider.StateChangedArgs.html": {
-    "href": "API10/api/Tizen.NUI.Components.Slider.StateChangedArgs.html",
-    "title": "Class Slider.StateChangedArgs",
-    "keywords": ""
-  },
-  "API10/api/Tizen.NUI.Components.Slider.ValueChangedArgs.html": {
-    "href": "API10/api/Tizen.NUI.Components.Slider.ValueChangedArgs.html",
-    "title": "Class Slider.ValueChangedArgs",
-    "keywords": ""
-  },
   "API10/api/Tizen.NUI.Components.SliderSlidingFinishedEventArgs.html": {
     "href": "API10/api/Tizen.NUI.Components.SliderSlidingFinishedEventArgs.html",
     "title": "Class SliderSlidingFinishedEventArgs",
