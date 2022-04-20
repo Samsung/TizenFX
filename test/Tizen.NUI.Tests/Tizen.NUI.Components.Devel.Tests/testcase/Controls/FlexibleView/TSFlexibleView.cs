@@ -55,6 +55,17 @@ namespace Tizen.NUI.Components.Devel.Tests
             throw new NotImplementedException();
         }
 
+        internal class FlexibleViewImpl : FlexibleView
+        {
+            public FlexibleViewImpl() : base()
+            { }
+
+            public void OnCreateViewStyle()
+            {
+                base.CreateViewStyle();
+            }
+        }
+
         [SetUp]
         public void Init()
         {
@@ -503,6 +514,125 @@ namespace Tizen.NUI.Components.Devel.Tests
             testingTarget.Dispose();
             scrollBar.Dispose();
             tlog.Debug(tag, $"FlexibleViewDetachScrollBar END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleView CreateViewStyle.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleView.CreateViewStyle M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexibleViewCreateViewStyle()
+        {
+            tlog.Debug(tag, $"FlexibleViewCreateViewStyle START");
+
+            var testingTarget = new FlexibleViewImpl();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<FlexibleView>(testingTarget, "Should return FlexibleView instance.");
+
+            try
+            {
+                testingTarget.OnCreateViewStyle();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewCreateViewStyle END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewItemClickedEventArgs ClickedView.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewItemClickedEventArgs.ClickedView A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "huayong.xu@samsung.com")]
+        public void FlexibleViewItemClickedEventArgsClickedView()
+        {
+            tlog.Debug(tag, $"FlexibleViewItemClickedEventArgsClickedView START");
+
+            var testingTarget = new FlexibleViewItemClickedEventArgs();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<FlexibleViewItemClickedEventArgs>(testingTarget, "Should return FlexibleViewItemClickedEventArgs instance.");
+
+            using (View view = new View() { Size = new Size(100, 200) })
+            {
+                FlexibleViewViewHolder holder = new FlexibleViewViewHolder(view);
+                testingTarget.ClickedView = holder;
+                tlog.Debug(tag, "ClickedView : " + testingTarget.ClickedView);
+            }
+
+            tlog.Debug(tag, $"FlexibleViewItemClickedEventArgsClickedView END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleView.ChildHelper RemoveViewAt.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleView.ChildHelper.RemoveViewAt M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "huayong.xu@samsung.com")]
+        public void FlexibleViewChildHelperRemoveViewAt()
+        {
+            tlog.Debug(tag, $"FlexibleViewChildHelperRemoveViewAt START");
+
+            FlexibleView owner = new FlexibleView()
+            { 
+                Padding = new Extents(10, 10, 10, 10),
+            };
+
+            var testingTarget = new FlexibleView.ChildHelper(owner);
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<FlexibleView.ChildHelper>(testingTarget, "Should return FlexibleView.ChildHelper instance.");
+
+            View view = new View()
+            {
+                Size = new Size(100, 200),
+            };
+            FlexibleViewViewHolder holder = new FlexibleViewViewHolder(view);
+
+            testingTarget.AttachView(holder, 0);
+            var result = testingTarget.RemoveViewAt(0);
+            tlog.Debug(tag, "RemoveViewAt : " + result);
+
+            owner.Dispose();
+            view.Dispose();
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewChildHelperRemoveViewAt END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewItemTouchEventArgs  TouchedView .")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewItemTouchEventArgs.TouchedView  A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "huayong.xu@samsung.com")]
+        public void FlexibleViewItemTouchEventArgsTouchedView()
+        {
+            tlog.Debug(tag, $"FlexibleViewItemTouchEventArgsTouchedView START");
+
+            var testingTarget = new FlexibleViewItemTouchEventArgs();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<FlexibleViewItemTouchEventArgs>(testingTarget, "Should return FlexibleViewItemTouchEventArgs instance.");
+
+            using (View view = new View() { Size = new Size(100, 200) })
+            {
+                FlexibleViewViewHolder holder = new FlexibleViewViewHolder(view);
+                testingTarget.TouchedView = holder;
+                tlog.Debug(tag, "TouchedView : " + testingTarget.TouchedView);
+            }
+
+            tlog.Debug(tag, $"FlexibleViewItemTouchEventArgsTouchedView END (OK)");
         }
     }
 }

@@ -25,10 +25,10 @@
 
   <Import Project="..\Common\dependencies.props" />
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="$(TizenNETVersion)">
+    <PackageReference Include="Tizen.NET" Version="10.0.0.17099">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="Tizen.NET.Sdk" Version="$(TizenNETSdkVersion)" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.1.6" />
   </ItemGroup>
 
   <!-- Include Nuget Package for Tizen Project building -->
