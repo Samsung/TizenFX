@@ -217,6 +217,14 @@ namespace Tizen.NUI.Components
             set => SetValue(ThumbHorizontalImageUrlProperty, value);
         }
 
+        /// <summary>
+        /// The ImageViewStyle of Thumb. internal usage only.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal ImageViewStyle Thumb
+        {
+            get; set;
+        }
 
         #endregion Properties
     }
