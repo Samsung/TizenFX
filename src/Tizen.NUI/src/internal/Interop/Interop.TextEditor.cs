@@ -117,6 +117,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_INPUT_LINE_SPACING_get")]
             public static extern int InputLineSpacingGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_RELATIVE_LINE_SIZE_get")]
+            public static extern int RelativeLineHeightGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_UNDERLINE_get")]
             public static extern int UnderlineGet();
 
