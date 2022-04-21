@@ -673,10 +673,9 @@ namespace Tizen.NUI
             if (disposing)
             {
                 ClearWindowGesture();
-                if (BorderWindow != null)
-                {
-                    BorderWindow.InterceptTouchEvent -= OnWinInterceptedTouch;
-                }
+
+                BorderWindow.InterceptTouchEvent -= OnWinInterceptedTouch;
+
                 borderPanGestureDetector?.Dispose();
                 borderPinchGestureDetector?.Dispose();
                 backgroundColor?.Dispose();
