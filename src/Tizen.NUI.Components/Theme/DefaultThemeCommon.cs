@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -692,40 +692,57 @@ namespace Tizen.NUI.Components
                 }
             });
 
+            // Menu base style
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Menu", new MenuStyle()
+            {
+                Content = new ViewStyle()
+                {
+                    BackgroundColor = new Color("#FFFEFE"),
+                    CornerRadius = 24.0f,
+                    BoxShadow = new Shadow(8.0f, new Color(0.0f, 0.0f, 0.0f, 0.16f), new Vector2(0.0f, 2.0f)),
+                    // FIXME: ScrollableBase with LinearLayout's Padding.Start is applied both Start and End.
+                    //        ScrollableBase with LinearLayout's Padding.Top is applied both Top and Bottom.
+                    Padding = new Extents(32, 0, 16, 0),
+                },
+            });
+
             // MenuItem base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.MenuItem", new ButtonStyle()
             {
-                Size = new Size(480, -2),
-                MinimumSize = new Size2D(0, 72),
+                Size = new Size(324, -2),
+                MinimumSize = new Size2D(0, 64),
+                BackgroundColor = new Color("#FFFEFE"),
                 CornerRadius = 0,
-                BackgroundImage = FrameworkInformation.ResourcePath + "nui_component_menu_item_bg.png",
-                Padding = new Extents(16, 16, 16, 16),
+                // FIXME: ClippingModeType.ClipChildren cannot support anti-aliasing
+                //        So not to show left bottom corner of MenuItem, MenuItem.Padding.Start is 0 and Menu.Content.Padding.Start is 32.
+                //        (instead of MenuItem.Padding.Start 16 and Menu.Content.Padding.Start is 16)
+                Padding = new Extents(0, 0, 24, 24),
                 Text = new TextLabelStyle()
                 {
-                    PixelSize = 32,
+                    PixelSize = 24,
                     MultiLine = true,
                     HorizontalAlignment = HorizontalAlignment.Begin,
                     VerticalAlignment = VerticalAlignment.Center,
                     TextColor = new Selector<Color>()
                     {
-                        Normal = new Color("#001447"),
-                        Focused = new Color("#00338B"),
-                        Pressed = new Color("#1B69CA"),
-                        Disabled = new Color("#C3CAD2"),
-                        Selected = new Color("#1B69CA"),
+                        Normal = new Color("#090E21"),
+                        Focused = new Color("#FF6200"),
+                        Pressed = new Color("#FF6200"),
+                        Disabled = new Color("#CACACA"),
+                        Selected = new Color("#FF6200"),
                     },
                     ThemeChangeSensitive = false
                 },
                 Icon = new ImageViewStyle()
                 {
-                    Size = new Size(-2, 48),
+                    Size = new Size(32, 32),
                     Color = new Selector<Color>()
                     {
-                        Normal = new Color("#001447"),
-                        Focused = new Color("#00338B"),
-                        Pressed = new Color("#1B69CA"),
-                        Disabled = new Color("#C3CAD2"),
-                        Selected = new Color("#1B69CA"),
+                        Normal = new Color("#090E21"),
+                        Focused = new Color("#FF6200"),
+                        Pressed = new Color("#FF6200"),
+                        Disabled = new Color("#CACACA"),
+                        Selected = new Color("#FF6200"),
                     },
                 },
             });
