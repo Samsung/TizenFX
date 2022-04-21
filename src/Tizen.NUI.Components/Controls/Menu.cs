@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -36,12 +36,24 @@ namespace Tizen.NUI.Components
         private MenuItemGroup menuItemGroup = null;
         private RelativePosition horizontalPosition = RelativePosition.Center;
         private RelativePosition verticalPosition = RelativePosition.Center;
+        private MenuStyle menuStyle = null;
+        private bool styleApplied = false;
 
         /// <summary>
         /// Creates a new instance of Menu.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Menu() : base()
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of Menu.
+        /// </summary>
+        /// <param name="style">Creates Menu by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Menu(string style) : base(style)
         {
             Initialize();
         }
@@ -80,6 +92,26 @@ namespace Tizen.NUI.Components
             }
 
             base.Dispose(type);
+        }
+
+        /// <summary>
+        /// Applies style to MenuItem.
+        /// </summary>
+        /// <param name="viewStyle">The style to apply.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void ApplyStyle(ViewStyle viewStyle)
+        {
+            styleApplied = false;
+
+            base.ApplyStyle(viewStyle);
+
+            menuStyle = viewStyle as MenuStyle;
+            if (menuStyle != null)
+            {
+                Content?.ApplyStyle(menuStyle.Content);
+            }
+
+            styleApplied = true;
         }
 
         /// <summary>The Menu's relative position to Anchor.</summary>
@@ -276,6 +308,15 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <summary>
+        /// Gets Menu style.
+        /// </summary>
+        /// <returns>The default Menu style.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override ViewStyle CreateViewStyle()
+        {
+            return new MenuStyle();
+        }
 
         /// <summary>
         /// Content of Menu.
@@ -434,6 +475,10 @@ namespace Tizen.NUI.Components
             ExcludeLayouting = true;
 
             Content = CreateDefaultContent();
+            if (styleApplied)
+            {
+                Content.ApplyStyle(menuStyle.Content);
+            }
 
             Scrim = CreateDefaultScrim();
 
@@ -454,9 +499,7 @@ namespace Tizen.NUI.Components
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
                 ScrollEnabled = true,
                 HideScrollbar = false,
-
-                // FIXME: This color should be in DefaultThemeCommon.cs.
-                BackgroundColor = new Color("#EEEFF1"),
+                ClippingMode = ClippingModeType.ClipChildren,
             };
         }
 
@@ -499,10 +542,9 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
-
-            if (Size2D.Equals(Content.Size2D) == false)
+            if (Size.Equals(Content.Size) == false)
             {
-                Size2D = new Size2D(Content.Size2D.Width, Content.Size2D.Height);
+                Size = new Size(Content.SizeWidth, Content.SizeHeight);
             }
         }
 
@@ -534,86 +576,88 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            if ((Size2D.Width == 0) && (Size2D.Height == 0))
+            if (SizeWidth.Equals(0) && SizeHeight.Equals(0))
             {
                 return;
             }
 
-            int menuScreenPosX = 0;
-            int menuScreenPosY = 0;
+            float menuScreenPosX = 0;
+            float menuScreenPosY = 0;
 
             if (HorizontalPositionToAnchor == RelativePosition.Start)
             {
                 if (GetRootView().LayoutDirection == ViewLayoutDirectionType.LTR)
                 {
-                    menuScreenPosX = (int)Anchor.ScreenPosition.X - Size2D.Width;
+                    menuScreenPosX = Anchor.ScreenPosition.X - SizeWidth;
                 }
                 else
                 {
-                    menuScreenPosX = (int)Anchor.ScreenPosition.X + Anchor.Margin.Start + Anchor.Size2D.Width + Anchor.Margin.End;
+                    menuScreenPosX = Anchor.ScreenPosition.X + Anchor.Margin.Start + Anchor.SizeWidth + Anchor.Margin.End;
                 }
             }
             else if (HorizontalPositionToAnchor == RelativePosition.Center)
             {
-                menuScreenPosX = (int)Anchor.ScreenPosition.X + Anchor.Margin.Start + (Anchor.Size2D.Width / 2) - (Size2D.Width / 2);
+                menuScreenPosX = Anchor.ScreenPosition.X + Anchor.Margin.Start + (Anchor.SizeWidth / 2) - (SizeWidth / 2);
             }
             else
             {
                 if (GetRootView().LayoutDirection == ViewLayoutDirectionType.LTR)
                 {
-                    menuScreenPosX = (int)Anchor.ScreenPosition.X + Anchor.Margin.Start + Anchor.Size2D.Width + Anchor.Margin.End;
+                    menuScreenPosX = Anchor.ScreenPosition.X + Anchor.Margin.Start + Anchor.SizeWidth + Anchor.Margin.End;
                 }
                 else
                 {
-                    menuScreenPosX = (int)Anchor.ScreenPosition.X - Size2D.Width;
+                    menuScreenPosX = Anchor.ScreenPosition.X - SizeWidth;
                 }
             }
 
             if (VerticalPositionToAnchor == RelativePosition.Start)
             {
-                menuScreenPosY = (int)Anchor.ScreenPosition.Y - Size2D.Height;
+                menuScreenPosY = Anchor.ScreenPosition.Y - SizeHeight;
             }
             else if (VerticalPositionToAnchor == RelativePosition.Center)
             {
-                menuScreenPosY = (int)Anchor.ScreenPosition.Y + Anchor.Margin.Top + (Anchor.Size2D.Height / 2) - (Size2D.Height / 2);
+                menuScreenPosY = Anchor.ScreenPosition.Y + Anchor.Margin.Top + (Anchor.SizeHeight / 2) - (SizeHeight / 2);
             }
             else
             {
-                menuScreenPosY = (int)Anchor.ScreenPosition.Y + Anchor.Margin.Top + Anchor.Size2D.Height + Anchor.Margin.Bottom;
+                menuScreenPosY = Anchor.ScreenPosition.Y + Anchor.Margin.Top + Anchor.SizeHeight + Anchor.Margin.Bottom;
             }
 
-            int menuSizeW = Size2D.Width;
-            int menuSizeH = Size2D.Height;
+            float menuSizeW = SizeWidth;
+            float menuSizeH = SizeHeight;
 
             // Check if menu is not inside parent's boundary in x coordinate system.
-            if (menuScreenPosX + Size2D.Width > Window.Size.Width)
+            if (menuScreenPosX + SizeWidth > Window.Size.Width)
             {
-                menuScreenPosX = Window.Size.Width - Size2D.Width;
-
-                if (menuScreenPosX < 0)
+                if (HorizontalPositionToAnchor == RelativePosition.Center)
                 {
-                    menuScreenPosX = 0;
-                    menuSizeW = Window.Size.Width;
+                    menuScreenPosX = Window.Size.Width - SizeWidth;
+                }
+                else
+                {
+                    menuSizeW = Window.Size.Width - menuScreenPosX;
                 }
             }
-            else if (menuScreenPosX < 0)
+            if (menuScreenPosX < 0)
             {
                 menuScreenPosX = 0;
                 menuSizeW = Window.Size.Width;
             }
 
             // Check if menu is not inside parent's boundary in y coordinate system.
-            if (menuScreenPosY + Size2D.Height > Window.Size.Height)
+            if (menuScreenPosY + SizeHeight > Window.Size.Height)
             {
-                menuScreenPosY = Window.Size.Height - Size2D.Height;
-
-                if (menuScreenPosY < 0)
+                if (VerticalPositionToAnchor == RelativePosition.Center)
                 {
-                    menuScreenPosY = 0;
-                    menuSizeH = Window.Size.Height;
+                    menuScreenPosY = Window.Size.Height - SizeHeight;
+                }
+                else
+                {
+                    menuSizeH = Window.Size.Height - menuScreenPosY;
                 }
             }
-            else if (menuScreenPosY < 0)
+            if (menuScreenPosY < 0)
             {
                 menuScreenPosY = 0;
                 menuSizeH = Window.Size.Height;
@@ -623,10 +667,10 @@ namespace Tizen.NUI.Components
             var menuPosX = menuScreenPosX;
             var menuPosY = menuScreenPosY;
 
-            if ((Position2D.X != menuPosX) || (Position2D.Y != menuPosY) || (Size2D.Width != menuSizeW) || (Size2D.Height != menuSizeH))
+            if (!PositionX.Equals(menuPosX) || !PositionY.Equals(menuPosY) || !SizeWidth.Equals(menuSizeW) || !SizeHeight.Equals(menuSizeH))
             {
-                Position2D = new Position2D(menuPosX, menuPosY);
-                Size2D = new Size2D(menuSizeW, menuSizeH);
+                Position = new Position(menuPosX, menuPosY);
+                Size = new Size(menuSizeW, menuSizeH);
             }
         }
 
@@ -639,9 +683,9 @@ namespace Tizen.NUI.Components
             }
 
             // Menu's Position should be updated before doing this calculation.
-            if ((Scrim.Position2D.X != -Position2D.X) || (Scrim.Position2D.Y != -Position2D.Y))
+            if (!Scrim.PositionX.Equals(-PositionX) || !Scrim.PositionY.Equals(-PositionY))
             {
-                Scrim.Position2D = new Position2D(-Position2D.X, -Position2D.Y);
+                Scrim.Position = new Position(-PositionX, -PositionY);
             }
         }
 
