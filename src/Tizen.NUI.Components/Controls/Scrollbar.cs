@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -270,7 +270,8 @@ namespace Tizen.NUI.Components
             trackView = new View()
             {
                 PositionUsesPivotPoint = true,
-                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.15f)
+                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.15f),
+                AccessibilityHidden = true
             };
             Add(trackView);
 
