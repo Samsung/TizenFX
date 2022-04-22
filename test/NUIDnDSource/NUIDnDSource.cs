@@ -131,6 +131,26 @@ namespace NUIDnDSource
             }
         }
 
+        public void OnSourceEventFunc(SourceEventType type)
+        {
+          if (type == SourceEventType.Start)
+          {
+            Tizen.Log.Debug("NUIDnDSource", "Source App SourceEvnetType: " + "Start");
+          }
+          else if (type == SourceEventType.Cancel)
+          {
+            Tizen.Log.Debug("NUIDnDSource", "Source App SourceEvnetType: " + "Cancel");
+          }
+          else if (type == SourceEventType.Accept)
+          {
+            Tizen.Log.Debug("NUIDnDSource", "Source App SourceEvnetType: " + "Accept");
+          }
+          else if (type == SourceEventType.Finish)
+          {
+            Tizen.Log.Debug("NUIDnDSource", "Source App SourceEvnetType: " + "Finish");
+          }
+        }
+
         private void OnTouchEvent(object source, Window.TouchEventArgs e)
         {
             if (e.Touch.GetState(0) == PointStateType.Down)
@@ -140,7 +160,7 @@ namespace NUIDnDSource
                 DragData dragData;
                 dragData.MimeType = "text/uri-list";
                 dragData.Data = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource.png";
-                dnd.StartDragAndDrop(sourceView, shadowView, dragData);
+                dnd.StartDragAndDrop(sourceView, shadowView, dragData, OnSourceEventFunc);
             }
         }
 
