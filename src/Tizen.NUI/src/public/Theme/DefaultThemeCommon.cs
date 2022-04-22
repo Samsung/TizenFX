@@ -38,24 +38,25 @@ namespace Tizen.NUI
             // TextLabel style.
             theme.AddStyleWithoutClone("Tizen.NUI.BaseComponents.TextLabel", new TextLabelStyle()
             {
-                FontFamily = "BreezeSans",
-                PixelSize = 32,
-                TextColor = new Color(0.00f, 0.05f, 0.17f, 1),
-                FontStyle = new PropertyMap().Add("weight", new PropertyValue("light")),
+                FontFamily = "TizenSans",
+                PixelSize = 24,
+                TextColor = new Color(0.04f, 0.05f, 0.13f, 1),
+                FontStyle = new PropertyMap().Add("weight", new PropertyValue("regular")),
             });
 
             // TextField style.
             theme.AddStyleWithoutClone("Tizen.NUI.BaseComponents.TextField", new TextFieldStyle()
             {
-                FontFamily = "BreezeSans",
-                PixelSize = 32,
-                TextColor = new Color(0.00f, 0.05f, 0.17f, 1),
+                FontFamily = "TizenSans",
+                PixelSize = 24,
+                TextColor = new Color(0.04f, 0.05f, 0.13f, 1),
+                PlaceholderTextColor = new Vector4(0.79f, 0.79f, 0.79f, 1),
                 FontStyle = new PropertyMap().Add("weight", new PropertyValue("regular")),
-                PrimaryCursorColor = new Vector4(0.08f, 0.45f, 0.90f, 1),
-                SecondaryCursorColor = new Vector4(0.08f, 0.45f, 0.90f, 1),
-                CursorWidth = 3,
-                SelectionHighlightColor = new Vector4(0.17f, 0.37f, 0.72f, 0.20f),
-                GrabHandleColor = new Color(0.08f, 0.45f, 0.90f, 1),
+                PrimaryCursorColor = new Vector4(0.04f, 0.05f, 0.13f, 1),
+                SecondaryCursorColor = new Vector4(0.04f, 0.05f, 0.13f, 1),
+                CursorWidth = 2,
+                SelectionHighlightColor = new Vector4(1.00f, 0.38f, 0.00f, 0.30f),
+                GrabHandleColor = new Color(1.00f, 1.00f, 1.00f, 1),
                 GrabHandleImage = FrameworkInformation.ResourcePath + "IoT_handler_center_downW.png",
                 SelectionHandleImageLeft = new PropertyMap().Add("filename", new PropertyValue(FrameworkInformation.ResourcePath + "IoT_handler_downleftW.png")),
                 SelectionHandleImageRight = new PropertyMap().Add("filename", new PropertyValue(FrameworkInformation.ResourcePath + "IoT_handler_downrightW.png")),
@@ -64,15 +65,16 @@ namespace Tizen.NUI
             // TextEditor style.
             theme.AddStyleWithoutClone("Tizen.NUI.BaseComponents.TextEditor", new TextEditorStyle()
             {
-                FontFamily = "BreezeSans",
-                PixelSize = 32,
-                TextColor = new Color(0.00f, 0.05f, 0.17f, 1),
+                FontFamily = "TizenSans",
+                PixelSize = 24,
+                TextColor = new Color(0.04f, 0.05f, 0.13f, 1),
+                PlaceholderTextColor = new Color(0.79f, 0.79f, 0.79f, 1),
                 FontStyle = new PropertyMap().Add("weight", new PropertyValue("regular")),
-                PrimaryCursorColor = new Vector4(0.08f, 0.45f, 0.90f, 1),
-                SecondaryCursorColor = new Vector4(0.08f, 0.45f, 0.90f, 1),
-                CursorWidth = 3,
-                SelectionHighlightColor = new Vector4(0.17f, 0.37f, 0.72f, 0.20f),
-                GrabHandleColor = new Color(0.08f, 0.45f, 0.90f, 1),
+                PrimaryCursorColor = new Vector4(0.04f, 0.05f, 0.13f, 1),
+                SecondaryCursorColor = new Vector4(0.04f, 0.05f, 0.13f, 1),
+                CursorWidth = 2,
+                SelectionHighlightColor = new Vector4(1.00f, 0.38f, 0.00f, 0.30f),
+                GrabHandleColor = new Color(1.00f, 1.00f, 1.00f, 1),
                 GrabHandleImage = FrameworkInformation.ResourcePath + "IoT_handler_center_downW.png",
                 SelectionHandleImageLeft = new PropertyMap().Add("filename", new PropertyValue(FrameworkInformation.ResourcePath + "IoT_handler_downleftW.png")),
                 SelectionHandleImageRight = new PropertyMap().Add("filename", new PropertyValue(FrameworkInformation.ResourcePath + "IoT_handler_downrightW.png")),
