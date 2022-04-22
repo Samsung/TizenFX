@@ -21,6 +21,30 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI
 {
     /// <summary>
+    /// Source event type.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum SourceEventType
+    {
+        /// <summary>
+        /// Drag and drop is started.
+        /// </summary>
+        Start,
+        /// <summary>
+        /// Drag and drop is cancelled.
+        /// </summary>
+        Cancel,
+        /// <summary>
+        /// Drag and drop is accepted.
+        /// </summary>
+        Accept,
+        /// <summary>
+        /// Drag and drop is finished.
+        /// </summary>
+        Finish
+    }
+
+    /// <summary>
     /// This specifies drag data.
     /// </summary>
     /// Suppress warning : This struct will be used data of callback, so override equals and operator does not necessary.

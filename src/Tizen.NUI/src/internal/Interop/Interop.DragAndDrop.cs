@@ -33,7 +33,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr New();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_StartDragAndDrop")]
-            public static extern bool StartDragAndDrop(global::System.Runtime.InteropServices.HandleRef dragAndDrop, global::System.Runtime.InteropServices.HandleRef sourceView, global::System.Runtime.InteropServices.HandleRef shadow, string mimeType, string data);
+            public static extern bool StartDragAndDrop(global::System.Runtime.InteropServices.HandleRef dragAndDrop, global::System.Runtime.InteropServices.HandleRef sourceView, global::System.Runtime.InteropServices.HandleRef shadow, string mimeType, string data, global::System.Runtime.InteropServices.HandleRef callback);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_DragAndDrop_AddListener")]
             public static extern bool AddListener(global::System.Runtime.InteropServices.HandleRef dragAndDrop, global::System.Runtime.InteropServices.HandleRef targetView, global::System.Runtime.InteropServices.HandleRef callback);
