@@ -190,8 +190,11 @@ namespace Tizen.NUI.Components.Devel.Tests.testcase.Controls
 
             NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(testingTarget);
 
-            testingTarget.TranslatableText = "TranslatableText";
-            tlog.Debug(tag, "testingTarget.TranslatableText : " + testingTarget.TranslatableText);
+            if (NUIApplication.MultilingualResourceManager != null)
+            {
+                testingTarget.TranslatableText = "Test TranslatableText";
+                tlog.Debug(tag, "testingTarget.TranslatableText : " + testingTarget.TranslatableText);
+            }
 
             NUIApplication.GetDefaultWindow().GetDefaultLayer().Remove(testingTarget);
 
