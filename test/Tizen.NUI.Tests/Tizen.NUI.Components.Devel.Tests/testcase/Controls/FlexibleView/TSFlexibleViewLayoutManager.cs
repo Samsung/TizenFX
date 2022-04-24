@@ -602,23 +602,18 @@ namespace Tizen.NUI.Components.Devel.Tests
         {
             tlog.Debug(tag, $"FlexibleViewLayoutManagerRemoveAndRecycleViewAt START");
 
-            var testingTarget = new FlexibleViewLayoutManagerImpl();
+            var testingTarget = GetVerticalFlexibleView();
             Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<FlexibleViewLayoutManager>(testingTarget, "should be an instance of testing target class!");
+            Assert.IsInstanceOf<FlexibleView>(testingTarget, "should be an instance of testing target class!");
 
-            using (FlexibleView view = new FlexibleView() { Padding = new Extents(10, 10, 10, 10) })
+            try
             {
-                FlexibleViewRecycler recycler = new FlexibleViewRecycler(view);
-
-                try
-                {
-                    testingTarget.RemoveAndRecycleViewAt(0, recycler);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception : Failed!");
-                }
+                verticalLayoutManager.RemoveAndRecycleViewAt(0, testingTarget.GetRecycler());
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             testingTarget.Dispose();
@@ -702,6 +697,37 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"FlexibleViewLayoutManagerOnFocusSearchFailed END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewLayoutManager RemoveAndRecycleViewAt.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewLayoutManager.RemoveAndRecycleViewAt M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexibleViewLayoutManagerOnLayoutComplete()
+        {
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerOnLayoutComplete START");
+
+            var testingTarget = GetVerticalFlexibleView();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<FlexibleView>(testingTarget, "should be an instance of testing target class!");
+
+            var vHelper = new VerticalHelper(verticalLayoutManager);
+            try
+            {
+                vHelper.OnLayoutComplete();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerOnLayoutComplete END (OK)");
         }
     }
 }

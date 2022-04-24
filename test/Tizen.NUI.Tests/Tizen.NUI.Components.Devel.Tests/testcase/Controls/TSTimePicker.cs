@@ -139,7 +139,7 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             var testingTarget = new TimeChangedEventArgs(DateTime.Now);
             Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<TimePicker>(testingTarget, "Should return TimePicker instance.");
+            Assert.IsInstanceOf<TimeChangedEventArgs>(testingTarget, "Should return TimeChangedEventArgs instance.");
 
             tlog.Debug(tag, "Time : " + testingTarget.Time);
 
