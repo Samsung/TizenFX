@@ -281,31 +281,56 @@ namespace Tizen.NUI.Components.Devel.Tests
             testingTarget.Post();
             testingTarget.Dismiss();
 
-            testingTarget.HorizontalPositionToAnchor = Menu.RelativePosition.Center;
-            testingTarget.VerticalPositionToAnchor = Menu.RelativePosition.Center;
-            testingTarget.Post();
-            testingTarget.Dismiss();
+            tlog.Debug(tag, $"MenuPost END (OK)");
+        }
 
-            testingTarget.HorizontalPositionToAnchor = Menu.RelativePosition.End;
-            testingTarget.VerticalPositionToAnchor = Menu.RelativePosition.End;
-            testingTarget.Post();
-            testingTarget.Dismiss();
+        [Test]
+        [Category("P1")]
+        [Description("Menu Post.")]
+        [Property("SPEC", "Tizen.NUI.Components.Menu.Post M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void MenuPostViewLayoutDirectionTypeIsRTL()
+        {
+            tlog.Debug(tag, $"MenuPostViewLayoutDirectionTypeIsRTL START");
 
-            // LayoutDirection == ViewLayoutDirectionType.LTR
+            var testingTarget = new MyMenu()
+            {
+                Size = new Size(100, 200),
+                BackgroundColor = Color.Green,
+                LayoutDirection = ViewLayoutDirectionType.RTL
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object Menu");
+            Assert.IsInstanceOf<Menu>(testingTarget, "Costruct Menu Fail");
+
+            View anchor = new View()
+            {
+                Size = new Size(100, 30),
+                BackgroundColor = Color.Cyan
+            };
+            testingTarget.Anchor = anchor;
+
+            View content = new View()
+            {
+                Size = new Size2D(100, 30),
+            };
+            testingTarget.MyContent = content;
+
+            List<MenuItem> items = new List<MenuItem>();
+            MenuItem item = new MenuItem();
+            items.Add(item);
+            testingTarget.Items = items;
+
             testingTarget.LayoutDirection = ViewLayoutDirectionType.RTL;
 
-            testingTarget.HorizontalPositionToAnchor = Menu.RelativePosition.Start;
-            testingTarget.VerticalPositionToAnchor = Menu.RelativePosition.Start;
-            testingTarget.Post();
-            testingTarget.Dismiss();
-
             testingTarget.HorizontalPositionToAnchor = Menu.RelativePosition.End;
             testingTarget.VerticalPositionToAnchor = Menu.RelativePosition.End;
             testingTarget.Post();
             testingTarget.Dismiss();
 
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"MenuPost END (OK)");
+            tlog.Debug(tag, $"MenuPostViewLayoutDirectionTypeIsRTL END (OK)");
         }
     }
 }
