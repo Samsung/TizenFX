@@ -474,6 +474,7 @@ namespace Tizen.NUI.Components.Devel.Tests
             View[] views = new View[10];
             for (int i = 0; i < 10; i++)
             {
+                views[i] = new View();
                 views[i].Size = new Size(200, 200);
                 testingTarget.Add(views[i]);
             }

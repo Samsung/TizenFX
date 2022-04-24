@@ -81,7 +81,8 @@ namespace Tizen.NUI.Components.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<LottieSwitchExtension>(testingTarget, "Should return LottieSwitchExtension instance.");
 
-            Button button = new Button()
+            LottieButtonStyle style = new LottieButtonStyle();
+            Button button = new Button(style as ButtonStyle)
             {
                 Size = new Size(100, 80),
             };
@@ -117,7 +118,8 @@ namespace Tizen.NUI.Components.Devel.Tests
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<LottieSwitchExtension>(testingTarget, "Should return LottieSwitchExtension instance.");
 
-            Button button = new Button()
+            LottieButtonStyle style = new LottieButtonStyle();
+            Button button = new Button(style as ButtonStyle)
             {
                 Size = new Size(100, 80),
             };
