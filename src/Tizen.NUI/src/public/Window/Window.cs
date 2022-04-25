@@ -1743,13 +1743,6 @@ namespace Tizen.NUI
                     DisposeBorder();
                 }
 
-                if (rootLayer != null)
-                {
-                    rootLayer.Dispose();
-                }
-
-                localController?.Dispose();
-
                 foreach (var layer in childLayers)
                 {
                     if (layer != null)
@@ -1759,6 +1752,8 @@ namespace Tizen.NUI
                 }
 
                 childLayers.Clear();
+
+                localController?.Dispose();
             }
 
             this.DisconnectNativeSignals();
