@@ -14,11 +14,16 @@ namespace NUITizenGallery
         public ButtonTest1Page()
         {
             InitializeComponent();
-            imageview1.ResourceUrl = ImageURL + "NUITizenGallery.png";
-            imageview2.ResourceUrl = ImageURL + "NUITizenGallery.png";
-            imageview3.ResourceUrl = ImageURL + "NUITizenGallery.png";
-            imageview4.ResourceUrl = ImageURL + "NUITizenGallery.png";
-            imageview5.ResourceUrl = ImageURL + "NUITizenGallery.png";
+            button2.Icon.Size2D = new Size2D(60, 60);
+            button2.Icon.ResourceUrl = ImageURL + "NUITizenGallery.png";
+            button3.Icon.Size2D = new Size2D(60, 60);
+            button3.Icon.ResourceUrl = ImageURL + "NUITizenGallery.png";
+            button4.Icon.Size2D = new Size2D(60, 60);
+            button4.Icon.ResourceUrl = ImageURL + "NUITizenGallery.png";
+            button5.Icon.Size2D = new Size2D(60, 60);
+            button5.Icon.ResourceUrl = ImageURL + "NUITizenGallery.png";
+            button6.Icon.Size2D = new Size2D(60, 60);
+            button6.Icon.ResourceUrl = ImageURL + "NUITizenGallery.png";
 
             button4.Clicked += (s, e) =>
             {

@@ -95,8 +95,11 @@ namespace Tizen.NUI.Components
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
 
-            InitContent();
             InitTabBar();
+            InitContent();
+
+            // To show TabBar's shadow TabBar is raised above Content.
+            TabBar.RaiseAbove(Content);
         }
 
         /// <inheritdoc/>
@@ -105,7 +108,7 @@ namespace Tizen.NUI.Components
         {
             base.OnInitialize();
 
-            SetAccessibilityConstructor(Role.PageTabList);
+            AccessibilityRole = Role.PageTabList;
         }
 
         private void InitTabBar()

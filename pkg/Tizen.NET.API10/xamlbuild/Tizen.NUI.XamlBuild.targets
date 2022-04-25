@@ -26,6 +26,7 @@
 			Language="$(Language)"
 			AssemblyName="$(AssemblyName)"
 			ReferencePath="@(ReferencePath)"
+			XamlOptimization="$(XamlOptimization)"
             AddXamlCompilationAttribute="True" />
 		<ItemGroup>
 			<FileWrites Include="@(_XamlGOutputs)" />
@@ -50,6 +51,7 @@
 			DebugType = "$(DebugType)"
 			NeedDebug = "$(NeedDebug)"
 			UseInjection = "$(NeedInjection)"
+			XamlOptimization="$(XamlOptimization)"
 			KeepXamlResources = "$(XFKeepXamlResources)" />
 		<Touch Files="$(IntermediateOutputPath)XamlC.stamp" AlwaysCreate="True" />
 		<ItemGroup>

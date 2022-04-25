@@ -23,18 +23,16 @@
     <Folder Include="lib\" />
   </ItemGroup>
 
-
-    <ItemGroup>
-        <PackageReference Include="Tizen.NUI.XamlBuild" Version="1.0.32" />
-    </ItemGroup>
-
     <ItemGroup>
         <ProjectReference Include="../../src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
         <ProjectReference Include="../../src/Tizen.NUI/Tizen.NUI.csproj" />
     </ItemGroup>
 
     <PropertyGroup>
-        <NeedInjection>False</NeedInjection>
+        <XamlOptimization>2</XamlOptimization>
     </PropertyGroup>
 
+    <ImportGroup>
+        <Import Project="..\..\pkg\Tizen.NET.API10\xamlbuild\Tizen.NUI.XamlBuild.targets" />
+    </ImportGroup>
 </Project>

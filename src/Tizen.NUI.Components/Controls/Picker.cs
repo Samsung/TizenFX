@@ -33,7 +33,7 @@ namespace Tizen.NUI.Components
         /// ValueChangedEventArgs default constructor.
         /// <param name="value">value of Picker.</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]   
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public ValueChangedEventArgs(int value)
         {
             Value = value;
@@ -45,7 +45,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public int Value { get; }
-        
+
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ namespace Tizen.NUI.Components
         private const int scrollVisibleItems = 5;
         //Dummy item count for loop feature. Max value of scrolling distance in 
         //RPI target is bigger than 20 items height. it can adjust depends on the internal logic and device env.
-        private const int dummyItemsForLoop = 20;             
+        private const int dummyItemsForLoop = 20;
         private int startScrollOffset;
         private int itemHeight;
         private int startScrollY;
@@ -81,6 +81,10 @@ namespace Tizen.NUI.Components
         private IList<TextLabel> itemList;
         private Vector2 size;
         private TextLabelStyle itemTextLabel;
+        private bool editMode = false;
+        private View recoverIndicator = null;
+        private View editModeIndicator = null;
+
 
         /// <summary>
         /// Creates a new instance of Picker.
@@ -144,6 +148,13 @@ namespace Tizen.NUI.Components
                 Utility.Dispose(upLine);
                 Remove(downLine);
                 Utility.Dispose(downLine);
+
+                recoverIndicator = null;
+                if (editModeIndicator)
+                {
+                    editModeIndicator.Dispose();
+                    editModeIndicator = null;
+                }
             }
 
             base.Dispose(type);
@@ -177,7 +188,7 @@ namespace Tizen.NUI.Components
                 UpdateValueList();
             }
         }
-        
+
         /// <summary>
         /// The Current value of Picker.
         /// </summary>
@@ -239,7 +250,7 @@ namespace Tizen.NUI.Components
             {
                 if (maxValue == value) return;
                 if (currentValue > value) currentValue = value;
-                
+
                 maxValue = value;
                 needItemUpdate = true;
 
@@ -273,7 +284,7 @@ namespace Tizen.NUI.Components
             {
                 if (minValue == value) return;
                 if (currentValue < value) currentValue = value;
-                
+
                 minValue = value;
                 needItemUpdate = true;
 
@@ -286,7 +297,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.List);
+            AccessibilityRole = Role.List;
 
             Initialize();
         }
@@ -361,7 +372,7 @@ namespace Tizen.NUI.Components
                 pickerScroller.ScrollAvailableArea = new Vector2(0, (itemList.Count * itemHeight) - size.Height);
             }
         }
-                
+
         private void Initialize()
         {
             HeightSpecification = LayoutParamPolicies.MatchParent;
@@ -388,7 +399,7 @@ namespace Tizen.NUI.Components
             pickerScroller.ScrollAnimationStarted += OnScrollAnimationStarted;
 
             itemList = new List<TextLabel>();
-            
+
             minValue = maxValue = currentValue = 0;
             displayedValues = null;
             //Those many flags for min, max, value method calling sequence dependency.
@@ -399,10 +410,13 @@ namespace Tizen.NUI.Components
 
             Add(pickerScroller);
             AddLine();
+
+            Focusable = true;
+            KeyEvent += OnKeyEvent;
         }
 
         private void OnValueChanged()
-        { 
+        {
             ValueChangedEventArgs eventArgs =
                 new ValueChangedEventArgs(displayedValuesUpdate ? Int32.Parse(itemList[currentValue].Name) : Int32.Parse(itemList[currentValue].Text));
             ValueChanged?.Invoke(this, eventArgs);
@@ -420,7 +434,7 @@ namespace Tizen.NUI.Components
         private void OnScroll(object sender, ScrollEventArgs e)
         {
             if (!loopEnabled || onAnimation || onAlignAnimation) return;
-            
+
             PageAdjust(e.Position.Y);
         }
 
@@ -441,7 +455,8 @@ namespace Tizen.NUI.Components
             lastScrollPosion = (int)(-e.Position.Y + offset);
 
             onAnimation = false;
-            if (onAlignAnimation) {
+            if (onAlignAnimation)
+            {
                 onAlignAnimation = false;
                 if (loopEnabled == true)
                 {
@@ -457,11 +472,13 @@ namespace Tizen.NUI.Components
             }
 
             //Item center align with animation, otherwise changed event emit.
-            if (offset != 0) {
+            if (offset != 0)
+            {
                 onAlignAnimation = true;
                 pickerScroller.ScrollTo(-e.Position.Y + offset, true);
             }
-            else {
+            else
+            {
                 if (currentValue != ((int)(-e.Position.Y / itemHeight) + 2))
                 {
                     currentValue = ((int)(-e.Position.Y / itemHeight) + 2);
@@ -483,10 +500,13 @@ namespace Tizen.NUI.Components
         private String GetItemText(bool loopEnabled, int idx)
         {
             if (!loopEnabled) return " ";
-            else {
-                if (displayedValuesUpdate) {
+            else
+            {
+                if (displayedValuesUpdate)
+                {
                     idx = idx - MinValue;
-                    if (idx <= displayedValues.Count) {
+                    if (idx <= displayedValues.Count)
+                    {
                         return displayedValues[idx];
                     }
                     return " ";
@@ -509,6 +529,7 @@ namespace Tizen.NUI.Components
                 Name = idx.ToString(),
             };
 
+            temp.AccessibilitySuppressedEvents[AccessibilityEvent.MovedOut] = true;
             itemList.Add(temp);
             pickerScroller.Add(temp);
         }
@@ -535,7 +556,8 @@ namespace Tizen.NUI.Components
 
             //FIXME: This is wrong.
             //       But scroller can't update item property after added please fix me.
-            if (itemList.Count > 0) {
+            if (itemList.Count > 0)
+            {
                 itemList.Clear();
                 pickerScroller.RemoveAllChildren();
             }
@@ -547,9 +569,9 @@ namespace Tizen.NUI.Components
                 //So need below calc.
                 int dummyStartIdx = 0;
                 if (maxValue - minValue >= dummyItemsForLoop)
-                  dummyStartIdx = maxValue - dummyItemsForLoop + 1;
+                    dummyStartIdx = maxValue - dummyItemsForLoop + 1;
                 else
-                  dummyStartIdx = maxValue - (dummyItemsForLoop % (maxValue - minValue + 1)) + 1;
+                    dummyStartIdx = maxValue - (dummyItemsForLoop % (maxValue - minValue + 1)) + 1;
 
                 //Start add items in scroller. first dummys for scroll anim.
                 for (int i = 0; i < dummyItemsForLoop; i++)
@@ -594,6 +616,75 @@ namespace Tizen.NUI.Components
 
             needItemUpdate = false;
         }
+
+        private bool OnKeyEvent(object o, View.KeyEventArgs e)
+        {
+            if (e.Key.State == Key.StateType.Down)
+            {
+                if (e.Key.KeyPressedName == "Return")
+                {
+                    if (editMode)
+                    {
+                        //Todo: sometimes this gets wrong. the currentValue is not correct. need to be fixed.
+                        if (currentValue != ((int)(-pickerScroller.Position.Y / itemHeight) + 2))
+                        {
+                            currentValue = ((int)(-pickerScroller.Position.Y / itemHeight) + 2);
+                            OnValueChanged();
+                        }
+
+                        //set editMode false (toggle the mode)
+                        editMode = false;
+                        FocusManager.Instance.FocusIndicator = recoverIndicator;
+                        return true;
+                    }
+                    else
+                    {
+                        //set editMode true (toggle the mode)
+                        editMode = true;
+                        if (editModeIndicator == null)
+                        {
+                            editModeIndicator = new View()
+                            {
+                                PositionUsesPivotPoint = true,
+                                PivotPoint = new Position(0, 0, 0),
+                                WidthResizePolicy = ResizePolicyType.FillToParent,
+                                HeightResizePolicy = ResizePolicyType.FillToParent,
+                                BorderlineColor = Color.Red,
+                                BorderlineWidth = 6.0f,
+                                BorderlineOffset = -1f,
+                                BackgroundColor = new Color(0.2f, 0.2f, 0.2f, 0.4f),
+                            };
+                        }
+                        recoverIndicator = FocusManager.Instance.FocusIndicator;
+                        FocusManager.Instance.FocusIndicator = editModeIndicator;
+                        return true;
+                    }
+                }
+                else if (e.Key.KeyPressedName == "Up")
+                {
+                    if (editMode)
+                    {
+                        InternalCurrentValue += 1;
+                        return true;
+                    }
+                }
+                else if (e.Key.KeyPressedName == "Down")
+                {
+                    if (editMode)
+                    {
+                        InternalCurrentValue -= 1;
+                        return true;
+                    }
+                }
+
+                if (editMode)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
 
         internal class PickerScroller : ScrollableBase
         {

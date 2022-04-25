@@ -37,7 +37,7 @@ namespace Tizen.NUI.Binding
         {
             if (value != null)
             {
-                string[] parts = value.Split(',');
+                string[] parts = value.Split(TypeConverter.UnifiedDelimiter);
                 if (parts.Length == 3)
                 {
                     int x = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[0].Trim());
@@ -63,7 +63,7 @@ namespace Tizen.NUI.Binding
             if (value != null)
             {
                 Size size = (Size)value;
-                return size.Width.ToString() + " " + size.Height.ToString() + " " + size.Depth.ToString();
+                return size.Width.ToString() + TypeConverter.UnifiedDelimiter + size.Height.ToString() + TypeConverter.UnifiedDelimiter + size.Depth.ToString();
             }
             return "";
         }
@@ -80,7 +80,7 @@ namespace Tizen.NUI.Binding
         {
             if (value != null)
             {
-                string[] parts = value.Split(',');
+                string[] parts = value.Split(TypeConverter.UnifiedDelimiter);
                 if (parts.Length == 2)
                 {
                     int x = (int)GraphicsTypeManager.Instance.ConvertScriptToPixel(parts[0].Trim());
@@ -99,7 +99,7 @@ namespace Tizen.NUI.Binding
             if (value != null)
             {
                 Size2D size = (Size2D)value;
-                return size.Width.ToString() + " " + size.Height.ToString();
+                return size.Width.ToString() + TypeConverter.UnifiedDelimiter + size.Height.ToString();
             }
             return "";
         }

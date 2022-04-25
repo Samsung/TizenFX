@@ -106,15 +106,20 @@ namespace Tizen.Uix.Sticker
         /// </pre>
         public static void Deinitialize()
         {
-            ErrorCode error = StickerConsumerDestroy(_handle);
-            if (error != ErrorCode.None)
+            if (_handle != IntPtr.Zero)
             {
-                Log.Error(LogTag, "Destroy Failed with error " + error);
-                if (error == ErrorCode.InvalidParameter)
-                    throw ExceptionFactory.CreateException(ErrorCode.OperationFailed);
-                else
-                    throw ExceptionFactory.CreateException(error);
+                ErrorCode error = StickerConsumerDestroy(_handle);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Destroy Failed with error " + error);
+                    if (error == ErrorCode.InvalidParameter)
+                        throw ExceptionFactory.CreateException(ErrorCode.OperationFailed);
+                    else
+                        throw ExceptionFactory.CreateException(error);
+                }
+                _handle = IntPtr.Zero;
             }
+            Initialized = false;
         }
 
         /// <summary>

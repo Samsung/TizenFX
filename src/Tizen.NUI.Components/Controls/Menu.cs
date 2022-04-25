@@ -652,7 +652,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.PopupMenu);
+            AccessibilityRole = Role.PopupMenu;
             AppendAccessibilityAttribute("sub-role", "Alert");
         }
 

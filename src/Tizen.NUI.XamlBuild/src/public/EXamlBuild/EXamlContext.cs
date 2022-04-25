@@ -26,7 +26,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 {
     internal class EXamlContext
     {
-        public EXamlContext(TypeDefinition type, ModuleDefinition module, FieldDefinition parentContextValues = null)
+        public EXamlContext(TypeDefinition type, ModuleDefinition module, string embeddedResourceNameSpace, FieldDefinition parentContextValues = null)
         {
             Values = new Dictionary<INode, object>();
             Variables = new Dictionary<IElementNode, VariableDefinition>();
@@ -35,6 +35,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             ParentContextValues = parentContextValues;
             Type = type;
             Module = module;
+            EmbeddedResourceNameSpace = embeddedResourceNameSpace;
         }
 
         public Dictionary<INode, object> Values { get; private set; }
@@ -54,6 +55,8 @@ namespace Tizen.NUI.EXaml.Build.Tasks
         public TypeDefinition Type { get; set; }
 
         public ModuleDefinition Module { get; private set; }
+
+        public string EmbeddedResourceNameSpace { get; }
 
         public List<EXamlOperation> eXamlOperations = new List<EXamlOperation>();
 
@@ -374,9 +377,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
             if (0 < longStrings.Length)
             {
-                ret += String.Format("({0} ({1}))\n",
-                                GetValueString((int)EXamlOperationType.GetLongString),
-                                GetValueString(longStrings));
+                ret += String.Format("/{0}\n", longStrings);
             }
 
             return ret;
@@ -622,7 +623,11 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             //Fang: How to deal the Enum
             string ret = "";
 
-            if (null == valueObject)
+            if (System.Type.Missing == valueObject)
+            {
+                ret += "yy ";
+            }
+            else if (null == valueObject)
             {
                 ret += "zz ";
             }

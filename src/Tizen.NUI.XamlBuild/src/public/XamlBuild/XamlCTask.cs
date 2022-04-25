@@ -47,6 +47,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
         public bool UseInjection { get; set; }
 
+        public int XamlOptimization { get; set; } = 2;
+
         public IAssemblyResolver DefaultAssemblyResolver { get; set; }
 
         public string Type { get; set; }
@@ -284,10 +286,16 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                             continue;
                         }
 
-                        bool currentRetOfType;
-                        IList<Exception> currentExceptionsOfType;
+                        bool currentRetOfType = false;
+                        IList<Exception> currentExceptionsOfType = null;
 
-                        if (UseInjection)
+                        if(UseInjection) XamlOptimization = 1;
+                        LoggingHelper.LogWarning($"XamlOptimization is {XamlOptimization}.");
+                        if (0 == XamlOptimization)
+                        {//Use Xaml
+                            currentRetOfType = true;
+                        }
+                        else if (1 == XamlOptimization)
                         {
                             currentRetOfType = DoInjection(typeDef, resource, out currentExceptionsOfType);
                         }
@@ -372,6 +380,17 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             return success;
         }
 
+        private string GetNameSpaceOfResource(EmbeddedResource resource)
+        {
+            var index = resource.Name.LastIndexOf('.');
+            var resourceNameWithoutSubfix = resource.Name.Substring(0, index);
+
+            index = resourceNameWithoutSubfix.LastIndexOf('.');
+            var nameSpace = resourceNameWithoutSubfix.Substring(0, index);
+
+            return nameSpace;
+        }
+
         bool DoInjection(TypeDefinition typeDef, EmbeddedResource resource, out IList<Exception> thrownExceptions)
         {
             thrownExceptions = null;
@@ -423,7 +442,9 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
             LoggingHelper.LogMessage(Low, $"{new string(' ', 6)}Replacing {0}.InitializeComponent ()");
             Exception e;
-            if (!TryCoreCompile(initComp, rootnode, out e))
+
+            var embeddedResourceNameSpace = GetNameSpaceOfResource(resource);
+            if (!TryCoreCompile(initComp, rootnode, embeddedResourceNameSpace, out e))
             {
                 LoggingHelper.LogMessage(Low, $"{new string(' ', 8)}failed.");
                 (thrownExceptions = thrownExceptions ?? new List<Exception>()).Add(e);
@@ -486,7 +507,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             LoggingHelper.LogMessage(Low, $"{new string(' ', 6)}Replacing {0}.InitializeComponent ()");
             Exception e;
 
-            var visitorContext = new EXamlContext(typeDef, typeDef.Module);
+            var embeddedResourceNameSpace = GetNameSpaceOfResource(resource);
+            var visitorContext = new EXamlContext(typeDef, typeDef.Module, embeddedResourceNameSpace);
 
             if (!TryCoreCompile(rootnode, visitorContext, out e))
             {
@@ -501,7 +523,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
                 if (null != e.StackTrace)
                 {
-                    LoggingHelper.LogMessage(Low, e.StackTrace);
+                    LoggingHelper.LogError(e.StackTrace);
                 }
 
                 return false;
@@ -559,7 +581,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             LoggingHelper.LogMessage(Low, $"{new string(' ', 6)}Replacing {0}.InitializeComponent ()");
             Exception e;
 
-            var visitorContext = new EXamlContext(typeDef, module);
+            var visitorContext = new EXamlContext(typeDef, module, null);
 
             if (!TryCoreCompile(rootnode, visitorContext, out e))
             {
@@ -613,7 +635,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             return true;
         }
 
-        bool TryCoreCompile(MethodDefinition initComp, ILRootNode rootnode, out Exception exception)
+        bool TryCoreCompile(MethodDefinition initComp, ILRootNode rootnode, string embeddedResourceNameSpace, out Exception exception)
         {
             try
             {
@@ -638,7 +660,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
                 List<Instruction> insOfAddEvent = new List<Instruction>();
 
-                var visitorContext = new ILContext(il, body, insOfAddEvent, module);
+                var visitorContext = new ILContext(il, body, insOfAddEvent, module, embeddedResourceNameSpace);
 
                 rootnode.Accept(new XamlNodeVisitor((node, parent) => node.Parent = parent), null);
                 rootnode.Accept(new ExpandMarkupsVisitor(visitorContext), null);

@@ -86,6 +86,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+            Focusable = true;
         }
 
         /// <summary>
@@ -323,6 +324,24 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(HorizontalAlignmentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The VerticalAlignment property.<br />
+        /// The line vertical alignment.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VerticalAlignment VerticalAlignment
+        {
+            get
+            {
+                return (VerticalAlignment)GetValue(VerticalAlignmentProperty);
+            }
+            set
+            {
+                SetValue(VerticalAlignmentProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2525,6 +2544,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int FontStyle = Interop.TextEditor.FontStyleGet();
             internal static readonly int PointSize = Interop.TextEditor.PointSizeGet();
             internal static readonly int HorizontalAlignment = Interop.TextEditor.HorizontalAlignmentGet();
+            internal static readonly int VerticalAlignment = Interop.TextEditor.VerticalAlignmentGet();
             internal static readonly int ScrollThreshold = Interop.TextEditor.ScrollThresholdGet();
             internal static readonly int ScrollSpeed = Interop.TextEditor.ScrollSpeedGet();
             internal static readonly int PrimaryCursorColor = Interop.TextEditor.PrimaryCursorColorGet();

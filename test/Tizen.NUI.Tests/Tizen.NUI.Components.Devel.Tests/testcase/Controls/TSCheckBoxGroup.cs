@@ -163,5 +163,54 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             tlog.Debug(tag, $"CheckBoxGroupCheckAll END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("CheckBoxGroup IsCheckedAll.")]
+        [Property("SPEC", "Tizen.NUI.Components.CheckBoxGroup.IsCheckedAll M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void CheckBoxGroupIsCheckedAll()
+        {
+            tlog.Debug(tag, $"CheckBoxGroupIsCheckedAll START");
+
+            var testingTarget = new CheckBoxGroup();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<CheckBoxGroup>(testingTarget, "Should return CheckBoxGroup instance.");
+
+            CheckBox cb1 = new CheckBox()
+            {
+                Size = new Size(48, 48),
+                IsEnabled = true,
+                IsSelectable = true,
+                IsSelected = true,
+            };
+
+            CheckBox cb2 = new CheckBox()
+            {
+                Size = new Size(48, 48),
+                IsEnabled = true,
+                IsSelectable = true,
+                IsSelected = false,
+            };
+
+            try
+            {
+                testingTarget.Add(cb1);
+                testingTarget.Add(cb2);
+
+                var result = testingTarget.IsCheckedAll();
+                Assert.AreEqual(false, result, "Should be equal!");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"CheckBoxGroupIsCheckedAll END (OK)");
+        }
     }
 }

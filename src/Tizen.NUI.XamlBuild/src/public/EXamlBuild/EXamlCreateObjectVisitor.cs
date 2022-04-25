@@ -27,6 +27,7 @@ using static Mono.Cecil.Cil.Instruction;
 using static Mono.Cecil.Cil.OpCodes;
 using Tizen.NUI.Xaml.Build.Tasks;
 using ArrayExtension = Tizen.NUI.Xaml.Build.Tasks.ArrayExtension;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.EXaml.Build.Tasks
 {
@@ -67,7 +68,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
         public void Visit(ElementNode node, INode parentNode)
         {
-            var typeref = Module.ImportReference(node.XmlType.GetTypeReference(Module, node));
+            var typeref = Module.ImportReference(node.XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, Module, node));
 
             if (IsXaml2009LanguagePrimitive(node))
             {
@@ -128,7 +129,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                     VariableDefinition vardef = new VariableDefinition(typeref);
                     Context.Variables[node] = vardef;
 
-                    var argumentList = GetCtorXArguments(node, factoryCtorInfo.Parameters.Count);
+                    var argumentList = GetCtorXArguments(node, factoryCtorInfo.Parameters.Count, true);
                     Context.Values[node] = new EXamlCreateObject(Context, null, typedef, argumentList.ToArray());
                     return;
                 }
@@ -143,7 +144,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
                 if (factoryMethodInfo == null)
                 {
-                    var typeExtensionRef = Module.ImportReference(node.XmlType.GetTypeExtensionReference(Module, node));
+                    var typeExtensionRef = Module.ImportReference(node.XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.OnlyGetTypeExtension, Module, node));
                     typeExtensionRef = typeExtensionRef?.ResolveCached();
 
                     if (null != typeExtensionRef)
@@ -164,7 +165,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 VariableDefinition vardef = new VariableDefinition(typeref);
                 Context.Variables[node] = vardef;
 
-                var argumentList = GetCtorXArguments(node, factoryMethodInfo.Parameters.Count);
+                var argumentList = GetCtorXArguments(node, factoryMethodInfo.Parameters.Count, false);
                 Context.Values[node] = new EXamlCreateObject(Context, null, typedef, factoryMethodInfo, argumentList?.ToArray());
                 return;
             }
@@ -286,12 +287,11 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                     if (typeref.FullName == "Tizen.NUI.Xaml.ArrayExtension")
                     {
                         typeref = Module.ImportReference(typeof(ArrayExtension));
-                        typedef = typeref.ResolveCached();
                     }
 
-                    var accordingType = this.GetType().Assembly.GetType(typedef.FullName);
+                    var accordingType = this.GetType().Assembly.GetType(typeref.FullName);
 
-                    if (null != accordingType && accordingType != typeof(Binding.Setter))
+                    if (null != accordingType && accordingType != typeof(Binding.Setter) && accordingType != typeof(ResourceDictionary))
                     {
                         Context.Values[node] = new EXamlCreateObject(Context, Activator.CreateInstance(accordingType), typeref);
                     }
@@ -364,23 +364,14 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 else if (ctorInfo != null && node.Properties.ContainsKey(XmlName.xArguments) &&
                          !node.Properties.ContainsKey(XmlName.xFactoryMethod) && ctorInfo.MatchXArguments(node, typeref, Module, Context))
                 {
-                    //IL_0008:  ldloca.s 1
-                    //IL_000a:  ldc.i4.1 
-                    //IL_000b:  call instance void valuetype Test/Foo::'.ctor'(bool)
-
-                    //Fang
-                    //var ctor = Module.ImportReference(ctorinforef);
-                    //Context.IL.Emit(OpCodes.Ldloca, vardef);
-                    //Context.IL.Append(PushCtorXArguments(factoryCtorInfo, node));
-                    //Context.IL.Emit(OpCodes.Call, ctor);
+                    var argumentList = GetCtorXArguments(node, factoryCtorInfo.Parameters.Count, true);
+                    Context.Values[node] = new EXamlCreateObject(Context, null, typedef, argumentList.ToArray());
+                    return;
                 }
                 else
                 {
-                    //IL_0000:  ldloca.s 0
-                    //IL_0002:  initobj Test/Foo
-                    //Fang
-                    //Context.IL.Emit(OpCodes.Ldloca, vardef);
-                    //Context.IL.Emit(OpCodes.Initobj, Module.ImportReference(typedef));
+                    Context.Values[node] = new EXamlCreateObject(Context, null, typedef, null);
+                    return;
                 }
 
                 if (typeref.FullName == "Tizen.NUI.Xaml.ArrayExtension")
@@ -454,7 +445,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             return true;
         }
 
-        List<object> GetCtorXArguments(ElementNode enode, int paramsCount)
+        List<object> GetCtorXArguments(ElementNode enode, int paramsCount, bool isConstructor)
         {
             if (!enode.Properties.ContainsKey(XmlName.xArguments))
             {
@@ -483,9 +474,12 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 argumentList.Add(Context.Values[arguments[i]]);
             }
 
-            for (int i = arguments.Count; i < paramsCount; i++)
+            if (!isConstructor)
             {
-                argumentList.Add(null);
+                for (int i = arguments.Count; i < paramsCount; i++)
+                {
+                    argumentList.Add(Type.Missing);
+                }
             }
 
             return argumentList;
@@ -496,7 +490,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             if (node.NamespaceURI == XamlParser.X2009Uri)
             {
                 var n = node.XmlType.Name.Split(':')[1];
-                return n != "Array";
+                return n != "Array" && n != "DateTime";
             }
             if (node.NamespaceURI != "clr-namespace:System;assembly=mscorlib")
                 return false;
@@ -583,7 +577,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                     break;
                 case "System.Boolean":
                     if (hasValue && bool.TryParse(valueString, out bool outbool))
-                        ret = true;
+                        ret = outbool;
                     else
                         ret = false;
                     break;
@@ -629,7 +623,6 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 case "System.TimeSpan":
                     if (hasValue && TimeSpan.TryParse(valueString, CultureInfo.InvariantCulture, out TimeSpan outspan))
                     {
-
                         ret = outspan;
                     }
                     else
@@ -675,7 +668,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
                     if ("System.Type" == valueType.FullName)
                     {
-                        var typeRef = XmlTypeExtensions.GetTypeReference(valueNode.Value as string, Module, node as BaseNode);
+                        var typeRef = XmlTypeExtensions.GetTypeReference(valueNode.Value as string, Module, node as BaseNode, XmlTypeExtensions.ModeOfGetType.Both);
                         context.Values[node] = new EXamlCreateObject(context, typeRef);
                     }
                     else

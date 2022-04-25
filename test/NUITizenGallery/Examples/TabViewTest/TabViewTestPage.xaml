@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage x:Class="NUITizenGallery.TabViewTestPage"
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -13,8 +13,7 @@
     <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
     <ContentPage.Content>
         <TabView x:Name="tabView"
-                   WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
-                   HeightSpecification="{Static LayoutParamPolicies.MatchParent}" >
+                   WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
         </TabView>
     </ContentPage.Content>
 

@@ -80,15 +80,20 @@ namespace Tizen.Uix.Sticker
         /// </pre>
         public static void Deinitialize()
         {
-            ErrorCode error = StickerProviderDestroy(_handle);
-            if (error != ErrorCode.None)
+            if (_handle != IntPtr.Zero)
             {
-                Log.Error(LogTag, "Destroy Failed with error " + error);
-                if (error == ErrorCode.InvalidParameter)
-                    throw ExceptionFactory.CreateException(ErrorCode.OperationFailed);
-                else
-                    throw ExceptionFactory.CreateException(error);
+                ErrorCode error = StickerProviderDestroy(_handle);
+                if (error != ErrorCode.None)
+                {
+                    Log.Error(LogTag, "Destroy Failed with error " + error);
+                    if (error == ErrorCode.InvalidParameter)
+                        throw ExceptionFactory.CreateException(ErrorCode.OperationFailed);
+                    else
+                        throw ExceptionFactory.CreateException(error);
+                }
+                _handle = IntPtr.Zero;
             }
+            Initialized = false;
         }
 
         /// <summary>
@@ -123,7 +128,7 @@ namespace Tizen.Uix.Sticker
         /// <remarks>
         /// All data except thumbnail, description, and display_type must be set in the JSON file to insert the sticker data.
         /// <paramref name="jsonPath"/> must have a non-null value and must be an existing file.
-        /// If the URI type is lacal path, the sticker file is copied to a sticker directory.
+        /// If the URI type is local path, the sticker file is copied to a sticker directory.
         /// It is recommended to delete your sticker files after inserting a sticker data.
         /// </remarks>
         /// <param name="jsonPath">The path of JSON file containing sticker data to be saved</param>

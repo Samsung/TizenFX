@@ -826,5 +826,57 @@ namespace Tizen.NUI.BaseComponents
 
         }
 
+        /// <summary>
+        /// Sets the position of the View.
+        /// The coordinates are relative to the View's parent.
+        /// The View's z position will be set to 0.0f.
+        /// </summary>
+        /// <param name="x">The new x position</param>
+        /// <param name="y">The new y position</param>
+        /// <remarks>
+        /// This is a hidden API(inhouse API) only for internal purpose.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPosition(float x, float y)
+        {
+            Interop.ActorInternal.SetPosition(SwigCPtr, x, y);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the position of the View.
+        /// The coordinates are relative to the View's parent.
+        /// </summary>
+        /// <param name="x">The new x position</param>
+        /// <param name="y">The new y position</param>
+        /// <param name="z">The new z position</param>
+        /// <remarks>
+        /// This is a hidden API(inhouse API) only for internal purpose.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPosition(float x, float y, float z)
+        {
+            Interop.ActorInternal.SetPosition(SwigCPtr, x, y, z);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets the position of the View.
+        /// The coordinates are relative to the View's parent.
+        /// </summary>
+        /// <param name="position">The new position</param>
+        /// <remarks>
+        /// This is a hidden API(inhouse API) only for internal purpose.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetPosition(Vector3 position)
+        {
+            Interop.ActorInternal.SetPosition(SwigCPtr, Vector3.getCPtr(position));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
     }
 }

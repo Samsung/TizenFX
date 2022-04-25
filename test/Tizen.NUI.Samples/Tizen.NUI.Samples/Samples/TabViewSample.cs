@@ -7,6 +7,9 @@ namespace Tizen.NUI.Samples
 {
     public class TabViewSample : IExample
     {
+        private Window window;
+        private Navigator navigator;
+        private ContentPage contentPage;
         private TabView tabView;
         private TabButton tabButton, tabButton2, tabButton3;
         private View content, content2, content3;
@@ -15,7 +18,18 @@ namespace Tizen.NUI.Samples
 
         public void Activate()
         {
-            var window = NUIApplication.GetDefaultWindow();
+            window = NUIApplication.GetDefaultWindow();
+
+            navigator = window.GetDefaultNavigator();
+
+            contentPage = new ContentPage()
+            {
+                AppBar = new AppBar()
+                {
+                    Title = "TabView Sample",
+                    AutoNavigationContent = false,
+                },
+            };
 
             tabView = new TabView()
             {
@@ -91,7 +105,9 @@ namespace Tizen.NUI.Samples
             tabView.AddTab(tabButton3, content3);
             tabCount++;
 
-            window.Add(tabView);
+            contentPage.Content = tabView;
+
+            navigator.Push(contentPage);
 
             addBtn = new Button()
             {
@@ -102,7 +118,7 @@ namespace Tizen.NUI.Samples
 
             addBtn.Clicked += (object sender, ClickedEventArgs args) =>
             {
-                if (tabCount < 3)
+                if (tabCount < 4)
                 {
                     tabCount++;
 
@@ -166,28 +182,31 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
-            var window = NUIApplication.GetDefaultWindow();
 
-            if (tabView != null)
+            if (contentPage != null)
             {
-                window.Remove(tabView);
-                tabView.Dispose();
+                navigator?.Remove(contentPage);
+                contentPage.Dispose();
+                contentPage = null;
                 tabView = null;
             }
 
             if (addBtn != null)
             {
-                window.Remove(addBtn);
+                window?.Remove(addBtn);
                 addBtn.Dispose();
                 addBtn = null;
             }
 
             if (removeBtn != null)
             {
-                window.Remove(removeBtn);
+                window?.Remove(removeBtn);
                 removeBtn.Dispose();
                 removeBtn = null;
             }
+
+            navigator = null;
+            window = null;
         }
     }
 }

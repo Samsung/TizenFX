@@ -27,7 +27,7 @@ namespace Tizen.NUI.BaseComponents
     /// </summary>
     // Values are from Dali::Accessibility::AtspiInterface
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum AccessibilityInterface
+    internal enum AccessibilityInterface
     {
         /// <summary>
         /// Common accessibility interface
@@ -39,6 +39,11 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Value = 26,
+        /// <summary>
+        /// Accessibility interface which can store text
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Text = 25,
         /// <summary>
         /// Accessibility interface which can store editable texts
         /// </summary>
@@ -564,7 +569,7 @@ namespace Tizen.NUI.BaseComponents
     };
 
     /// <summary>
-    /// A collection of AccessibilityStates
+    /// AccessibilityStates is a collection of AccessibilityState's
     /// </summary>
     /// <seealso cref="AccessibilityState"/>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -601,6 +606,162 @@ namespace Tizen.NUI.BaseComponents
                     // Clear N-th bit
                     BitMask &= ~(1UL << (int)state);
                 }
+            }
+        }
+    }
+
+    /// <summary>
+    /// Enumeration of possible AT-SPI events.
+    /// </summary>
+    /// <seealso cref="AccessibilityEvents"/>
+    /// <remarks>
+    /// Accessible can emit differty type of event.
+    /// </remarks>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum AccessibilityEvent
+    {
+        /// <summary>
+        /// Property changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        PropertyChanged         = 0,
+        /// <summary>
+        /// Bounds changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        BoundsChanged           = 1,
+        /// <summary>
+        /// Link selected event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        LinkSelected            = 2,
+        /// <summary>
+        /// State changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        StateChanged            = 3,
+        /// <summary>
+        /// Children changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ChildrenChanged         = 4,
+        /// <summary>
+        /// Visible data changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        VisibleDataChanged      = 5,
+        /// <summary>
+        /// Selection changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        SelectionChanged        = 6,
+        /// <summary>
+        /// Model changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ModelChanged            = 7,
+        /// <summary>
+        /// Active descendant changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ActiveDescendantChanged = 8,
+        /// <summary>
+        /// Row inserted event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RowInserted             = 9,
+        /// <summary>
+        /// Row reordered event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RowReordered            = 10,
+        /// <summary>
+        /// Row deleted event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        RowDeleted              = 11,
+        /// <summary>
+        /// Column inserted event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ColumnInserted          = 12,
+        /// <summary>
+        /// Column reordered event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ColumnReordered         = 13,
+        /// <summary>
+        /// Column deleted event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ColumnDeleted           = 14,
+        /// <summary>
+        /// Text bounds changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        TextBoundsChanged       = 15,
+        /// <summary>
+        /// Text selection changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        TextSelectionChanged    = 16,
+        /// <summary>
+        /// Text changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        TextChanged             = 17,
+        /// <summary>
+        /// Text attributes changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        TextAttributesChanged   = 18,
+        /// <summary>
+        /// Text caret moved event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        TextCaretMoved          = 19,
+        /// <summary>
+        /// Attributes changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        AttributesChanged       = 20,
+        /// <summary>
+        /// Moved out event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        MovedOut                = 21,
+        /// <summary>
+        /// Window changed event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        WindowChanged           = 22,
+    };
+
+    /// <summary>
+    /// AccessibilityEvents is a collection of AccessibilityEvent's
+    /// </summary>
+    /// <seealso cref="AccessibilityEvent"/>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class AccessibilityEvents
+    {
+        // Target object for interop call
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal View Owner { get; set; }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool this[AccessibilityEvent accessibilityEvent]
+        {
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1065:DoNotRaiseExceptionsInUnexpectedLocations", Justification = "SWIG boilerplate, no exceptions are expected")]
+            get
+            {
+                bool result = Interop.ControlDevel.DaliAccessibilityIsSuppressedEvent(Owner.SwigCPtr, (int)accessibilityEvent);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return result;
+            }
+            set
+            {
+                Interop.ControlDevel.DaliAccessibilitySetSuppressedEvent(Owner.SwigCPtr, (int)accessibilityEvent, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
     }
@@ -1411,7 +1572,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// Accessibility text boundary is used in text controls.
     /// </summary>
-    /// <seealso cref="View.AccessibilityGetTextAtOffset" />
+    /// <seealso cref="Accessibility.IAtspiText.AccessibilityGetTextAtOffset" />
     /// <remarks>
     /// Currently, only AccessibilityTextBoundary.Character is supported.
     /// </remarks>
@@ -1460,7 +1621,7 @@ namespace Tizen.NUI.BaseComponents
     /// <summary>
     /// Accessibility coordinate type describing if coordinates are relative to screen or window
     /// </summary>
-    /// <seealso cref="View.AccessibilityGetRangeExtents" />
+    /// <seealso cref="Accessibility.IAtspiText.AccessibilityGetRangeExtents" />
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum AccessibilityCoordinateType
     {

@@ -36,6 +36,11 @@ namespace Tizen.NUI.Components.Devel.Tests
             {
                 base.Decelerating(velocity, animation);
             }
+
+            public bool MyAccessibilityScrollToChild(View child)
+            {
+                return base.AccessibilityScrollToChild(child);
+            }
         }
 
         [SetUp]
@@ -384,6 +389,110 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ScrollableBaseDecelerating END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollableBase DecelerationThreshold")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.DecelerationThreshold A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollableBaseDecelerationThreshold()
+        {
+            tlog.Debug(tag, $"ScrollableBaseDecelerationThreshold START");
+
+            var testingTarget = new MyScrollableBase()
+            {
+                Size = new Size(100, 2),
+                BackgroundColor = Color.Cyan,
+                ScrollingDirection = ScrollableBase.Direction.Vertical,
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
+
+            testingTarget.DecelerationThreshold = 0.8f;
+            tlog.Debug(tag, "DecelerationThreshold : " + testingTarget.DecelerationThreshold);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollableBaseDecelerationThreshold END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollableBase ScrollAlphaFunction")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.ScrollAlphaFunction A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollableBaseScrollAlphaFunction()
+        {
+            tlog.Debug(tag, $"ScrollableBaseScrollAlphaFunction START");
+
+            var testingTarget = new MyScrollableBase()
+            {
+                Size = new Size(100, 2),
+                BackgroundColor = Color.Cyan,
+                ScrollingDirection = ScrollableBase.Direction.Vertical,
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
+
+            testingTarget.ScrollAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn);
+            tlog.Debug(tag, "ScrollAlphaFunction : " + testingTarget.ScrollAlphaFunction);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollableBaseScrollAlphaFunction END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollableBase AccessibilityScrollToChild")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.AccessibilityScrollToChild M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollableBaseAccessibilityScrollToChild()
+        {
+            tlog.Debug(tag, $"ScrollableBaseAccessibilityScrollToChild START");
+
+            var testingTarget = new MyScrollableBase()
+            {
+                Size = new Size(2000, 200),
+                BackgroundColor = Color.Cyan,
+                ScrollingDirection = ScrollableBase.Direction.Horizontal,
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
+
+            testingTarget.ScrollAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn);
+            tlog.Debug(tag, "ScrollAlphaFunction : " + testingTarget.ScrollAlphaFunction);
+
+            View[] views = new View[10];
+            for (int i = 0; i < 10; i++)
+            {
+                views[i].Size = new Size(200, 200);
+                testingTarget.Add(views[i]);
+            }
+
+            var result = testingTarget.MyAccessibilityScrollToChild(views[9]);
+            tlog.Debug(tag, "AccessibilityScrollToChild : " + result);
+
+            try
+            {
+                testingTarget.RemoveAllChildren(true);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollableBaseAccessibilityScrollToChild END (OK)");
         }
     }
 }

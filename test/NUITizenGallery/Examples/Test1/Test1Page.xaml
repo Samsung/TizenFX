@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage x:Class="NUITizenGallery.Test1Page"
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -14,9 +14,6 @@
     <ContentPage.Content>
         <TextLabel x:Name="test1PageText"
                      Text="Hello NUI XAML !"
-                     PositionUsesPivotPoint="True"
-                     ParentOrigin="Center"
-                     PivotPoint="Center"
                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
                      HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
                      HorizontalAlignment="Center"

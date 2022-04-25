@@ -19,7 +19,7 @@
           <View.Layout>
             <LinearLayout LinearOrientation="Vertical" CellPadding="10,10" LinearAlignment="Top"/>
           </View.Layout>
-          <ImageView x:Name="imageView" Size="{Binding Source={x:Static Window.Instance}, Path=Size }"/>
+            <ImageView x:Name="imageView" Size="{Binding Source={x:Reference ContentView}, Path=Size }"/>
 
         </View>
     </ContentPage.Content>

@@ -14,9 +14,6 @@
     <ContentPage.Content>
         <TextLabel x:Name="test1PageText"
                      Text="Hello NUI XAML !"
-                     PositionUsesPivotPoint="True"
-                     ParentOrigin="Center"
-                     PivotPoint="Center"
                      WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
                      HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
                      HorizontalAlignment="Center"

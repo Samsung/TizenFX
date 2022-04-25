@@ -234,5 +234,47 @@ namespace Tizen.NUI.Components.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"ScrollBarCreateViewStyle END (OK)");
         }
+
+        [Test]
+        [Category("P2")]
+        [Description("ScrollBar SetCurrentValue.")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollBar.SetCurrentValue M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void ScrollBarSetCurrentValue()
+        {
+            tlog.Debug(tag, $"ScrollBarSetCurrentValue START");
+
+            var testingTarget = new ScrollBar();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollBar>(testingTarget, "Should return ScrollBar instance.");
+
+            testingTarget.MinValue = 0;
+            tlog.Debug(tag, "MinValue : " + testingTarget.MinValue);
+
+            testingTarget.MaxValue = 100;
+            tlog.Debug(tag, "MaxValue : " + testingTarget.MaxValue);
+
+            testingTarget.Duration = 3;
+            tlog.Debug(tag, "Duration : " + testingTarget.Duration);
+
+            testingTarget.CurrentValue = 30;
+            tlog.Debug(tag, "CurrentValue : " + testingTarget.CurrentValue);
+
+            try
+            {
+                testingTarget.SetCurrentValue(-10, true);
+            }
+            catch (ArgumentOutOfRangeException e)
+            {
+                testingTarget.Dispose();
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"ScrollBarSetCurrentValue END (OK)");
+                Assert.Pass("Caught ArgumentOutOfRangeException : Passed!");
+            }
+        }
     }
 }

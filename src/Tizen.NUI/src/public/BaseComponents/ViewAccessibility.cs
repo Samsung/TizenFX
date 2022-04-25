@@ -422,6 +422,18 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Modifiable collection of suppressed AT-SPI events (D-Bus signals).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public AccessibilityEvents AccessibilitySuppressedEvents
+        {
+            get
+            {
+                return new AccessibilityEvents {Owner = this};
+            }
+        }
+
         ///////////////////////////////////////////////////////////////////
         // ************************** Bridge *************************** //
         ///////////////////////////////////////////////////////////////////
@@ -450,22 +462,6 @@ namespace Tizen.NUI.BaseComponents
         {
             Interop.ControlDevel.DaliAccessibilityBridgeUnregisterDefaultLabel(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Sets the specific constructor for creating accessibility structure with its role and interface.
-        /// </summary>
-        /// <remarks>
-        /// The method should be called inside OnInitialize method of all classes inheriting from View.
-        /// </remarks>
-        /// <param name="role">Accessibility role</param>
-        /// <param name="accessibilityInterface">Accessibility interface</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetAccessibilityConstructor(Role role, AccessibilityInterface accessibilityInterface = AccessibilityInterface.None)
-        {
-            // We have to store the interface flags until we remove SetAccessibilityConstructor and switch to native C# interfaces
-            AtspiInterfaceFlags = (1U << (int)accessibilityInterface);
-            AccessibilityRole = role;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -573,175 +569,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual double AccessibilityGetMinimum()
-        {
-            return 0.0;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual double AccessibilityGetCurrent()
-        {
-            return 0.0;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual double AccessibilityGetMaximum()
-        {
-            return 0.0;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilitySetCurrent(double value)
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual double AccessibilityGetMinimumIncrement()
-        {
-            return 0.0;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool AccessibilityIsScrollable()
         {
             return false;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual string AccessibilityGetText(int startOffset, int endOffset)
-        {
-            return "";
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual int AccessibilityGetCharacterCount()
-        {
-            return 0;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual int AccessibilityGetCursorOffset()
-        {
-            return 0;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilitySetCursorOffset(int offset)
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual AccessibilityRange AccessibilityGetTextAtOffset(int offset, AccessibilityTextBoundary boundary)
-        {
-            return new AccessibilityRange();
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual AccessibilityRange AccessibilityGetSelection(int selectionNumber)
-        {
-            return new AccessibilityRange();
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilityRemoveSelection(int selectionNumber)
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilitySetSelection(int selectionNumber, int startOffset, int endOffset)
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual Rectangle AccessibilityGetRangeExtents(int startOffset, int endOffset, AccessibilityCoordinateType coordType)
-        {
-            return new Rectangle(0, 0, 0, 0);
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilityCopyText(int startPosition, int endPosition)
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilityCutText(int startPosition, int endPosition)
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilityInsertText(int startPosition, string text)
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilitySetTextContents(string newContents)
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilityDeleteText(int startPosition, int endPosition)
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool AccessibilityScrollToChild(View child)
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual int AccessibilityGetSelectedChildrenCount()
-        {
-            return 0;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual View AccessibilityGetSelectedChild(int selectedChildIndex)
-        {
-            return null;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilitySelectChild(int childIndex)
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilityDeselectSelectedChild(int selectedChildIndex)
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilityIsChildSelected(int childIndex)
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilitySelectAll()
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilityClearSelection()
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilityDeselectChild(int childIndex)
         {
             return false;
         }
