@@ -475,7 +475,7 @@ namespace Tizen.NUI.Components
             ExcludeLayouting = true;
 
             Content = CreateDefaultContent();
-            if (styleApplied)
+            if (styleApplied && (menuStyle != null))
             {
                 Content.ApplyStyle(menuStyle.Content);
             }
