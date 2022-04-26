@@ -272,37 +272,64 @@ namespace Tizen.NUI.Components
                 Add(TextLabel);
             }
 
-            // Icon and Text
-            if (!isEmptyIcon && !isEmptyText)
+            if (tabButtonStyle != null)
             {
-                WidthSpecification = (int)tabButtonStyle.Size.Width;
-                HeightSpecification = (int)tabButtonStyle.Size.Height;
-                Padding = tabButtonStyle.Padding;
-            }
-            // Icon only
-            else if (!isEmptyIcon && isEmptyText)
-            {
-                WidthSpecification = (int)tabButtonStyle.SizeWithIconOnly.Width;
-                HeightSpecification = (int)tabButtonStyle.SizeWithIconOnly.Height;
-                Padding = tabButtonStyle.PaddingWithIconOnly;
-                Icon.WidthSpecification = (int)tabButtonStyle.IconSizeWithIconOnly.Width;
-                Icon.HeightSpecification = (int)tabButtonStyle.IconSizeWithIconOnly.Height;
-            }
-            // Text only
-            else if (isEmptyIcon && !isEmptyText)
-            {
-                WidthSpecification = (int)tabButtonStyle.SizeWithTextOnly.Width;
-                HeightSpecification = (int)tabButtonStyle.SizeWithTextOnly.Height;
-                Padding = tabButtonStyle.PaddingWithTextOnly;
-                Icon.WidthSpecification = (int)tabButtonStyle.Icon.Size.Width;
-                Icon.HeightSpecification = (int)tabButtonStyle.Icon.Size.Height;
-            }
-            // Nothing
-            else
-            {
-                WidthSpecification = (int)tabButtonStyle.Size.Width;
-                HeightSpecification = (int)tabButtonStyle.Size.Height;
-                Padding = tabButtonStyle.Padding;
+                // Icon and Text
+                if (!isEmptyIcon && !isEmptyText)
+                {
+                    if (tabButtonStyle.Size != null)
+                    {
+                        WidthSpecification = (int)tabButtonStyle.Size.Width;
+                        HeightSpecification = (int)tabButtonStyle.Size.Height;
+                    }
+
+                    Padding = tabButtonStyle.Padding;
+                }
+                // Icon only
+                else if (!isEmptyIcon && isEmptyText)
+                {
+                    if (tabButtonStyle.SizeWithIconOnly != null)
+                    {
+                        WidthSpecification = (int)tabButtonStyle.SizeWithIconOnly.Width;
+                        HeightSpecification = (int)tabButtonStyle.SizeWithIconOnly.Height;
+                    }
+
+                    Padding = tabButtonStyle.PaddingWithIconOnly;
+
+                    if (tabButtonStyle.IconSizeWithIconOnly != null)
+                    {
+                        Icon.WidthSpecification = (int)tabButtonStyle.IconSizeWithIconOnly.Width;
+                        Icon.HeightSpecification = (int)tabButtonStyle.IconSizeWithIconOnly.Height;
+                    }
+                }
+                // Text only
+                else if (isEmptyIcon && !isEmptyText)
+                {
+                    if (tabButtonStyle.SizeWithTextOnly != null)
+                    {
+                        WidthSpecification = (int)tabButtonStyle.SizeWithTextOnly.Width;
+                        HeightSpecification = (int)tabButtonStyle.SizeWithTextOnly.Height;
+                    }
+
+                    Padding = tabButtonStyle.PaddingWithTextOnly;
+
+                    if ((tabButtonStyle.Icon != null) && (tabButtonStyle.Icon.Size != null))
+                    {
+                        Icon.WidthSpecification = (int)tabButtonStyle.Icon.Size.Width;
+                        Icon.HeightSpecification = (int)tabButtonStyle.Icon.Size.Height;
+                    }
+                }
+                // Nothing
+                else
+                {
+                    if (tabButtonStyle.Size != null)
+                    {
+                        WidthSpecification = (int)tabButtonStyle.Size.Width;
+                        HeightSpecification = (int)tabButtonStyle.Size.Height;
+                    }
+
+                    Padding = tabButtonStyle.Padding;
+                }
             }
         }
     }

@@ -25,10 +25,18 @@ namespace Tizen.NUI.Components.Devel.Tests
                 Source.Add(new TestItem(i, $"Test Item [{i}]", new Color(((float)(Rand.Next(255)) / 255), ((float)(Rand.Next(255)) / 255), ((float)(Rand.Next(255)) / 255), 1)));
         }
 
+        internal class ItemsLayouterImpl : ItemsLayouter
+        {
+            public ItemsLayouterImpl() : base()
+            { }
+        }
+
         internal class RecyclerViewImpl : RecyclerView
         {
             public RecyclerViewImpl() : base()
-            { }
+            {
+                base.InternalItemsLayouter = new ItemsLayouterImpl();
+            }
 
             public float OnAdjustTargetPositionOfScrollAnimation(float position)
             {

@@ -763,15 +763,8 @@ namespace Tizen.NUI
 
                 if (window != null)
                 {
-                    if (value == 0)
-                    {
-                        window.LayoutController.LayoutCount = 0;
-                    }
-                    else
-                    {
-                        int diff = value - layoutCount;
-                        window.LayoutController.LayoutCount += diff;
-                    }
+                    int diff = value - layoutCount;
+                    window.LayoutController.LayoutCount += diff;
                 }
                 layoutCount = value;
             }

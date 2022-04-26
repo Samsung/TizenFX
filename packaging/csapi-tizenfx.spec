@@ -1,7 +1,7 @@
 # Auto-generated from csapi-tizenfx.spec.in by makespec.sh
 
 %define TIZEN_NET_API_VERSION 10
-%define TIZEN_NET_RPM_VERSION 10.0.0.999+nui22118
+%define TIZEN_NET_RPM_VERSION 10.0.0.999+nui22119
 %define TIZEN_NET_NUGET_VERSION 10.0.0.99999
 
 %define DOTNET_ASSEMBLY_PATH /usr/share/dotnet.tizen/framework
@@ -27,7 +27,6 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 
 BuildArch:   noarch
-ExcludeArch: aarch64
 AutoReqProv: no
 
 BuildRequires: dotnet-build-tools

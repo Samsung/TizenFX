@@ -27,85 +27,6 @@ namespace Tizen.NUI.Components.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        internal class OrientationHelperImpl : OrientationHelper
-        {
-            public OrientationHelperImpl(FlexibleViewLayoutManager layoutManager) : base(layoutManager)
-            { 
-                
-            }
-
-            public override float GetEnd()
-            {
-                throw new NotImplementedException();
-            }
-
-            public override float GetEndAfterPadding()
-            {
-                throw new NotImplementedException();
-            }
-
-            public override float GetEndPadding()
-            {
-                throw new NotImplementedException();
-            }
-
-            public override float GetStartAfterPadding()
-            {
-                throw new NotImplementedException();
-            }
-
-            public override float GetTotalSpace()
-            {
-                throw new NotImplementedException();
-            }
-
-            public override float GetViewHolderEnd(FlexibleViewViewHolder holder)
-            {
-                throw new NotImplementedException();
-            }
-
-            public override float GetViewHolderMeasurement(FlexibleViewViewHolder holder)
-            {
-                throw new NotImplementedException();
-            }
-
-            public override float GetViewHolderMeasurementInOther(FlexibleViewViewHolder holder)
-            {
-                return holder.Bottom - holder.Top;
-            }
-
-            public override float GetViewHolderStart(FlexibleViewViewHolder holder)
-            {
-                throw new NotImplementedException();
-            }
-
-            public override void OffsetChildren(float amount, bool immediate)
-            {
-                throw new NotImplementedException();
-            }
-
-            internal override void OffsetChild(FlexibleViewViewHolder holder, int offset)
-            {
-                throw new NotImplementedException();
-            }
-        }
-
-        internal class FlexibleViewLayoutManagerImpl : FlexibleViewLayoutManager
-        {
-            public FlexibleViewLayoutManagerImpl() : base()
-            { }
-
-            public override void OnLayoutChildren(FlexibleViewRecycler recycler)
-            {
-                throw new NotImplementedException();
-            }
-
-            protected override int GetNextPosition(int position, Direction direction)
-            {
-                throw new NotImplementedException();
-            }
-        }
-
         [Test]
         [Category("P1")]
         [Description("OrientationHelper OnLayoutComplete.")]
@@ -118,17 +39,13 @@ namespace Tizen.NUI.Components.Devel.Tests
         {
             tlog.Debug(tag, $"OrientationHelperOnLayoutComplete START");
 
-            FlexibleViewLayoutManager manager = new FlexibleViewLayoutManagerImpl();
-            Assert.IsNotNull(manager, "should be not null");
-            Assert.IsInstanceOf<FlexibleViewLayoutManager>(manager, "should be an instance of testing target class!");
-
-            var testingTarget = new OrientationHelperImpl(manager);
+            var testingTarget = new LinearLayoutManager(LinearLayoutManager.VERTICAL);
             Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<OrientationHelper>(testingTarget, "should be an instance of testing target class!");
+            Assert.IsInstanceOf<LinearLayoutManager>(testingTarget, "should be an instance of testing target class!");
 
             try
             {
-                testingTarget.OnLayoutComplete();
+                testingTarget.orientationHelper.OnLayoutComplete();
             }
             catch (Exception e)
             {
@@ -136,7 +53,7 @@ namespace Tizen.NUI.Components.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            manager.Dispose();
+            testingTarget.Dispose();
             tlog.Debug(tag, $"OrientationHelperOnLayoutComplete END (OK)");
         }
 
@@ -152,18 +69,13 @@ namespace Tizen.NUI.Components.Devel.Tests
         {
             tlog.Debug(tag, $"OrientationHelperGetTotalSpaceChange START");
 
-            FlexibleViewLayoutManager manager = new FlexibleViewLayoutManagerImpl();
-            Assert.IsNotNull(manager, "should be not null");
-            Assert.IsInstanceOf<FlexibleViewLayoutManager>(manager, "should be an instance of testing target class!");
-
-            var testingTarget = new OrientationHelperImpl(manager);
+            var testingTarget = new LinearLayoutManager(LinearLayoutManager.VERTICAL);
             Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<OrientationHelper>(testingTarget, "should be an instance of testing target class!");
+            Assert.IsInstanceOf<LinearLayoutManager>(testingTarget, "should be an instance of testing target class!");
 
             try
             {
-                var result = testingTarget.GetTotalSpaceChange();
-                tlog.Debug(tag, "GetTotalSpaceChange : " + result);
+                testingTarget.orientationHelper.GetTotalSpaceChange();
             }
             catch (Exception e)
             {
@@ -171,7 +83,7 @@ namespace Tizen.NUI.Components.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            manager.Dispose();
+            testingTarget.Dispose();
             tlog.Debug(tag, $"OrientationHelperGetTotalSpaceChange END (OK)");
         }
 
@@ -187,23 +99,21 @@ namespace Tizen.NUI.Components.Devel.Tests
         {
             tlog.Debug(tag, $"OrientationHelperGetViewHolderMeasurementInOther START");
 
-            FlexibleViewLayoutManager manager = new FlexibleViewLayoutManagerImpl();
-            Assert.IsNotNull(manager, "should be not null");
-            Assert.IsInstanceOf<FlexibleViewLayoutManager>(manager, "should be an instance of testing target class!");
-
-            var testingTarget = new OrientationHelperImpl(manager);
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<OrientationHelper>(testingTarget, "should be an instance of testing target class!");
-
-            using (View view = new View() { Size = new Size(100, 200) })
+            using (LinearLayoutManager manager = new LinearLayoutManager(LinearLayoutManager.VERTICAL))
             {
-                FlexibleViewViewHolder holder = new FlexibleViewViewHolder(view);
+                var testingTarget = new VerticalHelper(manager);
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<VerticalHelper>(testingTarget, "should be an instance of testing target class!");
 
-                var result = testingTarget.GetViewHolderMeasurementInOther(holder);
-                tlog.Debug(tag, "GetViewHolderMeasurementInOther : " + result);
+                using (View view = new View() { Size = new Size(100, 200) })
+                {
+                    FlexibleViewViewHolder holder = new FlexibleViewViewHolder(view);
+
+                    var result = testingTarget.GetViewHolderMeasurementInOther(holder);
+                    tlog.Debug(tag, "GetViewHolderMeasurementInOther : " + result);
+                }
             }
-
-            manager.Dispose();
+           
             tlog.Debug(tag, $"OrientationHelperGetViewHolderMeasurementInOther END (OK)");
         }
     }
