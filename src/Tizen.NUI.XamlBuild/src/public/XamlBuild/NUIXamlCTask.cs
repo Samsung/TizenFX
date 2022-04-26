@@ -33,7 +33,7 @@ using static Mono.Cecil.Cil.OpCodes;
 namespace Tizen.NUI.Xaml.Build.Tasks
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class XamlCTask : XamlTask
+    public class NUIXamlCTask : XamlTask
     {
         bool hasCompiledXamlResources;
         public bool KeepXamlResources { get; set; }
