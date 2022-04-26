@@ -24,7 +24,7 @@ using Microsoft.Build.Utilities;
 namespace Tizen.NUI.Xaml.Build.Tasks
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class XamlGTask : Task
+    public class NUIXamlGTask : Task
     {
         [Required]
         public ITaskItem[] XamlFiles { get; set; }
