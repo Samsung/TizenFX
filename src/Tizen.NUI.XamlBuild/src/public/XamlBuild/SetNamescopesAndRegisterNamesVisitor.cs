@@ -72,7 +72,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 namescopeVarDef = Context.Scopes[parentNode].Item1;
                 namesInNamescope = Context.Scopes[parentNode].Item2;
             }
-            if (setNameScope && Context.Variables[node].VariableType.InheritsFromOrImplements(Context.Body.Method.Module.ImportReference((XamlCTask.xamlAssemblyName, XamlCTask.bindingNameSpace, "BindableObject"))))
+            if (setNameScope && Context.Variables[node].VariableType.InheritsFromOrImplements(Context.Body.Method.Module.ImportReference((NUIXamlCTask.xamlAssemblyName, NUIXamlCTask.bindingNameSpace, "BindableObject"))))
                 SetNameScope(node, namescopeVarDef);
             Context.Scopes[node] = new Tuple<VariableDefinition, IList<string>>(namescopeVarDef, namesInNamescope);
         }
@@ -81,7 +81,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
         {
             var namescopeVarDef = CreateNamescope();
             IList<string> namesInNamescope = new List<string>();
-            if (Context.Variables[node].VariableType.InheritsFromOrImplements(Context.Body.Method.Module.ImportReference((XamlCTask.xamlAssemblyName, XamlCTask.bindingNameSpace, "BindableObject"))))
+            if (Context.Variables[node].VariableType.InheritsFromOrImplements(Context.Body.Method.Module.ImportReference((NUIXamlCTask.xamlAssemblyName, NUIXamlCTask.bindingNameSpace, "BindableObject"))))
                 SetNameScope(node, namescopeVarDef);
             Context.Scopes[node] = new System.Tuple<VariableDefinition, IList<string>>(namescopeVarDef, namesInNamescope);
         }
@@ -124,9 +124,9 @@ namespace Tizen.NUI.Xaml.Build.Tasks
         VariableDefinition CreateNamescope()
         {
             var module = Context.Body.Method.Module;
-            var vardef = new VariableDefinition(module.ImportReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingInternalNameSpace, "NameScope")));
+            var vardef = new VariableDefinition(module.ImportReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingInternalNameSpace, "NameScope")));
             Context.Body.Variables.Add(vardef);
-            Context.IL.Emit(OpCodes.Newobj, module.ImportCtorReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingInternalNameSpace, "NameScope"), parameterTypes: null));
+            Context.IL.Emit(OpCodes.Newobj, module.ImportCtorReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingInternalNameSpace, "NameScope"), parameterTypes: null));
             Context.IL.Emit(OpCodes.Stloc, vardef);
             return vardef;
         }
@@ -136,11 +136,11 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             var module = Context.Body.Method.Module;
             Context.IL.Emit(OpCodes.Ldloc, Context.Variables[node]);
             Context.IL.Emit(OpCodes.Ldloc, ns);
-            Context.IL.Emit(OpCodes.Call, module.ImportMethodReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingInternalNameSpace, "NameScope"),
+            Context.IL.Emit(OpCodes.Call, module.ImportMethodReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingInternalNameSpace, "NameScope"),
                                                                        methodName: "SetNameScope",
                                                                        parameterTypes: new[] {
-                                                                           (XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindableObject"),
-                                                                           (XamlCTask.bindingAssemblyName, XamlCTask.bindingInternalNameSpace, "INameScope"),
+                                                                           (NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindableObject"),
+                                                                           (NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingInternalNameSpace, "INameScope"),
                                                                        },
                                                                        isStatic: true));
         }
@@ -155,7 +155,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             Context.IL.Emit(OpCodes.Ldloc, namescopeVarDef);
             Context.IL.Emit(OpCodes.Ldstr, str);
             Context.IL.Emit(OpCodes.Ldloc, element);
-            Context.IL.Emit(OpCodes.Callvirt, module.ImportMethodReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingInternalNameSpace, "INameScope"),
+            Context.IL.Emit(OpCodes.Callvirt, module.ImportMethodReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingInternalNameSpace, "INameScope"),
                                                                            methodName: "RegisterName",
                                                                            parameterTypes: new[] {
                                                                                ("mscorlib", "System", "String"),
@@ -165,18 +165,18 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
         void SetStyleId(string str, VariableDefinition element)
         {
-            if (!element.VariableType.InheritsFromOrImplements(Context.Body.Method.Module.ImportReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "Element"))))
+            if (!element.VariableType.InheritsFromOrImplements(Context.Body.Method.Module.ImportReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "Element"))))
                 return;
 
             var module = Context.Body.Method.Module;
 
             var nop = Instruction.Create(OpCodes.Nop);
             Context.IL.Emit(OpCodes.Ldloc, element);
-            Context.IL.Emit(OpCodes.Callvirt, module.ImportPropertyGetterReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "Element"), propertyName: "StyleId"));
+            Context.IL.Emit(OpCodes.Callvirt, module.ImportPropertyGetterReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "Element"), propertyName: "StyleId"));
             Context.IL.Emit(OpCodes.Brtrue, nop);
             Context.IL.Emit(OpCodes.Ldloc, element);
             Context.IL.Emit(OpCodes.Ldstr, str);
-            Context.IL.Emit(OpCodes.Callvirt, module.ImportPropertySetterReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "Element"), propertyName: "StyleId"));
+            Context.IL.Emit(OpCodes.Callvirt, module.ImportPropertySetterReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "Element"), propertyName: "StyleId"));
             Context.IL.Append(nop);
         }
     }
