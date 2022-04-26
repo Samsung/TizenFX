@@ -60,6 +60,7 @@ namespace Tizen.NUI.Components
         //Dummy item count for loop feature. Max value of scrolling distance in 
         //RPI target is bigger than 20 items height. it can adjust depends on the internal logic and device env.
         private const int dummyItemsForLoop = 20;
+        private const int middleItemIdx = 2;
         private int startScrollOffset;
         private int itemHeight;
         private int startScrollY;
@@ -69,11 +70,14 @@ namespace Tizen.NUI.Components
         private int maxValue;
         private int minValue;
         private int lastScrollPosion;
+        private int accessibilityHiddenStartIdx;
         private bool onAnimation; //Scroller on animation check.
         private bool onAlignAnimation;
         private bool displayedValuesUpdate; //User sets displayed value check.
         private bool needItemUpdate; //min, max or display value updated check.
         private bool loopEnabled;
+        private bool isScreenReaderEnabled;
+        private bool isAtspiEnabled;
         private ReadOnlyCollection<string> displayedValues;
         private PickerScroller pickerScroller;
         private View upLine;
@@ -373,6 +377,18 @@ namespace Tizen.NUI.Components
             }
         }
 
+        private void AccessibilityEnabled()
+        {
+            if (loopEnabled) ShowItemsForAccessibility(currentValue - middleItemIdx);
+            else
+            {
+                //Exception case handling condition state.
+                //If user sets 4 items it can scroll but not loop.
+                if (currentValue > (middleItemIdx * 2)) ShowItemsForAccessibility(middleItemIdx + 1);
+                else ShowItemsForAccessibility(middleItemIdx);
+            }
+        }
+
         private void Initialize()
         {
             HeightSpecification = LayoutParamPolicies.MatchParent;
@@ -413,10 +429,76 @@ namespace Tizen.NUI.Components
 
             Focusable = true;
             KeyEvent += OnKeyEvent;
+
+            Accessibility.Accessibility.Enabled += (s, e) => {
+                isAtspiEnabled = true;
+                AccessibilityEnabled();
+            };
+            Accessibility.Accessibility.Disabled += (s, e) => {
+                isAtspiEnabled = false;
+                HideItemsForAccessibility();
+            };
+            Accessibility.Accessibility.ScreenReaderEnabled += (s, e) => {
+                isScreenReaderEnabled = true;
+            };
+            Accessibility.Accessibility.ScreenReaderDisabled += (s, e) => {
+                isScreenReaderEnabled = false;
+            };
+
+            isAtspiEnabled = Accessibility.Accessibility.IsEnabled;
+            isScreenReaderEnabled = Accessibility.Accessibility.IsScreenReaderEnabled;
+
+        }
+
+        private void HideItemsForAccessibility()
+        {
+            if (loopEnabled)
+                for (int i = accessibilityHiddenStartIdx; i < (accessibilityHiddenStartIdx + scrollVisibleItems); i++)
+                    itemList[i].AccessibilityHidden = true;
+            else
+            {
+                if (currentValue > (middleItemIdx * 2))
+                    for (int i = accessibilityHiddenStartIdx; i < (accessibilityHiddenStartIdx + (maxValue - minValue)); i++)
+                        itemList[i].AccessibilityHidden = true;
+                else
+                    for (int i = accessibilityHiddenStartIdx; i < (accessibilityHiddenStartIdx + (maxValue - minValue + 1)); i++)
+                        itemList[i].AccessibilityHidden = true;
+            }
+        }
+
+        private void ShowItemsForAccessibility(int startIdx)
+        {
+            if (startIdx < 0) {
+                Tizen.Log.Error("NUI", "ScreenReaderEnabled signal emitted before picker value initialize");
+                return;
+            }
+
+            accessibilityHiddenStartIdx = startIdx;
+            if (loopEnabled)
+                for (int i = accessibilityHiddenStartIdx; i < (accessibilityHiddenStartIdx + scrollVisibleItems); i++)
+                    itemList[i].AccessibilityHidden = false;
+            else
+            {
+                if (currentValue > (middleItemIdx * 2))
+                    for (int i = accessibilityHiddenStartIdx; i < (accessibilityHiddenStartIdx + (maxValue - minValue)); i++)
+                        itemList[i].AccessibilityHidden = false;
+                else
+                    for (int i = accessibilityHiddenStartIdx; i < (accessibilityHiddenStartIdx + (maxValue - minValue + 1)); i++)
+                        itemList[i].AccessibilityHidden = false;
+            }
         }
 
         private void OnValueChanged()
         {
+            if (isAtspiEnabled)
+            {
+                if (loopEnabled) {
+                    HideItemsForAccessibility();
+                    ShowItemsForAccessibility(currentValue - middleItemIdx);
+                }
+                if (isScreenReaderEnabled) itemList[currentValue].GrabAccessibilityHighlight();
+            }
+
             ValueChangedEventArgs eventArgs =
                 new ValueChangedEventArgs(displayedValuesUpdate ? Int32.Parse(itemList[currentValue].Name) : Int32.Parse(itemList[currentValue].Text));
             ValueChanged?.Invoke(this, eventArgs);
@@ -425,15 +507,17 @@ namespace Tizen.NUI.Components
         private void PageAdjust(float positionY)
         {
             //Check the scroll is going out to the dummys if so, bring it back to page.
-            if (positionY > -(startScrollY - (itemHeight * 2)))
+            if (positionY > -(startScrollY - (itemHeight * middleItemIdx)))
                 pickerScroller.ScrollTo(-positionY + pageSize, false);
-            else if (positionY < -(startScrollY + pageSize - (itemHeight * 2)))
+            else if (positionY < -(startScrollY + pageSize - (itemHeight * middleItemIdx)))
                 pickerScroller.ScrollTo(-positionY - pageSize, false);
         }
 
         private void OnScroll(object sender, ScrollEventArgs e)
         {
             if (!loopEnabled || onAnimation || onAlignAnimation) return;
+
+            if (isAtspiEnabled) Accessibility.Accessibility.ClearCurrentlyHighlightedView();
 
             PageAdjust(e.Position.Y);
         }
@@ -462,9 +546,9 @@ namespace Tizen.NUI.Components
                 {
                     PageAdjust(e.Position.Y);
                 }
-                if (currentValue != ((int)(-e.Position.Y / itemHeight) + 2))
+                if (currentValue != ((int)(-e.Position.Y / itemHeight) + middleItemIdx))
                 {
-                    currentValue = ((int)(-e.Position.Y / itemHeight) + 2);
+                    currentValue = ((int)(-e.Position.Y / itemHeight) + middleItemIdx);
                     OnValueChanged();
                 }
 
@@ -479,9 +563,9 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (currentValue != ((int)(-e.Position.Y / itemHeight) + 2))
+                if (currentValue != ((int)(-e.Position.Y / itemHeight) + middleItemIdx))
                 {
-                    currentValue = ((int)(-e.Position.Y / itemHeight) + 2);
+                    currentValue = ((int)(-e.Position.Y / itemHeight) + middleItemIdx);
                     OnValueChanged();
                 }
             }
@@ -530,6 +614,8 @@ namespace Tizen.NUI.Components
             };
 
             temp.AccessibilitySuppressedEvents[AccessibilityEvent.MovedOut] = true;
+            // Hide on Accessibility tree
+            if (isAtspiEnabled) temp.AccessibilityHidden = true;
             itemList.Add(temp);
             pickerScroller.Add(temp);
         }
@@ -537,14 +623,29 @@ namespace Tizen.NUI.Components
         private void UpdateCurrentValue()
         {
             // -2 for center align
-            int startItemIdx = (currentValue == 0) ? -2 : currentValue - minValue - 2;
+            int startItemIdx = (currentValue == 0) ? -middleItemIdx : currentValue - minValue - middleItemIdx;
 
-            if (loopEnabled) startY = ((dummyItemsForLoop + startItemIdx) * itemHeight) + startScrollOffset;
+            if (loopEnabled)
+            {
+                startY = ((dummyItemsForLoop + startItemIdx) * itemHeight) + startScrollOffset;
+
+                if (isAtspiEnabled)
+                {
+                    HideItemsForAccessibility();
+                    ShowItemsForAccessibility(dummyItemsForLoop + startItemIdx);
+                }
+            }
             // + 2 for non loop picker center align
             else
             {
-                startY = ((2 + startItemIdx) * itemHeight) + startScrollOffset;
-                currentValue = currentValue - minValue + 2;
+                startY = ((middleItemIdx + startItemIdx) * itemHeight) + startScrollOffset;
+                currentValue = currentValue - minValue + middleItemIdx;
+
+                if (isAtspiEnabled)
+                {
+                    HideItemsForAccessibility();
+                    AccessibilityEnabled();
+                }
             }
             pickerScroller.ScrollTo(startY, false);
         }
@@ -596,11 +697,11 @@ namespace Tizen.NUI.Components
             {
                 loopEnabled = false;
 
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < middleItemIdx; i++)
                     AddPickerItem(loopEnabled, 0);
                 for (int i = minValue; i <= maxValue; i++)
                     AddPickerItem(!loopEnabled, i);
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < middleItemIdx; i++)
                     AddPickerItem(loopEnabled, 0);
 
             }
@@ -626,9 +727,9 @@ namespace Tizen.NUI.Components
                     if (editMode)
                     {
                         //Todo: sometimes this gets wrong. the currentValue is not correct. need to be fixed.
-                        if (currentValue != ((int)(-pickerScroller.Position.Y / itemHeight) + 2))
+                        if (currentValue != ((int)(-pickerScroller.Position.Y / itemHeight) + middleItemIdx))
                         {
-                            currentValue = ((int)(-pickerScroller.Position.Y / itemHeight) + 2);
+                            currentValue = ((int)(-pickerScroller.Position.Y / itemHeight) + middleItemIdx);
                             OnValueChanged();
                         }
 
