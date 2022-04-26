@@ -81,7 +81,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
             //if this is a MarkupExtension that can be compiled directly, compile and returns the value
             var compiledMarkupExtensionName = typeref
-                .GetCustomAttribute(Module, (XamlCTask.xamlAssemblyName, XamlCTask.xamlNameSpace, "ProvideCompiledAttribute"))
+                .GetCustomAttribute(Module, (NUIXamlCTask.xamlAssemblyName, NUIXamlCTask.xamlNameSpace, "ProvideCompiledAttribute"))
                 ?.ConstructorArguments?[0].Value as string;
             Type compiledMarkupExtensionType;
             ICompiledMarkupExtension markupProvider;
@@ -325,9 +325,9 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                     Context.IL.Emit(OpCodes.Initobj, Module.ImportReference(typedef));
                 }
 
-                if (null != XamlCTask.BaseTypeDefiniation && typedef.InheritsFromOrImplements(XamlCTask.BaseTypeDefiniation))
+                if (null != NUIXamlCTask.BaseTypeDefiniation && typedef.InheritsFromOrImplements(NUIXamlCTask.BaseTypeDefiniation))
                 {
-                    var field = XamlCTask.BaseTypeDefiniation.Properties.SingleOrDefault(fd => fd.Name == "IsCreateByXaml");
+                    var field = NUIXamlCTask.BaseTypeDefiniation.Properties.SingleOrDefault(fd => fd.Name == "IsCreateByXaml");
                     if (field == null)
                         return;
 

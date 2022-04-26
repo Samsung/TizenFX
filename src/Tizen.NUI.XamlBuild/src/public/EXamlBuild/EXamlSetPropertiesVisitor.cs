@@ -710,7 +710,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             if (implicitOperator != null)
                 return true;
 
-            return valueInstance.GetType().InheritsFromOrImplements(module.ImportReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindingBase")));
+            return valueInstance.GetType().InheritsFromOrImplements(module.ImportReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindingBase")));
         }
 
         static void SetBinding(EXamlCreateObject parent, MemberReference bpRef, IElementNode elementNode, IXmlLineInfo iXmlLineInfo, EXamlContext context)
