@@ -601,34 +601,33 @@ namespace Tizen.NUI.Components
             theme.AddStyleWithoutClone("Tizen.NUI.Components.AlertDialog", new AlertDialogStyle()
             {
                 Size = new Size(-2, -2),
-                Padding = new Extents(80, 80, 0, 0),
-                BackgroundColor = Color.White,
-                CornerRadius = 28.0f,
-                BoxShadow = new Shadow(2.0f, new Color("#00000029"), new Vector2(2.0f, 2.0f)),
+                Padding = new Extents(32, 32, 32, 32),
+                ItemSpacing = new Size2D(0, 32),
+                BackgroundColor = new Color("#FAFAFA"),
+                CornerRadius = 12.0f,
+                BoxShadow = new Shadow(8.0f, new Color(0.0f, 0.0f, 0.0f, 0.16f), new Vector2(0.0f, 2.0f)),
                 TitleTextLabel = new TextLabelStyle()
                 {
-                    Size = new Size(720, -2),
-                    Margin = new Extents(0, 0, 40, 40),
-                    PixelSize = 40,
+                    Size = new Size(626, -2),
+                    PixelSize = 24,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
-                    TextColor = new Color("#000C2B"),
+                    TextColor = new Color("#090E21"),
                     ThemeChangeSensitive = false,
                 },
                 MessageTextLabel = new TextLabelStyle()
                 {
-                    Size = new Size(720, -2),
-                    Margin = new Extents(0, 0, 0, 64),
-                    PixelSize = 32,
+                    Size = new Size(626, -2),
+                    PixelSize = 24,
                     MultiLine = true,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
-                    TextColor = new Color("#000C2B"),
+                    TextColor = new Color("#090E21"),
                     ThemeChangeSensitive = false,
                 },
                 ActionContent = new ViewStyle()
                 {
-                    Size = new Size(720, -2),
+                    Size = new Size(626, -2),
                 },
             });
 
