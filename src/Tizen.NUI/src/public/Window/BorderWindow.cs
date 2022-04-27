@@ -369,8 +369,9 @@ namespace Tizen.NUI
             {
                 borderWindowBottomLayer = new Layer();
                 borderWindowBottomLayer.Name = "BorderWindowBottomLayer";
-                Interop.ActorInternal.SetParentOrigin(borderWindowBottomLayer.SwigCPtr, Tizen.NUI.ParentOrigin.TopCenter.SwigCPtr);
-                Interop.Actor.SetAnchorPoint(borderWindowBottomLayer.SwigCPtr, Tizen.NUI.PivotPoint.TopCenter.SwigCPtr);
+                using Vector3 topCentor = new Vector3(0.5f, 0.0f, 0.5f);
+                Interop.ActorInternal.SetParentOrigin(borderWindowBottomLayer.SwigCPtr, topCentor.SwigCPtr);
+                Interop.Actor.SetAnchorPoint(borderWindowBottomLayer.SwigCPtr, topCentor.SwigCPtr);
                 Interop.Actor.Add(rootLayer.SwigCPtr, borderWindowBottomLayer.SwigCPtr);
                 Interop.ActorInternal.SetSize(borderWindowBottomLayer.SwigCPtr, WindowSize.Width+borderInterface.BorderLineThickness * 2, WindowSize.Height + borderInterface.BorderLineThickness);
                 borderWindowBottomLayer.SetWindow(this);
@@ -387,8 +388,9 @@ namespace Tizen.NUI
             {
                 borderWindowRootLayer = new Layer();
                 borderWindowRootLayer.Name = "RootLayer";
-                Interop.ActorInternal.SetParentOrigin(borderWindowRootLayer.SwigCPtr, Tizen.NUI.ParentOrigin.TopCenter.SwigCPtr);
-                Interop.Actor.SetAnchorPoint(borderWindowRootLayer.SwigCPtr, Tizen.NUI.PivotPoint.TopCenter.SwigCPtr);
+                using Vector3 topCentor = new Vector3(0.5f, 0.0f, 0.5f);
+                Interop.ActorInternal.SetParentOrigin(borderWindowRootLayer.SwigCPtr, topCentor.SwigCPtr);
+                Interop.Actor.SetAnchorPoint(borderWindowRootLayer.SwigCPtr, topCentor.SwigCPtr);
                 Interop.Actor.Add(rootLayer.SwigCPtr, borderWindowRootLayer.SwigCPtr);
                 Interop.ActorInternal.SetSize(borderWindowRootLayer.SwigCPtr, WindowSize.Width, WindowSize.Height-borderInterface.BorderHeight - borderInterface.BorderLineThickness);
                 Interop.ActorInternal.SetPosition(borderWindowRootLayer.SwigCPtr, 0, borderInterface.BorderLineThickness);
