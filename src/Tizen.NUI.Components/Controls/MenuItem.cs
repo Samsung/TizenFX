@@ -221,18 +221,6 @@ namespace Tizen.NUI.Components
             {
                 Add(TextLabel);
             }
-
-            // Icon is added in Button.LayoutItems().
-            if ((Icon != null) && (Children.Contains(Icon) == false))
-            {
-                Add(Icon);
-            }
-
-            // TextLabel is added in Button.LayoutItems().
-            if ((TextLabel != null) && (Children.Contains(TextLabel) == false))
-            {
-                Add(TextLabel);
-            }
         }
 
         private void Initialize()
