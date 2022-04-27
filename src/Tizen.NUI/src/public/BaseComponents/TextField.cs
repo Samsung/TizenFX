@@ -38,6 +38,7 @@ namespace Tizen.NUI.BaseComponents
         private InputMethodContext inputMethodCotext = null;
         private float fontSizeScale = 1.0f;
         private bool hasFontSizeChangedCallback = false;
+        private bool isSettingTextInCSharp = false;
 
         static TextField() { }
 
@@ -77,7 +78,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
-            Focusable = true;
+
+            TextChanged += TextFieldTextChanged;
         }
 
         internal TextField(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true) : base(cPtr, cMemoryOwn, null)
@@ -86,7 +88,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
-            Focusable = true;
+
+            TextChanged += TextFieldTextChanged;
         }
 
         internal TextField(TextField handle, bool shown = true) : this(Interop.TextField.NewTextField(TextField.getCPtr(handle)), true)
@@ -97,6 +100,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+
+            TextChanged += TextFieldTextChanged;
         }
 
         internal enum ExceedPolicyType
@@ -230,7 +235,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValueAndForceSendChangeSignal(TextProperty, value);
+                SetValue(TextProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2312,28 +2317,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// Only used by the IL of xaml, will never changed to not hidden.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool IsCreateByXaml
-        {
-            get
-            {
-                return base.IsCreateByXaml;
-            }
-            set
-            {
-                base.IsCreateByXaml = value;
-
-                if (value == true)
-                {
-                    this.TextChanged += (obj, e) =>
-                    {
-                        this.Text = e.TextField.Text;
-                    };
-                }
-            }
-        }
-
         /// <summary>
         /// Get the InputMethodContext instance.
         /// </summary>
@@ -2461,6 +2444,8 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
+            TextChanged -= TextFieldTextChanged;
+
             base.Dispose(type);
         }
 
@@ -2559,6 +2544,14 @@ namespace Tizen.NUI.BaseComponents
                     Console.WriteLine("{0} Exception caught.", e);
                     hasFontSizeChangedCallback = true;
                 }
+            }
+        }
+
+        private void TextFieldTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!isSettingTextInCSharp)
+            {
+                EnforceNotifyBindedInstance(TextProperty);
             }
         }
 
