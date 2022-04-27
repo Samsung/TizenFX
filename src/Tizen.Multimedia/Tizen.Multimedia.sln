@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31702.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Multimedia", "Tizen.Multimedia.csproj", "{CE0306EA-C972-4D11-916B-3A453FA18616}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.System.SystemSettings", "..\Tizen.System.SystemSettings\Tizen.System.SystemSettings.csproj", "{852634E0-31DD-4469-B538-30C63F993433}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.ComponentBased", "..\Tizen.Applications.ComponentBased\Tizen.Applications.ComponentBased.csproj", "{6B046421-7A48-446A-84FE-37B3B57E2BDE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.ThemeManager", "..\Tizen.Applications.ThemeManager\Tizen.Applications.ThemeManager.csproj", "{4DBC026E-D6AD-44D0-9A01-A238E566E496}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{6B046421-7A48-446A-84FE-37B3B57E2BDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6B046421-7A48-446A-84FE-37B3B57E2BDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B046421-7A48-446A-84FE-37B3B57E2BDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4DBC026E-D6AD-44D0-9A01-A238E566E496}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DBC026E-D6AD-44D0-9A01-A238E566E496}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DBC026E-D6AD-44D0-9A01-A238E566E496}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DBC026E-D6AD-44D0-9A01-A238E566E496}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
