@@ -78,7 +78,7 @@ namespace Tizen.NUI.StyleGuide
                     Text = "OK",
                 };
 
-                button.Clicked += (object s, ClickedEventArgs a) =>
+                button.Clicked += (object sender, ClickedEventArgs args) =>
                 {
                     Navigator?.Pop();
                 };
@@ -101,7 +101,7 @@ namespace Tizen.NUI.StyleGuide
                     Text = "Cancel",
                 };
 
-                button.Clicked += (object s, ClickedEventArgs a) =>
+                button.Clicked += (object sender, ClickedEventArgs args) =>
                 {
                     Navigator?.Pop();
                 };
@@ -111,7 +111,7 @@ namespace Tizen.NUI.StyleGuide
                     Text = "OK",
                 };
 
-                button2.Clicked += (object s, ClickedEventArgs a) =>
+                button2.Clicked += (object sender, ClickedEventArgs args) =>
                 {
                     Navigator?.Pop();
                 };
@@ -134,7 +134,7 @@ namespace Tizen.NUI.StyleGuide
                     Text = "Cancel",
                 };
 
-                button.Clicked += (object s, ClickedEventArgs a) =>
+                button.Clicked += (object sender, ClickedEventArgs args) =>
                 {
                     Navigator?.Pop();
                 };
@@ -144,7 +144,7 @@ namespace Tizen.NUI.StyleGuide
                     Text = "OK",
                 };
 
-                button2.Clicked += (object s, ClickedEventArgs a) =>
+                button2.Clicked += (object sender, ClickedEventArgs args) =>
                 {
                     Navigator?.Pop();
                 };
@@ -167,7 +167,7 @@ namespace Tizen.NUI.StyleGuide
                     Text = "Cancel",
                 };
 
-                button.Clicked += (object s, ClickedEventArgs a) =>
+                button.Clicked += (object sender, ClickedEventArgs args) =>
                 {
                     Navigator?.Pop();
                 };
@@ -177,7 +177,7 @@ namespace Tizen.NUI.StyleGuide
                     Text = "OK",
                 };
 
-                button2.Clicked += (object s, ClickedEventArgs a) =>
+                button2.Clicked += (object sender, ClickedEventArgs args) =>
                 {
                     Navigator?.Pop();
                 };
