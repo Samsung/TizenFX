@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using Tizen.Internals.Errors;
 using Native = Tizen.Multimedia.Interop.MediaPacket;
@@ -28,6 +29,7 @@ namespace Tizen.Multimedia
     public abstract partial class MediaPacket : IBufferOwner, IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
+        private Native.DisposedCallback _disposedCallback;
 
         /// <summary>
         /// Initializes a new instance of the MediaPacket class with the specified media format.
@@ -76,6 +78,8 @@ namespace Tizen.Multimedia
             {
                 NativeFormat.Unref(formatHandle);
             }
+
+            RegisterCallback();
         }
 
         /// <summary>
@@ -105,7 +109,7 @@ namespace Tizen.Multimedia
             {
                 formatHandle = format.AsNativeHandle();
 
-                int ret = Native.Create(formatHandle, IntPtr.Zero, IntPtr.Zero, out _handle);
+                int ret = Native.New(formatHandle, DisposedCallback, IntPtr.Zero, out _handle);
                 MultimediaDebug.AssertNoError(ret);
 
                 Debug.Assert(_handle != IntPtr.Zero, "Created handle must not be null");
@@ -116,7 +120,7 @@ namespace Tizen.Multimedia
             {
                 if (_handle != IntPtr.Zero)
                 {
-                    Native.Destroy(_handle);
+                    Native.Unref(_handle);
                     _handle = IntPtr.Zero;
                 }
 
@@ -128,6 +132,23 @@ namespace Tizen.Multimedia
                 {
                     NativeFormat.Unref(formatHandle);
                 }
+            }
+        }
+
+        private void RegisterCallback()
+        {
+            int ret = Native.AddDisposedCallback(_handle, DisposedCallback, IntPtr.Zero, out int callbackId);
+            MultimediaDebug.AssertNoError(ret);
+        }
+
+        private void DisposedCallback(IntPtr handle, IntPtr userData)
+        {
+            if (handle == _handle)
+            {
+                Log.Info("Tizen.Multimedia", "MediaPacket is disposed.");
+                _isDisposed = true;
+                _handle = IntPtr.Zero;
+                GC.SuppressFinalize(this);
             }
         }
 
@@ -154,6 +175,34 @@ namespace Tizen.Multimedia
                     throw new InvalidOperationException("Failed to create a packet.");
             }
 
+        }
+
+        /// <summary>
+        /// Increases reference count of the MediaPacket.
+        /// </summary>
+        /// <remarks>
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Ref()
+        {
+            ValidateNotDisposed();
+
+            int ret = Native.Ref(_handle);
+            MultimediaDebug.AssertNoError(ret);
+        }
+
+        /// <summary>
+        /// Decreases reference count of the MediaPacket.
+        /// </summary>
+        /// <remarks>
+        /// If there's no user for this instance after decreasing reference count, this MediaPacket will be destroyed.
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Unref()
+        {
+            Dispose();
         }
 
         private readonly MediaFormat _format;
@@ -526,7 +575,6 @@ namespace Tizen.Multimedia
             ValidateNotLocked();
 
             Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -545,11 +593,8 @@ namespace Tizen.Multimedia
 
             if (_handle != IntPtr.Zero)
             {
-                Native.Destroy(_handle);
-                _handle = IntPtr.Zero;
+                Native.Unref(_handle);
             }
-
-            _isDisposed = true;
         }
 
         /// <summary>
@@ -656,7 +701,15 @@ namespace Tizen.Multimedia
             return new SimpleMediaPacket(format);
         }
 
-        internal static MediaPacket From(IntPtr handle)
+        /// <summary>
+        /// Creates an object of the MediaPacket with the specified <see cref="IntPtr"/>.
+        /// </summary>
+        /// <param name="handle">The native media packet handle.</param>
+        /// <remarks>
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static MediaPacket From(IntPtr handle)
         {
             return new SimpleMediaPacket(handle);
         }
