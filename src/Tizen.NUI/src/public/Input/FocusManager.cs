@@ -453,6 +453,29 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the root view to start moving focus when DefaultAlgorithm is enabled.
+        /// This will only look for focusable Views within that View tree when looking for the next focus.
+        /// </summary>
+        /// <param name="rootView">The root view in which to find the next focusable view.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFocusFinderRootView(View rootView)
+        {
+            Interop.FocusManager.SetFocusFinderRootView(SwigCPtr, View.getCPtr(rootView));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Reset the root view that starts moving focus when DefaultAlgorithm is enabled.
+        /// When reset, the window becomes root.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ResetFocusFinderRootView()
+        {
+            Interop.FocusManager.ResetFocusFinderRootView(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         internal static FocusManager Get()
         {
             FocusManager ret = new FocusManager(Interop.FocusManager.Get(), true);
