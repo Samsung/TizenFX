@@ -111,7 +111,9 @@ namespace Tizen.NUI.StyleGuide
                 switchTest[i].ApplyStyle(styleTest);
                 switchTest[i].Size = new Size(200, 100);
                 switchTest[i].Margin = new Extents(10, 10, 10, 10);
+#if PROFILE_MOBILE
                 switchTest[i].Feedback = true;
+#endif
                 rootContent.Add(switchTest[i]);
             }
             switchTest[2].IsEnabled = false;
