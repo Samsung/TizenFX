@@ -40,15 +40,15 @@ namespace Tizen.NUI.Components
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Button", new ButtonStyle()
             {
                 Size = new Size(339, 96),
-                CornerRadius = 28.0f,
+                CornerRadius = 12.0f,
                 ItemHorizontalAlignment = HorizontalAlignment.Center,
                 ItemVerticalAlignment = VerticalAlignment.Center,
                 BackgroundColor = new Selector<Color>()
                 {
-                    Normal = new Color(0.039f, 0.055f, 0.29f, 1),
-                    Pressed = new Color(0.106f, 0.412f, 0.792f, 1),
+                    Normal = new Color(1.0f, 0.384f, 0.0f, 1),
+                    Pressed = new Color(0.85f, 0.325f, 0.0f, 1),
                     Focused = new Color(0, 0.2f, 0.545f, 1),
-                    Disabled = new Color(0.765f, 0.792f, 0.824f, 1),
+                    Disabled = new Color(0.792f, 0.792f, 0.792f, 1),
                 },
                 Text = new TextLabelStyle()
                 {
@@ -229,7 +229,7 @@ namespace Tizen.NUI.Components
                 ItemVerticalAlignment = VerticalAlignment.Center,
                 Track = new ImageViewStyle()
                 {
-                    Size = new Size(80, 40),
+                    Size = new Size(84, 44),
                     ResourceUrl = new Selector<string>()
                     {
                         Normal = FrameworkInformation.ResourcePath + "IoT_switch_track_off.png",
@@ -244,7 +244,7 @@ namespace Tizen.NUI.Components
                 },
                 Thumb = new ImageViewStyle()
                 {
-                    Size = new Size(40, 40),
+                    Size = new Size(44, 44),
                     ResourceUrl = new Selector<string>()
                     {
                         Normal = FrameworkInformation.ResourcePath + "IoT_switch_thumb.png",
@@ -583,17 +583,17 @@ namespace Tizen.NUI.Components
             // NotificationToast base style
             theme.AddStyleWithoutClone("NotificationToast", new TextLabelStyle()
             {
-                BackgroundColor = new Color("#F2F7FF"),
-                CornerRadius = 20.0f,
-                BoxShadow = new Shadow(5.0f, new Color("#00000066"), new Vector2(2.0f, 2.0f)),
-                TextColor = new Color("#000C2B"),
+                BackgroundColor = new Color("#FAFAFA"),
+                CornerRadius = 12.0f,
+                BoxShadow = new Shadow(8.0f, new Color(0.0f, 0.0f, 0.0f, 0.16f), new Vector2(0.0f, 2.0f)),
+                TextColor = new Color("#090E21"),
                 PixelSize = 32,
                 WidthResizePolicy = ResizePolicyType.UseNaturalSize,
                 HeightResizePolicy = ResizePolicyType.UseNaturalSize,
                 PositionUsesPivotPoint = true,
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                Padding = new Extents(40, 40, 24, 24),
+                Padding = new Extents(16, 16, 16, 16),
                 PositionY = 120,
             });
 
