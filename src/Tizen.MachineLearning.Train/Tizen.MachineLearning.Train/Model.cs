@@ -39,7 +39,7 @@ namespace Tizen.MachineLearning.Train
         private bool _disposed = false;
 
         /// <summary>
-        /// Create a new Model instance.
+        /// Constructs the neural network model.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public Model()
@@ -48,6 +48,19 @@ namespace Tizen.MachineLearning.Train
             NNTrainer.CheckException(ret, "Failed to create model instance");
         }
 
+        /// <summary>
+        /// Constructs the neural network model with the given configuration file.
+        /// </summary>
+        /// <param name="modelConf">The nntrainer model configuration file.</param>
+        /// <since_tizen> 10 </since_tizen>
+        public Model(string modelConf)
+        {
+            if (string.IsNullOrEmpty(modelConf))
+                NNTrainer.CheckException(NNTrainerError.InvalidParameter, "modelConf is null");
+
+            NNTrainerError ret = Interop.Model.ConstructWithConf(modelConf, out _handle);
+            NNTrainer.CheckException(ret, "Failed to create model instance with modelConf");
+        }
         /// <summary>
         /// Destructor of Model
         /// </summary>
