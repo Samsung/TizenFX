@@ -29,5 +29,9 @@ internal static partial class Interop
         /* typedef int ml_train_model_destroy(ml_train_model_h model) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_destroy")]
         public static extern NNTrainerError Destroy(IntPtr model_handle);
+
+        /* int ml_train_model_construct_with_conf(const char *model_conf, ml_train_model_h *model)*/
+        [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_construct_with_conf")]
+        public static extern NNTrainerError ConstructWithConf(string model_conf, out IntPtr model_handle);
     }
 }
