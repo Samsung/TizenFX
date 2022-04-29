@@ -551,7 +551,8 @@ namespace Tizen.NUI.Components
                 {
                     Normal = new Color("#FAFAFA"),
                     Selected = new Color("#FFE0CC"),
-                    Pressed = new Color("#FFE0CC"),
+                    Pressed = new Color("#FFCAA8"),
+                    Focused = new Color("#FAFAFA"),
                     Disabled = new Color("#FAFAFA"),
                 },
                 Text = new TextLabelStyle()
@@ -563,6 +564,7 @@ namespace Tizen.NUI.Components
                         Normal = new Color("#090E21"),
                         Selected = new Color("#FF6200"),
                         Pressed = new Color("#FF6200"),
+                        Focused = new Color("#FF6200"),
                         Disabled = new Color("#CACACA"),
                     },
                     ThemeChangeSensitive = false,
@@ -575,6 +577,7 @@ namespace Tizen.NUI.Components
                         Normal = new Color("#090E21"),
                         Selected = new Color("#FF6200"),
                         Pressed = new Color("#FF6200"),
+                        Focused = new Color("#FF6200"),
                         Disabled = new Color("#CACACA"),
                     },
                 },
