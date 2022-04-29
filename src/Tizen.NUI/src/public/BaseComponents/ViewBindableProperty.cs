@@ -1570,22 +1570,50 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
                 if (newValue != null)
                 {
-                    var tmp = new PropertyValue((Extents)newValue);
-                    Object.SetProperty(view.SwigCPtr, View.Property.PADDING, tmp);
-                    tmp?.Dispose();
+                    if (view.Layout != null)
+                    {
+                        view.Layout.Padding = new Extents((Extents)newValue);
+                        if ((view.Padding.Start != 0) || (view.Padding.End != 0) || (view.Padding.Top != 0) || (view.Padding.Bottom != 0))
+                        {
+                            var tmp = new PropertyValue(new Extents(0, 0, 0, 0));
+                            Object.SetProperty(view.SwigCPtr, Property.PADDING, tmp);
+                            tmp?.Dispose();
+                        }
+                        view.Layout.RequestLayout();
+                    }
+                    else
+                    {
+                        var tmp = new PropertyValue((Extents)newValue);
+                        Object.SetProperty(view.SwigCPtr, Property.PADDING, tmp);
+                        tmp?.Dispose();
+                    }
                 }
             },
             defaultValueCreator: (bindable) =>
             {
                 var view = (View)bindable;
-                if (view.internalPadding == null)
+                if ((view.internalPadding == null) || (view.Layout != null))
                 {
-                    view.internalPadding = new Extents(view.OnPaddingChanged, 0, 0, 0, 0);
+                    ushort start = 0, end = 0, top = 0, bottom = 0;
+                    if (view.Layout != null)
+                    {
+                        if (view.Layout.Padding != null)
+                        {
+                            start = view.Layout.Padding.Start;
+                            end = view.Layout.Padding.End;
+                            top = view.Layout.Padding.Top;
+                            bottom = view.Layout.Padding.Bottom;
+                        }
+                    }
+                    view.internalPadding = new Extents(view.OnPaddingChanged, start, end, top, bottom);
                 }
 
-                var tmp = Object.GetProperty(view.SwigCPtr, Property.PADDING);
-                tmp?.Get(view.internalPadding);
-                tmp?.Dispose();
+                if (view.Layout == null)
+                {
+                    var tmp = Object.GetProperty(view.SwigCPtr, Property.PADDING);
+                    tmp?.Get(view.internalPadding);
+                    tmp?.Dispose();
+                }
 
                 return view.internalPadding;
             }
@@ -1784,21 +1812,51 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
                 if (newValue != null)
                 {
-                    var tmp = new PropertyValue((Extents)newValue);
-                    Object.SetProperty(view.SwigCPtr, Property.MARGIN, tmp);
-                    tmp?.Dispose();
+                    if (view.Layout != null)
+                    {
+                        view.Layout.Margin = new Extents((Extents)newValue);
+                        if ((view.Margin.Start != 0) || (view.Margin.End != 0) || (view.Margin.Top != 0) || (view.Margin.Bottom != 0))
+                        {
+                            var tmp = new PropertyValue(new Extents(0, 0, 0, 0));
+                            Object.SetProperty(view.SwigCPtr, Property.MARGIN, tmp);
+                            tmp?.Dispose();
+                        }
+                        view.Layout.RequestLayout();
+                    }
+                    else
+                    {
+                        var tmp = new PropertyValue((Extents)newValue);
+                        Object.SetProperty(view.SwigCPtr, Property.MARGIN, tmp);
+                        tmp?.Dispose();
+                    }
                 }
             },
             defaultValueCreator: (bindable) =>
             {
                 var view = (View)bindable;
-                if (view.internalMargin == null)
+                if ((view.internalMargin == null) || (view.Layout != null))
                 {
-                    view.internalMargin = new Extents(view.OnMarginChanged, 0, 0, 0, 0);
+                    ushort start = 0, end = 0, top = 0, bottom = 0;
+                    if (view.Layout != null)
+                    {
+                        if (view.Layout.Margin != null)
+                        {
+                            start = view.Layout.Margin.Start;
+                            end = view.Layout.Margin.End;
+                            top = view.Layout.Margin.Top;
+                            bottom = view.Layout.Margin.Bottom;
+                        }
+                    }
+                    view.internalMargin = new Extents(view.OnMarginChanged, start, end, top, bottom);
                 }
-                var tmp = Object.GetProperty(view.SwigCPtr, Property.MARGIN);
-                tmp?.Get(view.internalMargin);
-                tmp?.Dispose();
+
+                if (view.Layout == null)
+                {
+                    
+                    var tmp = Object.GetProperty(view.SwigCPtr, Property.MARGIN);
+                    tmp?.Get(view.internalMargin);
+                    tmp?.Dispose();
+                }
 
                 return view.internalMargin;
             }
