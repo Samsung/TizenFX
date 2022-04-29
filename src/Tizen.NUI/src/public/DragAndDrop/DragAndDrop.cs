@@ -52,6 +52,9 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Gets the singleton instance of DragAndDrop.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static DragAndDrop Instance { get; } = new DragAndDrop();
 
@@ -70,38 +73,29 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(shadowView));
             }
 
-            if (mDragWindow)
+            if (mDragWindow != null)
             {
-                mDragWindow.Hide();
-                mDragWindow.Dispose();
-                mDragWindow = null;
+                mDragWindow = new Window("DragWindow", new Rectangle(-shadowWidth, -shadowHeight, shadowWidth, shadowHeight), true)
+                {
+                    BackgroundColor = Color.Transparent,
+                };
             }
 
-            //FIXME: Drag window cannot be reused because the current window server does not allow reuse.
-            //       When window server allows the drag window to be reused, makes the mDragWindow created once.
-            mDragWindow = new Window("DragWindow", new Rectangle(-shadowWidth, -shadowHeight, shadowWidth, shadowHeight), true)
+            shadowView.SetSize(shadowWidth, shadowHeight);
+            shadowView.SetOpacity(0.9f);
+
+            mDragWindow.Add(shadowView);
+            mDragWindow.Show();
+
+            sourceEventCb = (sourceEventType) =>
             {
-              BackgroundColor = Color.Transparent,
+                callback((SourceEventType)sourceEventType);
             };
 
-            if (mDragWindow)
+            if (!Interop.DragAndDrop.StartDragAndDrop(SwigCPtr, View.getCPtr(sourceView), Window.getCPtr(mDragWindow), dragData.MimeType, dragData.Data,
+                                                      new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(sourceEventCb))))
             {
-                shadowView.SetSize(shadowWidth, shadowHeight);
-                shadowView.SetOpacity(0.9f);
-
-                mDragWindow.Add(shadowView);
-                mDragWindow.Show();
-
-                sourceEventCb = (sourceEventType) =>
-                {
-                    callback((SourceEventType)sourceEventType);
-                };
-
-                if (!Interop.DragAndDrop.StartDragAndDrop(SwigCPtr, View.getCPtr(sourceView), Window.getCPtr(mDragWindow), dragData.MimeType, dragData.Data,
-                                                        new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(sourceEventCb))))
-                {
-                    throw new InvalidOperationException("Fail to StartDragAndDrop");
-                }
+                throw new InvalidOperationException("Fail to StartDragAndDrop");
             }
         }
 
