@@ -33,7 +33,9 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+                textEditor.isSettingTextInCSharp = true;
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.TEXT, new Tizen.NUI.PropertyValue((string)newValue));
+                textEditor.isSettingTextInCSharp = false;
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -575,6 +577,22 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputLineSpacing).Get(out temp);
+            return temp;
+        }));
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty RelativeLineHeightProperty = BindableProperty.Create(nameof(RelativeLineHeight), typeof(float), typeof(TextEditor), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textEditor = (TextEditor)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.RelativeLineHeight, new Tizen.NUI.PropertyValue((float)newValue));
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textEditor = (TextEditor)bindable;
+            float temp = 0.0f;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.RelativeLineHeight).Get(out temp);
             return temp;
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.

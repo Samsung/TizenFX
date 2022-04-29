@@ -383,7 +383,6 @@ namespace Tizen.NUI.Components
             internal set
             {
                 buttonText = value;
-                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, buttonText.Text);
             }
         }
 

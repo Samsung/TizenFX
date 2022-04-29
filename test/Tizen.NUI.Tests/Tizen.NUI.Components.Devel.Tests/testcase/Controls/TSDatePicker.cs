@@ -92,10 +92,15 @@ namespace Tizen.NUI.Components.Devel.Tests
             {
                 Pickers = new PickerStyle()
                 {
-                    StartScrollOffset = new Size(10, 10)
+                    StartScrollOffset = new Size(10, 10),
+                    Divider = new ViewStyle()
+                    {
+                        Position = new Position(30, 40),
+                    }
                 },
                 CellPadding = new Size2D(20, 20),
             };
+
             var testingTarget = new DatePicker(dpStyle);
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<DatePicker>(testingTarget, "Should return DatePicker instance.");

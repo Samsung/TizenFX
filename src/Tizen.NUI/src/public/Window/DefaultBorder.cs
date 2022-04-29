@@ -268,7 +268,7 @@ namespace Tizen.NUI
             }
             PanGesture panGesture = e.PanGesture;
 
-            if (panGesture.State == Gesture.StateType.Started)
+            if (panGesture.State == Gesture.StateType.Started && panGesture.Position != null)
             {
                 direction = BorderWindow.GetDirection(panGesture.Position.X, panGesture.Position.Y);
                 if (direction == Window.BorderDirection.Move)
@@ -673,10 +673,9 @@ namespace Tizen.NUI
             if (disposing)
             {
                 ClearWindowGesture();
-                if (BorderWindow != null)
-                {
-                    BorderWindow.InterceptTouchEvent -= OnWinInterceptedTouch;
-                }
+
+                BorderWindow.InterceptTouchEvent -= OnWinInterceptedTouch;
+
                 borderPanGestureDetector?.Dispose();
                 borderPinchGestureDetector?.Dispose();
                 backgroundColor?.Dispose();

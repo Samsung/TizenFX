@@ -27,6 +27,9 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
+        private float userSizeWidth = 0.0f;
+        private float userSizeHeight = 0.0f;
+
         /// <summary>
         /// StyleNameProperty (DALi json)
         /// </summary>
@@ -696,6 +699,13 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
                 if (newValue != null)
                 {
+                    // Size property setter is only used by user.
+                    // Framework code uses SetSize() instead of Size property setter.
+                    // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                    // SuggestedMinimumWidth/Height is used by Layout calculation.
+                    view.userSizeWidth = ((Size2D)newValue).Width;
+                    view.userSizeHeight = ((Size2D)newValue).Height;
+
                     view.SetSize(((Size2D)newValue).Width, ((Size2D)newValue).Height, 0);
 
                     view.widthPolicy = ((Size2D)newValue).Width;
@@ -926,6 +936,12 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
+                // Size property setter is only used by user.
+                // Framework code uses SetSize() instead of Size property setter.
+                // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                // SuggestedMinimumWidth/Height is used by Layout calculation.
+                view.userSizeWidth = (float)newValue;
+
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeWidth, new Tizen.NUI.PropertyValue((float)newValue));
                 view.WidthSpecification = (int)System.Math.Ceiling((float)newValue);
             }
@@ -947,6 +963,12 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
+                // Size property setter is only used by user.
+                // Framework code uses SetSize() instead of Size property setter.
+                // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                // SuggestedMinimumWidth/Height is used by Layout calculation.
+                view.userSizeHeight = (float)newValue;
+
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeHeight, new Tizen.NUI.PropertyValue((float)newValue));
                 view.HeightSpecification = (int)System.Math.Ceiling((float)newValue);
             }
@@ -1579,6 +1601,13 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
                 if (newValue != null)
                 {
+                    // Size property setter is only used by user.
+                    // Framework code uses SetSize() instead of Size property setter.
+                    // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                    // SuggestedMinimumWidth/Height is used by Layout calculation.
+                    view.userSizeWidth = ((Size)newValue).Width;
+                    view.userSizeHeight = ((Size)newValue).Height;
+
                     // Set Specification so when layouts measure this View it matches the value set here.
                     // All Views are currently Layouts.
                     view.WidthSpecification = (int)System.Math.Ceiling(((Size)newValue).Width);
@@ -2430,6 +2459,14 @@ namespace Tizen.NUI.BaseComponents
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalTouchAreaOffset;
         });
+
+        /// <summary>
+        /// Gets View's Size2D set by user.
+        /// </summary>
+        internal Size2D GetUserSize2D()
+        {
+            return new Size2D((int)userSizeWidth, (int)userSizeHeight);
+        }
 
         private void SetBackgroundImage(string value)
         {
