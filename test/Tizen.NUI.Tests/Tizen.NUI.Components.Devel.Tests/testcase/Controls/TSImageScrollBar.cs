@@ -276,5 +276,30 @@ namespace Tizen.NUI.Components.Devel.Tests
                 Assert.Pass("Caught ArgumentOutOfRangeException : Passed!");
             }
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollBar constructor.")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollBar.ScrollBar C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollBarConstructorWithString()
+        {
+            tlog.Debug(tag, $"ScrollBarConstructorWithString START");
+
+            try
+            {
+                new ScrollBar(Tizen.NUI.DefaultThemeCreator.DefaultId);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"ScrollBarConstructorWithString END (OK)");
+        }
     }
 }

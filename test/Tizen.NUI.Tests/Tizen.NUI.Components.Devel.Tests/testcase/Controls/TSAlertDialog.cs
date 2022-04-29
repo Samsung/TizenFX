@@ -30,6 +30,16 @@ namespace Tizen.NUI.Components.Devel.Tests
             {
                 return GetAccessibilityStates();
             }
+
+            public string OnAccessibilityGetName()
+            {
+                return base.AccessibilityGetName();
+            }
+
+            public string OnAccessibilityGetDescription()
+            {
+                return base.AccessibilityGetDescription();
+            }
         }
 
         [SetUp]
@@ -172,6 +182,58 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AlertDialogActions END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("AlertDialog AccessibilityGetName.")]
+        [Property("SPEC", "Tizen.NUI.Components.AlertDialog.AccessibilityGetName M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AlertDialogAccessibilityGetName()
+        {
+            tlog.Debug(tag, $"AlertDialogAccessibilityGetName START");
+
+            var testingTarget = new MyAlertDialog();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<AlertDialog>(testingTarget, "Should return AlertDialog instance.");
+
+            testingTarget.Title = "AlertTest";
+            var result = testingTarget.OnAccessibilityGetName();
+            tlog.Debug(tag, "AccessibilityGetName : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"AlertDialogAccessibilityGetName END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("AlertDialog AccessibilityGetDescription.")]
+        [Property("SPEC", "Tizen.NUI.Components.AlertDialog.AccessibilityGetDescription M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AlertDialogAccessibilityGetDescription()
+        {
+            tlog.Debug(tag, $"AlertDialogAccessibilityGetDescription START");
+
+            var testingTarget = new MyAlertDialog();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<AlertDialog>(testingTarget, "Should return AlertDialog instance.");
+
+            testingTarget.Content = new TextLabel()
+            {
+                //Text = "AlertContent"
+            };
+            testingTarget.Message = "AlertContent";
+            var result = testingTarget.OnAccessibilityGetDescription();
+            tlog.Debug(tag, "AccessibilityGetDescription : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"AlertDialogAccessibilityGetDescription END (OK)");
         }
     }
 }

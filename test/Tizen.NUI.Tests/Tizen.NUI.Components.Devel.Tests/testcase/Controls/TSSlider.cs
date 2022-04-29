@@ -705,5 +705,37 @@ namespace Tizen.NUI.Components.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"SliderOnUpdateDirectionIsHorizontal END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Slider OnKeyboardEnter.")]
+        [Property("SPEC", "Tizen.NUI.Components.Slider.OnKeyboardEnter M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void SliderOnKeyboardEnter()
+        {
+            tlog.Debug(tag, $"SliderOnKeyboardEnter START");
+
+            var testingTarget = new Slider();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Slider>(testingTarget, "Should return Slider instance.");
+
+            try
+            {
+                var result = testingTarget.OnKeyboardEnter();
+                tlog.Debug(tag, "OnKeyboardEnter : " + result);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"SliderOnKeyboardEnter END (OK)");
+        }
     }
 }

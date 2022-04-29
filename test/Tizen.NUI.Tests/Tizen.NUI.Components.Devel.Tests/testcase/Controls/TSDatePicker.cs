@@ -79,6 +79,31 @@ namespace Tizen.NUI.Components.Devel.Tests
         [Test]
         [Category("P1")]
         [Description("DatePicker constructor.")]
+        [Property("SPEC", "Tizen.NUI.Components.DatePicker.DatePicker C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void DatePickerConstructorWithString()
+        {
+            tlog.Debug(tag, $"DatePickerConstructorWithString START");
+
+            try
+            {
+                new DatePicker(Tizen.NUI.DefaultThemeCreator.DefaultId);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"DatePickerConstructorWithString END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("DatePicker constructor.")]
         [Property("SPEC", "Tizen.NUI.Components.DatePicker.DatePicker M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -168,6 +193,48 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"DatePickerApplyStyle END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("DatePicker GetNextFocusableView.")]
+        [Property("SPEC", "Tizen.NUI.Components.DatePicker.GetNextFocusableView M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void DatePickerGetNextFocusableView()
+        {
+            tlog.Debug(tag, $"DatePickerGetNextFocusableView START");
+
+            DatePickerStyle dpStyle = new DatePickerStyle()
+            {
+                Pickers = new PickerStyle()
+                {
+                    StartScrollOffset = new Size(10, 10),
+                    Divider = new ViewStyle()
+                    {
+                        Position = new Position(30, 40),
+                    }
+                },
+                CellPadding = new Size2D(20, 20),
+            };
+
+            var testingTarget = new DatePicker(dpStyle);
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<DatePicker>(testingTarget, "Should return DatePicker instance.");
+
+            try
+            {
+                testingTarget.GetNextFocusableView(null, View.FocusDirection.Down, true);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"DatePickerGetNextFocusableView END (OK)");
         }
 
         [Test]

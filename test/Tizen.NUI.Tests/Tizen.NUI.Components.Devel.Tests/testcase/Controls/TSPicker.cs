@@ -75,6 +75,61 @@ namespace Tizen.NUI.Components.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("Picker constructor.")]
+        [Property("SPEC", "Tizen.NUI.Components.Picker.Picker C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PickerConstructorWithPickStyle()
+        {
+            tlog.Debug(tag, $"PickerConstructorWithPickStyle START");
+
+            PickerStyle style = new PickerStyle()
+            {
+                Divider = new ViewStyle()
+                {
+                    Focusable = true,
+                    Size = new Size(100, 2),
+                    Position = new Position(100, 200)
+                },
+            };
+
+            var testingTarget = new Picker(style);
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Picker>(testingTarget, "Should return Picker instance.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"PickerConstructorWithPickStyle END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Picker constructor.")]
+        [Property("SPEC", "Tizen.NUI.Components.Picker.Picker C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PickerConstructorWithString()
+        {
+            tlog.Debug(tag, $"PickerConstructorWithString START");
+
+            try
+            {
+                new Picker(Tizen.NUI.DefaultThemeCreator.DefaultId);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"PickerConstructorWithString END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("Picker DisplayedValues.")]
         [Property("SPEC", "Tizen.NUI.Components.Picker.DisplayedValues A")]
         [Property("SPEC_URL", "-")]

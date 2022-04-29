@@ -232,6 +232,8 @@ namespace Tizen.NUI.Components.Devel.Tests
 
                 var index = testingTarget.IndexOf("China");
                 tlog.Debug(tag, "IndexOf : " + index);
+                // this[index]
+                tlog.Debug(tag, "this[index] : " + testingTarget[index]);
 
                 var result = testingTarget.GetEnumerator();
                 tlog.Debug(tag, "Enumerator : " + result);
