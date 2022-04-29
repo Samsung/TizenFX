@@ -5,6 +5,7 @@ using Tizen.NUI;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using System.Threading.Tasks;
+using System.Resources;
 
 
 namespace Tizen.NUI.Components.Devel.Tests.testcase.Controls
@@ -189,6 +190,8 @@ namespace Tizen.NUI.Components.Devel.Tests.testcase.Controls
             Assert.IsInstanceOf<Button>(testingTarget, "Should return Button instance.");
 
             NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(testingTarget);
+
+            NUIApplication.MultilingualResourceManager = new ResourceManager(typeof(NUIApplication));
 
             if (NUIApplication.MultilingualResourceManager != null)
             {
@@ -412,6 +415,42 @@ namespace Tizen.NUI.Components.Devel.Tests.testcase.Controls
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ButtonOnFocusLost END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Button ItemHorizontalAlignment.")]
+        [Property("SPEC", "Tizen.NUI.Components.Button.ItemHorizontalAlignment A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void ButtonItemHorizontalAlignment()
+        {
+            tlog.Debug(tag, $"ButtonItemHorizontalAlignment START");
+
+            var testingTarget = new MyButton()
+            {
+                Text = "Button",
+                Size = new Size(100, 200),
+                BackgroundColor = Color.Green,
+                IsEnabled = true,
+                IconURL = image_path,
+                IconPadding = 4,
+                IconRelativeOrientation = Button.IconOrientation.Right
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Button>(testingTarget, "Should return Button instance.");
+
+            testingTarget.ItemHorizontalAlignment = HorizontalAlignment.Begin;
+            tlog.Debug(tag, "ItemHorizontalAlignment" + testingTarget.ItemHorizontalAlignment);
+
+            testingTarget.ItemVerticalAlignment = VerticalAlignment.Center;
+            tlog.Debug(tag, "ItemVerticalAlignment" + testingTarget.ItemVerticalAlignment);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ButtonItemHorizontalAlignment END (OK)");
         }
     }
 }
