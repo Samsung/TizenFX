@@ -206,5 +206,28 @@ namespace Tizen.NUI.Components.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"ControlCreateViewStyle END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Control PassFocusableViewInsideIfNeeded.")]
+        [Property("SPEC", "Tizen.NUI.Components.Control.PassFocusableViewInsideIfNeeded M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ControlPassFocusableViewInsideIfNeeded()
+        {
+            tlog.Debug(tag, $"ControlPassFocusableViewInsideIfNeeded START");
+
+            var testingTarget = new Control();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Control>(testingTarget, "Should return Control instance.");
+
+            var result = testingTarget.PassFocusableViewInsideIfNeeded();
+            tlog.Debug(tag, "PassFocusableViewInsideIfNeeded : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ControlPassFocusableViewInsideIfNeeded END (OK)");
+        }
     }
 }

@@ -31,19 +31,6 @@ namespace Tizen.NUI.Components.Devel.Tests
             { }
         }
 
-        internal class RecyclerViewImpl : RecyclerView
-        {
-            public RecyclerViewImpl() : base()
-            {
-                base.InternalItemsLayouter = new ItemsLayouterImpl();
-            }
-
-            public float OnAdjustTargetPositionOfScrollAnimation(float position)
-            {
-                return base.AdjustTargetPositionOfScrollAnimation(position);
-            }
-        }
-
         internal class TestItem
         {
             int index;
@@ -81,6 +68,24 @@ namespace Tizen.NUI.Components.Devel.Tests
             {
                 get => isSelected;
                 set { isSelected = value; }
+            }
+        }
+
+        internal class RecyclerViewImpl : RecyclerView
+        {
+            public RecyclerViewImpl() : base()
+            {
+                base.InternalItemsLayouter = new ItemsLayouterImpl();
+            }
+
+            public float OnAdjustTargetPositionOfScrollAnimation(float position)
+            {
+                return base.AdjustTargetPositionOfScrollAnimation(position);
+            }
+
+            public void OnScrollingImpl(object source, ScrollEventArgs args)
+            {
+                base.OnScrolling(source, args);
             }
         }
 
@@ -209,6 +214,58 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"RecyclerViewAdjustTargetPositionOfScrollAnimation END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("RecyclerView OnScrolling.")]
+        [Property("SPEC", "Tizen.NUI.Components.RecyclerView.OnScrolling M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RecyclerViewOnScrolling()
+        {
+            tlog.Debug(tag, $"RecyclerViewOnScrolling START");
+
+            var testingTarget = new RecyclerViewImpl()
+            {
+                Size = new Size(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Height),
+            };
+
+            CreateTestSource(50);
+            testingTarget.ItemsSource = Source;
+
+
+            testingTarget.ItemTemplate = new DataTemplate(() =>
+            {
+                var item = new RecyclerViewItem()
+                {
+                    HeightSpecification = LayoutParamPolicies.MatchParent,
+                    WidthSpecification = 200,
+                };
+                item.SetBinding(View.BackgroundColorProperty, "BgColor");
+
+                var label = new TextLabel()
+                {
+                    ParentOrigin = Tizen.NUI.ParentOrigin.Center,
+                    PivotPoint = Tizen.NUI.PivotPoint.Center,
+                    PositionUsesPivotPoint = true,
+                };
+                label.PixelSize = 30;
+                label.SetBinding(TextLabel.TextProperty, "Index");
+                item.Add(label);
+
+                return item;
+            });
+
+            using (Position pos = new Position(1000, 800))
+            {
+                testingTarget.OnScrollingImpl(testingTarget, new ScrollEventArgs(pos));
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RecyclerViewOnScrolling END (OK)");
         }
     }
 }
