@@ -141,7 +141,7 @@ namespace Tizen.NUI.Components.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Switch OnKey.")]
+        [Description("Switch OnControlStateChanged.")]
         [Property("SPEC", "Tizen.NUI.Components.Switch.OnControlStateChanged M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
@@ -176,6 +176,40 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"SwitchOnControlStateChanged END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Switch OnTouch.")]
+        [Property("SPEC", "Tizen.NUI.Components.Switch.OnTouch M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void SwitchOnTouch()
+        {
+            tlog.Debug(tag, $"SwitchOnTouch START");
+
+            var testingTarget = new Switch();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Switch>(testingTarget, "Should return Switch instance.");
+
+            using (Touch touch = new Touch())
+            {
+                try
+                {
+                    testingTarget.OnTouch(touch);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"SwitchOnTouch END (OK)");
         }
     }
 }

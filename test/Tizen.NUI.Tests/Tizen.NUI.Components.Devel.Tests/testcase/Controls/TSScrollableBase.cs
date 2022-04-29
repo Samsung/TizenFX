@@ -495,5 +495,73 @@ namespace Tizen.NUI.Components.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"ScrollableBaseAccessibilityScrollToChild END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollableBase EnableOverShootingEffect")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.EnableOverShootingEffect A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollableBaseEnableOverShootingEffect()
+        {
+            tlog.Debug(tag, $"ScrollableBaseEnableOverShootingEffect START");
+
+            var testingTarget = new MyScrollableBase()
+            {
+                Size = new Size(2000, 200),
+                BackgroundColor = Color.Cyan,
+                ScrollingDirection = ScrollableBase.Direction.Horizontal,
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
+
+            testingTarget.EnableOverShootingEffect = true;
+            tlog.Debug(tag, "EnableOverShootingEffect : " + testingTarget.EnableOverShootingEffect);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollableBaseEnableOverShootingEffect END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollableBase BaseRemove")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.BaseRemove M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollableBaseBaseRemove()
+        {
+            tlog.Debug(tag, $"ScrollableBaseBaseRemove START");
+
+            var testingTarget = new MyScrollableBase()
+            {
+                Size = new Size(2000, 200),
+                BackgroundColor = Color.Cyan,
+                ScrollingDirection = ScrollableBase.Direction.Horizontal,
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
+
+            using (View view = new View() { Size = new Size(100, 200), })
+            {
+                testingTarget.Add(view);
+
+                try
+                {
+                    testingTarget.BaseRemove(view);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception :  Failed!");
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollableBaseBaseRemove END (OK)");
+        }
     }
 }

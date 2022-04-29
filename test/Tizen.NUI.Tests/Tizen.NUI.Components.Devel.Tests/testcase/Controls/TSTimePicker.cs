@@ -46,6 +46,62 @@ namespace Tizen.NUI.Components.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("TimePicker constructor.")]
+        [Property("SPEC", "Tizen.NUI.Components.TimePicker.TimePicker C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONST")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TimePickerConstructor()
+        {
+            tlog.Debug(tag, $"TimePickerConstructor START");
+
+            TimePickerStyle ts = new TimePickerStyle()
+            {
+                Pickers = new PickerStyle()
+                {
+                    Divider = new ViewStyle()
+                    {
+                        Position = new Position(100, 100),
+                    }
+                }
+            };
+
+            var testingTarget = new TimePicker(ts);
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<TimePicker>(testingTarget, "Should return TimePicker instance.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TimePickerConstructor END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TimePicker constructor.")]
+        [Property("SPEC", "Tizen.NUI.Components.TimePicker.TimePicker C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONST")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TimePickerConstructorWithString()
+        {
+            tlog.Debug(tag, $"TimePickerConstructorWithString START");
+
+            try
+            {
+                new TimePicker(Tizen.NUI.DefaultThemeCreator.DefaultId);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"TimePickerConstructorWithString END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("TimePicker Time.")]
         [Property("SPEC", "Tizen.NUI.Components.TimePicker.Time A")]
         [Property("SPEC_URL", "-")]
@@ -144,6 +200,46 @@ namespace Tizen.NUI.Components.Devel.Tests
             tlog.Debug(tag, "Time : " + testingTarget.Time);
 
             tlog.Debug(tag, $"TimeChangedEventArgsConstructor END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TimePicker GetNextFocusableView.")]
+        [Property("SPEC", "Tizen.NUI.Components.TimePicker.GetNextFocusableView M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TimePickerGetNextFocusableView()
+        {
+            tlog.Debug(tag, $"TimePickerGetNextFocusableView START");
+
+            TimePickerStyle ts = new TimePickerStyle()
+            {
+                Pickers = new PickerStyle()
+                {
+                    StartScrollOffset = new Size(10, 10),
+                    Divider = new ViewStyle()
+                    {
+                        Position = new Position(30, 40),
+                    }
+                },
+                CellPadding = new Size2D(20, 20),
+            };
+
+            var testingTarget = new TimePicker(ts);
+
+            try
+            {
+                testingTarget.GetNextFocusableView(null, View.FocusDirection.Down, true);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"TimePickerGetNextFocusableView END (OK)");
         }
     }
 }
