@@ -66,7 +66,7 @@ namespace Tizen.NUI.LayoutSamples
             {
                 if (base.Margin.EqualTo(value)) return;
 
-                base.Margin.CopyFrom(value);
+                base.Margin = new Extents(value);
                 MarginChanged?.Invoke(this, new MarginChangedEventArgs(base.Margin));
             }
         }
@@ -82,7 +82,7 @@ namespace Tizen.NUI.LayoutSamples
             {
                 if (base.Padding.EqualTo(value)) return;
 
-                base.Padding.CopyFrom(value);
+                base.Padding = new Extents(value);
                 PaddingChanged?.Invoke(this, new PaddingChangedEventArgs(base.Padding));
             }
         }
