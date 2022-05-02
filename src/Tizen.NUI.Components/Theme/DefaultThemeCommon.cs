@@ -129,26 +129,27 @@ namespace Tizen.NUI.Components
             // Progress base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Progress", new ProgressStyle()
             {
-                Size = new Size(200, 25),
+                Size = new Size(508, 16),
                 Track = new ImageViewStyle()
                 {
-                    BorderlineWidth = 0.5f,
-                    BorderlineColor = new Color(0.92f, 0.93f, 0.94f, 1.0f),
+                    CornerRadius = 8.0f,
                     BackgroundColor = new Selector<Color>()
                     {
-                        Normal = new Color(1.0f, 1.0f, 1.0f, 0.5f),
-                        Disabled = new Color(0.73f, 0.76f, 0.79f, 1),
+                        Normal = new Color(0.82f, 0.31f, 0.0f, 0.1f),
+                        Disabled = new Color(0.82f, 0.31f, 0.0f, 0.1f),
                     },
                 },
                 Buffer = new ImageViewStyle()
                 {
-                    BackgroundColor = new Color(0.05f, 0.63f, 0.9f, 0.3f),
+                    CornerRadius = 8.0f,
+                    BackgroundColor = new Color(0.82f, 0.31f, 0.0f, 0.1f),
                 },
                 Progress = new ImageViewStyle()
                 {
-                    BackgroundColor = new Color(0.03f, 0.05f, 0.29f, 1),
+                    CornerRadius = 8.0f,
+                    BackgroundColor = new Color("#D25000"),
                 },
-                IndeterminateImageUrl = FrameworkInformation.ResourcePath + "nui_component_default_progress_indeterminate.png",
+                IndeterminateImageUrl = FrameworkInformation.ResourcePath + "IoT_progress_indeterminate.png",
             });
 
             // RadioButton base style
@@ -265,7 +266,7 @@ namespace Tizen.NUI.Components
             // Loading base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Loading", new LoadingStyle()
             {
-                LoadingSize = new Size(100, 100),
+                LoadingSize = new Size(200, 200),
             });
 
             // Pagination base style
