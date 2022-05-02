@@ -49,7 +49,7 @@ namespace Tizen.NUI.Components
     }
 
     /// <summary>
-    /// Picker is a class which provides a function that allows the user to select 
+    /// Picker is a class which provides a function that allows the user to select
     /// a value through a scrolling motion by expressing the specified value as a list.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
@@ -57,7 +57,7 @@ namespace Tizen.NUI.Components
     {
         //Tizen 6.5 base components Picker guide visible scroll item is 5.
         private const int scrollVisibleItems = 5;
-        //Dummy item count for loop feature. Max value of scrolling distance in 
+        //Dummy item count for loop feature. Max value of scrolling distance in
         //RPI target is bigger than 20 items height. it can adjust depends on the internal logic and device env.
         private const int dummyItemsForLoop = 20;
         private int startScrollOffset;
@@ -110,6 +110,16 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public Picker(PickerStyle pickerStyle) : base(pickerStyle)
         {
+        }
+
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnEnabled(bool enabled)
+        {
+            base.OnEnabled(enabled);
+
+            pickerScroller.IsEnabled = enabled;
         }
 
         /// <summary>

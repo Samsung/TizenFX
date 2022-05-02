@@ -49,7 +49,7 @@ namespace Tizen.NUI.Components
     }
 
     /// <summary>
-    /// TimePicker is a class which provides a function that allows the user to select 
+    /// TimePicker is a class which provides a function that allows the user to select
     /// a time through a scrolling motion by expressing the specified value as a list.
     /// TimePicker expresses the current time using the locale information of the system.
     /// </summary>
@@ -261,6 +261,18 @@ namespace Tizen.NUI.Components
             }
         }
 
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnEnabled(bool enabled)
+        {
+            base.OnEnabled(enabled);
+
+            hourPicker.IsEnabled = enabled;
+            minutePicker.IsEnabled = enabled;
+            ampmPicker.IsEnabled = enabled;
+        }
+
         /// <summary>
         /// Initialize TimePicker object.
         /// </summary>
@@ -338,7 +350,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// ToDo : only key navigation is enabled, and value editing is added as an very simple operation. by toggling enter key, it switches edit mode. 
+        /// ToDo : only key navigation is enabled, and value editing is added as an very simple operation. by toggling enter key, it switches edit mode.
         /// ToDo : this should be fixed and changed properly by owner. (And UX SPEC should be referenced also)
         /// </summary>
         /// <param name="currentFocusedView"></param>
