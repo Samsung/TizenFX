@@ -181,31 +181,31 @@ namespace Tizen.NUI.Components
             // Slider base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Slider", new SliderStyle()
             {
-                Size = new Size(200, 50),
+                Size = new Size(850, 50),
                 TrackThickness = 8,
                 Track = new ImageViewStyle()
                 {
-                    Size = new Size(100, 8),
-                    BorderlineWidth = 0.5f,
-                    BorderlineColor = new Color(0.84f, 0.85f, 0.87f, 1.0f),
+                    Size = new Size(800, 8),
+                    CornerRadius = 4.0f,
                     BackgroundColor = new Selector<Color>()
                     {
-                        Normal = new Color(1.0f, 1.0f, 1.0f, 0.2f),
-                        Disabled = new Color(0.76f, 0.79f, 0.82f, 1),
+                        Normal = new Color(1.0f, 0.37f, 0.0f, 0.1f),
+                        Disabled = new Color(1.0f, 0.37f, 0.0f, 0.1f),
                     },
                 },
                 Progress = new ImageViewStyle()
                 {
-                    Size = new Size(100, 8),
+                    Size = new Size(800, 8),
+                    CornerRadius = 4.0f,
                     BackgroundColor = new Selector<Color>()
                     {
-                        Normal = new Color(0.03f, 0.05f, 0.3f, 1),
-                        Disabled = new Color(0.76f, 0.79f, 0.82f, 1),
+                        Normal = new Color("#FF6200"),
+                        Disabled = new Color("#CACACA"),
                     },
                 },
                 Thumb = new ImageViewStyle()
                 {
-                    Size = new Size(36, 36),
+                    Size = new Size(40, 40),
                     ResourceUrl = new Selector<string>()
                     {
                         Normal = FrameworkInformation.ResourcePath + "IoT_slider_handler_normal.png",
@@ -216,7 +216,9 @@ namespace Tizen.NUI.Components
                 },
                 ValueIndicatorImage = new ImageViewStyle()
                 {
-                    Size = new Size(49, 24),
+                    Size = new Size(16, 24),
+                    BorderlineWidth = 0.5f,
+                    BorderlineColor = new Color("#FF6200"),
                     BackgroundColor = new Color(0.0f, 0.04f, 0.16f, 1.0f),
                 },
             });
