@@ -63,11 +63,12 @@ namespace Tizen.NUI.StyleGuide
                 },
             };
 
-            // CheckBox examples.
+            // Slider examples.
             slider = new Slider()
             {
                 MinValue = 0,
                 MaxValue = 100,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
             };
             rootContent.Add(slider);
 
@@ -76,6 +77,7 @@ namespace Tizen.NUI.StyleGuide
                 MinValue = 0,
                 MaxValue = 100,
                 IsEnabled = false,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
             };
             rootContent.Add(disabledSlider);
 
@@ -84,6 +86,7 @@ namespace Tizen.NUI.StyleGuide
                 MinValue = 0,
                 MaxValue = 100,
                 CurrentValue = 100,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
             };
             rootContent.Add(completedSlider);
 
