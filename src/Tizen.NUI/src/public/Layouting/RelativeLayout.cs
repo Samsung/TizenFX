@@ -393,67 +393,80 @@ namespace Tizen.NUI
                 LayoutItem childLayout = LayoutChildren[i];
                 if (childLayout != null)
                 {
-                    bool ellipsisText = false;
+                    bool ellipsisTextWidth = false;
+                    bool ellipsisTextHeight = false;
                     bool needMeasuredWidth = false;
                     bool needMeasuredHeight = false;
 
                     if (((childLayout.Owner is TextLabel textLabel) && textLabel.Ellipsis) || ((childLayout.Owner is TextField textField) && textField.Ellipsis))
                     {
-                        ellipsisText = true;
+                        Geometry horizontalSpace = GetHorizontalSpace(childLayout.Owner);
+                        if (!horizontalSpace.Size.Equals(0))
+                        {
+                            ellipsisTextWidth = true;
+                            needClearCache = true;
+                        }
+
+                        Geometry verticalSpace = GetVerticalSpace(childLayout.Owner);
+                        if (!verticalSpace.Size.Equals(0))
+                        {
+                            ellipsisTextHeight = true;
+                            needClearCache = true;
+                        }
+                    }
+
+                    if (!ellipsisTextWidth && RelativeLayout.GetFillHorizontal(childLayout.Owner))
+                    {
+                        needMeasuredWidth = true;
                         needClearCache = true;
                     }
-                    else
-                    {
-                        if (RelativeLayout.GetFillHorizontal(childLayout.Owner))
-                        {
-                            needMeasuredWidth = true;
-                            needClearCache = true;
-                        }
 
-                        if (RelativeLayout.GetFillVertical(childLayout.Owner))
-                        {
-                            needMeasuredHeight = true;
-                            needClearCache = true;
-                        }
+                    if (!ellipsisTextHeight && RelativeLayout.GetFillVertical(childLayout.Owner))
+                    {
+                        needMeasuredHeight = true;
+                        needClearCache = true;
                     }
 
-                    if ((ellipsisText == false) && (needMeasuredWidth == false) && (needMeasuredHeight == false))
+                    if ((ellipsisTextWidth == false) && (ellipsisTextHeight == false) && (needMeasuredWidth == false) && (needMeasuredHeight == false))
                     {
                         continue;
                     }
 
                     float width = childLayout.MeasuredWidth.Size.AsDecimal();
-                    float height = childLayout.MeasuredWidth.Size.AsDecimal();
+                    float height = childLayout.MeasuredHeight.Size.AsDecimal();
 
-                    if (ellipsisText)
+                    if (ellipsisTextWidth)
                     {
                         Geometry horizontalSpace = GetHorizontalSpace(childLayout.Owner);
-
-                        if ((width > horizontalSpace.Size) || ((width < horizontalSpace.Size) && RelativeLayout.GetFillVertical(childLayout.Owner)))
+                        if (!horizontalSpace.Size.Equals(0))
                         {
-                            width = horizontalSpace.Size;
-                        }
-
-                        Geometry verticalSpace = GetVerticalSpace(childLayout.Owner);
-
-                        if ((height > verticalSpace.Size) || ((height < verticalSpace.Size) && RelativeLayout.GetFillHorizontal(childLayout.Owner)))
-                        {
-                            height = verticalSpace.Size;
+                            if ((width > horizontalSpace.Size) || ((width < horizontalSpace.Size) && RelativeLayout.GetFillVertical(childLayout.Owner)))
+                            {
+                                width = horizontalSpace.Size;
+                            }
                         }
                     }
-                    else
+                    else if (needMeasuredWidth)
                     {
-                        if (needMeasuredWidth)
-                        {
-                            Geometry horizontalGeometry = GetHorizontalLayout(childLayout.Owner);
-                            width = horizontalGeometry.Size;
-                        }
+                        Geometry horizontalGeometry = GetHorizontalLayout(childLayout.Owner);
+                        width = horizontalGeometry.Size;
+                    }
 
-                        if (needMeasuredHeight)
+                    if (ellipsisTextHeight)
+                    {
+                        Geometry verticalSpace = GetVerticalSpace(childLayout.Owner);
+                        if (!verticalSpace.Size.Equals(0))
                         {
-                            Geometry verticalGeometry = GetVerticalLayout(childLayout.Owner);
-                            height = verticalGeometry.Size;
+                            if ((height > verticalSpace.Size) || ((height < verticalSpace.Size) && RelativeLayout.GetFillHorizontal(childLayout.Owner)))
+                            {
+                                height = verticalSpace.Size;
+                            }
                         }
+                    }
+                    else if (needMeasuredHeight)
+                    {
+                        Geometry verticalGeometry = GetVerticalLayout(childLayout.Owner);
+                        height = verticalGeometry.Size;
                     }
 
                     // Padding sizes are added because Padding sizes will be subtracted in MeasureChild().
@@ -470,12 +483,12 @@ namespace Tizen.NUI
                     int origWidthSpecification = childLayout.Owner.WidthSpecification;
                     int origHeightSpecification = childLayout.Owner.HeightSpecification;
 
-                    if (ellipsisText || needMeasuredWidth)
+                    if (ellipsisTextWidth || needMeasuredWidth)
                     {
                         origWidthSpecification = childLayout.Owner.WidthSpecification;
                         childLayout.Owner.WidthSpecification = LayoutParamPolicies.MatchParent;
                     }
-                    if (ellipsisText || needMeasuredHeight)
+                    if (ellipsisTextHeight || needMeasuredHeight)
                     {
                         origHeightSpecification = childLayout.Owner.HeightSpecification;
                         childLayout.Owner.HeightSpecification = LayoutParamPolicies.MatchParent;
@@ -483,11 +496,11 @@ namespace Tizen.NUI
 
                     MeasureChildWithMargins(childLayout, childWidthMeasureSpec, new LayoutLength(0), childHeightMeasureSpec, new LayoutLength(0));
 
-                    if (ellipsisText || needMeasuredWidth)
+                    if (ellipsisTextWidth || needMeasuredWidth)
                     {
                         childLayout.Owner.WidthSpecification = origWidthSpecification;
                     }
-                    if (ellipsisText || needMeasuredHeight)
+                    if (ellipsisTextHeight || needMeasuredHeight)
                     {
                         childLayout.Owner.HeightSpecification = origHeightSpecification;
                     }
