@@ -47,13 +47,14 @@ namespace Tizen.NUI.Components
                 {
                     Normal = new Color(1.0f, 0.384f, 0.0f, 1),
                     Pressed = new Color(0.85f, 0.325f, 0.0f, 1),
-                    Focused = new Color(0, 0.2f, 0.545f, 1),
+                    Focused = new Color(1.0f, 0.827f, 0.624f, 1),
+                    Selected = new Color(0.624f, 0.239f, 0.0f, 1),
                     Disabled = new Color(0.792f, 0.792f, 0.792f, 1),
                 },
                 Text = new TextLabelStyle()
                 {
                     TextColor = Color.White,
-                    PixelSize = 32,
+                    PixelSize = 24,
                 }
             });
 
