@@ -62,12 +62,13 @@ namespace Tizen.NUI.StyleGuide
                 },
             };
 
-            // CheckBox examples.
+            // Progress examples.
             bufferingProgress = new Progress()
             {
                 MinValue = 0,
                 MaxValue = 100,
                 BufferValue = 10,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
                 ProgressState = Progress.ProgressStatusType.Buffering,
             };
             rootContent.Add(bufferingProgress);
@@ -77,6 +78,7 @@ namespace Tizen.NUI.StyleGuide
                 MinValue = 0,
                 MaxValue = 100,
                 CurrentValue = 80,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
                 ProgressState = Progress.ProgressStatusType.Determinate,
             };
             rootContent.Add(determinatedProgress);
@@ -85,6 +87,7 @@ namespace Tizen.NUI.StyleGuide
             {
                 MinValue = 0,
                 MaxValue = 100,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
                 ProgressState = Progress.ProgressStatusType.Indeterminate,
             };
             rootContent.Add(indeterminatedProgress);
@@ -95,7 +98,8 @@ namespace Tizen.NUI.StyleGuide
                 MinValue = 0,
                 MaxValue = 100,
                 IsEnabled = false,
-                ProgressState = Progress.ProgressStatusType.Indeterminate,
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                ProgressState = Progress.ProgressStatusType.Determinate,
             };
             rootContent.Add(disabledProgress);
             Content = rootContent;
