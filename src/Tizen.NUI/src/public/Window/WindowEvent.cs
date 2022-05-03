@@ -697,6 +697,12 @@ namespace Tizen.NUI
                 auxiliaryMessageEventHandler = null;
                 auxiliaryMessageEventCallback = null;
             }
+
+            if (AccessibilityHighlightEventCallback != null)
+            {
+                AccessibilityHighlightEventSignal?.Disconnect(AccessibilityHighlightEventCallback);
+                AccessibilityHighlightEventCallback = null;
+            }
         }
 
         private StageWheelSignal StageWheelEventSignal()
@@ -1364,6 +1370,10 @@ namespace Tizen.NUI
                         if (AccessibilityHighlightEventSignal.Empty() == false)
                         {
                             AccessibilityHighlightEventSignal.Disconnect(AccessibilityHighlightEventCallback);
+                            if (AccessibilityHighlightEventSignal.Empty() == true)
+                            {
+                                AccessibilityHighlightEventCallback = null;
+                            }
                         }
                     }
                 }
