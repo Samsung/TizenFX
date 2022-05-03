@@ -52,10 +52,6 @@ namespace Tizen.NUI.Components
                     Selected = new Color(0.624f, 0.239f, 0.0f, 1),
                     Disabled = new Color(0.792f, 0.792f, 0.792f, 1),
                 },
-                Icon = new ImageViewStyle()
-                {
-                    Size = new Size(32, 32),
-                },
                 Text = new TextLabelStyle()
                 {
                     TextColor = new Color("#FDFDFD"),
@@ -66,7 +62,7 @@ namespace Tizen.NUI.Components
             // CheckBox base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", new ButtonStyle()
             {
-                Size = new Size(48, 48),
+                ItemSpacing = new Size2D(16, 16),
                 ItemHorizontalAlignment = HorizontalAlignment.Center,
                 ItemVerticalAlignment = VerticalAlignment.Center,
                 Icon = new ImageViewStyle()
