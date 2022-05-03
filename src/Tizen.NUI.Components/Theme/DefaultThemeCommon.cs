@@ -82,8 +82,8 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    TextColor = new Color("#001447"),
-                    PixelSize = 32,
+                    TextColor = new Color("#090E21"),
+                    PixelSize = 24,
                 }
             });
 
@@ -156,12 +156,12 @@ namespace Tizen.NUI.Components
             // RadioButton base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RadioButton", new ButtonStyle()
             {
-                ItemSpacing = new Size2D(32, 32),
-                ItemHorizontalAlignment = HorizontalAlignment.Begin,
+                ItemSpacing = new Size2D(16, 16),
+                ItemHorizontalAlignment = HorizontalAlignment.Center,
                 ItemVerticalAlignment = VerticalAlignment.Center,
                 Icon = new ImageViewStyle()
                 {
-                    Size = new Size(36, 36),
+                    Size = new Size(32, 32),
                     ResourceUrl = new Selector<string>()
                     {
                         Normal = FrameworkInformation.ResourcePath + "IoT_radiobutton_off.png",
@@ -176,8 +176,8 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    TextColor = new Color("#001447"),
-                    PixelSize = 32,
+                    TextColor = new Color("#090E21"),
+                    PixelSize = 24,
                 }
             });
 
@@ -229,7 +229,7 @@ namespace Tizen.NUI.Components
             // Switch base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Switch", new SwitchStyle()
             {
-                ItemSpacing = new Size2D(32, 32),
+                ItemSpacing = new Size2D(16, 16),
                 ItemHorizontalAlignment = HorizontalAlignment.Begin,
                 ItemVerticalAlignment = VerticalAlignment.Center,
                 Track = new ImageViewStyle()
@@ -261,8 +261,8 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    TextColor = new Color("#001447"),
-                    PixelSize = 32,
+                    TextColor = new Color("#090E21"),
+                    PixelSize = 24,
                 }
             });
 
@@ -622,7 +622,7 @@ namespace Tizen.NUI.Components
                 CornerRadius = 12.0f,
                 BoxShadow = new Shadow(8.0f, new Color(0.0f, 0.0f, 0.0f, 0.16f), new Vector2(0.0f, 2.0f)),
                 TextColor = new Color("#090E21"),
-                PixelSize = 32,
+                PixelSize = 24,
                 WidthResizePolicy = ResizePolicyType.UseNaturalSize,
                 HeightResizePolicy = ResizePolicyType.UseNaturalSize,
                 PositionUsesPivotPoint = true,
