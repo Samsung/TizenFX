@@ -39,7 +39,8 @@ namespace Tizen.NUI.Components
             // Button base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Button", new ButtonStyle()
             {
-                Size = new Size(339, 96),
+                Size = new Size(252, 48),
+                ItemSpacing = new Size2D(8, 8),
                 CornerRadius = 12.0f,
                 ItemHorizontalAlignment = HorizontalAlignment.Center,
                 ItemVerticalAlignment = VerticalAlignment.Center,
@@ -51,9 +52,13 @@ namespace Tizen.NUI.Components
                     Selected = new Color(0.624f, 0.239f, 0.0f, 1),
                     Disabled = new Color(0.792f, 0.792f, 0.792f, 1),
                 },
+                Icon = new ImageViewStyle()
+                {
+                    Size = new Size(32, 32),
+                },
                 Text = new TextLabelStyle()
                 {
-                    TextColor = Color.White,
+                    TextColor = new Color("#FDFDFD"),
                     PixelSize = 24,
                 }
             });
@@ -61,12 +66,12 @@ namespace Tizen.NUI.Components
             // CheckBox base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", new ButtonStyle()
             {
-                ItemSpacing = new Size2D(32, 32),
-                ItemHorizontalAlignment = HorizontalAlignment.Begin,
+                Size = new Size(48, 48),
+                ItemHorizontalAlignment = HorizontalAlignment.Center,
                 ItemVerticalAlignment = VerticalAlignment.Center,
                 Icon = new ImageViewStyle()
                 {
-                    Size = new Size(36, 36),
+                    Size = new Size(32, 32),
                     ResourceUrl = new Selector<string>()
                     {
                         Normal = FrameworkInformation.ResourcePath + "IoT_check_off.png",
