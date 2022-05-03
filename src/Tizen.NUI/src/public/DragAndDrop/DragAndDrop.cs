@@ -73,7 +73,7 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(shadowView));
             }
 
-            if (mDragWindow != null)
+            if (null == mDragWindow)
             {
                 mDragWindow = new Window("DragWindow", new Rectangle(-shadowWidth, -shadowHeight, shadowWidth, shadowHeight), true)
                 {
