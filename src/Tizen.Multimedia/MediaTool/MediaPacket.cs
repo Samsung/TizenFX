@@ -437,6 +437,28 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Gets the native data pointer.
+        /// </summary>
+        /// <remarks>
+        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IntPtr BufferPtr
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                int ret = Native.GetBufferData(_handle, out var dataHandle);
+                MultimediaDebug.AssertNoError(ret);
+
+                Debug.Assert(dataHandle != IntPtr.Zero, "Data handle is invalid!");
+
+                return dataHandle;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets a length of data written in the <see cref="Buffer"/>.
         /// </summary>
         /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
