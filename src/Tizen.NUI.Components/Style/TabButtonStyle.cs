@@ -47,10 +47,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Gets or sets the size of a view with text only for the width, the height, and the depth.
+        /// Gets or sets the size of a view with icon for the width, the height, and the depth.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size SizeWithTextOnly { get; set; } = new Size();
+        public Size SizeWithIcon { get; set; } = new Size();
 
         /// <summary>
         /// Gets or sets the size of a view with icon only for the width, the height, and the depth.
@@ -59,22 +59,16 @@ namespace Tizen.NUI.Components
         public Size SizeWithIconOnly { get; set; } = new Size();
 
         /// <summary>
-        /// Gets or sets the padding with text only for use in layout.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Extents PaddingWithTextOnly { get; set; } = new Extents();
-
-        /// <summary>
-        /// Gets or sets the padding with icon only for use in layout.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Extents PaddingWithIconOnly { get; set; } = new Extents();
-
-        /// <summary>
         /// Gets or sets the size of icon with icon only for the width, the height, and the depth.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size IconSizeWithIconOnly { get; set; } = new Size();
+
+        /// <summary>
+        /// Gets or sets the text font size with icon.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float TextSizeWithIcon { get; set; }
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -84,11 +78,10 @@ namespace Tizen.NUI.Components
 
             if (bindableObject is TabButtonStyle tabButtonStyle)
             {
-                SizeWithTextOnly = new Size(tabButtonStyle.SizeWithTextOnly);
+                SizeWithIcon = new Size(tabButtonStyle.SizeWithIcon);
                 SizeWithIconOnly = new Size(tabButtonStyle.SizeWithIconOnly);
-                PaddingWithTextOnly = new Extents(tabButtonStyle.PaddingWithTextOnly);
-                PaddingWithIconOnly = new Extents(tabButtonStyle.PaddingWithIconOnly);
                 IconSizeWithIconOnly = new Size(tabButtonStyle.IconSizeWithIconOnly);
+                TextSizeWithIcon = tabButtonStyle.TextSizeWithIcon;
             }
         }
     }

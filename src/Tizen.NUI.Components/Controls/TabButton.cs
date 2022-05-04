@@ -120,10 +120,32 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void OnRelayout(Vector2 size, RelayoutContainer container)
+        public new string Text
         {
-            base.OnRelayout(size, container);
-            UpdateSizeAndSpacing();
+            get
+            {
+                return base.Text;
+            }
+            set
+            {
+                base.Text = value;
+                UpdateSizeAndSpacing();
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new string IconURL
+        {
+            get
+            {
+                return base.IconURL;
+            }
+            set
+            {
+                base.IconURL = value;
+                UpdateSizeAndSpacing();
+            }
         }
 
         /// <inheritdoc/>
@@ -274,8 +296,10 @@ namespace Tizen.NUI.Components
 
             if (tabButtonStyle != null)
             {
-                // Icon and Text
-                if (!isEmptyIcon && !isEmptyText)
+                Padding = tabButtonStyle.Padding;
+
+                // Text only
+                if (isEmptyIcon && !isEmptyText)
                 {
                     if (tabButtonStyle.Size != null)
                     {
@@ -283,7 +307,10 @@ namespace Tizen.NUI.Components
                         HeightSpecification = (int)tabButtonStyle.Size.Height;
                     }
 
-                    Padding = tabButtonStyle.Padding;
+                    if ((tabButtonStyle.Text != null) && (tabButtonStyle.Text.PixelSize != null) && (tabButtonStyle.Text.PixelSize.Normal != null))
+                    {
+                        TextLabel.PixelSize = (float)tabButtonStyle.Text.PixelSize.Normal;
+                    }
                 }
                 // Icon only
                 else if (!isEmptyIcon && isEmptyText)
@@ -294,30 +321,28 @@ namespace Tizen.NUI.Components
                         HeightSpecification = (int)tabButtonStyle.SizeWithIconOnly.Height;
                     }
 
-                    Padding = tabButtonStyle.PaddingWithIconOnly;
-
                     if (tabButtonStyle.IconSizeWithIconOnly != null)
                     {
                         Icon.WidthSpecification = (int)tabButtonStyle.IconSizeWithIconOnly.Width;
                         Icon.HeightSpecification = (int)tabButtonStyle.IconSizeWithIconOnly.Height;
                     }
                 }
-                // Text only
-                else if (isEmptyIcon && !isEmptyText)
+                // Icon and Text
+                else if (!isEmptyIcon && !isEmptyText)
                 {
-                    if (tabButtonStyle.SizeWithTextOnly != null)
+                    if (tabButtonStyle.SizeWithIcon != null)
                     {
-                        WidthSpecification = (int)tabButtonStyle.SizeWithTextOnly.Width;
-                        HeightSpecification = (int)tabButtonStyle.SizeWithTextOnly.Height;
+                        WidthSpecification = (int)tabButtonStyle.SizeWithIcon.Width;
+                        HeightSpecification = (int)tabButtonStyle.SizeWithIcon.Height;
                     }
-
-                    Padding = tabButtonStyle.PaddingWithTextOnly;
 
                     if ((tabButtonStyle.Icon != null) && (tabButtonStyle.Icon.Size != null))
                     {
                         Icon.WidthSpecification = (int)tabButtonStyle.Icon.Size.Width;
                         Icon.HeightSpecification = (int)tabButtonStyle.Icon.Size.Height;
                     }
+
+                    TextLabel.PixelSize = tabButtonStyle.TextSizeWithIcon;
                 }
                 // Nothing
                 else
@@ -327,8 +352,6 @@ namespace Tizen.NUI.Components
                         WidthSpecification = (int)tabButtonStyle.Size.Width;
                         HeightSpecification = (int)tabButtonStyle.Size.Height;
                     }
-
-                    Padding = tabButtonStyle.Padding;
                 }
             }
         }
