@@ -571,16 +571,15 @@ namespace Tizen.NUI.Components
             // TabButton base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.TabButton", new TabButtonStyle()
             {
-                Size = new Size(-1, 116),
-                SizeWithTextOnly = new Size(-1, 72),
+                Size = new Size(-1, 72),
+                SizeWithIcon = new Size(-1, 116),
                 SizeWithIconOnly = new Size(-1, 64),
-                MinimumSize = new Size(100, -1),
-                Padding = new Extents(24, 24, 18, 16),
-                PaddingWithTextOnly = new Extents(24, 24, 20, 20),
-                PaddingWithIconOnly = new Extents(24, 24, 16, 16),
-                ItemSpacing = new Size2D(0, 10),
+                MinimumSize = new Size(80, 64),
+                Padding = new Extents(24, 24, 16, 16),
+                ItemSpacing = new Size2D(10, 10),
                 CornerRadius = 0,
                 IconSizeWithIconOnly = new Size(32, 32),
+                TextSizeWithIcon = 16.0f,
                 BackgroundColor = new Selector<Color>()
                 {
                     Normal = new Color("#FAFAFA"),
@@ -591,7 +590,7 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    PixelSize = 28,
+                    PixelSize = 24,
                     Size = new Size(-2, -2),
                     TextColor = new Selector<Color>()
                     {
