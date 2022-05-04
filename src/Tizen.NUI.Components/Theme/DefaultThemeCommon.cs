@@ -62,6 +62,7 @@ namespace Tizen.NUI.Components
             // CheckBox base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", new ButtonStyle()
             {
+                Padding = new Extents(8, 8, 8, 8),
                 ItemSpacing = new Size2D(16, 16),
                 ItemHorizontalAlignment = HorizontalAlignment.Center,
                 ItemVerticalAlignment = VerticalAlignment.Center,
@@ -156,6 +157,7 @@ namespace Tizen.NUI.Components
             // RadioButton base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.RadioButton", new ButtonStyle()
             {
+                Padding = new Extents(8, 8, 8, 8),
                 ItemSpacing = new Size2D(16, 16),
                 ItemHorizontalAlignment = HorizontalAlignment.Center,
                 ItemVerticalAlignment = VerticalAlignment.Center,
@@ -335,7 +337,7 @@ namespace Tizen.NUI.Components
             theme.AddStyleWithoutClone("Tizen.NUI.Components.DefaultLinearItem", new DefaultLinearItemStyle()
             {
                 SizeHeight = 64,
-                Padding = new Extents(20, 20, 0, 0),
+                Padding = new Extents(16, 16, 0, 0),
                 Margin = new Extents(0, 0, 0, 0),
                 Label = new TextLabelStyle()
                 {
@@ -367,11 +369,11 @@ namespace Tizen.NUI.Components
                 },
                 Icon = new ViewStyle()
                 {
-                    Margin = new Extents(0, 24, 0, 0)
+                    Margin = new Extents(0, 16, 0, 0)
                 },
                 Extra = new ViewStyle()
                 {
-                    Margin = new Extents(24, 0, 0, 0)
+                    Margin = new Extents(16, 0, 0, 0)
                 },
             });
 
