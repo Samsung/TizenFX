@@ -47,6 +47,9 @@ namespace Tizen.Multimedia
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_add_dispose_cb")]
             internal static extern int AddDisposedCallback(IntPtr handle, DisposedCallback disposedCb, IntPtr userData, out int callbackId);
 
+            [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_remove_dispose_cb")]
+            internal static extern int RemoveDisposedCallback(IntPtr handle, int callbackId);
+
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_get_format")]
             internal static extern int GetFormat(IntPtr handle, out IntPtr format);
 

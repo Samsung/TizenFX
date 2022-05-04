@@ -29,7 +29,6 @@ namespace Tizen.Multimedia
     public abstract partial class MediaPacket : IBufferOwner, IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
-        private Native.DisposedCallback _disposedCallback;
 
         /// <summary>
         /// Initializes a new instance of the MediaPacket class with the specified media format.
@@ -135,9 +134,10 @@ namespace Tizen.Multimedia
             }
         }
 
+        private int _disposedCallbackId;
         private void RegisterCallback()
         {
-            int ret = Native.AddDisposedCallback(_handle, DisposedCallback, IntPtr.Zero, out int callbackId);
+            int ret = Native.AddDisposedCallback(_handle, DisposedCallback, IntPtr.Zero, out _disposedCallbackId);
             MultimediaDebug.AssertNoError(ret);
         }
 
@@ -146,6 +146,9 @@ namespace Tizen.Multimedia
             if (handle == _handle)
             {
                 Log.Info("Tizen.Multimedia", "MediaPacket is disposed.");
+                int ret = Native.RemoveDisposedCallback(_handle, _disposedCallbackId);
+                MultimediaDebug.AssertNoError(ret);
+
                 _isDisposed = true;
                 _handle = IntPtr.Zero;
                 GC.SuppressFinalize(this);
