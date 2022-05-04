@@ -129,6 +129,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The constructor with a stylesheet, window mode, window size, and position.
+        /// </summary>
+        /// <param name="styleSheet">The styleSheet URL.</param>
+        /// <param name="windowMode">The windowMode.</param>
+        /// <param name="windowSize">The window size.</param>
+        /// <param name="windowPosition">The window position.</param>
+        /// <param name="useUIThread">True If app creates a UI Thread</param>
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition, bool useUIThread) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition, useUIThread))
+        {
+        }
+
+        /// <summary>
         /// Internal inhouse constructor with Graphics Backend Type
         /// </summary>
         /// <param name="backend"></param>

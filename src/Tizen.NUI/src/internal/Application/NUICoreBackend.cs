@@ -33,6 +33,7 @@ namespace Tizen.NUI
         private NUIApplication.WindowMode windowMode = NUIApplication.WindowMode.Opaque;
         private Rectangle windowRectangle = null;
         private WindowType defaultWindowType = WindowType.Normal;
+        private bool useUIThread = false;
 
         /// <summary>
         /// The Dictionary to contain each type of event callback.
@@ -74,6 +75,20 @@ namespace Tizen.NUI
             {
                 this.windowRectangle = new Rectangle(windowPosition.X, windowPosition.Y, windowSize.Width, windowSize.Height);
             }
+        }
+
+        /// <summary>
+        /// The constructor with stylesheet, window mode, window size and window position.
+        /// </summary>
+        public NUICoreBackend(string stylesheet, NUIApplication.WindowMode windowMode, Size2D windowSize, Position2D windowPosition, bool useUIThread)
+        {
+            this.stylesheet = stylesheet;
+            this.windowMode = windowMode;
+            if (windowSize != null && windowPosition != null)
+            {
+                this.windowRectangle = new Rectangle(windowPosition.X, windowPosition.Y, windowSize.Width, windowSize.Height);
+            }
+            this.useUIThread = useUIThread;
         }
 
         /// <summary>
@@ -163,7 +178,7 @@ namespace Tizen.NUI
                 args[0] = this.GetType().Assembly.FullName.Replace(" ", "");
             }
 
-            if(defaultWindowType != WindowType.Normal)
+            if (defaultWindowType != WindowType.Normal)
             {
                 application = Application.NewApplication(stylesheet, windowMode, defaultWindowType);
             }
@@ -171,7 +186,15 @@ namespace Tizen.NUI
             {
                 if (windowRectangle != null)
                 {
-                    application = Application.NewApplication(args, stylesheet, windowMode, windowRectangle);
+                    if (useUIThread)
+                    {
+                        application = Application.NewApplication(args, stylesheet, windowMode, windowRectangle, true);
+
+                    }
+                    else
+                    {
+                        application = Application.NewApplication(args, stylesheet, windowMode, windowRectangle);
+                    }
                 }
                 else
                 {
