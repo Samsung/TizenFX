@@ -112,6 +112,19 @@ namespace Tizen.NUI.Samples
           closeIcon.TouchEvent += OnCloseIconTouched;
           leftPadding.TouchEvent += OnLeftCornerIconTouched;
           rightPadding.TouchEvent += OnRightCornerIconTouched;
+
+          minimalizeIcon.AccessibilityActivated += (s, e) =>
+          {
+              MinimizeBorderWindow();
+          };
+          maximalizeIcon.AccessibilityActivated += (s, e) =>
+          {
+              MaximizeBorderWindow();
+          };
+          closeIcon.AccessibilityActivated += (s, e) =>
+          {
+              CloseBorderWindow();
+          };
       }
 
       public override void OnCreated(View rootView)
@@ -252,6 +265,7 @@ namespace Tizen.NUI.Samples
           ResourceUrl = imagePath + "gallery-large-9.jpg",
           CornerRadius = 0.3f,
           CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+          AccessibilityHighlightable = true,
         };
         root.Add(imageViewA);
         imageViewA.TouchEvent += (s, e) =>
@@ -261,6 +275,10 @@ namespace Tizen.NUI.Samples
             CreateSubWindowOne();
           }
           return true;
+        };
+        imageViewA.AccessibilityActivated += (s, e) =>
+        {
+            CreateSubWindowOne();
         };
 
         var imageViewB = new ImageView()
@@ -272,6 +290,7 @@ namespace Tizen.NUI.Samples
           ResourceUrl = imagePath + "gallery-large-5.jpg",
           CornerRadius = 0.3f,
           CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+          AccessibilityHighlightable = true,
         };
         root.Add(imageViewB);
         imageViewB.TouchEvent += (s, e) =>
@@ -281,6 +300,10 @@ namespace Tizen.NUI.Samples
             CreateSubWindowTwo();
           }
           return true;
+        };
+        imageViewB.AccessibilityActivated += (s, e) =>
+        {
+            CreateSubWindowTwo();
         };
     }
 

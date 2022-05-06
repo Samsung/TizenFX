@@ -180,6 +180,7 @@ namespace Tizen.NUI
                 PositionUsesPivotPoint = true,
                 PivotPoint = PivotPoint.BottomLeft,
                 ParentOrigin = ParentOrigin.BottomLeft,
+                AccessibilityHighlightable = true,
             };
 
             maximalizeIcon = new ImageView()
@@ -188,6 +189,7 @@ namespace Tizen.NUI
                 PositionUsesPivotPoint = true,
                 PivotPoint = PivotPoint.BottomLeft,
                 ParentOrigin = ParentOrigin.BottomLeft,
+                AccessibilityHighlightable = true,
             };
 
             closeIcon = new ImageView()
@@ -196,6 +198,7 @@ namespace Tizen.NUI
                 PositionUsesPivotPoint = true,
                 PivotPoint = PivotPoint.BottomLeft,
                 ParentOrigin = ParentOrigin.BottomLeft,
+                AccessibilityHighlightable = true,
             };
 
             leftCornerIcon = new ImageView()
@@ -226,6 +229,19 @@ namespace Tizen.NUI
             closeIcon.TouchEvent += OnCloseIconTouched;
             leftCornerIcon.TouchEvent += OnLeftCornerIconTouched;
             rightCornerIcon.TouchEvent += OnRightCornerIconTouched;
+
+            minimalizeIcon.AccessibilityActivated += (s, e) =>
+            {
+                MinimizeBorderWindow();
+            };
+            maximalizeIcon.AccessibilityActivated += (s, e) =>
+            {
+                MaximizeBorderWindow();
+            };
+            closeIcon.AccessibilityActivated += (s, e) =>
+            {
+                CloseBorderWindow();
+            };
         }
 
         /// Determines the behavior of pinch gesture.
@@ -353,6 +369,42 @@ namespace Tizen.NUI
             return true;
         }
 
+        /// <summary>
+        /// Minimize border window.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void MinimizeBorderWindow()
+        {
+            ClearWindowGesture();
+            BorderWindow.Minimize(true);
+        }
+
+        /// <summary>
+        /// Maximize border window.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void MaximizeBorderWindow()
+        {
+            ClearWindowGesture();
+            if (BorderWindow.IsMaximized())
+            {
+              BorderWindow.Maximize(false);
+            }
+            else
+            {
+              BorderWindow.Maximize(true);
+            }
+        }
+
+        /// <summary>
+        /// Close border window.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void CloseBorderWindow()
+        {
+            BorderWindow.Destroy();
+            BorderWindow = null;
+        }
 
         /// <summary>
         /// This is an event callback when the minimize button is touched.
