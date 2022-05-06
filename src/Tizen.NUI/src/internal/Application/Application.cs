@@ -602,6 +602,7 @@ namespace Tizen.NUI
                 applicationInitEventHandler.Invoke(this, e);
             }
 
+            RegisterApplicationAccessibilityDelegate();
         }
 
         /**
@@ -1393,5 +1394,40 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        private void RegisterApplicationAccessibilityDelegate()
+        {
+            var instance = Interop.Application.AccessibilityDelegate.Instance;
+            instance.GetToolkitName = AccessibilityGetToolkitNameWrapper;
+            instance.GetVersion = AccessibilityGetVersion;
+
+            var size = Marshal.SizeOf<Interop.Application.AccessibilityDelegate>();
+            var ptr = Marshal.AllocHGlobal(size);
+
+            Marshal.StructureToPtr(instance, ptr, false);
+            Interop.Application.AccessibilityApplicationSetAppAccessibilityDelegate(SwigCPtr, ptr, size);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        private static IntPtr DuplicateString(string value)
+        {
+            return Interop.Application.AccessibilityApplicationDuplicateString(value ?? "");
+        }
+
+
+        private static IntPtr AccessibilityGetToolkitNameWrapper(IntPtr self)
+        {
+            string name = "nui(dali)";
+
+            return DuplicateString(name);
+        }
+
+        private static IntPtr AccessibilityGetVersion(IntPtr self)
+        {
+            string name = "";
+
+            return DuplicateString(name);
+        }
+
     }
 }
