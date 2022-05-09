@@ -66,11 +66,9 @@ namespace Tizen.Uix.InputMethod
         /// <param name="portraitHeight">The height in the portrait mode.</param>
         /// <param name="landscapeWidth">The width in the landscape mode.</param>
         /// <param name="landscapeHeight">The height in the landscape mode.</param>
-        /// <exception cref="InvalidOperationException">
-        /// This can occur due to the following reasons:
-        /// 1) The application does not have the privilege to call this function.
-        /// 2) The IME main loop has not started yet.
-        /// </exception>
+        /// <exception cref="ArgumentException">This exception can be due to an invalid parameter.</exception>
+        /// <exception cref="UnauthorizedAccessException">This exception can be due to permission denied.</exception>
+        /// <exception cref="InvalidOperationException">The IME main loop has not started yet.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static void SetSize(int portraitWidth, int portraitHeight, int landscapeWidth, int landscapeHeight)
         {
