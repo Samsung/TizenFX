@@ -92,7 +92,7 @@ namespace Tizen.NUI.Components
             return instance.InternalTransition;
         });
 
-        private const int DefaultTransitionDuration = 500;
+        private const int DefaultTransitionDuration = 300;
 
         //This will be replaced with view transition class instance.
         private Animation curAnimation = null;
@@ -345,8 +345,8 @@ namespace Tizen.NUI.Components
 
             if (page is DialogPage == false)
             {
-                curAnimation = new Animation(1000);
-                curAnimation.AnimateTo(curTop, "Opacity", 1.0f, 0, 1000);
+                curAnimation = new Animation(DefaultTransitionDuration);
+                curAnimation.AnimateTo(curTop, "PositionX", 0.0f, 0, DefaultTransitionDuration);
                 curAnimation.EndAction = Animation.EndActions.StopFinal;
                 curAnimation.Finished += (object sender, EventArgs args) =>
                 {
@@ -357,13 +357,13 @@ namespace Tizen.NUI.Components
                 };
                 curAnimation.Play();
 
-                page.Opacity = 0.0f;
+                page.PositionX = SizeWidth;
                 page.SetVisible(true);
                 // Set Content visible because it was hidden by HideContentOfPage.
                 (page as ContentPage).Content?.SetVisible(true);
 
-                newAnimation = new Animation(1000);
-                newAnimation.AnimateTo(page, "Opacity", 1.0f, 0, 1000);
+                newAnimation = new Animation(DefaultTransitionDuration);
+                newAnimation.AnimateTo(page, "PositionX", 0.0f, 0, DefaultTransitionDuration);
                 newAnimation.EndAction = Animation.EndActions.StopFinal;
                 newAnimation.Finished += (object sender, EventArgs e) =>
                 {
@@ -428,14 +428,14 @@ namespace Tizen.NUI.Components
 
             if (curTop is DialogPage == false)
             {
-                curAnimation = new Animation(1000);
-                curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
+                curAnimation = new Animation(DefaultTransitionDuration);
+                curAnimation.AnimateTo(curTop, "PositionX", SizeWidth, 0, DefaultTransitionDuration);
                 curAnimation.EndAction = Animation.EndActions.StopFinal;
                 curAnimation.Finished += (object sender, EventArgs e) =>
                 {
                     //Removes the current top page after transition is finished.
                     Remove(curTop);
-                    curTop.Opacity = 1.0f;
+                    curTop.PositionX = 0.0f;
 
                     //Invoke Page events
                     curTop.InvokeDisappeared();
@@ -445,13 +445,12 @@ namespace Tizen.NUI.Components
                 };
                 curAnimation.Play();
 
-                newTop.Opacity = 1.0f;
                 newTop.SetVisible(true);
                 // Set Content visible because it was hidden by HideContentOfPage.
                 (newTop as ContentPage).Content?.SetVisible(true);
 
-                newAnimation = new Animation(1000);
-                newAnimation.AnimateTo(newTop, "Opacity", 1.0f, 0, 1000);
+                newAnimation = new Animation(DefaultTransitionDuration);
+                newAnimation.AnimateTo(newTop, "PositionX", 0.0f, 0, DefaultTransitionDuration);
                 newAnimation.EndAction = Animation.EndActions.StopFinal;
                 newAnimation.Finished += (object sender, EventArgs e) =>
                 {
@@ -552,13 +551,11 @@ namespace Tizen.NUI.Components
 
             if (index == PageCount)
             {
-                page.Opacity = 1.0f;
                 page.SetVisible(true);
             }
             else
             {
                 page.SetVisible(false);
-                page.Opacity = 0.0f;
             }
 
             navigationPages.Insert(index, page);
@@ -633,7 +630,6 @@ namespace Tizen.NUI.Components
             {
                 if (PageCount >= 2)
                 {
-                    navigationPages[PageCount - 2].Opacity = 1.0f;
                     navigationPages[PageCount - 2].SetVisible(true);
                     NotifyAccessibilityStatesChangeOfPages(page, navigationPages[PageCount - 2]);
                 }
@@ -807,7 +803,6 @@ namespace Tizen.NUI.Components
                 transitionFinished = true;
                 InvokeTransitionFinished();
                 transitionSet.Dispose();
-                currentTopPage.Opacity = 1.0f;
             };
 
             if (!pushTransition || newTopPage is DialogPage == false)
