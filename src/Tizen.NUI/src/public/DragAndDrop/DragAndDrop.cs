@@ -37,6 +37,7 @@ namespace Tizen.NUI
         private delegate void InternalDragAndDropEventHandler(global::System.IntPtr dragEvent);
         private InternalSourceEventHandler sourceEventCb;
         private Dictionary<View, InternalDragAndDropEventHandler> targetEventDictionary = new Dictionary<View, InternalDragAndDropEventHandler>();
+        private View mShadowView;
         private Window mDragWindow;
         private const int shadowWidth = 150;
         private const int shadowHeight = 150;
@@ -84,7 +85,13 @@ namespace Tizen.NUI
             shadowView.SetSize(shadowWidth, shadowHeight);
             shadowView.SetOpacity(0.9f);
 
-            mDragWindow.Add(shadowView);
+            if (mShadowView)
+            {
+                mDragWindow.Remove(mShadowView);
+            }
+
+            mShadowView = shadowView;
+            mDragWindow.Add(mShadowView);
             mDragWindow.Show();
 
             sourceEventCb = (sourceEventType) =>
