@@ -6,6 +6,7 @@ namespace Tizen.NUI.Samples
     public class MenuSample : IExample
     {
         private static readonly int itemCount = 20;
+        private MenuItem[] menuItems = new MenuItem[itemCount];
 
         public void Activate()
         {
@@ -39,8 +40,6 @@ namespace Tizen.NUI.Samples
             };
             navigator.Push(page);
 
-            MenuItem[] menuItems = new MenuItem[itemCount];
-
             for (int i = 0; i < itemCount; i++)
             {
                 menuItems[i] = new MenuItem() { Text = "Menu" + (i + 1) };
@@ -66,6 +65,15 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
+            for (int i = 0; i < itemCount; i++)
+            {
+                if (menuItems[i] != null)
+                {
+                    menuItems[i].Dispose();
+                    menuItems[i] = null;
+                }
+            }
+
             var window = NUIApplication.GetDefaultWindow();
             var navigator = window.GetDefaultNavigator();
             var newPageCount = window.GetDefaultNavigator().PageCount;

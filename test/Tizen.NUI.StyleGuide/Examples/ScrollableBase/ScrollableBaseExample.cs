@@ -73,6 +73,8 @@ namespace Tizen.NUI.StyleGuide
                     };
                     item.Label.SetBinding(TextLabel.TextProperty, "Direction");
                     item.Label.HorizontalAlignment = HorizontalAlignment.Begin;
+                    item.Focusable = true;
+                    item.FocusableInTouch = true;
                     return item;
                 }),
                 ScrollingDirection = ScrollableBase.Direction.Vertical,

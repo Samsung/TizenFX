@@ -72,7 +72,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool HandleControlStateOnTouch(Touch touch)
         {
-            if (!IsEnabled || null == touch || null == BindingContext)
+            if (!IsEnabled || null == touch)
             {
                 return false;
             }
@@ -98,30 +98,31 @@ namespace Tizen.NUI.Components
 
                         if (!clicked) return true;
 
-                        if (IsSelectable)
+                        if (IsSelectable && BindingContext != null && ParentItemsView is CollectionView colView)
                         {
-                            if (ParentItemsView is CollectionView colView)
+                            switch (colView.SelectionMode)
                             {
-                                switch (colView.SelectionMode)
-                                {
-                                    case ItemSelectionMode.Single:
-                                        colView.SelectedItem = IsSelected ? null : BindingContext;
-                                        break;
-                                    case ItemSelectionMode.SingleAlways:
-                                        if (colView.SelectedItem != BindingContext)
-                                        {
-                                            colView.SelectedItem = BindingContext;
-                                        }
-                                        break;
-                                    case ItemSelectionMode.Multiple:
-                                        var selectedItems = colView.SelectedItems;
-                                        if (selectedItems.Contains(BindingContext)) selectedItems.Remove(BindingContext);
-                                        else selectedItems.Add(BindingContext);
-                                        break;
-                                    case ItemSelectionMode.None:
-                                        break;
-                                }
+                                case ItemSelectionMode.Single:
+                                    colView.SelectedItem = IsSelected ? null : BindingContext;
+                                    break;
+                                case ItemSelectionMode.SingleAlways:
+                                    if (colView.SelectedItem != BindingContext)
+                                    {
+                                        colView.SelectedItem = BindingContext;
+                                    }
+                                    break;
+                                case ItemSelectionMode.Multiple:
+                                    var selectedItems = colView.SelectedItems;
+                                    if (selectedItems.Contains(BindingContext)) selectedItems.Remove(BindingContext);
+                                    else selectedItems.Add(BindingContext);
+                                    break;
+                                case ItemSelectionMode.None:
+                                    break;
                             }
+                        }
+                        else if (IsSelectable)
+                        {
+                            IsSelected = !IsSelected;
                         }
 
                         if (clicked)

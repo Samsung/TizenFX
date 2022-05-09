@@ -937,15 +937,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(View view)
         {
-            Interop.Actor.Add(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            this.GetRootLayer().AddViewToLayerList(view); // Maintain the children list in the Layer
-            if (null != view)
-            {
-                view.InternalParent = this.GetRootLayer();
-
-                this.GetRootLayer().LayoutCount += view.LayoutCount;
-            }
+            this.GetRootLayer().Add(view);
         }
 
         /// <summary>
@@ -955,14 +947,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Remove(View view)
         {
-            Interop.Actor.Remove(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
-            this.GetRootLayer().RemoveViewFromLayerList(view); // Maintain the children list in the Layer
-            if (null != view)
-            {
-                view.InternalParent = null;
-
-                this.GetRootLayer().LayoutCount -= view.LayoutCount;
-            }
+            this.GetRootLayer().Remove(view);
         }
 
         /// <summary>

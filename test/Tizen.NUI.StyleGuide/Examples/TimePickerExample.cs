@@ -81,6 +81,17 @@ namespace Tizen.NUI.StyleGuide
             };
             rootContent.Add(label);
 
+            var toggle = new Switch()
+            {
+                Text = "Disable Switch",
+            };
+            toggle.SelectedChanged += (object obj, SelectedChangedEventArgs ev) =>
+            {
+                timePicker.IsEnabled = !(ev.IsSelected);
+                Console.WriteLine($"Picker is {timePicker.IsEnabled}");
+            };
+            rootContent.Add(toggle);
+
             button = new Tizen.NUI.Components.Button
             {
                 WidthSpecification = LayoutParamPolicies.MatchParent,

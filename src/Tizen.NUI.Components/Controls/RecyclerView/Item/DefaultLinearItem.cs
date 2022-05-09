@@ -129,7 +129,7 @@ namespace Tizen.NUI.Components
                     // Tizen.Log.Error("IconUrl only can set Icon is ImageView");
                     return;
                 }
-                (Icon as ImageView).ResourceUrl = value; 
+                (Icon as ImageView).ResourceUrl = value;
             }
         }
         */
@@ -377,7 +377,7 @@ namespace Tizen.NUI.Components
             {
                 HorizontalAlignment = HorizontalAlignment.Begin,
                 VerticalAlignment = VerticalAlignment.Center,
-                AccessibilityHidden = true
+                AccessibilityHidden = true,
             };
         }
 
@@ -543,6 +543,7 @@ namespace Tizen.NUI.Components
             var seperator = Seperator;
             layoutChanged = true;
             LayoutDirectionChanged += OnLayoutDirectionChanged;
+            EnableControlStatePropagation = true;
         }
 
         private void OnLayoutDirectionChanged(object sender, LayoutDirectionChangedEventArgs e)
