@@ -18,122 +18,152 @@ namespace Tizen.NUI.Samples
 
     class CustomBorder : DefaultBorder
     {
+      private static readonly string ResourcePath = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+      private static readonly string MinimalizeIcon = ResourcePath + "/images/minimalize.png";
+      private static readonly string MaximalizeIcon = ResourcePath + "/images/maximalize.png";
+      private static readonly string RestoreIcon = ResourcePath + "/images/smallwindow.png";
+      private static readonly string CloseIcon = ResourcePath + "/images/close.png";
+      private static readonly string LeftCornerIcon = ResourcePath + "/images/leftCorner.png";
+      private static readonly string RightCornerIcon = ResourcePath + "/images/rightCorner.png";
+
       private int width = 500;
       private bool hide = false;
-      private View rootView;
       private View borderView;
       private TextLabel title;
 
+      private ImageView minimalizeIcon;
+      private ImageView maximalizeIcon;
+      private ImageView closeIcon;
+      private ImageView leftCornerIcon;
+      private ImageView rightCornerIcon;
+
+      private Rectangle preWinPositonSize;
+
       public CustomBorder() : base()
       {
-        BorderHeight = 60;
+        BorderHeight = 50;
+        OverlayMode = true;
+        BorderLineThickness = 0;
       }
 
-      public override void CreateBorderView(View rootView)
+      public override bool CreateTopBorderView(View topView)
       {
-          this.rootView = rootView;
-          rootView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
-          rootView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
-
-          borderView = new View()
-          {
-              Layout = new LinearLayout()
-              {
-                  LinearAlignment = LinearLayout.Alignment.End,
-                  LinearOrientation = LinearLayout.Orientation.Horizontal,
-              },
-              WidthSpecification = LayoutParamPolicies.MatchParent,
-              HeightSpecification = LayoutParamPolicies.MatchParent,
-          };
-          title = new TextLabel()
-          {
-            Text = "CustomBorder",
-            Size = new Size(300, 50),
-            Position = new Position(60, 0),
-            PositionUsesPivotPoint = true,
-            PivotPoint = PivotPoint.BottomLeft,
-            ParentOrigin = ParentOrigin.BottomLeft,
-          };
-
-          var minimalizeIcon = new Button()
-          {
-              Text = "m",
-              PositionUsesPivotPoint = true,
-              PivotPoint = PivotPoint.BottomLeft,
-              ParentOrigin = ParentOrigin.BottomLeft,
-              Size = new Size(50, 50),
-          };
-
-          var maximalizeIcon = new Button()
-          {
-              Text = "M",
-              PositionUsesPivotPoint = true,
-              PivotPoint = PivotPoint.BottomLeft,
-              ParentOrigin = ParentOrigin.BottomLeft,
-              Size = new Size(50, 50),
-          };
-
-          var closeIcon = new Button()
-          {
-              Text = "C",
-              PositionUsesPivotPoint = true,
-              PivotPoint = PivotPoint.BottomLeft,
-              ParentOrigin = ParentOrigin.BottomLeft,
-              Size = new Size(50, 50),
-          };
-
-
-          var leftPadding = new View()
-          {
-              PositionUsesPivotPoint = true,
-              PivotPoint = PivotPoint.BottomLeft,
-              ParentOrigin = ParentOrigin.BottomLeft,
-              Size = new Size(50, 50),
-          };
-
-          var rightPadding = new View()
-          {
-              PositionUsesPivotPoint = true,
-              PivotPoint = PivotPoint.BottomLeft,
-              ParentOrigin = ParentOrigin.BottomLeft,
-              Size = new Size(50, 50),
-          };
-
-          rootView.Add(leftPadding);
-          rootView.Add(title);
-          borderView.Add(minimalizeIcon);
-          borderView.Add(maximalizeIcon);
-          borderView.Add(closeIcon);
-          borderView.Add(rightPadding);
-          rootView.Add(borderView);
-
-          minimalizeIcon.TouchEvent += OnMinimizeIconTouched;
-          maximalizeIcon.TouchEvent += OnMaximizeIconTouched;
-          closeIcon.TouchEvent += OnCloseIconTouched;
-          leftPadding.TouchEvent += OnLeftCornerIconTouched;
-          rightPadding.TouchEvent += OnRightCornerIconTouched;
+        if (topView == null)
+        {
+          return false;
+        }
+        title = new TextLabel()
+        {
+          Text = "CustomBorder",
+          Position = new Position(20, 0),
+        };
+        topView.Add(title);
+        return true;
       }
 
-      public override void OnCreated(View rootView)
+      public override bool CreateBottomBorderView(View bottomView)
       {
-        base.OnCreated(rootView);
+        if (bottomView == null)
+        {
+            return false;
+        }
+        bottomView.Layout = new RelativeLayout();
+
+        minimalizeIcon = new ImageView()
+        {
+            ResourceUrl = MinimalizeIcon,
+        };
+
+        maximalizeIcon = new ImageView()
+        {
+            ResourceUrl = MaximalizeIcon,
+        };
+
+        closeIcon = new ImageView()
+        {
+            ResourceUrl = CloseIcon,
+        };
+
+        leftCornerIcon = new ImageView()
+        {
+            ResourceUrl = LeftCornerIcon,
+        };
+
+        rightCornerIcon = new ImageView()
+        {
+          ResourceUrl = RightCornerIcon,
+        };
+
+        RelativeLayout.SetRightTarget(minimalizeIcon, maximalizeIcon);
+        RelativeLayout.SetRightRelativeOffset(minimalizeIcon, 0.0f);
+        RelativeLayout.SetHorizontalAlignment(minimalizeIcon, RelativeLayout.Alignment.End);
+        RelativeLayout.SetRightTarget(maximalizeIcon, closeIcon);
+        RelativeLayout.SetRightRelativeOffset(maximalizeIcon, 0.0f);
+        RelativeLayout.SetHorizontalAlignment(maximalizeIcon, RelativeLayout.Alignment.End);
+        RelativeLayout.SetRightTarget(closeIcon, rightCornerIcon);
+        RelativeLayout.SetRightRelativeOffset(closeIcon, 0.0f);
+        RelativeLayout.SetHorizontalAlignment(closeIcon, RelativeLayout.Alignment.End);
+        RelativeLayout.SetRightRelativeOffset(rightCornerIcon, 1.0f);
+        RelativeLayout.SetHorizontalAlignment(rightCornerIcon, RelativeLayout.Alignment.End);
+        bottomView.Add(leftCornerIcon);
+        bottomView.Add(minimalizeIcon);
+        bottomView.Add(maximalizeIcon);
+        bottomView.Add(closeIcon);
+        bottomView.Add(rightCornerIcon);
+
+
+        minimalizeIcon.TouchEvent += OnMinimizeIconTouched;
+        maximalizeIcon.TouchEvent += OnMaximizeIconTouched;
+        closeIcon.TouchEvent += OnCloseIconTouched;
+        leftCornerIcon.TouchEvent += OnLeftBottomCornerIconTouched;
+        rightCornerIcon.TouchEvent += OnRightBottomCornerIconTouched;
+        return true;
       }
 
-      public override bool  OnCloseIconTouched(object sender, View.TouchEventArgs e)
+      public override void CreateBorderView(View borderView)
+      {
+          this.borderView = borderView;
+          borderView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
+          borderView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
+          borderView.BackgroundColor = new Color(1, 1, 1, 0.3f);
+      }
+
+      public override void OnCreated(View borderView)
+      {
+        base.OnCreated(borderView);
+      }
+
+      public override bool OnCloseIconTouched(object sender, View.TouchEventArgs e)
       {
         base.OnCloseIconTouched(sender, e);
         return true;
       }
 
-      public override bool  OnMinimizeIconTouched(object sender, View.TouchEventArgs e)
+      public override bool OnMinimizeIconTouched(object sender, View.TouchEventArgs e)
       {
-        base.OnMinimizeIconTouched(sender, e);
+        if (e.Touch.GetState(0) == PointStateType.Up)
+        {
+          if (BorderWindow.IsMaximized() == true)
+          {
+            BorderWindow.Maximize(false);
+          }
+          preWinPositonSize = BorderWindow.WindowPositionSize;
+          BorderWindow.WindowPositionSize = new Rectangle(preWinPositonSize.X, preWinPositonSize.Y, 500, 0);
+        }
         return true;
+      }
+
+      public override void OnRequestResize()
+      {
+        if (borderView != null)
+        {
+          borderView.BackgroundColor = new Color(0, 1, 0, 0.3f); // 보더의 배경을 변경할 수 있습니다.
+        }
       }
 
       public override void OnResized(int width, int height)
       {
-        if (rootView != null)
+        if (borderView != null)
         {
           if (this.width > width && hide == false)
           {
@@ -145,7 +175,30 @@ namespace Tizen.NUI.Samples
             title.Show();
             hide = false;
           }
+          borderView.BackgroundColor = new Color(1, 1, 1, 0.3f); //  리사이즈가 끝나면 보더의 색깔은 원래대로 돌려놓습니다.
           base.OnResized(width, height);
+          UpdateIcons();
+        }
+      }
+
+      private void UpdateIcons()
+      {
+        if (BorderWindow != null && borderView != null)
+        {
+            if (BorderWindow.IsMaximized() == true)
+            {
+                if (maximalizeIcon != null)
+                {
+                    maximalizeIcon.ResourceUrl = RestoreIcon;
+                }
+            }
+            else
+            {
+                if (maximalizeIcon != null)
+                {
+                    maximalizeIcon.ResourceUrl = MaximalizeIcon;
+                }
+            }
         }
       }
 
@@ -194,8 +247,6 @@ namespace Tizen.NUI.Samples
         IBorderInterface customBorder = new CustomBorder();
         subWindowTwo = new Window("subwin1", customBorder, new Rectangle(60, 20, 800, 800), false);
 
-        subWindowTwo.BackgroundColor = Color.Red;
-
         var root = new View(){
           Layout = new LinearLayout()
           {
@@ -203,7 +254,7 @@ namespace Tizen.NUI.Samples
           },
           WidthResizePolicy = ResizePolicyType.FillToParent,
           HeightResizePolicy = ResizePolicyType.FillToParent,
-          BackgroundColor = Color.Yellow,
+          BackgroundColor = Color.Brown,
         };
 
         var image = new ImageView()
@@ -227,6 +278,7 @@ namespace Tizen.NUI.Samples
     void Initialize()
     {
         win = NUIApplication.GetDefaultWindow();
+
         var root = new ImageView()
         {
           WidthResizePolicy = ResizePolicyType.FillToParent,
@@ -238,23 +290,56 @@ namespace Tizen.NUI.Samples
               LinearOrientation = LinearLayout.Orientation.Horizontal,
               CellPadding = new Size(10, 10),
           }
-
-
         };
         win.Add(root);
 
-        var imageViewA = new ImageView()
+
+        var appFunctionList = new View()
         {
           PositionUsesPivotPoint = true,
           PivotPoint = PivotPoint.BottomLeft,
           ParentOrigin = ParentOrigin.BottomLeft,
+          BackgroundColor = new Color(0, 1, 1, 0.5f),
+          Size = new Size(500, 200),
+          CornerRadius = 0.3f,
+          CornerRadiusPolicy = VisualTransformPolicyType.Relative,
+          Layout = new LinearLayout()
+          {
+              LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+              LinearOrientation = LinearLayout.Orientation.Horizontal,
+              CellPadding = new Size(10, 10),
+              Padding = new Extents(10, 10, 10 , 10),
+          }
+        };
+        root.Add(appFunctionList);
+
+        var defaultBorder = new View()
+        {
+          Size = new Size(150, 180),
+          Layout = new LinearLayout()
+          {
+              LinearAlignment = LinearLayout.Alignment.Center,
+              LinearOrientation = LinearLayout.Orientation.Vertical,
+          }
+        };
+
+        var imageViewA = new ImageView()
+        {
           Size = new Size(150, 150),
           ResourceUrl = imagePath + "gallery-large-9.jpg",
           CornerRadius = 0.3f,
           CornerRadiusPolicy = VisualTransformPolicyType.Relative,
         };
-        root.Add(imageViewA);
-        imageViewA.TouchEvent += (s, e) =>
+
+        var textViewA = new TextLabel()
+        {
+          Text = "Default",
+        };
+
+        defaultBorder.Add(imageViewA);
+        defaultBorder.Add(textViewA);
+        appFunctionList.Add(defaultBorder);
+        defaultBorder.TouchEvent += (s, e) =>
         {
           if (e.Touch.GetState(0) == PointStateType.Up)
           {
@@ -263,18 +348,32 @@ namespace Tizen.NUI.Samples
           return true;
         };
 
+        var customBorder = new View()
+        {
+          Size = new Size(150, 180),
+          Layout = new LinearLayout()
+          {
+              LinearAlignment = LinearLayout.Alignment.Center,
+              LinearOrientation = LinearLayout.Orientation.Vertical,
+          }
+        };
+
         var imageViewB = new ImageView()
         {
-          PositionUsesPivotPoint = true,
-          PivotPoint = PivotPoint.BottomLeft,
-          ParentOrigin = ParentOrigin.BottomLeft,
           Size = new Size(150, 150),
           ResourceUrl = imagePath + "gallery-large-5.jpg",
           CornerRadius = 0.3f,
           CornerRadiusPolicy = VisualTransformPolicyType.Relative,
         };
-        root.Add(imageViewB);
-        imageViewB.TouchEvent += (s, e) =>
+        var textViewB = new TextLabel()
+        {
+          Text = "Custom",
+        };
+
+        customBorder.Add(imageViewB);
+        customBorder.Add(textViewB);
+        appFunctionList.Add(customBorder);
+        customBorder.TouchEvent += (s, e) =>
         {
           if (e.Touch.GetState(0) == PointStateType.Up)
           {
