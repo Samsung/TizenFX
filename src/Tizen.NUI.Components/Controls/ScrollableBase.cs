@@ -1870,7 +1870,7 @@ namespace Tizen.NUI.Components
                         }
                         else if (right > visibleRectangleRight)
                         {
-                            ScrollTo(right - Size.Width - ContentContainer.ScreenPosition.Y, true);
+                            ScrollTo(right - Size.Width - ContentContainer.ScreenPosition.X, true);
                         }
                     }
                     else
