@@ -613,14 +613,40 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return thumbImage?.Color;
+                return thumbColor;
             }
             set
             {
                 if (null != thumbImage)
                 {
-                    thumbImage.BackgroundColor = value;
                     thumbColor = value;
+
+                    if (thumbImage.ResourceUrl != null)
+                    {
+                        thumbImage.ResourceUrl = null;
+                    }
+
+                    using (PropertyMap map = new PropertyMap())
+                    {
+                        // To remove CA2000 warning messages, use `using` statement.
+                        using (PropertyValue type = new PropertyValue((int)Visual.Type.Color))
+                        {
+                            map.Insert((int)Visual.Property.Type, type);
+                        }
+                        using (PropertyValue color = new PropertyValue(thumbColor))
+                        {
+                            map.Insert((int)ColorVisualProperty.MixColor, color);
+                        }
+                        using (PropertyValue radius = new PropertyValue(0.5f))
+                        {
+                            map.Insert((int)Visual.Property.CornerRadius, radius);
+                        }
+                        using (PropertyValue policyType = new PropertyValue((int)VisualTransformPolicyType.Relative))
+                        {
+                            map.Insert((int)Visual.Property.CornerRadiusPolicy, policyType);
+                        }
+                        thumbImage.Image = map;
+                    }
                 }
             }
         }
