@@ -359,6 +359,9 @@ namespace Tizen.NUI.Components
 
                 page.Opacity = 0.0f;
                 page.SetVisible(true);
+                // Set Content visible because it was hidden by HideContentOfPage.
+                (page as ContentPage).Content?.SetVisible(true);
+
                 newAnimation = new Animation(1000);
                 newAnimation.AnimateTo(page, "Opacity", 1.0f, 0, 1000);
                 newAnimation.EndAction = Animation.EndActions.StopFinal;
@@ -444,6 +447,9 @@ namespace Tizen.NUI.Components
 
                 newTop.Opacity = 1.0f;
                 newTop.SetVisible(true);
+                // Set Content visible because it was hidden by HideContentOfPage.
+                (newTop as ContentPage).Content?.SetVisible(true);
+
                 newAnimation = new Animation(1000);
                 newAnimation.AnimateTo(newTop, "Opacity", 1.0f, 0, 1000);
                 newAnimation.EndAction = Animation.EndActions.StopFinal;
@@ -741,7 +747,12 @@ namespace Tizen.NUI.Components
         private TransitionSet CreateTransitions(Page currentTopPage, Page newTopPage, bool pushTransition)
         {
             currentTopPage.SetVisible(true);
+            // Set Content visible because it was hidden by HideContentOfPage.
+            (currentTopPage as ContentPage).Content?.SetVisible(true);
+
             newTopPage.SetVisible(true);
+            // Set Content visible because it was hidden by HideContentOfPage.
+            (newTopPage as ContentPage).Content?.SetVisible(true);
 
             List<View> taggedViewsInNewTopPage = new List<View>();
             RetrieveTaggedViews(taggedViewsInNewTopPage, newTopPage, true);
