@@ -53,7 +53,6 @@ namespace Tizen.NUI
 
         #region Fields
         private Color backgroundColor;
-        private View rootView;
         private View borderView;
 
         private ImageView minimalizeIcon;
@@ -137,6 +136,10 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool OverlayMode {get; set;}
 
+
+        /// <summary>
+        /// Creates a default border
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public DefaultBorder()
         {
@@ -147,85 +150,97 @@ namespace Tizen.NUI
             OverlayMode = false;
         }
 
+        /// <summary>
+        /// Create top border UI. User can override this method to draw top border UI.
+        /// </summary>
+        /// <param name="topView">The top view on which the border.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual bool CreateTopBorderView(View topView)
+        {
+            return false;
+        }
 
         /// <summary>
-        /// Create border UI. Users can override this method to draw border UI.
+        /// Create bottom border UI. User can override this method to draw bottom border UI.
         /// </summary>
+        /// <param name="bottomView">The bottom view on which the border.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void CreateBorderView(View rootView)
+        public virtual bool CreateBottomBorderView(View bottomView)
         {
-            if (rootView == null)
+            if (bottomView == null)
             {
-                return;
+                return false;
             }
-            this.rootView = rootView;
-            rootView.BackgroundColor = DefaultBackgroundColor;
-            rootView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
-            rootView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
-
-            borderView = new View()
-            {
-                Layout = new LinearLayout()
-                {
-                    LinearAlignment = LinearLayout.Alignment.End,
-                    LinearOrientation = LinearLayout.Orientation.Horizontal,
-                },
-                WidthSpecification = LayoutParamPolicies.MatchParent,
-                HeightSpecification = LayoutParamPolicies.MatchParent,
-            };
+            bottomView.Layout = new RelativeLayout();
 
             minimalizeIcon = new ImageView()
             {
                 ResourceUrl = MinimalizeIcon,
-                PositionUsesPivotPoint = true,
-                PivotPoint = PivotPoint.BottomLeft,
-                ParentOrigin = ParentOrigin.BottomLeft,
             };
 
             maximalizeIcon = new ImageView()
             {
                 ResourceUrl = MaximalizeIcon,
-                PositionUsesPivotPoint = true,
-                PivotPoint = PivotPoint.BottomLeft,
-                ParentOrigin = ParentOrigin.BottomLeft,
             };
 
             closeIcon = new ImageView()
             {
                 ResourceUrl = CloseIcon,
-                PositionUsesPivotPoint = true,
-                PivotPoint = PivotPoint.BottomLeft,
-                ParentOrigin = ParentOrigin.BottomLeft,
             };
 
             leftCornerIcon = new ImageView()
             {
                 ResourceUrl = LeftCornerIcon,
-                PositionUsesPivotPoint = true,
-                PivotPoint = PivotPoint.BottomLeft,
-                ParentOrigin = ParentOrigin.BottomLeft,
             };
 
             rightCornerIcon = new ImageView()
             {
               ResourceUrl = RightCornerIcon,
-              PositionUsesPivotPoint = true,
-              PivotPoint = PivotPoint.BottomLeft,
-              ParentOrigin = ParentOrigin.BottomLeft,
             };
 
-            rootView.Add(leftCornerIcon);
-            borderView.Add(minimalizeIcon);
-            borderView.Add(maximalizeIcon);
-            borderView.Add(closeIcon);
-            borderView.Add(rightCornerIcon);
-            rootView.Add(borderView);
+            RelativeLayout.SetRightTarget(minimalizeIcon, maximalizeIcon);
+            RelativeLayout.SetRightRelativeOffset(minimalizeIcon, 0.0f);
+            RelativeLayout.SetHorizontalAlignment(minimalizeIcon, RelativeLayout.Alignment.End);
+            RelativeLayout.SetRightTarget(maximalizeIcon, closeIcon);
+            RelativeLayout.SetRightRelativeOffset(maximalizeIcon, 0.0f);
+            RelativeLayout.SetHorizontalAlignment(maximalizeIcon, RelativeLayout.Alignment.End);
+            RelativeLayout.SetRightTarget(closeIcon, rightCornerIcon);
+            RelativeLayout.SetRightRelativeOffset(closeIcon, 0.0f);
+            RelativeLayout.SetHorizontalAlignment(closeIcon, RelativeLayout.Alignment.End);
+            RelativeLayout.SetRightRelativeOffset(rightCornerIcon, 1.0f);
+            RelativeLayout.SetHorizontalAlignment(rightCornerIcon, RelativeLayout.Alignment.End);
+            bottomView.Add(leftCornerIcon);
+            bottomView.Add(minimalizeIcon);
+            bottomView.Add(maximalizeIcon);
+            bottomView.Add(closeIcon);
+            bottomView.Add(rightCornerIcon);
+
 
             minimalizeIcon.TouchEvent += OnMinimizeIconTouched;
             maximalizeIcon.TouchEvent += OnMaximizeIconTouched;
             closeIcon.TouchEvent += OnCloseIconTouched;
-            leftCornerIcon.TouchEvent += OnLeftCornerIconTouched;
-            rightCornerIcon.TouchEvent += OnRightCornerIconTouched;
+            leftCornerIcon.TouchEvent += OnLeftBottomCornerIconTouched;
+            rightCornerIcon.TouchEvent += OnRightBottomCornerIconTouched;
+            return true;
+        }
+
+
+        /// <summary>
+        /// Create border UI. User can override this method to draw border UI.
+        /// A top border and a bottom border are added to this view.
+        /// </summary>
+        /// <param name="borderView">The root view on which the border.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void CreateBorderView(View borderView)
+        {
+            if (borderView == null)
+            {
+                return;
+            }
+            this.borderView = borderView;
+            borderView.BackgroundColor = DefaultBackgroundColor;
+            borderView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
+            borderView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
         }
 
         /// Determines the behavior of pinch gesture.
@@ -271,6 +286,7 @@ namespace Tizen.NUI
             if (panGesture.State == Gesture.StateType.Started && panGesture.Position != null)
             {
                 direction = BorderWindow.GetDirection(panGesture.Position.X, panGesture.Position.Y);
+
                 if (direction == Window.BorderDirection.Move)
                 {
                     if (BorderWindow.IsMaximized() == true)
@@ -288,25 +304,6 @@ namespace Tizen.NUI
                     BorderWindow.RequestResizeToServer((Window.ResizeDirection)direction);
                 }
             }
-            else if (panGesture.State == Gesture.StateType.Continuing)
-            {
-                if (direction == Window.BorderDirection.BottomLeft || direction == Window.BorderDirection.BottomRight || direction == Window.BorderDirection.TopLeft || direction == Window.BorderDirection.TopRight)
-                {
-                    BorderWindow.WindowSize += new Size2D((int)panGesture.ScreenDisplacement.X, (int)panGesture.ScreenDisplacement.Y);
-                }
-                else if (direction == Window.BorderDirection.Left || direction == Window.BorderDirection.Right)
-                {
-                    BorderWindow.WindowSize += new Size2D((int)panGesture.ScreenDisplacement.X, 0);
-                }
-                else if (direction == Window.BorderDirection.Bottom || direction == Window.BorderDirection.Top)
-                {
-                    BorderWindow.WindowSize += new Size2D(0, (int)panGesture.ScreenDisplacement.Y);
-                }
-                else if (direction == Window.BorderDirection.Move)
-                {
-                    BorderWindow.WindowPosition += new Position2D((int)panGesture.ScreenDisplacement.X, (int)panGesture.ScreenDisplacement.Y);
-                }
-            }
             else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
             {
                 direction = Window.BorderDirection.None;
@@ -314,12 +311,50 @@ namespace Tizen.NUI
             }
         }
 
-
         /// <summary>
-        /// This is an event callback when the left corner icon is touched.
+        /// This is an event callback when the left top corner icon is touched.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual bool OnLeftCornerIconTouched(object sender, View.TouchEventArgs e)
+        public virtual bool OnLeftTopCornerIconTouched(object sender, View.TouchEventArgs e)
+        {
+            if (e == null)
+            {
+                return false;
+            }
+            if (e.Touch.GetState(0) == PointStateType.Down)
+            {
+              ClearWindowGesture();
+              OnRequestResize();
+              BorderWindow.RequestResizeToServer(Window.ResizeDirection.TopLeft);
+            }
+            return true;
+        }
+
+        /// <summary>
+        ///This is an event callback when the right bottom corner icon is touched.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual bool OnRightTopCornerIconTouched(object sender, View.TouchEventArgs e)
+        {
+            if (e == null)
+            {
+                return false;
+            }
+            if (e.Touch.GetState(0) == PointStateType.Down)
+            {
+              ClearWindowGesture();
+              OnRequestResize();
+              BorderWindow.RequestResizeToServer(Window.ResizeDirection.TopRight);
+            }
+            return true;
+        }
+
+
+        /// <summary>
+        /// This is an event callback when the left bottom corner icon is touched.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual bool OnLeftBottomCornerIconTouched(object sender, View.TouchEventArgs e)
         {
             if (e == null)
             {
@@ -335,10 +370,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///This is an event callback when the right corner icon is touched.
+        ///This is an event callback when the right bottom corner icon is touched.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual bool OnRightCornerIconTouched(object sender, View.TouchEventArgs e)
+        public virtual bool OnRightBottomCornerIconTouched(object sender, View.TouchEventArgs e)
         {
             if (e == null)
             {
@@ -355,7 +390,7 @@ namespace Tizen.NUI
 
 
         /// <summary>
-        /// This is an event callback when the minimize button is touched.
+        /// This is an event callback when the minimize icon is touched.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnMinimizeIconTouched(object sender, View.TouchEventArgs e)
@@ -373,7 +408,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This is an event callback when the maximum button is touched.
+        /// This is an event callback when the maximum icon is touched.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnMaximizeIconTouched(object sender, View.TouchEventArgs e)
@@ -398,7 +433,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This is an event callback when the close button is touched.
+        /// This is an event callback when the close icon is touched.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnCloseIconTouched(object sender, View.TouchEventArgs e)
@@ -418,7 +453,7 @@ namespace Tizen.NUI
 
         private void UpdateIcons()
         {
-            if (BorderWindow != null && rootView != null)
+            if (BorderWindow != null && borderView != null)
             {
                 if (BorderWindow.IsMaximized() == true)
                 {
@@ -442,8 +477,8 @@ namespace Tizen.NUI
                     {
                         rightCornerIcon.ResourceUrl = DarkRightCornerIcon;
                     }
-                    rootView.CornerRadius = new Vector4(0, 0, 0, 0);
-                    rootView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
+                    borderView.CornerRadius = new Vector4(0, 0, 0, 0);
+                    borderView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
                     BorderWindow.SetTransparency(false);
                 }
                 else
@@ -468,8 +503,8 @@ namespace Tizen.NUI
                     {
                         rightCornerIcon.ResourceUrl = RightCornerIcon;
                     }
-                    rootView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
-                    rootView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
+                    borderView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
+                    borderView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
                     BorderWindow.SetTransparency(true);
                 }
             }
@@ -479,39 +514,39 @@ namespace Tizen.NUI
         /// <summary>
         /// Called after the border UI is created.
         /// </summary>
-        /// <param name="rootView">The root view on which the border.</param>
+        /// <param name="borderView">The border view on which the border.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void OnCreated(View rootView)
+        public virtual void OnCreated(View borderView)
         {
-            if (rootView == null)
+            if (borderView == null)
             {
                 return;
             }
             // Register to resize and move through pan gestures.
             borderPanGestureDetector = new PanGestureDetector();
-            borderPanGestureDetector.Attach(rootView);
+            borderPanGestureDetector.Attach(borderView);
             borderPanGestureDetector.Detected += OnPanGestureDetected;
 
             // Register touch event for effect when border is touched.
-            rootView.LeaveRequired = true;
-            rootView.TouchEvent += (s, e) =>
+            borderView.LeaveRequired = true;
+            borderView.TouchEvent += (s, e) =>
             {
                 if (e.Touch.GetState(0) == PointStateType.Started)
                 {
-                    backgroundColor = new Color(rootView.BackgroundColor);
-                    rootView.BackgroundColor = DefaultClickedBackgroundColor;
+                    backgroundColor = new Color(borderView.BackgroundColor);
+                    borderView.BackgroundColor = DefaultClickedBackgroundColor;
                 }
                 else if (e.Touch.GetState(0) == PointStateType.Finished ||
                          e.Touch.GetState(0) == PointStateType.Leave ||
                          e.Touch.GetState(0) == PointStateType.Interrupted)
                 {
-                    rootView.BackgroundColor = backgroundColor;
+                    borderView.BackgroundColor = backgroundColor;
                 }
                 return true;
             };
 
             borderPinchGestureDetector = new PinchGestureDetector();
-            borderPinchGestureDetector.Attach(rootView);
+            borderPinchGestureDetector.Attach(borderView);
             borderPinchGestureDetector.Detected += OnPinchGestureDetected;
 
             AddInterceptGesture();
@@ -648,9 +683,7 @@ namespace Tizen.NUI
         /// Called when requesting a resize
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void OnRequestResize()
-        {
-        }
+        public virtual void OnRequestResize() {}
 
         /// <summary>
         /// Called when the window is resized.
@@ -674,7 +707,10 @@ namespace Tizen.NUI
             {
                 ClearWindowGesture();
 
-                BorderWindow.InterceptTouchEvent -= OnWinInterceptedTouch;
+                if (BorderWindow != null)
+                {
+                    BorderWindow.InterceptTouchEvent -= OnWinInterceptedTouch;
+                }
 
                 borderPanGestureDetector?.Dispose();
                 borderPinchGestureDetector?.Dispose();
@@ -687,7 +723,6 @@ namespace Tizen.NUI
                 timer?.Dispose();
                 windowView?.Dispose();
                 borderView?.Dispose();
-                rootView?.Dispose();
             }
             disposed = true;
         }
