@@ -72,20 +72,34 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool OverlayMode {get;}
 
+        /// <summary>
+        /// Create top border UI. User can override this method to draw top border UI.
+        /// </summary>
+        /// <param name="topView">The top view on which the border.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool CreateTopBorderView(View topView);
+
+        /// <summary>
+        /// Create bottom border UI. User can override this method to draw bottom border UI.
+        /// </summary>
+        /// <param name="bottomView">The bottom view on which the border.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool CreateBottomBorderView(View bottomView);
 
         /// <summary>
         /// Create border UI. User can override this method to draw border UI.
+        /// A top border and a bottom border are added to this view.
         /// </summary>
-        /// <param name="rootView">The root view on which the border.</param>
+        /// <param name="borderView">The border view on which the border.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void CreateBorderView(View rootView);
+        public void CreateBorderView(View borderView);
 
         /// <summary>
         /// Called after the border UI is created.
         /// </summary>
-        /// <param name="rootView">The root view on which the border.</param>
+        /// <param name="borderView">The border view on which the border.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void OnCreated(View rootView);
+        public void OnCreated(View borderView);
 
         /// <summary>
         /// Called when requesting a resize
