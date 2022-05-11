@@ -129,7 +129,7 @@ namespace Tizen.NUI.Components
                     // Tizen.Log.Error("IconUrl only can set Icon is ImageView");
                     return;
                 }
-                (Icon as ImageView).ResourceUrl = value; 
+                (Icon as ImageView).ResourceUrl = value;
             }
         }
         */
@@ -156,7 +156,6 @@ namespace Tizen.NUI.Components
             internal set
             {
                 itemLabel = value;
-                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, itemLabel.Text);
             }
         }
 
@@ -210,7 +209,6 @@ namespace Tizen.NUI.Components
             internal set
             {
                 itemSubLabel = value;
-                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, itemSubLabel.Text);
             }
         }
 
@@ -360,7 +358,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Get accessibility name.
+        /// Gets accessibility name.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override string AccessibilityGetName()
@@ -379,7 +377,7 @@ namespace Tizen.NUI.Components
             {
                 HorizontalAlignment = HorizontalAlignment.Begin,
                 VerticalAlignment = VerticalAlignment.Center,
-                AccessibilityHidden = true
+                AccessibilityHidden = true,
             };
         }
 
@@ -545,6 +543,7 @@ namespace Tizen.NUI.Components
             var seperator = Seperator;
             layoutChanged = true;
             LayoutDirectionChanged += OnLayoutDirectionChanged;
+            EnableControlStatePropagation = true;
         }
 
         private void OnLayoutDirectionChanged(object sender, LayoutDirectionChangedEventArgs e)

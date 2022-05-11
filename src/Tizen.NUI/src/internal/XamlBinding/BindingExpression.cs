@@ -186,7 +186,7 @@ namespace Tizen.NUI.Binding
                     return;
                 }
 
-                target.SetValueCore(property, value, SetValueFlags.ClearDynamicResource, BindableObject.SetValuePrivateFlags.Default | BindableObject.SetValuePrivateFlags.Converted, false);
+                target.SetValueCore(property, value, SetValueFlags.ClearDynamicResource, BindableObject.SetValuePrivateFlags.Default | BindableObject.SetValuePrivateFlags.Converted);
             }
             else if (needsSetter && part.LastSetter != null && current != null)
             {

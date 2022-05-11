@@ -73,6 +73,7 @@ namespace Tizen.NUI
         private delegate void FocusedViewEnterKeyEventCallback2(IntPtr view);
 
         private View internalFocusIndicator = null;
+        private View nullFocusIndicator = null;
 
         /// <summary>
         /// PreFocusChange will be triggered before the focus is going to be changed.<br />
@@ -264,11 +265,23 @@ namespace Tizen.NUI
         {
             set
             {
-                SetFocusIndicatorView(value);
+                internalFocusIndicator = value;
+                if (internalFocusIndicator == null)
+                {
+                    if (nullFocusIndicator == null)
+                    {
+                        nullFocusIndicator = new View();
+                    }
+                    SetFocusIndicatorView(nullFocusIndicator);
+                }
+                else
+                {
+                    SetFocusIndicatorView(internalFocusIndicator);
+                }
             }
             get
             {
-                return GetFocusIndicatorView();
+                return internalFocusIndicator;
             }
         }
 
@@ -453,10 +466,72 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Sets the root view to start moving focus when DefaultAlgorithm is enabled.
+        /// This will only look for focusable Views within that View tree when looking for the next focus.
+        /// </summary>
+        /// <param name="rootView">The root view in which to find the next focusable view.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetFocusFinderRootView(View rootView)
+        {
+            Interop.FocusManager.SetFocusFinderRootView(SwigCPtr, View.getCPtr(rootView));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Reset the root view that starts moving focus when DefaultAlgorithm is enabled.
+        /// When reset, the window becomes root.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ResetFocusFinderRootView()
+        {
+            Interop.FocusManager.ResetFocusFinderRootView(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get a default focus indicator
+        /// </summary>
+        /// <remarks>
+        /// The type actually <see cref="Tizen.NUI.BaseComponents.ImageView"/> of blue border squred png image, so it would be difficult to modify itself.
+        /// To change focus indicator, creating new indicator and assigning it to FocusIndicator are recommended.
+        /// For example,
+        /// <code>
+        /// FocusManager.Instance.FocusIndicator = new View()
+        /// {
+        ///     PositionUsesPivotPoint = true,
+        ///     PivotPoint = new Position(0, 0, 0),
+        ///     WidthResizePolicy = ResizePolicyType.FillToParent,
+        ///     HeightResizePolicy = ResizePolicyType.FillToParent,
+        ///     BorderlineColor = Color.Orange,
+        ///     BorderlineWidth = 4.0f,
+        ///     BorderlineOffset = -1f,
+        ///     BackgroundColor = new Color(0.2f, 0.2f, 0.2f, 0.2f),
+        /// };
+        /// </code>
+        /// </remarks>
+        /// <returns>instance of default focus indicator</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View GetDefaultFocusIndicator()
+        {
+            ImageView ret = new ImageView(FrameworkInformation.ResourcePath + "keyboard_focus.9.png")
+            {
+                Name = "DefaultFocusIndicatorCreatedByNUI",
+                PositionUsesAnchorPoint = true,
+                ParentOrigin = ParentOrigin.Center,
+                PivotPoint = ParentOrigin.Center,
+                Position2D = new Position2D(0, 0),
+            };
+            ret.SetResizePolicy(ResizePolicyType.FillToParent, DimensionType.AllDimensions);
+            return ret;
+        }
+
         internal static FocusManager Get()
         {
             FocusManager ret = new FocusManager(Interop.FocusManager.Get(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            ret.FocusIndicator = ret.GetDefaultFocusIndicator();
             return ret;
         }
 
@@ -477,15 +552,13 @@ namespace Tizen.NUI
         {
             Interop.FocusManager.SetFocusIndicatorActor(SwigCPtr, View.getCPtr(indicator));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            internalFocusIndicator = indicator;
         }
 
         internal View GetFocusIndicatorView()
         {
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.FocusManager.GetFocusIndicatorActor(SwigCPtr);
-            internalFocusIndicator = this.GetInstanceSafely<View>(cPtr);
-            return internalFocusIndicator;
+            return this.GetInstanceSafely<View>(cPtr);
         }
 
         internal PreFocusChangeSignal PreFocusChangeSignal()

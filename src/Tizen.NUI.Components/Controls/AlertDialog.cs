@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -39,10 +39,6 @@ namespace Tizen.NUI.Components
         private View defaultTitleContent = null;
         private View defaultContent = null;
         private View defaultActionContent = null;
-        // FIXME: Now AlertDialog.Padding Top and Bottom increases AlertDialog size incorrectly.
-        //        Until the bug is fixed, padding view is added after action content.
-        private View defaultActionContentPadding = null;
-
         private bool styleApplied = false;
 
         /// <summary>
@@ -99,13 +95,6 @@ namespace Tizen.NUI.Components
                 {
                     Utility.Dispose(actionContent);
                 }
-
-                // FIXME: Now AlertDialog.Padding Top and Bottom increases AlertDialog size incorrectly.
-                //        Until the bug is fixed, padding view is added after action content.
-                if (defaultActionContentPadding != null)
-                {
-                    Utility.Dispose(defaultActionContentPadding);
-                }
             }
 
             base.Dispose(type);
@@ -127,6 +116,12 @@ namespace Tizen.NUI.Components
             if (alertDialogStyle == null)
             {
                 return;
+            }
+
+            // Apply ItemSpacing.
+            if ((alertDialogStyle.ItemSpacing != null) && Layout is LinearLayout)
+            {
+                (Layout as LinearLayout).CellPadding = new Size2D(alertDialogStyle.ItemSpacing.Width, alertDialogStyle.ItemSpacing.Height);
             }
 
             // Apply Title style.
@@ -189,6 +184,8 @@ namespace Tizen.NUI.Components
                 if (TitleContent is TextLabel textLabel)
                 {
                     textLabel.Text = title;
+
+                    ResetContent();
                 }
             }
         }
@@ -239,9 +236,9 @@ namespace Tizen.NUI.Components
                 if (titleContent is TextLabel textLabel)
                 {
                     textLabel.Text = Title;
-                }
 
-                ResetContent();
+                    ResetContent();
+                }
             }
         }
 
@@ -282,6 +279,8 @@ namespace Tizen.NUI.Components
                 {
                     textLabel.Text = message;
                 }
+
+                ResetContent();
             }
         }
 
@@ -441,7 +440,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// AccessibilityGetName.
+        /// Gets accessibility name.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override string AccessibilityGetName()
@@ -457,13 +456,22 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Gets accessibility description.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override string AccessibilityGetDescription()
+        {
+            return Message;
+        }
+
+        /// <summary>
         /// Initialize AT-SPI object.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.Dialog);
+            AccessibilityRole = Role.Dialog;
             AppendAccessibilityAttribute("sub-role", "Alert");
             Show(); // calls RegisterDefaultLabel(); Hide() will call UnregisterDefaultLabel()
         }
@@ -531,24 +539,25 @@ namespace Tizen.NUI.Components
                     defaultActionContent = CreateDefaultActionContent();
                 }
 
-                // FIXME: Now AlertDialog.Padding Top and Bottom increases AlertDialog size incorrectly.
-                //        Until the bug is fixed, padding view is added after action content.
-                if (defaultActionContentPadding == null)
-                {
-                    defaultActionContentPadding = CreateDefaultActionContentPadding();
-                }
-
                 return defaultActionContent;
             }
         }
 
         private void Initialize()
         {
+            var alertDialogStyle = ViewStyle as AlertDialogStyle;
+
             Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
-                LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
             };
+
+            if (styleApplied && (alertDialogStyle != null) && (alertDialogStyle.ItemSpacing != null) && (Layout is LinearLayout))
+            {
+                (Layout as LinearLayout).CellPadding = new Size2D(alertDialogStyle.ItemSpacing.Width, alertDialogStyle.ItemSpacing.Height);
+            }
 
             this.Relayout += OnRelayout;
 
@@ -580,27 +589,33 @@ namespace Tizen.NUI.Components
 
             if (titleContent != null)
             {
-                Add(titleContent);
+                var textLabel = titleContent as TextLabel;
+                if (textLabel == null)
+                {
+                    Add(titleContent);
+                }
+                else if (!String.IsNullOrEmpty(textLabel.Text))
+                {
+                    Add(titleContent);
+                }
             }
 
             if (content != null)
             {
-                Add(content);
+                var textLabel = content as TextLabel;
+                if (textLabel == null)
+                {
+                    Add(content);
+                }
+                else if (!String.IsNullOrEmpty(textLabel.Text))
+                {
+                    Add(content);
+                }
             }
 
             if (actionContent != null)
             {
                 Add(actionContent);
-
-                // FIXME: Now AlertDialog.Padding Top and Bottom increases AlertDialog size incorrectly.
-                //        Until the bug is fixed, padding view is added after action content.
-                if (actionContent == defaultActionContent)
-                {
-                    if (defaultActionContentPadding != null)
-                    {
-                        Add(defaultActionContentPadding);
-                    }
-                }
             }
         }
 
@@ -616,50 +631,47 @@ namespace Tizen.NUI.Components
 
         private View CreateDefaultActionContent()
         {
-            return new View()
+            var view = new View()
             {
-                Layout = new LinearLayout()
+                Layout = new FlexLayout()
                 {
-                    LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    LinearAlignment = LinearLayout.Alignment.Center,
-                    // FIXME: This CellPadding value should be written in AlertDialogStyle.
-                    //        However, if this is called in other place, then flicking issue happens.
-                    CellPadding = new Size2D(80, 0),
+                    Direction = FlexLayout.FlexDirection.Row,
+                    WrapType = FlexLayout.FlexWrapType.NoWrap,
+                    Justification = FlexLayout.FlexJustification.SpaceBetween,
                 },
             };
-        }
 
-        // FIXME: Now AlertDialog.Padding Top and Bottom increases AlertDialog size incorrectly.
-        //        Until the bug is fixed, padding view is added after action content.
-        private View CreateDefaultActionContentPadding()
-        {
-            var layout = Layout as LinearLayout;
-
-            if ((layout == null) || (defaultActionContent == null))
+            view.ChildAdded += (object sender, ChildAddedEventArgs args) =>
             {
-                return null;
-            }
-
-            View paddingView = null;
-
-            using (Size2D size = new Size2D(defaultActionContent.Size2D.Width, defaultActionContent.Size2D.Height))
-            {
-                if (layout.LinearOrientation == LinearLayout.Orientation.Horizontal)
+                // To align action items with space between them, FlexLayout is used.
+                if (view.Layout is FlexLayout)
                 {
-                    size.Width = 40;
+                    if (view.ChildCount == 1)
+                    {
+                        view.Layout = new LinearLayout()
+                        {
+                            LinearOrientation = LinearLayout.Orientation.Horizontal,
+                            HorizontalAlignment = HorizontalAlignment.Center,
+                            VerticalAlignment = VerticalAlignment.Center,
+                        };
+                    }
                 }
+                // To allign 1 action item at the center, LinearLayout is used.
                 else
                 {
-                    size.Height = 40;
+                    if (view.ChildCount > 1)
+                    {
+                        view.Layout = new FlexLayout()
+                        {
+                            Direction = FlexLayout.FlexDirection.Row,
+                            WrapType = FlexLayout.FlexWrapType.NoWrap,
+                            Justification = FlexLayout.FlexJustification.SpaceBetween,
+                        };
+                    }
                 }
+            };
 
-                paddingView = new View()
-                {
-                    Size2D = new Size2D(size.Width, size.Height),
-                };
-            }
-
-            return paddingView;
+            return view;
         }
 
         private void OnRelayout(object sender, EventArgs e)

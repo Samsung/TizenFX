@@ -238,5 +238,49 @@ namespace Tizen.NUI.Components.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"ScrollbarScrollTo END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Scrollbar TrackPadding.")]
+        [Property("SPEC", "Tizen.NUI.Components.Scrollbar.TrackPadding A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollbarTrackPadding()
+        {
+            tlog.Debug(tag, $"ScrollbarTrackPadding START");
+
+            var testingTarget = new Scrollbar(1280, 1200, 300, true);
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Scrollbar>(testingTarget, "Should return Scrollbar instance.");
+
+            testingTarget.TrackPadding = new Extents(20, 20, 20, 0);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollbarTrackPadding END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Scrollbar CalculateThumbPaddingPosition.")]
+        [Property("SPEC", "Tizen.NUI.Components.Scrollbar.CalculateThumbPaddingPosition M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollbarCalculateThumbPaddingPositionVertical()
+        {
+            tlog.Debug(tag, $"ScrollbarCalculateThumbPaddingPositionVertical START");
+
+            var testingTarget = new Scrollbar(1280, 1200, 300, false);
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<Scrollbar>(testingTarget, "Should return Scrollbar instance.");
+
+            testingTarget.TrackPadding = new Extents(20, 20, 20, 0);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollbarCalculateThumbPaddingPositionVertical END (OK)");
+        }
     }
 }

@@ -14,11 +14,13 @@
  * limitations under the License.
  *
  */
+
 using System;
-using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
 using System.ComponentModel;
 using System.Diagnostics;
+using Tizen.NUI.Accessibility;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
 {
@@ -26,7 +28,7 @@ namespace Tizen.NUI.Components
     /// The Progress class is used to show the ongoing status with a long narrow bar.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public partial class Progress : Control
+    public partial class Progress : Control, IAtspiValue
     {
         /// <summary>
         /// MaxValueProperty
@@ -139,7 +141,7 @@ namespace Tizen.NUI.Components
         private ImageView trackImage = null;
         private ImageView progressImage = null;
         private ImageView bufferImage = null;
-        private ImageVisual indeterminateImage = null;
+        private ImageView indeterminateImage = null;
         private float maxValue = 100;
         private float minValue = 0;
         private float currentValue = 0;
@@ -303,7 +305,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    return indeterminateImage?.URL;
+                    return indeterminateImage?.ResourceUrl;
                 }
             }
             set
@@ -314,7 +316,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    indeterminateImage.URL = value;
+                    indeterminateImage.ResourceUrl = value;
                 }
             }
         }
@@ -474,7 +476,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.ProgressBar, AccessibilityInterface.Value);
+            AccessibilityRole = Role.ProgressBar;
             // create necessary components
             InitializeTrack();
             InitializeBuffer();
@@ -496,6 +498,7 @@ namespace Tizen.NUI.Components
                 Debug.Assert(trackImage != null);
                 Debug.Assert(progressImage != null);
                 Debug.Assert(bufferImage != null);
+                Debug.Assert(indeterminateImage != null);
 
                 trackImage.ApplyStyle(progressStyle.Track);
                 progressImage.ApplyStyle(progressStyle.Progress);
@@ -503,7 +506,7 @@ namespace Tizen.NUI.Components
 
                 if (null != indeterminateImage && null != progressStyle.IndeterminateImageUrl)
                 {
-                    indeterminateImage.URL = progressStyle.IndeterminateImageUrl;
+                    indeterminateImage.ResourceUrl = progressStyle.IndeterminateImageUrl;
                 }
             }
         }
@@ -521,7 +524,7 @@ namespace Tizen.NUI.Components
         /// Gets minimum value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetMinimum()
+        double IAtspiValue.AccessibilityGetMinimum()
         {
             if (this.ProgressState == Progress.ProgressStatusType.Determinate)
             {
@@ -537,7 +540,7 @@ namespace Tizen.NUI.Components
         /// Gets the current value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetCurrent()
+        double IAtspiValue.AccessibilityGetCurrent()
         {
             if (this.ProgressState == Progress.ProgressStatusType.Determinate)
             {
@@ -549,11 +552,17 @@ namespace Tizen.NUI.Components
             }
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        bool IAtspiValue.AccessibilitySetCurrent(double value)
+        {
+            return false;
+        }
+
         /// <summary>
         /// Gets maximum value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetMaximum()
+        double IAtspiValue.AccessibilityGetMaximum()
         {
             if (this.ProgressState == Progress.ProgressStatusType.Determinate)
             {
@@ -563,6 +572,12 @@ namespace Tizen.NUI.Components
             {
                 return 0.0;
             }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        double IAtspiValue.AccessibilityGetMinimumIncrement()
+        {
+            return 0.0;
         }
 
         /// <summary>
@@ -585,7 +600,7 @@ namespace Tizen.NUI.Components
                 Utility.Dispose(trackImage);
                 Utility.Dispose(progressImage);
                 Utility.Dispose(bufferImage);
-                indeterminateImage = null;
+                Utility.Dispose(indeterminateImage);
             }
 
             //You must call base.Dispose(type) just before exit.
@@ -666,7 +681,21 @@ namespace Tizen.NUI.Components
 
             if (null != indeterminateImage)
             {
-                indeterminateAnimation = AnimateVisual(indeterminateImage, "pixelArea", destinationValue, 0, 1000,  AlphaFunction.BuiltinFunctions.Default, initialValue);
+                if (indeterminateAnimation == null)
+                {
+                    indeterminateAnimation = new Animation(2000);
+                }
+                
+                float destination = (this.SizeWidth - indeterminateImage.SizeWidth);
+
+                KeyFrames keyFrames = new KeyFrames();
+                keyFrames.Add(0.0f /*  0%*/, new Position(0, 0));
+                AlphaFunction ease = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOut);
+                keyFrames.Add(0.5f /* 50%*/, new Position(destination, 0), ease);
+                keyFrames.Add(1.0f /*100%*/, new Position(0, 0), ease);
+                ease.Dispose();
+
+                indeterminateAnimation.AnimateBetween(indeterminateImage, "Position", keyFrames);
                 indeterminateAnimation.Looping = true;
                 indeterminateAnimation.Play();
             }
@@ -698,7 +727,7 @@ namespace Tizen.NUI.Components
 
                 if (null != indeterminateImage)
                 {
-                    indeterminateImage.Opacity = 0.0f;
+                    indeterminateImage.Hide();
                 }
                 progressImage.Hide();
                 bufferImage.Hide();
@@ -712,7 +741,7 @@ namespace Tizen.NUI.Components
 
                 if (null != indeterminateImage)
                 {
-                    indeterminateImage.Opacity = 0.0f;
+                    indeterminateImage.Hide();
                 }
                 progressImage.Hide();
                 bufferImage.Show();
@@ -724,7 +753,7 @@ namespace Tizen.NUI.Components
 
                 if (null != indeterminateImage)
                 {
-                    indeterminateImage.Opacity = 0.0f;
+                    indeterminateImage.Hide();
                 }
                 bufferImage.Hide();
                 progressImage.Show();
@@ -737,7 +766,7 @@ namespace Tizen.NUI.Components
                 progressImage.Hide();
                 if (null != indeterminateImage)
                 {
-                    indeterminateImage.Opacity = 1.0f;
+                    indeterminateImage.Show();
                 }
 
                 UpdateIndeterminateAnimation();
@@ -808,22 +837,19 @@ namespace Tizen.NUI.Components
 
         private void InitializeIndeterminate()
         {
-            indeterminateImage = new ImageVisual
+            indeterminateImage = new ImageView
             {
-                PixelArea = new Vector4(0.0f, 0.0f, 10.0f, 1.0f),
-                WrapModeU = WrapModeType.Repeat,
-                SizePolicy = VisualTransformPolicyType.Relative,
-                Origin = Visual.AlignType.Center,
-                AnchorPoint = Visual.AlignType.Center,
-                Opacity = 0.0f,
-                Size = new Size2D(1, 1),
-                URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "nui_component_default_progress_indeterminate.png"
+                Size = new Size(16, 16),
+                PositionUsesPivotPoint = true,
+                ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
+                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft
             };
-            AddVisual("Indeterminate", indeterminateImage);
+            trackImage.Add(indeterminateImage);
+            indeterminateImage.Hide();
 
             if (state == ProgressStatusType.Indeterminate)
             {
-                indeterminateImage.Opacity = 1.0f;
+                indeterminateImage.Show();
             }
         }
     }

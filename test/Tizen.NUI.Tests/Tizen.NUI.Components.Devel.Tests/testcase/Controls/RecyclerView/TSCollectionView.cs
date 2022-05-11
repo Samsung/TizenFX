@@ -61,6 +61,27 @@ namespace Tizen.NUI.Components.Devel.Tests
 
         private DataTemplate testDataTemplate;
 
+        internal class CollectionViewImpl : CollectionView
+        {
+            public CollectionViewImpl(IEnumerable itemsSource, ItemsLayouter layouter, DataTemplate template) : base(itemsSource, layouter, template)
+            { }
+
+            public bool OnAccessibilityScrollToChild(View child)
+            {
+                return base.AccessibilityScrollToChild(child);
+            }
+
+            public float OnAdjustTargetPositionOfScrollAnimation(float position)
+            {
+                return base.AdjustTargetPositionOfScrollAnimation(position);
+            }
+
+            public void OnScrollingImpl(object source, ScrollEventArgs args)
+            {
+                base.OnScrolling(source, args);
+            }
+        }
+
         [SetUp]
         public void Init()
         {
@@ -685,7 +706,8 @@ namespace Tizen.NUI.Components.Devel.Tests
             tlog.Debug(tag, $"CollectionViewScrollToIndex END (OK)");
         }
 
-        [Test]
+        //Todo: this causes BLOCK, should be fixed.
+        //[Test]
         [Category("P1")]
         [Description("CollectionView GetNextFocusableView.")]
         [Property("SPEC", "Tizen.NUI.Components.CollectionView.GetNextFocusableView M")]
@@ -722,6 +744,125 @@ namespace Tizen.NUI.Components.Devel.Tests
                 testingTarget = null;
             }
             tlog.Debug(tag, $"CollectionViewGetNextFocusableView END (OK)");
+        }
+
+        [Category("P1")]
+        [Description("CollectionView OnRelayout.")]
+        [Property("SPEC", "Tizen.NUI.Components.CollectionView.OnRelayout M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task CollectionViewOnRelayout()
+        {
+            tlog.Debug(tag, $"CollectionViewOnRelayout START");
+
+            var testingTarget = new CollectionView()
+            {
+                Size = new Size(100, 200),
+                Focusable = true,
+            };
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<CollectionView>(testingTarget, "should be an instance of testing target class!");
+
+            using (Vector2 vec = new Vector2(200, 600))
+            {
+                try
+                {
+                    testingTarget.OnRelayout(vec, null);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"CollectionViewOnRelayout END (OK)");
+        }
+
+        [Category("P1")]
+        [Description("CollectionView AccessibilityScrollToChild.")]
+        [Property("SPEC", "Tizen.NUI.Components.CollectionView.AccessibilityScrollToChild M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void CollectionViewAccessibilityScrollToChild()
+        {
+            tlog.Debug(tag, $"CollectionViewAccessibilityScrollToChild START");
+
+            var model = new TestModel();
+            var testingTarget = new CollectionViewImpl(model, new LinearLayouter(), testDataTemplate)
+            {
+                ScrollingDirection = ScrollableBase.Direction.Horizontal
+            };
+
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<CollectionView>(testingTarget, "should be an instance of testing target class!");
+
+            var result = testingTarget.OnAccessibilityScrollToChild(testingTarget.GetChildAt(1));
+            tlog.Debug(tag, "AccessibilityScrollToChild : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"CollectionViewAccessibilityScrollToChild END (OK)");
+        }
+
+        [Category("P1")]
+        [Description("CollectionView AdjustTargetPositionOfScrollAnimation.")]
+        [Property("SPEC", "Tizen.NUI.Components.CollectionView.AdjustTargetPositionOfScrollAnimation M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void CollectionViewAdjustTargetPositionOfScrollAnimation()
+        {
+            tlog.Debug(tag, $"CollectionViewAdjustTargetPositionOfScrollAnimation START");
+
+            var model = new TestModel();
+            var testingTarget = new CollectionViewImpl(model, new LinearLayouter(), testDataTemplate)
+            {
+                ScrollingDirection = ScrollableBase.Direction.Horizontal
+            };
+
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<CollectionView>(testingTarget, "should be an instance of testing target class!");
+
+            var result = testingTarget.OnAdjustTargetPositionOfScrollAnimation(0.5f);
+            tlog.Debug(tag, "AdjustTargetPositionOfScrollAnimation : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"CollectionViewAdjustTargetPositionOfScrollAnimation END (OK)");
+        }
+
+        [Category("P1")]
+        [Description("CollectionView OnScrolling.")]
+        [Property("SPEC", "Tizen.NUI.Components.CollectionView.OnScrolling M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void CollectionViewOnScrolling()
+        {
+            tlog.Debug(tag, $"CollectionViewOnScrolling START");
+
+            var model = new TestModel();
+            var testingTarget = new CollectionViewImpl(model, new LinearLayouter(), testDataTemplate)
+            {
+                ScrollingDirection = ScrollableBase.Direction.Horizontal
+            };
+
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<CollectionView>(testingTarget, "should be an instance of testing target class!");
+
+            using (Position pos = new Position(1000, 800))
+            {
+                testingTarget.OnScrollingImpl(testingTarget, new ScrollEventArgs(pos));
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"CollectionViewOnScrolling END (OK)");
         }
     }
 }

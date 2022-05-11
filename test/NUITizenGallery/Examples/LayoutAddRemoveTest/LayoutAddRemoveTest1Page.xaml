@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <ContentPage x:Class="NUITizenGallery.LayoutAddRemoveTest1Page"
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:base="clr-namespace:Tizen.NUI.BaseComponents;assembly=Tizen.NUI"
@@ -7,13 +7,12 @@
   HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
 
     <ContentPage.AppBar>
-        <AppBar Title="LayoutAddRemoveTest1"/>
+        <AppBar x:Name="appBar" Title="LayoutAddRemoveTest1"/>
     </ContentPage.AppBar>
-
+    
     <ContentPage.Content>
         <ScrollableBase x:Name="rootView"
-          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
-          HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+          WidthSpecification="{Static LayoutParamPolicies.MatchParent}" >
 
             <View.Layout>
                 <LinearLayout LinearOrientation="Vertical" CellPadding="10,10"/>

@@ -26,11 +26,27 @@ namespace Tizen.NUI.StyleGuide
     internal class MenuExample : ContentPage, IExample
     {
         private View rootContent;
+        private MenuItem[] menuItem = new MenuItem[4];
+
         public void Activate()
         {
         }
         public void Deactivate()
         {
+            for (int i = 0; i < 4; i++)
+            {
+                if (menuItem[i] != null)
+                {
+                    menuItem[i].Dispose();
+                    menuItem[i] = null;
+                }
+            }
+
+            if (rootContent != null)
+            {
+                rootContent.Dispose();
+                rootContent = null;
+            }
         }
 
         /// Modify this method for adding other examples.
@@ -92,29 +108,16 @@ namespace Tizen.NUI.StyleGuide
 
             rootContent.Add(page);
 
-            var menuItem = new MenuItem() { Text = "Menu" };
-            menuItem.SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+            for (int i = 0; i < 4; i++)
             {
-                global::System.Console.WriteLine($"1st MenuItem's IsSelected is changed to {args.IsSelected}.");
-            };
-
-            var menuItem2 = new MenuItem() { Text = "Menu2" };
-            menuItem2.SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
-            {
-                global::System.Console.WriteLine($"2nd MenuItem's IsSelected is changed to {args.IsSelected}.");
-            };
-
-            var menuItem3 = new MenuItem() { Text = "Menu3" };
-            menuItem3.SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
-            {
-                global::System.Console.WriteLine($"3rd MenuItem's IsSelected is changed to {args.IsSelected}.");
-            };
-
-            var menuItem4 = new MenuItem() { Text = "Menu4" };
-            menuItem4.SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
-            {
-                global::System.Console.WriteLine($"4th MenuItem's IsSelected is changed to {args.IsSelected}.");
-            };
+                menuItem[i] = new MenuItem();
+                menuItem[i].Text = "Menu" + (i + 1);
+                menuItem[i].SelectedChanged += (object sender, SelectedChangedEventArgs args) =>
+                {
+                    var item = sender as MenuItem;
+                    global::System.Console.WriteLine(item.Text + $"'s IsSelected is changed to {args.IsSelected}.");
+                };
+            }
 
             moreButton.Clicked += (object sender, ClickedEventArgs args) =>
             {
@@ -123,7 +126,7 @@ namespace Tizen.NUI.StyleGuide
                     Anchor = moreButton,
                     HorizontalPositionToAnchor = Menu.RelativePosition.Center,
                     VerticalPositionToAnchor = Menu.RelativePosition.End,
-                    Items = new MenuItem[] { menuItem, menuItem2, menuItem3, menuItem4 },
+                    Items = new MenuItem[] { menuItem[0], menuItem[1], menuItem[2], menuItem[3] },
                 };
                 menu.Post();
             };

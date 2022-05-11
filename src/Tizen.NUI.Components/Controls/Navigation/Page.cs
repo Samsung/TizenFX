@@ -94,6 +94,7 @@ namespace Tizen.NUI.Components
             return instance.InternalDisappearingTransition;
         });
 
+        /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal BaseComponents.View LastFocusedView = null;
 

@@ -156,7 +156,11 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
                 bool isAdded = false;
 
-                if (CanAddToResourceDictionary(parentVar, parentVar.VariableType, node, node, Context))
+                if (parentVar.VariableType.IsArray)
+                {
+                    isAdded = true;
+                }
+                else if (CanAddToResourceDictionary(parentVar, parentVar.VariableType, node, node, Context))
                 {
                     Context.IL.Emit(Ldloc, parentVar);
                     Context.IL.Append(AddToResourceDictionary(node, node, Context));
@@ -331,7 +335,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             else if (vardefref.VariableDefinition.VariableType.ImplementsGenericInterface("Tizen.NUI.Xaml.IMarkupExtension`1",
                 out markupExtension, out genericArguments))
             {
-                var acceptEmptyServiceProvider = vardefref.VariableDefinition.VariableType.GetCustomAttribute(module, (XamlCTask.xamlAssemblyName, XamlCTask.xamlNameSpace, "AcceptEmptyServiceProviderAttribute")) != null;
+                var acceptEmptyServiceProvider = vardefref.VariableDefinition.VariableType.GetCustomAttribute(module, (NUIXamlCTask.xamlAssemblyName, NUIXamlCTask.xamlNameSpace, "AcceptEmptyServiceProviderAttribute")) != null;
                 if (vardefref.VariableDefinition.VariableType.FullName == "Tizen.NUI.Xaml.BindingExtension")
                     foreach (var instruction in CompileBindingPath(node, context, vardefref.VariableDefinition))
                         yield return instruction;
@@ -352,9 +356,9 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 yield return Instruction.Create(OpCodes.Callvirt, provideValue);
                 yield return Instruction.Create(OpCodes.Stloc, vardefref.VariableDefinition);
             }
-            else if (context.Variables[node].VariableType.ImplementsInterface(module.ImportReference((XamlCTask.xamlAssemblyName, XamlCTask.xamlNameSpace, "IMarkupExtension"))))
+            else if (context.Variables[node].VariableType.ImplementsInterface(module.ImportReference((NUIXamlCTask.xamlAssemblyName, NUIXamlCTask.xamlNameSpace, "IMarkupExtension"))))
             {
-                var acceptEmptyServiceProvider = context.Variables[node].VariableType.GetCustomAttribute(module, (XamlCTask.xamlAssemblyName, XamlCTask.xamlNameSpace, "AcceptEmptyServiceProviderAttribute")) != null;
+                var acceptEmptyServiceProvider = context.Variables[node].VariableType.GetCustomAttribute(module, (NUIXamlCTask.xamlAssemblyName, NUIXamlCTask.xamlNameSpace, "AcceptEmptyServiceProviderAttribute")) != null;
                 vardefref.VariableDefinition = new VariableDefinition(module.TypeSystem.Object);
                 yield return Create(Ldloc, context.Variables[node]);
                 if (acceptEmptyServiceProvider)
@@ -362,17 +366,17 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 else
                     foreach (var instruction in node.PushServiceProvider(context, bpRef, propertyRef, propertyDeclaringTypeRef))
                         yield return instruction;
-                yield return Create(Callvirt, module.ImportMethodReference((XamlCTask.xamlAssemblyName, XamlCTask.xamlNameSpace, "IMarkupExtension"),
+                yield return Create(Callvirt, module.ImportMethodReference((NUIXamlCTask.xamlAssemblyName, NUIXamlCTask.xamlNameSpace, "IMarkupExtension"),
                                                                            methodName: "ProvideValue",
                                                                            parameterTypes: new[] { ("System.ComponentModel", "System", "IServiceProvider") }));
                 yield return Create(Stloc, vardefref.VariableDefinition);
             }
-            else if (context.Variables[node].VariableType.ImplementsInterface(module.ImportReference((XamlCTask.xamlAssemblyName, XamlCTask.xamlNameSpace, "IValueProvider"))))
+            else if (context.Variables[node].VariableType.ImplementsInterface(module.ImportReference((NUIXamlCTask.xamlAssemblyName, NUIXamlCTask.xamlNameSpace, "IValueProvider"))))
             {
-                var acceptEmptyServiceProvider = context.Variables[node].VariableType.GetCustomAttribute(module, (XamlCTask.xamlAssemblyName, XamlCTask.xamlNameSpace, "AcceptEmptyServiceProviderAttribute")) != null;
+                var acceptEmptyServiceProvider = context.Variables[node].VariableType.GetCustomAttribute(module, (NUIXamlCTask.xamlAssemblyName, NUIXamlCTask.xamlNameSpace, "AcceptEmptyServiceProviderAttribute")) != null;
                 var valueProviderType = context.Variables[node].VariableType;
                 //If the IValueProvider has a ProvideCompiledAttribute that can be resolved, shortcut this
-                var compiledValueProviderName = valueProviderType?.GetCustomAttribute(module, (XamlCTask.xamlAssemblyName, XamlCTask.xamlNameSpace, "ProvideCompiledAttribute"))?.ConstructorArguments?[0].Value as string;
+                var compiledValueProviderName = valueProviderType?.GetCustomAttribute(module, (NUIXamlCTask.xamlAssemblyName, NUIXamlCTask.xamlNameSpace, "ProvideCompiledAttribute"))?.ConstructorArguments?[0].Value as string;
                 Type compiledValueProviderType;
                 if (compiledValueProviderName != null && (compiledValueProviderType = Type.GetType(compiledValueProviderName)) != null) {
                     var compiledValueProvider = Activator.CreateInstance(compiledValueProviderType);
@@ -394,7 +398,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 else
                     foreach (var instruction in node.PushServiceProvider(context, bpRef, propertyRef, propertyDeclaringTypeRef))
                         yield return instruction;
-                yield return Create(Callvirt, module.ImportMethodReference((XamlCTask.xamlAssemblyName, XamlCTask.xamlNameSpace, "IValueProvider"),
+                yield return Create(Callvirt, module.ImportMethodReference((NUIXamlCTask.xamlAssemblyName, NUIXamlCTask.xamlNameSpace, "IValueProvider"),
                                                                            methodName: "ProvideValue",
                                                                            parameterTypes: new[] { ("System.ComponentModel", "System", "IServiceProvider") }));
                 yield return Create(Stloc, vardefref.VariableDefinition);
@@ -434,7 +438,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
             var dtXType = new XmlType(namespaceuri, dataType, null);
 
-            var tSourceRef = dtXType.GetTypeReference(module, (IXmlLineInfo)node);
+            var tSourceRef = dtXType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, module, (IXmlLineInfo)node);
             if (tSourceRef == null)
                 yield break; //throw
 
@@ -446,7 +450,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             var actionRef = module.ImportReference(module.ImportReference(("mscorlib", "System", "Action`2")).MakeGenericInstanceType(new [] { tSourceRef, tPropertyRef }));
             var funcObjRef = module.ImportReference(module.ImportReference(("mscorlib", "System", "Func`2")).MakeGenericInstanceType(new [] { tSourceRef, module.TypeSystem.Object }));
             var tupleRef = module.ImportReference(module.ImportReference(("mscorlib", "System", "Tuple`2")).MakeGenericInstanceType(new [] { funcObjRef, module.TypeSystem.String}));
-            var typedBindingRef = module.ImportReference(module.ImportReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingInternalNameSpace, "TypedBinding`2")).MakeGenericInstanceType(new [] { tSourceRef, tPropertyRef}));
+            var typedBindingRef = module.ImportReference(module.ImportReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingInternalNameSpace, "TypedBinding`2")).MakeGenericInstanceType(new [] { tSourceRef, tPropertyRef}));
 
             var ctorInfo =  module.ImportReference(typedBindingRef.ResolveCached().Methods.FirstOrDefault(md => md.IsConstructor && !md.IsStatic && md.Parameters.Count == 3 ));
             var ctorinforef = ctorInfo.MakeGeneric(typedBindingRef, funcRef, actionRef, tupleRef);
@@ -465,7 +469,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             } else
                 yield return Create(Ldnull);
             yield return Instruction.Create(OpCodes.Newobj, module.ImportReference(ctorinforef));
-            yield return Instruction.Create(OpCodes.Callvirt, module.ImportPropertySetterReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindingExtension"), propertyName: "TypedBinding"));
+            yield return Instruction.Create(OpCodes.Callvirt, module.ImportPropertySetterReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindingExtension"), propertyName: "TypedBinding"));
         }
 
         static IList<Tuple<PropertyDefinition, string>> ParsePath(string path, TypeReference tSourceRef, IXmlLineInfo lineInfo, ModuleDefinition module)
@@ -1012,11 +1016,11 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             yield return Create(Ldloc, parent);
             yield return Create(Ldsfld, bpRef);
             yield return Create(Ldloc, context.Variables[elementNode]);
-            yield return Create(Callvirt, module.ImportPropertyGetterReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingInternalNameSpace, "DynamicResource"), propertyName: "Key"));
-            yield return Create(Callvirt, module.ImportMethodReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingInternalNameSpace, "IDynamicResourceHandler"),
+            yield return Create(Callvirt, module.ImportPropertyGetterReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingInternalNameSpace, "DynamicResource"), propertyName: "Key"));
+            yield return Create(Callvirt, module.ImportMethodReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingInternalNameSpace, "IDynamicResourceHandler"),
                                                                        methodName: "SetDynamicResource",
                                                                        parameterTypes: new[] {
-                                                                           (XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindableProperty"),
+                                                                           (NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindableProperty"),
                                                                            ("mscorlib", "System", "String"),
                                                                        }));
         }
@@ -1035,18 +1039,18 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             if (!context.Variables.TryGetValue(valueNode as IElementNode, out varValue))
                 return false;
 
-            var implicitOperator = varValue.VariableType.GetImplicitOperatorTo(module.ImportReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindingBase")), module);
+            var implicitOperator = varValue.VariableType.GetImplicitOperatorTo(module.ImportReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindingBase")), module);
             if (implicitOperator != null)
                 return true;
 
-            return varValue.VariableType.InheritsFromOrImplements(module.ImportReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindingBase")));
+            return varValue.VariableType.InheritsFromOrImplements(module.ImportReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindingBase")));
         }
 
         static IEnumerable<Instruction> SetBinding(VariableDefinition parent, FieldReference bpRef, IElementNode elementNode, IXmlLineInfo iXmlLineInfo, ILContext context)
         {
             var module = context.Body.Method.Module;
             var varValue = context.Variables [elementNode];
-            var implicitOperator = varValue.VariableType.GetImplicitOperatorTo(module.ImportReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindingBase")), module);
+            var implicitOperator = varValue.VariableType.GetImplicitOperatorTo(module.ImportReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindingBase")), module);
 
             //TODO: check if parent is a BP
             yield return Create(Ldloc, parent);
@@ -1055,11 +1059,11 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             if (implicitOperator != null) 
 //                IL_000f:  call !0 class [Tizen.NUI.Xaml.Core]Tizen.NUI.Xaml.OnPlatform`1<BindingBase>::op_Implicit(class [Tizen.NUI.Xaml.Core]Tizen.NUI.Xaml.OnPlatform`1<!0>)
                 yield return Create(Call, module.ImportReference(implicitOperator));
-            yield return Create(Callvirt, module.ImportMethodReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindableObject"),
+            yield return Create(Callvirt, module.ImportMethodReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindableObject"),
                                                                        methodName: "SetBinding",
                                                                        parameterTypes: new[] {
-                                                                           (XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindableProperty"),
-                                                                           (XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindingBase"),
+                                                                           (NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindableProperty"),
+                                                                           (NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindingBase"),
                                                                        }));
         }
 
@@ -1106,7 +1110,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             if (bpRef == null)
                 return false;
 
-            if (!parent.VariableType.InheritsFromOrImplements(module.ImportReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindableObject"))))
+            if (!parent.VariableType.InheritsFromOrImplements(module.ImportReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindableObject"))))
                 return false;
 
             propertyType = bpRef.GetBindablePropertyType(iXmlLineInfo, module);
@@ -1143,10 +1147,10 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 if (varType.IsValueType)
                     yield return Create(Box, varType);
             }
-            yield return Create(Callvirt, module.ImportMethodReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindableObject"),
+            yield return Create(Callvirt, module.ImportMethodReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindableObject"),
                                                                        methodName: "SetValue",
                                                                        parameterTypes: new[] {
-                                                                           (XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindableProperty"),
+                                                                           (NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindableProperty"),
                                                                            ("mscorlib", "System", "Object"),
                                                                        }));
         }
@@ -1159,9 +1163,9 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             return new[] {
                 Create(Ldloc, parent),
                 Create(Ldsfld, bpRef),
-                Create(Callvirt,  module.ImportMethodReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindableObject"),
+                Create(Callvirt,  module.ImportMethodReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindableObject"),
                                                                methodName: "GetValue",
-                                                               parameterTypes: new[] { (XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "BindableProperty") })),
+                                                               parameterTypes: new[] { (NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindableProperty") })),
             };
         }
 
@@ -1335,7 +1339,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             //is there a RD.Add() overrides that accepts this ?
             var nodeTypeRef = context.Variables[node].VariableType;
             var module = context.Body.Method.Module;
-            if (module.ImportMethodReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "ResourceDictionary"),
+            if (module.ImportMethodReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "ResourceDictionary"),
                                              methodName: "Add",
                                              parameterTypes: new[] { (nodeTypeRef.Scope.Name, nodeTypeRef.Namespace, nodeTypeRef.Name) }) != null)
                 return true;
@@ -1388,7 +1392,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 yield return Create(Ldloc, varDef);
                 if (varDef.VariableType.IsValueType)
                     yield return Create(Box, module.ImportReference(varDef.VariableType));
-                yield return Create(Callvirt, module.ImportMethodReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "ResourceDictionary"),
+                yield return Create(Callvirt, module.ImportMethodReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "ResourceDictionary"),
                                                                            methodName: "Add",
                                                                            parameterTypes: new[] {
                                                                                ("mscorlib", "System", "String"),
@@ -1399,7 +1403,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
             var nodeTypeRef = context.Variables[node].VariableType;
             yield return Create(Ldloc, context.Variables[node]);
-            yield return Create(Callvirt, module.ImportMethodReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "ResourceDictionary"),
+            yield return Create(Callvirt, module.ImportMethodReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "ResourceDictionary"),
                                                                        methodName: "Add",
                                                                        parameterTypes: new[] { (nodeTypeRef.Scope.Name, nodeTypeRef.Namespace, nodeTypeRef.Name) }));
             yield break;
@@ -1421,7 +1425,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             {
                 var typename = localname.Substring(0, dotIdx);
                 localname = localname.Substring(dotIdx + 1);
-                elementType = new XmlType(namespaceURI, typename, null).GetTypeReference(context.Body.Method.Module, lineInfo);
+                elementType = new XmlType(namespaceURI, typename, null).GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, context.Body.Method.Module, lineInfo);
                 return true;
             }
             return false;
@@ -1478,7 +1482,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             //Fill the loadTemplate Body
             var templateIl = loadTemplate.Body.GetILProcessor();
             templateIl.Emit(OpCodes.Nop);
-            var templateContext = new ILContext(templateIl, loadTemplate.Body, null, module, parentValues)
+            var templateContext = new ILContext(templateIl, loadTemplate.Body, null, module, parentContext.EmbeddedResourceNameSpace, parentValues)
             {
                 Root = root
             };
@@ -1517,7 +1521,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                                                              classArguments: new[] { ("mscorlib", "System", "Object") },
                                                              paramCount: 2));
 
-            var setterRef = module.ImportPropertySetterReference((XamlCTask.bindingAssemblyName, XamlCTask.bindingNameSpace, "IDataTemplate"), propertyName: "LoadTemplate");
+            var setterRef = module.ImportPropertySetterReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "IDataTemplate"), propertyName: "LoadTemplate");
             parentContext.IL.Emit(OpCodes.Callvirt, setterRef);
 
             loadTemplate.Body.Optimize();

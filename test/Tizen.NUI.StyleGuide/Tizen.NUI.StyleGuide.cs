@@ -174,7 +174,6 @@ namespace Tizen.NUI.StyleGuide
         private ContentPage page;
         private SearchField field;
         private List<ControlMenu> testSource;
-        private FocusManager focusManager;
 
         public void OnKeyEvent(object sender, Window.KeyEventArgs e)
         {
@@ -216,26 +215,8 @@ namespace Tizen.NUI.StyleGuide
             Initialize();
             SetMainPage();
 
-            focusManager = FocusManager.Instance;
-
-            //set user customized focus indicator
-            if (!focusManager.FocusIndicator)
-            {
-                focusManager.FocusIndicator = new View()
-                {
-                    PositionUsesPivotPoint = true,
-                    PivotPoint = new Position(0, 0, 0),
-                    WidthResizePolicy = ResizePolicyType.FillToParent,
-                    HeightResizePolicy = ResizePolicyType.FillToParent,
-                    BorderlineColor = Color.Orange,
-                    BorderlineWidth = 4.0f,
-                    BorderlineOffset = -1f,
-                    BackgroundColor = new Color(0.2f, 0.2f, 0.2f, 0.2f),
-                };
-            }
-
             //enable FocusManger default algorithm
-            focusManager.EnableDefaultAlgorithm(true);
+            FocusManager.Instance.EnableDefaultAlgorithm(true);
         }
         private void Initialize()
         {

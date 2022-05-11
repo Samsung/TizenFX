@@ -36,7 +36,7 @@ namespace Tizen.NUI.Binding
             if (value != null)
             {
                 double x, y, w, h;
-                string[] xywh = value.Split(',');
+                string[] xywh = value.Split(TypeConverter.UnifiedDelimiter);
                 if (xywh.Length == 4)
                 {
                     x = GraphicsTypeManager.Instance.ConvertScriptToPixel(xywh[0]);
@@ -57,7 +57,7 @@ namespace Tizen.NUI.Binding
             Rectangle rect = value as Rectangle;
             if (null != rect)
             {
-                return rect.X.ToString() + " " + rect.Y.ToString() + " " + rect.Width.ToString() + " " + rect.Height.ToString();
+                return rect.X.ToString() + TypeConverter.UnifiedDelimiter + rect.Y.ToString() + TypeConverter.UnifiedDelimiter + rect.Width.ToString() + TypeConverter.UnifiedDelimiter + rect.Height.ToString();
             }
             else
             {

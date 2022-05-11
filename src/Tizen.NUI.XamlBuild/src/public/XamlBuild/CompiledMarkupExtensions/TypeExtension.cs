@@ -51,7 +51,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 node.CollectionItems.Clear();
             }
 
-            var typeref = module.ImportReference(XmlTypeExtensions.GetTypeReference(valueNode.Value as string, module, node as BaseNode));
+            var typeref = module.ImportReference(XmlTypeExtensions.GetTypeReference(valueNode.Value as string, module, node as BaseNode, XmlTypeExtensions.ModeOfGetType.Both));
 
             context.TypeExtensions[node] = typeref ?? throw new XamlParseException($"Can't resolve type `{valueNode.Value}'.", node as IXmlLineInfo);
 
@@ -82,11 +82,11 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 node.CollectionItems.Clear();
             }
 
-            var typeref = module.ImportReference(XmlTypeExtensions.GetTypeReference(valueNode.Value as string, module, node as BaseNode));
+            var typeref = module.ImportReference(XmlTypeExtensions.GetTypeReference(valueNode.Value as string, module, node as BaseNode, XmlTypeExtensions.ModeOfGetType.Both));
 
             context.TypeExtensions[node] = typeref ?? throw new XamlParseException($"Can't resolve type `{valueNode.Value}'.", node as IXmlLineInfo);
 
-            return new EXamlCreateObject(context, typeref, module.ImportReference(typeof(TypeReference)));
+            return new EXamlCreateObject(context, typeref, module.ImportReference(typeof(System.Type))) { IsValid = false,};
         }
     }
 }

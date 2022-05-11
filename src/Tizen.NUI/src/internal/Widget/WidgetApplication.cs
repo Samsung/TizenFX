@@ -23,7 +23,7 @@ namespace Tizen.NUI
     {
         private Dictionary<System.Type, string> widgetInfo;
         private List<Widget> widgetList = new List<Widget>();
-        private delegate System.IntPtr CreateWidgetFunctionDelegate(ref string widgetName);
+        private delegate System.IntPtr CreateWidgetFunctionDelegate(ref global::System.IntPtr widgetPtr);
         private List<CreateWidgetFunctionDelegate> createWidgetFunctionDelegateList = new List<CreateWidgetFunctionDelegate>();
 
         internal WidgetApplication(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
@@ -115,8 +115,9 @@ namespace Tizen.NUI
             }
         }
 
-        public static System.IntPtr WidgetCreateFunction(ref string widgetName)
+        public static System.IntPtr WidgetCreateFunction(ref global::System.IntPtr widgetPtr)
         {
+            string widgetName = System.Runtime.InteropServices.Marshal.PtrToStringAnsi(widgetPtr);
             if ((Instance as WidgetApplication) == null)
             {
                 return IntPtr.Zero;

@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-
+using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
@@ -85,9 +85,9 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnUpdate()
+        public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
-            base.OnUpdate();
+            base.OnRelayout(size, container);
             LayoutItems();
         }
 
@@ -185,56 +185,52 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            if ((Icon == null) && (TextLabel == null))
+            bool isEmptyIcon = false;
+            bool isEmptyText = false;
+
+            if (String.IsNullOrEmpty(Icon.ResourceUrl))
             {
-                return;
+                isEmptyIcon = true;
             }
 
-            // Icon is added in Button.LayoutItems().
-            if ((Icon != null) && (Children.Contains(Icon) == false))
+            if (String.IsNullOrEmpty(TextLabel.Text))
+            {
+                isEmptyText = true;
+            }
+
+            if (isEmptyIcon)
+            {
+                if (Children.Contains(Icon))
+                {
+                    Remove(Icon);
+                }
+            }
+            else if (Children.Contains(Icon) == false)
             {
                 Add(Icon);
             }
 
-            // TextLabel is added in Button.LayoutItems().
-            if ((TextLabel != null) && (Children.Contains(TextLabel) == false))
+            if (isEmptyText)
+            {
+                if (Children.Contains(TextLabel))
+                {
+                    Remove(TextLabel);
+                }
+            }
+            else if (Children.Contains(TextLabel) == false)
             {
                 Add(TextLabel);
-            }
-
-            switch (IconRelativeOrientation)
-            {
-                // TODO: Other orientation cases are not implemented yet.
-                case IconOrientation.Left:
-                    if (LayoutDirection == ViewLayoutDirectionType.LTR)
-                    {
-                        int iconPosX = Padding.Start + (Icon?.Margin.Start ?? 0);
-                        int iconPosY = Padding.Top + (Icon?.Margin.Top ?? 0);
-                        int iconSizeW = Icon?.Size2D.Width ?? 0;
-                        int iconSizeH = Icon?.Size2D.Height ?? 0;
-
-                        if (Icon != null)
-                        {
-                            Icon.Position2D = new Position2D(iconPosX, iconPosY);
-                        }
-
-                        if (TextLabel != null)
-                        {
-                            int textPosX = iconPosX + iconSizeW + TextLabel.Margin.Start;
-                            int textPosY = Padding.Top + TextLabel.Margin.Top;
-
-                            TextLabel.Position2D = new Position2D(textPosX, textPosY);
-                        }
-                    }
-                    break;
-                default:
-                    break;
             }
         }
 
         private void Initialize()
         {
-            Layout = new AbsoluteLayout();
+            Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Begin,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
         }
 
         /// <summary>
@@ -244,7 +240,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.MenuItem);
+            AccessibilityRole = Role.MenuItem;
         }
     }
 }

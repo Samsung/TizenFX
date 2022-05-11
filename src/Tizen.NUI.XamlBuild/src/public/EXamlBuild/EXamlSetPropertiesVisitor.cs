@@ -65,10 +65,15 @@ namespace Tizen.NUI.EXaml.Build.Tasks
         public bool IsResourceDictionary(ElementNode node)
         {
             var parentVar = Context.Values[node] as EXamlCreateObject;
-            return null != parentVar
-                    &&
-                    (parentVar.GetType().FullName == "Tizen.NUI.Binding.ResourceDictionary"
-                    || parentVar.GetType().Resolve().BaseType?.FullName == "Tizen.NUI.Binding.ResourceDictionary");
+
+            if (null != parentVar && !parentVar.GetType().IsLocalType())
+            {
+                return parentVar.GetType().FullName == "Tizen.NUI.Binding.ResourceDictionary"
+                       ||
+                       parentVar.GetType().Resolve().BaseType?.FullName == "Tizen.NUI.Binding.ResourceDictionary";
+            }
+
+            return false;
         }
 
         ModuleDefinition Module { get; }
@@ -286,15 +291,22 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
         internal static string GetContentProperty(TypeReference typeRef)
         {
-            var typeDef = typeRef.ResolveCached();
-            var attributes = typeDef.CustomAttributes;
-            var attr =
-                attributes.FirstOrDefault(cad => ContentPropertyAttribute.ContentPropertyTypes.Contains(cad.AttributeType.FullName));
-            if (attr != null)
-                return attr.ConstructorArguments[0].Value as string;
-            if (typeDef.BaseType == null)
-                return null;
-            return GetContentProperty(typeDef.BaseType);
+            if (typeRef.IsLocalType())
+            {
+                return typeRef.GetContentPropertyNameOfLocalType();
+            }
+            else
+            {
+                var typeDef = typeRef.ResolveCached();
+                var attributes = typeDef.CustomAttributes;
+                var attr =
+                    attributes.FirstOrDefault(cad => ContentPropertyAttribute.ContentPropertyTypes.Contains(cad.AttributeType.FullName));
+                if (attr != null)
+                    return attr.ConstructorArguments[0].Value as string;
+                if (typeDef.BaseType == null)
+                    return null;
+                return GetContentProperty(typeDef.BaseType);
+            }
         }
 
         public static object ProvideValue(EXamlCreateObject instance, EXamlContext context,
@@ -315,9 +327,10 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             else if (instance.GetType().ImplementsGenericInterface("Tizen.NUI.Xaml.IMarkupExtension`1", out markupExtension, out genericArguments))
             {
                 var nodeValue = context.Values[node] as EXamlCreateObject;
-                if (nodeValue?.Instance is BindingExtension)
+                if (nodeValue?.Instance is BindingExtension bindingExtension)
                 {
-                    var newValue = (nodeValue.Instance as BindingExtension).ProvideValue(context, module);
+                    bindingExtension.XmlType = new XmlType(node.XmlType.NamespaceUri, "Binding", node.XmlType.TypeArguments);
+                    var newValue = bindingExtension.ProvideValue(context, module);
                     return newValue;
                 }
                 else if (nodeValue?.Instance is DynamicResourceExtension)
@@ -436,11 +449,41 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             return properties;
         }
 
+        private static bool SetPropertyValueToLocalType(EXamlCreateObject parent, XmlName propertyName, INode valueNode, EXamlContext context)
+        {
+            if (parent.Instance is Tizen.NUI.Xaml.Build.Tasks.ArrayExtension arrayExtension)
+            {
+                if ("Type" == propertyName.LocalName)
+                {
+                    var value = context.Values[valueNode] as EXamlCreateObject;
+                    if (null != value)
+                    {
+                        arrayExtension.Type = value.Instance as TypeReference;
+                        parent.IsValid = false;
+                    }
+                }
+                else if ("Items" == propertyName.LocalName)
+                {
+                    arrayExtension.Items = context.Values[valueNode];
+                    parent.IsValid = false;
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
         public static void SetPropertyValue(EXamlCreateObject parent, XmlName propertyName, INode valueNode, EXamlContext context, IXmlLineInfo iXmlLineInfo)
         {
             var module = context.Module;
             var localName = propertyName.LocalName;
             bool attached;
+
+            if (SetPropertyValueToLocalType(parent, propertyName, valueNode, context))
+            {
+                return;
+            }
 
             var bpRef = GetBindablePropertyReference(parent, propertyName.NamespaceURI, ref localName, out attached, context, iXmlLineInfo);
 
@@ -667,7 +710,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             if (implicitOperator != null)
                 return true;
 
-            return valueInstance.GetType().InheritsFromOrImplements(XamlTask.bindingNameSpace + ".BindingBase");
+            return valueInstance.GetType().InheritsFromOrImplements(module.ImportReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindingBase")));
         }
 
         static void SetBinding(EXamlCreateObject parent, MemberReference bpRef, IElementNode elementNode, IXmlLineInfo iXmlLineInfo, EXamlContext context)
@@ -804,7 +847,20 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             var realValue = context.Values[elementNode] as EXamlCreateObject;
             if (null != realValue)
             {
-                if (realValue.GetType().InheritsFromOrImplements(propertyType))
+                var valueTypeRef = realValue.GetType();
+                if (valueTypeRef.InheritsFromOrImplements(propertyType))
+                {
+                    return true;
+                }
+
+                var realTypeFromMarkupExtension = valueTypeRef.GetRealTypeIfIsMarkupExtension();
+
+                if (true == realTypeFromMarkupExtension?.InheritsFromOrImplements(propertyType))
+                {
+                    return true;
+                }
+
+                if ("System.Type" == valueTypeRef.FullName && "Mono.Cecil.TypeReference" == propertyType.FullName)
                 {
                     return true;
                 }
@@ -867,6 +923,10 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                     var bindableProperty = BindablePropertyConverter.GetBindablePropertyFieldReference(valueNode.Value as string, module, node as BaseNode);
                     var fieldRef = bindableProperty.DeclaringType.ResolveCached().Fields.FirstOrDefault(a => a.FullName == bindableProperty.FullName);
                     context.Values[node] = new EXamlCreateObject(context, bindableProperty.DeclaringType, fieldRef, null);
+                }
+                else if ("Tizen.NUI.Binding.ResourceDictionary" == propertyType.FullName)
+                {
+                    context.Values[node] = GetResourceDictionaryByXaml(parent, node, context, iXmlLineInfo);
                 }
                 else
                 {
@@ -959,6 +1019,11 @@ namespace Tizen.NUI.EXaml.Build.Tasks
         static Dictionary<EXamlCreateObject, IList<string>> resourceNamesInUse = new Dictionary<EXamlCreateObject, IList<string>>();
         static bool CanAddToResourceDictionary(EXamlCreateObject parent, TypeReference collectionType, IElementNode node, IXmlLineInfo lineInfo, EXamlContext context)
         {
+            if (collectionType.IsLocalType())
+            {
+                return false;
+            }
+
             if (   collectionType.FullName != "Tizen.NUI.Binding.ResourceDictionary"
                 && collectionType.ResolveCached().BaseType?.FullName != "Tizen.NUI.Binding.ResourceDictionary")
                 return false;
@@ -1079,17 +1144,16 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             {
                 var typename = localname.Substring(0, dotIdx);
                 localname = localname.Substring(dotIdx + 1);
-                elementType = new XmlType(namespaceURI, typename, null).GetTypeReference(context.Module, lineInfo);
+                elementType = new XmlType(namespaceURI, typename, null).GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, context.Module, lineInfo);
                 return true;
             }
             return false;
         }
 
-        static void SetDataTemplate(ElementNode parentNode, ElementNode rootnode, EXamlContext parentContext,
-            IXmlLineInfo xmlLineInfo)
+        static void SetDataTemplate(ElementNode parentNode, ElementNode rootnode, EXamlContext parentContext, IXmlLineInfo xmlLineInfo)
         {
-            var typeref = parentContext.Module.ImportReference(rootnode.XmlType.GetTypeReference(parentContext.Module, rootnode));
-            var visitorContext = new EXamlContext(typeref.ResolveCached(), typeref.Module);
+            var typeref = parentContext.Module.ImportReference(rootnode.XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, parentContext.Module, rootnode));
+            var visitorContext = new EXamlContext(typeref.ResolveCached(), typeref.Module, parentContext.EmbeddedResourceNameSpace);
 
             rootnode.Accept(new XamlNodeVisitor((node, parent) => node.Parent = parent), null);
             rootnode.Accept(new EXamlExpandMarkupsVisitor(visitorContext), null);
@@ -1102,13 +1166,84 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
             var eXamlString = visitorContext.GenerateEXamlString();
 
-            var parentTyperef = parentContext.Module.ImportReference(parentNode.XmlType.GetTypeReference(parentContext.Module, parentNode));
+            var parentTyperef = parentContext.Module.ImportReference(parentNode.XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, parentContext.Module, parentNode));
 
             if (parentContext.Values[parentNode] is EXamlCreateObject eXamlObject)
             {
                 eXamlObject.IsValid = false;
                 parentContext.Values[parentNode] = new EXamlCreateDataTemplate(parentContext, parentTyperef, eXamlString);
             }
+        }
+
+        static EXamlCreateResourceDictionary GetResourceDictionaryByXaml(EXamlCreateObject parentObject, INode nodeOfXaml, EXamlContext parentContext, IXmlLineInfo xmlLineInfo)
+        {
+            var module = parentContext.Module;
+
+            string xamlName = "";
+
+            if (nodeOfXaml is ValueNode valueNode)
+            {
+                xamlName = valueNode.Value as string;
+            }
+
+            EmbeddedResource matchedResource = null;
+
+            foreach (var resource in module.Resources.OfType<EmbeddedResource>())
+            {
+                if (resource.Name.StartsWith(parentContext.EmbeddedResourceNameSpace) && resource.Name.EndsWith(xamlName))
+                {
+                    matchedResource = resource;
+                    break;
+                }
+            }
+
+            if (null == matchedResource)
+            {
+                foreach (var resource in module.Resources.OfType<EmbeddedResource>())
+                {
+                    if (resource.Name.EndsWith(xamlName))
+                    {
+                        matchedResource = resource;
+                        break;
+                    }
+                }
+            }
+
+            if (null != matchedResource)
+            {
+                string classname;
+
+                if (matchedResource.IsResourceDictionaryXaml(module, out classname))
+                {
+                    int lastIndex = classname.LastIndexOf('.');
+                    var realClassName = classname.Substring(lastIndex + 1);
+                    var typeref = XmlTypeExtensions.GetTypeReference(realClassName, module, nodeOfXaml as BaseNode, XmlTypeExtensions.ModeOfGetType.Both);
+
+                    var visitorContext = new EXamlContext(typeref.ResolveCached(), typeref.Module, parentContext.EmbeddedResourceNameSpace);
+                    var rootnode = XamlTask.ParseXaml(matchedResource.GetResourceStream(), typeref);
+
+                    var rootInstance =  new EXamlCreateObject(visitorContext, null, typeref);
+                    visitorContext.Values[rootnode] = rootInstance;
+
+                    rootnode.Accept(new XamlNodeVisitor((node, parent) => node.Parent = parent), null);
+                    rootnode.Accept(new EXamlExpandMarkupsVisitor(visitorContext), null);
+                    rootnode.Accept(new PruneIgnoredNodesVisitor(), null);
+                    rootnode.Accept(new EXamlCreateObjectVisitor(visitorContext), null);
+                    rootnode.Accept(new EXamlSetNamescopesAndRegisterNamesVisitor(visitorContext), null);
+                    rootnode.Accept(new EXamlSetFieldVisitor(visitorContext), null);
+                    rootnode.Accept(new EXamlSetResourcesVisitor(visitorContext), null);
+                    rootnode.Accept(new EXamlSetPropertiesVisitor(visitorContext, true), null);
+
+                    foreach (var pair in visitorContext.resourceDictionary)
+                    {
+                        parentContext.resourceDictionary.Add(pair.Key, pair.Value);
+                    }
+
+                    return new EXamlCreateResourceDictionary(parentContext, typeref, visitorContext.GenerateEXamlString());
+                }
+            }
+
+            return null;
         }
 
         bool TrySetRuntimeName(XmlName propertyName, EXamlCreateObject variableDefinition, ValueNode node)

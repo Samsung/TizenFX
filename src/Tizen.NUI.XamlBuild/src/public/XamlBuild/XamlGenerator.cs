@@ -19,6 +19,7 @@ using System.CodeDom;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Xml;
 using Microsoft.Build.Framework;
@@ -187,11 +188,13 @@ namespace Tizen.NUI.Xaml.Build.Tasks
         public string RootClrNamespace { get; private set; }
         public string RootType { get; private set; }
         public bool AddXamlCompilationAttribute { get; set; }
+        public int XamlOptimization { get; set; }
         bool GenerateDefaultCtor { get; set; }
         bool HideFromIntellisense { get; set; }
         bool XamlResourceIdOnly { get; set; }
         internal IEnumerable<CodeMemberField> NamedFields { get; set; }
         internal CodeTypeReference BaseType { get; set; }
+        string classModifier { get; set; }
 
         public XamlGenerator(
             string xamlFile,
@@ -282,6 +285,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
             NamedFields = GetCodeMemberFields(root, nsmgr);
             var typeArguments = GetAttributeValue(root, "TypeArguments", XamlParser.X2006Uri, XamlParser.X2009Uri);
+            classModifier = GetAttributeValue(root, "ClassModifier", XamlParser.X2006Uri, XamlParser.X2009Uri);
             var xmlType = new XmlType(root.NamespaceURI, root.LocalName, typeArguments != null ? TypeArgumentsParser.ParseExpression(typeArguments, nsmgr, null) : null);
             BaseType = GetType(xmlType, root.GetNamespaceOfPrefix);
 
@@ -317,14 +321,15 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
             var declType = new CodeTypeDeclaration(RootType) {
                 IsPartial = true,
+                TypeAttributes = GetTypeAttributes(classModifier),
                 CustomAttributes = {
-                    new CodeAttributeDeclaration(new CodeTypeReference(XamlCTask.xamlNameSpace + ".XamlFilePathAttribute"),
+                    new CodeAttributeDeclaration(new CodeTypeReference(NUIXamlCTask.xamlNameSpace + ".XamlFilePathAttribute"),
                          new CodeAttributeArgument(new CodePrimitiveExpression(XamlFile))),
                 }
             };
             if (AddXamlCompilationAttribute)
                 declType.CustomAttributes.Add(
-                    new CodeAttributeDeclaration(new CodeTypeReference(XamlCTask.xamlNameSpace + ".XamlCompilationAttribute"),
+                    new CodeAttributeDeclaration(new CodeTypeReference(NUIXamlCTask.xamlNameSpace + ".XamlCompilationAttribute"),
                                                  new CodeAttributeArgument(new CodeSnippetExpression($"global::{typeof(XamlCompilationOptions).FullName}.Compile"))));
             if (HideFromIntellisense)
                 declType.CustomAttributes.Add(
@@ -357,18 +362,40 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             declType.Members.Add(initcomp);
 
             //Create and initialize fields
-            var loadExaml_invoke = new CodeMethodInvokeExpression(
-                new CodeTypeReferenceExpression(new CodeTypeReference($"global::Tizen.NUI.EXaml.EXamlExtensions")),
-                "LoadFromEXamlByRelativePath", new CodeThisReferenceExpression(), 
-                new CodeMethodInvokeExpression()
-                { Method = new CodeMethodReferenceExpression() { MethodName = "GetEXamlPath" } });
 
-            CodeAssignStatement assignEXamlObject = new CodeAssignStatement(
-                    new CodeVariableReferenceExpression("eXamlData"), loadExaml_invoke);
+			if(0 == XamlOptimization)
+			{
+                initcomp.Statements.Add(new CodeMethodInvokeExpression(
+                    new CodeTypeReferenceExpression(new CodeTypeReference($"global::{typeof(Extensions).FullName}")),
+                    "LoadFromXaml", new CodeThisReferenceExpression(), new CodeTypeOfExpression(declType.Name)));
 
-            initcomp.Statements.Add(assignEXamlObject);
+                var exitXamlComp = new CodeMemberMethod()
+                {
+                    Name = "ExitXaml",
+                    CustomAttributes = { GeneratedCodeAttrDecl },
+                    Attributes = MemberAttributes.Assembly | MemberAttributes.Final
+                };
+                declType.Members.Add(exitXamlComp);
+            }
+            else
+			{
+                var loadExaml_invoke = new CodeMethodInvokeExpression(
+                    new CodeTypeReferenceExpression(new CodeTypeReference($"global::Tizen.NUI.EXaml.EXamlExtensions")),
+                    "LoadFromEXamlByRelativePath", new CodeThisReferenceExpression(),
+                    new CodeMethodInvokeExpression()
+                    { Method = new CodeMethodReferenceExpression() { MethodName = "GetEXamlPath" } });
+
+                CodeAssignStatement assignEXamlObject = new CodeAssignStatement(
+                        new CodeVariableReferenceExpression("eXamlData"), loadExaml_invoke);
+
+                initcomp.Statements.Add(assignEXamlObject);
+			}
 
             foreach (var namedField in NamedFields) {
+                if(namedField.Type.BaseType.Contains("-"))
+                {
+                    namedField.Type.BaseType = namedField.Type.BaseType.Replace("-", ".");
+                }
                 declType.Members.Add(namedField);
 
                 var find_invoke = new CodeMethodInvokeExpression(
@@ -383,27 +410,29 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 initcomp.Statements.Add(assign);
             }
 
-            declType.Members.Add(new CodeMemberField
-            {
-                Name = "eXamlData",
-                Type = new CodeTypeReference("System.Object"),
-                Attributes = MemberAttributes.Private,
-                CustomAttributes = { GeneratedCodeAttrDecl }
-            });
+			if(0 != XamlOptimization)
+			{
+                declType.Members.Add(new CodeMemberField
+                {
+                    Name = "eXamlData",
+                    Type = new CodeTypeReference("System.Object"),
+                    Attributes = MemberAttributes.Private,
+                    CustomAttributes = { GeneratedCodeAttrDecl }
+                });
 
-            var getEXamlPathcomp = new CodeMemberMethod()
-            {
-                Name = "GetEXamlPath",
-                ReturnType = new CodeTypeReference(typeof(string)),
-                CustomAttributes = { GeneratedCodeAttrDecl }
-            };
+                var getEXamlPathcomp = new CodeMemberMethod()
+                {
+                    Name = "GetEXamlPath",
+                    ReturnType = new CodeTypeReference(typeof(string)),
+                    CustomAttributes = { GeneratedCodeAttrDecl }
+                };
 
-            getEXamlPathcomp.Statements.Add(new CodeMethodReturnStatement(new CodeDefaultValueExpression(new CodeTypeReference(typeof(string)))));
+                getEXamlPathcomp.Statements.Add(new CodeMethodReturnStatement(new CodeDefaultValueExpression(new CodeTypeReference(typeof(string)))));
 
-            declType.Members.Add(getEXamlPathcomp);
+                declType.Members.Add(getEXamlPathcomp);
 
-            GenerateMethodExitXaml(declType);
-
+                GenerateMethodExitXaml(declType);
+			}
         writeAndExit:
             //write the result
             using (var writer = new StreamWriter(outFilePath))
@@ -427,7 +456,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             var exitXamlComp = new CodeMemberMethod()
             {
                 Name = "ExitXaml",
-                CustomAttributes = { GeneratedCodeAttrDecl }
+                CustomAttributes = { GeneratedCodeAttrDecl },
+                Attributes = MemberAttributes.Assembly | MemberAttributes.Final
             };
 
             exitXamlComp.Statements.Add(new CodeMethodInvokeExpression(new CodeMethodReferenceExpression()
@@ -455,6 +485,26 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             }
 
             declType.Members.Add(exitXamlComp);
+        }
+
+        static System.Reflection.TypeAttributes GetTypeAttributes(string classModifier)
+        {
+            var access = System.Reflection.TypeAttributes.Public;
+            if (classModifier != null)
+            {
+                switch (classModifier.ToLowerInvariant())
+                {
+                    default:
+                    case "public":
+                        access = System.Reflection.TypeAttributes.Public;
+                        break;
+                    case "internal":
+                    case "notpublic": //WPF syntax
+                        access = System.Reflection.TypeAttributes.NotPublic;
+                        break;
+                }
+            }
+            return access;
         }
 
         static IEnumerable<CodeMemberField> GetCodeMemberFields(XmlNode root, XmlNamespaceManager nsmgr)
@@ -524,6 +574,10 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             Func<string, string> getNamespaceOfPrefix = null)
         {
             var type = xmlType.Name;
+            if (type.Contains("-"))
+            {
+                type = type.Replace('-', '.');
+            }
             var ns = GetClrNamespace(xmlType.NamespaceUri, xmlType.Name);
             if (ns != null)
                 type = $"{ns}.{type}";

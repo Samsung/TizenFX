@@ -40,6 +40,12 @@ namespace Tizen.NUI
         private static string currentLoadedXaml = null;
 
         /// <summary>
+        /// The border window
+        /// </summary>
+        private bool borderEnabled = false;
+        private IBorderInterface borderInterface = null;
+
+        /// <summary>
         /// Xaml loaded delegate.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -175,6 +181,22 @@ namespace Tizen.NUI
         public NUIApplication(string styleSheet, WindowMode windowMode, WindowType type) : base(new NUICoreBackend(styleSheet, windowMode, type))
         {
             ExternalThemeManager.Initialize();
+        }
+
+        /// <summary>
+        /// The constructor with a stylesheet, window mode, size, position, theme option and boderInterface
+        /// It is the only way to create an IME window.
+        /// </summary>
+        /// <param name="styleSheet">The styleSheet URL.</param>
+        /// <param name="windowMode">The windowMode.</param>
+        /// <param name="windowSize">The window size.</param>
+        /// <param name="windowPosition">The window position.</param>
+        /// <param name="borderInterface"><see cref="Tizen.NUI.IBorderInterface"/>If borderInterface is null, defaultBorder is enabled.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition, IBorderInterface borderInterface, WindowMode windowMode = WindowMode.Opaque) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
+        {
+            borderEnabled = true;
+            this.borderInterface = borderInterface;
         }
 
         /// <summary>
@@ -454,6 +476,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreCreate()
         {
+            if (borderEnabled)
+            {
+                GetDefaultWindow().EnableBorder(borderInterface);
+            }
         }
 
         /// <summary>
@@ -486,7 +512,9 @@ namespace Tizen.NUI
         static public void Preload()
         {
             Interop.Application.PreInitialize();
+#if ExternalThemeEnabled
             ThemeManager.Preload();
+#endif
             IsPreload = true;
         }
 

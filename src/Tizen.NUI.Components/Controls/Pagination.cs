@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using Tizen.NUI.Accessibility;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 
@@ -28,7 +29,7 @@ namespace Tizen.NUI.Components
     /// Pagination shows the number of pages available and the currently active page.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
-    public partial class Pagination : Control
+    public partial class Pagination : Control, IAtspiValue
     {
         /// <summary>The IndicatorSize bindable property.</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -453,7 +454,7 @@ namespace Tizen.NUI.Components
         /// Minimum value.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetMinimum()
+        double IAtspiValue.AccessibilityGetMinimum()
         {
             return 0.0;
         }
@@ -462,7 +463,7 @@ namespace Tizen.NUI.Components
         /// Current value.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetCurrent()
+        double IAtspiValue.AccessibilityGetCurrent()
         {
             return (double)SelectedIndex;
         }
@@ -471,7 +472,7 @@ namespace Tizen.NUI.Components
         /// Maximum value.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetMaximum()
+        double IAtspiValue.AccessibilityGetMaximum()
         {
             return (double)IndicatorCount;
         }
@@ -480,7 +481,7 @@ namespace Tizen.NUI.Components
         /// Current value.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool AccessibilitySetCurrent(double value)
+        bool IAtspiValue.AccessibilitySetCurrent(double value)
         {
             int integerValue = (int)value;
 
@@ -497,7 +498,7 @@ namespace Tizen.NUI.Components
         /// Minimum increment.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetMinimumIncrement()
+        double IAtspiValue.AccessibilityGetMinimumIncrement()
         {
             return 1.0;
         }
@@ -507,7 +508,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.ScrollBar, AccessibilityInterface.Value);
+            AccessibilityRole = Role.ScrollBar;
             AccessibilityHighlightable = true;
             AppendAccessibilityAttribute("style", "pagecontrolbyvalue");
 

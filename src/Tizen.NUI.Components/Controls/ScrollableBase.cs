@@ -1852,42 +1852,38 @@ namespace Tizen.NUI.Components
                 {
                     // Check next focused view is inside of visible area.
                     // If it is not, move scroll position to make it visible.
-                    Position scrollPosition = ContentContainer.CurrentPosition;
-                    float targetPosition = -(ScrollingDirection == Direction.Horizontal ? scrollPosition.X : scrollPosition.Y);
+                    float left = nextFocusedView.ScreenPosition.X;
+                    float right = nextFocusedView.ScreenPosition.X + nextFocusedView.Size.Width;
+                    float top = nextFocusedView.ScreenPosition.Y;
+                    float bottom = nextFocusedView.ScreenPosition.Y + nextFocusedView.Size.Height;
 
-                    float left = view.Position.X;
-                    float right = view.Position.X + view.Size.Width;
-                    float top = view.Position.Y;
-                    float bottom = view.Position.Y + view.Size.Height;
-
-                    float visibleRectangleLeft = -scrollPosition.X;
-                    float visibleRectangleRight = -scrollPosition.X + Size.Width;
-                    float visibleRectangleTop = -scrollPosition.Y;
-                    float visibleRectangleBottom = -scrollPosition.Y + Size.Height;
+                    float visibleRectangleLeft = ScreenPosition.X;
+                    float visibleRectangleRight = ScreenPosition.X + Size.Width;
+                    float visibleRectangleTop = ScreenPosition.Y;
+                    float visibleRectangleBottom = ScreenPosition.Y + Size.Height;
 
                     if (ScrollingDirection == Direction.Horizontal)
                     {
                         if (left < visibleRectangleLeft)
                         {
-                            targetPosition = left;
+                            ScrollTo(left- ContentContainer.ScreenPosition.X, true);
                         }
                         else if (right > visibleRectangleRight)
                         {
-                            targetPosition = right - Size.Width;
+                            ScrollTo(right - Size.Width - ContentContainer.ScreenPosition.X, true);
                         }
                     }
                     else
                     {
                         if (top < visibleRectangleTop)
                         {
-                            targetPosition = top;
+                            ScrollTo(top - ContentContainer.ScreenPosition.Y, true);
                         }
                         else if (bottom > visibleRectangleBottom)
                         {
-                            targetPosition = bottom - Size.Height;
+                            ScrollTo(bottom - Size.Height - ContentContainer.ScreenPosition.Y, true);
                         }
                     }
-                    ScrollTo(targetPosition, true);
                 }
             }
             return nextFocusedView;
@@ -1922,7 +1918,7 @@ namespace Tizen.NUI.Components
                         PageSnap(-(PageFlickThreshold + 1));
                     }
                     else
-                    {                        
+                    {
                         ScrollTo((float)(child.ScreenPosition.X + child.Size.Width - ContentContainer.ScreenPosition.X - this.Size.Width), false);
                     }
                 }
@@ -1936,7 +1932,7 @@ namespace Tizen.NUI.Components
                         PageSnap(PageFlickThreshold + 1);
                     }
                     else
-                    {                        
+                    {
                         ScrollTo((float)(child.ScreenPosition.Y - ContentContainer.ScreenPosition.Y), false);
                     }
                 }
@@ -1947,7 +1943,7 @@ namespace Tizen.NUI.Components
                         PageSnap(-(PageFlickThreshold + 1));
                     }
                     else
-                    {                       
+                    {
                         ScrollTo((float)(child.ScreenPosition.Y + child.Size.Height - ContentContainer.ScreenPosition.Y - this.Size.Height), false);
                     }
                 }

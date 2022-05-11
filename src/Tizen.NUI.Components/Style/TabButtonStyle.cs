@@ -47,16 +47,28 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Gets or Sets the Line Style at the top of TabButton.
+        /// Gets or sets the size of a view with icon for the width, the height, and the depth.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewStyle TopLine { get; set; } = new ViewStyle();
+        public Size SizeWithIcon { get; set; } = new Size();
 
         /// <summary>
-        /// Gets or Sets the Line Style at the bottom of TabButton.
+        /// Gets or sets the size of a view with icon only for the width, the height, and the depth.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ViewStyle BottomLine { get; set; } = new ViewStyle();
+        public Size SizeWithIconOnly { get; set; } = new Size();
+
+        /// <summary>
+        /// Gets or sets the size of icon with icon only for the width, the height, and the depth.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size IconSizeWithIconOnly { get; set; } = new Size();
+
+        /// <summary>
+        /// Gets or sets the text font size with icon.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float TextSizeWithIcon { get; set; }
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -66,8 +78,10 @@ namespace Tizen.NUI.Components
 
             if (bindableObject is TabButtonStyle tabButtonStyle)
             {
-                TopLine.CopyFrom(tabButtonStyle.TopLine);
-                BottomLine.CopyFrom(tabButtonStyle.BottomLine);
+                SizeWithIcon = new Size(tabButtonStyle.SizeWithIcon);
+                SizeWithIconOnly = new Size(tabButtonStyle.SizeWithIconOnly);
+                IconSizeWithIconOnly = new Size(tabButtonStyle.IconSizeWithIconOnly);
+                TextSizeWithIcon = tabButtonStyle.TextSizeWithIcon;
             }
         }
     }

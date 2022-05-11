@@ -70,7 +70,6 @@ namespace NuiCommonUiSamples
             source.Focusable = true;
             source.MinValue = MIN_VALUE;
             source.MaxValue = MAX_VALUE;
-            source.StateChangedEvent += OnStateChanged;
             source.ValueChangedEvent += OnValueChanged;
 
             source.Position2D = new Position2D(posX, posY);
@@ -102,7 +101,6 @@ namespace NuiCommonUiSamples
                 {
                     if (slider_da[i] != null)
                     {
-                        slider_da[i].StateChangedEvent -= OnStateChanged;
                         slider_da[i].ValueChangedEvent -= OnValueChanged;
                         root.Remove(slider_da[i]);
                         slider_da[i].Dispose();
@@ -130,26 +128,6 @@ namespace NuiCommonUiSamples
                 if (slider != null)
                 {
                     inforText.Text = "name = " + slider.Name + ", currentValue = " + args.CurrentValue;
-                }
-            }
-        }
-
-        private void OnStateChanged(object sender, Tizen.NUI.CommonUI.Slider.StateChangedArgs args)
-        {
-            Console.WriteLine("args.CurrentState = " + args.CurrentState);
-            if (sender is Tizen.NUI.CommonUI.Slider)
-            {
-                Tizen.NUI.CommonUI.Slider slider = sender as Tizen.NUI.CommonUI.Slider;
-                if (slider != null)
-                {
-                    //if (args.CurrentState == States.Normal)
-                    //{
-                    //    slider_sr[0].ThumbImageURL = "*DemoRes*/images/FH3/9. Controller/controller_btn_slide_handler_normal.png";
-                    //}
-                    //else if (args.CurrentState == States.Focused || args.CurrentState == States.Pressed)
-                    //{
-                    //    slider_sr[0].ThumbImageURL = "*DemoRes*/images/FH3/9. Controller/controller_btn_slide_handler_press.png";
-                    //}
                 }
             }
         }

@@ -6,23 +6,6 @@ namespace Tizen.NUI.Components
 {
     public partial class CollectionView
     {
-        /// <summary>
-        /// ItemTemplateProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly new BindableProperty ItemTemplateProperty = BindableProperty.Create(nameof(ItemTemplate), typeof(DataTemplate), typeof(CollectionView), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (CollectionView)bindable;
-            if (newValue != null)
-            {
-                instance.InternalItemTemplate = newValue as DataTemplate;
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (CollectionView)bindable;
-            return instance.InternalItemTemplate;
-        });
 
         /// <summary>
         /// ItemsLayouterProperty

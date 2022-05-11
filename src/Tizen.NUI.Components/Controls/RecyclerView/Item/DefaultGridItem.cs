@@ -205,7 +205,6 @@ namespace Tizen.NUI.Components
             {
                 itemLabel = value;
                 layoutChanged = true;
-                AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Label, itemLabel.Text);
             }
         }
 
@@ -359,6 +358,7 @@ namespace Tizen.NUI.Components
 
             if (itemBadge)
             {
+                itemBadge.RaiseAbove(itemImage);
                 RelativeLayout.SetLeftTarget(itemBadge, itemImage);
                 RelativeLayout.SetLeftRelativeOffset(itemBadge, 1.0F);
                 RelativeLayout.SetRightTarget(itemBadge, itemImage);
@@ -429,6 +429,8 @@ namespace Tizen.NUI.Components
                         RelativeLayout.SetBottomRelativeOffset(itemLabel, 1.0F);
                         RelativeLayout.SetVerticalAlignment(itemLabel, RelativeLayout.Alignment.End);
 
+                        Console.WriteLine("Item Label Inside Bottom!");
+
                         RelativeLayout.SetTopTarget(itemImage, this);
                         RelativeLayout.SetTopRelativeOffset(itemImage, 0.0F);
                         RelativeLayout.SetBottomTarget(itemImage, this);
@@ -477,6 +479,15 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Gets accessibility name.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override string AccessibilityGetName()
+        {
+            return itemLabel.Text;
+        }
+
+        /// <summary>
         /// Initializes AT-SPI object.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -486,6 +497,7 @@ namespace Tizen.NUI.Components
             Layout = new RelativeLayout();
             layoutChanged = true;
             LayoutDirectionChanged += OnLayoutDirectionChanged;
+            EnableControlStatePropagation = true;
         }
 
         /// <summary>

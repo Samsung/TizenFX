@@ -45,7 +45,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             var typename = member.Substring(0, dotIdx);
             var membername = member.Substring(dotIdx + 1);
 
-            var typeRef = module.ImportReference(XmlTypeExtensions.GetTypeReference(typename, module, node as BaseNode));
+            var typeRef = module.ImportReference(XmlTypeExtensions.GetTypeReference(typename, module, node as BaseNode, XmlTypeExtensions.ModeOfGetType.Both));
             var fieldRef = GetFieldReference(typeRef, membername, module);
             var propertyDef = GetPropertyDefinition(typeRef, membername, module);
 
@@ -117,7 +117,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             var typename = member.Substring(0, dotIdx);
             var membername = member.Substring(dotIdx + 1);
 
-            var typeRef = module.ImportReference(XmlTypeExtensions.GetTypeReference(typename, module, node as BaseNode));
+            var typeRef = module.ImportReference(XmlTypeExtensions.GetTypeReference(typename, module, node as BaseNode, XmlTypeExtensions.ModeOfGetType.Both));
             var fieldRef = GetFieldReference(typeRef, membername, module);
             var propertyDef = GetPropertyDefinition(typeRef, membername, module);
 

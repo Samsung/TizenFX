@@ -38,9 +38,9 @@ namespace NUITizenGallery
 
         public CollectionViewCustomItem()
         {
-            Tizen.Log.Error("NUI", "Custom Item Created");
+            Tizen.Log.Info("NUI", "Custom Item Created");
             InitializeComponent();
-            Tizen.Log.Error("NUI", "Custom Item Initalzied");
+            Tizen.Log.Info("NUI", "Custom Item Initalzied");
             Clicked+=OnClicked;
         }
     }

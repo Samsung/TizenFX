@@ -243,6 +243,72 @@ namespace Tizen.NUI.Components.Devel.Tests
             return horizontalFlexibleView;
         }
 
+        internal class FlexibleViewLayoutManagerImpl : FlexibleViewLayoutManager
+        {
+            public FlexibleViewLayoutManagerImpl() : base()
+            { }
+
+            public override void OnLayoutChildren(FlexibleViewRecycler recycler)
+            {
+                throw new NotImplementedException();
+            }
+
+            protected override int GetNextPosition(int position, Direction direction)
+            {
+                throw new NotImplementedException();
+            }
+
+            public override bool CanScrollHorizontally() 
+            {
+                return base.CanScrollHorizontally();
+            }
+
+            public override bool CanScrollVertically()
+            {
+                return base.CanScrollVertically();
+            }
+
+            public override float ScrollHorizontallyBy(float dy, FlexibleViewRecycler recycler, bool immediate)
+            {
+                return base.ScrollHorizontallyBy(dy, recycler, immediate);
+            }
+
+            public override float ScrollVerticallyBy(float dy, FlexibleViewRecycler recycler, bool immediate)
+            {
+                return base.ScrollVerticallyBy(dy, recycler, immediate);
+            }
+
+            public override float ComputeScrollExtent()
+            {
+                return base.ComputeScrollExtent();
+            }
+
+            public override float ComputeScrollOffset()
+            {
+                return base.ComputeScrollOffset();
+            }
+
+            public override float ComputeScrollRange()
+            {
+                return base.ComputeScrollRange();
+            }
+
+            public FlexibleViewViewHolder OnFindFirstVisibleItemView()
+            {
+                return base.FindFirstVisibleItemView();
+            }
+
+            public FlexibleViewViewHolder OnFindLastVisibleItemView()
+            {
+                return base.FindLastVisibleItemView();
+            }
+
+            internal override FlexibleViewViewHolder OnFocusSearchFailed(FlexibleViewViewHolder focused, FlexibleViewLayoutManager.Direction direction, FlexibleViewRecycler recycler)
+            {
+                return base.OnFocusSearchFailed(focused, direction, recycler);
+            }
+        }
+
         [SetUp]
         public void Init()
         {
@@ -353,6 +419,315 @@ namespace Tizen.NUI.Components.Devel.Tests
             }
 
             tlog.Debug(tag, $"FlexibleViewLayoutManagerOffsetChildrenVertical END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewLayoutManager CanScrollHorizontally.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewLayoutManager.CanScrollHorizontally M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexibleViewLayoutManagerCanScrollHorizontally()
+        {
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerCanScrollHorizontally START");
+
+            var testingTarget = new FlexibleViewLayoutManagerImpl();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<FlexibleViewLayoutManager>(testingTarget, "should be an instance of testing target class!");
+
+            var result = horizontalLayoutManager.CanScrollHorizontally();
+            tlog.Debug(tag, "CanScrollHorizontally : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerCanScrollHorizontally END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewLayoutManager CanScrollVertically.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewLayoutManager.CanScrollVertically M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexibleViewLayoutManagerCanScrollVertically()
+        {
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerCanScrollVertically START");
+
+            var testingTarget = new FlexibleViewLayoutManagerImpl();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<FlexibleViewLayoutManager>(testingTarget, "should be an instance of testing target class!");
+
+            var result = horizontalLayoutManager.CanScrollVertically();
+            tlog.Debug(tag, "CanScrollVertically : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerCanScrollVertically END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewLayoutManager ScrollHorizontallyBy.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewLayoutManager.ScrollHorizontallyBy M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexibleViewLayoutManagerScrollHorizontallyBy()
+        {
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerScrollHorizontallyBy START");
+
+            var testingTarget = new FlexibleViewLayoutManagerImpl();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<FlexibleViewLayoutManager>(testingTarget, "should be an instance of testing target class!");
+
+            using (FlexibleView view = new FlexibleView() { Padding = new Extents(10, 10, 10, 10) })
+            {
+                FlexibleViewRecycler recycler = new FlexibleViewRecycler(view);
+                var result = testingTarget.ScrollHorizontallyBy(1.0f, recycler, false);
+                tlog.Debug(tag, "ScrollHorizontallyBy : " + result);
+            }
+                
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerScrollHorizontallyBy END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewLayoutManager ScrollVerticallyBy.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewLayoutManager.ScrollVerticallyBy M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexibleViewLayoutManagerScrollVerticallyBy()
+        {
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerScrollVerticallyBy START");
+
+            var testingTarget = new FlexibleViewLayoutManagerImpl();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<FlexibleViewLayoutManager>(testingTarget, "should be an instance of testing target class!");
+
+            using (FlexibleView view = new FlexibleView() { Padding = new Extents(10, 10, 10, 10) })
+            {
+                FlexibleViewRecycler recycler = new FlexibleViewRecycler(view);
+                var result = testingTarget.ScrollVerticallyBy(1.0f, recycler, false);
+                tlog.Debug(tag, "ScrollVerticallyBy : " + result);
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerScrollVerticallyBy END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewLayoutManager ComputeScrollExtent.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewLayoutManager.ComputeScrollExtent M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexibleViewLayoutManagerComputeScrollExtent()
+        {
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerComputeScrollExtent START");
+
+            var testingTarget = new FlexibleViewLayoutManagerImpl();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<FlexibleViewLayoutManager>(testingTarget, "should be an instance of testing target class!");
+
+            var result = testingTarget.ComputeScrollExtent();
+            tlog.Debug(tag, "ComputeScrollExtent : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerComputeScrollExtent END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewLayoutManager ComputeScrollOffset.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewLayoutManager.ComputeScrollOffset M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexibleViewLayoutManagerComputeScrollOffset()
+        {
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerComputeScrollOffset START");
+
+            var testingTarget = new FlexibleViewLayoutManagerImpl();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<FlexibleViewLayoutManager>(testingTarget, "should be an instance of testing target class!");
+
+            var result = testingTarget.ComputeScrollOffset();
+            tlog.Debug(tag, "ComputeScrollOffset : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerComputeScrollOffset END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewLayoutManager ComputeScrollRange.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewLayoutManager.ComputeScrollRange M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexibleViewLayoutManagerComputeScrollRange()
+        {
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerComputeScrollRange START");
+
+            var testingTarget = new FlexibleViewLayoutManagerImpl();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<FlexibleViewLayoutManager>(testingTarget, "should be an instance of testing target class!");
+
+            var result = testingTarget.ComputeScrollRange();
+            tlog.Debug(tag, "ComputeScrollRange : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerComputeScrollRange END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewLayoutManager RemoveAndRecycleViewAt.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewLayoutManager.RemoveAndRecycleViewAt M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexibleViewLayoutManagerRemoveAndRecycleViewAt()
+        {
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerRemoveAndRecycleViewAt START");
+
+            var testingTarget = GetVerticalFlexibleView();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<FlexibleView>(testingTarget, "should be an instance of testing target class!");
+
+            try
+            {
+                verticalLayoutManager.RemoveAndRecycleViewAt(0, testingTarget.GetRecycler());
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerRemoveAndRecycleViewAt END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewLayoutManager FindFirstVisibleItemView.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewLayoutManager.FindFirstVisibleItemView M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexibleViewLayoutManagerFindFirstVisibleItemView()
+        {
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerFindFirstVisibleItemView START");
+
+            var testingTarget = new FlexibleViewLayoutManagerImpl();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<FlexibleViewLayoutManager>(testingTarget, "should be an instance of testing target class!");
+
+            var result = testingTarget.OnFindFirstVisibleItemView();
+            tlog.Debug(tag, "FindFirstVisibleItemView : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerFindFirstVisibleItemView END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewLayoutManager FindLastVisibleItemView.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewLayoutManager.FindLastVisibleItemView M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexibleViewLayoutManagerFindLastVisibleItemView()
+        {
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerFindLastVisibleItemView START");
+
+            var testingTarget = new FlexibleViewLayoutManagerImpl();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<FlexibleViewLayoutManager>(testingTarget, "should be an instance of testing target class!");
+
+            var result = testingTarget.OnFindLastVisibleItemView();
+            tlog.Debug(tag, "FindLastVisibleItemView : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerFindLastVisibleItemView END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewLayoutManager OnFocusSearchFailed.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewLayoutManager.OnFocusSearchFailed M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexibleViewLayoutManagerOnFocusSearchFailed()
+        {
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerOnFocusSearchFailed START");
+
+            var testingTarget = new FlexibleViewLayoutManagerImpl();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<FlexibleViewLayoutManager>(testingTarget, "should be an instance of testing target class!");
+
+            using (View view = new View() { Size = new Size(100, 200) })
+            {
+                FlexibleViewViewHolder focused = new FlexibleViewViewHolder(view);
+
+                using (FlexibleView recyclerView = new FlexibleView() { Padding = new Extents(10, 10, 10, 10) })
+                {
+                    FlexibleViewRecycler recycler = new FlexibleViewRecycler(recyclerView);
+
+                    var result = testingTarget.OnFocusSearchFailed(focused, FlexibleViewLayoutManager.Direction.Down, recycler);
+                    tlog.Debug(tag, "OnFocusSearchFailed : " + result);
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerOnFocusSearchFailed END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FlexibleViewLayoutManager RemoveAndRecycleViewAt.")]
+        [Property("SPEC", "Tizen.NUI.Components.FlexibleViewLayoutManager.RemoveAndRecycleViewAt M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FlexibleViewLayoutManagerOnLayoutComplete()
+        {
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerOnLayoutComplete START");
+
+            var testingTarget = GetVerticalFlexibleView();
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<FlexibleView>(testingTarget, "should be an instance of testing target class!");
+
+            var vHelper = new VerticalHelper(verticalLayoutManager);
+            try
+            {
+                vHelper.OnLayoutComplete();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FlexibleViewLayoutManagerOnLayoutComplete END (OK)");
         }
     }
 }

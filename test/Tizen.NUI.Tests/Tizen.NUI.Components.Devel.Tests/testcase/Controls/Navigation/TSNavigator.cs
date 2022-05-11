@@ -62,7 +62,7 @@ namespace Tizen.NUI.Components.Devel.Tests
         {
             tlog.Debug(tag, $"NavigatorTransition START");
 
-            var testingTarget = new Navigator();
+            var testingTarget = NUIApplication.GetDefaultWindow().GetDefaultNavigator();
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Navigator>(testingTarget, "Should return Navigator instance.");
 
@@ -75,7 +75,6 @@ namespace Tizen.NUI.Components.Devel.Tests
             testingTarget.Transition = ts;
             tlog.Debug(tag, "AppearingTransition : " + testingTarget.Transition);
 
-            testingTarget.Dispose();
             tlog.Debug(tag, $"NavigatorTransition END (OK)");
         }
 
@@ -91,11 +90,7 @@ namespace Tizen.NUI.Components.Devel.Tests
         {
             tlog.Debug(tag, $"NavigatorPushWithTransition START");
 
-            var testingTarget = new Navigator()
-            {
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent
-            };
+            var testingTarget = NUIApplication.GetDefaultWindow().GetDefaultNavigator();
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Navigator>(testingTarget, "Should return Navigator instance.");
 
@@ -103,7 +98,6 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             var page1 = CreateFirstPage(testingTarget);
             var page2 = CreateSecondPage(testingTarget);
-            testingTarget.Pop();
             var page3 = CreateThirdPage(testingTarget);
             var page4 = CreateFourthPage(testingTarget);
 
@@ -120,6 +114,15 @@ namespace Tizen.NUI.Components.Devel.Tests
             {
                 testingTarget.PushWithTransition(page1);
                 testingTarget.PopWithTransition();
+
+                testingTarget.PushWithTransition(page2);
+                testingTarget.PopWithTransition();
+
+                testingTarget.PushWithTransition(page3);
+                testingTarget.PopWithTransition();
+
+                testingTarget.PushWithTransition(page4);
+                testingTarget.PopWithTransition();
             }
             catch (Exception e)
             {
@@ -127,9 +130,6 @@ namespace Tizen.NUI.Components.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            Window.Instance.Remove(testingTarget);
-
-            testingTarget.Dispose();
             tlog.Debug(tag, $"NavigatorPushWithTransition END (OK)");
         }
 
@@ -145,15 +145,10 @@ namespace Tizen.NUI.Components.Devel.Tests
         {
             tlog.Debug(tag, $"NavigatorPushWithTransitionWithNullPage START");
 
-            var testingTarget = new Navigator()
-            {
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent
-            };
+            var testingTarget = NUIApplication.GetDefaultWindow().GetDefaultNavigator();
+
             Assert.IsNotNull(testingTarget, "null handle");
             Assert.IsInstanceOf<Navigator>(testingTarget, "Should return Navigator instance.");
-
-            Window.Instance.Add(testingTarget);
 
             Transition ts = new Transition()
             {
@@ -171,8 +166,6 @@ namespace Tizen.NUI.Components.Devel.Tests
             }
             catch (ArgumentNullException)
             {
-                Window.Instance.Remove(testingTarget);
-                testingTarget.Dispose();
                 tlog.Debug(tag, $"NavigatorPushWithTransitionWithNullPage END (OK)");
                 Assert.Pass("Caught ArgumentNullException : Passed!");
             }
@@ -199,7 +192,7 @@ namespace Tizen.NUI.Components.Devel.Tests
             };
 
             navigator.Push(page);
-            
+
             return page;
         }
 

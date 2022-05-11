@@ -26,13 +26,21 @@ namespace Tizen.NUI
     /// <summary>
     /// DragAndDrop controls the drag objet and data.
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000: Dispose objects before losing scope", Justification = "It does not have ownership.")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class DragAndDrop : BaseHandle
     {
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void SourceEventHandler(SourceEventType sourceEventType);
+        private delegate void InternalSourceEventHandler(int sourceEventType);
         public delegate void DragAndDropEventHandler(View targetView, DragEvent dragEvent);
         private delegate void InternalDragAndDropEventHandler(global::System.IntPtr dragEvent);
+        private InternalSourceEventHandler sourceEventCb;
         private Dictionary<View, InternalDragAndDropEventHandler> targetEventDictionary = new Dictionary<View, InternalDragAndDropEventHandler>();
+        private View mShadowView;
+        private Window mDragWindow;
+        private const int shadowWidth = 150;
+        private const int shadowHeight = 150;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         private DragAndDrop() : this(Interop.DragAndDrop.New(), true)
@@ -45,6 +53,9 @@ namespace Tizen.NUI
 
         }
 
+        /// <summary>
+        /// Gets the singleton instance of DragAndDrop.
+        /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static DragAndDrop Instance { get; } = new DragAndDrop();
 
@@ -54,10 +65,42 @@ namespace Tizen.NUI
         /// <param name="sourceView">The soruce view</param>
         /// <param name="shadowView">The shadow view for drag object</param>
         /// <param name="dragData">The data to send</param>
+        /// <param name="callback">The source event callback</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void StartDragAndDrop(View sourceView, View shadowView, DragData dragData)
+        public void StartDragAndDrop(View sourceView, View shadowView, DragData dragData, SourceEventHandler callback)
         {
-            if (!Interop.DragAndDrop.StartDragAndDrop(SwigCPtr, View.getCPtr(sourceView), View.getCPtr(shadowView), dragData.MimeType, dragData.Data))
+            if (null == shadowView)
+            {
+                throw new ArgumentNullException(nameof(shadowView));
+            }
+
+            if (null == mDragWindow)
+            {
+                mDragWindow = new Window("DragWindow", new Rectangle(-shadowWidth, -shadowHeight, shadowWidth, shadowHeight), true)
+                {
+                    BackgroundColor = Color.Transparent,
+                };
+            }
+
+            shadowView.SetSize(shadowWidth, shadowHeight);
+            shadowView.SetOpacity(0.9f);
+
+            if (mShadowView)
+            {
+                mDragWindow.Remove(mShadowView);
+            }
+
+            mShadowView = shadowView;
+            mDragWindow.Add(mShadowView);
+            mDragWindow.Show();
+
+            sourceEventCb = (sourceEventType) =>
+            {
+                callback((SourceEventType)sourceEventType);
+            };
+
+            if (!Interop.DragAndDrop.StartDragAndDrop(SwigCPtr, View.getCPtr(sourceView), Window.getCPtr(mDragWindow), dragData.MimeType, dragData.Data,
+                                                      new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(sourceEventCb))))
             {
                 throw new InvalidOperationException("Fail to StartDragAndDrop");
             }

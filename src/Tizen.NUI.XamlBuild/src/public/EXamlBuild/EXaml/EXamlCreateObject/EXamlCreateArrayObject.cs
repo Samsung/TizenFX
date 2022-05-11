@@ -51,7 +51,7 @@ namespace Tizen.NUI.EXaml
 
             string ret = String.Format("({0} ({1} {2}))\n",
                          eXamlContext.GetValueString((int)EXamlOperationType.CreateArrayObject),
-                         eXamlContext.GetValueString(eXamlContext.GetTypeIndex(Type)),
+                         eXamlContext.GetValueString(eXamlContext.GetTypeIndex(Type.Resolve())),
                          itemsString);
 
             return ret;
