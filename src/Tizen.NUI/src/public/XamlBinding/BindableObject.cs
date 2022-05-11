@@ -245,7 +245,7 @@ namespace Tizen.NUI.Binding
 
         /// Internal used, will never changed to not hidden.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsCreateByXaml
+        public virtual bool IsCreateByXaml
         {
             get;
             set;
