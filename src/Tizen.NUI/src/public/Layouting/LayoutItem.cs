@@ -564,7 +564,7 @@ namespace Tizen.NUI
                 // Store new layout position data
                 layoutPositionData = new LayoutData(this, ConditionForAnimation, left, top, right, bottom);
 
-                NUILog.Debug("LayoutItem FramePositionData View:" + layoutPositionData.Item.Owner.Name +
+                NUILog.Debug("LayoutItem FramePositionData View:" + layoutPositionData.Item?.Owner?.Name +
                                                          " left:" + layoutPositionData.Left +
                                                          " top:" + layoutPositionData.Top +
                                                          " right:" + layoutPositionData.Right +
