@@ -131,23 +131,23 @@ namespace NUIDnDSource
             }
         }
 
-        public void OnSourceEventFunc(SourceEventType type)
+        public void OnSourceEventFunc(DragSourceEventType type)
         {
-          if (type == SourceEventType.Start)
+          if (type == DragSourceEventType.Start)
           {
-            Tizen.Log.Debug("NUIDnDSource", "Source App SourceEvnetType: " + "Start");
+            Tizen.Log.Debug("NUIDnDSource", "Source App DragSourceEventType: " + "Start");
           }
-          else if (type == SourceEventType.Cancel)
+          else if (type == DragSourceEventType.Cancel)
           {
-            Tizen.Log.Debug("NUIDnDSource", "Source App SourceEvnetType: " + "Cancel");
+            Tizen.Log.Debug("NUIDnDSource", "Source App DragSourceEventType: " + "Cancel");
           }
-          else if (type == SourceEventType.Accept)
+          else if (type == DragSourceEventType.Accept)
           {
-            Tizen.Log.Debug("NUIDnDSource", "Source App SourceEvnetType: " + "Accept");
+            Tizen.Log.Debug("NUIDnDSource", "Source App DragSourceEventType: " + "Accept");
           }
-          else if (type == SourceEventType.Finish)
+          else if (type == DragSourceEventType.Finish)
           {
-            Tizen.Log.Debug("NUIDnDSource", "Source App SourceEvnetType: " + "Finish");
+            Tizen.Log.Debug("NUIDnDSource", "Source App DragSourceEventType: " + "Finish");
           }
         }
 
