@@ -50,7 +50,8 @@ namespace Tizen.NUI.Samples
                     LinearOrientation = LinearLayout.Orientation.Vertical,
                     HorizontalAlignment = HorizontalAlignment.Center,
                     CellPadding = new Size2D(10, 10),
-                }
+                },
+                Focusable = true,
             };
 
             Random rnd = new Random();
