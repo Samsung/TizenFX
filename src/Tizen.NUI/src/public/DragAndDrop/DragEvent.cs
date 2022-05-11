@@ -21,10 +21,10 @@ using Tizen.NUI.Binding;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// Source event type.
+    /// Drag source event type.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public enum SourceEventType
+    /// <since_tizen> 10 </since_tizen>
+    public enum DragSourceEventType
     {
         /// <summary>
         /// Drag and drop is started.
@@ -47,9 +47,9 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies drag data.
     /// </summary>
-    /// Suppress warning : This struct will be used data of callback, so override equals and operator does not necessary.
+    /// <since_tizen> 10 </since_tizen>
+    // Suppress warning : This struct will be used data of callback, so override equals and operator does not necessary.
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1815: Override equals and operator equals on value types")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public struct DragData
     {
         /// <summary>
@@ -65,7 +65,7 @@ namespace Tizen.NUI
     /// <summary>
     /// Drag event type.
     /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 10 </since_tizen>
     public enum DragType
     {
         /// <summary>
@@ -89,9 +89,9 @@ namespace Tizen.NUI
     /// <summary>
     /// This specifies drag event.
     /// </summary>
-    /// Suppress warning : This struct will be used data of callback, so override equals and operator does not necessary.
+    /// <since_tizen> 10 </since_tizen>
+    // Suppress warning : This struct will be used data of callback, so override equals and operator does not necessary.
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1815: Override equals and operator equals on value types")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public struct DragEvent
     {
         /// <summary>
