@@ -360,7 +360,7 @@ namespace Tizen.NUI.Components
                 page.PositionX = SizeWidth;
                 page.SetVisible(true);
                 // Set Content visible because it was hidden by HideContentOfPage.
-                (page as ContentPage).Content?.SetVisible(true);
+                (page as ContentPage)?.Content?.SetVisible(true);
 
                 newAnimation = new Animation(DefaultTransitionDuration);
                 newAnimation.AnimateTo(page, "PositionX", 0.0f, 0, DefaultTransitionDuration);
@@ -447,7 +447,7 @@ namespace Tizen.NUI.Components
 
                 newTop.SetVisible(true);
                 // Set Content visible because it was hidden by HideContentOfPage.
-                (newTop as ContentPage).Content?.SetVisible(true);
+                (newTop as ContentPage)?.Content?.SetVisible(true);
 
                 newAnimation = new Animation(DefaultTransitionDuration);
                 newAnimation.AnimateTo(newTop, "PositionX", 0.0f, 0, DefaultTransitionDuration);
@@ -744,11 +744,11 @@ namespace Tizen.NUI.Components
         {
             currentTopPage.SetVisible(true);
             // Set Content visible because it was hidden by HideContentOfPage.
-            (currentTopPage as ContentPage).Content?.SetVisible(true);
+            (currentTopPage as ContentPage)?.Content?.SetVisible(true);
 
             newTopPage.SetVisible(true);
             // Set Content visible because it was hidden by HideContentOfPage.
-            (newTopPage as ContentPage).Content?.SetVisible(true);
+            (newTopPage as ContentPage)?.Content?.SetVisible(true);
 
             List<View> taggedViewsInNewTopPage = new List<View>();
             RetrieveTaggedViews(taggedViewsInNewTopPage, newTopPage, true);
