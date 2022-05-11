@@ -1012,6 +1012,42 @@ namespace Tizen.NUI.Components
             AnimateChildTo(ScrollDuration, -targetPosition);
         }
 
+        internal void ScrollToChild(View child, bool anim = false)
+        {
+            if (null == FindDescendantByID(child.ID)) return;
+
+            bool isHorizontal = (ScrollingDirection == Direction.Horizontal);
+
+            float viewScreenPosition = (isHorizontal? ScreenPosition.X : ScreenPosition.Y);
+            float childScreenPosition = (isHorizontal? child.ScreenPosition.X : child.ScreenPosition.Y);
+            float scrollPosition = (isHorizontal? ScrollPosition.X : ScrollPosition.Y);
+            float viewSize = (isHorizontal? SizeWidth : SizeHeight);
+            float childSize = (isHorizontal? child.SizeWidth : child.SizeHeight);
+            float targetPosition = scrollPosition;
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"[DEBUG] :: ScrollTo [{child.ID}], current{scrollPosition}] view[{viewScreenPosition}, {viewSize}] child[{childScreenPosition}, {childSize}]");
+                Console.ResetColor();
+
+            if (viewScreenPosition > childScreenPosition ||
+                viewScreenPosition + viewSize < childScreenPosition + childSize)
+            {// if object is outside
+                float dist = viewScreenPosition - childScreenPosition;
+                if (dist > 0)
+                {// if object is upper side
+                    targetPosition = scrollPosition - dist;
+                }
+                else
+                {// if object is down side
+                    targetPosition = scrollPosition - dist + childSize - viewSize;
+                }
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine($"[DEBUG] :: ScrollTo destination[{targetPosition}]");
+                Console.ResetColor();
+            }
+            ScrollTo(targetPosition, anim);
+        }
+
         private void OnScrollDragStarted()
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
@@ -1879,6 +1915,7 @@ namespace Tizen.NUI.Components
                     {
                         if (IsChildNearlyVisble(nextFocusedView, Size.Height * 0.5f) == true)
                         {
+                            /*
                             if (left < visibleRectangleLeft)
                             {
                                 targetPosition = left - scrollPosition.X;
@@ -1886,7 +1923,8 @@ namespace Tizen.NUI.Components
                             else if (right > visibleRectangleRight)
                             {
                                 targetPosition = right - Size.Width - scrollPosition.X;
-                            }
+                            }*/
+                            ScrollToChild(nextFocusedView, true);
                         }
                         else
                         {
@@ -1897,6 +1935,7 @@ namespace Tizen.NUI.Components
                     {
                         if (IsChildNearlyVisble(nextFocusedView, Size.Height * 0.5f) == true)
                         {
+                            /*
                             if (top < visibleRectangleTop)
                             {
                                 targetPosition = top - scrollPosition.Y;
@@ -1905,6 +1944,9 @@ namespace Tizen.NUI.Components
                             {
                                 targetPosition = bottom - Size.Height - scrollPosition.Y;
                             }
+                            */
+
+                            ScrollToChild(nextFocusedView, true);
                         }
                         else
                         {
@@ -1919,9 +1961,9 @@ namespace Tizen.NUI.Components
                                 targetPosition -= Size.Height * 0.5f;
                                 targetPosition = targetPosition < 0 ? 0 : targetPosition;
                             }
+                            ScrollTo(targetPosition, true);
                         }
                     }
-                    ScrollTo(targetPosition, true);
                 }
             }
             else
