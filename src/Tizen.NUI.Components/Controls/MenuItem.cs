@@ -85,14 +85,6 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void OnRelayout(Vector2 size, RelayoutContainer container)
-        {
-            base.OnRelayout(size, container);
-            LayoutItems();
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnKey(Key key)
         {
             if ((IsEnabled == false) || (key == null))
@@ -120,6 +112,36 @@ namespace Tizen.NUI.Components
             }
 
             return ret;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new string Text
+        {
+            get
+            {
+                return base.Text;
+            }
+            set
+            {
+                base.Text = value;
+                UpdateSizeAndSpacing();
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new string IconURL
+        {
+            get
+            {
+                return base.IconURL;
+            }
+            set
+            {
+                base.IconURL = value;
+                UpdateSizeAndSpacing();
+            }
         }
 
         /// <inheritdoc/>
@@ -180,6 +202,31 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void LayoutItems()
         {
+            UpdateSizeAndSpacing();
+        }
+
+        private void Initialize()
+        {
+            Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Begin,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
+        }
+
+        /// <summary>
+        /// Initialize AT-SPI object.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override void OnInitialize()
+        {
+            base.OnInitialize();
+            AccessibilityRole = Role.MenuItem;
+        }
+
+        private void UpdateSizeAndSpacing()
+        {
             if (styleApplied == false)
             {
                 return;
@@ -221,26 +268,6 @@ namespace Tizen.NUI.Components
             {
                 Add(TextLabel);
             }
-        }
-
-        private void Initialize()
-        {
-            Layout = new LinearLayout()
-            {
-                LinearOrientation = LinearLayout.Orientation.Horizontal,
-                HorizontalAlignment = HorizontalAlignment.Begin,
-                VerticalAlignment = VerticalAlignment.Center,
-            };
-        }
-
-        /// <summary>
-        /// Initialize AT-SPI object.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void OnInitialize()
-        {
-            base.OnInitialize();
-            AccessibilityRole = Role.MenuItem;
         }
     }
 }
