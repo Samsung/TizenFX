@@ -157,6 +157,7 @@ namespace NUIDnDSource
             {
                 Tizen.Log.Debug("NUIDnDSource", "StartDragAndDrop");
                 shadowView = new ImageView(Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource.png");
+                shadowView.Size = new Size(150, 150);
                 DragData dragData;
                 dragData.MimeType = "text/uri-list";
                 dragData.Data = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource.png";
