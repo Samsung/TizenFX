@@ -276,6 +276,18 @@ namespace Tizen.NUI.BaseComponents
             return textEditorStyle.relativeLineHeight;
         });
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SelectionPopupStyleProperty = BindableProperty.Create(nameof(SelectionPopupStyle), typeof(PropertyMap), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textEditorStyle = (TextEditorStyle)bindable;
+            textEditorStyle.selectionPopupStyle = (PropertyMap)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textEditorStyle = (TextEditorStyle)bindable;
+            return textEditorStyle.selectionPopupStyle;
+        });
+
         private HorizontalAlignment? horizontalAlignment;
         private VerticalAlignment? verticalAlignment;
         private Vector4 secondaryCursorColor;
@@ -309,6 +321,7 @@ namespace Tizen.NUI.BaseComponents
         private Color placeholderTextColor;
         private Vector4 primaryCursorColor;
         private PropertyMap fontStyle;
+        private PropertyMap selectionPopupStyle;
         private bool? ellipsis;
         private float? lineSpacing;
         private float? minLineSize;
@@ -697,6 +710,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (float?)GetValue(RelativeLineHeightProperty);
             set => SetValue(RelativeLineHeightProperty, value);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap SelectionPopupStyle
+        {
+            get => (PropertyMap)GetValue(SelectionPopupStyleProperty);
+            set => SetValue(SelectionPopupStyleProperty, value);
         }
     }
 }
