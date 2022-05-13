@@ -87,6 +87,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SCROLL_SPEED_get")]
             public static extern int ScrollSpeedGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_POPUP_STYLE_get")]
+            public static extern int SelectionPopupStyleGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_Property_SELECTION_HANDLE_IMAGE_LEFT_get")]
             public static extern int SelectionHandleImageLeftGet();
 

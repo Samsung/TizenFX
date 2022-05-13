@@ -531,6 +531,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The SelectionPopupStyle property.<br />
+        /// The style of the text selection popup can be set through SelectionPopupStyle property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap SelectionPopupStyle
+        {
+            get
+            {
+                return (PropertyMap)GetValue(SelectionPopupStyleProperty);
+            }
+            set
+            {
+                SetValue(SelectionPopupStyleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The SelectionHandleImageLeft property.<br />
         /// The image to display for the left selection handle.<br />
         /// The selectionHandleImageLeft map contains the following key :<br />
@@ -2557,6 +2575,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int CursorWidth = Interop.TextEditor.CursorWidthGet();
             internal static readonly int GrabHandleImage = Interop.TextEditor.GrabHandleImageGet();
             internal static readonly int GrabHandlePressedImage = Interop.TextEditor.GrabHandlePressedImageGet();
+            internal static readonly int SelectionPopupStyle = Interop.TextEditor.SelectionPopupStyleGet();
             internal static readonly int SelectionHandleImageLeft = Interop.TextEditor.SelectionHandleImageLeftGet();
             internal static readonly int SelectionHandleImageRight = Interop.TextEditor.SelectionHandleImageRightGet();
             internal static readonly int SelectionHandlePressedImageLeft = Interop.TextEditor.SelectionHandlePressedImageLeftGet();
