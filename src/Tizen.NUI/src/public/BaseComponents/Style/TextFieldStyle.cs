@@ -497,6 +497,18 @@ namespace Tizen.NUI.BaseComponents
             return textFieldStyle.fontStyle;
         });
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SelectionPopupStyleProperty = BindableProperty.Create(nameof(SelectionPopupStyle), typeof(PropertyMap), typeof(TextFieldStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            textFieldStyle.selectionPopupStyle = (PropertyMap)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textFieldStyle = (TextFieldStyle)bindable;
+            return textFieldStyle.selectionPopupStyle;
+        });
+
         private string placeholderText;
         private string placeholderTextFocused;
         private int? maxLength;
@@ -536,6 +548,7 @@ namespace Tizen.NUI.BaseComponents
         private Vector4 placeholderTextColor;
         private Vector4 primaryCursorColor;
         private PropertyMap fontStyle;
+        private PropertyMap selectionPopupStyle;
 
         static TextFieldStyle() { }
 
@@ -858,6 +871,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (PropertyMap)GetValue(FontStyleProperty);
             set => SetValue(FontStyleProperty, value);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap SelectionPopupStyle
+        {
+            get => (PropertyMap)GetValue(SelectionPopupStyleProperty);
+            set => SetValue(SelectionPopupStyleProperty, value);
         }
     }
 }
