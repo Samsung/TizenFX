@@ -16,115 +16,13 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using Tizen.NUI;
 
 namespace Tizen.NUI.BaseComponents
 {
-    /// <summary>
-    /// Address represents an unique object address on accessibility bus.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Address
-    {
-        /// <summary>
-        /// Creates an initialized Address.
-        /// </summary>
-        /// <param name="bus">Accessibility bus</param>
-        /// <param name="path">Accessibility path</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Address(string bus, string path)
-        {
-            Bus = bus;
-            Path = path;
-        }
-
-        /// <summary>
-        /// Gets or sets accessibility bus.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Bus { get; set; }
-
-        /// <summary>
-        /// Gets or sets accessibility path.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Path { get; set; }
-    }
-
-    /// <summary>
-    /// AddressCollection.
-    /// </summary>
-    [EditorBrowsable(EditorBrowsableState.Never)]
-    public class AddressCollection : SafeHandle
-    {
-        /// <summary>
-        /// Creates an initialized AddressCollection.
-        /// </summary>
-        /// <param name="collection">Initialized AddressCollection</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public AddressCollection(IntPtr collection) : base(collection, true)
-        {
-        }
-
-        /// <summary>
-        /// Checks whether this handle is invalid or not.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool IsInvalid
-        {
-            get
-            {
-                return this.handle == IntPtr.Zero;
-            }
-        }
-
-        /// <summary>
-        /// Gets the size of accessibility relation.
-        /// </summary>
-        /// <param name="relation">Accessibility relation</param>
-        /// <returns>The size of relation, which means the number of elements</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint GetRelationSize(AccessibilityRelationType relation)
-        {
-            uint result = Interop.ControlDevel.DaliToolkitDevelControlAccessibilityRelationsRelationSize(this, Convert.ToInt32(relation));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return result;
-        }
-
-        /// <summary>
-        /// Gets Address object using contained bus and path.
-        /// </summary>
-        /// <param name="relation">Accessibility relation</param>
-        /// <param name="position">Position</param>
-        /// <returns>Accessibility Adress</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Address GetAddressAt(AccessibilityRelationType relation, int position)
-        {
-            var bus = Interop.ControlDevel.DaliToolkitDevelControlAccessibilityRelationsAt(this, Convert.ToInt32(relation), position, 0);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            var path = Interop.ControlDevel.DaliToolkitDevelControlAccessibilityRelationsAt(this, Convert.ToInt32(relation), position, 1);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            return new Address(bus, path);
-        }
-
-        /// <summary>
-        /// Releases handle itself.
-        /// </summary>
-        /// <returns>true when released successfully.</returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool ReleaseHandle()
-        {
-            Interop.ControlDevel.DaliToolkitDevelControlDeleteAccessibilityRelations(handle);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            this.SetHandle(IntPtr.Zero);
-            return true;
-        }
-    }
-
     /// <summary>
     /// AccessibilityRange is used to store data related with Text.
     /// </summary>
@@ -285,13 +183,42 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Gets accessibility collection connected with the current object.
         /// </summary>
-        /// <returns>AddressCollection</returns>
+        /// <returns>A dictionary mapping a relation type to a set of objects in that relation</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public AddressCollection GetAccessibilityRelations()
+        public Dictionary<AccessibilityRelationType, List<View>> GetAccessibilityRelations()
         {
-            var result = new AddressCollection(Interop.ControlDevel.DaliToolkitDevelControlNewGetAccessibilityRelations(SwigCPtr));
+            var list = new List<KeyValuePair<int, IntPtr>>();
+            var listHandle = GCHandle.Alloc(list);
+            var callback = new Interop.ControlDevel.GetAccessibilityRelationsCallback(GetAccessibilityRelationsCallback);
+
+            Interop.ControlDevel.DaliToolkitDevelControlGetAccessibilityRelations(SwigCPtr, callback, GCHandle.ToIntPtr(listHandle));
+            listHandle.Free();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            var result = new Dictionary<AccessibilityRelationType, List<View>>();
+
+            foreach (var pair in list)
+            {
+                var key = (AccessibilityRelationType)pair.Key;
+                var value = this.GetInstanceSafely<View>(pair.Value);
+
+                if (!result.ContainsKey(key))
+                {
+                    result[key] = new List<View>();
+                }
+
+                result[key].Add(value);
+            }
+
             return result;
+        }
+
+        private static void GetAccessibilityRelationsCallback(int relationType, IntPtr relationTarget, IntPtr userData)
+        {
+            var handle = GCHandle.FromIntPtr(userData);
+            var list = (List<KeyValuePair<int, IntPtr>>)handle.Target;
+
+            list.Add(new KeyValuePair<int, IntPtr>(relationType, relationTarget));
         }
 
         ///////////////////////////////////////////////////////////////////
