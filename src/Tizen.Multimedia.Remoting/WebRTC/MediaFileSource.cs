@@ -46,6 +46,42 @@ namespace Tizen.Multimedia.Remoting
             _path = path ?? throw new ArgumentNullException(nameof(path), "path is null");
         }
 
+        /// <summary>
+        /// Gets or sets the looping mode of the file source.
+        /// </summary>
+        /// <value>
+        /// true if the transfer starts again from the beginning of the file source after reaching the end of the file; otherwise, false\n
+        /// The default value is false.
+        /// </value>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public bool Looping
+        {
+            get
+            {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+
+                NativeWebRTC.GetFileSourceLooping(WebRtc.Handle, SourceId.Value, out bool isLooping).
+                    ThrowIfFailed("Failed to get looping mode");
+
+                return isLooping;
+            }
+            set
+            {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+
+                NativeWebRTC.SetFileSourceLooping(WebRtc.Handle, SourceId.Value, value).
+                    ThrowIfFailed("Failed to set looping mode");
+            }
+        }
+
         internal override void OnAttached(WebRTC webRtc)
         {
             Debug.Assert(webRtc != null);
