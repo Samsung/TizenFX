@@ -27,8 +27,11 @@ namespace Tizen.NUI.Components
     /// ScrollEventArgs is a class to record scroll event arguments which will sent to user.
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
+    [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1001: Types that own disposable fields should be disposable.", Justification = "Scroll event is temporarily used for notifying scroll position update, so position will not be disposed during the event processing.")]
     public class ScrollEventArgs : EventArgs
     {
+        // Position class is derived class of Disposable class and they will be implicitly disposed by DisposeQueue,
+        // so that there will be no memory leak.
         private Position position;
         private Position scrollPosition;
 
@@ -1720,6 +1723,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Decelerating(float velocity, Animation animation)
         {
+            if (animation == null) throw new ArgumentNullException(nameof(animation));
             // Decelerating using deceleration equation ===========
             //
             // V   : velocity (pixel per millisecond)
