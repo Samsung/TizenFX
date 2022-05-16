@@ -52,12 +52,27 @@ namespace Tizen.NUI.Samples
         {
           return false;
         }
+        topView.Layout = new LinearLayout()
+        {
+          LinearOrientation = LinearLayout.Orientation.Horizontal, 
+          LinearAlignment = LinearLayout.Alignment.CenterVertical,
+          CellPadding = new Size2D(20, 20),
+        };
         title = new TextLabel()
         {
           Text = "CustomBorder",
-          Position = new Position(20, 0),
+        };
+        
+        var button = new Button()
+        {
+          Text = "AlwaysOnTop",
+        };
+        button.Clicked += (s, e) =>
+        {
+          BorderWindow.EnableFloatingMode(true);
         };
         topView.Add(title);
+        topView.Add(button);
         return true;
       }
 
@@ -131,6 +146,7 @@ namespace Tizen.NUI.Samples
       public override void OnCreated(View borderView)
       {
         base.OnCreated(borderView);
+        UpdateIcons();
       }
 
       public override bool OnCloseIconTouched(object sender, View.TouchEventArgs e)
@@ -246,6 +262,7 @@ namespace Tizen.NUI.Samples
       {
         IBorderInterface customBorder = new CustomBorder();
         subWindowTwo = new Window("subwin1", customBorder, new Rectangle(60, 20, 800, 800), false);
+        subWindowTwo.EnableFloatingMode(true);
 
         var root = new View(){
           Layout = new LinearLayout()

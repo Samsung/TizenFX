@@ -14,6 +14,8 @@
  * limitations under the License.
  *
  */
+extern alias TizenSystemInformation;
+using TizenSystemInformation.Tizen.System;
 
 using System;
 using System.Collections.Generic;
@@ -47,7 +49,9 @@ namespace Tizen.NUI
         private View bottomView = null;
         private bool isTop = false;
         private bool isBottom = false;
-        uint borderHeight = 0;
+        private uint borderHeight = 0;
+        private int screenWidth = 0;
+        private int screenHeight = 0;
         #endregion //Fields
 
         #region Constructors
@@ -113,6 +117,16 @@ namespace Tizen.NUI
                 return false;
             }
 
+            try
+            {
+                Information.TryGetValue<int>("http://tizen.org/feature/screen.width", out screenWidth);
+                Information.TryGetValue<int>("http://tizen.org/feature/screen.height", out screenHeight);
+            }
+            catch (DllNotFoundException e)
+            {
+                Tizen.Log.Fatal("NUI", $"{e}\n");
+            }
+
             if (borderInterface == null)
             {
                 borderInterface = new DefaultBorder();
@@ -130,7 +144,21 @@ namespace Tizen.NUI
                 // Increase the window size as much as the border area.
                 if (isTop) borderHeight += borderInterface.BorderHeight;
                 if (isBottom) borderHeight += borderInterface.BorderHeight;
-                WindowSize += new Size2D((int)borderInterface.BorderLineThickness * 2, (int)(borderHeight + borderInterface.BorderLineThickness * 2));
+
+                // When running the app for the first time, if it runs in full size, do Maximize(true).
+                if (screenWidth != 0 && screenHeight != 0 && 
+                    Size.Width >= screenWidth && Size.Height >= screenHeight && 
+                    IsMaximized() == false)
+                {
+                    Maximize(true);
+                    ResizedEventArgs e = new ResizedEventArgs();
+                    e.WindowSize = WindowSize;
+                    OnBorderWindowResized(this, e);
+                }
+                else
+                {
+                    WindowSize += new Size2D((int)borderInterface.BorderLineThickness * 2, (int)(borderHeight + borderInterface.BorderLineThickness * 2));
+                }
 
                 if (borderInterface.OverlayMode == true)
                 {
@@ -144,10 +172,16 @@ namespace Tizen.NUI
                 BackgroundColor = Color.Transparent;
                 borderInterface.BorderWindow = this;
 
-                EnableFloatingMode(true);
-
                 borderInterface.OnCreated(borderView);
 
+                InterceptTouchEvent += (s, e) => 
+                {
+                    if (e.Touch.GetState(0) == PointStateType.Down && IsMaximized() == false)
+                    {
+                        Raise();
+                    }
+                    return false;
+                };
 
                 return true;
             }
@@ -282,9 +316,12 @@ namespace Tizen.NUI
 
         private bool OverlayInterceptTouch(object sender, View.TouchEventArgs e)
         {
-            if (isInterceptTouch == true && overlayTimer != null)
+            if (e.Touch.GetState(0) == PointStateType.Down)
             {
-                overlayTimer.Start();
+                if (isInterceptTouch == true && overlayTimer != null)
+                {
+                    overlayTimer.Start();
+                }
             }
             return false;
         }
@@ -366,6 +403,7 @@ namespace Tizen.NUI
             Tizen.Log.Info("NUI", $"OnBorderWindowResized {e.WindowSize.Width},{e.WindowSize.Height}\n");
             int resizeWidth = e.WindowSize.Width;
             int resizeHeight = e.WindowSize.Height;
+
             if (borderInterface.MinSize != null)
             {
                 resizeWidth = borderInterface.MinSize.Width > resizeWidth ? (int)borderInterface.MinSize.Width : resizeWidth;
