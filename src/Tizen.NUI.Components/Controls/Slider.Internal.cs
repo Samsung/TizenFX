@@ -126,7 +126,8 @@ namespace Tizen.NUI.Components
                 slidedTrackImage = new ImageView()
                 {
                     WidthResizePolicy = ResizePolicyType.Fixed,
-                    HeightResizePolicy = ResizePolicyType.Fixed
+                    HeightResizePolicy = ResizePolicyType.Fixed,
+                    AccessibilityHidden = true,
                 };
 
                 if (bgTrackImage != null)
@@ -145,7 +146,8 @@ namespace Tizen.NUI.Components
                 warningTrackImage = new ImageView()
                 {
                     WidthResizePolicy = ResizePolicyType.Fixed,
-                    HeightResizePolicy = ResizePolicyType.Fixed
+                    HeightResizePolicy = ResizePolicyType.Fixed,
+                    AccessibilityHidden = true,
                 };
 
                 if (bgTrackImage != null)
@@ -174,7 +176,8 @@ namespace Tizen.NUI.Components
                 warningSlidedTrackImage = new ImageView()
                 {
                     WidthResizePolicy = ResizePolicyType.Fixed,
-                    HeightResizePolicy = ResizePolicyType.Fixed
+                    HeightResizePolicy = ResizePolicyType.Fixed,
+                    AccessibilityHidden = true,
                 };
 
                 if (warningTrackImage != null)
@@ -193,7 +196,8 @@ namespace Tizen.NUI.Components
                 lowIndicatorText = new TextLabel()
                 {
                     WidthResizePolicy = ResizePolicyType.Fixed,
-                    HeightResizePolicy = ResizePolicyType.Fixed
+                    HeightResizePolicy = ResizePolicyType.Fixed,
+                    AccessibilityHidden = true,
                 };
                 this.Add(lowIndicatorText);
             }
@@ -208,7 +212,8 @@ namespace Tizen.NUI.Components
                 highIndicatorText = new TextLabel()
                 {
                     WidthResizePolicy = ResizePolicyType.Fixed,
-                    HeightResizePolicy = ResizePolicyType.Fixed
+                    HeightResizePolicy = ResizePolicyType.Fixed,
+                    AccessibilityHidden = true,
                 };
                 this.Add(highIndicatorText);
             }
@@ -226,7 +231,8 @@ namespace Tizen.NUI.Components
                     HeightResizePolicy = ResizePolicyType.Fixed,
                     ParentOrigin = Tizen.NUI.ParentOrigin.Center,
                     PivotPoint = Tizen.NUI.PivotPoint.Center,
-                    PositionUsesPivotPoint = true
+                    PositionUsesPivotPoint = true,
+                    AccessibilityHidden = true,
                 };
                 this.Add(bgTrackImage);
 
@@ -259,7 +265,8 @@ namespace Tizen.NUI.Components
                     ParentOrigin = NUI.ParentOrigin.Center,
                     PivotPoint = NUI.PivotPoint.Center,
                     PositionUsesPivotPoint = true,
-                    EnableControlState = true
+                    EnableControlState = true,
+                    AccessibilityHidden = true,
                 };
                 if (bgTrackImage != null)
                 {
@@ -283,6 +290,7 @@ namespace Tizen.NUI.Components
                     PivotPoint = Tizen.NUI.PivotPoint.Center,
                     WidthResizePolicy = ResizePolicyType.Fixed,
                     HeightResizePolicy = ResizePolicyType.Fixed,
+                    AccessibilityHidden = true,
                 };
                 if (valueIndicatorText != null)
                 {
@@ -303,7 +311,8 @@ namespace Tizen.NUI.Components
                 valueIndicatorText = new TextLabel()
                 {
                     WidthResizePolicy = ResizePolicyType.Fixed,
-                    HeightResizePolicy = ResizePolicyType.Fixed
+                    HeightResizePolicy = ResizePolicyType.Fixed,
+                    AccessibilityHidden = true,
                 };
                 if (valueIndicatorImage != null)
                 {
