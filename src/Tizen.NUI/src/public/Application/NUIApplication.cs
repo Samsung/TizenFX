@@ -479,7 +479,6 @@ namespace Tizen.NUI
             if (borderEnabled)
             {
                 GetDefaultWindow().EnableBorder(borderInterface);
-                GetDefaultWindow().EnableFloatingMode(false);
             }
         }
 
