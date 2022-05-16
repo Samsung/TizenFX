@@ -119,7 +119,7 @@ namespace Tizen.NUI
         /// It won't be emitted for focus movement by calling the SetCurrentFocusView directly.<br />
         /// </summary>
         /// <remarks>
-        /// by setting FocusChangingEventArgs.Proposed with the view to be focused, the focus will be moved to the assigned view.
+        /// By setting FocusChangingEventArgs.Proposed with the view to be focused, the focus will be moved to the assigned view.
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         public event EventHandler<FocusChangingEventArgs> FocusChanging
