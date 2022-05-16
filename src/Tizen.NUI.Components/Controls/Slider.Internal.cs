@@ -107,6 +107,11 @@ namespace Tizen.NUI.Components
             panGestureDetector = new PanGestureDetector();
             panGestureDetector.Attach(this);
             panGestureDetector.Detected += OnPanGestureDetected;
+
+            this.Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+            };
         }
 
         private void OnLayoutDirectionChanged(object sender, LayoutDirectionChangedEventArgs e)
@@ -525,11 +530,11 @@ namespace Tizen.NUI.Components
             {
                 if (direction == DirectionType.Horizontal)
                 {
-                    bgTrackLength = this.Size2D.Width;
+                    bgTrackLength = this.Size2D.Width - thumbImage.Size2D.Width;
                 }
                 else if (direction == DirectionType.Vertical)
                 {
-                    bgTrackLength = this.Size2D.Height;
+                    bgTrackLength = this.Size2D.Height - thumbImage.Size2D.Height;
                 }
             }
             else if (type == IndicatorType.Image)
