@@ -21,7 +21,7 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
     ///<summary>
-    /// Event arguments that passed via the FocusChanging signal.
+    /// Event arguments passed via the FocusChanging signal.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
     public class FocusChangingEventArgs : EventArgs
