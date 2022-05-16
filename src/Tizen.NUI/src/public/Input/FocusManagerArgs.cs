@@ -31,7 +31,7 @@ namespace Tizen.NUI
         private View.FocusDirection direction;
 
         /// <summary>
-        /// The current focus view.
+        /// The view which is currently focused.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public View Current
