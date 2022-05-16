@@ -563,12 +563,6 @@ namespace Tizen.NUI.BaseComponents
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual bool AccessibilityShouldReportZeroChildren()
-        {
-            return false;
-        }
-
-        [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool AccessibilityIsScrollable()
         {
             return false;

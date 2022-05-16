@@ -46,15 +46,6 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Prevents from showing child widgets in AT-SPI tree.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool AccessibilityShouldReportZeroChildren()
-        {
-            return true;
-        }
-
-        /// <summary>
         /// The ButtonExtension instance that is injected by ButtonStyle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -71,7 +62,7 @@ namespace Tizen.NUI.Components
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                AccessibilityHighlightable = false,
+                AccessibilityHidden = true,
             };
         }
 
@@ -84,7 +75,7 @@ namespace Tizen.NUI.Components
         {
             return new ImageView()
             {
-                AccessibilityHighlightable = false
+                AccessibilityHidden = true,
             };
         }
 
@@ -102,7 +93,7 @@ namespace Tizen.NUI.Components
                 PivotPoint = NUI.PivotPoint.Center,
                 WidthResizePolicy = ResizePolicyType.FillToParent,
                 HeightResizePolicy = ResizePolicyType.FillToParent,
-                AccessibilityHighlightable = false
+                AccessibilityHidden = true,
             };
         }
 

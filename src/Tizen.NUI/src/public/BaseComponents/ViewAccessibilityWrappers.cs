@@ -416,7 +416,6 @@ namespace Tizen.NUI.BaseComponents
             var ad = Interop.ControlDevel.AccessibilityDelegate.Instance;
 
             ad.ScrollToChild            = AccessibilityScrollToChildWrapper;
-            ad.ShouldReportZeroChildren = AccessibilityShouldReportZeroChildrenWrapper;
         }
 
         private static bool AccessibilityScrollToChildWrapper(IntPtr self, IntPtr child)
@@ -424,11 +423,6 @@ namespace Tizen.NUI.BaseComponents
             View view = GetViewFromRefObject(self);
 
             return view.AccessibilityScrollToChild(view.GetInstanceSafely<View>(child));
-        }
-
-        private static bool AccessibilityShouldReportZeroChildrenWrapper(IntPtr self)
-        {
-            return GetViewFromRefObject(self).AccessibilityShouldReportZeroChildren();
         }
     }
 }

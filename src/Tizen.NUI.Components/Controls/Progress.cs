@@ -512,15 +512,6 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Prevents from showing child widgets in AT-SPI tree.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool AccessibilityShouldReportZeroChildren()
-        {
-            return true;
-        }
-
-        /// <summary>
         /// Gets minimum value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -685,7 +676,7 @@ namespace Tizen.NUI.Components
                 {
                     indeterminateAnimation = new Animation(2000);
                 }
-                
+
                 float destination = (this.SizeWidth - indeterminateImage.SizeWidth);
 
                 KeyFrames keyFrames = new KeyFrames();
@@ -796,7 +787,8 @@ namespace Tizen.NUI.Components
                     HeightResizePolicy = ResizePolicyType.FillToParent,
                     PositionUsesPivotPoint = true,
                     ParentOrigin = NUI.ParentOrigin.TopLeft,
-                    PivotPoint = NUI.PivotPoint.TopLeft
+                    PivotPoint = NUI.PivotPoint.TopLeft,
+                    AccessibilityHidden = true,
                 };
                 Add(trackImage);
             }
@@ -812,7 +804,8 @@ namespace Tizen.NUI.Components
                     HeightResizePolicy = ResizePolicyType.FillToParent,
                     PositionUsesPivotPoint = true,
                     ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                    PivotPoint = Tizen.NUI.PivotPoint.TopLeft
+                    PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
+                    AccessibilityHidden = true,
                 };
                 Add(progressImage);
             }
@@ -828,7 +821,8 @@ namespace Tizen.NUI.Components
                     HeightResizePolicy = ResizePolicyType.FillToParent,
                     PositionUsesPivotPoint = true,
                     ParentOrigin = Tizen.NUI.ParentOrigin.TopLeft,
-                    PivotPoint = Tizen.NUI.PivotPoint.TopLeft
+                    PivotPoint = Tizen.NUI.PivotPoint.TopLeft,
+                    AccessibilityHidden = true,
                 };
                 Add(bufferImage);
                 bufferImage.Hide(); // At first, buffer image does not show.
@@ -842,7 +836,8 @@ namespace Tizen.NUI.Components
                 Size = new Size(16, 16),
                 PositionUsesPivotPoint = true,
                 ParentOrigin = Tizen.NUI.ParentOrigin.CenterLeft,
-                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft
+                PivotPoint = Tizen.NUI.PivotPoint.CenterLeft,
+                AccessibilityHidden = true,
             };
             trackImage.Add(indeterminateImage);
             indeterminateImage.Hide();
