@@ -533,6 +533,10 @@ namespace Tizen.NUI
             {
                 if (e.Touch.GetState(0) == PointStateType.Started)
                 {
+                    if (BorderWindow.IsMaximized() == false)
+                    {
+                        BorderWindow.Raise();
+                    }
                     backgroundColor = new Color(borderView.BackgroundColor);
                     borderView.BackgroundColor = DefaultClickedBackgroundColor;
                 }
@@ -550,6 +554,8 @@ namespace Tizen.NUI
             borderPinchGestureDetector.Detected += OnPinchGestureDetected;
 
             AddInterceptGesture();
+
+            UpdateIcons();
         }
 
 
