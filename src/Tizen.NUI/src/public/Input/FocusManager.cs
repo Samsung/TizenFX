@@ -85,7 +85,7 @@ namespace Tizen.NUI
         /// It won't be emitted for focus movement by calling the SetCurrentFocusView directly.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated in API10. Please use KeyFocusChanging instead!")]
+        [Obsolete("Please do not use! This will be deprecated in API10. Please use FocusChanging instead!")]
         // this will be deprecated, so suppress warning would be OK.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix", Justification = "<Pending>")]
         public event EventHandlerWithReturnType<object, PreFocusChangeEventArgs, View> PreFocusChange
