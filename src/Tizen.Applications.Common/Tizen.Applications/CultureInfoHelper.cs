@@ -15,80 +15,40 @@
  */
 
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Xml;
-using Tizen;
 
 namespace Tizen.Applications
 {
     internal static class CultureInfoHelper
     {
         private const string LogTag = "Tizen.Applications";
-        private static bool _initialized = false;
-        private static readonly Dictionary<string, string> _cultureNames = new Dictionary<string, string>();
-        private static readonly object _lock = new object();
-        private const string _pathCultureInfoXml = "/usr/share/dotnet.tizen/framework/i18n/CultureInfo.xml";
-
-        public static void Initialize()
-        {
-            if (File.Exists(_pathCultureInfoXml))
-            {
-                try
-                {
-                    ParseCultureInfoXml();
-                }
-                catch
-                {
-                    Log.Warn(LogTag, "Failed to parse CultureInfo.xml");
-                }
-            }
-
-            _initialized = true;
-        }
-
-        private static void ParseCultureInfoXml()
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(_pathCultureInfoXml);
-            XmlElement root = doc.DocumentElement;
-            foreach (XmlElement node in root.ChildNodes)
-            {
-                if (node.Name != "name" && node.FirstChild == null)
-                {
-                    continue;
-                }
-
-                string lang = node.GetAttribute("xml:lang");
-                string cultureName = node.FirstChild.Value;
-                if (!string.IsNullOrEmpty(lang) && !string.IsNullOrEmpty(cultureName))
-                {
-                    try
-                    {
-                        _cultureNames.Add(lang, cultureName);
-                    }
-                    catch (ArgumentException e)
-                    {
-                        Log.Error(LogTag, "ArgumentException: " + e.Message);
-                    }
-                }
-            }
-        }
+        private const string _pathCultureInfoIni = "/usr/share/dotnet.tizen/framework/i18n/CultureInfo.ini";
 
         public static string GetCultureName(string locale)
         {
-            lock (_lock)
+            if (File.Exists(_pathCultureInfoIni))
             {
-                if (!_initialized)
+                Log.Error(LogTag, "[__DEBUG__] BEGIN");
+                IntPtr dictionary = Interop.LibIniParser.Load(_pathCultureInfoIni);
+                if (dictionary == IntPtr.Zero)
+                    return string.Empty;
+
+                string cultureName = string.Empty;
+                string key = "CultureInfo:" + locale.ToLowerInvariant();
+                IntPtr value = Interop.LibIniParser.GetString(dictionary, key, IntPtr.Zero);
+                if (value != IntPtr.Zero)
                 {
-                    Initialize();
+                    cultureName = value.ToString();
+                }
+                else
+                {
+                    Log.Error(LogTag, "Failed to get default CultureName. locale: " + locale);
                 }
 
-                if (_cultureNames.TryGetValue(locale.ToLowerInvariant(), out string cultureName))
-                {
-                    return cultureName;
-                }
+                Interop.LibIniParser.FreeDict(dictionary);
+                Log.Warn(LogTag, locale + " : " + cultureName);
+                Log.Error(LogTag, "[__DEBUG__] END");
+                return cultureName;
             }
 
             return string.Empty;
