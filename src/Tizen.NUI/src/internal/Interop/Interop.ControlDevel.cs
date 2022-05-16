@@ -239,9 +239,9 @@ namespace Tizen.NUI
                 public AccessibilityGetActionName GetActionName; // 6
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate bool AccessibilityShouldReportZeroChildren(IntPtr self);
+                public delegate uint AccessibilityGetInterfaces(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
-                public AccessibilityShouldReportZeroChildren ShouldReportZeroChildren; // 7
+                public AccessibilityGetInterfaces GetInterfaces; // 7
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
                 public delegate double AccessibilityGetMinimum(IntPtr self);
@@ -384,14 +384,9 @@ namespace Tizen.NUI
                 public AccessibilityDeselectChild DeselectChild; // 35
 
                 [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-                public delegate uint AccessibilityGetInterfaces(IntPtr self);
-                [EditorBrowsable(EditorBrowsableState.Never)]
-                public AccessibilityGetInterfaces GetInterfaces; // 36
-
-                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
                 public delegate IntPtr AccessibilityGetRangeExtents(IntPtr self, int startOffset, int endOffset, int coordType);
                 [EditorBrowsable(EditorBrowsableState.Never)]
-                public AccessibilityGetRangeExtents GetRangeExtents; // 37
+                public AccessibilityGetRangeExtents GetRangeExtents; // 36
             }
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_DuplicateString")]

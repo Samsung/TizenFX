@@ -913,7 +913,14 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (null == lowIndicatorImage) lowIndicatorImage = new ImageView();
+                if (null == lowIndicatorImage)
+                {
+                    lowIndicatorImage = new ImageView
+                    {
+                        AccessibilityHidden = true,
+                    };
+                }
+
                 lowIndicatorImage.ResourceUrl = value;
             }
         }
@@ -942,7 +949,14 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (null == highIndicatorImage) highIndicatorImage = new ImageView();
+                if (null == highIndicatorImage)
+                {
+                    highIndicatorImage = new ImageView
+                    {
+                        AccessibilityHidden = true,
+                    };
+                }
+
                 highIndicatorImage.ResourceUrl = value;
             }
         }
@@ -1415,6 +1429,7 @@ namespace Tizen.NUI.Components
                         BorderlineWidth = 6.0f,
                         BorderlineOffset = -1f,
                         BackgroundColor = new Color(0.2f, 0.2f, 0.2f, 0.4f),
+                        AccessibilityHidden = true,
                     };
                 }
                 recoverIndicator = FocusManager.Instance.FocusIndicator;
@@ -1549,15 +1564,6 @@ namespace Tizen.NUI.Components
             }
 
             EnableControlStatePropagation = true;
-        }
-
-        /// <summary>
-        /// Prevents from showing child widgets in AT-SPI tree.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool AccessibilityShouldReportZeroChildren()
-        {
-            return true;
         }
 
         /// <summary>
