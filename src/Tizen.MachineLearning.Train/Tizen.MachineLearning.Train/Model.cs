@@ -57,7 +57,7 @@ namespace Tizen.MachineLearning.Train
         {
             if (string.IsNullOrEmpty(modelConf))
                 NNTrainer.CheckException(NNTrainerError.InvalidParameter, "modelConf is null");
-
+            Log.Info(NNTrainer.Tag, "Conf path: "+ modelConf);
             NNTrainerError ret = Interop.Model.ConstructWithConf(modelConf, out _handle);
             NNTrainer.CheckException(ret, "Failed to create model instance with modelConf");
         }
@@ -104,6 +104,31 @@ namespace Tizen.MachineLearning.Train
                 _handle = IntPtr.Zero;
             }
             _disposed = true;
+        }
+
+        /// <summary>
+        /// Compiles and finalizes the neural network model with the hyperparameter.
+        /// </summary>
+        /// <remarks>
+        /// Use this function to initialize neural network model.Various
+        /// hyperparameter before compile the model can be set. Once compiled,
+        /// any modification to the properties of model or layers/dataset/optimizer in
+        /// the model will be restricted. Further, addition of layers or changing the
+        /// optimizer/dataset of the model will not be permitted.
+        /// <param name="hyperparameter">Hyperparameters for train complie.</param>
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        public void Compile(params string[] hyperparameter)
+        {
+            string compile_params = null;
+
+            if (hyperparameter != null) {
+                compile_params = string.Join("`", hyperparameter);
+                Log.Info(NNTrainer.Tag, "Compile hyperparameter:"+ compile_params);
+            }
+
+            NNTrainerError ret = Interop.Model.Compile(_handle, compile_params);
+            NNTrainer.CheckException(ret, "Failed to compile model");
         }
     } 
 }
