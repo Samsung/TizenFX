@@ -33,5 +33,9 @@ internal static partial class Interop
         /* int ml_train_model_construct_with_conf(const char *model_conf, ml_train_model_h *model)*/
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_construct_with_conf")]
         public static extern NNTrainerError ConstructWithConf(string model_conf, out IntPtr model_handle);
+
+        /* int ml_train_model_compile_with_params(ml_train_model_h model, const char *params) */
+        [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_compile_with_params")]
+        public static extern NNTrainerError Compile(IntPtr model_handle, string compile_params);
     }
 }
