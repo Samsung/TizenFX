@@ -21,16 +21,13 @@ namespace Tizen.Applications
 {
     internal static class CultureInfoHelper
     {
-        private const string LogTag = "Tizen.Applications";
         private const string _pathCultureInfoIni = "/usr/share/dotnet.tizen/framework/i18n/CultureInfo.ini";
 
         public static string GetCultureName(string locale)
         {
-            Log.Error(LogTag, "[__DEBUG__] BEGIN");
             IntPtr dictionary = Interop.LibIniParser.Load(_pathCultureInfoIni);
             if (dictionary == IntPtr.Zero)
             {
-                Log.Error(LogTag, "[__DEBUG__] END");
                 return string.Empty;
             }
 
@@ -43,8 +40,6 @@ namespace Tizen.Applications
             }
 
             Interop.LibIniParser.FreeDict(dictionary);
-            Log.Warn(LogTag, locale + " : " + cultureName);
-            Log.Error(LogTag, "[__DEBUG__] END");
             return cultureName;
         }
     }
