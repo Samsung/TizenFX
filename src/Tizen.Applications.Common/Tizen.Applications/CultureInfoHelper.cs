@@ -15,7 +15,7 @@
  */
 
 using System;
-using System.IO;
+using System.Runtime.InteropServices;
 
 namespace Tizen.Applications
 {
@@ -26,32 +26,26 @@ namespace Tizen.Applications
 
         public static string GetCultureName(string locale)
         {
-            if (File.Exists(_pathCultureInfoIni))
+            Log.Error(LogTag, "[__DEBUG__] BEGIN");
+            IntPtr dictionary = Interop.LibIniParser.Load(_pathCultureInfoIni);
+            if (dictionary == IntPtr.Zero)
             {
-                Log.Error(LogTag, "[__DEBUG__] BEGIN");
-                IntPtr dictionary = Interop.LibIniParser.Load(_pathCultureInfoIni);
-                if (dictionary == IntPtr.Zero)
-                    return string.Empty;
-
-                string cultureName = string.Empty;
-                string key = "CultureInfo:" + locale.ToLowerInvariant();
-                IntPtr value = Interop.LibIniParser.GetString(dictionary, key, IntPtr.Zero);
-                if (value != IntPtr.Zero)
-                {
-                    cultureName = value.ToString();
-                }
-                else
-                {
-                    Log.Error(LogTag, "Failed to get default CultureName. locale: " + locale);
-                }
-
-                Interop.LibIniParser.FreeDict(dictionary);
-                Log.Warn(LogTag, locale + " : " + cultureName);
                 Log.Error(LogTag, "[__DEBUG__] END");
-                return cultureName;
+                return string.Empty;
             }
 
-            return string.Empty;
+            string cultureName = string.Empty;
+            string key = "CultureInfo:" + locale.ToLowerInvariant();
+            IntPtr value = Interop.LibIniParser.GetString(dictionary, key, IntPtr.Zero);
+            if (value != IntPtr.Zero)
+            {
+                cultureName = Marshal.PtrToStringAnsi(value);
+            }
+
+            Interop.LibIniParser.FreeDict(dictionary);
+            Log.Warn(LogTag, locale + " : " + cultureName);
+            Log.Error(LogTag, "[__DEBUG__] END");
+            return cultureName;
         }
     }
 }
