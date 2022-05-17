@@ -770,7 +770,6 @@ namespace Tizen.NUI.Components
                 },
                 Icon = new ImageViewStyle()
                 {
-                    Size = new Size(32, 32),
                     Color = new Selector<Color>()
                     {
                         Normal = new Color("#090E21"),
