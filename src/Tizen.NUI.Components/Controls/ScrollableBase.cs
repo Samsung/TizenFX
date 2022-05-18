@@ -151,6 +151,7 @@ namespace Tizen.NUI.Components
         private int mPageWidth = 0;
         private float mPageFlickThreshold = 0.4f;
         private float mScrollingEventThreshold = 0.001f;
+        private bool fadeScrollbar = true;
 
         private class ScrollableBaseCustomLayout : AbsoluteLayout
         {
@@ -528,6 +529,49 @@ namespace Tizen.NUI.Components
                     else
                     {
                         scrollBar.Show();
+                        if (fadeScrollbar)
+                        {
+                            scrollBar.Opacity = 1.0f;
+                            scrollBar.FadeOut();
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// The boolean flag for automatic fading Scrollbar.
+        /// Scrollbar will be faded out when scroll stay in certain position longer than the threshold.
+        /// Scrollbar will be faded in scroll position changes.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool FadeScrollbar
+        {
+            get => (bool)GetValue(FadeScrollbarProperty);
+            set => SetValue(FadeScrollbarProperty, value);
+        }
+
+        private bool InternalFadeScrollbar
+        {
+            get
+            {
+                return fadeScrollbar;
+            }
+            set
+            {
+                fadeScrollbar = value;
+
+                if (scrollBar != null && !hideScrollbar)
+                {
+                    if (value)
+                    {
+                        scrollBar.FadeOut();
+                    }
+                    else
+                    {
+                        scrollBar.Opacity = 1.0f;
+                        // Removing fadeout timer and animation.
+                        scrollBar.FadeIn();
                     }
                 }
             }
@@ -1012,6 +1056,11 @@ namespace Tizen.NUI.Components
                 float viewportLength = isHorizontal ? Size.Width : Size.Height;
                 float currentPosition = isHorizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y;
                 Scrollbar.Update(contentLength, viewportLength, -currentPosition);
+
+                if (!hideScrollbar && fadeScrollbar)
+                {
+                    Scrollbar.FadeOut();
+                }
             }
         }
 
@@ -1069,18 +1118,33 @@ namespace Tizen.NUI.Components
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
             ScrollDragStarted?.Invoke(this, eventArgs);
+
+            if (!hideScrollbar && fadeScrollbar)
+            {
+                scrollBar?.FadeIn();
+            }
         }
 
         private void OnScrollDragEnded()
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
             ScrollDragEnded?.Invoke(this, eventArgs);
+
+            if (!hideScrollbar && fadeScrollbar)
+            {
+                scrollBar?.FadeOut();
+            }
         }
 
         private void OnScrollAnimationStarted()
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
             ScrollAnimationStarted?.Invoke(this, eventArgs);
+
+            if (!hideScrollbar && fadeScrollbar)
+            {
+                scrollBar?.FadeIn();
+            }
         }
 
         private void OnScrollAnimationEnded()
@@ -1090,6 +1154,11 @@ namespace Tizen.NUI.Components
 
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
             ScrollAnimationEnded?.Invoke(this, eventArgs);
+
+            if (!hideScrollbar && fadeScrollbar)
+            {
+                scrollBar?.FadeOut();
+            }
         }
 
         private void OnScroll()

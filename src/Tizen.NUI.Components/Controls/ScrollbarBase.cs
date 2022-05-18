@@ -104,6 +104,20 @@ namespace Tizen.NUI.Components
         public abstract void Initialize(float contentLength, float viewportLength, float currentPosition, bool isHorizontal = false);
 
         /// <summary>
+        /// Fade out scroll bar with delay. fade in effect will be erased after delay timeout.
+        /// See <see cref="FadeOutThreshold"/>, <see cref="FadeDuration"/>.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal virtual void FadeOut() {}
+
+        /// <summary>
+        /// Fade in scroll bar. fade out effect will be erased.
+        /// See <see cref="FadeDuration"/>.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal virtual void FadeIn() {}
+
+        /// <summary>
         /// Scroll position given to ScrollTo or Update.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -114,6 +128,19 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public abstract float ScrollCurrentPosition { get; }
+
+        /// <summary>
+        /// The milisecond threshold for fading out scroll bar.
+        /// scroll bar will be faded out when scroll stay in certain position longer than this threshold.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal virtual uint FadeOutThreshold { get; set; }
+
+        /// <summary>
+        /// The milisecond duration for fading scroll bar animation.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal virtual int FadeDuration { get; set; }
 
         #endregion Methods
     }
