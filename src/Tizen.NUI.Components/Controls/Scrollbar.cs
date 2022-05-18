@@ -98,6 +98,9 @@ namespace Tizen.NUI.Components
         private Color thumbColor;
         private PaddingType trackPadding = new PaddingType(4, 4, 4, 4);
         private bool isHorizontal;
+        private uint fadeOutThreshold = 500;
+        private int fadeDuration = 200;
+        private Timer fadeOutTimer;
 
         #endregion Fields
 
@@ -254,6 +257,22 @@ namespace Tizen.NUI.Components
 
                 return length;
             }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal override uint FadeOutThreshold
+        {
+            get => fadeOutThreshold;
+            set => fadeOutThreshold = value;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal override int FadeDuration
+        {
+            get => fadeDuration;
+            set => fadeDuration = value;
         }
 
         #endregion Properties
@@ -452,6 +471,49 @@ namespace Tizen.NUI.Components
             trackView.Position = calculator.CalculateTrackPosition(trackPadding);
             thumbView.Size = calculator.CalculateThumbSize(ThumbThickness, trackView.Size);
             thumbView.Position = calculator.CalculateThumbPosition(trackView.Size, thumbView.Size, trackPadding);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal override void FadeOut()
+        {
+            if (fadeOutTimer == null)
+            {
+                fadeOutTimer = new Timer(fadeOutThreshold);
+                fadeOutTimer.Tick += ((object target, Timer.TickEventArgs args) =>
+                {
+                    var anim = EnsureOpacityAnimation();
+
+                    if (Opacity != 0.0f)
+                    {
+                        anim.AnimateTo(this, "Opacity", 0.0f, 0, fadeDuration);
+                        anim.Play();
+                    }
+                    fadeOutTimer = null;
+                    return false;
+                });
+                fadeOutTimer.Start();
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal override void FadeIn()
+        {
+            if (fadeOutTimer != null)
+            {
+                fadeOutTimer.Stop();
+                fadeOutTimer.Dispose();
+                fadeOutTimer = null;
+            }
+
+            var anim = EnsureOpacityAnimation();
+
+            if (Opacity != 1.0)
+            {
+                anim.AnimateTo(this, "Opacity", 1.0f, 0, fadeDuration);
+                anim.Play();
+            }
         }
 
         /// <inheritdoc/>
