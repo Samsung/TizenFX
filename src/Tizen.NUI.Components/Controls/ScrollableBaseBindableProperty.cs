@@ -310,5 +310,24 @@ namespace Tizen.NUI.Components
             var instance = (ScrollableBase)bindable;
             return instance.stepScrollDistance;
         });
+
+        /// <summary>
+        /// FadeScrollbarProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FadeScrollbarProperty = BindableProperty.Create(nameof(FadeScrollbar), typeof(bool), typeof(ScrollableBase), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (ScrollableBase)bindable;
+            if (newValue != null)
+            {
+                instance.InternalFadeScrollbar = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (ScrollableBase)bindable;
+            return instance.InternalFadeScrollbar;
+        });
+
     }
 }
