@@ -629,6 +629,23 @@ namespace Tizen.NUI
             Absolute
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override LayoutItem Clone()
+        {
+            var layout = new FlexLayout();
+
+            foreach (var prop in layout.GetType().GetProperties())
+            {
+                if (prop.GetSetMethod() != null)
+                {
+                    prop.SetValue(layout, this.GetType().GetProperty(prop.Name).GetValue(this));
+                }
+            }
+
+            return layout;
+        }
+
         private void measureChild(global::System.IntPtr childPtr, float width, int measureModeWidth, float height, int measureModeHeight, out MeasuredSize measureSize)
         {
             // We need to measure child layout
