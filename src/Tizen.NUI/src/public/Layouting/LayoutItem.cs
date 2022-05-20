@@ -417,7 +417,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return Owner.SuggestedMinimumWidth;
+                return (Owner != null) ? Owner.SuggestedMinimumWidth : new LayoutLength(0);
             }
         }
 
@@ -430,7 +430,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return Owner.SuggestedMinimumHeight;
+                return (Owner != null) ? Owner.SuggestedMinimumHeight : new LayoutLength(0);
             }
         }
 
@@ -662,6 +662,25 @@ namespace Tizen.NUI
                     parent?.ChangeLayoutChildOrder(this, order);
                 }
             }
+        }
+
+        /// <summary>
+        /// Creates a cloned LayoutItem.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual LayoutItem Clone()
+        {
+            var layout = new LayoutItem();
+
+            foreach (var prop in layout.GetType().GetProperties())
+            {
+                if (prop.GetSetMethod() != null)
+                {
+                    prop.SetValue(layout, this.GetType().GetProperty(prop.Name).GetValue(this));
+                }
+            }
+
+            return layout;
         }
     }
 }

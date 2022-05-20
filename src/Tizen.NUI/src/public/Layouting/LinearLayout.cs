@@ -209,6 +209,23 @@ namespace Tizen.NUI
         {
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override LayoutItem Clone()
+        {
+            var layout = new LinearLayout();
+
+            foreach (var prop in layout.GetType().GetProperties())
+            {
+                if (prop.GetSetMethod() != null)
+                {
+                    prop.SetValue(layout, this.GetType().GetProperty(prop.Name).GetValue(this));
+                }
+            }
+
+            return layout;
+        }
+
         /// <summary>
         /// Measure the layout and its content to determine the measured width and the measured height.
         /// </summary>
