@@ -440,5 +440,13 @@ namespace Tizen.NUI.BaseComponents
             var buttonStyle = (ViewStyle)bindable;
             return buttonStyle.isEnabled;
         });
+
+        /// <summary> Bindable property of Layout.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty LayoutProperty = BindableProperty.Create(nameof(Layout), typeof(LayoutItem), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((ViewStyle)bindable).layout = (LayoutItem)newValue;
+        }, defaultValueCreator: (bindable) => ((ViewStyle)bindable).layout);
     }
 }
