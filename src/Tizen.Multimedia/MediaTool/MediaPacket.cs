@@ -177,7 +177,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Increases reference count of the MediaPacket.
+        /// Increases reference count of the current MediaPacket instance.
         /// </summary>
         /// <remarks>
         /// This supports the product infrastructure and is not intended to be used directly from application code.
@@ -192,10 +192,10 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Decreases reference count of the MediaPacket.
+        /// Decreases reference count of the current MediaPacket instance.
         /// </summary>
         /// <remarks>
-        /// If there's no user for this instance after decreasing reference count, this MediaPacket will be destroyed.
+        /// If there's no user for this instance after decreasing reference count, this MediaPacket will be destroyed.\n
         /// This supports the product infrastructure and is not intended to be used directly from application code.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -206,7 +206,7 @@ namespace Tizen.Multimedia
                 return;
             }
 
-            // Ignore native error - Called Unref() after MediaPacket is disposed already by Native FW.
+            // Ignore native error - Called Unref() after MediaPacket is disposed by Native FW.
             Native.Unref(_handle);
         }
 
