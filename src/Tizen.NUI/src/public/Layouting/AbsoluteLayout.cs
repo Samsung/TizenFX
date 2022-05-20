@@ -14,6 +14,8 @@
  *
  */
 
+using System.ComponentModel;
+
 namespace Tizen.NUI
 {
     /// <summary>
@@ -28,6 +30,23 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         public AbsoluteLayout()
         {
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override LayoutItem Clone()
+        {
+            var layout = new AbsoluteLayout();
+
+            foreach (var prop in layout.GetType().GetProperties())
+            {
+                if (prop.GetSetMethod() != null)
+                {
+                    prop.SetValue(layout, this.GetType().GetProperty(prop.Name).GetValue(this));
+                }
+            }
+
+            return layout;
         }
 
         /// <summary>
