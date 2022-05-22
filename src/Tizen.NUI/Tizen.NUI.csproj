@@ -27,6 +27,7 @@
     <ProjectReference Include="..\Tizen.System.Information\Tizen.System.Information.csproj" />
     <ProjectReference Include="..\Tizen.System.SystemSettings\Tizen.System.SystemSettings.csproj" />
     <ProjectReference Include="..\Tizen.Applications.ThemeManager\Tizen.Applications.ThemeManager.csproj" />
+    <ProjectReference Include="..\Tizen.Tracer\Tizen.Tracer.csproj" />
   </ItemGroup>
 
   <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
