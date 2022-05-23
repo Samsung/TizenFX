@@ -177,30 +177,35 @@ namespace Tizen.NUI
             {
                 Focusable = true,
                 ResourceUrl = MinimalizeIcon,
+                AccessibilityHighlightable = true,
             };
 
             maximalizeIcon = new ImageView()
             {
                 Focusable = true,
                 ResourceUrl = MaximalizeIcon,
+                AccessibilityHighlightable = true,
             };
 
             closeIcon = new ImageView()
             {
                 Focusable = true,
                 ResourceUrl = CloseIcon,
+                AccessibilityHighlightable = true,
             };
 
             leftCornerIcon = new ImageView()
             {
                 Focusable = true,
                 ResourceUrl = LeftCornerIcon,
+                AccessibilityHighlightable = true,
             };
 
             rightCornerIcon = new ImageView()
             {
                 Focusable = true,
                 ResourceUrl = RightCornerIcon,
+                AccessibilityHighlightable = true,
             };
 
             RelativeLayout.SetRightTarget(minimalizeIcon, maximalizeIcon);
@@ -226,6 +231,47 @@ namespace Tizen.NUI
             closeIcon.TouchEvent += OnCloseIconTouched;
             leftCornerIcon.TouchEvent += OnLeftBottomCornerIconTouched;
             rightCornerIcon.TouchEvent += OnRightBottomCornerIconTouched;
+
+            minimalizeIcon.AccessibilityActivated += (s, e) =>
+            {
+                MinimizeBorderWindow();
+            };
+            maximalizeIcon.AccessibilityActivated += (s, e) =>
+            {
+                MaximizeBorderWindow();
+            };
+            closeIcon.AccessibilityActivated += (s, e) =>
+            {
+                CloseBorderWindow();
+            };
+
+            minimalizeIcon.AccessibilityNameRequested += (s, e) =>
+            {
+                e.Name = "Minimize";
+            };
+            maximalizeIcon.AccessibilityNameRequested += (s, e) =>
+            {
+                e.Name = "Maximize";
+            };
+            closeIcon.AccessibilityNameRequested += (s, e) =>
+            {
+                e.Name = "Close";
+            };
+            leftCornerIcon.AccessibilityNameRequested += (s, e) =>
+            {
+                e.Name = "Resize";
+            };
+            rightCornerIcon.AccessibilityNameRequested += (s, e) =>
+            {
+                e.Name = "Resize";
+            };
+
+            minimalizeIcon.SetAccessibilityReadingInfoTypes(Tizen.NUI.BaseComponents.AccessibilityReadingInfoTypes.Name);
+            maximalizeIcon.SetAccessibilityReadingInfoTypes(Tizen.NUI.BaseComponents.AccessibilityReadingInfoTypes.Name);
+            closeIcon.SetAccessibilityReadingInfoTypes(Tizen.NUI.BaseComponents.AccessibilityReadingInfoTypes.Name);
+            leftCornerIcon.SetAccessibilityReadingInfoTypes(Tizen.NUI.BaseComponents.AccessibilityReadingInfoTypes.Name);
+            rightCornerIcon.SetAccessibilityReadingInfoTypes(Tizen.NUI.BaseComponents.AccessibilityReadingInfoTypes.Name);
+
             return true;
         }
 
@@ -399,6 +445,17 @@ namespace Tizen.NUI
 
 
         /// <summary>
+        /// Minimize border window.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void MinimizeBorderWindow()
+        {
+            ClearWindowGesture();
+            BorderWindow.Minimize(true);
+            OnMinimize(true);
+        }
+
+        /// <summary>
         /// This is an event callback when the minimize icon is touched.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -410,11 +467,28 @@ namespace Tizen.NUI
             }
             if (e.Touch.GetState(0) == PointStateType.Up)
             {
-                ClearWindowGesture();
-                BorderWindow.Minimize(true);
-                OnMinimize(true);
+                MinimizeBorderWindow();
             }
             return true;
+        }
+
+        /// <summary>
+        /// Maximize border window.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void MaximizeBorderWindow()
+        {
+            ClearWindowGesture();
+            if (BorderWindow.IsMaximized())
+            {
+              BorderWindow.Maximize(false);
+              OnMaximize(false);
+            }
+            else
+            {
+              BorderWindow.Maximize(true);
+              OnMaximize(true);
+            }
         }
 
         /// <summary>
@@ -429,19 +503,19 @@ namespace Tizen.NUI
             }
             if (e.Touch.GetState(0) == PointStateType.Up)
             {
-                ClearWindowGesture();
-                if (BorderWindow.IsMaximized())
-                {
-                  BorderWindow.Maximize(false);
-                  OnMaximize(false);
-                }
-                else
-                {
-                  BorderWindow.Maximize(true);
-                  OnMaximize(true);
-                }
+                MaximizeBorderWindow();
             }
             return true;
+        }
+
+        /// <summary>
+        /// Close border window.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void CloseBorderWindow()
+        {
+            BorderWindow.Destroy();
+            BorderWindow = null;
         }
 
         /// <summary>
