@@ -87,26 +87,31 @@ namespace Tizen.NUI.Samples
         minimalizeIcon = new ImageView()
         {
             ResourceUrl = MinimalizeIcon,
+            AccessibilityHighlightable = true,
         };
 
         maximalizeIcon = new ImageView()
         {
             ResourceUrl = MaximalizeIcon,
+            AccessibilityHighlightable = true,
         };
 
         closeIcon = new ImageView()
         {
             ResourceUrl = CloseIcon,
+            AccessibilityHighlightable = true,
         };
 
         leftCornerIcon = new ImageView()
         {
             ResourceUrl = LeftCornerIcon,
+            AccessibilityHighlightable = true,
         };
 
         rightCornerIcon = new ImageView()
         {
-          ResourceUrl = RightCornerIcon,
+            ResourceUrl = RightCornerIcon,
+            AccessibilityHighlightable = true,
         };
 
         RelativeLayout.SetRightTarget(minimalizeIcon, maximalizeIcon);
@@ -132,6 +137,47 @@ namespace Tizen.NUI.Samples
         closeIcon.TouchEvent += OnCloseIconTouched;
         leftCornerIcon.TouchEvent += OnLeftBottomCornerIconTouched;
         rightCornerIcon.TouchEvent += OnRightBottomCornerIconTouched;
+
+        minimalizeIcon.AccessibilityActivated += (s, e) =>
+        {
+            MinimizeBorderWindow();
+        };
+        maximalizeIcon.AccessibilityActivated += (s, e) =>
+        {
+            MaximizeBorderWindow();
+        };
+        closeIcon.AccessibilityActivated += (s, e) =>
+        {
+            CloseBorderWindow();
+        };
+
+        minimalizeIcon.AccessibilityNameRequested += (s, e) =>
+        {
+            e.Name = "Minimize";
+        };
+        maximalizeIcon.AccessibilityNameRequested += (s, e) =>
+        {
+            e.Name = "Maximize";
+        };
+        closeIcon.AccessibilityNameRequested += (s, e) =>
+        {
+            e.Name = "Close";
+        };
+        leftCornerIcon.AccessibilityNameRequested += (s, e) =>
+        {
+            e.Name = "Resize";
+        };
+        rightCornerIcon.AccessibilityNameRequested += (s, e) =>
+        {
+            e.Name = "Resize";
+        };
+
+        minimalizeIcon.SetAccessibilityReadingInfoTypes(Tizen.NUI.BaseComponents.AccessibilityReadingInfoTypes.Name);
+        maximalizeIcon.SetAccessibilityReadingInfoTypes(Tizen.NUI.BaseComponents.AccessibilityReadingInfoTypes.Name);
+        closeIcon.SetAccessibilityReadingInfoTypes(Tizen.NUI.BaseComponents.AccessibilityReadingInfoTypes.Name);
+        leftCornerIcon.SetAccessibilityReadingInfoTypes(Tizen.NUI.BaseComponents.AccessibilityReadingInfoTypes.Name);
+        rightCornerIcon.SetAccessibilityReadingInfoTypes(Tizen.NUI.BaseComponents.AccessibilityReadingInfoTypes.Name);
+
         return true;
       }
 
@@ -337,7 +383,8 @@ namespace Tizen.NUI.Samples
           {
               LinearAlignment = LinearLayout.Alignment.Center,
               LinearOrientation = LinearLayout.Orientation.Vertical,
-          }
+          },
+          AccessibilityHighlightable = true,
         };
 
         var imageViewA = new ImageView()
@@ -364,6 +411,10 @@ namespace Tizen.NUI.Samples
           }
           return true;
         };
+        defaultBorder.AccessibilityActivated += (s, e) =>
+        {
+            CreateSubWindowOne();
+        };
 
         var customBorder = new View()
         {
@@ -372,7 +423,8 @@ namespace Tizen.NUI.Samples
           {
               LinearAlignment = LinearLayout.Alignment.Center,
               LinearOrientation = LinearLayout.Orientation.Vertical,
-          }
+          },
+          AccessibilityHighlightable = true,
         };
 
         var imageViewB = new ImageView()
@@ -397,6 +449,10 @@ namespace Tizen.NUI.Samples
             CreateSubWindowTwo();
           }
           return true;
+        };
+        customBorder.AccessibilityActivated += (s, e) =>
+        {
+            CreateSubWindowTwo();
         };
     }
 
