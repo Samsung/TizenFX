@@ -135,11 +135,19 @@ namespace Tizen.NUI
 
             GetDefaultLayer().Name = "OriginalRootLayer";
 
+            SetTransparency(true);
+            BackgroundColor = Color.Transparent;
+            borderInterface.BorderWindow = this;
+
             if (CreateBorder() == true)
             {
+                using var realWindowSize = new Size2D(WindowSize.Width, WindowSize.Height);
+
                 isBorderWindow = true;
 
                 Resized += OnBorderWindowResized;
+
+                borderInterface.OnCreated(borderView);
 
                 // Increase the window size as much as the border area.
                 if (isTop) borderHeight += borderInterface.BorderHeight;
@@ -147,10 +155,11 @@ namespace Tizen.NUI
 
                 // When running the app for the first time, if it runs in full size, do Maximize(true).
                 if (screenWidth != 0 && screenHeight != 0 && 
-                    Size.Width >= screenWidth && Size.Height >= screenHeight && 
+                    realWindowSize.Width >= screenWidth && realWindowSize.Height >= screenHeight && 
                     IsMaximized() == false)
                 {
                     Maximize(true);
+                    borderInterface.OnMaximize(true);
                     ResizedEventArgs e = new ResizedEventArgs();
                     e.WindowSize = WindowSize;
                     OnBorderWindowResized(this, e);
@@ -167,12 +176,6 @@ namespace Tizen.NUI
 
                 // Add a view to the border layer.
                 GetBorderWindowBottomLayer().Add(rootView);
-
-                SetTransparency(true);
-                BackgroundColor = Color.Transparent;
-                borderInterface.BorderWindow = this;
-
-                borderInterface.OnCreated(borderView);
 
                 InterceptTouchEvent += (s, e) => 
                 {
@@ -205,6 +208,7 @@ namespace Tizen.NUI
             ushort padding = (ushort) borderInterface.BorderLineThickness;
             borderView = new View()
             {
+                GrabTouchAfterLeave = true,
                 WidthResizePolicy = ResizePolicyType.FillToParent,
                 HeightResizePolicy = ResizePolicyType.FillToParent,
                 BackgroundColor = Color.Transparent,

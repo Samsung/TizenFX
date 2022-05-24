@@ -175,27 +175,32 @@ namespace Tizen.NUI
 
             minimalizeIcon = new ImageView()
             {
+                Focusable = true,
                 ResourceUrl = MinimalizeIcon,
             };
 
             maximalizeIcon = new ImageView()
             {
+                Focusable = true,
                 ResourceUrl = MaximalizeIcon,
             };
 
             closeIcon = new ImageView()
             {
+                Focusable = true,
                 ResourceUrl = CloseIcon,
             };
 
             leftCornerIcon = new ImageView()
             {
+                Focusable = true,
                 ResourceUrl = LeftCornerIcon,
             };
 
             rightCornerIcon = new ImageView()
             {
-              ResourceUrl = RightCornerIcon,
+                Focusable = true,
+                ResourceUrl = RightCornerIcon,
             };
 
             RelativeLayout.SetRightTarget(minimalizeIcon, maximalizeIcon);
@@ -261,15 +266,18 @@ namespace Tizen.NUI
                     if (BorderWindow.IsMaximized())
                     {
                         BorderWindow.Maximize(false);
+                        OnMaximize(false);
                     }
                     else
                     {
                         BorderWindow.Minimize(true);
+                        OnMinimize(true);
                     }
                 }
                 else
                 {
                     BorderWindow.Maximize(true);
+                    OnMaximize(true);
                 }
             }
         }
@@ -292,6 +300,7 @@ namespace Tizen.NUI
                     if (BorderWindow.IsMaximized() == true)
                     {
                         BorderWindow.Maximize(false);
+                        OnMaximize(false);
                     }
                     else
                     {
@@ -403,6 +412,7 @@ namespace Tizen.NUI
             {
                 ClearWindowGesture();
                 BorderWindow.Minimize(true);
+                OnMinimize(true);
             }
             return true;
         }
@@ -423,10 +433,12 @@ namespace Tizen.NUI
                 if (BorderWindow.IsMaximized())
                 {
                   BorderWindow.Maximize(false);
+                  OnMaximize(false);
                 }
                 else
                 {
                   BorderWindow.Maximize(true);
+                  OnMaximize(true);
                 }
             }
             return true;
@@ -632,10 +644,12 @@ namespace Tizen.NUI
                   if (BorderWindow.IsMaximized() == false)
                   {
                     BorderWindow.Maximize(true);
+                    OnMaximize(true);
                   }
                   else
                   {
                     BorderWindow.Maximize(false);
+                    OnMaximize(false);
                   }
               }
               else
@@ -658,6 +672,7 @@ namespace Tizen.NUI
                     if (BorderWindow.IsMaximized() == true)
                     {
                         BorderWindow.Maximize(false);
+                        OnMaximize(false);
                     }
                     else
                     {
@@ -698,6 +713,26 @@ namespace Tizen.NUI
         /// <param name="height">The height of the resized window</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnResized(int width, int height)
+        {
+            UpdateIcons();
+        }
+
+        /// <summary>
+        /// Called when the window is maximized.
+        /// </summary>
+        /// <param name="isMaximized">If window is maximized or unmaximized.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnMaximize(bool isMaximized) 
+        {
+            UpdateIcons();
+        }
+
+        /// <summary>
+        /// Called when the window is minimized.
+        /// </summary>
+        /// <param name="isMinimized">If window is mnimized or unminimized.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnMinimize(bool isMinimized)
         {
             UpdateIcons();
         }
