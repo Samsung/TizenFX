@@ -153,9 +153,11 @@ namespace Tizen.NUI
         /// <param name="args">The arguments from commandline.</param>
         public void Run(string[] args)
         {
-            Tizen.Tracer.Begin("[NUI] NUICorebackend Run(): start");
+            Tizen.Tracer.Begin("[NUI] NUICorebackend Run()");
+
             Tizen.Tracer.Begin("[NUI] NUICorebackend Run(): TizenSynchronizationContext.Initialize() called");
             TizenSynchronizationContext.Initialize();
+            Tizen.Tracer.End();
 
             Tizen.Tracer.Begin("[NUI] NUICorebackend Run(): args of main set, window type set");
             if (Tizen.Applications.Application.Current?.ApplicationInfo != null)
@@ -182,6 +184,7 @@ namespace Tizen.NUI
                     application = Application.NewApplication(args, stylesheet, windowMode);
                 }
             }
+            Tizen.Tracer.End();
 
             Tizen.Tracer.Begin("[NUI] NUICorebackend Run(): add application related events");
             application.BatteryLow += OnBatteryLow;
@@ -194,8 +197,10 @@ namespace Tizen.NUI
             application.Terminating += OnTerminated;
             application.Paused += OnPaused;
             application.AppControl += OnAppControl;
+            Tizen.Tracer.End();
 
-            Tizen.Tracer.Begin("[NUI] NUICorebackend Run(): application.MainLoop() called");
+            Tizen.Tracer.End();
+
             application.MainLoop();
             application.Dispose();
         }
@@ -290,21 +295,23 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for Initialized.</param>
         private void OnInitialized(object source, NUIApplicationInitEventArgs e)
         {
-            Tizen.Tracer.Begin("[NUI] OnInitialized(): start");
+            Tizen.Tracer.Begin("[NUI] OnInitialized()");
 
             Log.Info("NUI", "NUICorebackend OnPreCreated Called");
 
             Tizen.Tracer.Begin("[NUI] OnInitialized(): OnPreCreated event handler");
             var preCreateHandler = Handlers[EventType.PreCreated] as Action;
             preCreateHandler?.Invoke();
+            Tizen.Tracer.End();
 
             Log.Info("NUI", "NUICorebackend OnCreate Called");
 
             Tizen.Tracer.Begin("[NUI] OnInitialized(): OnCreated event handler");
             var createHandler = Handlers[EventType.Created] as Action;
             createHandler?.Invoke();
+            Tizen.Tracer.End();
 
-            Tizen.Tracer.Begin("[NUI] OnInitialized(): finish");
+            Tizen.Tracer.End();
         }
 
         /// <summary>
@@ -326,15 +333,16 @@ namespace Tizen.NUI
         /// <param name="e">The event argument for Resumed.</param>
         private void OnResumed(object source, NUIApplicationResumedEventArgs e)
         {
-            Tizen.Tracer.Begin("[NUI] OnResumed(): start");
+            Tizen.Tracer.Begin("[NUI] OnResumed()");
 
             Log.Info("NUI", "NUICorebackend OnResumed Called");
 
             Tizen.Tracer.Begin("[NUI] OnResumed(): OnResumed event handler");
             var handler = Handlers[EventType.Resumed] as Action;
             handler?.Invoke();
+            Tizen.Tracer.End();
 
-            Tizen.Tracer.Begin("[NUI] OnResumed(): finish");
+            Tizen.Tracer.End();
         }
 
         /// <summary>

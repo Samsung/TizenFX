@@ -476,12 +476,14 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected virtual void OnPreCreate()
         {
-            Tizen.Tracer.Begin("[NUI] OnPreCreate(): start");
+            Tizen.Tracer.Begin("[NUI] OnPreCreate()");
+
             if (borderEnabled)
             {
                 GetDefaultWindow().EnableBorder(borderInterface);
             }
-            Tizen.Tracer.Begin("[NUI] OnPreCreate(): finish");
+
+            Tizen.Tracer.End();
         }
 
         /// <summary>
@@ -504,9 +506,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         protected override void OnCreate()
         {
-            Tizen.Tracer.Begin("[NUI] OnCreate(): start");
+            Tizen.Tracer.Begin("[NUI] OnCreate()");
+
             base.OnCreate();
-            Tizen.Tracer.Begin("[NUI] OnCreate(): end");
+
+            Tizen.Tracer.End();
         }
 
         /// <summary>
