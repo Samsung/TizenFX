@@ -115,5 +115,19 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void OnResized(int width, int height);
 
+        /// <summary>
+        /// Called when the window is maximized.
+        /// </summary>
+        /// <param name="isMaximized">If window is maximized or unmaximized.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void OnMaximize(bool isMaximized);
+
+        /// <summary>
+        /// Called when the window is minimized.
+        /// </summary>
+        /// <param name="isMinimized">If window is minimized or unminimized.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void OnMinimize(bool isMinimized);
+
     }
 }
