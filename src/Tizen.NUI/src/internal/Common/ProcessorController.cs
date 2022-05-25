@@ -39,12 +39,43 @@ namespace Tizen.NUI
         {
         }
 
+        private bool layoutProcessEnabled = false;
+
+        public bool LayoutProcessEnabled
+        {
+            get
+            {
+                return layoutProcessEnabled;
+            }
+            set
+            {
+                if (layoutProcessEnabled == value)
+                {
+                    return;
+                }
+
+                layoutProcessEnabled = value;
+
+                if (layoutProcessEnabled)
+                {
+                    processorCallback = new ProcessorEventHandler(Process);
+                    processorPostCallback = new ProcessorEventHandler(PostProcess);
+                    Interop.ProcessorController.SetCallback(SwigCPtr, processorCallback);
+                    Interop.ProcessorController.SetPostCallback(SwigCPtr, processorPostCallback);
+                }
+                else
+                {
+                    Interop.ProcessorController.RemoveCallback(SwigCPtr, processorCallback);
+                    Interop.ProcessorController.RemovePostCallback(SwigCPtr, processorPostCallback);
+                    processorCallback = null;
+                    processorPostCallback = null;
+                }
+            }
+        }
+
         internal ProcessorController(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-            processorCallback = new ProcessorEventHandler(Process);
-            processorPostCallback = new ProcessorEventHandler(PostProcess);
-            Interop.ProcessorController.SetCallback(SwigCPtr, processorCallback);
-            Interop.ProcessorController.SetPostCallback(SwigCPtr, processorPostCallback);
+            LayoutProcessEnabled = true;
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -71,6 +102,7 @@ namespace Tizen.NUI
 
         public void Process()
         {
+            NUILog.Error("@@@@@@@@@@@@@@@@@@@@ LayoutProcess is called! @@@@@@@@@@@@@@@@@@@@");
             ProcessorOnceEvent?.Invoke(this, null);
             ProcessorOnceEvent = null;
             ProcessorEvent?.Invoke(this, null);
@@ -89,8 +121,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
         {
-            Interop.ProcessorController.RemoveCallback(SwigCPtr, processorCallback);
-            Interop.ProcessorController.RemovePostCallback(SwigCPtr, processorPostCallback);
+            LayoutProcessEnabled = false;
             ProcessorOnceEvent = null;
             ProcessorEvent = null;
             LayoutProcessorEvent = null;

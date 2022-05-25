@@ -1251,6 +1251,15 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// EnableLayoutProcess.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void EnableLayoutProcess(bool enabled)
+        {
+            ProcessorController.Instance.LayoutProcessEnabled = enabled;
+        }
+
+        /// <summary>
         /// Adds an orientation to the list of available orientations.
         /// </summary>
         /// <param name="orientation">The available orientation to add</param>

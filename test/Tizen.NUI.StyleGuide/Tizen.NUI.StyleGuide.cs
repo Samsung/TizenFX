@@ -217,6 +217,14 @@ namespace Tizen.NUI.StyleGuide
 
             //enable FocusManger default algorithm
             FocusManager.Instance.EnableDefaultAlgorithm(true);
+
+            var timer = new Timer(3000);
+            timer.Tick += (s, e) =>
+            {
+                Window.EnableLayoutProcess(false);
+                return false;
+            };
+            timer.Start();
         }
         private void Initialize()
         {
