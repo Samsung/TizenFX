@@ -14,5 +14,6 @@
   </ui-application>
 	<privileges>
         <privilege>http://tizen.org/privilege/camera</privilege>
+        <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
   </privileges>
 </manifest>
