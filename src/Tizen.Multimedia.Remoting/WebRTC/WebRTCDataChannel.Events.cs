@@ -30,11 +30,13 @@ namespace Tizen.Multimedia.Remoting
         private NativeDataChannel.ClosedCallback _webRtcDataChannelClosedCallback;
         private NativeDataChannel.MessageReceivedCallback _webRtcDataChannelMsgRecvCallback;
         private NativeDataChannel.ErrorOccurredCallback _webRtcDataChannelErrorOccurredCallback;
+        private NativeDataChannel.BufferedAmountLowThresholdCallback _webRtcDataChannelBufferedAmountLowThresholdCallback;
 
         private event EventHandler<EventArgs> _opened;
         private event EventHandler<EventArgs> _closed;
         private event EventHandler<WebRTCDataChannelMessageReceivedEventArgs> _messageReceived;
         private event EventHandler<WebRTCDataChannelErrorOccurredEventArgs> _errorOccurred;
+        private event EventHandler<EventArgs> _bufferedAmountLowThresholdOccurred;
 
         /// <summary>
         /// Occurs when the data channel's underlying data transport is established.
@@ -132,6 +134,31 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        /// <summary>
+        /// Occurs when the buffered data amount is lower than <see cref="BufferedAmountLowThreshold"/>.<br/>
+        /// If <see cref="BufferedAmountLowThreshold"/> is not set, this event will not be raised.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        public event EventHandler<EventArgs> BufferedAmountLow
+        {
+            add
+            {
+                if (_bufferedAmountLowThresholdOccurred == null)
+                {
+                    RegisterDataChannelBufferedAmountLowThresholdCallback();
+                }
+                _bufferedAmountLowThresholdOccurred += value;
+            }
+            remove
+            {
+                _bufferedAmountLowThresholdOccurred -= value;
+                if (_bufferedAmountLowThresholdOccurred == null)
+                {
+                    UnregisterDataChannelBufferedAmountLowThresholdCallback();
+                }
+            }
+        }
+
         private void RegisterDataChannelOpenedCallback()
         {
             _webRtcDataChannelOpenedCallback = (dataChannelHandle, _) =>
@@ -198,6 +225,27 @@ namespace Tizen.Multimedia.Remoting
         {
             NativeDataChannel.UnsetErrorOccurredCb(_handle).
                 ThrowIfFailed("Failed to unset data channel error callback.");
+        }
+
+        private void RegisterDataChannelBufferedAmountLowThresholdCallback()
+        {
+            if (_webRtcDataChannelBufferedAmountLowThresholdCallback == null)
+            {
+                _webRtcDataChannelBufferedAmountLowThresholdCallback = (dataChannelHanel, _) =>
+                {
+                    _bufferedAmountLowThresholdOccurred?.Invoke(this, new EventArgs());
+                };
+            }
+
+            NativeDataChannel.SetBufferedAmountLowThresholdCb(_handle, _bufferThreshold.Value,
+                _webRtcDataChannelBufferedAmountLowThresholdCallback).
+                ThrowIfFailed("Failed to set buffered amount low threshold callback.");
+        }
+
+        private void UnregisterDataChannelBufferedAmountLowThresholdCallback()
+        {
+            NativeDataChannel.UnsetBufferedAmountLowThresholdCb(_handle).
+                ThrowIfFailed("Failed to unset buffered amount low threshold callback.");
         }
     }
 }
