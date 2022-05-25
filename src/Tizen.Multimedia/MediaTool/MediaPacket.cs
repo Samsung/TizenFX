@@ -179,10 +179,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Increases reference count of the current MediaPacket instance.
         /// </summary>
-        /// <remarks>
-        /// This supports the product infrastructure and is not intended to be used directly from application code.
-        /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     The MediaPacket is not in the writable state, which means it is being used by another module.
+        /// </exception>
+        /// <since_tizen> 10 </since_tizen>
         public void Ref()
         {
             ValidateNotLocked();
@@ -195,10 +196,10 @@ namespace Tizen.Multimedia
         /// Decreases reference count of the current MediaPacket instance.
         /// </summary>
         /// <remarks>
-        /// If there's no user for this instance after decreasing reference count, this MediaPacket will be destroyed.\n
-        /// This supports the product infrastructure and is not intended to be used directly from application code.
+        /// If there's no user after decreasing reference count, this MediaPacket will be disposed.
         /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <returns>true if this MediaPacket is disposed now; otherwise false.</returns>
+        /// <since_tizen> 10 </since_tizen>
         public void Unref()
         {
             if (_isDisposed)
@@ -206,8 +207,8 @@ namespace Tizen.Multimedia
                 return;
             }
 
-            // Ignore native error - Called Unref() after MediaPacket is disposed by Native FW.
-            Native.Unref(_handle);
+            var ret = Native.Unref(_handle);
+            MultimediaDebug.AssertNoError(ret);
         }
 
         private readonly MediaFormat _format;
@@ -228,7 +229,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the PTS(Presentation Time Stamp) value of the current packet in nanoseconds.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The MediaPacket is not in the writable state, which means it is being used by another module.
         /// </exception>
@@ -259,7 +260,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the DTS(Decoding Time Stamp) value of the current packet in nanoseconds.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The MediaPacket is not in the writable state, which means it is being used by another module.
         /// </exception>
@@ -288,7 +289,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the duration value of the current packet in nanoseconds.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The MediaPacket is not in the writable state, which means it is being used by another module.
         /// </exception>
@@ -318,7 +319,7 @@ namespace Tizen.Multimedia
         /// Gets a value indicating whether the packet is the encoded type.
         /// </summary>
         /// <value>true if the packet is the encoded type; otherwise, false.</value>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
         /// <since_tizen> 3 </since_tizen>
         public bool IsEncoded
         {
@@ -337,7 +338,7 @@ namespace Tizen.Multimedia
         /// Gets or sets the rotation value of the current packet.
         /// </summary>
         /// <exception cref="ArgumentException">The specified value to set is invalid.</exception>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The MediaPacket is not in the writable state, which means it is being used by another module.
         /// </exception>
@@ -373,7 +374,7 @@ namespace Tizen.Multimedia
         /// <see cref="Flips.None"/> will be ignored in set case. It's not supported in Native FW.
         /// </remarks>
         /// <exception cref="ArgumentException">The specified value to set is invalid.</exception>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The MediaPacket is not in the writable state, which means it is being used by another module.
         /// </exception>
@@ -419,7 +420,7 @@ namespace Tizen.Multimedia
         /// The <see cref="IMediaBuffer"/> allocated to the packet.
         /// This property will return null if the packet is in the raw video format.
         /// </value>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
         /// <seealso cref="IsEncoded"/>
         /// <seealso cref="VideoPlanes"/>
         /// <since_tizen> 3 </since_tizen>
@@ -463,7 +464,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets a length of data written in the <see cref="Buffer"/>.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     The value specified for this property is less than zero or greater than the length of the <see cref="Buffer"/>.</exception>
         /// <exception cref="InvalidOperationException">
@@ -516,7 +517,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <value>The <see cref="MediaPacketVideoPlane"/>s allocated to the packet.
         ///     This property will return null if the packet is not in the raw video format.</value>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
         /// <seealso cref="IsEncoded"/>
         /// <seealso cref="Buffer"/>
         /// <since_tizen> 3 </since_tizen>
@@ -543,7 +544,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets or sets the buffer flags of the packet.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
         /// <exception cref="InvalidOperationException">
         ///     The MediaPacket is not in the writable state, which means it is being used by another module.
         /// </exception>
@@ -577,7 +578,7 @@ namespace Tizen.Multimedia
 
         #region Dispose support
         /// <summary>
-        /// Gets a value indicating whether the packet has been disposed of.
+        /// Gets a value indicating whether the packet has been disposed.
         /// </summary>
         /// <value>true if the packet has been disposed of; otherwise, false.</value>
         /// <since_tizen> 3 </since_tizen>
@@ -601,6 +602,8 @@ namespace Tizen.Multimedia
             ValidateNotLocked();
 
             Dispose(true);
+
+            // Suppress finalization will be done in DisposedCallback.
         }
 
         /// <summary>
@@ -619,19 +622,20 @@ namespace Tizen.Multimedia
 
             if (_handle != IntPtr.Zero)
             {
+                // The following Unref will invoke DisposedCallback internally and it makes _isDisposed to true.
                 Native.Unref(_handle);
             }
         }
 
         /// <summary>
-        /// Validates the current object has not been disposed of.
+        /// Validates the current object has not been disposed.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
         private void ValidateNotDisposed()
         {
             if (_isDisposed)
             {
-                throw new ObjectDisposedException("This packet has already been disposed of.");
+                throw new ObjectDisposedException("This packet has already been disposed.");
             }
         }
         #endregion
@@ -648,7 +652,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Ensures whether the packet is writable.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
         /// <exception cref="InvalidOperationException">The MediaPacket is being used by another module.</exception>
         internal void EnsureWritableState()
         {
@@ -659,7 +663,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Ensures whether the packet is readable.
         /// </summary>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
         internal void EnsureReadableState()
         {
             ValidateNotDisposed();
