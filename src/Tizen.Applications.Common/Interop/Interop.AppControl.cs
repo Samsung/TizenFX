@@ -151,5 +151,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppControl, EntryPoint = "app_control_get_component_id")]
         internal static extern ErrorCode GetComponentId(SafeAppControlHandle handle, out string componentId);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_set_auto_restart")]
+        internal static extern ErrorCode SetAutoRestart(SafeAppControlHandle handle);
     }
 }
