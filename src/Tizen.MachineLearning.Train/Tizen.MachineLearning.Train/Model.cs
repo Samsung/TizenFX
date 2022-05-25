@@ -123,12 +123,36 @@ namespace Tizen.MachineLearning.Train
             string compile_params = null;
 
             if (hyperparameter != null) {
-                compile_params = string.Join("`", hyperparameter);
+                compile_params = string.Join("|", hyperparameter);
                 Log.Info(NNTrainer.Tag, "Compile hyperparameter:"+ compile_params);
             }
 
             NNTrainerError ret = Interop.Model.Compile(_handle, compile_params);
             NNTrainer.CheckException(ret, "Failed to compile model");
         }
+
+        /// <summary>
+        /// Trains the neural network model with the hyperparameter.
+        /// </summary>
+        /// <remarks>
+        /// Use this function to train the compiled neural network model with
+        /// the passed training hyperparameters. This function will return once the
+        /// training, along with requested validation and testing, is completed.
+        /// </remarks>
+        /// <param name="hyperparameter">Hyperparameters for train model.</param>
+        /// <since_tizen> 10 </since_tizen>
+        public void Run(params string[] hyperparameter)
+        {
+            string run_params = null;
+
+            if (hyperparameter != null) {
+                run_params = string.Join("|", hyperparameter);
+                Log.Info(NNTrainer.Tag, "Run hyperparameter:"+ run_params);
+            }
+
+            NNTrainerError ret = Interop.Model.Run(_handle, run_params);
+            NNTrainer.CheckException(ret, "Failed to run model");
+        }
+
     } 
 }
