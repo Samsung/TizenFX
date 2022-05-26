@@ -45,5 +45,9 @@ internal static partial class Interop
         /* int ml_train_model_get_summary(ml_train_model_h model, ml_train_summary_type_e verbosity, char **summary) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_get_summary")]
         public static extern NNTrainerError GetSummaryUtil(IntPtr model_handle, NNTrainerSummaryType verbosity, out string summary);
+
+        /* int ml_train_model_save(ml_train_model_h model, const char *file_path, ml_train_model_format_e format) */
+        [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_save")]
+        public static extern NNTrainerError Save(IntPtr model_handle, string file_path, NNTrainerModelFormat format);
     }
 }
