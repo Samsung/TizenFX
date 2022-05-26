@@ -200,5 +200,35 @@ namespace Tizen.MachineLearning.Train
             NNTrainerError ret = Interop.Model.Save(_handle, FilePath, format);
             NNTrainer.CheckException(ret, "Failed to save model to path");
         }
+
+        /// <summary>
+        /// Loads the model.
+        /// </summary>
+        /// <remarks>
+        /// Use this function to load the current model. format
+        /// describes various formats in which various selections of the
+        /// parameters of the models can be loaded. Some formats may load
+        /// parameters required for training. Some other formats may load model
+        /// configurations. Unless stated otherwise, loading model configuration requires
+        /// a freshly constructed model with new model() without Compile(),
+        /// loading model parameter requires Compile() to be called upon the model
+        /// before calling this function.
+        /// If you want to access only internal storage by using this function,
+        /// you should add privilege %http://tizen.org/privilege/mediastorage. Or, if you
+        /// want to access only external storage by using this function, you should add
+        /// privilege %http://tizen.org/privilege/externalstorage. If you want to access
+        /// both storage, you must add all the privileges.
+        /// </remarks>
+        /// <param name="FilePath">File path to load the file.</param>
+        /// <param name="format">Format flag to determine which format should be used to load.</param>
+        /// <since_tizen> 10 </since_tizen>
+        public void Load(string FilePath, NNTrainerModelFormat format)
+        {
+            if (string.IsNullOrEmpty(FilePath))
+                NNTrainer.CheckException(NNTrainerError.InvalidParameter, "FilePath is null");
+            Log.Info(NNTrainer.Tag, "FilePath: "+ FilePath);
+            NNTrainerError ret = Interop.Model.Load(_handle, FilePath, format);
+            NNTrainer.CheckException(ret, "Failed to load model to path");
+        }
     } 
 }
