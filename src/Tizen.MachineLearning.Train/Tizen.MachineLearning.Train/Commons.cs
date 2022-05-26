@@ -55,6 +55,26 @@ namespace Tizen.MachineLearning.Train
         Tensor = 2
     }
 
+    /// <summary>
+    /// Enumeration for the neural network.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public enum NNTrainerModelFormat
+    {
+        /// <summary>
+        /// Raw bin file saves model weights required for inference and training without any configurations
+        /// </summary>
+        Bin = 0,
+        /// <summary>
+        /// Ini format file saves model configurations.
+        /// </summary>
+        Ini = 1,
+        /// <summary>
+        /// Ini with bin format file saves configurations with parameters required for inference and training.
+        /// </summary>
+        IniWithBin = 2
+    }
+
     internal static class NNTrainer
     {
  
