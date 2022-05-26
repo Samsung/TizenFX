@@ -49,5 +49,10 @@ internal static partial class Interop
         /* int ml_train_model_save(ml_train_model_h model, const char *file_path, ml_train_model_format_e format) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_save")]
         public static extern NNTrainerError Save(IntPtr model_handle, string file_path, NNTrainerModelFormat format);
+
+        /* int ml_train_model_load(ml_train_model_h model, const char *file_path, ml_train_model_format_e format); */
+        [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_load")]
+        public static extern NNTrainerError Load(IntPtr model_handle, string file_path, NNTrainerModelFormat format);
+
     }
 }
