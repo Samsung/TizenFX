@@ -41,5 +41,9 @@ internal static partial class Interop
         /* int ml_train_model_run(ml_train_model_h model, ...) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_run_with_single_param")]
         public static extern NNTrainerError Run(IntPtr model_handle, string run_params);
+
+        /* int ml_train_model_get_summary(ml_train_model_h model, ml_train_summary_type_e verbosity, char **summary) */
+        [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_get_summary")]
+        public static extern NNTrainerError GetSummaryUtil(IntPtr model_handle, NNTrainerSummaryType verbosity, out string summary);
     }
 }

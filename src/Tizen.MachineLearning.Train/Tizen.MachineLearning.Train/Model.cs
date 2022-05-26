@@ -93,7 +93,6 @@ namespace Tizen.MachineLearning.Train
             {
                 // release managed object
             }
-
             // release unmanaged object
             if (_handle != IntPtr.Zero)
             {
@@ -154,5 +153,22 @@ namespace Tizen.MachineLearning.Train
             NNTrainer.CheckException(ret, "Failed to run model");
         }
 
+        /// <summary>
+        /// Gets the summary of the neural network model.
+        /// </summary>
+        /// <remarks>
+        /// Use this function to get the summary of the neural network model.
+        /// </remarks>
+        /// <param name="verbosity">Verbose level of the summary.</param>
+        /// <param name="retSummary">On return, a string value. The summary of the current model. Avoid logic to parse and exploit summary if possible.</param>
+        /// <since_tizen> 10 </since_tizen>
+        public void GetSummaryUtil(NNTrainerSummaryType verbosity, out string retSummary)
+        {
+            NNTrainerError ret = Interop.Model.GetSummaryUtil(_handle, verbosity, out string summary);
+            NNTrainer.CheckException(ret, "Failed to get summary");
+
+            retSummary = summary;
+
+        }
     } 
 }

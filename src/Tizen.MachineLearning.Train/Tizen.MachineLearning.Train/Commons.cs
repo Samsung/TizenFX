@@ -34,6 +34,27 @@ namespace Tizen.MachineLearning.Train
         InvalidOperation = ErrorCode.InvalidOperation
     }
 
+
+    /// <summary>
+    /// Enumeration for the neural network summary verbosity of NNTrainer.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public enum NNTrainerSummaryType
+    {
+        /// <summary>
+        /// Overview of model summary with one-line layer information
+        /// </summary>
+        Model = 0,
+        /// <summary>
+        /// Detailed model summary with layer properties
+        /// </summary>
+        Layer = 1,
+        /// <summary>
+        /// Model summary layer's including weight information
+        /// </summary>
+        Tensor = 2
+    }
+
     internal static class NNTrainer
     {
  
