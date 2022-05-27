@@ -35,8 +35,8 @@ namespace Tizen.MachineLearning.Train
     /// <since_tizen> 10 </since_tizen>
     public class Model: IDisposable
     {
-        private IntPtr _handle = IntPtr.Zero;
-        private bool _disposed = false;
+        private IntPtr handle = IntPtr.Zero;
+        private bool disposed = false;
 
         /// <summary>
         /// Constructs the neural network model.
@@ -44,7 +44,7 @@ namespace Tizen.MachineLearning.Train
         /// <since_tizen> 10 </since_tizen>
         public Model()
         {
-            NNTrainerError ret = Interop.Model.Construct(out _handle);
+            NNTrainerError ret = Interop.Model.Construct(out handle);
             NNTrainer.CheckException(ret, "Failed to create model instance");
         }
 
@@ -58,7 +58,7 @@ namespace Tizen.MachineLearning.Train
             if (string.IsNullOrEmpty(modelConf))
                 NNTrainer.CheckException(NNTrainerError.InvalidParameter, "modelConf is null");
             Log.Info(NNTrainer.Tag, "Conf path: "+ modelConf);
-            NNTrainerError ret = Interop.Model.ConstructWithConf(modelConf, out _handle);
+            NNTrainerError ret = Interop.Model.ConstructWithConf(modelConf, out handle);
             NNTrainer.CheckException(ret, "Failed to create model instance with modelConf");
         }
         /// <summary>
@@ -87,22 +87,22 @@ namespace Tizen.MachineLearning.Train
         /// <since_tizen> 10 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
-            if (_disposed)
+            if (disposed)
                 return;
             if (disposing)
             {
                 // release managed object
             }
             // release unmanaged object
-            if (_handle != IntPtr.Zero)
+            if (handle != IntPtr.Zero)
             {
                 // Destroy the neural network model.
-                NNTrainerError ret = Interop.Model.Destroy(_handle);
+                NNTrainerError ret = Interop.Model.Destroy(handle);
                 NNTrainer.CheckException(ret, "Failed to destroy model instance");
 
-                _handle = IntPtr.Zero;
+                handle = IntPtr.Zero;
             }
-            _disposed = true;
+            disposed = true;
         }
 
         /// <summary>
@@ -119,14 +119,14 @@ namespace Tizen.MachineLearning.Train
         /// <since_tizen> 10 </since_tizen>
         public void Compile(params string[] hyperparameter)
         {
-            string compile_params = null;
+            string compileParams = null;
 
             if (hyperparameter != null) {
-                compile_params = string.Join("|", hyperparameter);
-                Log.Info(NNTrainer.Tag, "Compile hyperparameter:"+ compile_params);
+                compileParams = string.Join("|", hyperparameter);
+                Log.Info(NNTrainer.Tag, "Compile hyperparameter:"+ compileParams);
             }
 
-            NNTrainerError ret = Interop.Model.Compile(_handle, compile_params);
+            NNTrainerError ret = Interop.Model.Compile(handle, compileParams);
             NNTrainer.CheckException(ret, "Failed to compile model");
         }
 
@@ -142,14 +142,14 @@ namespace Tizen.MachineLearning.Train
         /// <since_tizen> 10 </since_tizen>
         public void Run(params string[] hyperparameter)
         {
-            string run_params = null;
+            string runParams = null;
 
             if (hyperparameter != null) {
-                run_params = string.Join("|", hyperparameter);
-                Log.Info(NNTrainer.Tag, "Run hyperparameter:"+ run_params);
+                runParams = string.Join("|", hyperparameter);
+                Log.Info(NNTrainer.Tag, "Run hyperparameter:"+ runParams);
             }
 
-            NNTrainerError ret = Interop.Model.Run(_handle, run_params);
+            NNTrainerError ret = Interop.Model.Run(handle, runParams);
             NNTrainer.CheckException(ret, "Failed to run model");
         }
 
@@ -164,7 +164,7 @@ namespace Tizen.MachineLearning.Train
         /// <since_tizen> 10 </since_tizen>
         public void GetSummaryUtil(NNTrainerSummaryType verbosity, out string retSummary)
         {
-            NNTrainerError ret = Interop.Model.GetSummaryUtil(_handle, verbosity, out string summary);
+            NNTrainerError ret = Interop.Model.GetSummaryUtil(handle, verbosity, out string summary);
             NNTrainer.CheckException(ret, "Failed to get summary");
 
             retSummary = summary;
@@ -189,15 +189,15 @@ namespace Tizen.MachineLearning.Train
         /// privilege %http://tizen.org/privilege/externalstorage. If you want to access
         /// both storage, you must add all the privileges.
         /// </remarks>
-        /// <param name="FilePath">File path to save the file.</param>
+        /// <param name="filePath">File path to save the file.</param>
         /// <param name="format">Format flag to determine which format should be used to save.</param>
         /// <since_tizen> 10 </since_tizen>
-        public void Save(string FilePath, NNTrainerModelFormat format)
+        public void Save(string filePath, NNTrainerModelFormat format)
         {
-            if (string.IsNullOrEmpty(FilePath))
-                NNTrainer.CheckException(NNTrainerError.InvalidParameter, "FilePath is null");
-            Log.Info(NNTrainer.Tag, "FilePath: "+ FilePath);
-            NNTrainerError ret = Interop.Model.Save(_handle, FilePath, format);
+            if (string.IsNullOrEmpty(filePath))
+                NNTrainer.CheckException(NNTrainerError.InvalidParameter, "File path is null");
+            Log.Info(NNTrainer.Tag, "File path: "+ filePath);
+            NNTrainerError ret = Interop.Model.Save(handle, filePath, format);
             NNTrainer.CheckException(ret, "Failed to save model to path");
         }
 
@@ -219,15 +219,15 @@ namespace Tizen.MachineLearning.Train
         /// privilege %http://tizen.org/privilege/externalstorage. If you want to access
         /// both storage, you must add all the privileges.
         /// </remarks>
-        /// <param name="FilePath">File path to load the file.</param>
+        /// <param name="filePath">File path to load the file.</param>
         /// <param name="format">Format flag to determine which format should be used to load.</param>
         /// <since_tizen> 10 </since_tizen>
-        public void Load(string FilePath, NNTrainerModelFormat format)
+        public void Load(string filePath, NNTrainerModelFormat format)
         {
-            if (string.IsNullOrEmpty(FilePath))
-                NNTrainer.CheckException(NNTrainerError.InvalidParameter, "FilePath is null");
-            Log.Info(NNTrainer.Tag, "FilePath: "+ FilePath);
-            NNTrainerError ret = Interop.Model.Load(_handle, FilePath, format);
+            if (string.IsNullOrEmpty(filePath))
+                NNTrainer.CheckException(NNTrainerError.InvalidParameter, "File path is null");
+            Log.Info(NNTrainer.Tag, "File Path: "+ filePath);
+            NNTrainerError ret = Interop.Model.Load(handle, filePath, format);
             NNTrainer.CheckException(ret, "Failed to load model to path");
         }
     } 
