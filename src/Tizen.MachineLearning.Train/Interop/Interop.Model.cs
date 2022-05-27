@@ -24,35 +24,35 @@ internal static partial class Interop
     {
         /* typedef int ml_train_model_construct(ml_train_model_h *model) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_construct")]
-        public static extern NNTrainerError Construct(out IntPtr model_handle);
+        public static extern NNTrainerError Construct(out IntPtr modelHandle);
 
         /* typedef int ml_train_model_destroy(ml_train_model_h model) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_destroy")]
-        public static extern NNTrainerError Destroy(IntPtr model_handle);
+        public static extern NNTrainerError Destroy(IntPtr modelHandle);
 
         /* int ml_train_model_construct_with_conf(const char *model_conf, ml_train_model_h *model)*/
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_construct_with_conf")]
-        public static extern NNTrainerError ConstructWithConf(string model_conf, out IntPtr model_handle);
+        public static extern NNTrainerError ConstructWithConf(string modelConf, out IntPtr modelHandle);
 
         /* int ml_train_model_compile_with_params(ml_train_model_h model, const char *params) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_compile_with_single_param")]
-        public static extern NNTrainerError Compile(IntPtr model_handle, string compile_params);
+        public static extern NNTrainerError Compile(IntPtr modelHandle, string compileParams);
 
         /* int ml_train_model_run(ml_train_model_h model, ...) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_run_with_single_param")]
-        public static extern NNTrainerError Run(IntPtr model_handle, string run_params);
+        public static extern NNTrainerError Run(IntPtr modelHandle, string runParams);
 
         /* int ml_train_model_get_summary(ml_train_model_h model, ml_train_summary_type_e verbosity, char **summary) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_get_summary")]
-        public static extern NNTrainerError GetSummaryUtil(IntPtr model_handle, NNTrainerSummaryType verbosity, out string summary);
+        public static extern NNTrainerError GetSummaryUtil(IntPtr modelHandle, NNTrainerSummaryType verbosity, out string summary);
 
         /* int ml_train_model_save(ml_train_model_h model, const char *file_path, ml_train_model_format_e format) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_save")]
-        public static extern NNTrainerError Save(IntPtr model_handle, string file_path, NNTrainerModelFormat format);
+        public static extern NNTrainerError Save(IntPtr modelHandle, string filePath, NNTrainerModelFormat format);
 
         /* int ml_train_model_load(ml_train_model_h model, const char *file_path, ml_train_model_format_e format); */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_load")]
-        public static extern NNTrainerError Load(IntPtr model_handle, string file_path, NNTrainerModelFormat format);
+        public static extern NNTrainerError Load(IntPtr modelHandle, string filePath, NNTrainerModelFormat format);
 
     }
 }

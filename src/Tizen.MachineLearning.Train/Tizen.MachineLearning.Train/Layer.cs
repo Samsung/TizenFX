@@ -42,6 +42,7 @@ namespace Tizen.MachineLearning.Train
         {
             NNTrainerError ret = Interop.Layer.Create(out handle, type);
             NNTrainer.CheckException(ret, "Failed to create model instance");
+            Log.Info(NNTrainer.Tag, $"Create layer with type:{type}");
         }
         /// <summary>
         /// Frees the neural network layer.
