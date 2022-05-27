@@ -222,6 +222,40 @@ namespace Tizen.NUI.Components
             return highIndicatorText;
         }
 
+        private ImageView CreateLowIndicatorImage()
+        {
+            if (lowIndicatorImage == null)
+            {
+                lowIndicatorImage = new ImageView()
+                {
+                    WidthResizePolicy = ResizePolicyType.Fixed,
+                    HeightResizePolicy = ResizePolicyType.Fixed,
+		    AccessibilityHidden = true,
+                };
+                this.Add(lowIndicatorImage);
+            }
+
+            return lowIndicatorImage;
+        }
+
+        private ImageView CreateHighIndicatorImage()
+        {
+            if (highIndicatorImage == null)
+            {
+                highIndicatorImage = new ImageView()
+                {
+                    WidthResizePolicy = ResizePolicyType.Fixed,
+                    HeightResizePolicy = ResizePolicyType.Fixed,
+					AccessibilityHidden = true,
+                };
+                this.Add(highIndicatorImage);
+            }
+
+            return highIndicatorImage;
+        }
+
+
+
         private ImageView CreateBackgroundTrack()
         {
             if (null == bgTrackImage)
@@ -282,7 +316,7 @@ namespace Tizen.NUI.Components
             return thumbImage;
         }
 
-        private ImageView CreateValueIndicator()
+        private ImageView CreateValueIndicatorImage()
         {
             if (valueIndicatorImage == null)
             {
