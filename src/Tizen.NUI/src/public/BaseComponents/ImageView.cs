@@ -50,6 +50,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.WrapModeU,
             ImageVisualProperty.WrapModeV,
             ImageVisualProperty.SynchronousLoading,
+            Visual.Property.PremultipliedAlpha,
             ImageVisualProperty.OrientationCorrection,
             NpatchImageVisualProperty.Border,
             NpatchImageVisualProperty.BorderOnly,
