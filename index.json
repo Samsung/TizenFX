@@ -8654,6 +8654,11 @@
     "title": "Enum FlexLayout.PositionType",
     "keywords": ""
   },
+  "API10/api/Tizen.NUI.FocusChangingEventArgs.html": {
+    "href": "API10/api/Tizen.NUI.FocusChangingEventArgs.html",
+    "title": "Class FocusChangingEventArgs",
+    "keywords": ""
+  },
   "API10/api/Tizen.NUI.FocusManager.FocusChangedEventArgs.html": {
     "href": "API10/api/Tizen.NUI.FocusManager.FocusChangedEventArgs.html",
     "title": "Class FocusManager.FocusChangedEventArgs",
