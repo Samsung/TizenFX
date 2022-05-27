@@ -75,6 +75,138 @@ namespace Tizen.MachineLearning.Train
         IniWithBin = 2
     }
 
+    /// <summary>
+    /// Enumeration for the neural network layer type of NNTrainer.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public enum NNTrainerLayerType
+    {
+        /// <summary>
+        /// Input Layer
+        /// </summary>
+        Input = 0,
+        /// <summary>
+        /// Fully Connected Layer
+        /// </summary>
+        FC = 1,
+        /// <summary>
+        /// Batch Normalization Layer
+        /// </summary>
+        BN = 2,
+        /// <summary>
+        /// Convolution 2D Layer
+        /// </summary>
+        Conv2D = 3,
+        /// <summary>
+        /// Pooling 2D Layer
+        /// </summary>
+        Pooling2D= 4,
+        /// <summary>
+        /// Flatten Layer
+        /// </summary>
+        Flatten = 5,
+        /// <summary>
+        /// Activation Layer
+        /// </summary>
+        Activation = 6,
+        /// <summary>
+        /// Addition Layer
+        /// </summary>
+        Addition = 7,
+        /// <summary>
+        /// Concat Layer
+        /// </summary>
+        Concat = 8,
+        /// <summary>
+        /// MultiOut Layer
+        /// </summary>
+        MultiOut = 9,
+        /// <summary>
+        /// Embedding Layer
+        /// </summary>
+        Embedding = 10,
+        /// <summary>
+        /// RNN Layer
+        /// </summary>
+        RNN = 11,
+        /// <summary>
+        /// LSTM Layer
+        /// </summary>
+        LSTM = 12,
+        /// <summary>
+        /// Split Layer
+        /// </summary>
+        Split = 13,
+        /// <summary>
+        /// GRU Layer
+        /// </summary>
+        GRU = 14,
+        /// <summary>
+        /// Permute Layer
+        /// </summary>
+        Permute = 15,
+        /// <summary>
+        /// Dropout Layer
+        /// </summary>
+        Dropout = 16,
+        /// <summary>
+        /// Backbone using NNStreamer
+        /// </summary>
+        BackboneNNStreamer = 17,
+        /// <summary>
+        /// Centroid KNN Layer
+        /// </summary>
+        CentroidKNN = 18,
+        /// <summary>
+        /// Convolution 1D Layer
+        /// </summary>
+        Conv1D = 19,
+        /// <summary>
+        /// LSTM Cell Layer 
+        /// </summary>
+        LSTMCell = 20,
+        /// <summary>
+        /// GRU Cell Layer 
+        /// </summary>
+        GRUCell = 21,
+        /// <summary>
+        /// RNN Cell Layer 
+        /// </summary>
+        RNNCell = 22,
+        /// <summary>
+        /// ZoneoutLSTM Cell Layer 
+        /// </summary>
+        ZoneoutLSTMCell = 23,
+        /// <summary>
+        /// Preprocess flip Layer 
+        /// </summary>
+        PreprocessFlip = 300,
+        /// <summary>
+        /// Preprocess translate Layer 
+        /// </summary>
+        PreprocessTranslate = 301,
+        /// <summary>
+        /// Preprocess L2Normalization Layer 
+        /// </summary>
+        PreprocessL2Norm = 302,
+        /// <summary>
+        /// Mean Squared Error Loss Layer
+        /// </summary>
+        LoseMSE = 500,
+        /// <summary>
+        /// Cross Entropy with Sigmoid Loss Layer
+        /// </summary>
+        LossCrossEntropySigmoid = 501, 
+        /// <summary>
+        /// Cross Entropy with Softmax Loss Layer
+        /// </summary>                                            
+        LossCrossEntropySoftmax = 502, 
+        /// <summary>
+        /// Unknown
+        /// </summary>  
+        Unknown = 999
+    }
+
     internal static class NNTrainer
     {
  
