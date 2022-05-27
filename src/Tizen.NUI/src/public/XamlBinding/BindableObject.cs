@@ -54,7 +54,7 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public object BindingContext
         {
-            get { return inheritedContext ?? GetValue(BindingContextProperty); }
+            get { return GetValue(BindingContextProperty) ?? inheritedContext; }
             set { SetValue(BindingContextProperty, value); }
         }
 
