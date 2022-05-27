@@ -1533,6 +1533,16 @@ namespace Tizen.NUI.Components
                 CreateHighIndicatorText().ApplyStyle(sliderStyle.HighIndicator);
             }
 
+            if (null != sliderStyle?.LowIndicatorImage)
+            {
+                CreateLowIndicatorImage().ApplyStyle(sliderStyle.LowIndicatorImage);
+            }
+
+            if (null != sliderStyle?.HighIndicatorImage)
+            {
+                CreateHighIndicatorImage().ApplyStyle(sliderStyle.HighIndicatorImage);
+            }
+
             if (null != sliderStyle?.Track)
             {
                 CreateBackgroundTrack().ApplyStyle(sliderStyle.Track);
@@ -1550,7 +1560,7 @@ namespace Tizen.NUI.Components
 
             if (null != sliderStyle?.ValueIndicatorImage)
             {
-                CreateValueIndicator().ApplyStyle(sliderStyle.ValueIndicatorImage);
+                CreateValueIndicatorImage().ApplyStyle(sliderStyle.ValueIndicatorImage);
             }
 
             if (null != sliderStyle?.WarningTrack)
