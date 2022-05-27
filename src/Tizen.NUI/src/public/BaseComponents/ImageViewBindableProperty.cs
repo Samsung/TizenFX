@@ -135,14 +135,33 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, new Tizen.NUI.PropertyValue((bool)newValue));
+                if(imageView.imagePropertyUpdatedFlag)
+                {
+                    // If imageView Property still not send to the dali, Append cached property.
+                    imageView.UpdateImage(Visual.Property.PremultipliedAlpha, new PropertyValue((bool)newValue));
+                }
+                else
+                {
+                    // Else, we don't need to re-create view. Get value from current ImageView.
+                    Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, new Tizen.NUI.PropertyValue((bool)newValue));
+                }
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var imageView = (ImageView)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha).Get(out temp);
+
+            if(imageView.imagePropertyUpdatedFlag)
+            {
+                // If imageView Property still not send to the dali, just get cached property.
+                imageView.GetCachedImageVisualProperty(Visual.Property.PremultipliedAlpha)?.Get(out temp);
+            }
+            else
+            {
+                // Else, PremultipliedAlpha may not setuped in cached property. Get value from current ImageView.
+                Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha).Get(out temp);
+            }
             return temp;
         }));
 

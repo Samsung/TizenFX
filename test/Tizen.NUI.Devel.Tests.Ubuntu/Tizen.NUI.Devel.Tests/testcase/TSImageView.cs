@@ -97,6 +97,29 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("internal API test in Ubuntu, ImageView.PreMultipliedAlpha")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.ImageView.PreMultipliedAlpha")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("AUTHOR", "eunkiki.hong@samsung.com")]
+        public void PreMultipliedAlpha_SET_GET_VALUE()
+        {
+            /* TEST CODE */
+            ImageView testView = new ImageView(image_path);
+
+            testView.PreMultipliedAlpha = true;
+
+            Assert.AreEqual(testView.PreMultipliedAlpha, true, "PreMultipliedAlpha is not updated");
+
+            testView.PreMultipliedAlpha = false;
+
+            Assert.AreEqual(testView.PreMultipliedAlpha, false, "PreMultipliedAlpha is not updated");
+
+            testView.Dispose();
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("internal API test in Ubuntu, ImageView.CropToMask with AlphaMaskURL")]
         [Property("SPEC", "Tizen.NUI.BaseComponents.ImageView.CropToMask")]
         [Property("SPEC_URL", "-")]
