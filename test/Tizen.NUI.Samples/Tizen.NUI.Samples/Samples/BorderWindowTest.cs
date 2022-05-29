@@ -306,9 +306,17 @@ namespace Tizen.NUI.Samples
     {
       if (subWindowTwo == null)
       {
-        IBorderInterface customBorder = new CustomBorder();
+        CustomBorder customBorder = new CustomBorder();
         subWindowTwo = new Window("subwin1", customBorder, new Rectangle(60, 20, 800, 800), false);
-        subWindowTwo.EnableFloatingMode(true);
+        subWindowTwo.InterceptTouchEvent += (s, e) => 
+        {
+            Tizen.Log.Error("NUI", $"subWindowTwo.InterceptTouchEvent\n");
+            if (e.Touch.GetState(0) == PointStateType.Down)
+            {
+              customBorder.OverlayBorderShow();
+            }
+            return false;
+        };
 
         var root = new View(){
           Layout = new LinearLayout()

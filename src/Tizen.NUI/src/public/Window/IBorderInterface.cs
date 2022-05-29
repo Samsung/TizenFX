@@ -73,6 +73,12 @@ namespace Tizen.NUI
         public bool OverlayMode {get;}
 
         /// <summary>
+        /// Set the window resizing policy.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window.BorderResizePolicyType ResizePolicy {get;}
+
+        /// <summary>
         /// Create top border UI. User can override this method to draw top border UI.
         /// </summary>
         /// <param name="topView">The top view on which the border.</param>
