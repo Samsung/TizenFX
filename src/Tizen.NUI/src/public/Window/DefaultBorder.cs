@@ -67,6 +67,7 @@ namespace Tizen.NUI
         private View windowView = null;
         private bool isWinGestures = false;
         private Timer timer;
+        private Timer overlayTimer;
 
         private CurrentGesture currentGesture = CurrentGesture.None;
         private bool disposed = false;
@@ -136,6 +137,13 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool OverlayMode {get; set;}
 
+        /// <summary>
+        /// Set the window resizing policy.
+        /// Default value is BorderResizePolicyType.Free;
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window.BorderResizePolicyType ResizePolicy {get; set;}
+
 
         /// <summary>
         /// Creates a default border
@@ -148,6 +156,7 @@ namespace Tizen.NUI
             BorderHeight = DefaultHeight;
             MinSize = DefaultMinSize;
             OverlayMode = false;
+            ResizePolicy = Window.BorderResizePolicyType.Free;
         }
 
         /// <summary>
@@ -353,7 +362,7 @@ namespace Tizen.NUI
                         BorderWindow.RequestMoveToServer();
                     }
                 }
-                else if (direction != Window.BorderDirection.None)
+                else if (direction != Window.BorderDirection.None && ResizePolicy != Window.BorderResizePolicyType.Fixed)
                 {
                     OnRequestResize();
                     BorderWindow.RequestResizeToServer((Window.ResizeDirection)direction);
@@ -372,17 +381,16 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnLeftTopCornerIconTouched(object sender, View.TouchEventArgs e)
         {
-            if (e == null)
-            {
-                return false;
-            }
-            if (e.Touch.GetState(0) == PointStateType.Down)
+            if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
               ClearWindowGesture();
-              OnRequestResize();
-              BorderWindow.RequestResizeToServer(Window.ResizeDirection.TopLeft);
+              if (ResizePolicy != Window.BorderResizePolicyType.Fixed)
+              {
+                OnRequestResize();
+                BorderWindow.RequestResizeToServer(Window.ResizeDirection.TopLeft);
+              }
             }
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -391,17 +399,16 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnRightTopCornerIconTouched(object sender, View.TouchEventArgs e)
         {
-            if (e == null)
-            {
-                return false;
-            }
-            if (e.Touch.GetState(0) == PointStateType.Down)
+            if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
               ClearWindowGesture();
-              OnRequestResize();
-              BorderWindow.RequestResizeToServer(Window.ResizeDirection.TopRight);
+              if (ResizePolicy != Window.BorderResizePolicyType.Fixed)
+              {
+                OnRequestResize();
+                BorderWindow.RequestResizeToServer(Window.ResizeDirection.TopRight);
+              }
             }
-            return true;
+            return false;
         }
 
 
@@ -411,17 +418,16 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnLeftBottomCornerIconTouched(object sender, View.TouchEventArgs e)
         {
-            if (e == null)
-            {
-                return false;
-            }
-            if (e.Touch.GetState(0) == PointStateType.Down)
+            if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
               ClearWindowGesture();
-              OnRequestResize();
-              BorderWindow.RequestResizeToServer(Window.ResizeDirection.BottomLeft);
+              if (ResizePolicy != Window.BorderResizePolicyType.Fixed)
+              {
+                OnRequestResize();
+                BorderWindow.RequestResizeToServer(Window.ResizeDirection.BottomLeft);
+              }
             }
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -430,17 +436,16 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnRightBottomCornerIconTouched(object sender, View.TouchEventArgs e)
         {
-            if (e == null)
-            {
-                return false;
-            }
-            if (e.Touch.GetState(0) == PointStateType.Down)
+            if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
               ClearWindowGesture();
-              OnRequestResize();
-              BorderWindow.RequestResizeToServer(Window.ResizeDirection.BottomRight);
+              if (ResizePolicy != Window.BorderResizePolicyType.Fixed)
+              {
+                OnRequestResize();
+                BorderWindow.RequestResizeToServer(Window.ResizeDirection.BottomRight);
+              }
             }
-            return true;
+            return false;
         }
 
 
@@ -461,15 +466,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnMinimizeIconTouched(object sender, View.TouchEventArgs e)
         {
-            if (e == null)
-            {
-                return false;
-            }
-            if (e.Touch.GetState(0) == PointStateType.Up)
+            if (e != null && e.Touch.GetState(0) == PointStateType.Up)
             {
                 MinimizeBorderWindow();
             }
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -497,15 +498,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnMaximizeIconTouched(object sender, View.TouchEventArgs e)
         {
-            if (e == null)
-            {
-                return false;
-            }
-            if (e.Touch.GetState(0) == PointStateType.Up)
+            if (e != null && e.Touch.GetState(0) == PointStateType.Up)
             {
                 MaximizeBorderWindow();
             }
-            return true;
+            return false;
         }
 
         /// <summary>
@@ -528,12 +525,11 @@ namespace Tizen.NUI
             {
                 return false;
             }
-            if (e.Touch.GetState(0) == PointStateType.Up)
+            if (e != null && e.Touch.GetState(0) == PointStateType.Up)
             {
-                BorderWindow.Destroy();
-                BorderWindow = null;
+                CloseBorderWindow();
             }
-            return true;
+            return false;
         }
 
 
@@ -608,6 +604,7 @@ namespace Tizen.NUI
             {
                 return;
             }
+            this.borderView = borderView;
             // Register to resize and move through pan gestures.
             borderPanGestureDetector = new PanGestureDetector();
             borderPanGestureDetector.Attach(borderView);
@@ -788,6 +785,14 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnResized(int width, int height)
         {
+            if (overlayTimer != null)
+            {
+                overlayTimer.Stop();
+                overlayTimer.Dispose();
+                overlayTimer = null;
+                BorderWindow?.GetBorderWindowBottomLayer().LowerToBottom();
+                borderView?.Show();
+            }
             UpdateIcons();
         }
 
@@ -809,6 +814,56 @@ namespace Tizen.NUI
         public virtual void OnMinimize(bool isMinimized)
         {
             UpdateIcons();
+        }
+
+        /// <summary>
+        /// Show the border when OverlayMode is true and the window is now Maximize.
+        /// </summary>
+        /// <param name="time">Time(ms) for borders to disappear again</param>
+        /// <returns>True if border became show, false otherwise</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual bool OverlayBorderShow(uint time = 3000)
+        {
+            if (BorderWindow != null && BorderWindow.IsMaximized())
+            {
+                if (overlayTimer == null)
+                {
+                    overlayTimer = new Timer(time);
+                    overlayTimer.Tick += (s, e) =>
+                    {
+                        BorderWindow.GetBorderWindowBottomLayer().LowerToBottom();
+                        borderView?.Hide();
+                        overlayTimer?.Stop();
+                        overlayTimer?.Dispose();
+                        overlayTimer = null;
+                        return false;
+                    };
+                    overlayTimer.Start();
+                    BorderWindow.GetBorderWindowBottomLayer().RaiseToTop();
+                    borderView?.Show();
+                }
+                else
+                {
+                    overlayTimer.Start();
+                }
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Hide the border when OverlayMode is true and the window is now Maximize.
+        /// </summary>
+        /// <returns>True if border became hide, false otherwise</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual bool OverlayBorderHide()
+        {
+            if (BorderWindow != null && BorderWindow.IsMaximized())
+            {
+                borderView?.Hide();
+                return true;
+            }
+            return false;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -836,6 +891,7 @@ namespace Tizen.NUI
                 leftCornerIcon?.Dispose();
                 rightCornerIcon?.Dispose();
                 timer?.Dispose();
+                overlayTimer?.Dispose();
                 windowView?.Dispose();
                 borderView?.Dispose();
             }

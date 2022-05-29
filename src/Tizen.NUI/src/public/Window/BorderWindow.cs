@@ -36,9 +36,7 @@ namespace Tizen.NUI
         private Layer borderWindowRootLayer = null;
         private Layer borderWindowBottomLayer = null;
         private bool isBorderWindow = false;
-        private bool isInterceptTouch = false;
 
-        private Timer overlayTimer;
         private Color overlayBackgroundColor;
 
         // for border area
@@ -83,6 +81,26 @@ namespace Tizen.NUI
             Bottom      = ResizeDirection.Bottom,
             BottomRight = ResizeDirection.BottomRight,
             Move,
+        }
+
+        /// <summary>
+        /// This enum is the policy when resizing the border window. 
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum BorderResizePolicyType
+        {
+          /// <summary>
+          /// The window can be resized freely.
+          /// </summary>
+          Free = 0,
+          /// <summary>
+          /// The window is resized according to the ratio.
+          /// </summary>
+          KeepRatio = 1,
+          /// <summary>
+          /// The window is not resized and is fixed.
+          /// </summary>
+          Fixed = 2,
         }
         #endregion //Enums
 
@@ -169,9 +187,10 @@ namespace Tizen.NUI
                     WindowSize += new Size2D((int)borderInterface.BorderLineThickness * 2, (int)(borderHeight + borderInterface.BorderLineThickness * 2));
                 }
 
-                if (borderInterface.OverlayMode == true)
+                // If it is BorderResizePolicyType.KeepRatio type, it will be resized according to the ratio.
+                if (borderInterface.ResizePolicy == BorderResizePolicyType.KeepRatio)
                 {
-                    rootView.InterceptTouchEvent += OverlayInterceptTouch;
+                    AddAuxiliaryHint("wm.policy.win.resize_aspect_ratio", "1");
                 }
 
                 // Add a view to the border layer.
@@ -317,62 +336,12 @@ namespace Tizen.NUI
             return direction;
         }
 
-
-        private bool OverlayInterceptTouch(object sender, View.TouchEventArgs e)
-        {
-            if (e.Touch.GetState(0) == PointStateType.Down)
-            {
-                if (isInterceptTouch == true && overlayTimer != null)
-                {
-                    overlayTimer.Start();
-                }
-            }
-            return false;
-        }
-
-        private bool OnTick(object o, Timer.TickEventArgs e)
-        {
-            GetBorderWindowBottomLayer().LowerToBottom();
-            if (borderView != null)
-            {
-                borderView.Hide();
-            }
-            isInterceptTouch = false;
-
-            overlayTimer.Stop();
-            overlayTimer.Dispose();
-            overlayTimer = null;
-            return false;
-        }
-
-        // Intercept touch on window.
-        private bool OnWinInterceptTouch(object sender, Window.TouchEventArgs e)
-        {
-            if (e.Touch.GetState(0) == PointStateType.Up)
-            {
-                if (isInterceptTouch == false && overlayTimer == null)
-                {
-                    overlayTimer = new Timer(3000);
-                    overlayTimer.Tick += OnTick;
-                    overlayTimer.Start();
-                    GetBorderWindowBottomLayer().RaiseToTop();
-                    if (borderView != null)
-                    {
-                        borderView.Show();
-                    }
-                    isInterceptTouch = true;
-                }
-            }
-            return false;
-        }
-
         private void OverlayMode(bool enable)
         {
             if (borderInterface.OverlayMode == true)
             {
                 if (enable == true)
                 {
-                    InterceptTouchEvent += OnWinInterceptTouch;
                     if (borderView != null)
                     {
                         overlayBackgroundColor = new Color(borderView.BackgroundColor);
@@ -382,14 +351,6 @@ namespace Tizen.NUI
                 }
                 else
                 {
-                    if (overlayTimer != null)
-                    {
-                        overlayTimer.Stop();
-                        overlayTimer.Dispose();
-                        overlayTimer = null;
-                    }
-                    isInterceptTouch = false;
-                    InterceptTouchEvent -= OnWinInterceptTouch;
                     GetBorderWindowBottomLayer().LowerToBottom();
                     if (borderView != null)
                     {
