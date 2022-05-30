@@ -1769,16 +1769,15 @@ namespace Tizen.NUI.Components
                     valueIndicatorImage.Show();
                 }
 
+                UpdateState(isFocused, true);
+
+                sliderSlidingStartedHandler?.Invoke(this, new SliderSlidingStartedEventArgs {
+                    CurrentValue = curValue
+                    });
+
                 Vector2 pos = e.Touch.GetLocalPosition(0);
                 CalculateCurrentValueByTouch(pos);
                 UpdateValue();
-
-                if (null != sliderSlidingFinishedHandler)
-                {
-                    SliderSlidingFinishedEventArgs args = new SliderSlidingFinishedEventArgs();
-                    args.CurrentValue = curValue;
-                    sliderSlidingFinishedHandler(this, args);
-                }
             }
             else if (state == PointStateType.Up)
             {
@@ -1786,6 +1785,12 @@ namespace Tizen.NUI.Components
                 {
                     valueIndicatorImage.Hide();
                 }
+
+                UpdateState(isFocused, false);
+
+                sliderSlidingFinishedHandler?.Invoke(this, new SliderSlidingFinishedEventArgs {
+                    CurrentValue = curValue
+                    });
             }
             return false;
         }
