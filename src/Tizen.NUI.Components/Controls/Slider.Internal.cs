@@ -103,6 +103,7 @@ namespace Tizen.NUI.Components
             LayoutDirectionChanged += OnLayoutDirectionChanged;
 
             this.TouchEvent += OnTouchEventForTrack;
+            this.GrabTouchAfterLeave = true;
 
             panGestureDetector = new PanGestureDetector();
             panGestureDetector.Attach(this);
@@ -232,6 +233,7 @@ namespace Tizen.NUI.Components
                     ParentOrigin = Tizen.NUI.ParentOrigin.Center,
                     PivotPoint = Tizen.NUI.PivotPoint.Center,
                     PositionUsesPivotPoint = true,
+                    GrabTouchAfterLeave = true,
                     AccessibilityHidden = true,
                 };
                 this.Add(bgTrackImage);
@@ -266,6 +268,7 @@ namespace Tizen.NUI.Components
                     PivotPoint = NUI.PivotPoint.Center,
                     PositionUsesPivotPoint = true,
                     EnableControlState = true,
+                    GrabTouchAfterLeave = true,
                     AccessibilityHidden = true,
                 };
                 if (bgTrackImage != null)
@@ -360,6 +363,7 @@ namespace Tizen.NUI.Components
                 {
                     CalculateCurrentValueByGesture(-e.PanGesture.Displacement.Y);
                 }
+                UpdateState(isFocused, true);
                 UpdateValue();
             }
 
