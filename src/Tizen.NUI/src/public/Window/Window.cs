@@ -1701,6 +1701,30 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the last key event the window gets.
+        /// </summary>
+        /// <returns>The last key event the window gets.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Key GetLastKeyEvent()
+        {
+            Key ret = new Key(Interop.Window.GetLastKeyEvent(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the last touch event the window gets.
+        /// </summary>
+        /// <returns>The last touch event the window gets.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Touch GetLastTouchEvent()
+        {
+            Touch ret = new Touch(Interop.Window.GetLastTouchEvent(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Add FrameUpdateCallback
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
