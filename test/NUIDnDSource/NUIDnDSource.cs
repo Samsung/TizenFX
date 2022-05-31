@@ -8,6 +8,7 @@ namespace NUIDnDSource
     class Program : NUIApplication
     {
         ImageView sourceView;
+        ImageView sourceView2;
         ImageView shadowView;
         ImageView targetViewA;
         ImageView targetViewB;
@@ -26,7 +27,7 @@ namespace NUIDnDSource
             Window.Instance.KeyEvent += OnKeyEvent;
             Window.Instance.WindowSize = new Size(900, 1080);
             Window.Instance.BackgroundColor = Color.White;
-            Window.Instance.TouchEvent += OnTouchEvent;
+//            Window.Instance.TouchEvent += OnTouchEvent;
 
             TextLabel text = new TextLabel("DragSource Application");
             text.Position = new Position(0, 0);
@@ -47,6 +48,15 @@ namespace NUIDnDSource
             sourceView.Size = new Size(250, 250);
             sourceView.Position = new Position(300, 230);
             Window.Instance.GetDefaultLayer().Add(sourceView);
+            sourceView.TouchEvent += OnTouchEvent;
+
+            // Create Source View
+            sourceView2 = new ImageView(Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource2.png");
+            sourceView2.Size = new Size(150, 150);
+            sourceView2.Position = new Position(570, 230);
+            Window.Instance.GetDefaultLayer().Add(sourceView2);
+            sourceView2.TouchEvent += OnTouchEvent2;
+
 
             TextLabel text3 = new TextLabel("This image can be dragged, Try dragging it to the area below.");
             text3.Position = new Position(0, 520);
@@ -151,7 +161,7 @@ namespace NUIDnDSource
           }
         }
 
-        private void OnTouchEvent(object source, Window.TouchEventArgs e)
+        private bool OnTouchEvent(object source, View.TouchEventArgs e)
         {
             if (e.Touch.GetState(0) == PointStateType.Down)
             {
@@ -163,7 +173,26 @@ namespace NUIDnDSource
                 dragData.Data = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource.png";
                 dnd.StartDragAndDrop(sourceView, shadowView, dragData, OnSourceEventFunc);
             }
+
+            return true;
         }
+
+        private bool OnTouchEvent2(object source, View.TouchEventArgs e)
+        {
+            if (e.Touch.GetState(0) == PointStateType.Down)
+            {
+                Tizen.Log.Debug("NUIDnDSource", "StartDragAndDrop");
+                shadowView = new ImageView(Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource2.png");
+                shadowView.Size = new Size(150, 150);
+                DragData dragData;
+                dragData.MimeType = "text/uri-list";
+                dragData.Data = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource2.png";
+                dnd.StartDragAndDrop(sourceView, shadowView, dragData, OnSourceEventFunc);
+            }
+            
+            return true;
+        }
+
 
         static void Main(string[] args)
         {
