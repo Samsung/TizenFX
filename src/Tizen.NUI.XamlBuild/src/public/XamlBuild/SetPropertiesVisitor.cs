@@ -166,6 +166,12 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                     Context.IL.Append(AddToResourceDictionary(node, node, Context));
                     isAdded = true;
                 }
+                else if (CanAddToDictionary(parentVar, parentVar.VariableType, node, node, Context))
+                {
+                    Context.IL.Emit(Ldloc, parentVar);
+                    Context.IL.Append(AddToDictionary(node, parentVar, node, Context));
+                    isAdded = true;
+                }
                 // Collection element, implicit content, or implicit collection element.
                 else if (parentVar.VariableType.GetMethods(md => md.Name == "Add" && md.Parameters.Count == 1, Module).Any())
                 {
@@ -1347,6 +1353,31 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             throw new XamlParseException("resources in ResourceDictionary require a x:Key attribute", lineInfo);
         }
 
+        static bool CanAddToDictionary(VariableDefinition parent, TypeReference collectionType, IElementNode node, IXmlLineInfo lineInfo, ILContext context)
+        {
+            var typeOfDictionary = collectionType.GetRealTypeOfDictionary();
+
+            if (null != typeOfDictionary)
+            {
+                if ("System.String" == typeOfDictionary.GenericArguments[0].FullName)
+                {
+                    if (node.Properties.ContainsKey(XmlName.xKey))
+                    {
+                        var valueType = node.XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.OnlyGetType, parent.VariableType.Module, lineInfo);
+
+                        if ("System.Object" == typeOfDictionary.GenericArguments[1].FullName
+                            ||
+                            valueType.InheritsFromOrImplements(typeOfDictionary.GenericArguments[1]))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
+        }
+
         static IEnumerable<Instruction> Add(VariableDefinition parent, XmlName propertyName, INode node, IXmlLineInfo iXmlLineInfo, ILContext context)
         {
             var module = context.Body.Method.Module;
@@ -1407,6 +1438,49 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                                                                        methodName: "Add",
                                                                        parameterTypes: new[] { (nodeTypeRef.Scope.Name, nodeTypeRef.Namespace, nodeTypeRef.Name) }));
             yield break;
+        }
+
+        static IEnumerable<Instruction> AddToDictionary(IElementNode node, VariableDefinition parent, IXmlLineInfo lineInfo, ILContext context)
+        {
+            var module = context.Body.Method.Module;
+
+            if (node.Properties.ContainsKey(XmlName.xKey))
+            {
+                yield return Create(Ldstr, (node.Properties[XmlName.xKey] as ValueNode).Value as string);
+                var varDef = context.Variables[node];
+                yield return Create(Ldloc, varDef);
+                if (varDef.VariableType.IsValueType)
+                    yield return Create(Box, module.ImportReference(varDef.VariableType));
+
+                MethodReference addMethod = null;
+
+                foreach (var methodTuple in parent.VariableType.GetMethods(m => m.Name == "Add", module))
+                {
+                    var method = methodTuple.Item1;
+                    var typeOfMethod = methodTuple.Item2 as GenericInstanceType;
+
+                    if (null != typeOfMethod && "System.Collections.Generic.Dictionary`2" == typeOfMethod.ElementType.FullName)
+                    {
+                        var realMethod = new MethodReference("Add", method.ReturnType);
+                        realMethod.DeclaringType = typeOfMethod;
+                        realMethod.CallingConvention = method.CallingConvention;
+                        realMethod.ExplicitThis = method.ExplicitThis;
+                        realMethod.HasThis = method.HasThis;
+                        realMethod.Parameters.Add(method.Parameters[0]);
+                        realMethod.Parameters.Add(method.Parameters[1]);
+
+                        addMethod = module.ImportReference(realMethod);
+                        break;
+                    }
+                }
+
+                if (null != addMethod)
+                {
+                    yield return Create(Callvirt, addMethod);
+                }
+
+                yield break;
+            }
         }
 
         public static TypeReference GetParameterType(ParameterDefinition param)
