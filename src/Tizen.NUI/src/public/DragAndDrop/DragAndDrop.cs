@@ -101,15 +101,34 @@ namespace Tizen.NUI
 
             if (mShadowView)
             {
+                mShadowView.Hide();
                 mDragWindow.Remove(mShadowView);
+                mShadowView.Dispose();
             }
 
             mShadowView = shadowView;
             mDragWindow.Add(mShadowView);
-            mDragWindow.Show();
+
+            //Update Window Directly
+            mDragWindow.VisibiltyChangedSignalEmit(true);
+            mDragWindow.RenderOnce();
 
             sourceEventCb = (sourceEventType) =>
             {
+                if ((SourceEventType)sourceEventType == SourceEventType.Finish)
+                {
+                    if (mShadowView)
+                    {
+                        mShadowView.Hide();
+                        mDragWindow.Remove(mShadowView);
+                        mShadowView.Dispose();
+                    }
+
+                    //Update Window Directly
+                    mDragWindow.VisibiltyChangedSignalEmit(true);
+                    mDragWindow.RenderOnce();
+                }
+
                 callback((SourceEventType)sourceEventType);
             };
 
@@ -118,6 +137,8 @@ namespace Tizen.NUI
             {
                 throw new InvalidOperationException("Fail to StartDragAndDrop");
             }
+
+            mDragWindow.Show();
         }
 
         /// <summary>
