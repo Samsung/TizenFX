@@ -89,7 +89,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
-
+            Focusable = true;
             TextChanged += TextEditorTextChanged;
         }
 
