@@ -244,6 +244,11 @@ namespace Tizen.NUI.Components
         {
             if (FocusManager.Instance.IsDefaultAlgorithmEnabled())
             {
+                if (this is DialogPage)
+                {
+                    FocusManager.Instance.ResetFocusFinderRootView();
+                }
+
                 var currentFocusedView = FocusManager.Instance.GetCurrentFocusView();
                 if (currentFocusedView)
                 {
@@ -293,6 +298,11 @@ namespace Tizen.NUI.Components
                     }
                     temp.Unparent();
                     temp.Dispose();
+                }
+
+                if (this is DialogPage)
+                {
+                    FocusManager.Instance.SetFocusFinderRootView(this);
                 }
             }
 
