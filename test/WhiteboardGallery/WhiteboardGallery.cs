@@ -7,6 +7,100 @@ namespace WhiteboardGallery
 {
     class Program : NUIApplication
     {
+        class CustomBorder : DefaultBorder
+        {
+           
+    private int width = 300;
+    private bool hide = false;
+    private string title;
+    private View borderView;
+    private TextLabel titleLabel;
+    private Rectangle preWinPositonSize;
+
+    public CustomBorder(string title) : base()
+    {
+      this.title = title;
+    }
+
+    public override bool CreateTopBorderView(View topView)
+    {
+      if (topView == null)
+      {
+        return false;
+      }
+      topView.Layout = new LinearLayout()
+      {
+        LinearOrientation = LinearLayout.Orientation.Horizontal,
+        LinearAlignment = LinearLayout.Alignment.CenterVertical,
+        CellPadding = new Size2D(20, 20),
+      };
+
+      titleLabel = new TextLabel()
+      {
+        Text = title,
+      };
+      topView.Add(titleLabel);
+      return true;
+    }
+
+    public override bool CreateBottomBorderView(View bottomView)
+    {
+      base.CreateBottomBorderView(bottomView);
+      return true;
+    }
+
+    public override void OnCreated(View borderView)
+    {
+      base.OnCreated(borderView);
+      this.borderView = borderView;
+    }
+
+    public override bool OnMinimizeIconTouched(object sender, View.TouchEventArgs e)
+    {
+      if (e.Touch.GetState(0) == PointStateType.Up)
+      {
+        if (BorderWindow.IsMaximized() == true)
+        {
+          BorderWindow.Maximize(false);
+        }
+        preWinPositonSize = BorderWindow.WindowPositionSize;
+        BorderWindow.WindowPositionSize = new Rectangle(preWinPositonSize.X, preWinPositonSize.Y, 400, 0);
+      }
+      return true;
+    }
+
+    public override void OnResized(int width, int height)
+    {
+      if (borderView != null)
+      {
+        if (this.width > width && hide == false)
+        {
+          titleLabel.Hide();
+          hide = true;
+        }
+        else if (this.width < width && hide == true)
+        {
+          titleLabel.Show();
+          hide = false;
+        }
+        base.OnResized(width, height);
+      }
+    }
+
+           public override bool OnCloseIconTouched(object sender, View.TouchEventArgs e)
+            {
+                if (e.Touch.GetState(0) == PointStateType.Up && app != null)
+                {
+                    app.Exit();
+                }
+                return true;
+            }
+        }
+        public Program(string styleSheet, Size2D windowSize, Position2D windowPosition, IBorderInterface borderInterface) : base(styleSheet, windowSize, windowPosition, borderInterface)
+        {
+        }
+        public static Program app;
+
         View windowMainView;
         ImageView galleryView;
         DragAndDrop dnd;
@@ -45,7 +139,7 @@ namespace WhiteboardGallery
             };
 
             var title = new TextLabel() {
-               Text = "Gallery",
+               //Text = "Gallery",
                PointSize = 4 * fontScale,
                HorizontalAlignment = HorizontalAlignment.Center,
                Padding = new Extents(35,0,20,0),
@@ -113,7 +207,8 @@ namespace WhiteboardGallery
 
         static void Main(string[] args)
         {
-            var app = new Program();
+            CustomBorder customBorder = new CustomBorder("Gallery");
+            app = new Program("", null, null, customBorder);
             app.Run(args);
         }
     }

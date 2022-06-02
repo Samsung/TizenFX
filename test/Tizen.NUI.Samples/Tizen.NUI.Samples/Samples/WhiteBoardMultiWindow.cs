@@ -30,6 +30,87 @@ namespace Tizen.NUI.Samples
          return 0;
     }
   }
+
+  class CustomBorder : DefaultBorder
+  {
+    private int width = 300;
+    private bool hide = false;
+    private string title;
+    private View borderView;
+    private TextLabel titleLabel;
+    private Rectangle preWinPositonSize;
+
+    public CustomBorder(string title, bool changeColor) : base()
+    {
+      this.title = title;
+    }
+
+    public override bool CreateTopBorderView(View topView)
+    {
+      if (topView == null)
+      {
+        return false;
+      }
+      topView.Layout = new LinearLayout()
+      {
+        LinearOrientation = LinearLayout.Orientation.Horizontal,
+        LinearAlignment = LinearLayout.Alignment.CenterVertical,
+        CellPadding = new Size2D(20, 20),
+      };
+
+      titleLabel = new TextLabel()
+      {
+        Text = title,
+      };
+      topView.Add(titleLabel);
+      return true;
+    }
+
+    public override bool CreateBottomBorderView(View bottomView)
+    {
+      base.CreateBottomBorderView(bottomView);
+      return true;
+    }
+
+    public override void OnCreated(View borderView)
+    {
+      base.OnCreated(borderView);
+      this.borderView = borderView;
+    }
+
+    public override bool OnMinimizeIconTouched(object sender, View.TouchEventArgs e)
+    {
+      if (e.Touch.GetState(0) == PointStateType.Up)
+      {
+        if (BorderWindow.IsMaximized() == true)
+        {
+          BorderWindow.Maximize(false);
+        }
+        preWinPositonSize = BorderWindow.WindowPositionSize;
+        BorderWindow.WindowPositionSize = new Rectangle(preWinPositonSize.X, preWinPositonSize.Y, 400, 0);
+      }
+      return true;
+    }
+
+    public override void OnResized(int width, int height)
+    {
+      if (borderView != null)
+      {
+        if (this.width > width && hide == false)
+        {
+          titleLabel.Hide();
+          hide = true;
+        }
+        else if (this.width < width && hide == true)
+        {
+          titleLabel.Show();
+          hide = false;
+        }
+        base.OnResized(width, height);
+      }
+    }
+  }
+
   public class WhiteboardMultiWindowTest : IExample
   {
     // MainWindow
@@ -212,7 +293,8 @@ namespace Tizen.NUI.Samples
 
       if (SubWindows[4] == null)
       {
-        SubWindows[4] = new Window("FacebookWindow", null, facebookWinPosition, false);
+        var customBorder = new CustomBorder("Facebook", false);
+        SubWindows[4] = new Window("FacebookWindow", customBorder, facebookWinPosition, false);
 
         windowMainView[4] = new View()
         {
@@ -229,7 +311,7 @@ namespace Tizen.NUI.Samples
         };
 
         var title = new TextLabel() {
-            Text = "Facebook",
+            // Text = "Facebook",
             PointSize = 4 * fontScale,
             HorizontalAlignment = HorizontalAlignment.Center,
             Padding = new Extents(35,0,20,0),
@@ -650,7 +732,8 @@ namespace Tizen.NUI.Samples
 
       if (SubWindows[1] == null)
       {
-        SubWindows[1] = new Window("MyAppsWindow", null, myAppsWinPosition, false);
+        var customBorder = new CustomBorder("MyApps", true);
+        SubWindows[1] = new Window("MyAppsWindow", customBorder, myAppsWinPosition, false);
 
         windowMainView[1] = new View()
         {
@@ -667,7 +750,7 @@ namespace Tizen.NUI.Samples
         };
 
         var title = new TextLabel() {
-            Text = "My apps",
+            // Text = "My apps",
             PointSize = 4 * fontScale,
             HorizontalAlignment = HorizontalAlignment.Center,
             Padding = new Extents(35,0,20,0),
@@ -1195,3 +1278,4 @@ namespace Tizen.NUI.Samples
     }
   }
 }
+
