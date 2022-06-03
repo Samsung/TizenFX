@@ -59,6 +59,9 @@ namespace Tizen.NUI
         #endregion //Distructors
 
         #region Delegates
+        internal delegate void BorderCloseDelegate();
+        private BorderCloseDelegate borderCloseDelegate = null;
+
         #endregion //Delegates
 
         #region Events
@@ -84,7 +87,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This enum is the policy when resizing the border window. 
+        /// This enum is the policy when resizing the border window.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum BorderResizePolicyType
@@ -120,14 +123,30 @@ namespace Tizen.NUI
 
         #region Methods
         /// <summary>
+        /// Called when the border is closed.
+        /// If the delegate is declared, the delegate is called, otherwise window is destroyed.
+        /// </summary>
+        internal void BorderDestroy()
+        {
+            if (borderCloseDelegate != null)
+            {
+                borderCloseDelegate();
+            }
+            else
+            {
+                Destroy();
+            }
+        }
+        /// <summary>
         /// Enable the border window with IBorderInterface.
         /// This adds a border area to the Window.
         /// The border's UI is configured using IBorderInterface.
         /// Users can reisze and move by touching the border area.
         /// </summary>
         /// <param name="borderInterface">The IBorderInterface.</param>
+        /// <param name="borderCloseDelegate">The BorderCloseDelegate. When close, this delegate is called.</param>
         /// <returns>Whether the border window is enabled</returns>
-        internal bool EnableBorder(IBorderInterface borderInterface = null)
+        internal bool EnableBorder(IBorderInterface borderInterface, BorderCloseDelegate borderCloseDelegate = null)
         {
             if (isBorderWindow == true)
             {
@@ -150,6 +169,7 @@ namespace Tizen.NUI
                 borderInterface = new DefaultBorder();
             }
             this.borderInterface = borderInterface;
+            this.borderCloseDelegate = borderCloseDelegate;
 
             GetDefaultLayer().Name = "OriginalRootLayer";
 
@@ -172,8 +192,8 @@ namespace Tizen.NUI
                 if (isBottom) borderHeight += borderInterface.BorderHeight;
 
                 // When running the app for the first time, if it runs in full size, do Maximize(true).
-                if (screenWidth != 0 && screenHeight != 0 && 
-                    realWindowSize.Width >= screenWidth && realWindowSize.Height >= screenHeight && 
+                if (screenWidth != 0 && screenHeight != 0 &&
+                    realWindowSize.Width >= screenWidth && realWindowSize.Height >= screenHeight &&
                     IsMaximized() == false)
                 {
                     Maximize(true);
@@ -196,7 +216,7 @@ namespace Tizen.NUI
                 // Add a view to the border layer.
                 GetBorderWindowBottomLayer().Add(rootView);
 
-                InterceptTouchEvent += (s, e) => 
+                InterceptTouchEvent += (s, e) =>
                 {
                     if (e.Touch.GetState(0) == PointStateType.Down && IsMaximized() == false)
                     {
@@ -232,7 +252,7 @@ namespace Tizen.NUI
                 HeightResizePolicy = ResizePolicyType.FillToParent,
                 BackgroundColor = Color.Transparent,
                 Layout = new LinearLayout() {
-                    LinearOrientation = LinearLayout.Orientation.Vertical, 
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
                     LinearAlignment = LinearLayout.Alignment.Top
                 },
                 Padding = new Extents(padding, padding, padding, padding),
