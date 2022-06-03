@@ -390,7 +390,7 @@ namespace Tizen.NUI
                 BorderWindow.RequestResizeToServer(Window.ResizeDirection.TopLeft);
               }
             }
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -408,7 +408,7 @@ namespace Tizen.NUI
                 BorderWindow.RequestResizeToServer(Window.ResizeDirection.TopRight);
               }
             }
-            return false;
+            return true;
         }
 
 
@@ -427,7 +427,7 @@ namespace Tizen.NUI
                 BorderWindow.RequestResizeToServer(Window.ResizeDirection.BottomLeft);
               }
             }
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -445,7 +445,7 @@ namespace Tizen.NUI
                 BorderWindow.RequestResizeToServer(Window.ResizeDirection.BottomRight);
               }
             }
-            return false;
+            return true;
         }
 
 
@@ -470,7 +470,7 @@ namespace Tizen.NUI
             {
                 MinimizeBorderWindow();
             }
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -502,7 +502,7 @@ namespace Tizen.NUI
             {
                 MaximizeBorderWindow();
             }
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -511,8 +511,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void CloseBorderWindow()
         {
-            BorderWindow.Destroy();
-            BorderWindow = null;
+            BorderWindow.BorderDestroy();
         }
 
         /// <summary>
@@ -521,15 +520,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnCloseIconTouched(object sender, View.TouchEventArgs e)
         {
-            if (e == null)
-            {
-                return false;
-            }
             if (e != null && e.Touch.GetState(0) == PointStateType.Up)
             {
                 CloseBorderWindow();
             }
-            return false;
+            return true;
         }
 
 
@@ -801,7 +796,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="isMaximized">If window is maximized or unmaximized.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void OnMaximize(bool isMaximized) 
+        public virtual void OnMaximize(bool isMaximized)
         {
             UpdateIcons();
         }
@@ -882,6 +877,8 @@ namespace Tizen.NUI
                     BorderWindow.InterceptTouchEvent -= OnWinInterceptedTouch;
                 }
 
+                borderView?.Dispose();
+                windowView?.Dispose();
                 borderPanGestureDetector?.Dispose();
                 borderPinchGestureDetector?.Dispose();
                 backgroundColor?.Dispose();
@@ -892,8 +889,6 @@ namespace Tizen.NUI
                 rightCornerIcon?.Dispose();
                 timer?.Dispose();
                 overlayTimer?.Dispose();
-                windowView?.Dispose();
-                borderView?.Dispose();
             }
             disposed = true;
         }
