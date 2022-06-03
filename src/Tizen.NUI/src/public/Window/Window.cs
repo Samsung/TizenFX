@@ -1662,6 +1662,19 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets the maximized size.
+        /// It is to set the maximized size when window is maximized.
+        /// </summary>
+        /// <param name="width">the width of the maximized size.</param>
+        /// <param name="height">the height of the maximized size.</param>///
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMaximizedSize(int width, int height)
+        {
+            Interop.Window.SetMaximizedSize(SwigCPtr, width, height);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Minimizes window's size.
         /// If this function is called with true, window will be iconified.
         /// Otherwise window will be activated.
@@ -1686,6 +1699,19 @@ namespace Tizen.NUI
             bool ret = Interop.Window.IsMinimized(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Sets the minimized size.
+        /// It is to set the minimized size when window is minimized.
+        /// </summary>
+        /// <param name="width">the width of the minimized size.</param>
+        /// <param name="height">the height of the minimized size.</param>///
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMinimizedSize(int width, int height)
+        {
+            Interop.Window.SetMinimizedSize(SwigCPtr, width, height);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
