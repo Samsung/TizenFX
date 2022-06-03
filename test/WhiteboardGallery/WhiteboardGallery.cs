@@ -120,8 +120,8 @@ namespace WhiteboardGallery
             //fopu
 
             Window.Instance.KeyEvent += OnKeyEvent;
-            Window.Instance.WindowPosition = new Position(700, 300); 
-            Window.Instance.WindowSize = new Size(500, 500); 
+            //Window.Instance.WindowPosition = new Position(700, 300); 
+            //Window.Instance.WindowSize = new Size(500, 500); 
             Window.Instance.BackgroundColor = Color.White;
 
             windowMainView = new View()
@@ -208,7 +208,7 @@ namespace WhiteboardGallery
         static void Main(string[] args)
         {
             CustomBorder customBorder = new CustomBorder("Gallery");
-            app = new Program("", null, null, customBorder);
+            app = new Program("", new Size2D(500, 500), new Position2D(700, 300), customBorder);
             app.Run(args);
         }
     }

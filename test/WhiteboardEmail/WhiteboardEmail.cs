@@ -122,8 +122,8 @@ namespace WhiteboardEmail
             //fopu
 
             Window.Instance.KeyEvent += OnKeyEvent;
-            Window.Instance.WindowPosition = new Position(900, 400); 
-            Window.Instance.WindowSize = new Size(400, 400); 
+            //Window.Instance.WindowPosition = new Position(900, 400); 
+            //Window.Instance.WindowSize = new Size(400, 400); 
             Window.Instance.BackgroundColor = Color.White;
 
             windowMainView = new View()
@@ -264,7 +264,7 @@ namespace WhiteboardEmail
         static void Main(string[] args)
         {
             CustomBorder customBorder = new CustomBorder("Email");
-            app = new Program("", null, null, customBorder);
+            app = new Program("", new Size2D(400, 400), new Position2D(900, 400), customBorder);
             app.Run(args);
         }
     }
