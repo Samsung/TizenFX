@@ -3118,14 +3118,7 @@ namespace Tizen.NUI.BaseComponents
 
                 if (destinationProperty != null)
                 {
-                    if (sourceProperty.PropertyName.Equals("Layout") && (sourceValue is LayoutItem layout))
-                    {
-                        InternalSetValue(destinationProperty, layout.Clone());
-                    }
-                    else
-                    {
-                        InternalSetValue(destinationProperty, sourceValue);
-                    }
+                    InternalSetValue(destinationProperty, sourceValue);
                 }
             }
         }

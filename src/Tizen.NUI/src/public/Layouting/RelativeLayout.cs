@@ -337,23 +337,6 @@ namespace Tizen.NUI
         public static void SetFillVertical(View view, bool value) => SetAttachedValue(view, FillVerticalProperty, value);
 
         /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override LayoutItem Clone()
-        {
-            var layout = new RelativeLayout();
-
-            foreach (var prop in layout.GetType().GetProperties())
-            {
-                if (prop.GetSetMethod() != null)
-                {
-                    prop.SetValue(layout, this.GetType().GetProperty(prop.Name).GetValue(this));
-                }
-            }
-
-            return layout;
-        }
-
-        /// <inheritdoc/>
         /// <since_tizen> 9 </since_tizen>
         protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
         {

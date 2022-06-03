@@ -544,23 +544,6 @@ namespace Tizen.NUI
             /// <since_tizen> 8 </since_tizen>
             End = 2,
         }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override LayoutItem Clone()
-        {
-            var layout = new GridLayout();
-
-            foreach (var prop in layout.GetType().GetProperties())
-            {
-                if (prop.GetSetMethod() != null)
-                {
-                    prop.SetValue(layout, this.GetType().GetProperty(prop.Name).GetValue(this));
-                }
-            }
-
-            return layout;
-        }
     }
 
     // Extension Method of GridLayout.Alignment.
