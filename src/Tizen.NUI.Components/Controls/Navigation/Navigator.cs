@@ -222,6 +222,7 @@ namespace Tizen.NUI.Components
             //Invoke Page events
             page.InvokeAppearing();
             topPage.InvokeDisappearing();
+            topPage.SaveKeyFocus();
 
             transitionSet = CreateTransitions(topPage, page, true);
             transitionSet.Finished += (object sender, EventArgs e) =>
@@ -236,6 +237,8 @@ namespace Tizen.NUI.Components
 
                 //Invoke Page events
                 page.InvokeAppeared();
+                page.RestoreKeyFocus();
+                
                 topPage.InvokeDisappeared();
                 NotifyAccessibilityStatesChangeOfPages(topPage, page);
             };
@@ -277,6 +280,7 @@ namespace Tizen.NUI.Components
             //Invoke Page events
             newTopPage.InvokeAppearing();
             topPage.InvokeDisappearing();
+            topPage.SaveKeyFocus();
 
             transitionSet = CreateTransitions(topPage, newTopPage, false);
             transitionSet.Finished += (object sender, EventArgs e) =>
@@ -289,6 +293,8 @@ namespace Tizen.NUI.Components
 
                 //Invoke Page events
                 newTopPage.InvokeAppeared();
+                newTopPage.RestoreKeyFocus();
+
                 topPage.InvokeDisappeared();
 
                 //Invoke Popped event
@@ -467,6 +473,7 @@ namespace Tizen.NUI.Components
             else
             {
                 Remove(curTop);
+                newTop.RestoreKeyFocus();
             }
 
             return curTop;
