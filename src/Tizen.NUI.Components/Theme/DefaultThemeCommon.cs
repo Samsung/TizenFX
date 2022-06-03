@@ -56,14 +56,7 @@ namespace Tizen.NUI.Components
                 {
                     TextColor = new Color("#FDFDFD"),
                     PixelSize = 24,
-                },
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    CellPadding = new Size2D(8, 8),
-                },
+                }
             });
 
             // CheckBox base style

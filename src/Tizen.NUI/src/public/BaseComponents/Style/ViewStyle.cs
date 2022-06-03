@@ -63,7 +63,6 @@ namespace Tizen.NUI.BaseComponents
         private Selector<Rectangle> backgroundImageBorderSelector;
         private Selector<Color> colorSelector;
         private VisualTransformPolicyType? cornerRadiusPolicy;
-        private LayoutItem layout;
 
         static ViewStyle() { }
 
@@ -522,16 +521,6 @@ namespace Tizen.NUI.BaseComponents
         public bool SolidNull { get; set; } = false;
 
         /// <summary>
-        /// Layout to position the View's children.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public LayoutItem Layout
-        {
-            get => (LayoutItem)GetValue(LayoutProperty);
-            set => SetValue(LayoutProperty, value);
-        }
-
-        /// <summary>
         /// HashSet of dirty properties. Internal use only.
         /// </summary>
         internal HashSet<BindableProperty> DirtyProperties { get; private set; }
@@ -587,14 +576,7 @@ namespace Tizen.NUI.BaseComponents
 
                 if (destinationProperty != null)
                 {
-                    if (sourceProperty.PropertyName.Equals("Layout") && (sourceValue is LayoutItem layout))
-                    {
-                        InternalSetValue(destinationProperty, layout.Clone());
-                    }
-                    else
-                    {
-                        InternalSetValue(destinationProperty, sourceValue);
-                    }
+                    InternalSetValue(destinationProperty, sourceValue);
                 }
             }
 
