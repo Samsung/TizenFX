@@ -338,52 +338,54 @@ namespace Tizen.NUI.Components
             Size2D cellPadding = String.IsNullOrEmpty(buttonText.Text) ? new Size2D(0, 0) : itemSpacing;
 #pragma warning restore CA2000
 
-            // If LayoutItems() is called by OnInitialize(), then layout would be null.
-            // Because layout is set by ApplyStyle() which is called after OnInitialize().
-            var layout = Layout as LinearLayout;
-            if (layout != null)
-            {
-                layout.HorizontalAlignment = itemHorizontalAlignment;
-                layout.VerticalAlignment = itemVerticalAlignment;
-                layout.CellPadding = cellPadding;
-            }
-
             if (IconRelativeOrientation == IconOrientation.Left)
             {
-                if (layout != null)
+                Layout = new LinearLayout()
                 {
-                    layout.LinearOrientation = LinearLayout.Orientation.Horizontal;
-                }
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
+                    CellPadding = cellPadding
+                };
 
                 Add(buttonIcon);
                 Add(buttonText);
             }
             else if (IconRelativeOrientation == IconOrientation.Right)
             {
-                if (layout != null)
+                Layout = new LinearLayout()
                 {
-                    layout.LinearOrientation = LinearLayout.Orientation.Horizontal;
-                }
+                    LinearOrientation = LinearLayout.Orientation.Horizontal,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
+                    CellPadding = cellPadding
+                };
 
                 Add(buttonText);
                 Add(buttonIcon);
             }
             else if (IconRelativeOrientation == IconOrientation.Top)
             {
-                if (layout != null)
+                Layout = new LinearLayout()
                 {
-                    layout.LinearOrientation = LinearLayout.Orientation.Vertical;
-                }
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
+                    CellPadding = cellPadding
+                };
 
                 Add(buttonIcon);
                 Add(buttonText);
             }
             else if (IconRelativeOrientation == IconOrientation.Bottom)
             {
-                if (layout != null)
+                Layout = new LinearLayout()
                 {
-                    layout.LinearOrientation = LinearLayout.Orientation.Vertical;
-                }
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
+                    CellPadding = cellPadding
+                };
 
                 Add(buttonText);
                 Add(buttonIcon);
