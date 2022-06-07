@@ -42,7 +42,7 @@ namespace Tizen.NUI
         private static readonly string DarkRightCornerIcon = ResourcePath + "dark_rightCorner.png";
 
 
-        private const uint DefaultHeight = 50;
+        private const float DefaultHeight = 50;
         private const uint DefaultLineThickness = 5;
         private const uint DefaultTouchThickness = 20;
         private static readonly Color DefaultBackgroundColor = new Color(1, 1, 1, 0.3f);
@@ -106,9 +106,10 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The height of the border.
+        /// This value is the initial value used when creating borders.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint BorderHeight {get; set;}
+        public float BorderHeight {get; set;}
 
         /// <summary>
         /// The minimum size by which the window will small.
