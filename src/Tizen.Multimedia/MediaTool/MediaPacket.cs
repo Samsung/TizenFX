@@ -29,8 +29,6 @@ namespace Tizen.Multimedia
     public abstract partial class MediaPacket : IBufferOwner, IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
-        private Native.DisposedCallback _disposedCallback;
-        private int _disposedCallbackId = Int32.MinValue;
 
         /// <summary>
         /// Initializes a new instance of the MediaPacket class with the specified media format.
@@ -55,6 +53,16 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Initializes a new instance of the MediaPacket class from a original MediaPacket.
+        /// </summary>
+        /// <param name="mediaPacket">The original MediaPacket.</param>
+        internal MediaPacket(MediaPacket mediaPacket) : this(mediaPacket._handle)
+        {
+            int ret = Native.Ref(_handle);
+            MultimediaDebug.AssertNoError(ret);
+        }
+
+        /// <summary>
         /// Initializes a new instance of the MediaPacket class from a native handle.
         /// </summary>
         /// <param name="handle">The native handle to be used.</param>
@@ -73,10 +81,6 @@ namespace Tizen.Multimedia
                 }
 
                 _buffer = new Lazy<IMediaBuffer>(GetBuffer);
-
-                _disposedCallback = DisposedCallback;
-                ret = Native.AddDisposedCallback(handle, _disposedCallback, IntPtr.Zero, out _disposedCallbackId);
-                MultimediaDebug.AssertNoError(ret);
             }
             finally
             {
@@ -90,20 +94,6 @@ namespace Tizen.Multimedia
         ~MediaPacket()
         {
             Dispose(false);
-        }
-
-        private void DisposedCallback(IntPtr handle, IntPtr userData)
-        {
-            Debug.Assert(handle == _handle, "The handle from native should be same with the handle of this instance");
-
-            if (_isDisposed)
-            {
-                return;
-            }
-
-            _isDisposed = true;
-            _handle = IntPtr.Zero;
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -125,8 +115,7 @@ namespace Tizen.Multimedia
             {
                 formatHandle = format.AsNativeHandle();
 
-                _disposedCallback = DisposedCallback;
-                var ret = Native.New(formatHandle, _disposedCallback, IntPtr.Zero, out _handle);
+                int ret = Native.New(formatHandle, IntPtr.Zero, IntPtr.Zero, out _handle);
                 MultimediaDebug.AssertNoError(ret);
 
                 Debug.Assert(_handle != IntPtr.Zero, "Created handle must not be null");
@@ -176,41 +165,6 @@ namespace Tizen.Multimedia
             }
         }
 
-        /// <summary>
-        /// Increases reference count of the current MediaPacket instance.
-        /// </summary>
-        /// <exception cref="ObjectDisposedException">The MediaPacket has already been disposed.</exception>
-        /// <exception cref="InvalidOperationException">
-        ///     The MediaPacket is not in the writable state, which means it is being used by another module.
-        /// </exception>
-        /// <since_tizen> 10 </since_tizen>
-        public void Ref()
-        {
-            ValidateNotLocked();
-
-            int ret = Native.Ref(_handle);
-            MultimediaDebug.AssertNoError(ret);
-        }
-
-        /// <summary>
-        /// Decreases reference count of the current MediaPacket instance.
-        /// </summary>
-        /// <remarks>
-        /// If there's no user after decreasing reference count, this MediaPacket will be disposed.
-        /// </remarks>
-        /// <returns>true if this MediaPacket is disposed now; otherwise false.</returns>
-        /// <since_tizen> 10 </since_tizen>
-        public void Unref()
-        {
-            if (_isDisposed)
-            {
-                return;
-            }
-
-            var ret = Native.Unref(_handle);
-            MultimediaDebug.AssertNoError(ret);
-        }
-
         private readonly MediaFormat _format;
 
         /// <summary>
@@ -241,7 +195,6 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
 
                 int ret = Native.GetPts(_handle, out var value);
-
                 MultimediaDebug.AssertNoError(ret);
 
                 return value;
@@ -252,7 +205,6 @@ namespace Tizen.Multimedia
                 ValidateNotLocked();
 
                 int ret = Native.SetPts(_handle, value);
-
                 MultimediaDebug.AssertNoError(ret);
             }
         }
@@ -556,7 +508,6 @@ namespace Tizen.Multimedia
                 ValidateNotDisposed();
 
                 int ret = Native.GetBufferFlags(_handle, out var value);
-
                 MultimediaDebug.AssertNoError(ret);
 
                 return value;
@@ -567,11 +518,9 @@ namespace Tizen.Multimedia
                 ValidateNotLocked();
 
                 int ret = Native.ResetBufferFlags(_handle);
-
                 MultimediaDebug.AssertNoError(ret);
 
                 ret = Native.SetBufferFlags(_handle, (int)value);
-
                 MultimediaDebug.AssertNoError(ret);
             }
         }
@@ -602,8 +551,7 @@ namespace Tizen.Multimedia
             ValidateNotLocked();
 
             Dispose(true);
-
-            // Suppress finalization will be done in DisposedCallback.
+            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -622,9 +570,11 @@ namespace Tizen.Multimedia
 
             if (_handle != IntPtr.Zero)
             {
-                // The following Unref will invoke DisposedCallback internally and it makes _isDisposed to true.
                 Native.Unref(_handle);
+                _handle = IntPtr.Zero;
             }
+
+            _isDisposed = true;
         }
 
         /// <summary>
@@ -684,7 +634,6 @@ namespace Tizen.Multimedia
             Debug.Assert(_handle != IntPtr.Zero, "The handle is invalid!");
 
             int ret = Native.GetNumberOfVideoPlanes(_handle, out var numberOfPlanes);
-
             MultimediaDebug.AssertNoError(ret);
 
             MediaPacketVideoPlane[] planes = new MediaPacketVideoPlane[numberOfPlanes];
@@ -732,6 +681,22 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
+        /// Creates an object of the MediaPacket based on the original MediaPacket and increase ref count of both MediaPacket instances.
+        /// </summary>
+        /// <remarks>
+        /// After this instance creation, the internal data of both MediaPacket instances are the same and those ref count is greater than the original MediaPacket by 1.\n
+        /// If MediaPacket instance is disposed, that instance cannot be used anymore.\n
+        /// But its ref count is still greater than 0, other C# MediaPacket instance which share same native media packet handle can still be used.
+        /// </remarks>
+        /// <param name="mediaPacket">The media packet to increase ref count.</param>
+        /// <returns>A MediaPacket object which is based on original MediaPacket instance.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        public static MediaPacket Create(MediaPacket mediaPacket)
+        {
+            return new SimpleMediaPacket(mediaPacket);
+        }
+
+        /// <summary>
         /// Creates an object of the MediaPacket with the specified <see cref="IntPtr"/>.
         /// </summary>
         /// <param name="handle">The native media packet handle.</param>
@@ -756,6 +721,10 @@ namespace Tizen.Multimedia
         }
 
         internal SimpleMediaPacket(IntPtr handle) : base(handle)
+        {
+        }
+
+        internal SimpleMediaPacket(MediaPacket mediaPacket) : base(mediaPacket)
         {
         }
     }

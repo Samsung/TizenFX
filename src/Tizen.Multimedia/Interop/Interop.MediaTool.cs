@@ -36,7 +36,7 @@ namespace Tizen.Multimedia
             internal static extern int Destroy(IntPtr handle);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_new")]
-            internal static extern int New(IntPtr format, DisposedCallback disposedCb, IntPtr cbData, out IntPtr handle);
+            internal static extern int New(IntPtr format, IntPtr disposedCb, IntPtr cbData, out IntPtr handle);
 
             [DllImport(Libraries.MediaTool, EntryPoint = "media_packet_ref")]
             internal static extern int Ref(IntPtr handle);
