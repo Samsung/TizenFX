@@ -114,6 +114,57 @@ namespace Tizen.Multimedia.Remoting
         public string Label { get; }
 
         /// <summary>
+        /// Gets the amount of buffered data.
+        /// </summary>
+        /// <value>The buffered amount in bytes.</value>
+        /// <since_tizen> 10 </since_tizen>
+        public uint BufferedAmount
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativeDataChannel.GetBufferedAmount(Handle, out uint amount).
+                    ThrowIfFailed("Failed to get buffered amount");
+
+                return amount;
+            }
+        }
+
+        private uint? _bufferThreshold;
+        /// <summary>
+        /// Gets or sets the threshold of data channel buffered amount.<br/>
+        /// If the amount of buffered data is lower than threshold value, <see cref="BufferedAmountLow"/> will be occurred.<br/>
+        /// The default value is 0, which means <see cref="BufferedAmountLow"/> is disabled and will not be raised.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        public uint BufferedAmountLowThreshold
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                if (!_bufferThreshold.HasValue)
+                {
+                    NativeDataChannel.GetBufferedAmountLowThreshold(Handle, out uint threshold).
+                        ThrowIfFailed("Failed to get buffer threshold value");
+
+                    _bufferThreshold = threshold;
+                }
+
+                return _bufferThreshold.Value;
+            }
+            set
+            {
+                ValidateNotDisposed();
+
+                _bufferThreshold = value;
+
+                RegisterDataChannelBufferedAmountLowThresholdCallback();
+            }
+        }
+
+        /// <summary>
         /// Sends a string data across the data channel to the remote peer.
         /// </summary>
         /// <param name="data">The string data to send</param>

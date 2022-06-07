@@ -39,8 +39,8 @@ namespace Tizen.NUI
         private Dictionary<View, InternalDragAndDropEventHandler> targetEventDictionary = new Dictionary<View, InternalDragAndDropEventHandler>();
         private View mShadowView;
         private Window mDragWindow;
-        private const int shadowWidth = 150;
-        private const int shadowHeight = 150;
+        private int shadowWidth = 100;
+        private int shadowHeight = 100;
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         private DragAndDrop() : this(Interop.DragAndDrop.New(), true)
@@ -74,6 +74,20 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(shadowView));
             }
 
+            shadowWidth = (int)shadowView.Size.Width;
+            shadowHeight = (int)shadowView.Size.Height;
+
+            // Prevents shadowView size from being smaller than 100 pixel
+            if (shadowView.Size.Width < 100)
+            {
+                shadowWidth = 100;
+            }
+
+            if (shadowView.Size.Height < 100)
+            {
+                shadowHeight = 100;
+            }
+
             if (null == mDragWindow)
             {
                 mDragWindow = new Window("DragWindow", new Rectangle(-shadowWidth, -shadowHeight, shadowWidth, shadowHeight), true)
@@ -82,7 +96,7 @@ namespace Tizen.NUI
                 };
             }
 
-            shadowView.SetSize(shadowWidth, shadowHeight);
+            mDragWindow.SetWindowSize(new Size(shadowWidth, shadowHeight));
             shadowView.SetOpacity(0.9f);
 
             if (mShadowView)

@@ -78,7 +78,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
-
+            Focusable = true;
             TextChanged += TextFieldTextChanged;
         }
 
@@ -88,7 +88,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
-
+            Focusable = true;
             TextChanged += TextFieldTextChanged;
         }
 

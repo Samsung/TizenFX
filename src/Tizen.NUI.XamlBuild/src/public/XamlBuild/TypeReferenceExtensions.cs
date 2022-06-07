@@ -489,6 +489,25 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             return false;
         }
 
+        public static GenericInstanceType GetRealTypeOfDictionary(this TypeReference typeReference)
+        {
+            if (null == typeReference)
+            {
+                return null;
+            }
+
+            if (typeReference is GenericInstanceType instanceType
+                &&
+                "System.Collections.Generic.Dictionary`2" == instanceType.ElementType.FullName)
+            {
+                return instanceType;
+            }
+
+            var baseType = typeReference.ResolveCached()?.BaseType;
+
+            return GetRealTypeOfDictionary(baseType);
+        }
+
         static Dictionary<TypeReference, TypeDefinition> resolves = new Dictionary<TypeReference, TypeDefinition>();
         public static TypeDefinition ResolveCached(this TypeReference typeReference)
         {

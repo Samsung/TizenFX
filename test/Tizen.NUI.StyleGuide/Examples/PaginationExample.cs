@@ -129,7 +129,7 @@ namespace Tizen.NUI.StyleGuide
             var path = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
             var indicatorImageUrlStyle = new PaginationStyle()
             {
-                IndicatorSize = new Size(26, 26),
+                IndicatorSize = new Size(64, 8),
                 IndicatorSpacing = 8,
                 IndicatorImageUrl = new Selector<string>
                 {
@@ -139,7 +139,7 @@ namespace Tizen.NUI.StyleGuide
             };
             pagination[0].ApplyStyle(indicatorImageUrlStyle);
             pagination[0].Name = "Pagination1";
-            pagination[0].Size = new Size(300, 50);
+            pagination[0].Size = new Size(450, 50);
             pagination[0].BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.6f);
             pagination[0].IndicatorCount = PAGE_COUNT;
             pagination[0].SelectedIndex = 0;
@@ -157,7 +157,7 @@ namespace Tizen.NUI.StyleGuide
             // Create by Attributes
             PaginationStyle style = new PaginationStyle()
             {
-                IndicatorSize = new Size(15, 15),
+                IndicatorSize = new Size(32, 4),
                 IndicatorSpacing = 20,
                 IndicatorImageUrl = new Selector<string>
                 {
@@ -167,7 +167,7 @@ namespace Tizen.NUI.StyleGuide
             };
             pagination[1] = new Pagination(style);
             pagination[1].Name = "Pagination2";
-            pagination[1].Size = new Size(300, 50);
+            pagination[1].Size = new Size(400, 50);
             pagination[1].BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.6f);
             pagination[1].IndicatorCount = PAGE_COUNT;
             pagination[1].SelectedIndex = 0;

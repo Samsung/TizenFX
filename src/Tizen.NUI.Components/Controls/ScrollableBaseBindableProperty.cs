@@ -292,5 +292,42 @@ namespace Tizen.NUI.Components
             var instance = (ScrollableBase)bindable;
             return instance.InternalEnableOverShootingEffect;
         });
+
+        /// <summary>
+        /// StepScrollDistanceProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty StepScrollDistanceProperty = BindableProperty.Create(nameof(StepScrollDistance), typeof(float), typeof(ScrollableBase), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (ScrollableBase)bindable;
+            if (newValue != null)
+            {
+                instance.stepScrollDistance = (float)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (ScrollableBase)bindable;
+            return instance.stepScrollDistance;
+        });
+
+        /// <summary>
+        /// FadeScrollbarProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FadeScrollbarProperty = BindableProperty.Create(nameof(FadeScrollbar), typeof(bool), typeof(ScrollableBase), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (ScrollableBase)bindable;
+            if (newValue != null)
+            {
+                instance.InternalFadeScrollbar = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (ScrollableBase)bindable;
+            return instance.InternalFadeScrollbar;
+        });
+
     }
 }

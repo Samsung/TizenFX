@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
@@ -766,6 +767,45 @@ namespace Tizen.Applications
             }
 
             return task.Task;
+        }
+
+        /// <summary>
+        /// Sets the auto restart.
+        /// </summary>
+        /// <remarks>
+        /// The functionality of this method only applies to the caller application.
+        /// The auto restart cannot be applied to other applications. The application ID set in the AppControl is ignored.
+        /// This method is only available for platform level signed applications.
+        /// </remarks>
+        /// <param name="appControl">The AppControl.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
+        /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the memory is insufficient.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetAutoRestart(AppControl appControl)
+        {
+            if (appControl == null)
+            {
+                throw new ArgumentNullException(nameof(appControl));
+            }
+
+            Interop.AppControl.ErrorCode err = Interop.AppControl.SetAutoRestart(appControl.SafeAppControlHandle);
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid arguments");
+                    case Interop.AppControl.ErrorCode.PermissionDenied:
+                        throw new Exceptions.PermissionDeniedException("Permission denied");
+                    case Interop.AppControl.ErrorCode.OutOfMemory:
+                        throw new Exceptions.OutOfMemoryException("Out of memory");
+                    default:
+                        throw new InvalidOperationException("err = " + err);
+                }
+            }
         }
 
         /// <summary>

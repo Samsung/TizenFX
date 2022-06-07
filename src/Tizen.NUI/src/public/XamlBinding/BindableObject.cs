@@ -329,6 +329,7 @@ namespace Tizen.NUI.Binding
                     BindablePropertyContext context = GetOrCreateContext(property);
                     if (null != context)
                     {
+                        context.Attributes |= BindableContextAttributes.IsManuallySet;
                         oldvalue = context.Value;
                         context.Value = value;
                     }

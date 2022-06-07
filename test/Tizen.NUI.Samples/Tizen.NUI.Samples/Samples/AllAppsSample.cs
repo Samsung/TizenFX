@@ -22,60 +22,6 @@ namespace Tizen.NUI.Samples
                                "hbo", "linkedin", "youtube"
                                };
 
-    class TestWindow : DefaultBorder
-    {
-      public override void CreateBorderView(View rootView)
-      {
-        rootView.BackgroundColor = Color.Red;
-        rootView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
-        rootView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
-
-
-        View borderView = new View()
-        {
-            Layout = new LinearLayout()
-            {
-                LinearOrientation = LinearLayout.Orientation.Horizontal,
-            },
-            WidthSpecification = LayoutParamPolicies.MatchParent,
-            HeightSpecification = LayoutParamPolicies.MatchParent,
-        };
-
-        var minimalizeIcon = new Button()
-        {
-            Text = "min",
-            PositionUsesPivotPoint = true,
-            PivotPoint = PivotPoint.BottomLeft,
-            ParentOrigin = ParentOrigin.BottomLeft,
-        };
-
-        var maximalizeIcon = new Button()
-        {
-            Text = "Max",
-            PositionUsesPivotPoint = true,
-            PivotPoint = PivotPoint.BottomLeft,
-            ParentOrigin = ParentOrigin.BottomLeft,
-        };
-
-        var closeIcon = new Button()
-        {
-            Text = "Close",
-            PositionUsesPivotPoint = true,
-            PivotPoint = PivotPoint.BottomLeft,
-            ParentOrigin = ParentOrigin.BottomLeft,
-        };
-
-        borderView.Add(minimalizeIcon);
-        borderView.Add(maximalizeIcon);
-        borderView.Add(closeIcon);
-        rootView.Add(borderView);
-
-        minimalizeIcon.TouchEvent += OnMinimizeIconTouched;
-        maximalizeIcon.TouchEvent += OnMaximizeIconTouched;
-        closeIcon.TouchEvent += OnCloseIconTouched;
-      }
-    }
-
     View CreateItem(string file, string name)
     {
       var itemView = new View()

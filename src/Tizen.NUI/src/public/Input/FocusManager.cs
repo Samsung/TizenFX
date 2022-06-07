@@ -36,6 +36,9 @@ namespace Tizen.NUI
         private EventHandlerWithReturnType<object, PreFocusChangeEventArgs, View> preFocusChangeEventHandler;
         private PreFocusChangeEventCallback preFocusChangeCallback;
 
+        private EventHandler<FocusChangingEventArgs> focusChangingEventHandler;
+        private PreFocusChangeEventCallback focusChangingCallback;
+
         private EventHandler<FocusChangedEventArgs> focusChangedEventHandler;
         private FocusChangedEventCallback focusChangedEventCallback;
 
@@ -83,6 +86,9 @@ namespace Tizen.NUI
         /// It won't be emitted for focus movement by calling the SetCurrentFocusView directly.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated in API10. Please use FocusChanging instead!")]
+        // this will be deprecated, so suppress warning would be OK.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1710:Identifiers should have correct suffix", Justification = "<Pending>")]
         public event EventHandlerWithReturnType<object, PreFocusChangeEventArgs, View> PreFocusChange
         {
             add
@@ -90,22 +96,60 @@ namespace Tizen.NUI
                 if (preFocusChangeEventHandler == null)
                 {
                     preFocusChangeCallback = OnPreFocusChange;
-                    PreFocusChangeSignal().Connect(preFocusChangeCallback);
+                    using PreFocusChangeSignal signal = PreFocusChangeSignal();
+                    signal?.Connect(preFocusChangeCallback);
                 }
                 preFocusChangeEventHandler += value;
             }
             remove
             {
                 preFocusChangeEventHandler -= value;
-                if (preFocusChangeEventHandler == null && PreFocusChangeSignal().Empty() == false)
+                using PreFocusChangeSignal signal = PreFocusChangeSignal();
+                if (preFocusChangeEventHandler == null && signal?.Empty() == false)
                 {
-                    PreFocusChangeSignal().Disconnect(preFocusChangeCallback);
+                    signal?.Disconnect(preFocusChangeCallback);
                 }
             }
         }
 
         /// <summary>
-        /// The FocusGroupChanged will be triggered after the current focused view has been changed.
+        /// FocusChanging will be triggered before the focus is going to be changed.<br />
+        /// The FocusManager makes the best guess for which view to focus towards the given direction, but applications might want to change that.<br />
+        /// By connecting with this event, they can check the proposed view to focus and assign a different view if they wish.<br />
+        /// This event is only triggered when the navigation key is pressed and FocusManager tries to move the focus automatically.<br />
+        /// It won't be emitted for focus movement by calling the SetCurrentFocusView directly.<br />
+        /// </summary>
+        /// <remarks>
+        /// By setting FocusChangingEventArgs.Proposed with the view to be focused, the focus will be moved to the assigned view.
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        public event EventHandler<FocusChangingEventArgs> FocusChanging
+        {
+            add
+            {
+                if (focusChangingEventHandler == null)
+                {
+                    focusChangingCallback = OnFocusChanging;
+                    //this is same as old PreFocusChangeSignal, so the body will be same. (only name is changed, behavior is same)
+                    using PreFocusChangeSignal signal = PreFocusChangeSignal();
+                    signal?.Connect(focusChangingCallback);
+                }
+                focusChangingEventHandler += value;
+            }
+            remove
+            {
+                focusChangingEventHandler -= value;
+                //this is same as old PreFocusChangeSignal, so the body will be same. (only name is changed, behavior is same)
+                using PreFocusChangeSignal signal = PreFocusChangeSignal();
+                if (focusChangingEventHandler == null && signal?.Empty() == false)
+                {
+                    signal?.Disconnect(focusChangingCallback);
+                }
+            }
+        }
+
+        /// <summary>
+        /// The FocusChanged will be triggered after the current focused view has been changed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<FocusChangedEventArgs> FocusChanged
@@ -115,7 +159,8 @@ namespace Tizen.NUI
                 if (focusChangedEventCallback == null)
                 {
                     focusChangedEventCallback = OnFocusChanged;
-                    FocusChangedSignal().Connect(focusChangedEventCallback);
+                    using FocusChangedSignal signal = FocusChangedSignal();
+                    signal?.Connect(focusChangedEventCallback);
                 }
                 focusChangedEventHandler += value;
             }
@@ -123,9 +168,10 @@ namespace Tizen.NUI
             {
                 focusChangedEventHandler -= value;
 
-                if (focusChangedEventCallback == null && FocusChangedSignal().Empty() == false)
+                using FocusChangedSignal signal = FocusChangedSignal();
+                if (focusChangedEventCallback == null && signal?.Empty() == false)
                 {
-                    FocusChangedSignal().Disconnect(focusChangedEventCallback);
+                    signal?.Disconnect(focusChangedEventCallback);
                 }
             }
         }
@@ -143,7 +189,8 @@ namespace Tizen.NUI
                 if (focusGroupChangedEventCallback == null)
                 {
                     focusGroupChangedEventCallback = OnFocusGroupChanged;
-                    FocusGroupChangedSignal().Connect(focusGroupChangedEventCallback);
+                    using FocusGroupChangedSignal signal = FocusGroupChangedSignal();
+                    signal?.Connect(focusGroupChangedEventCallback);
                 }
                 focusGroupChangedEventHandler += value;
             }
@@ -151,9 +198,10 @@ namespace Tizen.NUI
             {
                 focusGroupChangedEventHandler -= value;
 
-                if (focusGroupChangedEventCallback == null && FocusGroupChangedSignal().Empty() == false)
+                using FocusGroupChangedSignal signal = FocusGroupChangedSignal();
+                if (focusGroupChangedEventCallback == null && signal?.Empty() == false)
                 {
-                    FocusGroupChangedSignal().Disconnect(focusGroupChangedEventCallback);
+                    signal?.Disconnect(focusGroupChangedEventCallback);
                 }
             }
         }
@@ -169,7 +217,8 @@ namespace Tizen.NUI
                 if (focusedViewEnterKeyEventCallback == null)
                 {
                     focusedViewEnterKeyEventCallback = OnFocusedViewEnterKey;
-                    FocusedViewEnterKeySignal().Connect(focusedViewEnterKeyEventCallback);
+                    using ViewSignal signal = FocusedViewEnterKeySignal();
+                    signal?.Connect(focusedViewEnterKeyEventCallback);
                 }
                 focusedViewEnterKeyEventHandler += value;
             }
@@ -177,9 +226,10 @@ namespace Tizen.NUI
             {
                 focusedViewEnterKeyEventHandler -= value;
 
-                if (focusedViewEnterKeyEventCallback != null && FocusedViewEnterKeySignal().Empty() == false)
+                using ViewSignal signal = FocusedViewEnterKeySignal();
+                if (focusedViewEnterKeyEventCallback != null && signal?.Empty() == false)
                 {
-                    FocusedViewEnterKeySignal().Disconnect(focusedViewEnterKeyEventCallback);
+                    signal?.Disconnect(focusedViewEnterKeyEventCallback);
                 }
             }
         }
@@ -202,7 +252,8 @@ namespace Tizen.NUI
                 if (focusedViewEnterKeyEventCallback2 == null)
                 {
                     focusedViewEnterKeyEventCallback2 = OnFocusedViewEnterKey2;
-                    FocusedViewEnterKeySignal().Connect(focusedViewEnterKeyEventCallback2);
+                    using ViewSignal signal = FocusedViewEnterKeySignal();
+                    signal?.Connect(focusedViewEnterKeyEventCallback2);
                 }
                 focusedViewEnterKeyEventHandler2 += value;
             }
@@ -210,9 +261,10 @@ namespace Tizen.NUI
             {
                 focusedViewEnterKeyEventHandler2 -= value;
 
-                if (focusedViewEnterKeyEventCallback2 != null && FocusedViewEnterKeySignal().Empty() == false)
+                using ViewSignal signal = FocusedViewEnterKeySignal();
+                if (focusedViewEnterKeyEventCallback2 != null && signal?.Empty() == false)
                 {
-                    FocusedViewEnterKeySignal().Disconnect(focusedViewEnterKeyEventCallback2);
+                    signal?.Disconnect(focusedViewEnterKeyEventCallback2);
                 }
             }
         }
@@ -620,14 +672,49 @@ namespace Tizen.NUI
             }
         }
 
+        private IntPtr OnFocusChanging(IntPtr current, IntPtr proposed, View.FocusDirection direction)
+        {
+            View originallyProposed = null;
+            FocusChangingEventArgs e = new FocusChangingEventArgs();
+
+            if (current != global::System.IntPtr.Zero)
+            {
+                e.Current = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
+            }
+            if (proposed != global::System.IntPtr.Zero)
+            {
+                originallyProposed = e.Proposed = Registry.GetManagedBaseHandleFromNativePtr(proposed) as View;
+            }
+            e.Direction = direction;
+
+            focusChangingEventHandler?.Invoke(this, e);
+
+            if (originallyProposed != e.Proposed)
+            {
+                //when user has changed Proposed
+                return e.Proposed.GetPtrfromView();
+            }
+            else
+            {
+                if (originallyProposed != null)
+                {
+                    return proposed;
+                }
+                else
+                {
+                    return current;
+                }
+            }
+        }
+
         private void OnFocusChanged(IntPtr current, IntPtr next)
         {
             if (focusChangedEventHandler != null)
             {
                 FocusChangedEventArgs e = new FocusChangedEventArgs();
 
-                e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
-                e.NextView = Registry.GetManagedBaseHandleFromNativePtr(next) as View;
+                e.Previous = e.CurrentView = Registry.GetManagedBaseHandleFromNativePtr(current) as View;
+                e.Current = e.NextView = Registry.GetManagedBaseHandleFromNativePtr(next) as View;
                 focusChangedEventHandler(this, e);
             }
         }
@@ -675,6 +762,9 @@ namespace Tizen.NUI
         /// Event arguments that passed via the PreFocusChange signal.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Please do not use! This will be deprecated in API10. Please use FocusChangingEventArgs instead!")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1034:Nested types should not be visible", Justification = "<Pending>")]
+        // this will be deprecated, so suppress warning would be OK.
         public class PreFocusChangeEventArgs : EventArgs
         {
             private View current;
@@ -736,14 +826,63 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public class FocusChangedEventArgs : EventArgs
         {
+            private View currentView;
+            private View nextView;
+            private View previous;
             private View current;
-            private View next;
 
             /// <summary>
             /// The current focus view.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use Previous instead!")]
             public View CurrentView
+            {
+                get
+                {
+                    return currentView;
+                }
+                set
+                {
+                    currentView = value;
+                }
+            }
+            /// <summary>
+            /// The next focus view.
+            /// </summary>
+            /// <since_tizen> 3 </since_tizen>
+            [Obsolete("Please do not use! This will be deprecated! Please use Current instead!")]
+            public View NextView
+            {
+                get
+                {
+                    return nextView;
+                }
+                set
+                {
+                    nextView = value;
+                }
+            }
+            /// <summary>
+            /// The previously focused view.
+            /// </summary>
+            /// <since_tizen> 10 </since_tizen>
+            public View Previous
+            {
+                get
+                {
+                    return previous;
+                }
+                set
+                {
+                    previous = value;
+                }
+            }
+            /// <summary>
+            /// The current focused view after focus changed.
+            /// </summary>
+            /// <since_tizen> 10 </since_tizen>
+            public View Current
             {
                 get
                 {
@@ -752,21 +891,6 @@ namespace Tizen.NUI
                 set
                 {
                     current = value;
-                }
-            }
-            /// <summary>
-            /// The next focus view.
-            /// </summary>
-            /// <since_tizen> 3 </since_tizen>
-            public View NextView
-            {
-                get
-                {
-                    return next;
-                }
-                set
-                {
-                    next = value;
                 }
             }
         }
