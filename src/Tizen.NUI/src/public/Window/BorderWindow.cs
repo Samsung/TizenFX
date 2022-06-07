@@ -47,7 +47,7 @@ namespace Tizen.NUI
         private View bottomView = null;
         private bool isTop = false;
         private bool isBottom = false;
-        private uint borderHeight = 0;
+        private float borderHeight = 0;
         private int screenWidth = 0;
         private int screenHeight = 0;
         #endregion //Fields
@@ -188,8 +188,9 @@ namespace Tizen.NUI
                 borderInterface.OnCreated(borderView);
 
                 // Increase the window size as much as the border area.
-                if (isTop) borderHeight += borderInterface.BorderHeight;
-                if (isBottom) borderHeight += borderInterface.BorderHeight;
+                borderHeight = 0;
+                if (isTop) borderHeight += topView.SizeHeight;
+                if (isBottom) borderHeight += bottomView.SizeHeight;
 
                 // When running the app for the first time, if it runs in full size, do Maximize(true).
                 if (screenWidth != 0 && screenHeight != 0 &&
@@ -348,7 +349,7 @@ namespace Tizen.NUI
                 direction = BorderDirection.Top;
             }
             // check move
-            else if ((yPosition > WindowSize.Height) || (isTop == true && yPosition < borderInterface.BorderHeight))
+            else if ((yPosition > WindowSize.Height) || (isTop == true && yPosition < topView.SizeHeight))
             {
                 direction = BorderDirection.Move;
             }
@@ -408,6 +409,11 @@ namespace Tizen.NUI
 
             borderInterface.OnResized(resizeWidth, resizeHeight);
 
+             // reset borderHeight
+            borderHeight = 0;
+            if (isTop) borderHeight += topView.SizeHeight;
+            if (isBottom) borderHeight += bottomView.SizeHeight;
+
             if (borderInterface.OverlayMode == true && IsMaximized() == true)
             {
                 Interop.ActorInternal.SetSize(GetBorderWindowRootLayer().SwigCPtr, resizeWidth, resizeHeight);
@@ -421,7 +427,7 @@ namespace Tizen.NUI
             }
             else
             {
-                uint height = (isTop == true) ? borderInterface.BorderHeight : 0;
+                float height = (isTop == true) ? topView.SizeHeight : 0;
                 Interop.ActorInternal.SetSize(GetBorderWindowRootLayer().SwigCPtr, resizeWidth, resizeHeight);
                 Interop.ActorInternal.SetSize(GetBorderWindowBottomLayer().SwigCPtr, resizeWidth + borderInterface.BorderLineThickness * 2, resizeHeight + borderHeight + borderInterface.BorderLineThickness * 2);
                 Interop.ActorInternal.SetPosition(GetBorderWindowRootLayer().SwigCPtr, 0, height + borderInterface.BorderLineThickness);
@@ -465,7 +471,7 @@ namespace Tizen.NUI
                 Interop.Actor.SetAnchorPoint(borderWindowRootLayer.SwigCPtr, topCentor.SwigCPtr);
                 Interop.Actor.Add(rootLayer.SwigCPtr, borderWindowRootLayer.SwigCPtr);
                 Interop.ActorInternal.SetSize(borderWindowRootLayer.SwigCPtr, WindowSize.Width, WindowSize.Height - borderHeight - borderInterface.BorderLineThickness * 2);
-                uint height = (isTop == true) ? borderInterface.BorderHeight : 0;
+                float height = (isTop == true) ? topView.SizeHeight : 0;
                 Interop.ActorInternal.SetPosition(borderWindowRootLayer.SwigCPtr, 0, height + borderInterface.BorderLineThickness);
                 using PropertyValue propertyValue = new Tizen.NUI.PropertyValue((int)Tizen.NUI.ClippingModeType.ClipToBoundingBox);
                 Tizen.NUI.Object.SetProperty(borderWindowRootLayer.SwigCPtr, Tizen.NUI.BaseComponents.View.Property.ClippingMode, propertyValue);
