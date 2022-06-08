@@ -20,6 +20,7 @@ using Tizen.NUI.Binding;
 using Tizen.NUI.EXaml;
 using Mono.Cecil;
 using Tizen.NUI.EXaml.Build.Tasks;
+using Tizen.NUI.Xaml.Build.Tasks;
 
 namespace Tizen.NUI.Xaml
 {
@@ -27,6 +28,7 @@ namespace Tizen.NUI.Xaml
     [AcceptEmptyServiceProvider]
     internal sealed class BindingExtension : IMarkupExtension<BindingBase>
     {
+        public XmlType XmlType { get; set; }
         public string Path { get; set; } = Tizen.NUI.Binding.Binding.SelfPath;
         public BindingMode Mode { get; set; } = BindingMode.Default;
 
@@ -52,8 +54,8 @@ namespace Tizen.NUI.Xaml
         {
             if (TypedBinding == null)
             {
-                var newTypeRef = module.ImportReference(typeof(Tizen.NUI.Binding.Binding));
-                return new EXamlCreateObject(context, null, newTypeRef, new object[] { Path, ModeInEXaml, Converter, ConverterParameter, StringFormat, Source });
+                var typeRef = XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.OnlyGetType, module, null);
+                return new EXamlCreateObject(context, null, typeRef, new object[] { Path, ModeInEXaml, Converter, ConverterParameter, StringFormat, Source });
             }
             else
             {

@@ -78,6 +78,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_SetContentInfo")]
             public static extern void SetContentInfo(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_SetUsingKeyEvent")]
+            public static extern void SetUsingKeyEvent(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WidgetImpl_SetImpl")]
             public static extern void SetImpl(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 

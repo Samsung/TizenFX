@@ -99,7 +99,7 @@ namespace Tizen.NUI.Components
         {
             base.OnInitialize();
 
-            SetAccessibilityConstructor(Role.PageTabList);
+            AccessibilityRole = Role.PageTabList;
         }
 
         /// <summary>
@@ -148,9 +148,6 @@ namespace Tizen.NUI.Components
                     TabButtonSelected(this, args);
                 }
             }
-
-            //TODO: To support non-unified tab button size.
-            CalculateUnifiedTabButtonSize();
         }
 
         /// <summary>
@@ -193,37 +190,6 @@ namespace Tizen.NUI.Components
             if ((SelectedIndex != -1) && (selectedTabButton != tabButtons[SelectedIndex]))
             {
                 tabButtons[SelectedIndex].IsSelected = true;
-            }
-
-            //TODO: To support non-unified tab button size.
-            CalculateUnifiedTabButtonSize();
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void OnRelayout(Vector2 size, RelayoutContainer container)
-        {
-            base.OnRelayout(size, container);
-
-            //TODO: To support non-unified tab button size.
-            CalculateUnifiedTabButtonSize();
-        }
-
-        private void CalculateUnifiedTabButtonSize()
-        {
-            if (tabButtons.Count <= 0)
-            {
-                return;
-            }
-
-            var tabButtonWidth = Size.Width / tabButtons.Count;
-
-            foreach (TabButton tabButton in tabButtons)
-            {
-                if (tabButton.Size.Width != tabButtonWidth)
-                {
-                    tabButton.Size = new Size(tabButtonWidth, tabButton.Size.Height);
-                }
             }
         }
 

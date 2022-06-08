@@ -31,6 +31,7 @@ namespace Tizen.NUI.BaseComponents
         private static HashSet<BindableProperty> positionPropertyGroup = new HashSet<BindableProperty>();
         private static HashSet<BindableProperty> sizePropertyGroup = new HashSet<BindableProperty>();
         private static HashSet<BindableProperty> scalePropertyGroup = new HashSet<BindableProperty>();
+        private static bool defaultGrabTouchAfterLeave = false;
 
         internal BackgroundExtraData backgroundExtraData;
 
@@ -47,6 +48,7 @@ namespace Tizen.NUI.BaseComponents
         private LayoutTransition layoutTransition;
         private TransitionOptions transitionOptions = null;
         private ThemeData themeData;
+        private bool isThemeChanged = false;
 
         // List of constraints
         private Constraint widthConstraint = null;
@@ -151,6 +153,7 @@ namespace Tizen.NUI.BaseComponents
                 SetVisible(false);
             }
 
+            GrabTouchAfterLeave = defaultGrabTouchAfterLeave;
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
@@ -193,6 +196,16 @@ namespace Tizen.NUI.BaseComponents
         /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static bool LayoutingDisabled { get; set; } = true;
+
+        /// <summary>
+        /// If set to true, the <see cref="GrabTouchAfterLeave"/> property value is set to true when all Views are created.
+        /// </summary>
+        /// <param name="enable">Sets value of GrabTouchAfterLeave property</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetDefaultGrabTouchAfterLeave(bool enable)
+        {
+            defaultGrabTouchAfterLeave = enable;
+        }
 
         /// <summary>
         /// Deprecate. Please do not use this.
@@ -948,6 +961,46 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(DownFocusableViewProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The clockwise focusable view by rotary wheel.<br />
+        /// This will return null if not set.<br />
+        /// This will also return null if the specified clockwise focusable view is not on a window.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View ClockwiseFocusableView
+        {
+            // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
+            get
+            {
+                return (View)GetValue(ClockwiseFocusableViewProperty);
+            }
+            set
+            {
+                SetValue(ClockwiseFocusableViewProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The counter clockwise focusable view by rotary wheel.<br />
+        /// This will return null if not set.<br />
+        /// This will also return null if the specified counter clockwise focusable view is not on a window.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View CounterClockwiseFocusableView
+        {
+            // As native side will be only storing IDs so need a logic to convert View to ID and vice-versa.
+            get
+            {
+                return (View)GetValue(CounterClockwiseFocusableViewProperty);
+            }
+            set
+            {
+                SetValue(CounterClockwiseFocusableViewProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1815,6 +1868,25 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Gets or sets the status of whether the view should be enabled user interactions.
+        /// If a View is made disabled, then user interactions including touch, focus, and actiavation is disabled.
+        /// </summary>
+        /// <since_tizen> tizen_next </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsEnabled
+        {
+            get
+            {
+                return (bool)GetValue(IsEnabledProperty);
+            }
+            set
+            {
+                SetValue(IsEnabledProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the status of whether the view should receive a notification when touch or hover motion events leave the boundary of the view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -2028,35 +2100,11 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                // If View has a Layout then padding in stored in the base Layout class
-                if (Layout != null)
-                {
-                    return Layout.Padding;
-                }
-                else
-                {
-                    return (Extents)GetValue(PaddingProperty);
-                }
-                // Two return points to prevent creating a zeroed Extent native object before assignment
+                return (Extents)GetValue(PaddingProperty);
             }
             set
             {
-                Extents padding = value;
-                if (Layout != null)
-                {
-                    // Layout set so store Padding in LayoutItem instead of in View.
-                    // If View stores the Padding value then Legacy Size Negotiation will overwrite
-                    // the position and sizes measure in the Layouting.
-                    Layout.Padding = value;
-                    // If Layout is a LayoutItem then it could be a View that handles it's own padding.
-                    // Let the View keeps it's padding.  Still store Padding in Layout to reduce code paths.
-                    if (typeof(LayoutGroup).IsAssignableFrom(Layout.GetType())) // If a Layout container of some kind.
-                    {
-                        padding = new Extents(0, 0, 0, 0); // Reset value stored in View.
-                    }
-                }
-
-                SetValue(PaddingProperty, padding);
+                SetValue(PaddingProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2368,35 +2416,12 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                // If View has a Layout then margin is stored in Layout.
-                if (Layout != null)
-                {
-                    return Layout.Margin;
-                }
-                else
-                {
-                    // If Layout not set then return margin stored in View.
-                    return (Extents)GetValue(MarginProperty);
-                }
-                // Two return points to prevent creating a zeroed Extent native object before assignment
+                return (Extents)GetValue(MarginProperty);
             }
             set
             {
-                if (Layout != null)
-                {
-                    // Layout set so store Margin in LayoutItem instead of View.
-                    // If View stores the Margin too then the Legacy Size Negotiation will
-                    // overwrite the position and size values measured in the Layouting.
-                    Layout.Margin = value;
-                    SetValue(MarginProperty, new Extents(0, 0, 0, 0));
-                    layout?.RequestLayout();
-                }
-                else
-                {
-                    SetValue(MarginProperty, value);
-                }
+                SetValue(MarginProperty, value);
                 NotifyPropertyChanged();
-                layout?.RequestLayout();
             }
         }
 
@@ -2731,26 +2756,28 @@ namespace Tizen.NUI.BaseComponents
                     {
                         Extents margin = Margin;
                         Extents padding = Padding;
+                        bool setMargin = false;
+                        bool setPadding = false;
+
                         if (margin.Top != 0 || margin.Bottom != 0 || margin.Start != 0 || margin.End != 0)
                         {
                             // If View already has a margin set then store it in Layout instead.
                             value.Margin = margin;
                             SetValue(MarginProperty, new Extents(0, 0, 0, 0));
-                            NotifyPropertyChanged();
+                            setMargin = true;
                         }
 
                         if (padding.Top != 0 || padding.Bottom != 0 || padding.Start != 0 || padding.End != 0)
                         {
                             // If View already has a padding set then store it in Layout instead.
                             value.Padding = padding;
+                            SetValue(PaddingProperty, new Extents(0, 0, 0, 0));
+                            setPadding = true;
+                        }
 
-                            // If Layout is a LayoutItem then it could be a View that handles it's own padding.
-                            // Let the View keeps it's padding.  Still store Padding in Layout to reduce code paths.
-                            if (typeof(LayoutGroup).IsAssignableFrom(value.GetType()))
-                            {
-                                SetValue(PaddingProperty, new Extents(0, 0, 0, 0));
-                                NotifyPropertyChanged();
-                            }
+                        if (setMargin || setPadding)
+                        {
+                            NotifyPropertyChanged();
                         }
 
                         value.SetPositionByLayout = !excludeLayouting;
@@ -3037,8 +3064,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnThemeChanged(object sender, ThemeChangedEventArgs e)
         {
+            isThemeChanged = true;
             if (string.IsNullOrEmpty(styleName)) ApplyStyle(ThemeManager.GetUpdateStyleWithoutClone(GetType()));
             else ApplyStyle(ThemeManager.GetUpdateStyleWithoutClone(styleName));
+            isThemeChanged = false;
         }
 
         /// <summary>
@@ -3081,9 +3110,15 @@ namespace Tizen.NUI.BaseComponents
 
                 bindablePropertyOfView.TryGetValue(sourceProperty.PropertyName, out var destinationProperty);
 
+                // Do not set value again when theme is changed and the value has been set already.
+                if (isThemeChanged && ChangedPropertiesSetExcludingStyle.Contains(destinationProperty))
+                {
+                    continue;
+                }
+
                 if (destinationProperty != null)
                 {
-                    SetValue(destinationProperty, sourceValue);
+                    InternalSetValue(destinationProperty, sourceValue);
                 }
             }
         }

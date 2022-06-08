@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -24,7 +25,6 @@ namespace Tizen.NUI
     /// <since_tizen> 3 </since_tizen>
     public class PropertyMap : Disposable
     {
-
         /// <summary>
         /// The constructor.
         /// </summary>
@@ -49,6 +49,42 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Retrieves all keys.
+        /// </summary>
+        /// <returns>A list of keys.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IList<PropertyKey> Keys
+        {
+            get
+            {
+                List<PropertyKey> keys = new List<PropertyKey>();
+                for (uint i = 0; i < Count(); i++)
+                {
+                    keys.Add(GetKeyAt(i));
+                }
+                return keys;
+            }
+        }
+
+        /// <summary>
+        /// Retrieves all values.
+        /// </summary>
+        /// <returns>A list of values.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IList<PropertyValue> Values
+        {
+            get
+            {
+                List<PropertyValue> values = new List<PropertyValue>();
+                for (uint i = 0; i < Count(); i++)
+                {
+                    values.Add(GetValue(i));
+                }
+                return values;
+            }
+        }
+
+        /// <summary>
         /// The operator to access the element with the specified string key.<br />
         /// If an element with the key does not exist, then it is created.<br />
         /// </summary>
@@ -61,9 +97,12 @@ namespace Tizen.NUI
             {
                 return ValueOfIndex(key);
             }
-            internal set
+            set
             {
-                SetValue(key, value);
+                using (PropertyKey pKey = new PropertyKey(key))
+                {
+                    SetValue(pKey, value);
+                }
             }
         }
 
@@ -80,9 +119,12 @@ namespace Tizen.NUI
             {
                 return ValueOfIndex(key);
             }
-            internal set
+            set
             {
-                SetValue(key, value);
+                using (PropertyKey pKey = new PropertyKey(key))
+                {
+                    SetValue(pKey, value);
+                }
             }
         }
 
@@ -112,33 +154,43 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Inserts the key-value pair in the map, with the key type as string.<br />
-        /// Does not check for duplicates.<br />
+        /// The error message would be shown if the pair with the same key already exists.
         /// </summary>
         /// <param name="key">The key to insert.</param>
         /// <param name="value">The value to insert.</param>
         /// <since_tizen> 3 </since_tizen>
         public void Insert(string key, PropertyValue value)
         {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
             Interop.PropertyMap.Insert(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
         /// Inserts the key-value pair in the map, with the key type as index.<br />
-        /// Does not check for duplicates.<br />
+        /// The error message would be shown if the pair with the same key already exists.
         /// </summary>
         /// <param name="key">The key to insert.</param>
         /// <param name="value">The value to insert.</param>
         /// <since_tizen> 3 </since_tizen>
         public void Insert(int key, PropertyValue value)
         {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
             Interop.PropertyMap.Insert(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
         /// Inserts the key-value pair in the map, with the key type as string.<br />
-        /// Does not check for duplicates.<br />
+        /// The error message would be shown if the pair with the same key already exists.
         /// </summary>
         /// <param name="key">The key to insert.</param>
         /// <param name="value">The value to insert.</param>
@@ -146,6 +198,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap Add(string key, PropertyValue value)
         {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
             Interop.PropertyMap.Add(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return this;
@@ -153,7 +210,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Inserts the key-value pair in the map, with the key type as string.<br />
-        /// Does not check for duplicates.<br />
+        /// The error message would be shown if the pair with the same key already exists.
         /// </summary>
         /// <param name="key">The key to insert.</param>
         /// <param name="value">The value to insert.</param>
@@ -161,6 +218,11 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public PropertyMap Add(int key, PropertyValue value)
         {
+            global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
+            if (cPtr != global::System.IntPtr.Zero)
+            {
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
+            }
             Interop.PropertyMap.Add(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return this;
@@ -168,7 +230,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Inserts the keyvalue to the map.<br />
-        /// Does not check for duplicates.<br />
+        /// The exception would be thrown if the pair with the same key already exists.
         /// </summary>
         /// <param name="keyValue">The keyvalue to insert.</param>
         /// <returns>Returns a reference to this object.</returns>
@@ -179,17 +241,64 @@ namespace Tizen.NUI
             {
                 throw new global::System.ArgumentNullException(nameof(keyValue));
             }
-            if (keyValue.KeyInt != null)
+            if (keyValue.IntegerKey != null)
             {
-                Interop.PropertyMap.Add(SwigCPtr, (int)keyValue.KeyInt, PropertyValue.getCPtr(keyValue.TrueValue));
+                Add((int)keyValue.IntegerKey, keyValue.PropertyValue);
             }
-            else if (keyValue.KeyString != null)
+            else if (keyValue.StringKey != null)
             {
-                Interop.PropertyMap.Add(SwigCPtr, keyValue.KeyString, PropertyValue.getCPtr(keyValue.TrueValue));
+                Add(keyValue.StringKey, keyValue.PropertyValue);
             }
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             return this;
+        }
+
+        /// <summary>
+        /// Removes the element by the specified key.
+        /// </summary>
+        /// <param name="key">The index key to find.</param>
+        /// <returns>True if the element is removed, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Remove(PropertyKey key)
+        {
+            if (null == key)
+            {
+                throw new global::System.ArgumentNullException(nameof(key));
+            }
+            bool isRemoved = false;
+            if (key.Type == PropertyKey.KeyType.Index)
+            {
+                isRemoved = Interop.PropertyMap.Remove(SwigCPtr, key.IndexKey);
+            }
+            else if(key.Type == PropertyKey.KeyType.String)
+            {
+                isRemoved = Interop.PropertyMap.Remove(SwigCPtr, key.StringKey);
+            }
+            return isRemoved;
+        }
+
+        /// <summary>
+        /// Determines whether the PropertyMap contains the specified key.
+        /// </summary>
+        /// <param name="key">The index key to find.</param>
+        /// <returns>True if it exists, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Contains(PropertyKey key)
+        {
+            if (null == key)
+            {
+                throw new global::System.ArgumentNullException(nameof(key));
+            }
+            global::System.IntPtr cPtr = global::System.IntPtr.Zero;
+            if (key.Type == PropertyKey.KeyType.Index)
+            {
+                cPtr = Interop.PropertyMap.Find(SwigCPtr, key.IndexKey);
+            }
+            else if (key.Type == PropertyKey.KeyType.String)
+            {
+                cPtr = Interop.PropertyMap.Find(SwigCPtr, key.StringKey);
+            }
+            return cPtr != global::System.IntPtr.Zero;
         }
 
         /// <summary>
@@ -265,6 +374,10 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Merge(PropertyMap from)
         {
+            if (from == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(from));
+            }
             Interop.PropertyMap.Merge(SwigCPtr, PropertyMap.getCPtr(from));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -293,15 +406,16 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal void SetValue(int key, PropertyValue value)
+        internal void SetValue(PropertyKey key, PropertyValue value)
         {
-            Interop.PropertyMap.SetValueIntKey(SwigCPtr, key, PropertyValue.getCPtr(value));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetValue(string key, PropertyValue value)
-        {
-            Interop.PropertyMap.SetValueStringKey(SwigCPtr, key, PropertyValue.getCPtr(value));
+            if (key.Type == PropertyKey.KeyType.Index)
+            {
+                Interop.PropertyMap.SetValueIntKey(SwigCPtr, key.IndexKey, PropertyValue.getCPtr(value));
+            }
+            else if (key.Type == PropertyKey.KeyType.String)
+            {
+                Interop.PropertyMap.SetValueStringKey(SwigCPtr, key.StringKey, PropertyValue.getCPtr(value));
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 

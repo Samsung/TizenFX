@@ -26,21 +26,21 @@
                     <LinearLayout LinearOrientation="Vertical" LinearAlignment="CenterHorizontal" CellPadding="10, 10"/>
                 </View.Layout>
 
-                <TextLabel Text="abc1" CellHorizontalAlignment="Center"/>
-                <TextLabel Text="abc2" CellHorizontalAlignment="Center"/>
-                <TextLabel Text="abc3" CellHorizontalAlignment="Center"/>
-                <TextLabel Text="abc4" CellHorizontalAlignment="Center"/>
-                <TextLabel Text="abc5" CellHorizontalAlignment="Center"/>
-                <TextLabel Text="abc6" CellHorizontalAlignment="Center"/>
-                <TextLabel Text="abc7" CellHorizontalAlignment="Center"/>
-                <TextLabel Text="abc8" CellHorizontalAlignment="Center"/>
-                <TextLabel Text="abc9" CellHorizontalAlignment="Center"/>
-                <TextLabel Text="abc0" CellHorizontalAlignment="Center"/>
+                <TextLabel Text="abc1" HorizontalAlignment="Center"/>
+                <TextLabel Text="abc2" HorizontalAlignment="Center"/>
+                <TextLabel Text="abc3" HorizontalAlignment="Center"/>
+                <TextLabel Text="abc4" HorizontalAlignment="Center"/>
+                <TextLabel Text="abc5" HorizontalAlignment="Center"/>
+                <TextLabel Text="abc6" HorizontalAlignment="Center"/>
+                <TextLabel Text="abc7" HorizontalAlignment="Center"/>
+                <TextLabel Text="abc8" HorizontalAlignment="Center"/>
+                <TextLabel Text="abc9" HorizontalAlignment="Center"/>
+                <TextLabel Text="abc0" HorizontalAlignment="Center"/>
             </View>
             <Button x:Name="btn1"
                       Text="clear"
                       WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
-                      CellHorizontalAlignment="Center"/>
+                      TextAlignment="Center"/>
         </View>
     </ContentPage.Content>
 </ContentPage>

@@ -36,6 +36,7 @@ namespace Tizen.NUI
     {
         private HandleRef stageCPtr;
         private Layer rootLayer;
+        private Layer borderLayer;
         private string windowTitle;
         private List<Layer> childLayers = new List<Layer>();
         private LayoutController localController;
@@ -79,8 +80,9 @@ namespace Tizen.NUI
                 return null;
             }
 
-            Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Window.Get(View.getCPtr(view))) as Window;
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            //to fix memory leak issue, match the handle count with native side.
+            Window ret = view.GetInstanceSafely<Window>(Interop.Window.Get(View.getCPtr(view)));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -123,6 +125,30 @@ namespace Tizen.NUI
             this.windowTitle = name;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        /// <summary>
+        /// Creates a new Window with a specific name.<br />
+        /// This creates an extra window in addition to the default main window<br />
+        /// </summary>
+        /// <param name="name">The name for extra window. </param>
+        /// <param name="borderInterface"><see cref="Tizen.NUI.IBorderInterface"/>If borderInterface is null, defaultBorder is enabled.</param>
+        /// <param name="windowPosition">The position and size of the Window.</param>
+        /// <param name="isTranslucent">Whether Window is translucent.</param>
+        /// <returns>A new Window.</returns>
+        /// <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+        /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window(string name, IBorderInterface borderInterface, Rectangle windowPosition = null, bool isTranslucent = false) : this(Interop.Window.New(Rectangle.getCPtr(windowPosition), name, isTranslucent), true)
+        {
+            if (IsSupportedMultiWindow() == false)
+            {
+                NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
+            }
+            this.windowTitle = name;
+            this.EnableBorder(borderInterface);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
 
         /// <summary>
         /// Enumeration for orientation of the window is the way in which a rectangular page is oriented for normal viewing.
@@ -316,6 +342,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum ResizeDirection
         {
+            /// <summary>
+            /// None type.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            None = 0,
             /// <summary>
             /// Start resizing window to the top-left edge.
             /// </summary>
@@ -906,15 +937,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Add(View view)
         {
-            Interop.Actor.Add(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            this.GetRootLayer().AddViewToLayerList(view); // Maintain the children list in the Layer
-            if (null != view)
-            {
-                view.InternalParent = this.GetRootLayer();
-
-                this.GetRootLayer().LayoutCount += view.LayoutCount;
-            }
+            this.GetRootLayer().Add(view);
         }
 
         /// <summary>
@@ -924,14 +947,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void Remove(View view)
         {
-            Interop.Actor.Remove(Layer.getCPtr(GetRootLayer()), View.getCPtr(view));
-            this.GetRootLayer().RemoveViewFromLayerList(view); // Maintain the children list in the Layer
-            if (null != view)
-            {
-                view.InternalParent = null;
-
-                this.GetRootLayer().LayoutCount -= view.LayoutCount;
-            }
+            this.GetRootLayer().Remove(view);
         }
 
         /// <summary>
@@ -1211,7 +1227,7 @@ namespace Tizen.NUI
             {
                 NUILog.Error("This device does not support surfaceless_context. So Window cannot be created. ");
             }
-            Window ret = Registry.GetManagedBaseHandleFromNativePtr(Interop.Window.GetParent(SwigCPtr)) as Window;
+            Window ret = this.GetInstanceSafely<Window>(Interop.Window.GetParent(SwigCPtr));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1344,8 +1360,17 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(layer));
             }
-            Interop.Window.Add(SwigCPtr, Layer.getCPtr(layer));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            if (isBorderWindow)
+            {
+                Interop.Actor.Add(GetBorderWindowRootLayer().SwigCPtr, layer.SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) { throw NDalicPINVOKE.SWIGPendingException.Retrieve(); }
+            }
+            else
+            {
+                Interop.Window.Add(SwigCPtr, Layer.getCPtr(layer));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
 
             LayersChildren?.Add(layer);
             layer.SetWindow(this);
@@ -1367,6 +1392,9 @@ namespace Tizen.NUI
         internal Vector2 GetSize()
         {
             var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
+
+            convertRealWindowSizeToBorderWindowSize(val);
+
             Vector2 ret = new Vector2(val.GetWidth(), val.GetHeight());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             val.Dispose();
@@ -1397,16 +1425,29 @@ namespace Tizen.NUI
 
         internal Layer GetRootLayer()
         {
-            // Window.IsInstalled() is actually true only when called from event thread and
-            // Core has been initialized, not when Stage is ready.
-            if (rootLayer == null && Window.IsInstalled())
+            if (isBorderWindow)
             {
-                rootLayer = new Layer(Interop.Window.GetRootLayer(SwigCPtr), true);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                LayersChildren?.Add(rootLayer);
-                rootLayer.SetWindow(this);
+                if(borderLayer == null)
+                {
+                    borderLayer = GetBorderWindowRootLayer();
+                    LayersChildren?.Add(borderLayer);
+                    borderLayer.SetWindow(this);
+                }
+                return borderLayer;
             }
-            return rootLayer;
+            else
+            {
+                // Window.IsInstalled() is actually true only when called from event thread and
+                // Core has been initialized, not when Stage is ready.
+                if (rootLayer == null && Window.IsInstalled())
+                {
+                    rootLayer = new Layer(Interop.Window.GetRootLayer(SwigCPtr), true);
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                    LayersChildren?.Add(rootLayer);
+                    rootLayer.SetWindow(this);
+                }
+                return rootLayer;
+            }
         }
 
         internal void SetBackgroundColor(Vector4 color)
@@ -1457,6 +1498,9 @@ namespace Tizen.NUI
                 throw new ArgumentNullException(nameof(size));
             }
             var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
+
+            convertBorderWindowSizeToRealWindowSize(val);
+
             Interop.Window.SetSize(SwigCPtr, Uint16Pair.getCPtr(val));
             val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1466,6 +1510,9 @@ namespace Tizen.NUI
         internal Size2D GetWindowSize()
         {
             var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
+
+            convertRealWindowSizeToBorderWindowSize(val);
+
             Size2D ret = new Size2D(val.GetWidth(), val.GetHeight());
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             val.Dispose();
@@ -1496,6 +1543,17 @@ namespace Tizen.NUI
 
         internal void SetPositionSize(Rectangle positionSize)
         {
+            if (positionSize == null)
+            {
+                throw new ArgumentNullException(nameof(positionSize));
+            }
+            var val = new Uint16Pair((uint)positionSize.Width, (uint)positionSize.Height);
+
+            convertBorderWindowSizeToRealWindowSize(val);
+
+            positionSize.Width = val.GetX();
+            positionSize.Height = val.GetY();
+
             Interop.Window.SetPositionSize(SwigCPtr, Rectangle.getCPtr(positionSize));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1631,6 +1689,42 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Query whether window is rotating or not.
+        /// </summary>
+        /// <returns>True if window is rotating, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsWindowRotating()
+        {
+            bool ret = Interop.Window.IsWindowRotating(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the last key event the window gets.
+        /// </summary>
+        /// <returns>The last key event the window gets.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Key GetLastKeyEvent()
+        {
+            Key ret = new Key(Interop.Window.GetLastKeyEvent(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Gets the last touch event the window gets.
+        /// </summary>
+        /// <returns>The last touch event the window gets.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Touch GetLastTouchEvent()
+        {
+            Touch ret = new Touch(Interop.Window.GetLastTouchEvent(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Add FrameUpdateCallback
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1665,12 +1759,10 @@ namespace Tizen.NUI
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
 
-                if (rootLayer != null)
+                if (IsBorderEnabled)
                 {
-                    rootLayer.Dispose();
+                    DisposeBorder();
                 }
-
-                localController?.Dispose();
 
                 foreach (var layer in childLayers)
                 {
@@ -1681,6 +1773,8 @@ namespace Tizen.NUI
                 }
 
                 childLayers.Clear();
+
+                localController?.Dispose();
             }
 
             this.DisconnectNativeSignals();

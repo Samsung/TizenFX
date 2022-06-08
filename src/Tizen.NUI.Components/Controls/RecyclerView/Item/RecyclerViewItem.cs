@@ -1,4 +1,4 @@
-/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
+/* Copyright (c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,20 +30,7 @@ namespace Tizen.NUI.Components
         /// Property of boolean Enable flag.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(RecyclerViewItem), true, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (RecyclerViewItem)bindable;
-            if (newValue != null)
-            {
-                bool newEnabled = (bool)newValue;
-                if (instance.isEnabled != newEnabled)
-                {
-                    instance.isEnabled = newEnabled;
-                    instance.UpdateState();
-                }
-            }
-        },
-        defaultValueCreator: (bindable) => ((RecyclerViewItem)bindable).isEnabled);
+        public new static readonly BindableProperty IsEnabledProperty = View.IsEnabledProperty;
 
         /// <summary>
         /// Property of boolean Selected flag.
@@ -93,7 +80,6 @@ namespace Tizen.NUI.Components
 
         private bool isSelected = false;
         private bool isSelectable = true;
-        private bool isEnabled = true;
         private RecyclerViewItemStyle ItemStyle => ViewStyle as RecyclerViewItemStyle;
 
         static RecyclerViewItem() { }
@@ -155,10 +141,13 @@ namespace Tizen.NUI.Components
         /// Set enabled state false makes item untouchable and unfocusable.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
-        public bool IsEnabled
+        public new bool IsEnabled
         {
-            get => (bool)GetValue(IsEnabledProperty);
-            set => SetValue(IsEnabledProperty, value);
+            get => base.IsEnabled;
+            set
+            {
+                base.IsEnabled = value;
+            }
         }
 
         /// <summary>
@@ -193,7 +182,7 @@ namespace Tizen.NUI.Components
         {
             bool clicked = false;
 
-            if (!IsEnabled || null == key || null == BindingContext)
+            if (!IsEnabled || null == key)
             {
                 return false;
             }
@@ -214,29 +203,29 @@ namespace Tizen.NUI.Components
 
                     IsPressed = false;
 
-                    if (IsSelectable)
+                    if (IsSelectable && BindingContext != null && ParentItemsView is CollectionView colView)
                     {
-                        // Extension : Extension?.SetTouchInfo(touch);
-                        if (ParentItemsView is CollectionView colView)
+                        switch (colView.SelectionMode)
                         {
-                            switch (colView.SelectionMode)
-                            {
-                                case ItemSelectionMode.Single:
-                                    colView.SelectedItem = IsSelected ? null : BindingContext;
-                                    break;
-                                case ItemSelectionMode.SingleAlways:
-                                    if (colView.SelectedItem != BindingContext)
-                                        colView.SelectedItem = BindingContext;
-                                    break;
-                                case ItemSelectionMode.Multiple:
-                                    var selectedItems = colView.SelectedItems;
-                                    if (selectedItems.Contains(BindingContext)) selectedItems.Remove(BindingContext);
-                                    else selectedItems.Add(BindingContext);
-                                    break;
-                                case ItemSelectionMode.None:
-                                    break;
-                            }
+                            case ItemSelectionMode.Single:
+                                colView.SelectedItem = IsSelected ? null : BindingContext;
+                                break;
+                            case ItemSelectionMode.SingleAlways:
+                                if (colView.SelectedItem != BindingContext)
+                                    colView.SelectedItem = BindingContext;
+                                break;
+                            case ItemSelectionMode.Multiple:
+                                var selectedItems = colView.SelectedItems;
+                                if (selectedItems.Contains(BindingContext)) selectedItems.Remove(BindingContext);
+                                else selectedItems.Add(BindingContext);
+                                break;
+                            case ItemSelectionMode.None:
+                                break;
                         }
+                    }
+                    else if (IsSelectable)
+                    {
+                        IsSelected = !IsSelected;
                     }
 
                     if (clicked)
@@ -262,7 +251,7 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Called when the control loses key input focus. 
+        /// Called when the control loses key input focus.
         /// Should be overridden by derived classes if they need to customize
         /// what happens when the focus is lost.
         /// </summary>
@@ -286,7 +275,7 @@ namespace Tizen.NUI.Components
             if (viewStyle != null)
             {
                 //Extension = RecyclerViewItemStyle.CreateExtension();
-                //FIXME : currently padding and margin are not applied by ApplyStyle automatically as missing binding features.               
+                //FIXME : currently padding and margin are not applied by ApplyStyle automatically as missing binding features.
                 Padding = new Extents(viewStyle.Padding);
                 Margin = new Extents(viewStyle.Margin);
             }

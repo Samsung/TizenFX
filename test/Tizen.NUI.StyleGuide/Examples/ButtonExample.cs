@@ -28,11 +28,9 @@ namespace Tizen.NUI.StyleGuide
         private Window window;
         public void Activate()
         {
-           Log.Info(this.GetType().Name, $"@@@ this.GetType().Name={this.GetType().Name}, Activate()\n");
         }
         public void Deactivate()
         {
-            Log.Info(this.GetType().Name, $"@@@ this.GetType().Name={this.GetType().Name}, Deactivate()\n");
             window = null;
         }
 
@@ -71,7 +69,6 @@ namespace Tizen.NUI.StyleGuide
             {
                 Text = "Enabled"
             };
-            enabledButton.EnableFocus();
             enabledButton.Clicked += (object obj, ClickedEventArgs ev) =>
             {
                 Log.Info(this.GetType().Name, "Enabled Button Clicked\n");
@@ -96,13 +93,13 @@ namespace Tizen.NUI.StyleGuide
                 Text = "Unselected",
                 IsSelectable = true,
             };
-            selectableButton.EnableFocus();
             selectableButton.Clicked += (object obj, ClickedEventArgs ev) =>
             {
                 Log.Info(this.GetType().Name, "Selected Button Clicked\n");
                 if (obj is Button button)
                 {
-                   if (button.IsSelected)
+                    disabledButton.IsEnabled = button.IsSelected;
+                    if (button.IsSelected)
                     {
                         button.Text = "Selected";
                     }

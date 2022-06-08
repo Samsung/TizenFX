@@ -163,13 +163,6 @@ namespace Tizen.System
             if (res != Interop.Feedback.FeedbackError.None)
             {
                 Log.Warn(LogTag, string.Format("Failed to deinitialize feedback. err = {0}", res));
-                switch (res)
-                {
-                    case Interop.Feedback.FeedbackError.NotInitialized:
-                        throw new Exception("Not initialized");
-                    default:
-                        throw new InvalidOperationException("Failed to initialize");
-                }
             }
         }
 

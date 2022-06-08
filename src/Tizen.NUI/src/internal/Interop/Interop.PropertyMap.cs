@@ -49,6 +49,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Add__SWIG_2")]
             public static extern global::System.IntPtr Add(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Remove__SWIG_0")]
+            public static extern bool Remove(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_Remove__SWIG_1")]
+            public static extern bool Remove(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Property_Map_GetValue")]
             public static extern global::System.IntPtr GetValue(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 

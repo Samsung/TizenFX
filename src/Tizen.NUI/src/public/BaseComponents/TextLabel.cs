@@ -783,6 +783,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The relative height of the line (a factor that will be multiplied by text height). <br />
+        /// If the value is less than 1, the lines could to be overlapped.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float RelativeLineHeight
+        {
+            get
+            {
+                return (float)GetValue(RelativeLineHeightProperty);
+            }
+            set
+            {
+                SetValue(RelativeLineHeightProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Underline property.<br />
         /// The default underline parameters.<br />
         /// The underline map contains the following keys :<br />
@@ -1588,6 +1606,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int AutoScrollLoopCount = Interop.TextLabel.AutoScrollLoopCountGet();
             internal static readonly int AutoScrollGap = Interop.TextLabel.AutoScrollGapGet();
             internal static readonly int LineSpacing = Interop.TextLabel.LineSpacingGet();
+            internal static readonly int RelativeLineHeight = Interop.TextLabel.RelativeLineHeightGet();
             internal static readonly int UNDERLINE = Interop.TextLabel.UnderlineGet();
             internal static readonly int SHADOW = Interop.TextLabel.ShadowGet();
             internal static readonly int EMBOSS = Interop.TextLabel.EmbossGet();

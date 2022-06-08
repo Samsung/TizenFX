@@ -1,4 +1,4 @@
-/* Copyright (c) 2021 Samsung Electronics Co., Ltd.
+/* Copyright (c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -72,7 +72,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool HandleControlStateOnTouch(Touch touch)
         {
-            if (!IsEnabled || null == touch || null == BindingContext)
+            if (!IsEnabled || null == touch)
             {
                 return false;
             }
@@ -98,30 +98,31 @@ namespace Tizen.NUI.Components
 
                         if (!clicked) return true;
 
-                        if (IsSelectable)
+                        if (IsSelectable && BindingContext != null && ParentItemsView is CollectionView colView)
                         {
-                            if (ParentItemsView is CollectionView colView)
+                            switch (colView.SelectionMode)
                             {
-                                switch (colView.SelectionMode)
-                                {
-                                    case ItemSelectionMode.Single:
-                                        colView.SelectedItem = IsSelected ? null : BindingContext;
-                                        break;
-                                    case ItemSelectionMode.SingleAlways:
-                                        if (colView.SelectedItem != BindingContext)
-                                        {
-                                            colView.SelectedItem = BindingContext;
-                                        }
-                                        break;
-                                    case ItemSelectionMode.Multiple:
-                                        var selectedItems = colView.SelectedItems;
-                                        if (selectedItems.Contains(BindingContext)) selectedItems.Remove(BindingContext);
-                                        else selectedItems.Add(BindingContext);
-                                        break;
-                                    case ItemSelectionMode.None:
-                                        break;
-                                }
+                                case ItemSelectionMode.Single:
+                                    colView.SelectedItem = IsSelected ? null : BindingContext;
+                                    break;
+                                case ItemSelectionMode.SingleAlways:
+                                    if (colView.SelectedItem != BindingContext)
+                                    {
+                                        colView.SelectedItem = BindingContext;
+                                    }
+                                    break;
+                                case ItemSelectionMode.Multiple:
+                                    var selectedItems = colView.SelectedItems;
+                                    if (selectedItems.Contains(BindingContext)) selectedItems.Remove(BindingContext);
+                                    else selectedItems.Add(BindingContext);
+                                    break;
+                                case ItemSelectionMode.None:
+                                    break;
                             }
+                        }
+                        else if (IsSelectable)
+                        {
+                            IsSelected = !IsSelected;
                         }
 
                         if (clicked)
@@ -191,7 +192,7 @@ namespace Tizen.NUI.Components
 
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ViewItem");
 
-            SetAccessibilityConstructor(Role.ListItem);
+            AccessibilityRole = Role.ListItem;
             AccessibilityHighlightable = true;
         }
 
@@ -203,9 +204,16 @@ namespace Tizen.NUI.Components
         {
             MeasureChild();
             LayoutChild();
-
-            Sensitive = IsEnabled;
         }
+
+                /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnEnabled(bool enabled)
+        {
+            base.OnEnabled(enabled);
+            UpdateState();
+        }
+
 
 
         /// FIXME!! This has to be done in Element or View class.

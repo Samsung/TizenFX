@@ -245,6 +245,20 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             return null;
         }
 
+        private static string[] dpValueSubFixes = { "dp", "sp", "pt", "px"};
+        internal static string GetDPValueSubFix(string valueStr)
+        {
+            foreach (var subFix in dpValueSubFixes)
+            {
+                if (valueStr.EndsWith(subFix))
+                {
+                    return subFix;
+                }
+            }
+
+            return null;
+        }
+
         public static object GetBaseValue(this ValueNode node, EXamlContext context, TypeReference targetTypeRef)
         {
             var str = (string)node.Value;
@@ -252,15 +266,12 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
             if ("System.String" != targetTypeRef.FullName)
             {
-                if (str.EndsWith("dp"))
+                string subFix = GetDPValueSubFix(str);
+
+                if (null != subFix)
                 {
-                    var value = GetBaseValue(context, str.Substring(0, str.Length - "dp".Length), targetTypeRef);
-                    ret = new EXamlCreateDPObject(context, value, targetTypeRef, "dp");
-                }
-                else if (str.EndsWith("px"))
-                {
-                    var value = GetBaseValue(context, str.Substring(0, str.Length - "px".Length), targetTypeRef);
-                    ret = new EXamlCreateDPObject(context, value, targetTypeRef, "px");
+                        var value = GetBaseValue(context, str.Substring(0, str.Length - subFix.Length), targetTypeRef);
+                        ret = new EXamlCreateDPObject(context, value, targetTypeRef, subFix);
                 }
             }
 
@@ -342,8 +353,16 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             if (compiledConverterName != null && (compiledConverterType = Type.GetType (compiledConverterName)) != null) {
                 var compiledConverter = Activator.CreateInstance (compiledConverterType);
                 var converter = typeof(ICompiledTypeConverter).GetMethods ().FirstOrDefault (md => md.Name == "ConvertFromString");
-                IEnumerable<Instruction> instructions = (IEnumerable<Instruction>)converter.Invoke (compiledConverter, new object[] {
-                    node.Value as string, context, node as BaseNode});
+                IEnumerable<Instruction> instructions = null;
+
+                try
+                {
+                    instructions = (IEnumerable<Instruction>)converter.Invoke(compiledConverter, new object[] {
+                        node.Value as string, context, node as BaseNode});
+                }
+                catch 
+                {
+                }
 
                 if (null != instructions)
                 {
@@ -411,7 +430,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 yield return Instruction.Create(OpCodes.Ldc_I4, SByte.Parse(str, CultureInfo.InvariantCulture));
             else if (targetTypeRef.FullName == "System.Int16")
             {
-                if (str.EndsWith("dp") || str.EndsWith("px"))
+                if (null != GetDPValueSubFix(str))
                 {
                     var insOfDPValue = GetDPValue(module, node, targetTypeRef, str);
 
@@ -434,12 +453,12 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             else if (targetTypeRef.FullName == "System.UInt16")
                 yield return Instruction.Create(OpCodes.Ldc_I4, unchecked((int)UInt16.Parse(str, CultureInfo.InvariantCulture)));
             else if (targetTypeRef.FullName == "System.UInt32")
-                yield return Instruction.Create(OpCodes.Ldc_I8, unchecked((uint)UInt32.Parse(str, CultureInfo.InvariantCulture)));
+                yield return Instruction.Create(OpCodes.Ldc_I4, unchecked((int)UInt32.Parse(str, CultureInfo.InvariantCulture)));
             else if (targetTypeRef.FullName == "System.UInt64")
                 yield return Instruction.Create(OpCodes.Ldc_I8, unchecked((long)UInt64.Parse(str, CultureInfo.InvariantCulture)));
             else if (targetTypeRef.FullName == "System.Single")
             {
-                if (str.EndsWith("dp") || str.EndsWith("px"))
+                if (null != GetDPValueSubFix(str))
                 {
                     var insOfDPValue = GetDPValue(module, node, targetTypeRef, str);
 

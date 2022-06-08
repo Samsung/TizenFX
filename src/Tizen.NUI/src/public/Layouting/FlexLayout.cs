@@ -393,18 +393,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal static FlexLayout DownCast(BaseHandle handle)
-        {
-            FlexLayout ret = new FlexLayout(Interop.FlexLayout.DownCast(BaseHandle.getCPtr(handle)), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal FlexLayout(FlexLayout other) : this(Interop.FlexLayout.NewFlexLayout(FlexLayout.getCPtr(other)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
         internal FlexLayout.AlignmentType GetFlexAlignment()
         {
             FlexLayout.AlignmentType ret = (FlexLayout.AlignmentType)Interop.FlexLayout.GetFlexAlignment(swigCPtr);
@@ -672,8 +660,8 @@ namespace Tizen.NUI
 
             childLayout?.Measure(childWidthMeasureSpec, childHeightMeasureSpec);
 
-            measureSize.width = (childLayout == null) ? 0 : MeasuredWidth.Size.AsRoundedValue();
-            measureSize.height = (childLayout == null) ? 0 : MeasuredHeight.Size.AsRoundedValue();
+            measureSize.width = (childLayout == null) ? 0 : childLayout.MeasuredWidth.Size.AsRoundedValue();
+            measureSize.height = (childLayout == null) ? 0 : childLayout.MeasuredHeight.Size.AsRoundedValue();
         }
 
         void InsertChild(LayoutItem child)

@@ -66,7 +66,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.ToggleButton);
+            AccessibilityRole = Role.ToggleButton;
 
             IsSelectable = true;
 #if PROFILE_MOBILE

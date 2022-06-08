@@ -110,14 +110,30 @@ namespace Tizen.NUI
 
                     if (LayoutWithTransition)
                     {
+                        var win = Window.Get(Owner);
+
                         if (!childLayout.IsReplaceFlag())
                         {
-                            NUIApplication.GetDefaultWindow().LayoutController.AddToRemovalStack(childLayout);
+                            if (win == null)
+                            {
+                                NUIApplication.GetDefaultWindow().LayoutController.AddToRemovalStack(childLayout);
+                            }
+                            else
+                            {
+                                win.LayoutController.AddToRemovalStack(childLayout);
+                            }
                         }
 
                         childLayout.ConditionForAnimation = childLayout.ConditionForAnimation | TransitionCondition.Remove;
                         // Add LayoutItem to the transition stack so can animate it out.
-                        NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0, 0, 0, 0));
+                        if (win == null)
+                        {
+                            NUIApplication.GetDefaultWindow().LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0, 0, 0, 0));
+                        }
+                        else
+                        {
+                            win.LayoutController.AddTransitionDataEntry(new LayoutData(layoutItem, ConditionForAnimation, 0, 0, 0, 0));
+                        }
                     }
 
                     // Reset condition for animation ready for next transition when required.
@@ -610,9 +626,15 @@ namespace Tizen.NUI
         /// <param name="child">The child to measure.</param>
         /// <param name="parentWidthMeasureSpec">The width requirements for this view.</param>
         /// <param name="parentHeightMeasureSpec">The height requirements for this view.</param>
+        /// <exception cref="ArgumentNullException"> Thrown when child is null. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void MeasureChildWithoutPadding(LayoutItem child, MeasureSpecification parentWidthMeasureSpec, MeasureSpecification parentHeightMeasureSpec)
         {
+            if (null == child)
+            {
+                throw new ArgumentNullException(nameof(child));
+            }
+
             View childOwner = child.Owner;
 
             MeasureSpecification childWidthMeasureSpec = GetChildMeasureSpecification(
@@ -656,7 +678,7 @@ namespace Tizen.NUI
             if (bindable == null)
                 throw new ArgumentNullException(nameof(bindable));
 
-            bindable.SetValueCore(property, value, SetValueFlags.None, SetValuePrivateFlags.ManuallySet, false);
+            bindable.SetValueCore(property, value, SetValueFlags.None, SetValuePrivateFlags.ManuallySet);
         }
         internal static void OnChildPropertyChanged(Binding.BindableObject bindable, object oldValue, object newValue)
         {

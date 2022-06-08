@@ -38,6 +38,7 @@ namespace Tizen.NUI.BaseComponents
         private InputMethodContext inputMethodContext = null;
         private float fontSizeScale = 1.0f;
         private bool hasFontSizeChangedCallback = false;
+        private bool isSettingTextInCSharp = false;
 
         static TextEditor() { }
 
@@ -78,6 +79,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+
+            TextChanged += TextEditorTextChanged;
         }
 
         internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true, TextEditorStyle style = null) : base(cPtr, cMemoryOwn, style)
@@ -86,6 +89,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetVisible(false);
             }
+            Focusable = true;
+            TextChanged += TextEditorTextChanged;
         }
 
         /// <summary>
@@ -176,7 +181,7 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
-                SetValueAndForceSendChangeSignal(TextProperty, value);
+                SetValue(TextProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -323,6 +328,24 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(HorizontalAlignmentProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The VerticalAlignment property.<br />
+        /// The line vertical alignment.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VerticalAlignment VerticalAlignment
+        {
+            get
+            {
+                return (VerticalAlignment)GetValue(VerticalAlignmentProperty);
+            }
+            set
+            {
+                SetValue(VerticalAlignmentProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1033,6 +1056,24 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(InputLineSpacingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The relative height of the line (a factor that will be multiplied by text height). <br />
+        /// If the value is less than 1, the lines could to be overlapped.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float RelativeLineHeight
+        {
+            get
+            {
+                return (float)GetValue(RelativeLineHeightProperty);
+            }
+            set
+            {
+                SetValue(RelativeLineHeightProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2092,28 +2133,6 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
-        /// Only used by the IL of xaml, will never changed to not hidden.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override bool IsCreateByXaml
-        {
-            get
-            {
-                return base.IsCreateByXaml;
-            }
-            set
-            {
-                base.IsCreateByXaml = value;
-
-                if (value == true)
-                {
-                    this.TextChanged += (obj, e) =>
-                    {
-                        this.Text = e.TextEditor.Text;
-                    };
-                }
-            }
-        }
-
         /// <summary>
         /// The FontSizeScale property. <br />
         /// The default value is 1.0. <br />
@@ -2420,6 +2439,7 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
 
+            TextChanged -= TextEditorTextChanged;
             base.Dispose(type);
         }
 
@@ -2517,6 +2537,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private void TextEditorTextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!isSettingTextInCSharp)
+            {
+                EnforceNotifyBindedInstance(TextProperty);
+            }
+        }
+
         internal new class Property
         {
             internal static readonly int TEXT = Interop.TextEditor.TextGet();
@@ -2525,6 +2553,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int FontStyle = Interop.TextEditor.FontStyleGet();
             internal static readonly int PointSize = Interop.TextEditor.PointSizeGet();
             internal static readonly int HorizontalAlignment = Interop.TextEditor.HorizontalAlignmentGet();
+            internal static readonly int VerticalAlignment = Interop.TextEditor.VerticalAlignmentGet();
             internal static readonly int ScrollThreshold = Interop.TextEditor.ScrollThresholdGet();
             internal static readonly int ScrollSpeed = Interop.TextEditor.ScrollSpeedGet();
             internal static readonly int PrimaryCursorColor = Interop.TextEditor.PrimaryCursorColorGet();
@@ -2550,6 +2579,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int InputPointSize = Interop.TextEditor.InputPointSizeGet();
             internal static readonly int LineSpacing = Interop.TextEditor.LineSpacingGet();
             internal static readonly int InputLineSpacing = Interop.TextEditor.InputLineSpacingGet();
+            internal static readonly int RelativeLineHeight = Interop.TextEditor.RelativeLineHeightGet();
             internal static readonly int UNDERLINE = Interop.TextEditor.UnderlineGet();
             internal static readonly int InputUnderline = Interop.TextEditor.InputUnderlineGet();
             internal static readonly int SHADOW = Interop.TextEditor.ShadowGet();

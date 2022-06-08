@@ -31,11 +31,11 @@ namespace Tizen.NUI.StyleGuide
         private List<DirectionOption> directionMenu;
         public void Activate()
         {
-            Log.Info(this.GetType().Name, $"@@@ this.GetType().Name={this.GetType().Name}, Activate()\n");
+            Log.Info(this.GetType().Name, $"this.GetType().Name={this.GetType().Name}, Activate()\n");
         }
         public void Deactivate()
         {
-            Log.Info(this.GetType().Name, $"@@@ this.GetType().Name={this.GetType().Name}, Deactivate()\n");
+            Log.Info(this.GetType().Name, $"this.GetType().Name={this.GetType().Name}, Deactivate()\n");
             window = null;
             directionMenu = null;
         }
@@ -73,7 +73,8 @@ namespace Tizen.NUI.StyleGuide
                     };
                     item.Label.SetBinding(TextLabel.TextProperty, "Direction");
                     item.Label.HorizontalAlignment = HorizontalAlignment.Begin;
-                    item.EnableFocus();
+                    item.Focusable = true;
+                    item.FocusableInTouch = true;
                     return item;
                 }),
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
@@ -88,7 +89,6 @@ namespace Tizen.NUI.StyleGuide
                     Page scrollDirPage = new ScrollableBaseDirectionExample(directionItem.Direction);
                     window = NUIApplication.GetDefaultWindow();
                     window.GetDefaultNavigator().Push(scrollDirPage);
-                    FocusableExtension.SetFocusOnPage(scrollDirPage);
                 }
                 directionListView.SelectedItem = null;
             };

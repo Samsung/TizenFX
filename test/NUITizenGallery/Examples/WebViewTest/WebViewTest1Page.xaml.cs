@@ -34,6 +34,7 @@ namespace NUITizenGallery
         {
             InputField.GetInputMethodContext()?.HideInputPanel();
             TargetWebView.Url = InputField.Text;
+            TargetWebView.LoadUrl(TargetWebView.Url);
         }
 
         public void OnBackClicked(object sender, EventArgs e)

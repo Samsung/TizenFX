@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019-2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019-2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -151,6 +151,16 @@ namespace Tizen.NUI.BaseComponents
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Backward,
+            /// <summary>
+            /// Move focus towards the Clockwise direction by rotary wheel.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Clockwise,
+            /// <summary>
+            /// Move focus towards the CounterClockwise direction by rotary wheel.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            CounterClockwise,
         }
 
         /// <summary>
@@ -177,6 +187,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int RightFocusableViewId = Interop.ViewProperty.RightFocusableActorIdGet();
             internal static readonly int UpFocusableViewId = Interop.ViewProperty.UpFocusableActorIdGet();
             internal static readonly int DownFocusableViewId = Interop.ViewProperty.DownFocusableActorIdGet();
+            internal static readonly int ClockwiseFocusableViewId = Interop.ViewProperty.ClockwiseFocusableActorIdGet();
+            internal static readonly int CounterClockwiseFocusableViewId = Interop.ViewProperty.CounterClockwiseFocusableActorIdGet();
             internal static readonly int StyleName = Interop.ViewProperty.StyleNameGet();
             internal static readonly int KeyInputFocus = Interop.ViewProperty.KeyInputFocusGet();
             internal static readonly int BACKGROUND = Interop.ViewProperty.BackgroundGet();
@@ -216,6 +228,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int WorldMatrix = Interop.ActorProperty.WorldMatrixGet();
             internal static readonly int NAME = Interop.ActorProperty.NameGet();
             internal static readonly int SENSITIVE = Interop.ActorProperty.SensitiveGet();
+            internal static readonly int UserInteractionEnabled = Interop.ActorProperty.UserInteractionEnabledGet();
             internal static readonly int LeaveRequired = Interop.ActorProperty.LeaveRequiredGet();
             internal static readonly int InheritOrientation = Interop.ActorProperty.InheritOrientationGet();
             internal static readonly int InheritScale = Interop.ActorProperty.InheritScaleGet();

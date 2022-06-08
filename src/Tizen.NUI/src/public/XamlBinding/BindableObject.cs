@@ -94,13 +94,13 @@ namespace Tizen.NUI.Binding
                 {
                     nameToBindableProperty2.TryGetValue(keyValuePair.Key, out var bindableProperty);
 
-                    if (null != bindableProperty && (SettedPropeties.Contains(bindableProperty) || other.SettedPropeties.Contains(bindableProperty)))
+                    if (null != bindableProperty && (ChangedPropertiesSet.Contains(bindableProperty) || other.ChangedPropertiesSet.Contains(bindableProperty)))
                     {
                         object value = other.GetValue(bindableProperty);
 
                         if (null != value)
                         {
-                            SetValue(keyValuePair.Value, value);
+                            InternalSetValue(keyValuePair.Value, value);
                         }
                     }
                 }
@@ -243,18 +243,56 @@ namespace Tizen.NUI.Binding
             SetBinding(targetProperty, binding, false);
         }
 
-        private bool isCreateByXaml = false;
-        /// Only used by the IL of xaml, will never changed to not hidden.
+        /// Internal used, will never changed to not hidden.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool IsCreateByXaml
         {
-            get
+            get;
+            set;
+        }
+
+        /// This will be public opened in next ACR.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void EnforceNotifyBindedInstance(BindableProperty property)
+        {
+            if (null != property)
             {
-                return isCreateByXaml;
-            }
-            set
-            {
-                isCreateByXaml = value;
+                BindablePropertyContext context = GetOrCreateContext(property);
+                BindingBase binding = context.Binding;
+
+                var currentlyApplying = applying;
+
+                if (binding != null && !currentlyApplying)
+                {
+                    applying = true;
+                    binding.Apply(true);
+                    applying = false;
+                }
+
+                OnPropertyChanged(property.PropertyName);
+
+                PropertyToGroup.TryGetValue(property, out HashSet<BindableProperty> propertyGroup);
+
+                if (null != propertyGroup)
+                {
+                    foreach (var relativeProperty in propertyGroup)
+                    {
+                        if (relativeProperty != property)
+                        {
+                            var relativeContext = GetOrCreateContext(relativeProperty);
+                            var relativeBinding = relativeContext.Binding;
+
+                            if (null != relativeBinding)
+                            {
+                                applying = true;
+                                relativeBinding.Apply(true);
+                                applying = false;
+                            }
+
+                            OnPropertyChanged(relativeProperty.PropertyName);
+                        }
+                    }
+                }
             }
         }
 
@@ -267,6 +305,12 @@ namespace Tizen.NUI.Binding
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetValue(BindableProperty property, object value)
+        {
+            InternalSetValue(property, value);
+            ChangedPropertiesSetExcludingStyle.Add(property);
+        }
+
+        internal void InternalSetValue(BindableProperty property, object value)
         {
             if (true == IsBinded)
             {
@@ -285,6 +329,7 @@ namespace Tizen.NUI.Binding
                     BindablePropertyContext context = GetOrCreateContext(property);
                     if (null != context)
                     {
+                        context.Attributes |= BindableContextAttributes.IsManuallySet;
                         oldvalue = context.Value;
                         context.Value = value;
                     }
@@ -300,39 +345,34 @@ namespace Tizen.NUI.Binding
                 OnPropertyChangedWithData(property);
             }
 
-            SettedPropeties.Add(property);
+            ChangedPropertiesSet.Add(property);
         }
 
-        private HashSet<BindableProperty> settedPropeties;
-        private HashSet<BindableProperty> SettedPropeties
+        private HashSet<BindableProperty> changedPropertiesSet;
+        private HashSet<BindableProperty> ChangedPropertiesSet
         {
             get
             {
-                if (null == settedPropeties)
+                if (null == changedPropertiesSet)
                 {
-                    settedPropeties = new HashSet<BindableProperty>();
+                    changedPropertiesSet = new HashSet<BindableProperty>();
                 }
 
-                return settedPropeties;
+                return changedPropertiesSet;
             }
         }
 
-        internal void SetValueAndForceSendChangeSignal(BindableProperty property, object value)
+        private HashSet<BindableProperty> changedPropertiesSetExcludingStyle;
+        internal protected HashSet<BindableProperty> ChangedPropertiesSetExcludingStyle
         {
-            if (property == null)
-                throw new ArgumentNullException(nameof(property));
-
-            if (true == isCreateByXaml)
+            get
             {
-                if (property.IsReadOnly)
-                    throw new InvalidOperationException(string.Format("The BindableProperty \"{0}\" is readonly.", property.PropertyName));
+                if (null == changedPropertiesSetExcludingStyle)
+                {
+                    changedPropertiesSetExcludingStyle = new HashSet<BindableProperty>();
+                }
 
-                SetValueCore(property, value, SetValueFlags.ClearOneWayBindings | SetValueFlags.ClearDynamicResource,
-                    SetValuePrivateFlags.ManuallySet | SetValuePrivateFlags.CheckAccess, true);
-            }
-            else
-            {
-                property.PropertyChanged?.Invoke(this, null, value);
+                return changedPropertiesSetExcludingStyle;
             }
         }
 
@@ -671,7 +711,7 @@ namespace Tizen.NUI.Binding
 
         internal void SetValueCore(BindablePropertyKey propertyKey, object value, SetValueFlags attributes = SetValueFlags.None)
         {
-            SetValueCore(propertyKey.BindableProperty, value, attributes, SetValuePrivateFlags.None, false);
+            SetValueCore(propertyKey.BindableProperty, value, attributes, SetValuePrivateFlags.None);
         }
 
         /// <summary>
@@ -683,10 +723,10 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal void SetValueCore(BindableProperty property, object value, SetValueFlags attributes = SetValueFlags.None)
         {
-            SetValueCore(property, value, attributes, SetValuePrivateFlags.Default, false);
+            SetValueCore(property, value, attributes, SetValuePrivateFlags.Default);
         }
 
-        internal void SetValueCore(BindableProperty property, object value, SetValueFlags attributes, SetValuePrivateFlags privateAttributes, bool forceSendChangeSignal)
+        internal void SetValueCore(BindableProperty property, object value, SetValueFlags attributes, SetValuePrivateFlags privateAttributes)
         {
             bool checkAccess = (privateAttributes & SetValuePrivateFlags.CheckAccess) != 0;
             bool manuallySet = (privateAttributes & SetValuePrivateFlags.ManuallySet) != 0;
@@ -744,7 +784,7 @@ namespace Tizen.NUI.Binding
             else
             {
                 context.Attributes |= BindableContextAttributes.IsBeingSet;
-                SetValueActual(property, context, value, currentlyApplying, forceSendChangeSignal, attributes, silent);
+                SetValueActual(property, context, value, currentlyApplying, attributes, silent);
 
                 Queue<SetValueArgs> delayQueue = context.DelayedSetters;
                 if (delayQueue != null)
@@ -752,7 +792,7 @@ namespace Tizen.NUI.Binding
                     while (delayQueue.Count > 0)
                     {
                         SetValueArgs s = delayQueue.Dequeue();
-                        SetValueActual(s.Property, s.Context, s.Value, s.CurrentlyApplying, forceSendChangeSignal, s.Attributes);
+                        SetValueActual(s.Property, s.Context, s.Value, s.CurrentlyApplying, s.Attributes);
                     }
 
                     context.DelayedSetters = null;
@@ -910,11 +950,10 @@ namespace Tizen.NUI.Binding
                 return;
 
             SetValueCore(property, value, SetValueFlags.ClearOneWayBindings | SetValueFlags.ClearDynamicResource,
-                (fromStyle ? SetValuePrivateFlags.FromStyle : SetValuePrivateFlags.ManuallySet) | (checkAccess ? SetValuePrivateFlags.CheckAccess : 0),
-                false);
+                (fromStyle ? SetValuePrivateFlags.FromStyle : SetValuePrivateFlags.ManuallySet) | (checkAccess ? SetValuePrivateFlags.CheckAccess : 0));
         }
 
-        void SetValueActual(BindableProperty property, BindablePropertyContext context, object value, bool currentlyApplying, bool forceSendChangeSignal, SetValueFlags attributes, bool silent = false)
+        void SetValueActual(BindableProperty property, BindablePropertyContext context, object value, bool currentlyApplying, SetValueFlags attributes, bool silent = false)
         {
             object original = context.Value;
             bool raiseOnEqual = (attributes & SetValueFlags.RaiseOnEqual) != 0;
@@ -953,71 +992,36 @@ namespace Tizen.NUI.Binding
 
             PropertyToGroup.TryGetValue(property, out HashSet<BindableProperty> propertyGroup);
 
-            if (!silent)
+            if (!silent && (!same || raiseOnEqual))
             {
-                if ((!same || raiseOnEqual))
+                property.PropertyChanged?.Invoke(this, original, value);
+
+                if (binding != null && !currentlyApplying)
                 {
-                    property.PropertyChanged?.Invoke(this, original, value);
-
-                    if (binding != null && !currentlyApplying)
-                    {
-                        applying = true;
-                        binding.Apply(true);
-                        applying = false;
-                    }
-
-                    OnPropertyChanged(property.PropertyName);
-
-                    if (null != propertyGroup)
-                    {
-                        foreach (var relativeProperty in propertyGroup)
-                        {
-                            if (relativeProperty != property)
-                            {
-                                var relativeContext = GetOrCreateContext(relativeProperty);
-                                var relativeBinding = relativeContext.Binding;
-
-                                if (null != relativeBinding)
-                                {
-                                    applying = true;
-                                    relativeBinding.Apply(true);
-                                    applying = false;
-                                }
-
-                                OnPropertyChanged(relativeProperty.PropertyName);
-                            }
-                        }
-                    }
+                    applying = true;
+                    binding.Apply(true);
+                    applying = false;
                 }
-                else if (true == same && true == forceSendChangeSignal)
+
+                OnPropertyChanged(property.PropertyName);
+
+                if (null != propertyGroup)
                 {
-                    if (binding != null && !currentlyApplying)
+                    foreach (var relativeProperty in propertyGroup)
                     {
-                        applying = true;
-                        binding.Apply(true);
-                        applying = false;
-                    }
-
-                    OnPropertyChanged(property.PropertyName);
-
-                    if (null != propertyGroup)
-                    {
-                        foreach (var relativeProperty in propertyGroup)
+                        if (relativeProperty != property)
                         {
-                            if (relativeProperty != property)
+                            var relativeContext = GetOrCreateContext(relativeProperty);
+                            var relativeBinding = relativeContext.Binding;
+
+                            if (null != relativeBinding)
                             {
-                                var relativeContext = GetOrCreateContext(relativeProperty);
-                                var relativeBinding = relativeContext.Binding;
-
-                                if (null != relativeBinding)
-                                {
-                                    applying = true;
-                                    relativeBinding.Apply(true);
-                                    applying = false;
-                                }
-
-                                OnPropertyChanged(relativeProperty.PropertyName);
+                                applying = true;
+                                relativeBinding.Apply(true);
+                                applying = false;
                             }
+
+                            OnPropertyChanged(relativeProperty.PropertyName);
                         }
                     }
                 }

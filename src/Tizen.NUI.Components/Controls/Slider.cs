@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,11 @@
  * limitations under the License.
  *
  */
+
 using System;
-using Tizen.NUI.BaseComponents;
 using System.ComponentModel;
+using Tizen.NUI.Accessibility;
+using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 
 namespace Tizen.NUI.Components
@@ -64,7 +66,7 @@ namespace Tizen.NUI.Components
     /// A slider lets users select a value from a continuous or discrete range of values by moving the slider thumb.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public partial class Slider : Control
+    public partial class Slider : Control, IAtspiValue
     {
         /// <summary>
         /// SpaceBetweenTrackAndIndicatorProperty
@@ -190,26 +192,6 @@ namespace Tizen.NUI.Components
             }
         );
 
-        /// <summary>
-        /// IsEnabledProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(Slider), true, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (Slider)bindable;
-            if (newValue != null)
-            {
-                bool newEnabled = (bool)newValue;
-                if (instance.isEnabled != newEnabled)
-                {
-                    instance.isEnabled = newEnabled;
-                    instance.Sensitive = newEnabled;
-                    instance.UpdateValue();
-                }
-            }
-        },
-        defaultValueCreator: (bindable) => ((Slider)bindable).isEnabled);
-
         static Slider() { }
 
         /// <summary>
@@ -218,6 +200,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 6 </since_tizen>
         public Slider()
         {
+            Focusable = true;
             Initialize();
         }
 
@@ -228,6 +211,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Slider(string style) : base(style)
         {
+            Focusable = true;
             Initialize();
         }
 
@@ -238,41 +222,8 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 8 </since_tizen>
         public Slider(SliderStyle sliderStyle) : base(sliderStyle)
         {
+            Focusable = true;
             Initialize();
-        }
-
-        /// <summary>
-        /// The value changed event handler.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API8; Will be removed in API10. Please use ValueChanged event instead.")]
-        public event EventHandler<ValueChangedArgs> ValueChangedEvent
-        {
-            add
-            {
-                valueChangedHandler += value;
-            }
-            remove
-            {
-                valueChangedHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// The sliding finished event handler.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SlidingFinished event instead.")]
-        public event EventHandler<SlidingFinishedArgs> SlidingFinishedEvent
-        {
-            add
-            {
-                slidingFinishedHandler += value;
-            }
-            remove
-            {
-                slidingFinishedHandler -= value;
-            }
         }
 
         /// <summary>
@@ -320,23 +271,6 @@ namespace Tizen.NUI.Components
             remove
             {
                 sliderSlidingFinishedHandler -= value;
-            }
-        }
-
-        /// <summary>
-        /// The state changed event handler.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEvent")]
-        public event EventHandler<StateChangedArgs> StateChangedEvent
-        {
-            add
-            {
-                stateChangedHandler += value;
-            }
-            remove
-            {
-                stateChangedHandler -= value;
             }
         }
 
@@ -679,14 +613,40 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return thumbImage?.Color;
+                return thumbColor;
             }
             set
             {
                 if (null != thumbImage)
                 {
-                    thumbImage.BackgroundColor = value;
                     thumbColor = value;
+
+                    if (thumbImage.ResourceUrl != null)
+                    {
+                        thumbImage.ResourceUrl = null;
+                    }
+
+                    using (PropertyMap map = new PropertyMap())
+                    {
+                        // To remove CA2000 warning messages, use `using` statement.
+                        using (PropertyValue type = new PropertyValue((int)Visual.Type.Color))
+                        {
+                            map.Insert((int)Visual.Property.Type, type);
+                        }
+                        using (PropertyValue color = new PropertyValue(thumbColor))
+                        {
+                            map.Insert((int)ColorVisualProperty.MixColor, color);
+                        }
+                        using (PropertyValue radius = new PropertyValue(0.5f))
+                        {
+                            map.Insert((int)Visual.Property.CornerRadius, radius);
+                        }
+                        using (PropertyValue policyType = new PropertyValue((int)VisualTransformPolicyType.Relative))
+                        {
+                            map.Insert((int)Visual.Property.CornerRadiusPolicy, policyType);
+                        }
+                        thumbImage.Image = map;
+                    }
                 }
             }
         }
@@ -953,7 +913,14 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (null == lowIndicatorImage) lowIndicatorImage = new ImageView();
+                if (null == lowIndicatorImage)
+                {
+                    lowIndicatorImage = new ImageView
+                    {
+                        AccessibilityHidden = true,
+                    };
+                }
+
                 lowIndicatorImage.ResourceUrl = value;
             }
         }
@@ -982,7 +949,14 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (null == highIndicatorImage) highIndicatorImage = new ImageView();
+                if (null == highIndicatorImage)
+                {
+                    highIndicatorImage = new ImageView
+                    {
+                        AccessibilityHidden = true,
+                    };
+                }
+
                 highIndicatorImage.ResourceUrl = value;
             }
         }
@@ -1277,22 +1251,6 @@ namespace Tizen.NUI.Components
             }
         }
 
-        /// <summary>
-        /// Flag to decide enable or disable in Slider.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsEnabled
-        {
-            get
-            {
-                return (bool)GetValue(IsEnabledProperty);
-            }
-            set
-            {
-                SetValue(IsEnabledProperty, value);
-            }
-        }
-
         private Extents spaceBetweenTrackAndIndicator
         {
             get
@@ -1437,6 +1395,49 @@ namespace Tizen.NUI.Components
             base.OnFocusLost();
         }
 
+        private bool editMode = false;
+        private View recoverIndicator;
+        private View editModeIndicator;
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool OnKeyboardEnter()
+        {
+            if (!IsEnabled)
+            {
+                return false;
+            }
+            if (editMode)
+            {
+                //set editMode false (toggle the mode)
+                editMode = false;
+                FocusManager.Instance.FocusIndicator = recoverIndicator;
+            }
+            else
+            {
+                //set editMode true (toggle the mode)
+                editMode = true;
+                if (editModeIndicator == null)
+                {
+                    editModeIndicator = new View()
+                    {
+                        PositionUsesPivotPoint = true,
+                        PivotPoint = new Position(0, 0, 0),
+                        WidthResizePolicy = ResizePolicyType.FillToParent,
+                        HeightResizePolicy = ResizePolicyType.FillToParent,
+                        BorderlineColor = Color.Red,
+                        BorderlineWidth = 6.0f,
+                        BorderlineOffset = -1f,
+                        BackgroundColor = new Color(0.2f, 0.2f, 0.2f, 0.4f),
+                        AccessibilityHidden = true,
+                    };
+                }
+                recoverIndicator = FocusManager.Instance.FocusIndicator;
+                FocusManager.Instance.FocusIndicator = editModeIndicator;
+            }
+            return true;
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnKey(Key key)
@@ -1451,17 +1452,20 @@ namespace Tizen.NUI.Components
                 if ((direction == DirectionType.Horizontal && key.KeyPressedName == "Left") ||
                     (direction == DirectionType.Vertical && key.KeyPressedName == "Down"))
                 {
-                    if (MinValue < CurrentValue)
+                    if (editMode)
                     {
-                        isPressed = true;
-                        if (IsDiscrete)
+                        if (MinValue < CurrentValue)
                         {
-                            float value = CurrentValue - discreteValue;
-                            CurrentValue = value < MinValue ? MinValue : value;
-                        }
-                        else
-                        {
-                            CurrentValue -= 1;
+                            isPressed = true;
+                            if (IsDiscrete)
+                            {
+                                float value = CurrentValue - discreteValue;
+                                CurrentValue = value < MinValue ? MinValue : value;
+                            }
+                            else
+                            {
+                                CurrentValue -= 1;
+                            }
                         }
                         return true; // Consumed
                     }
@@ -1469,17 +1473,20 @@ namespace Tizen.NUI.Components
                 else if ((direction == DirectionType.Horizontal && key.KeyPressedName == "Right") ||
                          (direction == DirectionType.Vertical && key.KeyPressedName == "Up"))
                 {
-                    if (MaxValue > CurrentValue)
+                    if (editMode)
                     {
-                        isPressed = true;
-                        if (IsDiscrete)
+                        if (MaxValue > CurrentValue)
                         {
-                            float value = CurrentValue + discreteValue;
-                            CurrentValue = value > MaxValue ? MaxValue : value;
-                        }
-                        else
-                        {
-                            CurrentValue += 1;
+                            isPressed = true;
+                            if (IsDiscrete)
+                            {
+                                float value = CurrentValue + discreteValue;
+                                CurrentValue = value > MaxValue ? MaxValue : value;
+                            }
+                            else
+                            {
+                                CurrentValue += 1;
+                            }
                         }
                         return true; // Consumed
                     }
@@ -1490,6 +1497,13 @@ namespace Tizen.NUI.Components
                 isPressed = false;
             }
 
+            if (key.KeyPressedName == "Up" || key.KeyPressedName == "Right" || key.KeyPressedName == "Down" || key.KeyPressedName == "Left")
+            {
+                if (editMode)
+                {
+                    return true;
+                }
+            }
             return false;
         }
 
@@ -1519,6 +1533,16 @@ namespace Tizen.NUI.Components
                 CreateHighIndicatorText().ApplyStyle(sliderStyle.HighIndicator);
             }
 
+            if (null != sliderStyle?.LowIndicatorImage)
+            {
+                CreateLowIndicatorImage().ApplyStyle(sliderStyle.LowIndicatorImage);
+            }
+
+            if (null != sliderStyle?.HighIndicatorImage)
+            {
+                CreateHighIndicatorImage().ApplyStyle(sliderStyle.HighIndicatorImage);
+            }
+
             if (null != sliderStyle?.Track)
             {
                 CreateBackgroundTrack().ApplyStyle(sliderStyle.Track);
@@ -1536,7 +1560,7 @@ namespace Tizen.NUI.Components
 
             if (null != sliderStyle?.ValueIndicatorImage)
             {
-                CreateValueIndicator().ApplyStyle(sliderStyle.ValueIndicatorImage);
+                CreateValueIndicatorImage().ApplyStyle(sliderStyle.ValueIndicatorImage);
             }
 
             if (null != sliderStyle?.WarningTrack)
@@ -1553,19 +1577,10 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Prevents from showing child widgets in AT-SPI tree.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool AccessibilityShouldReportZeroChildren()
-        {
-            return true;
-        }
-
-        /// <summary>
         /// Gets minimum value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetMinimum()
+        double IAtspiValue.AccessibilityGetMinimum()
         {
             return (double)MinValue;
         }
@@ -1574,7 +1589,7 @@ namespace Tizen.NUI.Components
         /// Gets the current value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetCurrent()
+        double IAtspiValue.AccessibilityGetCurrent()
         {
             return (double)CurrentValue;
         }
@@ -1583,7 +1598,7 @@ namespace Tizen.NUI.Components
         /// Gets maximum value for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetMaximum()
+        double IAtspiValue.AccessibilityGetMaximum()
         {
             return (double)MaxValue;
         }
@@ -1592,7 +1607,7 @@ namespace Tizen.NUI.Components
         /// Sets the current value using Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool AccessibilitySetCurrent(double value)
+        bool IAtspiValue.AccessibilitySetCurrent(double value)
         {
             var current = (float)value;
 
@@ -1613,7 +1628,7 @@ namespace Tizen.NUI.Components
         /// Gets minimum increment for Accessibility.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override double AccessibilityGetMinimumIncrement()
+        double IAtspiValue.AccessibilityGetMinimumIncrement()
         {
             // FIXME
             return (MaxValue - MinValue) / 20.0;
@@ -1626,7 +1641,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.Slider, AccessibilityInterface.Value);
+            AccessibilityRole = Role.Slider;
         }
 
         /// <summary>
@@ -1678,6 +1693,13 @@ namespace Tizen.NUI.Components
                 Utility.Dispose(valueIndicatorText);
 
                 this.TouchEvent -= OnTouchEventForTrack;
+
+                recoverIndicator = null;
+                if (editModeIndicator != null)
+                {
+                    editModeIndicator.Dispose();
+                    editModeIndicator = null;
+                }
             }
 
             base.Dispose(type);
@@ -1697,6 +1719,14 @@ namespace Tizen.NUI.Components
             UpdateBgTrackPosition();
             UpdateWarningTrackSize();
             UpdateLowIndicatorSize();
+            UpdateValue();
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnEnabled(bool enabled)
+        {
+            base.OnEnabled(enabled);
             UpdateValue();
         }
 
@@ -1726,13 +1756,6 @@ namespace Tizen.NUI.Components
                 this.CurrentValue = CalculateDiscreteValue(this.CurrentValue);
             }
 
-            if (valueChangedHandler != null)
-            {
-                ValueChangedArgs args = new ValueChangedArgs();
-                args.CurrentValue = this.CurrentValue;
-                valueChangedHandler(this, args);
-            }
-
             if (sliderValueChangedHandler != null)
             {
                 SliderValueChangedEventArgs args = new SliderValueChangedEventArgs();
@@ -1756,22 +1779,15 @@ namespace Tizen.NUI.Components
                     valueIndicatorImage.Show();
                 }
 
+                UpdateState(isFocused, true);
+
+                sliderSlidingStartedHandler?.Invoke(this, new SliderSlidingStartedEventArgs {
+                    CurrentValue = curValue
+                    });
+
                 Vector2 pos = e.Touch.GetLocalPosition(0);
                 CalculateCurrentValueByTouch(pos);
                 UpdateValue();
-                if (null != slidingFinishedHandler)
-                {
-                    SlidingFinishedArgs args = new SlidingFinishedArgs();
-                    args.CurrentValue = curValue;
-                    slidingFinishedHandler(this, args);
-                }
-
-                if (null != sliderSlidingFinishedHandler)
-                {
-                    SliderSlidingFinishedEventArgs args = new SliderSlidingFinishedEventArgs();
-                    args.CurrentValue = curValue;
-                    sliderSlidingFinishedHandler(this, args);
-                }
             }
             else if (state == PointStateType.Up)
             {
@@ -1779,6 +1795,12 @@ namespace Tizen.NUI.Components
                 {
                     valueIndicatorImage.Hide();
                 }
+
+                UpdateState(isFocused, false);
+
+                sliderSlidingFinishedHandler?.Invoke(this, new SliderSlidingFinishedEventArgs {
+                    CurrentValue = curValue
+                    });
             }
             return false;
         }
@@ -1818,13 +1840,6 @@ namespace Tizen.NUI.Components
                     this.CurrentValue = CalculateDiscreteValue(this.CurrentValue);
                 }
 
-                if (null != valueChangedHandler)
-                {
-                    ValueChangedArgs args = new ValueChangedArgs();
-                    args.CurrentValue = this.CurrentValue;
-                    valueChangedHandler(this, args);
-                }
-
                 if (null != sliderValueChangedHandler)
                 {
                     SliderValueChangedEventArgs args = new SliderValueChangedEventArgs();
@@ -1852,49 +1867,21 @@ namespace Tizen.NUI.Components
             isFocused = isFocusedNew;
             isPressed = isPressedNew;
 
-            if(!IsEnabled) // Disabled
+            if (!IsEnabled) // Disabled
             {
                 ControlState = ControlState.Disabled;
-
-                if (stateChangedHandler != null)
-                {
-                    StateChangedArgs args = new StateChangedArgs();
-                    args.CurrentState = (ControlStates)ControlStates.Disabled;
-                    stateChangedHandler(this, args);
-                }
             }
             else if (!isFocused && !isPressed)
             {
                 ControlState = ControlState.Normal;
-
-                if (stateChangedHandler != null)
-                {
-                    StateChangedArgs args = new StateChangedArgs();
-                    args.CurrentState = (ControlStates)ControlStates.Normal;
-                    stateChangedHandler(this, args);
-                }
             }
             else if (isPressed)
             {
                 ControlState = ControlState.Pressed;
-
-                if (stateChangedHandler != null)
-                {
-                    StateChangedArgs args = new StateChangedArgs();
-                    args.CurrentState = (ControlStates)ControlStates.Pressed;
-                    stateChangedHandler(this, args);
-                }
             }
             else if (!isPressed && isFocused)
             {
                 ControlState = ControlState.Focused;
-
-                if (stateChangedHandler != null)
-                {
-                    StateChangedArgs args = new StateChangedArgs();
-                    args.CurrentState = (ControlStates)ControlStates.Focused;
-                    stateChangedHandler(this, args);
-                }
             }
         }
 
@@ -1958,60 +1945,6 @@ namespace Tizen.NUI.Components
                     highIndicatorImage.Hide();
                 }
             }
-        }
-
-        /// <summary>
-        /// Value Changed event data.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderValueChangedEventArgs instead.")]
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
-        public class ValueChangedArgs : EventArgs
-        {
-            /// <summary>
-            /// Current value
-            /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// It will be removed in API10
-            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
-            [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderValueChangedEventArgs.CurrentValue instead.")]
-            public float CurrentValue;
-        }
-
-        /// <summary>
-        /// Value Changed event data.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderSlidingFinishedEventArgs instead.")]
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
-        public class SlidingFinishedArgs : EventArgs
-        {
-            /// <summary>
-            /// Current value
-            /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// It will be removed in API10
-            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
-            [Obsolete("Deprecated in API8; Will be removed in API10. Please use SliderSlidingFinishedEventArgs.CurrentValue instead.")]
-            public float CurrentValue;
-        }
-
-        /// <summary>
-        /// State Changed event data.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API8; Will be removed in API10. Please use View.ControlStateChangedEventArgs")]
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1034:NestedTypesShouldNotBeVisible")]
-        public class StateChangedArgs : EventArgs
-        {
-            /// <summary>
-            /// Current state
-            /// </summary>
-            /// <since_tizen> 6 </since_tizen>
-            /// It will be removed in API10
-            [global::System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
-            [Obsolete("Deprecated in API8; Will be removed in API10")]
-            public ControlStates CurrentState;
         }
     }
 }

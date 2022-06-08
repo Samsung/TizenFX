@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2020 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -98,6 +98,9 @@ namespace Tizen.NUI.Components
         private Color thumbColor;
         private PaddingType trackPadding = new PaddingType(4, 4, 4, 4);
         private bool isHorizontal;
+        private uint fadeOutThreshold = 500;
+        private int fadeDuration = 200;
+        private Timer fadeOutTimer;
 
         #endregion Fields
 
@@ -256,6 +259,22 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal override uint FadeOutThreshold
+        {
+            get => fadeOutThreshold;
+            set => fadeOutThreshold = value;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal override int FadeDuration
+        {
+            get => fadeDuration;
+            set => fadeDuration = value;
+        }
+
         #endregion Properties
 
 
@@ -270,14 +289,15 @@ namespace Tizen.NUI.Components
             trackView = new View()
             {
                 PositionUsesPivotPoint = true,
-                BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.15f)
+                AccessibilityHidden = true
             };
             Add(trackView);
 
-            thumbView = new ImageView()
+            var scrollbarStyle = ViewStyle as ScrollbarStyle;
+
+            thumbView = new ImageView(scrollbarStyle?.Thumb)
             {
                 PositionUsesPivotPoint = true,
-                BackgroundColor = new Color(0.6f, 0.6f, 0.6f, 1.0f)
             };
             Add(thumbView);
 
@@ -455,9 +475,56 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        internal override void FadeOut()
+        {
+            if (fadeOutTimer == null)
+            {
+                fadeOutTimer = new Timer(fadeOutThreshold);
+                fadeOutTimer.Tick += ((object target, Timer.TickEventArgs args) =>
+                {
+                    var anim = EnsureOpacityAnimation();
+
+                    if (Opacity != 0.0f)
+                    {
+                        anim.AnimateTo(this, "Opacity", 0.0f, 0, fadeDuration);
+                        anim.Play();
+                    }
+                    fadeOutTimer = null;
+                    return false;
+                });
+                fadeOutTimer.Start();
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal override void FadeIn()
+        {
+            if (fadeOutTimer != null)
+            {
+                fadeOutTimer.Stop();
+                fadeOutTimer.Dispose();
+                fadeOutTimer = null;
+            }
+
+            var anim = EnsureOpacityAnimation();
+
+            if (Opacity != 1.0)
+            {
+                anim.AnimateTo(this, "Opacity", 1.0f, 0, fadeDuration);
+                anim.Play();
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
             base.ApplyStyle(viewStyle);
+            if (viewStyle is ScrollbarStyle scrollbarStyle)
+            {
+                thumbView?.ApplyStyle(scrollbarStyle.Thumb);
+            }
         }
 
         /// <inheritdoc/>
@@ -674,7 +741,7 @@ namespace Tizen.NUI.Components
             }
 
             public override Position CalculateThumbScrollPosition(Size trackSize, Position thumbCurrentPosition, PaddingType trackPadding)
-            { 
+            {
                 return new Position(trackPadding.Item1 + (IsScrollable() ? (trackSize.Width * (Math.Min(Math.Max(currentPosition, 0.0f), contentLength - visibleLength)) / contentLength) : 0.0f), thumbCurrentPosition.Y);
             }
         }

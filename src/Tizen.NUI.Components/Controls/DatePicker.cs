@@ -35,7 +35,7 @@ namespace Tizen.NUI.Components
         /// DateChangedEventArgs default constructor.
         /// <param name="date">date value of DatePicker.</param>
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]   
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public DateChangedEventArgs(DateTime date)
         {
             Date = date;
@@ -50,7 +50,7 @@ namespace Tizen.NUI.Components
     }
 
     /// <summary>
-    /// DatePicker is a class which provides a function that allows the user to select 
+    /// DatePicker is a class which provides a function that allows the user to select
     /// a date through a scrolling motion by expressing the specified value as a list.
     /// DatePicker expresses the current date using the locale information of the system.
     /// Year range is 1970~2038 (glibc time_t struct min, max value)
@@ -80,15 +80,16 @@ namespace Tizen.NUI.Components
         private Picker dayPicker;
         private Picker monthPicker;
         private Picker yearPicker;
-        
+
         /// <summary>
         /// Creates a new instance of DatePicker.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public DatePicker()
         {
+            SetKeyboardNavigationSupport(true);
         }
-        
+
         /// <summary>
         /// Creates a new instance of DatePicker.
         /// </summary>
@@ -96,6 +97,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public DatePicker(string style) : base(style)
         {
+            SetKeyboardNavigationSupport(true);
         }
 
         /// <summary>
@@ -105,8 +107,19 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public DatePicker(DatePickerStyle datePickerStyle) : base(datePickerStyle)
         {
+            SetKeyboardNavigationSupport(true);
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnEnabled(bool enabled)
+        {
+            base.OnEnabled(enabled);
+
+            dayPicker.IsEnabled = enabled;
+            monthPicker.IsEnabled = enabled;
+            yearPicker.IsEnabled = enabled;
+        }
 
         /// <summary>
         /// Dispose DatePicker and all children on it.
@@ -141,7 +154,7 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public event EventHandler<DateChangedEventArgs> DateChanged;
-        
+
         /// <summary>
         /// The Date value of DatePicker.
         /// </summary>
@@ -180,12 +193,13 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.DateEditor);
+            AccessibilityRole = Role.DateEditor;
 
             dayPicker = new Picker()
             {
                 MinValue = 1,
                 MaxValue = 31,
+                Focusable = true,
             };
             dayPicker.ValueChanged += OnDayValueChanged;
 
@@ -193,6 +207,7 @@ namespace Tizen.NUI.Components
             {
                 MinValue = 1,
                 MaxValue = 12,
+                Focusable = true,
             };
             monthPicker.ValueChanged += OnMonthValueChanged;
 
@@ -200,6 +215,7 @@ namespace Tizen.NUI.Components
             {
                 MinValue = 1970,
                 MaxValue = 2100,
+                Focusable = true,
             };
             yearPicker.ValueChanged += OnYearValueChanged;
 
@@ -230,11 +246,51 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <summary>
+        /// ToDo : only key navigation is enabled, and value editing is added as an very simple operation. by toggling enter key, it switches edit mode.
+        /// ToDo : this should be fixed and changed properly by owner. (And UX SPEC should be referenced also)
+        /// </summary>
+        /// <param name="currentFocusedView"></param>
+        /// <param name="direction"></param>
+        /// <param name="loopEnabled"></param>
+        /// <returns></returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override View GetNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
+        {
+            if (currentFocusedView == yearPicker)
+            {
+                if (direction == View.FocusDirection.Right)
+                {
+                    return monthPicker;
+                }
+            }
+            else if (currentFocusedView == monthPicker)
+            {
+                if (direction == View.FocusDirection.Right)
+                {
+                    return dayPicker;
+                }
+                else if (direction == View.FocusDirection.Left)
+                {
+                    return yearPicker;
+                }
+            }
+            else if (currentFocusedView == dayPicker)
+            {
+                if (direction == View.FocusDirection.Left)
+                {
+                    return monthPicker;
+                }
+            }
+            return null;
+        }
+
         private void Initialize()
         {
             HeightSpecification = LayoutParamPolicies.MatchParent;
 
-            Layout = new LinearLayout() { 
+            Layout = new LinearLayout()
+            {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
             };
 
@@ -248,12 +304,12 @@ namespace Tizen.NUI.Components
             if (currentDate.Day == e.Value) return;
 
             currentDate = new DateTime(currentDate.Year, currentDate.Month, e.Value);
-            
+
             OnDateChanged();
         }
 
         private void OnMonthValueChanged(object sender, ValueChangedEventArgs e)
-        { 
+        {
             if (currentDate.Month == e.Value) return;
 
             MaxDaySet(currentDate.Year, e.Value);
@@ -262,7 +318,7 @@ namespace Tizen.NUI.Components
         }
 
         private void OnYearValueChanged(object sender, ValueChangedEventArgs e)
-        { 
+        {
             if (currentDate.Year == e.Value) return;
 
             MaxDaySet(e.Value, currentDate.Month);
@@ -271,7 +327,7 @@ namespace Tizen.NUI.Components
         }
 
         private void OnDateChanged()
-        { 
+        {
             DateChangedEventArgs eventArgs = new DateChangedEventArgs(currentDate);
             DateChanged?.Invoke(this, eventArgs);
         }
@@ -296,8 +352,9 @@ namespace Tizen.NUI.Components
             DateTimeFormatInfo DateFormat = CultureInfo.CurrentCulture.DateTimeFormat;
             String temp = DateFormat.ShortDatePattern;
             String[] strArray = temp.Split(' ', '/');
-            foreach (String format in strArray) {
-                if (format.IndexOf("M") != -1|| format.IndexOf("m") != -1)  Add(monthPicker);
+            foreach (String format in strArray)
+            {
+                if (format.IndexOf("M") != -1 || format.IndexOf("m") != -1) Add(monthPicker);
                 else if (format.IndexOf("d") != -1 || format.IndexOf("D") != -1) Add(dayPicker);
                 else if (format.IndexOf("y") != -1 || format.IndexOf("Y") != -1) Add(yearPicker);
             }

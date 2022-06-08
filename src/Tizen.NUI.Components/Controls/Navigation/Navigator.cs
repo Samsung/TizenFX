@@ -92,7 +92,7 @@ namespace Tizen.NUI.Components
             return instance.InternalTransition;
         });
 
-        private const int DefaultTransitionDuration = 500;
+        private const int DefaultTransitionDuration = 300;
 
         //This will be replaced with view transition class instance.
         private Animation curAnimation = null;
@@ -132,7 +132,7 @@ namespace Tizen.NUI.Components
         {
             base.OnInitialize();
 
-            SetAccessibilityConstructor(Role.PageTabList);
+            AccessibilityRole = Role.PageTabList;
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace Tizen.NUI.Components
             {
                 if (page is DialogPage == false)
                 {
-                   topPage.SetVisible(false);
+                    topPage.SetVisible(false);
                 }
 
                 // Need to update Content of the new page
@@ -338,13 +338,15 @@ namespace Tizen.NUI.Components
             page.InvokeAppearing();
             curTop.InvokeDisappearing();
 
+            curTop.SaveKeyFocus();
+
             //TODO: The following transition codes will be replaced with view transition.
             InitializeAnimation();
 
             if (page is DialogPage == false)
             {
-                curAnimation = new Animation(1000);
-                curAnimation.AnimateTo(curTop, "Opacity", 1.0f, 0, 1000);
+                curAnimation = new Animation(DefaultTransitionDuration);
+                curAnimation.AnimateTo(curTop, "PositionX", 0.0f, 0, DefaultTransitionDuration);
                 curAnimation.EndAction = Animation.EndActions.StopFinal;
                 curAnimation.Finished += (object sender, EventArgs args) =>
                 {
@@ -355,10 +357,13 @@ namespace Tizen.NUI.Components
                 };
                 curAnimation.Play();
 
-                page.Opacity = 0.0f;
+                page.PositionX = SizeWidth;
                 page.SetVisible(true);
-                newAnimation = new Animation(1000);
-                newAnimation.AnimateTo(page, "Opacity", 1.0f, 0, 1000);
+                // Set Content visible because it was hidden by HideContentOfPage.
+                (page as ContentPage)?.Content?.SetVisible(true);
+
+                newAnimation = new Animation(DefaultTransitionDuration);
+                newAnimation.AnimateTo(page, "PositionX", 0.0f, 0, DefaultTransitionDuration);
                 newAnimation.EndAction = Animation.EndActions.StopFinal;
                 newAnimation.Finished += (object sender, EventArgs e) =>
                 {
@@ -368,12 +373,15 @@ namespace Tizen.NUI.Components
                     //Invoke Page events
                     page.InvokeAppeared();
                     NotifyAccessibilityStatesChangeOfPages(curTop, page);
+
+                    page.RestoreKeyFocus();
                 };
                 newAnimation.Play();
             }
             else
             {
                 ShowContentOfPage(page);
+                page.RestoreKeyFocus();
             }
         }
 
@@ -413,20 +421,21 @@ namespace Tizen.NUI.Components
             //Invoke Page events
             newTop.InvokeAppearing();
             curTop.InvokeDisappearing();
+            curTop.SaveKeyFocus();
 
             //TODO: The following transition codes will be replaced with view transition.
             InitializeAnimation();
 
             if (curTop is DialogPage == false)
             {
-                curAnimation = new Animation(1000);
-                curAnimation.AnimateTo(curTop, "Opacity", 0.0f, 0, 1000);
+                curAnimation = new Animation(DefaultTransitionDuration);
+                curAnimation.AnimateTo(curTop, "PositionX", SizeWidth, 0, DefaultTransitionDuration);
                 curAnimation.EndAction = Animation.EndActions.StopFinal;
                 curAnimation.Finished += (object sender, EventArgs e) =>
                 {
                     //Removes the current top page after transition is finished.
                     Remove(curTop);
-                    curTop.Opacity = 1.0f;
+                    curTop.PositionX = 0.0f;
 
                     //Invoke Page events
                     curTop.InvokeDisappeared();
@@ -436,10 +445,12 @@ namespace Tizen.NUI.Components
                 };
                 curAnimation.Play();
 
-                newTop.Opacity = 1.0f;
                 newTop.SetVisible(true);
-                newAnimation = new Animation(1000);
-                newAnimation.AnimateTo(newTop, "Opacity", 1.0f, 0, 1000);
+                // Set Content visible because it was hidden by HideContentOfPage.
+                (newTop as ContentPage)?.Content?.SetVisible(true);
+
+                newAnimation = new Animation(DefaultTransitionDuration);
+                newAnimation.AnimateTo(newTop, "PositionX", 0.0f, 0, DefaultTransitionDuration);
                 newAnimation.EndAction = Animation.EndActions.StopFinal;
                 newAnimation.Finished += (object sender, EventArgs e) =>
                 {
@@ -448,6 +459,8 @@ namespace Tizen.NUI.Components
 
                     //Invoke Page events
                     newTop.InvokeAppeared();
+
+                    newTop.RestoreKeyFocus();
                 };
                 newAnimation.Play();
             }
@@ -538,13 +551,11 @@ namespace Tizen.NUI.Components
 
             if (index == PageCount)
             {
-                page.Opacity = 1.0f;
                 page.SetVisible(true);
             }
             else
             {
                 page.SetVisible(false);
-                page.Opacity = 0.0f;
             }
 
             navigationPages.Insert(index, page);
@@ -619,7 +630,6 @@ namespace Tizen.NUI.Components
             {
                 if (PageCount >= 2)
                 {
-                    navigationPages[PageCount - 2].Opacity = 1.0f;
                     navigationPages[PageCount - 2].SetVisible(true);
                     NotifyAccessibilityStatesChangeOfPages(page, navigationPages[PageCount - 2]);
                 }
@@ -733,7 +743,12 @@ namespace Tizen.NUI.Components
         private TransitionSet CreateTransitions(Page currentTopPage, Page newTopPage, bool pushTransition)
         {
             currentTopPage.SetVisible(true);
+            // Set Content visible because it was hidden by HideContentOfPage.
+            (currentTopPage as ContentPage)?.Content?.SetVisible(true);
+
             newTopPage.SetVisible(true);
+            // Set Content visible because it was hidden by HideContentOfPage.
+            (newTopPage as ContentPage)?.Content?.SetVisible(true);
 
             List<View> taggedViewsInNewTopPage = new List<View>();
             RetrieveTaggedViews(taggedViewsInNewTopPage, newTopPage, true);
@@ -741,12 +756,12 @@ namespace Tizen.NUI.Components
             RetrieveTaggedViews(taggedViewsInCurrentTopPage, currentTopPage, true);
 
             List<KeyValuePair<View, View>> sameTaggedViewPair = new List<KeyValuePair<View, View>>();
-            foreach(View currentTopPageView in taggedViewsInCurrentTopPage)
+            foreach (View currentTopPageView in taggedViewsInCurrentTopPage)
             {
                 bool findPair = false;
-                foreach(View newTopPageView in taggedViewsInNewTopPage)
+                foreach (View newTopPageView in taggedViewsInNewTopPage)
                 {
-                    if((currentTopPageView.TransitionOptions != null) && (newTopPageView.TransitionOptions != null) &&
+                    if ((currentTopPageView.TransitionOptions != null) && (newTopPageView.TransitionOptions != null) &&
                         currentTopPageView.TransitionOptions?.TransitionTag == newTopPageView.TransitionOptions?.TransitionTag)
                     {
                         sameTaggedViewPair.Add(new KeyValuePair<View, View>(currentTopPageView, newTopPageView));
@@ -754,21 +769,21 @@ namespace Tizen.NUI.Components
                         break;
                     }
                 }
-                if(findPair)
+                if (findPair)
                 {
                     taggedViewsInNewTopPage.Remove(sameTaggedViewPair[sameTaggedViewPair.Count - 1].Value);
                 }
             }
-            foreach(KeyValuePair<View, View> pair in sameTaggedViewPair)
+            foreach (KeyValuePair<View, View> pair in sameTaggedViewPair)
             {
                 taggedViewsInCurrentTopPage.Remove(pair.Key);
             }
 
             TransitionSet newTransitionSet = new TransitionSet();
-            foreach(KeyValuePair<View, View> pair in sameTaggedViewPair)
+            foreach (KeyValuePair<View, View> pair in sameTaggedViewPair)
             {
                 TransitionItem pairTransition = transition.CreateTransition(pair.Key, pair.Value, pushTransition);
-                if(pair.Value.TransitionOptions?.TransitionWithChild ?? false)
+                if (pair.Value.TransitionOptions?.TransitionWithChild ?? false)
                 {
                     pairTransition.TransitionWithChild = true;
                 }
@@ -777,18 +792,17 @@ namespace Tizen.NUI.Components
 
             newTransitionSet.Finished += (object sender, EventArgs e) =>
             {
-                if(newTopPage.Layout != null)
+                if (newTopPage.Layout != null)
                 {
                     newTopPage.Layout.RequestLayout();
                 }
-                if(currentTopPage.Layout != null)
+                if (currentTopPage.Layout != null)
                 {
                     currentTopPage.Layout.RequestLayout();
                 }
                 transitionFinished = true;
                 InvokeTransitionFinished();
                 transitionSet.Dispose();
-                currentTopPage.Opacity = 1.0f;
             };
 
             if (!pushTransition || newTopPage is DialogPage == false)

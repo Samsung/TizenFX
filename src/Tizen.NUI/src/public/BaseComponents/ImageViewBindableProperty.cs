@@ -44,7 +44,7 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             string ret = "";
 
-            imageView._imagePropertyMap?.Find(ImageVisualProperty.URL)?.Get(out ret);
+            imageView.GetCachedImageVisualProperty(ImageVisualProperty.URL)?.Get(out ret);
 
             return ret;
         }));
@@ -94,13 +94,11 @@ namespace Tizen.NUI.BaseComponents
                 if (imageView._border == null)
                 {
                     // Image properties are changed hardly. We should ignore lazy UpdateImage
-                    imageView._imagePropertyUpdatedFlag = false;
-                    imageView._imagePropertyMap?.Dispose();
-                    imageView._imagePropertyMap = null;
-                    if(map != null)
-                    {
-                        imageView._imagePropertyMap = new PropertyMap(map);
-                    }
+                    imageView.imagePropertyUpdatedFlag = false;
+                    imageView.cachedImagePropertyMap?.Dispose();
+                    imageView.cachedImagePropertyMap = null;
+                    imageView.MergeCachedImageVisualProperty(map);
+
                     Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE, new Tizen.NUI.PropertyValue(map));
                 }
             }
@@ -110,11 +108,19 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (imageView._border == null)
             {
+                // Sync as current properties
+                imageView.UpdateImage();
+
                 // Get current properties force.
-                // TODO: Need to make some flag that we only need cached property map.
-                PropertyMap temp = new PropertyMap();
-                Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(temp);
-                return temp;
+                PropertyMap returnValue = new PropertyMap();
+                Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.IMAGE).Get(returnValue);
+
+                // Update cached property map
+                if(returnValue != null)
+                {
+                    imageView.MergeCachedImageVisualProperty(returnValue);
+                }
+                return returnValue;
             }
             else
             {
@@ -129,14 +135,33 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, new Tizen.NUI.PropertyValue((bool)newValue));
+                if(imageView.imagePropertyUpdatedFlag)
+                {
+                    // If imageView Property still not send to the dali, Append cached property.
+                    imageView.UpdateImage(Visual.Property.PremultipliedAlpha, new PropertyValue((bool)newValue));
+                }
+                else
+                {
+                    // Else, we don't need to re-create view. Get value from current ImageView.
+                    Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, new Tizen.NUI.PropertyValue((bool)newValue));
+                }
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var imageView = (ImageView)bindable;
             bool temp = false;
-            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha).Get(out temp);
+
+            if(imageView.imagePropertyUpdatedFlag)
+            {
+                // If imageView Property still not send to the dali, just get cached property.
+                imageView.GetCachedImageVisualProperty(Visual.Property.PremultipliedAlpha)?.Get(out temp);
+            }
+            else
+            {
+                // Else, PremultipliedAlpha may not setuped in cached property. Get value from current ImageView.
+                Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha).Get(out temp);
+            }
             return temp;
         }));
 
@@ -206,7 +231,7 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             bool ret = false;
 
-            imageView._imagePropertyMap?.Find(NpatchImageVisualProperty.BorderOnly)?.Get(out ret);
+            imageView.GetCachedImageVisualProperty(NpatchImageVisualProperty.BorderOnly)?.Get(out ret);
 
             return ret;
         }));
@@ -235,7 +260,7 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             bool ret = false;
 
-            imageView._imagePropertyMap?.Find(ImageVisualProperty.SynchronousLoading)?.Get(out ret);
+            imageView.GetCachedImageVisualProperty(ImageVisualProperty.SynchronousLoading)?.Get(out ret);
 
             return ret;
         });
@@ -264,7 +289,7 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             bool ret = false;
 
-            imageView._imagePropertyMap?.Find(ImageVisualProperty.SynchronousLoading)?.Get(out ret);
+            imageView.GetCachedImageVisualProperty(ImageVisualProperty.SynchronousLoading)?.Get(out ret);
 
             return ret;
         });
@@ -294,7 +319,7 @@ namespace Tizen.NUI.BaseComponents
 
             bool ret = false;
 
-            imageView._imagePropertyMap?.Find(ImageVisualProperty.OrientationCorrection)?.Get(out ret);
+            imageView.GetCachedImageVisualProperty(ImageVisualProperty.OrientationCorrection)?.Get(out ret);
 
             return ret;
         }));

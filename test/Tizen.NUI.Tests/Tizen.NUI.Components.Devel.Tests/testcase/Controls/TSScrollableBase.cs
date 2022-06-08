@@ -36,6 +36,11 @@ namespace Tizen.NUI.Components.Devel.Tests
             {
                 base.Decelerating(velocity, animation);
             }
+
+            public bool MyAccessibilityScrollToChild(View child)
+            {
+                return base.AccessibilityScrollToChild(child);
+            }
         }
 
         [SetUp]
@@ -234,7 +239,7 @@ namespace Tizen.NUI.Components.Devel.Tests
             Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
 
             View view1 = new View()
-            { 
+            {
                 Size = new Size(100, 200),
                 Position = new Position(0, 0),
                 BackgroundColor = Color.Cyan
@@ -384,6 +389,232 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ScrollableBaseDecelerating END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollableBase DecelerationThreshold")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.DecelerationThreshold A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollableBaseDecelerationThreshold()
+        {
+            tlog.Debug(tag, $"ScrollableBaseDecelerationThreshold START");
+
+            var testingTarget = new MyScrollableBase()
+            {
+                Size = new Size(100, 2),
+                BackgroundColor = Color.Cyan,
+                ScrollingDirection = ScrollableBase.Direction.Vertical,
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
+
+            testingTarget.DecelerationThreshold = 0.8f;
+            tlog.Debug(tag, "DecelerationThreshold : " + testingTarget.DecelerationThreshold);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollableBaseDecelerationThreshold END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollableBase ScrollAlphaFunction")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.ScrollAlphaFunction A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollableBaseScrollAlphaFunction()
+        {
+            tlog.Debug(tag, $"ScrollableBaseScrollAlphaFunction START");
+
+            var testingTarget = new MyScrollableBase()
+            {
+                Size = new Size(100, 2),
+                BackgroundColor = Color.Cyan,
+                ScrollingDirection = ScrollableBase.Direction.Vertical,
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
+
+            testingTarget.ScrollAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn);
+            tlog.Debug(tag, "ScrollAlphaFunction : " + testingTarget.ScrollAlphaFunction);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollableBaseScrollAlphaFunction END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollableBase AccessibilityScrollToChild")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.AccessibilityScrollToChild M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollableBaseAccessibilityScrollToChild()
+        {
+            tlog.Debug(tag, $"ScrollableBaseAccessibilityScrollToChild START");
+
+            var testingTarget = new MyScrollableBase()
+            {
+                Size = new Size(2000, 200),
+                BackgroundColor = Color.Cyan,
+                ScrollingDirection = ScrollableBase.Direction.Horizontal,
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
+
+            testingTarget.ScrollAlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseIn);
+            tlog.Debug(tag, "ScrollAlphaFunction : " + testingTarget.ScrollAlphaFunction);
+
+            View[] views = new View[10];
+            for (int i = 0; i < 10; i++)
+            {
+                views[i] = new View();
+                views[i].Size = new Size(200, 200);
+                testingTarget.Add(views[i]);
+            }
+
+            var result = testingTarget.MyAccessibilityScrollToChild(views[9]);
+            tlog.Debug(tag, "AccessibilityScrollToChild : " + result);
+
+            try
+            {
+                testingTarget.RemoveAllChildren(true);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollableBaseAccessibilityScrollToChild END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollableBase EnableOverShootingEffect")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.EnableOverShootingEffect A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollableBaseEnableOverShootingEffect()
+        {
+            tlog.Debug(tag, $"ScrollableBaseEnableOverShootingEffect START");
+
+            var testingTarget = new MyScrollableBase()
+            {
+                Size = new Size(2000, 200),
+                BackgroundColor = Color.Cyan,
+                ScrollingDirection = ScrollableBase.Direction.Horizontal,
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
+
+            testingTarget.EnableOverShootingEffect = true;
+            tlog.Debug(tag, "EnableOverShootingEffect : " + testingTarget.EnableOverShootingEffect);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollableBaseEnableOverShootingEffect END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollableBase BaseRemove")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.BaseRemove M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScrollableBaseBaseRemove()
+        {
+            tlog.Debug(tag, $"ScrollableBaseBaseRemove START");
+
+            var testingTarget = new MyScrollableBase()
+            {
+                Size = new Size(2000, 200),
+                BackgroundColor = Color.Cyan,
+                ScrollingDirection = ScrollableBase.Direction.Horizontal,
+            };
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
+
+            using (View view = new View() { Size = new Size(100, 200), })
+            {
+                testingTarget.Add(view);
+
+                try
+                {
+                    testingTarget.BaseRemove(view);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception :  Failed!");
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollableBaseBaseRemove END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollableBase StepScrollDisance")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.StepScrollDisance A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "sh10233.lee@samsung.com")]
+        public void ScrollableBaseStepScrollDistance()
+        {
+            tlog.Debug(tag, $"ScrollableBaseStepScrollDistance START");
+
+            var testingTarget = new ScrollableBase();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
+
+            testingTarget.StepScrollDistance = 200f;
+            tlog.Debug(tag, "StepScrollDistance : " + testingTarget.StepScrollDistance);
+
+            testingTarget.StepScrollDistance = 0f;
+            tlog.Debug(tag, "StepScrollDistance : " + testingTarget.StepScrollDistance);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollableBaseStepScrollDistance END (OK)");
+        }
+
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollableBase FadeScrollbar")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.FadeScrollbar A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "sh10233.lee@samsung.com")]
+        public void ScrollableBaseFadeScrollbar()
+        {
+            tlog.Debug(tag, $"ScrollableBaseFadeScrollbar START");
+
+            var testingTarget = new ScrollableBase();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
+
+            testingTarget.FadeScrollbar = false;
+            Assert.AreEqaul(false, testingTarget.FadeScrollbar, "Should be equal.");
+
+            testingTarget.FadeScrollbar = true;
+            Assert.AreEqaul(true, testingTarget.FadeScrollbar, "Should be equal.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollableBaseFadeScrollbar END (OK)");
         }
     }
 }

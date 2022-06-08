@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ScrollableBase x:Class="Tizen.NUI.LayoutSamples.LinearLayoutControlView"
+    xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:m="clr-namespace:Tizen.NUI.LayoutSamples"
+    WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
+    HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+    HideScrollbar="false">
+
+    <ScrollableBase.Layout>
+        <LinearLayout LinearOrientation="Vertical" CellPadding="0,40"/>
+    </ScrollableBase.Layout>
+
+    <m:LinearOrientationView x:Name="linearOrient"/>
+
+    <m:CellPaddingView x:Name="cellPadding"/>
+
+    <m:HorizontalAlignmentView x:Name="hAlign"/>
+
+    <m:VerticalAlignmentView x:Name="vAlign"/>
+</ScrollableBase>

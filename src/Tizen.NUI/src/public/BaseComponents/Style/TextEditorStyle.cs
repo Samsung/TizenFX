@@ -69,6 +69,12 @@ namespace Tizen.NUI.BaseComponents
             propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).horizontalAlignment = (HorizontalAlignment?)newValue,
             defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).horizontalAlignment);
 
+        /// <summary> The bindable property of VerticalAlignment. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static readonly BindableProperty VerticalAlignmentProperty = BindableProperty.Create(nameof(VerticalAlignment), typeof(VerticalAlignment?), typeof(TextEditorStyle), null,
+            propertyChanged: (bindable, oldValue, newValue) => ((TextEditorStyle)bindable).verticalAlignment = (VerticalAlignment?)newValue,
+            defaultValueCreator: (bindable) => ((TextEditorStyle)bindable).verticalAlignment);
+
         /// <summary> The bindable property of SecondaryCursorColor. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         internal static readonly BindableProperty SecondaryCursorColorProperty = BindableProperty.Create(nameof(SecondaryCursorColor), typeof(Vector4), typeof(TextEditorStyle), null,
@@ -257,7 +263,21 @@ namespace Tizen.NUI.BaseComponents
             return textEditorStyle.minLineSize;
         });
 
+        /// <summary> The bindable property of RelativeLineHeightProperty. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty RelativeLineHeightProperty = BindableProperty.Create(nameof(RelativeLineHeight), typeof(float?), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textEditorStyle = (TextEditorStyle)bindable;
+            textEditorStyle.relativeLineHeight = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textEditorStyle = (TextEditorStyle)bindable;
+            return textEditorStyle.relativeLineHeight;
+        });
+
         private HorizontalAlignment? horizontalAlignment;
+        private VerticalAlignment? verticalAlignment;
         private Vector4 secondaryCursorColor;
         private bool? enableCursorBlink;
         private float? cursorBlinkInterval;
@@ -292,6 +312,7 @@ namespace Tizen.NUI.BaseComponents
         private bool? ellipsis;
         private float? lineSpacing;
         private float? minLineSize;
+        private float? relativeLineHeight;
 
         static TextEditorStyle() { }
 
@@ -321,6 +342,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (HorizontalAlignment?)GetValue(HorizontalAlignmentProperty);
             set => SetValue(HorizontalAlignmentProperty, value);
+        }
+
+        /// <summary>
+        /// The VerticalAlignment property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public VerticalAlignment? VerticalAlignment
+        {
+            get => (VerticalAlignment?)GetValue(VerticalAlignmentProperty);
+            set => SetValue(VerticalAlignmentProperty, value);
         }
 
         /// <summary>
@@ -656,6 +687,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (float?)GetValue(MinLineSizeProperty);
             set => SetValue(MinLineSizeProperty, value);
+        }
+
+        /// <summary>
+        /// the relative line height to be used.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? RelativeLineHeight
+        {
+            get => (float?)GetValue(RelativeLineHeightProperty);
+            set => SetValue(RelativeLineHeightProperty, value);
         }
     }
 }

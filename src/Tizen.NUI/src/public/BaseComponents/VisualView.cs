@@ -42,7 +42,7 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public class VisualView : CustomView
     {
-        //private LinkedList<VisualBase> _visualList = null;
+        private Dictionary<int, string> visualNameDictionary = null;
         private Dictionary<int, VisualBase> visualDictionary = null;
         private Dictionary<int, PropertyMap> tranformDictionary = null;
         private PropertyArray animateArray = null;
@@ -106,6 +106,7 @@ namespace Tizen.NUI.BaseComponents
             base.OnInitialize();
 
             //Initialize empty
+            visualNameDictionary = new Dictionary<int, string>();
             visualDictionary = new Dictionary<int, VisualBase>();
             tranformDictionary = new Dictionary<int, PropertyMap>();
             animateArray = new PropertyArray();
@@ -120,18 +121,18 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void AddVisual(string visualName, VisualMap visualMap)
         {
-            VisualBase visual = null;
             int visualIndex = -1;
 
             /* If the visual had added, then replace it using RegisterVusal. */
             //visual.Name = name;
-            foreach (var item in visualDictionary)
+            foreach (var item in visualNameDictionary)
             {
-                if (item.Value.Name == visualName)
+                if (item.Value == visualName)
                 {
                     /* Find a existed visual, its key also exited. */
                     visualIndex = item.Key;
                     UnregisterVisual(visualIndex);
+                    visualNameDictionary.Remove(visualIndex);
                     visualDictionary.Remove(visualIndex);
                     tranformDictionary.Remove(visualIndex);
                     break;
@@ -152,20 +153,13 @@ namespace Tizen.NUI.BaseComponents
                 {
                     throw new ArgumentNullException(nameof(visualMap));
                 }
-                visual = VisualFactory.Instance.CreateVisual(visualMap.OutputVisualMap); // Create a visual for the new one.
-                visual.Name = visualName;
-                visual.DepthIndex = visualMap.DepthIndex;
-
-                RegisterVisual(visualIndex, visual);
-
-                visualDictionary.Add(visualIndex, visual);
-                tranformDictionary.Add(visualIndex, visualMap.OutputTransformMap);
 
                 visualMap.VisualIndex = visualIndex;
                 visualMap.Name = visualName;
                 visualMap.Parent = this;
 
-                RelayoutRequest();
+                // Register index and name
+                UpdateVisual(visualIndex, visualName, visualMap);
             }
         }
 
@@ -176,14 +170,15 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void RemoveVisual(string visualName)
         {
-            foreach (var item in visualDictionary)
+            foreach (var item in visualNameDictionary)
             {
-                if (item.Value.Name == visualName)
+                if (item.Value == visualName)
                 {
                     EnableVisual(item.Key, false);
                     UnregisterVisual(item.Key);
                     tranformDictionary.Remove(item.Key);
                     visualDictionary.Remove(item.Key);
+                    visualNameDictionary.Remove(item.Key);
 
                     RelayoutRequest();
                     break;
@@ -197,13 +192,14 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public void RemoveAll()
         {
-            foreach (var item in visualDictionary)
+            foreach (var item in visualNameDictionary)
             {
                 EnableVisual(item.Key, false);
                 UnregisterVisual(item.Key);
             }
             visualDictionary.Clear();
             tranformDictionary.Clear();
+            visualNameDictionary.Clear();
             RelayoutRequest();
         }
 
@@ -221,8 +217,11 @@ namespace Tizen.NUI.BaseComponents
         {
             foreach (var item in visualDictionary)
             {
-                item.Value.SetTransformAndSize(tranformDictionary[item.Key], size);
-                EnableVisual(item.Key, true);
+                if(item.Value != null)
+                {
+                    item.Value.SetTransformAndSize(tranformDictionary[item.Key], size);
+                    EnableVisual(item.Key, true);
+                }
             }
         }
 
@@ -248,9 +247,9 @@ namespace Tizen.NUI.BaseComponents
 
             string strAlpha = alphaFunction?.GetDescription();
 
-            foreach (var item in visualDictionary.ToList())
+            foreach (var item in visualNameDictionary.ToList())
             {
-                if (item.Value.Name == target.Name)
+                if (item.Value == target.Name)
                 {
                     using (PropertyMap animator = new PropertyMap())
                     using (PropertyMap timePeriod = new PropertyMap())
@@ -330,9 +329,9 @@ namespace Tizen.NUI.BaseComponents
 
             string strAlpha = alphaFunction?.GetDescription();
 
-            foreach (var item in visualDictionary.ToList())
+            foreach (var item in visualNameDictionary.ToList())
             {
-                if (item.Value.Name == target.Name)
+                if (item.Value == target.Name)
                 {
                     using (PropertyMap animator = new PropertyMap())
                     using (PropertyMap timePeriod = new PropertyMap())
@@ -422,9 +421,9 @@ namespace Tizen.NUI.BaseComponents
                 throw new ArgumentNullException(nameof(visualMap));
             }
 
-            foreach (var item in visualDictionary.ToList())
+            foreach (var item in visualNameDictionary.ToList())
             {
-                if (item.Value.Name == visualMap.Target)
+                if (item.Value == visualMap.Target)
                 {
                     using (TransitionData transitionData = new TransitionData(visualMap.OutputVisualMap))
                     {
@@ -438,19 +437,26 @@ namespace Tizen.NUI.BaseComponents
 
         internal void UpdateVisual(int visualIndex, string visualName, VisualMap visualMap)
         {
-            VisualBase visual = null;
+            VisualBase visual = VisualFactory.Instance.CreateVisual(visualMap.OutputVisualMap);
 
-            visual = VisualFactory.Instance.CreateVisual(visualMap.OutputVisualMap);
-            visual.Name = visualName;
-            visual.DepthIndex = visualMap.DepthIndex;
-
-            RegisterVisual(visualIndex, visual);
-
+            visualNameDictionary[visualIndex] = visualName;
             visualDictionary[visualIndex] = visual;
             tranformDictionary[visualIndex] = visualMap.OutputTransformMap;
 
-            RelayoutRequest();
-            NUILog.Debug("UpdateVisual() name=" + visualName);
+            if(visual != null)
+            {
+                visual.Name = visualName;
+                visual.DepthIndex = visualMap.DepthIndex;
+
+                RegisterVisual(visualIndex, visual);
+
+                RelayoutRequest();
+                NUILog.Debug("UpdateVisual() name=" + visualName);
+            }
+            else
+            {
+                NUILog.Debug("UpdateVisual() FAIL! visual create failed name=" + visualName);
+            }
         }
 
         static CustomView CreateInstance()

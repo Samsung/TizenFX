@@ -26,6 +26,8 @@ namespace NUITizenGallery
         public LayoutAddRemoveTest1Page()
         {
             InitializeComponent();
+            rootView.SizeHeight = Window.Instance.WindowSize.Height - appBar.SizeHeight;
+
             addButton.Clicked += OnAddButtonClicked;
             removeButton.Clicked += OnRemoveButtonClicked;
         }

@@ -288,9 +288,8 @@ namespace Tizen.NUI.Components
 
         private View CreateDefaultScrim()
         {
-            //FIXME: Needs to separate GUI implementation codes to style cs file.
-            var scrim = new VisualView();
-            scrim.BackgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.5f);
+            var scrimStyle = ThemeManager.GetStyle("Tizen.NUI.Components.DialogPage.Scrim");
+            var scrim = new VisualView(scrimStyle);
             //FIXME: Needs to set proper size to Scrim.
             scrim.Size = NUIApplication.GetDefaultWindow().Size;
             scrim.TouchEvent += (object source, TouchEventArgs e) =>

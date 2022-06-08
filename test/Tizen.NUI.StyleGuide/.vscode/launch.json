@@ -19,7 +19,7 @@
                 "PKG_CONFIG_PATH":"${env:HOME}/dali-env/opt/lib/pkgconfig:/usr/lib/pkgconfig:/usr/share/pkgconfig",
                 "DOTNET_CLI_TELEMETRY_OPTOUT":"1",
                 "DALI_WINDOW_WIDTH":"720",
-                "DALI_WINDOW_HEIGHT":"1080",
+                "DALI_WINDOW_HEIGHT":"800",
             },
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",

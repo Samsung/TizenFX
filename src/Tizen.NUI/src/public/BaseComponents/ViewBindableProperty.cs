@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2019-2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2019-2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,6 +27,9 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class View
     {
+        private float userSizeWidth = 0.0f;
+        private float userSizeHeight = 0.0f;
+
         /// <summary>
         /// StyleNameProperty (DALi json)
         /// </summary>
@@ -608,6 +611,40 @@ namespace Tizen.NUI.BaseComponents
         });
 
         /// <summary>
+        /// ClockwiseFocusableViewProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ClockwiseFocusableViewProperty = BindableProperty.Create(nameof(View.ClockwiseFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null && (newValue is View)) { view.ClockwiseFocusableViewId = (int)(newValue as View)?.GetId(); }
+            else { view.ClockwiseFocusableViewId = -1; }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            if (view.ClockwiseFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.ClockwiseFocusableViewId); }
+            return null;
+        });
+
+        /// <summary>
+        /// CounterClockwiseFocusableViewProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty CounterClockwiseFocusableViewProperty = BindableProperty.Create(nameof(View.CounterClockwiseFocusableView), typeof(View), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null && (newValue is View)) { view.CounterClockwiseFocusableViewId = (int)(newValue as View)?.GetId(); }
+            else { view.CounterClockwiseFocusableViewId = -1; }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var view = (View)bindable;
+            if (view.CounterClockwiseFocusableViewId >= 0) { return view.ConvertIdToView((uint)view.CounterClockwiseFocusableViewId); }
+            return null;
+        });
+
+        /// <summary>
         /// FocusableProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -662,6 +699,13 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
                 if (newValue != null)
                 {
+                    // Size property setter is only used by user.
+                    // Framework code uses SetSize() instead of Size property setter.
+                    // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                    // SuggestedMinimumWidth/Height is used by Layout calculation.
+                    view.userSizeWidth = ((Size2D)newValue).Width;
+                    view.userSizeHeight = ((Size2D)newValue).Height;
+
                     view.SetSize(((Size2D)newValue).Width, ((Size2D)newValue).Height, 0);
 
                     view.widthPolicy = ((Size2D)newValue).Width;
@@ -892,6 +936,12 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
+                // Size property setter is only used by user.
+                // Framework code uses SetSize() instead of Size property setter.
+                // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                // SuggestedMinimumWidth/Height is used by Layout calculation.
+                view.userSizeWidth = (float)newValue;
+
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeWidth, new Tizen.NUI.PropertyValue((float)newValue));
                 view.WidthSpecification = (int)System.Math.Ceiling((float)newValue);
             }
@@ -913,6 +963,12 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
+                // Size property setter is only used by user.
+                // Framework code uses SetSize() instead of Size property setter.
+                // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                // SuggestedMinimumWidth/Height is used by Layout calculation.
+                view.userSizeHeight = (float)newValue;
+
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeHeight, new Tizen.NUI.PropertyValue((float)newValue));
                 view.HeightSpecification = (int)System.Math.Ceiling((float)newValue);
             }
@@ -1162,6 +1218,27 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SENSITIVE).Get(out temp);
+            return temp;
+        }));
+
+        /// <summary>
+        /// IsEnabledProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(View), false, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var view = (View)bindable;
+            if (newValue != null)
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.UserInteractionEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
+                view.OnEnabled((bool)newValue);
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var view = (View)bindable;
+            bool temp = false;
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.UserInteractionEnabled).Get(out temp);
             return temp;
         }));
 
@@ -1493,22 +1570,50 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
                 if (newValue != null)
                 {
-                    var tmp = new PropertyValue((Extents)newValue);
-                    Object.SetProperty(view.SwigCPtr, View.Property.PADDING, tmp);
-                    tmp?.Dispose();
+                    if (view.Layout != null)
+                    {
+                        view.Layout.Padding = new Extents((Extents)newValue);
+                        if ((view.Padding.Start != 0) || (view.Padding.End != 0) || (view.Padding.Top != 0) || (view.Padding.Bottom != 0))
+                        {
+                            var tmp = new PropertyValue(new Extents(0, 0, 0, 0));
+                            Object.SetProperty(view.SwigCPtr, Property.PADDING, tmp);
+                            tmp?.Dispose();
+                        }
+                        view.Layout.RequestLayout();
+                    }
+                    else
+                    {
+                        var tmp = new PropertyValue((Extents)newValue);
+                        Object.SetProperty(view.SwigCPtr, Property.PADDING, tmp);
+                        tmp?.Dispose();
+                    }
                 }
             },
             defaultValueCreator: (bindable) =>
             {
                 var view = (View)bindable;
-                if (view.internalPadding == null)
+                if ((view.internalPadding == null) || (view.Layout != null))
                 {
-                    view.internalPadding = new Extents(view.OnPaddingChanged, 0, 0, 0, 0);
+                    ushort start = 0, end = 0, top = 0, bottom = 0;
+                    if (view.Layout != null)
+                    {
+                        if (view.Layout.Padding != null)
+                        {
+                            start = view.Layout.Padding.Start;
+                            end = view.Layout.Padding.End;
+                            top = view.Layout.Padding.Top;
+                            bottom = view.Layout.Padding.Bottom;
+                        }
+                    }
+                    view.internalPadding = new Extents(view.OnPaddingChanged, start, end, top, bottom);
                 }
 
-                var tmp = Object.GetProperty(view.SwigCPtr, Property.PADDING);
-                tmp?.Get(view.internalPadding);
-                tmp?.Dispose();
+                if (view.Layout == null)
+                {
+                    var tmp = Object.GetProperty(view.SwigCPtr, Property.PADDING);
+                    tmp?.Get(view.internalPadding);
+                    tmp?.Dispose();
+                }
 
                 return view.internalPadding;
             }
@@ -1524,6 +1629,13 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
                 if (newValue != null)
                 {
+                    // Size property setter is only used by user.
+                    // Framework code uses SetSize() instead of Size property setter.
+                    // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                    // SuggestedMinimumWidth/Height is used by Layout calculation.
+                    view.userSizeWidth = ((Size)newValue).Width;
+                    view.userSizeHeight = ((Size)newValue).Height;
+
                     // Set Specification so when layouts measure this View it matches the value set here.
                     // All Views are currently Layouts.
                     view.WidthSpecification = (int)System.Math.Ceiling(((Size)newValue).Width);
@@ -1700,21 +1812,51 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
                 if (newValue != null)
                 {
-                    var tmp = new PropertyValue((Extents)newValue);
-                    Object.SetProperty(view.SwigCPtr, Property.MARGIN, tmp);
-                    tmp?.Dispose();
+                    if (view.Layout != null)
+                    {
+                        view.Layout.Margin = new Extents((Extents)newValue);
+                        if ((view.Margin.Start != 0) || (view.Margin.End != 0) || (view.Margin.Top != 0) || (view.Margin.Bottom != 0))
+                        {
+                            var tmp = new PropertyValue(new Extents(0, 0, 0, 0));
+                            Object.SetProperty(view.SwigCPtr, Property.MARGIN, tmp);
+                            tmp?.Dispose();
+                        }
+                        view.Layout.RequestLayout();
+                    }
+                    else
+                    {
+                        var tmp = new PropertyValue((Extents)newValue);
+                        Object.SetProperty(view.SwigCPtr, Property.MARGIN, tmp);
+                        tmp?.Dispose();
+                    }
                 }
             },
             defaultValueCreator: (bindable) =>
             {
                 var view = (View)bindable;
-                if (view.internalMargin == null)
+                if ((view.internalMargin == null) || (view.Layout != null))
                 {
-                    view.internalMargin = new Extents(view.OnMarginChanged, 0, 0, 0, 0);
+                    ushort start = 0, end = 0, top = 0, bottom = 0;
+                    if (view.Layout != null)
+                    {
+                        if (view.Layout.Margin != null)
+                        {
+                            start = view.Layout.Margin.Start;
+                            end = view.Layout.Margin.End;
+                            top = view.Layout.Margin.Top;
+                            bottom = view.Layout.Margin.Bottom;
+                        }
+                    }
+                    view.internalMargin = new Extents(view.OnMarginChanged, start, end, top, bottom);
                 }
-                var tmp = Object.GetProperty(view.SwigCPtr, Property.MARGIN);
-                tmp?.Get(view.internalMargin);
-                tmp?.Dispose();
+
+                if (view.Layout == null)
+                {
+                    
+                    var tmp = Object.GetProperty(view.SwigCPtr, Property.MARGIN);
+                    tmp?.Get(view.internalMargin);
+                    tmp?.Dispose();
+                }
 
                 return view.internalMargin;
             }
@@ -2375,6 +2517,14 @@ namespace Tizen.NUI.BaseComponents
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             return instance.InternalTouchAreaOffset;
         });
+
+        /// <summary>
+        /// Gets View's Size2D set by user.
+        /// </summary>
+        internal Size2D GetUserSize2D()
+        {
+            return new Size2D((int)userSizeWidth, (int)userSizeHeight);
+        }
 
         private void SetBackgroundImage(string value)
         {

@@ -1,5 +1,5 @@
 ﻿/*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,21 +37,12 @@ namespace Tizen.NUI.Components
         private bool styleApplied = false;
 
         /// <summary>
-        /// Get accessibility name.
+        /// Gets accessibility name.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override string AccessibilityGetName()
         {
             return Text;
-        }
-
-        /// <summary>
-        /// Prevents from showing child widgets in AT-SPI tree.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool AccessibilityShouldReportZeroChildren()
-        {
-            return true;
         }
 
         /// <summary>
@@ -71,7 +62,7 @@ namespace Tizen.NUI.Components
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
-                AccessibilityHighlightable = false,
+                AccessibilityHidden = true,
             };
         }
 
@@ -84,7 +75,7 @@ namespace Tizen.NUI.Components
         {
             return new ImageView()
             {
-                AccessibilityHighlightable = false
+                AccessibilityHidden = true,
             };
         }
 
@@ -102,7 +93,7 @@ namespace Tizen.NUI.Components
                 PivotPoint = NUI.PivotPoint.Center,
                 WidthResizePolicy = ResizePolicyType.FillToParent,
                 HeightResizePolicy = ResizePolicyType.FillToParent,
-                AccessibilityHighlightable = false
+                AccessibilityHidden = true,
             };
         }
 
@@ -176,7 +167,7 @@ namespace Tizen.NUI.Components
                         }
 
                         ClickedEventArgs eventArgs = new ClickedEventArgs();
-                        OnClickedInternal(eventArgs);
+                        OnClickedInternal(eventArgs, touch);
 
                         return true;
                     }
@@ -184,6 +175,14 @@ namespace Tizen.NUI.Components
                     break;
             }
             return base.HandleControlStateOnTouch(touch);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnEnabled(bool enabled)
+        {
+            base.OnEnabled(enabled);
+            UpdateState();
         }
 
         /// <summary>
@@ -267,8 +266,8 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.PushButton);
 
+            AccessibilityRole = Role.PushButton;
             AccessibilityHighlightable = true;
             EnableControlStatePropagation = true;
 
@@ -344,7 +343,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    LinearAlignment = itemAlignment,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
                     CellPadding = cellPadding
                 };
 
@@ -356,7 +356,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    LinearAlignment = itemAlignment,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
                     CellPadding = cellPadding
                 };
 
@@ -368,7 +369,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
-                    LinearAlignment = itemAlignment,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
                     CellPadding = cellPadding
                 };
 
@@ -380,7 +382,8 @@ namespace Tizen.NUI.Components
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
-                    LinearAlignment = itemAlignment,
+                    HorizontalAlignment = itemHorizontalAlignment,
+                    VerticalAlignment = itemVerticalAlignment,
                     CellPadding = cellPadding
                 };
 
@@ -440,6 +443,23 @@ namespace Tizen.NUI.Components
             {
                 buttonText.MaximumSize = new Size2D((int)Math.Max(size.Width - lengthWithoutText, Math.Max(buttonText.MinimumSize.Width, 1)), (int)size.Height);
             }
+        }
+
+        private void OnClickedInternal(ClickedEventArgs eventArgs, Touch touch)
+        {
+            // If GrabTouchAfterLeave is true, Up will result in Finished rather than Interrupted even if it is out of the button area.
+            // So, it is necessary to check whether it is Up in the button area.
+            if (GrabTouchAfterLeave == true)
+            {
+                Vector2 localPosition = touch.GetLocalPosition(0);
+                if ((localPosition != null && Size != null &&
+                    0 <= localPosition.X && localPosition.X <= Size.Width &&
+                    0 <= localPosition.Y && localPosition.Y <= Size.Height) == false)
+                {
+                    return;
+                }
+            }
+            OnClickedInternal(eventArgs);
         }
 
         private void OnClickedInternal(ClickedEventArgs eventArgs)

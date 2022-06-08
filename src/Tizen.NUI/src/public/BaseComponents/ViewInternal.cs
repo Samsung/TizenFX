@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using global::System.Diagnostics;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -429,6 +430,42 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        private int ClockwiseFocusableViewId
+        {
+            get
+            {
+                int returnValue = -1;
+                PropertyValue clockwiseFocusableViewId = GetProperty(View.Property.ClockwiseFocusableViewId);
+                clockwiseFocusableViewId?.Get(out returnValue);
+                clockwiseFocusableViewId?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.ClockwiseFocusableViewId, setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private int CounterClockwiseFocusableViewId
+        {
+            get
+            {
+                int returnValue = -1;
+                PropertyValue counterClockwiseFocusableViewId = GetProperty(View.Property.CounterClockwiseFocusableViewId);
+                counterClockwiseFocusableViewId?.Get(out returnValue);
+                counterClockwiseFocusableViewId?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.CounterClockwiseFocusableViewId, setValue);
+                setValue.Dispose();
+            }
+        }
+
         internal string GetName()
         {
             string ret = Interop.Actor.GetName(SwigCPtr);
@@ -575,27 +612,6 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
-        }
-
-        internal void SetPosition(float x, float y)
-        {
-            Interop.ActorInternal.SetPosition(SwigCPtr, x, y);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetPosition(float x, float y, float z)
-        {
-            Interop.ActorInternal.SetPosition(SwigCPtr, x, y, z);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void SetPosition(Vector3 position)
-        {
-            Interop.ActorInternal.SetPosition(SwigCPtr, Vector3.getCPtr(position));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         internal void SetX(float x)
@@ -1078,12 +1094,12 @@ namespace Tizen.NUI.BaseComponents
 
             // ActionUpdateProperty works well only if BACKGROUND visual setup before.
             // If view don't have BACKGROUND visual, we set transparent background color in default.
-            using(PropertyMap backgroundPropertyMap = new PropertyMap())
+            using (PropertyMap backgroundPropertyMap = new PropertyMap())
             {
-                using(PropertyValue propertyValue = Object.GetProperty(SwigCPtr, Property.BACKGROUND))
+                using (PropertyValue propertyValue = Object.GetProperty(SwigCPtr, Property.BACKGROUND))
                 {
                     propertyValue?.Get(backgroundPropertyMap);
-                    if(backgroundPropertyMap.Empty())
+                    if (backgroundPropertyMap.Empty())
                     {
                         // BACKGROUND visual doesn't exist.
                         SetBackgroundColor(Color.Transparent);
@@ -1154,16 +1170,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            DebugFileLogging.Instance.WriteLog($"View.Dispose({type}) START");
-            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
-            if(HasBody())
-            {
-                DebugFileLogging.Instance.WriteLog($"ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
-            }
-            else
-            {
-                DebugFileLogging.Instance.WriteLog($"has no native body!");
-            }
+            disposeDebugging(type);
 
             //_mergedStyle = null;
 
@@ -1277,6 +1284,35 @@ namespace Tizen.NUI.BaseComponents
             }
             return false;
         }
+
+        /// <summary>
+        /// Internal callback of enabled property changes.
+        /// Inherited view can override this method to implements enabled property changes.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnEnabled(bool enabled)
+        {
+            if (enabled)
+            {
+                if (State == View.States.Disabled)
+                {
+                    State = View.States.Normal;
+                }
+                if (enableControlState)
+                {
+                    ControlState -= ControlState.Disabled;
+                }
+            }
+            else
+            {
+                State = View.States.Disabled;
+                if (enableControlState)
+                {
+                    ControlState += ControlState.Disabled;
+                }
+            }
+        }
+
 
         private void DisConnectFromSignals()
         {
@@ -1526,5 +1562,21 @@ namespace Tizen.NUI.BaseComponents
 
             return themeData.selectorData ?? (themeData.selectorData = new ViewSelectorData());
         }
+
+        [Conditional("NUI_DEBUG_ON")]
+        private void disposeDebugging(DisposeTypes type)
+        {
+            DebugFileLogging.Instance.WriteLog($"View.Dispose({type}) START");
+            DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
+            if (HasBody())
+            {
+                DebugFileLogging.Instance.WriteLog($"ID:{Interop.Actor.GetId(GetBaseHandleCPtrHandleRef)} Name:{Interop.Actor.GetName(GetBaseHandleCPtrHandleRef)}");
+            }
+            else
+            {
+                DebugFileLogging.Instance.WriteLog($"has no native body!");
+            }
+        }
+
     }
 }

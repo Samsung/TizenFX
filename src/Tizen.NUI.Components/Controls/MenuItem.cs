@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-
+using System;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
@@ -28,8 +28,6 @@ namespace Tizen.NUI.Components
     public class MenuItem : SelectButton
     {
         private bool selectedAgain = false;
-
-        private bool styleApplied = false;
 
         /// <summary>
         /// Creates a new instance of MenuItem.
@@ -64,31 +62,6 @@ namespace Tizen.NUI.Components
             }
 
             base.Dispose(type);
-        }
-
-        /// <summary>
-        /// Applies style to MenuItem.
-        /// </summary>
-        /// <param name="viewStyle">The style to apply.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void ApplyStyle(ViewStyle viewStyle)
-        {
-            styleApplied = false;
-
-            base.ApplyStyle(viewStyle);
-
-            styleApplied = true;
-
-            //Calculate position based on Achor's position.
-            LayoutItems();
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void OnUpdate()
-        {
-            base.OnUpdate();
-            LayoutItems();
         }
 
         /// <inheritdoc/>
@@ -176,65 +149,14 @@ namespace Tizen.NUI.Components
             }
         }
 
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void LayoutItems()
-        {
-            if (styleApplied == false)
-            {
-                return;
-            }
-
-            if ((Icon == null) && (TextLabel == null))
-            {
-                return;
-            }
-
-            // Icon is added in Button.LayoutItems().
-            if ((Icon != null) && (Children.Contains(Icon) == false))
-            {
-                Add(Icon);
-            }
-
-            // TextLabel is added in Button.LayoutItems().
-            if ((TextLabel != null) && (Children.Contains(TextLabel) == false))
-            {
-                Add(TextLabel);
-            }
-
-            switch (IconRelativeOrientation)
-            {
-                // TODO: Other orientation cases are not implemented yet.
-                case IconOrientation.Left:
-                    if (LayoutDirection == ViewLayoutDirectionType.LTR)
-                    {
-                        int iconPosX = Padding.Start + (Icon?.Margin.Start ?? 0);
-                        int iconPosY = Padding.Top + (Icon?.Margin.Top ?? 0);
-                        int iconSizeW = Icon?.Size2D.Width ?? 0;
-                        int iconSizeH = Icon?.Size2D.Height ?? 0;
-
-                        if (Icon != null)
-                        {
-                            Icon.Position2D = new Position2D(iconPosX, iconPosY);
-                        }
-
-                        if (TextLabel != null)
-                        {
-                            int textPosX = iconPosX + iconSizeW + TextLabel.Margin.Start;
-                            int textPosY = Padding.Top + TextLabel.Margin.Top;
-
-                            TextLabel.Position2D = new Position2D(textPosX, textPosY);
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
-
         private void Initialize()
         {
-            Layout = new AbsoluteLayout();
+            Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Begin,
+                VerticalAlignment = VerticalAlignment.Center,
+            };
         }
 
         /// <summary>
@@ -244,7 +166,7 @@ namespace Tizen.NUI.Components
         public override void OnInitialize()
         {
             base.OnInitialize();
-            SetAccessibilityConstructor(Role.MenuItem);
+            AccessibilityRole = Role.MenuItem;
         }
     }
 }

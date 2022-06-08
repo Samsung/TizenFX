@@ -587,6 +587,7 @@ namespace Tizen.NUI
             // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             DisposeQueue.Instance.Initialize();
             Window.Instance = GetWindow();
+            _ = FocusManager.Instance;
 
             // Notify that the window is displayed to the app core.
             if (NUIApplication.IsPreload)
@@ -1266,7 +1267,18 @@ namespace Tizen.NUI
                 return window;
             }
 
-            window = (Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.GetWindow(SwigCPtr)) as Window) ?? new Window(Interop.Application.GetWindow(SwigCPtr), true);
+            var nativeWindow = Interop.Application.GetWindow(SwigCPtr);
+            window = Registry.GetManagedBaseHandleFromNativePtr(nativeWindow) as Window;
+            if (window != null)
+            {
+                HandleRef CPtr = new HandleRef(this, nativeWindow);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new HandleRef(null, IntPtr.Zero);
+            }
+            else
+            {
+                window = new Window(nativeWindow, true);
+            }
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return window;
@@ -1302,7 +1314,7 @@ namespace Tizen.NUI
             List<Window> WindowList = new List<Window>();
             for (uint i = 0; i < ListSize; ++i)
             {
-                Window currWin = Registry.GetManagedBaseHandleFromNativePtr(Interop.Application.GetWindowsFromList(i)) as Window;
+                Window currWin = WindowList.GetInstanceSafely<Window>(Interop.Application.GetWindowsFromList(i));
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 if (currWin != null)
                 {
