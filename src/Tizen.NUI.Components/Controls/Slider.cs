@@ -1435,6 +1435,7 @@ namespace Tizen.NUI.Components
                 recoverIndicator = FocusManager.Instance.FocusIndicator;
                 FocusManager.Instance.FocusIndicator = editModeIndicator;
             }
+            UpdateState(true, isPressed);
             return true;
         }
 
@@ -1466,6 +1467,9 @@ namespace Tizen.NUI.Components
                             {
                                 CurrentValue -= 1;
                             }
+                            sliderValueChangedHandler?.Invoke(this, new SliderValueChangedEventArgs {
+                                CurrentValue = curValue
+                                });
                         }
                         return true; // Consumed
                     }
@@ -1487,6 +1491,9 @@ namespace Tizen.NUI.Components
                             {
                                 CurrentValue += 1;
                             }
+                            sliderValueChangedHandler?.Invoke(this, new SliderValueChangedEventArgs {
+                                CurrentValue = curValue
+                                });
                         }
                         return true; // Consumed
                     }
@@ -1771,6 +1778,11 @@ namespace Tizen.NUI.Components
                 return false;
             }
 
+            if (this.FocusableInTouch == false && editMode == false)
+            {
+                isFocused = false;   
+            }
+
             PointStateType state = e.Touch.GetState(0);
             if (state == PointStateType.Down)
             {
@@ -1807,6 +1819,11 @@ namespace Tizen.NUI.Components
 
         private bool OnTouchEventForThumb(object source, TouchEventArgs e)
         {
+            if (this.FocusableInTouch == false && editMode == false)
+            {
+                isFocused = false;   
+            }
+
             PointStateType state = e.Touch.GetState(0);
             if (state == PointStateType.Down)
             {
