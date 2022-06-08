@@ -56,13 +56,13 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 10 </since_tizen>
-        public bool Looping
+        public bool IsLooping
         {
             get
             {
                 if (!SourceId.HasValue)
                 {
-                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                    return false;
                 }
 
                 NativeWebRTC.GetFileSourceLooping(WebRtc.Handle, SourceId.Value, out bool isLooping).
