@@ -52,7 +52,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Initializes a new instance of the MediaPacket class from a original MediaPacket.
+        /// Initializes a new instance of the MediaPacket class from an original MediaPacket.
         /// </summary>
         /// <param name="mediaPacket">The original MediaPacket.</param>
         internal MediaPacket(MediaPacket mediaPacket) : this(mediaPacket._handle)
@@ -658,12 +658,12 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Creates an object of the MediaPacket based on the original MediaPacket and increase ref count of both MediaPacket instances.
+        /// Creates an object of the MediaPacket based on the original MediaPacket and increases the internal reference(hereafter ref) count by 1.
         /// </summary>
         /// <remarks>
-        /// After this instance creation, the internal data of both MediaPacket instances are the same and those ref count is greater than the original MediaPacket by 1.\n
-        /// If MediaPacket instance is disposed, that instance cannot be used anymore.\n
-        /// But its ref count is still greater than 0, other C# MediaPacket instance which share same native media packet handle can still be used.
+        /// This method can be useful when user share MediaPacket instance to other module and don't know the exact time to dispose it.\n
+        /// In this case, user creates a new instance with <see cref="Create(MediaPacket)"/> and shares it to other module.\n
+        /// And then, each MediaPacket instances can be disposed independently without concerning other instance's life cycle.
         /// </remarks>
         /// <param name="mediaPacket">The media packet to increase ref count.</param>
         /// <returns>A MediaPacket object which is based on original MediaPacket instance.</returns>
