@@ -10,14 +10,16 @@ namespace VideoPlayDemo
         class CustomBorder : DefaultBorder
         {
           private static readonly string ResourcePath = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource;
-          private static readonly string MinimalizeIcon = ResourcePath + "/minimalize.png";
           private static readonly string MaximalizeIcon = ResourcePath + "/maximalize.png";
-          private static readonly string RestoreIcon = ResourcePath + "/smallwindow.png";
           private static readonly string CloseIcon = ResourcePath + "/close.png";
-          private static readonly string LeftCornerIcon = ResourcePath + "/leftCorner.png";
-          private static readonly string RightCornerIcon = ResourcePath + "/rightCorner.png";
           private static readonly string PlayIcon = ResourcePath + "/play.png";
           private static readonly string PauseIcon = ResourcePath + "/pause.png";
+          private static readonly string SettingIcon = ResourcePath + "/setting.png";
+          private static readonly string SettingPressIcon = ResourcePath + "/setting_press.png";
+          private static readonly string VolumeIcon = ResourcePath + "/volume.png";
+          private static readonly string VolumePressIcon = ResourcePath + "/volume_press.png";
+          // private static readonly string LeftCornerIcon = ResourcePath + "/leftCorner.png";
+          // private static readonly string RightCornerIcon = ResourcePath + "/rightCorner.png";
 
           private int width = 300;
           private bool hide = false;
@@ -28,10 +30,12 @@ namespace VideoPlayDemo
           private ImageView playPauseIcon;
           private ImageView maximalizeIcon;
           private ImageView closeIcon;
-          private ImageView leftCornerIcon;
-          private ImageView rightCornerIcon;
+          private ImageView settingIcon;
+          private ImageView volumeIcon;
+          private View leftCornerIcon;
+          private View rightCornerIcon;
           private VideoView videoView;
-          private bool isPlay = true;
+          private bool isPlay = false;
 
           public CustomBorder(string title) : base()
           {
@@ -39,6 +43,7 @@ namespace VideoPlayDemo
             BorderLineThickness = 1;
             this.title = title;
             this.videoView = videoView;
+            MinSize = new Size2D(600, 400);
           }
 
           public void SetVideoView(VideoView videoView)
@@ -56,12 +61,13 @@ namespace VideoPlayDemo
             {
               LinearOrientation = LinearLayout.Orientation.Horizontal,
               LinearAlignment = LinearLayout.Alignment.CenterVertical,
-              CellPadding = new Size2D(20, 20),
+              CellPadding = new Size2D(50, 50),
             };
 
             titleLabel = new TextLabel()
             {
               Text = title,
+              TextColor = Color.White,
             };
             topView.Add(titleLabel);
             return true;
@@ -69,8 +75,20 @@ namespace VideoPlayDemo
 
           public override bool CreateBottomBorderView(View bottomView)
           {
-            bottomView.Layout = new RelativeLayout();
             bottomView.SizeHeight = 124;
+
+            var contentsView = new View()
+            {
+              WidthSpecification = LayoutParamPolicies.MatchParent,
+              HeightSpecification = LayoutParamPolicies.MatchParent,
+              Layout = new LinearLayout()
+              {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                LinearAlignment = LinearLayout.Alignment.Center,
+                CellPadding = new Size2D(8, 0),
+              },
+              BackgroundColor = Color.Transparent,
+            };
 
             playPauseIcon = new ImageView()
             {
@@ -87,38 +105,30 @@ namespace VideoPlayDemo
                 ResourceUrl = CloseIcon,
             };
 
-            leftCornerIcon = new ImageView()
+            leftCornerIcon = new View()
             {
-                ResourceUrl = LeftCornerIcon,
+                Size2D = new Size2D(50, 50),
             };
 
-            rightCornerIcon = new ImageView()
+            rightCornerIcon = new View()
             {
-                ResourceUrl = RightCornerIcon,
+                Size2D = new Size2D(50, 50),
             };
+            contentsView.Add(playPauseIcon);
+            contentsView.Add(maximalizeIcon);
+            contentsView.Add(closeIcon);
 
-            // RelativeLayout.SetRightTarget(playPauseIcon, maximalizeIcon);
-            // RelativeLayout.SetRightRelativeOffset(playPauseIcon, 1.0f);
-            RelativeLayout.SetHorizontalAlignment(playPauseIcon, RelativeLayout.Alignment.Center);
-            RelativeLayout.SetVerticalAlignment(playPauseIcon, RelativeLayout.Alignment.Center);
-            RelativeLayout.SetRightTarget(maximalizeIcon, closeIcon);
-            RelativeLayout.SetRightRelativeOffset(maximalizeIcon, 0.0f);
-            RelativeLayout.SetHorizontalAlignment(maximalizeIcon, RelativeLayout.Alignment.End);
-            RelativeLayout.SetVerticalAlignment(maximalizeIcon, RelativeLayout.Alignment.End);
-            RelativeLayout.SetRightTarget(closeIcon, rightCornerIcon);
-            RelativeLayout.SetRightRelativeOffset(closeIcon, 0.0f);
-            RelativeLayout.SetHorizontalAlignment(closeIcon, RelativeLayout.Alignment.End);
-            RelativeLayout.SetVerticalAlignment(closeIcon, RelativeLayout.Alignment.End);
+            bottomView.Layout = new RelativeLayout();
             RelativeLayout.SetRightRelativeOffset(rightCornerIcon, 1.0f);
             RelativeLayout.SetHorizontalAlignment(rightCornerIcon, RelativeLayout.Alignment.End);
             RelativeLayout.SetVerticalAlignment(rightCornerIcon, RelativeLayout.Alignment.End);
             RelativeLayout.SetVerticalAlignment(leftCornerIcon, RelativeLayout.Alignment.End);
             bottomView.Add(leftCornerIcon);
-            bottomView.Add(playPauseIcon);
-            bottomView.Add(maximalizeIcon);
-            bottomView.Add(closeIcon);
             bottomView.Add(rightCornerIcon);
-            
+            bottomView.Add(contentsView);
+
+
+
             playPauseIcon.TouchEvent += OnPlayPauseIconTouched;
             maximalizeIcon.TouchEvent += OnMaximizeIconTouched;
             closeIcon.TouchEvent += OnCloseIconTouched;
@@ -151,28 +161,45 @@ namespace VideoPlayDemo
               }
             }
             base.OnResized(width, height);
-            UpdateIcons();
+            // UpdateIcons();
           }
 
-          private void UpdateIcons()
+          // private void UpdateIcons()
+          // {
+          //   if (BorderWindow != null && borderView != null)
+          //   {
+          //       if (BorderWindow.IsMaximized() == true)
+          //       {
+          //           if (maximalizeIcon != null)
+          //           {
+          //               maximalizeIcon.ResourceUrl = RestoreIcon;
+          //           }
+          //       }
+          //       else
+          //       {
+          //           if (maximalizeIcon != null)
+          //           {
+          //               maximalizeIcon.ResourceUrl = MaximalizeIcon;
+          //           }
+          //       }
+          //   }
+          // }
+
+          public override bool OnMaximizeIconTouched(object sender, View.TouchEventArgs e)
           {
-            if (BorderWindow != null && borderView != null)
+            base.OnMaximizeIconTouched(sender, e);
+            if (e.Touch.GetState(0) == PointStateType.Up && videoView != null)
             {
-                if (BorderWindow.IsMaximized() == true)
-                {
-                    if (maximalizeIcon != null)
-                    {
-                        maximalizeIcon.ResourceUrl = RestoreIcon;
-                    }
-                }
-                else
-                {
-                    if (maximalizeIcon != null)
-                    {
-                        maximalizeIcon.ResourceUrl = MaximalizeIcon;
-                    }
-                }
+              if (BorderWindow.IsMaximized() == true)
+              {
+                videoView.Underlay = true;
+              }
+              else
+              {
+                videoView.Underlay = false;
+              }
             }
+            return true;
           }
 
           public override bool OnCloseIconTouched(object sender, View.TouchEventArgs e)
@@ -191,7 +218,7 @@ namespace VideoPlayDemo
               if (isPlay == true)
               {
                 isPlay = false;
-                videoView.Stop();
+                videoView.Pause();
                 playPauseIcon.ResourceUrl = PlayIcon;
               }
               else
@@ -244,15 +271,17 @@ namespace VideoPlayDemo
 
             videoView = new VideoView()
             {
+              Underlay = false,
               WidthSpecification = LayoutParamPolicies.MatchParent,
               HeightSpecification = LayoutParamPolicies.MatchParent,
-              ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "v.mp4",
+              ResourceUrl = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "02_gallery_video.mp4",
               Looping = true,
             };
             customBorder.SetVideoView(videoView);
             windowMainView.Add(videoView);
             videoView.Play();
-            customBorder.OnResized(win.Size.Width, win.Size.Height);
+            videoView.Pause();
+            win.SetTransparency(true);
 
             win.InterceptTouchEvent += (s, e) => 
             {
@@ -274,8 +303,8 @@ namespace VideoPlayDemo
 
         static void Main(string[] args)
         {
-            customBorder = new CustomBorder("Video");
-            app = new Program("", new Size2D(500, 500), new Position2D(500, 100), customBorder);
+            customBorder = new CustomBorder("  Video");
+            app = new Program("", new Size2D(600, 400), new Position2D(500, 100), customBorder);
             app.Run(args);
         }
     }
