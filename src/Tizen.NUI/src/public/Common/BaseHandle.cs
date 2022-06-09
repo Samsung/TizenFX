@@ -31,15 +31,15 @@ namespace Tizen.NUI
         /// swigCMemOwn
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use SwigCMemOwn")]
+        [Obsolete("Deprecated in API9, will be removed in API11, Use SwigCMemOwn")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected bool swigCMemOwn;
 
         /// <summary>
-        /// A flag to check if it is already disposed.
+        /// The flag to check if it is already disposed of.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use Disposed")]
+        [Obsolete("Deprecated in API9, will be removed in API11, Use Disposed")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected bool disposed = false;
 
@@ -47,7 +47,7 @@ namespace Tizen.NUI
         private global::System.Runtime.InteropServices.HandleRef swigCPtrCopy;
         private bool registerMe;
 
-        //A Flag to check who called Dispose(). (By User or DisposeQueue)
+        //The flag to check who called Dispose(). (By User or DisposeQueue)
         private bool isDisposeQueued = false;
 
         /// <summary>
@@ -117,7 +117,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <seealso cref="BindableObject.PropertyChanged"/>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use BindableObject.PropertyChanged instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11, Use BindableObject.PropertyChanged instead!")]
         public event PropertyChangedEventHandler PropertySet;
 
         internal global::System.Runtime.InteropServices.HandleRef GetBaseHandleCPtrHandleRef
@@ -593,13 +593,13 @@ namespace Tizen.NUI
         protected internal bool SwigCMemOwn => swigCMemOwn;
 
         /// <summary>
-        /// A flag to check if it is already disposed.
+        /// The flag to check if it is already disposed of.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool Disposed => disposed;
 
         /// <summary>
-        /// A flag to check if it is disposed by DisposeQueue.
+        /// The flag to check if it is disposed by DisposeQueue.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool IsDisposeQueued => isDisposeQueued;
