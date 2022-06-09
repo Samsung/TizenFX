@@ -137,7 +137,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// When deleting the field, change it to property.
-        [Obsolete("Deprecated in API9, Will be removed in API11. Please use GetDuration, SetDuration instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Use GetDuration, SetDuration instead!")]
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public int Duration;
 
@@ -146,7 +146,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// When deleting the field, change it to property.
-        [Obsolete("Deprecated in API9, Will be removed in API11. Please use GetDelay, SetDelay instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Use GetDelay, SetDelay instead!")]
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public int Delay;
 
@@ -154,7 +154,7 @@ namespace Tizen.NUI
         /// Get, Set the function to alter the transition path over time.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API9, Will be removed in API11. Please use GetAlphaFunction, SetAlphaFunction instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Use GetAlphaFunction, SetAlphaFunction instead!")]
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public AlphaFunction AlphaFunction;
 

@@ -26,10 +26,10 @@ namespace Tizen.NUI
     public class Disposable : global::System.IDisposable
     {
         /// <summary>
-        /// A Flag to check if it is already disposed.
+        /// The flag to check if it is already disposed of.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use Disposed")]
+        [Obsolete("Deprecated in API9, will be removed in API11, Use Disposed")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected bool disposed = false;
 
@@ -189,7 +189,7 @@ namespace Tizen.NUI
         internal bool SwigCMemOwn => swigCMemOwn;
 
         /// <summary>
-        /// A Flag to check if it is already disposed.
+        /// The flag to check if it is already disposed of.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool Disposed => disposed;
