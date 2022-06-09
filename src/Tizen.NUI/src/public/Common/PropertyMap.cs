@@ -154,7 +154,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Inserts the key-value pair in the map, with the key type as string.<br />
-        /// The exception would be thrown if the pair with the same key already exists.
+        /// The error message would be shown if the pair with the same key already exists.
         /// </summary>
         /// <param name="key">The key to insert.</param>
         /// <param name="value">The value to insert.</param>
@@ -164,7 +164,7 @@ namespace Tizen.NUI
             global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
             if (cPtr != global::System.IntPtr.Zero)
             {
-                throw new global::System.ArgumentException($"The key {key} already exists.", nameof(key));
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
             }
             Interop.PropertyMap.Insert(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -172,7 +172,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Inserts the key-value pair in the map, with the key type as index.<br />
-        /// The exception would be thrown if the pair with the same key already exists.
+        /// The error message would be shown if the pair with the same key already exists.
         /// </summary>
         /// <param name="key">The key to insert.</param>
         /// <param name="value">The value to insert.</param>
@@ -182,7 +182,7 @@ namespace Tizen.NUI
             global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
             if (cPtr != global::System.IntPtr.Zero)
             {
-                throw new global::System.ArgumentException($"The key {key} already exists.", nameof(key));
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
             }
             Interop.PropertyMap.Insert(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -190,7 +190,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Inserts the key-value pair in the map, with the key type as string.<br />
-        /// The exception would be thrown if the pair with the same key already exists.
+        /// The error message would be shown if the pair with the same key already exists.
         /// </summary>
         /// <param name="key">The key to insert.</param>
         /// <param name="value">The value to insert.</param>
@@ -201,7 +201,7 @@ namespace Tizen.NUI
             global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
             if (cPtr != global::System.IntPtr.Zero)
             {
-                throw new global::System.ArgumentException($"The key {key} already exists.", nameof(key));
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
             }
             Interop.PropertyMap.Add(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -210,7 +210,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Inserts the key-value pair in the map, with the key type as string.<br />
-        /// The exception would be thrown if the pair with the same key already exists.
+        /// The error message would be shown if the pair with the same key already exists.
         /// </summary>
         /// <param name="key">The key to insert.</param>
         /// <param name="value">The value to insert.</param>
@@ -221,7 +221,7 @@ namespace Tizen.NUI
             global::System.IntPtr cPtr = Interop.PropertyMap.Find(SwigCPtr, key);
             if (cPtr != global::System.IntPtr.Zero)
             {
-                throw new global::System.ArgumentException($"The key {key} already exists.", nameof(key));
+                Tizen.Log.Error("NUI", $"The key {key} already exists. please do not use duplicate key");
             }
             Interop.PropertyMap.Add(SwigCPtr, key, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();

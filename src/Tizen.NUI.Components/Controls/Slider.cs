@@ -613,14 +613,40 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return thumbImage?.Color;
+                return thumbColor;
             }
             set
             {
                 if (null != thumbImage)
                 {
-                    thumbImage.BackgroundColor = value;
                     thumbColor = value;
+
+                    if (thumbImage.ResourceUrl != null)
+                    {
+                        thumbImage.ResourceUrl = null;
+                    }
+
+                    using (PropertyMap map = new PropertyMap())
+                    {
+                        // To remove CA2000 warning messages, use `using` statement.
+                        using (PropertyValue type = new PropertyValue((int)Visual.Type.Color))
+                        {
+                            map.Insert((int)Visual.Property.Type, type);
+                        }
+                        using (PropertyValue color = new PropertyValue(thumbColor))
+                        {
+                            map.Insert((int)ColorVisualProperty.MixColor, color);
+                        }
+                        using (PropertyValue radius = new PropertyValue(0.5f))
+                        {
+                            map.Insert((int)Visual.Property.CornerRadius, radius);
+                        }
+                        using (PropertyValue policyType = new PropertyValue((int)VisualTransformPolicyType.Relative))
+                        {
+                            map.Insert((int)Visual.Property.CornerRadiusPolicy, policyType);
+                        }
+                        thumbImage.Image = map;
+                    }
                 }
             }
         }
@@ -887,7 +913,14 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (null == lowIndicatorImage) lowIndicatorImage = new ImageView();
+                if (null == lowIndicatorImage)
+                {
+                    lowIndicatorImage = new ImageView
+                    {
+                        AccessibilityHidden = true,
+                    };
+                }
+
                 lowIndicatorImage.ResourceUrl = value;
             }
         }
@@ -916,7 +949,14 @@ namespace Tizen.NUI.Components
             }
             set
             {
-                if (null == highIndicatorImage) highIndicatorImage = new ImageView();
+                if (null == highIndicatorImage)
+                {
+                    highIndicatorImage = new ImageView
+                    {
+                        AccessibilityHidden = true,
+                    };
+                }
+
                 highIndicatorImage.ResourceUrl = value;
             }
         }
@@ -1389,6 +1429,7 @@ namespace Tizen.NUI.Components
                         BorderlineWidth = 6.0f,
                         BorderlineOffset = -1f,
                         BackgroundColor = new Color(0.2f, 0.2f, 0.2f, 0.4f),
+                        AccessibilityHidden = true,
                     };
                 }
                 recoverIndicator = FocusManager.Instance.FocusIndicator;
@@ -1492,6 +1533,16 @@ namespace Tizen.NUI.Components
                 CreateHighIndicatorText().ApplyStyle(sliderStyle.HighIndicator);
             }
 
+            if (null != sliderStyle?.LowIndicatorImage)
+            {
+                CreateLowIndicatorImage().ApplyStyle(sliderStyle.LowIndicatorImage);
+            }
+
+            if (null != sliderStyle?.HighIndicatorImage)
+            {
+                CreateHighIndicatorImage().ApplyStyle(sliderStyle.HighIndicatorImage);
+            }
+
             if (null != sliderStyle?.Track)
             {
                 CreateBackgroundTrack().ApplyStyle(sliderStyle.Track);
@@ -1509,7 +1560,7 @@ namespace Tizen.NUI.Components
 
             if (null != sliderStyle?.ValueIndicatorImage)
             {
-                CreateValueIndicator().ApplyStyle(sliderStyle.ValueIndicatorImage);
+                CreateValueIndicatorImage().ApplyStyle(sliderStyle.ValueIndicatorImage);
             }
 
             if (null != sliderStyle?.WarningTrack)
@@ -1523,15 +1574,6 @@ namespace Tizen.NUI.Components
             }
 
             EnableControlStatePropagation = true;
-        }
-
-        /// <summary>
-        /// Prevents from showing child widgets in AT-SPI tree.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override bool AccessibilityShouldReportZeroChildren()
-        {
-            return true;
         }
 
         /// <summary>
@@ -1737,16 +1779,15 @@ namespace Tizen.NUI.Components
                     valueIndicatorImage.Show();
                 }
 
+                UpdateState(isFocused, true);
+
+                sliderSlidingStartedHandler?.Invoke(this, new SliderSlidingStartedEventArgs {
+                    CurrentValue = curValue
+                    });
+
                 Vector2 pos = e.Touch.GetLocalPosition(0);
                 CalculateCurrentValueByTouch(pos);
                 UpdateValue();
-
-                if (null != sliderSlidingFinishedHandler)
-                {
-                    SliderSlidingFinishedEventArgs args = new SliderSlidingFinishedEventArgs();
-                    args.CurrentValue = curValue;
-                    sliderSlidingFinishedHandler(this, args);
-                }
             }
             else if (state == PointStateType.Up)
             {
@@ -1754,6 +1795,12 @@ namespace Tizen.NUI.Components
                 {
                     valueIndicatorImage.Hide();
                 }
+
+                UpdateState(isFocused, false);
+
+                sliderSlidingFinishedHandler?.Invoke(this, new SliderSlidingFinishedEventArgs {
+                    CurrentValue = curValue
+                    });
             }
             return false;
         }

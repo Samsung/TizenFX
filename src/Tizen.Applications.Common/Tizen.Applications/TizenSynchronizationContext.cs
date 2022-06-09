@@ -90,42 +90,5 @@ namespace Tizen.Applications
                 throw err;
             }
         }
-
-        private static class GSourceManager
-        {
-            private static Interop.Glib.GSourceFunc _wrapperHandler;
-            private static Object _transactionLock;
-            private static ConcurrentDictionary<int, Action> _handlerMap;
-            private static int _transactionId;
-
-            static GSourceManager()
-            {
-                _wrapperHandler = new Interop.Glib.GSourceFunc(Handler);
-                _transactionLock = new Object();
-                _handlerMap = new ConcurrentDictionary<int, Action>();
-                _transactionId = 0;
-            }
-
-            public static void Post(Action action)
-            {
-                int id = 0;
-                lock (_transactionLock)
-                {
-                    id = _transactionId++;
-                }
-                _handlerMap.TryAdd(id, action);
-                Interop.Glib.IdleAdd(_wrapperHandler, (IntPtr)id);
-            }
-
-            private static bool Handler(IntPtr userData)
-            {
-                int key = (int)userData;
-                if (_handlerMap.TryRemove(key, out Action action))
-                {
-                    action?.Invoke();
-                }
-                return false;
-            }
-        }
     }
 }

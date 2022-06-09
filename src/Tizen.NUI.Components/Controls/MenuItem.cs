@@ -29,8 +29,6 @@ namespace Tizen.NUI.Components
     {
         private bool selectedAgain = false;
 
-        private bool styleApplied = false;
-
         /// <summary>
         /// Creates a new instance of MenuItem.
         /// </summary>
@@ -64,31 +62,6 @@ namespace Tizen.NUI.Components
             }
 
             base.Dispose(type);
-        }
-
-        /// <summary>
-        /// Applies style to MenuItem.
-        /// </summary>
-        /// <param name="viewStyle">The style to apply.</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void ApplyStyle(ViewStyle viewStyle)
-        {
-            styleApplied = false;
-
-            base.ApplyStyle(viewStyle);
-
-            styleApplied = true;
-
-            //Calculate position based on Achor's position.
-            LayoutItems();
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public override void OnRelayout(Vector2 size, RelayoutContainer container)
-        {
-            base.OnRelayout(size, container);
-            LayoutItems();
         }
 
         /// <inheritdoc/>
@@ -173,53 +146,6 @@ namespace Tizen.NUI.Components
                 }
 
                 base.OnControlStateChanged(controlStateChangedInfo);
-            }
-        }
-
-        /// <inheritdoc/>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void LayoutItems()
-        {
-            if (styleApplied == false)
-            {
-                return;
-            }
-
-            bool isEmptyIcon = false;
-            bool isEmptyText = false;
-
-            if (String.IsNullOrEmpty(Icon.ResourceUrl))
-            {
-                isEmptyIcon = true;
-            }
-
-            if (String.IsNullOrEmpty(TextLabel.Text))
-            {
-                isEmptyText = true;
-            }
-
-            if (isEmptyIcon)
-            {
-                if (Children.Contains(Icon))
-                {
-                    Remove(Icon);
-                }
-            }
-            else if (Children.Contains(Icon) == false)
-            {
-                Add(Icon);
-            }
-
-            if (isEmptyText)
-            {
-                if (Children.Contains(TextLabel))
-                {
-                    Remove(TextLabel);
-                }
-            }
-            else if (Children.Contains(TextLabel) == false)
-            {
-                Add(TextLabel);
             }
         }
 

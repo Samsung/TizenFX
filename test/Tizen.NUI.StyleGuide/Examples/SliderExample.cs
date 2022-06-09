@@ -26,7 +26,7 @@ namespace Tizen.NUI.StyleGuide
     internal class SliderExample : ContentPage, IExample
     {
         private View rootContent;
-        private Slider slider, disabledSlider, completedSlider;
+        private Slider slider, disabledSlider, completedSlider, verticalSlider;
 
         public void Activate()
         {
@@ -68,7 +68,7 @@ namespace Tizen.NUI.StyleGuide
             {
                 MinValue = 0,
                 MaxValue = 100,
-                WidthSpecification = LayoutParamPolicies.MatchParent,
+                WidthSpecification = 300,
             };
             rootContent.Add(slider);
 
@@ -77,7 +77,7 @@ namespace Tizen.NUI.StyleGuide
                 MinValue = 0,
                 MaxValue = 100,
                 IsEnabled = false,
-                WidthSpecification = LayoutParamPolicies.MatchParent,
+                WidthSpecification = 300,
             };
             rootContent.Add(disabledSlider);
 
@@ -86,9 +86,19 @@ namespace Tizen.NUI.StyleGuide
                 MinValue = 0,
                 MaxValue = 100,
                 CurrentValue = 100,
-                WidthSpecification = LayoutParamPolicies.MatchParent,
+                WidthSpecification = 300,
             };
             rootContent.Add(completedSlider);
+
+            verticalSlider = new Slider()
+            {
+                MinValue = 0,
+                MaxValue = 100,
+                CurrentValue = 100,
+                Direction = Slider.DirectionType.Vertical,
+                HeightSpecification = 200,
+            };
+            rootContent.Add(verticalSlider);
 
             Content = rootContent;
         }

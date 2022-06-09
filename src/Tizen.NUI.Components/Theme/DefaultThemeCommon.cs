@@ -277,12 +277,14 @@ namespace Tizen.NUI.Components
             // Pagination base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Pagination", new PaginationStyle()
             {
+                Size = new Size(450, 24),
                 IndicatorImageUrl = new Selector<string>()
                 {
                     Normal = FrameworkInformation.ResourcePath + "nui_component_default_pagination_normal_dot.png",
                     Selected = FrameworkInformation.ResourcePath + "nui_component_default_pagination_focus_dot.png",
                 },
-                IndicatorSize = new Size(10, 10),
+                IndicatorSize = new Size(64, 8),
+                IndicatorSpacing = 16,
             });
 
             // Scrollbar base style
@@ -770,7 +772,6 @@ namespace Tizen.NUI.Components
                 },
                 Icon = new ImageViewStyle()
                 {
-                    Size = new Size(32, 32),
                     Color = new Selector<Color>()
                     {
                         Normal = new Color("#090E21"),

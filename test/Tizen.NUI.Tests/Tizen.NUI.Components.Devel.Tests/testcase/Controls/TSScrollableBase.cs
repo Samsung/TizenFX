@@ -239,7 +239,7 @@ namespace Tizen.NUI.Components.Devel.Tests
             Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
 
             View view1 = new View()
-            { 
+            {
                 Size = new Size(100, 200),
                 Position = new Position(0, 0),
                 BackgroundColor = Color.Cyan
@@ -562,6 +562,59 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ScrollableBaseBaseRemove END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollableBase StepScrollDisance")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.StepScrollDisance A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "sh10233.lee@samsung.com")]
+        public void ScrollableBaseStepScrollDistance()
+        {
+            tlog.Debug(tag, $"ScrollableBaseStepScrollDistance START");
+
+            var testingTarget = new ScrollableBase();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
+
+            testingTarget.StepScrollDistance = 200f;
+            tlog.Debug(tag, "StepScrollDistance : " + testingTarget.StepScrollDistance);
+
+            testingTarget.StepScrollDistance = 0f;
+            tlog.Debug(tag, "StepScrollDistance : " + testingTarget.StepScrollDistance);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollableBaseStepScrollDistance END (OK)");
+        }
+
+
+        [Test]
+        [Category("P1")]
+        [Description("ScrollableBase FadeScrollbar")]
+        [Property("SPEC", "Tizen.NUI.Components.ScrollableBase.FadeScrollbar A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "sh10233.lee@samsung.com")]
+        public void ScrollableBaseFadeScrollbar()
+        {
+            tlog.Debug(tag, $"ScrollableBaseFadeScrollbar START");
+
+            var testingTarget = new ScrollableBase();
+            Assert.IsNotNull(testingTarget, "null handle");
+            Assert.IsInstanceOf<ScrollableBase>(testingTarget, "Should return ScrollableBase instance.");
+
+            testingTarget.FadeScrollbar = false;
+            Assert.AreEqaul(false, testingTarget.FadeScrollbar, "Should be equal.");
+
+            testingTarget.FadeScrollbar = true;
+            Assert.AreEqaul(true, testingTarget.FadeScrollbar, "Should be equal.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScrollableBaseFadeScrollbar END (OK)");
         }
     }
 }
