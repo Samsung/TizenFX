@@ -113,6 +113,12 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_file_source_set_path")]
         internal static extern WebRTCErrorCode SetFileSourcePath(IntPtr handle, uint sourceId, string path);
 
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_file_source_set_looping")]
+        internal static extern WebRTCErrorCode SetFileSourceLooping(IntPtr handle, uint sourceId, bool looping);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_file_source_get_looping")]
+        internal static extern WebRTCErrorCode GetFileSourceLooping(IntPtr handle, uint sourceId, out bool looping);
+
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_transceiver_direction")]
         internal static extern WebRTCErrorCode GetTransceiverDirection(IntPtr handle, uint sourceId, MediaType type, out TransceiverDirection mode);
 
