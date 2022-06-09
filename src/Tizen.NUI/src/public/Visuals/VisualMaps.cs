@@ -31,7 +31,7 @@ namespace Tizen.NUI
         /// outputVisualMap.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use OutputVisualMap")]
+        [Obsolete("Deprecated in API9, will be removed in API11, Use OutputVisualMap")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected PropertyMap _outputVisualMap = null;
 
@@ -39,7 +39,7 @@ namespace Tizen.NUI
         /// The shader of the visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use Shader")]
+        [Obsolete("Deprecated in API9, will be removed in API11, Use Shader")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected PropertyMap _shader = null;
         //private PropertyMap _transform = null;
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         /// The premultipliedAlpha of the visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use PremultipliedAlpha")]
+        [Obsolete("Deprecated in API9, will be removed in API11, Use PremultipliedAlpha")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected bool? _premultipliedAlpha = null;
 
@@ -56,7 +56,7 @@ namespace Tizen.NUI
         /// The mixColor of the Visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use MixColor")]
+        [Obsolete("Deprecated in API9, will be removed in API11, Use MixColor")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected Color _mixColor = null;
 
@@ -64,7 +64,7 @@ namespace Tizen.NUI
         /// The opacity of the visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use Opacity")]
+        [Obsolete("Deprecated in API9, will be removed in API11, Use Opacity")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected float? _opacity = null;
 
@@ -72,7 +72,7 @@ namespace Tizen.NUI
         /// The FittingMode of the visual.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use VisualFittingMode")]
+        [Obsolete("Deprecated in API9, will be removed in API11, Use VisualFittingMode")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected VisualFittingModeType? _visualFittingMode = null;
 
@@ -85,7 +85,7 @@ namespace Tizen.NUI
         /// The map for visual.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please not use _comonlyUsedMap")]
+        [Obsolete("Deprecated in API9, will be removed in API11, Please not use _comonlyUsedMap")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         protected PropertyMap _commonlyUsedMap = null;
 
