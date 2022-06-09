@@ -96,8 +96,15 @@ namespace Tizen.NUI
                 };
             }
 
+            //Initialize Drag Window Position and Size based on Shadow View Position and Size
+            mDragWindow.SetPosition(new Position2D((int)shadowView.Position.X, (int)shadowView.Position.Y));
             mDragWindow.SetWindowSize(new Size(shadowWidth, shadowHeight));
+
+            //Make Shadow View Transparent
             shadowView.SetOpacity(0.9f);
+
+            //Make Position 0, 0 for Moving into Drag Window
+            shadowView.Position = new Position(0, 0);
 
             if (mShadowView)
             {
