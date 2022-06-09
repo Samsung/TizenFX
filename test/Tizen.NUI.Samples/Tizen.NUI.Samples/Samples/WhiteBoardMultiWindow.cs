@@ -207,11 +207,6 @@ namespace Tizen.NUI.Samples
       itemView.Add(child);
       itemView.Add(itemName);
 
-      GridLayout.SetHorizontalStretch(itemView, GridLayout.StretchFlags.Expand);
-      GridLayout.SetVerticalStretch(itemView, GridLayout.StretchFlags.Expand);
-      GridLayout.SetHorizontalAlignment(itemView, GridLayout.Alignment.Center);
-      GridLayout.SetVerticalAlignment(itemView, GridLayout.Alignment.Center);
-
       return itemView;
     }
 
@@ -520,10 +515,11 @@ namespace Tizen.NUI.Samples
         // Create All Apps Items
         var view = new View()
         {
-          Layout = new GridLayout()
+          Layout = new FlexLayout()
           {
-            Columns = 3,
-            Rows = 3,
+              Direction = FlexLayout.FlexDirection.Row,
+              WrapType = FlexLayout.FlexWrapType.Wrap,
+              LayoutWithTransition = true,
           },
           WidthSpecification = LayoutParamPolicies.MatchParent,
           HeightSpecification = LayoutParamPolicies.MatchParent,
