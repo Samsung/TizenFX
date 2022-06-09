@@ -93,7 +93,7 @@ namespace Tizen.NUI
     public class ScriptableProperty : System.Attribute
     {
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, Will be removed in API11, Please use Type")]
+        [Obsolete("Deprecated in API9, will be removed in API11, Use Type")]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
         public readonly ScriptableType type;
 
@@ -118,7 +118,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// ScriptableType. Read Writable, non-animatable property, event thread only.
+        /// ScriptableType: Read Writable, non-animatable property, event thread only.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ScriptableType Type => type;

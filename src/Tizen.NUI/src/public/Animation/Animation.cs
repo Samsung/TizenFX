@@ -435,7 +435,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the properties of the animation.
         /// </summary>
-        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use PropertyList instead")]
+        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, will be removed in API11, Use PropertyList instead")]
         [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This API will be deprecated, so suppressing the warning for now")]
         public string[] Properties
         {
@@ -452,7 +452,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the destination value for each property of the animation.
         /// </summary>
-        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use DestValueList instead")]
+        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, will be removed in API11, Use DestValueList instead")]
         [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This API will be deprecated, so suppressing the warning for now")]
         public string[] DestValue
         {
@@ -469,7 +469,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the start time for each property of the animation.
         /// </summary>
-        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use StartTimeList instead")]
+        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, will be removed in API11, Use StartTimeList instead")]
         [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This API will be deprecated, so suppressing the warning for now")]
         public int[] StartTime
         {
@@ -486,7 +486,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the end time for each property of the animation.
         /// </summary>
-        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, Will be removed in API11, Please use EndTimeList instead")]
+        //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, will be removed in API11, Use EndTimeList instead")]
         [SuppressMessage("Microsoft.Performance", "CA1819:PropertiesShouldNotReturnArrays", Justification = "This API will be deprecated, so suppressing the warning for now")]
         public int[] EndTime
         {
