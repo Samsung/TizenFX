@@ -44,7 +44,7 @@ namespace Tizen.NUI
 
         private const float DefaultHeight = 50;
         private const uint DefaultLineThickness = 5;
-        private const uint DefaultTouchThickness = 20;
+        private const uint DefaultTouchThickness = 0;
         private static readonly Color DefaultBackgroundColor = new Color(1, 1, 1, 0.3f);
         private static readonly Color DefaultClickedBackgroundColor = new Color(1, 1, 1, 0.4f);
         private static readonly Size2D DefaultMinSize = new Size2D(100, 0);
@@ -298,10 +298,33 @@ namespace Tizen.NUI
             {
                 return;
             }
-            this.borderView = borderView;
             borderView.BackgroundColor = DefaultBackgroundColor;
+            borderView.BorderlineColor = new Color(0.5f, 0.5f, 0.5f, 0.3f);
+            borderView.BorderlineWidth = 1.0f;
+            borderView.BorderlineOffset = -1f;
             borderView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
             borderView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
+
+            // Register touch event for effect when border is touched.
+            borderView.LeaveRequired = true;
+            borderView.TouchEvent += OnBorderViewTouched;
+            this.borderView = borderView;
+        }
+
+        private bool OnBorderViewTouched(object sender, View.TouchEventArgs e)
+        {
+            if (e.Touch.GetState(0) == PointStateType.Started)
+            {
+                backgroundColor = new Color(borderView.BackgroundColor);
+                borderView.BackgroundColor = DefaultClickedBackgroundColor;
+            }
+            else if (e.Touch.GetState(0) == PointStateType.Finished ||
+                     e.Touch.GetState(0) == PointStateType.Leave ||
+                     e.Touch.GetState(0) == PointStateType.Interrupted)
+            {
+                borderView.BackgroundColor = backgroundColor;
+            }
+            return true;
         }
 
         /// Determines the behavior of pinch gesture.
@@ -588,7 +611,6 @@ namespace Tizen.NUI
             }
         }
 
-
         /// <summary>
         /// Called after the border UI is created.
         /// </summary>
@@ -605,28 +627,6 @@ namespace Tizen.NUI
             borderPanGestureDetector = new PanGestureDetector();
             borderPanGestureDetector.Attach(borderView);
             borderPanGestureDetector.Detected += OnPanGestureDetected;
-
-            // Register touch event for effect when border is touched.
-            borderView.LeaveRequired = true;
-            borderView.TouchEvent += (s, e) =>
-            {
-                if (e.Touch.GetState(0) == PointStateType.Started)
-                {
-                    if (BorderWindow.IsMaximized() == false)
-                    {
-                        BorderWindow.Raise();
-                    }
-                    backgroundColor = new Color(borderView.BackgroundColor);
-                    borderView.BackgroundColor = DefaultClickedBackgroundColor;
-                }
-                else if (e.Touch.GetState(0) == PointStateType.Finished ||
-                         e.Touch.GetState(0) == PointStateType.Leave ||
-                         e.Touch.GetState(0) == PointStateType.Interrupted)
-                {
-                    borderView.BackgroundColor = backgroundColor;
-                }
-                return true;
-            };
 
             borderPinchGestureDetector = new PinchGestureDetector();
             borderPinchGestureDetector.Attach(borderView);
@@ -786,8 +786,6 @@ namespace Tizen.NUI
                 overlayTimer.Stop();
                 overlayTimer.Dispose();
                 overlayTimer = null;
-                BorderWindow?.GetBorderWindowBottomLayer().LowerToBottom();
-                borderView?.Show();
             }
             UpdateIcons();
         }
@@ -813,6 +811,29 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Called when there is a change in overlay mode.
+        /// </summary>
+        /// <param name="enabled">If true, borderView has entered overlayMode.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnOverlayMode(bool enabled)
+        {
+            if (borderView != null && OverlayMode == true)
+            {
+                if (enabled == true)
+                {
+                    backgroundColor = new Color(borderView.BackgroundColor);
+                    borderView.BackgroundColor = Color.Transparent;
+                    borderView.Hide();
+                }
+                else
+                {
+                    borderView.BackgroundColor = backgroundColor;
+                    borderView.Show();
+                }
+            }
+        }
+
+        /// <summary>
         /// Show the border when OverlayMode is true and the window is now Maximize.
         /// </summary>
         /// <param name="time">Time(ms) for borders to disappear again</param>
@@ -827,7 +848,6 @@ namespace Tizen.NUI
                     overlayTimer = new Timer(time);
                     overlayTimer.Tick += (s, e) =>
                     {
-                        BorderWindow.GetBorderWindowBottomLayer().LowerToBottom();
                         borderView?.Hide();
                         overlayTimer?.Stop();
                         overlayTimer?.Dispose();
@@ -835,7 +855,6 @@ namespace Tizen.NUI
                         return false;
                     };
                     overlayTimer.Start();
-                    BorderWindow.GetBorderWindowBottomLayer().RaiseToTop();
                     borderView?.Show();
                 }
                 else

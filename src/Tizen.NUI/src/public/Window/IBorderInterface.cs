@@ -136,5 +136,12 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void OnMinimize(bool isMinimized);
 
+        /// <summary>
+        /// Called when there is a change in overlay mode.
+        /// </summary>
+        /// <param name="enabled">If true, borderView has entered overlayMode.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void OnOverlayMode(bool enabled);
+
     }
 }
