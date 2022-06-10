@@ -588,7 +588,6 @@ namespace Tizen.NUI
             }
         }
 
-
         /// <summary>
         /// Called after the border UI is created.
         /// </summary>
@@ -608,26 +607,7 @@ namespace Tizen.NUI
 
             // Register touch event for effect when border is touched.
             borderView.LeaveRequired = true;
-            borderView.TouchEvent += (s, e) =>
-            {
-                if (e.Touch.GetState(0) == PointStateType.Started)
-                {
-                    if (BorderWindow.IsMaximized() == false)
-                    {
-                        BorderWindow.Raise();
-                    }
-                    backgroundColor = new Color(borderView.BackgroundColor);
-                    borderView.BackgroundColor = DefaultClickedBackgroundColor;
-                }
-                else if (e.Touch.GetState(0) == PointStateType.Finished ||
-                         e.Touch.GetState(0) == PointStateType.Leave ||
-                         e.Touch.GetState(0) == PointStateType.Interrupted)
-                {
-                    borderView.BackgroundColor = backgroundColor;
-                }
-                return true;
-            };
-
+            borderView.TouchEvent += OnBorderViewTouched;
             borderPinchGestureDetector = new PinchGestureDetector();
             borderPinchGestureDetector.Attach(borderView);
             borderPinchGestureDetector.Detected += OnPinchGestureDetected;
@@ -635,6 +615,26 @@ namespace Tizen.NUI
             AddInterceptGesture();
 
             UpdateIcons();
+        }
+
+        private bool OnBorderViewTouched(object sender, View.TouchEventArgs e)
+        {
+            if (e.Touch.GetState(0) == PointStateType.Started)
+            {
+                if (BorderWindow.IsMaximized() == false)
+                {
+                    BorderWindow.Raise();
+                }
+                backgroundColor = new Color(borderView.BackgroundColor);
+                borderView.BackgroundColor = DefaultClickedBackgroundColor;
+            }
+            else if (e.Touch.GetState(0) == PointStateType.Finished ||
+                     e.Touch.GetState(0) == PointStateType.Leave ||
+                     e.Touch.GetState(0) == PointStateType.Interrupted)
+            {
+                borderView.BackgroundColor = backgroundColor;
+            }
+            return true;
         }
 
 
@@ -786,8 +786,6 @@ namespace Tizen.NUI
                 overlayTimer.Stop();
                 overlayTimer.Dispose();
                 overlayTimer = null;
-                BorderWindow?.GetBorderWindowBottomLayer().LowerToBottom();
-                borderView?.Show();
             }
             UpdateIcons();
         }
@@ -827,7 +825,6 @@ namespace Tizen.NUI
                     overlayTimer = new Timer(time);
                     overlayTimer.Tick += (s, e) =>
                     {
-                        BorderWindow.GetBorderWindowBottomLayer().LowerToBottom();
                         borderView?.Hide();
                         overlayTimer?.Stop();
                         overlayTimer?.Dispose();
@@ -835,7 +832,6 @@ namespace Tizen.NUI
                         return false;
                     };
                     overlayTimer.Start();
-                    BorderWindow.GetBorderWindowBottomLayer().RaiseToTop();
                     borderView?.Show();
                 }
                 else

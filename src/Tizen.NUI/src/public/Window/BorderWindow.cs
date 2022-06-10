@@ -37,11 +37,9 @@ namespace Tizen.NUI
         private Layer borderWindowBottomLayer = null;
         private bool isBorderWindow = false;
 
-        private Color overlayBackgroundColor;
-
         // for border area
         private View rootView = null;
-        private View borderView = null;
+        private BorderView borderView = null;
         private View topView = null;
         private View contentsView = null;
         private View bottomView = null;
@@ -252,7 +250,7 @@ namespace Tizen.NUI
             };
 
             ushort padding = (ushort) borderInterface.BorderLineThickness;
-            borderView = new View()
+            borderView = new BorderView()
             {
                 GrabTouchAfterLeave = true,
                 WidthResizePolicy = ResizePolicyType.FillToParent,
@@ -367,23 +365,14 @@ namespace Tizen.NUI
         {
             if (borderInterface.OverlayMode == true)
             {
+                borderView?.OverlayMode(enable);
                 if (enable == true)
                 {
-                    if (borderView != null)
-                    {
-                        overlayBackgroundColor = new Color(borderView.BackgroundColor);
-                        borderView.BackgroundColor = Color.Transparent;
-                        borderView.Hide();
-                    }
+                    GetBorderWindowBottomLayer().RaiseToTop();
                 }
                 else
                 {
                     GetBorderWindowBottomLayer().LowerToBottom();
-                    if (borderView != null)
-                    {
-                        borderView.BackgroundColor = overlayBackgroundColor;
-                        borderView.Show();
-                    }
                 }
             }
         }
@@ -509,9 +498,53 @@ namespace Tizen.NUI
         #endregion //Structs
 
         #region Classes
+        // View class for border view.
+        private class BorderView : View
+        {
+            private bool overlayEnabled = false;
+            private Color borderBackgroundColor;
+
+            /// <summary>
+            /// Set whether or not it is in overlay mode.
+            /// The borderView's OverlayMode means that it is displayed at the top of the screen.
+            /// In this case, the borderView should pass the event so that lower layers can receive the event.
+            /// </summary>
+            /// <param name="enabled">The true if borderView is Overlay mode. false otherwise.</param>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public void OverlayMode(bool enabled)
+            {
+                overlayEnabled = enabled;
+
+                if (enabled == true)
+                {
+                    if (borderBackgroundColor == null)
+                    {
+                        borderBackgroundColor = new Color(BackgroundColor);
+                    }
+                    BackgroundColor = Color.Transparent;
+                    Hide();
+                }
+                else
+                {
+                    if (borderBackgroundColor != null)
+                    {
+                        BackgroundColor = borderBackgroundColor;
+                        borderBackgroundColor = null;
+                    }
+                    Show();                    
+                }
+            }
+            
+            protected override bool HitTest(Touch touch)
+            {
+                // If borderView is in overlay mode, pass the hittest.
+                if (overlayEnabled == true)
+                {
+                    return false;
+                }
+                return true;
+            }
+        }
         #endregion //Classes
     }
-
-
-
 }
