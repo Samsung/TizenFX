@@ -1985,7 +1985,6 @@ namespace Tizen.NUI.Components
             if (focusDebugScrollableBase)
             {
                 global::System.Text.StringBuilder debugMessage = new global::System.Text.StringBuilder("=========================================================\n");
-                debugMessage.Append("=========================================================\n");
                 debugMessage.Append($"GetNextFocusableView On: {this}:{this.ID}\n");
                 debugMessage.Append($"----------------Current: {currentFocusedView}:{currentFocusedView?.ID}\n");
                 debugMessage.Append($"-------------------Next: {nextFocusedView}:{nextFocusedView?.ID}\n");
@@ -2046,8 +2045,8 @@ namespace Tizen.NUI.Components
                     {
                         if (currentPosition == maxScrollDistance)
                         {
-                            Debug.WriteLineIf(focusDebugScrollableBase, $"return forward : {nextFocusedView}:{nextFocusedView?.ID}");
-                            return nextFocusedView;
+                            Debug.WriteLineIf(focusDebugScrollableBase, $"return null, escape scrollableBase on forward");
+                            return null;
                         }
                         targetPosition += stepDistance;
                         targetPosition = targetPosition > maxScrollDistance ? maxScrollDistance : targetPosition;
@@ -2057,8 +2056,8 @@ namespace Tizen.NUI.Components
                     {
                         if (currentPosition == 0)
                         {
-                            Debug.WriteLineIf(focusDebugScrollableBase, $"return backward : {nextFocusedView}:{nextFocusedView?.ID}");
-                            return nextFocusedView;
+                            Debug.WriteLineIf(focusDebugScrollableBase, $"return null, escape scrollableBase on backward");
+                            return null;
                         }
                         targetPosition -= stepDistance;
                         targetPosition = targetPosition < 0 ? 0 : targetPosition;
