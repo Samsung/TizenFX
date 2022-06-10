@@ -448,4 +448,26 @@ namespace Tizen.Multimedia.Util
 
         internal override int HeaderOffset => 4;
     }
+
+    /// <summary>
+    /// Provides the ability to decode the JPEG (Joint Photographic Experts Group) XL encoded images.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public class JpegXlDecoder : ImageDecoder
+    {
+        private static readonly byte[] _header = { (byte)'J', (byte)'X', (byte)'L'};
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="JpegXlDecoder"/> class.
+        /// </summary>
+        /// <remarks><see cref="ImageDecoder.InputFormat"/> will be the <see cref="ImageFormat.JpegXl"/>.</remarks>
+        /// <since_tizen> 10 </since_tizen>
+        public JpegXlDecoder() : base(ImageFormat.JpegXl)
+        {
+        }
+
+        internal override byte[] Header => _header;
+
+        internal override int HeaderOffset => 4;
+    }
 }
