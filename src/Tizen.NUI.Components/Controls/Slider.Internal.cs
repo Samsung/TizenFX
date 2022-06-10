@@ -230,7 +230,7 @@ namespace Tizen.NUI.Components
                 {
                     WidthResizePolicy = ResizePolicyType.Fixed,
                     HeightResizePolicy = ResizePolicyType.Fixed,
-		    AccessibilityHidden = true,
+                    AccessibilityHidden = true,
                 };
                 this.Add(lowIndicatorImage);
             }
