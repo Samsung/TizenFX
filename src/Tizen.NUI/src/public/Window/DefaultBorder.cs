@@ -557,7 +557,7 @@ namespace Tizen.NUI
                     }
                     borderView.CornerRadius = new Vector4(0, 0, 0, 0);
                     borderView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
-                    BorderWindow.SetTransparency(false);
+                    // BorderWindow.SetTransparency(false);
                 }
                 else
                 {
@@ -583,7 +583,7 @@ namespace Tizen.NUI
                     }
                     borderView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
                     borderView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
-                    BorderWindow.SetTransparency(true);
+                    // BorderWindow.SetTransparency(true);
                 }
             }
         }
