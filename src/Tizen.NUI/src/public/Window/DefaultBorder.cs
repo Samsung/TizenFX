@@ -300,8 +300,12 @@ namespace Tizen.NUI
             }
             this.borderView = borderView;
             borderView.BackgroundColor = DefaultBackgroundColor;
+            borderView.BorderlineColor = new Color(0.5f, 0.5f, 0.5f, 0.3f);
+            borderView.BorderlineWidth = 1.0f;
+            borderView.BorderlineOffset = -1f;
             borderView.CornerRadius = new Vector4(0.03f, 0.03f, 0.03f, 0.03f);
             borderView.CornerRadiusPolicy = VisualTransformPolicyType.Relative;
+
         }
 
         /// Determines the behavior of pinch gesture.
