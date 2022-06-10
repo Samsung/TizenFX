@@ -177,7 +177,23 @@ namespace Tizen.NUI.Components
 
                 if (newValue != null)
                 {
-                    instance.curValue = (float)newValue;
+                    float value = (float)newValue;
+                    if (value < instance.minValue)
+                    {
+                        instance.curValue = instance.minValue;
+                    }
+                    else if (value > instance.maxValue)
+                    {
+                        instance.curValue = instance.maxValue;
+                    }
+                    else
+                    {
+                        instance.curValue = value;
+                    }
+
+                    instance.sliderValueChangedHandler?.Invoke(instance, new SliderValueChangedEventArgs {
+                        CurrentValue = instance.curValue
+                        });
                     if (Accessibility.Accessibility.IsEnabled && instance.IsHighlighted)
                     {
                         instance.EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
@@ -1460,16 +1476,13 @@ namespace Tizen.NUI.Components
                             isPressed = true;
                             if (IsDiscrete)
                             {
-                                float value = CurrentValue - discreteValue;
-                                CurrentValue = value < MinValue ? MinValue : value;
+                                float value = curValue - discreteValue;
+                                CurrentValue = value;
                             }
                             else
                             {
                                 CurrentValue -= 1;
                             }
-                            sliderValueChangedHandler?.Invoke(this, new SliderValueChangedEventArgs {
-                                CurrentValue = curValue
-                                });
                         }
                         return true; // Consumed
                     }
@@ -1484,16 +1497,13 @@ namespace Tizen.NUI.Components
                             isPressed = true;
                             if (IsDiscrete)
                             {
-                                float value = CurrentValue + discreteValue;
-                                CurrentValue = value > MaxValue ? MaxValue : value;
+                                float value = curValue + discreteValue;
+                                CurrentValue = value;
                             }
                             else
                             {
                                 CurrentValue += 1;
                             }
-                            sliderValueChangedHandler?.Invoke(this, new SliderValueChangedEventArgs {
-                                CurrentValue = curValue
-                                });
                         }
                         return true; // Consumed
                     }
@@ -1621,10 +1631,6 @@ namespace Tizen.NUI.Components
             if (current >= MinValue && current <= MaxValue)
             {
                 CurrentValue = current;
-                if (sliderValueChangedHandler != null)
-                {
-                    sliderValueChangedHandler(this, new SliderValueChangedEventArgs { CurrentValue = current });
-                }
                 return true;
             }
 
@@ -1762,13 +1768,6 @@ namespace Tizen.NUI.Components
             {
                 this.CurrentValue = CalculateDiscreteValue(this.CurrentValue);
             }
-
-            if (sliderValueChangedHandler != null)
-            {
-                SliderValueChangedEventArgs args = new SliderValueChangedEventArgs();
-                args.CurrentValue = this.CurrentValue;
-                sliderValueChangedHandler(this, args);
-            }
         }
 
         private bool OnTouchEventForTrack(object source, TouchEventArgs e)
@@ -1780,7 +1779,7 @@ namespace Tizen.NUI.Components
 
             if (this.FocusableInTouch == false && editMode == false)
             {
-                isFocused = false;   
+                isFocused = false;
             }
 
             PointStateType state = e.Touch.GetState(0);
@@ -1855,13 +1854,6 @@ namespace Tizen.NUI.Components
                 if (IsDiscrete)
                 {
                     this.CurrentValue = CalculateDiscreteValue(this.CurrentValue);
-                }
-
-                if (null != sliderValueChangedHandler)
-                {
-                    SliderValueChangedEventArgs args = new SliderValueChangedEventArgs();
-                    args.CurrentValue = this.CurrentValue;
-                    sliderValueChangedHandler(this, args);
                 }
             }
         }
