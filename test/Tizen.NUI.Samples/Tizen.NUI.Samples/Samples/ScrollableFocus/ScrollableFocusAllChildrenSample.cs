@@ -11,7 +11,7 @@ namespace Tizen.NUI.Samples
         int SCROLLMAX = 50;
         public View root;
 
-        private string GetLabelText(View parent)
+        private string GetChildText(View parent)
         {
             if (parent != null)
             {
@@ -23,12 +23,23 @@ namespace Tizen.NUI.Samples
                     }
                 }
             }
-            else
-            {
-                return "";
-            }
 
             return "";
+        }
+
+        private string GetLabelText(int i)
+        {
+            switch (i)
+            {
+                case 0:
+                    return "[1st]";
+                case 1:
+                    return "[2nd]";
+                case 2:
+                    return "[3rd]";
+                default:
+                    return $"[{i+1}th]";
+            }
         }
 
         public void Activate()
@@ -67,13 +78,13 @@ namespace Tizen.NUI.Samples
                 if (e.Previous != null)
                 {
                     var prevView = e.Previous;
-                    prev = $"{prevView.Name}[{prevView.ID}]{GetLabelText(prevView)}";
+                    prev = $"{prevView.Name}[{prevView.ID}]{GetChildText(prevView)}";
                 }
 
                 if (e.Current != null)
                 {
                     var curView = e.Current;
-                    cur = $"{curView.Name}[{curView.ID}]{GetLabelText(curView)}";
+                    cur = $"{curView.Name}[{curView.ID}]{GetChildText(curView)}";
                 }
 
                 focusInfo.Text = $"Prev:{prev} Current:{cur}";
@@ -120,7 +131,7 @@ namespace Tizen.NUI.Samples
                 };
                 var label = new TextLabel()
                 {
-                    Text = (i == 1)? "[1st]":(i == 2)? "[2nd]":$"[{i}th]",
+                    Text = GetLabelText(i),
                     PointSize = 20,
                 };
                 colorItem.Add(label);
@@ -191,7 +202,7 @@ namespace Tizen.NUI.Samples
                 };
                 var label = new TextLabel()
                 {
-                    Text = (i == 1)? "[1st]":(i == 2)? "[2nd]":$"[{i}th]",
+                    Text = GetLabelText(i),
                     PointSize = 20,
                 };
                 colorItem.Add(label);
