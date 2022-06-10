@@ -153,7 +153,7 @@ namespace Tizen.NUI
         public DefaultBorder()
         {
             BorderLineThickness = DefaultLineThickness;
-            TouchThickness = DefaultTouchThickness;
+            TouchThickness = 0;
             BorderHeight = DefaultHeight;
             MinSize = DefaultMinSize;
             OverlayMode = false;
