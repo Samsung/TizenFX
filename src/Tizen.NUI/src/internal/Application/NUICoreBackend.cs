@@ -96,6 +96,12 @@ namespace Tizen.NUI
         /// <param name="handler">The event callback.</param>
         public void AddEventHandler(EventType evType, Action handler)
         {
+            if (eventTypesWaitForInvoke.Contains(evType))
+            {
+                eventTypesWaitForInvoke.Remove(evType);
+                handler.Invoke();
+            }
+
             Handlers.Add(evType, handler);
         }
 
@@ -147,6 +153,36 @@ namespace Tizen.NUI
             return application.AddIdle(func);
         }
 
+        public void PreRun()
+        {
+            TizenSynchronizationContext.Initialize();
+            string[] args = new string[1];
+
+            if (Tizen.Applications.Application.Current?.ApplicationInfo != null)
+            {
+                args[0] = Tizen.Applications.Application.Current.ApplicationInfo.ExecutablePath;
+            }
+            if (string.IsNullOrEmpty(args[0]))
+            {
+                args[0] = this.GetType().Assembly.FullName.Replace(" ", "");
+            }
+
+            application = Application.NewApplication(args, stylesheet, windowMode);
+
+            //application.BatteryLow += OnBatteryLow;
+            //application.LanguageChanged += OnLanguageChanged;
+            //application.MemoryLow += OnMemoryLow;
+            //application.RegionChanged += OnRegionChanged;
+
+            application.Initialized += OnInitialized;
+            //application.Resumed += OnResumed;
+            //application.Terminating += OnTerminated;
+            //application.Paused += OnPaused;
+            //application.AppControl += OnAppControl;
+
+            application.PreMainLoop();
+        }
+
         /// <summary>
         /// The Run application.
         /// </summary>
@@ -168,38 +204,46 @@ namespace Tizen.NUI
             {
                 args[0] = this.GetType().Assembly.FullName.Replace(" ", "");
             }
+			Tizen.Tracer.End();
 
-            if (defaultWindowType != WindowType.Normal)
+            if (null == application)
             {
-                application = Application.NewApplication(stylesheet, windowMode, defaultWindowType);
-            }
-            else
-            {
-                if (windowRectangle != null)
+                if (defaultWindowType != WindowType.Normal)
                 {
-                    application = Application.NewApplication(args, stylesheet, windowMode, windowRectangle);
+                    application = Application.NewApplication(stylesheet, windowMode, defaultWindowType);
                 }
                 else
                 {
-                    application = Application.NewApplication(args, stylesheet, windowMode);
+                    if (windowRectangle != null)
+                    {
+                        application = Application.NewApplication(args, stylesheet, windowMode, windowRectangle);
+                    }
+                    else
+                    {
+                        application = Application.NewApplication(args, stylesheet, windowMode);
+                    }
                 }
+
+                Tizen.Tracer.Begin("[NUI] NUICorebackend Run(): add application related events");
+                application.BatteryLow += OnBatteryLow;
+                application.LanguageChanged += OnLanguageChanged;
+                application.MemoryLow += OnMemoryLow;
+                application.RegionChanged += OnRegionChanged;
+
+                application.Initialized += OnInitialized;
+                application.Resumed += OnResumed;
+                application.Terminating += OnTerminated;
+                application.Paused += OnPaused;
+                application.AppControl += OnAppControl;
+                Tizen.Tracer.End();
             }
-            Tizen.Tracer.End();
-
-            Tizen.Tracer.Begin("[NUI] NUICorebackend Run(): add application related events");
-            application.BatteryLow += OnBatteryLow;
-            application.LanguageChanged += OnLanguageChanged;
-            application.MemoryLow += OnMemoryLow;
-            application.RegionChanged += OnRegionChanged;
-
-            application.Initialized += OnInitialized;
-            application.Resumed += OnResumed;
-            application.Terminating += OnTerminated;
-            application.Paused += OnPaused;
-            application.AppControl += OnAppControl;
-            Tizen.Tracer.End();
 
             Tizen.Tracer.End();
+
+            foreach (var type in eventTypesWaitForInvoke)
+            {
+                (Handlers[type] as Action)?.Invoke();
+            }
 
             application.MainLoop();
             application.Dispose();
@@ -288,6 +332,21 @@ namespace Tizen.NUI
             }
         }
 
+        private void InvokeHandler(EventType type)
+        {
+            if (Handlers.ContainsKey(type))
+            {
+                var action = Handlers[type] as Action;
+                action?.Invoke();
+            }
+            else
+            {
+                eventTypesWaitForInvoke.Add(type);
+            }
+        }
+
+        private List<EventType> eventTypesWaitForInvoke = new List<EventType>();
+
         /// <summary>
         /// The Initialized event callback function.
         /// </summary>
@@ -300,15 +359,13 @@ namespace Tizen.NUI
             Log.Info("NUI", "NUICorebackend OnPreCreated Called");
 
             Tizen.Tracer.Begin("[NUI] OnInitialized(): OnPreCreated event handler");
-            var preCreateHandler = Handlers[EventType.PreCreated] as Action;
-            preCreateHandler?.Invoke();
+            InvokeHandler(EventType.PreCreated);
             Tizen.Tracer.End();
 
             Log.Info("NUI", "NUICorebackend OnCreate Called");
 
             Tizen.Tracer.Begin("[NUI] OnInitialized(): OnCreated event handler");
-            var createHandler = Handlers[EventType.Created] as Action;
-            createHandler?.Invoke();
+            InvokeHandler(EventType.Created);
             Tizen.Tracer.End();
 
             Tizen.Tracer.End();

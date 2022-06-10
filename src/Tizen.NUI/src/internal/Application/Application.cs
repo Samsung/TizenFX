@@ -1235,6 +1235,12 @@ namespace Tizen.NUI
             return ret;
         }
 
+        public void PreMainLoop()
+        {
+            NDalicPINVOKE.ApplicationPreMainLoop(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         public void MainLoop()
         {
             NDalicPINVOKE.ApplicationMainLoop(SwigCPtr);

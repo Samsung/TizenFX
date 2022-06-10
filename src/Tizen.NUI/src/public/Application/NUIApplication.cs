@@ -23,6 +23,9 @@ using System.Reflection;
 using Tizen.Applications;
 using Tizen.Applications.CoreBackend;
 using Tizen.NUI.Xaml;
+using System.IO;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
@@ -61,9 +64,27 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
-        public NUIApplication() : base(new NUICoreBackend())
+        public NUIApplication() : base(GetCoreBackend())
         {
         }
+
+        private static NUICoreBackend GetCoreBackend()
+        {
+            NUICoreBackend ret;
+
+            if (0 < backendBuffer.Count)
+            {
+                ret = backendBuffer.Dequeue();
+            }
+            else
+            {
+                ret = new NUICoreBackend();
+            }
+
+            return ret;
+        }
+
+        private static Queue<NUICoreBackend> backendBuffer = new Queue<NUICoreBackend>();
 
         /// <summary>
         /// The constructor with window size and position.
@@ -353,6 +374,14 @@ namespace Tizen.NUI
         public static void RegisterAssembly(Assembly assembly)
         {
             XamlParser.s_assemblies.Add(assembly);
+        }
+
+        static public void PreRun()
+        {
+            var backend = new NUICoreBackend();
+            backendBuffer.Enqueue(backend);
+
+            backend.PreRun();
         }
 
         /// <summary>
