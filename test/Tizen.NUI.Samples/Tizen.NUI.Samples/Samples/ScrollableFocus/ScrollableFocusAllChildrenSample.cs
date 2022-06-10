@@ -11,6 +11,26 @@ namespace Tizen.NUI.Samples
         int SCROLLMAX = 50;
         public View root;
 
+        private string GetLabelText(View parent)
+        {
+            if (parent != null)
+            {
+                foreach(View child in parent.Children)
+                {
+                    if (child is TextLabel label)
+                    {
+                        return $"{label.Text}";
+                    }
+                }
+            }
+            else
+            {
+                return "";
+            }
+
+            return "";
+        }
+
         public void Activate()
         {
 
@@ -31,7 +51,33 @@ namespace Tizen.NUI.Samples
             };
             window.Add(root);
 
+            var focusInfo = new TextLabel()
+            {
+                BackgroundColor = Color.Yellow,
+                TextColor = Color.Red,
+                Text = "Prev:[N/A] Current:[N/A]"
+            };
+            root.Add(focusInfo);
+
             FocusManager.Instance.EnableDefaultAlgorithm(true);
+            FocusManager.Instance.FocusChanged += (object s, FocusManager.FocusChangedEventArgs e) =>
+            {
+                string prev = "[N/A]";
+                string cur = "[N/A]";
+                if (e.Previous != null)
+                {
+                    var prevView = e.Previous;
+                    prev = $"{prevView.Name}[{prevView.ID}]{GetLabelText(prevView)}";
+                }
+
+                if (e.Current != null)
+                {
+                    var curView = e.Current;
+                    cur = $"{curView.Name}[{curView.ID}]{GetLabelText(curView)}";
+                }
+
+                focusInfo.Text = $"Prev:{prev} Current:{cur}";
+            };
 
             var top = new Button()
             {
@@ -51,7 +97,7 @@ namespace Tizen.NUI.Samples
                 {
                     LinearOrientation = LinearLayout.Orientation.Vertical,
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    CellPadding = new Size2D(10, 10),
+                    CellPadding = new Size2D(10, 30),
                 }
             };
             root.Add(verticalScrollView);
@@ -74,7 +120,7 @@ namespace Tizen.NUI.Samples
                 };
                 var label = new TextLabel()
                 {
-                    Text = $"[{i}]",
+                    Text = (i == 1)? "[1st]":(i == 2)? "[2nd]":$"[{i}th]",
                     PointSize = 20,
                 };
                 colorItem.Add(label);
@@ -122,7 +168,7 @@ namespace Tizen.NUI.Samples
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                     VerticalAlignment = VerticalAlignment.Center,
-                    CellPadding = new Size2D(10, 10),
+                    CellPadding = new Size2D(30, 10),
                 }
             };
             horizontalLayout.Add(horizontalScrollView);
@@ -145,7 +191,7 @@ namespace Tizen.NUI.Samples
                 };
                 var label = new TextLabel()
                 {
-                    Text = $"[{i}]",
+                    Text = (i == 1)? "[1st]":(i == 2)? "[2nd]":$"[{i}th]",
                     PointSize = 20,
                 };
                 colorItem.Add(label);

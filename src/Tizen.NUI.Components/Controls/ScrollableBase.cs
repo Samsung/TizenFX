@@ -148,6 +148,7 @@ namespace Tizen.NUI.Components
     public partial class ScrollableBase : Control
     {
         static bool LayoutDebugScrollableBase = false; // Debug flag
+        static bool focusDebugScrollableBase = false; // Debug flag
         private Direction mScrollingDirection = Direction.Vertical;
         private bool mScrollEnabled = true;
         private int mScrollDuration = 125;
@@ -1979,8 +1980,19 @@ namespace Tizen.NUI.Components
             bool isHorizontal = (ScrollingDirection == Direction.Horizontal);
             float targetPosition = -(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
             float stepDistance = (stepScrollDistance != 0? stepScrollDistance : (isHorizontal ? Size.Width * 0.25f :  Size.Height * 0.25f));
-
             View nextFocusedView = FocusManager.Instance.GetNearestFocusableActor(this, currentFocusedView, direction);
+
+            if (focusDebugScrollableBase)
+            {
+                global::System.Text.StringBuilder debugMessage = new global::System.Text.StringBuilder("=========================================================\n");
+                debugMessage.Append("=========================================================\n");
+                debugMessage.Append($"GetNextFocusableView On: {this}:{this.ID}\n");
+                debugMessage.Append($"----------------Current: {currentFocusedView}:{currentFocusedView?.ID}\n");
+                debugMessage.Append($"-------------------Next: {nextFocusedView}:{nextFocusedView?.ID}\n");
+                debugMessage.Append($"--------------Direction: {direction}\n");
+                debugMessage.Append("=========================================================");
+                Debug.WriteLineIf(focusDebugScrollableBase, debugMessage);
+            }
 
             if (nextFocusedView != null)
             {
@@ -1992,6 +2004,16 @@ namespace Tizen.NUI.Components
                     }
                     else
                     {
+                        // Fallback to current focus or scrollableBase till next focus visible in scrollable.
+                        if (null != currentFocusedView && null != FindDescendantByID(currentFocusedView.ID))
+                        {
+                            nextFocusedView = currentFocusedView;
+                        }
+                        else
+                        {
+                            nextFocusedView = this;
+                        }
+
                         if ((isHorizontal && direction == View.FocusDirection.Right) ||
                             (!isHorizontal && direction == View.FocusDirection.Down))
                         {
@@ -2012,29 +2034,45 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if((isHorizontal && direction == View.FocusDirection.Right) ||
-                    (!isHorizontal && direction == View.FocusDirection.Down))
-                {
-                    targetPosition += stepDistance;
-                    targetPosition = targetPosition > maxScrollDistance ? maxScrollDistance : targetPosition;
+                bool forward = ((isHorizontal && direction == View.FocusDirection.Right) ||
+                                (!isHorizontal && direction == View.FocusDirection.Down));
+                bool backward = ((isHorizontal && direction == View.FocusDirection.Left) ||
+                                 (!isHorizontal && direction == View.FocusDirection.Up));
 
-                }
-                else if((isHorizontal && direction == View.FocusDirection.Left) ||
-                        (!isHorizontal && direction == View.FocusDirection.Up))
+                if (forward || backward)
                 {
-                    targetPosition -= stepDistance;
-                    targetPosition = targetPosition < 0 ? 0 : targetPosition;
-                }
+                    float currentPosition = targetPosition;
+                    if (forward)
+                    {
+                        if (currentPosition == maxScrollDistance)
+                        {
+                            Debug.WriteLineIf(focusDebugScrollableBase, $"return forward : {nextFocusedView}:{nextFocusedView?.ID}");
+                            return nextFocusedView;
+                        }
+                        targetPosition += stepDistance;
+                        targetPosition = targetPosition > maxScrollDistance ? maxScrollDistance : targetPosition;
 
-                ScrollTo(targetPosition, true);
+                    }
+                    else if (backward)
+                    {
+                        if (currentPosition == 0)
+                        {
+                            Debug.WriteLineIf(focusDebugScrollableBase, $"return backward : {nextFocusedView}:{nextFocusedView?.ID}");
+                            return nextFocusedView;
+                        }
+                        targetPosition -= stepDistance;
+                        targetPosition = targetPosition < 0 ? 0 : targetPosition;
+                    }
 
-                // End of scroll. escape.
-                if ((targetPosition == 0 || targetPosition == maxScrollDistance) == false)
-                {
+                    ScrollTo(targetPosition, true);
+
+                    Debug.WriteLineIf(focusDebugScrollableBase, $"return {this}:{this.ID} ScrollTo :({targetPosition})");
                     return this;
                 }
 
             }
+
+            Debug.WriteLineIf(focusDebugScrollableBase, $"return end : {nextFocusedView}:{nextFocusedView?.ID}");
             return nextFocusedView;
         }
 
