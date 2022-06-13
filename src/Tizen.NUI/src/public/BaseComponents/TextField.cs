@@ -95,13 +95,6 @@ namespace Tizen.NUI.BaseComponents
         internal TextField(TextField handle, bool shown = true) : this(Interop.TextField.NewTextField(TextField.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if (!shown)
-            {
-                SetVisible(false);
-            }
-
-            TextChanged += TextFieldTextChanged;
         }
 
         internal enum ExceedPolicyType
