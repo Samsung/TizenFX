@@ -90,5 +90,26 @@ namespace Tizen.MachineLearning.Train
             }
             disposed = true;
         }
+
+        /// <summary>
+        /// Sets the neural network layer Property.
+        /// </summary>
+        /// <remarks>
+        /// Use this function to set neural network layer Property.
+        /// </remarks>
+        /// <param name="property">property for layer.</param>
+        /// <since_tizen> 10 </since_tizen>
+        public void SetProperty(params string[] property)
+        {
+            string propertyParams = null;
+
+            if (property.Length > 0) {
+                propertyParams = string.Join("|", property);
+                Log.Info(NNTrainer.Tag, "Set property:"+ propertyParams);
+            }
+
+            NNTrainerError ret = Interop.Layer.SetProperty(handle, propertyParams);
+            NNTrainer.CheckException(ret, "Failed to set property");
+        }
     } 
 }

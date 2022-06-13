@@ -121,7 +121,7 @@ namespace Tizen.MachineLearning.Train
         {
             string compileParams = null;
 
-            if (hyperparameter != null) {
+            if (hyperparameter.Length > 0) {
                 compileParams = string.Join("|", hyperparameter);
                 Log.Info(NNTrainer.Tag, "Compile hyperparameter:"+ compileParams);
             }
@@ -144,7 +144,7 @@ namespace Tizen.MachineLearning.Train
         {
             string runParams = null;
 
-            if (hyperparameter != null) {
+            if (hyperparameter.Length > 0) {
                 runParams = string.Join("|", hyperparameter);
                 Log.Info(NNTrainer.Tag, "Run hyperparameter:"+ runParams);
             }
@@ -162,9 +162,9 @@ namespace Tizen.MachineLearning.Train
         /// <param name="verbosity">Verbose level of the summary.</param>
         /// <param name="retSummary">On return, a string value. The summary of the current model. Avoid logic to parse and exploit summary if possible.</param>
         /// <since_tizen> 10 </since_tizen>
-        public void GetSummaryUtil(NNTrainerSummaryType verbosity, out string retSummary)
+        public void GetSummary(NNTrainerSummaryType verbosity, out string retSummary)
         {
-            NNTrainerError ret = Interop.Model.GetSummaryUtil(handle, verbosity, out string summary);
+            NNTrainerError ret = Interop.Model.GetSummary(handle, verbosity, out string summary);
             NNTrainer.CheckException(ret, "Failed to get summary");
 
             retSummary = summary;
