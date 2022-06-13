@@ -1986,24 +1986,22 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// Enumeration for the type of InputFilter. <br />
+    /// Enumeration for the type of InputFilter.
     /// </summary>
     /// <remarks>
-    /// The type of InputFilter that is stored in the <see cref="Tizen.NUI.BaseComponents.InputFilteredEventArgs"/> when the input is filtered. <br />
+    /// The type of InputFilter that is stored in the <see cref="Tizen.NUI.BaseComponents.InputFilteredEventArgs"/> when the input is filtered.
     /// </remarks>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 9 </since_tizen>
     public enum InputFilterType
     {
         /// <summary>
         /// The type of InputFilter is Accept.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         Accept,
 
         /// <summary>
         /// The type of InputFilter is Reject.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         Reject
     }
 
@@ -2046,19 +2044,17 @@ namespace Tizen.NUI
         /// The InputFilter struct is used as an argument to SetInputFilter and GetInputFilter methods. <br />
         /// See <see cref="Tizen.NUI.BaseComponents.TextField.SetInputFilter"/>, <see cref="Tizen.NUI.BaseComponents.TextField.GetInputFilter"/>, <see cref="Tizen.NUI.BaseComponents.TextEditor.SetInputFilter"/> and <see cref="Tizen.NUI.BaseComponents.TextEditor.GetInputFilter"/>. <br />
         /// </remarks>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 9 </since_tizen>
         public struct InputFilter
         {
             /// <summary>
             /// A regular expression in the set of characters to be accepted by the inputFilter.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public string Accepted { get; set; }
 
             /// <summary>
             /// A regular expression in the set of characters to be rejected by the inputFilter.
             /// </summary>
-            [EditorBrowsable(EditorBrowsableState.Never)]
             public string Rejected { get; set; }
         }
 
