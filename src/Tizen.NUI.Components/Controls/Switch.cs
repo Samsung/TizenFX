@@ -336,7 +336,7 @@ namespace Tizen.NUI.Components
         {
             var icon = new ImageView()
             {
-                AccessibilityHighlightable = false,
+                AccessibilityHidden = true,
                 EnableControlStatePropagation = true
             };
 
