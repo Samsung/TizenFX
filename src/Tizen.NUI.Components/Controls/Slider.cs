@@ -1091,14 +1091,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return highIndicatorText?.Size;
+                return highIndicatorSize;
             }
             set
             {
-                if (null != highIndicatorText)
-                {
-                    highIndicatorText.Size = value;
-                }
+                highIndicatorSize = value;
+                UpdateHighIndicatorSize();
+                UpdateBgTrackSize();
+                UpdateBgTrackPosition();
+                UpdateValue();
             }
         }
 
@@ -1732,6 +1733,7 @@ namespace Tizen.NUI.Components
             UpdateBgTrackPosition();
             UpdateWarningTrackSize();
             UpdateLowIndicatorSize();
+            UpdateHighIndicatorSize();
             UpdateValue();
         }
 
@@ -1751,13 +1753,13 @@ namespace Tizen.NUI.Components
             {
                 this.CurrentValue = minValue;
             }
-            else if (currentSlidedOffset >= BgTrackLength())
+            else if (currentSlidedOffset >= GetBgTrackLength())
             {
                 this.CurrentValue = maxValue;
             }
             else
             {
-                int bgTrackLength = BgTrackLength();
+                int bgTrackLength = GetBgTrackLength();
                 if (bgTrackLength != 0)
                 {
                     this.CurrentValue = ((currentSlidedOffset / (float)bgTrackLength) * (float)(maxValue - minValue)) + minValue;
@@ -1837,14 +1839,14 @@ namespace Tizen.NUI.Components
 
         private void CalculateCurrentValueByTouch(Vector2 pos)
         {
-            int bgTrackLength = BgTrackLength();
+            int bgTrackLength = GetBgTrackLength();
             if (direction == DirectionType.Horizontal)
             {
-                currentSlidedOffset = pos.X;
+                currentSlidedOffset = pos.X - GetBgTrackLowIndicatorOffset();
             }
             else if (direction == DirectionType.Vertical)
             {
-                currentSlidedOffset = bgTrackLength - pos.Y;
+                currentSlidedOffset = this.Size2D.Height - pos.Y - GetBgTrackLowIndicatorOffset();
             }
 
             if (bgTrackLength != 0)
