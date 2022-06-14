@@ -21,6 +21,7 @@ using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Timers;
 using Tizen.Applications.CoreBackend;
 
@@ -302,6 +303,27 @@ namespace Tizen.Applications
             }
 
             GSourceManager.Post(runner);
+        }
+
+        /// <summary>
+        /// Dispatches an asynchronous message to the main loop of the CoreTask.
+        /// </summary>
+        /// <typeparam name="T">The type of the result.</typeparam>
+        /// <param name="runner">The runner callback.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
+        /// <returns>A task with the result.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public async Task<T> Post<T>(Func<T> runner)
+        {
+            if (runner == null)
+            {
+                throw new ArgumentNullException(nameof(runner));
+            }
+
+            var task = new TaskCompletionSource<T>();
+            GSourceManager.Post(() => { task.SetResult(runner()); });
+            return await task.Task.ConfigureAwait(false);
         }
 
         /// <summary>
