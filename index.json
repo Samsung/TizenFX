@@ -76029,6 +76029,11 @@
     "title": "Class ImageView.ResourceReadyEventArgs",
     "keywords": ""
   },
+  "API9/api/Tizen.NUI.BaseComponents.InputFilteredEventArgs.html": {
+    "href": "API9/api/Tizen.NUI.BaseComponents.InputFilteredEventArgs.html",
+    "title": "Class InputFilteredEventArgs",
+    "keywords": ""
+  },
   "API9/api/Tizen.NUI.BaseComponents.LayoutParamPolicies.html": {
     "href": "API9/api/Tizen.NUI.BaseComponents.LayoutParamPolicies.html",
     "title": "Class LayoutParamPolicies",
@@ -77149,6 +77154,11 @@
     "title": "Struct ImageVisualProperty",
     "keywords": ""
   },
+  "API9/api/Tizen.NUI.InputFilterType.html": {
+    "href": "API9/api/Tizen.NUI.InputFilterType.html",
+    "title": "Enum InputFilterType",
+    "keywords": ""
+  },
   "API9/api/Tizen.NUI.InputMethod.ActionButtonTitleType.html": {
     "href": "API9/api/Tizen.NUI.InputMethod.ActionButtonTitleType.html",
     "title": "Enum InputMethod.ActionButtonTitleType",
@@ -77757,6 +77767,16 @@
   "API9/api/Tizen.NUI.TapGesture.html": {
     "href": "API9/api/Tizen.NUI.TapGesture.html",
     "title": "Class TapGesture",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.Text.html": {
+    "href": "API9/api/Tizen.NUI.Text.html",
+    "title": "Namespace Tizen.NUI.Text",
+    "keywords": ""
+  },
+  "API9/api/Tizen.NUI.Text.InputFilter.html": {
+    "href": "API9/api/Tizen.NUI.Text.InputFilter.html",
+    "title": "Struct InputFilter",
     "keywords": ""
   },
   "API9/api/Tizen.NUI.TextDirection.html": {
