@@ -136,7 +136,7 @@ namespace Tizen.Applications
         /// <typeparam name="T">The type of the result. </typeparam>
         /// <param name="runner">The runner callback.</param>
         /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
-        /// <returns>A task with the result</returns>
+        /// <returns>A task with the result.</returns>
         /// <since_tizen> 10 </since_tizen>
 
         public async Task<T> Post<T>(Func<T> runner)

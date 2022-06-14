@@ -322,7 +322,7 @@ namespace Tizen.Applications
             }
 
             var task = new TaskCompletionSource<T>();
-            GSourceManager.Post(() => { task.SetResult(runner()); }, true);
+            GSourceManager.Post(() => { task.SetResult(runner()); });
             return await task.Task.ConfigureAwait(false);
         }
 
