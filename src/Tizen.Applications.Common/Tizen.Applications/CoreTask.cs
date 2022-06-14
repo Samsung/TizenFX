@@ -15,10 +15,8 @@
  */
 
 using System;
-using System.Collections.Concurrent;
 using System.ComponentModel;
-using System.Threading;
-using static Tizen.Applications.TizenSynchronizationContext;
+using System.Threading.Tasks;
 
 namespace Tizen.Applications
 {
@@ -120,7 +118,7 @@ namespace Tizen.Applications
         /// Dispatches an asynchronous message to the main loop of the CoreApplication.
         /// </summary>
         /// <param name="runner">The runner callback.</param>
-        /// /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
         /// <since_tizen> 10 </since_tizen>
         public void Post(Action runner)
         {
@@ -130,6 +128,27 @@ namespace Tizen.Applications
             }
 
             GSourceManager.Post(runner, true);
+        }
+
+        /// <summary>
+        /// Dispatches an asynchronous message to the main loop of the CoreApplication.
+        /// </summary>
+        /// <typeparam name="T">The type of the result. </typeparam>
+        /// <param name="runner">The runner callback.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
+        /// <returns>A task with the result</returns>
+        /// <since_tizen> 10 </since_tizen>
+
+        public async Task<T> Post<T>(Func<T> runner)
+        {
+            if (runner == null)
+            {
+                throw new ArgumentNullException(nameof(runner));
+            }
+
+            var task = new TaskCompletionSource<T>();
+            GSourceManager.Post(() => { task.SetResult(runner()); }, true);
+            return await task.Task.ConfigureAwait(false);
         }
     }
 }
