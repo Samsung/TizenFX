@@ -342,6 +342,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Set a maximum duration of motion event that is able to live on the pan gesture event queue.
+        /// If duration exceed it, the motion event is discarded.
+        /// </summary>
+        /// <param name="maximumAgeMilliSecond">Maximum age of motion events as milliseconds</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMaximumMotionEventAge(uint maximumAgeMilliSecond)
+        {
+            Interop.PanGestureDetector.SetMaximumMotionEventAge(SwigCPtr, maximumAgeMilliSecond);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Retrieves the minimum number of touches required for the pan gesture to be detected.
         /// </summary>
         /// <returns>The minimum touches required</returns>
@@ -363,6 +375,18 @@ namespace Tizen.NUI
         public uint GetMaximumTouchesRequired()
         {
             uint ret = Interop.PanGestureDetector.GetMaximumTouchesRequired(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Retrieves the maximum age for the pan gesture motion as milliseconds.
+        /// </summary>
+        /// <returns>The maximum age of motion events as milliseconds</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetMaximumMotionEventAge()
+        {
+            uint ret = Interop.PanGestureDetector.GetMaximumMotionEventAge(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
