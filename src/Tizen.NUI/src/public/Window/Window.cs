@@ -1555,6 +1555,7 @@ namespace Tizen.NUI
             positionSize.Height = val.GetY();
 
             Interop.Window.SetPositionSize(SwigCPtr, Rectangle.getCPtr(positionSize));
+            val.Dispose();
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
