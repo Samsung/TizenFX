@@ -29,9 +29,9 @@ namespace Tizen.NUI.Components
 
         public static void Preload()
         {
+#if ExternalThemeEnabled
             ThemeManager.AddPackageTheme(Instance);
 
-#if ExternalThemeEnabled
             if (string.IsNullOrEmpty(ExternalThemeManager.CurrentThemeId)) return;
 
             ThemeManager.LoadPlatformTheme(ExternalThemeManager.CurrentThemeId);
