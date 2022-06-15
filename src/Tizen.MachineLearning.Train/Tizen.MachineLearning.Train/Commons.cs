@@ -207,6 +207,26 @@ namespace Tizen.MachineLearning.Train
         Unknown = 999
     }
 
+    /// <summary>
+    /// Enumeration for the neural network optimizer type of NNTrainer.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public enum NNTrainerOptimizerType
+    {
+        /// <summary>
+        /// Adam Optimizer
+        /// </summary>
+        Adam = 0,
+        /// <summary>
+        /// Stochastic Gradient Descent Optimizer
+        /// </summary>
+        Sgd = 1,
+        /// <summary>
+        /// Unknown Optimizer
+        /// </summary>
+        Unknown = 999
+    }
+
     internal static class NNTrainer
     {
  
