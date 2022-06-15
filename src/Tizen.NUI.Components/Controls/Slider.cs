@@ -1749,26 +1749,21 @@ namespace Tizen.NUI.Components
         {
             currentSlidedOffset += offset;
 
-            if (currentSlidedOffset <= 0)
+            float resultValue = this.CurrentValue;
+
+            int bgTrackLength = GetBgTrackLength();
+            if (bgTrackLength != 0)
             {
-                this.CurrentValue = minValue;
-            }
-            else if (currentSlidedOffset >= GetBgTrackLength())
-            {
-                this.CurrentValue = maxValue;
-            }
-            else
-            {
-                int bgTrackLength = GetBgTrackLength();
-                if (bgTrackLength != 0)
-                {
-                    this.CurrentValue = ((currentSlidedOffset / (float)bgTrackLength) * (float)(maxValue - minValue)) + minValue;
-                }
+                resultValue = ((currentSlidedOffset / (float)bgTrackLength) * (float)(maxValue - minValue)) + minValue;
             }
 
             if (IsDiscrete)
             {
-                this.CurrentValue = CalculateDiscreteValue(this.CurrentValue);
+                this.CurrentValue = CalculateDiscreteValue(resultValue);
+            }
+            else
+            {
+                this.CurrentValue = resultValue;
             }
         }
 
@@ -1822,7 +1817,7 @@ namespace Tizen.NUI.Components
         {
             if (this.FocusableInTouch == false && editMode == false)
             {
-                isFocused = false;   
+                isFocused = false;
             }
 
             PointStateType state = e.Touch.GetState(0);
@@ -1851,11 +1846,15 @@ namespace Tizen.NUI.Components
 
             if (bgTrackLength != 0)
             {
-                this.CurrentValue = ((currentSlidedOffset / (float)bgTrackLength) * (maxValue - minValue)) + minValue;
+                float resultValue = ((currentSlidedOffset / (float)bgTrackLength) * (maxValue - minValue)) + minValue;
 
                 if (IsDiscrete)
                 {
-                    this.CurrentValue = CalculateDiscreteValue(this.CurrentValue);
+                    this.CurrentValue = CalculateDiscreteValue(resultValue);
+                }
+                else
+                {
+                    this.CurrentValue = resultValue;
                 }
             }
         }
