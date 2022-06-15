@@ -69,9 +69,8 @@ namespace Tizen.NUI.Components
             AccessibilityRole = Role.ToggleButton;
 
             IsSelectable = true;
-#if PROFILE_MOBILE
+
             Feedback = true;
-#endif
         }
 
         /// <summary>

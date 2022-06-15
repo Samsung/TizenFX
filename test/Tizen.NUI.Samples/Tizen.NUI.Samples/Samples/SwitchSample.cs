@@ -225,9 +225,7 @@ namespace Tizen.NUI.Samples
                 utilitySwitch[i].ApplyStyle(utilitySt);
                 utilitySwitch[i].Size = new Size(96, 60);
                 utilitySwitch[i].Margin = new Extents(100, 0, 20, 0);
-#if PROFILE_MOBILE
                 utilitySwitch[i].Feedback = true;
-#endif
                 parentView[2].Add(utilitySwitch[i]);
             }
             for (i = 0; i < 4; i++)
@@ -235,9 +233,7 @@ namespace Tizen.NUI.Samples
                 familySwitch[i] = new Switch();
                 familySwitch[i].ApplyStyle(familySt);
                 familySwitch[i].Size = new Size(96, 60);
-#if PROFILE_MOBILE
                 familySwitch[i].Feedback = true;
-#endif
                 parentView[2].Add(familySwitch[i]);
             }
             for (i = 0; i < 4; i++)
@@ -245,9 +241,7 @@ namespace Tizen.NUI.Samples
                 foodSwitch[i] = new Switch();
                 foodSwitch[i].ApplyStyle(foodSt);
                 foodSwitch[i].Size = new Size(96, 60);
-#if PROFILE_MOBILE
                 foodSwitch[i].Feedback = true;
-#endif
                 parentView[2].Add(foodSwitch[i]);
             }
             for (i = 0; i < 4; i++)
@@ -255,9 +249,7 @@ namespace Tizen.NUI.Samples
                 kitchenSwitch[i] = new Switch();
                 kitchenSwitch[i].ApplyStyle(kitchenSt);
                 kitchenSwitch[i].Size = new Size(96, 60);
-#if PROFILE_MOBILE
                 kitchenSwitch[i].Feedback = true;
-#endif
                 parentView[2].Add(kitchenSwitch[i]);
             }
 
@@ -267,9 +259,7 @@ namespace Tizen.NUI.Samples
                 utilitySwitch2[i] = new Switch();
                 utilitySwitch2[i].ApplyStyle(utilitySt);
                 utilitySwitch2[i].Size = new Size(96, 60);
-#if PROFILE_MOBILE
                 utilitySwitch2[i].Feedback = true;
-#endif
                 parentView[2].Add(utilitySwitch2[i]);
             }
             for (i = 0; i < 4; i++)
@@ -277,9 +267,7 @@ namespace Tizen.NUI.Samples
                 familySwitch2[i] = new Switch();
                 familySwitch2[i].ApplyStyle(familySt);
                 familySwitch2[i].Size = new Size(96, 60);
-#if PROFILE_MOBILE
                 familySwitch2[i].Feedback = true;
-#endif
                 parentView[2].Add(familySwitch2[i]);
             }
             for (i = 0; i < 4; i++)
@@ -287,9 +275,7 @@ namespace Tizen.NUI.Samples
                 foodSwitch2[i] = new Switch();
                 foodSwitch2[i].ApplyStyle(foodSt);
                 foodSwitch2[i].Size = new Size(96, 60);
-#if PROFILE_MOBILE
                 foodSwitch2[i].Feedback = true;
-#endif
                 parentView[2].Add(foodSwitch2[i]);
             }
             for (i = 0; i < 4; i++)
@@ -297,9 +283,7 @@ namespace Tizen.NUI.Samples
                 kitchenSwitch2[i] = new Switch();
                 kitchenSwitch2[i].ApplyStyle(kitchenSt);
                 kitchenSwitch2[i].Size = new Size(96, 60);
-#if PROFILE_MOBILE
                 kitchenSwitch2[i].Feedback = true;
-#endif
                 parentView[2].Add(kitchenSwitch2[i]);
             }
 
