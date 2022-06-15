@@ -46,6 +46,7 @@ namespace Tizen.MachineLearning.Train
         {
             NNTrainerError ret = Interop.Model.Construct(out handle);
             NNTrainer.CheckException(ret, "Failed to create model instance");
+            Log.Info(NNTrainer.Tag, "Created Model");
         }
 
         /// <summary>
@@ -57,9 +58,10 @@ namespace Tizen.MachineLearning.Train
         {
             if (string.IsNullOrEmpty(modelConf))
                 NNTrainer.CheckException(NNTrainerError.InvalidParameter, "modelConf is null");
-            Log.Info(NNTrainer.Tag, "Conf path: "+ modelConf);
+
             NNTrainerError ret = Interop.Model.ConstructWithConf(modelConf, out handle);
             NNTrainer.CheckException(ret, "Failed to create model instance with modelConf");
+            Log.Info(NNTrainer.Tag, "Created Model with Conf path: "+ modelConf);
         }
         /// <summary>
         /// Destructor of Model
@@ -229,6 +231,25 @@ namespace Tizen.MachineLearning.Train
             Log.Info(NNTrainer.Tag, "File Path: "+ filePath);
             NNTrainerError ret = Interop.Model.Load(handle, filePath, format);
             NNTrainer.CheckException(ret, "Failed to load model to path");
+        }
+
+        /// <summary>
+        /// Adds layer in neural network model.
+        /// </summary>
+        /// <remarks>
+        /// Use this function to add a layer to the model. The layer is added to
+        /// the end of the existing layers in the model. This transfers the
+        /// ownership of the layer to the network. No need to destroy the layer once it
+        /// is added to a model.
+        /// </remarks>
+        /// <param name="layer"> The instance of Layer class </param>
+        /// <since_tizen> 10 </since_tizen>
+        public void AddLayer(Layer layer)
+        {
+            if (layer == null)
+                NNTrainer.CheckException(NNTrainerError.InvalidParameter, "layer instance is null");
+            NNTrainerError ret = Interop.Model.AddLayer(handle, layer.GetHandle());
+            NNTrainer.CheckException(ret, "Failed to compile model");
         }
     } 
 }
