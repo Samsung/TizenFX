@@ -99,11 +99,17 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_SetMaximumTouchesRequired")]
             public static extern void SetMaximumTouchesRequired(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_SetMaximumMotionEventAge")]
+            public static extern void SetMaximumMotionEventAge(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_GetMinimumTouchesRequired")]
             public static extern uint GetMinimumTouchesRequired(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_GetMaximumTouchesRequired")]
             public static extern uint GetMaximumTouchesRequired(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_GetMaximumMotionEventAge")]
+            public static extern uint GetMaximumMotionEventAge(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_PanGestureDetector_AddAngle__SWIG_0")]
             public static extern void AddAngle(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
