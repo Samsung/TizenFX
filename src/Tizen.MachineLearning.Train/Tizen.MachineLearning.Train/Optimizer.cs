@@ -1,0 +1,99 @@
+/*
+* Copyright (c) 2022 Samsung Electronics Co., Ltd. All Rights Reserved.
+*
+* Licensed under the Apache License, Version 2.0 (the License);
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an AS IS BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*/
+using static Interop;
+using System;
+using System.IO;
+
+namespace Tizen.MachineLearning.Train
+{
+    /// <summary>
+    /// Creates a neural network optimizer.
+    /// </summary>
+    /// <remarks>
+    /// Use this function to create neural network optimizer. If not set to
+    /// model, optimizer should be released using Dispose().
+    /// If set to a model, optimizer is available until model is released.
+    /// </remarks>
+    /// <since_tizen> 10 </since_tizen>
+    public class Optimizer: IDisposable
+    {
+        private IntPtr handle = IntPtr.Zero;
+        private bool disposed = false;
+
+        /// <summary>
+        /// Creates a neural network optimizer.
+        /// </summary>
+        /// <param name="type">The nntrainer optimizer type.</param>
+        /// <since_tizen> 10 </since_tizen>
+        public Optimizer(NNTrainerOptimizerType type)
+        {
+            NNTrainerError ret = Interop.Optimizer.Create(out handle, type);
+            NNTrainer.CheckException(ret, "Failed to create optimizer instance");
+            Log.Info(NNTrainer.Tag, $"Create optimizer with type:{type}");
+        }
+        /// <summary>
+        /// Frees the neural network optimizer.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        /// <remarks>
+        /// Use this function to destroy neural network optimizer. Fails if layer is owned by a model.
+        /// </remarks>
+        ~Optimizer()
+        {
+            Dispose(false);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object including opened handle.
+        /// </summary>
+        /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        /// <since_tizen> 10 </since_tizen>
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+            if (disposing)
+            {
+                // release managed object
+            }
+            // release unmanaged object
+            if (handle != IntPtr.Zero)
+            {
+                // Destroy the neural network layer.
+                NNTrainerError ret = Interop.Optimizer.Destroy(handle);
+                NNTrainer.CheckException(ret, "Failed to destroy optimizer instance");
+
+                handle = IntPtr.Zero;
+            }
+            disposed = true;
+        }
+
+        internal IntPtr GetHandle()
+        {
+            return handle;
+        }
+    } 
+}
