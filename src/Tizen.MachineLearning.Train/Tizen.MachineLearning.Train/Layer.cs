@@ -111,5 +111,10 @@ namespace Tizen.MachineLearning.Train
             NNTrainerError ret = Interop.Layer.SetProperty(handle, propertyParams);
             NNTrainer.CheckException(ret, "Failed to set property");
         }
+
+        internal IntPtr GetHandle()
+        {
+            return handle;
+        }
     } 
 }
