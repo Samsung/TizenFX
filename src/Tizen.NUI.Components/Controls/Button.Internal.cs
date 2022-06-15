@@ -277,9 +277,7 @@ namespace Tizen.NUI.Components
             buttonIcon = CreateIcon();
             LayoutItems();
 
-#if PROFILE_MOBILE
             Feedback = true;
-#endif
         }
 
         /// <inheritdoc/>
