@@ -250,6 +250,26 @@ namespace Tizen.MachineLearning.Train
                 NNTrainer.CheckException(NNTrainerError.InvalidParameter, "layer instance is null");
             NNTrainerError ret = Interop.Model.AddLayer(handle, layer.GetHandle());
             NNTrainer.CheckException(ret, "Failed to compile model");
+            Log.Info("MLT", $"AddLayer:\n{layer.GetHandle()}");
+        }
+
+        /// <summary>
+        /// Gets neural network layer from the model with the given name.
+        /// </summary>
+        /// <remarks>
+        /// Use this function to get already created Neural Network Layer.
+        /// The returned layer must not be deleted as it is owned by the model.
+        /// </remarks>
+        /// <param name="layerName"> Name of the already created layer.</param>
+        /// <param name="layerHandle"> layer handle from the given description.</param>
+        /// <since_tizen> 10 </since_tizen>
+        public void GetLayer(string layerName, out IntPtr layerHandle)
+        {
+             if (string.IsNullOrEmpty(layerName))
+                NNTrainer.CheckException(NNTrainerError.InvalidParameter, "layerName is null");
+            /* FiX_ME : how to handle layerHandle */
+            NNTrainerError ret = Interop.Model.GetLayer(handle, layerName, out layerHandle);
+            NNTrainer.CheckException(ret, "Failed to get layer");
         }
     } 
 }

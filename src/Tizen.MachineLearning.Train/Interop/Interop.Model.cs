@@ -30,7 +30,7 @@ internal static partial class Interop
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_destroy")]
         public static extern NNTrainerError Destroy(IntPtr modelHandle);
 
-        /* int ml_train_model_construct_with_conf(const char *model_conf, ml_train_model_h *model)*/
+        /* int ml_train_model_construct_with_conf(const char *model_conf, ml_train_model_h *model) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_construct_with_conf")]
         public static extern NNTrainerError ConstructWithConf(string modelConf, out IntPtr modelHandle);
 
@@ -57,6 +57,10 @@ internal static partial class Interop
         /* int ml_train_model_add_layer(ml_train_model_h model, ml_train_layer_h layer) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_add_layer")]
         public static extern NNTrainerError AddLayer(IntPtr modelHandle, IntPtr layerHandle);
+
+        /* int ml_train_model_get_layer(ml_train_model_h model, const char *layer_name, ml_train_layer_h *layer) */
+        [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_get_layer")]
+        public static extern NNTrainerError GetLayer(IntPtr modelHandle, string layerName, out IntPtr layer);
 
     }
 }
