@@ -85,6 +85,7 @@ namespace Tizen.NUI.Components
         private float discreteValue = 0;
 
         private PanGestureDetector panGestureDetector = null;
+        private readonly uint panGestureMotionEventAge = 16; // TODO : Can't we get this value from system configure?
         private float currentSlidedOffset;
         private EventHandler<SliderValueChangedEventArgs> sliderValueChangedHandler;
         private EventHandler<SliderSlidingStartedEventArgs> sliderSlidingStartedHandler;
@@ -107,6 +108,7 @@ namespace Tizen.NUI.Components
 
             panGestureDetector = new PanGestureDetector();
             panGestureDetector.Attach(this);
+            panGestureDetector.SetMaximumMotionEventAge(panGestureMotionEventAge);
             panGestureDetector.Detected += OnPanGestureDetected;
 
             this.Layout = new LinearLayout()
@@ -403,6 +405,17 @@ namespace Tizen.NUI.Components
 
             if (e.PanGesture.State == Gesture.StateType.Finished)
             {
+                // Update as finished position value
+                if (direction == DirectionType.Horizontal)
+                {
+                    CalculateCurrentValueByGesture(e.PanGesture.Displacement.X);
+                }
+                else if (direction == DirectionType.Vertical)
+                {
+                    CalculateCurrentValueByGesture(-e.PanGesture.Displacement.Y);
+                }
+                UpdateValue();
+
                 if (isValueShown)
                 {
                     valueIndicatorImage.Hide();
