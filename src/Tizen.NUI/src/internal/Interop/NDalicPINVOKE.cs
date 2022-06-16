@@ -220,7 +220,7 @@ namespace Tizen.NUI
                 SWIGRegisterStringCallbackNDalic(stringDelegate);
             }
 
-            [Obsolete("Please do not use! Deprecated in API9, will be removed in API11! Please delete this if currently used!")]
+            [Obsolete("Do not use this, that is deprecated in API9 and will be removed in API11. Delete this if currently used.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static void RegistCallback()
             {
@@ -278,7 +278,7 @@ namespace Tizen.NUI
         public static extern global::System.IntPtr ApplicationLowMemorySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
 
-        [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use NDalicPINVOKE.DeleteBaseHandle(...) instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use NDalicPINVOKE.DeleteBaseHandle(...) instead.")]
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseHandle")]
         public static extern void delete_BaseHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
     }

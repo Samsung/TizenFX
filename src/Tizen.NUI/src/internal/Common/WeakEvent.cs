@@ -82,7 +82,7 @@ namespace Tizen.NUI
                     // To do that, the reference should be assigned to the local variable first.
                     var localRefCopied = weakReference.Target;
 
-                    // Please do not change this to if (weakReference.Target != null)
+                    // Do not change this to if (weakReference.Target != null)
                     if (localRefCopied != null) Delegate.CreateDelegate(typeof(U), localRefCopied, methodInfo).DynamicInvoke(args);
                 }
             }

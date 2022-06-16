@@ -38,7 +38,7 @@ namespace Tizen.NUI.Binding
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("ConvertFrom is obsolete as of version 2.2.0. Please use ConvertFromInvariantString (string) instead.")]
+        [Obsolete("ConvertFrom is obsolete as of version 2.2.0. Use ConvertFromInvariantString (string) instead.")]
         public virtual object ConvertFrom(object o)
         {
             return null;
@@ -46,7 +46,7 @@ namespace Tizen.NUI.Binding
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("ConvertFrom is obsolete as of version 2.2.0. Please use ConvertFromInvariantString (string) instead.")]
+        [Obsolete("ConvertFrom is obsolete as of version 2.2.0. Use ConvertFromInvariantString (string) instead.")]
         public virtual object ConvertFrom(CultureInfo culture, object o)
         {
             return null;

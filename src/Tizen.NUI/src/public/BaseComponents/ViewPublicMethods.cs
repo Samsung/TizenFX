@@ -224,7 +224,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <seealso cref="Container.GetChildCount" />
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use ChildCount property instead.")]
         public override uint GetChildCount()
         {
             return Convert.ToUInt32(Children.Count);
@@ -265,7 +265,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="styleName">A string matching a style described in a stylesheet.</param>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use StyleName property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use StyleName property instead.")]
         public void SetStyleName(string styleName)
         {
             Interop.View.SetStyleName(SwigCPtr, styleName);
@@ -277,7 +277,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <returns>A string matching a style, or an empty string.</returns>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use StyleName property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use StyleName property instead.")]
         public string GetStyleName()
         {
             string ret = Interop.View.GetStyleName(SwigCPtr);
@@ -534,7 +534,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="padding">Padding for the view.</param>
         /// <since_tizen> 3 </since_tizen>
-        // [Obsolete("Deprecated in API9, will be removed in API11. Please use Padding property instead!")]
+        // [Obsolete("This has been deprecated in API9 and will be removed in API11. Use Padding property instead.")]
         public void SetPadding(PaddingType padding)
         {
             Interop.Actor.SetPadding(SwigCPtr, PaddingType.getCPtr(padding));
@@ -547,7 +547,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="paddingOut">the value of padding for the view</param>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use Padding property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use Padding property instead.")]
         public void GetPadding(PaddingType paddingOut)
         {
             Interop.Actor.GetPadding(SwigCPtr, PaddingType.getCPtr(paddingOut));
@@ -678,7 +678,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="id">The ID of the View to find</param>
         /// <returns>A View if found or a null if not</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("This will be removed at API11! please use FindDescendantByID(uint id) instead!")]
+        [Obsolete("This will be removed at API11. Use FindDescendantByID(uint id) instead.")]
         public View FindChildByID(uint id)
         {
             IntPtr cPtr = Interop.Actor.FindChildById(SwigCPtr, id);
