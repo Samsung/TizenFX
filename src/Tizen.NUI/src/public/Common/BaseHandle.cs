@@ -129,7 +129,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <seealso cref="BindableObject.PropertyChanged"/>
-        [Obsolete("Deprecated in API9, will be removed in API11, Use BindableObject.PropertyChanged instead!")]
+        [Obsolete("Deprecated in API9, will be removed in API11, Use BindableObject.PropertyChanged instead.")]
         public event PropertyChangedEventHandler PropertySet;
 
         internal global::System.Runtime.InteropServices.HandleRef GetBaseHandleCPtrHandleRef
