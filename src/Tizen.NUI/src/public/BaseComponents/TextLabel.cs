@@ -415,7 +415,7 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated.(API Level 6) Use Shadow instead.
         /// The property cascade chaining set is possible. For example, this (textLabel.ShadowOffset.X = 0.1f;) is possible.
         /// </remarks>
-        [Obsolete("Please do not use this ShadowOffset(Deprecated). Please use Shadow instead.")]
+        [Obsolete("Do not use this ShadowOffset(Deprecated). Use Shadow instead.")]
         public Vector2 ShadowOffset
         {
             get
@@ -446,7 +446,7 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated.(API Level 6) Use Shadow instead.
         /// The property cascade chaining set is possible. For example, this (textLabel.ShadowColor.X = 0.1f;) is possible.
         /// </remarks>
-        [Obsolete("Please do not use this ShadowColor(Deprecated). Please use Shadow instead.")]
+        [Obsolete("Do not use this ShadowColor(Deprecated). Use Shadow instead.")]
         public Vector4 ShadowColor
         {
             get
@@ -476,7 +476,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// Deprecated.(API Level 6) Use Underline instead.
         /// </remarks>
-        [Obsolete("Please do not use this UnderlineEnabled(Deprecated). Please use Underline instead.")]
+        [Obsolete("Do not use this UnderlineEnabled(Deprecated). Use Underline instead.")]
         public bool UnderlineEnabled
         {
             get
@@ -508,7 +508,7 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated.(API Level 6) Use Underline instead.
         /// The property cascade chaining set is possible. For example, this (textLabel.UnderlineColor.X = 0.1f;) is possible.
         /// </remarks>
-        [Obsolete("Please do not use this UnderlineColor(Deprecated). Please use Underline instead.")]
+        [Obsolete("Do not use this UnderlineColor(Deprecated). Use Underline instead.")]
         public Vector4 UnderlineColor
         {
             get
@@ -538,7 +538,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// Deprecated.(API Level 6) Use Underline instead.
         /// </remarks>
-        [Obsolete("Please do not use this UnderlineHeight(Deprecated). Please use Underline instead.")]
+        [Obsolete("Do not use this UnderlineHeight(Deprecated). Use Underline instead.")]
         public float UnderlineHeight
         {
             get
@@ -1199,9 +1199,8 @@ namespace Tizen.NUI.BaseComponents
         /// <returns></returns>
         /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use as keyword.
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead! " +
+        /// Do not use this, that will be deprecated. Use as keyword instead.
+        [Obsolete("Do not use this, that will be deprecated. Use as keyword instead. " +
             "Like: " +
             "BaseHandle handle = new TextLabel(\"Hello World!\"); " +
             "TextLabel label = handle as TextLabel")]

@@ -486,7 +486,7 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated.(API Level 6) Use Shadow instead.
         /// The property cascade chaining set is possible. For example, this (textField.ShadowOffset.X = 0.1f;) is possible.
         /// </remarks>
-        [Obsolete("Please do not use this ShadowOffset(Deprecated). Please use Shadow instead.")]
+        [Obsolete("Do not use this ShadowOffset(Deprecated). Use Shadow instead.")]
         public Vector2 ShadowOffset
         {
             get
@@ -514,7 +514,7 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated.(API Level 6) Use Shadow instead.
         /// The property cascade chaining set is possible. For example, this (textField.ShadowColor.X = 0.1f;) is possible.
         /// </remarks>
-        [Obsolete("Please do not use this ShadowColor(Deprecated). Please use Shadow instead.")]
+        [Obsolete("Do not use this ShadowColor(Deprecated). Use Shadow instead.")]
         public Vector4 ShadowColor
         {
             get
@@ -1013,7 +1013,7 @@ namespace Tizen.NUI.BaseComponents
         /// The InputMethodSettings property.
         /// </summary>
         /// <remarks>
-        /// <see cref="InputMethod"/> is a class encapsulating the input method map. Please use the <see cref="InputMethod"/> class for this property.
+        /// <see cref="InputMethod"/> is a class encapsulating the input method map. Use the <see cref="InputMethod"/> class for this property.
         /// </remarks>
         /// <example>
         /// The following example demonstrates how to set the InputMethodSettings property.

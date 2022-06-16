@@ -200,20 +200,20 @@ namespace Tizen.NUI
         /// The x component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector2(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector2 vector2 = new Vector2();
         /// vector2.X = 0.1f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float x = 0.1f, y = 0.5f;
         /// Vector2 vector2 = new Vector2(x, y);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector2(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor")]
             set
             {
                 Interop.Vector2.XSet(SwigCPtr, value);
@@ -233,20 +233,20 @@ namespace Tizen.NUI
         /// The width.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector2(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector2 vector2 = new Vector2();
         /// vector2.Width = 1.0f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float width = 1.0f, height = 2.0f;
         /// Vector2 vector2 = new Vector2(x, y);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float Width
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector2(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor")]
             set
             {
                 Interop.Vector2.WidthSet(SwigCPtr, value);
@@ -266,20 +266,20 @@ namespace Tizen.NUI
         /// The y component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector2(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector2 vector2 = new Vector2();
         /// vector2.Y = 0.5f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float x = 0.1f, y = 0.5f;
         /// Vector2 vector2 = new Vector2(x, y);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector2(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor")]
             set
             {
                 Interop.Vector2.YSet(SwigCPtr, value);
@@ -299,20 +299,20 @@ namespace Tizen.NUI
         /// The height.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector2(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector2 vector2 = new Vector2();
         /// vector2.Height = 2.0f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float width = 1.0f, height = 2.0f;
         /// Vector2 vector2 = new Vector2(x, y);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float Height
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector2(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor")]
             set
             {
                 Interop.Vector2.HeightSet(SwigCPtr, value);

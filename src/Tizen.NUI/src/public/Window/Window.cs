@@ -179,26 +179,26 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for transition effect's state.
         /// </summary>
-        [Obsolete("Please do not use! This will be removed. Please use Window.EffectState instead!")]
+        [Obsolete("Do not use this, that will be removed. Use Window.EffectState instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum EffectStates
         {
             /// <summary>
             /// None state.
             /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Window.EffectState.None instead!")]
+            [Obsolete("Do not use this, that will be removed. Use Window.EffectState.None instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             None = 0,
             /// <summary>
             /// Transition effect is started.
             /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Window.EffectState.Start instead!")]
+            [Obsolete("Do not use this, that will be removed. Use Window.EffectState.Start instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             Start,
             /// <summary>
             /// Transition effect is ended.
             /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Window.EffectState.End instead!")]
+            [Obsolete("Do not use this, that will be removed. Use Window.EffectState.End instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             End,
         }
@@ -229,26 +229,26 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for transition effect's type.
         /// </summary>
-        [Obsolete("Please do not use! This will be removed. Please use Window.EffectType instead!")]
+        [Obsolete("Do not use this, that will be removed. Use Window.EffectType instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public enum EffectTypes
         {
             /// <summary>
             /// None type.
             /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Window.EffectType.None instead!")]
+            [Obsolete("Do not use this, that will be removed. Use Window.EffectType.None instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             None = 0,
             /// <summary>
             /// Window show effect.
             /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Window.EffectType.Show instead!")]
+            [Obsolete("Do not use this, that will be removed. Use Window.EffectType.Show instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             Show,
             /// <summary>
             /// Window hide effect.
             /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Window.EffectType.Hide instead!")]
+            [Obsolete("Do not use this, that will be removed. Use Window.EffectType.Hide instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             Hide,
         }
@@ -566,7 +566,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="keyEvent">The key event to feed.</param>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use FeedKey(Key keyEvent) instead!")]
+        [Obsolete("Do not use this, that will be deprecated. Use FeedKey(Key keyEvent) instead.")]
         public static void FeedKeyEvent(Key keyEvent)
         {
             Interop.Window.FeedKeyEvent(Key.getCPtr(keyEvent));

@@ -521,20 +521,20 @@ namespace Tizen.NUI
         /// The x component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Position(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Position(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Position position = new Position();
         /// position.X = 1.0f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float x = 1.0f, y = 2.0f, z = 3.0f;
         /// Position position = new Position(x, y, z);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Position(...) constructor")]
             set
             {
                 Interop.Vector3.XSet(SwigCPtr, value);
@@ -554,20 +554,20 @@ namespace Tizen.NUI
         /// The y component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Position(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Position(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Position position = new Position();
         /// position.Y = 2.0f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float x = 1.0f, y = 2.0f, z = 3.0f;
         /// Position position = new Position(x, y, z);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Position(...) constructor")]
             set
             {
                 Interop.Vector3.YSet(SwigCPtr, value);
@@ -587,20 +587,20 @@ namespace Tizen.NUI
         /// The z component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Position(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Position(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Position position = new Position();
         /// position.Z = 3.0f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float x = 1.0f, y = 2.0f, z = 3.0f;
         /// Position position = new Position(x, y, z);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float Z
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Position(...) constructor")]
             set
             {
                 Interop.Vector3.ZSet(SwigCPtr, value);

@@ -179,10 +179,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// [Obsolete("Do not use this, that will be deprecated.")]
         /// </summary>
-        /// Please do not use! this will be deprecated!
-        [Obsolete("Please do not use! this will be deprecated.")]
+        /// Do not use this, that will be deprecated.
+        [Obsolete("Do not use this, that will be deprecated.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void AccessibilityActivate()
         {
@@ -191,10 +191,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// [Obsolete("Do not use this, that will be deprecated.")]
         /// </summary>
-        /// Please do not use! this will be deprecated!
-        [Obsolete("Please do not use! this will be deprecated.")]
+        /// Do not use this, that will be deprecated.
+        [Obsolete("Do not use this, that will be deprecated.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void KeyboardEnter()
         {
@@ -224,10 +224,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// [Obsolete("Do not use this, that will be deprecated.")]
         /// </summary>
-        /// Please do not use! this will be deprecated!
-        [Obsolete("Please do not use! this will be deprecated.")]
+        /// Do not use this, that will be deprecated.
+        [Obsolete("Do not use this, that will be deprecated.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EmitKeyEventSignal(Key arg0)
         {

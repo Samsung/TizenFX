@@ -248,12 +248,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Please do not use! this will be deprecated. Please use 'FocusChanged' event instead.
+        /// Do not use this, that will be deprecated. Use 'FocusChanged' event instead.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use FocusChanged.
-        [Obsolete("Please do not use! This will be deprecated! Please use FocusChanged instead! " +
+        /// Do not use this, that will be deprecated.
+        /// Instead Use FocusChanged.
+        [Obsolete("Do not use this, that will be deprecated. Use FocusChanged instead. " +
             "Like: " +
             "NUIApplication.GetDefaultWindow().FocusChanged = OnFocusChanged; " +
             "private void OnFocusChanged(object source, Window.FocusChangedEventArgs args) {...}")]
@@ -1000,10 +1000,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Please do not use! this will be deprecated
+        /// Do not use this, that will be deprecated.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use FocusChangedEventArgs instead! " +
+        [Obsolete("Do not use this, that will be deprecated. Use FocusChangedEventArgs instead. " +
             "Like: " +
             "NUIApplication.GetDefaultWindow().FocusChanged = OnFocusChanged; " +
             "private void OnFocusChanged(object source, Window.FocusChangedEventArgs args) {...}")]
@@ -1012,7 +1012,7 @@ namespace Tizen.NUI
         public class WindowFocusChangedEventArgs : EventArgs
         {
             /// <summary>
-            /// Please do not use! this will be deprecated
+            /// Do not use this, that will be deprecated.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
             public bool FocusGained
@@ -1026,7 +1026,7 @@ namespace Tizen.NUI
         /// Contains and encapsulates Native Window handle.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use Window.NativeHandle instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use Window.NativeHandle instead.")]
         public class SafeNativeWindowHandle : SafeHandle
         {
             /// <summary>

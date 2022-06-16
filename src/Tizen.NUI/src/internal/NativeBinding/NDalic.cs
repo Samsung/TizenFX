@@ -2173,11 +2173,11 @@ namespace Tizen.NUI
         internal static readonly int TooltipTailBelowVisual = Interop.NDalicToolTip.TooltipTailBelowVisualGet();
 
 
-        [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use ImageVisualUrl instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use ImageVisualUrl instead.")]
         internal static readonly int IMAGE_VISUAL_URL = Interop.NDalicImageVisual.ImageVisualUrlGet();
-        [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use ImageVisualAlphaMaskUrl instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use ImageVisualAlphaMaskUrl instead.")]
         internal static readonly int IMAGE_VISUAL_ALPHA_MASK_URL = Interop.NDalicImageVisual.ImageVisualAlphaMaskUrlGet();
-        [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use ImageVisualAuxiliaryImageUrl instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use ImageVisualAuxiliaryImageUrl instead.")]
         internal static readonly int IMAGE_VISUAL_AUXILIARY_IMAGE_URL = Interop.NDalicImageVisual.ImageVisualAuxiliaryImageUrlGet();
     }
 }
