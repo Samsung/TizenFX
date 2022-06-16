@@ -29,5 +29,9 @@ internal static partial class Interop
         /* int ml_train_optimizer_destroy(ml_train_optimizer_h optimizer) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_optimizer_destroy")]
         public static extern NNTrainerError Destroy(IntPtr optimizerHandle);
+
+        /*int ml_train_optimizer_set_property_with_single_param(ml_train_optimizer_h optimizer, const char *single_param) */
+        [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_optimizer_set_property_with_single_param")]
+        public static extern NNTrainerError SetProperty(IntPtr optimizerHandle, string propertyParams);
     }
 }
