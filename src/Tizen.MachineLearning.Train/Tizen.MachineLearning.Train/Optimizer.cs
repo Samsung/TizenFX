@@ -91,6 +91,27 @@ namespace Tizen.MachineLearning.Train
             disposed = true;
         }
 
+        /// <summary>
+        /// Sets the neural network optimizer property
+        /// </summary>
+        /// <remarks>
+        /// Use this function to set neural network optimizer property.
+        /// </remarks>
+        /// <param name="property">property for optimizer.</param>
+        /// <since_tizen> 10 </since_tizen>
+        public void SetProperty(params string[] property)
+        {
+            string propertyParams = null;
+
+            if (property.Length > 0) {
+                propertyParams = string.Join("|", property);
+                Log.Info(NNTrainer.Tag, "Set property:"+ propertyParams);
+            }
+
+            NNTrainerError ret = Interop.Optimizer.SetProperty(handle, propertyParams);
+            NNTrainer.CheckException(ret, "Failed to set property");
+        }
+
         internal IntPtr GetHandle()
         {
             return handle;
