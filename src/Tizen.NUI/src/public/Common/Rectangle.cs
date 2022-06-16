@@ -90,20 +90,20 @@ namespace Tizen.NUI
         /// The x position of the rectangle.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Rectangle(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Rectangle rectangle = new Rectangle();
         /// rectangle.X = 1; 
-        /// // Please USE like this
+        /// // USE like this
         /// int x = 1, y = 2, width = 3, height = 4;
         /// Rectangle rectangle = new Rectangle(x, y, width, height);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public int X
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor")]
             set
             {
                 x = (value);
@@ -120,20 +120,20 @@ namespace Tizen.NUI
         /// The Y position of the rectangle.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Rectangle(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Rectangle rectangle = new Rectangle();
         /// rectangle.Y = 2; 
-        /// // Please USE like this
+        /// // USE like this
         /// int x = 1, y = 2, width = 3, height = 4;
         /// Rectangle rectangle = new Rectangle(x, y, width, height);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public int Y
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor")]
             set
             {
                 y = (value);
@@ -150,20 +150,20 @@ namespace Tizen.NUI
         /// The width of the rectangle.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Rectangle(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Rectangle rectangle = new Rectangle();
         /// rectangle.Width = 3; 
-        /// // Please USE like this
+        /// // USE like this
         /// int x = 1, y = 2, width = 3, height = 4;
         /// Rectangle rectangle = new Rectangle(x, y, width, height);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public int Width
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor")]
             set
             {
                 width = (value);
@@ -180,20 +180,20 @@ namespace Tizen.NUI
         /// The height of the rectangle.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Rectangle(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Rectangle rectangle = new Rectangle();
         /// rectangle.Height = 4; 
-        /// // Please USE like this
+        /// // USE like this
         /// int x = 1, y = 2, width = 3, height = 4;
         /// Rectangle rectangle = new Rectangle(x, y, width, height);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public int Height
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Rectangle(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor")]
             set
             {
                 height = (value);

@@ -1000,7 +1000,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This should be internal, please do not use.
+        /// This should be internal, do not use.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
 #pragma warning disable CA1716, CA1052, CA1034 // Identifiers should not match keywords
@@ -1008,132 +1008,132 @@ namespace Tizen.NUI
 #pragma warning restore CA1716, CA1052, CA1034 // Identifiers should not match keywords
         {
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int WrapEnabled = Interop.ScrollView.WrapEnabledGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int PanningEnabled = Interop.ScrollView.PanningEnabledGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int AxisAutoLockEnabled = Interop.ScrollView.AxisAutoLockEnabledGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int WheelScrollDistanceStep = Interop.ScrollView.WheelScrollDistanceStepGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollMode = Interop.ScrollView.ScrollModeGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollPosition = Interop.ScrollView.ScrollPositionGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollPrePosition = Interop.ScrollView.ScrollPrePositionGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollPrePositionX = Interop.ScrollView.ScrollPrePositionXGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollPrePositionY = Interop.ScrollView.ScrollPrePositionYGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollPrePositionMax = Interop.ScrollView.ScrollPrePositionMaxGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollPrePositionMaxX = Interop.ScrollView.ScrollPrePositionMaxXGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollPrePositionMaxY = Interop.ScrollView.ScrollPrePositionMaxYGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int OvershootX = Interop.ScrollView.OvershootXGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int OvershootY = Interop.ScrollView.OvershootYGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollFinal = Interop.ScrollView.ScrollFinalGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollFinalX = Interop.ScrollView.ScrollFinalXGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollFinalY = Interop.ScrollView.ScrollFinalYGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int WRAP = Interop.ScrollView.WrapGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int PANNING = Interop.ScrollView.PanningGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int SCROLLING = Interop.ScrollView.ScrollingGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollDomainSize = Interop.ScrollView.ScrollDomainSizeGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollDomainSizeX = Interop.ScrollView.ScrollDomainSizeXGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollDomainSizeY = Interop.ScrollView.ScrollDomainSizeYGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollDomainOffset = Interop.ScrollView.ScrollDomainOffsetGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int ScrollPositionDelta = Interop.ScrollView.ScrollPositionDeltaGet();
             /// <summary>
-            /// This should be internal, please do not use.
+            /// This should be internal, do not use.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             public static readonly int StartPagePosition = Interop.ScrollView.StartPagePositionGet();

@@ -172,20 +172,20 @@ namespace Tizen.NUI
         /// The x component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector4(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
         /// vector4.X = 0.1f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.XSet(SwigCPtr, value);
@@ -205,20 +205,20 @@ namespace Tizen.NUI
         /// The red component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector4(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
         /// vector4.R = 0.1f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float R
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.RSet(SwigCPtr, value);
@@ -238,20 +238,20 @@ namespace Tizen.NUI
         /// The s component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector4(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
         /// vector4.S = 0.1f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float S
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.SSet(SwigCPtr, value);
@@ -271,20 +271,20 @@ namespace Tizen.NUI
         /// The y component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector4(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
         /// vector4.Y = 0.5f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.YSet(SwigCPtr, value);
@@ -304,20 +304,20 @@ namespace Tizen.NUI
         /// The green component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector4(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
         /// vector4.G = 0.5f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float G
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.GSet(SwigCPtr, value);
@@ -337,20 +337,20 @@ namespace Tizen.NUI
         /// The t component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector4(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
         /// vector4.T = 0.5f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float T
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.TSet(SwigCPtr, value);
@@ -370,20 +370,20 @@ namespace Tizen.NUI
         /// The z component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector4(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
         /// vector4.Z = 0.9f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float Z
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.ZSet(SwigCPtr, value);
@@ -403,20 +403,20 @@ namespace Tizen.NUI
         /// The blue component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector4(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
         /// vector4.B = 0.9f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float B
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.BSet(SwigCPtr, value);
@@ -436,20 +436,20 @@ namespace Tizen.NUI
         /// The p component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector4(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
         /// vector4.P = 0.9f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float P
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.PSet(SwigCPtr, value);
@@ -469,20 +469,20 @@ namespace Tizen.NUI
         /// The w component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector4(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
         /// vector4.W = 1.0f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
         /// Vector4 vector4 = new Vector4(x, y, z, w);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float W
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.WSet(SwigCPtr, value);
@@ -502,20 +502,20 @@ namespace Tizen.NUI
         /// The alpha component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector4(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
         /// vector4.A = 1.0f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
         /// Vector4 vector4 = new Vector4(r, g, b, a);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float A
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.ASet(SwigCPtr, value);
@@ -535,20 +535,20 @@ namespace Tizen.NUI
         /// The q component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Vector4(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Vector4 vector4 = new Vector4();
         /// vector4.Q = 1.0f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
         /// Vector4 vector4 = new Vector4(s, t, p, q);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public float Q
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Vector4(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.QSet(SwigCPtr, value);
