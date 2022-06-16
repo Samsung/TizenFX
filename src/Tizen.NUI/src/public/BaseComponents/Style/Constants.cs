@@ -26,7 +26,7 @@ namespace Tizen.NUI.Components
     /// </summary>
     [FlagsAttribute]
     // Please remove this enum when 'Tizen.NUI.BaseComponents.Button.StateChangedEventArgs' and 'Tizen.NUI.BaseComponents.Slider.StateChangedArgs' are removed.
-    [Obsolete("This will be removed in API10. Please use Tizen.NUI.BaseComponents.ControlState instead!")]
+    [Obsolete("This will be removed in API10. Use Tizen.NUI.BaseComponents.ControlState instead.")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum ControlStates
     {

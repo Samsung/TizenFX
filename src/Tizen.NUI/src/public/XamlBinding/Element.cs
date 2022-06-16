@@ -99,7 +99,7 @@ namespace Tizen.NUI.Binding
         /// </summary>
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("ParentView is obsolete as of version 2.1.0. Please use Parent instead.")]
+        [Obsolete("ParentView is obsolete as of version 2.1.0. Use Parent instead.")]
         public BaseHandle ParentView
         {
             get

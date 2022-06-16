@@ -506,7 +506,7 @@ namespace Tizen.NUI.BaseComponents
     /// Contains and encapsulates Native Player handle.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [Obsolete("Deprecated in API9, will be removed in API11. Please use VideoView.NativeHandle instead!")]
+    [Obsolete("This has been deprecated in API9 and will be removed in API11. Use VideoView.NativeHandle instead.")]
     public class SafeNativePlayerHandle : SafeHandle
     {
         /// <summary>

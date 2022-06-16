@@ -174,7 +174,7 @@ namespace Tizen.NUI
         /// <remarks>
         /// Deprecated.(API Level 6) Not used.
         /// </remarks>
-        [Obsolete("Please do not use this ViewMode(Deprecated).")]
+        [Obsolete("Do not use this ViewMode(Deprecated).")]
         public enum ViewMode
         {
             /// <summary>
@@ -184,7 +184,7 @@ namespace Tizen.NUI
             /// <remarks>
             /// Deprecated.(API Level 6) Not used.
             /// </remarks>
-            [Obsolete("Please do not use this ViewMode.Mono(Deprecated).")]
+            [Obsolete("Do not use this ViewMode.Mono(Deprecated).")]
             Mono,
             /// <summary>
             /// Stereoscopic. Frame buffer is split horizontally with the left and right camera views in their respective sides.
@@ -193,7 +193,7 @@ namespace Tizen.NUI
             /// <remarks>
             /// Deprecated.(API Level 6) Not used.
             /// </remarks>
-            [Obsolete("Please do not use this ViewMode.StereoHorizontal(Deprecated).")]
+            [Obsolete("Do not use this ViewMode.StereoHorizontal(Deprecated).")]
             StereoHorizontal,
             /// <summary>
             /// Stereoscopic. Frame buffer is split vertically with the left camera view at the top and the right camera view at the bottom.
@@ -202,7 +202,7 @@ namespace Tizen.NUI
             /// <remarks>
             /// Deprecated.(API Level 6) Not used.
             /// </remarks>
-            [Obsolete("Please do not use this ViewMode.StereoVertical(Deprecated).")]
+            [Obsolete("Do not use this ViewMode.StereoVertical(Deprecated).")]
             StereoVertical,
             /// <summary>
             /// Stereoscopic. Left/Right camera views are rendered into the framebuffer on alternate frames.
@@ -211,7 +211,7 @@ namespace Tizen.NUI
             /// <remarks>
             /// Deprecated.(API Level 6) Not used.
             /// </remarks>
-            [Obsolete("Please do not use this ViewMode.StereoInterlaced(Deprecated).")]
+            [Obsolete("Do not use this ViewMode.StereoInterlaced(Deprecated).")]
             StereoInterlaced
         }
 

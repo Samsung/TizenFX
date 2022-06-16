@@ -348,7 +348,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <returns>The child count of the layer.</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use ChildCount property instead")]
         public override uint GetChildCount()
         {
             return Convert.ToUInt32(Children.Count);
@@ -359,9 +359,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
         /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use as keyword.
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead!")]
+        /// Do not use this, that will be deprecated. Use as keyword instead.
+        [Obsolete("Do not use this, that will be deprecated. Use as keyword instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Layer DownCast(BaseHandle handle)
         {

@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// A class containing methods providing image loading
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [Obsolete("please use ImageLoader instead!")]
+    [Obsolete("Do not use this class, but Use ImageLoader instead.")]
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1052:Static holder types should be Static or NotInheritable", Justification = "<Pending>")]
     public class ImageLoading
     {

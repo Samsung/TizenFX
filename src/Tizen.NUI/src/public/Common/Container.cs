@@ -183,7 +183,7 @@ namespace Tizen.NUI
         /// <pre>The container has been initialized.</pre>
         /// <returns>The number of children.</returns>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use ChildCount property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use ChildCount property instead.")]
         public abstract UInt32 GetChildCount();
 
         internal abstract View FindCurrentChildById(uint id);

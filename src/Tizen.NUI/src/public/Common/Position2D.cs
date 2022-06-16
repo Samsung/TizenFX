@@ -87,20 +87,20 @@ namespace Tizen.NUI
         /// The x component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Position2D(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Position2D(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Position2D position2d = new Position2D();
         /// position2d.X = 1; 
-        /// // Please USE like this
+        /// // USE like this
         /// int x = 1, y = 2;
         /// Position2D position2d = new Position2D(x, y);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public int X
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Position2D(...) constructor")]
             set
             {
                 Interop.Vector2.XSet(SwigCPtr, (float)value);
@@ -120,20 +120,20 @@ namespace Tizen.NUI
         /// The y component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Position2D(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Position2D(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Position2D position2d = new Position2D();
         /// position2d.Y = 2; 
-        /// // Please USE like this
+        /// // USE like this
         /// int x = 1, y = 2;
         /// Position2D position2d = new Position2D(x, y);
         /// </code>
         /// <since_tizen> 3 </since_tizen>
         public int Y
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Position2D(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Position2D(...) constructor")]
             set
             {
                 Interop.Vector2.YSet(SwigCPtr, (float)value);

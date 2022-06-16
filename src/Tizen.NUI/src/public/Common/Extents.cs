@@ -128,20 +128,20 @@ namespace Tizen.NUI
         /// The Start extent.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Extents(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Ue new Extents(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Extents extents = new Extents();
         /// extents.Start = 1; 
-        /// // Please USE like this
+        /// // USE like this
         /// ushort start = 1, end = 2, top = 3, bottom = 4;
         /// Extents extents = new Extents(start, end, top, bottom);
         /// </code>
         /// <since_tizen> 4 </since_tizen>
         public ushort Start
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor")]
             set
             {
                 Interop.Extents.StartSet(SwigCPtr, value);
@@ -161,20 +161,20 @@ namespace Tizen.NUI
         /// The End extend.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Extents(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Extents extents = new Extents();
         /// extents.End = 2; 
-        /// // Please USE like this
+        /// // USE like this
         /// ushort start = 1, end = 2, top = 3, bottom = 4;
         /// Extents extents = new Extents(start, end, top, bottom);
         /// </code>
         /// <since_tizen> 4 </since_tizen>
         public ushort End
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor")]
             set
             {
                 Interop.Extents.EndSet(SwigCPtr, value);
@@ -194,20 +194,20 @@ namespace Tizen.NUI
         /// The Top extend.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Extents(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Extents extents = new Extents();
         /// extents.Top = 3; 
-        /// // Please USE like this
+        /// // USE like this
         /// ushort start = 1, end = 2, top = 3, bottom = 4;
         /// Extents extents = new Extents(start, end, top, bottom);
         /// </code>
         /// <since_tizen> 4 </since_tizen>
         public ushort Top
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor")]
             set
             {
                 Interop.Extents.TopSet(SwigCPtr, value);
@@ -227,20 +227,20 @@ namespace Tizen.NUI
         /// The Bottom Extend.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Extents(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Extents extents = new Extents();
         /// extents.Bottom = 4; 
-        /// // Please USE like this
+        /// // USE like this
         /// ushort start = 1, end = 2, top = 3, bottom = 4;
         /// Extents extents = new Extents(start, end, top, bottom);
         /// </code>
         /// <since_tizen> 4 </since_tizen>
         public ushort Bottom
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Extents(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor")]
             set
             {
                 Interop.Extents.BottomSet(SwigCPtr, value);

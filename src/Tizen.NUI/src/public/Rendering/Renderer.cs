@@ -702,12 +702,12 @@ namespace Tizen.NUI
 
 
 
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use ForegroundEffect instead!")]
+            [Obsolete("Do not use this, that is deprecated in API9 and will be removed in API11. Use ForegroundEffect instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             [SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
             public static readonly int FOREGROUND_EFFECT = Interop.Renderer.RangesForegroundEffectGet();
 
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use BackgroundEffect instead!")]
+            [Obsolete("Do not use this, that is deprecated in API9 and will be removed in API11. Use BackgroundEffect instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             [SuppressMessage("Naming", "CA1707:Identifiers should not contain underscores", Justification = "<Pending>")]
             public static readonly int BACKGROUND_EFFECT = Interop.Renderer.RangesBackgroundEffectGet();
