@@ -444,7 +444,7 @@ namespace Tizen.Multimedia.Remoting
         {
             if (sources == null)
             {
-                throw new ArgumentNullException(nameof(sources), "sources is null");
+                throw new ArgumentNullException(nameof(sources), "sources are null");
             }
 
             foreach (var source in sources)
