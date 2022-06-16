@@ -165,7 +165,7 @@ namespace Tizen.NUI.Xaml
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("SimpleValueTargetProvider(object[] objectAndParents) is obsolete as of version 2.3.4. Please use SimpleValueTargetProvider(object[] objectAndParents, object targetProperty) instead.")]
+        [Obsolete("SimpleValueTargetProvider(object[] objectAndParents) is obsolete as of version 2.3.4. Use SimpleValueTargetProvider(object[] objectAndParents, object targetProperty) instead.")]
         public SimpleValueTargetProvider(object[] objectAndParents) : this(objectAndParents, null)
         {
         }

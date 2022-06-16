@@ -127,7 +127,7 @@ namespace Tizen.NUI
         /// <remarks>
         /// Deprecated.(API Level 6) Not used.
         /// </remarks>
-        [Obsolete("Please do not use this DrawModeType.Stencil(Deprecated). This is replaced by ClippingModeType")]
+        [Obsolete("Do not use this DrawModeType.Stencil(Deprecated). This is replaced by ClippingModeType")]
         [Description("STENCIL")]
         Stencil = 3
     }
@@ -309,10 +309,10 @@ namespace Tizen.NUI
         /// </summary>
         DisableStyleChangeSignals = 1 << 6,
         /// <summary>
-        /// Please do not use! This will be deprecated!
+        /// Do not use! This will be deprecated!
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
+        [Obsolete("Do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         LastViewBehaviourFlag
     }
@@ -1672,10 +1672,10 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// [Obsolete("Please do not use! this will be deprecated")]
+    /// [Obsolete("Do not use this, that will be deprecated.")]
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Please do not use! This will be deprecated! Please use PivotPoint instead!")]
+    [Obsolete("Do not use this, that will be deprecated. Use as PivotPoint instead.")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public struct AnchorPoint
     {

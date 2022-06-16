@@ -208,9 +208,9 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Deprecate. Please do not use this.
+        /// Deprecate. Do not use this.
         /// The style instance applied to this view.
-        /// Note that please do not modify the ViewStyle.
+        /// Note that do not modify the ViewStyle.
         /// Modifying ViewStyle will affect other views with same ViewStyle.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -809,7 +809,7 @@ namespace Tizen.NUI.BaseComponents
         /// The number of rows this child occupies, if not set, the default value is 1.
         /// </summary>
         /// <remarks>
-        /// This property is for <see cref="TableView"/> class. Please use the property for the child position of <see cref="TableView"/>.
+        /// This property is for <see cref="TableView"/> class. Use the property for the child position of <see cref="TableView"/>.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float RowSpan
@@ -829,7 +829,7 @@ namespace Tizen.NUI.BaseComponents
         /// The number of columns this child occupies, if not set, the default value is 1.
         /// </summary>
         /// <remarks>
-        /// This property is for <see cref="TableView"/> class. Please use the property for the child position of <see cref="TableView"/>.
+        /// This property is for <see cref="TableView"/> class. Use the property for the child position of <see cref="TableView"/>.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public float ColumnSpan
@@ -849,7 +849,7 @@ namespace Tizen.NUI.BaseComponents
         /// The horizontal alignment of this child inside the cells, if not set, the default value is 'left'.
         /// </summary>
         /// <remarks>
-        /// This property is for <see cref="TableView"/> class. Please use the property for the child position of <see cref="TableView"/>.
+        /// This property is for <see cref="TableView"/> class. Use the property for the child position of <see cref="TableView"/>.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.HorizontalAlignmentType CellHorizontalAlignment
@@ -869,7 +869,7 @@ namespace Tizen.NUI.BaseComponents
         /// The vertical alignment of this child inside the cells, if not set, the default value is 'top'.
         /// </summary>
         /// <remarks>
-        /// This property is for <see cref="TableView"/> class. Please use the property for the child position of <see cref="TableView"/>.
+        /// This property is for <see cref="TableView"/> class. Use the property for the child position of <see cref="TableView"/>.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Tizen.NUI.VerticalAlignmentType CellVerticalAlignment
@@ -1224,15 +1224,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Deprecated in API5; Will be removed in API8. Please use PositionUsesPivotPoint instead!
+        /// This has been deprecated in API5 and Will be removed in API8. Use PositionUsesPivotPoint instead.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API5; Will be removed in API8. Please use PositionUsesPivotPoint instead! " +
+        [Obsolete("This has been deprecated in API5 and will be removed in API8. Use PositionUsesPivotPoint instead. " +
             "Like: " +
             "View view = new View(); " +
             "view.PivotPoint = PivotPoint.Center; " +
             "view.PositionUsesPivotPoint = true;" +
-            " Deprecated in API5: Will be removed in API8")]
+            " This has been deprecated in API5 and will be removed in API8")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool PositionUsesAnchorPoint
         {
@@ -2236,13 +2236,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Deprecated in API5; Will be removed in API8. Please use PivotPoint instead!
+        /// This has been deprecated in API5 and will be removed in API8. Use PivotPoint instead.
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (view.AnchorPoint.X = 0.1f;) is possible.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API5; Will be removed in API8. Please use PivotPoint instead! " +
+        [Obsolete("This has been deprecated in API5 and will be removed in API8. Use PivotPoint instead. " +
             "Like: " +
             "View view = new View(); " +
             "view.PivotPoint = PivotPoint.Center; " +
@@ -2322,10 +2322,10 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Deprecated in API5; Will be removed in API8. Please use 'Container GetParent() for derived class' instead!
+        /// This has been deprecated in API5 and will be removed in API8. Use 'Container GetParent() for derived class' instead.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API5; Will be removed in API8. Please use 'Container GetParent() for derived class' instead! " +
+        [Obsolete("This has been deprecated in API5 and will be removed in API8. Use 'Container GetParent() for derived class' instead. " +
             "Like: " +
             "Container parent =  view.GetParent(); " +
             "View view = parent as View;")]
@@ -2602,13 +2602,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Deprecated in API5; Will be removed in API8. Please use Padding instead.
+        /// This has been deprecated in API5 and will be removed in API8. Use Padding instead.
         /// </summary>
         /// <remarks>
         /// The property cascade chaining set is possible. For example, this (view.DecorationBoundingBox.X = 0.1f;) is possible.
         /// </remarks>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Deprecated in API5; Will be removed in API8. Please use Padding instead.")]
+        [Obsolete("This has been deprecated in API5 and will be removed in API8. Use Padding instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Extents PaddingEX
         {

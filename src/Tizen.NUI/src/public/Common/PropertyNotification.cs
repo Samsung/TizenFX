@@ -117,7 +117,7 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Get property notification from Intptr.<br/>
-        /// This should be internal, please do not use.
+        /// This should be internal, do not use.
         /// </summary>
         /// <param name="cPtr">An object of IntPtr type.</param>
         /// <returns>An object of the PropertyNotification type.</returns>

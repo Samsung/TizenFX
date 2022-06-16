@@ -235,12 +235,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// [Obsolete("Please do not use! this will be deprecated")]
+        /// [Obsolete("Do not use this, that will be deprecated.")]
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use FocusedViewActivated.
-        [Obsolete("Please do not use! This will be deprecated! Please use FocusManager.FocusedViewActivated instead! " +
+        /// Do not use this, that will be deprecated.
+        /// Instead Use FocusedViewActivated.
+        [Obsolete("Do not use this, that will be deprecated. Use FocusManager.FocusedViewActivated instead. " +
             "Like: " +
             "FocusManager.Instance.FocusedViewActivated = OnFocusedViewActivated; " +
             "private void OnFocusedViewActivated(object source, FocusManager.FocusedViewActivatedEventArgs args) {...}")]
@@ -742,11 +742,11 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Please do not use! this will be deprecated!
+        /// Do not use this, that will be deprecated.
         /// </summary>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use OnFocusedViewEnterKey.
-        [Obsolete("Please do not use! This will be deprecated! Please use FocusManager.OnFocusedViewEnterKey instead!")]
+        /// Do not use this, that will be deprecated.
+        /// Instead Use OnFocusedViewEnterKey.
+        [Obsolete("Do not use this, that will be deprecated. Use FocusManager.OnFocusedViewEnterKey instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         private void OnFocusedViewEnterKey2(IntPtr view)
         {
@@ -963,12 +963,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Please do not use! this will be deprecated
+        /// Do not use this, that will be deprecated.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        /// Please do not use! this will be deprecated.
-        /// Instead please use FocusedViewActivatedEventArgs.
-        [Obsolete("Please do not use! This will be deprecated! Please use FocusedViewActivatedEventArgs instead! " +
+        /// Do not use this, that will be deprecated.
+        /// Instead Use FocusedViewActivatedEventArgs.
+        [Obsolete("Do not use this, that will be deprecated. Use FocusedViewActivatedEventArgs instead. " +
             "Like: " +
             "FocusManager.Instance.FocusedViewActivated = OnFocusedViewActivated; " +
             "private void OnFocusedViewActivated(object source, FocusManager.FocusedViewActivatedEventArgs arg)" +
