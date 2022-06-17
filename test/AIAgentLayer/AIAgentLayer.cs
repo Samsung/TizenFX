@@ -146,8 +146,8 @@ namespace AIAgentLayer
             }
 
             moveAnimation = new Animation(800);
-            var c1 = new Vector2(0.86f, 0.0f);
-            var c2 = new Vector2(0.07f, 1.0f);
+            var c1 = new Vector2(0.5f, 0.0f);
+            var c2 = new Vector2(0.5f, 1.0f);
 
             alphaFunction = new AlphaFunction(c1, c2);
             moveAnimation.DefaultAlphaFunction = alphaFunction;
@@ -189,7 +189,7 @@ namespace AIAgentLayer
             //Create RiveAnimation
             rav = new Tizen.NUI.Extension.RiveAnimationView(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "mini_a.riv")
             {
-                Size = new Size(300, 300),
+                Size = new Size(250, 250),
                 Position = new Position( 750, 300)
             };
 
@@ -215,6 +215,14 @@ namespace AIAgentLayer
                 rav.SetAnimationElapsedTime("reset", -1.0f);
                 rav.SetAnimationElapsedTime("eye 360", -1.0f);
                 rav.SetAnimationElapsedTime("out", 0.0f);
+
+                rav.SetAnimationElapsedTime("thinking", 0.0f);
+                rav.SetAnimationElapsedTime("listen", 0.0f);
+                rav.SetAnimationElapsedTime("ok", 0.0f);
+                rav.EnableAnimation("thinking", false);
+                rav.EnableAnimation("listen", false);
+                rav.EnableAnimation("ok", false);
+
                 rav.EnableAnimation("out", false);
                 rav.EnableAnimation("in", true);
                 inAnimation.Play();
