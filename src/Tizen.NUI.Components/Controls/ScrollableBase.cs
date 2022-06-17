@@ -1985,6 +1985,14 @@ namespace Tizen.NUI.Components
             bool backward = ((isHorizontal && direction == View.FocusDirection.Left) ||
                                 (!isHorizontal && direction == View.FocusDirection.Up));
 
+             // Reached end of scroll. move out focus from ScrollableBase.
+            if ((forward && maxScrollDistance - targetPosition < 0.1f) || (backward && targetPosition < 0.1f))
+            {
+                var next = FocusManager.Instance.GetNearestFocusableActor(this.Parent, this, direction);
+                Debug.WriteLineIf(focusDebugScrollableBase, $"Reached End of Scroll. Next focus target {next}:{next?.ID}");
+                return next;
+            }
+
             View nextFocusedView = FocusManager.Instance.GetNearestFocusableActor(this, currentFocusedView, direction);
 
             if (focusDebugScrollableBase)
@@ -2045,12 +2053,6 @@ namespace Tizen.NUI.Components
                 }
 
                 ScrollTo(targetPosition, true);
-
-                // Reached end of scroll. move focus to ScrollableBase.
-                if ((forward && targetPosition == maxScrollDistance) || (backward && targetPosition == 0))
-                {
-                    nextFocusedView = this;
-                }
 
                 Debug.WriteLineIf(focusDebugScrollableBase, $"ScrollTo :({targetPosition})");
             }

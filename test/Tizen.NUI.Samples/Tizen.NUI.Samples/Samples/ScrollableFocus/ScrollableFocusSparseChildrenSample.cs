@@ -88,6 +88,7 @@ namespace Tizen.NUI.Samples
                 }
 
                 focusInfo.Text = $"Prev:{prev} Current:{cur}";
+                Console.WriteLine($"Focus Changed Prev:{prev} => Current:{cur}");
             };
 
             var top = new Button()
