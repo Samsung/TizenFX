@@ -20,38 +20,36 @@ using System.IO;
 namespace Tizen.MachineLearning.Train
 {
     /// <summary>
-    /// Creates a neural network optimizer.
+    /// Constructs the dataset.
     /// </summary>
     /// <remarks>
-    /// Use this function to create neural network optimizer. If not set to
-    /// model, optimizer should be released using Dispose().
-    /// If set to a model, optimizer is available until model is released.
+    /// Use this function to create a dataset. dataset should be released using Dispose().
+    /// dataset is available until the model is released.
     /// </remarks>
     /// <since_tizen> 10 </since_tizen>
-    public class Optimizer: IDisposable
+    public class Dataset: IDisposable
     {
         private IntPtr handle = IntPtr.Zero;
         private bool disposed = false;
 
         /// <summary>
-        /// Creates a neural network optimizer.
+        ///  Constructs the dataset.
         /// </summary>
-        /// <param name="type">The nntrainer optimizer type.</param>
         /// <since_tizen> 10 </since_tizen>
-        public Optimizer(NNTrainerOptimizerType type)
+        public Dataset()
         {
-            NNTrainerError ret = Interop.Optimizer.Create(out handle, type);
-            NNTrainer.CheckException(ret, "Failed to create optimizer instance");
-            Log.Info(NNTrainer.Tag, $"Create optimizer with type:{type}");
+            NNTrainerError ret = Interop.Dataset.Create(out handle);
+            NNTrainer.CheckException(ret, "Failed to create dataset instance");
+            Log.Info(NNTrainer.Tag, "Create Dataset");
         }
         /// <summary>
-        /// Frees the neural network optimizer.
+        /// Frees the neural network dataset.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         /// <remarks>
-        /// Use this function to destroy neural network optimizer. Fails if layer is owned by a model.
+        /// Use this function to destroy dataset. Fails if dataset is owned by a model.
         /// </remarks>
-        ~Optimizer()
+        ~Dataset()
         {
             Dispose(false);
         }
@@ -82,9 +80,10 @@ namespace Tizen.MachineLearning.Train
             // release unmanaged object
             if (handle != IntPtr.Zero)
             {
-                // Destroy optimizer.
-                NNTrainerError ret = Interop.Optimizer.Destroy(handle);
-                NNTrainer.CheckException(ret, "Failed to destroy optimizer instance");
+                // Destroy dataset.
+                NNTrainerError ret = Interop.Dataset.Destroy(handle);
+                NNTrainer.CheckException(ret, "Failed to destroy dataset instance");
+                Log.Info(NNTrainer.Tag, "Destroy Dataset");
 
                 handle = IntPtr.Zero;
             }
@@ -92,24 +91,27 @@ namespace Tizen.MachineLearning.Train
         }
 
         /// <summary>
-        /// Sets the neural network optimizer property
+        /// Adds data file to dataset.
         /// </summary>
         /// <remarks>
-        /// Use this function to set neural network optimizer property.
+        /// Use this function to add a data file from where data is retrieved.
+        /// If you want to access only internal storage by using this function,
+        /// you should add privilege %http://tizen.org/privilege/mediastorage. Or, if you
+        /// want to access only external storage by using this function, you should add
+        /// privilege %http://tizen.org/privilege/externalstorage. If you can access both
+        /// storage, you must add all privilege
         /// </remarks>
-        /// <param name="property">property for optimizer.</param>
+        /// <param name="mode">The phase where this generator should be used.</param>
+        /// <param name="file">file path.</param>
         /// <since_tizen> 10 </since_tizen>
-        public void SetProperty(params string[] property)
+        public void AddFile(NNTrainerDatasetMode mode, string file)
         {
-            string propertyParams = null;
+            if (string.IsNullOrEmpty(file))
+                NNTrainer.CheckException(NNTrainerError.InvalidParameter, "file is null");
 
-            if (property.Length > 0) {
-                propertyParams = string.Join("|", property);
-                Log.Info(NNTrainer.Tag, "Set property:"+ propertyParams);
-            }
-
-            NNTrainerError ret = Interop.Optimizer.SetProperty(handle, propertyParams);
-            NNTrainer.CheckException(ret, "Failed to set property");
+            NNTrainerError ret = Interop.Dataset.AddFile(handle, mode, file);
+            NNTrainer.CheckException(ret, "Failed to add file");
+            Log.Info(NNTrainer.Tag, $"Add file{file}");
         }
 
         internal IntPtr GetHandle()
