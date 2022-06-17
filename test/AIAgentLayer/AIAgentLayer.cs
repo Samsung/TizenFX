@@ -21,6 +21,7 @@ namespace AIAgentLayer
         Button leftTopButton, rightTopButton, leftBottomButton, rightBottomButton;
 
         //In and Out Animation Timer
+        Animation showAnimation;
         Animation inAnimation;
         Animation outAnimation;
         Animation resetEyeAnimation;
@@ -68,6 +69,29 @@ namespace AIAgentLayer
             resetEyeAnimation.Play();
         }
 
+        void showAnimationFinished(object sender, EventArgs e)
+        {
+            if (inAnimation)
+            {
+                inAnimation.Reset();
+            }
+            rav.SetAnimationElapsedTime("reset", -1.0f);
+            rav.SetAnimationElapsedTime("eye 360", -1.0f);
+            rav.SetAnimationElapsedTime("out", 0.0f);
+
+            rav.SetAnimationElapsedTime("thinking", 0.0f);
+            rav.SetAnimationElapsedTime("listen", 0.0f);
+            rav.SetAnimationElapsedTime("ok", 0.0f);
+            rav.EnableAnimation("thinking", false);
+            rav.EnableAnimation("listen", false);
+            rav.EnableAnimation("ok", false);
+
+            rav.EnableAnimation("out", false);
+            rav.EnableAnimation("in", true);
+
+            inAnimation.Play();
+        }
+
         void inAnimationFinished(object sender, EventArgs e)
         {
             rav.SetAnimationElapsedTime("reset", -1.0f);
@@ -84,9 +108,12 @@ namespace AIAgentLayer
             rav.SetAnimationElapsedTime("out", -1.0f);
             rav.EnableAnimation("out", false);
             rav.EnableAnimation("idle", false);
+            rav.Stop();
         }
         void InitializeTimer()
         {
+            showAnimation = new Animation(100);
+            showAnimation.Finished += showAnimationFinished;
             inAnimation = new Animation(1100);
             inAnimation.Finished += inAnimationFinished;
             outAnimation = new Animation(900);
@@ -208,24 +235,12 @@ namespace AIAgentLayer
             };
             inButton.Clicked += (object source, ClickedEventArgs args) =>
             {
-                if (inAnimation)
+                if (showAnimation)
                 {
-                    inAnimation.Reset();
+                    showAnimation.Reset();
                 }
-                rav.SetAnimationElapsedTime("reset", -1.0f);
-                rav.SetAnimationElapsedTime("eye 360", -1.0f);
-                rav.SetAnimationElapsedTime("out", 0.0f);
-
-                rav.SetAnimationElapsedTime("thinking", 0.0f);
-                rav.SetAnimationElapsedTime("listen", 0.0f);
-                rav.SetAnimationElapsedTime("ok", 0.0f);
-                rav.EnableAnimation("thinking", false);
-                rav.EnableAnimation("listen", false);
-                rav.EnableAnimation("ok", false);
-
-                rav.EnableAnimation("out", false);
-                rav.EnableAnimation("in", true);
-                inAnimation.Play();
+                rav.Play();
+                showAnimation.Play();
             };
 
             outButton = new Button()
