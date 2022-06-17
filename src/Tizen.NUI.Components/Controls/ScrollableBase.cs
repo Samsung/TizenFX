@@ -2032,22 +2032,12 @@ namespace Tizen.NUI.Components
 
                 if (forward)
                 {
-                    if (targetPosition == maxScrollDistance)
-                    {
-                        Debug.WriteLineIf(focusDebugScrollableBase, $"return null, escape scrollableBase on forward");
-                        return null;
-                    }
                     targetPosition += stepDistance;
                     targetPosition = targetPosition > maxScrollDistance ? maxScrollDistance : targetPosition;
 
                 }
                 else if (backward)
                 {
-                    if (targetPosition == 0)
-                    {
-                        Debug.WriteLineIf(focusDebugScrollableBase, $"return null, escape scrollableBase on backward");
-                        return null;
-                    }
                     targetPosition -= stepDistance;
                     targetPosition = targetPosition < 0 ? 0 : targetPosition;
                 }
