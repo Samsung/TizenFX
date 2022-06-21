@@ -323,16 +323,16 @@ namespace Tizen.NUI.Binding
                     throw new ArgumentNullException(nameof(property));
                 }
 
+                BindablePropertyContext context = GetOrCreateContext(property);
+                if (null != context)
+                {
+                    context.Attributes |= BindableContextAttributes.IsManuallySet;
+                }
                 object oldvalue = null;
                 if (null == property.DefaultValueCreator)
                 {
-                    BindablePropertyContext context = GetOrCreateContext(property);
-                    if (null != context)
-                    {
-                        context.Attributes |= BindableContextAttributes.IsManuallySet;
-                        oldvalue = context.Value;
-                        context.Value = value;
-                    }
+                    oldvalue = context.Value;
+                    context.Value = value;
                 }
                 else
                 {
