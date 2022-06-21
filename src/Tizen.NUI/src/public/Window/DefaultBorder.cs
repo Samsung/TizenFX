@@ -42,7 +42,7 @@ namespace Tizen.NUI
         private static readonly string DarkRightCornerIcon = ResourcePath + "dark_rightCorner.png";
 
 
-        private const uint DefaultHeight = 50;
+        private const float DefaultHeight = 50;
         private const uint DefaultLineThickness = 5;
         private const uint DefaultTouchThickness = 20;
         private static readonly Color DefaultBackgroundColor = new Color(1, 1, 1, 0.3f);
@@ -106,9 +106,10 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The height of the border.
+        /// This value is the initial value used when creating borders.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint BorderHeight {get; set;}
+        public float BorderHeight {get; set;}
 
         /// <summary>
         /// The minimum size by which the window will small.
@@ -390,7 +391,7 @@ namespace Tizen.NUI
                 BorderWindow.RequestResizeToServer(Window.ResizeDirection.TopLeft);
               }
             }
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -408,7 +409,7 @@ namespace Tizen.NUI
                 BorderWindow.RequestResizeToServer(Window.ResizeDirection.TopRight);
               }
             }
-            return false;
+            return true;
         }
 
 
@@ -427,7 +428,7 @@ namespace Tizen.NUI
                 BorderWindow.RequestResizeToServer(Window.ResizeDirection.BottomLeft);
               }
             }
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -445,7 +446,7 @@ namespace Tizen.NUI
                 BorderWindow.RequestResizeToServer(Window.ResizeDirection.BottomRight);
               }
             }
-            return false;
+            return true;
         }
 
 
@@ -470,7 +471,7 @@ namespace Tizen.NUI
             {
                 MinimizeBorderWindow();
             }
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -502,7 +503,7 @@ namespace Tizen.NUI
             {
                 MaximizeBorderWindow();
             }
-            return false;
+            return true;
         }
 
         /// <summary>
@@ -511,8 +512,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void CloseBorderWindow()
         {
-            BorderWindow.Destroy();
-            BorderWindow = null;
+            BorderWindow.BorderDestroy();
         }
 
         /// <summary>
@@ -521,15 +521,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnCloseIconTouched(object sender, View.TouchEventArgs e)
         {
-            if (e == null)
-            {
-                return false;
-            }
             if (e != null && e.Touch.GetState(0) == PointStateType.Up)
             {
                 CloseBorderWindow();
             }
-            return false;
+            return true;
         }
 
 
@@ -801,7 +797,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="isMaximized">If window is maximized or unmaximized.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual void OnMaximize(bool isMaximized) 
+        public virtual void OnMaximize(bool isMaximized)
         {
             UpdateIcons();
         }
@@ -882,6 +878,8 @@ namespace Tizen.NUI
                     BorderWindow.InterceptTouchEvent -= OnWinInterceptedTouch;
                 }
 
+                borderView?.Dispose();
+                windowView?.Dispose();
                 borderPanGestureDetector?.Dispose();
                 borderPinchGestureDetector?.Dispose();
                 backgroundColor?.Dispose();
@@ -892,8 +890,6 @@ namespace Tizen.NUI
                 rightCornerIcon?.Dispose();
                 timer?.Dispose();
                 overlayTimer?.Dispose();
-                windowView?.Dispose();
-                borderView?.Dispose();
             }
             disposed = true;
         }

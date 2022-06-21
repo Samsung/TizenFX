@@ -480,7 +480,7 @@ namespace Tizen.NUI
 
             if (borderEnabled)
             {
-                GetDefaultWindow().EnableBorder(borderInterface);
+                GetDefaultWindow().EnableBorder(borderInterface, new Window.BorderCloseDelegate(Exit));
             }
 
             Tizen.Tracer.End();

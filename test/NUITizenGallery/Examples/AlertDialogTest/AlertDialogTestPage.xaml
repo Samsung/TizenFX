@@ -34,6 +34,15 @@
             <Button x:Name="buttonNoMessage"
                         Text="Show AlertDialog without message"
                         WidthSpecification="{Static LayoutParamPolicies.MatchParent}" />
+
+            <Button x:Name="buttonTwoAlertDialog"
+                        Text="Show Two AlertDialogs at a same time"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}" />
+
+            <Button x:Name="buttonNewAlertDialog"
+                        Text="Show AlertDialog without message"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}" />
+
         </View>
     </ContentPage.Content>
 

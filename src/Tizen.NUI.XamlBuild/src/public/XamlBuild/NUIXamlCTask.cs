@@ -47,7 +47,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
         public bool UseInjection { get; set; }
 
-        public int XamlOptimization { get; set; } = 2;
+        public int XamlOptimization { get; set; } = 1;
 
         public IAssemblyResolver DefaultAssemblyResolver { get; set; }
 
