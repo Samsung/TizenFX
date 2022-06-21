@@ -442,6 +442,11 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 9 </since_tizen>
         public void AddSources(params MediaSource[] sources)
         {
+            if (sources == null)
+            {
+                throw new ArgumentNullException(nameof(sources), "sources are null");
+            }
+
             foreach (var source in sources)
             {
                 AddSource(source);
@@ -538,6 +543,11 @@ namespace Tizen.Multimedia.Remoting
         public void SetTurnServers(params string[] turnServers)
         {
             ValidateNotDisposed();
+
+            if (turnServers == null)
+            {
+                throw new ArgumentNullException(nameof(turnServers), "Turn server names are null.");
+            }
 
             foreach (var turnServer in turnServers)
             {
