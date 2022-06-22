@@ -1467,23 +1467,26 @@ namespace Tizen.NUI.Components
 
             if (key.State == Key.StateType.Down)
             {
+                float valueDiff;
+                if (IsDiscrete)
+                {
+                    valueDiff = discreteValue;
+                }
+                else
+                {
+                    /// TODO : Currently we set the velocity of value as 1% hardly.
+                    /// Can we use AccessibilityGetMinimumIncrement?
+                    valueDiff = (maxValue - minValue) * 0.01f;
+                }
                 if ((direction == DirectionType.Horizontal && key.KeyPressedName == "Left") ||
                     (direction == DirectionType.Vertical && key.KeyPressedName == "Down"))
                 {
                     if (editMode)
                     {
-                        if (MinValue < CurrentValue)
+                        if (minValue < curValue)
                         {
                             isPressed = true;
-                            if (IsDiscrete)
-                            {
-                                float value = curValue - discreteValue;
-                                CurrentValue = value;
-                            }
-                            else
-                            {
-                                CurrentValue -= 1;
-                            }
+                            CurrentValue -= valueDiff;
                         }
                         return true; // Consumed
                     }
@@ -1493,18 +1496,10 @@ namespace Tizen.NUI.Components
                 {
                     if (editMode)
                     {
-                        if (MaxValue > CurrentValue)
+                        if (maxValue > curValue)
                         {
                             isPressed = true;
-                            if (IsDiscrete)
-                            {
-                                float value = curValue + discreteValue;
-                                CurrentValue = value;
-                            }
-                            else
-                            {
-                                CurrentValue += 1;
-                            }
+                            CurrentValue += valueDiff;
                         }
                         return true; // Consumed
                     }
