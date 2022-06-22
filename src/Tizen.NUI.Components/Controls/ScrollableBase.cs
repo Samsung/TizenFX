@@ -1981,15 +1981,19 @@ namespace Tizen.NUI.Components
             float stepDistance = (stepScrollDistance != 0? stepScrollDistance : (isHorizontal ? Size.Width * 0.25f :  Size.Height * 0.25f));
 
             bool forward = ((isHorizontal && direction == View.FocusDirection.Right) ||
-                            (!isHorizontal && direction == View.FocusDirection.Down));
+                            (!isHorizontal && direction == View.FocusDirection.Down) ||
+                            (direction == View.FocusDirection.Clockwise));
             bool backward = ((isHorizontal && direction == View.FocusDirection.Left) ||
-                                (!isHorizontal && direction == View.FocusDirection.Up));
+                             (!isHorizontal && direction == View.FocusDirection.Up) ||
+                             (direction == View.FocusDirection.CounterClockwise));
 
-             // Reached end of scroll. move out focus from ScrollableBase.
-            if ((forward && maxScrollDistance - targetPosition < 0.1f) || (backward && targetPosition < 0.1f))
+            // Move out focus from ScrollableBase.
+            // FIXME: Forward, Backward is unimplemented other components.
+            if (direction == View.FocusDirection.Forward || direction == View.FocusDirection.Backward ||
+                (forward && maxScrollDistance - targetPosition < 0.1f) || (backward && targetPosition < 0.1f))
             {
                 var next = FocusManager.Instance.GetNearestFocusableActor(this.Parent, this, direction);
-                Debug.WriteLineIf(focusDebugScrollableBase, $"Reached End of Scroll. Next focus target {next}:{next?.ID}");
+                Debug.WriteLineIf(focusDebugScrollableBase, $"Focus move [{direction}] out from ScrollableBase! Next focus target {next}:{next?.ID}");
                 return next;
             }
 
@@ -2027,6 +2031,7 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
+                    Debug.WriteLineIf(focusDebugScrollableBase, "current focus view is not decendant. return ScrollableBase!");
                     return this;
                 }
 
