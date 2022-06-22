@@ -57,7 +57,7 @@ namespace Tizen.NUI
         #endregion //Distructors
 
         #region Delegates
-        internal delegate void BorderCloseDelegate();
+        public delegate void BorderCloseDelegate();
         private BorderCloseDelegate borderCloseDelegate = null;
 
         #endregion //Delegates
@@ -144,7 +144,7 @@ namespace Tizen.NUI
         /// <param name="borderInterface">The IBorderInterface.</param>
         /// <param name="borderCloseDelegate">The BorderCloseDelegate. When close, this delegate is called.</param>
         /// <returns>Whether the border window is enabled</returns>
-        internal bool EnableBorder(IBorderInterface borderInterface, BorderCloseDelegate borderCloseDelegate = null)
+        public bool EnableBorder(IBorderInterface borderInterface, BorderCloseDelegate borderCloseDelegate = null)
         {
             if (isBorderWindow == true)
             {
@@ -209,6 +209,7 @@ namespace Tizen.NUI
                 // If it is BorderResizePolicyType.KeepRatio type, it will be resized according to the ratio.
                 if (borderInterface.ResizePolicy == BorderResizePolicyType.KeepRatio)
                 {
+                    Tizen.Log.Info("NUI", $"BorderResizePolicyType.KeepRatio 1\n");
                     AddAuxiliaryHint("wm.policy.win.resize_aspect_ratio", "1");
                 }
 
@@ -379,6 +380,7 @@ namespace Tizen.NUI
         private void OnBorderWindowResized(object sender, Window.ResizedEventArgs e)
         {
             Tizen.Log.Info("NUI", $"OnBorderWindowResized {e.WindowSize.Width},{e.WindowSize.Height}\n");
+
             int resizeWidth = e.WindowSize.Width;
             int resizeHeight = e.WindowSize.Height;
 
@@ -530,6 +532,7 @@ namespace Tizen.NUI
                 // If borderView is in overlay mode, pass the hittest.
                 if (overlayEnabled == true)
                 {
+                    Tizen.Log.Error("gab_test", $"HitTest pass!!!!\n");
                     return false;
                 }
                 return true;

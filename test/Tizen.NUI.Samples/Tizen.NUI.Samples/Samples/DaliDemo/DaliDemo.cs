@@ -10,7 +10,7 @@ namespace Tizen.NUI.Samples
 {
     public class DaliDemo : NUIApplication
     {
-        public DaliDemo(string styleSheet) : base(styleSheet)
+        public DaliDemo(string styleSheet) : base(styleSheet, new Size2D(1920, 1080), new Position(0, 0), null)
         {
         }
 
@@ -127,7 +127,7 @@ namespace Tizen.NUI.Samples
             StyleManager.Get().ApplyTheme(Tizen.Applications.Application.Current.DirectoryInfo.Resource + "style/demo-theme.json");
             CreateDaliDemo();
 
-            NUIApplication.GetDefaultWindow().KeyEvent += Instance_KeyEvent;
+            // NUIApplication.GetDefaultWindow().KeyEvent += Instance_KeyEvent;
             NUIApplication.GetDefaultWindow().BackgroundColor = Color.White;
         }
 

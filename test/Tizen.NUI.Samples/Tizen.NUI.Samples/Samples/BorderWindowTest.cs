@@ -41,9 +41,9 @@ namespace Tizen.NUI.Samples
 
       public CustomBorder() : base()
       {
-        BorderHeight = 50;
-        OverlayMode = true;
+        // OverlayMode = true;
         BorderLineThickness = 0;
+        ResizePolicy = Window.BorderResizePolicyType.KeepRatio;
       }
 
       public override bool CreateTopBorderView(View topView)
@@ -307,7 +307,7 @@ namespace Tizen.NUI.Samples
       if (subWindowTwo == null)
       {
         CustomBorder customBorder = new CustomBorder();
-        subWindowTwo = new Window("subwin1", customBorder, new Rectangle(60, 20, 800, 800), false);
+        subWindowTwo = new Window("subwin1", customBorder, new Rectangle(60, 20, 1000, 800), false);
         subWindowTwo.InterceptTouchEvent += (s, e) => 
         {
             Tizen.Log.Error("NUI", $"subWindowTwo.InterceptTouchEvent\n");
