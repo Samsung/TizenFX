@@ -62,5 +62,10 @@ internal static partial class Interop
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_get_layer")]
         public static extern NNTrainerError GetLayer(IntPtr modelHandle, string layerName, out IntPtr layer);
 
+        /* int ml_train_model_set_optimizer(ml_train_model_h model, ml_train_optimizer_h optimizer) */
+        [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_set_optimizer")]
+        public static extern NNTrainerError SetOptimizer(IntPtr modelHandle, IntPtr optimizerHandle);
+
+
     }
 }
