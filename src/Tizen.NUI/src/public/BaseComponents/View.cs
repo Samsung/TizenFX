@@ -32,6 +32,7 @@ namespace Tizen.NUI.BaseComponents
         private static HashSet<BindableProperty> sizePropertyGroup = new HashSet<BindableProperty>();
         private static HashSet<BindableProperty> scalePropertyGroup = new HashSet<BindableProperty>();
         private static bool defaultGrabTouchAfterLeave = false;
+        private static bool defaultAllowOnlyOwnTouch = false;
 
         internal BackgroundExtraData backgroundExtraData;
 
@@ -154,6 +155,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             GrabTouchAfterLeave = defaultGrabTouchAfterLeave;
+            AllowOnlyOwnTouch = defaultAllowOnlyOwnTouch;
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
@@ -205,6 +207,16 @@ namespace Tizen.NUI.BaseComponents
         public static void SetDefaultGrabTouchAfterLeave(bool enable)
         {
             defaultGrabTouchAfterLeave = enable;
+        }
+
+        /// <summary>
+        /// If set to true, the <see cref="AllowOnlyOwnTouch"/> property value is set to true when all Views are created.
+        /// </summary>
+        /// <param name="enable">Sets value of AllowOnlyOwnTouch property</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetDefaultAllowOnlyOwnTouch(bool enable)
+        {
+            defaultAllowOnlyOwnTouch = enable;
         }
 
         /// <summary>
@@ -2988,6 +3000,42 @@ namespace Tizen.NUI.BaseComponents
             {
                 var temp = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.CaptureAllTouchAfterStart, temp);
+                temp.Dispose();
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Whether the view will only receive own touch.
+        /// </summary>
+        /// <returns>true, if it only receives touches that started from itself.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool AllowOnlyOwnTouch
+        {
+            get
+            {
+                return (bool)GetValue(AllowOnlyOwnTouchProperty);
+            }
+            set
+            {
+                SetValue(AllowOnlyOwnTouchProperty, value);
+            }
+        }
+
+        private bool InternalAllowOnlyOwnTouch
+        {
+            get
+            {
+                bool temp = false;
+                var pValue = GetProperty(View.Property.AllowOnlyOwnTouch);
+                pValue.Get(out temp);
+                pValue.Dispose();
+                return temp;
+            }
+            set
+            {
+                var temp = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.AllowOnlyOwnTouch, temp);
                 temp.Dispose();
                 NotifyPropertyChanged();
             }

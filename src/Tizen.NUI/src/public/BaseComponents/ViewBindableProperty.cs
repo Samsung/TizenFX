@@ -2447,6 +2447,25 @@ namespace Tizen.NUI.BaseComponents
         });
 
         /// <summary>
+        /// AllowOnlyOwnTouchProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty AllowOnlyOwnTouchProperty = BindableProperty.Create(nameof(AllowOnlyOwnTouch), typeof(bool), typeof(View), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalAllowOnlyOwnTouch = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalAllowOnlyOwnTouch;
+        });
+
+
+        /// <summary>
         /// BlendEquationProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

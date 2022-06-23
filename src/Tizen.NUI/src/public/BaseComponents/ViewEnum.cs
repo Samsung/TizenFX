@@ -249,6 +249,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int PADDING = Interop.ViewProperty.PaddingGet();
             internal static readonly int SHADOW = Interop.ViewProperty.ShadowGet();
             internal static readonly int CaptureAllTouchAfterStart = Interop.ActorProperty.CaptureAllTouchAfterStartGet();
+            internal static readonly int AllowOnlyOwnTouch = Interop.ActorProperty.AllowOnlyOwnTouchGet();
             internal static readonly int BlendEquation = Interop.ActorProperty.BlendEquationGet();
             internal static readonly int Culled = Interop.ActorProperty.CulledGet();
             internal static readonly int AccessibilityName = Interop.ViewProperty.AccessibilityNameGet();
