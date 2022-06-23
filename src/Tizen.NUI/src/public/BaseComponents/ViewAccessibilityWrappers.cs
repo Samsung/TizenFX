@@ -95,8 +95,11 @@ namespace Tizen.NUI.BaseComponents
         private static ulong AccessibilityCalculateStatesWrapper(IntPtr self, ulong initialStates)
         {
             View view = GetViewFromRefObject(self);
+            if (view == null)
+                return 0UL;
+            
             ulong bitMask = 0UL;
-
+            
             lock (AccessibilityInitialStates)
             {
                 AccessibilityInitialStates.BitMask = initialStates;
