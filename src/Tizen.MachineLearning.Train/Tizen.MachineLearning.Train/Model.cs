@@ -249,7 +249,7 @@ namespace Tizen.MachineLearning.Train
             if (layer == null)
                 NNTrainer.CheckException(NNTrainerError.InvalidParameter, "layer instance is null");
             NNTrainerError ret = Interop.Model.AddLayer(handle, layer.GetHandle());
-            NNTrainer.CheckException(ret, "Failed to compile model");
+            NNTrainer.CheckException(ret, "Failed to add layer");
             Log.Info("MLT", $"AddLayer:\n{layer.GetHandle()}");
         }
 
@@ -270,6 +270,23 @@ namespace Tizen.MachineLearning.Train
             /* FiX_ME : how to handle layerHandle */
             NNTrainerError ret = Interop.Model.GetLayer(handle, layerName, out layerHandle);
             NNTrainer.CheckException(ret, "Failed to get layer");
+        }
+        /// <summary>
+        /// Sets the optimizer for the neural network model.
+        /// </summary>
+        /// <remarks>
+        /// Use this function to set neural network optimizer. This transfers
+        /// the ownership of the optimizer to the network. No need to destroy the
+        /// optimizer if it is to a model.
+        /// </remarks>
+        /// <param name="optimizer"> The instance of Optimizer class </param>
+        /// <since_tizen> 10 </since_tizen>
+        public void SetOptimizer(Optimizer optimizer)
+        {
+            if (optimizer == null)
+                NNTrainer.CheckException(NNTrainerError.InvalidOperation, "optimizer instance is null");
+            NNTrainerError ret = Interop.Model.SetOptimizer(handle, optimizer.GetHandle());
+            NNTrainer.CheckException(ret, "Failed to set optimizer");
         }
     } 
 }
