@@ -118,5 +118,27 @@ namespace Tizen.MachineLearning.Train
         {
             return handle;
         }
+
+        /// <summary>
+        /// Sets the neural network dataset property.
+        /// </summary>
+        /// <remarks>
+        /// Use this function to set dataset property for a specific mode.
+        /// </remarks>
+        /// <param name="mode">The mode to set the property.</param>
+        /// <param name="property">property for dataset.</param>
+        /// <since_tizen> 10 </since_tizen>
+        public void SetProperty(NNTrainerDatasetMode mode, params string[] property)
+        {
+            string propertyParams = null;
+
+            if (property.Length > 0) {
+                propertyParams = string.Join("|", property);
+                Log.Info(NNTrainer.Tag, "Set property:"+ propertyParams);
+            }
+
+            NNTrainerError ret = Interop.Dataset.SetProperty(handle, mode, propertyParams);
+            NNTrainer.CheckException(ret, "Failed to set property");
+        }
     } 
 }
