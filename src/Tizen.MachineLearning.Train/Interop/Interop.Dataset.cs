@@ -33,5 +33,9 @@ internal static partial class Interop
         /* int ml_train_dataset_add_file(ml_train_dataset_h dataset, ml_train_dataset_mode_e mode, const char *file) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_dataset_add_file")]
         internal static extern NNTrainerError AddFile(IntPtr datasetHandle, NNTrainerDatasetMode mode, string file);
+
+        /* int ml_train_dataset_set_property_for_mode_with_single_param(ml_train_dataset_h dataset, ml_train_dataset_mode_e mode, const char *single_param) */
+        [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_dataset_set_property_for_mode_with_single_param")]
+        internal static extern NNTrainerError SetProperty(IntPtr datasetHandle, NNTrainerDatasetMode mode, string propertyParams);
     }
 }
