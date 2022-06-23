@@ -204,6 +204,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_CAPTURE_ALL_TOUCH_AFTER_START_get")]
             public static extern int CaptureAllTouchAfterStartGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_ALLOW_ONLY_OWN_TOUCH_get")]
+            public static extern int AllowOnlyOwnTouchGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Actor_Property_BLEND_EQUATION_get")]
             public static extern int BlendEquationGet();
 
