@@ -99,7 +99,7 @@ namespace Tizen.NUI.BaseComponents
                 return 0UL;
             
             ulong bitMask = 0UL;
-            
+
             lock (AccessibilityInitialStates)
             {
                 AccessibilityInitialStates.BitMask = initialStates;
