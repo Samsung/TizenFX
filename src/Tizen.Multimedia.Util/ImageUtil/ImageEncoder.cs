@@ -540,7 +540,7 @@ namespace Tizen.Multimedia.Util
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="JpegXlEncoder"/> class with the information for lossless or lossy compression.
+        /// Initializes a new instance of the <see cref="JpegXlEncoder"/> class for lossless or lossy compression.
         /// </summary>
         /// <remarks><see cref="ImageEncoder.OutputFormat"/> will be the <see cref="ImageFormat.JpegXl"/>.</remarks>
         /// <param name="lossless">
@@ -566,7 +566,7 @@ namespace Tizen.Multimedia.Util
         internal override void Configure(ImageEncoderHandle handle)
         {
             NativeEncoder.SetLossless(handle, Lossless).
-                ThrowIfFailed("Failed to configure encoder; Lossless");
+                ThrowIfFailed($"Failed to configure encoder; Lossless={Lossless}");
         }
     }
 }
