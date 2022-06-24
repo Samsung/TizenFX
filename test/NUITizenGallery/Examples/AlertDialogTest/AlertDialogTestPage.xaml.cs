@@ -30,7 +30,12 @@ namespace NUITizenGallery
             buttonTwoActions.Clicked += ButtonTwoActionsClicked;
             buttonNoTitle.Clicked += ButtonNoTitleClicked;
             buttonNoMessage.Clicked += ButtonNoMessageClicked;
+            buttonTwoAlertDialog.Clicked += ButtonTwoAlertDialogClicked;
+            buttonNewAlertDialog.Clicked += ButtonNewAlertDialogClicked;
+            count = 0;
         }
+
+        private int count;
 
         private void ButtonOneActionClicked(object sender, ClickedEventArgs args)
         {
@@ -120,6 +125,58 @@ namespace NUITizenGallery
             };
 
             DialogPage.ShowAlertDialog("Title", null, button, button2);
+        }
+
+        private void ButtonTwoAlertDialogClicked(object sender, ClickedEventArgs args)
+        {
+            var button = new Button()
+            {
+                Text = "OK",
+            };
+
+            button.Clicked += (object s, ClickedEventArgs a) =>
+            {
+                Navigator?.Pop();
+            };
+
+            DialogPage.ShowAlertDialog("Title", "Message", button);
+
+            var button2 = new Button()
+            {
+                Text = "OK2",
+            };
+
+            button2.Clicked += (object s, ClickedEventArgs a) =>
+            {
+                Navigator?.Pop();
+            };
+
+            DialogPage.ShowAlertDialog("Title2", "Message2", button2);
+        }
+
+        private void ButtonNewAlertDialogClicked(object sender, ClickedEventArgs args)
+        {
+            var button = new Button()
+            {
+                Text = "Cancel",
+            };
+
+            button.Clicked += (object s, ClickedEventArgs a) =>
+            {
+                Navigator?.Pop();
+            };
+
+            var button2 = new Button()
+            {
+                Text = $"New AlertDialog {++count}",
+            };
+
+            button2.Clicked += (object s, ClickedEventArgs a) =>
+            {
+                ButtonNewAlertDialogClicked(s, a);
+            };
+
+            DialogPage.ShowAlertDialog("Title", "Message", button, button2);
         }
     }
 }

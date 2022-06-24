@@ -394,7 +394,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="padding">Width and height.</param>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use CellPadding property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use CellPadding property instead.")]
         public void SetCellPadding(Size2D padding)
         {
             Interop.TableView.SetCellPadding(SwigCPtr, Size2D.getCPtr(padding));
@@ -406,7 +406,7 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <returns>The current padding as width and height.</returns>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use CellPadding property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use CellPadding property instead.")]
         public Vector2 GetCellPadding()
         {
             Vector2 ret = new Vector2(Interop.TableView.GetCellPadding(SwigCPtr), true);
@@ -658,7 +658,7 @@ namespace Tizen.NUI.BaseComponents
             /// The index of a row.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use RowIndex instead!")]
+            [Obsolete("Do not use this, that will be deprecated. Use RowIndex instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public uint rowIndex
             {
@@ -694,7 +694,7 @@ namespace Tizen.NUI.BaseComponents
             /// The index of a column.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use ColumnIndex instead!")]
+            [Obsolete("Do not use this, that will be deprecated. Use ColumnIndex instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public uint columnIndex
             {
@@ -729,7 +729,7 @@ namespace Tizen.NUI.BaseComponents
             /// The span of a row.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use RowSpan instead!")]
+            [Obsolete("Do not use this, that will be deprecated. Use RowSpan instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public uint rowSpan
             {
@@ -764,7 +764,7 @@ namespace Tizen.NUI.BaseComponents
             /// The span of a column.
             /// </summary>
             /// <since_tizen> 3 </since_tizen>
-            [Obsolete("Please do not use! This will be deprecated! Please use ColumnSpan instead!")]
+            [Obsolete("Do not use this, that will be deprecated. Use ColumnSpan instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             public uint columnSpan
             {

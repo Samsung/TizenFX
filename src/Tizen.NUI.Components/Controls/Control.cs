@@ -140,8 +140,23 @@ namespace Tizen.NUI.Components
 
                 if (value)
                 {
-                    feedback = new Feedback();
-                    this.TouchEvent += OnTouchPlayFeedback;
+                    try
+                    {
+                        feedback = new Feedback();
+                        this.TouchEvent += OnTouchPlayFeedback;
+                    }
+                    catch (NotSupportedException e)
+                    {
+                        Log.Error("NUI", $"[ERROR] No support of Feedback: {e}");
+                    }
+                    catch (InvalidOperationException e)
+                    {
+                        Log.Error("NUI", $"[ERROR] Fail to initialize Feedback: {e}");
+                    }
+                    catch (NullReferenceException e)
+                    {
+                        Log.Error("NUI", $"[ERROR] Null reference error in Feedback: {e}");
+                    }
                 }
                 else
                 {

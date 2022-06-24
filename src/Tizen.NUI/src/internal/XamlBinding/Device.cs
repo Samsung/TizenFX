@@ -46,7 +46,7 @@ namespace Tizen.NUI.Binding
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void SetTargetIdiom(TargetIdiom value) => Idiom = value;
 
-        [Obsolete("TargetPlatform is obsolete as of version 2.3.4. Please use RuntimePlatform instead.")]
+        [Obsolete("TargetPlatform is obsolete as of version 2.3.4. Use RuntimePlatform instead.")]
 #pragma warning disable 0618
         public static TargetPlatform OS
         {
@@ -110,7 +110,7 @@ namespace Tizen.NUI.Binding
         //     return GetNamedSize(size, targetElementType, false);
         // }
 
-        [Obsolete("OnPlatform<> (generic) is obsolete as of version 2.3.4. Please use switch(RuntimePlatform) instead.")]
+        [Obsolete("OnPlatform<> (generic) is obsolete as of version 2.3.4. Use switch(RuntimePlatform) instead.")]
         public static T OnPlatform<T>(T iOS, T Android, T WinPhone)
         {
             switch (OS)

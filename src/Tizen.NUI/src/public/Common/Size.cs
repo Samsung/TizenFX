@@ -95,20 +95,20 @@ namespace Tizen.NUI
         /// The Width property for the width component of size
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Size(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Size(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Size size = new Size();
         /// size.Width = 0.1f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float width = 0.1f, height = 0.5f, depth = 0.9f;
         /// Size size = new Size(width, height, depth);
         /// </code>
         /// <since_tizen> 5 </since_tizen>
         public float Width
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Size(...) constructor")]
             set
             {
                 Interop.Vector3.WidthSet(SwigCPtr, value);
@@ -128,20 +128,20 @@ namespace Tizen.NUI
         /// The Height property for the height component of size.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Size(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Size(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Size size = new Size();
         /// size.Height = 0.5f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float width = 0.1f, height = 0.5f, depth = 0.9f;
         /// Size size = new Size(width, height, depth);
         /// </code>
         /// <since_tizen> 5 </since_tizen>
         public float Height
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Size(...) constructor")]
             set
             {
                 Interop.Vector3.HeightSet(SwigCPtr, value);
@@ -161,20 +161,20 @@ namespace Tizen.NUI
         /// The Depth property for the depth component of size.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Please use new Size(...) constructor.
+        /// The setter is deprecated in API8 and will be removed in API10. Use new Size(...) constructor.
         /// </remarks>
         /// <code>
         /// // DO NOT use like the followings!
         /// Size size = new Size();
         /// size.Depth = 0.9f; 
-        /// // Please USE like this
+        /// // USE like this
         /// float width = 0.1f, height = 0.5f, depth = 0.9f;
         /// Size size = new Size(width, height, depth);
         /// </code>
         /// <since_tizen> 5 </since_tizen>
         public float Depth
         {
-            [Obsolete("Please do not use this setter, Deprecated in API8, will be removed in API10. please use new Size(...) constructor")]
+            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Size(...) constructor")]
             set
             {
                 Interop.Vector3.DepthSet(SwigCPtr, value);

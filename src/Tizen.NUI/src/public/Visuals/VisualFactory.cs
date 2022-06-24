@@ -59,10 +59,10 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Please do not use! this will be deprecated, please use VisualFactory.Instance instead.
+        /// Do not use this, that will be deprecated. Use VisualFactory.Instance instead.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use VisualFactory.Instance instead! " +
+        [Obsolete("Do not use this, that will be deprecated. Use VisualFactory.Instance instead. " +
             "Like: " +
             "VisualFactory visualFactory = VisualFactory.Instance; " +
             "visualFactory.CreateVisual(visualMap);")]

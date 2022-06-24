@@ -85,6 +85,7 @@ namespace Tizen.NUI.Components
         private float discreteValue = 0;
 
         private PanGestureDetector panGestureDetector = null;
+        private readonly uint panGestureMotionEventAge = 16; // TODO : Can't we get this value from system configure?
         private float currentSlidedOffset;
         private EventHandler<SliderValueChangedEventArgs> sliderValueChangedHandler;
         private EventHandler<SliderSlidingStartedEventArgs> sliderSlidingStartedHandler;
@@ -107,6 +108,7 @@ namespace Tizen.NUI.Components
 
             panGestureDetector = new PanGestureDetector();
             panGestureDetector.Attach(this);
+            panGestureDetector.SetMaximumMotionEventAge(panGestureMotionEventAge);
             panGestureDetector.Detected += OnPanGestureDetected;
 
             this.Layout = new LinearLayout()
@@ -230,7 +232,7 @@ namespace Tizen.NUI.Components
                 {
                     WidthResizePolicy = ResizePolicyType.Fixed,
                     HeightResizePolicy = ResizePolicyType.Fixed,
-		    AccessibilityHidden = true,
+                    AccessibilityHidden = true,
                 };
                 this.Add(lowIndicatorImage);
             }
@@ -403,6 +405,17 @@ namespace Tizen.NUI.Components
 
             if (e.PanGesture.State == Gesture.StateType.Finished)
             {
+                // Update as finished position value
+                if (direction == DirectionType.Horizontal)
+                {
+                    CalculateCurrentValueByGesture(e.PanGesture.Displacement.X);
+                }
+                else if (direction == DirectionType.Vertical)
+                {
+                    CalculateCurrentValueByGesture(-e.PanGesture.Displacement.Y);
+                }
+                UpdateValue();
+
                 if (isValueShown)
                 {
                     valueIndicatorImage.Hide();
@@ -568,59 +581,93 @@ namespace Tizen.NUI.Components
             }
         }
 
-        private int BgTrackLength()
+        private int GetBgTrackLength()
         {
             int bgTrackLength = 0;
+
+            int lowIndicatorOffset = GetBgTrackLowIndicatorOffset();
+            int highIndicatorOffet = GetBgTrackHighIndicatorOffset();
+
+            if (direction == DirectionType.Horizontal)
+            {
+                bgTrackLength = this.Size2D.Width - lowIndicatorOffset - highIndicatorOffet;
+            }
+            else if (direction == DirectionType.Vertical)
+            {
+                bgTrackLength = this.Size2D.Height - lowIndicatorOffset - highIndicatorOffet;
+            }
+
+            return bgTrackLength;
+        }
+
+        /// <summary>
+        /// Get offset value of bgtrack's low indicator side.
+        /// </summary>
+        private int GetBgTrackLowIndicatorOffset()
+        {
+            int bgTrackLowIndicatorOffset = 0;
             IndicatorType type = CurrentIndicatorType();
 
             if (type == IndicatorType.None)
             {
                 if (direction == DirectionType.Horizontal)
                 {
-                    bgTrackLength = this.Size2D.Width - thumbImage.Size2D.Width;
+                    bgTrackLowIndicatorOffset = (int)(thumbImage.Size.Width * 0.5f);
                 }
                 else if (direction == DirectionType.Vertical)
                 {
-                    bgTrackLength = this.Size2D.Height - thumbImage.Size2D.Height;
+                    bgTrackLowIndicatorOffset = (int)(thumbImage.Size.Height * 0.5f);
                 }
             }
-            else if (type == IndicatorType.Image)
-            {// <lowIndicatorImage> <spaceBetweenTrackAndIndicator> <bgTrack> <spaceBetweenTrackAndIndicator> <highIndicatorImage>
-                Size lowIndicatorImageSize = LowIndicatorImageSize();
-                Size highIndicatorImageSize = HighIndicatorImageSize();
+            else if (type == IndicatorType.Image || type == IndicatorType.Text)
+            {// <lowIndicatorImage or Text> <spaceBetweenTrackAndIndicator> <bgTrack>
+                Size lowIndicatorSize = (type == IndicatorType.Image) ? LowIndicatorImageSize() : LowIndicatorTextSize();
                 int curSpace = (int)CurrentSpaceBetweenTrackAndIndicator();
                 if (direction == DirectionType.Horizontal)
                 {
-                    int lowIndicatorSpace = ((lowIndicatorImageSize.Width == 0) ? (0) : ((int)(curSpace + lowIndicatorImageSize.Width)));
-                    int highIndicatorSpace = ((highIndicatorImageSize.Width == 0) ? (0) : ((int)(curSpace + highIndicatorImageSize.Width)));
-                    bgTrackLength = this.Size2D.Width - lowIndicatorSpace - highIndicatorSpace;
+                    bgTrackLowIndicatorOffset = ((lowIndicatorSize.Width == 0) ? (0) : ((int)(curSpace + lowIndicatorSize.Width)));
                 }
                 else if (direction == DirectionType.Vertical)
                 {
-                    int lowIndicatorSpace = ((lowIndicatorImageSize.Height == 0) ? (0) : ((int)(curSpace + lowIndicatorImageSize.Height)));
-                    int highIndicatorSpace = ((highIndicatorImageSize.Height == 0) ? (0) : ((int)(curSpace + highIndicatorImageSize.Height)));
-                    bgTrackLength = this.Size2D.Height - lowIndicatorSpace - highIndicatorSpace;
+                    bgTrackLowIndicatorOffset = ((lowIndicatorSize.Height == 0) ? (0) : ((int)(curSpace + lowIndicatorSize.Height)));
                 }
             }
-            else if (type == IndicatorType.Text)
-            {// <lowIndicatorText> <spaceBetweenTrackAndIndicator> <bgTrack> <spaceBetweenTrackAndIndicator> <highIndicatorText>
-                Size lowIndicatorTextSize = LowIndicatorTextSize();
-                Size highIndicatorTextSize = HighIndicatorTextSize();
+            return bgTrackLowIndicatorOffset;
+        }
+
+        /// <summary>
+        /// Get offset value of bgtrack's high indicator side.
+        /// </summary>
+        private int GetBgTrackHighIndicatorOffset()
+        {
+            int bgTrackHighIndicatorOffset = 0;
+            IndicatorType type = CurrentIndicatorType();
+
+            if (type == IndicatorType.None)
+            {
+                if (direction == DirectionType.Horizontal)
+                {
+                    bgTrackHighIndicatorOffset = (int)(thumbImage.Size.Width * 0.5f);
+                }
+                else if (direction == DirectionType.Vertical)
+                {
+                    bgTrackHighIndicatorOffset = (int)(thumbImage.Size.Height * 0.5f);
+                }
+            }
+            else if (type == IndicatorType.Image || type == IndicatorType.Text)
+            {// <bgTrack> <spaceBetweenTrackAndIndicator> <highIndicatorImage or Text>
+                Size highIndicatorSize = (type == IndicatorType.Image) ? HighIndicatorImageSize() : HighIndicatorTextSize();
                 int curSpace = (int)CurrentSpaceBetweenTrackAndIndicator();
                 if (direction == DirectionType.Horizontal)
                 {
-                    int lowIndicatorSpace = ((lowIndicatorTextSize.Width == 0) ? (0) : ((int)(curSpace + lowIndicatorTextSize.Width)));
-                    int highIndicatorSpace = ((highIndicatorTextSize.Width == 0) ? (0) : ((int)(curSpace + highIndicatorTextSize.Width)));
-                    bgTrackLength = this.Size2D.Width - lowIndicatorSpace - highIndicatorSpace;
+                    bgTrackHighIndicatorOffset = ((highIndicatorSize.Width == 0) ? (0) : ((int)(curSpace + highIndicatorSize.Width)));
                 }
                 else if (direction == DirectionType.Vertical)
                 {
-                    int lowIndicatorSpace = ((lowIndicatorTextSize.Height == 0) ? (0) : ((int)(curSpace + lowIndicatorTextSize.Height)));
-                    int highIndicatorSpace = ((highIndicatorTextSize.Height == 0) ? (0) : ((int)(curSpace + highIndicatorTextSize.Height)));
-                    bgTrackLength = this.Size2D.Height - lowIndicatorSpace - highIndicatorSpace;
+                    bgTrackHighIndicatorOffset = ((highIndicatorSize.Height == 0) ? (0) : ((int)(curSpace + highIndicatorSize.Height)));
                 }
             }
-            return bgTrackLength;
+            return bgTrackHighIndicatorOffset;
         }
 
         private void UpdateLowIndicatorSize()
@@ -638,13 +685,39 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (lowIndicatorImage != null && lowIndicatorImage != null && lowIndicatorImage.Size != null)
+                if (lowIndicatorImage != null && lowIndicatorImage.Size != null)
                 {
                     lowIndicatorImage.Size = lowIndicatorSize ?? (ViewStyle as SliderStyle)?.LowIndicatorImage.Size;
                 }
-                if (lowIndicatorText != null && lowIndicatorText != null && lowIndicatorText.Size != null)
+                if (lowIndicatorText != null && lowIndicatorText.Size != null)
                 {
                     lowIndicatorText.Size = lowIndicatorSize ?? (ViewStyle as SliderStyle)?.LowIndicator.Size;
+                }
+            }
+        }
+
+        private void UpdateHighIndicatorSize()
+        {
+            if (highIndicatorSize != null)
+            {
+                if (highIndicatorImage != null)
+                {
+                    highIndicatorImage.Size = highIndicatorSize;
+                }
+                if (highIndicatorText != null)
+                {
+                    highIndicatorText.Size = highIndicatorSize;
+                }
+            }
+            else
+            {
+                if (highIndicatorImage != null && highIndicatorImage.Size != null)
+                {
+                    highIndicatorImage.Size = highIndicatorSize ?? (ViewStyle as SliderStyle)?.HighIndicatorImage.Size;
+                }
+                if (highIndicatorText != null && highIndicatorText.Size != null)
+                {
+                    highIndicatorText.Size = highIndicatorSize ?? (ViewStyle as SliderStyle)?.HighIndicator.Size;
                 }
             }
         }
@@ -656,7 +729,7 @@ namespace Tizen.NUI.Components
                 return;
             }
             int curTrackThickness = (int)CurrentTrackThickness();
-            int bgTrackLength = BgTrackLength();
+            int bgTrackLength = GetBgTrackLength();
             if (direction == DirectionType.Horizontal)
             {
                 bgTrackImage.Size2D = new Size2D(bgTrackLength, curTrackThickness);
@@ -673,47 +746,17 @@ namespace Tizen.NUI.Components
             {
                 return;
             }
-            IndicatorType type = CurrentIndicatorType();
 
-            if (type == IndicatorType.None)
+            int lowIndicatorOffset = GetBgTrackLowIndicatorOffset();
+            int highIndicatorOffet = GetBgTrackHighIndicatorOffset();
+
+            if (direction == DirectionType.Horizontal)
             {
-                bgTrackImage.Position2D = new Position2D(0, 0);
+                bgTrackImage.Position2D = new Position2D((lowIndicatorOffset - highIndicatorOffet) / 2, 0);
             }
-            else if (type == IndicatorType.Image)
+            else if (direction == DirectionType.Vertical)
             {
-                Size lowIndicatorImageSize = LowIndicatorImageSize();
-                Size highIndicatorImageSize = HighIndicatorImageSize();
-                int curSpace = (int)CurrentSpaceBetweenTrackAndIndicator();
-                if (direction == DirectionType.Horizontal)
-                {
-                    int lowIndicatorSpace = ((lowIndicatorImageSize.Width == 0) ? (0) : ((int)(curSpace + lowIndicatorImageSize.Width)));
-                    int highIndicatorSpace = ((highIndicatorImageSize.Width == 0) ? (0) : ((int)(curSpace + highIndicatorImageSize.Width)));
-                    bgTrackImage.Position2D = new Position2D(lowIndicatorSpace - (lowIndicatorSpace + highIndicatorSpace) / 2, 0);
-                }
-                else if (direction == DirectionType.Vertical)
-                {
-                    int lowIndicatorSpace = ((lowIndicatorImageSize.Height == 0) ? (0) : ((int)(curSpace + lowIndicatorImageSize.Height)));
-                    int highIndicatorSpace = ((highIndicatorImageSize.Height == 0) ? (0) : ((int)(curSpace + highIndicatorImageSize.Height)));
-                    bgTrackImage.Position2D = new Position2D(0, lowIndicatorSpace - (lowIndicatorSpace + highIndicatorSpace) / 2);
-                }
-            }
-            else if (type == IndicatorType.Text)
-            {
-                Size lowIndicatorTextSize = LowIndicatorTextSize();
-                Size highIndicatorTextSize = HighIndicatorTextSize();
-                int curSpace = (int)CurrentSpaceBetweenTrackAndIndicator();
-                if (direction == DirectionType.Horizontal)
-                {
-                    int lowIndicatorSpace = ((lowIndicatorTextSize.Width == 0) ? (0) : ((int)(curSpace + lowIndicatorTextSize.Width)));
-                    int highIndicatorSpace = ((highIndicatorTextSize.Width == 0) ? (0) : ((int)(curSpace + highIndicatorTextSize.Width)));
-                    bgTrackImage.Position2D = new Position2D(lowIndicatorSpace - (lowIndicatorSpace + highIndicatorSpace) / 2, 0);
-                }
-                else if (direction == DirectionType.Vertical)
-                {
-                    int lowIndicatorSpace = ((lowIndicatorTextSize.Height == 0) ? (0) : ((int)(curSpace + lowIndicatorTextSize.Height)));
-                    int highIndicatorSpace = ((highIndicatorTextSize.Height == 0) ? (0) : ((int)(curSpace + highIndicatorTextSize.Height)));
-                    bgTrackImage.Position2D = new Position2D(0, -(lowIndicatorSpace - (lowIndicatorSpace + highIndicatorSpace) / 2));
-                }
+                bgTrackImage.Position2D = new Position2D(0, (highIndicatorOffet - lowIndicatorOffset) / 2);
             }
         }
 
@@ -739,7 +782,7 @@ namespace Tizen.NUI.Components
                 {
                     ratio = 1.0f - ratio;
                 }
-                float slidedTrackLength = (float)BgTrackLength() * ratio;
+                float slidedTrackLength = (float)GetBgTrackLength() * ratio;
                 slidedTrackImage.Size2D = new Size2D((int)(slidedTrackLength + round), (int)curTrackThickness); //Add const round to reach Math.Round function.
                 thumbImage.Position = new Position(slidedTrackImage.Size2D.Width, 0);
                 thumbImage.RaiseToTop();
@@ -751,7 +794,7 @@ namespace Tizen.NUI.Components
             }
             else if (direction == DirectionType.Vertical)
             {
-                float slidedTrackLength = (float)BgTrackLength() * ratio;
+                float slidedTrackLength = (float)GetBgTrackLength() * ratio;
                 slidedTrackImage.Size2D = new Size2D((int)curTrackThickness, (int)(slidedTrackLength + round)); //Add const round to reach Math.Round function.
                 thumbImage.Position = new Position(0, -slidedTrackImage.Size2D.Height);
                 thumbImage.RaiseToTop();

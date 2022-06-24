@@ -74,13 +74,6 @@ namespace Tizen.NUI.BaseComponents
         internal TextEditor(TextEditor handle, bool shown = true) : this(Interop.TextEditor.NewTextEditor(TextEditor.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if (!shown)
-            {
-                SetVisible(false);
-            }
-
-            TextChanged += TextEditorTextChanged;
         }
 
         internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true, TextEditorStyle style = null) : base(cPtr, cMemoryOwn, style)
@@ -2203,7 +2196,7 @@ namespace Tizen.NUI.BaseComponents
         /// The settings to relating to the System's Input Method, Key and Value.<br />
         /// </summary>
         /// <remarks>
-        /// <see cref="InputMethod"/> is a class encapsulating the input method map. Please use the <see cref="InputMethod"/> class for this property.
+        /// <see cref="InputMethod"/> is a class encapsulating the input method map. Use the <see cref="InputMethod"/> class for this property.
         /// </remarks>
         /// <example>
         /// The following example demonstrates how to set the InputMethodSettings property.

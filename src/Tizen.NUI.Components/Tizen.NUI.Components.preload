@@ -3,4 +3,4 @@
 ## AssemblyName.dll TypeName.Preload()   ##
 ## The methods must not have parameters. ##
 ###########################################
-Tizen.NUI.Components.dll Tizen.NUI.Components.Control.Preload()
+Tizen.NUI.Components.dll Tizen.NUI.Components.DefaultThemeCreator.Preload()

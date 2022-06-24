@@ -255,11 +255,11 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// This will be deprecated, please use Image instead. <br />
+        /// This will be deprecated, Use Image instead. <br />
         /// ImageView ImageMap, type PropertyMap: string if it is a URL, map otherwise.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use Image property instead!")]
+        [Obsolete("Do not use this, that will be deprecated. Use Image property instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public PropertyMap ImageMap
         {
@@ -457,7 +457,7 @@ namespace Tizen.NUI.BaseComponents
         /// Gets or sets whether to synchronous loading the resourceurl of image.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Deprecated since API level 9 and will be removed in API level 11. Please use SynchronousLoading instead!")]
+        [Obsolete("This has been deprecated since API9 and will be removed in API11. Use SynchronousLoading instead.")]
         public bool SynchronosLoading
         {
             get
@@ -525,10 +525,9 @@ namespace Tizen.NUI.BaseComponents
         /// Downcasts a handle to imageView handle.
         /// </summary>
         /// <exception cref="ArgumentNullException"> Thrown when handle is null. </exception>
-        /// Please do not use! this will be deprecated!
-        /// Instead please use as keyword.
+        /// Do not use this, that will be deprecated. Use as keyword instead.
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use as keyword instead! " +
+        [Obsolete("Do not use this, that will be deprecated. Use as keyword instead. " +
         "Like: " +
         "BaseHandle handle = new ImageView(imagePath); " +
         "ImageView image = handle as ImageView")]
@@ -560,7 +559,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (url.Contains(".json"))
             {
-                Tizen.Log.Fatal("NUI", "[ERROR] Please DO NOT set lottie file in ImageView! This is temporary checking, will be removed soon!");
+                Tizen.Log.Fatal("NUI", "[ERROR] Do not set lottie file in ImageView! This is temporary checking, will be removed soon!");
                 return;
             }
 
@@ -1111,7 +1110,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (url.Contains(".json"))
             {
-                Tizen.Log.Fatal("NUI", "[ERROR] Please DO NOT set lottie file in ImageView! This is temporary checking, will be removed soon!");
+                Tizen.Log.Fatal("NUI", "[ERROR] Do not set lottie file in ImageView! This is temporary checking, will be removed soon!");
                 return;
             }
 

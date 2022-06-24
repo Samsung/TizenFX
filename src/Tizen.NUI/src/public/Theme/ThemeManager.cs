@@ -295,7 +295,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// !!! This is for internal use in fhub-nui. Please do not open it.
+        /// !!! This is for internal use in fhub-nui. Do not open it.
         /// Set a theme to be used as fallback.
         /// The fallback theme is set to profile specified theme by default.
         /// </summary>

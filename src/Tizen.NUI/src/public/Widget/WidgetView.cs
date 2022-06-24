@@ -1017,13 +1017,13 @@ namespace Tizen.NUI
             internal static readonly int EFFECT = Interop.WidgetView.EffectGet();
 
 
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use WidgetId instead!")]
+            [Obsolete("Do not use this, that is deprecated in API9 and will be removed in API11. Use WidgetId instead.")]
             internal static readonly int WIDGET_ID = Interop.WidgetView.WidgetIdGet();
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use ContentInfo instead!")]
+            [Obsolete("Do not use this, that is deprecated in API9 and will be removed in API11. Use ContentInfo instead.")]
             internal static readonly int CONTENT_INFO = Interop.WidgetView.ContentInfoGet();
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use UpdatePeriod instead!")]
+            [Obsolete("Do not use this, that is deprecated in API9 and will be removed in API11. Use UpdatePeriod instead.")]
             internal static readonly int UPDATE_PERIOD = Interop.WidgetView.UpdatePeriodGet();
-            [Obsolete("Please do not use this! Deprecated in API9, will be removed in API11! Please use LoadingText instead!")]
+            [Obsolete("Do not use this, that is deprecated in API9 and will be removed in API11. Use LoadingText instead.")]
             internal static readonly int LOADING_TEXT = Interop.WidgetView.LoadingTextGet();
         }
     }
