@@ -1663,6 +1663,30 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets window's maximum size.
+        ///
+        /// It is to set the maximized size when window is maximized or the window's size is increased by RequestResizeToServer().
+        /// Although the size is set by this function, window's size can be increased over the limitation by SetPositionSize() or SetSize().
+        ///
+        /// After setting, if Maximize() is called, window is resized with the setting size and move the center.
+        ///
+        /// </summary>
+        /// <param name="size">the maximum size.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMaximumSize(Size2D size)
+        {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
+
+            Interop.Window.SetMaximumSize(SwigCPtr, Uint16Pair.getCPtr(val));
+            val.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Minimizes window's size.
         /// If this function is called with true, window will be iconified.
         /// Otherwise window will be activated.
@@ -1687,6 +1711,26 @@ namespace Tizen.NUI
             bool ret = Interop.Window.IsMinimized(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Sets window's minimum size.
+        /// It is to set the minimum size when window's size is decreased by RequestResizeToServer().
+        /// Although the size is set by this function, window's size can be decreased over the limitation by SetPositionSize() or SetSize().
+        /// </summary>
+        /// <param name="size">the minimum size.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMimimumSize(Size2D size)
+        {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
+
+            Interop.Window.SetMimimumSize(SwigCPtr, Uint16Pair.getCPtr(val));
+            val.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
