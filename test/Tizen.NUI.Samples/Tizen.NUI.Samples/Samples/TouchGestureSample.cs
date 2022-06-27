@@ -74,12 +74,35 @@ namespace Tizen.NUI.Samples
                 BackgroundColor = Color.Green,
             };
 
-            var view = new View()
+            var view = new TextField()
             {
+                Text = "Text",
                 Size2D = new Size2D(200, 200),
                 BackgroundColor = Color.White,
                 GrabTouchAfterLeave = true,
             };
+
+            var view1 = new View()
+            {
+                Position = new Position(200,200),
+                Size2D = new Size2D(200, 200),
+                BackgroundColor = Color.Red,
+                GrabTouchAfterLeave = true,
+                Focusable = true,
+                FocusableInTouch = true,
+            };
+            view1.KeyEvent += (s, e) =>
+            {
+                if (e.Key.State == Key.StateType.Up)
+                {
+                    Tizen.Log.Error("gab_test", $"view1.KeyEvent {e.Key.KeyPressedName}\n");
+
+                }
+                return false;
+            };
+            root.Add(view1);
+
+
             view.TouchEvent += (s, e) =>
             {
                 Tizen.Log.Error("gab_test", $"TouchEvent {e.Touch.GetState(0)}\n");
@@ -91,7 +114,11 @@ namespace Tizen.NUI.Samples
             window.EnableBorder(customBorder);
             window.KeyEvent += (s, e) =>
             {
-                Tizen.Log.Error("gab_test", $"window.KeyEvent {e.Key.KeyPressedName}\n");
+                if (e.Key.State == Key.StateType.Up)
+                {
+                    Tizen.Log.Error("gab_test", $"window.KeyEvent {e.Key.KeyPressedName}\n");
+
+                }
                 if (e.Key.State == Key.StateType.Up && e.Key.KeyPressedName == "XF86Back" )
                 {
                     root.BackgroundColor = Color.Red;
@@ -100,6 +127,25 @@ namespace Tizen.NUI.Samples
                 {
                     root.BackgroundColor = Color.Yellow;
                 }
+            };
+
+
+            window.InterceptKeyEvent += (s, e) =>
+            {
+                if (e.Key.State == Key.StateType.Up)
+                {
+                    Tizen.Log.Error("gab_test", $"window.InterceptKeyEvent {e.Key.KeyPressedName}\n");
+
+                }
+                if (e.Key.State == Key.StateType.Up && e.Key.KeyPressedName == "XF86Back" )
+                {
+                    root.BackgroundColor = Color.Red;
+                }
+                else if (e.Key.State == Key.StateType.Up && e.Key.KeyPressedName == "XF86Menu" )
+                {
+                    root.BackgroundColor = Color.Yellow;
+                }
+                return false;
             };
             window.Add(root);
         }
