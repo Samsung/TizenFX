@@ -47,6 +47,11 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
         public bool UseInjection { get; set; }
 
+        /// <summary>
+        /// 0: Use Xaml
+        /// 1: Use XamlC to do the injection
+        /// 2: Use EXaml
+        /// </summary>
         public int XamlOptimization { get; set; } = 1;
 
         public IAssemblyResolver DefaultAssemblyResolver { get; set; }
@@ -289,10 +294,15 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                         bool currentRetOfType = false;
                         IList<Exception> currentExceptionsOfType = null;
 
-                        if(UseInjection) XamlOptimization = 1;
+                        if (UseInjection)
+                        {
+                            XamlOptimization = 1;
+                        }
+
                         LoggingHelper.LogWarning($"XamlOptimization is {XamlOptimization}.");
+
                         if (0 == XamlOptimization)
-                        {//Use Xaml
+                        {
                             currentRetOfType = true;
                         }
                         else if (1 == XamlOptimization)
@@ -337,10 +347,14 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                         module.Mvid = Guid.NewGuid();
                         LoggingHelper.LogMessage(Low, $"{new string(' ', 6)}done.");
                     }
+
                     if (!KeepXamlResources)
                     {
                         if (resourcesToPrune.Any())
+                        {
                             LoggingHelper.LogMessage(Low, $"{new string(' ', 4)}Removing compiled xaml resources");
+                        }
+
                         foreach (var resource in resourcesToPrune)
                         {
                             LoggingHelper.LogMessage(Low, $"{new string(' ', 6)}Removing {resource.Name}");
@@ -357,7 +371,9 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 }
 
                 if (ReadOnly)
+                {
                     return success;
+                }
 
                 LoggingHelper.LogMessage(Low, $"{new string(' ', 0)}Writing the assembly");
                 try
@@ -409,7 +425,9 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
             var initCompRuntime = typeDef.Methods.FirstOrDefault(md => md.Name == "__InitComponentRuntime");
             if (initCompRuntime != null)
+            {
                 LoggingHelper.LogMessage(Low, $"{new string(' ', 6)}__InitComponentRuntime already exists... not creating");
+            }
             else
             {
                 LoggingHelper.LogMessage(Low, $"{new string(' ', 6)}Creating empty {typeDef.Name}.__InitComponentRuntime");
@@ -449,11 +467,17 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 LoggingHelper.LogMessage(Low, $"{new string(' ', 8)}failed.");
                 (thrownExceptions = thrownExceptions ?? new List<Exception>()).Add(e);
                 if (e is XamlParseException xpe)
+                {
                     LoggingHelper.LogError(null, null, null, xamlFilePath, xpe.XmlInfo.LineNumber, xpe.XmlInfo.LinePosition, 0, 0, xpe.Message, xpe.HelpLink, xpe.Source);
+                }
                 else if (e is XmlException xe)
+                {
                     LoggingHelper.LogError(null, null, null, xamlFilePath, xe.LineNumber, xe.LinePosition, 0, 0, xe.Message, xe.HelpLink, xe.Source);
+                }
                 else
+                {
                     LoggingHelper.LogError(null, null, null, xamlFilePath, 0, 0, 0, 0, e.Message, e.HelpLink, e.Source);
+                }
 
                 if (null != e.StackTrace)
                 {
@@ -463,7 +487,9 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 return false;
             }
             if (Type != null)
+            {
                 InitCompForType = initComp;
+            }
 
             LoggingHelper.LogMessage(Low, $"{new string(' ', 8)}done.");
 
@@ -476,7 +502,9 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
 #pragma warning disable 0618
             if (OutputGeneratedILAsCode)
+            {
                 LoggingHelper.LogMessage(Low, $"{new string(' ', 6)}Decompiling option has been removed. Use a 3rd party decompiler to admire the beauty of the IL generated");
+            }
 #pragma warning restore 0618
 
             return true;
@@ -574,6 +602,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 LoggingHelper.LogMessage(Low, $"{new string(' ', 8)}failed.");
                 return false;
             }
+
             LoggingHelper.LogMessage(Low, $"{new string(' ', 8)}done.");
 
             hasCompiledXamlResources = true;
