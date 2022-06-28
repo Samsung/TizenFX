@@ -762,8 +762,11 @@ namespace Tizen.NUI
                 winTapGestureDetector.Dispose();
 
                 isWinGestures = false;
-                BorderWindow.Remove(windowView);
-                BorderWindow.InterceptTouchEvent += OnWinInterceptedTouch;
+                if (BorderWindow != null)
+                {
+                    BorderWindow.Remove(windowView);
+                    BorderWindow.InterceptTouchEvent += OnWinInterceptedTouch;
+                }
             }
         }
 
