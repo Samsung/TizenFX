@@ -190,6 +190,18 @@ namespace Tizen.NUI
                 if (isTop) borderHeight += topView.SizeHeight;
                 if (isBottom) borderHeight += bottomView.SizeHeight;
 
+                // Sets the minimum / maximum size to be resized by RequestResizeToServer.
+                if (borderInterface.MinSize != null)
+                {
+                    using Size2D mimimumSize = new Size2D(borderInterface.MinSize.Width, borderInterface.MinSize.Height + (int)borderHeight);
+                    SetMimimumSize(mimimumSize);
+                }
+                if (borderInterface.MaxSize != null)
+                {
+                    using Size2D maximuSize = new Size2D(borderInterface.MaxSize.Width, borderInterface.MaxSize.Height + (int)borderHeight);
+                    SetMaximumSize(maximuSize);
+                }
+
                 // When running the app for the first time, if it runs in full size, do Maximize(true).
                 if (screenWidth != 0 && screenHeight != 0 &&
                     realWindowSize.Width >= screenWidth && realWindowSize.Height >= screenHeight &&
@@ -381,23 +393,6 @@ namespace Tizen.NUI
             Tizen.Log.Info("NUI", $"OnBorderWindowResized {e.WindowSize.Width},{e.WindowSize.Height}\n");
             int resizeWidth = e.WindowSize.Width;
             int resizeHeight = e.WindowSize.Height;
-
-            if (borderInterface.MinSize != null)
-            {
-                resizeWidth = borderInterface.MinSize.Width > resizeWidth ? (int)borderInterface.MinSize.Width : resizeWidth;
-                resizeHeight = borderInterface.MinSize.Height > resizeHeight ? (int)borderInterface.MinSize.Height : resizeHeight;
-            }
-
-            if (borderInterface.MaxSize != null)
-            {
-                resizeWidth = borderInterface.MaxSize.Width < resizeWidth ? (int)borderInterface.MaxSize.Width : resizeWidth;
-                resizeHeight = borderInterface.MaxSize.Height < resizeHeight ? (int)borderInterface.MaxSize.Height : resizeHeight;
-            }
-
-            if (resizeWidth != e.WindowSize.Width || resizeHeight != e.WindowSize.Height)
-            {
-                WindowSize = new Size2D(resizeWidth, resizeHeight);
-            }
 
             borderInterface.OnResized(resizeWidth, resizeHeight);
 
