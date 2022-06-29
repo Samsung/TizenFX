@@ -441,11 +441,11 @@ namespace Tizen.NUI.Components
 
             Accessibility.Accessibility.Enabled += (s, e) => {
                 isAtspiEnabled = true;
-                AccessibilityEnabled();
+                if (!needItemUpdate) AccessibilityEnabled();
             };
             Accessibility.Accessibility.Disabled += (s, e) => {
                 isAtspiEnabled = false;
-                HideItemsForAccessibility();
+                if (!needItemUpdate) HideItemsForAccessibility();
             };
             Accessibility.Accessibility.ScreenReaderEnabled += (s, e) => {
                 isScreenReaderEnabled = true;
