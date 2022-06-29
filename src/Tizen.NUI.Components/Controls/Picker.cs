@@ -516,7 +516,7 @@ namespace Tizen.NUI.Components
 
         private void PageAdjust(float positionY)
         {
-            //Check the scroll is going out to the dummys if so, bring it back to page.
+            //Check the scroll is going out to the dummies if so, bring it back to page.
             if (positionY > -(startScrollY - (itemHeight * middleItemIdx)))
                 pickerScroller.ScrollTo(-positionY + pageSize, false);
             else if (positionY < -(startScrollY + pageSize - (itemHeight * middleItemIdx)))
