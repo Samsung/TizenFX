@@ -884,7 +884,6 @@ namespace Tizen.NUI.Components
                 {
                     panAnimationDelta = velocity > 0 ? (currentScrollPosition - minPosition) : (maxPosition - currentScrollPosition);
                     destination = velocity > 0 ? minPosition : -maxPosition;
-                    destination = -maxPosition + itemHeight;
 
                     if (panAnimationDelta == 0)
                     {
