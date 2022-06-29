@@ -229,11 +229,9 @@ namespace Tizen.NUI.Components
             set
             {
                 if (currentValue == value) return;
-
-                if (currentValue < minValue) currentValue = minValue;
-                else if (currentValue > maxValue) currentValue = maxValue;
-
-                currentValue = value;
+                if (value < minValue) currentValue = minValue;
+                else if (value > maxValue) currentValue = maxValue;
+                else currentValue = value;
 
                 UpdateCurrentValue();
             }
