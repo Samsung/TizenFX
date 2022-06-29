@@ -69,6 +69,7 @@ namespace Tizen.NUI.Components
         private int currentValue;
         private int maxValue;
         private int minValue;
+        private int currentIdx;
         private int lastScrollPosion;
         private int accessibilityHiddenStartIdx;
         private bool onAnimation; //Scroller on animation check.
@@ -389,12 +390,12 @@ namespace Tizen.NUI.Components
 
         private void AccessibilityEnabled()
         {
-            if (loopEnabled) ShowItemsForAccessibility(currentValue - middleItemIdx);
+            if (loopEnabled) ShowItemsForAccessibility(currentIdx - middleItemIdx);
             else
             {
                 //Exception case handling condition state.
                 //If user sets 4 items it can scroll but not loop.
-                if (currentValue > (middleItemIdx * 2)) ShowItemsForAccessibility(middleItemIdx + 1);
+                if (currentIdx > (middleItemIdx * 2)) ShowItemsForAccessibility(middleItemIdx + 1);
                 else ShowItemsForAccessibility(middleItemIdx);
             }
         }
@@ -426,7 +427,7 @@ namespace Tizen.NUI.Components
 
             itemList = new List<TextLabel>();
 
-            minValue = maxValue = currentValue = 0;
+            minValue = maxValue = currentValue = currentIdx = 0;
             displayedValues = null;
             //Those many flags for min, max, value method calling sequence dependency.
             needItemUpdate = true;
@@ -467,7 +468,7 @@ namespace Tizen.NUI.Components
                     itemList[i].AccessibilityHidden = true;
             else
             {
-                if (currentValue > (middleItemIdx * 2))
+                if (currentIdx > (middleItemIdx * 2))
                     for (int i = accessibilityHiddenStartIdx; i < (accessibilityHiddenStartIdx + (maxValue - minValue)); i++)
                         itemList[i].AccessibilityHidden = true;
                 else
@@ -489,7 +490,7 @@ namespace Tizen.NUI.Components
                     itemList[i].AccessibilityHidden = false;
             else
             {
-                if (currentValue > (middleItemIdx * 2))
+                if (currentIdx > (middleItemIdx * 2))
                     for (int i = accessibilityHiddenStartIdx; i < (accessibilityHiddenStartIdx + (maxValue - minValue)); i++)
                         itemList[i].AccessibilityHidden = false;
                 else
@@ -504,13 +505,14 @@ namespace Tizen.NUI.Components
             {
                 if (loopEnabled) {
                     HideItemsForAccessibility();
-                    ShowItemsForAccessibility(currentValue - middleItemIdx);
+                    ShowItemsForAccessibility(currentIdx - middleItemIdx);
                 }
-                if (isScreenReaderEnabled) itemList[currentValue].GrabAccessibilityHighlight();
+                if (isScreenReaderEnabled) itemList[currentIdx].GrabAccessibilityHighlight();
             }
 
+            currentValue = displayedValuesUpdate ? Int32.Parse(itemList[currentIdx].Name) : Int32.Parse(itemList[currentIdx].Text);
             ValueChangedEventArgs eventArgs =
-                new ValueChangedEventArgs(displayedValuesUpdate ? Int32.Parse(itemList[currentValue].Name) : Int32.Parse(itemList[currentValue].Text));
+                new ValueChangedEventArgs(displayedValuesUpdate ? Int32.Parse(itemList[currentIdx].Name) : Int32.Parse(itemList[currentIdx].Text));
             ValueChanged?.Invoke(this, eventArgs);
         }
 
@@ -556,9 +558,9 @@ namespace Tizen.NUI.Components
                 {
                     PageAdjust(e.Position.Y);
                 }
-                if (currentValue != ((int)(-e.Position.Y / itemHeight) + middleItemIdx))
+                if (currentIdx != ((int)(-e.Position.Y / itemHeight) + middleItemIdx))
                 {
-                    currentValue = ((int)(-e.Position.Y / itemHeight) + middleItemIdx);
+                    currentIdx = ((int)(-e.Position.Y / itemHeight) + middleItemIdx);
                     OnValueChanged();
                 }
 
@@ -573,9 +575,9 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (currentValue != ((int)(-e.Position.Y / itemHeight) + middleItemIdx))
+                if (currentIdx != ((int)(-e.Position.Y / itemHeight) + middleItemIdx))
                 {
-                    currentValue = ((int)(-e.Position.Y / itemHeight) + middleItemIdx);
+                    currentIdx = ((int)(-e.Position.Y / itemHeight) + middleItemIdx);
                     OnValueChanged();
                 }
             }
@@ -638,6 +640,7 @@ namespace Tizen.NUI.Components
             if (loopEnabled)
             {
                 startY = ((dummyItemsForLoop + startItemIdx) * itemHeight) + startScrollOffset;
+                currentIdx = dummyItemsForLoop + startItemIdx + middleItemIdx;
 
                 if (isAtspiEnabled)
                 {
@@ -649,7 +652,7 @@ namespace Tizen.NUI.Components
             else
             {
                 startY = ((middleItemIdx + startItemIdx) * itemHeight) + startScrollOffset;
-                currentValue = currentValue - minValue + middleItemIdx;
+                currentIdx = currentValue - minValue + middleItemIdx;
 
                 if (isAtspiEnabled)
                 {
