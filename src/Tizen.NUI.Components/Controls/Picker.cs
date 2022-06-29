@@ -86,9 +86,9 @@ namespace Tizen.NUI.Components
         private IList<TextLabel> itemList;
         private Vector2 size;
         private TextLabelStyle itemTextLabel;
-        private bool editMode = false;
+        private bool keyEditMode = false;
         private View recoverIndicator = null;
-        private View editModeIndicator = null;
+        private View keyEditModeIndicator = null;
 
 
         /// <summary>
@@ -165,10 +165,10 @@ namespace Tizen.NUI.Components
                 Utility.Dispose(downLine);
 
                 recoverIndicator = null;
-                if (editModeIndicator)
+                if (keyEditModeIndicator)
                 {
-                    editModeIndicator.Dispose();
-                    editModeIndicator = null;
+                    keyEditModeIndicator.Dispose();
+                    keyEditModeIndicator = null;
                 }
             }
 
@@ -737,27 +737,20 @@ namespace Tizen.NUI.Components
             {
                 if (e.Key.KeyPressedName == "Return")
                 {
-                    if (editMode)
+                    if (keyEditMode)
                     {
-                        //Todo: sometimes this gets wrong. the currentValue is not correct. need to be fixed.
-                        if (currentValue != ((int)(-pickerScroller.Position.Y / itemHeight) + middleItemIdx))
-                        {
-                            currentValue = ((int)(-pickerScroller.Position.Y / itemHeight) + middleItemIdx);
-                            OnValueChanged();
-                        }
-
-                        //set editMode false (toggle the mode)
-                        editMode = false;
+                        //set keyEditMode false (toggle the mode)
+                        keyEditMode = false;
                         FocusManager.Instance.FocusIndicator = recoverIndicator;
                         return true;
                     }
                     else
                     {
-                        //set editMode true (toggle the mode)
-                        editMode = true;
-                        if (editModeIndicator == null)
+                        //set keyEditMode true (toggle the mode)
+                        keyEditMode = true;
+                        if (keyEditModeIndicator == null)
                         {
-                            editModeIndicator = new View()
+                            keyEditModeIndicator = new View()
                             {
                                 PositionUsesPivotPoint = true,
                                 PivotPoint = new Position(0, 0, 0),
@@ -770,32 +763,53 @@ namespace Tizen.NUI.Components
                             };
                         }
                         recoverIndicator = FocusManager.Instance.FocusIndicator;
-                        FocusManager.Instance.FocusIndicator = editModeIndicator;
-                        return true;
-                    }
-                }
-                else if (e.Key.KeyPressedName == "Up")
-                {
-                    if (editMode)
-                    {
-                        InternalCurrentValue += 1;
-                        return true;
-                    }
-                }
-                else if (e.Key.KeyPressedName == "Down")
-                {
-                    if (editMode)
-                    {
-                        InternalCurrentValue -= 1;
+                        FocusManager.Instance.FocusIndicator = keyEditModeIndicator;
+
                         return true;
                     }
                 }
 
-                if (editMode)
+                else if (keyEditMode && (e.Key.KeyPressedName == "Up" || e.Key.KeyPressedName == "Down"))
+                {
+                    if (e.Key.KeyPressedName == "Up")
+                    {
+                        currentValue += 1;
+                        if (currentValue > maxValue)
+                        {
+                            if (loopEnabled) currentValue = minValue;
+                            else
+                            {
+                                currentValue--;
+                                return true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        currentValue -= 1;
+                        if (currentValue < minValue)
+                        {
+                            if (loopEnabled) currentValue = maxValue;
+                            else
+                            {
+                                currentValue++;
+                                return true;
+                            }
+                        }
+                    }
+
+                    UpdateCurrentValue();
+                    OnValueChanged();
+
+                    return true;
+                }
+
+                if (keyEditMode)
                 {
                     return true;
                 }
             }
+
             return false;
         }
 
