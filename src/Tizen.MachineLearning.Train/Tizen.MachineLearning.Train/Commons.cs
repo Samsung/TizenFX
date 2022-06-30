@@ -227,6 +227,26 @@ namespace Tizen.MachineLearning.Train
         Unknown = 999
     }
 
+    /// <summary>
+    /// Enumeration for the dataset data type of NNTrainer.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public enum NNTrainerDatasetMode
+    {
+        /// <summary>
+        /// The given data is for used when training
+        /// </summary>
+        Train = 0,
+        /// <summary>
+        /// The given data is for used when validating
+        /// </summary>
+        Valid = 1,
+        /// <summary>
+        /// The given data is for used when testing
+        /// </summary>
+        Test = 2,
+    }
+
     internal static class NNTrainer
     {
  
