@@ -66,6 +66,8 @@ internal static partial class Interop
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_set_optimizer")]
         public static extern NNTrainerError SetOptimizer(IntPtr modelHandle, IntPtr optimizerHandle);
 
-
+        /* int ml_train_model_set_dataset(ml_train_model_h model, ml_train_dataset_h dataset) */
+        [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_set_dataset")]
+        public static extern NNTrainerError SetDataset(IntPtr modelHandle, IntPtr datasetHandle);
     }
 }
