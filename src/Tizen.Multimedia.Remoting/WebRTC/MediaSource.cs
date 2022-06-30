@@ -218,10 +218,10 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <remarks>
         /// This API is only supported in video media source, especially <a cref="MediaCameraSource"/>,
-        /// <a cref="MediaScreenSource"/>, <a cref="MediaTestSource(MediaType)"/>.<br/>
+        /// <a cref="MediaScreenSource"/>, <a cref="MediaTestSource"/>.<br/>
         /// </remarks>
         /// <value>A value that specifies the video frame rate.</value>
-        /// <exception cref="ArgumentException">VideoFrameRate is less than zero.</exception>
+        /// <exception cref="ArgumentException">VideoFrameRate is less than or equal to zero.</exception>
         /// <exception cref="InvalidOperationException">
         ///     MediaSource is not attached yet.<br/>
         /// -or-<br/>
@@ -255,7 +255,7 @@ namespace Tizen.Multimedia.Remoting
             }
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     throw new ArgumentException($"VideoFrameRate should be greater than zero.");
                 }
