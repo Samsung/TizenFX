@@ -83,5 +83,9 @@ namespace Tizen.NUI
                 disposables.Clear();
             }
         }
+
+        internal List<AlphaFunction> alphaList = new List<AlphaFunction>();
+        internal Timer timer;
+
     }
 }

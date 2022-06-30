@@ -55,6 +55,9 @@ namespace Tizen.NUI
         private List<int> startTimeList = null;
         private List<int> endTimeList = null;
 
+        private List<AlphaFunction> alphaFunctionList;
+        //private static Dictionary<IntPtr, List<AlphaFunction>> savedAlphaFuncions = new Dictionary<IntPtr, List<AlphaFunction>>();
+
         /// <summary>
         /// Creates an initialized animation.<br />
         /// The animation will not loop.<br />
@@ -73,6 +76,9 @@ namespace Tizen.NUI
         {
             animationFinishedEventCallback = OnFinished;
             finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(animationFinishedEventCallback);
+
+            alphaFunctionList = new List<AlphaFunction>();
+            //savedAlphaFuncions.Add(cPtr, alphaFunctionList);
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -230,6 +236,10 @@ namespace Tizen.NUI
         {
             set
             {
+                if (value is AlphaFunction alpha)
+                {
+                    addAlphaFunctionInList(alpha);
+                }
                 SetDefaultAlphaFunction(value);
             }
             get
@@ -1382,6 +1392,7 @@ namespace Tizen.NUI
             }
             else
             {
+                addAlphaFunctionInList(alpha);
                 Interop.Animation.AnimateByAlphaFunction(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha));
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1395,6 +1406,7 @@ namespace Tizen.NUI
             }
             else
             {
+                addAlphaFunctionInList(alpha);
                 Interop.Animation.AnimateBy(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(relativeValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1408,6 +1420,7 @@ namespace Tizen.NUI
             }
             else
             {
+                addAlphaFunctionInList(alpha);
                 Interop.Animation.AnimateToAlphaFunction(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha));
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1421,6 +1434,7 @@ namespace Tizen.NUI
             }
             else
             {
+                addAlphaFunctionInList(alpha);
                 Interop.Animation.AnimateTo(SwigCPtr, Property.getCPtr(target), PropertyValue.getCPtr(destinationValue), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1434,6 +1448,7 @@ namespace Tizen.NUI
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha)
         {
+            addAlphaFunctionInList(alpha);
             Interop.Animation.AnimateBetweenAlphaFunction(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1446,6 +1461,7 @@ namespace Tizen.NUI
             }
             else
             {
+                addAlphaFunctionInList(alpha);
                 Interop.Animation.AnimateBetweenAlphaFunctionInterpolation(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), (int)interpolation);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1459,6 +1475,7 @@ namespace Tizen.NUI
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames, AlphaFunction alpha, TimePeriod period)
         {
+            addAlphaFunctionInList(alpha);
             Interop.Animation.AnimateBetween(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1471,6 +1488,7 @@ namespace Tizen.NUI
             }
             else
             {
+                addAlphaFunctionInList(alpha);
                 Interop.Animation.AnimateBetween(SwigCPtr, Property.getCPtr(target), KeyFrames.getCPtr(keyFrames), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period), (int)interpolation);
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1484,6 +1502,7 @@ namespace Tizen.NUI
 
         internal void Animate(View view, Path path, Vector3 forward, AlphaFunction alpha)
         {
+            addAlphaFunctionInList(alpha);
             Interop.Animation.AnimateAlphaFunction(SwigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1496,6 +1515,7 @@ namespace Tizen.NUI
 
         internal void Animate(View view, Path path, Vector3 forward, AlphaFunction alpha, TimePeriod period)
         {
+            addAlphaFunctionInList(alpha);
             Interop.Animation.Animate(SwigCPtr, View.getCPtr(view), Path.getCPtr(path), Vector3.getCPtr(forward), AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -1512,6 +1532,16 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+
+        protected override void Dispose(bool disposing)
+        {
+            //Tizen.Log.Fatal("NUI", $"Dispose(disposing={disposing}) alpha Count={DisposeQueue.Instance.alphaList.Count}");
+            Tizen.Log.Fatal("NUI", $"Dispose(disposing={disposing}) alpha Count={alphaFunctionList.Count}");
+
+            base.Dispose(disposing);
+        }
+
+
         /// <summary>
         /// To make animation instance be disposed.
         /// </summary>
@@ -1522,6 +1552,9 @@ namespace Tizen.NUI
             {
                 return;
             }
+
+            //Tizen.Log.Fatal("NUI", $"Dispose(type={type}) alpha Count={DisposeQueue.Instance.alphaList.Count}");
+            Tizen.Log.Fatal("NUI", $"Dispose(type={type}) alpha Count={alphaFunctionList.Count}");
 
             if (animationFinishedEventHandler != null)
             {
@@ -1540,6 +1573,28 @@ namespace Tizen.NUI
             }
 
             base.Dispose(type);
+
+            //Tizen.Log.Fatal("NUI", $"alpha Count={DisposeQueue.Instance.alphaList.Count}");
+            Tizen.Log.Fatal("NUI", $"alpha Count={alphaFunctionList.Count}");
+
+#if false
+//NO crash, ok
+            DisposeQueue.Instance.timer = new Timer(3000);
+            DisposeQueue.Instance.timer.Tick += (s, e) =>
+            {
+                Tizen.Log.Fatal("NUI", $"timer tick! count={alphaFunctionList.Count}");
+                alphaFunctionList.Clear();
+                alphaFunctionList = null;
+                return false;
+            };
+            DisposeQueue.Instance.timer.Start();
+#else
+//crash!, NG
+            alphaFunctionList.Clear();
+#endif
+
+            //Tizen.Log.Fatal("NUI", $"end disose type={type} alpha Count={DisposeQueue.Instance.alphaList.Count}");
+            Tizen.Log.Fatal("NUI", $"end disose type={type}");
         }
 
         /// This will not be public opened.
@@ -1552,6 +1607,9 @@ namespace Tizen.NUI
                 return;
             }
             Interop.Animation.DeleteAnimation(swigCPtr);
+
+            //alphaFunctionList.Clear();
+            //savedAlphaFuncions.Remove(SwigCPtr.Handle);
         }
 
         private void OnFinished(IntPtr data)
@@ -1580,6 +1638,15 @@ namespace Tizen.NUI
         private int SecondsToMilliSeconds(float sec)
         {
             return (int)(sec * 1000);
+        }
+
+        private void addAlphaFunctionInList(AlphaFunction alpha)
+        {
+            if (alpha?.keepDelegate != null)
+            {
+                alphaFunctionList.Add(alpha);
+                //DisposeQueue.Instance.alphaList.Add(alpha);
+            }
         }
     }
 }

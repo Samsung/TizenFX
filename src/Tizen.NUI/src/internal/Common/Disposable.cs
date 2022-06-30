@@ -101,6 +101,11 @@ namespace Tizen.NUI
                 return;
             }
 
+            if(this is AlphaFunction)
+            {
+                Tizen.Log.Fatal("NUI", $"this is AlphaFunction, Dispose(disposing={disposing})");
+            }
+
             if (disposing)
             {
                 // TODO: dispose managed state (managed objects).
@@ -157,6 +162,11 @@ namespace Tizen.NUI
             if (disposed)
             {
                 return;
+            }
+
+            if(this is AlphaFunction)
+            {
+                Tizen.Log.Fatal("NUI", $"this is AlphaFunction, Dispose(type={type})");
             }
 
             if (type == DisposeTypes.Explicit)

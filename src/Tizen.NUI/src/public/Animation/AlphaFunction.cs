@@ -29,6 +29,8 @@ namespace Tizen.NUI
     public class AlphaFunction : Disposable
     {
 
+        internal global::System.Delegate keepDelegate;
+
         /// <summary>
         /// The constructor.<br />
         /// Creates an alpha function object with the user-defined alpha function.<br />
@@ -37,6 +39,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public AlphaFunction(global::System.Delegate func) : this(Interop.AlphaFunction.NewAlphaFunction(SWIGTYPE_p_f_float__float.getCPtr(new SWIGTYPE_p_f_float__float(System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(func)))), true)
         {
+            keepDelegate = func;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -324,6 +327,8 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
+            Tizen.Log.Fatal("NUI", $"AlphaFunction ReleaseSwigCPtr()");
+
             Interop.AlphaFunction.DeleteAlphaFunction(swigCPtr);
         }
     }
