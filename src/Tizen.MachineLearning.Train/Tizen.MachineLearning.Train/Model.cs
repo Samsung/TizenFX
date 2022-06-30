@@ -271,6 +271,7 @@ namespace Tizen.MachineLearning.Train
             NNTrainerError ret = Interop.Model.GetLayer(handle, layerName, out layerHandle);
             NNTrainer.CheckException(ret, "Failed to get layer");
         }
+
         /// <summary>
         /// Sets the optimizer for the neural network model.
         /// </summary>
@@ -287,6 +288,27 @@ namespace Tizen.MachineLearning.Train
                 NNTrainer.CheckException(NNTrainerError.InvalidOperation, "optimizer instance is null");
             NNTrainerError ret = Interop.Model.SetOptimizer(handle, optimizer.GetHandle());
             NNTrainer.CheckException(ret, "Failed to set optimizer");
+        }
+
+        /// <summary>
+        /// Sets the dataset (data provider) for the neural network model.
+        /// </summary>
+        /// <remarks>
+        /// Use this function to set dataset for running the model. The dataset
+        /// will provide training, validation and test data for the model. This transfers
+        /// the ownership of the dataset to the network. No need to destroy the dataset
+        /// once it is set to a model.
+        /// Unsets the previously set dataset, if any. The previously set
+        /// dataset must be freed using Dispose().
+        /// </remarks>
+        /// <param name="dataset"> The instance of Dataset class </param>
+        /// <since_tizen> 10 </since_tizen>
+        public void SetDataset(Dataset dataset)
+        {
+            if (dataset == null)
+                NNTrainer.CheckException(NNTrainerError.InvalidOperation, "dataset instance is null");
+            NNTrainerError ret = Interop.Model.SetDataset(handle, dataset.GetHandle());
+            NNTrainer.CheckException(ret, "Failed to set dataset");
         }
     } 
 }
