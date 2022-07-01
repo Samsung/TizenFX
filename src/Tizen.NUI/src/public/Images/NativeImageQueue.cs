@@ -46,19 +46,37 @@ namespace Tizen.NUI
         public enum ColorFormat
         {
             /// <summary>
+            /// 8 blue bits, 8 green bits, 8 red bits
+            /// </summary>
+            BGR888 = 0,
+
+            /// <summary>
+            /// 8 blue bits, 8 green bits, 8 red bits, alpha 8 bits
+            /// </summary>
+            BGRA8888 = 1,
+
+            /// <summary>
+            /// 8 blue bits, 8 green bits, 8 red bits, and 8 ignored bits
+            /// </summary>
+            BGRX8888 = 2,
+
+            /// <summary>
             /// 8 red bits, 8 green bits, 8 blue bits
             /// </summary>
-            RGB888,
+            [System.ObsoleteAttribute("This property is obsolete. It's behavior could be changed in a future version. Currently it is same as BGR888", false)]
+            RGB888 = 0,
 
             /// <summary>
             /// 8 red bits, 8 green bits, 8 blue bits, alpha 8 bits
             /// </summary>
-            RGBA8888,
+            [System.ObsoleteAttribute("This property is obsolete. It's behavior could be changed in a future version. Currently it is same as BGRA8888", false)]
+            RGBA8888 = 1,
 
             /// <summary>
             /// 8 red bits, 8 green bits, 8 blue bits, and 8 ignored bits
             /// </summary>
-            RGBX8888
+            [System.ObsoleteAttribute("This property is obsolete. It's behavior could be changed in a future version. Currently it is same as BGRX8888", false)]
+            RGBX8888 = 2,
         }
 
         /// <summary>
