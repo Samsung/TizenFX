@@ -16,7 +16,6 @@
 using static Interop;
 using System;
 using System.IO;
-
 namespace Tizen.MachineLearning.Train
 {
     /// <summary>
@@ -261,15 +260,21 @@ namespace Tizen.MachineLearning.Train
         /// The returned layer must not be deleted as it is owned by the model.
         /// </remarks>
         /// <param name="layerName"> Name of the already created layer.</param>
-        /// <param name="layerHandle"> layer handle from the given description.</param>
+        /// <returns>layer instance</returns>
         /// <since_tizen> 10 </since_tizen>
-        public void GetLayer(string layerName, out IntPtr layerHandle)
+        public Layer GetLayer(string layerName)
         {
+            IntPtr layerHandle = IntPtr.Zero;
              if (string.IsNullOrEmpty(layerName))
                 NNTrainer.CheckException(NNTrainerError.InvalidParameter, "layerName is null");
-            /* FiX_ME : how to handle layerHandle */
+
             NNTrainerError ret = Interop.Model.GetLayer(handle, layerName, out layerHandle);
             NNTrainer.CheckException(ret, "Failed to get layer");
+
+            Layer layer = new Layer(true);
+            layer.SetHandle(layerHandle);
+
+            return layer;
         }
 
         /// <summary>
