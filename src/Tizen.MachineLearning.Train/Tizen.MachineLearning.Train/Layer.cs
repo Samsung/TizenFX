@@ -33,6 +33,9 @@ namespace Tizen.MachineLearning.Train
         private IntPtr handle = IntPtr.Zero;
         private bool disposed = false;
 
+        /// if true, model will be destroy layer handle
+        private bool notDestroy = false;
+
         /// <summary>
         /// Creates a neural network layer.
         /// </summary>
@@ -44,6 +47,12 @@ namespace Tizen.MachineLearning.Train
             NNTrainer.CheckException(ret, "Failed to create model instance");
             Log.Info(NNTrainer.Tag, $"Create layer with type:{type}");
         }
+
+        internal Layer(bool createdByModel)
+        {
+            notDestroy = createdByModel;
+        }
+
         /// <summary>
         /// Frees the neural network layer.
         /// </summary>
@@ -80,7 +89,7 @@ namespace Tizen.MachineLearning.Train
                 // release managed object
             }
             // release unmanaged object
-            if (handle != IntPtr.Zero)
+            if (handle != IntPtr.Zero && !notDestroy)
             {
                 // Destroy the neural network layer.
                 NNTrainerError ret = Interop.Layer.Destroy(handle);
@@ -115,6 +124,11 @@ namespace Tizen.MachineLearning.Train
         internal IntPtr GetHandle()
         {
             return handle;
+        }
+
+        internal void SetHandle(IntPtr layerHandle)
+        {
+            handle = layerHandle;
         }
     } 
 }
