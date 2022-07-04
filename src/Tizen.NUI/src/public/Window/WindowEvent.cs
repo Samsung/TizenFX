@@ -35,6 +35,7 @@ namespace Tizen.NUI
         private RootLayerTouchDataCallbackType rootLayerInterceptTouchDataCallback;
         private WheelEventCallbackType wheelEventCallback;
         private EventCallbackDelegateType1 stageKeyCallbackDelegate;
+        private InterceptKeyEventDelegateType stageInterceptKeyCallbackDelegate;
         private EventCallbackDelegateType0 stageEventProcessingFinishedEventCallbackDelegate;
         private EventHandler stageContextLostEventHandler;
         private EventCallbackDelegateType0 stageContextLostEventCallbackDelegate;
@@ -55,6 +56,7 @@ namespace Tizen.NUI
         private WheelSignal wheelSignal;
         private StageWheelSignal stageWheelSignal;
         private KeyEventSignal keyEventSignal;
+        private KeyEventSignal interceptKeyEventSignal;
         private VoidSignal sceneCreatedSignal;
         private ResizeSignal resizeSignal;
         private VoidSignal eventProcessingFinishedSignal;
@@ -80,6 +82,8 @@ namespace Tizen.NUI
         private delegate void KeyboardRepeatSettingsChangedEventCallbackType();
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AuxiliaryMessageEventCallbackType(IntPtr kData, IntPtr vData, IntPtr optionsArray);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool InterceptKeyEventDelegateType(IntPtr arg1);
 
         /// <summary>
         /// FocusChanged event.
@@ -260,6 +264,38 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Intercepts KeyEvents in the window before dispatching KeyEvents to the child.<br />
+        /// If it returns true(consumed), no KeyEvent is delivered to the child.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event ReturnTypeEventHandler<object, KeyEventArgs, bool> InterceptKeyEvent
+        {
+            add
+            {
+                if (stageInterceptKeyHandler == null)
+                {
+                    stageInterceptKeyCallbackDelegate = OnStageInterceptKey;
+                    interceptKeyEventSignal = InterceptKeyEventSignal();
+                    interceptKeyEventSignal?.Connect(stageInterceptKeyCallbackDelegate);
+                }
+                stageInterceptKeyHandler += value;
+            }
+            remove
+            {
+                stageInterceptKeyHandler -= value;
+                if (stageInterceptKeyHandler == null && interceptKeyEventSignal?.Empty() == false)
+                {
+                    interceptKeyEventSignal?.Disconnect(stageInterceptKeyCallbackDelegate);
+                    if (interceptKeyEventSignal?.Empty() == true)
+                    {
+                        stageInterceptKeyCallbackDelegate = null;
+                    }
+                }
+            }
+        }
+
+
+        /// <summary>
         /// Emits the event when the window resized.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -400,6 +436,7 @@ namespace Tizen.NUI
         private ReturnTypeEventHandler<object, TouchEventArgs, bool> rootLayerInterceptTouchDataEventHandler;
         private event EventHandler<WheelEventArgs> stageWheelHandler;
         private event EventHandler<KeyEventArgs> stageKeyHandler;
+        private ReturnTypeEventHandler<object, KeyEventArgs, bool> stageInterceptKeyHandler;
         private event EventHandler stageEventProcessingFinishedEventHandler;
         private event EventHandler<ResizedEventArgs> windowResizeEventHandler;
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler2;
@@ -534,6 +571,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal KeyEventSignal InterceptKeyEventSignal()
+        {
+            KeyEventSignal ret = new KeyEventSignal(Interop.Window.InterceptKeyEventSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         internal VoidSignal EventProcessingFinishedSignal()
         {
             VoidSignal ret = new VoidSignal(Interop.StageSignal.EventProcessingFinishedSignal(stageCPtr), false);
@@ -640,6 +684,12 @@ namespace Tizen.NUI
             {
                 keyEventSignal?.Disconnect(stageKeyCallbackDelegate);
                 stageKeyCallbackDelegate = null;
+            }
+
+            if (stageInterceptKeyCallbackDelegate != null)
+            {
+                interceptKeyEventSignal?.Disconnect(stageInterceptKeyCallbackDelegate);
+                stageInterceptKeyCallbackDelegate = null;
             }
 
             if (stageEventProcessingFinishedEventCallbackDelegate != null)
@@ -820,6 +870,20 @@ namespace Tizen.NUI
                 //here we send all data to user event handlers
                 stageKeyHandler(this, e);
             }
+        }
+
+        // Callback for Stage InterceptKeyEventsignal
+        private bool OnStageInterceptKey(IntPtr data)
+        {
+            bool consumed = false;
+            if (stageInterceptKeyHandler != null)
+            {
+                KeyEventArgs e = new KeyEventArgs();
+                e.Key = Tizen.NUI.Key.GetKeyFromPtr(data);
+                //here we send all data to user event handlers
+                consumed = stageInterceptKeyHandler(this, e);
+            }
+            return consumed;
         }
 
         // Callback for Stage EventProcessingFinishedSignal
