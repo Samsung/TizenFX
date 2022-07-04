@@ -56,40 +56,10 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
 
         /// <summary>
-        /// Adds or modifies the value matched with given key.
-        /// </summary>
-        /// <remarks>
-        /// Modification takes place if key was previously set.
-        /// </remarks>
-        /// <param name="key">The key to insert</param>
-        /// <param name="value">The value to insert</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AppendAccessibilityAttribute(string key, string value)
-        {
-            Interop.ControlDevel.DaliToolkitDevelControlAppendAccessibilityAttribute(SwigCPtr, key, value);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Erases a key with its value from accessibility attributes.
-        /// </summary>
-        /// <param name="key">The key to remove</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemoveAccessibilityAttribute(string key)
-        {
-            Interop.ControlDevel.DaliToolkitDevelControlRemoveAccessibilityAttribute(SwigCPtr, key);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Clears accessibility attributes.
+        /// Dictionary of accessibility attributes (key-value pairs of strings).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void ClearAccessibilityAttributes()
-        {
-            Interop.ControlDevel.DaliToolkitDevelControlClearAccessibilityAttributes(SwigCPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
+        protected Dictionary<string, string> AccessibilityAttributes { get; } = new Dictionary<string, string>();
 
         ///////////////////////////////////////////////////////////////////
         // ************************** Highlight ************************ //
