@@ -212,6 +212,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_KeyEventSignal")]
             public static extern global::System.IntPtr KeyEventSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_InterceptKeyEventSignal")]
+            public static extern global::System.IntPtr InterceptKeyEventSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_TouchSignal")]
             public static extern global::System.IntPtr TouchSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
