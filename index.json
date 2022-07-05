@@ -5724,6 +5724,16 @@
     "title": "Class JpegEncoder",
     "keywords": ""
   },
+  "API10/api/Tizen.Multimedia.Util.JpegXlDecoder.html": {
+    "href": "API10/api/Tizen.Multimedia.Util.JpegXlDecoder.html",
+    "title": "Class JpegXlDecoder",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Multimedia.Util.JpegXlEncoder.html": {
+    "href": "API10/api/Tizen.Multimedia.Util.JpegXlEncoder.html",
+    "title": "Class JpegXlEncoder",
+    "keywords": ""
+  },
   "API10/api/Tizen.Multimedia.Util.PngCompression.html": {
     "href": "API10/api/Tizen.Multimedia.Util.PngCompression.html",
     "title": "Enum PngCompression",
