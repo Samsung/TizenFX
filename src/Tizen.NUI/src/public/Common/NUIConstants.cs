@@ -127,7 +127,7 @@ namespace Tizen.NUI
         /// <remarks>
         /// Deprecated.(API Level 6) Not used.
         /// </remarks>
-        [Obsolete("Please do not use this DrawModeType.Stencil(Deprecated). This is replaced by ClippingModeType")]
+        [Obsolete("Do not use this DrawModeType.Stencil(Deprecated). This is replaced by ClippingModeType")]
         [Description("STENCIL")]
         Stencil = 3
     }
@@ -309,10 +309,10 @@ namespace Tizen.NUI
         /// </summary>
         DisableStyleChangeSignals = 1 << 6,
         /// <summary>
-        /// Please do not use! This will be deprecated!
+        /// Do not use! This will be deprecated!
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
+        [Obsolete("Do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         LastViewBehaviourFlag
     }
@@ -1170,6 +1170,83 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// The SelectionPopupStyle property.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct SelectionPopupStyleProperty
+    {
+        /// <summary>
+        /// The maximum size the Popup can be.
+        /// </summary>
+        public static readonly int MaxSize = NDalicManualPINVOKE.TextSelectionPopupPropertyPopupMaxSizeGet();
+
+        /// <summary>
+        /// TThe size of the divider between popup buttons.
+        /// </summary>
+        public static readonly int DividerSize = NDalicManualPINVOKE.TextSelectionPopupPropertyOptionDividerSizeGet();
+
+        /// <summary>
+        /// The padding of the divider between popup buttons.
+        /// </summary>
+        public static readonly int DividerPadding = NDalicManualPINVOKE.TextSelectionPopupPropertyOptionDividerPaddingGet();
+
+        /// <summary>
+        /// The color of the divider between popup buttons.
+        /// </summary>
+        public static readonly int DividerColor = NDalicManualPINVOKE.TextSelectionPopupPropertyPopupDividerColorGet();
+
+        /// <summary>
+        /// The color of the button when pressed.
+        /// </summary>
+        public static readonly int PressedColor = NDalicManualPINVOKE.TextSelectionPopupPropertyPopupPressedColorGet();
+
+        /// <summary>
+        /// The corner radius of the button when pressed.
+        /// </summary>
+        public static readonly int PressedCornerRadius = NDalicManualPINVOKE.TextSelectionPopupPropertyPopupPressedCornerRadiusGet();
+
+        /// <summary>
+        /// The duration of the fade-in animation.
+        /// </summary>
+        public static readonly int FadeInDuration = NDalicManualPINVOKE.TextSelectionPopupPropertyPopupFadeInDurationGet();
+
+        /// <summary>
+        /// The duration of the fade-out animation.
+        /// </summary>
+        public static readonly int FadeOutDuration = NDalicManualPINVOKE.TextSelectionPopupPropertyPopupFadeOutDurationGet();
+
+        /// <summary>
+        /// The popup background.
+        /// </summary>
+        public static readonly int Background = NDalicManualPINVOKE.TextSelectionPopupPropertyPopupBackgroundGet();
+
+        /// <summary>
+        /// The popup background can have a separate border with a different color.
+        /// </summary>
+        public static readonly int BackgroundBorder = NDalicManualPINVOKE.TextSelectionPopupPropertyPopupBackgroundBorderGet();
+
+        /// <summary>
+        /// The minimum size of popup label.
+        /// </summary>
+        public static readonly int LabelMinimumSize = NDalicManualPINVOKE.TextSelectionPopupPropertyLabelMinimumSizeGet();
+
+        /// <summary>
+        /// The padding of popup label.
+        /// </summary>
+        public static readonly int LabelPadding = NDalicManualPINVOKE.TextSelectionPopupPropertyLabelPaddingGet();
+
+        /// <summary>
+        /// The text visual map of popup label.
+        /// </summary>
+        public static readonly int LabelTextVisual = NDalicManualPINVOKE.TextSelectionPopupPropertyLabelTextVisualGet();
+
+        /// <summary>
+        /// Whether the scroll-bar is enabled.
+        /// </summary>
+        public static readonly int EnableScrollBar = NDalicManualPINVOKE.TextSelectionPopupPropertyEnableScrollBarGet();
+    };
+
+    /// <summary>
     /// ParentOrigin constants.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
@@ -1672,10 +1749,10 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// [Obsolete("Please do not use! this will be deprecated")]
+    /// [Obsolete("Do not use this, that will be deprecated.")]
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Please do not use! This will be deprecated! Please use PivotPoint instead!")]
+    [Obsolete("Do not use this, that will be deprecated. Use as PivotPoint instead.")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public struct AnchorPoint
     {

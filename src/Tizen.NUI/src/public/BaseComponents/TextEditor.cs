@@ -74,13 +74,6 @@ namespace Tizen.NUI.BaseComponents
         internal TextEditor(TextEditor handle, bool shown = true) : this(Interop.TextEditor.NewTextEditor(TextEditor.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if (!shown)
-            {
-                SetVisible(false);
-            }
-
-            TextChanged += TextEditorTextChanged;
         }
 
         internal TextEditor(global::System.IntPtr cPtr, bool cMemoryOwn, bool shown = true, TextEditorStyle style = null) : base(cPtr, cMemoryOwn, style)
@@ -533,6 +526,24 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(GrabHandlePressedImageProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The SelectionPopupStyle property.<br />
+        /// The style of the text selection popup can be set through SelectionPopupStyle property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap SelectionPopupStyle
+        {
+            get
+            {
+                return (PropertyMap)GetValue(SelectionPopupStyleProperty);
+            }
+            set
+            {
+                SetValue(SelectionPopupStyleProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1727,9 +1738,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Specify primary cursor (caret) position in text control.
+        /// PrimaryCursorPosition property.<br />
+        /// Specify the position of the primary cursor (caret) in text control.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// If the value set is out of range (negative or greater than or equal the number of characters in Text) then the PrimaryCursorPosition is moved to the end of Text (the number of characters in Text).
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
         public int PrimaryCursorPosition
         {
             get
@@ -2203,7 +2218,7 @@ namespace Tizen.NUI.BaseComponents
         /// The settings to relating to the System's Input Method, Key and Value.<br />
         /// </summary>
         /// <remarks>
-        /// <see cref="InputMethod"/> is a class encapsulating the input method map. Please use the <see cref="InputMethod"/> class for this property.
+        /// <see cref="InputMethod"/> is a class encapsulating the input method map. Use the <see cref="InputMethod"/> class for this property.
         /// </remarks>
         /// <example>
         /// The following example demonstrates how to set the InputMethodSettings property.
@@ -2564,6 +2579,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int CursorWidth = Interop.TextEditor.CursorWidthGet();
             internal static readonly int GrabHandleImage = Interop.TextEditor.GrabHandleImageGet();
             internal static readonly int GrabHandlePressedImage = Interop.TextEditor.GrabHandlePressedImageGet();
+            internal static readonly int SelectionPopupStyle = Interop.TextEditor.SelectionPopupStyleGet();
             internal static readonly int SelectionHandleImageLeft = Interop.TextEditor.SelectionHandleImageLeftGet();
             internal static readonly int SelectionHandleImageRight = Interop.TextEditor.SelectionHandleImageRightGet();
             internal static readonly int SelectionHandlePressedImageLeft = Interop.TextEditor.SelectionHandlePressedImageLeftGet();

@@ -801,7 +801,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="type">Dispose Type</param>
         /// <since_tizen> 5 </since_tizen>
-        /// Please do not use! This will be deprecated!
+        /// Do not use! This will be deprecated!
         /// Dispose() method in Singletone classes (ex: FocusManager, StyleManager, VisualFactory, InputMethodContext, TtsPlayer, Window) is not required.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
@@ -943,7 +943,7 @@ namespace Tizen.NUI
             /// The state if it owns memory
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
-            [Obsolete("This has been deprecated in API9 and will be removed in API11. Please use swigCMemOwn which is declared in parent class")]
+            [Obsolete("This has been deprecated in API9 and will be removed in API11. Use swigCMemOwn that is declared in the parent class")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
             protected bool swigCMemOwn;
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;
@@ -1103,7 +1103,7 @@ namespace Tizen.NUI
             /// The state if it owns memory
             /// </summary>
             /// <since_tizen> 5 </since_tizen>
-            [Obsolete("This has been deprecated in API9 and will be removed in API11. Please use SwigCMemOwn which is declared in parent class")]
+            [Obsolete("This has been deprecated in API9 and will be removed in API11. Use SwigCMemOwn that is declared in the parent class")]
             [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1051:Do not declare visible instance fields", Justification = "<Pending>")]
             protected bool swigCMemOwn;
             private global::System.Runtime.InteropServices.HandleRef swigCPtr;

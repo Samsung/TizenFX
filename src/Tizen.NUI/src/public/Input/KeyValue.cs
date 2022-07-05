@@ -32,7 +32,7 @@ namespace Tizen.NUI
         /// Int key.
         /// </summary>
         /// When deleting the field, change it to property.
-        [Obsolete("Deprecated in API9, Will be removed in API11. Please use IntegerKey instead.")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Use IntegerKey instead.")]
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public int? KeyInt = null;
 
@@ -40,7 +40,7 @@ namespace Tizen.NUI
         /// String key.
         /// </summary>
         /// When deleting the field, change it to property.
-        [Obsolete("Deprecated in API9, Will be removed in API11. Please use StringKey instead.")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Use StringKey instead.")]
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public string KeyString = null;
 
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         /// True value.
         /// </summary>
         /// When deleting the field, change it to property.
-        [Obsolete("Deprecated in API9, Will be removed in API11. Please use PropertyValue instead.")]
+        [Obsolete("Deprecated in API9, will be removed in API11. Use PropertyValue instead.")]
         [SuppressMessage("Microsoft.Design", "CA1051:Do not declare visible instance fields")]
         public PropertyValue TrueValue = null;
 

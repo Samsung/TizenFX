@@ -136,6 +136,12 @@ namespace Tizen.NUI.Samples
                             mainWin.Maximize(false);
                         }
                         break;
+                    case KEY_NUM_4:
+                        mainWin.SetMaximumSize(new Size2D(700, 700));
+                        break;
+                    case KEY_NUM_5:
+                        mainWin.SetMimimumSize(new Size2D(100, 100));
+                        break;
 
                     default:
                         log.Fatal(tag, $"no test!");

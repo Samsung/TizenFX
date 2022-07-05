@@ -133,7 +133,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [Obsolete("Deprecated. Please use Size instead.")]
+        [Obsolete("This has been deprecated. Use Size instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Size2D Size2D
         {
@@ -156,7 +156,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [Obsolete("Deprecated. Please use Position instead.")]
+        [Obsolete("This has been deprecated. Use Position instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Position2D Position2D
         {

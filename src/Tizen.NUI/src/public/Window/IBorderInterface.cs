@@ -41,9 +41,10 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The height of the border.
+        /// This value is the initial value used when creating borders.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint BorderHeight {get;}
+        public float BorderHeight {get;}
 
         /// <summary>
         /// The minimum size by which the window will small.
@@ -134,6 +135,13 @@ namespace Tizen.NUI
         /// <param name="isMinimized">If window is minimized or unminimized.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void OnMinimize(bool isMinimized);
+
+        /// <summary>
+        /// Called when there is a change in overlay mode.
+        /// </summary>
+        /// <param name="enabled">If true, borderView has entered overlayMode.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void OnOverlayMode(bool enabled);
 
     }
 }

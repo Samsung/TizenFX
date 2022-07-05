@@ -177,7 +177,23 @@ namespace Tizen.NUI.Components
 
                 if (newValue != null)
                 {
-                    instance.curValue = (float)newValue;
+                    float value = (float)newValue;
+                    if (value < instance.minValue)
+                    {
+                        instance.curValue = instance.minValue;
+                    }
+                    else if (value > instance.maxValue)
+                    {
+                        instance.curValue = instance.maxValue;
+                    }
+                    else
+                    {
+                        instance.curValue = value;
+                    }
+
+                    instance.sliderValueChangedHandler?.Invoke(instance, new SliderValueChangedEventArgs {
+                        CurrentValue = instance.curValue
+                        });
                     if (Accessibility.Accessibility.IsEnabled && instance.IsHighlighted)
                     {
                         instance.EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
@@ -1075,14 +1091,15 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return highIndicatorText?.Size;
+                return highIndicatorSize;
             }
             set
             {
-                if (null != highIndicatorText)
-                {
-                    highIndicatorText.Size = value;
-                }
+                highIndicatorSize = value;
+                UpdateHighIndicatorSize();
+                UpdateBgTrackSize();
+                UpdateBgTrackPosition();
+                UpdateValue();
             }
         }
 
@@ -1435,6 +1452,7 @@ namespace Tizen.NUI.Components
                 recoverIndicator = FocusManager.Instance.FocusIndicator;
                 FocusManager.Instance.FocusIndicator = editModeIndicator;
             }
+            UpdateState(true, isPressed);
             return true;
         }
 
@@ -1449,23 +1467,26 @@ namespace Tizen.NUI.Components
 
             if (key.State == Key.StateType.Down)
             {
+                float valueDiff;
+                if (IsDiscrete)
+                {
+                    valueDiff = discreteValue;
+                }
+                else
+                {
+                    /// TODO : Currently we set the velocity of value as 1% hardly.
+                    /// Can we use AccessibilityGetMinimumIncrement?
+                    valueDiff = (maxValue - minValue) * 0.01f;
+                }
                 if ((direction == DirectionType.Horizontal && key.KeyPressedName == "Left") ||
                     (direction == DirectionType.Vertical && key.KeyPressedName == "Down"))
                 {
                     if (editMode)
                     {
-                        if (MinValue < CurrentValue)
+                        if (minValue < curValue)
                         {
                             isPressed = true;
-                            if (IsDiscrete)
-                            {
-                                float value = CurrentValue - discreteValue;
-                                CurrentValue = value < MinValue ? MinValue : value;
-                            }
-                            else
-                            {
-                                CurrentValue -= 1;
-                            }
+                            CurrentValue -= valueDiff;
                         }
                         return true; // Consumed
                     }
@@ -1475,18 +1496,10 @@ namespace Tizen.NUI.Components
                 {
                     if (editMode)
                     {
-                        if (MaxValue > CurrentValue)
+                        if (maxValue > curValue)
                         {
                             isPressed = true;
-                            if (IsDiscrete)
-                            {
-                                float value = CurrentValue + discreteValue;
-                                CurrentValue = value > MaxValue ? MaxValue : value;
-                            }
-                            else
-                            {
-                                CurrentValue += 1;
-                            }
+                            CurrentValue += valueDiff;
                         }
                         return true; // Consumed
                     }
@@ -1614,10 +1627,6 @@ namespace Tizen.NUI.Components
             if (current >= MinValue && current <= MaxValue)
             {
                 CurrentValue = current;
-                if (sliderValueChangedHandler != null)
-                {
-                    sliderValueChangedHandler(this, new SliderValueChangedEventArgs { CurrentValue = current });
-                }
                 return true;
             }
 
@@ -1719,6 +1728,7 @@ namespace Tizen.NUI.Components
             UpdateBgTrackPosition();
             UpdateWarningTrackSize();
             UpdateLowIndicatorSize();
+            UpdateHighIndicatorSize();
             UpdateValue();
         }
 
@@ -1734,33 +1744,21 @@ namespace Tizen.NUI.Components
         {
             currentSlidedOffset += offset;
 
-            if (currentSlidedOffset <= 0)
+            float resultValue = this.CurrentValue;
+
+            int bgTrackLength = GetBgTrackLength();
+            if (bgTrackLength != 0)
             {
-                this.CurrentValue = minValue;
-            }
-            else if (currentSlidedOffset >= BgTrackLength())
-            {
-                this.CurrentValue = maxValue;
-            }
-            else
-            {
-                int bgTrackLength = BgTrackLength();
-                if (bgTrackLength != 0)
-                {
-                    this.CurrentValue = ((currentSlidedOffset / (float)bgTrackLength) * (float)(maxValue - minValue)) + minValue;
-                }
+                resultValue = ((currentSlidedOffset / (float)bgTrackLength) * (float)(maxValue - minValue)) + minValue;
             }
 
             if (IsDiscrete)
             {
-                this.CurrentValue = CalculateDiscreteValue(this.CurrentValue);
+                this.CurrentValue = CalculateDiscreteValue(resultValue);
             }
-
-            if (sliderValueChangedHandler != null)
+            else
             {
-                SliderValueChangedEventArgs args = new SliderValueChangedEventArgs();
-                args.CurrentValue = this.CurrentValue;
-                sliderValueChangedHandler(this, args);
+                this.CurrentValue = resultValue;
             }
         }
 
@@ -1769,6 +1767,11 @@ namespace Tizen.NUI.Components
             if (!IsEnabled)
             {
                 return false;
+            }
+
+            if (this.FocusableInTouch == false && editMode == false)
+            {
+                isFocused = false;
             }
 
             PointStateType state = e.Touch.GetState(0);
@@ -1807,6 +1810,11 @@ namespace Tizen.NUI.Components
 
         private bool OnTouchEventForThumb(object source, TouchEventArgs e)
         {
+            if (this.FocusableInTouch == false && editMode == false)
+            {
+                isFocused = false;
+            }
+
             PointStateType state = e.Touch.GetState(0);
             if (state == PointStateType.Down)
             {
@@ -1821,30 +1829,27 @@ namespace Tizen.NUI.Components
 
         private void CalculateCurrentValueByTouch(Vector2 pos)
         {
-            int bgTrackLength = BgTrackLength();
+            int bgTrackLength = GetBgTrackLength();
             if (direction == DirectionType.Horizontal)
             {
-                currentSlidedOffset = pos.X;
+                currentSlidedOffset = pos.X - GetBgTrackLowIndicatorOffset();
             }
             else if (direction == DirectionType.Vertical)
             {
-                currentSlidedOffset = bgTrackLength - pos.Y;
+                currentSlidedOffset = this.Size2D.Height - pos.Y - GetBgTrackLowIndicatorOffset();
             }
 
             if (bgTrackLength != 0)
             {
-                this.CurrentValue = ((currentSlidedOffset / (float)bgTrackLength) * (maxValue - minValue)) + minValue;
+                float resultValue = ((currentSlidedOffset / (float)bgTrackLength) * (maxValue - minValue)) + minValue;
 
                 if (IsDiscrete)
                 {
-                    this.CurrentValue = CalculateDiscreteValue(this.CurrentValue);
+                    this.CurrentValue = CalculateDiscreteValue(resultValue);
                 }
-
-                if (null != sliderValueChangedHandler)
+                else
                 {
-                    SliderValueChangedEventArgs args = new SliderValueChangedEventArgs();
-                    args.CurrentValue = this.CurrentValue;
-                    sliderValueChangedHandler(this, args);
+                    this.CurrentValue = resultValue;
                 }
             }
         }

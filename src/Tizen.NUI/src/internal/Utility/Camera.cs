@@ -111,14 +111,14 @@ namespace Tizen.NUI
             return ret;
         }
 
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use FieldOfView property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use FieldOfView property instead.")]
         public void SetFieldOfView(float fieldOfView)
         {
             Interop.CameraActor.SetFieldOfView(SwigCPtr, fieldOfView);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use FieldOfView property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use FieldOfView property instead.")]
         public float GetFieldOfView()
         {
             float ret = Interop.CameraActor.GetFieldOfView(SwigCPtr);
@@ -126,14 +126,14 @@ namespace Tizen.NUI
             return ret;
         }
 
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use AspectRatio property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use AspectRatio property instead.")]
         public void SetAspectRatio(float aspectRatio)
         {
             Interop.CameraActor.SetAspectRatio(SwigCPtr, aspectRatio);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use AspectRatio property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use AspectRatio property instead.")]
         public float GetAspectRatio()
         {
             float ret = Interop.CameraActor.GetAspectRatio(SwigCPtr);
@@ -167,14 +167,14 @@ namespace Tizen.NUI
             return ret;
         }
 
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use TargetPosition property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use TargetPosition property instead.")]
         public void SetTargetPosition(Vector3 targetPosition)
         {
             Interop.CameraActor.SetTargetPosition(SwigCPtr, Vector3.getCPtr(targetPosition));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use TargetPosition property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use TargetPosition property instead.")]
         public Vector3 GetTargetPosition()
         {
             Vector3 ret = new Vector3(Interop.CameraActor.GetTargetPosition(SwigCPtr), true);
@@ -182,14 +182,14 @@ namespace Tizen.NUI
             return ret;
         }
 
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use InvertYAxis property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use InvertYAxis property instead.")]
         public void SetInvertYAxis(bool invertYAxis)
         {
             Interop.CameraActor.SetInvertYAxis(SwigCPtr, invertYAxis);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        [Obsolete("Deprecated in API9, will be removed in API11. Please use InvertYAxis property instead!")]
+        [Obsolete("This has been deprecated in API9 and will be removed in API11. Use InvertYAxis property instead.")]
         public bool GetInvertYAxis()
         {
             bool ret = Interop.CameraActor.GetInvertYAxis(SwigCPtr);

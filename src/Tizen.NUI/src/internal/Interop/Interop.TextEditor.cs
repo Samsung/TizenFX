@@ -72,6 +72,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_GRAB_HANDLE_PRESSED_IMAGE_get")]
             public static extern int GrabHandlePressedImageGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_SELECTION_POPUP_STYLE_get")]
+            public static extern int SelectionPopupStyleGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_SELECTION_HANDLE_IMAGE_LEFT_get")]
             public static extern int SelectionHandleImageLeftGet();
 

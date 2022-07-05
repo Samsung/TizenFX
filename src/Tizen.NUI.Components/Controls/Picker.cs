@@ -69,6 +69,7 @@ namespace Tizen.NUI.Components
         private int currentValue;
         private int maxValue;
         private int minValue;
+        private int currentIdx;
         private int lastScrollPosion;
         private int accessibilityHiddenStartIdx;
         private bool onAnimation; //Scroller on animation check.
@@ -85,9 +86,9 @@ namespace Tizen.NUI.Components
         private IList<TextLabel> itemList;
         private Vector2 size;
         private TextLabelStyle itemTextLabel;
-        private bool editMode = false;
+        private bool keyEditMode = false;
         private View recoverIndicator = null;
-        private View editModeIndicator = null;
+        private View keyEditModeIndicator = null;
 
 
         /// <summary>
@@ -164,10 +165,10 @@ namespace Tizen.NUI.Components
                 Utility.Dispose(downLine);
 
                 recoverIndicator = null;
-                if (editModeIndicator)
+                if (keyEditModeIndicator)
                 {
-                    editModeIndicator.Dispose();
-                    editModeIndicator = null;
+                    keyEditModeIndicator.Dispose();
+                    keyEditModeIndicator = null;
                 }
             }
 
@@ -228,11 +229,9 @@ namespace Tizen.NUI.Components
             set
             {
                 if (currentValue == value) return;
-
-                if (currentValue < minValue) currentValue = minValue;
-                else if (currentValue > maxValue) currentValue = maxValue;
-
-                currentValue = value;
+                if (value < minValue) currentValue = minValue;
+                else if (value > maxValue) currentValue = maxValue;
+                else currentValue = value;
 
                 UpdateCurrentValue();
             }
@@ -389,12 +388,12 @@ namespace Tizen.NUI.Components
 
         private void AccessibilityEnabled()
         {
-            if (loopEnabled) ShowItemsForAccessibility(currentValue - middleItemIdx);
+            if (loopEnabled) ShowItemsForAccessibility(currentIdx - middleItemIdx);
             else
             {
                 //Exception case handling condition state.
                 //If user sets 4 items it can scroll but not loop.
-                if (currentValue > (middleItemIdx * 2)) ShowItemsForAccessibility(middleItemIdx + 1);
+                if (currentIdx > (middleItemIdx * 2)) ShowItemsForAccessibility(middleItemIdx + 1);
                 else ShowItemsForAccessibility(middleItemIdx);
             }
         }
@@ -426,7 +425,7 @@ namespace Tizen.NUI.Components
 
             itemList = new List<TextLabel>();
 
-            minValue = maxValue = currentValue = 0;
+            minValue = maxValue = currentValue = currentIdx = 0;
             displayedValues = null;
             //Those many flags for min, max, value method calling sequence dependency.
             needItemUpdate = true;
@@ -442,11 +441,11 @@ namespace Tizen.NUI.Components
 
             Accessibility.Accessibility.Enabled += (s, e) => {
                 isAtspiEnabled = true;
-                AccessibilityEnabled();
+                if (!needItemUpdate) AccessibilityEnabled();
             };
             Accessibility.Accessibility.Disabled += (s, e) => {
                 isAtspiEnabled = false;
-                HideItemsForAccessibility();
+                if (!needItemUpdate) HideItemsForAccessibility();
             };
             Accessibility.Accessibility.ScreenReaderEnabled += (s, e) => {
                 isScreenReaderEnabled = true;
@@ -467,7 +466,7 @@ namespace Tizen.NUI.Components
                     itemList[i].AccessibilityHidden = true;
             else
             {
-                if (currentValue > (middleItemIdx * 2))
+                if (currentIdx > (middleItemIdx * 2))
                     for (int i = accessibilityHiddenStartIdx; i < (accessibilityHiddenStartIdx + (maxValue - minValue)); i++)
                         itemList[i].AccessibilityHidden = true;
                 else
@@ -489,7 +488,7 @@ namespace Tizen.NUI.Components
                     itemList[i].AccessibilityHidden = false;
             else
             {
-                if (currentValue > (middleItemIdx * 2))
+                if (currentIdx > (middleItemIdx * 2))
                     for (int i = accessibilityHiddenStartIdx; i < (accessibilityHiddenStartIdx + (maxValue - minValue)); i++)
                         itemList[i].AccessibilityHidden = false;
                 else
@@ -504,19 +503,20 @@ namespace Tizen.NUI.Components
             {
                 if (loopEnabled) {
                     HideItemsForAccessibility();
-                    ShowItemsForAccessibility(currentValue - middleItemIdx);
+                    ShowItemsForAccessibility(currentIdx - middleItemIdx);
                 }
-                if (isScreenReaderEnabled) itemList[currentValue].GrabAccessibilityHighlight();
+                if (isScreenReaderEnabled) itemList[currentIdx].GrabAccessibilityHighlight();
             }
 
+            currentValue = displayedValuesUpdate ? Int32.Parse(itemList[currentIdx].Name) : Int32.Parse(itemList[currentIdx].Text);
             ValueChangedEventArgs eventArgs =
-                new ValueChangedEventArgs(displayedValuesUpdate ? Int32.Parse(itemList[currentValue].Name) : Int32.Parse(itemList[currentValue].Text));
+                new ValueChangedEventArgs(displayedValuesUpdate ? Int32.Parse(itemList[currentIdx].Name) : Int32.Parse(itemList[currentIdx].Text));
             ValueChanged?.Invoke(this, eventArgs);
         }
 
         private void PageAdjust(float positionY)
         {
-            //Check the scroll is going out to the dummys if so, bring it back to page.
+            //Check the scroll is going out to the dummies if so, bring it back to page.
             if (positionY > -(startScrollY - (itemHeight * middleItemIdx)))
                 pickerScroller.ScrollTo(-positionY + pageSize, false);
             else if (positionY < -(startScrollY + pageSize - (itemHeight * middleItemIdx)))
@@ -556,9 +556,9 @@ namespace Tizen.NUI.Components
                 {
                     PageAdjust(e.Position.Y);
                 }
-                if (currentValue != ((int)(-e.Position.Y / itemHeight) + middleItemIdx))
+                if (currentIdx != ((int)(-e.Position.Y / itemHeight) + middleItemIdx))
                 {
-                    currentValue = ((int)(-e.Position.Y / itemHeight) + middleItemIdx);
+                    currentIdx = ((int)(-e.Position.Y / itemHeight) + middleItemIdx);
                     OnValueChanged();
                 }
 
@@ -573,9 +573,9 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (currentValue != ((int)(-e.Position.Y / itemHeight) + middleItemIdx))
+                if (currentIdx != ((int)(-e.Position.Y / itemHeight) + middleItemIdx))
                 {
-                    currentValue = ((int)(-e.Position.Y / itemHeight) + middleItemIdx);
+                    currentIdx = ((int)(-e.Position.Y / itemHeight) + middleItemIdx);
                     OnValueChanged();
                 }
             }
@@ -638,6 +638,7 @@ namespace Tizen.NUI.Components
             if (loopEnabled)
             {
                 startY = ((dummyItemsForLoop + startItemIdx) * itemHeight) + startScrollOffset;
+                currentIdx = dummyItemsForLoop + startItemIdx + middleItemIdx;
 
                 if (isAtspiEnabled)
                 {
@@ -649,7 +650,7 @@ namespace Tizen.NUI.Components
             else
             {
                 startY = ((middleItemIdx + startItemIdx) * itemHeight) + startScrollOffset;
-                currentValue = currentValue - minValue + middleItemIdx;
+                currentIdx = currentValue - minValue + middleItemIdx;
 
                 if (isAtspiEnabled)
                 {
@@ -734,27 +735,20 @@ namespace Tizen.NUI.Components
             {
                 if (e.Key.KeyPressedName == "Return")
                 {
-                    if (editMode)
+                    if (keyEditMode)
                     {
-                        //Todo: sometimes this gets wrong. the currentValue is not correct. need to be fixed.
-                        if (currentValue != ((int)(-pickerScroller.Position.Y / itemHeight) + middleItemIdx))
-                        {
-                            currentValue = ((int)(-pickerScroller.Position.Y / itemHeight) + middleItemIdx);
-                            OnValueChanged();
-                        }
-
-                        //set editMode false (toggle the mode)
-                        editMode = false;
+                        //set keyEditMode false (toggle the mode)
+                        keyEditMode = false;
                         FocusManager.Instance.FocusIndicator = recoverIndicator;
                         return true;
                     }
                     else
                     {
-                        //set editMode true (toggle the mode)
-                        editMode = true;
-                        if (editModeIndicator == null)
+                        //set keyEditMode true (toggle the mode)
+                        keyEditMode = true;
+                        if (keyEditModeIndicator == null)
                         {
-                            editModeIndicator = new View()
+                            keyEditModeIndicator = new View()
                             {
                                 PositionUsesPivotPoint = true,
                                 PivotPoint = new Position(0, 0, 0),
@@ -767,32 +761,53 @@ namespace Tizen.NUI.Components
                             };
                         }
                         recoverIndicator = FocusManager.Instance.FocusIndicator;
-                        FocusManager.Instance.FocusIndicator = editModeIndicator;
-                        return true;
-                    }
-                }
-                else if (e.Key.KeyPressedName == "Up")
-                {
-                    if (editMode)
-                    {
-                        InternalCurrentValue += 1;
-                        return true;
-                    }
-                }
-                else if (e.Key.KeyPressedName == "Down")
-                {
-                    if (editMode)
-                    {
-                        InternalCurrentValue -= 1;
+                        FocusManager.Instance.FocusIndicator = keyEditModeIndicator;
+
                         return true;
                     }
                 }
 
-                if (editMode)
+                else if (keyEditMode && (e.Key.KeyPressedName == "Up" || e.Key.KeyPressedName == "Down"))
+                {
+                    if (e.Key.KeyPressedName == "Up")
+                    {
+                        currentValue += 1;
+                        if (currentValue > maxValue)
+                        {
+                            if (loopEnabled) currentValue = minValue;
+                            else
+                            {
+                                currentValue--;
+                                return true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        currentValue -= 1;
+                        if (currentValue < minValue)
+                        {
+                            if (loopEnabled) currentValue = maxValue;
+                            else
+                            {
+                                currentValue++;
+                                return true;
+                            }
+                        }
+                    }
+
+                    UpdateCurrentValue();
+                    OnValueChanged();
+
+                    return true;
+                }
+
+                if (keyEditMode)
                 {
                     return true;
                 }
             }
+
             return false;
         }
 
@@ -881,7 +896,6 @@ namespace Tizen.NUI.Components
                 {
                     panAnimationDelta = velocity > 0 ? (currentScrollPosition - minPosition) : (maxPosition - currentScrollPosition);
                     destination = velocity > 0 ? minPosition : -maxPosition;
-                    destination = -maxPosition + itemHeight;
 
                     if (panAnimationDelta == 0)
                     {

@@ -66,9 +66,15 @@ namespace Tizen.NUI
         /// <param name="shadowView">The shadow view for drag object</param>
         /// <param name="dragData">The data to send</param>
         /// <param name="callback">The source event callback</param>
+        /// <exception cref="NotSupportedException">The multi-window feature is not supported.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void StartDragAndDrop(View sourceView, View shadowView, DragData dragData, SourceEventHandler callback)
         {
+            if (Window.IsSupportedMultiWindow() == false)
+            {
+                throw new NotSupportedException("This device does not support surfaceless_context. So Window cannot be created.");
+            }
+
             if (null == shadowView)
             {
                 throw new ArgumentNullException(nameof(shadowView));
@@ -96,20 +102,46 @@ namespace Tizen.NUI
                 };
             }
 
+            //Initialize Drag Window Position and Size based on Shadow View Position and Size
+            mDragWindow.SetPosition(new Position2D((int)shadowView.Position.X, (int)shadowView.Position.Y));
             mDragWindow.SetWindowSize(new Size(shadowWidth, shadowHeight));
+
+            //Make Shadow View Transparent
             shadowView.SetOpacity(0.9f);
+
+            //Make Position 0, 0 for Moving into Drag Window
+            shadowView.Position = new Position(0, 0);
 
             if (mShadowView)
             {
+                mShadowView.Hide();
                 mDragWindow.Remove(mShadowView);
+                mShadowView.Dispose();
             }
 
             mShadowView = shadowView;
             mDragWindow.Add(mShadowView);
-            mDragWindow.Show();
+
+            //Update Window Directly
+            mDragWindow.VisibiltyChangedSignalEmit(true);
+            mDragWindow.RenderOnce();
 
             sourceEventCb = (sourceEventType) =>
             {
+                if ((SourceEventType)sourceEventType == SourceEventType.Finish)
+                {
+                    if (mShadowView)
+                    {
+                        mShadowView.Hide();
+                        mDragWindow.Remove(mShadowView);
+                        mShadowView.Dispose();
+                    }
+
+                    //Update Window Directly
+                    mDragWindow.VisibiltyChangedSignalEmit(true);
+                    mDragWindow.RenderOnce();
+                }
+
                 callback((SourceEventType)sourceEventType);
             };
 
@@ -118,6 +150,8 @@ namespace Tizen.NUI
             {
                 throw new InvalidOperationException("Fail to StartDragAndDrop");
             }
+
+            mDragWindow.Show();
         }
 
         /// <summary>

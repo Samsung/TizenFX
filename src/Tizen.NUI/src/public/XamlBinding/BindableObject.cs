@@ -94,14 +94,10 @@ namespace Tizen.NUI.Binding
                 {
                     nameToBindableProperty2.TryGetValue(keyValuePair.Key, out var bindableProperty);
 
-                    if (null != bindableProperty && (ChangedPropertiesSet.Contains(bindableProperty) || other.ChangedPropertiesSet.Contains(bindableProperty)))
+                    if (null != bindableProperty && other.IsSet(bindableProperty))
                     {
                         object value = other.GetValue(bindableProperty);
-
-                        if (null != value)
-                        {
-                            InternalSetValue(keyValuePair.Value, value);
-                        }
+                        InternalSetValue(keyValuePair.Value, value);
                     }
                 }
             }
@@ -324,41 +320,18 @@ namespace Tizen.NUI.Binding
                 }
 
                 object oldvalue = null;
-                if (null == property.DefaultValueCreator)
+                BindablePropertyContext context = GetOrCreateContext(property);
+                if (null != context)
                 {
-                    BindablePropertyContext context = GetOrCreateContext(property);
-                    if (null != context)
-                    {
-                        context.Attributes |= BindableContextAttributes.IsManuallySet;
-                        oldvalue = context.Value;
-                        context.Value = value;
-                    }
-                }
-                else
-                {
-                    oldvalue = property.DefaultValueCreator.Invoke(this);
+                    context.Attributes |= BindableContextAttributes.IsManuallySet;
+                    oldvalue = context.Value;
+                    context.Value = value;
                 }
 
                 property.PropertyChanged?.Invoke(this, oldvalue, value);
 
                 OnPropertyChanged(property.PropertyName);
                 OnPropertyChangedWithData(property);
-            }
-
-            ChangedPropertiesSet.Add(property);
-        }
-
-        private HashSet<BindableProperty> changedPropertiesSet;
-        private HashSet<BindableProperty> ChangedPropertiesSet
-        {
-            get
-            {
-                if (null == changedPropertiesSet)
-                {
-                    changedPropertiesSet = new HashSet<BindableProperty>();
-                }
-
-                return changedPropertiesSet;
             }
         }
 

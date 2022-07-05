@@ -95,13 +95,6 @@ namespace Tizen.NUI.BaseComponents
         internal TextField(TextField handle, bool shown = true) : this(Interop.TextField.NewTextField(TextField.getCPtr(handle)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if (!shown)
-            {
-                SetVisible(false);
-            }
-
-            TextChanged += TextFieldTextChanged;
         }
 
         internal enum ExceedPolicyType
@@ -506,7 +499,7 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated.(API Level 6) Use Shadow instead.
         /// The property cascade chaining set is possible. For example, this (textField.ShadowOffset.X = 0.1f;) is possible.
         /// </remarks>
-        [Obsolete("Please do not use this ShadowOffset(Deprecated). Please use Shadow instead.")]
+        [Obsolete("Do not use this ShadowOffset(Deprecated). Use Shadow instead.")]
         public Vector2 ShadowOffset
         {
             get
@@ -557,7 +550,7 @@ namespace Tizen.NUI.BaseComponents
         /// Deprecated.(API Level 6) Use Shadow instead.
         /// The property cascade chaining set is possible. For example, this (textField.ShadowColor.X = 0.1f;) is possible.
         /// </remarks>
-        [Obsolete("Please do not use this ShadowColor(Deprecated). Please use Shadow instead.")]
+        [Obsolete("Do not use this ShadowColor(Deprecated). Use Shadow instead.")]
         public Vector4 ShadowColor
         {
             get
@@ -785,6 +778,24 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(ScrollSpeedProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The SelectionPopupStyle property.<br />
+        /// The style of the text selection popup can be set through SelectionPopupStyle property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap SelectionPopupStyle
+        {
+            get
+            {
+                return (PropertyMap)GetValue(SelectionPopupStyleProperty);
+            }
+            set
+            {
+                SetValue(SelectionPopupStyleProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -1135,7 +1146,7 @@ namespace Tizen.NUI.BaseComponents
         /// The settings to relating to the System's Input Method, Key and Value.<br />
         /// </summary>
         /// <remarks>
-        /// <see cref="InputMethod"/> is a class encapsulating the input method map. Please use the <see cref="InputMethod"/> class for this property.
+        /// <see cref="InputMethod"/> is a class encapsulating the input method map. Use the <see cref="InputMethod"/> class for this property.
         /// </remarks>
         /// <example>
         /// The following example demonstrates how to set the InputMethodSettings property.
@@ -1861,9 +1872,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Specify primary cursor (caret) position in text control.
+        /// PrimaryCursorPosition property.<br />
+        /// Specify the position of the primary cursor (caret) in text control.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// If the value set is out of range (negative or greater than or equal the number of characters in Text) then the PrimaryCursorPosition is moved to the end of Text (the number of characters in Text).
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
         public int PrimaryCursorPosition
         {
             get
@@ -2579,6 +2594,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int GrabHandlePressedImage = Interop.TextField.GrabHandlePressedImageGet();
             internal static readonly int ScrollThreshold = Interop.TextField.ScrollThresholdGet();
             internal static readonly int ScrollSpeed = Interop.TextField.ScrollSpeedGet();
+            internal static readonly int SelectionPopupStyle = Interop.TextField.SelectionPopupStyleGet();
             internal static readonly int SelectionHandleImageLeft = Interop.TextField.SelectionHandleImageLeftGet();
             internal static readonly int SelectionHandleImageRight = Interop.TextField.SelectionHandleImageRightGet();
             internal static readonly int SelectionHandlePressedImageLeft = Interop.TextField.SelectionHandlePressedImageLeftGet();

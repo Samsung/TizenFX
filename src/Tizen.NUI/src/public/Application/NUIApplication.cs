@@ -137,7 +137,7 @@ namespace Tizen.NUI
         /// <param name="windowPosition"></param>
         /// <param name="styleSheet"></param>
         /// InhouseAPI, this could be opened in NextTizen
-        [Obsolete("Please do not use! This will be deprecated!")]
+        [Obsolete("Do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public NUIApplication(Graphics.BackendType backend, WindowMode windowMode = WindowMode.Opaque, Size2D windowSize = null, Position2D windowPosition = null, string styleSheet = "") : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
@@ -303,7 +303,7 @@ namespace Tizen.NUI
         /// Gets the window instance.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated!")]
+        [Obsolete("Do not use! This will be deprecated!")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Window Window
         {
@@ -480,7 +480,7 @@ namespace Tizen.NUI
 
             if (borderEnabled)
             {
-                GetDefaultWindow().EnableBorder(borderInterface);
+                GetDefaultWindow().EnableBorder(borderInterface, new Window.BorderCloseDelegate(Exit));
             }
 
             Tizen.Tracer.End();
@@ -550,7 +550,7 @@ namespace Tizen.NUI
     /// </summary>
     [SuppressMessage("Microsoft.Design", "CA1052:StaticHolderTypesShouldBeStaticOrNotInheritable")]
     [EditorBrowsable(EditorBrowsableState.Never)]
-    [Obsolete("Please do not use! This will be deprecated!")]
+    [Obsolete("Do not use! This will be deprecated!")]
     public class Graphics
     {
         /// <summary>

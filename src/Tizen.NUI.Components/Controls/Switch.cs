@@ -69,9 +69,8 @@ namespace Tizen.NUI.Components
             AccessibilityRole = Role.ToggleButton;
 
             IsSelectable = true;
-#if PROFILE_MOBILE
+
             Feedback = true;
-#endif
         }
 
         /// <summary>
@@ -336,7 +335,7 @@ namespace Tizen.NUI.Components
         {
             var icon = new ImageView()
             {
-                AccessibilityHighlightable = false,
+                AccessibilityHidden = true,
                 EnableControlStatePropagation = true
             };
 

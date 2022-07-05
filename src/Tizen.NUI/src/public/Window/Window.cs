@@ -212,7 +212,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for transition effect's state.
         /// </summary>
-        [Obsolete("Please do not use! This will be removed. Please use Window.EffectState instead!")]
+        [Obsolete("Do not use this, that will be removed. Use Window.EffectState instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         //  This is already deprecated, so suppress warning here.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
@@ -221,19 +221,19 @@ namespace Tizen.NUI
             /// <summary>
             /// None state.
             /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Window.EffectState.None instead!")]
+            [Obsolete("Do not use this, that will be removed. Use Window.EffectState.None instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             None = 0,
             /// <summary>
             /// Transition effect is started.
             /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Window.EffectState.Start instead!")]
+            [Obsolete("Do not use this, that will be removed. Use Window.EffectState.Start instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             Start,
             /// <summary>
             /// Transition effect is ended.
             /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Window.EffectState.End instead!")]
+            [Obsolete("Do not use this, that will be removed. Use Window.EffectState.End instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             End,
         }
@@ -264,7 +264,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Enumeration for transition effect's type.
         /// </summary>
-        [Obsolete("Please do not use! This will be removed. Please use Window.EffectType instead!")]
+        [Obsolete("Do not use this, that will be removed. Use Window.EffectType instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         //  This is already deprecated, so suppress warning here.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names", Justification = "<Pending>")]
@@ -273,19 +273,19 @@ namespace Tizen.NUI
             /// <summary>
             /// None type.
             /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Window.EffectType.None instead!")]
+            [Obsolete("Do not use this, that will be removed. Use Window.EffectType.None instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             None = 0,
             /// <summary>
             /// Window show effect.
             /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Window.EffectType.Show instead!")]
+            [Obsolete("Do not use this, that will be removed. Use Window.EffectType.Show instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             Show,
             /// <summary>
             /// Window hide effect.
             /// </summary>
-            [Obsolete("Please do not use! This will be removed. Please use Window.EffectType.Hide instead!")]
+            [Obsolete("Do not use this, that will be removed. Use Window.EffectType.Hide instead.")]
             [EditorBrowsable(EditorBrowsableState.Never)]
             Hide,
         }
@@ -608,7 +608,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="keyEvent">The key event to feed.</param>
         /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! This will be deprecated! Please use FeedKey(Key keyEvent) instead!")]
+        [Obsolete("Do not use this, that will be deprecated. Use FeedKey(Key keyEvent) instead.")]
         public static void FeedKeyEvent(Key keyEvent)
         {
             Interop.Window.FeedKeyEvent(Key.getCPtr(keyEvent));
@@ -1555,6 +1555,7 @@ namespace Tizen.NUI
             positionSize.Height = val.GetY();
 
             Interop.Window.SetPositionSize(SwigCPtr, Rectangle.getCPtr(positionSize));
+            val.Dispose();
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -1662,6 +1663,30 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets window's maximum size.
+        ///
+        /// It is to set the maximized size when window is maximized or the window's size is increased by RequestResizeToServer().
+        /// Although the size is set by this function, window's size can be increased over the limitation by SetPositionSize() or SetSize().
+        ///
+        /// After setting, if Maximize() is called, window is resized with the setting size and move the center.
+        ///
+        /// </summary>
+        /// <param name="size">the maximum size.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMaximumSize(Size2D size)
+        {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
+
+            Interop.Window.SetMaximumSize(SwigCPtr, Uint16Pair.getCPtr(val));
+            val.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Minimizes window's size.
         /// If this function is called with true, window will be iconified.
         /// Otherwise window will be activated.
@@ -1689,6 +1714,26 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets window's minimum size.
+        /// It is to set the minimum size when window's size is decreased by RequestResizeToServer().
+        /// Although the size is set by this function, window's size can be decreased over the limitation by SetPositionSize() or SetSize().
+        /// </summary>
+        /// <param name="size">the minimum size.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMimimumSize(Size2D size)
+        {
+            if (null == size)
+            {
+                throw new ArgumentNullException(nameof(size));
+            }
+            var val = new Uint16Pair((uint)size.Width, (uint)size.Height);
+
+            Interop.Window.SetMimimumSize(SwigCPtr, Uint16Pair.getCPtr(val));
+            val.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Query whether window is rotating or not.
         /// </summary>
         /// <returns>True if window is rotating, false otherwise.</returns>
@@ -1707,7 +1752,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Key GetLastKeyEvent()
         {
-            Key ret = new Key(Interop.Window.GetLastKeyEvent(SwigCPtr), true);
+            Key ret = new Key(Interop.Window.GetLastKeyEvent(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1719,7 +1764,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Touch GetLastTouchEvent()
         {
-            Touch ret = new Touch(Interop.Window.GetLastTouchEvent(SwigCPtr), true);
+            Touch ret = new Touch(Interop.Window.GetLastTouchEvent(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

@@ -36,7 +36,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
         public string AssemblyName { get; set; }
         public string DependencyPaths { get; set; }
         public string ReferencePath { get; set; }
-        public int XamlOptimization {get; set;} = 2;
+        public int XamlOptimization {get; set;} = 1;
         public bool AddXamlCompilationAttribute { get; set; }
         public bool PrintReferenceAssemblies { get; set; }
 

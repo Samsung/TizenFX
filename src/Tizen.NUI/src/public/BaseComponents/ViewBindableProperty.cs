@@ -523,7 +523,7 @@ namespace Tizen.NUI.BaseComponents
         }));
 
         /// <summary>
-        /// "Please DO NOT use! This will be deprecated! Please use 'View Weight' instead of BindableProperty"
+        /// "DO not use this, that will be deprecated. Use 'View Weight' instead of BindableProperty"
         /// This needs to be hidden as inhouse API until all applications using it have been updated.  Do not make public.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
