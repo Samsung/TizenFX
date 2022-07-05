@@ -48,17 +48,35 @@ namespace Tizen.NUI
             /// <summary>
             /// 8 red bits, 8 green bits, 8 blue bits
             /// </summary>
-            RGB888,
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            RGB888 = 0,
+
+            /// <summary>
+            /// 8 blue bits, 8 green bits, 8 red bits
+            /// </summary>
+            BGR888 = 0,
 
             /// <summary>
             /// 8 red bits, 8 green bits, 8 blue bits, alpha 8 bits
             /// </summary>
-            RGBA8888,
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            RGBA8888 = 1,
+
+            /// <summary>
+            /// 8 blue bits, 8 green bits, 8 red bits, alpha 8 bits
+            /// </summary>
+            BGRA8888 = 1,
 
             /// <summary>
             /// 8 red bits, 8 green bits, 8 blue bits, and 8 ignored bits
             /// </summary>
-            RGBX8888
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            RGBX8888 = 2,
+
+            /// <summary>
+            /// 8 blue bits, 8 green bits, 8 red bits, and 8 ignored bits
+            /// </summary>
+            BGRX8888 = 2,
         }
 
         /// <summary>
