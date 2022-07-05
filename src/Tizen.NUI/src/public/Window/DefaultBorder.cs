@@ -879,6 +879,9 @@ namespace Tizen.NUI
             if (BorderWindow != null && BorderWindow.IsMaximized())
             {
                 borderView?.Hide();
+                overlayTimer?.Stop();
+                overlayTimer?.Dispose();
+                overlayTimer = null;
                 return true;
             }
             return false;
