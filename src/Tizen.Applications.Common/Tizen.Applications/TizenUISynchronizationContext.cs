@@ -69,27 +69,29 @@ namespace Tizen.Applications
         /// <since_tizen> 10 </since_tizen>
         public override void Send(SendOrPostCallback d, object state)
         {
-            var mre = new ManualResetEvent(false);
-            Exception err = null;
-            GSourceManager.Post(() =>
+            using (var mre = new ManualResetEvent(false))
             {
-                try
+                Exception err = null;
+                GSourceManager.Post(() =>
                 {
-                    d(state);
-                }
-                catch (Exception ex)
+                    try
+                    {
+                        d(state);
+                    }
+                    catch (Exception ex)
+                    {
+                        err = ex;
+                    }
+                    finally
+                    {
+                        mre.Set();
+                    }
+                }, true);
+                mre.WaitOne();
+                if (err != null)
                 {
-                    err = ex;
+                    throw err;
                 }
-                finally
-                {
-                    mre.Set();
-                }
-            }, true);
-            mre.WaitOne();
-            if (err != null)
-            {
-                throw err;
             }
         }
     }
