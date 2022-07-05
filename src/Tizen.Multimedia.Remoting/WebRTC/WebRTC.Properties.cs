@@ -202,7 +202,7 @@ namespace Tizen.Multimedia.Remoting
 
         /// <summary>
         /// Gets or sets the bundle policy.<br/>
-        /// The default bundle policy is <a cref="WebRTCBundlePolicy.MaxBundle"/>.
+        /// The default bundle policy is <see cref="WebRTCBundlePolicy.MaxBundle"/>.
         /// </summary>
         /// <value>The policy of bundle</value>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>

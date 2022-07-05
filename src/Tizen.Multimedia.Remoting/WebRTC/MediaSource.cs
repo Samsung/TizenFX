@@ -217,8 +217,8 @@ namespace Tizen.Multimedia.Remoting
         /// Gets or sets the video frame rate of the current media source.
         /// </summary>
         /// <remarks>
-        /// This API is only supported in video media source, especially <a cref="MediaCameraSource"/>,
-        /// <a cref="MediaScreenSource"/>, <a cref="MediaTestSource"/>.<br/>
+        /// This API is only supported in video media source, especially <see cref="MediaCameraSource"/>,
+        /// <see cref="MediaScreenSource"/>, <see cref="MediaTestSource"/>.<br/>
         /// </remarks>
         /// <value>A value that specifies the video frame rate.</value>
         /// <exception cref="ArgumentException">VideoFrameRate is less than or equal to zero.</exception>
