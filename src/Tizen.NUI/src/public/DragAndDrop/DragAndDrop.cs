@@ -66,9 +66,15 @@ namespace Tizen.NUI
         /// <param name="shadowView">The shadow view for drag object</param>
         /// <param name="dragData">The data to send</param>
         /// <param name="callback">The source event callback</param>
+        /// <exception cref="NotSupportedException">The multi-window feature is not supported.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void StartDragAndDrop(View sourceView, View shadowView, DragData dragData, SourceEventHandler callback)
         {
+            if (Window.IsSupportedMultiWindow() == false)
+            {
+                throw new NotSupportedException("This device does not support surfaceless_context. So Window cannot be created.");
+            }
+
             if (null == shadowView)
             {
                 throw new ArgumentNullException(nameof(shadowView));

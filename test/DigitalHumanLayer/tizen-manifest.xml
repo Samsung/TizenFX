@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://tizen.org/ns/packages" api-version="7" package="org.tizen.example.DigitalHumanLayer" version="1.0.0">
+  <profile name="common" />
+  <ui-application appid="org.tizen.example.DigitalHumanLayer"
+					exec="DigitalHumanLayer.dll"
+					type="dotnet"
+                                        multiple="false" nodisplay="false" taskmanage="true">
+    <label>DigitalHumanLayer</label>
+    <icon>DigitalHumanLayer.png</icon>
+    <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true"/>
+  </ui-application>
+  <privileges>
+     <privilege>http://tizen.org/privilege/window.priority.set</privilege>
+     <privilege>http://tizen.org/privilege/internet</privilege>
+  </privileges>
+  <feature> http://tizen.org/feature/opengles.surfaceless_context </feature>
+</manifest>

@@ -190,6 +190,18 @@ namespace Tizen.NUI
                 if (isTop) borderHeight += topView.SizeHeight;
                 if (isBottom) borderHeight += bottomView.SizeHeight;
 
+                // Sets the minimum / maximum size to be resized by RequestResizeToServer.
+                if (borderInterface.MinSize != null)
+                {
+                    using Size2D mimimumSize = new Size2D(borderInterface.MinSize.Width, borderInterface.MinSize.Height + (int)borderHeight);
+                    SetMimimumSize(mimimumSize);
+                }
+                if (borderInterface.MaxSize != null)
+                {
+                    using Size2D maximuSize = new Size2D(borderInterface.MaxSize.Width, borderInterface.MaxSize.Height + (int)borderHeight);
+                    SetMaximumSize(maximuSize);
+                }
+
                 // When running the app for the first time, if it runs in full size, do Maximize(true).
                 if (screenWidth != 0 && screenHeight != 0 &&
                     realWindowSize.Width >= screenWidth && realWindowSize.Height >= screenHeight &&
@@ -314,7 +326,7 @@ namespace Tizen.NUI
                 direction = BorderDirection.BottomLeft;
             }
             // check bottom right corner
-            else if (xPosition > WindowSize.Width + borderInterface.BorderLineThickness * 2 - borderInterface.TouchThickness && yPosition > WindowSize.Height + borderHeight - borderInterface.TouchThickness)
+            else if (xPosition > WindowSize.Width + (float)(borderInterface.BorderLineThickness * 2) - borderInterface.TouchThickness && yPosition > WindowSize.Height + borderHeight - borderInterface.TouchThickness)
             {
                 direction = BorderDirection.BottomRight;
             }
@@ -324,7 +336,7 @@ namespace Tizen.NUI
                 direction = BorderDirection.TopLeft;
             }
             // check top right corner
-            else if (xPosition > WindowSize.Width + borderInterface.BorderLineThickness * 2 - borderInterface.TouchThickness && yPosition < borderInterface.TouchThickness)
+            else if (xPosition > WindowSize.Width + (float)(borderInterface.BorderLineThickness * 2) - borderInterface.TouchThickness && yPosition < borderInterface.TouchThickness)
             {
                 direction = BorderDirection.TopRight;
             }
@@ -334,7 +346,7 @@ namespace Tizen.NUI
                 direction = BorderDirection.Left;
             }
             // check right side
-            else if (xPosition > WindowSize.Width + borderInterface.BorderLineThickness*2 - borderInterface.TouchThickness)
+            else if (xPosition > WindowSize.Width + (float)(borderInterface.BorderLineThickness * 2) - borderInterface.TouchThickness)
             {
                 direction = BorderDirection.Right;
             }
@@ -382,23 +394,6 @@ namespace Tizen.NUI
             int resizeWidth = e.WindowSize.Width;
             int resizeHeight = e.WindowSize.Height;
 
-            if (borderInterface.MinSize != null)
-            {
-                resizeWidth = borderInterface.MinSize.Width > resizeWidth ? (int)borderInterface.MinSize.Width : resizeWidth;
-                resizeHeight = borderInterface.MinSize.Height > resizeHeight ? (int)borderInterface.MinSize.Height : resizeHeight;
-            }
-
-            if (borderInterface.MaxSize != null)
-            {
-                resizeWidth = borderInterface.MaxSize.Width < resizeWidth ? (int)borderInterface.MaxSize.Width : resizeWidth;
-                resizeHeight = borderInterface.MaxSize.Height < resizeHeight ? (int)borderInterface.MaxSize.Height : resizeHeight;
-            }
-
-            if (resizeWidth != e.WindowSize.Width || resizeHeight != e.WindowSize.Height)
-            {
-                WindowSize = new Size2D(resizeWidth, resizeHeight);
-            }
-
             borderInterface.OnResized(resizeWidth, resizeHeight);
 
              // reset borderHeight
@@ -413,7 +408,7 @@ namespace Tizen.NUI
                 Interop.ActorInternal.SetPosition(GetBorderWindowRootLayer().SwigCPtr, 0, 0);
                 if (contentsView != null)
                 {
-                    contentsView.SizeHeight = resizeHeight - borderHeight - borderInterface.BorderLineThickness * 2;
+                    contentsView.SizeHeight = resizeHeight - borderHeight - (float)(borderInterface.BorderLineThickness * 2);
                 }
                 DoOverlayMode(true);
             }
@@ -421,7 +416,7 @@ namespace Tizen.NUI
             {
                 float height = (isTop == true) ? topView.SizeHeight : 0;
                 Interop.ActorInternal.SetSize(GetBorderWindowRootLayer().SwigCPtr, resizeWidth, resizeHeight);
-                Interop.ActorInternal.SetSize(GetBorderWindowBottomLayer().SwigCPtr, resizeWidth + borderInterface.BorderLineThickness * 2, resizeHeight + borderHeight + borderInterface.BorderLineThickness * 2);
+                Interop.ActorInternal.SetSize(GetBorderWindowBottomLayer().SwigCPtr, resizeWidth + (float)(borderInterface.BorderLineThickness * 2), resizeHeight + borderHeight + (float)(borderInterface.BorderLineThickness * 2));
                 Interop.ActorInternal.SetPosition(GetBorderWindowRootLayer().SwigCPtr, 0, height + borderInterface.BorderLineThickness);
                 if (contentsView != null)
                 {
@@ -443,7 +438,7 @@ namespace Tizen.NUI
                 Interop.ActorInternal.SetParentOrigin(borderWindowBottomLayer.SwigCPtr, topCentor.SwigCPtr);
                 Interop.Actor.SetAnchorPoint(borderWindowBottomLayer.SwigCPtr, topCentor.SwigCPtr);
                 Interop.Actor.Add(rootLayer.SwigCPtr, borderWindowBottomLayer.SwigCPtr);
-                Interop.ActorInternal.SetSize(borderWindowBottomLayer.SwigCPtr, WindowSize.Width + borderInterface.BorderLineThickness * 2, WindowSize.Height + borderInterface.BorderLineThickness * 2);
+                Interop.ActorInternal.SetSize(borderWindowBottomLayer.SwigCPtr, WindowSize.Width + (float)(borderInterface.BorderLineThickness * 2), WindowSize.Height + (float)(borderInterface.BorderLineThickness * 2));
                 borderWindowBottomLayer.SetWindow(this);
                 borderWindowBottomLayer.LowerToBottom();
 

@@ -626,7 +626,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.TextEditor.PrimaryCursorPosition A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        [Property("AUTHOR", "s.sabah@samsung.com")]
         public void TextEditorPrimaryCursorPosition()
         {
             tlog.Debug(tag, $"TextEditorPrimaryCursorPosition START");
@@ -635,13 +635,36 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
             Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
 
-            testingTarget.Text = "0123456789";
-            testingTarget.PrimaryCursorPosition = 5;
-            Assert.AreEqual(5, testingTarget.PrimaryCursorPosition, "Should be equal!");
+            testingTarget.Text ="Hello World!";
+            int textLen = testingTarget.Text.Length;
+
+            int expectedValue = textLen;
+            Assert.AreEqual(expectedValue, testingTarget.PrimaryCursorPosition, "Should be equal!");
+
+            expectedValue = 5;
+            testingTarget.PrimaryCursorPosition = expectedValue;
+            Assert.AreEqual(expectedValue, testingTarget.PrimaryCursorPosition, "Should be equal!");
+
+            expectedValue = 0;
+            testingTarget.PrimaryCursorPosition = expectedValue;
+            Assert.AreEqual(expectedValue, testingTarget.PrimaryCursorPosition, "Should be equal!");
+
+            expectedValue = textLen ;
+            testingTarget.PrimaryCursorPosition = textLen + 1;
+            Assert.AreEqual(expectedValue, testingTarget.PrimaryCursorPosition, "Should be equal!");
+
+            expectedValue = 6;
+            testingTarget.PrimaryCursorPosition = expectedValue;
+            Assert.AreEqual(expectedValue, testingTarget.PrimaryCursorPosition, "Should be equal!");
+
+            expectedValue = textLen ;
+            testingTarget.PrimaryCursorPosition = -1;
+            Assert.AreEqual(expectedValue, testingTarget.PrimaryCursorPosition, "Should be equal!");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextEditorPrimaryCursorPosition END (OK)");
         }
+
 
         [Test]
         [Category("P1")]

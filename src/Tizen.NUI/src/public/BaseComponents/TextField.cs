@@ -783,6 +783,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The SelectionPopupStyle property.<br />
+        /// The style of the text selection popup can be set through SelectionPopupStyle property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyMap SelectionPopupStyle
+        {
+            get
+            {
+                return (PropertyMap)GetValue(SelectionPopupStyleProperty);
+            }
+            set
+            {
+                SetValue(SelectionPopupStyleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The SelectionHandleImageLeft property.<br />
         /// The image to display for the left selection handle.<br />
         /// The selectionHandleImageLeft map contains the following key :<br />
@@ -1854,9 +1872,13 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Specify primary cursor (caret) position in text control.
+        /// PrimaryCursorPosition property.<br />
+        /// Specify the position of the primary cursor (caret) in text control.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <remarks>
+        /// If the value set is out of range (negative or greater than or equal the number of characters in Text) then the PrimaryCursorPosition is moved to the end of Text (the number of characters in Text).
+        /// </remarks>
+        /// <since_tizen> 10 </since_tizen>
         public int PrimaryCursorPosition
         {
             get
@@ -2572,6 +2594,7 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int GrabHandlePressedImage = Interop.TextField.GrabHandlePressedImageGet();
             internal static readonly int ScrollThreshold = Interop.TextField.ScrollThresholdGet();
             internal static readonly int ScrollSpeed = Interop.TextField.ScrollSpeedGet();
+            internal static readonly int SelectionPopupStyle = Interop.TextField.SelectionPopupStyleGet();
             internal static readonly int SelectionHandleImageLeft = Interop.TextField.SelectionHandleImageLeftGet();
             internal static readonly int SelectionHandleImageRight = Interop.TextField.SelectionHandleImageRightGet();
             internal static readonly int SelectionHandlePressedImageLeft = Interop.TextField.SelectionHandlePressedImageLeftGet();

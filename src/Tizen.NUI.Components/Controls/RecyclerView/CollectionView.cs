@@ -699,23 +699,26 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public void UpdateSelectedItems(IList<object> newSelection)
         {
-            var oldSelection = new List<object>(SelectedItems);
-
-            suppressSelectionChangeNotification = true;
-
-            SelectedItems.Clear();
-
-            if (newSelection?.Count > 0)
+            if (SelectedItems != null)
             {
-                for (int n = 0; n < newSelection.Count; n++)
+                var oldSelection = new List<object>(SelectedItems);
+
+                suppressSelectionChangeNotification = true;
+
+                SelectedItems.Clear();
+
+                if (newSelection?.Count > 0)
                 {
-                    SelectedItems.Add(newSelection[n]);
+                    for (int n = 0; n < newSelection.Count; n++)
+                    {
+                        SelectedItems.Add(newSelection[n]);
+                    }
                 }
+
+                suppressSelectionChangeNotification = false;
+
+                SelectedItemsPropertyChanged(oldSelection, newSelection);
             }
-
-            suppressSelectionChangeNotification = false;
-
-            SelectedItemsPropertyChanged(oldSelection, newSelection);
         }
 
         /// <summary>
