@@ -16,6 +16,7 @@
 
 using System;
 using System.Runtime.InteropServices;
+using Tizen.MachineLearning.Inference;
 using Tizen.MachineLearning.Train;
 
 internal static partial class Interop
@@ -69,5 +70,29 @@ internal static partial class Interop
         /* int ml_train_model_set_dataset(ml_train_model_h model, ml_train_dataset_h dataset) */
         [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_set_dataset")]
         public static extern NNTrainerError SetDataset(IntPtr modelHandle, IntPtr datasetHandle);
+
+        /* int ml_train_model_get_output_tensors_info(ml_train_model_h model, ml_tensors_info_h *info) */
+        [DllImport(Libraries.Nntrainer, EntryPoint = "ml_train_model_get_output_tensors_info")]
+        public static extern NNTrainerError GetOutputTensorsInfo(IntPtr modelHandle, out IntPtr tensorsInfoHandle);
+
+        /* int ml_train_model_get_input_tensors_info(ml_train_model_h model, ml_tensors_info_h *info) */
+        [DllImport(Libraries.Nntrainer, EntryPoint ="ml_train_model_get_input_tensors_info")]
+        public static extern NNTrainerError GetInputTensorsInfo(IntPtr modelHandle, out IntPtr tensorsInfoHandle);
+
+        /* int ml_tensors_info_get_count (ml_tensors_info_h info, unsigned int *count) */
+        [DllImport(Libraries.MlCommon, EntryPoint ="ml_tensors_info_get_count")]
+        internal static extern NNTrainerError GetTensorsCount(IntPtr info, out int count);
+
+        /* int ml_tensors_info_get_tensor_name (ml_tensors_info_h info, unsigned int index, char **name) */
+        [DllImport(Libraries.MlCommon, EntryPoint = "ml_tensors_info_get_tensor_name")]
+        internal static extern NNTrainerError GetTensorName(IntPtr info, int index, out string name);
+
+        /* int ml_tensors_info_get_tensor_type (ml_tensors_info_h info, unsigned int index, ml_tensor_type_e *type) */
+        [DllImport(Libraries.MlCommon, EntryPoint = "ml_tensors_info_get_tensor_type")]
+        internal static extern NNTrainerError GetTensorType(IntPtr info, int index, out TensorType type);
+
+        /* int ml_tensors_info_get_tensor_dimension (ml_tensors_info_h info, unsigned int index, ml_tensor_dimension dimension)*/
+        [DllImport(Libraries.MlCommon, EntryPoint = "ml_tensors_info_get_tensor_dimension")]
+        internal static extern NNTrainerError GetTensorDimension(IntPtr info, int index, [In, Out] uint[] dimension);
     }
 }
