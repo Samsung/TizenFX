@@ -19,5 +19,6 @@ internal static partial class Interop
     internal static partial class Libraries
     {
         public const string Nntrainer = "libcapi-nntrainer.so";
+        public const string MlCommon = "libcapi-ml-common.so.1";
     }
 }

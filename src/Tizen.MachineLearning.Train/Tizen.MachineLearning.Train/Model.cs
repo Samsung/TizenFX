@@ -16,6 +16,7 @@
 using static Interop;
 using System;
 using System.IO;
+using Tizen.MachineLearning.Inference;
 namespace Tizen.MachineLearning.Train
 {
     /// <summary>
@@ -290,7 +291,7 @@ namespace Tizen.MachineLearning.Train
         public void SetOptimizer(Optimizer optimizer)
         {
             if (optimizer == null)
-                NNTrainer.CheckException(NNTrainerError.InvalidOperation, "optimizer instance is null");
+                NNTrainer.CheckException(NNTrainerError.InvalidParameter, "optimizer instance is null");
             NNTrainerError ret = Interop.Model.SetOptimizer(handle, optimizer.GetHandle());
             NNTrainer.CheckException(ret, "Failed to set optimizer");
         }
@@ -311,9 +312,80 @@ namespace Tizen.MachineLearning.Train
         public void SetDataset(Dataset dataset)
         {
             if (dataset == null)
-                NNTrainer.CheckException(NNTrainerError.InvalidOperation, "dataset instance is null");
+                NNTrainer.CheckException(NNTrainerError.InvalidParameter, "dataset instance is null");
             NNTrainerError ret = Interop.Model.SetDataset(handle, dataset.GetHandle());
             NNTrainer.CheckException(ret, "Failed to set dataset");
+        }
+
+        internal static TensorsInfo CreateTensorsInfoFormHandle(IntPtr handle)
+        {
+            const int RankLimit = 4;
+            NNTrainerError ret = NNTrainerError.None;
+            int count;
+
+            ret = Interop.Model.GetTensorsCount(handle, out count);
+            NNTrainer.CheckException(ret, "Failed to get count of Tensors");
+
+            TensorsInfo retInfo = new TensorsInfo();
+            for (int i = 0; i <count; ++i)
+            {
+                string name;
+                TensorType type;
+                uint[] dim = new uint[RankLimit];
+
+                ret = Interop.Model.GetTensorName(handle, i, out name);
+                NNTrainer.CheckException(ret, "Failed to get name of Tensors");
+
+                ret = Interop.Model.GetTensorType(handle, i, out type);
+                NNTrainer.CheckException(ret, "Failed to get type of Tensors");
+
+                ret = Interop.Model.GetTensorDimension(handle, i, dim);
+                NNTrainer.CheckException(ret, "Failed to get dimensionpe of Tensors");
+
+                Log.Error("MLT", $"count:{count} name:{name} type:{type}");
+                retInfo.AddTensorInfo(name, type, (int[])(object)dim);
+            }
+            return retInfo;
+        }
+
+        /// <summary>
+        /// Gets output tensors information of the model.
+        /// </summary>
+        /// <remarks>
+        /// Use this function to get output tensors information of the model.
+        /// destroy tensorInfoHandle with TensorsInfo.Dispose() after use.
+        /// model must be compiled before calling this function.
+        /// </remarks>
+        /// <returns>TensorsInfo instance</returns>
+        /// <since_tizen> 10 </since_tizen>
+        public TensorsInfo GetOutputTensorsInfo()
+        {
+            IntPtr tensorsInfoHandle = IntPtr.Zero;
+
+            NNTrainerError ret = Interop.Model.GetOutputTensorsInfo(handle, out tensorsInfoHandle);
+            NNTrainer.CheckException(ret, "Failed to get output tensors info");
+
+            return CreateTensorsInfoFormHandle(tensorsInfoHandle);
+        }
+
+        /// <summary>
+        /// Gets input tensors information of the model.
+        /// </summary>
+        /// <remarks>
+        /// Use this function to get input tensors information of the model.
+        /// destroy tensorInfoHandle with TensorsInfo.Dispose() after use.
+        /// model must be compiled before calling this function.
+        /// </remarks>
+        /// <returns>TensorsInfo instance</returns>
+        /// <since_tizen> 10 </since_tizen>
+        public TensorsInfo GetInputTensorsInfo()
+        {
+            IntPtr tensorsInfoHandle = IntPtr.Zero;
+
+            NNTrainerError ret = Interop.Model.GetInputTensorsInfo(handle, out tensorsInfoHandle);
+            NNTrainer.CheckException(ret, "Failed to get input tensors info");
+
+            return CreateTensorsInfoFormHandle(tensorsInfoHandle);
         }
     } 
 }
