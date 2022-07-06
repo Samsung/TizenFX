@@ -117,6 +117,7 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the amount of buffered data.
         /// </summary>
         /// <value>The buffered amount in bytes.</value>
+        /// <exception cref="ObjectDisposedException">The WebRTCDataChannel has already been disposed.</exception>
         /// <since_tizen> 10 </since_tizen>
         public uint BufferedAmount
         {
@@ -131,12 +132,13 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
-        private uint? _bufferThreshold;
+        private uint? _bufferThreshold = 0;
         /// <summary>
         /// Gets or sets the threshold of data channel buffered amount.<br/>
         /// If the amount of buffered data is lower than threshold value, <see cref="BufferedAmountLow"/> will be occurred.<br/>
         /// The default value is 0, which means <see cref="BufferedAmountLow"/> is disabled and will not be raised.
         /// </summary>
+        /// <exception cref="ObjectDisposedException">The WebRTCDataChannel has already been disposed.</exception>
         /// <since_tizen> 10 </since_tizen>
         public uint BufferedAmountLowThreshold
         {
