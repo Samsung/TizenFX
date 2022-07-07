@@ -42,6 +42,9 @@ namespace Tizen.NUI
                 PixelSize = 24,
                 TextColor = new Color(0.04f, 0.05f, 0.13f, 1),
                 FontStyle = new PropertyMap().Add("weight", new PropertyValue("regular")),
+                AutoScrollLoopCount = 2,
+                AutoScrollGap = 50.0f,
+                AutoScrollSpeed = 80,
             });
 
             // TextField style.
