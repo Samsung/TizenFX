@@ -325,6 +325,24 @@ namespace Tizen.NUI.BaseComponents
         }));
 
         /// <summary>
+        /// MaskingModeProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty MaskingModeProperty = BindableProperty.Create(nameof(MaskingMode), typeof(MaskingModeType), typeof(ImageView), default(MaskingModeType), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalMaskingMode = (ImageView.MaskingModeType)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            return instance.InternalMaskingMode;
+        });
+
+        /// <summary>
         /// ImageMapProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
