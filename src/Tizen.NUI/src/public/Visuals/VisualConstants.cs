@@ -945,6 +945,14 @@ namespace Tizen.NUI
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int RedrawInScalingDown = NDalic.ImageVisualOrientationCorrection + 11;
+
+        /// <summary>
+        /// @brief Whether to apply mask on the GPU or not.
+        /// @details Name "MaskingMode", type MaskingModeType (Property::INTEGER).
+        /// @note It is used in the ImageVisual, and AnimatedImageVisual.The default is MaskingOnLoading.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int MaskingMode = NDalic.ImageVisualOrientationCorrection + 12;
     }
 
     /// <summary>

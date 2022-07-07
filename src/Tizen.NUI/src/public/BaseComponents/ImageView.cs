@@ -236,6 +236,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Enumeration for MaskingMode of image.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum MaskingModeType
+        {
+            /// <summary>
+            /// Applies alpha masking on rendering time.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            MaskingOnRendering,
+            /// <summary>
+            /// Applies alpha masking on loading time.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            MaskingOnLoading
+        }
+
+        /// <summary>
         /// ImageView ResourceUrl, type string.
         /// This is one of mandatory property. Even if not set or null set, it sets empty string ("") internally.
         /// When it is set as null, it gives empty string ("") to be read.
@@ -506,6 +524,44 @@ namespace Tizen.NUI.BaseComponents
             {
                 SetValue(OrientationCorrectionProperty, value);
                 NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether to apply mask on GPU or not.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public MaskingModeType MaskingMode
+        {
+            get
+            {
+                return (MaskingModeType)GetValue(MaskingModeProperty);
+            }
+            set
+            {
+                SetValue(MaskingModeProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private MaskingModeType InternalMaskingMode
+        {
+            get
+            {
+                int ret = (int)MaskingModeType.MaskingOnLoading;
+
+                PropertyValue maskingMode = GetCachedImageVisualProperty(ImageVisualProperty.MaskingMode);
+                maskingMode?.Get(out ret);
+                maskingMode?.Dispose();
+
+                return (MaskingModeType)ret;
+            }
+            set
+            {
+                MaskingModeType ret = value;
+                PropertyValue setValue = new PropertyValue((int)ret);
+                UpdateImage(ImageVisualProperty.MaskingMode, setValue);
+                setValue?.Dispose();
             }
         }
 
@@ -838,8 +894,6 @@ namespace Tizen.NUI.BaseComponents
                 setValue?.Dispose();
             }
         }
-
-
 
         /// <summary>
         /// Gets or sets the desired image width.<br />
