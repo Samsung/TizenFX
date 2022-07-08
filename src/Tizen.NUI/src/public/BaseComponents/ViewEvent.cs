@@ -1074,6 +1074,11 @@ namespace Tizen.NUI.BaseComponents
 
         private void OnResourcesLoaded(IntPtr view)
         {
+            if(!CheckResourceReady())
+            {
+                return;
+            }
+
             if (resourcesLoadedEventHandler != null)
             {
                 resourcesLoadedEventHandler(this, null);
