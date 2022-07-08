@@ -178,6 +178,7 @@ namespace Tizen.NUI
         /// <param name="windowMode">The windowMode.</param>
         /// <param name="type">The default window type.</param>
         /// <since_tizen> 9 </since_tizen>
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet, WindowMode windowMode, WindowType type) : base(new NUICoreBackend(styleSheet, windowMode, type))
         {
             ExternalThemeManager.Initialize();
@@ -193,10 +194,47 @@ namespace Tizen.NUI
         /// <param name="windowPosition">The window position.</param>
         /// <param name="borderInterface"><see cref="Tizen.NUI.IBorderInterface"/>If borderInterface is null, defaultBorder is enabled.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition, IBorderInterface borderInterface, WindowMode windowMode = WindowMode.Opaque) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
             borderEnabled = true;
             this.borderInterface = borderInterface;
+        }
+
+        /// <summary>
+        /// The constructor with a stylesheet, window mode, coretask
+        /// </summary>
+        /// <note>
+        /// There is the UI thread feature.
+        /// UI thread is an additional thread that an Application object creates. The thread is for UI events.
+        /// To enable the UI Thread, you have to pass CoreTask object using this contructor.
+        /// When the UI thread feature is enabled, The methods of CoreTask are emitted on the main thread,
+        /// and the NUIApplication's events are emitted on the UI thread.
+        /// If you want to handle windows or actors in cases like when the memory level of the device is low, you have to use the NUIApplication events, not the CoreTask methods.
+        /// The CoreTask is not for handling GUI.
+        /// Callbacks of the all events in NUIApplication except the CoreTask are emitted on the UI thread.
+        /// </note>
+        /// <param name="styleSheet">The styleSheet URL.</param>
+        /// <param name="windowMode">The windowMode.</param>
+        /// <param name="task">True If app creates a UI Thread</param>
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIApplication(string styleSheet, WindowMode windowMode, CoreTask task) : base(new NUICoreBackend(styleSheet, windowMode), task)
+        {
+        }
+
+        /// <summary>
+        /// The constructor with a stylesheet, window mode, window size, position, coretask
+        /// </summary>
+        /// <param name="styleSheet">The styleSheet URL.</param>
+        /// <param name="windowMode">The windowMode.</param>
+        /// <param name="windowSize">The window size.</param>
+        /// <param name="windowPosition">The window position.</param>
+        /// <param name="task">True If app creates a UI Thread</param>
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIApplication(string styleSheet, WindowMode windowMode, Size2D windowSize, Position2D windowPosition, CoreTask task) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition), task)
+        {
         }
 
         /// <summary>
