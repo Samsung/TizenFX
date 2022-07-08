@@ -1556,6 +1556,12 @@ namespace Tizen.NUI.BaseComponents
             return false;
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual bool CheckResourceReady()
+        {
+            return true;
+        }
+
         private ViewSelectorData EnsureSelectorData()
         {
             if (themeData == null) themeData = new ThemeData();
