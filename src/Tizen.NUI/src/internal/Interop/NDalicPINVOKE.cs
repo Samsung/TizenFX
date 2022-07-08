@@ -277,6 +277,28 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowMemorySignal")]
         public static extern global::System.IntPtr ApplicationLowMemorySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+        //Task
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TaskInitSignal")]
+        public static extern global::System.IntPtr ApplicationTaskInitSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TaskTerminateSignal")]
+        public static extern global::System.IntPtr ApplicationTaskTerminateSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TaskAppControlSignal")]
+        public static extern global::System.IntPtr ApplicationTaskAppControlSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TaskLanguageChangedSignal")]
+        public static extern global::System.IntPtr ApplicationTaskLanguageChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TaskRegionChangedSignal")]
+        public static extern global::System.IntPtr ApplicationTaskRegionChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TaskLowBatterySignal")]
+        public static extern global::System.IntPtr ApplicationTaskLowBatterySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TaskLowMemorySignal")]
+        public static extern global::System.IntPtr ApplicationTaskLowMemorySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
 
         [Obsolete("This has been deprecated in API9 and will be removed in API11. Use NDalicPINVOKE.DeleteBaseHandle(...) instead.")]
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseHandle")]
