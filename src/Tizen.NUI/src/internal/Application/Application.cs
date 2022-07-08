@@ -463,6 +463,56 @@ namespace Tizen.NUI
                 appControlSignal = null;
             }
 
+            //Task
+            if (applicationTaskInitEventCallbackDelegate != null)
+            {
+                taskInitSignal?.Disconnect(applicationTaskInitEventCallbackDelegate);
+                taskInitSignal?.Dispose();
+                taskInitSignal = null;
+            }
+
+            if (applicationTaskTerminateEventCallbackDelegate != null)
+            {
+                taskTerminateSignal?.Disconnect(applicationTaskTerminateEventCallbackDelegate);
+                taskTerminateSignal?.Dispose();
+                taskTerminateSignal = null;
+            }
+
+            if (applicationTaskLanguageChangedEventCallbackDelegate != null)
+            {
+                taskLanguageChangedSignal?.Disconnect(applicationTaskLanguageChangedEventCallbackDelegate);
+                taskLanguageChangedSignal?.Dispose();
+                taskLanguageChangedSignal = null;
+            }
+
+            if (applicationTaskRegionChangedEventCallbackDelegate != null)
+            {
+                taskRegionChangedSignal?.Disconnect(applicationTaskRegionChangedEventCallbackDelegate);
+                taskRegionChangedSignal?.Dispose();
+                taskRegionChangedSignal = null;
+            }
+
+            if (applicationTaskBatteryLowEventCallbackDelegate != null)
+            {
+                taskBatteryLowSignal?.Disconnect(applicationTaskBatteryLowEventCallbackDelegate);
+                taskBatteryLowSignal?.Dispose();
+                taskBatteryLowSignal = null;
+            }
+
+            if (applicationTaskMemoryLowEventCallbackDelegate != null)
+            {
+                taskMemoryLowSignal?.Disconnect(applicationTaskMemoryLowEventCallbackDelegate);
+                taskMemoryLowSignal?.Dispose();
+                taskMemoryLowSignal = null;
+            }
+
+            if (applicationTaskAppControlEventCallbackDelegate != null)
+            {
+                taskAppControlSignal?.Disconnect(applicationTaskAppControlEventCallbackDelegate);
+                taskAppControlSignal?.Dispose();
+                taskAppControlSignal = null;
+            }
+
             window?.Dispose();
             window = null;
 
@@ -547,6 +597,34 @@ namespace Tizen.NUI
         private DaliEventHandler<object, NUIApplicationAppControlEventArgs> applicationAppControlEventHandler;
         private NUIApplicationAppControlEventCallbackDelegate applicationAppControlEventCallbackDelegate;
         private ApplicationControlSignal appControlSignal;
+
+        private DaliEventHandler<object, NUIApplicationInitEventArgs> applicationTaskInitEventHandler;
+        private NUIApplicationInitEventCallbackDelegate applicationTaskInitEventCallbackDelegate;
+        private ApplicationSignal taskInitSignal;
+
+        private DaliEventHandler<object, NUIApplicationTerminatingEventArgs> applicationTaskTerminateEventHandler;
+        private NUIApplicationTerminateEventCallbackDelegate applicationTaskTerminateEventCallbackDelegate;
+        private ApplicationSignal taskTerminateSignal;
+
+        private DaliEventHandler<object, NUIApplicationLanguageChangedEventArgs> applicationTaskLanguageChangedEventHandler;
+        private NUIApplicationLanguageChangedEventCallbackDelegate applicationTaskLanguageChangedEventCallbackDelegate;
+        private ApplicationSignal taskLanguageChangedSignal;
+
+        private DaliEventHandler<object, NUIApplicationRegionChangedEventArgs> applicationTaskRegionChangedEventHandler;
+        private NUIApplicationRegionChangedEventCallbackDelegate applicationTaskRegionChangedEventCallbackDelegate;
+        private ApplicationSignal taskRegionChangedSignal;
+
+        private DaliEventHandler<object, NUIApplicationBatteryLowEventArgs> applicationTaskBatteryLowEventHandler;
+        private NUIApplicationBatteryLowEventCallbackDelegate applicationTaskBatteryLowEventCallbackDelegate;
+        private LowBatterySignalType taskBatteryLowSignal;
+
+        private DaliEventHandler<object, NUIApplicationMemoryLowEventArgs> applicationTaskMemoryLowEventHandler;
+        private NUIApplicationMemoryLowEventCallbackDelegate applicationTaskMemoryLowEventCallbackDelegate;
+        private LowMemorySignalType taskMemoryLowSignal;
+
+        private DaliEventHandler<object, NUIApplicationAppControlEventArgs> applicationTaskAppControlEventHandler;
+        private NUIApplicationAppControlEventCallbackDelegate applicationTaskAppControlEventCallbackDelegate;
+        private ApplicationControlSignal taskAppControlSignal;
 
         private Window window;
 
@@ -996,6 +1074,300 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// @brief Event for Initialized signal which can be used to subscribe/unsubscribe the event handler
+        ///  provided by the user. Initialized signal is emitted when application is initialized
+        /// </summary>
+        public event DaliEventHandler<object, NUIApplicationInitEventArgs> TaskInitialized
+        {
+            add
+            {
+                // Restricted to only one listener
+                if (applicationTaskInitEventHandler == null)
+                {
+                    Tizen.Log.Fatal("NUI", "TaskInitialized Property adding");
+                    applicationTaskInitEventHandler += value;
+                    applicationTaskInitEventCallbackDelegate = new NUIApplicationInitEventCallbackDelegate(OnApplicationTaskInit);
+                    taskInitSignal = this.TaskInitSignal();
+                    taskInitSignal?.Connect(applicationTaskInitEventCallbackDelegate);
+                }
+            }
+
+            remove
+            {
+                if (applicationTaskInitEventHandler != null)
+                {
+                    taskInitSignal?.Disconnect(applicationTaskInitEventCallbackDelegate);
+                    taskInitSignal?.Dispose();
+                    taskInitSignal = null;
+                }
+
+                applicationTaskInitEventHandler -= value;
+            }
+        }
+
+        private void OnApplicationTaskInit(IntPtr data)
+        {
+            if (applicationTaskInitEventHandler != null)
+            {
+                NUIApplicationInitEventArgs e = new NUIApplicationInitEventArgs();
+                e.Application = this;
+                applicationTaskInitEventHandler.Invoke(this, e);
+            }
+
+        }
+
+        /// <summary>
+        /// @brief Event for Terminated signal which can be used to subscribe/unsubscribe the event handler
+        ///  provided by the user. Terminated signal is emitted when application is terminating
+        /// </summary>
+        public event DaliEventHandler<object, NUIApplicationTerminatingEventArgs> TaskTerminating
+        {
+            add
+            {
+                // Restricted to only one listener
+                if (applicationTaskTerminateEventHandler == null)
+                {
+                    applicationTaskTerminateEventHandler += value;
+
+                    applicationTaskTerminateEventCallbackDelegate = new NUIApplicationTerminateEventCallbackDelegate(OnNUIApplicationTaskTerminate);
+                    taskTerminateSignal = this.TaskTerminateSignal();
+                    taskTerminateSignal?.Connect(applicationTaskTerminateEventCallbackDelegate);
+                }
+            }
+
+            remove
+            {
+                if (applicationTaskTerminateEventHandler != null)
+                {
+                    taskTerminateSignal?.Disconnect(applicationTaskTerminateEventCallbackDelegate);
+                    taskTerminateSignal?.Dispose();
+                    taskTerminateSignal = null;
+                }
+
+                applicationTaskTerminateEventHandler -= value;
+            }
+        }
+
+        private void OnNUIApplicationTaskTerminate(IntPtr data)
+        {
+            if (applicationTaskTerminateEventHandler != null)
+            {
+                NUIApplicationTerminatingEventArgs e = new NUIApplicationTerminatingEventArgs();
+                e.Application = this;
+                applicationTaskTerminateEventHandler.Invoke(this, e);
+            }
+        }
+
+        /// <summary>
+        /// @brief Event for TaskLanguageChanged signal which can be used to subscribe/unsubscribe the event handler
+        ///  provided by the user. TaskLanguageChanged signal is emitted when the region of the device is changed.
+        /// </summary>
+        public event DaliEventHandler<object, NUIApplicationLanguageChangedEventArgs> TaskLanguageChanged
+        {
+            add
+            {
+                // Restricted to only one listener
+                if (applicationTaskLanguageChangedEventHandler == null)
+                {
+                    applicationTaskLanguageChangedEventHandler += value;
+
+                    applicationTaskLanguageChangedEventCallbackDelegate = new NUIApplicationLanguageChangedEventCallbackDelegate(OnNUIApplicationTaskLanguageChanged);
+                    taskLanguageChangedSignal = this.TaskLanguageChangedSignal();
+                    taskLanguageChangedSignal?.Connect(applicationTaskLanguageChangedEventCallbackDelegate);
+                }
+            }
+
+            remove
+            {
+                if (applicationTaskLanguageChangedEventHandler != null)
+                {
+                    taskLanguageChangedSignal?.Disconnect(applicationTaskLanguageChangedEventCallbackDelegate);
+                    taskLanguageChangedSignal?.Dispose();
+                    taskLanguageChangedSignal = null;
+                }
+
+                applicationTaskLanguageChangedEventHandler -= value;
+            }
+        }
+
+        private void OnNUIApplicationTaskLanguageChanged(IntPtr data)
+        {
+            if (applicationTaskLanguageChangedEventHandler != null)
+            {
+                NUIApplicationLanguageChangedEventArgs e = new NUIApplicationLanguageChangedEventArgs();
+                e.Application = this;
+                applicationTaskLanguageChangedEventHandler.Invoke(this, e);
+            }
+        }
+
+        /// <summary>
+        /// @brief Event for TaskRegionChanged signal which can be used to subscribe/unsubscribe the event handler
+        ///  provided by the user. TaskRegionChanged signal is emitted when the region of the device is changed.
+        /// </summary>
+        public event DaliEventHandler<object, NUIApplicationRegionChangedEventArgs> TaskRegionChanged
+        {
+            add
+            {
+                // Restricted to only one listener
+                if (applicationTaskRegionChangedEventHandler == null)
+                {
+                    applicationTaskRegionChangedEventHandler += value;
+
+                    applicationTaskRegionChangedEventCallbackDelegate = new NUIApplicationRegionChangedEventCallbackDelegate(OnNUIApplicationTaskRegionChanged);
+                    taskRegionChangedSignal = this.TaskRegionChangedSignal();
+                    taskRegionChangedSignal?.Connect(applicationTaskRegionChangedEventCallbackDelegate);
+                }
+            }
+
+            remove
+            {
+                if (applicationTaskRegionChangedEventHandler != null)
+                {
+                    taskRegionChangedSignal?.Disconnect(applicationTaskRegionChangedEventCallbackDelegate);
+                    taskRegionChangedSignal?.Dispose();
+                    taskRegionChangedSignal = null;
+                }
+
+                applicationTaskRegionChangedEventHandler -= value;
+            }
+        }
+
+        private void OnNUIApplicationTaskRegionChanged(IntPtr data)
+        {
+            if (applicationTaskRegionChangedEventHandler != null)
+            {
+                NUIApplicationRegionChangedEventArgs e = new NUIApplicationRegionChangedEventArgs();
+                e.Application = this;
+                applicationTaskRegionChangedEventHandler.Invoke(this, e);
+            }
+        }
+
+        /// <summary>
+        /// @brief Event for TaskBatteryLow signal which can be used to subscribe/unsubscribe the event handler
+        /// provided by the user. TaskBatteryLow signal is emitted when the battery level of the device is low.
+        /// </summary>
+        public event DaliEventHandler<object, NUIApplicationBatteryLowEventArgs> TaskBatteryLow
+        {
+            add
+            {
+                // Restricted to only one listener
+                if (applicationTaskBatteryLowEventHandler == null)
+                {
+                    applicationTaskBatteryLowEventHandler += value;
+
+                    applicationTaskBatteryLowEventCallbackDelegate = new NUIApplicationBatteryLowEventCallbackDelegate(OnNUIApplicationTaskBatteryLow);
+                    taskBatteryLowSignal = this.TaskBatteryLowSignal();
+                    taskBatteryLowSignal?.Connect(applicationTaskBatteryLowEventCallbackDelegate);
+                }
+            }
+
+            remove
+            {
+                if (applicationTaskBatteryLowEventHandler != null)
+                {
+                    taskBatteryLowSignal?.Disconnect(applicationTaskBatteryLowEventCallbackDelegate);
+                    taskBatteryLowSignal?.Dispose();
+                    taskBatteryLowSignal = null;
+                }
+
+                applicationTaskBatteryLowEventHandler -= value;
+            }
+        }
+
+        private void OnNUIApplicationTaskBatteryLow(BatteryStatus status)
+        {
+            NUIApplicationBatteryLowEventArgs e = new NUIApplicationBatteryLowEventArgs();
+
+            // Populate all members of "e" (NUIApplicationBatteryLowEventArgs) with real data
+            e.BatteryStatus = status;
+            applicationTaskBatteryLowEventHandler?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// @brief Event for TaskMemoryLow signal which can be used to subscribe/unsubscribe the event handler
+        /// provided by the user. TaskMemoryLow signal is emitted when the memory level of the device is low.
+        /// </summary>
+        public event DaliEventHandler<object, NUIApplicationMemoryLowEventArgs> TaskMemoryLow
+        {
+            add
+            {
+                // Restricted to only one listener
+                if (applicationTaskMemoryLowEventHandler == null)
+                {
+                    applicationTaskMemoryLowEventHandler += value;
+
+                    applicationTaskMemoryLowEventCallbackDelegate = new NUIApplicationMemoryLowEventCallbackDelegate(OnNUIApplicationTaskMemoryLow);
+                    taskMemoryLowSignal = this.TaskMemoryLowSignal();
+                    taskMemoryLowSignal?.Connect(applicationTaskMemoryLowEventCallbackDelegate);
+                }
+            }
+
+            remove
+            {
+                if (applicationTaskMemoryLowEventHandler != null)
+                {
+                    taskMemoryLowSignal?.Disconnect(applicationTaskMemoryLowEventCallbackDelegate);
+                    taskMemoryLowSignal?.Dispose();
+                    taskMemoryLowSignal = null;
+                }
+
+                applicationTaskMemoryLowEventHandler -= value;
+            }
+        }
+
+        private void OnNUIApplicationTaskMemoryLow(MemoryStatus status)
+        {
+            NUIApplicationMemoryLowEventArgs e = new NUIApplicationMemoryLowEventArgs();
+
+            // Populate all members of "e" (NUIApplicationMemoryLowEventArgs) with real data
+            e.MemoryStatus = status;
+            applicationTaskMemoryLowEventHandler?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// @brief Event for TaskAppControl signal which can be used to subscribe/unsubscribe the event handler
+        /// provided by the user. TaskAppControl signal is emitted when another application sends a launch request to the application.
+        /// </summary>
+        public event DaliEventHandler<object, NUIApplicationAppControlEventArgs> TaskAppControl
+        {
+            add
+            {
+                // Restricted to only one listener
+                if (applicationTaskAppControlEventHandler == null)
+                {
+                    applicationTaskAppControlEventHandler += value;
+
+                    applicationTaskAppControlEventCallbackDelegate = new NUIApplicationAppControlEventCallbackDelegate(OnNUIApplicationTaskAppControl);
+                    taskAppControlSignal = this.TaskAppControlSignal();
+                    taskAppControlSignal?.Connect(applicationTaskAppControlEventCallbackDelegate);
+                }
+            }
+
+            remove
+            {
+                if (applicationTaskAppControlEventHandler != null)
+                {
+                    taskAppControlSignal?.Disconnect(applicationTaskAppControlEventCallbackDelegate);
+                    taskAppControlSignal?.Dispose();
+                    taskAppControlSignal = null;
+                }
+
+                applicationTaskAppControlEventHandler -= value;
+            }
+        }
+
+        private void OnNUIApplicationTaskAppControl(IntPtr application, IntPtr voidp)
+        {
+            if (applicationTaskAppControlEventHandler != null)
+            {
+                NUIApplicationAppControlEventArgs e = new NUIApplicationAppControlEventArgs();
+                e.VoidP = voidp;
+                e.Application = this;
+                applicationTaskAppControlEventHandler.Invoke(this, e);
+            }
+        }
+
         protected static Application instance; // singleton
 
         public static Application Instance
@@ -1094,6 +1466,19 @@ namespace Tizen.NUI
                 return instance;
             }
             Application ret = New(1, stylesheet, windowMode, type);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            instance = ret;
+            return instance;
+        }
+
+        public static Application NewApplication(string[] args, string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize, bool useUIThread)
+        {
+            if (instance != null)
+            {
+                return instance;
+            }
+            Application ret = New(args, stylesheet, windowMode, positionSize, useUIThread);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             instance = ret;
@@ -1215,6 +1600,30 @@ namespace Tizen.NUI
 
             Application ret = new Application(Interop.Application.New(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(initRectangle), (int)type), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public static Application New(string[] args, string stylesheet, NUIApplication.WindowMode windowMode, Rectangle positionSize, bool useUIThread)
+        {
+            Application ret = null;
+            int argc = 0;
+            string argvStr = "";
+            try
+            {
+                argc = args.Length;
+                argvStr = string.Join(" ", args);
+
+                ret = new Application(Interop.Application.New(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize), useUIThread), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            catch (Exception exception)
+            {
+                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, message : " + exception.Message);
+                Tizen.Log.Fatal("NUI", "[Error] error line number : " + new StackTrace(exception, true).GetFrame(0).GetFileLineNumber());
+                Tizen.Log.Fatal("NUI", "[Error] Stack Trace : " + exception.StackTrace);
+                throw;
+            }
+
             return ret;
         }
 
@@ -1390,6 +1799,56 @@ namespace Tizen.NUI
         internal LowMemorySignalType MemoryLowSignal()
         {
             LowMemorySignalType ret = new LowMemorySignalType(NDalicPINVOKE.ApplicationLowMemorySignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        //Task
+        internal ApplicationSignal TaskInitSignal()
+        {
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.ApplicationTaskInitSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationSignal TaskTerminateSignal()
+        {
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.ApplicationTaskTerminateSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationControlSignal TaskAppControlSignal()
+        {
+            ApplicationControlSignal ret = new ApplicationControlSignal(NDalicPINVOKE.ApplicationTaskAppControlSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationSignal TaskLanguageChangedSignal()
+        {
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.ApplicationTaskLanguageChangedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ApplicationSignal TaskRegionChangedSignal()
+        {
+            ApplicationSignal ret = new ApplicationSignal(NDalicPINVOKE.ApplicationTaskRegionChangedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal LowBatterySignalType TaskBatteryLowSignal()
+        {
+            LowBatterySignalType ret = new LowBatterySignalType(NDalicPINVOKE.ApplicationTaskLowBatterySignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal LowMemorySignalType TaskMemoryLowSignal()
+        {
+            LowMemorySignalType ret = new LowMemorySignalType(NDalicPINVOKE.ApplicationTaskLowMemorySignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
