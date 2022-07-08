@@ -84,18 +84,6 @@ namespace Tizen.NUI
             public static extern void DaliToolkitDevelControlClearAccessibilityRelations(HandleRef arg1);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_AppendAccessibilityAttribute")]
-            public static extern void DaliToolkitDevelControlAppendAccessibilityAttribute(HandleRef arg1, string arg2, string arg3);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_RemoveAccessibilityAttribute")]
-            public static extern void DaliToolkitDevelControlRemoveAccessibilityAttribute(HandleRef arg1, string arg2);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_ClearAccessibilityAttributes")]
-            public static extern void DaliToolkitDevelControlClearAccessibilityAttributes(HandleRef arg1);
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Toolkit_DevelControl_SetAccessibilityReadingInfoType2")]
             public static extern void DaliToolkitDevelControlSetAccessibilityReadingInfoTypes(HandleRef arg1, int arg2);
 
@@ -387,6 +375,14 @@ namespace Tizen.NUI
                 public delegate IntPtr AccessibilityGetRangeExtents(IntPtr self, int startOffset, int endOffset, int coordType);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetRangeExtents GetRangeExtents; // 36
+
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate void AccessibilityGetAttributesCallback(string key, string value, IntPtr userData);
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate void AccessibilityGetAttributes(IntPtr self, AccessibilityGetAttributesCallback callback, IntPtr userData);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetAttributes GetAttributes; // 37
             }
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_DuplicateString")]

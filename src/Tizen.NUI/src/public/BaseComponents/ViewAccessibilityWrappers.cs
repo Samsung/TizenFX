@@ -87,6 +87,7 @@ namespace Tizen.NUI.BaseComponents
             var ad = Interop.ControlDevel.AccessibilityDelegate.Instance;
 
             ad.CalculateStates = AccessibilityCalculateStatesWrapper;
+            ad.GetAttributes   = AccessibilityGetAttributes; // Not a wrapper, entirely private implementation
             ad.GetDescription  = AccessibilityGetDescriptionWrapper;
             ad.GetInterfaces   = AccessibilityGetInterfaces; // Not a wrapper, entirely private implementation
             ad.GetName         = AccessibilityGetNameWrapper;
@@ -97,7 +98,7 @@ namespace Tizen.NUI.BaseComponents
             View view = GetViewFromRefObject(self);
             if (view == null)
                 return 0UL;
-            
+
             ulong bitMask = 0UL;
 
             lock (AccessibilityInitialStates)
@@ -108,6 +109,23 @@ namespace Tizen.NUI.BaseComponents
             }
 
             return bitMask;
+        }
+
+        private static void AccessibilityGetAttributes(IntPtr self, Interop.ControlDevel.AccessibilityDelegate.AccessibilityGetAttributesCallback callback, IntPtr userData)
+        {
+            var view = GetViewFromRefObject(self);
+            var attributes = view.AccessibilityAttributes;
+            var classKey = "class";
+
+            if (!attributes.ContainsKey(classKey))
+            {
+                attributes[classKey] = view.GetType().Name;
+            }
+
+            foreach (var attribute in attributes)
+            {
+                callback(attribute.Key, attribute.Value, userData);
+            }
         }
 
         private static IntPtr AccessibilityGetDescriptionWrapper(IntPtr self)

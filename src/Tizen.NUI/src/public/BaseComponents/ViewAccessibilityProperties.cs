@@ -160,7 +160,7 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 base.AutomationId = value;
-                AppendAccessibilityAttribute("automationId", value);
+                AccessibilityAttributes["automationId"] = value;
             }
         }
     }
