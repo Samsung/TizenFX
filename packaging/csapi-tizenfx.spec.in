@@ -29,6 +29,7 @@ BuildArch:   noarch
 AutoReqProv: no
 
 BuildRequires: dotnet-build-tools
+BuildRequires: pkgconfig(dali2-csharp-binder)
 Requires(post): /usr/bin/vconftool
 
 # BuildRequires for StructValidator
