@@ -244,6 +244,39 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Determines whether the ProperyValue has equal value with the current ProperyValue.
+        /// </summary>
+        /// <remarks>
+        /// Equal only if same type.
+        /// PropertyArray and PropertyMap don't have EqaulTo method. In that case, always return false.
+        /// EqualTo API consider absolute/relative error internally.
+        /// </remarks>
+        /// <param name="rhs">The ProperyValue to compare with the current ProperyValue.</param>
+        /// <returns>true if the specified ProperyValue is equal to the current ProperyValue; otherwise, false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EqualTo(PropertyValue rhs)
+        {
+            bool ret = Interop.PropertyValue.EqualTo(SwigCPtr, PropertyValue.getCPtr(rhs));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Determines whether the ProperyValue doesn't have equal value with the current ProperyValue.
+        /// </summary>
+        /// <remarks>
+        /// Same as !EqualTo(rhs);
+        /// </remarks>
+        /// <param name="rhs">The ProperyValue to compare with the current ProperyValue.</param>
+        /// <returns>true if the specified ProperyValue is not equal to the current ProperyValue; otherwise, false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool NotEqualTo(PropertyValue rhs)
+        {
+            bool ret = Interop.PropertyValue.NotEqualTo(SwigCPtr, PropertyValue.getCPtr(rhs));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
 
         /// <summary>
         /// Hidden API (Inhouse API).
