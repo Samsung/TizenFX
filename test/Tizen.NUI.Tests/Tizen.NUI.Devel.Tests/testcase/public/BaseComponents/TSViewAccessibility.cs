@@ -230,8 +230,8 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("ViewAccessibility.View.RemoveAccessibilityAttribute.")]
-        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.RemoveAccessibilityAttribute M")]
+        [Description("ViewAccessibility.View.AccessibilityAttributes.Remove.")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.AccessibilityAttributes.Remove M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -243,11 +243,11 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object View");
             Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
 
-            testingTarget.AppendAccessibilityAttribute("MyView", "test");
+            testingTarget.AccessibilityAttributes["MyView"] = "test";
 
             try
             {
-                testingTarget.RemoveAccessibilityAttribute("MyView");
+                testingTarget.AccessibilityAttributes.Remove("MyView");
             }
             catch (Exception e)
             {
@@ -255,14 +255,16 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
+            Assert.IsEmpty(testingTarget.AccessibilityAttributes);
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewAccessibilityViewRemoveAccessibilityAttribute END (OK)");
         }
 
         [Test]
         [Category("P1")]
-        [Description("ViewAccessibility.View.ClearAccessibilityAttributes.")]
-        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.ClearAccessibilityAttributes MR")]
+        [Description("ViewAccessibility.View.AccessibilityAttributes.Clear.")]
+        [Property("SPEC", "Tizen.NUI.ViewAccessibility.View.AccessibilityAttributes.Clear MR")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
@@ -274,17 +276,19 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object View");
             Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
 
-            testingTarget.AppendAccessibilityAttribute("MyView", "test");
+            testingTarget.AccessibilityAttributes["MyView"] = "test";
 
             try
             {
-                testingTarget.ClearAccessibilityAttributes();
+                testingTarget.AccessibilityAttributes.Clear();
             }
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
+
+            Assert.IsEmpty(testingTarget.AccessibilityAttributes);
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewAccessibilityViewClearAccessibilityAttributes END (OK)");
