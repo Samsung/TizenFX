@@ -248,11 +248,13 @@ namespace Tizen.MachineLearning.Train
         /// <since_tizen> 10 </since_tizen>
         public void AddLayer(Layer layer)
         {
-            if (layer == null)
-                NNTrainer.CheckException(NNTrainerError.InvalidParameter, "layer instance is null");
+            if (layer == null) {
+                Log.Error(NNTrainer.Tag, "layer instance is null");
+                throw new ArgumentNullException(nameof(layer));
+            }
             NNTrainerError ret = Interop.Model.AddLayer(handle, layer.GetHandle());
             NNTrainer.CheckException(ret, "Failed to add layer");
-            Log.Info("MLT", $"AddLayer:\n{layer.GetHandle()}");
+            Log.Info(NNTrainer.Tag, $"AddLayer:\n{layer.GetHandle()}");
         }
 
         /// <summary>
@@ -292,8 +294,11 @@ namespace Tizen.MachineLearning.Train
         /// <since_tizen> 10 </since_tizen>
         public void SetOptimizer(Optimizer optimizer)
         {
-            if (optimizer == null)
-                NNTrainer.CheckException(NNTrainerError.InvalidParameter, "optimizer instance is null");
+            if (optimizer == null) {
+                Log.Error(NNTrainer.Tag, "optimizer instance is null");
+                throw new ArgumentNullException(nameof(optimizer));
+            }
+
             NNTrainerError ret = Interop.Model.SetOptimizer(handle, optimizer.GetHandle());
             NNTrainer.CheckException(ret, "Failed to set optimizer");
         }
@@ -313,8 +318,11 @@ namespace Tizen.MachineLearning.Train
         /// <since_tizen> 10 </since_tizen>
         public void SetDataset(Dataset dataset)
         {
-            if (dataset == null)
-                NNTrainer.CheckException(NNTrainerError.InvalidParameter, "dataset instance is null");
+            if (dataset == null) {
+                Log.Error(NNTrainer.Tag, "dataset instance is null");
+                throw new ArgumentNullException(nameof(dataset));
+            }
+
             NNTrainerError ret = Interop.Model.SetDataset(handle, dataset.GetHandle());
             NNTrainer.CheckException(ret, "Failed to set dataset");
         }
