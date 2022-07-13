@@ -264,6 +264,9 @@ namespace Tizen.MachineLearning.Train
         /// <remarks>
         /// Use this function to get already created Neural Network Layer.
         /// The returned layer must not be deleted as it is owned by the model.
+        /// layerName can be set by SetProperty method of Layer.
+        /// Returned layer instance is different with same layerName, but the
+        /// Internal native layer handle is same.
         /// </remarks>
         /// <param name="layerName"> Name of the already created layer.</param>
         /// <returns>layer instance</returns>
