@@ -116,6 +116,7 @@ namespace Tizen.MachineLearning.Train
         /// any modification to the properties of model or layers/dataset/optimizer in
         /// the model will be restricted. Further, addition of layers or changing the
         /// optimizer/dataset of the model will not be permitted.
+        /// The input format of hyperparameter must be 'key = value' format.
         /// <param name="hyperparameter">Hyperparameters for train complie.</param>
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
@@ -139,6 +140,7 @@ namespace Tizen.MachineLearning.Train
         /// Use this function to train the compiled neural network model with
         /// the passed training hyperparameters. This function will return once the
         /// training, along with requested validation and testing, is completed.
+        /// The input format of hyperparameter must be 'key = value' format.
         /// </remarks>
         /// <param name="hyperparameter">Hyperparameters for train model.</param>
         /// <since_tizen> 10 </since_tizen>
