@@ -266,7 +266,7 @@ namespace Tizen.MachineLearning.Train
         /// The returned layer must not be deleted as it is owned by the model.
         /// layerName can be set by SetProperty method of Layer.
         /// Returned layer instance is different with same layerName, but the
-        /// Internal native layer handle is same.
+        /// Internally native layer handle is same.
         /// </remarks>
         /// <param name="layerName"> Name of the already created layer.</param>
         /// <returns>layer instance</returns>
@@ -280,9 +280,8 @@ namespace Tizen.MachineLearning.Train
             NNTrainerError ret = Interop.Model.GetLayer(handle, layerName, out layerHandle);
             NNTrainer.CheckException(ret, "Failed to get layer");
 
-            Layer layer = new Layer(true);
-            layer.SetHandle(layerHandle);
-
+            Layer layer = new Layer(layerHandle, true);
+    
             return layer;
         }
 
