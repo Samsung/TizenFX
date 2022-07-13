@@ -475,7 +475,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             } else
                 yield return Create(Ldnull);
             yield return Instruction.Create(OpCodes.Newobj, module.ImportReference(ctorinforef));
-            yield return Instruction.Create(OpCodes.Callvirt, module.ImportPropertySetterReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.bindingNameSpace, "BindingExtension"), propertyName: "TypedBinding"));
+            yield return Instruction.Create(OpCodes.Callvirt, module.ImportPropertySetterReference((NUIXamlCTask.bindingAssemblyName, NUIXamlCTask.xamlNameSpace, "BindingExtension"), propertyName: "TypedBinding"));
         }
 
         static IList<Tuple<PropertyDefinition, string>> ParsePath(string path, TypeReference tSourceRef, IXmlLineInfo lineInfo, ModuleDefinition module)

@@ -57,7 +57,7 @@ namespace Tizen.NUI.Xaml.Core.XamlC
                         (   parent.XmlType.Name == "Trigger"
                          || parent.XmlType.Name == "DataTrigger"
                          || parent.XmlType.Name == "MultiTrigger"
-                         || parent.XmlType.Name == "Style")) {
+                         || parent.XmlType.Name == "XamlStyle")) {
                         var ttnode = (parent as ElementNode).Properties [new XmlName("", "TargetType")];
                         if (ttnode is ValueNode)
                             typeName = (ttnode as ValueNode).Value as string;
