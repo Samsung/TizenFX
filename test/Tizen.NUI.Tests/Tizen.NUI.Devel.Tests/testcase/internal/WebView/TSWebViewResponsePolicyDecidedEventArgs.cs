@@ -29,49 +29,49 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("WebViewResponsePolicyDecidedEventArgs constructor.")]
-        [Property("SPEC", "Tizen.NUI.WebViewResponsePolicyDecidedEventArgs.WebViewResponsePolicyDecidedEventArgs C")]
+        [Description("WebViewPolicyDecidedEventArgs constructor.")]
+        [Property("SPEC", "Tizen.NUI.WebViewPolicyDecidedEventArgs.WebViewPolicyDecidedEventArgs C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewResponsePolicyDecidedEventArgsConstructor()
+        public void WebViewPolicyDecidedEventArgsConstructor()
         {
-            tlog.Debug(tag, $"WebViewResponsePolicyDecidedEventArgsConstructor START");
+            tlog.Debug(tag, $"WebViewPolicyDecidedEventArgsConstructor START");
 
             using (Tizen.NUI.BaseComponents.WebView webview = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
             {
                 WebPolicyDecisionMaker maker = new WebPolicyDecisionMaker(webview.SwigCPtr.Handle, false);
 
-                var testingTarget = new WebViewResponsePolicyDecidedEventArgs(maker);
+                var testingTarget = new WebViewPolicyDecidedEventArgs(maker);
                 Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebViewResponsePolicyDecidedEventArgs>(testingTarget, "Should return WebViewResponsePolicyDecidedEventArgs instance.");
+                Assert.IsInstanceOf<WebViewPolicyDecidedEventArgs>(testingTarget, "Should return WebViewPolicyDecidedEventArgs instance.");
 
                 maker.Dispose();
             }
 
-            tlog.Debug(tag, $"WebViewResponsePolicyDecidedEventArgsConstructor END (OK)");
+            tlog.Debug(tag, $"WebViewPolicyDecidedEventArgsConstructor END (OK)");
         }
 
         [Test]
         [Category("P1")]
-        [Description("WebViewResponsePolicyDecidedEventArgs ResponsePolicyDecisionMaker.")]
-        [Property("SPEC", "Tizen.NUI.WebViewResponsePolicyDecidedEventArgs.ResponsePolicyDecisionMaker A")]
+        [Description("WebViewPolicyDecidedEventArgs ResponsePolicyDecisionMaker.")]
+        [Property("SPEC", "Tizen.NUI.WebViewPolicyDecidedEventArgs.ResponsePolicyDecisionMaker A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewResponsePolicyDecidedEventArgsResponsePolicyDecisionMaker()
+        public void WebViewPolicyDecidedEventArgsResponsePolicyDecisionMaker()
         {
-            tlog.Debug(tag, $"WebViewResponsePolicyDecidedEventArgsResponsePolicyDecisionMaker  START");
+            tlog.Debug(tag, $"WebViewPolicyDecidedEventArgsResponsePolicyDecisionMaker  START");
 
             using (Tizen.NUI.BaseComponents.WebView webview = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
             {
                 WebPolicyDecisionMaker maker = new WebPolicyDecisionMaker(webview.SwigCPtr.Handle, false);
 
-                var testingTarget = new WebViewResponsePolicyDecidedEventArgs(maker);
+                var testingTarget = new WebViewPolicyDecidedEventArgs(maker);
                 Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebViewResponsePolicyDecidedEventArgs>(testingTarget, "Should return WebViewResponsePolicyDecidedEventArgs instance.");
+                Assert.IsInstanceOf<WebViewPolicyDecidedEventArgs>(testingTarget, "Should return WebViewPolicyDecidedEventArgs instance.");
 
                 var result = testingTarget.ResponsePolicyDecisionMaker;
                 tlog.Debug(tag, "ResponsePolicyDecisionMaker : " + result);
@@ -79,7 +79,7 @@ namespace Tizen.NUI.Devel.Tests
                 maker.Dispose();
             }
 
-            tlog.Debug(tag, $"WebViewResponsePolicyDecidedEventArgsResponsePolicyDecisionMaker  END (OK)");
+            tlog.Debug(tag, $"WebViewPolicyDecidedEventArgsResponsePolicyDecisionMaker  END (OK)");
         }
     }
 }

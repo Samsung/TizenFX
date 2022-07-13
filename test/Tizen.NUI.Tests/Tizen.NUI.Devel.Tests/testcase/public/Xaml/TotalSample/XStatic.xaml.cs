@@ -2,10 +2,6 @@
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Xaml;
 
-[assembly: XamlResourceId("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.XStatic.xaml",
-    "testcase.public.Xaml.TotalSample.XStatic.xaml",
-    typeof(global::Tizen.NUI.Devel.Tests.XStatic))]
-
 namespace Tizen.NUI.Devel.Tests
 {
 
@@ -35,19 +31,8 @@ namespace Tizen.NUI.Devel.Tests
 		Third,
 	}
 
-    [XamlFilePath("testcase\\public\\Xaml\\TotalSample\\XStatic.xaml")]
-    [XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class XStatic : View
 	{
-        public TextLabel staticproperty;
-        public TextLabel memberisoptional;
-        public TextLabel color;
-        public TextLabel constant;
-        public TextLabel field;
-        public TextLabel field2;
-        public TextLabel nestedField;
-
-
         public XStatic ()
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(XStatic));

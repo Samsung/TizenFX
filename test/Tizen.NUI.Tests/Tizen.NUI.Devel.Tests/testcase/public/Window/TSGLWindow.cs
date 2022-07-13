@@ -140,34 +140,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("GLWindow SetEglConfig")]
-        [Property("SPEC", "Tizen.NUI.GLWindow.SetEglConfig M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void GLWindowSetEglConfig()
-        {
-            tlog.Debug(tag, $"GLWindowSetEglConfig START");
-
-            var testingTarget = new GLWindow();
-            Assert.IsNotNull(testingTarget, "Can't create success object GLWindow");
-            Assert.IsInstanceOf<GLWindow>(testingTarget, "Should be an instance of GLWindow type.");
-
-            try
-            {
-                testingTarget.SetEglConfig(true, true, 10, GLESVersion.Version20);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception: Failed!");
-            }
-
-            testingTarget.Destroy();
-            tlog.Debug(tag, $"GLWindowSetEglConfig END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("GLWindow Show")]
         [Property("SPEC", "Tizen.NUI.GLWindow.Show M")]
         [Property("SPEC_URL", "-")]
@@ -594,21 +566,21 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("GLWindow RegisterGlCallback")]
-        [Property("SPEC", "Tizen.NUI.GLWindow.RegisterGlCallback M")]
+        [Description("GLWindow RegisterGLCallbacks")]
+        [Property("SPEC", "Tizen.NUI.GLWindow.RegisterGLCallbacks M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
-        public void GLWindowRegisterGlCallback()
+        public void GLWindowRegisterGLCallbacks()
         {
-            tlog.Debug(tag, $"GLWindowRegisterGlCallback START");
+            tlog.Debug(tag, $"GLWindowRegisterGLCallbacks START");
             string name = "myGLWindow";
             Rectangle rectangle = new Rectangle(20, 20, 100, 100);
             GLWindow a1 = new GLWindow(name, rectangle, true);
 
-            a1.RegisterGlCallback(GLInit, GLRenderFrame, GLTerminate);
+            a1.RegisterGLCallbacks(GLInit, GLRenderFrame, GLTerminate);
 
             a1.Destroy();
-            tlog.Debug(tag, $"GLWindowRegisterGlCallback END (OK)");
+            tlog.Debug(tag, $"GLWindowRegisterGLCallbacks END (OK)");
         }
 
         [Test]
