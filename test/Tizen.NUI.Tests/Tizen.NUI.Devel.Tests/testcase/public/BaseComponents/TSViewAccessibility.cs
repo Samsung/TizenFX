@@ -18,14 +18,29 @@ namespace Tizen.NUI.Devel.Tests
         private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "/picture.png";
         private string lottiePath = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "/lottie.json";
 
-        internal class MyAddressCollection : AddressCollection
+        internal class MyView : View
         {
-            public MyAddressCollection(IntPtr collection) : base(collection)
+            public MyView() : base()
             { }
 
-            public void OnReleaseHandle()
+            public string GetAccessibilityAttributes(string key)
             {
-                base.ReleaseHandle();
+                return AccessibilityAttributes[key];
+            }
+
+            public void SetAccessibilityAttributes(string key, string value)
+            {
+                AccessibilityAttributes[key] = value;
+            }
+
+            public void ClearAccessibilityAttributes()
+            {
+                AccessibilityAttributes.Clear();
+            }
+
+            public void RemoveAccessibilityAttributes(string key)
+            {
+                AccessibilityAttributes.Remove(key);
             }
         }
 
@@ -39,130 +54,6 @@ namespace Tizen.NUI.Devel.Tests
         public void Destroy()
         {
             tlog.Info(tag, "Destroy() is called!");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("ViewAccessibility.Address constructor.")]
-        [Property("SPEC", "Tizen.NUI.ViewAccessibility.Address.Address C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewAccessibilityAddressConstructor()
-        {
-            tlog.Debug(tag, $"ViewAccessibilityAddressConstructor START");
-
-            var testingTarget = new Address("ViewAccessibility", lottiePath);
-            Assert.IsNotNull(testingTarget, "Can't create success object Address");
-            Assert.IsInstanceOf<Address>(testingTarget, "Should be an instance of Address type.");
-
-            tlog.Debug(tag, $"ViewAccessibilityAddressConstructor END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("ViewAccessibility.AddressCollection constructor.")]
-        [Property("SPEC", "Tizen.NUI.ViewAccessibility.AddressCollection.Address C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewAccessibilityAddressCollectionConstructor()
-        {
-            tlog.Debug(tag, $"ViewAccessibilityAddressCollectionConstructor START");
-
-            using (View view = new ImageView())
-            {
-                var testingTarget = new AddressCollection(Interop.ControlDevel.DaliToolkitDevelControlNewGetAccessibilityRelations(view.SwigCPtr));
-                Assert.IsNotNull(testingTarget, "Can't create success object AddressCollection");
-                Assert.IsInstanceOf<AddressCollection>(testingTarget, "Should be an instance of AddressCollection type.");
-            }
-
-            tlog.Debug(tag, $"ViewAccessibilityAddressCollectionConstructor END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("ViewAccessibility.AddressCollection IsInvalid.")]
-        [Property("SPEC", "Tizen.NUI.ViewAccessibility.AddressCollection.IsInvalid A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewAccessibilityAddressCollectionIsInvalid()
-        {
-            tlog.Debug(tag, $"ViewAccessibilityAddressCollectionIsInvalid START");
-
-            using (View view = new ImageView())
-            {
-                var testingTarget = new AddressCollection(Interop.ControlDevel.DaliToolkitDevelControlNewGetAccessibilityRelations(view.SwigCPtr));
-                Assert.IsNotNull(testingTarget, "Can't create success object AddressCollection");
-                Assert.IsInstanceOf<AddressCollection>(testingTarget, "Should be an instance of AddressCollection type.");
-
-                Assert.IsFalse(testingTarget.IsInvalid);
-            }
-
-            tlog.Debug(tag, $"ViewAccessibilityAddressCollectionIsInvalid END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("ViewAccessibility.AddressCollection GetRelationSize.")]
-        [Property("SPEC", "Tizen.NUI.ViewAccessibility.AddressCollection.GetRelationSize M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewAccessibilityAddressCollectionGetRelationSize()
-        {
-            tlog.Debug(tag, $"ViewAccessibilityAddressCollectionGetRelationSize START");
-
-            using (View view = new ImageView())
-            {
-                var testingTarget = new AddressCollection(Interop.ControlDevel.DaliToolkitDevelControlNewGetAccessibilityRelations(view.SwigCPtr));
-                Assert.IsNotNull(testingTarget, "Can't create success object AddressCollection");
-                Assert.IsInstanceOf<AddressCollection>(testingTarget, "Should be an instance of AddressCollection type.");
-
-                try
-                {
-                    testingTarget.GetRelationSize(AccessibilityRelationType.DetailsFor);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception: Failed!");
-                }
-            }
-
-            tlog.Debug(tag, $"ViewAccessibilityAddressCollectionGetRelationSize END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("ViewAccessibility.AddressCollection ReleaseHandle.")]
-        [Property("SPEC", "Tizen.NUI.ViewAccessibility.AddressCollection.ReleaseHandle M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewAccessibilityAddressCollectionReleaseHandle()
-        {
-            tlog.Debug(tag, $"ViewAccessibilityAddressCollectionReleaseHandle START");
-
-            using (View view = new ImageView())
-            {
-                var testingTarget = new MyAddressCollection(Interop.ControlDevel.DaliToolkitDevelControlNewGetAccessibilityRelations(view.SwigCPtr));
-                Assert.IsNotNull(testingTarget, "Can't create success object AddressCollection");
-                Assert.IsInstanceOf<AddressCollection>(testingTarget, "Should be an instance of AddressCollection type.");
-
-                try
-                {
-                    testingTarget.OnReleaseHandle();
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception: Failed!");
-                }
-            }
-
-            tlog.Debug(tag, $"ViewAccessibilityAddressCollectionReleaseHandle END (OK)");
         }
 
         [Test]
@@ -239,15 +130,15 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"ViewAccessibilityViewRemoveAccessibilityAttribute START");
 
-            var testingTarget = new View();
+            var testingTarget = new MyView();
             Assert.IsNotNull(testingTarget, "Can't create success object View");
             Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
 
-            testingTarget.AccessibilityAttributes["MyView"] = "test";
+            testingTarget.SetAccessibilityAttributes("view", "test");
 
             try
             {
-                testingTarget.AccessibilityAttributes.Remove("MyView");
+                testingTarget.RemoveAccessibilityAttributes("view");
             }
             catch (Exception e)
             {
@@ -255,7 +146,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            Assert.IsEmpty(testingTarget.AccessibilityAttributes);
+            Assert.IsEmpty(testingTarget.GetAccessibilityAttributes("view"));
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewAccessibilityViewRemoveAccessibilityAttribute END (OK)");
@@ -272,15 +163,15 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"ViewAccessibilityViewClearAccessibilityAttributes START");
 
-            var testingTarget = new View();
+            var testingTarget = new MyView();
             Assert.IsNotNull(testingTarget, "Can't create success object View");
             Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
 
-            testingTarget.AccessibilityAttributes["MyView"] = "test";
+            testingTarget.SetAccessibilityAttributes("view", "test");
 
             try
             {
-                testingTarget.AccessibilityAttributes.Clear();
+                testingTarget.ClearAccessibilityAttributes();
             }
             catch (Exception e)
             {
@@ -288,7 +179,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            Assert.IsEmpty(testingTarget.AccessibilityAttributes);
+            Assert.IsEmpty(testingTarget.GetAccessibilityAttributes("view"));
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewAccessibilityViewClearAccessibilityAttributes END (OK)");

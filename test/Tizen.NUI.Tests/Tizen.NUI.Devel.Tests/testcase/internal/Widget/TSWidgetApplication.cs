@@ -247,8 +247,9 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string widgetName = null;
-                WidgetApplication.WidgetCreateFunction(ref widgetName);
+                Widget widget = new Widget();
+                global::System.IntPtr widgetPtr = widget.GetIntPtr();
+                WidgetApplication.WidgetCreateFunction(ref widgetPtr);
             }
             catch (Exception e)
             {

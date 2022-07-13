@@ -2,21 +2,11 @@
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Xaml;
 
-[assembly: XamlResourceId("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.StringLiterals.xaml",
-    "testcase.public.Xaml.TotalSample.StringLiterals.xaml",
-    typeof(global::Tizen.NUI.Devel.Tests.StringLiterals))]
 
 namespace Tizen.NUI.Devel.Tests
 {
-    [XamlFilePath("testcase\\public\\Xaml\\TotalSample\\StringLiterals.xaml")]
-    [XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class StringLiterals : View
 	{
-        public TextLabel label0;
-        public TextLabel label1;
-        public TextLabel label2;
-        public TextLabel label3;
-
         public StringLiterals ()
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(StringLiterals));

@@ -4,16 +4,10 @@ using NUnit.Framework;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Xaml;
 
-[assembly: XamlResourceId("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.I8.xaml",
-    "testcase.public.Xaml.TotalSample.I8.xaml",
-    typeof(global::Tizen.NUI.Devel.Tests.I8))]
-
 
 namespace Tizen.NUI.Devel.Tests
 {
 	using tlog = Tizen.Log;
-	[XamlFilePath("testcase\\public\\Xaml\\TotalSample\\I8.xaml")]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class I8 : View
 	{
 		public long l0 { get; set; }

@@ -64,9 +64,9 @@ namespace Tizen.NUI.Devel.Tests
 		
         public TotalSample(bool examl = false)
         {
-            if (examl)
+            if (!examl)
             {
-                LoadEXaml();
+                LoadXaml();
             }
             else
             {

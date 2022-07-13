@@ -2,10 +2,6 @@
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 
-[assembly: global::Tizen.NUI.Xaml.XamlResourceIdAttribute("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.BindablePropertiesAccessModifiers.xaml",
-    "testcase.public.Xaml.TotalSample.BindablePropertiesAccessModifiers.xaml",
-    typeof(global::Tizen.NUI.Devel.Tests.BindablePropertiesAccessModifiers))]
-
 namespace Tizen.NUI.Devel.Tests
 {
 	public class AccessModifiersControl : View
@@ -33,8 +29,6 @@ namespace Tizen.NUI.Devel.Tests
 		}
 	}
 
-    [Tizen.NUI.Xaml.XamlFilePathAttribute("testcase\\public\\Xaml\\TotalSample\\BindablePropertiesAccessModifiers.xaml")]
-    [Tizen.NUI.Xaml.XamlCompilationAttribute(global::Tizen.NUI.Xaml.XamlCompilationOptions.Compile)]
     public partial class BindablePropertiesAccessModifiers : View
 	{
 		internal class Data
@@ -42,8 +36,6 @@ namespace Tizen.NUI.Devel.Tests
 			public string Foo => "Foo";
 			public string Bar => "Bar";
 		}
-
-        public AccessModifiersControl AMC;
 
         public BindablePropertiesAccessModifiers()
 		{

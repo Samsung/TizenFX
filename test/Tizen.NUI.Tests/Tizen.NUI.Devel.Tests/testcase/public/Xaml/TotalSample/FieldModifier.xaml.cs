@@ -4,20 +4,10 @@ using NUnit.Framework;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Xaml;
 
-[assembly: XamlResourceId("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.FieldModifier.xaml",
-    "testcase.public.Xaml.TotalSample.FieldModifier.xaml",
-    typeof(global::Tizen.NUI.Devel.Tests.FieldModifier))]
-
 namespace Tizen.NUI.Devel.Tests
 {
-    [XamlFilePath("testcase\\public\\Xaml\\TotalSample\\FieldModifier.xaml")]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FieldModifier : View
 	{
-        public TextLabel privateLabel;
-        public TextLabel internalLabel;
-        public TextLabel publicLabel;
-
         public FieldModifier()
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(FieldModifier));
