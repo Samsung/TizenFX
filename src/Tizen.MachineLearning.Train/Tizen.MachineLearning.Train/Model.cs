@@ -243,7 +243,8 @@ namespace Tizen.MachineLearning.Train
         /// Use this function to add a layer to the model. The layer is added to
         /// the end of the existing layers in the model. This transfers the
         /// ownership of the layer to the network. No need to destroy the layer once it
-        /// is added to a model.
+        /// is added to a model. layer is available until the model is released. so
+        /// Dispose() must never be used.
         /// </remarks>
         /// <param name="layer"> The instance of Layer class </param>
         /// <since_tizen> 10 </since_tizen>
