@@ -124,6 +124,7 @@ namespace Tizen.MachineLearning.Train
         /// </summary>
         /// <remarks>
         /// Use this function to set dataset property for a specific mode.
+        /// The input format of property must be 'key = value' format.
         /// </remarks>
         /// <param name="mode">The mode to set the property.</param>
         /// <param name="property">property for dataset.</param>
