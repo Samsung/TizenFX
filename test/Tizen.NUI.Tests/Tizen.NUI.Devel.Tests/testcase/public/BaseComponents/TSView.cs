@@ -142,32 +142,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("View IsResourcesCreated.")]
-        [Property("SPEC", "Tizen.NUI.View.IsResourcesCreated A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewIsResourcesCreated()
-        {
-            tlog.Debug(tag, $"ViewIsResourcesCreated START");
-
-            var testingTarget = new MyView()
-            {
-                Layout = new LinearLayout(),
-            };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<View>(testingTarget, "Should return View instance.");
-
-            var result = testingTarget.IsResourcesCreated;
-            tlog.Debug(tag, "IsResourcesCreated : " + result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewIsResourcesCreated END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("View KeyInputFocus.")]
         [Property("SPEC", "Tizen.NUI.View.KeyInputFocus A")]
         [Property("SPEC_URL", "-")]

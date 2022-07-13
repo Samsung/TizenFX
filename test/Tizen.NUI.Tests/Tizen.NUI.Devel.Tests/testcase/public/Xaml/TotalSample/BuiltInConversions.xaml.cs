@@ -3,20 +3,10 @@
 using NUnit.Framework;
 using Tizen.NUI.BaseComponents;
 
-[assembly: global::Tizen.NUI.Xaml.XamlResourceIdAttribute("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.BuiltInConversions.xaml",
-    "testcase.public.Xaml.TotalSample.BuiltInConversions.xaml",
-    typeof(global::Tizen.NUI.Devel.Tests.BuiltInConversions))]
-
 namespace Tizen.NUI.Devel.Tests
 {
-    [Tizen.NUI.Xaml.XamlFilePathAttribute("testcase\\public\\Xaml\\TotalSample\\BuiltInConversions.xaml")]
-    [Tizen.NUI.Xaml.XamlCompilationAttribute(global::Tizen.NUI.Xaml.XamlCompilationOptions.Compile)]
     public partial class BuiltInConversions : View
 	{
-        public TextLabel label0;
-        public TextLabel label1;
-        public TextLabel label2;
-
         public BuiltInConversions ()
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(BuiltInConversions));

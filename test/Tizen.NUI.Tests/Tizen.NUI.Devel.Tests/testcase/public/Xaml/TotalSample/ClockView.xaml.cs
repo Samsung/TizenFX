@@ -24,8 +24,6 @@ using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
 using Tizen.NUI.Xaml;
 
-[assembly: global::Tizen.NUI.Xaml.XamlResourceIdAttribute("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.ClockView.xaml", "testcase.public.Xaml.TotalSample.ClockView.xaml", typeof(global::Tizen.NUI.Devel.Tests.ClockView))]
-
 namespace Tizen.NUI.Devel.Tests
 {
     class ClockViewModel : INotifyPropertyChanged
@@ -66,8 +64,6 @@ namespace Tizen.NUI.Devel.Tests
         }
     }
 
-    [Tizen.NUI.Xaml.XamlFilePathAttribute("testcase\\public\\Xaml\\TotalSample\\ClockView.xaml")]
-    [Tizen.NUI.Xaml.XamlCompilationAttribute(global::Tizen.NUI.Xaml.XamlCompilationOptions.Compile)]
     public partial class ClockView : View
     {
 

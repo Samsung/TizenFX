@@ -19,9 +19,9 @@ namespace Tizen.NUI.Devel.Tests
             public MyCustomAlgorithmInterface() : base()
             { }
 
-            public override View GetNextFocusableView(View current, View proposed, View.FocusDirection direction)
+            public override View GetNextFocusableView(View current, View proposed, View.FocusDirection direction, string deviceName = "")
             {
-                return base.GetNextFocusableView(current, proposed, direction);
+                return base.GetNextFocusableView(current, proposed, direction, deviceName);
             }
         }
 

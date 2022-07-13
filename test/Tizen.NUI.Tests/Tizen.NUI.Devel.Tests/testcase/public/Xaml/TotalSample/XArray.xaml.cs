@@ -3,9 +3,6 @@ using Tizen.NUI.Binding;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Xaml;
 
-[assembly: XamlResourceId("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.XArray.xaml",
-    "testcase.public.Xaml.TotalSample.XArray.xaml",
-    typeof(global::Tizen.NUI.Devel.Tests.XArray))]
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -15,8 +12,6 @@ namespace Tizen.NUI.Devel.Tests
 		public object Content { get; set; }
 	}
 
-    [XamlFilePath("testcase\\public\\Xaml\\TotalSample\\XArray.xaml")]
-    [XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class XArray : MockBindableForArray
 	{	
 		public XArray ()

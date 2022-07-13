@@ -24,12 +24,8 @@ using Tizen.NUI.Binding;
 using Tizen.NUI.Components;
 using Tizen.NUI.Xaml;
 
-[assembly: global::Tizen.NUI.Xaml.XamlResourceIdAttribute("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.StaticDateTimeView.xaml", "testcase.public.Xaml.TotalSample.StaticDateTimeView.xaml", typeof(global::Tizen.NUI.Devel.Tests.StaticDateTimeView))]
-
 namespace Tizen.NUI.Devel.Tests
 {
-    [Tizen.NUI.Xaml.XamlFilePathAttribute("testcase\\public\\Xaml\\TotalSample\\StaticDateTimeView.xaml")]
-    [Tizen.NUI.Xaml.XamlCompilationAttribute(global::Tizen.NUI.Xaml.XamlCompilationOptions.Compile)]
     public partial class StaticDateTimeView : View
     {
         public StaticDateTimeView()

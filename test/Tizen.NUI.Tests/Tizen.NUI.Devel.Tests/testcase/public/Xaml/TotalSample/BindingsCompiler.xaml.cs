@@ -7,30 +7,10 @@ using System.Diagnostics;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Xaml;
 
-[assembly: global::Tizen.NUI.Xaml.XamlResourceIdAttribute("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.BindingsCompiler.xaml",
-    "testcase.public.Xaml.TotalSample.BindingsCompiler.xaml",
-    typeof(global::Tizen.NUI.Devel.Tests.BindingsCompiler))]
-
 namespace Tizen.NUI.Devel.Tests
 {
-    [Tizen.NUI.Xaml.XamlFilePathAttribute("testcase\\public\\Xaml\\TotalSample\\BindingsCompiler.xaml")]
-    [Tizen.NUI.Xaml.XamlCompilationAttribute(global::Tizen.NUI.Xaml.XamlCompilationOptions.Compile)]
     public partial class BindingsCompiler : View
 	{
-        public TextLabel label0;
-        public TextLabel label1;
-        public TextLabel label2;
-        public TextLabel label3;
-        public TextLabel label4;
-        public TextLabel label5;
-        public TextLabel label6;
-        public TextLabel label7;
-        public TextLabel label8;
-        public TextLabel label9;
-        public TextLabel label10;
-        public TextField entry0;
-        public TextField entry1;
-
         public BindingsCompiler()
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(BindingsCompiler));

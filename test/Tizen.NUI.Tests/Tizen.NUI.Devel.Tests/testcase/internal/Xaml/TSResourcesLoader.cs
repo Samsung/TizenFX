@@ -38,7 +38,7 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 var rl = new ResourcesLoader();
-                var ret = rl.GetResource("layout/TotalSample.xaml", typeof(UIElement).Assembly, null);
+                var ret = rl.GetResource("layout/TotalSample.xaml", typeof(UIElement).Assembly, null, null);
                 Assert.IsNotNull(ret, "Should not be null");
             }
             catch (Exception e)

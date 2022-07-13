@@ -2,10 +2,6 @@
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Xaml;
 
-[assembly: XamlResourceId("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.FactoryMethods.xaml",
-    "testcase.public.Xaml.TotalSample.FactoryMethods.xaml",
-    typeof(global::Tizen.NUI.Devel.Tests.FactoryMethods))]
-
 namespace Tizen.NUI.Devel.Tests
 {
 	public class MockView : View
@@ -63,20 +59,8 @@ namespace Tizen.NUI.Devel.Tests
 		}
 	}
 
-    [XamlFilePath("testcase\\public\\Xaml\\TotalSample\\FactoryMethods.xaml")]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class FactoryMethods : View
 	{
-        public MockView v0;
-        public MockView v1;
-        public MockView v2;
-        public MockView v3;
-        public MockView v4;
-        public MockView v5;
-        public MockView v6;
-        public MockView v7;
-        public MockView v8;
-
         public FactoryMethods ()
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(FactoryMethods));

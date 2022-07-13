@@ -2,20 +2,10 @@
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Xaml;
 
-[assembly: XamlResourceId("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.XReference.xaml",
-    "testcase.public.Xaml.TotalSample.XReference.xaml",
-    typeof(global::Tizen.NUI.Devel.Tests.XReference))]
-
 namespace Tizen.NUI.Devel.Tests
 {
-    [XamlFilePath("testcase\\public\\Xaml\\TotalSample\\XReference.xaml")]
-    [XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class XReference : View
 	{
-        public TextLabel label0;
-        public TextLabel label1;
-        public TextField entry;
-
         public XReference ()
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(XReference));
