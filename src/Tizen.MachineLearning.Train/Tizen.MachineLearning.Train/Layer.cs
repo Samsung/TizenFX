@@ -24,9 +24,9 @@ namespace Tizen.MachineLearning.Train
     /// </summary>
     /// <remarks>
     /// Use this function to create neural network layer.
-    /// If the function succeeds, layer must be released using Disposed(), if not added to a model.
+    /// If the function succeeds, layer must be released using Dispose(), if not added to a model.
     /// If added to a model by AddLayer method of Model, layer is available until the model is released. so
-    /// Disposed() must never be used.
+    /// Dispose() must never be used.
     /// </remarks>
     /// <since_tizen> 10 </since_tizen>
     public class Layer: IDisposable
@@ -35,7 +35,7 @@ namespace Tizen.MachineLearning.Train
         private bool disposed = false;
 
         /// if true, model will be destroy layer handle
-        private bool notDestroy = false;
+        private bool hasOwnership = false;
 
         /// <summary>
         /// Creates a neural network layer.
@@ -49,9 +49,10 @@ namespace Tizen.MachineLearning.Train
             Log.Info(NNTrainer.Tag, $"Create layer with type:{type}");
         }
 
-        internal Layer(bool createdByModel)
+        internal Layer(IntPtr handle, bool hasOwnership)
         {
-            notDestroy = createdByModel;
+            this.handle = handle;
+            this.hasOwnership = hasOwnership;
         }
 
         /// <summary>
@@ -90,7 +91,7 @@ namespace Tizen.MachineLearning.Train
                 // release managed object
             }
             // release unmanaged object
-            if (handle != IntPtr.Zero && !notDestroy)
+            if (handle != IntPtr.Zero && !hasOwnership)
             {
                 // Destroy the neural network layer.
                 NNTrainerError ret = Interop.Layer.Destroy(handle);
@@ -126,11 +127,6 @@ namespace Tizen.MachineLearning.Train
         internal IntPtr GetHandle()
         {
             return handle;
-        }
-
-        internal void SetHandle(IntPtr layerHandle)
-        {
-            handle = layerHandle;
         }
     } 
 }
