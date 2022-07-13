@@ -96,6 +96,7 @@ namespace Tizen.MachineLearning.Train
         /// </summary>
         /// <remarks>
         /// Use this function to set neural network optimizer property.
+        /// The input format of property must be 'key = value' format.
         /// </remarks>
         /// <param name="property">property for optimizer.</param>
         /// <since_tizen> 10 </since_tizen>
