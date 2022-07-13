@@ -164,15 +164,16 @@ namespace Tizen.MachineLearning.Train
         /// Use this function to get the summary of the neural network model.
         /// </remarks>
         /// <param name="verbosity">Verbose level of the summary.</param>
-        /// <param name="retSummary">On return, a string value. The summary of the current model. Avoid logic to parse and exploit summary if possible.</param>
+        /// <returns>On return, a string value. The summary of the current model. Avoid logic to parse and exploit summary if possible.</returns>
         /// <since_tizen> 10 </since_tizen>
-        public void GetSummary(NNTrainerSummaryType verbosity, out string retSummary)
+        public string GetSummary(NNTrainerSummaryType verbosity)
         {
+            string retSummary;
             NNTrainerError ret = Interop.Model.GetSummary(handle, verbosity, out string summary);
             NNTrainer.CheckException(ret, "Failed to get summary");
 
             retSummary = summary;
-
+            return retSummary;
         }
 
         /// <summary>
