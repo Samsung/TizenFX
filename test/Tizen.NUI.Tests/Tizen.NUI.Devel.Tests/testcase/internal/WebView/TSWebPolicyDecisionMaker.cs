@@ -40,7 +40,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public async Task WebPolicyDecisionMakerUrl()
         {
-            tlog.Debug(tag, $"WebViewResponsePolicyDecidedEventArgsConstructor START");
+            tlog.Debug(tag, $"ResponsePolicyDecided START");
 
             var testingTarget = new Tizen.NUI.BaseComponents.WebView(runtimeArgs)
             {
@@ -64,7 +64,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WebPolicyDecisionMakerUrl END (OK)");
         }
 
-        private void OnResponsePolicyDecided(object sender, WebViewResponsePolicyDecidedEventArgs e)
+        private void OnResponsePolicyDecided(object sender, WebViewPolicyDecidedEventArgs e)
         {
             tlog.Info(tag, $"response policy decided, Url: {e.ResponsePolicyDecisionMaker.Url}");
             tlog.Info(tag, $"response policy decided, Cookie: {e.ResponsePolicyDecisionMaker.Cookie}");

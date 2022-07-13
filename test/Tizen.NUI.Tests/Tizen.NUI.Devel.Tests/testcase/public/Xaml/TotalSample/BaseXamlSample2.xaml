@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<Layer x:Class="Tizen.NUI.Layer"
+<Layer x:Class="Tizen.NUI.Devel.Tests.BaseXamlSample2"
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:l="clr-namespace:Tizen.NUI.Devel.Tests;assembly=Tizen.NUI.Devel.Tests"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">

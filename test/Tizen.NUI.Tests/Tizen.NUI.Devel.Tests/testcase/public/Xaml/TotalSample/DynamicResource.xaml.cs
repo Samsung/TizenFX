@@ -7,18 +7,10 @@ using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 using Tizen.NUI.Xaml;
 
-[assembly: global::Tizen.NUI.Xaml.XamlResourceIdAttribute("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.DynamicResource.xaml",
-    "testcase.public.Xaml.TotalSample.DynamicResource.xaml",
-    typeof(global::Tizen.NUI.Devel.Tests.DynamicResource))]
-
 namespace Tizen.NUI.Devel.Tests
 {
-    [XamlFilePath("testcase\\public\\Xaml\\TotalSample\\DynamicResource.xaml")]
-    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class DynamicResource : View
 	{
-        public TextLabel label0;
-
 		public DynamicResource ()
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(DynamicResource));
