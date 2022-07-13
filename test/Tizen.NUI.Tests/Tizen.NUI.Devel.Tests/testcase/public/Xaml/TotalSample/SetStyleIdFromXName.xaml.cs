@@ -3,20 +3,10 @@ using NUnit.Framework;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Xaml;
 
-[assembly: XamlResourceId("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.SetStyleIdFromXName.xaml",
-    "testcase.public.Xaml.TotalSample.SetStyleIdFromXName.xaml",
-    typeof(global::Tizen.NUI.Devel.Tests.SetStyleIdFromXName))]
-
 namespace Tizen.NUI.Devel.Tests
 {
-    [XamlFilePath("testcase\\public\\Xaml\\TotalSample\\SetStyleIdFromXName.xaml")]
-    [XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class SetStyleIdFromXName : View
 	{
-        public TextLabel label0;
-        public TextLabel label1;
-        public TextLabel label2;
-
         public SetStyleIdFromXName()
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(SetStyleIdFromXName));

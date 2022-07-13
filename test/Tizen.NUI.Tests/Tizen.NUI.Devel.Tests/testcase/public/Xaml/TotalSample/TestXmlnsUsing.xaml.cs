@@ -4,18 +4,10 @@ using NUnit.Framework;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Xaml;
 
-[assembly: XamlResourceId("Tizen.NUI.Devel.Tests.testcase.public.Xaml.TotalSample.TestXmlnsUsing.xaml",
-    "testcase.public.Xaml.TotalSample.TestXmlnsUsing.xaml",
-    typeof(global::Tizen.NUI.Devel.Tests.TestXmlnsUsing))]
-
 namespace Tizen.NUI.Devel.Tests
 {
-    [XamlFilePath("testcase\\public\\Xaml\\TotalSample\\TestXmlnsUsing.xaml")]
-    [XamlCompilation(XamlCompilationOptions.Skip)]
     public partial class TestXmlnsUsing : View
 	{
-        public CustomXamlView view0;
-
         public TestXmlnsUsing()
 		{
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(TestXmlnsUsing));

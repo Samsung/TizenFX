@@ -1668,7 +1668,7 @@ namespace Tizen.NUI.Devel.Tests
         private void OnUrlChange(object sender, WebViewUrlChangedEventArgs e) { }
         private void OnFormRepostPolicyDecide(object sender, WebViewFormRepostPolicyDecidedEventArgs e) { }
         private void OnFrameRender(object sender, EventArgs e) { }
-        private void OnResponsePolicyDecide(object sender, WebViewResponsePolicyDecidedEventArgs e) { }
+        private void OnResponsePolicyDecide(object sender, WebViewPolicyDecidedEventArgs e) { }
         private void OnCertificateConfirme(object sender, WebViewCertificateReceivedEventArgs e) { }
         private void OnSslCertificateChange(object sender, WebViewCertificateReceivedEventArgs e) {  }
         private void OnHttpAuthRequeste(object sender, WebViewHttpAuthRequestedEventArgs e) { }

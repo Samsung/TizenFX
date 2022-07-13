@@ -28,18 +28,18 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Accessibility GetStatus.")]
-        [Property("SPEC", "Tizen.NUI.Accessibility.GetStatus M")]
+        [Description("Accessibility IsEnabled.")]
+        [Property("SPEC", "Tizen.NUI.Accessibility.IsEnabled A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AccessibilityGetStatus()
+        public void AccessibilityIsEnabled()
         {
-            tlog.Debug(tag, $"AccessibilityGetStatus START");
+            tlog.Debug(tag, $"AccessibilityIsEnabled START");
 
             try
             {
-                var result = Accessibility.Accessibility.GetStatus();
+                var result = Accessibility.Accessibility.IsEnabled;
                 tlog.Debug(tag, "Status : " + result);
             }
             catch (Exception e)
@@ -48,7 +48,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"AccessibilityGetStatus END (OK)");
+            tlog.Debug(tag, $"AccessibilityIsEnabled END (OK)");
         }
 
         [Test]
