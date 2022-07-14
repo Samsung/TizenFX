@@ -185,20 +185,46 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// The constructor with a stylesheet, window mode, size, position, theme option and boderInterface
-        /// It is the only way to create an IME window.
+        /// The constructor with a stylesheet, size, position, boderInterface and window mode
         /// </summary>
         /// <param name="styleSheet">The styleSheet URL.</param>
-        /// <param name="windowMode">The windowMode.</param>
         /// <param name="windowSize">The window size.</param>
         /// <param name="windowPosition">The window position.</param>
         /// <param name="borderInterface"><see cref="Tizen.NUI.IBorderInterface"/>If borderInterface is null, defaultBorder is enabled.</param>
+        /// <param name="windowMode">The windowMode.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
         public NUIApplication(string styleSheet, Size2D windowSize, Position2D windowPosition, IBorderInterface borderInterface, WindowMode windowMode = WindowMode.Opaque) : base(new NUICoreBackend(styleSheet, windowMode, windowSize, windowPosition))
         {
-            borderEnabled = true;
-            this.borderInterface = borderInterface;
+            EnableBorder(borderInterface);
+        }
+
+        /// <summary>
+        /// The constructor with theme option and borderInterface.
+        /// </summary>
+        /// <param name="option">The theme option.</param>
+        /// <param name="borderInterface"><see cref="Tizen.NUI.IBorderInterface"/>If borderInterface is null, defaultBorder is enabled.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
+        public NUIApplication(ThemeOptions option, IBorderInterface borderInterface) : base(new NUICoreBackend())
+        {
+            EnableBorder(borderInterface);
+            ApplyThemeOption(option);
+        }
+
+        /// <summary>
+        /// The constructor with window size, position, theme option and borderInterface.
+        /// </summary>
+        /// <param name="windowSize">The window size.</param>
+        /// <param name="windowPosition">The window position.</param>
+        /// <param name="option">The theme option.</param>
+        /// <param name="borderInterface"><see cref="Tizen.NUI.IBorderInterface"/>If borderInterface is null, defaultBorder is enabled.</param>
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIApplication(Size2D windowSize, Position2D windowPosition, ThemeOptions option, IBorderInterface borderInterface) : base(new NUICoreBackend("", NUIApplication.WindowMode.Opaque, windowSize, windowPosition))
+        {
+            EnableBorder(borderInterface);
+            ApplyThemeOption(option);
         }
 
         /// <summary>
@@ -580,6 +606,12 @@ namespace Tizen.NUI
             {
                 ThemeManager.ApplicationThemeChangeSensitive = true;
             }
+        }
+
+        private void EnableBorder(IBorderInterface borderInterface)
+        {
+            borderEnabled = true;
+            this.borderInterface = borderInterface;
         }
     }
 
