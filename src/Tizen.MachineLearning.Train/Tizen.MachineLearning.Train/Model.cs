@@ -254,8 +254,12 @@ namespace Tizen.MachineLearning.Train
                 Log.Error(NNTrainer.Tag, "layer instance is null");
                 throw new ArgumentNullException(nameof(layer));
             }
+
+            //Model has ownership of layer;
             NNTrainerError ret = Interop.Model.AddLayer(handle, layer.GetHandle());
             NNTrainer.CheckException(ret, "Failed to add layer");
+            layer.RemoveOwnership();
+
             Log.Info(NNTrainer.Tag, $"AddLayer:\n{layer.GetHandle()}");
         }
 
@@ -281,7 +285,7 @@ namespace Tizen.MachineLearning.Train
             NNTrainerError ret = Interop.Model.GetLayer(handle, layerName, out layerHandle);
             NNTrainer.CheckException(ret, "Failed to get layer");
 
-            Layer layer = new Layer(layerHandle, true);
+            Layer layer = new Layer(layerHandle, false);
     
             return layer;
         }
