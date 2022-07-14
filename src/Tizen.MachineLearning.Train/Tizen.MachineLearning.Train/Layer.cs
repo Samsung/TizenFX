@@ -34,8 +34,8 @@ namespace Tizen.MachineLearning.Train
         private IntPtr handle = IntPtr.Zero;
         private bool disposed = false;
 
-        /// if true, model will be destroy layer handle
-        private bool hasOwnership = false;
+        /// if false, model will be destroy layer handle
+        private bool hasOwnership = true;
 
         /// <summary>
         /// Creates a neural network layer.
@@ -90,8 +90,16 @@ namespace Tizen.MachineLearning.Train
             {
                 // release managed object
             }
+
+            disposed = true;
+
+            if (!hasOwnership){
+                Log.Error(NNTrainer.Tag, "Cannot destroy layer already added in a Model. Model will destroy this layer");
+                return;
+            }
+
             // release unmanaged object
-            if (handle != IntPtr.Zero && !hasOwnership)
+            if (handle != IntPtr.Zero)
             {
                 // Destroy the neural network layer.
                 NNTrainerError ret = Interop.Layer.Destroy(handle);
@@ -99,7 +107,6 @@ namespace Tizen.MachineLearning.Train
 
                 handle = IntPtr.Zero;
             }
-            disposed = true;
         }
 
         /// <summary>
@@ -127,6 +134,11 @@ namespace Tizen.MachineLearning.Train
         internal IntPtr GetHandle()
         {
             return handle;
+        }
+
+        internal void RemoveOwnership()
+        {
+            this.hasOwnership = false;
         }
     } 
 }
