@@ -1330,6 +1330,19 @@ namespace Tizen.NUI.BaseComponents
                 {
                     cachedImagePropertyMap = new PropertyMap();
                 }
+
+                // To optimization, we don't check URL duplicate case. We already checked before.
+                if (key != ImageVisualProperty.URL)
+                {
+                    using (PropertyValue oldValue = GetCachedImageVisualProperty(key))
+                    {
+                        if (oldValue != null && oldValue.EqualTo(value))
+                        {
+                            // Ignore UpdateImage query when we try to update equality value.
+                            return;
+                        }
+                    }
+                }
                 imagePropertyUpdatedFlag = true;
                 cachedImagePropertyMap[key] = value;
 
