@@ -67,6 +67,7 @@ namespace Tizen.NUI
         private AuxiliaryMessageEventCallbackType auxiliaryMessageEventCallback;
         private TouchDataSignal interceptTouchDataSignal;
         private TouchSignal interceptTouchSignal;
+        private InsetsChangedEventCallbackType insetsChangedEventCallback;
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
@@ -86,6 +87,8 @@ namespace Tizen.NUI
         private delegate void KeyboardRepeatSettingsChangedEventCallbackType();
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AuxiliaryMessageEventCallbackType(IntPtr kData, IntPtr vData, IntPtr optionsArray);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void InsetsChangedEventCallbackType(int partType, int partState, IntPtr extents);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool InterceptKeyEventDelegateType(IntPtr arg1);
 
@@ -477,6 +480,7 @@ namespace Tizen.NUI
         private event EventHandler<WindowMovedEventArgs> movedHandler;
         private event EventHandler keyboardRepeatSettingsChangedHandler;
         private event EventHandler<AuxiliaryMessageEventArgs> auxiliaryMessageEventHandler;
+        private event EventHandler<InsetsChangedEventArgs> insetsChangedEventHandler;
 
         internal void SendViewAdded(View view)
         {
@@ -792,6 +796,14 @@ namespace Tizen.NUI
             {
                 AccessibilityHighlightEventSignal?.Disconnect(AccessibilityHighlightEventCallback);
                 AccessibilityHighlightEventCallback = null;
+            }
+
+            if (insetsChangedEventCallback != null)
+            {
+                using var signal = new WindowInsetsChangedSignal(this);
+                signal.Disconnect(insetsChangedEventCallback);
+                insetsChangedEventHandler = null;
+                insetsChangedEventCallback = null;
             }
         }
 
@@ -1426,6 +1438,127 @@ namespace Tizen.NUI
                         if (signal.Empty())
                         {
                             auxiliaryMessageEventCallback = null;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// The type of insets part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum InsetsPartType
+        {
+            StatusBar = 0,
+            Keyboard = 1,
+            Clipboard = 2
+        }
+
+        /// <summary>
+        /// The state of insets part.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum InsetsPartState
+        {
+            Invisible = 0,
+            Visible = 1
+        }
+
+        /// <summary>
+        /// InsetsChangedEventArgs
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class InsetsChangedEventArgs : EventArgs
+        {
+            private InsetsPartType partType;
+            private InsetsPartState partState;
+            private Extents insets;
+
+            /// <summary>
+            /// The type of insets part.
+            /// e.g. StatusBar, Keyboard, or Clipboard
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public InsetsPartType PartType
+            {
+                get => partType;
+                internal set
+                {
+                    partType = value;
+                }
+            }
+
+            /// <summary>
+            /// The state of insets part.
+            /// e.g. Invisible or Visible
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public InsetsPartState PartState
+            {
+                get => partState;
+                internal set
+                {
+                    partState = value;
+                }
+            }
+
+            /// <summary>
+            /// The extents value of window insets
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public Extents Insets
+            {
+                get => insets;
+                internal set
+                {
+                    insets = value;
+                }
+            }
+        }
+
+        private void OnInsetsChanged(int partType, int partState, IntPtr extents)
+        {
+            if (insetsChangedEventHandler != null)
+            {
+                InsetsChangedEventArgs e = new InsetsChangedEventArgs();
+                e.PartType = (InsetsPartType)partType;
+                e.PartState = (InsetsPartState)partState;
+                e.Insets = new Extents(extents, false);
+
+                insetsChangedEventHandler.Invoke(this, e);
+            }
+        }
+
+        /// <summary>
+        /// Emits the event when the window insets changes by status bar, virtual keyboard, or clipboard appears and disappears.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<InsetsChangedEventArgs> InsetsChanged
+        {
+            add
+            {
+                if (insetsChangedEventHandler == null)
+                {
+                    insetsChangedEventCallback = OnInsetsChanged;
+                    using var signal = new WindowInsetsChangedSignal(this);
+                    signal.Connect(insetsChangedEventCallback);
+                }
+                insetsChangedEventHandler += value;
+            }
+            remove
+            {
+                insetsChangedEventHandler -= value;
+                if (insetsChangedEventHandler == null)
+                {
+                    if (insetsChangedEventCallback != null)
+                    {
+                        using var signal = new WindowInsetsChangedSignal(this);
+                        signal.Disconnect(insetsChangedEventCallback);
+
+                        if (signal.Empty())
+                        {
+                            insetsChangedEventCallback = null;
                         }
                     }
                 }
