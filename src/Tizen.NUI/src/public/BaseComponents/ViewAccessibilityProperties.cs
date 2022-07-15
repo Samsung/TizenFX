@@ -160,7 +160,9 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 base.AutomationId = value;
-                AccessibilityAttributes["automationId"] = value;
+
+                // AccessibilityAttributes["automationId"] will not work for BaseComponents not backed by ViewWrapperImpl & NUIViewAccessible
+                SetAccessibilityAttribute("automationId", value);
             }
         }
     }

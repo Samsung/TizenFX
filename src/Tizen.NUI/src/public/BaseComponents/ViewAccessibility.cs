@@ -61,6 +61,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected Dictionary<string, string> AccessibilityAttributes { get; } = new Dictionary<string, string>();
 
+        private void SetAccessibilityAttribute(string key, string value)
+        {
+            Interop.ControlDevel.DaliAccessibilitySetAccessibilityAttribute(SwigCPtr, key, value);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         ///////////////////////////////////////////////////////////////////
         // ************************** Highlight ************************ //
         ///////////////////////////////////////////////////////////////////
