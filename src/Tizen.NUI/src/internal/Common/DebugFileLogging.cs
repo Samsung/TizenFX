@@ -56,7 +56,7 @@ namespace Tizen.NUI
         #endregion //Constructors
 
         #region Methods
-        [Conditional("NUI_DEBUG_ON")]
+        [Conditional("NUI_DISPOSE_DEBUG_ON")]
         internal void WriteLog(string log)
         {
             TimeSpan curr = DateTime.Now.TimeOfDay;

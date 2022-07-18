@@ -656,7 +656,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool IsDisposeQueued => isDisposeQueued;
 
-        [Conditional("NUI_DEBUG_ON")]
+        [Conditional("NUI_DISPOSE_DEBUG_ON")]
         private void disposeDebuggingCtor()
         {
             DebugFileLogging.Instance.WriteLog($"type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")}");
@@ -673,7 +673,7 @@ namespace Tizen.NUI
             }
         }
 
-        [Conditional("NUI_DEBUG_ON")]
+        [Conditional("NUI_DISPOSE_DEBUG_ON")]
         private void disposeDebuggingDispose(DisposeTypes type)
         {
             DebugFileLogging.Instance.WriteLog($"swigCMemOwn:{swigCMemOwn} type:{GetType()} copyNativeHandle:{swigCPtrCopy.Handle.ToString("X8")} HasBody:{HasBody()}");
