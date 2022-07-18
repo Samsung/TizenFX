@@ -171,11 +171,11 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets or sets the video resolution of the current media source.
         /// </summary>
-        /// <value>A value that specifies the mute status.</value>
+        /// <value>A value that specifies the video resolution.</value>
         /// <exception cref="InvalidOperationException">
         ///     MediaSource is not attached yet.<br/>
         /// -or-<br/>
-        ///     This MediaSource is not Video
+        ///     This MediaSource is not Video.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
@@ -210,6 +210,70 @@ namespace Tizen.Multimedia.Remoting
 
                 NativeWebRTC.SetVideoResolution(WebRtc.Handle, SourceId.Value, value.Width, value.Height).
                     ThrowIfFailed("Failed to set video resolution");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the video frame rate of the current media source.
+        /// </summary>
+        /// <remarks>
+        /// This API is only supported in video media source, especially <see cref="MediaCameraSource"/>,
+        /// <see cref="MediaScreenSource"/>, <see cref="MediaTestSource"/>.<br/>
+        /// </remarks>
+        /// <value>A value that specifies the video frame rate.</value>
+        /// <exception cref="ArgumentException">VideoFrameRate is less than or equal to zero.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     MediaSource is not attached yet.<br/>
+        /// -or-<br/>
+        ///     This MediaSource is not Video.
+        /// -or-<br/>
+        ///     This MediaSource is not supported type of MediaSource.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public int VideoFrameRate
+        {
+            get
+            {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+                if (MediaType != MediaType.Video)
+                {
+                    throw new InvalidOperationException("This property is only for video.");
+                }
+                if (this is MediaFileSource || this is MediaPacketSource)
+                {
+                    throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
+                }
+
+                NativeWebRTC.GetVideoFrameRate(WebRtc.Handle, SourceId.Value, out int frameRate).
+                    ThrowIfFailed("Failed to get video frame rate");
+
+                return frameRate;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException($"VideoFrameRate should be greater than zero.");
+                }
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+                if (MediaType != MediaType.Video)
+                {
+                    throw new InvalidOperationException("This property is only for video.");
+                }
+                if (this is MediaFileSource || this is MediaPacketSource)
+                {
+                    throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
+                }
+
+                NativeWebRTC.SetVideoFrameRate(WebRtc.Handle, SourceId.Value, value).
+                    ThrowIfFailed("Failed to set video frame rate");
             }
         }
 

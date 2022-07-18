@@ -199,5 +199,32 @@ namespace Tizen.Multimedia.Remoting
                     ThrowIfFailed("Failed to set ICE transport policy");
             }
         }
+
+        /// <summary>
+        /// Gets or sets the bundle policy.<br/>
+        /// The default bundle policy is <see cref="WebRTCBundlePolicy.MaxBundle"/>.
+        /// </summary>
+        /// <value>The policy of bundle</value>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public WebRTCBundlePolicy BundlePolicy
+        {
+            get
+            {
+                ValidateNotDisposed();
+
+                NativeWebRTC.GetBundlePolicy(Handle, out WebRTCBundlePolicy bundlePolicy).
+                    ThrowIfFailed("Failed to get bundle policy");
+
+                return bundlePolicy;
+            }
+            set
+            {
+                ValidateNotDisposed();
+
+                NativeWebRTC.SetBundlePolicy(Handle, value).
+                    ThrowIfFailed("Failed to set bundle policy");
+            }
+        }
     }
 }
