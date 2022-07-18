@@ -103,7 +103,6 @@ namespace Tizen.NUI.BaseComponents
                 resourceUrl = (value == null) ? "" : value;
                 URL = resourceUrl;
                 isMinMaxFrameSet = minMaxSetTypes.NotSetByUser;
-                totalFrameNum = base.TotalFrame;
                 NUILog.Debug($" [{GetId()}] resourceUrl={resourceUrl}) ]AnimatedVectorImageView END]");
             }
             get => resourceUrl;
@@ -187,6 +186,11 @@ namespace Tizen.NUI.BaseComponents
             get => totalFrameNum;
         }
 
+        private int totalFrameNum
+        {
+            get => base.TotalFrame;
+        }
+
         /// <summary>
         /// CurrentFrame of animation.
         /// </summary>
@@ -220,15 +224,10 @@ namespace Tizen.NUI.BaseComponents
                 {
                     value = 0;
                 }
-                else if (value >= totalFrameNum)
-                {
-                    value = totalFrameNum - 1;
-                }
 
                 innerCurrentFrame = value;
                 AnimationState = AnimationStates.Paused;
 
-                base.SetMinMaxFrame(0, totalFrameNum - 1);
                 base.CurrentFrame = innerCurrentFrame;
 
                 NUILog.Debug($" [{GetId()}] innerCurrentFrame={innerCurrentFrame}) ]AnimatedVectorImageView END]");
@@ -318,18 +317,9 @@ namespace Tizen.NUI.BaseComponents
             maximumFrame = (maxFrame) > 0 ? maxFrame : 0;
             isMinMaxFrameSet = minMaxSetTypes.SetByMinAndMaxFrameMethod;
 
-            if (minimumFrame >= totalFrameNum)
-            {
-                minimumFrame = totalFrameNum - 1;
-            }
-
-            if (maximumFrame >= totalFrameNum)
-            {
-                maximumFrame = totalFrameNum - 1;
-            }
-
             if (minimumFrame > maximumFrame)
             {
+                NUILog.Debug($" [{GetId()}] minimumFrame:{minimumFrame} > maximumFrame:{maximumFrame}) ]AnimatedVectorImageView END]");
                 return;
             }
 
@@ -600,7 +590,6 @@ namespace Tizen.NUI.BaseComponents
         #region Private
         private string resourceUrl = null;
         private int repeatCnt = 0;
-        private int totalFrameNum = 0;
         private RepeatModes repeatMode = RepeatModes.Restart;
         private int minimumFrame = -1, maximumFrame = -1;
         private minMaxSetTypes isMinMaxFrameSet = minMaxSetTypes.NotSetByUser;
