@@ -512,7 +512,7 @@ namespace Tizen.NUI.Components
             base.OnInitialize();
             AccessibilityRole = Role.ScrollBar;
             AccessibilityHighlightable = true;
-            AppendAccessibilityAttribute("style", "pagecontrolbyvalue");
+            AccessibilityAttributes["style"] = "pagecontrolbyvalue";
 
             container = new View()
             {

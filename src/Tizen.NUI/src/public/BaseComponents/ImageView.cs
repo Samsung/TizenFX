@@ -1229,6 +1229,11 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View ResourceReady signal
         private void OnResourceReady(IntPtr data)
         {
+            if(!CheckResourceReady())
+            {
+                return;
+            }
+
             ResourceReadyEventArgs e = new ResourceReadyEventArgs();
             if (data != null)
             {
@@ -1551,8 +1556,20 @@ namespace Tizen.NUI.BaseComponents
             return base.GetNaturalSize();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool CheckResourceReady()
+        {
+            // If we have some properties to be updated, this signal is old thing.
+            // We need to ignore current signal, and wait next.
+            return !(imagePropertyUpdateProcessAttachedFlag && imagePropertyUpdatedFlag);
+        }
+
         private void OnResourceLoaded(IntPtr view)
         {
+            if(!CheckResourceReady())
+            {
+                return;
+            }
             ResourceLoadedEventArgs e = new ResourceLoadedEventArgs();
             e.Status = (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.IMAGE);
 

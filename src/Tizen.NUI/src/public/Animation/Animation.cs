@@ -208,7 +208,15 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets or sets the duration in milliseconds of the animation.
+        /// This duration is applied to the animations are added after the Duration is set.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// animation.AnimateTo(actor, "position", destination);
+        /// animation.Duration = 500; // This duration 500 is only applied to the size animation.
+        /// animation.AnimateTo(actor, "size", size);
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public int Duration
         {
@@ -223,8 +231,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        ///  Gets or sets the default alpha function for the animation.
+        /// Gets or sets the default alpha function for the animation.
+        /// This DefaultAlphaFunction is only applied to the animations are added after the DefaultAlphaFunction is set.
         /// </summary>
+        /// <example>
+        /// <code>
+        /// animation.AnimateTo(actor, "position", destination);
+        /// animation.DefaultAlphaFunction = newAlphaFunction; // This newAlphaFunction is applied only for the size animation.
+        /// animation.AnimateTo(actor, "size", size);
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public AlphaFunction DefaultAlphaFunction
         {

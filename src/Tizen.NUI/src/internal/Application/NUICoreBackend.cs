@@ -23,7 +23,7 @@ using Tizen.Applications;
 
 namespace Tizen.NUI
 {
-    class NUICoreBackend : ICoreBackend
+    class NUICoreBackend : ICoreTaskBackend
     {
         /// <summary>
         /// The Application instance to connect event.
@@ -33,11 +33,13 @@ namespace Tizen.NUI
         private NUIApplication.WindowMode windowMode = NUIApplication.WindowMode.Opaque;
         private Rectangle windowRectangle = null;
         private WindowType defaultWindowType = WindowType.Normal;
+        private ICoreTask coreTask;
 
         /// <summary>
         /// The Dictionary to contain each type of event callback.
         /// </summary>
         protected IDictionary<EventType, object> Handlers = new Dictionary<EventType, object>();
+        protected IDictionary<EventType, object> TaskHandlers = new Dictionary<EventType, object>();
 
         /// <summary>
         /// The default Constructor.
@@ -177,11 +179,29 @@ namespace Tizen.NUI
             {
                 if (windowRectangle != null)
                 {
-                    application = Application.NewApplication(args, stylesheet, windowMode, windowRectangle);
+                    if (coreTask != null)
+                    {
+                        application = Application.NewApplication(args, stylesheet, windowMode, windowRectangle, true);
+                    }
+                    else
+                    {
+                        application = Application.NewApplication(args, stylesheet, windowMode, windowRectangle);
+                    }
                 }
                 else
                 {
-                    application = Application.NewApplication(args, stylesheet, windowMode);
+                    if (coreTask != null)
+                    {
+                        // The Rectangle(0, 0, 0, 0) means that want to use the full screen size window at 0,0.
+                        using (Rectangle rec = new Rectangle(0, 0, 0, 0))
+                        {
+                            application = Application.NewApplication(args, stylesheet, windowMode, rec, true);
+                        }
+                    }
+                    else
+                    {
+                        application = Application.NewApplication(args, stylesheet, windowMode);
+                    }
                 }
             }
             Tizen.Tracer.End();
@@ -201,8 +221,31 @@ namespace Tizen.NUI
 
             Tizen.Tracer.End();
 
+            if (coreTask != null)
+            {
+                application.TaskBatteryLow += OnTaskBatteryLow;
+                application.TaskLanguageChanged += OnTaskLanguageChanged;
+                application.TaskMemoryLow += OnTaskMemoryLow;
+                application.TaskRegionChanged += OnTaskRegionChanged;
+
+                application.TaskInitialized += OnTaskInitialized;
+                application.TaskTerminating += OnTaskTerminated;
+                application.TaskAppControl += OnTaskAppControl;
+                // Note: UIEvent, DeviceOrientationChanged are not implemented.
+            }
+
             application.MainLoop();
             application.Dispose();
+        }
+
+        /// <summary>
+        /// Sets the core task.
+        /// </summary>
+        /// <param name="task">The core task interface.</param>
+        /// <since_tizen> 10 </since_tizen>
+        public void SetCoreTask(ICoreTask task)
+        {
+            coreTask = task;
         }
 
         /// <summary>
@@ -354,7 +397,7 @@ namespace Tizen.NUI
         {
             Log.Info("NUI", "NUICorebackend OnAppControl Called");
             var handler = Handlers[EventType.AppControlReceived] as Action<AppControlReceivedEventArgs>;
-            SafeAppControlHandle handle = new SafeAppControlHandle(e.VoidP, false);
+            using SafeAppControlHandle handle = new SafeAppControlHandle(e.VoidP, false);
             handler?.Invoke(new AppControlReceivedEventArgs(new ReceivedAppControl(handle)));
         }
 
@@ -368,6 +411,118 @@ namespace Tizen.NUI
             Log.Info("NUI", "NUICorebackend OnPaused Called");
             var handler = Handlers[EventType.Paused] as Action;
             handler?.Invoke();
+        }
+
+        /// <summary>
+        /// The Region changed event callback function. The callback is emitted on the main thread.
+        /// </summary>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for RegionChanged.</param>
+        private void OnTaskRegionChanged(object source, NUIApplicationRegionChangedEventArgs e)
+        {
+            Log.Info("NUI", "NUICorebackend OnTaskRegionChanged Called");
+            coreTask.OnRegionFormatChanged(new RegionFormatChangedEventArgs((source as Application)?.GetRegion()));
+        }
+
+        /// <summary>
+        /// The Memory Low event callback function. The callback is emitted on the main thread.
+        /// </summary>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for MemoryLow.</param>
+        private void OnTaskMemoryLow(object source, NUIApplicationMemoryLowEventArgs e)
+        {
+            Log.Info("NUI", "NUICorebackend OnTaskMemoryLow Called");
+            switch (e.MemoryStatus)
+            {
+                case Application.MemoryStatus.Normal:
+                    {
+                        coreTask.OnLowMemory(new LowMemoryEventArgs(LowMemoryStatus.None));
+                        break;
+                    }
+                case Application.MemoryStatus.Low:
+                    {
+                        coreTask.OnLowMemory(new LowMemoryEventArgs(LowMemoryStatus.SoftWarning));
+                        break;
+                    }
+                case Application.MemoryStatus.CriticallyLow:
+                    {
+                        coreTask.OnLowMemory(new LowMemoryEventArgs(LowMemoryStatus.HardWarning));
+                        break;
+                    }
+            }
+        }
+
+        /// <summary>
+        /// The Language changed event callback function. The callback is emitted on the main thread.
+        /// </summary>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for LanguageChanged.</param>
+        private void OnTaskLanguageChanged(object source, NUIApplicationLanguageChangedEventArgs e)
+        {
+            Log.Info("NUI", "NUICorebackend OnTaskLanguageChanged Called");
+            coreTask.OnLocaleChanged(new LocaleChangedEventArgs((source as Application)?.GetLanguage()));
+        }
+
+        /// <summary>
+        /// The Battery Low event callback function. The callback is emitted on the main thread.
+        /// </summary>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for BatteryLow.</param>
+        private void OnTaskBatteryLow(object source, NUIApplicationBatteryLowEventArgs e)
+        {
+            Log.Info("NUI", "NUICorebackend OnTaskBatteryLow Called");
+            switch (e.BatteryStatus)
+            {
+                case Application.BatteryStatus.Normal:
+                    {
+                        coreTask?.OnLowBattery(new LowBatteryEventArgs(LowBatteryStatus.None));
+                        break;
+                    }
+                case Application.BatteryStatus.CriticallyLow:
+                    {
+                        coreTask?.OnLowBattery(new LowBatteryEventArgs(LowBatteryStatus.CriticalLow));
+                        break;
+                    }
+                case Application.BatteryStatus.PowerOff:
+                    {
+                        coreTask?.OnLowBattery(new LowBatteryEventArgs(LowBatteryStatus.PowerOff));
+                        break;
+                    }
+            }
+        }
+
+        /// <summary>
+        /// The Initialized event callback function. The callback is emitted on the main thread.
+        /// </summary>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for Initialized.</param>
+        private void OnTaskInitialized(object source, NUIApplicationInitEventArgs e)
+        {
+            Log.Info("NUI", "NUICorebackend OnTaskInitialized Called");
+            coreTask.OnCreate();
+        }
+
+        /// <summary>
+        /// The Terminated event callback function. The callback is emitted on the main thread.
+        /// </summary>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for Terminated.</param>
+        private void OnTaskTerminated(object source, NUIApplicationTerminatingEventArgs e)
+        {
+            Log.Info("NUI", "NUICorebackend OnTaskTerminated Called");
+            coreTask.OnTerminate();
+        }
+
+        /// <summary>
+        /// The App control event callback function. The callback is emitted on the main thread.
+        /// </summary>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for AppControl.</param>
+        private void OnTaskAppControl(object source, NUIApplicationAppControlEventArgs e)
+        {
+            Log.Info("NUI", "NUICorebackend OnTaskAppControl Called");
+            using SafeAppControlHandle handle = new SafeAppControlHandle(e.VoidP, false);
+            coreTask.OnAppControlReceived(new AppControlReceivedEventArgs(new ReceivedAppControl(handle)));
         }
 
         internal Application ApplicationHandle
