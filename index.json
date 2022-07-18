@@ -5379,6 +5379,11 @@
     "title": "Class WebRTC",
     "keywords": ""
   },
+  "API10/api/Tizen.Multimedia.Remoting.WebRTCBundlePolicy.html": {
+    "href": "API10/api/Tizen.Multimedia.Remoting.WebRTCBundlePolicy.html",
+    "title": "Enum WebRTCBundlePolicy",
+    "keywords": ""
+  },
   "API10/api/Tizen.Multimedia.Remoting.WebRTCDataChannel.html": {
     "href": "API10/api/Tizen.Multimedia.Remoting.WebRTCDataChannel.html",
     "title": "Class WebRTCDataChannel",
