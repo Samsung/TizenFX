@@ -143,6 +143,12 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_video_resolution")]
         internal static extern WebRTCErrorCode GetVideoResolution(IntPtr handle, uint sourceId, out int width, out int height);
 
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_video_framerate")]
+        internal static extern WebRTCErrorCode SetVideoFrameRate(IntPtr handle, uint sourceId, int frameRate);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_video_framerate")]
+        internal static extern WebRTCErrorCode GetVideoFrameRate(IntPtr handle, uint sourceId, out int frameRate);
+
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_audio_loopback")]
         internal static extern WebRTCErrorCode SetAudioLoopback(IntPtr handle, uint sourceId, AudioStreamPolicyHandle streamInfo, out uint trackId);
 
@@ -151,6 +157,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_video_loopback_to_ecore_wl")]
         internal static extern WebRTCErrorCode SetEcoreVideoLoopback(IntPtr handle, uint sourceId, IntPtr display, out uint trackId);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_bundle_policy")]
+        internal static extern WebRTCErrorCode SetBundlePolicy(IntPtr handle, WebRTCBundlePolicy bundlePolicy);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_get_bundle_policy")]
+        internal static extern WebRTCErrorCode GetBundlePolicy(IntPtr handle, out WebRTCBundlePolicy bundlePolicy);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_mic_source_set_sound_stream_info")]
         internal static extern WebRTCErrorCode SetAudioStreamPolicyToMicrophoneSource(IntPtr handle, uint sourceId, AudioStreamPolicyHandle streamInfo);

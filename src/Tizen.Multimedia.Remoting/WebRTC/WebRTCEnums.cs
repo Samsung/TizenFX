@@ -346,6 +346,26 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
+    /// Specifies the bundle policy.
+    /// </summary>
+    /// <remarks>
+    /// The details of bundle policy enum is described in https://www.w3.org/TR/webrtc/#rtcbundlepolicy-enum.
+    /// </remarks>
+    /// <since_tizen> 10 </since_tizen>
+    public enum WebRTCBundlePolicy
+    {
+        /// <summary>
+        /// No bundle.
+        /// </summary>
+        None,
+
+        /// <summary>
+        /// Bundle all media tracks into a stream when it's transfered to remote peer.
+        /// </summary>
+        MaxBundle
+    }
+
+    /// <summary>
     /// Specifies the signaling message type.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
