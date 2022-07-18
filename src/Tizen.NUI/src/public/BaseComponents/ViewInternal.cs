@@ -1569,7 +1569,7 @@ namespace Tizen.NUI.BaseComponents
             return themeData.selectorData ?? (themeData.selectorData = new ViewSelectorData());
         }
 
-        [Conditional("NUI_DEBUG_ON")]
+        [Conditional("NUI_DISPOSE_DEBUG_ON")]
         private void disposeDebugging(DisposeTypes type)
         {
             DebugFileLogging.Instance.WriteLog($"View.Dispose({type}) START");
