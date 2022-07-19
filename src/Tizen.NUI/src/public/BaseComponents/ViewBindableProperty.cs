@@ -2491,13 +2491,15 @@ namespace Tizen.NUI.BaseComponents
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
             if (newValue != null)
             {
-                instance.InternalAutomationId = (string)newValue;
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)instance.SwigCPtr, View.Property.AutomationId, new Tizen.NUI.PropertyValue((string)newValue));
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
-            return instance.InternalAutomationId;
+            string temp = "";
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)instance.SwigCPtr, View.Property.AutomationId).Get(out temp);
+            return temp;
         });
 
         /// <summary>
