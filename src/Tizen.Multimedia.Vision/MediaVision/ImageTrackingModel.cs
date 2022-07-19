@@ -84,6 +84,7 @@ namespace Tizen.Multimedia.Vision
         ///     The <see cref="ImageTrackingModel"/> has already been disposed of.<br/>
         ///     -or-<br/>
         ///     <paramref name="imageObject"/> has already been disposed of.
+        /// <exception cref="InvalidOperationException">Internal error.(Since API level 10)</exception>
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         public void SetTarget(ImageObject imageObject)
