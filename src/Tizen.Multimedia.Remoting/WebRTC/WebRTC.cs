@@ -140,7 +140,6 @@ namespace Tizen.Multimedia.Remoting
         /// <see also="WebRTCState"/>
         /// <see also="StateChanged"/>
         /// <see also="CreateOffer"/>
-        /// <see also="CreateSetOffer"/>
         /// <since_tizen> 9 </since_tizen>
         public void Start()
         {
@@ -161,13 +160,14 @@ namespace Tizen.Multimedia.Remoting
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <see also="WebRTCState"/>
         /// <see also="CreateOffer"/>
-        /// <see also="CreateSetOffer"/>
         /// <since_tizen> 9 </since_tizen>
         public async Task StartAsync()
         {
             ValidateWebRTCState(WebRTCState.Idle);
 
             var tcs = new TaskCompletionSource<bool>();
+            var error = WebRTCError.ConnectionFailed;
+
             EventHandler<WebRTCStateChangedEventArgs> stateChangedEventHandler = (s, e) =>
             {
                 if (e.Current == WebRTCState.Negotiating)
@@ -175,19 +175,32 @@ namespace Tizen.Multimedia.Remoting
                     tcs.TrySetResult(true);
                 }
             };
+            EventHandler<WebRTCErrorOccurredEventArgs> errorEventHandler = (s, e) =>
+            {
+                Log.Info(WebRTCLog.Tag, e.ToString());
+                error = e.Error;
+                tcs.TrySetResult(false);
+            };
 
             try
             {
                 StateChanged += stateChangedEventHandler;
+                ErrorOccurred += errorEventHandler;
 
                 NativeWebRTC.Start(Handle).ThrowIfFailed("Failed to start the WebRTC");
 
-                await tcs.Task.ConfigureAwait(false);
+                var result = await tcs.Task.ConfigureAwait(false);
                 await Task.Yield();
+
+                if (!result)
+                {
+                    throw new InvalidOperationException(error.ToString());
+                }
             }
             finally
             {
                 StateChanged -= stateChangedEventHandler;
+                ErrorOccurred -= errorEventHandler;
             }
         }
 
