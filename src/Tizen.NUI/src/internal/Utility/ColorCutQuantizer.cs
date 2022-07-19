@@ -610,7 +610,14 @@ namespace Tizen.NUI
                         for (int i = lowIndex; i <= highIndex; i++)
                         {
                             int color = colors[i];
-                            colors[i] = 255 << 24 | (color >> 8 & 0xff) << 16 | (color >> 16 & 0xff) << 8 | (color & 0xff);
+                            if ((color >> 24 & 0xff) == 255)
+                            {
+                                colors[i] = 255 << 24 | (color >> 8 & 0xff) << 16 | (color >> 16 & 0xff) << 8 | (color & 0xff);
+                            }
+                            else
+                            {
+                                colors[i] = (color >> 24 & 0xff) << 24 | (color >> 8 & 0xff) << 16 | (color >> 16 & 0xff) << 8 | (color & 0xff);
+                            }
                         }
 
                         break;
@@ -619,7 +626,14 @@ namespace Tizen.NUI
                         for (int i = lowIndex; i <= highIndex; i++)
                         {
                             int color = colors[i];
-                            colors[i] = 255 << 24 | (color & 0xff) << 16 | (color >> 8 & 0xff) << 8 | (color >> 16 & 0xff);
+                            if ((color >> 24 & 0xff) == 255)
+                            {
+                                colors[i] = 255 << 24 | (color & 0xff) << 16 | (color >> 8 & 0xff) << 8 | (color >> 16 & 0xff);
+                            }
+                            else
+                            {
+                                colors[i] = (color >> 24 & 0xff) << 24  | (color & 0xff) << 16 | (color >> 8 & 0xff) << 8 | (color >> 16 & 0xff);
+                            }
                         }
                         break;
                 }
