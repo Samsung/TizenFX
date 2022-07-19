@@ -24,6 +24,7 @@ namespace Tizen.Multimedia
     /// Specifies errors for <see cref="StreamRecorder"/>/
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated in API10; Will be removed in API12")]
     public enum StreamRecorderError
     {
         /// <summary>
@@ -40,6 +41,7 @@ namespace Tizen.Multimedia
     /// Specifies the video source formats for <see cref="StreamRecorder"/>.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated in API10; Will be removed in API12")]
     public enum StreamRecorderVideoFormat
     {
         /// <summary>
