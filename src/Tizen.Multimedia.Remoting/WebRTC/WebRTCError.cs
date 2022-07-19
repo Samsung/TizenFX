@@ -27,7 +27,7 @@ namespace Tizen.Multimedia.Remoting
         PermissionDenied = ErrorCode.PermissionDenied,
         InvalidArgument = ErrorCode.InvalidParameter,
         InvalidOperation = ErrorCode.InvalidOperation,
-        TizenWebRTCError = -0x03000000,
+        TizenWebRTCError = -0x030B0000,
         InvalidState = TizenWebRTCError | 0x01,
         ConnectionFailed = TizenWebRTCError | 0x02,
         StreamFailed = TizenWebRTCError | 0x03,
@@ -63,4 +63,3 @@ namespace Tizen.Multimedia.Remoting
         }
     }
 }
-
