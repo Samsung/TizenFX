@@ -349,18 +349,15 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void OnControlStateChanged(ControlStateChangedEventArgs controlStateChangedInfo)
         {
+            if (controlStateChangedInfo == null) throw new ArgumentNullException(nameof(controlStateChangedInfo));
             base.OnControlStateChanged(controlStateChangedInfo);
 
-            if (!IsSelectable)
+            if (IsSelectable)
             {
-                return;
-            }
-
-            bool previousSelected = controlStateChangedInfo.PreviousState.Contains(ControlState.Selected);
-
-            if (previousSelected != IsSelected)
-            {
-                OnSelect();
+                if (controlStateChangedInfo.PreviousState.Contains(ControlState.Selected) != controlStateChangedInfo.CurrentState.Contains(ControlState.Selected))
+                {
+                   OnSelect();
+                }
             }
         }
 
