@@ -42,7 +42,13 @@ namespace Tizen.NUI.StyleGuide
             };
             if (subText != null) item.SubText = subText;
             if (icon) item.Icon = new CheckBox();
-            if (extra) item.Extra = new RadioButton();
+            if (extra)
+            {
+                item.Extra = new RadioButton();
+                // This will makes RadioButton only propagatable Disabled and Pressed state from it's parent view.
+                // Selected, Focused, Other will work as standalone in RadioButton.
+                item.Extra.PropagatableControlStates = ControlState.Disabled + ControlState.Pressed;
+            }
             return item;
         }
 
