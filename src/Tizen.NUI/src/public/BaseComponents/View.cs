@@ -273,9 +273,28 @@ namespace Tizen.NUI.BaseComponents
                             ControlState prevControlState = child.ControlState;
                             ControlState newControlState = prevControlState;
 
-                            if (Allowed.Contains(ControlState.Normal) || Allowed.Contains(ControlState.Disabled))
+                            if (Allowed.Contains(ControlState.Normal))
                             {
-                                newControlState = IsEnabled ? ControlState.Normal : ControlState.Disabled;
+                                if (value.Contains(ControlState.Normal))
+                                {
+                                    newControlState += ControlState.Normal;
+                                }
+                                else
+                                {
+                                    newControlState -= ControlState.Normal;
+                                }
+                            }
+
+                            if (Allowed.Contains(ControlState.Disabled))
+                            {
+                                if (value.Contains(ControlState.Disabled))
+                                {
+                                    newControlState += ControlState.Disabled;
+                                }
+                                else
+                                {
+                                    newControlState -= ControlState.Disabled;
+                                }
                             }
 
                             if (Allowed.Contains(ControlState.Selected))
