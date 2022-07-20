@@ -196,6 +196,11 @@ namespace Tizen.NUI.Components
 
                 OnSelectedChanged();
 
+                if (IsSelected != info.CurrentState.Contains(ControlState.Selected))
+                {
+                    IsSelected = info.CurrentState.Contains(ControlState.Selected);
+                }
+
                 if (SelectedChanged != null)
                 {
                     SelectedChangedEventArgs eventArgs = new SelectedChangedEventArgs();
