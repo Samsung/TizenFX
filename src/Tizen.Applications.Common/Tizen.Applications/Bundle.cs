@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using Tizen.Internals.Errors;
+using System.ComponentModel;
 
 namespace Tizen.Applications
 {
@@ -709,6 +710,13 @@ namespace Tizen.Applications
 
                 _disposed = true;
             }
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Bundle ImportFromArgv(string[] argv)
+        {
+            var ret = Interop.Bundle.ImportFromArgv(argv.Length, argv);
+            return new Bundle(ret);
         }
 
         /// <summary>
