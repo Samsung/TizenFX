@@ -153,15 +153,5 @@ namespace Tizen.NUI.BaseComponents
                 NotifyPropertyChanged();
             }
         }
-
-        private string InternalAutomationId
-        {
-            get { return base.AutomationId; }
-            set
-            {
-                base.AutomationId = value;
-                AccessibilityAttributes["automationId"] = value;
-            }
-        }
     }
 }
