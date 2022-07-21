@@ -26,6 +26,7 @@ namespace Tizen.NUI
     {
         internal ViewImpl(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            SwigDirectorConnect();
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)

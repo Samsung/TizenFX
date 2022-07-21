@@ -166,6 +166,14 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        public struct WantToUseViewImpl
+        {
+        }
+
+        public View(WantToUseViewImpl wantToUseViewImpl) : this(new ViewImpl(Interop.ViewImpl.New(), true))
+        {
+        }
+
         /// <summary>
         /// The event that is triggered when the View's ControlState is changed.
         /// </summary>
