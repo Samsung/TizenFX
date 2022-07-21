@@ -2429,6 +2429,24 @@ namespace Tizen.NUI.BaseComponents
         });
 
         /// <summary>
+        /// PropagatableControlStatesProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty PropagatableControlStatesProperty = BindableProperty.Create(nameof(PropagatableControlStates), typeof(ControlState), typeof(View), ControlState.All, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            if (newValue != null)
+            {
+                instance.InternalPropagatableControlStates = (ControlState)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.View)bindable;
+            return instance.InternalPropagatableControlStates;
+        });
+
+        /// <summary>
         /// GrabTouchAfterLeaveProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -69,6 +69,7 @@ namespace Tizen.NUI.BaseComponents
         private Size internalSize = null;
         private Size2D internalSize2D = null;
         private int layoutCount = 0;
+        private ControlState propagatableControlStates = ControlState.All;
 
         static View()
         {
@@ -262,7 +263,90 @@ namespace Tizen.NUI.BaseComponents
                 {
                     foreach (View child in Children)
                     {
-                        child.ControlState = value;
+                        ControlState allowed = child.PropagatableControlStates;
+                        if (allowed.Contains(ControlState.All))
+                        {
+                            child.ControlState = value;
+                        }
+                        else
+                        {
+                            ControlState newControlState = child.ControlState;
+
+                            if (allowed.Contains(ControlState.Normal))
+                            {
+                                if (value.Contains(ControlState.Normal))
+                                {
+                                    newControlState += ControlState.Normal;
+                                }
+                                else
+                                {
+                                    newControlState -= ControlState.Normal;
+                                }
+                            }
+
+                            if (allowed.Contains(ControlState.Disabled))
+                            {
+                                if (value.Contains(ControlState.Disabled))
+                                {
+                                    newControlState += ControlState.Disabled;
+                                }
+                                else
+                                {
+                                    newControlState -= ControlState.Disabled;
+                                }
+                            }
+
+                            if (allowed.Contains(ControlState.Selected))
+                            {
+                                if (value.Contains(ControlState.Selected))
+                                {
+                                    newControlState += ControlState.Selected;
+                                }
+                                else
+                                {
+                                    newControlState -= ControlState.Selected;
+                                }
+                            }
+
+                            if (allowed.Contains(ControlState.Pressed))
+                            {
+                                if (value.Contains(ControlState.Pressed))
+                                {
+                                    newControlState += ControlState.Pressed;
+                                }
+                                else
+                                {
+                                    newControlState -= ControlState.Pressed;
+                                }
+                            }
+
+                            if (allowed.Contains(ControlState.Focused))
+                            {
+                                if (value.Contains(ControlState.Focused))
+                                {
+                                    newControlState += ControlState.Focused;
+                                }
+                                else
+                                {
+                                    newControlState -= ControlState.Focused;
+                                }
+                            }
+
+                            if (allowed.Contains(ControlState.Other))
+                            {
+                                if (value.Contains(ControlState.Other))
+                                {
+                                    newControlState += ControlState.Other;
+                                }
+                                else
+                                {
+                                    newControlState -= ControlState.Other;
+                                }
+                            }
+
+                            if (child.ControlState != newControlState)
+                            child.ControlState = newControlState;
+                        }
                     }
                 }
 
@@ -2938,6 +3022,33 @@ namespace Tizen.NUI.BaseComponents
                     child.EnableControlStatePropagation = value;
                 }
             }
+        }
+
+        /// <summary>
+        /// The ControlStates can propagate from the parent.
+        /// Listed ControlStates will be accepted propagation of the parent ControlState changes
+        /// if parent view EnableControlState is true.
+        /// <see cref="EnableControlState"/>.
+        /// Default is ControlState.All, so every ControlStates will be propagated from the parent.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ControlState PropagatableControlStates
+        {
+            get
+            {
+                return (ControlState)GetValue(PropagatableControlStatesProperty);
+            }
+            set
+            {
+                SetValue(PropagatableControlStatesProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private ControlState InternalPropagatableControlStates
+        {
+            get => propagatableControlStates;
+            set => propagatableControlStates = value;
         }
 
         /// <summary>
