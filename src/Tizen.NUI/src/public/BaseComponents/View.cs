@@ -263,17 +263,16 @@ namespace Tizen.NUI.BaseComponents
                 {
                     foreach (View child in Children)
                     {
-                        ControlState Allowed = child.PropagatableControlStates;
-                        if (Allowed.Contains(ControlState.All))
+                        ControlState allowed = child.PropagatableControlStates;
+                        if (allowed.Contains(ControlState.All))
                         {
                             child.ControlState = value;
                         }
                         else
                         {
-                            ControlState prevControlState = child.ControlState;
-                            ControlState newControlState = prevControlState;
+                            ControlState newControlState = child.ControlState;
 
-                            if (Allowed.Contains(ControlState.Normal))
+                            if (allowed.Contains(ControlState.Normal))
                             {
                                 if (value.Contains(ControlState.Normal))
                                 {
@@ -285,7 +284,7 @@ namespace Tizen.NUI.BaseComponents
                                 }
                             }
 
-                            if (Allowed.Contains(ControlState.Disabled))
+                            if (allowed.Contains(ControlState.Disabled))
                             {
                                 if (value.Contains(ControlState.Disabled))
                                 {
@@ -297,7 +296,7 @@ namespace Tizen.NUI.BaseComponents
                                 }
                             }
 
-                            if (Allowed.Contains(ControlState.Selected))
+                            if (allowed.Contains(ControlState.Selected))
                             {
                                 if (value.Contains(ControlState.Selected))
                                 {
@@ -309,7 +308,7 @@ namespace Tizen.NUI.BaseComponents
                                 }
                             }
 
-                            if (Allowed.Contains(ControlState.Pressed))
+                            if (allowed.Contains(ControlState.Pressed))
                             {
                                 if (value.Contains(ControlState.Pressed))
                                 {
@@ -321,7 +320,7 @@ namespace Tizen.NUI.BaseComponents
                                 }
                             }
 
-                            if (Allowed.Contains(ControlState.Focused))
+                            if (allowed.Contains(ControlState.Focused))
                             {
                                 if (value.Contains(ControlState.Focused))
                                 {
@@ -333,7 +332,7 @@ namespace Tizen.NUI.BaseComponents
                                 }
                             }
 
-                            if (Allowed.Contains(ControlState.Other))
+                            if (allowed.Contains(ControlState.Other))
                             {
                                 if (value.Contains(ControlState.Other))
                                 {
