@@ -41,7 +41,27 @@ namespace Tizen.NUI.StyleGuide
                 Text = text,
             };
             if (subText != null) item.SubText = subText;
-            if (icon) item.Icon = new CheckBox();
+            if (icon)
+            {
+                var check = new CheckBox();
+                check.SelectedChanged += (s, e) =>
+                {
+                    if (e.IsSelected)
+                    {
+                        Log.Info(this.GetType().Name, "CheckBox is Selected\n");
+                    }
+                    else
+                    {
+                        Log.Info(this.GetType().Name, "CheckBox is Unselected\n");
+                    }
+                };
+                // CheckBox does not process touch event by setting Sensitive false.
+                // So, when user touches CheckBox, the touch event is passed to item and item becomes selected/unselected.
+                // When item becomes selected/unselected, CheckBox becomes selected/unselected.
+                // Because item's ControlState is propagated to its children by default by setting item.EnableControlStatePropagation true.
+                check.Sensitive = false;
+                item.Icon = check;
+            }
             if (extra)
             {
                 item.Extra = new RadioButton();

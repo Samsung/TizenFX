@@ -22,11 +22,14 @@ using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Components;
 using Tizen.Applications;
+using Tizen.Applications.Messages;
 
 namespace WidgetTemplate
 {
     class RedWidget : Widget
     {
+        string rcvPort = "my_widget_port";
+
         protected override void OnCreate(string contentInfo, Window window)
         {
             Tizen.Log.Info("NUI", "OnCreate(RedWidget) \n");
@@ -44,10 +47,25 @@ namespace WidgetTemplate
             sampleLabel.PivotPoint = PivotPoint.Center;
             mRootView.Add(sampleLabel);
 
-            mAnimation = new Animation(1000);
-            mAnimation.AnimateTo(sampleLabel, "PositionX", 300.0f);
-            mAnimation.Looping = true;
-            mAnimation.Play();
+            // Create receive port
+             _rcvPort = new MessagePort(rcvPort, false);
+             Tizen.Log.Info("NUI", "ReceivePort Create: " + _rcvPort.PortName + "Trusted: " + _rcvPort.Trusted);
+             _rcvPort.MessageReceived += MessageReceived_Callback;
+             _rcvPort.Listen();
+
+            // For testing send to bundle data from widget to widgetViewer, pleaes enable this code.
+            //timer = new Timer(5000);
+            //timer.Tick += TimerTick;
+            //timer.Start();
+        }
+
+        private void MessageReceived_Callback(object sender, MessageReceivedEventArgs e)
+        {
+            Tizen.Log.Info("NUI", "Message Received");
+            Tizen.Log.Info("NUI", "App ID: " + e.Remote.AppId);
+            Tizen.Log.Info("NUI", "PortName: " + e.Remote.PortName);
+            Tizen.Log.Info("NUI", "Trusted: " + e.Remote.Trusted);
+            Tizen.Log.Info("NUI", "message: " + e.Message.GetItem <string> ("message"));
         }
 
         protected override void OnPause()
@@ -76,8 +94,22 @@ namespace WidgetTemplate
             base.OnUpdate(contentInfo, force);
         }
 
+/*
+        private bool TimerTick(object source, Timer.TickEventArgs e)
+        {
+            Bundle bundle = new Bundle();
+            bundle.AddItem("COUNT", "1");
+            String encodedBundle = bundle.Encode();
+            SetContentInfo(encodedBundle);
+            return false;
+        }
+*/
+
+        private static MessagePort _rcvPort;
+
         private View mRootView;
         private Animation mAnimation;
+        private Timer timer;
     }
 
     class BlueWidget : Widget
@@ -98,11 +130,6 @@ namespace WidgetTemplate
             sampleLabel.SizeWidth = 300;
             sampleLabel.PivotPoint = PivotPoint.Center;
             mRootView.Add(sampleLabel);
-
-            mAnimation = new Animation(1000);
-            mAnimation.AnimateTo(sampleLabel, "PositionX", 400.0f);
-            mAnimation.Looping = true;
-            mAnimation.Play();
         }
 
         protected override void OnPause()
