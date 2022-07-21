@@ -68,5 +68,61 @@ namespace Tizen.NUI.Devel.Tests
             testView.Dispose();
         }
 
+        [Test]
+        [Category("P1")]
+        [Description("Get value test for View.PropagatableControlStates")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.View.PropagatableControlStates")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "sh10233.lee@samsung.com")]
+        public void PropagatableControlStates_GET_SET_VALUE()
+        {
+            /* TEST CODE */
+            View testView = new View();
+
+            Assert.AreEqual(ControlState.All, testView.PropagatableControlStates, "View PropagatableControlStates should be ControlState.All by default");
+
+            testView.PropagatableControlStates = ControlState.Disabled + ControlState.Selected;
+
+            Assert.AreEqual(ControlState.Disabled + ControlState.Selected, testView.PropagatableControlStates, "View PropagatableControlStates should be ControlState.All by default");
+
+            testView.Dispose();
+        }
+
+
+        [Test]
+        [Category("P1")]
+        [Description("Update value test for View.PropagatableControlStates")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.View.PropagatableControlStates")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "sh10233.lee@samsung.com")]
+        public void PropagatableControlStates_UPDATE_VALUE()
+        {
+            /* TEST CODE */
+            View parentView = new View();
+            View testView = new View();
+
+            testView.PropagatableControlStates = ControlState.Disabled;
+
+            parentView.Add(testView);
+            parentView.EnableControlStatePropagation = true;
+            parentView.EnableControlState = true;
+            testView.EnableControlState = true;
+
+            Assert.AreEqual(ControlState.Normal, testView.ControlState, "View ControlStates should be ControlState.Normal by default");
+
+            parentView.IsEnabled = false;
+
+            Assert.AreEqual(true, testView.ControlState.Contains(ControlState.Disabled), "View ControlStates should be ControlState.Disabled by parentView propagation");
+
+            testView.PropagatableControlStates -= ControlState.Disabled;
+
+            parentView.IsEnabled = true;
+
+            Assert.AreEqual(true, testView.ControlState.Contains(ControlState.Disabled), "View ControlStates should be ControlState.Disabled as parentView propagation blocked");
+
+            testView.Dispose();
+        }
     }
 }
