@@ -15,8 +15,6 @@
  */
 
 using System;
-using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 
@@ -121,8 +119,8 @@ namespace Tizen
             }
             else
             {
-                string[] fileslice = file.Split(new char[] { '\\', '/' });
-                string filename = fileslice.Last();
+                int index = file.LastIndexOfAny(new char[] { '\\', '/' });
+                string filename = file.Substring(index + 1);
                 Interop.Dlog.Print(priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
             }
         }
@@ -228,8 +226,8 @@ namespace Tizen
             }
             else
             {
-                string[] fileslice = file.Split(new char[] { '\\', '/' });
-                string filename = fileslice.Last();
+                int index = file.LastIndexOfAny(new char[] { '\\', '/' });
+                string filename = file.Substring(index + 1);
                 Interop.Dlog.InternalPrint(log_id, priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
             }
         }
@@ -336,8 +334,8 @@ namespace Tizen
             }
             else
             {
-                string[] fileslice = file.Split(new char[] { '\\', '/' });
-                string filename = fileslice.Last();
+                int index = file.LastIndexOfAny(new char[] { '\\', '/' });
+                string filename = file.Substring(index + 1);
                 Interop.Dlog.InternalPrint(log_id, priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
             }
 #endif
