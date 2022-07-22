@@ -48,6 +48,11 @@ namespace Tizen.NUI
         private float borderHeight = 0;
         private int screenWidth = 0;
         private int screenHeight = 0;
+
+        // for config
+        private Size2D minSize = null;
+        private Size2D maxSize = null;
+        private BorderResizePolicyType borderResizePolicy = BorderResizePolicyType.Free;
         #endregion //Fields
 
         #region Constructors
@@ -120,6 +125,37 @@ namespace Tizen.NUI
         #endregion //Indexers
 
         #region Methods
+        
+        /// <summary>
+        /// Update BorderProperty
+        /// </summary>
+        internal void UpdateProperty()
+        {
+            if (borderInterface != null)
+            {
+                if (minSize != borderInterface.MinSize)
+                {
+                    using Size2D mimimumSize = new Size2D(borderInterface.MinSize.Width, borderInterface.MinSize.Height + (int)borderHeight);
+                    SetMimimumSize(mimimumSize);
+                    minSize = borderInterface.MinSize;
+                }
+                if (maxSize != borderInterface.MaxSize)
+                {
+                    using Size2D maximumSize = new Size2D(borderInterface.MaxSize.Width, borderInterface.MaxSize.Height + (int)borderHeight);
+                    SetMaximumSize(maximumSize);
+                    maxSize = borderInterface.MaxSize;
+                }
+                if (borderResizePolicy != borderInterface.ResizePolicy)
+                {
+                    AddAuxiliaryHint("wm.policy.win.resize_aspect_ratio", "0");
+                    borderResizePolicy = borderInterface.ResizePolicy;
+                    if (borderResizePolicy == BorderResizePolicyType.KeepRatio)
+                    {
+                        AddAuxiliaryHint("wm.policy.win.resize_aspect_ratio", "1");
+                    }
+                }
+            }
+        }
         /// <summary>
         /// Called when the border is closed.
         /// If the delegate is declared, the delegate is called, otherwise window is destroyed.
@@ -198,8 +234,8 @@ namespace Tizen.NUI
                 }
                 if (borderInterface.MaxSize != null)
                 {
-                    using Size2D maximuSize = new Size2D(borderInterface.MaxSize.Width, borderInterface.MaxSize.Height + (int)borderHeight);
-                    SetMaximumSize(maximuSize);
+                    using Size2D maximumSize = new Size2D(borderInterface.MaxSize.Width, borderInterface.MaxSize.Height + (int)borderHeight);
+                    SetMaximumSize(maximumSize);
                 }
 
                 // When running the app for the first time, if it runs in full size, do Maximize(true).
@@ -207,9 +243,11 @@ namespace Tizen.NUI
                     realWindowSize.Width >= screenWidth && realWindowSize.Height >= screenHeight &&
                     IsMaximized() == false)
                 {
-                    WindowSize -= new Size2D((int)borderInterface.BorderLineThickness * 2, (int)(borderHeight + borderInterface.BorderLineThickness * 2));   
                     Maximize(true);
                     borderInterface.OnMaximize(true);
+                    ResizedEventArgs e = new ResizedEventArgs();
+                    e.WindowSize = WindowSize;
+                    OnBorderWindowResized(this, e);
                 }
                 else
                 {
