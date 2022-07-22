@@ -16,6 +16,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 
@@ -120,8 +121,9 @@ namespace Tizen
             }
             else
             {
-                Uri f = new Uri("file://" + file);
-                Interop.Dlog.Print(priority, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
+                string[] fileslice = file.Split(new char[] { '\\', '/' });
+                string filename = fileslice.Last();
+                Interop.Dlog.Print(priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
             }
         }
     }
@@ -226,8 +228,9 @@ namespace Tizen
             }
             else
             {
-                Uri f = new Uri("file://" + file);
-                Interop.Dlog.InternalPrint(log_id, priority, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
+                string[] fileslice = file.Split(new char[] { '\\', '/' });
+                string filename = fileslice.Last();
+                Interop.Dlog.InternalPrint(log_id, priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
             }
         }
     }
@@ -333,8 +336,9 @@ namespace Tizen
             }
             else
             {
-                Uri f = new Uri("file://" + file);
-                Interop.Dlog.InternalPrint(log_id, priority, tag, "%s: %s(%d) > [SECURE_LOG] %s", Path.GetFileName(f.AbsolutePath), func, line, message);
+                string[] fileslice = file.Split(new char[] { '\\', '/' });
+                string filename = fileslice.Last();
+                Interop.Dlog.InternalPrint(log_id, priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
             }
 #endif
         }
