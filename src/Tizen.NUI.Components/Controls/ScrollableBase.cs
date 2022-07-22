@@ -1987,17 +1987,20 @@ namespace Tizen.NUI.Components
                              (!isHorizontal && direction == View.FocusDirection.Up) ||
                              (direction == View.FocusDirection.CounterClockwise));
 
+            View nextFocusedView = FocusManager.Instance.GetNearestFocusableActor(this, currentFocusedView, direction);
+
             // Move out focus from ScrollableBase.
             // FIXME: Forward, Backward is unimplemented other components.
-            if (direction == View.FocusDirection.Forward || direction == View.FocusDirection.Backward ||
-                (forward && maxScrollDistance - targetPosition < 0.1f) || (backward && targetPosition < 0.1f))
+            if (direction == View.FocusDirection.Forward ||
+                direction == View.FocusDirection.Backward ||
+                (nextFocusedView == null &&
+                ((forward && maxScrollDistance - targetPosition < 0.1f) ||
+                 (backward && targetPosition < 0.1f))))
             {
                 var next = FocusManager.Instance.GetNearestFocusableActor(this.Parent, this, direction);
                 Debug.WriteLineIf(focusDebugScrollableBase, $"Focus move [{direction}] out from ScrollableBase! Next focus target {next}:{next?.ID}");
                 return next;
             }
-
-            View nextFocusedView = FocusManager.Instance.GetNearestFocusableActor(this, currentFocusedView, direction);
 
             if (focusDebugScrollableBase)
             {
