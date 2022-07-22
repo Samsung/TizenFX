@@ -62,7 +62,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ImageListProperty = BindableProperty.Create(nameof(ImageList), typeof(IList<string>), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            ((LoadingStyle)bindable).images = newValue as List<string>;
+            ((LoadingStyle)bindable).images = newValue == null ? null : newValue as List<string>;
         },
         defaultValueCreator: (bindable) => ((LoadingStyle)bindable).images
         );
@@ -105,10 +105,6 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                if (images == null)
-                {
-                    images = new List<string>();
-                }
                 return GetValue(ImageListProperty) as List<string>;
             }
             internal set => SetValue(ImageListProperty, value);
