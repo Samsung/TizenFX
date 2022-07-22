@@ -71,6 +71,10 @@ namespace Tizen.NUI
 
         private CurrentGesture currentGesture = CurrentGesture.None;
         private bool disposed = false;
+
+        private Size2D minSize;
+        private Size2D maxSize;
+        private Window.BorderResizePolicyType resizePolicy;
         #endregion //Fields
 
         #region Events
@@ -115,13 +119,35 @@ namespace Tizen.NUI
         /// The minimum size by which the window will small.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D MinSize {get; set;}
+        public Size2D MinSize 
+        {
+            get
+            {
+                return minSize;
+            }
+            set
+            {
+                minSize = value;
+                BorderWindow?.UpdateProperty();
+            }
+        }
 
         /// <summary>
         /// The maximum size by which the window will big.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D MaxSize {get; set;}
+        public Size2D MaxSize
+        {
+            get
+            {
+                return maxSize;
+            }
+            set
+            {
+                maxSize = value;
+                BorderWindow?.UpdateProperty();
+            }
+        }
 
         /// <summary>
         /// The window with borders added.
@@ -143,7 +169,18 @@ namespace Tizen.NUI
         /// Default value is BorderResizePolicyType.Free;
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Window.BorderResizePolicyType ResizePolicy {get; set;}
+        public Window.BorderResizePolicyType ResizePolicy
+        {
+            get
+            {
+                return resizePolicy;
+            }
+            set
+            {
+                resizePolicy = value;
+                BorderWindow?.UpdateProperty();
+            }
+        }
 
 
         /// <summary>
