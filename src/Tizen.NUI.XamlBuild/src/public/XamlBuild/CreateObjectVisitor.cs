@@ -102,8 +102,13 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
                 //clean the node as it has been fully exhausted
                 foreach (var prop in node.Properties)
+                {
                     if (!node.SkipProperties.Contains(prop.Key))
+                    {
                         node.SkipProperties.Add(prop.Key);
+                    }
+                }
+
                 node.CollectionItems.Clear();
                 return;
             }
@@ -125,9 +130,12 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                     throw new XamlParseException(
                         string.Format("No constructors found for {0} with matching x:Arguments", typedef.FullName), node);
                 }
+
                 ctorInfo = factoryCtorInfo;
                 if (!typedef.IsValueType) //for ctor'ing typedefs, we first have to ldloca before the params
+                {
                     Context.IL.Append(PushCtorXArguments(factoryCtorInfo, node));
+                }
             }
             else if (node.Properties.ContainsKey(XmlName.xFactoryMethod))
             {
@@ -165,6 +173,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                     throw new XamlParseException(
                         String.Format("No static method found for {0}::{1} ({2})", typedef.FullName, factoryMethod, null), node);
                 }
+
                 Context.IL.Append(PushCtorXArguments(factoryMethodInfo, node));
             }
             if (ctorInfo == null && factoryMethodInfo == null)
@@ -239,8 +248,11 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             }
 
             if (parameterizedCtorInfo != null && ctorInfo == null)
+            {
                 //there was a parameterized ctor, we didn't use it
                 throw new XamlParseException($"The Property '{missingCtorParameter}' is required to create a '{typedef.FullName}' object.", node);
+            }
+
             var ctorinforef = ctorInfo?.ResolveGenericParameters(typeref, Module);
 
             var factorymethodinforef = factoryMethodInfo?.ResolveGenericParameters(ownerTypeOfFactoryMethod, Module);
@@ -339,9 +351,14 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 {
                     var visitor = new SetPropertiesVisitor(Context);
                     foreach (var cnode in node.Properties.Values.ToList())
+                    {
                         cnode.Accept(visitor, node);
+                    }
+
                     foreach (var cnode in node.CollectionItems)
+                    {
                         cnode.Accept(visitor, node);
+                    }
 
                     markupProvider = new ArrayExtension();
 
@@ -356,8 +373,12 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
                     //clean the node as it has been fully exhausted
                     foreach (var prop in node.Properties)
+                    {
                         if (!node.SkipProperties.Contains(prop.Key))
+                        {
                             node.SkipProperties.Add(prop.Key);
+                        }
+                    }
 
                     return;
                 }
