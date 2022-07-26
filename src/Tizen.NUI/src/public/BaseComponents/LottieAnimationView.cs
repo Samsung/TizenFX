@@ -530,6 +530,12 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected int ActionJumpTo { get; set; } = Interop.LottieAnimationView.AnimatedVectorImageVisualActionJumpToGet();
+
+        /// <summary>
+        /// Actions property value to set the dynamic property.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected int ActionSetDynamicProperty { get; set; } = Interop.LottieAnimationView.AnimatedVectorImageVisualActionSetDynamicPropertyGet();
         #endregion Property
 
 
@@ -722,6 +728,20 @@ namespace Tizen.NUI.BaseComponents
             Tizen.Log.Error("NUI", $"[ERR] fail to get play range from dali! case#2");
             return new Tuple<int, int>(-1, -1);
         }
+
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate PropertyValue DynamicPropertyCallbackType(int id, int returnType, uint frameNumber);
+
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDynamicProperty(DynamicProperty info)
+        {
+            Interop.View.DoActionExtension(SwigCPtr, ImageView.Property.IMAGE, ActionSetDynamicProperty, info.Id, info.KeyPath, info.Property, Marshal.GetFunctionPointerForDelegate<System.Delegate>(info.Callback));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         #endregion Method
 
 
@@ -821,6 +841,33 @@ namespace Tizen.NUI.BaseComponents
             /// <since_tizen> 7 </since_tizen>
             AutoReverse
         }
+
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum VectorProperty
+        {
+            FillColor,         ///< Fill color of the object, Type Property::VECTOR3
+            FillOpacity,       ///< Fill opacity of the object, Type Property::FLOAT
+            StrokeColor,       ///< Stroke color of the object, Type Property::VECTOR3
+            StrokeOpacity,      ///< Stroke opacity of the object, Type Property::FLOAT
+            StrokeWidth,       ///< Stroke width of the object, Type Property::FLOAT
+            TransformAnchor,   ///< Transform anchor of the Layer and Group object, Type Property::VECTOR2
+            TransformPosition, ///< Transform position of the Layer and Group object, Type Property::VECTOR2
+            TransformScale,    ///< Transform scale of the Layer and Group object, Type Property::VECTOR2 [0..100]
+            TransformRotation, ///< Transform rotation of the Layer and Group object, Type Property::FLOAT [0..360] in degrees
+            TransformOpacity   ///< Transform opacity of the Layer and Group object, Type Property::FLOAT
+        };
+
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct DynamicProperty
+        {
+            public int Id;
+            public string KeyPath;
+            public int Property;
+            public DynamicPropertyCallbackType Callback;
+        }
+
         #endregion Event, Enum, Struct, ETC
 
 
