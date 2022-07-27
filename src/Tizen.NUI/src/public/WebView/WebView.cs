@@ -743,13 +743,13 @@ namespace Tizen.NUI.BaseComponents
         /// Context.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static WebContext Context => context;
+        public WebContext Context => context;
 
         /// <summary>
         /// CookieManager.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static WebCookieManager CookieManager => cookieManager;
+        public WebCookieManager CookieManager => cookieManager;
 
         /// <summary>
         /// BackForwardList.
