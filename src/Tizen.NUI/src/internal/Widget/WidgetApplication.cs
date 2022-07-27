@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -50,7 +50,7 @@ namespace Tizen.NUI
 
             IntPtr widgetIntPtr = Interop.WidgetApplication.New(argc, argvStr, stylesheet);
 
-            WidgetApplication ret = new WidgetApplication(widgetIntPtr, false);
+            WidgetApplication ret = new WidgetApplication(widgetIntPtr, true);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
@@ -67,6 +67,19 @@ namespace Tizen.NUI
             WidgetApplication ret = new WidgetApplication(Interop.WidgetApplication.Assign(SwigCPtr, WidgetApplication.getCPtr(widgetApplication)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
+        /// </summary>
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            base.Dispose(type);
         }
 
         public void RegisterWidgetCreatingFunction()
