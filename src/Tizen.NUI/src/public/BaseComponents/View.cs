@@ -71,6 +71,7 @@ namespace Tizen.NUI.BaseComponents
         private Size2D internalSize2D = null;
         private int layoutCount = 0;
         private ControlState propagatableControlStates = ControlState.All;
+        private bool dispatchTouchEvents = true;
 
         static View()
         {
@@ -3348,6 +3349,43 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(DispatchKeyEventsProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether touch events can be dispatched.
+        /// If a View's DispatchTouchEvents is set to false, then it's can not will receive touch and parents will not receive a touch event signal either.
+        /// This works without adding a TouchEvent callback in the View.
+        /// <note>
+        /// If the <see cref="Tizen.NUI.BaseComponents.View.Sensitive"/> is a property that determines whether or not to be hittable, then this property prevents the propagation of the hit touch event.
+        /// </note>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchTouchEvents
+        {
+            get
+            {
+                return dispatchTouchEvents;
+            }
+            set
+            {
+                if (dispatchTouchEvents != value)
+                {
+                    dispatchTouchEvents = value;
+                    if (dispatchTouchEvents == false)
+                    {
+                        TouchEvent += OnDispatchTouchEvent;
+                    }
+                    else
+                    {
+                        TouchEvent -= OnDispatchTouchEvent;
+                    }
+                }
+            }
+        }
+
+        private bool OnDispatchTouchEvent(object source, View.TouchEventArgs e)
+        {
+            return true;
         }
 
         /// <summary>
