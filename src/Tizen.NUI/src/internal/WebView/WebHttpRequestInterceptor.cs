@@ -45,6 +45,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets webview in which request is intercepted.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public BaseComponents.WebView InterceptedWebView
+        {
+            get
+            {
+                return new BaseComponents.WebView(Interop.WebHttpRequestInterceptor.GetWebView(interceptorHandle), true);
+            }
+        }
+
+        /// <summary>
         /// Gets url of intercepted request.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

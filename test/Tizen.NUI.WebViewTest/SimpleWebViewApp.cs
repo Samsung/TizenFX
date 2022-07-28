@@ -413,6 +413,11 @@ namespace Tizen.NUI.WebViewTest
                 }
             }
 
+            if (interceptor.InterceptedWebView == simpleWebView)
+            {
+                Log.Info("WebView", $"------------http request intercepted web view is simpleWebVew-------");
+            }
+
             Log.Info("WebView", $"------------http request intercepted end-------");
         }
 
