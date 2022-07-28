@@ -23,6 +23,9 @@ namespace Tizen.NUI
     {
         internal static partial class WebHttpRequestInterceptor
         {
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebRequestInterceptor_GetWebView")]
+            public static extern global::System.IntPtr GetWebView(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebRequestInterceptor_GetUrl")]
             public static extern string GetUrl(global::System.Runtime.InteropServices.HandleRef jarg1);
 
