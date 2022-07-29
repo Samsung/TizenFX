@@ -32,24 +32,17 @@ namespace Tizen.NUI.Scene3D
     /// The number of animation is also retrieved by GetAnimationCount() method.
     ///
     /// By default, The loaded model has it's own position and size which are defined in vertex buffer regardless of the Control size.
-    /// The model can be resized and repositioned to fit to the ModelView Control with FitSize() and FitCenter() methods.
+    /// The model can be resized and repositioned to fit to the ModelView Control with UseSizeOfView and UseCenterOfView properties.
     /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ModelView : View
     {
+        private bool useSizeOfView = false;
+        private bool useCenterOfView = false;
+
         internal ModelView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-        }
-
-        /// <summary>
-        /// Release swigCPtr.
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected override void ReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
-        {
-            Interop.ModelView.DeleteModelView(swigCPtr);
         }
 
         /// <summary>
@@ -57,9 +50,10 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="modelPath">model file path.(e.g., glTF, and DLI).</param>
         /// <param name="resourcePath">resource file path that includes binary, image etc.</param>
+        /// <note> If resourcePath is empty, the parent directory path of modelPath is used for resource path. </note>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ModelView(string modelPath, string resourcePath) : this(Interop.ModelView.ModelViewNew(modelPath, resourcePath), true)
+        public ModelView(string modelPath, string resourcePath = "") : this(Interop.ModelView.ModelViewNew(modelPath, resourcePath), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -73,6 +67,66 @@ namespace Tizen.NUI.Scene3D
         public ModelView(ModelView modelView) : this(Interop.ModelView.NewModelView(ModelView.getCPtr(modelView)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Retrieves model root View.
+        /// </summary>
+        /// <note>
+        /// This ModelRoot means a root View that contains 3D models to render.
+        /// The light source is only applied on the models under this ModelRoot.
+        /// </note>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View ModelRoot
+        {
+            get
+            {
+                return GetModelRoot();
+            }
+        }
+
+        /// <summary>
+        /// Fits the model to the View size.
+        /// If this property is true, the model is resized to fit the width or height of the View by scaling the ModelRoot.
+        /// <note>
+        /// This property only changes model size not the pivot.
+        /// </note>
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool UseSizeOfView
+        {
+            get
+            {
+                return useSizeOfView;
+            }
+            set
+            {
+                useSizeOfView = value;
+                Interop.ModelView.FitSize(SwigCPtr, useSizeOfView);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Moves the model to the center of control.
+        /// If this property is true, the model moves so that the center is located at the center of the View by change PivotPoint of ModelRoot.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool UseCenterOfView
+        {
+            get
+            {
+                return useCenterOfView;
+            }
+            set
+            {
+                useCenterOfView = value;
+                Interop.ModelView.FitCenter(SwigCPtr, useCenterOfView);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
         }
 
         /// <summary>
@@ -90,44 +144,7 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Retrieves model root Actor.
-        /// </summary>
-        /// <returns>Root View of the model.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public View GetModelRoot()
-        {
-            View ret = new View(Interop.ModelView.GetModelRoot(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        /// <summary>
-        /// Fits the model to the Control size.
-        /// </summary>
-        /// <param name="fit">True to fit model size to control.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void FitSize(bool fit)
-        {
-            Interop.ModelView.FitSize(SwigCPtr, fit);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Moves the model to the center of control.
-        /// </summary>
-        /// <param name="fit">True to fit model to center of control.</param>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void FitCenter(bool fit)
-        {
-            Interop.ModelView.FitCenter(SwigCPtr, fit);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Retrieves model root Actor.
+        /// Changes Image Based Light as the input textures.
         /// </summary>
         /// <param name="diffuse">Cube map that can be used as a diffuse IBL source.</param>
         /// <param name="specular">Cube map that can be used as a specular IBL source.</param>
@@ -182,6 +199,29 @@ namespace Tizen.NUI.Scene3D
             Animation ret = new Animation(Interop.ModelView.GetAnimation(SwigCPtr, name), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Retrieves model root Actor.
+        /// </summary>
+        /// <returns>Root View of the model.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        private View GetModelRoot()
+        {
+            View ret = new View(Interop.ModelView.GetModelRoot(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Release swigCPtr.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.ModelView.DeleteModelView(swigCPtr);
         }
     }
 }
