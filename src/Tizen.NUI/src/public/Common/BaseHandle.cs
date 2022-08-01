@@ -493,7 +493,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public bool IsEqual(BaseHandle rhs)
         {
-            if (disposed == true)
+            if (disposed == true || rhs == null || !rhs.HasBody())
             {
                 return false;
             }
