@@ -340,7 +340,7 @@ namespace Tizen.Applications
             err = Interop.Package.PackageInfoGetTepName(handle, out package._expansionPackageName);
             if (err != Interop.PackageManager.ErrorCode.None)
             {
-                Log.Warn(LogTag, "Failed to get expansion package name of " + pkgId);
+                // Do not print warning log because most packages do not have tep.
                 package._expansionPackageName = string.Empty;
             }
 
