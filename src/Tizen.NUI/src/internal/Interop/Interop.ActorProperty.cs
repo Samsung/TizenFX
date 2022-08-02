@@ -218,6 +218,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_CULLED_get")]
             public static extern int CulledGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Property_UPDATE_AREA_HINT_get")]
+            public static extern int UpdateAreaHintGet();
         }
     }
 }
