@@ -23,7 +23,7 @@ namespace Tizen.MachineLearning.Train
     /// Creates a neural network optimizer.
     /// </summary>
     /// <remarks>
-    /// Use this function to create neural network optimizer. If not set to
+    /// Use this class to create neural network optimizer. If not set to
     /// model, optimizer should be released using Dispose().
     /// If set to a model, optimizer is available until model is released.
     /// </remarks>
@@ -49,7 +49,7 @@ namespace Tizen.MachineLearning.Train
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         /// <remarks>
-        /// Use this function to destroy neural network optimizer. Fails if layer is owned by a model.
+        /// Use this method to destroy neural network optimizer. Fails if layer is owned by a model.
         /// </remarks>
         ~Optimizer()
         {
@@ -95,7 +95,7 @@ namespace Tizen.MachineLearning.Train
         /// Sets the neural network optimizer property
         /// </summary>
         /// <remarks>
-        /// Use this function to set neural network optimizer property.
+        /// Use this method to set neural network optimizer property.
         /// The input format of property must be 'key = value' format.
         /// </remarks>
         /// <param name="property">property for optimizer.</param>

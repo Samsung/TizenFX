@@ -50,27 +50,27 @@ namespace Tizen.MachineLearning.Train
         /// </summary>
         Layer = 1,
         /// <summary>
-        /// Model summary layer's including weight information
+        /// Model summary weight information that layer has.
         /// </summary>
         Tensor = 2
     }
 
     /// <summary>
-    /// Enumeration for the neural network.
+    /// Enumeration of model formats for the neural network.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
     public enum NNTrainerModelFormat
     {
         /// <summary>
-        /// Raw bin file saves model weights required for inference and training without any configurations
+        /// Raw bin file stores model weights required for inference and training without any configurations
         /// </summary>
         Bin = 0,
         /// <summary>
-        /// Ini format file saves model configurations.
+        /// Ini format file stores model configurations.
         /// </summary>
         Ini = 1,
         /// <summary>
-        /// Ini with bin format file saves configurations with parameters required for inference and training.
+        /// Ini with bin format file stores configurations with parameters required for inference and training.
         /// </summary>
         IniWithBin = 2
     }
@@ -234,15 +234,15 @@ namespace Tizen.MachineLearning.Train
     public enum NNTrainerDatasetMode
     {
         /// <summary>
-        /// The given data is for used when training
+        /// Data is used when training
         /// </summary>
         Train = 0,
         /// <summary>
-        /// The given data is for used when validating
+        /// Data is used when validating
         /// </summary>
         Valid = 1,
         /// <summary>
-        /// The given data is for used when testing
+        /// Data is used when testing
         /// </summary>
         Test = 2,
     }

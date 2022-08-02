@@ -23,12 +23,12 @@ namespace Tizen.MachineLearning.Train
     /// Constructs the neural network model
     /// </summary>
     /// <remarks>
-    /// Use this function to create neural network model.
+    /// Use this class to create neural network model.
     /// The Model class provides interfaces to construct, complle, run, adding layer
     /// and etc with neural networks.
-    /// If you want to access only internal storage by using this function,
+    /// If you want to access only internal storage by using this method,
     /// you should add privilege %http://tizen.org/privilege/mediastorage. Or, if you
-    /// want to access only external storage by using this function, you should add
+    /// want to access only external storage by using this method, you should add
     /// privilege %http://tizen.org/privilege/externalstorage. If you want to access
     /// both storage, you must add all the privileges.
     /// </remarks>
@@ -111,13 +111,13 @@ namespace Tizen.MachineLearning.Train
         /// Compiles and finalizes the neural network model with the hyperparameter.
         /// </summary>
         /// <remarks>
-        /// Use this function to initialize neural network model.Various
-        /// hyperparameter before compile the model can be set. Once compiled,
+        /// Use this method to initialize neural network model.Various
+        /// hyperparameter can be set before compile the model. Once compiled,
         /// any modification to the properties of model or layers/dataset/optimizer in
         /// the model will be restricted. Further, addition of layers or changing the
         /// optimizer/dataset of the model will not be permitted.
         /// The input format of hyperparameter must be 'key = value' format.
-        /// <param name="hyperparameter">Hyperparameters for train complie.</param>
+        /// <param name="hyperparameter">Hyperparameter for train complie.</param>
         /// </remarks>
         /// <since_tizen> 10 </since_tizen>
         public void Compile(params string[] hyperparameter)
@@ -137,8 +137,8 @@ namespace Tizen.MachineLearning.Train
         /// Trains the neural network model with the hyperparameter.
         /// </summary>
         /// <remarks>
-        /// Use this function to train the compiled neural network model with
-        /// the passed training hyperparameters. This function will return once the
+        /// Use this method to train the compiled neural network model with
+        /// the passed training hyperparameters. This method will return once the
         /// training, along with requested validation and testing, is completed.
         /// The input format of hyperparameter must be 'key = value' format.
         /// </remarks>
@@ -160,9 +160,6 @@ namespace Tizen.MachineLearning.Train
         /// <summary>
         /// Gets the summary of the neural network model.
         /// </summary>
-        /// <remarks>
-        /// Use this function to get the summary of the neural network model.
-        /// </remarks>
         /// <param name="verbosity">Verbose level of the summary.</param>
         /// <returns>On return, a string value. The summary of the current model. Avoid logic to parse and exploit summary if possible.</returns>
         /// <since_tizen> 10 </since_tizen>
@@ -180,17 +177,17 @@ namespace Tizen.MachineLearning.Train
         /// Saves the model.
         /// </summary>
         /// <remarks>
-        /// Use this function to save the current model. format
+        /// Use this method to save the current model. Format
         /// describes various formats in which various selections of the
         /// parameters of the models can be saved. Some formats may save
         /// parameters required for training. Some other formats may save model
-        /// configurations. Unless stated otherwise, Compile() has to
-        /// be called upon the a model before calling this function.
+        /// configurations. Unless stated otherwise, <see cref="Compile"/> has to
+        /// be called upon the a model before calling this method.
         /// Saved ini, if any, is not guaranteed to be identical to the original
-        /// ini that maybe used to load the model.
-        /// If you want to access only internal storage by using this function,
+        /// ini that might have been used to load the model.
+        /// If you want to access only internal storage by using this method,
         /// you should add privilege %http://tizen.org/privilege/mediastorage. Or, if you
-        /// want to access only external storage by using this function, you should add
+        /// want to access only external storage by using this method, you should add
         /// privilege %http://tizen.org/privilege/externalstorage. If you want to access
         /// both storage, you must add all the privileges.
         /// </remarks>
@@ -210,17 +207,17 @@ namespace Tizen.MachineLearning.Train
         /// Loads the model.
         /// </summary>
         /// <remarks>
-        /// Use this function to load the current model. format
+        /// Use this method to load the current model. Format
         /// describes various formats in which various selections of the
         /// parameters of the models can be loaded. Some formats may load
         /// parameters required for training. Some other formats may load model
         /// configurations. Unless stated otherwise, loading model configuration requires
-        /// a freshly constructed model with new model() without Compile(),
+        /// a freshly constructed model with new Model() without <see cref="Compile"/>,
         /// loading model parameter requires Compile() to be called upon the model
-        /// before calling this function.
-        /// If you want to access only internal storage by using this function,
+        /// before calling this method.
+        /// If you want to access only internal storage by using this method,
         /// you should add privilege %http://tizen.org/privilege/mediastorage. Or, if you
-        /// want to access only external storage by using this function, you should add
+        /// want to access only external storage by using this method, you should add
         /// privilege %http://tizen.org/privilege/externalstorage. If you want to access
         /// both storage, you must add all the privileges.
         /// </remarks>
@@ -240,10 +237,10 @@ namespace Tizen.MachineLearning.Train
         /// Adds layer in neural network model.
         /// </summary>
         /// <remarks>
-        /// Use this function to add a layer to the model. The layer is added to
+        /// Use this method to add a layer to the model. The layer is added to
         /// the end of the existing layers in the model. This transfers the
         /// ownership of the layer to the network. No need to destroy the layer once it
-        /// is added to a model. layer is available until the model is released. so
+        /// is added to a model. Layer is available until the model is released, so
         /// Dispose() must never be used.
         /// </remarks>
         /// <param name="layer"> The instance of Layer class </param>
@@ -267,11 +264,11 @@ namespace Tizen.MachineLearning.Train
         /// Gets neural network layer from the model with the given name.
         /// </summary>
         /// <remarks>
-        /// Use this function to get already created Neural Network Layer.
+        /// Use this method to get already created Neural Network Layer.
         /// The returned layer must not be deleted as it is owned by the model.
         /// layerName can be set by SetProperty method of Layer.
-        /// Returned layer instance is different with same layerName, but the
-        /// Internally native layer handle is same.
+        /// Returned layer instance is different with same layerName, but internally the
+        /// native layer handle is same.
         /// </remarks>
         /// <param name="layerName"> Name of the already created layer.</param>
         /// <returns>layer instance</returns>
@@ -294,9 +291,9 @@ namespace Tizen.MachineLearning.Train
         /// Sets the optimizer for the neural network model.
         /// </summary>
         /// <remarks>
-        /// Use this function to set neural network optimizer. This transfers
+        /// Use this method to set neural network optimizer. This transfers
         /// the ownership of the optimizer to the network. No need to destroy the
-        /// optimizer if it is to a model.
+        /// optimizer if it is added to a model.
         /// </remarks>
         /// <param name="optimizer"> The instance of Optimizer class </param>
         /// <since_tizen> 10 </since_tizen>
@@ -315,7 +312,7 @@ namespace Tizen.MachineLearning.Train
         /// Sets the dataset (data provider) for the neural network model.
         /// </summary>
         /// <remarks>
-        /// Use this function to set dataset for running the model. The dataset
+        /// Use this method to set dataset for running the model. The dataset
         /// will provide training, validation and test data for the model. This transfers
         /// the ownership of the dataset to the network. No need to destroy the dataset
         /// once it is set to a model.
@@ -370,9 +367,8 @@ namespace Tizen.MachineLearning.Train
         /// Gets output tensors information of the model.
         /// </summary>
         /// <remarks>
-        /// Use this function to get output tensors information of the model.
-        /// destroy tensorInfoHandle with TensorsInfo.Dispose() after use.
-        /// model must be compiled before calling this function.
+        /// Use this method to get output tensors information of the model.
+        /// Model must be compiled before calling this method.
         /// </remarks>
         /// <returns>TensorsInfo instance</returns>
         /// <since_tizen> 10 </since_tizen>
@@ -390,9 +386,8 @@ namespace Tizen.MachineLearning.Train
         /// Gets input tensors information of the model.
         /// </summary>
         /// <remarks>
-        /// Use this function to get input tensors information of the model.
-        /// destroy tensorInfoHandle with TensorsInfo.Dispose() after use.
-        /// model must be compiled before calling this function.
+        /// Use this method to get input tensors information of the model.
+        /// Model must be compiled before calling this method.
         /// </remarks>
         /// <returns>TensorsInfo instance</returns>
         /// <since_tizen> 10 </since_tizen>
