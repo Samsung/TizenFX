@@ -1863,23 +1863,22 @@ namespace Tizen.NUI.BaseComponents
         );
 
         /// <summary>
-        /// UpdateSizeHintProperty
+        /// UpdateAreaHintProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty UpdateSizeHintProperty = BindableProperty.Create(nameof(UpdateSizeHint), typeof(Vector2), typeof(View), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        public static readonly BindableProperty UpdateAreaHintProperty = BindableProperty.Create(nameof(UpdateAreaHint), typeof(Vector4), typeof(View), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
         {
             var view = (View)bindable;
             if (newValue != null)
             {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, Interop.ViewProperty.UpdateSizeHintGet(), new Tizen.NUI.PropertyValue((Vector2)newValue));
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, Interop.ActorProperty.UpdateAreaHintGet(), new Tizen.NUI.PropertyValue((Vector4)newValue));
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var view = (View)bindable;
-
-            Vector2 temp = new Vector2(0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, Interop.ViewProperty.UpdateSizeHintGet()).Get(temp);
+            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, Interop.ActorProperty.UpdateAreaHintGet()).Get(temp);
             return temp;
         }));
 

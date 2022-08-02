@@ -42,7 +42,7 @@ namespace Tizen.NUI.WebViewTest
             Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Vertical,
-                LinearAlignment = LinearLayout.Alignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center
             };
 
             buttons = new Button[menu.ItemCount];
@@ -108,11 +108,11 @@ namespace Tizen.NUI.WebViewTest
 
         private int index = 0;
         private const int WEBSITES_COUNT = 2;
-        private string[] websites =
-        {
-            "https://terms.account.samsung.com/contents/legal/kor/kor/customizedservicecontent.html",
-            "https://www.youtube.com"
-        };
+        private string[] websites = new string[2];
+        //{
+        //    "https://terms.account.samsung.com/contents/legal/kor/kor/customizedservicecontent.html",
+        //    "https://www.youtube.com"
+        //};
 
         private string invalidUrl = "https://test/";
 
@@ -135,6 +135,7 @@ namespace Tizen.NUI.WebViewTest
         private int blueKeyPressedCount = 0;
         private int yellowKeyPressedCount = 0;
         private int redKeyPressedCount = 0;
+        private int greenKeyPressedCount = 0;
 
         private static long startTime = 0;
 
@@ -238,6 +239,11 @@ namespace Tizen.NUI.WebViewTest
             GetDefaultWindow().Add(simpleWebView);
 
             GetDefaultWindow().KeyEvent += Instance_KeyEvent;
+
+            // load local files.
+            websites[0] = $"file://{Tizen.Applications.Application.Current.DirectoryInfo.Resource}test1.html";
+            websites[1] = $"file://{Tizen.Applications.Application.Current.DirectoryInfo.Resource}test2.html";
+
             simpleWebView.LoadUrl(websites[index]);
             //simpleWebView.LoadHtmlString("<Html><Head><title>Example</title></Head><Body><b>[This text is Bold......]</b></Body></Html>");
             FocusManager.Instance.SetCurrentFocusView(simpleWebView);
@@ -818,8 +824,7 @@ namespace Tizen.NUI.WebViewTest
                 {
                     Log.Info("WebView", $"key XF86Green is pressed.");
 
-                    //greenKeyPressedCount++;
-                    if (simpleWebView.Url.Contains("account.samsung"))
+                    if (greenKeyPressedCount == 0 && simpleWebView.Url.Contains("test1.html"))
                     {
                         // webview apis
                         Log.Info("WebView", $"web page title is {simpleWebView.Title}");
@@ -1059,6 +1064,7 @@ namespace Tizen.NUI.WebViewTest
 
                         //
                         result = true;
+                        greenKeyPressedCount++;
                     }
                 }
             }
