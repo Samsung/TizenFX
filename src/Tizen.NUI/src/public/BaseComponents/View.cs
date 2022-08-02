@@ -2986,15 +2986,15 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 UpdateSizeHint
+        public Vector4 UpdateAreaHint
         {
             get
             {
-                return (Vector2)GetValue(UpdateSizeHintProperty);
+                return (Vector4)GetValue(UpdateAreaHintProperty);
             }
             set
             {
-                SetValue(UpdateSizeHintProperty, value);
+                SetValue(UpdateAreaHintProperty, value);
                 NotifyPropertyChanged();
             }
         }
