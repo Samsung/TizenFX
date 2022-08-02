@@ -962,6 +962,12 @@ namespace Tizen.NUI.BaseComponents
                 return true;
             }
 
+            if (DispatchTouchEvents == false)
+            {
+                NUILog.Debug("If DispatchTouchEvents is false, it can not dispatch.");
+                return true;
+            }
+
             TouchEventArgs e = new TouchEventArgs();
 
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
