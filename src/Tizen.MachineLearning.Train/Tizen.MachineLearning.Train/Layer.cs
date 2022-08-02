@@ -23,8 +23,8 @@ namespace Tizen.MachineLearning.Train
     /// Creates a neural network layer.
     /// </summary>
     /// <remarks>
-    /// Use this function to create neural network layer.
-    /// If the function succeeds, layer must be released using Dispose(), if not added to a model.
+    /// Use this class to create neural network layer.
+    /// layer must be released using Dispose(), if not added to a model.
     /// If added to a model by AddLayer method of Model, layer is available until the model is released. so
     /// Dispose() must never be used.
     /// </remarks>
@@ -60,7 +60,7 @@ namespace Tizen.MachineLearning.Train
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         /// <remarks>
-        /// Use this function to destroy neural network layer. Fails if layer is owned by a model.
+        /// Use this method to destroy neural network layer. Fails if layer is owned by a model.
         /// </remarks>
         ~Layer()
         {
@@ -113,7 +113,7 @@ namespace Tizen.MachineLearning.Train
         /// Sets the neural network layer Property.
         /// </summary>
         /// <remarks>
-        /// Use this function to set neural network layer Property.
+        /// Use this method to set neural network layer Property.
         /// The input format of property must be 'key = value' format.
         /// </remarks>
         /// <param name="property">property for layer.</param>
