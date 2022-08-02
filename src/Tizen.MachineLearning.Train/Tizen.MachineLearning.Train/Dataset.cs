@@ -20,10 +20,10 @@ using System.IO;
 namespace Tizen.MachineLearning.Train
 {
     /// <summary>
-    /// Constructs the dataset.
+    /// Create the dataset for neural network
     /// </summary>
     /// <remarks>
-    /// Use this function to create a dataset. dataset should be released using Dispose().
+    /// Use this class to create a dataset. dataset should be released using Dispose().
     /// dataset is available until the model is released.
     /// </remarks>
     /// <since_tizen> 10 </since_tizen>
@@ -47,7 +47,7 @@ namespace Tizen.MachineLearning.Train
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         /// <remarks>
-        /// Use this function to destroy dataset. Fails if dataset is owned by a model.
+        /// Use this method to destroy dataset. Fails if dataset is owned by a model.
         /// </remarks>
         ~Dataset()
         {
@@ -94,15 +94,15 @@ namespace Tizen.MachineLearning.Train
         /// Adds data file to dataset.
         /// </summary>
         /// <remarks>
-        /// Use this function to add a data file from where data is retrieved.
-        /// If you want to access only internal storage by using this function,
+        /// Use this method to add a data file from where data is retrieved.
+        /// If you want to access only internal storage by using this method,
         /// you should add privilege %http://tizen.org/privilege/mediastorage. Or, if you
-        /// want to access only external storage by using this function, you should add
+        /// want to access only external storage by using this method, you should add
         /// privilege %http://tizen.org/privilege/externalstorage. If you can access both
         /// storage, you must add all privilege
         /// </remarks>
-        /// <param name="mode">The phase where this generator should be used.</param>
-        /// <param name="file">file path.</param>
+        /// <param name="mode">The phase where this file should be used.</param>
+        /// <param name="file">File path.</param>
         /// <since_tizen> 10 </since_tizen>
         public void AddFile(NNTrainerDatasetMode mode, string file)
         {
@@ -123,11 +123,11 @@ namespace Tizen.MachineLearning.Train
         /// Sets the neural network dataset property.
         /// </summary>
         /// <remarks>
-        /// Use this function to set dataset property for a specific mode.
+        /// Use this method to set dataset property for a specific mode.
         /// The input format of property must be 'key = value' format.
         /// </remarks>
         /// <param name="mode">The mode to set the property.</param>
-        /// <param name="property">property for dataset.</param>
+        /// <param name="property">Property for dataset.</param>
         /// <since_tizen> 10 </since_tizen>
         public void SetProperty(NNTrainerDatasetMode mode, params string[] property)
         {
