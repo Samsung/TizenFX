@@ -100,8 +100,8 @@ namespace Tizen.MachineLearning.Train
             {
                 // Destroy the neural network model.
                 NNTrainerError ret = Interop.Model.Destroy(handle);
-                NNTrainer.CheckException(ret, "Failed to destroy model instance");
-
+                if (ret != NNTrainerError.None)
+                    Log.Error(NNTrainer.Tag, "Failed to destroy Model instance");
                 handle = IntPtr.Zero;
             }
             disposed = true;
