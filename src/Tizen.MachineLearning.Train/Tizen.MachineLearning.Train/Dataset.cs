@@ -82,8 +82,8 @@ namespace Tizen.MachineLearning.Train
             {
                 // Destroy dataset.
                 NNTrainerError ret = Interop.Dataset.Destroy(handle);
-                NNTrainer.CheckException(ret, "Failed to destroy dataset instance");
-                Log.Info(NNTrainer.Tag, "Destroy Dataset");
+                if (ret != NNTrainerError.None)
+                    Log.Error(NNTrainer.Tag, "Failed to destroy Dataset instance");
 
                 handle = IntPtr.Zero;
             }

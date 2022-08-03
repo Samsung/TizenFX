@@ -220,7 +220,7 @@ namespace Tizen.MachineLearning.Train
         /// <summary>
         /// Stochastic Gradient Descent Optimizer
         /// </summary>
-        Sgd = 1,
+        SGD = 1,
         /// <summary>
         /// Unknown Optimizer
         /// </summary>
