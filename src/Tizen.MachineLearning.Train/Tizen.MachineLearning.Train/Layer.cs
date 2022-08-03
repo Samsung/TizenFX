@@ -103,7 +103,8 @@ namespace Tizen.MachineLearning.Train
             {
                 // Destroy the neural network layer.
                 NNTrainerError ret = Interop.Layer.Destroy(handle);
-                NNTrainer.CheckException(ret, "Failed to destroy layer instance");
+                if (ret != NNTrainerError.None)
+                    Log.Error(NNTrainer.Tag, "Failed to destroy Layer instance");
 
                 handle = IntPtr.Zero;
             }

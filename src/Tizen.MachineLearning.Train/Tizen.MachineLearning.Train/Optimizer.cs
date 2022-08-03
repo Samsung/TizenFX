@@ -84,7 +84,8 @@ namespace Tizen.MachineLearning.Train
             {
                 // Destroy optimizer.
                 NNTrainerError ret = Interop.Optimizer.Destroy(handle);
-                NNTrainer.CheckException(ret, "Failed to destroy optimizer instance");
+                if (ret != NNTrainerError.None)
+                    Log.Error(NNTrainer.Tag, "Failed to destroy Optimizer instance");
 
                 handle = IntPtr.Zero;
             }
