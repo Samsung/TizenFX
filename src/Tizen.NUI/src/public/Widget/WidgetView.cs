@@ -755,7 +755,11 @@ namespace Tizen.NUI
 
         internal static WidgetView GetWidgetViewFromPtr(global::System.IntPtr cPtr)
         {
-            WidgetView ret = new WidgetView(cPtr, false);
+            if (cPtr == global::System.IntPtr.Zero)
+            {
+                return null;
+            }
+            WidgetView ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as WidgetView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
