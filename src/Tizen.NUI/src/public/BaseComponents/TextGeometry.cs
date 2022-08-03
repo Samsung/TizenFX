@@ -212,5 +212,137 @@ namespace Tizen.NUI.BaseComponents
             CheckSWIGPendingException();
             return list;
         }
+
+        /// <summary>
+        /// Get the rendered size of the line based on a requested value, zero-based. <br />
+        /// if a line contains characters with different directions, multiple sizes will be returned for each block of contiguous characters with the same direction. <br />
+        /// </summary>
+        /// <param name="textEditor">The TextEditor control containing the text.</param>
+        /// <param name="number">The number of the line to get the size for, zero-based.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static List<Size2D> GetLineSize(TextEditor textEditor, int number)
+        {
+            if (textEditor == null)
+            {
+                throw new ArgumentNullException(null, "textEditor object is null");
+            }
+
+            ValidateRange(number, 0);
+
+            List<Size2D> list = GetSizeListFromNativeVector(Interop.TextEditor.GetLineSize(textEditor.SwigCPtr, (uint)number));
+            CheckSWIGPendingException();
+            return list;
+        }
+
+        /// <summary>
+        /// Get the rendered size of the line based on a requested value, zero-based. <br />
+        /// if a line contains characters with different directions, multiple sizes will be returned for each block of contiguous characters with the same direction. <br />
+        /// </summary>
+        /// <param name="textField">The textField control containing the text.</param>
+        /// <param name="number">The number of the line to get the size for, zero-based.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+         [EditorBrowsable(EditorBrowsableState.Never)]
+        public static List<Size2D> GetLineSize(TextField textField, int number)
+        {
+            if (textField == null)
+            {
+                throw new ArgumentNullException(null, "textField object is null");
+            }
+
+            ValidateRange(number, 0);
+
+            List<Size2D> list = GetSizeListFromNativeVector(Interop.TextField.GetLineSize(textField.SwigCPtr, (uint)number));
+            CheckSWIGPendingException();
+            return list;
+        }
+
+        /// <summary>
+        /// Get the rendered size of the line based on a requested value, zero-based. <br />
+        /// if a line contains characters with different directions, multiple sizes will be returned for each block of contiguous characters with the same direction. <br />
+        /// </summary>
+        /// <param name="textLabel">The textLabel control containing the text.</param>
+        /// <param name="number">The number of the line to get the size for, zero-based.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+       [EditorBrowsable(EditorBrowsableState.Never)]
+        public static List<Size2D> GetLineSize(TextLabel textLabel, int number)
+        {
+            if (textLabel == null)
+            {
+                throw new ArgumentNullException(null, "textLabel object is null");
+            }
+
+            ValidateRange(number, 0);
+
+            List<Size2D> list = GetSizeListFromNativeVector(Interop.TextLabel.GetLineSize(textLabel.SwigCPtr, (uint)number));
+            CheckSWIGPendingException();
+            return list;
+        }
+
+        /// <summary>
+        /// Get the rendered position of the line based on a requested value, zero-based. <br />
+        /// if a line contains characters with different directions, multiple positions will be returned for each block of contiguous characters with the same direction. <br />
+        /// </summary>
+        /// <param name="textEditor">The textEditor control containing the text.</param>
+        /// <param name="number">The number of the line to get the position for, zero-based.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+       [EditorBrowsable(EditorBrowsableState.Never)]
+        public static List<Position2D> GetLinePosition(TextEditor textEditor, int number)
+        {
+            if (textEditor == null)
+            {
+                throw new ArgumentNullException(null, "textEditor object is null");
+            }
+
+            ValidateRange(number, 0);
+
+            List<Position2D> list = GetPositionListFromNativeVector(Interop.TextEditor.GetLinePosition(textEditor.SwigCPtr, (uint)number));
+            CheckSWIGPendingException();
+            return list;
+        }
+
+        /// <summary>
+        /// Get the rendered position of the line based on a requested value, zero-based. <br />
+        /// if a line contains characters with different directions, multiple positions will be returned for each block of contiguous characters with the same direction. <br />
+        /// </summary>
+        /// <param name="textField">The textField control containing the text.</param>
+        /// <param name="number">The number of the line to get the position for, zero-based.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static List<Position2D> GetLinePosition(TextField textField, int number)
+        {
+            if (textField == null)
+            {
+                throw new ArgumentNullException(null, "textField object is null");
+            }
+
+            ValidateRange(number, 0);
+
+            List<Position2D> list = GetPositionListFromNativeVector(Interop.TextField.GetLinePosition(textField.SwigCPtr, (uint)number));
+            CheckSWIGPendingException();
+            return list;
+        }
+
+        /// <summary>
+        /// Get the rendered position of the line based on a requested value, zero-based. <br />
+        /// if a line contains characters with different directions, multiple positions will be returned for each block of contiguous characters with the same direction. <br />
+        /// </summary>
+        /// <param name="textLabel">The textLabel control containing the text.</param>
+        /// <param name="number">The number of the line to get the position for, zero-based.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static List<Position2D> GetLinePosition(TextLabel textLabel, int number)
+        {
+            if (textLabel == null)
+            {
+                throw new ArgumentNullException(null, "textLabel object is null");
+            }
+
+            ValidateRange(number, 0);
+
+            List<Position2D> list = GetPositionListFromNativeVector(Interop.TextLabel.GetLinePosition(textLabel.SwigCPtr, (uint)number));
+            CheckSWIGPendingException();
+            return list;
+        }
     }
 }
