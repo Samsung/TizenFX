@@ -31,9 +31,27 @@ namespace Tizen.NUI.Scene3D
     /// The Animations defined in the glTF or DLI models are also loaded and can be retrieved by using GetAnimation() method.
     /// The number of animation is also retrieved by GetAnimationCount() method.
     ///
-    /// By default, The loaded model has it's own position and size which are defined in vertex buffer regardless of the Control size.
-    /// The model can be resized and repositioned to fit to the ModelView Control with UseSizeOfView and UseCenterOfView properties.
+    /// By default, The loaded model has it's own position and size which are defined in vertex buffer regardless of the View size.
+    /// The model can be resized and repositioned to fit to the ModelView with UseSizeOfView and UseCenterOfView properties.
     /// </summary>
+    /// <code>
+    /// ModelView modelView = new ModelView(modelUrl)
+    /// {
+    ///     Size = new Size(width, height),
+    ///     PositionUsesPivotPoint = true,
+    ///     PivotPoint = PivotPoint.Center,
+    ///     ParentOrigin = ParentOrigin.Center,
+    ///     UseSizeOfView = true,
+    ///     UseCenterOfView = true,
+    /// };
+    /// modelView.SetImageBasedLightSource(diffuseUrl, specularUrl, scaleFactor);
+    /// window.Add(modelView);
+    /// int animationCount = modelView.GetAnimationCount();
+    /// if(animationCount > 0)
+    /// {
+    ///     modelView.GetAnimation(0).Play();
+    /// }
+    /// </code>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class ModelView : View
@@ -110,7 +128,7 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Moves the model to the center of control.
+        /// Moves the model to the center of ModelView.
         /// If this property is true, the model moves so that the center is located at the center of the View by change PivotPoint of ModelRoot.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
@@ -134,9 +152,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="modelView">Handle to an object.</param>
         /// <returns>Reference to this.</returns>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ModelView Assign(ModelView modelView)
+        internal ModelView Assign(ModelView modelView)
         {
             ModelView ret = new ModelView(Interop.ModelView.ModelViewAssign(SwigCPtr, ModelView.getCPtr(modelView)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -151,7 +167,7 @@ namespace Tizen.NUI.Scene3D
         /// <param name="scaleFactor">Scale factor that controls light source intensity in [0.0f, 1.0f]. Default value is 1.0f.</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetImageBasedLightSource(string diffuse, string specular, float scaleFactor)
+        public void SetImageBasedLightSource(string diffuse, string specular, float scaleFactor = 1.0f)
         {
             Interop.ModelView.SetImageBasedLightSource(SwigCPtr, diffuse, specular, scaleFactor);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
