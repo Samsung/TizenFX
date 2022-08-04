@@ -125,7 +125,7 @@ namespace Tizen.NUI
         #endregion //Indexers
 
         #region Methods
-        
+
         /// <summary>
         /// Update BorderProperty
         /// </summary>
@@ -263,7 +263,9 @@ namespace Tizen.NUI
                 // Add a view to the border layer.
                 GetBorderWindowBottomLayer().Add(rootView);
 
-                FocusChanged += OnWindowFocusChanged;
+                // TODO after the emulator issue is resolved, use the FocusChanged event.
+                //FocusChanged += OnWindowFocusChanged;
+                InterceptTouchEvent += OnWindowInterceptTouched;
 
                 return true;
             }
@@ -274,14 +276,25 @@ namespace Tizen.NUI
             }
         }
 
-        private void OnWindowFocusChanged(object sender, Window.FocusChangedEventArgs e)
+        private bool OnWindowInterceptTouched(object sender, Window.TouchEventArgs e)
         {
-            if (e.FocusGained == true && IsMaximized() == false)
+            if (e.Touch.GetState(0) == PointStateType.Down && IsMaximized() == false)
             {
                 // Raises the window when the window is focused.
                 Raise();
             }
+            return false;
         }
+
+        // TODO after the emulator issue is resolved, use the FocusChanged event.
+        // private void OnWindowFocusChanged(object sender, Window.FocusChangedEventArgs e)
+        // {
+        //     if (e.FocusGained == true && IsMaximized() == false)
+        //     {
+        //         // Raises the window when the window is focused.
+        //         Raise();
+        //     }
+        // }
 
         /// Create the border UI.
         private bool CreateBorder()
@@ -508,6 +521,7 @@ namespace Tizen.NUI
         internal void DisposeBorder()
         {
             Resized -= OnBorderWindowResized;
+            InterceptTouchEvent -= OnWindowInterceptTouched;
             borderInterface.Dispose();
             GetBorderWindowBottomLayer().Dispose();
         }
@@ -555,7 +569,7 @@ namespace Tizen.NUI
             {
                 overlayEnabled = enabled;
             }
-            
+
             protected override bool HitTest(Touch touch)
             {
                 // If borderView is in overlay mode, pass the hittest.
