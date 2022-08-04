@@ -28,12 +28,16 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class TextGeometry
     {
+        private static void ValidateIndex(int index)
+        {
+            if (index < 0)
+                throw new global::System.ArgumentOutOfRangeException(nameof(index), "Value is less than zero");
+        }
+
         private static void ValidateRange(int start, int end)
         {
-            if (start < 0)
-                throw new global::System.ArgumentOutOfRangeException(nameof(start), "Value is less than zero");
-            if (end < 0)
-                throw new global::System.ArgumentOutOfRangeException(nameof(end), "Value is less than zero");
+            ValidateIndex(start);
+            ValidateIndex(end);             
         }
 
         private static List<Size2D> GetSizeListFromNativeVector(System.IntPtr ptr)
@@ -228,7 +232,7 @@ namespace Tizen.NUI.BaseComponents
                 throw new ArgumentNullException(null, "textEditor object is null");
             }
 
-            ValidateRange(number, 0);
+            ValidateIndex(number);
 
             List<Size2D> list = GetSizeListFromNativeVector(Interop.TextEditor.GetLineSize(textEditor.SwigCPtr, (uint)number));
             CheckSWIGPendingException();
@@ -250,7 +254,7 @@ namespace Tizen.NUI.BaseComponents
                 throw new ArgumentNullException(null, "textField object is null");
             }
 
-            ValidateRange(number, 0);
+            ValidateIndex(number);
 
             List<Size2D> list = GetSizeListFromNativeVector(Interop.TextField.GetLineSize(textField.SwigCPtr, (uint)number));
             CheckSWIGPendingException();
@@ -272,7 +276,7 @@ namespace Tizen.NUI.BaseComponents
                 throw new ArgumentNullException(null, "textLabel object is null");
             }
 
-            ValidateRange(number, 0);
+            ValidateIndex(number);
 
             List<Size2D> list = GetSizeListFromNativeVector(Interop.TextLabel.GetLineSize(textLabel.SwigCPtr, (uint)number));
             CheckSWIGPendingException();
@@ -338,7 +342,7 @@ namespace Tizen.NUI.BaseComponents
                 throw new ArgumentNullException(null, "textLabel object is null");
             }
 
-            ValidateRange(number, 0);
+            ValidateIndex(number);
 
             List<Position2D> list = GetPositionListFromNativeVector(Interop.TextLabel.GetLinePosition(textLabel.SwigCPtr, (uint)number));
             CheckSWIGPendingException();

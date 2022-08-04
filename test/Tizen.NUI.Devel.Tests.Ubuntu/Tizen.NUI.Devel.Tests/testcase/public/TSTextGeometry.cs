@@ -44,7 +44,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
             Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
 
-            var actualSizeList = TextGeometry.GetTextSize(testingTarget, 0,0);
+            var actualSizeList = TextGeometry.GetTextSize(testingTarget, 0, 0);
             Assert.IsNotNull(actualSizeList, "Null object is detected!");
             Assert.IsTrue(actualSizeList.Count == expectedSizeOfList, "Should be true!");
 
@@ -68,7 +68,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object TextField");
             Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
 
-            var actualSizeList = TextGeometry.GetTextSize(testingTarget, 0,0);
+            var actualSizeList = TextGeometry.GetTextSize(testingTarget, 0, 0);
             Assert.IsNotNull(actualSizeList, "Null object is detected!");
             Assert.IsTrue(actualSizeList.Count == expectedSizeOfList, "Should be true!");
 
@@ -92,7 +92,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object TextLabel");
             Assert.IsInstanceOf<TextLabel>(testingTarget, "Should be an instance of TextLabel type.");
 
-            var actualSizeList = TextGeometry.GetTextSize(testingTarget, 0,0);
+            var actualSizeList = TextGeometry.GetTextSize(testingTarget, 0, 0);
             Assert.IsNotNull(actualSizeList, "Null object is detected!");
             Assert.IsTrue(actualSizeList.Count == expectedSizeOfList, "Should be true!");
 
@@ -116,7 +116,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
             Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
 
-            var actualPositionList = TextGeometry.GetTextPosition(testingTarget, 0,0);
+            var actualPositionList = TextGeometry.GetTextPosition(testingTarget, 0, 0);
             Assert.IsNotNull(actualPositionList, "Null object is detected!");
             Assert.IsTrue(actualPositionList.Count == expectedPositionOfList, "Should be true!");
 
@@ -140,7 +140,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object TextField");
             Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
 
-            var actualPositionList = TextGeometry.GetTextPosition(testingTarget, 0,0);
+            var actualPositionList = TextGeometry.GetTextPosition(testingTarget, 0, 0);
             Assert.IsNotNull(actualPositionList, "Null object is detected!");
             Assert.IsTrue(actualPositionList.Count == expectedPositionOfList, "Should be true!");
 
@@ -164,13 +164,155 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object TextLabel");
             Assert.IsInstanceOf<TextLabel>(testingTarget, "Should be an instance of TextLabel type.");
 
-            var actualPositionList = TextGeometry.GetTextPosition(testingTarget, 0,0);
+            var actualPositionList = TextGeometry.GetTextPosition(testingTarget, 0, 0);
             Assert.IsNotNull(actualPositionList, "Null object is detected!");
             Assert.IsTrue(actualPositionList.Count == expectedPositionOfList, "Should be true!");
 
             tlog.Debug(tag, $"GetTextPositionTextLabel END (OK)");
         }
 
+        [Test]
+        [Category("P1")]
+        [Description("TextGeometry GetLineSize on TextEditor")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.TextGeometry.GetLineSize M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "s.al-jammal@partner.samsung.com")]
+        public void GetLineSizeTextEditor()
+        {
+            tlog.Debug(tag, $"GetLineSizeTextEditor START");
 
+            int expectedSizeOfList = 0;
+
+            var testingTarget = new TextEditor();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            var actualSizeList = TextGeometry.GetLineSize(testingTarget, 0);
+            Assert.IsNotNull(actualSizeList, "Null object is detected!");
+            Assert.IsTrue(actualSizeList.Count == expectedSizeOfList, "Should be true!");
+
+            tlog.Debug(tag, $"GetLineSizeTextEditor END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextGeometry GetLineSize on TextField")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.TextGeometry.GetLineSize M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "s.al-jammal@partner.samsung.com")]
+        public void GetLineSizeTextField()
+        {
+            tlog.Debug(tag, $"GetLineSizeTextField START");
+
+            int expectedSizeOfList = 0;
+
+            var testingTarget = new TextField();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var actualSizeList = TextGeometry.GetLineSize(testingTarget, 0);
+            Assert.IsNotNull(actualSizeList, "Null object is detected!");
+            Assert.IsTrue(actualSizeList.Count == expectedSizeOfList, "Should be true!");
+
+            tlog.Debug(tag, $"GetLineSizeTextField END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextGeometry GetLineSize on TextLabel")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.TextGeometry.GetLineSize M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "s.al-jammal@partner.samsung.com")]
+        public void GetLineSizeTextLabel()
+        {
+            tlog.Debug(tag, $"GetLineSizeTextLabel START");
+
+            int expectedSizeOfList = 0;
+
+            var testingTarget = new TextLabel();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextLabel");
+            Assert.IsInstanceOf<TextLabel>(testingTarget, "Should be an instance of TextLabel type.");
+
+            var actualSizeList = TextGeometry.GetLineSize(testingTarget, 0);
+            Assert.IsNotNull(actualSizeList, "Null object is detected!");
+            Assert.IsTrue(actualSizeList.Count == expectedSizeOfList, "Should be true!");
+
+            tlog.Debug(tag, $"GetLineSizeTextLabel END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextGeometry GetLinePosition on TextLabel")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.TextGeometry.GetLinePosition M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "s.al-jammal@partner.samsung.com")]
+        public void GetLinePositionTextLabel()
+        {
+            tlog.Debug(tag, $"GetLinePositionTextLabel START");
+
+            int expectedPositionOfList = 0;
+
+            var testingTarget = new TextLabel();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextLabel");
+            Assert.IsInstanceOf<TextLabel>(testingTarget, "Should be an instance of TextLabel type.");
+
+            var actualPositionList = TextGeometry.GetLinePosition(testingTarget, 0);
+            Assert.IsNotNull(actualPositionList, "Null object is detected!");
+            Assert.IsTrue(actualPositionList.Count == expectedPositionOfList, "Should be true!");
+
+            tlog.Debug(tag, $"GetLinePositionTextLabel END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextGeometry GetLinePosition on TextField")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.TextGeometry.GetLinePosition M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "s.al-jammal@partner.samsung.com")]
+        public void GetLinePositionTextField()
+        {
+            tlog.Debug(tag, $"GetLinePositionTextField START");
+
+            int expectedPositionOfList = 0;
+
+            var testingTarget = new TextField();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var actualPositionList = TextGeometry.GetLinePosition(testingTarget, 0);
+            Assert.IsNotNull(actualPositionList, "Null object is detected!");
+            Assert.IsTrue(actualPositionList.Count == expectedPositionOfList, "Should be true!");
+
+            tlog.Debug(tag, $"GetLinePositionTextField END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextGeometry GetLinePosition on TextEditor")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.TextGeometry.GetLinePosition M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "s.al-jammal@partner.samsung.com")]
+        public void GetLinePositionTextEditor()
+        {
+            tlog.Debug(tag, $"GetLinePositionTextEditor START");
+
+            int expectedPositionOfList = 0;
+
+            var testingTarget = new TextEditor();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            var actualPositionList = TextGeometry.GetLinePosition(testingTarget, 0);
+            Assert.IsNotNull(actualPositionList, "Null object is detected!");
+            Assert.IsTrue(actualPositionList.Count == expectedPositionOfList, "Should be true!");
+
+            tlog.Debug(tag, $"GetLinePositionTextEditor END (OK)");
+        }
     }
 }
