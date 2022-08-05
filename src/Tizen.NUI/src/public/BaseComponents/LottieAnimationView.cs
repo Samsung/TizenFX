@@ -80,6 +80,9 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+            InternalSavedDynamicPropertyCallbacks?.Clear();
+            InternalSavedDynamicPropertyCallbacks = null;
+
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
@@ -93,6 +96,12 @@ namespace Tizen.NUI.BaseComponents
             }
 
             base.Dispose(type);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            InternalSavedDynamicPropertyCallbacks?.Clear();
+            InternalSavedDynamicPropertyCallbacks = null;
         }
         #endregion Constructor, Destructor, Dispose
 
@@ -722,6 +731,20 @@ namespace Tizen.NUI.BaseComponents
             Tizen.Log.Error("NUI", $"[ERR] fail to get play range from dali! case#2");
             return new Tuple<int, int>(-1, -1);
         }
+
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetDynamicProperty(DynamicProperty info)
+        {
+            dynamicPropertyCallbackId++;
+
+            callbacks2.Add(dynamicPropertyCallbackId, new WeakReference<LottieAnimationView>(this));
+            InternalSavedDynamicPropertyCallbacks.Add(dynamicPropertyCallbackId, info.Callback);
+
+            Interop.View.DoActionExtension(SwigCPtr, ImageView.Property.IMAGE, ActionJumpTo + 1, dynamicPropertyCallbackId, info.KeyPath, (int)info.Property, Marshal.GetFunctionPointerForDelegate<System.Delegate>(rootCallback));
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
         #endregion Method
 
 
@@ -821,6 +844,93 @@ namespace Tizen.NUI.BaseComponents
             /// <since_tizen> 7 </since_tizen>
             AutoReverse
         }
+
+        /// <summary>
+        /// Vector Property
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum VectorProperty
+        {
+            /// <summary>
+            /// Fill color of the object, Type of <see cref="Vector3"/>
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            FillColor,
+
+            /// <summary>
+            /// Fill opacity of the object, Type of float
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            FillOpacity,
+
+            /// <summary>
+            /// Stroke color of the object, Type of <see cref="Vector3"/>
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            StrokeColor,
+
+            /// <summary>
+            /// Stroke opacity of the object, Type of float
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            StrokeOpacity,
+
+            /// <summary>
+            /// Stroke width of the object, Type of float
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            StrokeWidth,
+
+            /// <summary>
+            /// Transform anchor of the Layer and Group object, Type of <see cref="Vector2"/>
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TransformAnchor,
+
+            /// <summary>
+            /// Transform position of the Layer and Group object, Type of <see cref="Vector2"/>
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TransformPosition,
+
+            /// <summary>
+            /// Transform scale of the Layer and Group object, Type of <see cref="Vector2"/>, Value range of [0..100]
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TransformScale,
+
+            /// <summary>
+            /// Transform rotation of the Layer and Group object, Type of float, Value range of [0..360] in degrees
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TransformRotation,
+
+            /// <summary>
+            /// Transform opacity of the Layer and Group object, Type of float
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            TransformOpacity
+        };
+
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        public delegate PropertyValue DynamicPropertyCallbackType(int returnType, uint frameNumber);
+
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public struct DynamicProperty
+        {
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public string KeyPath;
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public VectorProperty Property;
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public DynamicPropertyCallbackType Callback;
+        }
         #endregion Event, Enum, Struct, ETC
 
 
@@ -870,6 +980,91 @@ namespace Tizen.NUI.BaseComponents
             VisualEventSignal ret = new VisualEventSignal(Interop.VisualEventSignal.NewWithView(View.getCPtr(this)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        internal Dictionary<int, DynamicPropertyCallbackType> InternalSavedDynamicPropertyCallbacks = new Dictionary<int, DynamicPropertyCallbackType>();
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void RootCallbackType(int id, int returnType, uint frameNumber, ref float val1, ref float val2, ref float val3);
+
+        internal RootCallbackType rootCallback = RootCallback;
+
+        static internal void RootCallback(int id, int returnType, uint frameNumber, ref float val1, ref float val2, ref float val3)
+        {
+            WeakReference<LottieAnimationView> current = null;
+            LottieAnimationView currentView = null;
+            DynamicPropertyCallbackType currentCallback = null;
+            PropertyValue ret = null;
+
+            if (callbacks2.TryGetValue(id, out current))
+            {
+                if (current.TryGetTarget(out currentView))
+                {
+                    if (currentView.InternalSavedDynamicPropertyCallbacks.TryGetValue(id, out currentCallback) && currentView != null
+                        && currentView.InternalSavedDynamicPropertyCallbacks != null)
+                    {
+                        ret = currentCallback?.Invoke(returnType, frameNumber);
+                    }
+                    else
+                    {
+                        Tizen.Log.Error("NUI", "can't find the callback in LottieAnimationView, just return here!");
+                        return;
+                    }
+                }
+                else
+                {
+                    Tizen.Log.Error("NUI", "can't find the callback in LottieAnimationView, just return here!");
+                    return;
+                }
+            }
+            else
+            {
+                Tizen.Log.Error("NUI", "can't find LottieAnimationView by id, just return here!");
+                return;
+            }
+
+            switch (returnType)
+            {
+                case (int)(VectorProperty.FillColor):
+                case (int)(VectorProperty.StrokeColor):
+                    Vector3 tmpVector3 = new Vector3(-1, -1, -1);
+                    if (ret.Get(tmpVector3))
+                    {
+                        val1 = tmpVector3.X;
+                        val2 = tmpVector3.Y;
+                        val3 = tmpVector3.Z;
+                    }
+                    tmpVector3.Dispose();
+                    break;
+
+                case (int)(VectorProperty.TransformAnchor):
+                case (int)(VectorProperty.TransformPosition):
+                case (int)(VectorProperty.TransformScale):
+                    Vector2 tmpVector2 = new Vector2(-1, -1);
+                    if (ret.Get(tmpVector2))
+                    {
+                        val1 = tmpVector2.X;
+                        val2 = tmpVector2.Y;
+                    }
+                    tmpVector2.Dispose();
+                    break;
+
+                case (int)(VectorProperty.FillOpacity):
+                case (int)(VectorProperty.StrokeOpacity):
+                case (int)(VectorProperty.StrokeWidth):
+                case (int)(VectorProperty.TransformRotation):
+                case (int)(VectorProperty.TransformOpacity):
+                    float tmpFloat = -1;
+                    if (ret.Get(out tmpFloat))
+                    {
+                        val1 = tmpFloat;
+                    }
+                    break;
+                default:
+                    //do nothing
+                    break;
+            }
+            ret.Dispose();
         }
         #endregion Internal
 
@@ -942,6 +1137,10 @@ namespace Tizen.NUI.BaseComponents
         private VisualEventSignalCallbackType visualEventSignalCallback;
         private EventHandler<VisualEventSignalArgs> visualEventSignalHandler;
 
+        static private int dynamicPropertyCallbackId = 0;
+        static private Dictionary<int, DynamicPropertyCallbackType> callbacks = new Dictionary<int, DynamicPropertyCallbackType>();
+        static private Dictionary<int, WeakReference<LottieAnimationView>> callbacks2 = new Dictionary<int, WeakReference<LottieAnimationView>>();
+
         private void debugPrint()
         {
             NUILog.Debug($"===================================");
@@ -950,6 +1149,7 @@ namespace Tizen.NUI.BaseComponents
             NUILog.Debug($"  RedrawInScalingDown={RedrawInScalingDown} >");
             NUILog.Debug($"===================================");
         }
+
         #endregion Private
     }
 
