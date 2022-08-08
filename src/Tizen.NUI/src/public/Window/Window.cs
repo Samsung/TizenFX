@@ -1578,7 +1578,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Key GetLastKeyEvent()
         {
-            Key ret = new Key(Interop.Window.GetLastKeyEvent(SwigCPtr), true);
+            Key ret = new Key(Interop.Window.GetLastKeyEvent(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -1590,7 +1590,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Touch GetLastTouchEvent()
         {
-            Touch ret = new Touch(Interop.Window.GetLastTouchEvent(SwigCPtr), true);
+            Touch ret = new Touch(Interop.Window.GetLastTouchEvent(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
