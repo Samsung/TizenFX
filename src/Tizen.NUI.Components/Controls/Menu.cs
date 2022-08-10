@@ -697,7 +697,6 @@ namespace Tizen.NUI.Components
         {
             base.OnInitialize();
             AccessibilityRole = Role.PopupMenu;
-            AccessibilityAttributes["sub-role"] = "Alert";
         }
 
         /// <summary>

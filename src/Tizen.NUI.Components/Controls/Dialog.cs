@@ -134,7 +134,6 @@ namespace Tizen.NUI.Components
         {
             base.OnInitialize();
             AccessibilityRole = Role.Dialog;
-            AccessibilityAttributes["sub-role"] = "Alert";
             Show(); // calls RegisterDefaultLabel(); Hide() will call UnregisterDefaultLabel()
         }
 
