@@ -19,6 +19,7 @@ using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
 using Tizen.Applications;
@@ -569,7 +570,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Gets all turn servers.
+        /// Retrieves all turn servers.
         /// </summary>
         /// <returns>The turn server list.</returns>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
@@ -580,7 +581,7 @@ namespace Tizen.Multimedia.Remoting
 
             var list = new List<string>();
 
-            NativeWebRTC.RetrieveTurnServerCallback callback = (server, _) =>
+            NativeWebRTC.RetrieveTurnServerCallback cb = (server, _) =>
             {
                 if (!string.IsNullOrWhiteSpace(server))
                 {
@@ -590,9 +591,138 @@ namespace Tizen.Multimedia.Remoting
                 return true;
             };
 
-            NativeWebRTC.ForeachTurnServer(Handle, callback).ThrowIfFailed("Failed to retrieve turn server");
+            NativeWebRTC.ForeachTurnServer(Handle, cb).ThrowIfFailed("Failed to retrieve turn server");
 
             return list.AsReadOnly();
+        }
+
+        /// <summary>
+        /// Retrieves the current available statistics information.
+        /// </summary>
+        /// <remarks>The WebRTC must be in the <see cref="WebRTCState.Playing"/></remarks>
+        /// <returns>The WebRTC statistics informations.</returns>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public async Task<ReadOnlyCollection<WebRTCStatistics>> GetStatistics(WebRTCStatisticsCategory category)
+        {
+            ValidateWebRTCState(WebRTCState.Playing);
+
+            var stats = new List<WebRTCStatistics>();
+            Exception caught = null;
+
+            NativeWebRTC.RetrieveStatsCallback cb = (category_, prop, _) =>
+            {
+                try
+                {
+                    stats.Add(new WebRTCStatistics(category_, prop));
+                }
+                catch (Exception e)
+                {
+                    caught = e;
+                    return false;
+                }
+
+                return true;
+            };
+
+            using (var cbKeeper = ObjectKeeper.Get(cb))
+            {
+                NativeWebRTC.ForeachStats(Handle, (int)category, cb, IntPtr.Zero).
+                    ThrowIfFailed("failed to retrieve stats");
+
+                // FIXME: This should be fixed. Native FW will be changed to notify end of callback.
+                await Task.Delay(5000);
+
+                if (caught != null)
+                {
+                    throw caught;
+                }
+            }
+
+            return new ReadOnlyCollection<WebRTCStatistics>(stats);
+        }
+
+        /// <summary>
+        /// Represents WebRTC statistics information.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        public class WebRTCStatistics
+        {
+            internal WebRTCStatistics(WebRTCStatisticsCategory type, IntPtr prop)
+            {
+                var unmanagedStruct = Marshal.PtrToStructure<NativeWebRTC.StatsPropertyStruct>(prop);
+
+                Category = type;
+                Name = unmanagedStruct.name;
+                Property = unmanagedStruct.property;
+
+                switch (unmanagedStruct.propertyType)
+                {
+                    case WebRTCStatsPropertyType.TypeBool:
+                        Value = unmanagedStruct.value.@bool;
+                        break;
+                    case WebRTCStatsPropertyType.TypeInt:
+                        Value = unmanagedStruct.value.@int;
+                        break;
+                    case WebRTCStatsPropertyType.TypeUint:
+                        Value = unmanagedStruct.value.@uint;
+                        break;
+                    case WebRTCStatsPropertyType.TypeInt64:
+                        Value = unmanagedStruct.value.@long;
+                        break;
+                    case WebRTCStatsPropertyType.TypeUint64:
+                        Value = unmanagedStruct.value.@ulong;
+                        break;
+                    case WebRTCStatsPropertyType.TypeFloat:
+                        Value = unmanagedStruct.value.@float;
+                        break;
+                    case WebRTCStatsPropertyType.TypeDouble:
+                        Value = unmanagedStruct.value.@double;
+                        break;
+                    case WebRTCStatsPropertyType.TypeString:
+                        Value = Marshal.PtrToStringAnsi(unmanagedStruct.value.@string);
+                        break;
+                    default:
+                        throw new InvalidOperationException($"No matching type [{unmanagedStruct.propertyType}]");
+                }
+            }
+
+            /// <summary>
+            /// Gets the category of statistics.
+            /// </summary>
+            /// <value>The category of WebRTC statistics information</value>
+            /// <since_tizen> 10 </since_tizen>
+            public WebRTCStatisticsCategory Category { get; }
+
+            /// <summary>
+            /// Gets the name of statistics.
+            /// </summary>
+            /// <value>The category of WebRTC statistics information</value>
+            /// <since_tizen> 10 </since_tizen>
+            public string Name { get; }
+
+            /// <summary>
+            /// Gets the detail of statistics.
+            /// </summary>
+            /// <value>The property of WebRTC statistics information</value>
+            /// <since_tizen> 10 </since_tizen>
+            public WebRTCStatisticsProperty Property { get; }
+
+            /// <summary>
+            /// Gets the type of statistics.
+            /// </summary>
+            /// <value>The value of WebRTC statistics information</value>
+            /// <since_tizen> 10 </since_tizen>
+            public object Value { get; }
+
+            /// <summary>
+            /// Returns a string that represents the current object.
+            /// </summary>
+            /// <returns>A string that represents the current object.</returns>
+            /// <since_tizen> 10 </since_tizen>
+            public override string ToString() =>
+                $"Category={Category}, Name={Name}, Property={Property}, Value={Value}, Type={Value.GetType()}";
         }
     }
 }
