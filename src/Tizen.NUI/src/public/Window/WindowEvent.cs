@@ -47,6 +47,8 @@ namespace Tizen.NUI
         private WindowFocusChangedEventCallbackType windowFocusChangedEventCallback2;
         private TransitionEffectEventCallbackType transitionEffectEventCallback;
         private WindowTransitionEffectSignal transitionEffectSignal;
+        private MovedEventCallbackType movedEventCallback;
+        private WindowMovedSignal movedSignal;
         private KeyboardRepeatSettingsChangedEventCallbackType keyboardRepeatSettingsChangedEventCallback;
         private KeyboardRepeatSettingsChangedSignal keyboardRepeatSettingsChangedSignal;
         private WindowFocusSignalType windowFocusChangedSignal;
@@ -78,6 +80,8 @@ namespace Tizen.NUI
         private delegate void WindowFocusChangedEventCallbackType2(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void TransitionEffectEventCallbackType(IntPtr window, int state, int type);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void MovedEventCallbackType(IntPtr window, IntPtr position);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void KeyboardRepeatSettingsChangedEventCallbackType();
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -396,6 +400,35 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// MovedEvent
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WindowMovedEventArgs> Moved
+        {
+            add
+            {
+                if (movedHandler == null)
+                {
+                    movedEventCallback = OnMoved;
+                    MovedEventSignal().Connect(movedEventCallback);
+                }
+                movedHandler += value;
+            }
+            remove
+            {
+                movedHandler -= value;
+                if (movedHandler == null && MovedEventSignal().Empty() == false)
+                {
+                    MovedEventSignal().Disconnect(movedEventCallback);
+                    if (MovedEventSignal().Empty() == true)
+                    {
+                        movedEventCallback = null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Keyboard Repeat Settings Changed
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -441,6 +474,7 @@ namespace Tizen.NUI
         private event EventHandler<ResizedEventArgs> windowResizeEventHandler;
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler2;
         private event EventHandler<TransitionEffectEventArgs> transitionEffectHandler;
+        private event EventHandler<WindowMovedEventArgs> movedHandler;
         private event EventHandler keyboardRepeatSettingsChangedHandler;
         private event EventHandler<AuxiliaryMessageEventArgs> auxiliaryMessageEventHandler;
 
@@ -734,6 +768,12 @@ namespace Tizen.NUI
                 transitionEffectEventCallback = null;
             }
 
+            if (movedSignal != null)
+            {
+                MovedEventSignal().Disconnect(movedEventCallback);
+                movedEventCallback = null;
+            }
+
             if (keyboardRepeatSettingsChangedSignal != null)
             {
                 KeyboardRepeatSettingsChangedEventSignal().Disconnect(keyboardRepeatSettingsChangedEventCallback);
@@ -779,6 +819,17 @@ namespace Tizen.NUI
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             return transitionEffectSignal;
+        }
+
+        private WindowMovedSignal MovedEventSignal()
+        {
+            if (movedSignal == null)
+            {
+                movedSignal = new WindowMovedSignal(this);
+                if (NDalicPINVOKE.SWIGPendingException.Pending)
+                    throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return movedSignal;
         }
 
         private KeyboardRepeatSettingsChangedSignal KeyboardRepeatSettingsChangedEventSignal()
@@ -962,6 +1013,22 @@ namespace Tizen.NUI
                 e.State = (EffectState)state;
                 e.Type = (EffectType)type;
                 transitionEffectHandler(this, e);
+            }
+            return;
+        }
+
+        private void OnMoved(IntPtr window, IntPtr position)
+        {
+            if (window == global::System.IntPtr.Zero)
+            {
+                return;
+            }
+
+            if (movedHandler != null)
+            {
+                WindowMovedEventArgs e = new WindowMovedEventArgs();
+                e.WindowPosition = this.WindowPosition;
+                movedHandler(this, e);
             }
             return;
         }
@@ -1441,6 +1508,28 @@ namespace Tizen.NUI
                         }
                     }
                 }
+            }
+        }
+    }
+
+    /// <summary>
+    /// MovedArgs
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class WindowMovedEventArgs : EventArgs
+    {
+        private Position2D position;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Position2D WindowPosition
+        {
+            get
+            {
+                return position;
+            }
+            set
+            {
+                position = value;
             }
         }
     }
