@@ -97,6 +97,8 @@ namespace Tizen.NUI.BaseComponents
             base.Dispose(type);
         }
 
+        // This is used for internal purpose. hidden API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(bool disposing)
         {
             cleanCallbackDitionaries();

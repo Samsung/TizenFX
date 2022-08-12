@@ -91,16 +91,16 @@ namespace Tizen.NUI.Samples
 
         void ForceFullGC()
         {
-            tlog.Fatal(tag, "ForceFullGC start");
+            tlog.Debug(tag, "ForceFullGC start");
             global::System.GC.Collect();
             global::System.GC.WaitForPendingFinalizers();
             global::System.GC.Collect();
-            tlog.Fatal(tag, "ForceFullGC end");
+            tlog.Debug(tag, "ForceFullGC end");
         }
 
         void MakeAll()
         {
-            tlog.Fatal(tag, $"MakeAll() start");
+            tlog.Debug(tag, $"MakeAll() start");
             int width = (int)(root.Size.Width / NUM_OF_VIEW);
             for (int i = 0; i < NUM_OF_VIEW; i++)
             {
@@ -147,12 +147,12 @@ namespace Tizen.NUI.Samples
 
                 lav.Play();
             }
-            tlog.Fatal(tag, $"MakeAll() end");
+            tlog.Debug(tag, $"MakeAll() end");
         }
 
         void DisposeAll()
         {
-            tlog.Fatal(tag, $"DisposeAll() start");
+            tlog.Debug(tag, $"DisposeAll() start");
             int childNum = (int)root.ChildCount;
             for (int i = childNum - 1; i >= 0; i--)
             {
@@ -163,12 +163,12 @@ namespace Tizen.NUI.Samples
                     child.Dispose();
                 }
             }
-            tlog.Fatal(tag, $"DisposeAll() end");
+            tlog.Debug(tag, $"DisposeAll() end");
         }
 
         void ImplicitDispose()
         {
-            tlog.Fatal(tag, $"ImplicitDispose() start");
+            tlog.Debug(tag, $"ImplicitDispose() start");
             int childNum = (int)root.ChildCount;
             for (int i = childNum - 1; i >= 0; i--)
             {
@@ -178,12 +178,12 @@ namespace Tizen.NUI.Samples
                     child.Unparent();
                 }
             }
-            tlog.Fatal(tag, $"ImplicitDispose() end");
+            tlog.Debug(tag, $"ImplicitDispose() end");
         }
 
         private PropertyValue onFillColor(int returnType, uint frameNumber)
         {
-            //tlog.Fatal(tag, $"onFillColor() returnType={returnType} frameNumber={frameNumber}");
+            tlog.Debug(tag, $"onFillColor() returnType={returnType} frameNumber={frameNumber}");
             if (frameNumber < 60)
             {
                 return new PropertyValue(new Vector3(0, 0, 1));
@@ -196,7 +196,7 @@ namespace Tizen.NUI.Samples
 
         private PropertyValue onStrokColor(int returnType, uint frameNumber)
         {
-            //tlog.Fatal(tag, $"onStrokColor() returnType={returnType} frameNumber={frameNumber}");
+            tlog.Debug(tag, $"onStrokColor() returnType={returnType} frameNumber={frameNumber}");
             if (frameNumber < 60)
             {
                 return new PropertyValue(new Vector3(1, 0, 1));
@@ -209,7 +209,7 @@ namespace Tizen.NUI.Samples
 
         private PropertyValue onStrokWidth(int returnType, uint frameNumber)
         {
-            //tlog.Fatal(tag, $"onStrokWidth() returnType={returnType} frameNumber={frameNumber}");
+            tlog.Debug(tag, $"onStrokWidth() returnType={returnType} frameNumber={frameNumber}");
 
             if (frameNumber < 60)
             {
@@ -223,7 +223,7 @@ namespace Tizen.NUI.Samples
 
         private PropertyValue onTransformRotation(int returnType, uint frameNumber)
         {
-            //tlog.Fatal(tag, $"onTransformRotation() returnType={returnType} frameNumber={frameNumber}");
+            tlog.Debug(tag, $"onTransformRotation() returnType={returnType} frameNumber={frameNumber}");
 
             return new PropertyValue(frameNumber * 20.0f);
         }
