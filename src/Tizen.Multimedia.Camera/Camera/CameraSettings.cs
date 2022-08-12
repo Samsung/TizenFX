@@ -1237,9 +1237,8 @@ namespace Tizen.Multimedia
         /// Gets the information of extra preview stream.
         /// </summary>
         /// <param name="streamId">The stream id.</param>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public ExtraPreviewStreamInfo GetExtraPreviewStreamInfo(int streamId)
         {
             GetExtraPreviewStreamFormat(_camera.GetHandle(), streamId, out CameraPixelFormat format,
@@ -1252,9 +1251,8 @@ namespace Tizen.Multimedia
         /// Sets the information of extra preview stream.
         /// </summary>
         /// <param name="info">The extra preview stream information.</param>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetExtraPreviewStreamInfo(ExtraPreviewStreamInfo info)
         {
             SetExtraPreviewStreamFormat(_camera.GetHandle(), info.StreamId, info.Format,
@@ -1265,9 +1263,8 @@ namespace Tizen.Multimedia
         /// Gets the bitrate of extra preview with given stream id.
         /// </summary>
         /// <param name="streamId">The stream id.</param>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public int GetExtraPreviewBitrate(int streamId)
         {
             Native.GetExtraPreviewBitrate(_camera.GetHandle(), streamId, out int bitrate).
@@ -1281,21 +1278,60 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="streamId">The stream id.</param>
         /// <param name="bitrate">The bitrate fo extra preview.</param>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetExtraPreviewBitrate(int streamId, int bitrate)
         {
             Native.SetExtraPreviewBitrate(_camera.GetHandle(), streamId, bitrate).
                 ThrowIfFailed("Failed to set extra preview bitrate");
+        }
+
+        /// <summary>
+        /// Gets the GOP(Group Of Pictures) interval of extra preview with given stream id.
+        /// </summary>
+        /// <param name="streamId">The stream id.</param>
+        /// <since_tizen> 10 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        public int GetExtraPreviewGopInterval(int streamId)
+        {
+            Native.GetExtraPreviewBitrate(_camera.GetHandle(), streamId, out int gopInterval).
+                ThrowIfFailed("Failed to get extra preview gop interval");
+
+            return gopInterval;
+        }
+
+        /// <summary>
+        /// Sets The GOP(Group Of Pictures) interval of extra preview with given stream id.
+        /// </summary>
+        /// <param name="streamId">The stream id.</param>
+        /// <param name="gopInterval">The stream id.</param>
+        /// <since_tizen> 10 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        public void SetExtraPreviewGopInterval(int streamId, int gopInterval)
+        {
+            Native.SetExtraPreviewBitrate(_camera.GetHandle(), streamId, gopInterval).
+                ThrowIfFailed("Failed to set extra preview gop interval");
+        }
+
+        /// <summary>
+        /// Gets the rotation of extra preview with given stream id.
+        /// </summary>
+        /// <param name="streamId">The stream id.</param>
+        /// <since_tizen> 10 </since_tizen>
+        /// <exception cref="ObjectDisposedException">The camera already has been disposed.</exception>
+        public Rotation GetExtraPreviewRotaion(int streamId)
+        {
+            Native.GetExtraPreviewRotation(_camera.GetHandle(), streamId, out Rotation rotation).
+                ThrowIfFailed("Failed to get extra preview gop interval");
+
+            return rotation;
         }
     }
 
     /// <summary>
     /// Provides the ability to get the information of extra preview stream.
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 10 </since_tizen>
     public struct ExtraPreviewStreamInfo
     {
         /// <summary>
@@ -1305,8 +1341,7 @@ namespace Tizen.Multimedia
         /// <param name="format">The preview format.</param>
         /// <param name="size">The preview resolution.</param>
         /// <param name="fps">The fps.</param>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public ExtraPreviewStreamInfo(int streamId, CameraPixelFormat format, Size size, int fps)
         {
             StreamId = streamId;
@@ -1319,40 +1354,35 @@ namespace Tizen.Multimedia
         /// Gets the stream Id.
         /// </summary>
         /// <value>The stream Id.</value>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public int StreamId { get; set;}
+        /// <since_tizen> 10 </since_tizen>
+        public int StreamId { get; }
 
         /// <summary>
         /// Gets the extra preview format.
         /// </summary>
         /// <value></value>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public CameraPixelFormat Format { get; }
 
         /// <summary>
         /// Gets the extra preview resolution.
         /// </summary>
         /// <value></value>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public Size Size { get; }
 
         /// <summary>
         /// Gets the fps.
         /// </summary>
         /// <value></value>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public int Fps { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public override string ToString() =>
             $"StreamId:{StreamId}, Format:{Format.ToString()}, Resolution:{Size.Width}x{Size.Height}, Fps:{Fps}";
     }

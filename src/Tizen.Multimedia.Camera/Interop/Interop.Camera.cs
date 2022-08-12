@@ -328,7 +328,10 @@ internal static partial class Interop
     internal static partial class CameraDeviceManager
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void DeviceConnectionChangedCallback(ref CameraDeviceStruct device, bool status, IntPtr userData);
+        internal delegate void DeviceConnectionChangedCallback(CameraDeviceType type, CameraDevice device, string name, string id, int extraPreviewStreamNum, bool idConnedted, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool SupportedDeviceCallback(CameraDeviceType type, CameraDevice device, string name, string id, int extraPreviewStreamNum, IntPtr userData);
 
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_initialize")]
@@ -337,41 +340,13 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_deinitialize")]
         internal static extern CameraError Deinitialize(IntPtr handle);
 
-        [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_get_device_list")]
-        internal static extern CameraError GetDeviceList(IntPtr handle, ref CameraDeviceListStruct deviceList);
+        [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_foreach_supported_device")]
+        internal static extern CameraError SupportedDevices(IntPtr handle, SupportedDeviceCallback callback, IntPtr userData);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_add_device_connection_changed_cb")]
         internal static extern CameraError SetDeviceConnectionChangedCallback(IntPtr handle, DeviceConnectionChangedCallback callback, IntPtr userData, out int id);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_device_manager_remove_device_connection_changed_cb")]
         internal static extern CameraError UnsetDeviceConnectionChangedCallback(IntPtr handle, int id);
-
-
-        [NativeStruct("camera_device_s", Include="camera_internal.h", PkgConfig="capi-media-camera")]
-        [StructLayout(LayoutKind.Sequential)]
-        internal struct CameraDeviceStruct
-        {
-            internal CameraDeviceType Type;
-
-            internal CameraDevice device;
-
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
-            internal string name;
-
-            [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
-            internal string id;
-
-            internal int extraStreamNum;
-        }
-
-        [NativeStruct("camera_device_list_s", Include="camera_internal.h", PkgConfig="capi-media-camera")]
-        [StructLayout(LayoutKind.Sequential)]
-        internal struct CameraDeviceListStruct
-        {
-            internal uint count;
-
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
-            internal CameraDeviceStruct[] device;
-        }
     }
 }
