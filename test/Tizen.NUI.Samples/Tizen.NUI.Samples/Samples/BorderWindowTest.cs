@@ -8,8 +8,10 @@ using System.Collections.Generic;
 
 namespace Tizen.NUI.Samples
 {
+  using log = Tizen.Log;
   public class BorderWindowTest : IExample
   {
+    string tag = "NUITEST";
     private Window win;
     private Window subWindowOne = null;
     private Window subWindowTwo = null;
@@ -266,6 +268,13 @@ namespace Tizen.NUI.Samples
 
     }
 
+
+    private void OnWindowMoved(object sender, WindowMovedEventArgs e)
+    {
+        Position2D position = e.WindowPosition;
+        log.Fatal(tag, $"OnWindowMoved() called!, x:{position.X}, y:{position.Y}");
+    }
+
     void CreateSubWindowOne()
     {
       if (subWindowOne == null)
@@ -295,11 +304,19 @@ namespace Tizen.NUI.Samples
         animation.AnimateTo(text, "Orientation", new Rotation(new Radian(new Degree(0.0f)), PositionAxis.X), 500, 1000);
         animation.Looping = true;
         animation.Play();
+
+        subWindowOne.Moved += OnWindowMoved;
       }
       else
       {
         subWindowOne.Minimize(false);
       }
+    }
+
+    private void OnWindowMoved2(object sender, WindowMovedEventArgs e)
+    {
+        Position2D position = e.WindowPosition;
+        log.Fatal(tag, $"OnWindowMoved2() called!, x:{position.X}, y:{position.Y}");
     }
 
     void CreateSubWindowTwo()
@@ -337,6 +354,8 @@ namespace Tizen.NUI.Samples
         };
         root.Add(image);
         subWindowTwo.Add(root);
+
+        subWindowTwo.Moved += OnWindowMoved2;
       }
       else
       {
