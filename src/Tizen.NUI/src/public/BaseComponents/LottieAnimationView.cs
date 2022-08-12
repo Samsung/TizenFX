@@ -80,8 +80,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            InternalSavedDynamicPropertyCallbacks?.Clear();
-            InternalSavedDynamicPropertyCallbacks = null;
+            cleanCallbackDitionaries();
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
@@ -100,8 +99,7 @@ namespace Tizen.NUI.BaseComponents
 
         protected override void Dispose(bool disposing)
         {
-            InternalSavedDynamicPropertyCallbacks?.Clear();
-            InternalSavedDynamicPropertyCallbacks = null;
+            cleanCallbackDitionaries();
         }
         #endregion Constructor, Destructor, Dispose
 
@@ -539,6 +537,8 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected int ActionJumpTo { get; set; } = Interop.LottieAnimationView.AnimatedVectorImageVisualActionJumpToGet();
+
+        protected int SetDynamicProperty => ActionJumpTo + 1;
         #endregion Property
 
 
@@ -734,16 +734,32 @@ namespace Tizen.NUI.BaseComponents
 
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetDynamicProperty(DynamicProperty info)
+        public void DoActionExtension(DynamicProperty info)
         {
             dynamicPropertyCallbackId++;
 
-            callbacks2.Add(dynamicPropertyCallbackId, new WeakReference<LottieAnimationView>(this));
-            InternalSavedDynamicPropertyCallbacks.Add(dynamicPropertyCallbackId, info.Callback);
+            weakReferencesOfLottie?.Add(dynamicPropertyCallbackId, new WeakReference<LottieAnimationView>(this));
+            InternalSavedDynamicPropertyCallbacks?.Add(dynamicPropertyCallbackId, info.Callback);
 
-            Interop.View.DoActionExtension(SwigCPtr, ImageView.Property.IMAGE, ActionJumpTo + 1, dynamicPropertyCallbackId, info.KeyPath, (int)info.Property, Marshal.GetFunctionPointerForDelegate<System.Delegate>(rootCallback));
+            Interop.View.DoActionExtension(SwigCPtr, ImageView.Property.IMAGE, SetDynamicProperty, dynamicPropertyCallbackId, info.KeyPath, (int)info.Property, Marshal.GetFunctionPointerForDelegate<System.Delegate>(rootCallback));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        private void cleanCallbackDitionaries()
+        {
+            if (weakReferencesOfLottie != null)
+            {
+                foreach (var key in InternalSavedDynamicPropertyCallbacks?.Keys)
+                {
+                    if (weakReferencesOfLottie.ContainsKey(key))
+                    {
+                        weakReferencesOfLottie.Remove(key);
+                    }
+                }
+            }
+            InternalSavedDynamicPropertyCallbacks?.Clear();
+            InternalSavedDynamicPropertyCallbacks = null;
         }
         #endregion Method
 
@@ -996,7 +1012,7 @@ namespace Tizen.NUI.BaseComponents
             DynamicPropertyCallbackType currentCallback = null;
             PropertyValue ret = null;
 
-            if (callbacks2.TryGetValue(id, out current))
+            if (weakReferencesOfLottie.TryGetValue(id, out current))
             {
                 if (current.TryGetTarget(out currentView))
                 {
@@ -1138,8 +1154,8 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<VisualEventSignalArgs> visualEventSignalHandler;
 
         static private int dynamicPropertyCallbackId = 0;
-        static private Dictionary<int, DynamicPropertyCallbackType> callbacks = new Dictionary<int, DynamicPropertyCallbackType>();
-        static private Dictionary<int, WeakReference<LottieAnimationView>> callbacks2 = new Dictionary<int, WeakReference<LottieAnimationView>>();
+        static private Dictionary<int, DynamicPropertyCallbackType> dynamicPropertyCallbacks = new Dictionary<int, DynamicPropertyCallbackType>();
+        static private Dictionary<int, WeakReference<LottieAnimationView>> weakReferencesOfLottie = new Dictionary<int, WeakReference<LottieAnimationView>>();
 
         private void debugPrint()
         {

@@ -3,9 +3,13 @@ using Tizen.NUI;
 
 namespace Tizen.NUI.Samples
 {
+    using tlog = Tizen.Log;
     public class LottieAnimationViewDynamicPropertyTest : IExample
     {
-        const int NUM_OF_VIEW = 10;
+
+        const int NUM_OF_VIEW = 5;
+        const int TIMER_INTERVAL = 3000;
+        const string tag = "NUITEST";
         Window win;
         View root;
         Timer timer;
@@ -20,18 +24,26 @@ namespace Tizen.NUI.Samples
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    Padding = new Extents(3, 3, 3, 3),
                 },
             };
             win.Add(root);
 
-            timer = new Timer(3000);
+            timer = new Timer(TIMER_INTERVAL);
             timer.Tick += onTick;
             timer.Start();
         }
 
         int cnt;
         bool onTick(object sender, Timer.TickEventArgs e)
+        {
+            bool ret = false;
+            //ret = test1();
+            ret = test2();
+            return ret;
+        }
+
+        //create objects => explicit dispose => create objects => implicit dispose
+        bool test1()
         {
             switch (cnt % 4)
             {
@@ -45,7 +57,7 @@ namespace Tizen.NUI.Samples
                     MakeAll();
                     break;
                 case 3:
-                    GcAll();
+                    ImplicitDispose();
                     break;
                 default:
                     DisposeAll();
@@ -55,46 +67,92 @@ namespace Tizen.NUI.Samples
             return true;
         }
 
+        //create objects => implicit dispose => force full GC
+        bool test2()
+        {
+            switch (cnt % 3)
+            {
+                case 0:
+                    MakeAll();
+                    break;
+                case 1:
+                    ImplicitDispose();
+                    break;
+                case 2:
+                    ForceFullGC();
+                    break;
+                default:
+                    DisposeAll();
+                    break;
+            }
+            cnt++;
+            return true;
+        }
+
+        void ForceFullGC()
+        {
+            tlog.Fatal(tag, "ForceFullGC start");
+            global::System.GC.Collect();
+            global::System.GC.WaitForPendingFinalizers();
+            global::System.GC.Collect();
+            tlog.Fatal(tag, "ForceFullGC end");
+        }
+
         void MakeAll()
         {
-            Tizen.Log.Debug("NUITEST", $"MakeAll() start");
+            tlog.Fatal(tag, $"MakeAll() start");
+            int width = (int)(root.Size.Width / NUM_OF_VIEW);
             for (int i = 0; i < NUM_OF_VIEW; i++)
             {
                 var lav = new LottieAnimationView();
+                lav.Size2D = new Size2D(width, width);
                 lav.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "done.json";
                 lav.LoopCount = -1;
                 lav.BackgroundColor = Color.White;
                 root.Add(lav);
 
                 LottieAnimationView.DynamicProperty pro;
-                pro.KeyPath = "Shape Layer 1.Ellipse 1.Fill 1";
-                pro.Property = LottieAnimationView.VectorProperty.FillColor;
-                pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(onFillColor);
-                lav.SetDynamicProperty(pro);
+                if (i % 1 == 0)
+                {
+                    pro.KeyPath = "Shape Layer 1.Ellipse 1.Fill 1";
+                    pro.Property = LottieAnimationView.VectorProperty.FillColor;
+                    pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(onFillColor);
+                    lav.DoActionExtension(pro);
+                }
 
-                pro.KeyPath = "**";
-                pro.Property = LottieAnimationView.VectorProperty.StrokeColor;
-                pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(onStrokColor);
-                lav.SetDynamicProperty(pro);
+                if (i % 2 == 0)
+                {
+                    pro.KeyPath = "**";
+                    pro.Property = LottieAnimationView.VectorProperty.StrokeColor;
+                    pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(onStrokColor);
+                    lav.DoActionExtension(pro);
+                }
 
-                pro.KeyPath = "**";
-                pro.Property = LottieAnimationView.VectorProperty.StrokeWidth;
-                pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(onStrokWidth);
-                lav.SetDynamicProperty(pro);
+                if (i % 3 == 0)
+                {
+                    pro.KeyPath = "**";
+                    pro.Property = LottieAnimationView.VectorProperty.StrokeWidth;
+                    pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(onStrokWidth);
+                    lav.DoActionExtension(pro);
+                }
 
-                pro.KeyPath = "Shape Layer 2.Shape 1";
-                pro.Property = LottieAnimationView.VectorProperty.TransformRotation;
-                pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(onTransformRotation);
-                lav.SetDynamicProperty(pro);
+                if (i % 4 == 0)
+                {
+
+                    pro.KeyPath = "Shape Layer 2.Shape 1";
+                    pro.Property = LottieAnimationView.VectorProperty.TransformRotation;
+                    pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(onTransformRotation);
+                    lav.DoActionExtension(pro);
+                }
 
                 lav.Play();
             }
-            Tizen.Log.Debug("NUITEST", $"MakeAll() end");
+            tlog.Fatal(tag, $"MakeAll() end");
         }
 
         void DisposeAll()
         {
-            Tizen.Log.Debug("NUITEST", $"DisposeAll() start");
+            tlog.Fatal(tag, $"DisposeAll() start");
             int childNum = (int)root.ChildCount;
             for (int i = childNum - 1; i >= 0; i--)
             {
@@ -105,12 +163,12 @@ namespace Tizen.NUI.Samples
                     child.Dispose();
                 }
             }
-            Tizen.Log.Debug("NUITEST", $"DisposeAll() end");
+            tlog.Fatal(tag, $"DisposeAll() end");
         }
 
-        void GcAll()
+        void ImplicitDispose()
         {
-            Tizen.Log.Debug("NUITEST", $"GcAll() start");
+            tlog.Fatal(tag, $"ImplicitDispose() start");
             int childNum = (int)root.ChildCount;
             for (int i = childNum - 1; i >= 0; i--)
             {
@@ -120,11 +178,12 @@ namespace Tizen.NUI.Samples
                     child.Unparent();
                 }
             }
-            Tizen.Log.Debug("NUITEST", $"GcAll() end");
+            tlog.Fatal(tag, $"ImplicitDispose() end");
         }
 
         private PropertyValue onFillColor(int returnType, uint frameNumber)
         {
+            //tlog.Fatal(tag, $"onFillColor() returnType={returnType} frameNumber={frameNumber}");
             if (frameNumber < 60)
             {
                 return new PropertyValue(new Vector3(0, 0, 1));
@@ -137,6 +196,7 @@ namespace Tizen.NUI.Samples
 
         private PropertyValue onStrokColor(int returnType, uint frameNumber)
         {
+            //tlog.Fatal(tag, $"onStrokColor() returnType={returnType} frameNumber={frameNumber}");
             if (frameNumber < 60)
             {
                 return new PropertyValue(new Vector3(1, 0, 1));
@@ -149,6 +209,8 @@ namespace Tizen.NUI.Samples
 
         private PropertyValue onStrokWidth(int returnType, uint frameNumber)
         {
+            //tlog.Fatal(tag, $"onStrokWidth() returnType={returnType} frameNumber={frameNumber}");
+
             if (frameNumber < 60)
             {
                 return new PropertyValue(2.0f);
@@ -161,6 +223,8 @@ namespace Tizen.NUI.Samples
 
         private PropertyValue onTransformRotation(int returnType, uint frameNumber)
         {
+            //tlog.Fatal(tag, $"onTransformRotation() returnType={returnType} frameNumber={frameNumber}");
+
             return new PropertyValue(frameNumber * 20.0f);
         }
 
