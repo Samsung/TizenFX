@@ -540,6 +540,8 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected int ActionJumpTo { get; set; } = Interop.LottieAnimationView.AnimatedVectorImageVisualActionJumpToGet();
 
+        // This is used for internal purpose. hidden API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
         protected int SetDynamicProperty => ActionJumpTo + 1;
         #endregion Property
 
