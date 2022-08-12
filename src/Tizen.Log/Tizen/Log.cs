@@ -15,7 +15,6 @@
  */
 
 using System;
-using System.IO;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 
@@ -28,6 +27,7 @@ namespace Tizen
     /// <since_tizen> 3 </since_tizen>
     public class Log
     {
+        private static char[] sep = { '\\', '/' };
         /// <summary>
         /// Prints a log message with the VERBOSE priority.
         /// </summary>
@@ -120,8 +120,9 @@ namespace Tizen
             }
             else
             {
-                Uri f = new Uri("file://" + file);
-                Interop.Dlog.Print(priority, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
+                int index = file.LastIndexOfAny(sep);
+                string filename = file.Substring(index + 1);
+                Interop.Dlog.Print(priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
             }
         }
     }
@@ -133,6 +134,7 @@ namespace Tizen
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class InternalLog
     {
+        private static char[] sep = { '\\', '/' };
         /// <summary>
         /// Prints a log message with the VERBOSE priority.
         /// </summary>
@@ -226,8 +228,9 @@ namespace Tizen
             }
             else
             {
-                Uri f = new Uri("file://" + file);
-                Interop.Dlog.InternalPrint(log_id, priority, tag, "%s: %s(%d) > %s", Path.GetFileName(f.AbsolutePath), func, line, message);
+                int index = file.LastIndexOfAny(sep);
+                string filename = file.Substring(index + 1);
+                Interop.Dlog.InternalPrint(log_id, priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
             }
         }
     }
@@ -239,6 +242,7 @@ namespace Tizen
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SecureLog
     {
+        private static char[] sep = { '\\', '/' };
         /// <summary>
         /// Prints a log message with the VERBOSE priority.
         /// </summary>
@@ -333,8 +337,9 @@ namespace Tizen
             }
             else
             {
-                Uri f = new Uri("file://" + file);
-                Interop.Dlog.InternalPrint(log_id, priority, tag, "%s: %s(%d) > [SECURE_LOG] %s", Path.GetFileName(f.AbsolutePath), func, line, message);
+                int index = file.LastIndexOfAny(sep);
+                string filename = file.Substring(index + 1);
+                Interop.Dlog.InternalPrint(log_id, priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
             }
 #endif
         }

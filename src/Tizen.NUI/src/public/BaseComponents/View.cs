@@ -32,6 +32,7 @@ namespace Tizen.NUI.BaseComponents
         private static HashSet<BindableProperty> sizePropertyGroup = new HashSet<BindableProperty>();
         private static HashSet<BindableProperty> scalePropertyGroup = new HashSet<BindableProperty>();
         private static bool defaultGrabTouchAfterLeave = false;
+        private static bool defaultAllowOnlyOwnTouch = false;
 
         internal BackgroundExtraData backgroundExtraData;
 
@@ -69,6 +70,8 @@ namespace Tizen.NUI.BaseComponents
         private Size internalSize = null;
         private Size2D internalSize2D = null;
         private int layoutCount = 0;
+        private ControlState propagatableControlStates = ControlState.All;
+        private bool dispatchTouchEvents = true;
 
         static View()
         {
@@ -154,6 +157,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             GrabTouchAfterLeave = defaultGrabTouchAfterLeave;
+            AllowOnlyOwnTouch = defaultAllowOnlyOwnTouch;
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
@@ -205,6 +209,16 @@ namespace Tizen.NUI.BaseComponents
         public static void SetDefaultGrabTouchAfterLeave(bool enable)
         {
             defaultGrabTouchAfterLeave = enable;
+        }
+
+        /// <summary>
+        /// If set to true, the <see cref="AllowOnlyOwnTouch"/> property value is set to true when all Views are created.
+        /// </summary>
+        /// <param name="enable">Sets value of AllowOnlyOwnTouch property</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetDefaultAllowOnlyOwnTouch(bool enable)
+        {
+            defaultAllowOnlyOwnTouch = enable;
         }
 
         /// <summary>
@@ -262,7 +276,90 @@ namespace Tizen.NUI.BaseComponents
                 {
                     foreach (View child in Children)
                     {
-                        child.ControlState = value;
+                        ControlState allowed = child.PropagatableControlStates;
+                        if (allowed.Contains(ControlState.All))
+                        {
+                            child.ControlState = value;
+                        }
+                        else
+                        {
+                            ControlState newControlState = child.ControlState;
+
+                            if (allowed.Contains(ControlState.Normal))
+                            {
+                                if (value.Contains(ControlState.Normal))
+                                {
+                                    newControlState += ControlState.Normal;
+                                }
+                                else
+                                {
+                                    newControlState -= ControlState.Normal;
+                                }
+                            }
+
+                            if (allowed.Contains(ControlState.Disabled))
+                            {
+                                if (value.Contains(ControlState.Disabled))
+                                {
+                                    newControlState += ControlState.Disabled;
+                                }
+                                else
+                                {
+                                    newControlState -= ControlState.Disabled;
+                                }
+                            }
+
+                            if (allowed.Contains(ControlState.Selected))
+                            {
+                                if (value.Contains(ControlState.Selected))
+                                {
+                                    newControlState += ControlState.Selected;
+                                }
+                                else
+                                {
+                                    newControlState -= ControlState.Selected;
+                                }
+                            }
+
+                            if (allowed.Contains(ControlState.Pressed))
+                            {
+                                if (value.Contains(ControlState.Pressed))
+                                {
+                                    newControlState += ControlState.Pressed;
+                                }
+                                else
+                                {
+                                    newControlState -= ControlState.Pressed;
+                                }
+                            }
+
+                            if (allowed.Contains(ControlState.Focused))
+                            {
+                                if (value.Contains(ControlState.Focused))
+                                {
+                                    newControlState += ControlState.Focused;
+                                }
+                                else
+                                {
+                                    newControlState -= ControlState.Focused;
+                                }
+                            }
+
+                            if (allowed.Contains(ControlState.Other))
+                            {
+                                if (value.Contains(ControlState.Other))
+                                {
+                                    newControlState += ControlState.Other;
+                                }
+                                else
+                                {
+                                    newControlState -= ControlState.Other;
+                                }
+                            }
+
+                            if (child.ControlState != newControlState)
+                            child.ControlState = newControlState;
+                        }
                     }
                 }
 
@@ -2889,15 +2986,15 @@ namespace Tizen.NUI.BaseComponents
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Vector2 UpdateSizeHint
+        public Vector4 UpdateAreaHint
         {
             get
             {
-                return (Vector2)GetValue(UpdateSizeHintProperty);
+                return (Vector4)GetValue(UpdateAreaHintProperty);
             }
             set
             {
-                SetValue(UpdateSizeHintProperty, value);
+                SetValue(UpdateAreaHintProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -2938,6 +3035,33 @@ namespace Tizen.NUI.BaseComponents
                     child.EnableControlStatePropagation = value;
                 }
             }
+        }
+
+        /// <summary>
+        /// The ControlStates can propagate from the parent.
+        /// Listed ControlStates will be accepted propagation of the parent ControlState changes
+        /// if parent view EnableControlState is true.
+        /// <see cref="EnableControlState"/>.
+        /// Default is ControlState.All, so every ControlStates will be propagated from the parent.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ControlState PropagatableControlStates
+        {
+            get
+            {
+                return (ControlState)GetValue(PropagatableControlStatesProperty);
+            }
+            set
+            {
+                SetValue(PropagatableControlStatesProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private ControlState InternalPropagatableControlStates
+        {
+            get => propagatableControlStates;
+            set => propagatableControlStates = value;
         }
 
         /// <summary>
@@ -2988,6 +3112,42 @@ namespace Tizen.NUI.BaseComponents
             {
                 var temp = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.CaptureAllTouchAfterStart, temp);
+                temp.Dispose();
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Whether the view will only receive own touch.
+        /// </summary>
+        /// <returns>true, if it only receives touches that started from itself.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool AllowOnlyOwnTouch
+        {
+            get
+            {
+                return (bool)GetValue(AllowOnlyOwnTouchProperty);
+            }
+            set
+            {
+                SetValue(AllowOnlyOwnTouchProperty, value);
+            }
+        }
+
+        private bool InternalAllowOnlyOwnTouch
+        {
+            get
+            {
+                bool temp = false;
+                var pValue = GetProperty(View.Property.AllowOnlyOwnTouch);
+                pValue.Get(out temp);
+                pValue.Dispose();
+                return temp;
+            }
+            set
+            {
+                var temp = new Tizen.NUI.PropertyValue(value);
+                SetProperty(View.Property.AllowOnlyOwnTouch, temp);
                 temp.Dispose();
                 NotifyPropertyChanged();
             }
@@ -3189,6 +3349,43 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(DispatchKeyEventsProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether touch events can be dispatched.
+        /// If a View's DispatchTouchEvents is set to false, then it's can not will receive touch and parents will not receive a touch event signal either.
+        /// This works without adding a TouchEvent callback in the View.
+        /// <note>
+        /// If the <see cref="Tizen.NUI.BaseComponents.View.Sensitive"/> is a property that determines whether or not to be hittable, then this property prevents the propagation of the hit touch event.
+        /// </note>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchTouchEvents
+        {
+            get
+            {
+                return dispatchTouchEvents;
+            }
+            set
+            {
+                if (dispatchTouchEvents != value)
+                {
+                    dispatchTouchEvents = value;
+                    if (dispatchTouchEvents == false)
+                    {
+                        TouchEvent += OnDispatchTouchEvent;
+                    }
+                    else
+                    {
+                        TouchEvent -= OnDispatchTouchEvent;
+                    }
+                }
+            }
+        }
+
+        private bool OnDispatchTouchEvent(object source, View.TouchEventArgs e)
+        {
+            return true;
         }
 
         /// <summary>

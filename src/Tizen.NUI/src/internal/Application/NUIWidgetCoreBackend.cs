@@ -121,6 +121,7 @@ namespace Tizen.NUI
             application.Terminating += OnTerminated;
 
             application.MainLoop();
+            application.Dispose();
         }
 
         /// <summary>

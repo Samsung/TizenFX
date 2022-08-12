@@ -22,7 +22,6 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Provides data for the <see cref="WebRTCSignalingClient.SignalingMessage"/> event.
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebRTCSignalingEventArgs : EventArgs
     {
@@ -37,7 +36,6 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the signaling message type.
         /// </summary>
         /// <value>The signaling message type.</value>
-        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public SignalingMessageType MessageType { get; }
 
@@ -45,7 +43,6 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the message from remote peer.
         /// </summary>
         /// <value>The message.</value>
-        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string Message { get; }
 
@@ -53,7 +50,6 @@ namespace Tizen.Multimedia.Remoting
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
-        /// <since_tizen> 9 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override string ToString() => $"MessageType={MessageType}, Message={Message}";
     }
