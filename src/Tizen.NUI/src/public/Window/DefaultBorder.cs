@@ -420,6 +420,7 @@ namespace Tizen.NUI
                     }
                     else
                     {
+                        OnRequestMove();
                         BorderWindow.RequestMoveToServer();
                     }
                 }
@@ -780,6 +781,7 @@ namespace Tizen.NUI
                     }
                     else
                     {
+                        OnRequestMove();
                         BorderWindow.RequestMoveToServer();
                     }
                 }
@@ -829,6 +831,20 @@ namespace Tizen.NUI
             }
             UpdateIcons();
         }
+
+        /// <summary>
+        /// Called when requesting a move
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnRequestMove() {}
+
+        /// <summary>
+        /// Called when the window is moved.
+        /// </summary>
+        /// <param name="x">The x of the moved window</param>
+        /// <param name="y">The y of the moved window</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnMoved(int x, int y) {}
 
         /// <summary>
         /// Called when the window is maximized.

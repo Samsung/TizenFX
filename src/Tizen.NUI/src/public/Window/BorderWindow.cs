@@ -219,6 +219,8 @@ namespace Tizen.NUI
 
                 Resized += OnBorderWindowResized;
 
+                Moved += OnBorderWindowMoved;
+
                 borderInterface.OnCreated(borderView);
 
                 // Increase the window size as much as the border area.
@@ -433,6 +435,13 @@ namespace Tizen.NUI
                     GetBorderWindowBottomLayer().LowerToBottom();
                 }
             }
+        }
+
+        // Called when the window position has changed.
+        private void OnBorderWindowMoved(object sender, WindowMovedEventArgs e)
+        {
+            Tizen.Log.Info("NUI", $"OnBorderWindowMoved {e.WindowPosition.X}, {e.WindowPosition.Y}\n");
+            borderInterface.OnMoved(e.WindowPosition.X, e.WindowPosition.X);
         }
 
 
