@@ -109,18 +109,20 @@ namespace Tizen.NUI
         public void OnCreated(View borderView);
 
         /// <summary>
-        /// Called when requesting a resize
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void OnRequestResize();
-
-        /// <summary>
         /// Called when the window is resized.
         /// </summary>
         /// <param name="width">The width of the resized window</param>
         /// <param name="height">The height of the resized window</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void OnResized(int width, int height);
+
+        /// <summary>
+        /// Called when the window is moved.
+        /// </summary>
+        /// <param name="x">The x of the moved window</param>
+        /// <param name="y">The y of the moved window</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void OnMoved(int x, int y);
 
         /// <summary>
         /// Called when the window is maximized.
