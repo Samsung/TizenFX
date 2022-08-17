@@ -19,25 +19,25 @@ namespace Tizen.NUI.Scene3D
 {
     internal static partial class Interop
     {
-        internal static partial class ModelView
+        internal static partial class Model
         {
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_ModelView_New_SWIG_1")]
-            public static extern global::System.IntPtr ModelViewNew(string jarg1, string jarg2);
+            public static extern global::System.IntPtr ModelNew(string jarg1, string jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_ModelView_SWIG_0")]
-            public static extern global::System.IntPtr NewModelView();
+            public static extern global::System.IntPtr NewModel();
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_ModelView_SWIG_1")]
-            public static extern global::System.IntPtr NewModelView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr NewModel(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_delete_ModelView")]
-            public static extern void DeleteModelView(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern void DeleteModel(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_ModelView_Assign")]
-            public static extern global::System.IntPtr ModelViewAssign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            public static extern global::System.IntPtr ModelAssign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_ModelView_DownCast")]
-            public static extern global::System.IntPtr ModelViewDownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern global::System.IntPtr ModelDownCast(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_ModelView_GetModelRoot")]
             public static extern global::System.IntPtr GetModelRoot(global::System.Runtime.InteropServices.HandleRef jarg1);
