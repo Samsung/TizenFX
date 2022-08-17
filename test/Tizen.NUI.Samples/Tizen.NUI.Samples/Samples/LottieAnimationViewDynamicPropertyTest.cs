@@ -31,22 +31,22 @@ namespace Tizen.NUI.Samples
             win.Add(root);
 
             timer = new Timer(TIMER_INTERVAL);
-            timer.Tick += onTick;
+            timer.Tick += OnTick;
             timer.Start();
         }
 
         int cnt;
-        bool onTick(object sender, Timer.TickEventArgs e)
+        bool OnTick(object sender, Timer.TickEventArgs e)
         {
             bool ret = false;
-            //ret = test1();
-            //ret = test2();
-            ret = test3();
+            //ret = Test1();
+            //ret = Test2();
+            ret = Test3();
             return ret;
         }
 
         //create objects => explicit dispose => create objects => implicit dispose
-        bool test1()
+        bool Test1()
         {
             switch (cnt % 4)
             {
@@ -71,7 +71,7 @@ namespace Tizen.NUI.Samples
         }
 
         //create objects => implicit dispose => force full GC
-        bool test2()
+        bool Test2()
         {
             switch (cnt % 3)
             {
@@ -93,7 +93,7 @@ namespace Tizen.NUI.Samples
         }
 
         global::System.Random rand = new global::System.Random();
-        bool test3()
+        bool Test3()
         {
             var lav = new LottieAnimationView();
             lav.Size2D = new Size2D(300, 300);
@@ -146,7 +146,7 @@ namespace Tizen.NUI.Samples
                 {
                     KeyPath = "Shape Layer 1.Ellipse 1.Fill 1",
                     Property = LottieAnimationView.VectorProperty.FillColor,
-                    Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(onFillColor),
+                    Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(OnFillColor),
                 };
 
                 if (i % 1 == 0)
@@ -158,7 +158,7 @@ namespace Tizen.NUI.Samples
                 {
                     pro.KeyPath = "**";
                     pro.Property = LottieAnimationView.VectorProperty.StrokeColor;
-                    pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(onStrokColor);
+                    pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(OnStrokColor);
                     lav.DoActionExtension(pro);
                 }
 
@@ -166,19 +166,17 @@ namespace Tizen.NUI.Samples
                 {
                     pro.KeyPath = "**";
                     pro.Property = LottieAnimationView.VectorProperty.StrokeWidth;
-                    pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(onStrokWidth);
+                    pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(OnStrokWidth);
                     lav.DoActionExtension(pro);
                 }
 
                 if (i % 4 == 0)
                 {
-
                     pro.KeyPath = "Shape Layer 2.Shape 1";
                     pro.Property = LottieAnimationView.VectorProperty.TransformRotation;
-                    pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(onTransformRotation);
+                    pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(OnTransformRotation);
                     lav.DoActionExtension(pro);
                 }
-
                 lav.Play();
             }
             tlog.Debug(tag, $"MakeAll() end");
@@ -215,9 +213,9 @@ namespace Tizen.NUI.Samples
             tlog.Debug(tag, $"ImplicitDispose() end");
         }
 
-        private PropertyValue onFillColor(int returnType, uint frameNumber)
+        private PropertyValue OnFillColor(int returnType, uint frameNumber)
         {
-            tlog.Debug(tag, $"onFillColor() returnType={returnType} frameNumber={frameNumber}");
+            tlog.Debug(tag, $"OnFillColor() returnType={returnType} frameNumber={frameNumber}");
             if (frameNumber < 60)
             {
                 return new PropertyValue(new Vector3(0, 0, 1));
@@ -228,9 +226,9 @@ namespace Tizen.NUI.Samples
             }
         }
 
-        private PropertyValue onStrokColor(int returnType, uint frameNumber)
+        private PropertyValue OnStrokColor(int returnType, uint frameNumber)
         {
-            tlog.Debug(tag, $"onStrokColor() returnType={returnType} frameNumber={frameNumber}");
+            tlog.Debug(tag, $"OnStrokColor() returnType={returnType} frameNumber={frameNumber}");
             if (frameNumber < 60)
             {
                 return new PropertyValue(new Vector3(1, 0, 1));
@@ -241,9 +239,9 @@ namespace Tizen.NUI.Samples
             }
         }
 
-        private PropertyValue onStrokWidth(int returnType, uint frameNumber)
+        private PropertyValue OnStrokWidth(int returnType, uint frameNumber)
         {
-            tlog.Debug(tag, $"onStrokWidth() returnType={returnType} frameNumber={frameNumber}");
+            tlog.Debug(tag, $"OnStrokWidth() returnType={returnType} frameNumber={frameNumber}");
 
             if (frameNumber < 60)
             {
@@ -255,9 +253,9 @@ namespace Tizen.NUI.Samples
             }
         }
 
-        private PropertyValue onTransformRotation(int returnType, uint frameNumber)
+        private PropertyValue OnTransformRotation(int returnType, uint frameNumber)
         {
-            tlog.Debug(tag, $"onTransformRotation() returnType={returnType} frameNumber={frameNumber}");
+            tlog.Debug(tag, $"OnTransformRotation() returnType={returnType} frameNumber={frameNumber}");
 
             return new PropertyValue(frameNumber * 20.0f);
         }

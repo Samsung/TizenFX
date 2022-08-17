@@ -80,7 +80,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            cleanCallbackDitionaries();
+            CleanCallbackDictionaries();
 
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
@@ -102,7 +102,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(bool disposing)
         {
-            cleanCallbackDitionaries();
+            CleanCallbackDictionaries();
             base.Dispose(disposing);
         }
         #endregion Constructor, Destructor, Dispose
@@ -782,7 +782,7 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        private void cleanCallbackDitionaries()
+        private void CleanCallbackDictionaries()
         {
             if (weakReferencesOfLottie?.Count > 0 && InternalSavedDynamicPropertyCallbacks != null)
             {
