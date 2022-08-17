@@ -212,25 +212,21 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Ready state.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
         Ready = 0,
 
         /// <summary>
         /// Synthesizing state.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
         Synthesizing = 1,
 
         /// <summary>
         /// Playing state.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
         Playing = 2,
 
         /// <summary>
         /// Unavailable state.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
         Unavailable
     };
 
@@ -624,7 +620,7 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
-        /// Event to be invoked when state of TTS service changes.
+        /// Event to be invoked when the state of TTS service changes.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public event EventHandler<ServiceStateChangedEventArgs> ServiceStateChanged
@@ -755,13 +751,10 @@ namespace Tizen.Uix.Tts
         /// <summary>
         /// Gets the current state of TTS service.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
         /// <value>
         /// The current state of TTS service.
         /// </value>
-        /// <returns>
-        /// Current TTS service state value.
-        /// </returns>
+        /// <since_tizen> 10 </since_tizen>
         public ServiceState CurrentServiceState
         {
             get
