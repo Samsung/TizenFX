@@ -636,43 +636,50 @@ namespace Tizen.NUI.BaseComponents
         public List<Tuple<string, int, int>> GetContentInfo()
         {
             NUILog.Debug($"<");
+
             if (currentStates.contentInfo != null)
             {
                 return currentStates.contentInfo;
             }
 
             PropertyMap imageMap = base.Image;
-            PropertyMap contentMap = new PropertyMap();
             if (imageMap != null)
             {
                 PropertyValue val = imageMap.Find(ImageVisualProperty.ContentInfo);
-                if (val != null)
+                PropertyMap contentMap = new PropertyMap();
+                if (val?.Get(ref contentMap) == true)
                 {
-                    if (val.Get(contentMap))
+                    currentStates.contentInfo = new List<Tuple<string, int, int>>();
+                    for (uint i = 0; i < contentMap.Count(); i++)
                     {
-                        currentStates.contentInfo = new List<Tuple<string, int, int>>();
-                        for (uint i = 0; i < contentMap.Count(); i++)
+                        using PropertyKey propertyKey = contentMap.GetKeyAt(i);
+                        string key = propertyKey.StringKey;
+
+                        using PropertyValue arrVal = contentMap.GetValue(i);
+                        using PropertyArray arr = new PropertyArray();
+                        if (arrVal.Get(arr))
                         {
-                            string key = contentMap.GetKeyAt(i).StringKey;
-                            PropertyArray arr = new PropertyArray();
-                            contentMap.GetValue(i).Get(arr);
-                            if (arr != null)
-                            {
-                                int startFrame, endFrame;
-                                arr.GetElementAt(0).Get(out startFrame);
-                                arr.GetElementAt(1).Get(out endFrame);
+                            int startFrame = -1;
+                            using PropertyValue start = arr.GetElementAt(0);
+                            start?.Get(out startFrame);
 
-                                NUILog.Debug($"[{i}] layer name={key}, startFrame={startFrame}, endFrame={endFrame}");
+                            int endFrame = -1;
+                            using PropertyValue end = arr.GetElementAt(1);
+                            end?.Get(out endFrame);
 
-                                Tuple<string, int, int> item = new Tuple<string, int, int>(key, startFrame, endFrame);
+                            NUILog.Debug($"[{i}] layer name={key}, startFrame={startFrame}, endFrame={endFrame}");
 
-                                currentStates.contentInfo?.Add(item);
-                            }
+                            Tuple<string, int, int> item = new Tuple<string, int, int>(key, startFrame, endFrame);
+
+                            currentStates.contentInfo?.Add(item);
                         }
                     }
                 }
+                contentMap.Dispose();
+                val.Dispose();
             }
             NUILog.Debug($">");
+
             return currentStates.contentInfo;
         }
 
@@ -777,18 +784,26 @@ namespace Tizen.NUI.BaseComponents
 
         private void cleanCallbackDitionaries()
         {
-            if (weakReferencesOfLottie != null)
+            Tizen.Log.Fatal("NUITEST", $"cleanCallbackDitionaries() start");
+            if (weakReferencesOfLottie?.Count > 0)
             {
+                Tizen.Log.Fatal("NUITEST", $"tp-1 weakReferencesOfLottie?.Count={weakReferencesOfLottie?.Count}");
+
                 foreach (var key in InternalSavedDynamicPropertyCallbacks?.Keys)
                 {
+                    Tizen.Log.Fatal("NUITEST", $"tp-2");
                     if (weakReferencesOfLottie.ContainsKey(key))
                     {
+                        Tizen.Log.Fatal("NUITEST", $"tp-3");
                         weakReferencesOfLottie.Remove(key);
                     }
+                    Tizen.Log.Fatal("NUITEST", $"tp-4 weakReferencesOfLottie?.Count={weakReferencesOfLottie?.Count}");
                 }
             }
+            Tizen.Log.Fatal("NUITEST", $"tp-5");
             InternalSavedDynamicPropertyCallbacks?.Clear();
             InternalSavedDynamicPropertyCallbacks = null;
+            Tizen.Log.Fatal("NUITEST", $"cleanCallbackDitionaries() end");
         }
         #endregion Method
 

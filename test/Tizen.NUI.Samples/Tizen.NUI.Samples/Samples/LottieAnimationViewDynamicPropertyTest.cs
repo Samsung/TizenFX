@@ -1,5 +1,7 @@
+
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI;
+using System.Collections.Generic;
 
 namespace Tizen.NUI.Samples
 {
@@ -38,7 +40,8 @@ namespace Tizen.NUI.Samples
         {
             bool ret = false;
             //ret = test1();
-            ret = test2();
+            //ret = test2();
+            ret = test3();
             return ret;
         }
 
@@ -86,6 +89,34 @@ namespace Tizen.NUI.Samples
                     break;
             }
             cnt++;
+            return true;
+        }
+
+        global::System.Random rand = new global::System.Random();
+        bool test3()
+        {
+            var lav = new LottieAnimationView();
+            lav.Size2D = new Size2D(300, 300);
+            lav.Position2D = new Position2D(rand.Next(10, 1000), rand.Next(10, 1000));
+            if (cnt++ % 2 == 0)
+            {
+                lav.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "a.json";
+            }
+            else
+            {
+                lav.URL = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "done.json";
+            }
+            lav.LoopCount = -1;
+            lav.BackgroundColor = Color.White;
+            win.Add(lav);
+            lav.Play();
+
+            var ret = lav.GetContentInfo();
+            tlog.Fatal(tag, $"ret.Count {ret.Count}");
+            foreach (var item in ret)
+            {
+                tlog.Fatal(tag, $"item:({item.Item1}, {item.Item2}, {item.Item3})");
+            }
             return true;
         }
 
