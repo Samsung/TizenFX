@@ -111,12 +111,15 @@ namespace Tizen.NUI.Samples
                 lav.BackgroundColor = Color.White;
                 root.Add(lav);
 
-                LottieAnimationView.DynamicProperty pro;
+                LottieAnimationViewDynamicProperty pro = new LottieAnimationViewDynamicProperty
+                {
+                    KeyPath = "Shape Layer 1.Ellipse 1.Fill 1",
+                    Property = LottieAnimationView.VectorProperty.FillColor,
+                    Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(onFillColor),
+                };
+
                 if (i % 1 == 0)
                 {
-                    pro.KeyPath = "Shape Layer 1.Ellipse 1.Fill 1";
-                    pro.Property = LottieAnimationView.VectorProperty.FillColor;
-                    pro.Callback = new Tizen.NUI.BaseComponents.LottieAnimationView.DynamicPropertyCallbackType(onFillColor);
                     lav.DoActionExtension(pro);
                 }
 

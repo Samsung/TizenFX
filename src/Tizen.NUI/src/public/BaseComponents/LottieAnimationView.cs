@@ -89,7 +89,8 @@ namespace Tizen.NUI.BaseComponents
             //disconnect event signal
             if (finishedEventHandler != null && visualEventSignalCallback != null)
             {
-                VisualEventSignal().Disconnect(visualEventSignalCallback);
+                using VisualEventSignal visualEvent = VisualEventSignal();
+                visualEvent.Disconnect(visualEventSignalCallback);
                 finishedEventHandler = null;
                 NUILog.Debug($"disconnect event signal");
             }
@@ -102,6 +103,7 @@ namespace Tizen.NUI.BaseComponents
         protected override void Dispose(bool disposing)
         {
             cleanCallbackDitionaries();
+            base.Dispose(disposing);
         }
         #endregion Constructor, Destructor, Dispose
 
@@ -134,12 +136,18 @@ namespace Tizen.NUI.BaseComponents
 
                 NUILog.Debug($"<[{GetId()}]SET url={currentStates.url}");
 
-                PropertyMap map = new PropertyMap();
-                map.Add(Visual.Property.Type, new PropertyValue((int)DevelVisual.Type.AnimatedVectorImage))
-                    .Add(ImageVisualProperty.URL, new PropertyValue(currentStates.url))
-                    .Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount))
-                    .Add(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction))
-                    .Add(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
+                using PropertyMap map = new PropertyMap();
+                using PropertyValue type = new PropertyValue((int)DevelVisual.Type.AnimatedVectorImage);
+                using PropertyValue url = new PropertyValue(currentStates.url);
+                using PropertyValue loopCnt = new PropertyValue(currentStates.loopCount);
+                using PropertyValue stopAction = new PropertyValue((int)currentStates.stopEndAction);
+                using PropertyValue loopMode = new PropertyValue((int)currentStates.loopMode);
+
+                map.Add(Visual.Property.Type, type)
+                    .Add(ImageVisualProperty.URL, url)
+                    .Add(ImageVisualProperty.LoopCount, loopCnt)
+                    .Add(ImageVisualProperty.StopBehavior, stopAction)
+                    .Add(ImageVisualProperty.LoopingMode, loopMode);
                 Image = map;
 
                 currentStates.contentInfo = null;
@@ -155,10 +163,10 @@ namespace Tizen.NUI.BaseComponents
                 string ret = currentStates.url;
                 NUILog.Debug($"<[{GetId()}] GET");
 
-                PropertyMap map = base.Image;
+                using PropertyMap map = base.Image;
                 if (map != null)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.URL);
+                    using PropertyValue val = map.Find(ImageVisualProperty.URL);
                     if (val != null)
                     {
                         if (val.Get(out ret))
@@ -182,11 +190,11 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 NUILog.Debug($"< Get!");
-                PropertyMap map = base.Image;
+                using PropertyMap map = base.Image;
                 var ret = 0;
                 if (map != null)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.PlayState);
+                    using PropertyValue val = map.Find(ImageVisualProperty.PlayState);
                     if (val != null)
                     {
                         if (val.Get(out ret))
@@ -213,15 +221,15 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 int ret = -1;
-                PropertyMap map = base.Image;
+                using PropertyMap map = base.Image;
                 if (map != null)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.TotalFrameNumber);
+                    using PropertyValue val = map.Find(ImageVisualProperty.TotalFrameNumber);
                     if (val != null)
                     {
                         if (val.Get(out ret))
                         {
-                            //NUILog.Debug( $"TotalFrameNumber get! ret={ret}");
+                            NUILog.Debug($"TotalFrameNumber get! ret={ret}");
                             currentStates.totalFrame = ret;
                             return ret;
                         }
@@ -270,20 +278,21 @@ namespace Tizen.NUI.BaseComponents
             {
                 currentStates.frame = value;
                 NUILog.Debug($"<[{GetId()}]SET frame={currentStates.frame}>");
-                DoAction(ImageView.Property.IMAGE, ActionJumpTo, new PropertyValue(currentStates.frame));
+                using PropertyValue attribute = new PropertyValue(currentStates.frame);
+                DoAction(ImageView.Property.IMAGE, ActionJumpTo, attribute);
             }
             get
             {
                 int ret = 0;
-                PropertyMap map = base.Image;
+                using PropertyMap map = base.Image;
                 if (map != null)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.CurrentFrameNumber);
+                    using PropertyValue val = map.Find(ImageVisualProperty.CurrentFrameNumber);
                     if (val != null)
                     {
                         if (val.Get(out ret))
                         {
-                            //NUILog.Debug( $"CurrentFrameNumber get! val={ret}");
+                            NUILog.Debug($"CurrentFrameNumber get! val={ret}");
                             return ret;
                         }
                     }
@@ -318,23 +327,25 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.changed = true;
 
                 NUILog.Debug($"<[{GetId()}] SET loopMode={currentStates.loopMode}>");
-                PropertyMap map = new PropertyMap();
-                map.Add(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
-                DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, new PropertyValue(map));
+                using PropertyMap map = new PropertyMap();
+                using PropertyValue loopMode = new PropertyValue((int)currentStates.loopMode);
+                map.Add(ImageVisualProperty.LoopingMode, loopMode);
+                using PropertyValue attribute = new PropertyValue(map);
+                DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, attribute);
             }
             get
             {
-                //NUILog.Debug( $"LoopMode get!");
-                PropertyMap map = base.Image;
+                NUILog.Debug($"LoopMode get!");
+                using PropertyMap map = base.Image;
                 var ret = 0;
                 if (map != null)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.LoopingMode);
+                    using PropertyValue val = map.Find(ImageVisualProperty.LoopingMode);
                     if (val != null)
                     {
                         if (val.Get(out ret))
                         {
-                            //NUILog.Debug( $"gotten LoopMode={ret}");
+                            NUILog.Debug($"gotten LoopMode={ret}");
                             if (ret != (int)currentStates.loopMode && ret > 0)
                             {
                                 NUILog.Debug($" [ERROR][{GetId()}](LottieAnimationView) different LoopMode! gotten={ret}, loopMode={currentStates.loopMode}");
@@ -388,23 +399,25 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.changed = true;
                 currentStates.loopCount = value;
                 NUILog.Debug($"<[{GetId()}]SET currentStates.loopCount={currentStates.loopCount}>");
-                PropertyMap map = new PropertyMap();
-                map.Add(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount));
-                DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, new PropertyValue(map));
+                using PropertyMap map = new PropertyMap();
+                using PropertyValue loopCnt = new PropertyValue(currentStates.loopCount);
+                map.Add(ImageVisualProperty.LoopCount, loopCnt);
+                using PropertyValue attribute = new PropertyValue(map);
+                DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, attribute);
             }
             get
             {
-                //NUILog.Debug( $"LoopCount get!");
-                PropertyMap map = base.Image;
+                NUILog.Debug($"LoopCount get!");
+                using PropertyMap map = base.Image;
                 var ret = 0;
                 if (map != null)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.LoopCount);
+                    using PropertyValue val = map.Find(ImageVisualProperty.LoopCount);
                     if (val != null)
                     {
                         if (val.Get(out ret))
                         {
-                            //NUILog.Debug( $"gotten loop count={ret}");
+                            NUILog.Debug($"gotten loop count={ret}");
                             if (ret != currentStates.loopCount && ret > 0)
                             {
                                 NUILog.Debug($"<[ERROR][{GetId()}](LottieAnimationView) different loop count! gotten={ret}, loopCount={currentStates.loopCount}>");
@@ -444,23 +457,25 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.changed = true;
 
                 NUILog.Debug($"<[{GetId()}]SET val={currentStates.stopEndAction}>");
-                PropertyMap map = new PropertyMap();
-                map.Add(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction));
-                DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, new PropertyValue(map));
+                using PropertyMap map = new PropertyMap();
+                using PropertyValue stopAction = new PropertyValue((int)currentStates.stopEndAction);
+                map.Add(ImageVisualProperty.StopBehavior, stopAction);
+                using PropertyValue attribute = new PropertyValue(map);
+                DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, attribute);
             }
             get
             {
-                //NUILog.Debug( $"StopBehavior get!");
-                PropertyMap map = base.Image;
+                NUILog.Debug($"StopBehavior get!");
+                using PropertyMap map = base.Image;
                 var ret = 0;
                 if (map != null)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.StopBehavior);
+                    using PropertyValue val = map.Find(ImageVisualProperty.StopBehavior);
                     if (val != null)
                     {
                         if (val.Get(out ret))
                         {
-                            //NUILog.Debug( $"gotten StopBehavior={ret}");
+                            NUILog.Debug($"gotten StopBehavior={ret}");
                             if (ret != (int)currentStates.stopEndAction)
                             {
                                 NUILog.Debug($"<[ERROR][{GetId()}](LottieAnimationView) different StopBehavior! gotten={ret}, StopBehavior={currentStates.stopEndAction}>");
@@ -503,9 +518,11 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.changed = true;
                 currentStates.redrawInScalingDown = value;
                 NUILog.Debug($"<[{GetId()}]SET currentStates.redrawInScalingDown={currentStates.redrawInScalingDown}>");
-                PropertyMap map = new PropertyMap();
-                map.Add(ImageVisualProperty.RedrawInScalingDown, new PropertyValue(currentStates.redrawInScalingDown));
-                DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, new PropertyValue(map));
+                using PropertyMap map = new PropertyMap();
+                using PropertyValue redraw = new PropertyValue(currentStates.redrawInScalingDown);
+                map.Add(ImageVisualProperty.RedrawInScalingDown, redraw);
+                using PropertyValue action = new PropertyValue(map);
+                DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, action);
             }
             get
             {
@@ -513,7 +530,7 @@ namespace Tizen.NUI.BaseComponents
                 var ret = true;
                 if (map != null)
                 {
-                    PropertyValue val = map.Find(ImageVisualProperty.RedrawInScalingDown);
+                    using PropertyValue val = map.Find(ImageVisualProperty.RedrawInScalingDown);
                     if (val != null)
                     {
                         if (val.Get(out ret))
@@ -561,13 +578,17 @@ namespace Tizen.NUI.BaseComponents
             currentStates.framePlayRangeMin = minFrame;
             currentStates.framePlayRangeMax = maxFrame;
 
-            PropertyArray array = new PropertyArray();
-            array.PushBack(new PropertyValue(currentStates.framePlayRangeMin));
-            array.PushBack(new PropertyValue(currentStates.framePlayRangeMax));
+            using PropertyArray array = new PropertyArray();
+            using PropertyValue min = new PropertyValue(currentStates.framePlayRangeMin);
+            using PropertyValue max = new PropertyValue(currentStates.framePlayRangeMax);
+            array.PushBack(min);
+            array.PushBack(max);
 
-            PropertyMap map = new PropertyMap();
-            map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
-            DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, new PropertyValue(map));
+            using PropertyMap map = new PropertyMap();
+            using PropertyValue range = new PropertyValue(array);
+            map.Add(ImageVisualProperty.PlayRange, range);
+            using PropertyValue action = new PropertyValue(map);
+            DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, action);
             NUILog.Debug($"  [{GetId()}] currentStates.min:({currentStates.framePlayRangeMin}, max:{currentStates.framePlayRangeMax})>");
         }
 
@@ -672,16 +693,20 @@ namespace Tizen.NUI.BaseComponents
             currentStates.mark1 = marker1;
             currentStates.mark2 = marker2;
 
-            PropertyArray array = new PropertyArray();
-            array.PushBack(new PropertyValue(currentStates.mark1));
+            using PropertyArray array = new PropertyArray();
+            using PropertyValue mark1 = new PropertyValue(currentStates.mark1);
+            array.PushBack(mark1);
+            using PropertyValue mark2 = new PropertyValue(currentStates.mark2);
             if (marker2 != null)
             {
-                array.PushBack(new PropertyValue(currentStates.mark2));
+                array.PushBack(mark2);
             }
 
-            PropertyMap map = new PropertyMap();
-            map.Add(ImageVisualProperty.PlayRange, new PropertyValue(array));
-            DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, new PropertyValue(map));
+            using PropertyMap map = new PropertyMap();
+            using PropertyValue range = new PropertyValue(array);
+            map.Add(ImageVisualProperty.PlayRange, range);
+            using PropertyValue actionProperty = new PropertyValue(map);
+            DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, actionProperty);
             NUILog.Debug($"  [{GetId()}] currentStates.mark1:{currentStates.mark1}, mark2:{currentStates.mark2} >");
         }
 
@@ -695,20 +720,20 @@ namespace Tizen.NUI.BaseComponents
         {
             NUILog.Debug($"< [{GetId()}] GetMinMaxFrame()! total frame={currentStates.totalFrame}");
 
-            PropertyMap map = Image;
+            using PropertyMap map = Image;
             if (map != null)
             {
-                PropertyValue val = map.Find(ImageVisualProperty.PlayRange);
+                using PropertyValue val = map.Find(ImageVisualProperty.PlayRange);
                 if (val != null)
                 {
-                    PropertyArray array = new PropertyArray();
+                    using PropertyArray array = new PropertyArray();
                     if (val.Get(array))
                     {
                         uint cnt = array.Count();
                         int item1 = -1, item2 = -1;
                         for (uint i = 0; i < cnt; i++)
                         {
-                            PropertyValue v = array.GetElementAt(i);
+                            using PropertyValue v = array.GetElementAt(i);
                             int intRet;
                             if (v.Get(out intRet))
                             {
@@ -738,7 +763,7 @@ namespace Tizen.NUI.BaseComponents
 
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void DoActionExtension(DynamicProperty info)
+        public void DoActionExtension(LottieAnimationViewDynamicProperty info)
         {
             dynamicPropertyCallbackId++;
 
@@ -781,7 +806,8 @@ namespace Tizen.NUI.BaseComponents
                 {
                     NUILog.Debug($"<[{GetId()}] Finished eventhandler added>");
                     visualEventSignalCallback = onVisualEventSignal;
-                    VisualEventSignal().Connect(visualEventSignalCallback);
+                    using VisualEventSignal visualEvent = VisualEventSignal();
+                    visualEvent.Connect(visualEventSignalCallback);
                 }
                 finishedEventHandler += value;
             }
@@ -791,7 +817,12 @@ namespace Tizen.NUI.BaseComponents
                 finishedEventHandler -= value;
                 if (finishedEventHandler == null && visualEventSignalCallback != null)
                 {
-                    VisualEventSignal().Disconnect(visualEventSignalCallback);
+                    using VisualEventSignal visualEvent = VisualEventSignal();
+                    visualEvent.Disconnect(visualEventSignalCallback);
+                    if (visualEvent?.Empty() == true)
+                    {
+                        visualEventSignalCallback = null;
+                    }
                 }
             }
         }
@@ -937,20 +968,6 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate PropertyValue DynamicPropertyCallbackType(int returnType, uint frameNumber);
-
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public struct DynamicProperty
-        {
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public string KeyPath;
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public VectorProperty Property;
-
-            [EditorBrowsable(EditorBrowsableState.Never)]
-            public DynamicPropertyCallbackType Callback;
-        }
         #endregion Event, Enum, Struct, ETC
 
 
@@ -976,23 +993,30 @@ namespace Tizen.NUI.BaseComponents
                 if (visualEventSignalHandler == null)
                 {
                     visualEventSignalCallback = onVisualEventSignal;
-                    VisualEventSignal().Connect(visualEventSignalCallback);
+                    using VisualEventSignal visualEvent = VisualEventSignal();
+                    visualEvent?.Connect(visualEventSignalCallback);
                 }
                 visualEventSignalHandler += value;
             }
             remove
             {
                 visualEventSignalHandler -= value;
-                if (visualEventSignalHandler == null && VisualEventSignal().Empty() == false)
+                if (visualEventSignalHandler == null && visualEventSignalCallback != null)
                 {
-                    VisualEventSignal().Disconnect(visualEventSignalCallback);
+                    using VisualEventSignal visualEvent = VisualEventSignal();
+                    visualEvent?.Disconnect(visualEventSignalCallback);
+                    if (visualEvent?.Empty() == true)
+                    {
+                        visualEventSignalCallback = null;
+                    }
                 }
             }
         }
 
         internal void EmitVisualEventSignal(int visualIndex, int signalId)
         {
-            VisualEventSignal().Emit(this, visualIndex, signalId);
+            using VisualEventSignal visualEvent = VisualEventSignal();
+            visualEvent?.Emit(this, visualIndex, signalId);
         }
 
         internal VisualEventSignal VisualEventSignal()
@@ -1158,7 +1182,7 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<VisualEventSignalArgs> visualEventSignalHandler;
 
         static private int dynamicPropertyCallbackId = 0;
-        static private Dictionary<int, DynamicPropertyCallbackType> dynamicPropertyCallbacks = new Dictionary<int, DynamicPropertyCallbackType>();
+        //static private Dictionary<int, DynamicPropertyCallbackType> dynamicPropertyCallbacks = new Dictionary<int, DynamicPropertyCallbackType>();
         static private Dictionary<int, WeakReference<LottieAnimationView>> weakReferencesOfLottie = new Dictionary<int, WeakReference<LottieAnimationView>>();
 
         private void debugPrint()
@@ -1288,6 +1312,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="lottieView">The target LottieAnimationView to play.</param>
         /// <param name="noPlay">Whether go direct to the EndFrame. It is false by default.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "CA1062: Validate arguments of public methods", Justification = "The null checking is done by BeReadyToShow()")]
         public void Show(LottieAnimationView lottieView, bool noPlay = false)
         {
             if (!BeReadyToShow(lottieView))
@@ -1329,4 +1354,58 @@ namespace Tizen.NUI.BaseComponents
             return true;
         }
     }
+
+    // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct LottieAnimationViewDynamicProperty : IEquatable<LottieAnimationViewDynamicProperty>
+    {
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string KeyPath { get; set; }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LottieAnimationView.VectorProperty Property { get; set; }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LottieAnimationView.DynamicPropertyCallbackType Callback { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is LottieAnimationViewDynamicProperty target)
+            {
+                if (KeyPath == target.KeyPath && Property == target.Property && Callback == target.Callback)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        public static bool operator ==(LottieAnimationViewDynamicProperty left, LottieAnimationViewDynamicProperty right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(LottieAnimationViewDynamicProperty left, LottieAnimationViewDynamicProperty right)
+        {
+            return !(left == right);
+        }
+
+        public bool Equals(LottieAnimationViewDynamicProperty other)
+        {
+            if (other != null)
+            {
+                if (KeyPath == other.KeyPath && Property == other.Property && Callback == other.Callback)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
 }
