@@ -784,26 +784,18 @@ namespace Tizen.NUI.BaseComponents
 
         private void cleanCallbackDitionaries()
         {
-            Tizen.Log.Fatal("NUITEST", $"cleanCallbackDitionaries() start");
-            if (weakReferencesOfLottie?.Count > 0)
+            if (weakReferencesOfLottie?.Count > 0 && InternalSavedDynamicPropertyCallbacks != null)
             {
-                Tizen.Log.Fatal("NUITEST", $"tp-1 weakReferencesOfLottie?.Count={weakReferencesOfLottie?.Count}");
-
                 foreach (var key in InternalSavedDynamicPropertyCallbacks?.Keys)
                 {
-                    Tizen.Log.Fatal("NUITEST", $"tp-2");
                     if (weakReferencesOfLottie.ContainsKey(key))
                     {
-                        Tizen.Log.Fatal("NUITEST", $"tp-3");
                         weakReferencesOfLottie.Remove(key);
                     }
-                    Tizen.Log.Fatal("NUITEST", $"tp-4 weakReferencesOfLottie?.Count={weakReferencesOfLottie?.Count}");
                 }
             }
-            Tizen.Log.Fatal("NUITEST", $"tp-5");
             InternalSavedDynamicPropertyCallbacks?.Clear();
             InternalSavedDynamicPropertyCallbacks = null;
-            Tizen.Log.Fatal("NUITEST", $"cleanCallbackDitionaries() end");
         }
         #endregion Method
 
