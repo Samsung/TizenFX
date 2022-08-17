@@ -18,62 +18,63 @@
 using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using Tizen.NUI;
 using Tizen.NUI.Binding;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Scene3D
 {
     /// <summary>
-    /// ModelView is a View to show 3D model objects.
-    /// ModelView supports to load glTF 2.0 and DLI models for the input format
+    /// Model is a Class to show 3D mesh objects.
+    /// Model supports to load glTF 2.0 and DLI models for the input format
     /// and also supports Physically Based Rendering with Image Based Lighting.
     ///
-    /// The Animations defined in the glTF or DLI models are also loaded and can be retrieved by using GetAnimation() method.
+    /// The Animations defined in the glTF or DLI are also loaded and can be retrieved by using GetAnimation() method.
     /// The number of animation is also retrieved by GetAnimationCount() method.
     ///
-    /// By default, The loaded model has it's own position and size which are defined in vertex buffer regardless of the View size.
-    /// The model can be resized and repositioned to fit to the ModelView with UseSizeOfView and UseCenterOfView properties.
+    /// By default, The loaded mesh has it's own size inferred from position of vertices.
+    /// If user set size property, the mesh will be scaled to the input size.
+    ///
+    /// Both of the default value of PivotPoint and ParentOrigin of the Model is Center.
+    ///
     /// </summary>
     /// <code>
-    /// ModelView modelView = new ModelView(modelUrl)
+    /// Model model = new Model(modelUrl)
     /// {
     ///     Size = new Size(width, height),
-    ///     PositionUsesPivotPoint = true,
-    ///     PivotPoint = PivotPoint.Center,
-    ///     ParentOrigin = ParentOrigin.Center,
-    ///     UseSizeOfView = true,
-    ///     UseCenterOfView = true,
     /// };
-    /// modelView.SetImageBasedLightSource(diffuseUrl, specularUrl, scaleFactor);
-    /// window.Add(modelView);
-    /// int animationCount = modelView.GetAnimationCount();
+    /// model.SetImageBasedLightSource(diffuseUrl, specularUrl, scaleFactor);
+    /// window.Add(model);
+    ///
+    /// int animationCount = model.GetAnimationCount();
     /// if(animationCount > 0)
     /// {
-    ///     modelView.GetAnimation(0).Play();
+    ///     model.GetAnimation(0).Play();
     /// }
     /// </code>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ModelView : View
+    public class Model : View
     {
-        private bool useSizeOfView = false;
-        private bool useCenterOfView = false;
-
-        internal ModelView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Model(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
         /// <summary>
-        /// Create an initialized ModelView.
+        /// Create an initialized Model.
         /// </summary>
         /// <param name="modelPath">model file path.(e.g., glTF, and DLI).</param>
         /// <param name="resourcePath">resource file path that includes binary, image etc.</param>
         /// <note> If resourcePath is empty, the parent directory path of modelPath is used for resource path. </note>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ModelView(string modelPath, string resourcePath = "") : this(Interop.ModelView.ModelViewNew(modelPath, resourcePath), true)
+        public Model(string modelPath, string resourcePath = "") : this(Interop.Model.ModelNew(modelPath, resourcePath), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            Interop.Model.FitSize(SwigCPtr, true);
+            this.ParentOrigin = Tizen.NUI.ParentOrigin.Center;
+            this.PivotPoint = Tizen.NUI.PivotPoint.Center;
+            this.PositionUsesAnchorPoint = true;
         }
 
         /// <summary>
@@ -82,69 +83,9 @@ namespace Tizen.NUI.Scene3D
         /// <param name="modelView">Handle to an object.</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ModelView(ModelView modelView) : this(Interop.ModelView.NewModelView(ModelView.getCPtr(modelView)), true)
+        public Model(Model modelView) : this(Interop.Model.NewModel(Model.getCPtr(modelView)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        /// <summary>
-        /// Retrieves model root View.
-        /// </summary>
-        /// <note>
-        /// This ModelRoot means a root View that contains 3D models to render.
-        /// The light source is only applied on the models under this ModelRoot.
-        /// </note>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public View ModelRoot
-        {
-            get
-            {
-                return GetModelRoot();
-            }
-        }
-
-        /// <summary>
-        /// Fits the model to the View size.
-        /// If this property is true, the model is resized to fit the width or height of the View by scaling the ModelRoot.
-        /// <note>
-        /// This property only changes model size not the pivot.
-        /// </note>
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool UseSizeOfView
-        {
-            get
-            {
-                return useSizeOfView;
-            }
-            set
-            {
-                useSizeOfView = value;
-                Interop.ModelView.FitSize(SwigCPtr, useSizeOfView);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
-        }
-
-        /// <summary>
-        /// Moves the model to the center of ModelView.
-        /// If this property is true, the model moves so that the center is located at the center of the View by change PivotPoint of ModelRoot.
-        /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool UseCenterOfView
-        {
-            get
-            {
-                return useCenterOfView;
-            }
-            set
-            {
-                useCenterOfView = value;
-                Interop.ModelView.FitCenter(SwigCPtr, useCenterOfView);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            }
         }
 
         /// <summary>
@@ -152,9 +93,9 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="modelView">Handle to an object.</param>
         /// <returns>Reference to this.</returns>
-        internal ModelView Assign(ModelView modelView)
+        internal Model Assign(Model modelView)
         {
-            ModelView ret = new ModelView(Interop.ModelView.ModelViewAssign(SwigCPtr, ModelView.getCPtr(modelView)), false);
+            Model ret = new Model(Interop.Model.ModelAssign(SwigCPtr, Model.getCPtr(modelView)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -162,14 +103,14 @@ namespace Tizen.NUI.Scene3D
         /// <summary>
         /// Changes Image Based Light as the input textures.
         /// </summary>
-        /// <param name="diffuse">Cube map that can be used as a diffuse IBL source.</param>
-        /// <param name="specular">Cube map that can be used as a specular IBL source.</param>
+        /// <param name="diffuseUrl">The path of Cube map image that can be used as a diffuse IBL source.</param>
+        /// <param name="specularUrl">The path of Cube map image that can be used as a specular IBL source.</param>
         /// <param name="scaleFactor">Scale factor that controls light source intensity in [0.0f, 1.0f]. Default value is 1.0f.</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void SetImageBasedLightSource(string diffuse, string specular, float scaleFactor = 1.0f)
+        public void SetImageBasedLightSource(string diffuseUrl, string specularUrl, float scaleFactor = 1.0f)
         {
-            Interop.ModelView.SetImageBasedLightSource(SwigCPtr, diffuse, specular, scaleFactor);
+            Interop.Model.SetImageBasedLightSource(SwigCPtr, diffuseUrl, specularUrl, scaleFactor);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -182,7 +123,7 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint GetAnimationCount()
         {
-            uint ret = Interop.ModelView.GetAnimationCount(SwigCPtr);
+            uint ret = Interop.Model.GetAnimationCount(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -197,7 +138,7 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Animation GetAnimation(uint index)
         {
-            Animation ret = new Animation(Interop.ModelView.GetAnimation(SwigCPtr, index), false);
+            Animation ret = new Animation(Interop.Model.GetAnimation(SwigCPtr, index), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -212,7 +153,7 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Animation GetAnimation(string name)
         {
-            Animation ret = new Animation(Interop.ModelView.GetAnimation(SwigCPtr, name), false);
+            Animation ret = new Animation(Interop.Model.GetAnimation(SwigCPtr, name), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -225,7 +166,7 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         private View GetModelRoot()
         {
-            View ret = new View(Interop.ModelView.GetModelRoot(SwigCPtr), false);
+            View ret = new View(Interop.Model.GetModelRoot(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -237,7 +178,7 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.ModelView.DeleteModelView(swigCPtr);
+            Interop.Model.DeleteModel(swigCPtr);
         }
     }
 }
