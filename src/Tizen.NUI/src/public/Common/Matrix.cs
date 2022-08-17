@@ -306,5 +306,12 @@ namespace Tizen.NUI
             Interop.Matrix.SetValueAtIndex(SwigCPtr, indexRow, indexColumn, val);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        internal static Matrix GetMatrixFromPtr(global::System.IntPtr cPtr)
+        {
+            Matrix ret = new Matrix(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
     }
 }
