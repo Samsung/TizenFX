@@ -883,6 +883,14 @@ namespace Tizen.NUI
             Interop.WidgetView.DeleteWidgetView(swigCPtr);
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool HandleControlStateOnTouch(Touch touch)
+        {
+            base.HandleControlStateOnTouch(touch);
+            return true; // Do not pass the touch event to the below.
+        }
+
         // Callback for WidgetView WidgetAdded signal
         private void OnWidgetAdded(IntPtr data)
         {
