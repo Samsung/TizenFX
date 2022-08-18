@@ -680,6 +680,23 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Retrieves a map property value.
+        /// </summary>
+        /// <param name="mapValue">On return, the map as vector of string and property value pairs.</param>
+        /// <returns>Returns true if the value is successfully retrieved, false if the type is not convertible.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Get(ref PropertyMap mapValue)
+        {
+            if (mapValue == null)
+            {
+                return false;
+            }
+            bool ret = Interop.PropertyValue.GetMap(SwigCPtr, mapValue.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Retrieves a Extents value.
         /// </summary>
         /// <param name="extentsValue">On return, a extents.</param>
