@@ -27,6 +27,9 @@ namespace Tizen.MachineLearning.Train
     /// model, optimizer should be released using Dispose().
     /// If set to a model, optimizer is available until model is released.
     /// </remarks>
+    /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+    /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+    /// <exception cref="InvalidOperationException">Thrown when the method failed due to the wrong pipeline description or internal error.</exception>
     /// <since_tizen> 10 </since_tizen>
     public class Optimizer: IDisposable
     {
