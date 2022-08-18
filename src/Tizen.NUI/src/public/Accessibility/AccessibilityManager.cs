@@ -327,6 +327,17 @@ namespace Tizen.NUI.Accessibility
             }
             return false;
         }
+        
+        // Callback for AccessibilityManager ActionForwardSignal
+        private bool OnActionForward(IntPtr data)
+        {
+            if (_accessibilityManagerActionForwardEventHandler != null)
+            {
+                //here we send all data to user event handlers
+                return _accessibilityManagerActionForwardEventHandler(instance, null);
+            }
+            return false;
+        }
 
         // Callback for AccessibilityManager FocusChangedSignal
         private void OnFocusChanged(IntPtr view1, IntPtr view2)
@@ -1086,6 +1097,13 @@ namespace Tizen.NUI.Accessibility
         internal SWIGTYPE_p_Dali__SignalT_bool_fDali__Toolkit__AccessibilityManager_R_Dali__TouchEvent_const_RF_t ActionScrollSignal()
         {
             SWIGTYPE_p_Dali__SignalT_bool_fDali__Toolkit__AccessibilityManager_R_Dali__TouchEvent_const_RF_t ret = new SWIGTYPE_p_Dali__SignalT_bool_fDali__Toolkit__AccessibilityManager_R_Dali__TouchEvent_const_RF_t(Interop.AccessibilityManager.AccessibilityManager_ActionScrollSignal(swigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal AccessibilityActionSignal ActionForwardSignal()
+        {
+            AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManager.AccessibilityManager_ActionForwardSignal(swigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

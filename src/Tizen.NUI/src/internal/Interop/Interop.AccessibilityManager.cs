@@ -185,6 +185,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AccessibilityManager_ActionScrollSignal")]
             public static extern global::System.IntPtr AccessibilityManager_ActionScrollSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AccessibilityManager_ActionForwardSignal")]
+            public static extern global::System.IntPtr AccessibilityManager_ActionForwardSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AccessibilityActionSignal_Empty")]
             public static extern bool AccessibilityActionSignal_Empty(global::System.Runtime.InteropServices.HandleRef jarg1);
 

@@ -148,6 +148,10 @@ namespace Tizen.NUI.Accessibility
         private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionStartStopEventHandler;
         private ActionStartStopEventCallbackDelegate _accessibilityManagerActionStartStopEventCallbackDelegate;
 
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate bool ActionForwardEventCallbackDelegate(IntPtr accessibilityManager);
+        private EventHandlerWithReturnType<object, EventArgs, bool> _accessibilityManagerActionForwardEventHandler;
+        private ActionForwardEventCallbackDelegate _accessibilityManagerActionForwardEventCallbackDelegate;
         /*
             // To be replaced by a new event that takes Touch
             [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -978,6 +982,38 @@ namespace Tizen.NUI.Accessibility
                 if (_accessibilityManagerActionStartStopEventHandler == null && ActionStartStopSignal().Empty() == false)
                 {
                     this.ActionStartStopSignal().Disconnect(_accessibilityManagerActionStartStopEventCallbackDelegate);
+                }
+            }
+        }
+
+        /// <summary>
+        /// This is emitted when accessibility action is received to forward the event to the application (by one finger double tap and hold).
+        /// It is a kind of backdoor to bypass the normal behaviour.
+        /// </summary>
+        /// <returns> The signal to connect to </returns>
+        /// This is the only experimental API added to Tizen 6.0. (hidden as inhouse API.)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandlerWithReturnType<object, EventArgs, bool> ActionForward
+        {
+            add
+            {
+                // Restricted to only one listener
+                if (_accessibilityManagerActionForwardEventHandler == null)
+                {
+                    _accessibilityManagerActionForwardEventCallbackDelegate = new ActionForwardEventCallbackDelegate(OnActionForward);
+                    this.ActionForwardSignal().Connect(_accessibilityManagerActionForwardEventCallbackDelegate);
+                }
+
+                _accessibilityManagerActionForwardEventHandler += value;
+            }
+
+            remove
+            {
+                _accessibilityManagerActionForwardEventHandler -= value;
+
+                if (_accessibilityManagerActionForwardEventHandler == null && ActionForwardSignal().Empty() == false)
+                {
+                    this.ActionForwardSignal().Disconnect(_accessibilityManagerActionForwardEventCallbackDelegate);
                 }
             }
         }
