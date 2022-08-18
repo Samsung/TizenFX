@@ -3403,6 +3403,17 @@ namespace Tizen.NUI.BaseComponents
             return true;
         }
 
+        /// <summary>
+        /// Retrieve the View's current Color.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color CurrentColor => GetCurrentColor();
+
+        /// <summary>
+        /// Retrieve the current scale factor applied to the View.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector3 CurrentScale => GetCurrentScale();
 
     }
 }
