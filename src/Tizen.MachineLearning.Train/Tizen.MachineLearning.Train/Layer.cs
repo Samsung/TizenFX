@@ -28,6 +28,9 @@ namespace Tizen.MachineLearning.Train
     /// If added to a model by AddLayer method of Model, layer is available until the model is released. so
     /// Dispose() must never be used.
     /// </remarks>
+    /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+    /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+    /// <exception cref="InvalidOperationException">Thrown when the method failed due to the wrong pipeline description or internal error.</exception>
     /// <since_tizen> 10 </since_tizen>
     public class Layer: IDisposable
     {
