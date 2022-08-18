@@ -32,6 +32,10 @@ namespace Tizen.MachineLearning.Train
     /// privilege %http://tizen.org/privilege/externalstorage. If you want to access
     /// both storage, you must add all the privileges.
     /// </remarks>
+    /// <exception cref="NotSupportedException">Thrown when the feature is not supported.</exception>
+    /// <exception cref="ArgumentException">Thrown when the method failed due to an invalid parameter.</exception>
+    /// <exception cref="UnauthorizedAccessException">Thrown when the application does not have the required privilege.</exception>
+    /// <exception cref="InvalidOperationException">Thrown when the method failed due to the wrong pipeline description or internal error.</exception>
     /// <since_tizen> 10 </since_tizen>
     public class Model: IDisposable
     {
