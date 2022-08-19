@@ -133,6 +133,17 @@ namespace Tizen.NUI
         {
             if (borderInterface != null)
             {
+                float height = 0;
+                if (isTop) height += topView.SizeHeight;
+                if (isBottom) height += bottomView.SizeHeight;
+
+                if (height != borderHeight)
+                {
+                    float diff = height - borderHeight;
+                    borderHeight = height;
+                    WindowSize = new Size2D(WindowSize.Width, WindowSize.Height + (int)(diff));
+                }
+
                 if (minSize != borderInterface.MinSize)
                 {
                     using Size2D mimimumSize = new Size2D(borderInterface.MinSize.Width, borderInterface.MinSize.Height + (int)borderHeight);

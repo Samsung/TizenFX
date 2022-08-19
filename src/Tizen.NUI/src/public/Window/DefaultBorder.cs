@@ -119,7 +119,7 @@ namespace Tizen.NUI
         /// The minimum size by which the window will small.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D MinSize 
+        public Size2D MinSize
         {
             get
             {
@@ -128,7 +128,7 @@ namespace Tizen.NUI
             set
             {
                 minSize = value;
-                BorderWindow?.UpdateProperty();
+                UpdateProperty();
             }
         }
 
@@ -145,7 +145,7 @@ namespace Tizen.NUI
             set
             {
                 maxSize = value;
-                BorderWindow?.UpdateProperty();
+                UpdateProperty();
             }
         }
 
@@ -178,8 +178,17 @@ namespace Tizen.NUI
             set
             {
                 resizePolicy = value;
-                BorderWindow?.UpdateProperty();
+                UpdateProperty();
             }
+        }
+
+        /// <summary>
+        /// Update properties
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void UpdateProperty()
+        {
+            BorderWindow?.UpdateProperty();
         }
 
 
