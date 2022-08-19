@@ -1157,9 +1157,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        ///  Retrieves the position of the view.<br />
-        ///  The coordinates are relative to the view's parent.<br />
+        /// Retrieves the position of the view.
+        /// The coordinates are relative to the view's parent.
         /// </summary>
+        /// <remarks>
+        /// The <see cref="Size"/>, <see cref="Position"/>, <see cref="Color"/>, and <see cref="Scale"/> properties are set in the main thread.
+        /// Therefore, it is not updated in real time when the value is changed in the render thread (for example, the value is changed during animation).
+        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time, 
+        /// and users can get the current actual values through them.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Position CurrentPosition
         {
@@ -1213,9 +1219,15 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        ///  Retrieves the size of the view.<br />
-        ///  The coordinates are relative to the view's parent.<br />
+        /// Retrieves the size of the view.
+        /// The coordinates are relative to the view's parent.
         /// </summary>
+        /// <remarks>
+        /// The <see cref="Size"/>, <see cref="Position"/>, <see cref="Color"/>, and <see cref="Scale"/> properties are set in the main thread.
+        /// Therefore, it is not updated in real time when the value is changed in the render thread (for example, the value is changed during animation).
+        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time, 
+        /// and users can get the current actual values through them.
+        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         public Size2D CurrentSize
         {
@@ -3406,12 +3418,24 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Retrieve the View's current Color.
         /// </summary>
+        /// <remarks>
+        /// The <see cref="Size"/>, <see cref="Position"/>, <see cref="Color"/>, and <see cref="Scale"/> properties are set in the main thread.
+        /// Therefore, it is not updated in real time when the value is changed in the render thread (for example, the value is changed during animation).
+        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time, 
+        /// and users can get the current actual values through them.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color CurrentColor => GetCurrentColor();
 
         /// <summary>
         /// Retrieve the current scale factor applied to the View.
         /// </summary>
+        /// <remarks>
+        /// The <see cref="Size"/>, <see cref="Position"/>, <see cref="Color"/>, and <see cref="Scale"/> properties are set in the main thread.
+        /// Therefore, it is not updated in real time when the value is changed in the render thread (for example, the value is changed during animation).
+        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time, 
+        /// and users can get the current actual values through them.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 CurrentScale => GetCurrentScale();
 
