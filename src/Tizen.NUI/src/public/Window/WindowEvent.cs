@@ -68,7 +68,7 @@ namespace Tizen.NUI
         private TouchDataSignal interceptTouchDataSignal;
         private TouchSignal interceptTouchSignal;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool RootLayerTouchDataCallbackType(IntPtr view, IntPtr touchData);
