@@ -27,7 +27,6 @@ Source0:    %{name}-%{version}.tar.gz
 Source1:    %{name}.manifest
 
 BuildArch:   noarch
-ExcludeArch: aarch64
 AutoReqProv: no
 
 BuildRequires: dotnet-build-tools
