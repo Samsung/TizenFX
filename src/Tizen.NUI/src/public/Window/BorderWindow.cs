@@ -276,9 +276,7 @@ namespace Tizen.NUI
                 // Add a view to the border layer.
                 GetBorderWindowBottomLayer().Add(rootView);
 
-                // TODO after the emulator issue is resolved, use the FocusChanged event.
-                //FocusChanged += OnWindowFocusChanged;
-                InterceptTouchEvent += OnWindowInterceptTouched;
+                FocusChanged += OnWindowFocusChanged;
 
                 return true;
             }
@@ -289,25 +287,14 @@ namespace Tizen.NUI
             }
         }
 
-        private bool OnWindowInterceptTouched(object sender, Window.TouchEventArgs e)
+        private void OnWindowFocusChanged(object sender, Window.FocusChangedEventArgs e)
         {
-            if (e.Touch.GetState(0) == PointStateType.Down && IsMaximized() == false)
+            if (e.FocusGained == true && IsMaximized() == false)
             {
                 // Raises the window when the window is focused.
                 Raise();
             }
-            return false;
         }
-
-        // TODO after the emulator issue is resolved, use the FocusChanged event.
-        // private void OnWindowFocusChanged(object sender, Window.FocusChangedEventArgs e)
-        // {
-        //     if (e.FocusGained == true && IsMaximized() == false)
-        //     {
-        //         // Raises the window when the window is focused.
-        //         Raise();
-        //     }
-        // }
 
         /// Create the border UI.
         private bool CreateBorder()
@@ -541,7 +528,7 @@ namespace Tizen.NUI
         internal void DisposeBorder()
         {
             Resized -= OnBorderWindowResized;
-            InterceptTouchEvent -= OnWindowInterceptTouched;
+            FocusChanged -= OnWindowFocusChanged;
             borderInterface.Dispose();
             GetBorderWindowBottomLayer().Dispose();
         }
