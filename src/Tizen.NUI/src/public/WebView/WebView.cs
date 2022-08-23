@@ -29,6 +29,9 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 9 </since_tizen>
     public partial class WebView : View
     {
+        private static readonly WebContext context = new WebContext(Interop.WebView.GetWebContext(), false);
+        private static readonly WebCookieManager cookieManager = new WebCookieManager(Interop.WebView.GetWebCookieManager(), false);
+
         private Color contentBackgroundColor;
         private bool tilesClearedWhenHidden;
         private float tileCoverAreaMultiplier;
@@ -90,6 +93,7 @@ namespace Tizen.NUI.BaseComponents
 
         private PlainTextReceivedCallback plainTextReceivedCallback;
 
+
         /// <summary>
         /// Creates a WebView.
         /// </summary>
@@ -136,8 +140,6 @@ namespace Tizen.NUI.BaseComponents
             hitTestFinishedProxyCallback = OnHitTestFinished;
 
             BackForwardList = new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), false);
-            Context = new WebContext(Interop.WebView.GetWebContext(SwigCPtr), false);
-            CookieManager = new WebCookieManager(Interop.WebView.GetWebCookieManager(SwigCPtr), false);
             Settings = new WebSettings(Interop.WebView.GetWebSettings(SwigCPtr), false);
         }
 
@@ -158,8 +160,6 @@ namespace Tizen.NUI.BaseComponents
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
                 BackForwardList.Dispose();
-                Context.Dispose();
-                CookieManager.Dispose();
                 Settings.Dispose();
             }
 
@@ -740,22 +740,22 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// BackForwardList.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebBackForwardList BackForwardList { get; }
-
-        /// <summary>
         /// Context.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebContext Context { get; }
+        public WebContext Context => context;
 
         /// <summary>
         /// CookieManager.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public WebCookieManager CookieManager { get; }
+        public WebCookieManager CookieManager => cookieManager;
+
+        /// <summary>
+        /// BackForwardList.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public WebBackForwardList BackForwardList { get; }
 
         /// <summary>
         /// BackForwardList.

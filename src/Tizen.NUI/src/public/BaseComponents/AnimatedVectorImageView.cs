@@ -228,6 +228,7 @@ namespace Tizen.NUI.BaseComponents
                 innerCurrentFrame = value;
                 AnimationState = AnimationStates.Paused;
 
+                base.SetMinMaxFrame(0, IntegerMaxValue);
                 base.CurrentFrame = innerCurrentFrame;
 
                 NUILog.Debug($" [{GetId()}] innerCurrentFrame={innerCurrentFrame}) ]AnimatedVectorImageView END]");
@@ -604,6 +605,7 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private AnimationStates CurrentAnimationState = AnimationStates.Stopped;
+        private const int IntegerMaxValue = 0x7FFFFFFF;
         #endregion Private
     }
 }

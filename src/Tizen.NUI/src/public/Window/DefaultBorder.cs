@@ -71,6 +71,10 @@ namespace Tizen.NUI
 
         private CurrentGesture currentGesture = CurrentGesture.None;
         private bool disposed = false;
+
+        private Size2D minSize;
+        private Size2D maxSize;
+        private Window.BorderResizePolicyType resizePolicy;
         #endregion //Fields
 
         #region Events
@@ -115,13 +119,35 @@ namespace Tizen.NUI
         /// The minimum size by which the window will small.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D MinSize {get; set;}
+        public Size2D MinSize
+        {
+            get
+            {
+                return minSize;
+            }
+            set
+            {
+                minSize = value;
+                UpdateProperty();
+            }
+        }
 
         /// <summary>
         /// The maximum size by which the window will big.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D MaxSize {get; set;}
+        public Size2D MaxSize
+        {
+            get
+            {
+                return maxSize;
+            }
+            set
+            {
+                maxSize = value;
+                UpdateProperty();
+            }
+        }
 
         /// <summary>
         /// The window with borders added.
@@ -143,7 +169,27 @@ namespace Tizen.NUI
         /// Default value is BorderResizePolicyType.Free;
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Window.BorderResizePolicyType ResizePolicy {get; set;}
+        public Window.BorderResizePolicyType ResizePolicy
+        {
+            get
+            {
+                return resizePolicy;
+            }
+            set
+            {
+                resizePolicy = value;
+                UpdateProperty();
+            }
+        }
+
+        /// <summary>
+        /// Update properties
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void UpdateProperty()
+        {
+            BorderWindow?.UpdateProperty();
+        }
 
 
         /// <summary>
@@ -383,6 +429,7 @@ namespace Tizen.NUI
                     }
                     else
                     {
+                        OnRequestMove();
                         BorderWindow.RequestMoveToServer();
                     }
                 }
@@ -743,6 +790,7 @@ namespace Tizen.NUI
                     }
                     else
                     {
+                        OnRequestMove();
                         BorderWindow.RequestMoveToServer();
                     }
                 }
@@ -792,6 +840,20 @@ namespace Tizen.NUI
             }
             UpdateIcons();
         }
+
+        /// <summary>
+        /// Called when requesting a move
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnRequestMove() {}
+
+        /// <summary>
+        /// Called when the window is moved.
+        /// </summary>
+        /// <param name="x">The x of the moved window</param>
+        /// <param name="y">The y of the moved window</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnMoved(int x, int y) {}
 
         /// <summary>
         /// Called when the window is maximized.

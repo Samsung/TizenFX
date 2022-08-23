@@ -27,6 +27,10 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// The Loading class of nui component. It's used to indicate informs users of the ongoing operation.
     /// </summary>
+    /// <remarks>
+    /// The Loading is created as `LottieAnimationView` first.
+    /// When the user sets ImageArray separately, the image is changed to `ImageVisual`.
+    /// </remarks>
     /// <since_tizen> 6 </since_tizen>
     public class Loading : Control
     {
@@ -83,10 +87,8 @@ namespace Tizen.NUI.Components
         public static readonly BindableProperty FrameRateProperty = BindableProperty.Create(nameof(FrameRate), typeof(int), typeof(Loading), (int)(1000 / 16.6f), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (Loading)bindable;
-            Debug.Assert(instance.imageVisual != null);
-
             instance.frameRate = (int)newValue;
-            if (0 != instance.frameRate) //It will crash if 0
+            if (0 != instance.frameRate && instance.imageVisual != null) //It will crash if 0
             {
                 instance.imageVisual.FrameDelay = instance.frameRate;
             }
@@ -97,7 +99,10 @@ namespace Tizen.NUI.Components
         });
 
         private AnimatedImageVisual imageVisual = null;
+        private LottieAnimationView defaultLottieView = null;
         private int frameRate = (int)(1000 / 16.6f);
+        private const float defaultFrameDelay = 16.6f;
+        private static readonly string lottieResource = FrameworkInformation.ResourcePath + "IoT_loading_circle_light.json";
 
 
         /// <summary>
@@ -167,6 +172,12 @@ namespace Tizen.NUI.Components
             }
             set
             {
+                defaultLottieView?.Stop();
+                defaultLottieView?.Dispose();
+                defaultLottieView = null;
+
+                CreateImageVisual();
+
                 SetValue(ImageArrayProperty, value);
                 NotifyPropertyChanged();
             }
@@ -217,6 +228,10 @@ namespace Tizen.NUI.Components
             }
             set
             {
+                if (defaultLottieView != null)
+                {
+                    Tizen.Log.Error("NUI", "Cannot set the frame rate to Lottie Animation. If you want to control it, please set `ImageArray` together.\n");
+                }
                 SetValue(FrameRateProperty, value);
             }
         }
@@ -228,19 +243,14 @@ namespace Tizen.NUI.Components
             base.OnInitialize();
             AccessibilityRole = Role.ProgressBar;
 
-            imageVisual = new AnimatedImageVisual()
+            defaultLottieView = new LottieAnimationView()
             {
-                URLS = new List<string>(),
-                FrameDelay = 16.6f,
+                URL = lottieResource,
                 LoopCount = -1,
-                Position = new Vector2(0, 0),
-                Origin = Visual.AlignType.Center,
-                AnchorPoint = Visual.AlignType.Center,
-                SizePolicy = VisualTransformPolicyType.Relative,
-                Size = new Size2D(1, 1)
             };
 
-            this.AddVisual("loadingImageVisual", imageVisual);
+            Add(defaultLottieView);
+            defaultLottieView.Play();
 
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "Loading");
         }
@@ -251,13 +261,11 @@ namespace Tizen.NUI.Components
         {
             base.ApplyStyle(viewStyle);
 
-            Debug.Assert(imageVisual != null);
-
             if (viewStyle is LoadingStyle loadingStyle)
             {
                 if (loadingStyle.Images != null)
                 {
-                    imageVisual.URLS = loadingStyle.ImageList as List<string>;
+                    ImageArray = loadingStyle.Images;
                 }
 
                 if (loadingStyle.LoadingSize != null)
@@ -295,6 +303,12 @@ namespace Tizen.NUI.Components
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
                 RemoveVisual("loadingImageVisual");
+
+                if (defaultLottieView != null)
+                {
+                    Utility.Dispose(defaultLottieView);
+                    defaultLottieView = null;
+                }
             }
 
             //You must call base.Dispose(type) just before exit.
@@ -307,9 +321,16 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 10 </since_tizen>
         public void Play()
         {
-            PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(imageVisual.VisualIndex, ActionPlay, attributes);
-            attributes.Dispose();
+            if (defaultLottieView != null)
+            {
+                defaultLottieView.Play();
+            }
+            else
+            {
+                PropertyValue attributes = new PropertyValue(0);
+                this.DoAction(imageVisual.VisualIndex, ActionPlay, attributes);
+                attributes.Dispose();
+            }
         }
 
         /// <summary>
@@ -318,9 +339,16 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 10 </since_tizen>
         public void Pause()
         {
-            PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(imageVisual.VisualIndex, ActionPause, attributes);
-            attributes.Dispose();
+            if (defaultLottieView != null)
+            {
+                defaultLottieView.Pause();
+            }
+            else
+            {
+                PropertyValue attributes = new PropertyValue(0);
+                this.DoAction(imageVisual.VisualIndex, ActionPause, attributes);
+                attributes.Dispose();
+            }
         }
 
         /// <summary>
@@ -329,14 +357,41 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 10 </since_tizen>
         public void Stop()
         {
-            PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(imageVisual.VisualIndex, ActionStop, attributes);
-            attributes.Dispose();
+            if (defaultLottieView != null)
+            {
+                defaultLottieView.Stop();
+            }
+            else
+            {
+                PropertyValue attributes = new PropertyValue(0);
+                this.DoAction(imageVisual.VisualIndex, ActionStop, attributes);
+                attributes.Dispose();
+            }
         }
 
         private void Initialize()
         {
             AccessibilityHighlightable = true;
+        }
+
+        private void CreateImageVisual()
+        {
+            if (imageVisual == null)
+            {
+                imageVisual = new AnimatedImageVisual()
+                {
+                    URLS = new List<string>(),
+                    FrameDelay = defaultFrameDelay,
+                    LoopCount = -1,
+                    Position = new Vector2(0, 0),
+                    Origin = Visual.AlignType.Center,
+                    AnchorPoint = Visual.AlignType.Center,
+                    SizePolicy = VisualTransformPolicyType.Relative,
+                    Size = new Size2D(1, 1)
+                };
+
+                AddVisual("loadingImageVisual", imageVisual);
+            }
         }
     }
 }

@@ -282,6 +282,7 @@ namespace Tizen.NUI
             public static extern void Maximize(global::System.Runtime.InteropServices.HandleRef window, bool maximize);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_IsMaximized")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsMaximized(global::System.Runtime.InteropServices.HandleRef window);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Set_Maximum_Size")]
@@ -291,6 +292,7 @@ namespace Tizen.NUI
             public static extern void Minimize(global::System.Runtime.InteropServices.HandleRef window, bool minimize);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_IsMinimized")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsMinimized(global::System.Runtime.InteropServices.HandleRef window);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Set_Minimum_Size")]
