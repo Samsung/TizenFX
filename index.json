@@ -3659,6 +3659,56 @@
     "title": "Enum TensorType",
     "keywords": ""
   },
+  "API10/api/Tizen.MachineLearning.Train.Dataset.html": {
+    "href": "API10/api/Tizen.MachineLearning.Train.Dataset.html",
+    "title": "Class Dataset",
+    "keywords": ""
+  },
+  "API10/api/Tizen.MachineLearning.Train.html": {
+    "href": "API10/api/Tizen.MachineLearning.Train.html",
+    "title": "Namespace Tizen.MachineLearning.Train",
+    "keywords": ""
+  },
+  "API10/api/Tizen.MachineLearning.Train.Layer.html": {
+    "href": "API10/api/Tizen.MachineLearning.Train.Layer.html",
+    "title": "Class Layer",
+    "keywords": ""
+  },
+  "API10/api/Tizen.MachineLearning.Train.Model.html": {
+    "href": "API10/api/Tizen.MachineLearning.Train.Model.html",
+    "title": "Class Model",
+    "keywords": ""
+  },
+  "API10/api/Tizen.MachineLearning.Train.NNTrainerDatasetMode.html": {
+    "href": "API10/api/Tizen.MachineLearning.Train.NNTrainerDatasetMode.html",
+    "title": "Enum NNTrainerDatasetMode",
+    "keywords": ""
+  },
+  "API10/api/Tizen.MachineLearning.Train.NNTrainerLayerType.html": {
+    "href": "API10/api/Tizen.MachineLearning.Train.NNTrainerLayerType.html",
+    "title": "Enum NNTrainerLayerType",
+    "keywords": ""
+  },
+  "API10/api/Tizen.MachineLearning.Train.NNTrainerModelFormat.html": {
+    "href": "API10/api/Tizen.MachineLearning.Train.NNTrainerModelFormat.html",
+    "title": "Enum NNTrainerModelFormat",
+    "keywords": ""
+  },
+  "API10/api/Tizen.MachineLearning.Train.NNTrainerOptimizerType.html": {
+    "href": "API10/api/Tizen.MachineLearning.Train.NNTrainerOptimizerType.html",
+    "title": "Enum NNTrainerOptimizerType",
+    "keywords": ""
+  },
+  "API10/api/Tizen.MachineLearning.Train.NNTrainerSummaryType.html": {
+    "href": "API10/api/Tizen.MachineLearning.Train.NNTrainerSummaryType.html",
+    "title": "Enum NNTrainerSummaryType",
+    "keywords": ""
+  },
+  "API10/api/Tizen.MachineLearning.Train.Optimizer.html": {
+    "href": "API10/api/Tizen.MachineLearning.Train.Optimizer.html",
+    "title": "Class Optimizer",
+    "keywords": ""
+  },
   "API10/api/Tizen.Maps.Area.html": {
     "href": "API10/api/Tizen.Maps.Area.html",
     "title": "Class Area",
@@ -12362,6 +12412,16 @@
   "API10/api/Tizen.Uix.Tts.ScreenReaderChangedEventArgs.html": {
     "href": "API10/api/Tizen.Uix.Tts.ScreenReaderChangedEventArgs.html",
     "title": "Class ScreenReaderChangedEventArgs",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Uix.Tts.ServiceState.html": {
+    "href": "API10/api/Tizen.Uix.Tts.ServiceState.html",
+    "title": "Enum ServiceState",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Uix.Tts.ServiceStateChangedEventArgs.html": {
+    "href": "API10/api/Tizen.Uix.Tts.ServiceStateChangedEventArgs.html",
+    "title": "Class ServiceStateChangedEventArgs",
     "keywords": ""
   },
   "API10/api/Tizen.Uix.Tts.SpeedRange.html": {
