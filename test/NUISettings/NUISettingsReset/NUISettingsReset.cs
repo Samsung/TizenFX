@@ -23,47 +23,21 @@ using Tizen.Applications;
 
 namespace WidgetTemplate
 {
-    class SecondPage : Widget
+    class SecondPage : ContentPage
     {
-        protected override void OnCreate(string contentInfo, Window window)
+        public SecondPage(Window window) : base()
         {
-            Bundle bundle = Bundle.Decode(contentInfo);
-
-            window.BackgroundColor = Color.Transparent;
-
-            // Update Widget Content by sending message to add the third page in advance.
-            Bundle nextBundle = new Bundle();
-            nextBundle.AddItem("WIDGET_ID", "thirdPage@NUISettingsReset");
-            nextBundle.AddItem("WIDGET_ACTION", "ADD");
-            nextBundle.AddItem("WIDGET_WIDTH", window.Size.Width.ToString());
-            nextBundle.AddItem("WIDGET_HEIGHT", window.Size.Height.ToString());
-            String encodedBundle = nextBundle.Encode();
-            SetContentInfo(encodedBundle);
+            if (window == null)
+            {
+                throw new ArgumentNullException(nameof(window), "window should not be null.");
+            }
 
             var appBar = new AppBar()
             {
                 Title = "Second Page",
-                AutoNavigationContent = false,
             };
 
-            var appBarStyle = ThemeManager.GetStyle("Tizen.NUI.Components.AppBar");
-
-            var navigationContent = new Button(((AppBarStyle)appBarStyle).BackButton);
-            navigationContent.Clicked += (o, e) =>
-            {
-                // Update Widget Content by sending message to pop the second page.
-                Bundle nextBundle2 = new Bundle();
-                nextBundle2.AddItem("WIDGET_ACTION", "POP");
-                String encodedBundle2 = nextBundle2.Encode();
-                SetContentInfo(encodedBundle2);
-            };
-
-            appBar.NavigationContent = navigationContent;
-
-            var page = new ContentPage()
-            {
-                AppBar = appBar,
-            };
+            AppBar = appBar;
 
             var button = new Button()
             {
@@ -73,17 +47,48 @@ namespace WidgetTemplate
             };
             button.Clicked += (o, e) =>
             {
-                // Update Widget Content by sending message to push the third page.
-                Bundle nextBundle2 = new Bundle();
-                nextBundle2.AddItem("WIDGET_ID", "thirdPage@NUISettingsReset");
-                nextBundle2.AddItem("WIDGET_PAGE", "CONTENT_PAGE");
-                nextBundle2.AddItem("WIDGET_ACTION", "PUSH");
-                String encodedBundle2 = nextBundle2.Encode();
-                SetContentInfo(encodedBundle2);
+                window.GetDefaultNavigator().Push(new ThirdPage(window));
             };
 
-            page.Content = button;
-            window.Add(page);
+            Content = button;
+        }
+    }
+
+    class SecondPageWidget : Widget
+    {
+        protected override void OnCreate(string contentInfo, Window window)
+        {
+            Bundle bundle = Bundle.Decode(contentInfo);
+
+            window.BackgroundColor = Color.Transparent;
+
+            var secondPage = new SecondPage(window);
+
+            var appBar = new AppBar()
+            {
+                Title = secondPage.AppBar.Title,
+                AutoNavigationContent = false,
+            };
+
+            // Since this is Widget, bundle with "POP" message should be sent to make the main app pops this.
+            var appBarStyle = ThemeManager.GetStyle("Tizen.NUI.Components.AppBar");
+
+            var navigationContent = new Button(((AppBarStyle)appBarStyle).BackButton);
+            navigationContent.Clicked += (o, e) =>
+            {
+                // Update Widget Content by sending message to pop the current page.
+                Bundle nextBundle = new Bundle();
+                nextBundle.AddItem("WIDGET_ACTION", "POP");
+                String encodedBundle = nextBundle.Encode();
+                SetContentInfo(encodedBundle);
+            };
+
+            appBar.AutoNavigationContent = false;
+            appBar.NavigationContent = navigationContent;
+
+            secondPage.AppBar = appBar;
+
+            window.GetDefaultNavigator().Push(secondPage);
         }
 
         protected override void OnPause()
@@ -112,47 +117,20 @@ namespace WidgetTemplate
         }
     }
 
-    class ThirdPage : Widget
+    class ThirdPage : ContentPage
     {
-        protected override void OnCreate(string contentInfo, Window window)
+        public ThirdPage(Window window) : base()
         {
-            Bundle bundle = Bundle.Decode(contentInfo);
-
-            window.BackgroundColor = Color.Transparent;
-
-            // Update Widget Content by sending message to add the fourth page in advance.
-            Bundle nextBundle = new Bundle();
-            nextBundle.AddItem("WIDGET_ID", "fourthPage@NUISettingsReset");
-            nextBundle.AddItem("WIDGET_WIDTH", window.Size.Width.ToString());
-            nextBundle.AddItem("WIDGET_HEIGHT", window.Size.Height.ToString());
-            nextBundle.AddItem("WIDGET_ACTION", "ADD");
-            String encodedBundle = nextBundle.Encode();
-            SetContentInfo(encodedBundle);
+            if (window == null)
+            {
+                throw new ArgumentNullException(nameof(window), "window should not be null.");
+            }
 
             var appBar = new AppBar()
             {
                 Title = "Third Page",
-                AutoNavigationContent = false,
             };
-
-            var appBarStyle = ThemeManager.GetStyle("Tizen.NUI.Components.AppBar");
-
-            var navigationContent = new Button(((AppBarStyle)appBarStyle).BackButton);
-            navigationContent.Clicked += (o, e) =>
-            {
-                // Update Widget Content by sending message to pop the third page.
-                Bundle nextBundle2 = new Bundle();
-                nextBundle2.AddItem("WIDGET_ACTION", "POP");
-                String encodedBundle2 = nextBundle2.Encode();
-                SetContentInfo(encodedBundle2);
-            };
-
-            appBar.NavigationContent = navigationContent;
-
-            var page = new ContentPage()
-            {
-                AppBar = appBar,
-            };
+            AppBar = appBar;
 
             var button = new Button()
             {
@@ -162,17 +140,48 @@ namespace WidgetTemplate
             };
             button.Clicked += (o, e) =>
             {
-                // Update Widget Content by sending message to push the fourth page.
-                Bundle nextBundle2 = new Bundle();
-                nextBundle2.AddItem("WIDGET_ID", "fourthPage@NUISettingsReset");
-                nextBundle2.AddItem("WIDGET_PAGE", "DIALOG_PAGE");
-                nextBundle2.AddItem("WIDGET_ACTION", "PUSH");
-                String encodedBundle2 = nextBundle2.Encode();
-                SetContentInfo(encodedBundle2);
+                window.GetDefaultNavigator().Push(new FourthPage(window));
             };
 
-            page.Content = button;
-            window.Add(page);
+            Content = button;
+        }
+    }
+
+    class ThirdPageWidget : Widget
+    {
+        protected override void OnCreate(string contentInfo, Window window)
+        {
+            Bundle bundle = Bundle.Decode(contentInfo);
+
+            window.BackgroundColor = Color.Transparent;
+
+            var thirdPage = new ThirdPage(window);
+
+            var appBar = new AppBar()
+            {
+                Title = thirdPage.AppBar.Title,
+                AutoNavigationContent = false,
+            };
+
+            // Since this is Widget, bundle with "POP" message should be sent to make the main app pops this.
+            var appBarStyle = ThemeManager.GetStyle("Tizen.NUI.Components.AppBar");
+
+            var navigationContent = new Button(((AppBarStyle)appBarStyle).BackButton);
+            navigationContent.Clicked += (o, e) =>
+            {
+                // Update Widget Content by sending message to pop the current page.
+                Bundle nextBundle = new Bundle();
+                nextBundle.AddItem("WIDGET_ACTION", "POP");
+                String encodedBundle = nextBundle.Encode();
+                SetContentInfo(encodedBundle);
+            };
+
+            appBar.AutoNavigationContent = false;
+            appBar.NavigationContent = navigationContent;
+
+            thirdPage.AppBar = appBar;
+
+            window.GetDefaultNavigator().Push(thirdPage);
         }
 
         protected override void OnPause()
@@ -201,13 +210,14 @@ namespace WidgetTemplate
         }
     }
 
-    class FourthPage : Widget
+    class FourthPage : DialogPage
     {
-        protected override void OnCreate(string contentInfo, Window window)
+        public FourthPage(Window window) : base()
         {
-            Bundle bundle = Bundle.Decode(contentInfo);
-
-            window.BackgroundColor = Color.Transparent;
+            if (window == null)
+            {
+                throw new ArgumentNullException(nameof(window), "window should not be null.");
+            }
 
             var button = new Button()
             {
@@ -215,11 +225,7 @@ namespace WidgetTemplate
             };
             button.Clicked += (o, e) =>
             {
-                // Update Widget Content by sending message to pop the fourth page.
-                Bundle nextBundle2 = new Bundle();
-                nextBundle2.AddItem("WIDGET_ACTION", "POP");
-                String encodedBundle2 = nextBundle2.Encode();
-                SetContentInfo(encodedBundle2);
+                window.GetDefaultNavigator().Pop();
             };
 
             var dialog = new AlertDialog()
@@ -229,7 +235,95 @@ namespace WidgetTemplate
                 Actions = new View[] { button },
             };
 
-            window.Add(dialog);
+            Content = dialog;
+        }
+    }
+
+    class WidgetDialogPage : DialogPage
+    {
+        public WidgetDialogPage(Window window) : base()
+        {
+            if (window == null)
+            {
+                throw new ArgumentNullException(nameof(window), "window should not be null.");
+            }
+
+            // Default Scrim calls navigator.Pop() when the Scrim is touched.
+            // To pop widget page when the Scrim is touched, bundle with "POP" message should be sent to make the main app pops this.
+            Scrim = CreateScrim(window);
+        }
+
+        public EventHandler<TouchEventArgs> ScrimTouchEvent;
+
+        private View CreateScrim(Window window)
+        {
+            if (window == null)
+            {
+                throw new ArgumentNullException(nameof(window), "window should not be null.");
+            }
+
+            var scrimStyle = ThemeManager.GetStyle("Tizen.NUI.Components.DialogPage.Scrim");
+            var scrim = new VisualView(scrimStyle);
+            scrim.Size = window.Size;
+            scrim.TouchEvent += (object source, TouchEventArgs e) =>
+            {
+                if ((EnableDismissOnScrim == true) && (e.Touch.GetState(0) == PointStateType.Up))
+                {
+                    // Default Scrim calls navigator.Pop() when the Scrim is touched.
+                    // To pop widget page when the Scrim is touched, bundle with "POP" message should be sent to make the main app pops this.
+                    ScrimTouchEvent?.Invoke(source, e);
+                }
+                return true;
+            };
+
+            return scrim;
+        }
+    }
+
+    class FourthPageWidget : Widget
+    {
+        protected override void OnCreate(string contentInfo, Window window)
+        {
+            Bundle bundle = Bundle.Decode(contentInfo);
+
+            window.BackgroundColor = Color.Transparent;
+
+            var fourthPage = new WidgetDialogPage(window);
+
+            var button = new Button()
+            {
+                Text = "OK",
+            };
+            button.Clicked += (o, e) =>
+            {
+                // Update Widget Content by sending message to pop the current page.
+                Bundle nextBundle = new Bundle();
+                nextBundle.AddItem("WIDGET_ACTION", "POP");
+                String encodedBundle = nextBundle.Encode();
+                SetContentInfo(encodedBundle);
+            };
+
+            var dialog = new AlertDialog()
+            {
+                Title = "Fourth Page",
+                Message = "Message",
+                Actions = new View[] { button },
+            };
+
+            fourthPage.Content = dialog;
+
+            // Default Scrim calls navigator.Pop() when the Scrim is touched.
+            // To pop widget page when the Scrim is touched, bundle with "POP" message should be sent to make the main app pops this.
+            fourthPage.ScrimTouchEvent += (o, e) =>
+            {
+                // Update Widget Content by sending message to pop the current page.
+                Bundle nextBundle = new Bundle();
+                nextBundle.AddItem("WIDGET_ACTION", "POP");
+                String encodedBundle = nextBundle.Encode();
+                SetContentInfo(encodedBundle);
+            };
+
+            window.GetDefaultNavigator().Push(fourthPage);
         }
 
         protected override void OnPause()
@@ -286,9 +380,9 @@ namespace WidgetTemplate
         static void Main(string[] args)
         {
             Dictionary<System.Type, string> widgetSet = new Dictionary<Type, string>();
-            widgetSet.Add(typeof(SecondPage), "secondPage@NUISettingsReset");
-            widgetSet.Add(typeof(ThirdPage), "thirdPage@NUISettingsReset");
-            widgetSet.Add(typeof(FourthPage), "fourthPage@NUISettingsReset");
+            widgetSet.Add(typeof(SecondPageWidget), "secondPage@NUISettingsReset");
+            widgetSet.Add(typeof(ThirdPageWidget), "thirdPage@NUISettingsReset");
+            widgetSet.Add(typeof(FourthPageWidget), "fourthPage@NUISettingsReset");
             var app = new Program(widgetSet);
             app.Run(args);
         }
