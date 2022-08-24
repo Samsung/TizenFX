@@ -448,27 +448,27 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Codec.
         /// </summary>
-        Codec = 1,
+        Codec = 0x0001,
 
         /// <summary>
         /// Inbound RTP.
         /// </summary>
-        InboundRtp = 2,
+        InboundRtp = 0x0002,
 
         /// <summary>
         /// Outbound RTP.
         /// </summary>
-        OutboundRtp = 4,
+        OutboundRtp = 0x0004,
 
         /// <summary>
         /// Remote inbound RTP.
         /// </summary>
-        RemoteInboundRtp = 8,
+        RemoteInboundRtp = 0x0008,
 
         /// <summary>
         /// Remote Outbound RTP.
         /// </summary>
-        RemoteOutboundRtp = 16,
+        RemoteOutboundRtp = 0x0010,
 
         /// <summary>
         /// All types of WebRTC statistics.
