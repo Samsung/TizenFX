@@ -204,6 +204,33 @@ namespace Tizen.Uix.Tts
     };
 
     /// <summary>
+    /// Enumeration for the states of TTS service.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public enum ServiceState
+    {
+        /// <summary>
+        /// Ready state.
+        /// </summary>
+        Ready = 0,
+
+        /// <summary>
+        /// Synthesizing state.
+        /// </summary>
+        Synthesizing = 1,
+
+        /// <summary>
+        /// Playing state.
+        /// </summary>
+        Playing = 2,
+
+        /// <summary>
+        /// Unavailable state.
+        /// </summary>
+        Unavailable
+    };
+
+    /// <summary>
     /// You can use Text-To-Speech (TTS) API's to read sound data transformed by the engine from input texts.
     /// Applications can add input-text to queue for reading continuously and control the player that can play, pause, and stop sound data synthesized from text.
     /// </summary>
@@ -218,6 +245,7 @@ namespace Tizen.Uix.Tts
         private event EventHandler<DefaultVoiceChangedEventArgs> _defaultVoiceChanged;
         private event EventHandler<EngineChangedEventArgs> _engineChanged;
         private event EventHandler<ScreenReaderChangedEventArgs> _screenReaderChanged;
+        private event EventHandler<ServiceStateChangedEventArgs> _serviceStateChanged;
         private bool disposedValue = false;
         private readonly Object _stateChangedLock = new Object();
         private readonly Object _utteranceStartedLock = new Object();
@@ -226,6 +254,7 @@ namespace Tizen.Uix.Tts
         private readonly Object _defaultVoiceChangedLock = new Object();
         private readonly Object _engineChangedLock = new Object();
         private readonly Object _screenReaderChangedLock = new Object();
+        private readonly Object _serviceStateChangedLock = new Object();
         private TtsStateChangedCB _stateDelegate;
         private TtsUtteranceStartedCB _utteranceStartedResultDelegate;
         private TtsUtteranceCompletedCB _utteranceCompletedResultDelegate;
@@ -233,6 +262,7 @@ namespace Tizen.Uix.Tts
         private TtsDefaultVoiceChangedCB _voiceChangedDelegate;
         private TtsEngineChangedCB _engineDelegate;
         private TtsScreenReaderChangedCB _screenReaderDelegate;
+        private TtsServiceStateChangedCB _serviceStateDelegate;
         private TtsSupportedVoiceCB _supportedvoiceDelegate;
 
         /// <summary>
@@ -590,6 +620,51 @@ namespace Tizen.Uix.Tts
         }
 
         /// <summary>
+        /// Event to be invoked when the state of TTS service changes.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        public event EventHandler<ServiceStateChangedEventArgs> ServiceStateChanged
+        {
+            add
+            {
+                lock (_serviceStateChangedLock)
+                {
+                    if (_serviceStateChanged == null)
+                    {
+                        _serviceStateDelegate = (IntPtr handle, ServiceState previous, ServiceState current, IntPtr userData) =>
+                        {
+                            ServiceStateChangedEventArgs args = new ServiceStateChangedEventArgs(previous, current);
+                            _serviceStateChanged?.Invoke(this, args);
+                        };
+
+                        TtsError error = TtsSetServiceStateChangedCB(_handle, _serviceStateDelegate, IntPtr.Zero);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Add ServiceStateChanged Failed with error " + error);
+                        }
+                    }
+                    _serviceStateChanged += value;
+                }
+            }
+
+            remove
+            {
+                lock (_serviceStateChangedLock)
+                {
+                    _serviceStateChanged -= value;
+                    if (_serviceStateChanged == null)
+                    {
+                        TtsError error = TtsUnsetStateChangedCB(_handle);
+                        if (error != TtsError.None)
+                        {
+                            Log.Error(LogTag, "Remove ServiceStateChanged Failed with error " + error);
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets the default voice set by the user.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
@@ -671,6 +746,29 @@ namespace Tizen.Uix.Tts
                 return state;
             }
 
+        }
+
+        /// <summary>
+        /// Gets the current state of TTS service.
+        /// </summary>
+        /// <value>
+        /// The current state of TTS service.
+        /// </value>
+        /// <since_tizen> 10 </since_tizen>
+        public ServiceState CurrentServiceState
+        {
+            get
+            {
+                ServiceState state;
+                TtsError error = TtsGetServiceState(_handle, out state);
+                if (error != TtsError.None)
+                {
+                    Log.Error(LogTag, "CurrentServiceState Failed with error " + error);
+                    return ServiceState.Unavailable;
+                }
+
+                return state;
+            }
         }
 
         /// <summary>

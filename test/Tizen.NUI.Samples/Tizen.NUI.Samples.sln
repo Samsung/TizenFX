@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32414.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI.Samples", "Tizen.NUI.Samples\Tizen.NUI.Samples.csproj", "{B2EC3963-C77F-4D1A-9387-8BA0DB298266}"
 EndProject
@@ -36,6 +36,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Applications.ThemeManager", "..\..\src\Tizen.Applications.ThemeManager\Tizen.Applications.ThemeManager.csproj", "{FB8B42D6-76CC-4836-8A80-58A816C6A17F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI.Extension", "..\..\src\Tizen.NUI.Extension\Tizen.NUI.Extension.csproj", "{47829CA1-0E21-4687-9ABB-0C27E1A67E85}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.Tracer", "..\..\src\Tizen.Tracer\Tizen.Tracer.csproj", "{A0AA9346-2025-4803-A168-3B39A367BB92}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tizen.NUI.Scene3D", "..\..\src\Tizen.NUI.Scene3D\Tizen.NUI.Scene3D.csproj", "{C5BFC65A-91D1-424E-BEC4-4A40329DA185}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +115,14 @@ Global
 		{47829CA1-0E21-4687-9ABB-0C27E1A67E85}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{47829CA1-0E21-4687-9ABB-0C27E1A67E85}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{47829CA1-0E21-4687-9ABB-0C27E1A67E85}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0AA9346-2025-4803-A168-3B39A367BB92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0AA9346-2025-4803-A168-3B39A367BB92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0AA9346-2025-4803-A168-3B39A367BB92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0AA9346-2025-4803-A168-3B39A367BB92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5BFC65A-91D1-424E-BEC4-4A40329DA185}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5BFC65A-91D1-424E-BEC4-4A40329DA185}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5BFC65A-91D1-424E-BEC4-4A40329DA185}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5BFC65A-91D1-424E-BEC4-4A40329DA185}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

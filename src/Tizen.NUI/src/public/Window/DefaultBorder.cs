@@ -119,7 +119,7 @@ namespace Tizen.NUI
         /// The minimum size by which the window will small.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Size2D MinSize 
+        public Size2D MinSize
         {
             get
             {
@@ -128,7 +128,7 @@ namespace Tizen.NUI
             set
             {
                 minSize = value;
-                BorderWindow?.UpdateProperty();
+                UpdateProperty();
             }
         }
 
@@ -145,7 +145,7 @@ namespace Tizen.NUI
             set
             {
                 maxSize = value;
-                BorderWindow?.UpdateProperty();
+                UpdateProperty();
             }
         }
 
@@ -178,8 +178,17 @@ namespace Tizen.NUI
             set
             {
                 resizePolicy = value;
-                BorderWindow?.UpdateProperty();
+                UpdateProperty();
             }
+        }
+
+        /// <summary>
+        /// Update properties
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void UpdateProperty()
+        {
+            BorderWindow?.UpdateProperty();
         }
 
 
@@ -420,6 +429,7 @@ namespace Tizen.NUI
                     }
                     else
                     {
+                        OnRequestMove();
                         BorderWindow.RequestMoveToServer();
                     }
                 }
@@ -780,6 +790,7 @@ namespace Tizen.NUI
                     }
                     else
                     {
+                        OnRequestMove();
                         BorderWindow.RequestMoveToServer();
                     }
                 }
@@ -829,6 +840,20 @@ namespace Tizen.NUI
             }
             UpdateIcons();
         }
+
+        /// <summary>
+        /// Called when requesting a move
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnRequestMove() {}
+
+        /// <summary>
+        /// Called when the window is moved.
+        /// </summary>
+        /// <param name="x">The x of the moved window</param>
+        /// <param name="y">The y of the moved window</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnMoved(int x, int y) {}
 
         /// <summary>
         /// Called when the window is maximized.
