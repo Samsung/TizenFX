@@ -437,4 +437,218 @@ namespace Tizen.Multimedia.Remoting
 
         Evas,
     }
+
+    /// <summary>
+    /// Specifies the type of WebRTC statistics.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    [Flags]
+    public enum WebRTCStatisticsCategory
+    {
+        /// <summary>
+        /// Codec.
+        /// </summary>
+        Codec = 1,
+
+        /// <summary>
+        /// Inbound RTP.
+        /// </summary>
+        InboundRtp = 2,
+
+        /// <summary>
+        /// Outbound RTP.
+        /// </summary>
+        OutboundRtp = 4,
+
+        /// <summary>
+        /// Remote inbound RTP.
+        /// </summary>
+        RemoteInboundRtp = 8,
+
+        /// <summary>
+        /// Remote Outbound RTP.
+        /// </summary>
+        RemoteOutboundRtp = 16,
+
+        /// <summary>
+        /// All types of WebRTC statistics.
+        /// </summary>
+        All = Codec | InboundRtp | OutboundRtp | RemoteInboundRtp | RemoteOutboundRtp
+    }
+
+    [Flags]
+    internal enum WebRTCStatisticsPropertyCategory
+    {
+        Common = 0x00000100,
+
+        Codec = 0x00000200,
+
+        RtpStream = 0x00000400,
+
+        ReceivedRtpStream = 0x00000800,
+
+        InboundRtpStream = 0x00001000,
+
+        SentRtpStream = 0x00002000,
+
+        OutboundRtpStream = 0x00004000,
+
+        RemoteInboundRtpStream = 0x00008000,
+
+        RemoteOutboundRtpStream = 0x00010000
+    }
+
+    /// <summary>
+    /// Specifies the WebRTC statistics property.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public enum WebRTCStatisticsProperty
+    {
+        /// <summary>
+        /// Timestamp.
+        /// </summary>
+        Timestamp = WebRTCStatisticsPropertyCategory.Common | 0x01,
+
+        /// <summary>
+        /// ID.
+        /// </summary>
+        Id = WebRTCStatisticsPropertyCategory.Common | 0x02,
+
+        /// <summary>
+        /// Payload type.
+        /// </summary>
+        PayloadType = WebRTCStatisticsPropertyCategory.Codec | 0x01,
+
+        /// <summary>
+        /// Clock rate.
+        /// </summary>
+        ClockRate = WebRTCStatisticsPropertyCategory.Codec | 0x02,
+
+        /// <summary>
+        /// Channels.
+        /// </summary>
+        Channels = WebRTCStatisticsPropertyCategory.Codec | 0x03,
+
+        /// <summary>
+        /// Mime type.
+        /// </summary>
+        MimeType = WebRTCStatisticsPropertyCategory.Codec | 0x04,
+
+        /// <summary>
+        /// Codec type.
+        /// </summary>
+        CodecType = WebRTCStatisticsPropertyCategory.Codec | 0x05,
+
+        /// <summary>
+        /// SDP FMTP line.
+        /// </summary>
+        SdpFmtpLine = WebRTCStatisticsPropertyCategory.Codec | 0x06,
+
+        /// <summary>
+        /// SSRC.
+        /// </summary>
+        Ssrc = WebRTCStatisticsPropertyCategory.RtpStream | 0x01,
+
+        /// <summary>
+        /// Transport ID.
+        /// </summary>
+        TransportId = WebRTCStatisticsPropertyCategory.RtpStream | 0x02,
+
+        /// <summary>
+        /// Codec ID.
+        /// </summary>
+        CodecId = WebRTCStatisticsPropertyCategory.RtpStream | 0x03,
+
+        /// <summary>
+        /// Received packet.
+        /// </summary>
+        PacketsReceived = WebRTCStatisticsPropertyCategory.ReceivedRtpStream | 0x01,
+
+        /// <summary>
+        /// Lost packet.
+        /// </summary>
+        PacketsLost = WebRTCStatisticsPropertyCategory.ReceivedRtpStream | 0x02,
+
+        /// <summary>
+        /// Discarted packet.
+        /// </summary>
+        PacketsDiscarded = WebRTCStatisticsPropertyCategory.ReceivedRtpStream | 0x03,
+
+        /// <summary>
+        /// Jitter.
+        /// </summary>
+        Jitter = WebRTCStatisticsPropertyCategory.ReceivedRtpStream | 0x05,
+
+        /// <summary>
+        /// Received bytes.
+        /// </summary>
+        BytesReceived = WebRTCStatisticsPropertyCategory.InboundRtpStream | 0x01,
+
+        /// <summary>
+        /// Duplicated packet.
+        /// </summary>
+        PacketsDuplicated = WebRTCStatisticsPropertyCategory.InboundRtpStream | 0x02,
+
+        /// <summary>
+        /// Sent bytes.
+        /// </summary>
+        BytesSent = WebRTCStatisticsPropertyCategory.SentRtpStream | 0x01,
+
+        /// <summary>
+        /// Sent packets.
+        /// </summary>
+        PacketsSent = WebRTCStatisticsPropertyCategory.SentRtpStream | 0x02,
+
+        /// <summary>
+        /// Remote ID.
+        /// </summary>
+        RemoteId = WebRTCStatisticsPropertyCategory.InboundRtpStream | WebRTCStatisticsPropertyCategory.OutboundRtpStream | 0x01,
+
+        /// <summary>
+        /// FIR count.
+        /// </summary>
+        FirCount = WebRTCStatisticsPropertyCategory.InboundRtpStream | WebRTCStatisticsPropertyCategory.OutboundRtpStream | 0x02,
+
+        /// <summary>
+        /// PLI count.
+        /// </summary>
+        PliCount = WebRTCStatisticsPropertyCategory.InboundRtpStream | WebRTCStatisticsPropertyCategory.OutboundRtpStream | 0x03,
+
+        /// <summary>
+        /// NACK count.
+        /// </summary>
+        NackCount = WebRTCStatisticsPropertyCategory.InboundRtpStream | WebRTCStatisticsPropertyCategory.OutboundRtpStream | 0x04,
+
+        /// <summary>
+        /// Round trip time.
+        /// </summary>
+        RoundTripTime = WebRTCStatisticsPropertyCategory.RemoteInboundRtpStream | 0x01,
+
+        /// <summary>
+        /// Lost fraction.
+        /// </summary>
+        FractionLost = WebRTCStatisticsPropertyCategory.RemoteInboundRtpStream | 0x02,
+
+        /// <summary>
+        /// Remote timestamp.
+        /// </summary>
+        RemoteTimestamp = WebRTCStatisticsPropertyCategory.OutboundRtpStream | 0x01,
+
+        /// <summary>
+        /// Local ID.
+        /// </summary>
+        LocalId = WebRTCStatisticsPropertyCategory.RemoteInboundRtpStream | WebRTCStatisticsPropertyCategory.RemoteOutboundRtpStream | 0x01
+    }
+
+    internal enum WebRTCStatsPropertyType
+    {
+        TypeBool,
+        TypeInt,
+        TypeUint,
+        TypeInt64,
+        TypeUint64,
+        TypeFloat,
+        TypeDouble,
+        TypeString
+    }
 }
