@@ -245,10 +245,9 @@ namespace Tizen.Multimedia
         private event EventHandler<ExtraPreviewEventArgs> _extraPreview;
         /// <summary>
         /// An event that occurs once per frame when previewing.
-        /// Preview callback is registered when an user adds a callback explicitly to avoid useless P/Invoke.
+        /// ExtraPreview callback is registered when an user adds a callback explicitly to avoid useless P/Invoke.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public event EventHandler<ExtraPreviewEventArgs> ExtraPreview
         {
             add

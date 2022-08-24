@@ -46,6 +46,7 @@ namespace Tizen.Multimedia
         private bool _disposed = false;
         private CameraState _state = CameraState.None;
         PinnedPreviewBuffer<byte> _previewBuffer;
+        private CameraDeviceManager _cameraDeviceManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> class.
@@ -94,12 +95,26 @@ namespace Tizen.Multimedia
             CameraDeviceType cameraDeviceType = CameraDeviceType.BuiltIn;
             CameraDevice cameraDevice = device;
 
-            if (CameraDeviceManager.IsSupported || device == CameraDevice.Default)
+            try
             {
-                var deviceInfo = GetDeviceInformation();
+                _cameraDeviceManager = new CameraDeviceManager();
+            }
+            catch (NotSupportedException)
+            {
+                Log.Info(CameraLog.Tag,
+                    $"CameraDeviceManager is not supported. Not error.");
+            }
+
+            if (_cameraDeviceManager != null || device == CameraDevice.Default)
+            {
+                var deviceInfo = _cameraDeviceManager.SupportedDevices;
+
+                // CameraDeviceManager is not used internally anymore.
+                _cameraDeviceManager.Dispose();
+
                 if (!deviceInfo.Any())
                 {
-                    throw new InvalidOperationException("CDM is supported but, there's no available camera device.");
+                    throw new InvalidOperationException("CameraDeviceManager is supported but, there's no available camera device.");
                 }
 
                 cameraDeviceType = deviceInfo.First().Type;
@@ -108,14 +123,6 @@ namespace Tizen.Multimedia
             }
 
             CreateNativeCameraDevice(cameraDeviceType, cameraDevice);
-        }
-
-        private IEnumerable<CameraDeviceInformation> GetDeviceInformation()
-        {
-            using (var cameraDeviceManager = new CameraDeviceManager())
-            {
-                return cameraDeviceManager.GetDeviceInformation();
-            }
         }
 
         private void CreateNativeCameraDevice(CameraDeviceType type, CameraDevice device)

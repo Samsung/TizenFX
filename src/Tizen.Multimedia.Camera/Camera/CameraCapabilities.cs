@@ -57,6 +57,7 @@ namespace Tizen.Multimedia
             IsMediaPacketPreviewCallbackSupported = IsFeatureSupported(NativeCapabilities.IsMediaPacketPreviewCallbackSupported);
             IsZeroShutterLagSupported = IsFeatureSupported(NativeCapabilities.IsZeroShutterLagSupported);
             IsContinuousCaptureSupported = IsFeatureSupported(NativeCapabilities.IsContinuousCaptureSupported);
+            IsExtraPreviewSupported = IsFeatureSupported(NativeCapabilities.IsExtraPreviewSupported);
             IsHdrCaptureSupported = IsFeatureSupported(NativeCapabilities.IsHdrCaptureSupported);
             IsAntiShakeSupported = IsFeatureSupported(NativeCapabilities.IsAntiShakeSupported);
             IsVideoStabilizationSupported = IsFeatureSupported(NativeCapabilities.IsVideoStabilizationSupported);
@@ -109,6 +110,13 @@ namespace Tizen.Multimedia
         /// <value>true if supported, otherwise false.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsContinuousCaptureSupported { get; }
+
+        /// <summary>
+        /// Gets the extra preview feature's supported state.
+        /// </summary>
+        /// <value>true if supported, otherwise false.</value>
+        /// <since_tizen> 10 </since_tizen>
+        public bool IsExtraPreviewSupported { get; }
 
         /// <summary>
         /// Gets the support state of the HDR capture.
