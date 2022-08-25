@@ -20,7 +20,7 @@ using InteropFace = Interop.MediaVision.FaceRecognition;
 namespace Tizen.Multimedia.Vision
 {
     /// <summary>
-    /// Provides the ability to train face for face recognition.
+    /// Provides the ability to recognize face based on previously registered face data.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
     public class InferenceFaceRecognizer : IDisposable
@@ -28,9 +28,10 @@ namespace Tizen.Multimedia.Vision
         private IntPtr _handle;
         private bool _disposed;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="InferenceFaceRecognizer"/> class.
-        /// </summary>
+        /// <summary>Initializes a new instance of the <see cref="InferenceFaceRecognizer"/> class.</summary>
+        /// <remarks>
+        /// This class is different from <see cref="FaceRecognizer"/> in aspect of using internal machine learning algorithm.
+        /// </remarks>
         /// <exception cref="NotSupportedException">The required features are not supported.</exception>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 10 </since_tizen>
