@@ -77,6 +77,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void TtsScreenReaderChangedCB(IntPtr handle, bool is_on, IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate void TtsServiceStateChangedCB(IntPtr handle, ServiceState previous, ServiceState current, IntPtr userData);
+
         [DllImport(Libraries.Tts, EntryPoint = "tts_create", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsCreate(out IntPtr handle);
 
@@ -115,6 +118,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.Tts, EntryPoint = "tts_get_state", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsGetState(IntPtr handle, out State state);
+
+        [DllImport(Libraries.Tts, EntryPoint = "tts_get_service_state", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsGetServiceState(IntPtr handle, out ServiceState serviceState);
 
         [DllImport(Libraries.Tts, EntryPoint = "tts_get_speed_range", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsGetSpeedRange(IntPtr handle, out int min, out int normal, out int max);
@@ -181,5 +187,11 @@ internal static partial class Interop
 
         [DllImport(Libraries.Tts, EntryPoint = "tts_unset_screen_reader_changed_cb", CallingConvention = CallingConvention.Cdecl)]
         internal static extern TtsError TtsUnsetScreenReaderChangedCB(IntPtr handle);
+
+        [DllImport(Libraries.Tts, EntryPoint = "tts_set_service_state_changed_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsSetServiceStateChangedCB(IntPtr handle, TtsServiceStateChangedCB callback, IntPtr userData);
+
+        [DllImport(Libraries.Tts, EntryPoint = "tts_unset_service_state_changed_cb", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern TtsError TtsUnsetServiceStateChangedCB(IntPtr handle);
     }
 }

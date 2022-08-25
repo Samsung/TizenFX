@@ -43,6 +43,11 @@ namespace WidgetTemplate
             sampleLabel.SizeWidth = 300;
             sampleLabel.PivotPoint = PivotPoint.Center;
             mRootView.Add(sampleLabel);
+
+            mAnimation = new Animation(1000);
+            mAnimation.AnimateTo(sampleLabel, "PositionX", 300.0f);
+            mAnimation.Looping = true;
+            mAnimation.Play();
         }
 
         protected override void OnPause()
@@ -72,6 +77,7 @@ namespace WidgetTemplate
         }
 
         private View mRootView;
+        private Animation mAnimation;
     }
 
     class BlueWidget : Widget
@@ -92,6 +98,11 @@ namespace WidgetTemplate
             sampleLabel.SizeWidth = 300;
             sampleLabel.PivotPoint = PivotPoint.Center;
             mRootView.Add(sampleLabel);
+
+            mAnimation = new Animation(1000);
+            mAnimation.AnimateTo(sampleLabel, "PositionX", 400.0f);
+            mAnimation.Looping = true;
+            mAnimation.Play();
         }
 
         protected override void OnPause()
@@ -120,6 +131,7 @@ namespace WidgetTemplate
         }
 
         private View mRootView;
+        private Animation mAnimation;
     }
 
     class Program : NUIWidgetApplication

@@ -69,9 +69,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_View_Property_COUNTER_CLOCKWISE_FOCUSABLE_ACTOR_ID_get")]
             public static extern int CounterClockwiseFocusableActorIdGet();
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_UPDATE_SIZE_HINT_get")]
-            public static extern int UpdateSizeHintGet();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_SHADOW_get")]
             public static extern int ShadowGet();
 
@@ -98,6 +95,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_ACCESSIBILITY_HIDDEN_get")]
             public static extern int AccessibilityHiddenGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_Property_AUTOMATION_ID_get")]
+            public static extern int AutomationIdGet();
         }
     }
 }

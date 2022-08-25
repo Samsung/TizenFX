@@ -122,7 +122,7 @@ namespace Tizen.Applications.Cion
             }
 
             _dataReceivedCb = new Interop.CionServer.CionServerDataReceivedCb(
-                (string service, IntPtr peerInfo, byte[] data, int dataSize, out IntPtr returnData, out int returnDataSize, IntPtr userData) =>
+                (string service, IntPtr peerInfo, IntPtr data, int dataSize, out IntPtr returnData, out int returnDataSize, IntPtr userData) =>
                 {
                     Interop.Cion.ErrorCode clone_ret = Interop.CionPeerInfo.CionPeerInfoClone(peerInfo, out PeerInfoSafeHandle clone);
                     if (clone_ret != Interop.Cion.ErrorCode.None)
@@ -131,7 +131,9 @@ namespace Tizen.Applications.Cion
                         returnData = IntPtr.Zero;
                         returnDataSize = -1;
                     }
-                    byte[] returnDataRaw = OnDataReceived(data, new PeerInfo(clone));
+                    byte[] receivedData = new byte[dataSize];
+                    Marshal.Copy(data, receivedData, 0, dataSize);
+                    byte[] returnDataRaw = OnDataReceived(receivedData, new PeerInfo(clone));
                     returnDataSize = returnDataRaw.Length;
                     returnData = Interop.Cion.Malloc(returnDataSize);
                     Marshal.Copy(returnDataRaw, 0, returnData, returnDataSize);

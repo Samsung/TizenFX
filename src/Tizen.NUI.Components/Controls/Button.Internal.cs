@@ -315,6 +315,16 @@ namespace Tizen.NUI.Components
             {
                 isPressed = statePressed;
             }
+
+            if (IsSelectable)
+            {
+                var stateSelected = controlStateChangedInfo.CurrentState.Contains(ControlState.Selected);
+
+                if (IsSelected != stateSelected)
+                {
+                    IsSelected = stateSelected;
+                }
+            }
         }
 
         /// <summary>

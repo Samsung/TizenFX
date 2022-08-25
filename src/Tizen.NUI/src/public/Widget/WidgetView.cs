@@ -198,9 +198,8 @@ namespace Tizen.NUI
         private delegate void WidgetFaultedEventCallbackType(IntPtr data);
 
         /// <summary>
-        /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
-        /// This signal is emitted after all resources required by a control are loaded and ready.<br />
-        /// Most resources are only loaded when the control is placed on the stage.<br />
+        /// An event for the WidgetAdded signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when widget is added.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<WidgetViewEventArgs> WidgetAdded
@@ -232,9 +231,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
-        /// This signal is emitted after all resources required by a control are loaded and ready.<br />
-        /// Most resources are only loaded when the control is placed on the stage.<br />
+        /// An event for the WidgetContentUpdated signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when the widget content is updated.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<WidgetViewEventArgs> WidgetContentUpdated
@@ -266,9 +264,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
-        /// This signal is emitted after all resources required by a control are loaded and ready.<br />
-        /// Most resources are only loaded when the control is placed on the stage.<br />
+        /// An event for the WidgetDeleted signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when the widget is deleted.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<WidgetViewEventArgs> WidgetDeleted
@@ -300,9 +297,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
-        /// This signal is emitted after all resources required by a control are loaded and ready.<br />
-        /// Most resources are only loaded when the control is placed on the stage.<br />
+        /// An event for the WidgetCreationAborted signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when the widget creation is aborted.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<WidgetViewEventArgs> WidgetCreationAborted
@@ -334,9 +330,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
-        /// This signal is emitted after all resources required by a control are loaded and ready.<br />
-        /// Most resources are only loaded when the control is placed on the stage.<br />
+        /// An event for the WidgetUpdatePeriodChanged signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when the widget update period is changed.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<WidgetViewEventArgs> WidgetUpdatePeriodChanged
@@ -368,9 +363,8 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// An event for the ResourceReady signal which can be used to subscribe or unsubscribe the event handler.<br />
-        /// This signal is emitted after all resources required by a control are loaded and ready.<br />
-        /// Most resources are only loaded when the control is placed on the stage.<br />
+        /// An event for the WidgetFaulted signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when the widget process is not running.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<WidgetViewEventArgs> WidgetFaulted
@@ -761,7 +755,11 @@ namespace Tizen.NUI
 
         internal static WidgetView GetWidgetViewFromPtr(global::System.IntPtr cPtr)
         {
-            WidgetView ret = new WidgetView(cPtr, false);
+            if (cPtr == global::System.IntPtr.Zero)
+            {
+                return null;
+            }
+            WidgetView ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as WidgetView;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -883,6 +881,14 @@ namespace Tizen.NUI
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.WidgetView.DeleteWidgetView(swigCPtr);
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override bool HandleControlStateOnTouch(Touch touch)
+        {
+            base.HandleControlStateOnTouch(touch);
+            return true; // Do not pass the touch event to the below.
         }
 
         // Callback for WidgetView WidgetAdded signal
