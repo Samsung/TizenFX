@@ -50,7 +50,7 @@ namespace Tizen.MachineLearning.Train
         /// </summary>
         Layer = 1,
         /// <summary>
-        /// Model summary weight information that layer has.
+        /// Model summary weight information that layer has
         /// </summary>
         Tensor = 2
     }
@@ -66,11 +66,11 @@ namespace Tizen.MachineLearning.Train
         /// </summary>
         Bin = 0,
         /// <summary>
-        /// Ini format file stores model configurations.
+        /// Ini format file stores model configurations
         /// </summary>
         Ini = 1,
         /// <summary>
-        /// Ini with bin format file stores configurations with parameters required for inference and training.
+        /// Ini with bin format file stores configurations with parameters required for inference and training
         /// </summary>
         IniWithBin = 2
     }
