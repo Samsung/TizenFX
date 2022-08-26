@@ -1,0 +1,589 @@
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+using System;
+using System.ComponentModel;
+using Tizen.NUI.BaseComponents;
+
+namespace Tizen.NUI.Scene3D
+{
+    /// <summary>
+    /// Camera class controls a camera in 3D space.
+    ///
+    /// Camera can be added on the SceneView and displays SceneView's virtual 3D world to the screen.
+    /// Camera can be translated and rotated in the space.
+    /// </summary>
+    /// <remarks>
+    /// Transform inheritance cannot be guaranteed when adding children to a camera.
+    /// </remarks>
+    /// This will be released at Tizen.NET API Level 10, so currently this would be used as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public partial class Camera : View
+    {
+        /// <summary>
+        /// Enumeration for the projectionMode.
+        /// </summary>
+        /// This will be released at Tizen.NET API Level 10, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ProjectionModeType
+        {
+            /// <summary>
+            /// Distance causes foreshortening; objects further from the camera appear smaller.
+            /// </summary>
+            Perspective,
+            /// <summary>
+            /// Relative distance from the camera does not affect the size of objects.
+            /// </summary>
+            Orthographic
+        }
+
+        internal Camera(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
+        }
+
+        /// <summary>
+        /// Creates an uninitialized Camera.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Camera() : this(Interop.Camera.New(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Copy constructor.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Camera(Camera copy) : this(Interop.Camera.NewCamera(Camera.getCPtr(copy)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Assignment.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Camera Assign(Camera rhs)
+        {
+            Camera ret = new Camera(Interop.Camera.Assign(SwigCPtr, Camera.getCPtr(rhs)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Creates a CameraActor object.
+        /// Sets the default camera perspective projection for the given canvas size..
+        /// </summary>
+        internal Camera(Vector2 size) : this(Interop.Camera.New(Vector2.getCPtr(size)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal static Camera DownCast(BaseHandle handle)
+        {
+            if (handle == null)
+            {
+                throw new global::System.ArgumentNullException(nameof(handle));
+            }
+            Camera ret = Registry.GetManagedBaseHandleFromNativePtr(handle) as Camera;
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Sets/Gets the projection mode.
+        /// The default is Perspective
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ProjectionModeType ProjectionMode
+        {
+            get
+            {
+                return (ProjectionModeType)GetValue(ProjectionProperty);
+            }
+            set
+            {
+                SetValue(ProjectionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Sets/Gets the field of view in Radians.
+        /// The default field of view is 45 degrees.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float FieldOfView
+        {
+            get
+            {
+                return (float)GetValue(FieldOfViewProperty);
+            }
+            set
+            {
+                SetValue(FieldOfViewProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets the aspect ratio of the camera.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float AspectRatio
+        {
+            get
+            {
+                return (float)GetValue(AspectRatioProperty);
+            }
+        }
+
+        /// <summary>
+        /// Sets/Gets the near clipping plane distance.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float NearPlaneDistance
+        {
+            get
+            {
+                return (float)GetValue(NearPlaneDistanceProperty);
+            }
+            set
+            {
+                SetValue(NearPlaneDistanceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Sets/Gets the far clipping plane distance.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float FarPlaneDistance
+        {
+            get
+            {
+                return (float)GetValue(FarPlaneDistanceProperty);
+            }
+            set
+            {
+                SetValue(FarPlaneDistanceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Sets/Gets the left clipping plane distance.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float LeftPlaneDistance
+        {
+            get
+            {
+                return (float)GetValue(LeftPlaneDistanceProperty);
+            }
+            set
+            {
+                SetValue(LeftPlaneDistanceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Sets/Gets the right clipping plane distance.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float RightPlaneDistance
+        {
+            get
+            {
+                return (float)GetValue(RightPlaneDistanceProperty);
+            }
+            set
+            {
+                SetValue(RightPlaneDistanceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Sets/Gets the top clipping plane distance.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float TopPlaneDistance
+        {
+            get
+            {
+                return (float)GetValue(TopPlaneDistanceProperty);
+            }
+            set
+            {
+                SetValue(TopPlaneDistanceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Sets/Gets the bottom clipping plane distance.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float BottomPlaneDistance
+        {
+            get
+            {
+                return (float)GetValue(BottomPlaneDistanceProperty);
+            }
+            set
+            {
+                SetValue(BottomPlaneDistanceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Requests for an inversion on the Y axis on the projection calculation.
+        /// or gets whether the Y axis is inverted.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool InvertYAxis
+        {
+            get
+            {
+                return (bool)GetValue(InvertYAxisProperty);
+            }
+            set
+            {
+                SetValue(InvertYAxisProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets ProjectionMatrix of this Camera
+        /// TODO : Open Matrix
+        /// </summary>
+        internal Matrix ProjectionMatrix
+        {
+            get
+            {
+                Matrix returnValue = new Matrix();
+                PropertyValue projectionMatrix = GetProperty(Interop.Camera.ProjectionMatrixGet());
+                projectionMatrix?.Get(returnValue);
+                projectionMatrix?.Dispose();
+                return returnValue;
+            }
+        }
+
+        /// <summary>
+        /// Gets ViewMatrix of this Camera
+        /// TODO : Open Matrix
+        /// </summary>
+        internal Matrix ViewMatrix
+        {
+            get
+            {
+                Matrix returnValue = new Matrix();
+                PropertyValue viewMatrix = GetProperty(Interop.Camera.ViewMatrixGet());
+                viewMatrix.Get(returnValue);
+                viewMatrix.Dispose();
+                return returnValue;
+            }
+        }
+
+        private ProjectionModeType InternalProjectionMode
+        {
+            get
+            {
+                int returnValue = (int)ProjectionModeType.Perspective;
+                PropertyValue projectionMode = GetProperty(Interop.Camera.ProjectionModeGet());
+                projectionMode?.Get(out returnValue);
+                projectionMode?.Dispose();
+                return (ProjectionModeType)returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue((int)value);
+                SetProperty(Interop.Camera.ProjectionModeGet(), setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private float InternalFieldOfView
+        {
+            get
+            {
+                float returnValue = 0.0f;
+                PropertyValue fieldView = GetProperty(Interop.Camera.FieldOfViewGet());
+                fieldView?.Get(out returnValue);
+                fieldView?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.Camera.FieldOfViewGet(), setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private float InternalAspectRatio
+        {
+            get
+            {
+                float returnValue = 0.0f;
+                PropertyValue aspectRatio = GetProperty(Interop.Camera.AspectRatioGet());
+                aspectRatio?.Get(out returnValue);
+                aspectRatio?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.Camera.AspectRatioGet(), setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private float InternalNearPlaneDistance
+        {
+            get
+            {
+                float returnValue = 0.0f;
+                PropertyValue nearPlaneDistance = GetProperty(Interop.Camera.NearPlaneDistanceGet());
+                nearPlaneDistance?.Get(out returnValue);
+                nearPlaneDistance?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.Camera.NearPlaneDistanceGet(), setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private float InternalFarPlaneDistance
+        {
+            get
+            {
+                float returnValue = 0.0f;
+                PropertyValue farPlaneDistance = GetProperty(Interop.Camera.FarPlaneDistanceGet());
+                farPlaneDistance?.Get(out returnValue);
+                farPlaneDistance?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.Camera.FarPlaneDistanceGet(), setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private float InternalLeftPlaneDistance
+        {
+            get
+            {
+                float returnValue = 0.0f;
+                PropertyValue leftPlaneDistance = GetProperty(Interop.Camera.LeftPlaneDistanceGet());
+                leftPlaneDistance?.Get(out returnValue);
+                leftPlaneDistance?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.Camera.LeftPlaneDistanceGet(), setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private float InternalRightPlaneDistance
+        {
+            get
+            {
+                float returnValue = 0.0f;
+                PropertyValue rightPlaneDistance = GetProperty(Interop.Camera.RightPlaneDistanceGet());
+                rightPlaneDistance?.Get(out returnValue);
+                rightPlaneDistance?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.Camera.RightPlaneDistanceGet(), setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private float InternalTopPlaneDistance
+        {
+            get
+            {
+                float returnValue = 0.0f;
+                PropertyValue topPlaneDistance = GetProperty(Interop.Camera.TopPlaneDistanceGet());
+                topPlaneDistance?.Get(out returnValue);
+                topPlaneDistance?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.Camera.TopPlaneDistanceGet(), setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private float InternalBottomPlaneDistance
+        {
+            get
+            {
+                float returnValue = 0.0f;
+                PropertyValue bottomPlaneDistance = GetProperty(Interop.Camera.BottomPlaneDistanceGet());
+                bottomPlaneDistance?.Get(out returnValue);
+                bottomPlaneDistance?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.Camera.BottomPlaneDistanceGet(), setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private bool InternalInvertYAxis
+        {
+            get
+            {
+                bool returnValue = false;
+                PropertyValue invertYAxis = GetProperty(Interop.Camera.InvertYAxisGet());
+                invertYAxis?.Get(out returnValue);
+                invertYAxis?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.Camera.InvertYAxisGet(), setValue);
+                setValue.Dispose();
+            }
+        }
+
+        internal void SetProjection(ProjectionModeType mode)
+        {
+            Interop.Camera.SetProjectionMode(SwigCPtr, (int)mode);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal ProjectionModeType GetProjection()
+        {
+            ProjectionModeType ret = (ProjectionModeType)Interop.Camera.GetProjectionMode(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetFieldOfView(float fieldOfView)
+        {
+            Interop.Camera.SetFieldOfView(SwigCPtr, fieldOfView);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal float GetFieldOfView()
+        {
+            float ret = Interop.Camera.GetFieldOfView(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetAspectRatio(float aspectRatio)
+        {
+            Interop.Camera.SetAspectRatio(SwigCPtr, aspectRatio);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal float GetAspectRatio()
+        {
+            float ret = Interop.Camera.GetAspectRatio(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetNearClippingPlane(float nearClippingPlane)
+        {
+            Interop.Camera.SetNearClippingPlane(SwigCPtr, nearClippingPlane);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal float GetNearClippingPlane()
+        {
+            float ret = Interop.Camera.GetNearClippingPlane(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetFarClippingPlane(float farClippingPlane)
+        {
+            Interop.Camera.SetFarClippingPlane(SwigCPtr, farClippingPlane);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal float GetFarClippingPlane()
+        {
+            float ret = Interop.Camera.GetFarClippingPlane(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal void SetInvertYAxis(bool invertYAxis)
+        {
+            Interop.Camera.SetInvertYAxis(SwigCPtr, invertYAxis);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool GetInvertYAxis()
+        {
+            bool ret = Interop.Camera.GetInvertYAxis(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Release swigCPtr.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.Camera.DeleteCamera(swigCPtr);
+        }
+    }
+}
