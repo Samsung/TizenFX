@@ -35,7 +35,6 @@ namespace Tizen.NUI
         private IBorderInterface borderInterface = null;
         private Layer borderWindowRootLayer = null;
         private Layer borderWindowBottomLayer = null;
-        private bool isBorderWindow = false;
 
         // for border area
         private View rootView = null;
@@ -43,11 +42,15 @@ namespace Tizen.NUI
         private View topView = null;
         private View contentsView = null;
         private View bottomView = null;
-        private bool isTop = false;
-        private bool isBottom = false;
         private float borderHeight = 0;
         private int screenWidth = 0;
         private int screenHeight = 0;
+
+        private bool isBorderWindow = false;
+        private bool hasTopView = false;
+        private bool hasBottomView = false;
+        private bool isEnabledOverlayMode = false;
+        private bool isMaximized = false;
 
         // for config
         private Size2D minSize = null;
@@ -134,8 +137,8 @@ namespace Tizen.NUI
             if (borderInterface != null)
             {
                 float height = 0;
-                if (isTop) height += topView.SizeHeight;
-                if (isBottom) height += bottomView.SizeHeight;
+                if (hasTopView) height += topView.SizeHeight;
+                if (hasBottomView) height += bottomView.SizeHeight;
 
                 if (height != borderHeight)
                 {
@@ -236,8 +239,8 @@ namespace Tizen.NUI
 
                 // Increase the window size as much as the border area.
                 borderHeight = 0;
-                if (isTop) borderHeight += topView.SizeHeight;
-                if (isBottom) borderHeight += bottomView.SizeHeight;
+                if (hasTopView) borderHeight += topView.SizeHeight;
+                if (hasBottomView) borderHeight += bottomView.SizeHeight;
 
                 // Sets the minimum / maximum size to be resized by RequestResizeToServer.
                 if (borderInterface.MinSize != null)
@@ -345,17 +348,17 @@ namespace Tizen.NUI
             if (borderInterface.CreateTopBorderView(topView) == true && topView != null)
             {
                 borderView.Add(topView);
-                isTop = true;
+                hasTopView = true;
             }
             borderView.Add(contentsView);
             if (borderInterface.CreateBottomBorderView(bottomView) == true && bottomView != null)
             {
                 borderView.Add(bottomView);
-                isBottom = true;
+                hasBottomView = true;
             }
             rootView.Add(borderView);
 
-            return isTop || isBottom;
+            return hasTopView || hasBottomView;
         }
 
         /// <summary>
@@ -410,7 +413,7 @@ namespace Tizen.NUI
                 direction = BorderDirection.Top;
             }
             // check move
-            else if ((yPosition > WindowSize.Height) || (isTop == true && yPosition < topView.SizeHeight))
+            else if ((yPosition > WindowSize.Height) || (hasTopView == true && yPosition < topView.SizeHeight))
             {
                 direction = BorderDirection.Move;
             }
@@ -422,17 +425,31 @@ namespace Tizen.NUI
         {
             if (borderInterface.OverlayMode == true)
             {
-                borderInterface.OnOverlayMode(enable);
-                borderView?.OverlayMode(enable);
-                if (enable == true)
+                if (isEnabledOverlayMode != enable)
                 {
-                    GetBorderWindowBottomLayer().RaiseToTop();
-                }
-                else
-                {
-                    GetBorderWindowBottomLayer().LowerToBottom();
+                    borderView?.OverlayMode(enable);
+                    borderInterface.OnOverlayMode(enable);
+                    if (enable == true)
+                    {
+                        GetBorderWindowBottomLayer().RaiseToTop();
+                    }
+                    else
+                    {
+                        GetBorderWindowBottomLayer().LowerToBottom();
+                    }
+                    isEnabledOverlayMode = enable;
                 }
             }
+        }
+
+        private void DoMaximize(bool isMaximized)
+        {
+            if (this.isMaximized != isMaximized)
+            {
+                borderView?.OnMaximize(isMaximized);
+                borderInterface.OnMaximize(isMaximized);
+            }
+            this.isMaximized = isMaximized;
         }
 
         // Called when the window position has changed.
@@ -454,32 +471,34 @@ namespace Tizen.NUI
 
              // reset borderHeight
             borderHeight = 0;
-            if (isTop) borderHeight += topView.SizeHeight;
-            if (isBottom) borderHeight += bottomView.SizeHeight;
+            if (hasTopView) borderHeight += topView.SizeHeight;
+            if (hasBottomView) borderHeight += bottomView.SizeHeight;
 
-            if (borderInterface.OverlayMode == true && IsMaximized() == true)
+            bool isMaximized = IsMaximized();
+            bool isEnabledOverlay = (borderInterface.OverlayMode == true && isMaximized == true);
+
+            float width = 0;
+            float height = isEnabledOverlay ? 0 : borderHeight;
+            float y = isEnabledOverlay ? 0 : ((hasTopView == true) ? topView.SizeHeight : 0);
+
+            if (isMaximized == false)
             {
-                Interop.ActorInternal.SetSize(GetBorderWindowRootLayer().SwigCPtr, resizeWidth, resizeHeight);
-                Interop.ActorInternal.SetSize(GetBorderWindowBottomLayer().SwigCPtr, resizeWidth, resizeHeight);
-                Interop.ActorInternal.SetPosition(GetBorderWindowRootLayer().SwigCPtr, 0, 0);
-                if (contentsView != null)
-                {
-                    contentsView.SizeHeight = resizeHeight - borderHeight - (float)(borderInterface.BorderLineThickness * 2);
-                }
-                DoOverlayMode(true);
+                width = (float)(borderInterface.BorderLineThickness * 2);
+                height += (float)(borderInterface.BorderLineThickness * 2);
+                y += borderInterface.BorderLineThickness;
             }
-            else
+
+            Interop.ActorInternal.SetSize(GetBorderWindowRootLayer().SwigCPtr, resizeWidth, resizeHeight);
+            Interop.ActorInternal.SetSize(GetBorderWindowBottomLayer().SwigCPtr, resizeWidth + width, resizeHeight + height);
+            Interop.ActorInternal.SetPosition(GetBorderWindowRootLayer().SwigCPtr, 0, y);
+
+            if (contentsView != null)
             {
-                float height = (isTop == true) ? topView.SizeHeight : 0;
-                Interop.ActorInternal.SetSize(GetBorderWindowRootLayer().SwigCPtr, resizeWidth, resizeHeight);
-                Interop.ActorInternal.SetSize(GetBorderWindowBottomLayer().SwigCPtr, resizeWidth + (float)(borderInterface.BorderLineThickness * 2), resizeHeight + borderHeight + (float)(borderInterface.BorderLineThickness * 2));
-                Interop.ActorInternal.SetPosition(GetBorderWindowRootLayer().SwigCPtr, 0, height + borderInterface.BorderLineThickness);
-                if (contentsView != null)
-                {
-                    contentsView.SizeHeight = resizeHeight;
-                }
-                DoOverlayMode(false);
+                contentsView.SizeHeight = resizeHeight - (isEnabledOverlay ? borderHeight : 0);
             }
+            DoMaximize(isMaximized);
+
+            DoOverlayMode(isEnabledOverlay);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) { throw NDalicPINVOKE.SWIGPendingException.Retrieve(); }
         }
@@ -514,7 +533,7 @@ namespace Tizen.NUI
                 Interop.Actor.SetAnchorPoint(borderWindowRootLayer.SwigCPtr, topCentor.SwigCPtr);
                 Interop.Actor.Add(rootLayer.SwigCPtr, borderWindowRootLayer.SwigCPtr);
                 Interop.ActorInternal.SetSize(borderWindowRootLayer.SwigCPtr, WindowSize.Width, WindowSize.Height - borderHeight - borderInterface.BorderLineThickness * 2);
-                float height = (isTop == true) ? topView.SizeHeight : 0;
+                float height = (hasTopView == true) ? topView.SizeHeight : 0;
                 Interop.ActorInternal.SetPosition(borderWindowRootLayer.SwigCPtr, 0, height + borderInterface.BorderLineThickness);
                 using PropertyValue propertyValue = new Tizen.NUI.PropertyValue((int)Tizen.NUI.ClippingModeType.ClipToBoundingBox);
                 Tizen.NUI.Object.SetProperty(borderWindowRootLayer.SwigCPtr, Tizen.NUI.BaseComponents.View.Property.ClippingMode, propertyValue);
@@ -563,7 +582,8 @@ namespace Tizen.NUI
         // View class for border view.
         private class BorderView : View
         {
-            private bool overlayEnabled = false;
+            private bool isEnabledOverlay = false;
+            private Extents prePadding = new Extents(0, 0, 0, 0);
 
             /// <summary>
             /// Set whether or not it is in overlay mode.
@@ -574,17 +594,33 @@ namespace Tizen.NUI
             [EditorBrowsable(EditorBrowsableState.Never)]
             public void OverlayMode(bool enabled)
             {
-                overlayEnabled = enabled;
+                isEnabledOverlay = enabled;
+            }
+
+            /// <summary>
+            /// Called when the window is maximized.
+            /// </summary>
+            /// <param name="isMaximized">If window is maximized or unmaximized.</param>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public void OnMaximize(bool isMaximized)
+            {
+                // When maximized, it is displayed in full without border lines.
+                if (isMaximized == true)
+                {
+                    prePadding = Padding;
+                    Padding = new Extents(0, 0, 0, 0);
+                }
+                else
+                {
+                    Padding = prePadding;
+                }
+                
             }
 
             protected override bool HitTest(Touch touch)
             {
                 // If borderView is in overlay mode, pass the hittest.
-                if (overlayEnabled == true)
-                {
-                    return false;
-                }
-                return true;
+                return (isEnabledOverlay == false);
             }
         }
         #endregion //Classes
