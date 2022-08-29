@@ -53,6 +53,6 @@ jobs:
         cp Artifacts/api.json .apispec/${{ github.sha }}.json
         git config --global user.name "TizenAPI-Bot"
         git config --global user.email "tizenapi@samsung.net"
-        git add .apisepc
+        git add .apispec
         git commit -m "Update API spec"
         git push
