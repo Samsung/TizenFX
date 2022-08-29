@@ -48,9 +48,17 @@ namespace WidgetApplicationTemplate
 
             // Add Widget of "secondPage@NUISettingsReset" in advance to avoid loading pending.
             AddWidget(out secondPageWidgetView, "secondPage@NUISettingsReset", encodedBundle, widgetWidth, widgetHeight, 0.0f);
+            secondPageWidgetView.WidgetAdded += (o, e) =>
+            {
+                Tizen.Log.Error("NUI", "[CJH] secondPageWidgetView addes Widget!\n");
+            };
 
             // Add Widget of "thirdPage@NUISettingsReset" in advance to avoid loading pending.
             AddWidget(out thirdPageWidgetView, "thirdPage@NUISettingsReset", encodedBundle, widgetWidth, widgetHeight, 0.0f);
+            thirdPageWidgetView.WidgetAdded += (o, e) =>
+            {
+                Tizen.Log.Error("NUI", "[CJH] thirdPageWidgetView addes Widget!\n");
+            };
 
             // Add Widget of "fourthPage@NUISettingsReset" in advance to avoid loading pending.
             AddWidget(out fourthPageWidgetView, "fourthPage@NUISettingsReset", encodedBundle, widgetWidth, widgetHeight, 0.0f);

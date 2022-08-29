@@ -41,13 +41,13 @@ namespace WidgetTemplate
 
             var button = new Button()
             {
-                Text = "Click to Third Page",
+                Text = "Click to Fourth Page",
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
             };
             button.Clicked += (o, e) =>
             {
-                window.GetDefaultNavigator().Push(new ThirdPage(window));
+                window.GetDefaultNavigator().Push(new FourthPage(window));
             };
 
             Content = button;
@@ -103,6 +103,7 @@ namespace WidgetTemplate
 
         protected override void OnResize(Window window)
         {
+            Tizen.Log.Error("NUI", "[CJH][SecondPageWidget][OnResize]\n");
             base.OnResize(window);
         }
 
@@ -113,6 +114,7 @@ namespace WidgetTemplate
 
         protected override void OnUpdate(string contentInfo, int force)
         {
+            Tizen.Log.Error("NUI", "[CJH][SecondPageWidget][OnUpdate]\n");
             base.OnUpdate(contentInfo, force);
         }
     }
@@ -196,6 +198,7 @@ namespace WidgetTemplate
 
         protected override void OnResize(Window window)
         {
+            Tizen.Log.Error("NUI", "[CJH][ThirdPageWidget][OnResize]\n");
             base.OnResize(window);
         }
 
@@ -206,7 +209,64 @@ namespace WidgetTemplate
 
         protected override void OnUpdate(string contentInfo, int force)
         {
+            Tizen.Log.Error("NUI", "[CJH][ThirdPageWidget][OnUpdate]\n");
             base.OnUpdate(contentInfo, force);
+        }
+    }
+
+    class FourthPageLayout : AbsoluteLayout
+    {
+        protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
+        {
+            base.OnMeasure(widthMeasureSpec, heightMeasureSpec);
+            Tizen.Log.Error("NUI", $"[CJH][FourthPageLayout.OnMeasure] MeasuredSize({MeasuredWidth.Size.AsDecimal()}, {MeasuredWidth.Size.AsDecimal()})\n");
+        }
+
+        protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
+        {
+            base.OnLayout(changed, left, top, right, bottom);
+            Tizen.Log.Error("NUI", $"[CJH][FourthPageLayout.OnLayout] ScreenPosition({Owner.ScreenPosition.X}, {Owner.ScreenPosition.Y}) Position({Owner.Position.X}, {Owner.Position.Y}) Size({Owner.Size.Width}, {Owner.Size.Height})\n");
+        }
+    }
+
+    class AlertDialogLayout : LinearLayout
+    {
+        protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
+        {
+            base.OnMeasure(widthMeasureSpec, heightMeasureSpec);
+            Tizen.Log.Error("NUI", $"[CJH][AlertDialogLayout.OnMeasure] MeasuredSize({MeasuredWidth.Size.AsDecimal()}, {MeasuredWidth.Size.AsDecimal()})\n");
+        }
+
+        protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
+        {
+            base.OnLayout(changed, left, top, right, bottom);
+            Tizen.Log.Error("NUI", $"[CJH][AlertDialogLayout.OnLayout] ScreenPosition({Owner.ScreenPosition.X}, {Owner.ScreenPosition.Y}) Position({Owner.Position.X}, {Owner.Position.Y}) Size({Owner.Size.Width}, {Owner.Size.Height})\n");
+        }
+    }
+
+    class ActionContentLayout : LinearLayout
+    {
+        protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
+        {
+            base.OnMeasure(widthMeasureSpec, heightMeasureSpec);
+            Tizen.Log.Error("NUI", $"[CJH][ActionContentLayout.OnMeasure] MeasuredSize({MeasuredWidth.Size.AsDecimal()}, {MeasuredWidth.Size.AsDecimal()})\n");
+        }
+
+        protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
+        {
+            base.OnLayout(changed, left, top, right, bottom);
+            Tizen.Log.Error("NUI", $"[CJH][ActionContentLayout.OnLayout] ScreenPosition({Owner.ScreenPosition.X}, {Owner.ScreenPosition.Y}) Position({Owner.Position.X}, {Owner.Position.Y}) Size({Owner.Size.Width}, {Owner.Size.Height})\n");
+
+            if (Owner.ScreenPosition.X == 360)
+            {
+                var timer = new Timer(1000);
+                timer.Tick += (o, e) =>
+                {
+                    Tizen.Log.Error("NUI", $"[CJH][ActionContentLayout.OnLayout][Timer] ScreenPosition({Owner.ScreenPosition.X}, {Owner.ScreenPosition.Y}) Position({Owner.Position.X}, {Owner.Position.Y}) Size({Owner.Size.Width}, {Owner.Size.Height})\n");
+                    return false;
+                };
+                timer.Start();
+            }
         }
     }
 
@@ -219,6 +279,8 @@ namespace WidgetTemplate
                 throw new ArgumentNullException(nameof(window), "window should not be null.");
             }
 
+            Layout = new FourthPageLayout();
+
             var button = new Button()
             {
                 Text = "OK",
@@ -230,12 +292,35 @@ namespace WidgetTemplate
 
             var dialog = new AlertDialog()
             {
+                Layout = new AlertDialogLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                },
                 Title = "Fourth Page",
                 Message = "Message",
                 Actions = new View[] { button },
             };
+            dialog.ActionContent.Layout = new ActionContentLayout()
+            {
+                HorizontalAlignment = HorizontalAlignment.Center,
+            };
+            dialog.Relayout += (o, e) =>
+            {
+                Tizen.Log.Error("NUI", $"[CJH] FourthPage.AlertDialog is relayout! ScreenPosition({dialog.ScreenPosition.X}, {dialog.ScreenPosition.Y}) Position({dialog.Position.X}, {dialog.Position.Y}) Size({dialog.Size.Width}, {dialog.Size.Height})\n");
+            };
+
+            dialog.ActionContent.Relayout += (o, e) =>
+            {
+                Tizen.Log.Error("NUI", $"[CJH] FourthPage.AlertDialog.ActionContent is relayout! ScreenPosition({dialog.ActionContent.ScreenPosition.X}, {dialog.ActionContent.ScreenPosition.Y}) Position({dialog.ActionContent.Position.X}, {dialog.ActionContent.Position.Y}) Size({dialog.ActionContent.Size.Width}, {dialog.ActionContent.Size.Height})\n");
+            };
 
             Content = dialog;
+
+            Relayout += (o, e) =>
+            {
+                Tizen.Log.Error("NUI", $"[CJH] FourthPage is relayout! ScreenPosition({ScreenPosition.X}, {ScreenPosition.Y}) Position({Position.X}, {Position.Y}) Size({Size.Width}, {Size.Height})\n");
+            };
         }
     }
 
