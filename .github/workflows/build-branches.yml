@@ -52,7 +52,7 @@ jobs:
       working-directory: .apispec
       run: |
         git checkout --orphan prep
-        gzip -c ../Artifacts/api.json ${{ github.sha }}.json.gz
+        gzip -c ../Artifacts/api.json > ${{ github.sha }}.json.gz
         git config --global user.name "TizenAPI-Bot"
         git config --global user.email "tizenapi@samsung.net"
         git add ${{ github.sha }}.json.gz
