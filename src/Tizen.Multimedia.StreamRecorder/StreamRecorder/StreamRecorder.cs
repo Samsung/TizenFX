@@ -26,6 +26,7 @@ namespace Tizen.Multimedia
     /// Provides the ability to record user buffer from application.
     /// </summary>
     /// <seealso cref="Recorder"/>
+    [Obsolete("Deprecated in API10; Will be removed in API12")]
     public partial class StreamRecorder : IDisposable
     {
         private NativeHandle _handle;
@@ -47,6 +48,7 @@ namespace Tizen.Multimedia
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 3 </since_tizen>
         /// <feature> http://tizen.org/feature/multimedia.stream_recorder </feature>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public StreamRecorder()
         {
             if (IsSupported() == false)
@@ -91,6 +93,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public RecorderState State
         {
             get
@@ -131,6 +134,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="StreamRecorderAudioOptions"/>
         /// <seealso cref="StreamRecorderVideoOptions"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public void Prepare(StreamRecorderOptions options)
         {
             if (options == null)
@@ -167,6 +171,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The <see cref="StreamRecorder"/> has already been disposed.</exception>
         /// <seealso cref="Prepare"/>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public void Unprepare()
         {
             if (State == RecorderState.Idle)
@@ -196,6 +201,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Commit"/>
         /// <seealso cref="Cancel"/>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public void Start()
         {
             if (State == RecorderState.Recording)
@@ -224,6 +230,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Commit"/>
         /// <seealso cref="Cancel"/>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public void Pause()
         {
             if (State == RecorderState.Paused)
@@ -257,6 +264,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Start"/>
         /// <seealso cref="Pause"/>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public void Commit()
         {
             ValidateState(RecorderState.Paused, RecorderState.Recording);
@@ -277,6 +285,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="Start"/>
         /// <seealso cref="Pause"/>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public void Cancel()
         {
             ValidateState(RecorderState.Paused, RecorderState.Recording);
@@ -315,6 +324,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="StreamRecorderOptions.Video"/>
         /// <seealso cref="StreamRecorderVideoOptions.SourceFormat"/>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public void PushBuffer(MediaPacket packet)
         {
             if (packet == null)
@@ -361,6 +371,7 @@ namespace Tizen.Multimedia
         /// Release any unmanaged resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public void Dispose()
         {
             Dispose(true);
