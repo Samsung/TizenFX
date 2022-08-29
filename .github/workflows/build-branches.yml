@@ -6,6 +6,7 @@ on:
     - master
     - DevelNUI
     - API*
+    - test-actions
 
     paths:
     - 'build/**'
@@ -39,13 +40,17 @@ jobs:
             -- print --format=json --include-hidden \
             -o Artifacts/api.json Artifacts/bin/public/
 
-    - name: Upload API Spec to S3
-      uses: TizenAPI/tizenfx-build-actions/s3-upload@master
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      with:
-        file: Artifacts/api.json
-        region: ap-northeast-2
-        bucket: tizenfx-api-specs
-        key: ${{ github.sha }}.json
+    - name: Checkout APISpec
+      uses: actions/checkout@v3
+      repository: TizenAPI/tizenfx-api-specs
+      token: ${{ secrets.TIZENAPI_GITHUB_TOKEN }}
+      path: .apispec
+    
+    - name: Push to APISpec
+      run: |
+        cp Artifacts/api.json .apispec/${{ github.sha }}.json
+        git config --global user.name "TizenAPI-Bot"
+        git config --global user.email "tizenapi@samsung.net"
+        git add .apisepc
+        git commit -m "Update API spec"
+        git push
