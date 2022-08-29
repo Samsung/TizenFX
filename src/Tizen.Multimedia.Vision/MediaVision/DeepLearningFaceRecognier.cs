@@ -23,19 +23,19 @@ namespace Tizen.Multimedia.Vision
     /// Provides the ability to recognize face based on previously registered face data.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
-    public class InferenceFaceRecognizer : IDisposable
+    public class DeepLearningFaceRecognizer : IDisposable
     {
         private IntPtr _handle;
         private bool _disposed;
 
-        /// <summary>Initializes a new instance of the <see cref="InferenceFaceRecognizer"/> class.</summary>
+        /// <summary>Initializes a new instance of the <see cref="DeepLearningFaceRecognizer"/> class.</summary>
         /// <remarks>
         /// This class is different from <see cref="FaceRecognizer"/> in aspect of using internal machine learning algorithm.
         /// </remarks>
         /// <exception cref="NotSupportedException">The required features are not supported.</exception>
         /// <feature>http://tizen.org/feature/vision.face_recognition</feature>
         /// <since_tizen> 10 </since_tizen>
-        public InferenceFaceRecognizer()
+        public DeepLearningFaceRecognizer()
         {
             ValidationUtil.ValidateFeatureSupported(VisionFeatures.FaceRecognition);
 
@@ -54,9 +54,9 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Finalizes an instance of the InferenceFaceRecognizer class.
+        /// Finalizes an instance of the DeepLearningFaceRecognizer class.
         /// </summary>
-        ~InferenceFaceRecognizer()
+        ~DeepLearningFaceRecognizer()
         {
             Dispose(false);
         }
@@ -66,7 +66,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <param name="source">The face data to register.</param>
         /// <param name="label">The name of face data.</param>
-        /// <exception cref="ObjectDisposedException">The InferenceFaceRecognizer already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The DeepLearningFaceRecognizer already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="label"/> is null.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <since_tizen> 10 </since_tizen>
@@ -90,7 +90,7 @@ namespace Tizen.Multimedia.Vision
         /// Unregisters face data from internal database.
         /// </summary>
         /// <param name="label">The name of face data.</param>
-        /// <exception cref="ObjectDisposedException">The InferenceFaceRecognizer already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The DeepLearningFaceRecognizer already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="label"/> is null.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <since_tizen> 10 </since_tizen>
@@ -110,7 +110,7 @@ namespace Tizen.Multimedia.Vision
         /// Recognizes input face from internal face datas and returns its label.
         /// </summary>
         /// <param name="source">The face data to recognize.</param>
-        /// <exception cref="ObjectDisposedException">The InferenceFaceRecognizer already has been disposed.</exception>
+        /// <exception cref="ObjectDisposedException">The DeepLearningFaceRecognizer already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <since_tizen> 10 </since_tizen>
@@ -131,7 +131,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Releases the unmanaged resources used by the InferenceFaceRecognizer.
+        /// Releases the unmanaged resources used by the DeepLearningFaceRecognizer.
         /// </summary>
         /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
         /// <since_tizen> 10 </since_tizen>
@@ -155,7 +155,7 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Releases all resources used by the InferenceFaceRecognizer.
+        /// Releases all resources used by the DeepLearningFaceRecognizer.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public void Dispose()
@@ -168,8 +168,8 @@ namespace Tizen.Multimedia.Vision
         {
             if (_disposed)
             {
-                Log.Error(MediaVisionLog.Tag, "InferenceFaceRecognizer handle is disposed.");
-                throw new ObjectDisposedException(nameof(InferenceFaceRecognizer));
+                Log.Error(MediaVisionLog.Tag, "DeepLearningFaceRecognizer handle is disposed.");
+                throw new ObjectDisposedException(nameof(DeepLearningFaceRecognizer));
             }
         }
     }
