@@ -52,9 +52,9 @@ jobs:
       working-directory: .apispec
       run: |
         git checkout --orphan prep
-        cp ../Artifacts/api.json ${{ github.sha }}.json
+        gzip -c ../Artifacts/api.json ${{ github.sha }}.json.gz
         git config --global user.name "TizenAPI-Bot"
         git config --global user.email "tizenapi@samsung.net"
-        git add ${{ github.sha }}.json
+        git add ${{ github.sha }}.json.gz
         git commit -m "Update API spec"
         git push -f origin HEAD:main
