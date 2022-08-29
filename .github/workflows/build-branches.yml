@@ -51,9 +51,10 @@ jobs:
     - name: Push to APISpec
       working-directory: .apispec
       run: |
+        git checkout --orphan prep
         cp ../Artifacts/api.json ${{ github.sha }}.json
         git config --global user.name "TizenAPI-Bot"
         git config --global user.email "tizenapi@samsung.net"
         git add ${{ github.sha }}.json
         git commit -m "Update API spec"
-        git push
+        git push -f origin HEAD:main
