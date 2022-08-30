@@ -55,7 +55,7 @@ namespace Tizen.Multimedia.Vision
         /// </summary>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 10 </since_tizen>
-        public RoiTrackerType ModelType
+        public RoiTrackerType TrackerType
         {
             get
             {
