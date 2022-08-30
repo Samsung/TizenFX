@@ -1,0 +1,111 @@
+/*
+ * Copyright (c) 2022 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
+using System.Threading.Tasks;
+using InteropRoi = Interop.MediaVision.RoiTracker;
+
+namespace Tizen.Multimedia.Vision
+{
+    /// <summary>
+    /// Provides the ability to track ROI(Region Of Interest) area on image source.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public static class RoiTracker
+    {
+        /// <summary>
+        /// Tracks ROI(Region Of Interest) on the source image.<br/>
+        /// </summary>
+        /// <feature>http://tizen.org/feature/vision.roi_tracking</feature>
+        /// <param name="source">The source of the media where faces will be detected.</param>
+        /// <param name="config">The engine's configuration that will be used for classifying.</param>
+        /// <param name="roi">The ROI to track.</param>
+        /// <returns>A task that represents the asynchronous tracking operation.</returns>
+        /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="config"/> is null.</exception>
+        /// <exception cref="InvalidOperationException">Internal error.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">
+        ///     The width of <paramref name="roi"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
+        ///     The height of <paramref name="roi"/> is less than or equal to zero.<br/>
+        ///     -or-<br/>
+        ///     The x position of <paramref name="roi"/> is less than zero.<br/>
+        ///     -or-<br/>
+        ///     The y position of <paramref name="roi"/> is less than zero.
+        /// </exception>
+        /// <seealso cref="RoiTrackingConfiguration"/>
+        /// <since_tizen> 10 </since_tizen>
+        public static async Task<Rectangle> TrackAsync(MediaVisionSource source, RoiTrackingConfiguration config, Rectangle roi)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+            if (config == null)
+            {
+                throw new ArgumentNullException(nameof(config));
+            }
+            if (config.Roi == null)
+            {
+                throw new InvalidOperationException("The initial ROI should be set first");
+            }
+
+            RoiTrackingConfiguration.ValidateRoi(roi);
+
+            if (!config.IsApplied)
+            {
+                // Configure() and Prepare() can be called every time but it's useless, because Native Vision FW can accept it once.
+                InteropRoi.Configure(config.GetRoiConfigHandle(), config.Handle).
+                    Validate("Failed to configure roi tracking");
+
+                var initialRoi = config.Roi.Value;
+                InteropRoi.Prepare(config.GetRoiConfigHandle(), initialRoi.X, initialRoi.Y, initialRoi.Width, initialRoi.Height).
+                    Validate("Failed to prepare roi tracking");
+
+                config.IsApplied = true;
+            }
+
+            var tcs = new TaskCompletionSource<Rectangle>();
+
+            using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
+            {
+                IntPtr roiUnmanaged = IntPtr.Zero;
+
+                InteropRoi.TrackRoi(config.GetRoiConfigHandle(), source.Handle, cb.Target).
+                    Validate("Failed to track roi");
+
+                return await tcs.Task;
+            }
+        }
+
+        private static InteropRoi.RoiTrackedCallback GetCallback(TaskCompletionSource<Rectangle> tcs)
+        {
+            return (IntPtr sourceHandle, global::Interop.MediaVision.Rectangle roi, IntPtr userData) =>
+            {
+                try
+                {
+                    if (!tcs.TrySetResult(roi.ToApiStruct()))
+                    {
+                        Log.Error(MediaVisionLog.Tag, "Failed to set roi tracking result.");
+                    }
+                }
+                catch (Exception e)
+                {
+                    tcs.TrySetException(e);
+                }
+            };
+        }
+    }
+}
