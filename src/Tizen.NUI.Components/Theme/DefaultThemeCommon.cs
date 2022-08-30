@@ -66,7 +66,14 @@ namespace Tizen.NUI.Components
                 ItemSpacing = new Size2D(8, 8),
                 CornerRadius = 12.0f,
                 BorderlineWidth = 2.0f,
-                BorderlineColor = new Color("#FF6200"), // FIXME: BorderlineColor should support Selector<Color>.
+                BorderlineColorSelector = new Selector<Color>()
+                {
+                    Normal = new Color("#FF6200"),
+                    Pressed = new Color("#FFA166"),
+                    Focused = new Color("#FF7119"),
+                    Selected = new Color("#FF8133"),
+                    Disabled = new Color("#CACACA"),
+                },
                 ItemHorizontalAlignment = HorizontalAlignment.Center,
                 ItemVerticalAlignment = VerticalAlignment.Center,
                 BackgroundColor = Color.Transparent,
