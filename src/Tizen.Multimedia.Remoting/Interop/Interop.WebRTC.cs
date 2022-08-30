@@ -104,6 +104,12 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_remove_media_source")]
         internal static extern WebRTCErrorCode RemoveMediaSource(IntPtr handle, uint sourceId);
 
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_camera_source_set_device_id")]
+        internal static extern WebRTCErrorCode SetCameraDeviceId(IntPtr handle, uint sourceId, uint deviceId);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_camera_source_get_device_id")]
+        internal static extern WebRTCErrorCode GetCameraDeviceId(IntPtr handle, uint sourceId, out uint deviceId);
+
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_packet_source_set_format")]
         internal static extern WebRTCErrorCode SetMediaPacketSourceInfo(IntPtr handle, uint sourceId, IntPtr packet);
 
@@ -136,6 +142,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_mute")]
         internal static extern WebRTCErrorCode GetMute(IntPtr handle, uint sourceId, MediaType type, out bool mute);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_encoder_bitrate")]
+        internal static extern WebRTCErrorCode SetEncoderBitrate(IntPtr handle, uint sourceId, MediaType type, int bitrate);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_encoder_bitrate")]
+        internal static extern WebRTCErrorCode GetEncoderBitrate(IntPtr handle, uint sourceId, MediaType type, out int bitrate);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_video_resolution")]
         internal static extern WebRTCErrorCode SetVideoResolution(IntPtr handle, uint sourceId, int width, int height);
