@@ -30,8 +30,8 @@ namespace Tizen.Multimedia.Vision
         /// Tracks ROI(Region Of Interest) on the source image.<br/>
         /// </summary>
         /// <feature>http://tizen.org/feature/vision.roi_tracking</feature>
-        /// <param name="source">The source of the media where faces will be detected.</param>
-        /// <param name="config">The engine's configuration that will be used for classifying.</param>
+        /// <param name="source">The source of the media user wants to track.</param>
+        /// <param name="config">The engine's configuration that will be used for tracking.</param>
         /// <param name="roi">The ROI to track.</param>
         /// <returns>A task that represents the asynchronous tracking operation.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="config"/> is null.</exception>
