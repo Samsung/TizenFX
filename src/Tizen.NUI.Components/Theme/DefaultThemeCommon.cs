@@ -59,6 +59,31 @@ namespace Tizen.NUI.Components
                 }
             });
 
+            // Outlined Button style
+            theme.AddStyleWithoutClone("Tizen.NUI.Components.Button.Outlined", new ButtonStyle()
+            {
+                Size = new Size(252, 48),
+                ItemSpacing = new Size2D(8, 8),
+                CornerRadius = 12.0f,
+                BorderlineWidth = 2.0f,
+                BorderlineColor = new Color("#FF6200"), // FIXME: BorderlineColor should support Selector<Color>.
+                ItemHorizontalAlignment = HorizontalAlignment.Center,
+                ItemVerticalAlignment = VerticalAlignment.Center,
+                BackgroundColor = Color.Transparent,
+                Text = new TextLabelStyle()
+                {
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#FF6200"),
+                        Pressed = new Color("#FFA166"),
+                        Focused = new Color("#FF7119"),
+                        Selected = new Color("#FF8133"),
+                        Disabled = new Color("#CACACA"),
+                    },
+                    PixelSize = 24,
+                }
+            });
+
             // CheckBox base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.CheckBox", new ButtonStyle()
             {
