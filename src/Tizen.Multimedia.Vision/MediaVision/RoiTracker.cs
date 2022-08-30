@@ -79,33 +79,15 @@ namespace Tizen.Multimedia.Vision
 
             var tcs = new TaskCompletionSource<Rectangle>();
 
-            using (var cb = ObjectKeeper.Get(GetCallback(tcs)))
-            {
-                IntPtr roiUnmanaged = IntPtr.Zero;
+            InteropRoi.RoiTrackedCallback callback = (handle, roi_, _) => tcs.TrySetResult(roi_.ToApiStruct());
 
+            using (var cb = ObjectKeeper.Get(callback))
+            {
                 InteropRoi.TrackRoi(config.GetRoiConfigHandle(), source.Handle, cb.Target).
                     Validate("Failed to track roi");
 
                 return await tcs.Task;
             }
-        }
-
-        private static InteropRoi.RoiTrackedCallback GetCallback(TaskCompletionSource<Rectangle> tcs)
-        {
-            return (IntPtr sourceHandle, global::Interop.MediaVision.Rectangle roi, IntPtr userData) =>
-            {
-                try
-                {
-                    if (!tcs.TrySetResult(roi.ToApiStruct()))
-                    {
-                        Log.Error(MediaVisionLog.Tag, "Failed to set roi tracking result.");
-                    }
-                }
-                catch (Exception e)
-                {
-                    tcs.TrySetException(e);
-                }
-            };
         }
     }
 }
