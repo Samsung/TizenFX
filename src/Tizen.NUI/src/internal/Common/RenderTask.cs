@@ -199,7 +199,7 @@ namespace Tizen.NUI
             return ret;
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("Do not use this. Use Tizen.NUI.Scene3D.Camera instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetCamera(Camera camera)
         {
@@ -207,7 +207,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [Obsolete("Do not use this. Use Tizen.NUI.Scene3D.Camera instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Camera GetCamera()
         {

@@ -237,6 +237,7 @@ namespace Tizen.NUI
     /// Enumeration for type determination of how the camera operates.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("This has been deprecated in API10 and will be removed in API12. Do not use this.")]
     public enum CameraType
     {
         /// <summary>
