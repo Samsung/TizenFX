@@ -107,9 +107,10 @@ namespace Tizen.Multimedia.Vision
         }
 
         /// <summary>
-        /// Recognizes input face from internal face datas and returns its label.
+        /// Recognizes a face in by finding the closest match among the registered faces and returns the label of the found face.
         /// </summary>
         /// <param name="source">The face data to recognize.</param>
+        /// <returns>A label of recognized face.</returns>
         /// <exception cref="ObjectDisposedException">The DeepLearningFaceRecognizer already has been disposed.</exception>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
