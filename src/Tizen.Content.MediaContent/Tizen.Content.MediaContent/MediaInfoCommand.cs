@@ -990,6 +990,7 @@ namespace Tizen.Content.MediaContent
         ///     -or-<br/>
         ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
         /// </exception>
+        /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 10 </since_tizen>
         public string CreateThumbnail(string mediaId)
         {
