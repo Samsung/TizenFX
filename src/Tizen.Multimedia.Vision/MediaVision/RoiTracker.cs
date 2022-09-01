@@ -26,28 +26,18 @@ namespace Tizen.Multimedia.Vision
     /// <since_tizen> 10 </since_tizen>
     public static class RoiTracker
     {
-        /// <summary>
-        /// Tracks ROI(Region Of Interest) on the source image.<br/>
-        /// </summary>
+        /// <summary>Tracks ROI(Region Of Interest) on the source image.</summary>
+        /// <remarks><see cref="RoiTrackingConfiguration.Roi"/> should be set first correctly.</remarks>
         /// <feature>http://tizen.org/feature/vision.roi_tracking</feature>
         /// <param name="source">The source of the media user wants to track.</param>
         /// <param name="config">The engine's configuration that will be used for tracking.</param>
-        /// <param name="roi">The ROI to track.</param>
         /// <returns>A task that represents the asynchronous tracking operation.</returns>
         /// <exception cref="ArgumentNullException"><paramref name="source"/> or <paramref name="config"/> is null.</exception>
+        /// <exception cref="ArgumentException"><paramref name="config.Roi"/> is not set correctly.</exception>
         /// <exception cref="InvalidOperationException">Internal error.</exception>
-        /// <exception cref="ArgumentOutOfRangeException">
-        ///     The width of <paramref name="roi"/> is less than or equal to zero.<br/>
-        ///     -or-<br/>
-        ///     The height of <paramref name="roi"/> is less than or equal to zero.<br/>
-        ///     -or-<br/>
-        ///     The x position of <paramref name="roi"/> is less than zero.<br/>
-        ///     -or-<br/>
-        ///     The y position of <paramref name="roi"/> is less than zero.
-        /// </exception>
         /// <seealso cref="RoiTrackingConfiguration"/>
         /// <since_tizen> 10 </since_tizen>
-        public static async Task<Rectangle> TrackAsync(MediaVisionSource source, RoiTrackingConfiguration config, Rectangle roi)
+        public static async Task<Rectangle> TrackAsync(MediaVisionSource source, RoiTrackingConfiguration config)
         {
             if (source == null)
             {
@@ -57,12 +47,10 @@ namespace Tizen.Multimedia.Vision
             {
                 throw new ArgumentNullException(nameof(config));
             }
-            if (config.Roi == null)
+            if (config._roi == null)
             {
-                throw new InvalidOperationException("The initial ROI should be set first");
+                throw new ArgumentException(nameof(config.Roi));
             }
-
-            RoiTrackingConfiguration.ValidateRoi(roi);
 
             if (!config.IsApplied)
             {
@@ -70,7 +58,7 @@ namespace Tizen.Multimedia.Vision
                 InteropRoi.Configure(config.GetRoiConfigHandle(), config.Handle).
                     Validate("Failed to configure roi tracking");
 
-                var initialRoi = config.Roi.Value;
+                var initialRoi = config.Roi;
                 InteropRoi.Prepare(config.GetRoiConfigHandle(), initialRoi.X, initialRoi.Y, initialRoi.Width, initialRoi.Height).
                     Validate("Failed to prepare roi tracking");
 

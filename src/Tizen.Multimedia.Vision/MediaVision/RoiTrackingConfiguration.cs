@@ -28,7 +28,6 @@ namespace Tizen.Multimedia.Vision
     public class RoiTrackingConfiguration : EngineConfiguration
     {
         private IntPtr _handle;
-        private bool _disposed;
         private const string KeyTrackerType = "MV_ROI_TRACKER_TYPE";
 
         internal bool IsApplied { get; set; }
@@ -36,7 +35,6 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Initializes a new instance of the <see cref="RoiTrackingConfiguration"/> class.
         /// </summary>
-        /// <rema
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 10 </since_tizen>
         public RoiTrackingConfiguration() : base("roi_tracking")
@@ -66,16 +64,18 @@ namespace Tizen.Multimedia.Vision
                 ValidationUtil.ValidateEnum(typeof(RoiTrackerType), value, nameof(value));
 
                 Set(KeyTrackerType, (int)value);
-
-                InteropRoi.Configure(_handle, GetHandle(this)).Validate("Failed to configure model type");
             }
         }
 
-        private Rectangle? _roi;
+        internal Rectangle? _roi;
 
         /// <summary>
         /// Gets or sets the ROI(Region Of Interest) of <see cref="RoiTracker"/>.
         /// </summary>
+        /// <remarks>
+        /// The default value is Rectangle(0, 0, 0, 0) but it's meaningless.<br/>
+        /// The user should set this to correct value for <see cref="RoiTracker.TrackAsync"/>.
+        /// </remarks>
         /// <exception cref="ArgumentOutOfRangeException">
         ///     The width of <paramref name="value"/> is less than or equal to zero.<br/>
         ///     -or-<br/>
@@ -86,22 +86,16 @@ namespace Tizen.Multimedia.Vision
         ///     The y position of <paramref name="value"/> is less than zero.
         /// </exception>
         /// <since_tizen> 10 </since_tizen>
-        public Rectangle? Roi
+        public Rectangle Roi
         {
             get
             {
-                return _roi;
+                return _roi.HasValue ? _roi.Value : new Rectangle(0, 0, 0, 0);
             }
             set
             {
-                if (value != null)
-                {
-                    ValidateRoi(value.Value);
-                    _roi = value;
-
-                    var roi = _roi.Value;
-                    InteropRoi.Prepare(_handle, roi.X, roi.Y, roi.Width, roi.Height).Validate("Failed to set roi");
-                }
+                ValidateRoi(value);
+                _roi = value;
             }
         }
 
@@ -109,25 +103,25 @@ namespace Tizen.Multimedia.Vision
         {
             if (roi.Width <= 0)
             {
-                throw new ArgumentOutOfRangeException("Roi.Width", roi.Width,
+                throw new ArgumentOutOfRangeException("roi.Width", roi.Width,
                     "The width of roi can't be less than or equal to zero.");
             }
 
             if (roi.Height <= 0)
             {
-                throw new ArgumentOutOfRangeException("Roi.Height", roi.Height,
+                throw new ArgumentOutOfRangeException("roi.Height", roi.Height,
                     "The height of roi can't be less than or equal to zero.");
             }
 
             if (roi.X < 0)
             {
-                throw new ArgumentOutOfRangeException("Roi.X", roi.X,
+                throw new ArgumentOutOfRangeException("roi.X", roi.X,
                     "The x position of roi can't be less than zero.");
             }
 
             if (roi.Y < 0)
             {
-                throw new ArgumentOutOfRangeException("Roi.Y", roi.Y,
+                throw new ArgumentOutOfRangeException("roi.Y", roi.Y,
                     "The y position of roi can't be less than zero.");
             }
         }
@@ -158,17 +152,17 @@ namespace Tizen.Multimedia.Vision
     public enum RoiTrackerType
     {
         /// <summary>
-        /// ROI tracker focus on accuracy
+        /// ROI tracker focuses on accuracy
         /// </summary>
         Accuracy = 1,
 
         /// <summary>
-        /// ROI tracker focus on both accuracy and speed
+        /// ROI tracker focuses on both accuracy and speed
         /// </summary>
         Balance,
 
         /// <summary>
-        /// ROI tracker focus on speed
+        /// ROI tracker focuses on speed
         /// </summary>
         Speed
     }
