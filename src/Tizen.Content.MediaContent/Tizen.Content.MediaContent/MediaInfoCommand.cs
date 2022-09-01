@@ -971,7 +971,8 @@ namespace Tizen.Content.MediaContent
         /// <privilege>http://tizen.org/privilege/content.write</privilege>
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
-        /// <param name="mediaId">The media ID to create the thumbnail.</param>
+        /// <param name="mediaId">The ID of the media for which the thumbnail will be created.</param>
+        /// <returns>A created thumbnail path.</returns>
         /// <exception cref="InvalidOperationException">
         ///     The <see cref="MediaDatabase"/> is disconnected.<br/>
         ///     -or-<br/>
