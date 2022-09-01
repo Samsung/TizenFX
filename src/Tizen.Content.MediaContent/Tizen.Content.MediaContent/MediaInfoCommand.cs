@@ -875,6 +875,7 @@ namespace Tizen.Content.MediaContent
         ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10; Will be removed in API12. Please use CreateThumbnail instead.")]
         public Task<string> CreateThumbnailAsync(string mediaId)
         {
             return CreateThumbnailAsync(mediaId, CancellationToken.None);
@@ -907,6 +908,7 @@ namespace Tizen.Content.MediaContent
         ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10; Will be removed in API12. Please use CreateThumbnail instead.")]
         public Task<string> CreateThumbnailAsync(string mediaId, CancellationToken cancellationToken)
         {
             ValidateDatabase();
@@ -961,6 +963,47 @@ namespace Tizen.Content.MediaContent
             }
         }
         #endregion
+
+        /// <summary>
+        /// Creates the thumbnail image for the given media.
+        /// If the thumbnail already exists for the given media, the existing path will be returned.
+        /// </summary>
+        /// <privilege>http://tizen.org/privilege/content.write</privilege>
+        /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
+        /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
+        /// <param name="mediaId">The media ID to create the thumbnail.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     The <see cref="MediaDatabase"/> is disconnected.<br/>
+        ///     -or-<br/>
+        ///     An internal error occurred while executing.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="MediaDatabase"/> has already been disposed.</exception>
+        /// <exception cref="MediaDatabaseException">An error occurred while executing the command.</exception>
+        /// <exception cref="ArgumentNullException"><paramref name="mediaId"/> is null.</exception>
+        /// <exception cref="RecordNotFoundException"><paramref name="mediaId"/> does not exist in the database.</exception>
+        /// <exception cref="ArgumentException">
+        ///     <paramref name="mediaId"/> is a zero-length string, contains only white space.
+        /// </exception>
+        /// <exception cref="FileNotFoundException">The file of the media does not exists; moved or deleted.</exception>
+        /// <exception cref="UnsupportedContentException">
+        ///     The thumbnail is not available for the given media.<br/>
+        ///     -or-<br/>
+        ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
+        /// </exception>
+        /// <since_tizen> 10 </since_tizen>
+        public string CreateThumbnail(string mediaId)
+        {
+            ValidateDatabase();
+
+            ValidationUtil.ValidateNotNullOrEmpty(mediaId, nameof(mediaId));
+
+            using (var handle = ValidateFile(mediaId))
+            {
+                Interop.MediaInfo.GenerateThumbnail(handle).ThrowIfError("Failed to create thumbnail");
+
+                return InteropHelper.GetString(handle, Interop.MediaInfo.GetThumbnailPath, true);
+            }
+        }
 
         private Interop.MediaInfoHandle ValidateFile(string mediaId)
         {
