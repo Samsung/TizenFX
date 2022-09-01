@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2022 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -58,6 +58,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the status whether camera device(usb, network) is connected or not.
         /// </summary>
+        /// <returns>true if usb or network camera is connected.</returns>
         /// <exception cref="ObjectDisposedException">The CameraDeviceManager already has been disposed.</exception>
         /// <since_tizen> 10 </since_tizen>
         public bool IsExternalCameraConnected =>
@@ -117,12 +118,12 @@ namespace Tizen.Multimedia
         /// Gets the current camera device information.
         /// Retrieves all the supported camera devices and returns its information.
         /// </summary>
+        /// <remarks>This method is only for backward compatibility. Plaese use SupportedDevices instead</remarks>
         /// <returns>
         /// if camera device exist, returns list of <see cref="CameraDeviceInformation"/>; otherwise returns Enumerable.Empty.
         /// </returns>
         /// <see also="WebRTCState"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("This API is only for backward compatibility. Plaese use SupportedDevices instead")]
         public IEnumerable<CameraDeviceInformation> GetDeviceInformation() => SupportedDevices;
 
         private event EventHandler<CameraDeviceConnectionChangedEventArgs> _deviceConnectionChanged;
@@ -250,11 +251,11 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraDeviceInformation"/> class.
         /// </summary>
-        /// <param name="type"><see cref="CameraDeviceType"/></param>
-        /// <param name="device"><see cref="CameraDevice"/></param>
+        /// <param name="type">The camera type</param>
+        /// <param name="device">The camera device</param>
         /// <param name="name">The name of camera device</param>
         /// <param name="id">The ID of camera device</param>
-        /// <param name="numberOfExtraStream">The number of extra stream</param>
+        /// <param name="numberOfExtraStream">The number of extra streams</param>
         /// <exception cref="ArgumentException">Invalid enumeration.</exception>
         /// <exception cref="ArgumentNullException">name or id is null.</exception>
         /// <since_tizen> 10 </since_tizen>
@@ -294,16 +295,16 @@ namespace Tizen.Multimedia
         public string Name { get; }
 
         /// <summary>
-        /// Gets the camera device Id.
+        /// Gets the camera device ID.
         /// </summary>
-        /// <value>The camera device id.</value>
+        /// <value>The camera device ID.</value>
         /// <since_tizen> 10 </since_tizen>
         public string Id { get; }
 
         /// <summary>
-        /// Gets the number of extra stream.
+        /// Gets the number of extra streams.
         /// </summary>
-        /// <value>The number of extra stream.</value>
+        /// <value>The number of extra streams.</value>
         /// <since_tizen> 10 </since_tizen>
         public int NumberOfExtraStream { get; }
 
