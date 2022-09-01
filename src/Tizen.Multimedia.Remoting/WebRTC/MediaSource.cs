@@ -111,7 +111,7 @@ namespace Tizen.Multimedia.Remoting
         /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>.<br/>
         /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state when transceiver codec is set.
         /// </remarks>
-        /// <value>A <see cref="TransceiverCodec"/> that specifies the transceiver codec.</value>
+        /// <value>The transceiver codec.</value>
         /// <exception cref="InvalidOperationException">
         ///     MediaSource is not attached yet.<br/>
         /// -or-<br/>
@@ -158,7 +158,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Retrieves the current available transceiver codecs.
+        /// Retrieves the supported transceiver codecs.
         /// </summary>
         /// <remarks>
         /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>.
