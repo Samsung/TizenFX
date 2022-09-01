@@ -40,6 +40,8 @@ namespace WidgetApplicationTemplate
             int widgetWidth = window.Size.Width;
             int widgetHeight = window.Size.Height;
 
+            Navigator navigator = window.GetDefaultNavigator();
+
             Bundle bundle = new Bundle();
             bundle.AddItem(" ", " ");
             String encodedBundle = bundle.Encode();
@@ -47,23 +49,74 @@ namespace WidgetApplicationTemplate
             // Add Widget of "secondPage@NUISettingsReset" in advance to avoid loading pending.
             AddWidget(out secondPageWidgetView, "secondPage@NUISettingsReset", encodedBundle, widgetWidth, widgetHeight, 0.0f);
 
-            Navigator navigator = window.GetDefaultNavigator();
+            // Add Widget of "thirdPage@NUISettingsReset" in advance to avoid loading pending.
+            AddWidget(out thirdPageWidgetView, "thirdPage@NUISettingsReset", encodedBundle, widgetWidth, widgetHeight, 0.0f);
 
-            var button = new Button()
+            // Add Widget of "fourthPage@NUISettingsReset" in advance to avoid loading pending.
+            AddWidget(out fourthPageWidgetView, "fourthPage@NUISettingsReset", encodedBundle, widgetWidth, widgetHeight, 0.0f);
+
+            var content = new View()
+            {
+                Layout = new LinearLayout()
+                {
+                    LinearOrientation = LinearLayout.Orientation.Vertical,
+                    CellPadding = new Size2D(0, 20),
+                },
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+            };
+
+            var secondPageButton = new Button()
             {
                 Text = "Click to Second Page",
                 WidthSpecification = LayoutParamPolicies.MatchParent,
                 HeightSpecification = LayoutParamPolicies.MatchParent,
             };
-            button.Clicked += (o, e) =>
+            secondPageButton.Clicked += (o, e) =>
             {
-                var page = new ContentPage();
-                page.Content = secondPageWidgetView;
+                var page = new ContentPage()
+                {
+                    Content = secondPageWidgetView,
+                };
                 navigator.Push(page);
             };
+            content.Add(secondPageButton);
+
+            var thirdPageButton = new Button()
+            {
+                Text = "Click to Third Page",
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+            };
+            thirdPageButton.Clicked += (o, e) =>
+            {
+                var page = new ContentPage()
+                {
+                    Content = thirdPageWidgetView,
+                };
+                navigator.Push(page);
+            };
+            content.Add(thirdPageButton);
+
+            var fourthPageButton = new Button()
+            {
+                Text = "Click to Fourth Page",
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+            };
+            fourthPageButton.Clicked += (o, e) =>
+            {
+                var page = new DialogPage()
+                {
+                    Content = fourthPageWidgetView,
+                    EnableScrim = false, // fourthPageWidgetView's DialogPage.Scrim is used, so this DialogPage.Scrim should not be used.
+                };
+                navigator.Push(page);
+            };
+            content.Add(fourthPageButton);
 
             // Push the first page.
-            PushContentPage("First Page", button);
+            PushContentPage("First Page", content);
         }
 
         void AddWidget(out WidgetView widgetView, string widgetID, string contentInfo, int width, int height, float updatePeriod)
@@ -76,9 +129,6 @@ namespace WidgetApplicationTemplate
         {
             Window window = GetDefaultWindow();
             Navigator navigator = window.GetDefaultNavigator();
-
-            window.KeyEvent += OnKeyEvent;
-            window.TouchEvent += OnTouchEvent;
 
             var page = new ContentPage()
             {

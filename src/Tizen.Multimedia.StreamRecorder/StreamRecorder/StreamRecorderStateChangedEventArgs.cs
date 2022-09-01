@@ -22,6 +22,7 @@ namespace Tizen.Multimedia
     /// Provides data for the <see cref="StreamRecorder.StateChanged"/> event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated in API10; Will be removed in API12")]
     public class StreamRecorderStateChangedEventArgs : EventArgs
     {
         internal StreamRecorderStateChangedEventArgs(RecorderState previous, RecorderState current)
@@ -34,12 +35,14 @@ namespace Tizen.Multimedia
         /// Gets the previous state of the stream recorder.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public RecorderState Previous { get; }
 
         /// <summary>
         /// Gets the current state of the stream recorder.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public RecorderState Current { get; }
     }
 }
