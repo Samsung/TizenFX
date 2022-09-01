@@ -597,10 +597,11 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Retrieves the current available statistics information.
+        /// Retrieves the current statistics information.
         /// </summary>
         /// <remarks>The WebRTC must be in the <see cref="WebRTCState.Playing"/></remarks>
         /// <returns>The WebRTC statistics informations.</returns>
+        /// <param name="category">The category of statistics to get.</param>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <exception cref="InvalidOperationException">The WebRTC is not in the valid state.</exception>
         /// <since_tizen> 10 </since_tizen>
@@ -695,19 +696,19 @@ namespace Tizen.Multimedia.Remoting
             /// <summary>
             /// Gets the name of statistics.
             /// </summary>
-            /// <value>The category of WebRTC statistics information</value>
+            /// <value>The name of WebRTC statistics information</value>
             /// <since_tizen> 10 </since_tizen>
             public string Name { get; }
 
             /// <summary>
-            /// Gets the detail of statistics.
+            /// Gets the property of statistics.
             /// </summary>
             /// <value>The property of WebRTC statistics information</value>
             /// <since_tizen> 10 </since_tizen>
             public WebRTCStatisticsProperty Property { get; }
 
             /// <summary>
-            /// Gets the type of statistics.
+            /// Gets the value of statistics.
             /// </summary>
             /// <value>The value of WebRTC statistics information</value>
             /// <since_tizen> 10 </since_tizen>

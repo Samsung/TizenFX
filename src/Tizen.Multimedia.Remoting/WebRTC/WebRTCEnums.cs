@@ -439,7 +439,7 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
-    /// Specifies the type of WebRTC statistics.
+    /// Specifies the category of WebRTC statistics.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
     [Flags]
@@ -525,12 +525,12 @@ namespace Tizen.Multimedia.Remoting
         ClockRate = WebRTCStatisticsPropertyCategory.Codec | 0x02,
 
         /// <summary>
-        /// Channels.
+        /// The number of channels.
         /// </summary>
         Channels = WebRTCStatisticsPropertyCategory.Codec | 0x03,
 
         /// <summary>
-        /// Mime type.
+        /// MIME type.
         /// </summary>
         MimeType = WebRTCStatisticsPropertyCategory.Codec | 0x04,
 
