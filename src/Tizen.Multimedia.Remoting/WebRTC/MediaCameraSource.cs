@@ -52,7 +52,7 @@ namespace Tizen.Multimedia.Remoting
                 }
 
                 NativeWebRTC.GetCameraDeviceId(WebRtc.Handle, SourceId.Value, out uint deviceId).
-                    ThrowIfFailed("Failed to get camera devcie id");
+                    ThrowIfFailed("Failed to get camera device id");
 
                 return deviceId;
             }
