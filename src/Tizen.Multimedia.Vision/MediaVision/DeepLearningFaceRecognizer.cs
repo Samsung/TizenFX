@@ -115,7 +115,7 @@ namespace Tizen.Multimedia.Vision
         /// <exception cref="ArgumentNullException"><paramref name="source"/> is null.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <since_tizen> 10 </since_tizen>
-        public string Recognize(MediaVisionSource source)
+        public DeepLearningFaceRecognitionResult Recognize(MediaVisionSource source)
         {
             ValidateNotDisposed();
 
@@ -128,7 +128,7 @@ namespace Tizen.Multimedia.Vision
 
             InteropFace.GetLabel(_handle, out string label).Validate("Failed to get label");
 
-            return label;
+            return new DeepLearningFaceRecognitionResult(label);
         }
 
         /// <summary>
