@@ -118,7 +118,7 @@ namespace Tizen.Multimedia
         /// Gets the current camera device information.
         /// Retrieves all the supported camera devices and returns its information.
         /// </summary>
-        /// <remarks>This method is only for backward compatibility. Plaese use SupportedDevices instead</remarks>
+        /// <remarks>This method is only for backward compatibility. Please use SupportedDevices instead.</remarks>
         /// <returns>
         /// if camera device exist, returns list of <see cref="CameraDeviceInformation"/>; otherwise returns Enumerable.Empty.
         /// </returns>
