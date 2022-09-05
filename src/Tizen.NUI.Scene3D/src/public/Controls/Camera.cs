@@ -133,15 +133,15 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public float FieldOfView
+        public Radian FieldOfView
         {
             get
             {
-                return (float)GetValue(FieldOfViewProperty);
+                return new Radian((float)GetValue(FieldOfViewProperty));
             }
             set
             {
-                SetValue(FieldOfViewProperty, value);
+                SetValue(FieldOfViewProperty, value?.ConvertToFloat() ?? 0.0f);
                 NotifyPropertyChanged();
             }
         }
