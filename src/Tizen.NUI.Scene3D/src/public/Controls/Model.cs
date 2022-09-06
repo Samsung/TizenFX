@@ -31,6 +31,7 @@ namespace Tizen.NUI.Scene3D
     /// </summary>
     ///
     /// <remarks>
+    /// Since NUI uses a left-handed coordinate system, loaded models are transformed into a left-handed coordinate system with Y pointing down.
     /// The Animations defined in the glTF or DLI are also loaded and can be retrieved by using <see cref="GetAnimation(uint)"/> and <see cref="GetAnimation(string)"/> methods.
     /// The number of animation is also retrieved by GetAnimationCount() method.
     ///
