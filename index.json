@@ -9424,6 +9424,16 @@
     "title": "Class ScaleTransition",
     "keywords": ""
   },
+  "API10/api/Tizen.NUI.Scene3D.html": {
+    "href": "API10/api/Tizen.NUI.Scene3D.html",
+    "title": "Namespace Tizen.NUI.Scene3D",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.Scene3D.Model.html": {
+    "href": "API10/api/Tizen.NUI.Scene3D.Model.html",
+    "title": "Class Model",
+    "keywords": ""
+  },
   "API10/api/Tizen.NUI.ScreenOffMode.html": {
     "href": "API10/api/Tizen.NUI.ScreenOffMode.html",
     "title": "Enum ScreenOffMode",
