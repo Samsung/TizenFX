@@ -589,28 +589,21 @@ namespace Tizen.NUI.Components
             // Picker base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Picker", new PickerStyle()
             {
-                Size = new Size(160, 339),
+                SizeHeight = 220.0f,
+                MinimumSize = new Size(80, -1),
                 ItemTextLabel = new TextLabelStyle()
                 {
-                    //FIXME: Should be check PointSize. given size from UX is too large.
-                    PixelSize = 32,
+                    PixelSize = 24,
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    Size = new Size(0,72),
+                    Size = new Size(0, 44),
                     TextColor = new Selector<Color>()
                     {
-                        Normal = new Color("#000C2B"),
+                        Normal = new Color(0.035f, 0.055f, 0.123f, 1.0f),
                     },
-                    BackgroundColor = Color.White,
+                    BackgroundColor = new Color("#FAFAFA"),
                 },
-                Divider = new ViewStyle()
-                {
-                    SizeHeight = 2.0f,
-                    WidthResizePolicy = ResizePolicyType.FillToParent,
-                    Position = new Position(0, 132),
-                    BackgroundColor = new Color("#0A0E4A"),
-                },
-                StartScrollOffset = new Size(0, 12),
+                StartScrollOffset = new Size(0, 0),
             });
 
             // TabBar base style
@@ -727,60 +720,50 @@ namespace Tizen.NUI.Components
             // TimePicker base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.TimePicker", new TimePickerStyle()
             {
-                CellPadding = new Size(50, 339),
+                CellPadding = new Size(12, 220),
 
                 Pickers = new PickerStyle()
                 {
-                    Size = new Size(160, 339),
+                    Size = new Size(80, 220),
                     ItemTextLabel = new TextLabelStyle()
                     {
-                        //FIXME: Should be check PointSize. given size from UX is too large.
-                        PixelSize = 32,
+                        PixelSize = 24,
                         VerticalAlignment = VerticalAlignment.Center,
                         HorizontalAlignment = HorizontalAlignment.Center,
-                        Size = new Size(0,72),
-                        TextColor = new Color("#000C2B"),
-                        BackgroundColor = Color.White,
+                        Size = new Size(0, 44),
+                        TextColor = new Selector<Color>()
+                        {
+                            Normal = new Color(0.035f, 0.055f, 0.123f, 1.0f),
+                        },
+                        BackgroundColor = new Color("#FAFAFA"),
                         ThemeChangeSensitive = false
                     },
-                    Divider = new ViewStyle()
-                    {
-                        SizeHeight = 2.0f,
-                        WidthResizePolicy = ResizePolicyType.FillToParent,
-                        Position = new Position(0, 132),
-                        BackgroundColor = new Color("#0A0E4A"),
-                    },
-                    StartScrollOffset = new Size2D(0, 12),
+                    StartScrollOffset = new Size2D(0, 0),
                 }
             });
 
             // DatePicker base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.DatePicker", new DatePickerStyle()
             {
-                CellPadding = new Size(50, 339),
+                CellPadding = new Size(12, 220),
 
                 Pickers = new PickerStyle()
                 {
-                    Size = new Size(160, 339),
+                    Size = new Size(80, 220),
                     ItemTextLabel = new TextLabelStyle()
                     {
-                        //FIXME: Should be check PointSize. given size from UX is too large.
-                        PixelSize = 32,
+                        PixelSize = 24,
                         VerticalAlignment = VerticalAlignment.Center,
                         HorizontalAlignment = HorizontalAlignment.Center,
-                        Size = new Size(0,72),
-                        TextColor = new Color("#000C2B"),
-                        BackgroundColor = Color.White,
+                        Size = new Size(0, 44),
+                        TextColor = new Selector<Color>()
+                        {
+                            Normal = new Color(0.035f, 0.055f, 0.123f, 1.0f),
+                        },
+                        BackgroundColor = new Color("#FAFAFA"),
                         ThemeChangeSensitive = false
                     },
-                    Divider = new ViewStyle()
-                    {
-                        SizeHeight = 2.0f,
-                        WidthResizePolicy = ResizePolicyType.FillToParent,
-                        Position = new Position(0, 132),
-                        BackgroundColor = new Color("#0A0E4A"),
-                    },
-                    StartScrollOffset = new Size2D(0, 12),
+                    StartScrollOffset = new Size2D(0, 0),
                 }
             });
 
