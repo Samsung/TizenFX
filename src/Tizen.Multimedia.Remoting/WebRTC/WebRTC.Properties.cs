@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-using ElmSharp;
 using System;
 using System.Diagnostics;
 using static Interop;

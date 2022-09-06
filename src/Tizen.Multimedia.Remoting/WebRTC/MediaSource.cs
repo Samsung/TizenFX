@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-using ElmSharp;
 using System;
 using System.Diagnostics;
 using static Interop;
@@ -382,7 +381,7 @@ namespace Tizen.Multimedia.Remoting
             return new MediaStreamTrack(WebRtc, MediaType, trackId);
         }
 
-        uint IDisplayable<uint>.ApplyEvasDisplay(DisplayType type, EvasObject evasObject)
+        uint IDisplayable<uint>.ApplyEvasDisplay(DisplayType type, ElmSharp.EvasObject evasObject)
         {
             Debug.Assert(Enum.IsDefined(typeof(DisplayType), type));
             Debug.Assert(type != DisplayType.None);
