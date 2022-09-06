@@ -147,6 +147,31 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// Sets/Gets Orthographic Size of this camera.
+        /// OrthographicSize is height/2 of viewing cube of Orthographic projection.
+        /// Width of viewing cube is internally computed by using aspect ratio of Viewport.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float OrthographicSize
+        {
+            get
+            {
+                return TopPlaneDistance;
+            }
+            set
+            {
+                float halfHeight = value;
+                float halfWidth = AspectRatio * value;
+                SetValue(TopPlaneDistanceProperty, halfHeight);
+                SetValue(BottomPlaneDistanceProperty, -halfHeight);
+                SetValue(LeftPlaneDistanceProperty, -halfWidth);
+                SetValue(RightPlaneDistanceProperty, halfWidth);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Gets the aspect ratio of the camera.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
@@ -196,7 +221,7 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Sets/Gets the left clipping plane distance.
+        /// Gets the left clipping plane distance.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -206,15 +231,10 @@ namespace Tizen.NUI.Scene3D
             {
                 return (float)GetValue(LeftPlaneDistanceProperty);
             }
-            set
-            {
-                SetValue(LeftPlaneDistanceProperty, value);
-                NotifyPropertyChanged();
-            }
         }
 
         /// <summary>
-        /// Sets/Gets the right clipping plane distance.
+        /// Gets the right clipping plane distance.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -224,15 +244,10 @@ namespace Tizen.NUI.Scene3D
             {
                 return (float)GetValue(RightPlaneDistanceProperty);
             }
-            set
-            {
-                SetValue(RightPlaneDistanceProperty, value);
-                NotifyPropertyChanged();
-            }
         }
 
         /// <summary>
-        /// Sets/Gets the top clipping plane distance.
+        /// Gets the top clipping plane distance.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -242,15 +257,10 @@ namespace Tizen.NUI.Scene3D
             {
                 return (float)GetValue(TopPlaneDistanceProperty);
             }
-            set
-            {
-                SetValue(TopPlaneDistanceProperty, value);
-                NotifyPropertyChanged();
-            }
         }
 
         /// <summary>
-        /// Sets/Gets the bottom clipping plane distance.
+        /// Gets the bottom clipping plane distance.
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -259,11 +269,6 @@ namespace Tizen.NUI.Scene3D
             get
             {
                 return (float)GetValue(BottomPlaneDistanceProperty);
-            }
-            set
-            {
-                SetValue(BottomPlaneDistanceProperty, value);
-                NotifyPropertyChanged();
             }
         }
 
