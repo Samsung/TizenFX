@@ -537,6 +537,9 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Registers callback for http request interceptor.
+        /// This callback is not called on UI(Main) thread, so users should be cautious
+        /// when accessing their data also used on UI thread.
+        /// No other than WebEngineRequestInterceptor API should be used in the callback.
         /// </summary>
         /// <param name="callback">callback for intercepting http request</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
