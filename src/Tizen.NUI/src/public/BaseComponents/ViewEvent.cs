@@ -919,6 +919,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View HitTestResultSignal
         private bool OnHitTestResult(IntPtr view, IntPtr touchData)
         {
+            if (touchData == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("touchData should not be null!");
+                return true;
+            }
+            
             TouchEventArgs e = new TouchEventArgs();
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
             return HitTest(e.Touch);
