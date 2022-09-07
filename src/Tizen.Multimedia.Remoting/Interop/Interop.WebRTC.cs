@@ -18,6 +18,7 @@ using System;
 using System.Runtime.InteropServices;
 using Tizen;
 using Tizen.Applications;
+using Tizen.Internals;
 using Tizen.Multimedia;
 using Tizen.Multimedia.Remoting;
 
@@ -65,7 +66,13 @@ internal static partial class Interop
         internal delegate bool RetrieveTurnServerCallback(string server, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool RetrieveTransceiverCodecCallback(TransceiverCodec codec, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void SdpCreatedCallback(IntPtr handle, string sdp, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool RetrieveStatsCallback(WebRTCStatisticsCategory category, IntPtr prop, IntPtr userData);
 
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_create")]
@@ -124,6 +131,16 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_transceiver_direction")]
         internal static extern WebRTCErrorCode SetTransceiverDirection(IntPtr handle, uint sourceId, MediaType type, TransceiverDirection mode);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_foreach_supported_transceiver_codec")]
+        internal static extern WebRTCErrorCode ForeachSupportedTransceiverCodec(IntPtr handle, MediaSourceType sourceType, MediaType mediaType,
+            RetrieveTransceiverCodecCallback callback, IntPtr userData = default);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_transceiver_codec")]
+        internal static extern WebRTCErrorCode SetTransceiverCodec(IntPtr handle, uint sourceId, MediaType type, TransceiverCodec codec);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_transceiver_codec")]
+        internal static extern WebRTCErrorCode GetTransceiverCodec(IntPtr handle, uint sourceId, MediaType type, out TransceiverCodec codec);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_pause")]
         internal static extern WebRTCErrorCode SetPause(IntPtr handle, uint sourceId, MediaType type, bool pause);
@@ -230,6 +247,9 @@ internal static partial class Interop
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_foreach_media_source_supported_format")]
         internal static extern WebRTCErrorCode SupportedMediaSourceFormat(IntPtr handle, SupportedMediaFormatCallback callback, IntPtr userData);
 
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_foreach_stats")]
+        internal static extern WebRTCErrorCode ForeachStats(IntPtr handle, int typeMask, RetrieveStatsCallback callback, IntPtr userData = default);
+
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_set_error_cb")]
         internal static extern WebRTCErrorCode SetErrorOccurredCb(IntPtr handle, ErrorOccurredCallback callback, IntPtr userData = default);
@@ -302,6 +322,37 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_unset_encoded_video_frame_cb")]
         internal static extern WebRTCErrorCode UnsetVideoFrameEncodedCb(IntPtr handle);
+
+        [StructLayout(LayoutKind.Explicit)]
+        internal struct StatsPropertyValueStruct
+        {
+            [FieldOffsetAttribute(0)]
+            internal bool @bool;
+            [FieldOffsetAttribute(0)]
+            internal int @int;
+            [FieldOffsetAttribute(0)]
+            internal uint @uint;
+            [FieldOffsetAttribute(0)]
+            internal long @long;
+            [FieldOffsetAttribute(0)]
+            internal ulong @ulong;
+            [FieldOffsetAttribute(0)]
+            internal float @float;
+            [FieldOffsetAttribute(0)]
+            internal double @double;
+            [FieldOffsetAttribute(0)]
+            internal IntPtr @string;
+        }
+
+        [NativeStruct("webrtc_stats_prop_info_s", Include="webrtc.h", PkgConfig="capi-media-webrtc")]
+        [StructLayout(LayoutKind.Sequential)]
+        internal struct StatsPropertyStruct
+        {
+            internal string name;
+            internal WebRTCStatisticsProperty property;
+            internal WebRTCStatsPropertyType propertyType;
+            internal StatsPropertyValueStruct value;
+        }
     }
 
     internal class WebRTCHandle : SafeHandle
