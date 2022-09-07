@@ -28,6 +28,7 @@ namespace Tizen.Multimedia
     /// <seealso cref="StreamRecorderAudioOptions"/>
     /// <seealso cref="StreamRecorderVideoOptions"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated in API10; Will be removed in API12")]
     public class StreamRecorderOptions
     {
         /// <summary>
@@ -43,6 +44,7 @@ namespace Tizen.Multimedia
         ///     <paramref name="fileFormat"/> is not valid.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public StreamRecorderOptions(string savePath, RecorderFileFormat fileFormat)
         {
             SavePath = savePath;
@@ -60,6 +62,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentNullException"><paramref name="value"/>is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="value"/>is an empty string.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public string SavePath
         {
             get => _savePath;
@@ -87,6 +90,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <seealso cref="StreamRecorder.GetSupportedFileFormats"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public RecorderFileFormat FileFormat
         {
             get => _fileFormat;
@@ -114,6 +118,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="StreamRecorder.RecordingLimitReached"/>
         /// <seealso cref="SizeLimit"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public int TimeLimit
         {
             get => _timeLimit;
@@ -145,6 +150,7 @@ namespace Tizen.Multimedia
         /// <seealso cref="StreamRecorder.RecordingLimitReached"/>
         /// <seealso cref="TimeLimit"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public int SizeLimit
         {
             get => _sizeLimit;
@@ -168,6 +174,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <seealso cref="Video"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public StreamRecorderAudioOptions Audio { get; set; }
 
         /// <summary>
@@ -178,6 +185,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <seealso cref="Audio"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public StreamRecorderVideoOptions Video { get; set; }
 
         private StreamRecorderSourceType GetSourceType()

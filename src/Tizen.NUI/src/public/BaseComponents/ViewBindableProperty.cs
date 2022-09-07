@@ -2000,17 +2000,29 @@ namespace Tizen.NUI.BaseComponents
         /// BorderlineColor Property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderlineColorProperty = BindableProperty.Create(nameof(BorderlineColor), typeof(Color), typeof(View), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var view = (View)bindable;
-            (view.backgroundExtraData ?? (view.backgroundExtraData = new BackgroundExtraData())).BorderlineColor = (Color)newValue;
-            view.ApplyBorderline();
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var view = (View)bindable;
-            return view.backgroundExtraData == null ? Color.Black : view.backgroundExtraData.BorderlineColor;
-        });
+        public static readonly BindableProperty BorderlineColorProperty = BindableProperty.Create(nameof(BorderlineColor), typeof(Color), typeof(View), null,
+            propertyChanged: (bindable, oldValue, newValue) =>
+            {
+                var view = (View)bindable;
+
+                view.themeData?.selectorData?.BorderlineColor?.Reset(view);
+
+                if (newValue is Selector<Color> selector)
+                {
+                    if (selector.HasAll()) view.SetBorderlineColor(selector.All);
+                    else view.EnsureSelectorData().BorderlineColor = new TriggerableSelector<Color>(view, selector, view.SetBorderlineColor, true);
+                }
+                else
+                {
+                    view.SetBorderlineColor((Color)newValue);
+                }
+            },
+            defaultValueCreator: (bindable) =>
+            {
+                var view = (View)bindable;
+                return view.backgroundExtraData == null ? Color.Black : view.backgroundExtraData.BorderlineColor;
+            }
+        );
 
         /// <summary>
         /// BorderlineOffset Property
@@ -2673,6 +2685,18 @@ namespace Tizen.NUI.BaseComponents
             }
 
             Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.BACKGROUND, new PropertyValue(map));
+        }
+
+        private void SetBorderlineColor(Color value)
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            (backgroundExtraData ?? (backgroundExtraData = new BackgroundExtraData())).BorderlineColor = value;
+
+            ApplyBorderline();
         }
 
         private void SetBackgroundColor(Color value)

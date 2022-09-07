@@ -66,6 +66,9 @@ internal static partial class Interop
         internal delegate bool RetrieveTurnServerCallback(string server, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool RetrieveTransceiverCodecCallback(TransceiverCodec codec, IntPtr userData);
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void SdpCreatedCallback(IntPtr handle, string sdp, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -128,6 +131,16 @@ internal static partial class Interop
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_transceiver_direction")]
         internal static extern WebRTCErrorCode SetTransceiverDirection(IntPtr handle, uint sourceId, MediaType type, TransceiverDirection mode);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_foreach_supported_transceiver_codec")]
+        internal static extern WebRTCErrorCode ForeachSupportedTransceiverCodec(IntPtr handle, MediaSourceType sourceType, MediaType mediaType,
+            RetrieveTransceiverCodecCallback callback, IntPtr userData = default);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_transceiver_codec")]
+        internal static extern WebRTCErrorCode SetTransceiverCodec(IntPtr handle, uint sourceId, MediaType type, TransceiverCodec codec);
+
+        [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_get_transceiver_codec")]
+        internal static extern WebRTCErrorCode GetTransceiverCodec(IntPtr handle, uint sourceId, MediaType type, out TransceiverCodec codec);
 
         [DllImport(Libraries.WebRTC, EntryPoint = "webrtc_media_source_set_pause")]
         internal static extern WebRTCErrorCode SetPause(IntPtr handle, uint sourceId, MediaType type, bool pause);
