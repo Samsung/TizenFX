@@ -81,14 +81,14 @@ namespace Tizen.NUI.Components
         private bool isAtspiEnabled;
         private ReadOnlyCollection<string> displayedValues;
         private PickerScroller pickerScroller;
-        private View upLine;
-        private View downLine;
         private IList<TextLabel> itemList;
         private Vector2 size;
         private TextLabelStyle itemTextLabel;
         private bool keyEditMode = false;
         private View recoverIndicator = null;
         private View keyEditModeIndicator = null;
+        private View UpperMask = null; //For Tizen 7.0 UX
+        private View LowerMask = null; //For Tizen 7.0 UX
 
 
         /// <summary>
@@ -159,10 +159,10 @@ namespace Tizen.NUI.Components
                     pickerScroller = null;
                 }
 
-                Remove(upLine);
-                Utility.Dispose(upLine);
-                Remove(downLine);
-                Utility.Dispose(downLine);
+                Remove(UpperMask);
+                Utility.Dispose(UpperMask);
+                Remove(LowerMask);
+                Utility.Dispose(LowerMask);
 
                 recoverIndicator = null;
                 if (keyEditModeIndicator)
@@ -353,14 +353,15 @@ namespace Tizen.NUI.Components
                 if (itemList != null)
                     foreach (TextLabel textLabel in itemList)
                         textLabel.ApplyStyle(pickerStyle.ItemTextLabel);
-            }
 
-            //Apply PickerCenterLine style.
-            if (pickerStyle.Divider != null && upLine != null && downLine != null)
-            {
-                upLine.ApplyStyle(pickerStyle.Divider);
-                downLine.ApplyStyle(pickerStyle.Divider);
-                downLine.PositionY = (int)pickerStyle.Divider.PositionY + itemHeight;
+                if (UpperMask != null && LowerMask != null)
+                {
+                    UpperMask.SizeHeight = itemHeight * middleItemIdx;
+                    LowerMask.SizeHeight = itemHeight * middleItemIdx;
+                    LowerMask.PositionY = itemHeight * (middleItemIdx + 1);
+                    UpperMask.BackgroundColor = pickerStyle.ItemTextLabel.BackgroundColor.All;
+                    LowerMask.BackgroundColor = pickerStyle.ItemTextLabel.BackgroundColor.All;
+                }
             }
 
             startScrollY = (itemHeight * dummyItemsForLoop) + startScrollOffset;
@@ -434,7 +435,7 @@ namespace Tizen.NUI.Components
             loopEnabled = false;
 
             Add(pickerScroller);
-            AddLine();
+            AddMasks();
 
             Focusable = true;
             KeyEvent += OnKeyEvent;
@@ -581,14 +582,25 @@ namespace Tizen.NUI.Components
             }
         }
 
-        //This is UI requirement. It helps where exactly center item is.
-        private void AddLine()
+        //This is an UX requirement. It gives highlight on center item area.
+        private void AddMasks()
         {
-            upLine = new View();
-            downLine = new View();
+            UpperMask = new View()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                Opacity = 0.7f,
+                AccessibilityHidden = true,
+            };
 
-            Add(upLine);
-            Add(downLine);
+            LowerMask = new View()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                Opacity = 0.7f,
+                AccessibilityHidden = true,
+            };
+
+            Add(UpperMask);
+            Add(LowerMask);
         }
 
         private String GetItemText(bool loopEnabled, int idx)

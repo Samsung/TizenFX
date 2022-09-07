@@ -63,6 +63,7 @@ namespace Tizen.NUI.BaseComponents
         private Selector<Rectangle> backgroundImageBorderSelector;
         private Selector<Color> colorSelector;
         private VisualTransformPolicyType? cornerRadiusPolicy;
+        private Selector<Color> borderlineColorSelector;
 
         static ViewStyle() { }
 
@@ -473,6 +474,20 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (Color)GetValue(BorderlineColorProperty);
             set => SetValue(BorderlineColorProperty, value);
+        }
+
+        /// <summary>
+        /// The color selector for the borderline of the View.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Selector<Color> BorderlineColorSelector
+        {
+            get
+            {
+                Selector<Color> color = (Selector<Color>)GetValue(BorderlineColorSelectorProperty);
+                return (null != color) ? color : borderlineColorSelector = new Selector<Color>();
+            }
+            set => SetValue(BorderlineColorSelectorProperty, value);
         }
 
         /// <summary>
