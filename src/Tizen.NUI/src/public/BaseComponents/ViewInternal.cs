@@ -792,6 +792,13 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Retrieve the View's current Visibility.
+        /// </summary>
+        /// <remarks>
+        /// The <see cref="Visibility"/> property is set in the main thread, so it is not updated in real time when the value is changed in the render thread.
+        /// However, this method can get the current actual value updated in real time.
+        /// </remarks>
         internal bool IsVisible()
         {
             bool ret = Interop.ActorInternal.IsVisible(SwigCPtr);

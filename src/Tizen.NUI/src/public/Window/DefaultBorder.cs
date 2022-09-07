@@ -75,6 +75,7 @@ namespace Tizen.NUI
         private Size2D minSize;
         private Size2D maxSize;
         private Window.BorderResizePolicyType resizePolicy;
+
         #endregion //Fields
 
         #region Events
@@ -391,7 +392,6 @@ namespace Tizen.NUI
                     if (BorderWindow.IsMaximized())
                     {
                         BorderWindow.Maximize(false);
-                        OnMaximize(false);
                     }
                     else
                     {
@@ -402,7 +402,6 @@ namespace Tizen.NUI
                 else
                 {
                     BorderWindow.Maximize(true);
-                    OnMaximize(true);
                 }
             }
         }
@@ -425,7 +424,6 @@ namespace Tizen.NUI
                     if (BorderWindow.IsMaximized() == true)
                     {
                         BorderWindow.Maximize(false);
-                        OnMaximize(false);
                     }
                     else
                     {
@@ -554,12 +552,10 @@ namespace Tizen.NUI
             if (BorderWindow.IsMaximized())
             {
               BorderWindow.Maximize(false);
-              OnMaximize(false);
             }
             else
             {
               BorderWindow.Maximize(true);
-              OnMaximize(true);
             }
         }
 
@@ -758,12 +754,10 @@ namespace Tizen.NUI
                   if (BorderWindow.IsMaximized() == false)
                   {
                     BorderWindow.Maximize(true);
-                    OnMaximize(true);
                   }
                   else
                   {
                     BorderWindow.Maximize(false);
-                    OnMaximize(false);
                   }
               }
               else
@@ -786,7 +780,6 @@ namespace Tizen.NUI
                     if (BorderWindow.IsMaximized() == true)
                     {
                         BorderWindow.Maximize(false);
-                        OnMaximize(false);
                     }
                     else
                     {
@@ -862,6 +855,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual void OnMaximize(bool isMaximized)
         {
+            Tizen.Log.Info("NUI", $"OnMaximize {isMaximized}\n");
             UpdateIcons();
         }
 
@@ -884,6 +878,7 @@ namespace Tizen.NUI
         {
             if (borderView != null && OverlayMode == true)
             {
+                Tizen.Log.Info("NUI", $"OnOverlayMode {enabled}\n");
                 if (enabled == true)
                 {
                     backgroundColor = new Color(borderView.BackgroundColor);
