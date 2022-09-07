@@ -221,20 +221,8 @@ namespace Tizen.Applications
             LowMemory?.Invoke(this, e);
             if (e.LowMemoryStatus == LowMemoryStatus.SoftWarning || e.LowMemoryStatus == LowMemoryStatus.HardWarning)
             {
-                double interval = new Random().Next(10 * 1000);
-                if (interval <= 0)
-                    interval = 10 * 1000;
-
-                sTimer = new System.Timers.Timer(interval);
-                sTimer.Elapsed += OnTimedEvent;
-                sTimer.AutoReset = false;
-                sTimer.Enabled = true;
+                System.GC.Collect();
             }
-        }
-
-        private static void OnTimedEvent(Object source, ElapsedEventArgs e)
-        {
-            System.GC.Collect();
         }
 
         /// <summary>
