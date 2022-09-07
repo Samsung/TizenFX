@@ -4344,9 +4344,24 @@
     "title": "Enum CameraDevice",
     "keywords": ""
   },
+  "API10/api/Tizen.Multimedia.CameraDeviceConnectionChangedEventArgs.html": {
+    "href": "API10/api/Tizen.Multimedia.CameraDeviceConnectionChangedEventArgs.html",
+    "title": "Class CameraDeviceConnectionChangedEventArgs",
+    "keywords": ""
+  },
   "API10/api/Tizen.Multimedia.CameraDeviceException.html": {
     "href": "API10/api/Tizen.Multimedia.CameraDeviceException.html",
     "title": "Class CameraDeviceException",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Multimedia.CameraDeviceInformation.html": {
+    "href": "API10/api/Tizen.Multimedia.CameraDeviceInformation.html",
+    "title": "Struct CameraDeviceInformation",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Multimedia.CameraDeviceManager.html": {
+    "href": "API10/api/Tizen.Multimedia.CameraDeviceManager.html",
+    "title": "Class CameraDeviceManager",
     "keywords": ""
   },
   "API10/api/Tizen.Multimedia.CameraDeviceNotFoundException.html": {
@@ -4362,6 +4377,11 @@
   "API10/api/Tizen.Multimedia.CameraDeviceStateChangedEventArgs.html": {
     "href": "API10/api/Tizen.Multimedia.CameraDeviceStateChangedEventArgs.html",
     "title": "Class CameraDeviceStateChangedEventArgs",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Multimedia.CameraDeviceType.html": {
+    "href": "API10/api/Tizen.Multimedia.CameraDeviceType.html",
+    "title": "Enum CameraDeviceType",
     "keywords": ""
   },
   "API10/api/Tizen.Multimedia.CameraDisplayMode.html": {
@@ -4567,6 +4587,16 @@
   "API10/api/Tizen.Multimedia.EqualizerBand.html": {
     "href": "API10/api/Tizen.Multimedia.EqualizerBand.html",
     "title": "Class EqualizerBand",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Multimedia.ExtraPreviewEventArgs.html": {
+    "href": "API10/api/Tizen.Multimedia.ExtraPreviewEventArgs.html",
+    "title": "Class ExtraPreviewEventArgs",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Multimedia.ExtraPreviewStreamInfo.html": {
+    "href": "API10/api/Tizen.Multimedia.ExtraPreviewStreamInfo.html",
+    "title": "Struct ExtraPreviewStreamInfo",
     "keywords": ""
   },
   "API10/api/Tizen.Multimedia.FaceDetectedEventArgs.html": {
@@ -5419,6 +5449,11 @@
     "title": "Class SubtitleModeUpdatedEventArgs",
     "keywords": ""
   },
+  "API10/api/Tizen.Multimedia.Remoting.TransceiverCodec.html": {
+    "href": "API10/api/Tizen.Multimedia.Remoting.TransceiverCodec.html",
+    "title": "Enum TransceiverCodec",
+    "keywords": ""
+  },
   "API10/api/Tizen.Multimedia.Remoting.TransceiverDirection.html": {
     "href": "API10/api/Tizen.Multimedia.Remoting.TransceiverDirection.html",
     "title": "Enum TransceiverDirection",
@@ -5427,6 +5462,11 @@
   "API10/api/Tizen.Multimedia.Remoting.WebRTC.html": {
     "href": "API10/api/Tizen.Multimedia.Remoting.WebRTC.html",
     "title": "Class WebRTC",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Multimedia.Remoting.WebRTC.WebRTCStatistics.html": {
+    "href": "API10/api/Tizen.Multimedia.Remoting.WebRTC.WebRTCStatistics.html",
+    "title": "Class WebRTC.WebRTCStatistics",
     "keywords": ""
   },
   "API10/api/Tizen.Multimedia.Remoting.WebRTCBundlePolicy.html": {
@@ -5527,6 +5567,16 @@
   "API10/api/Tizen.Multimedia.Remoting.WebRTCStateChangedEventArgs.html": {
     "href": "API10/api/Tizen.Multimedia.Remoting.WebRTCStateChangedEventArgs.html",
     "title": "Class WebRTCStateChangedEventArgs",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Multimedia.Remoting.WebRTCStatisticsCategory.html": {
+    "href": "API10/api/Tizen.Multimedia.Remoting.WebRTCStatisticsCategory.html",
+    "title": "Enum WebRTCStatisticsCategory",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Multimedia.Remoting.WebRTCStatisticsProperty.html": {
+    "href": "API10/api/Tizen.Multimedia.Remoting.WebRTCStatisticsProperty.html",
+    "title": "Enum WebRTCStatisticsProperty",
     "keywords": ""
   },
   "API10/api/Tizen.Multimedia.Remoting.WebRTCTrackAddedEventArgs.html": {
@@ -5917,6 +5967,16 @@
   "API10/api/Tizen.Multimedia.Vision.BarcodeType.html": {
     "href": "API10/api/Tizen.Multimedia.Vision.BarcodeType.html",
     "title": "Enum BarcodeType",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Multimedia.Vision.DeepLearningFaceRecognitionResult.html": {
+    "href": "API10/api/Tizen.Multimedia.Vision.DeepLearningFaceRecognitionResult.html",
+    "title": "Class DeepLearningFaceRecognitionResult",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Multimedia.Vision.DeepLearningFaceRecognizer.html": {
+    "href": "API10/api/Tizen.Multimedia.Vision.DeepLearningFaceRecognizer.html",
+    "title": "Class DeepLearningFaceRecognizer",
     "keywords": ""
   },
   "API10/api/Tizen.Multimedia.Vision.EngineConfiguration.html": {
