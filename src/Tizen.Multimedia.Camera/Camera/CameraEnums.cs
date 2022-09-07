@@ -948,8 +948,7 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Enumeration for camera device type
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 10 </since_tizen>
     public enum CameraDeviceType
     {
         /// <summary>
