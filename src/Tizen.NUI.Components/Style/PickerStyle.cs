@@ -49,11 +49,6 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public TextLabelStyle ItemTextLabel { get; set; } = new TextLabelStyle();
-
-        /// <summary>
-        /// Gets or sets the PickerStyle Center line style.
-        /// </summary>
-        public ViewStyle Divider { get; set;} = new ViewStyle();
         
         /// <summary>
         /// Gets or sets the PickerStyle Item list start offset value.
@@ -70,7 +65,6 @@ namespace Tizen.NUI.Components
             if (bindableObject is PickerStyle pickerStyle)
             {
                 ItemTextLabel.CopyFrom(pickerStyle.ItemTextLabel);
-                Divider.CopyFrom(pickerStyle.Divider);
                 StartScrollOffset = (pickerStyle.StartScrollOffset == null) ?
                                     new Size() : new Size(pickerStyle.StartScrollOffset.Width, pickerStyle.StartScrollOffset.Height);
             }

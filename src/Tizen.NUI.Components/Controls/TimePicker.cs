@@ -237,7 +237,6 @@ namespace Tizen.NUI.Components
             {
                 if (is24HourView == value) return;
 
-                Console.WriteLine(" Is 24 Hour View");
                 is24HourView = value;
                 if (value == true)
                 {
@@ -400,7 +399,6 @@ namespace Tizen.NUI.Components
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
             };
-            Console.WriteLine("initialize");
 
             is24HourView = false;
 

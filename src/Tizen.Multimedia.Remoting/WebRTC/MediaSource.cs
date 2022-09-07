@@ -15,6 +15,8 @@
  */
 
 using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using static Interop;
 
@@ -99,6 +101,148 @@ namespace Tizen.Multimedia.Remoting
                 NativeWebRTC.SetTransceiverDirection(WebRtc.Handle, SourceId.Value, MediaType, value).
                     ThrowIfFailed("Failed to get transceiver direction.");
             }
+        }
+
+        /// <summary>
+        /// Gets or sets the transceiver codec of current media source.
+        /// </summary>
+        /// <remarks>
+        /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>.<br/>
+        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state when transceiver codec is set.
+        /// </remarks>
+        /// <value>The transceiver codec.</value>
+        /// <exception cref="InvalidOperationException">
+        ///     MediaSource is not attached yet.<br/>
+        /// -or-<br/>
+        ///     This MediaSource is not supported type of MediaSource.<br/>
+        /// -or-<br/>
+        /// The WebRTC is not in the valid state.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public TransceiverCodec TransceiverCodec
+        {
+            get
+            {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+                if (this is MediaFileSource || this is MediaPacketSource)
+                {
+                    throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
+                }
+
+                NativeWebRTC.GetTransceiverCodec(WebRtc.Handle, SourceId.Value, MediaType, out TransceiverCodec codec).
+                    ThrowIfFailed("Failed to get transceiver codec");
+
+                return codec;
+            }
+            set
+            {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+                if (this is MediaFileSource || this is MediaPacketSource)
+                {
+                    throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
+                }
+
+                WebRtc.ValidateWebRTCState(WebRTCState.Idle);
+
+                NativeWebRTC.SetTransceiverCodec(WebRtc.Handle, SourceId.Value, MediaType, value).
+                    ThrowIfFailed("Failed to set transceiver codec");
+            }
+        }
+
+        /// <summary>
+        /// Retrieves the supported transceiver codecs.
+        /// </summary>
+        /// <remarks>
+        /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>.
+        /// </remarks>
+        /// <returns>The transceiver codecs.</returns>
+        /// <exception cref="InvalidOperationException">This MediaSource is not supported type of MediaSource.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public ReadOnlyCollection<TransceiverCodec> SupportedTransceiverCodecs
+        {
+            get
+            {
+                if (this is MediaFileSource || this is MediaPacketSource)
+                {
+                    throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
+                }
+
+                var codecs = new List<TransceiverCodec>();
+                Exception caught = null;
+
+                NativeWebRTC.RetrieveTransceiverCodecCallback cb = (codec, _) =>
+                {
+                    try
+                    {
+                        codecs.Add(codec);
+                    }
+                    catch (Exception e)
+                    {
+                        caught = e;
+                        return false;
+                    }
+
+                    return true;
+                };
+
+                using (var cbKeeper = ObjectKeeper.Get(cb))
+                {
+                    NativeWebRTC.ForeachSupportedTransceiverCodec(WebRtc.Handle, GetMediaSourceType(), MediaType, cb).
+                        ThrowIfFailed("failed to retrieve stats");
+
+                    if (caught != null)
+                    {
+                        throw caught;
+                    }
+                }
+
+                return new ReadOnlyCollection<TransceiverCodec>(codecs);
+            }
+        }
+
+        private MediaSourceType GetMediaSourceType()
+        {
+            if (this is MediaTestSource)
+            {
+                if (MediaType == MediaType.Audio)
+                {
+                    return MediaSourceType.AudioTest;
+                }
+                else
+                {
+                    return MediaSourceType.VideoTest;
+                }
+            }
+            else if (this is MediaMicrophoneSource)
+            {
+                return MediaSourceType.Microphone;
+            }
+            else if (this is MediaCameraSource)
+            {
+                return MediaSourceType.Camera;
+            }
+            else if (this is MediaScreenSource)
+            {
+                return MediaSourceType.Screen;
+            }
+            else if (this is MediaFileSource)
+            {
+                return MediaSourceType.File;
+            }
+            else if (this is MediaPacketSource)
+            {
+                return MediaSourceType.MediaPacket;
+            }
+
+            return MediaSourceType.Null;
         }
 
         /// <summary>
