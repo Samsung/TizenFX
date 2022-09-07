@@ -422,6 +422,61 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
+        /// Gets or sets the encoder bitrate of the current media source.
+        /// </summary>
+        /// <remarks>
+        /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>.<br/>
+        /// </remarks>
+        /// <value>A value that specifies the encoder bitrate.</value>
+        /// <exception cref="ArgumentException">EncoderBitrate is less than or equal to zero.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     MediaSource is not attached yet.<br/>
+        /// -or-<br/>
+        ///     This MediaSource is not Video.
+        /// -or-<br/>
+        ///     This MediaSource is not supported type of MediaSource.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public int EncoderBitrate
+        {
+            get
+            {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+                if (this is MediaFileSource || this is MediaPacketSource)
+                {
+                    throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
+                }
+
+                NativeWebRTC.GetEncoderBitrate(WebRtc.Handle, SourceId.Value, MediaType, out int bitrate).
+                    ThrowIfFailed("Failed to get encoder bitrate");
+
+                return bitrate;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    throw new ArgumentException($"EncoderBitrate should be greater than zero.");
+                }
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+                if (this is MediaFileSource || this is MediaPacketSource)
+                {
+                    throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
+                }
+
+                NativeWebRTC.SetEncoderBitrate(WebRtc.Handle, SourceId.Value, MediaType, value).
+                    ThrowIfFailed("Failed to set encoder bitrate");
+            }
+        }
+
+        /// <summary>
         /// Enables the audio loopback. The local audio will be played with <paramref name="policy"/>.
         /// </summary>
         /// <param name="policy">The <see cref="AudioStreamPolicy"/> to apply.</param>
