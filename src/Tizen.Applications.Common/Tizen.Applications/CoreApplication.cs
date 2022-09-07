@@ -219,7 +219,10 @@ namespace Tizen.Applications
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
             LowMemory?.Invoke(this, e);
-            System.GC.Collect();
+            if (e.LowMemoryStatus == LowMemoryStatus.SoftWarning || e.LowMemoryStatus == LowMemoryStatus.HardWarning)
+            {
+                System.GC.Collect();
+            }
         }
 
         /// <summary>
