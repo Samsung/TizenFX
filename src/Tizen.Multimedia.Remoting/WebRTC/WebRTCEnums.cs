@@ -304,6 +304,43 @@ namespace Tizen.Multimedia.Remoting
     }
 
     /// <summary>
+    /// Specifies the transceiver codec type.
+    /// </summary>
+    /// <since_tizen> 10 </since_tizen>
+    public enum TransceiverCodec
+    {
+        /// <summary>
+        /// PCMU.
+        /// </summary>
+        Pcmu  = 0x00000100 | 0x01,
+
+        /// <summary>
+        /// PCMA.
+        /// </summary>
+        Pcma = 0x00000100 | 0x02,
+
+        /// <summary>
+        /// OPUS.
+        /// </summary>
+        Opus = 0x00000100 | 0x03,
+
+        /// <summary>
+        /// VP8.
+        /// </summary>
+        Vp8 = 0x00000200 | 0x01,
+
+        /// <summary>
+        /// VP9.
+        /// </summary>
+        Vp9 = 0x00000200 | 0x02,
+
+        /// <summary>
+        /// H264.
+        /// </summary>
+        H264 = 0x00000200 | 0x03
+    }
+
+    /// <summary>
     /// Specifies the policy of Ice transport.
     /// </summary>
     /// <remarks>
@@ -421,7 +458,9 @@ namespace Tizen.Multimedia.Remoting
 
         File,
 
-        MediaPacket
+        MediaPacket,
+
+        Null
     }
 
     internal enum CustomMediaSourceType
