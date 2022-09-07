@@ -921,6 +921,49 @@ namespace Tizen.Content.MediaContent
 
             var tcs = new TaskCompletionSource<string>();
 
+            using (var handle = ValidateFile(mediaId))
+            {
+                string thumbnailPath = null;
+                MediaContentError ret = MediaContentError.None;
+                Task thumbTask = null;
+
+                if (cancellationToken.CanBeCanceled)
+                {
+                    cancellationToken.Register(() =>
+                    {
+                        if (tcs.Task.IsCompleted)
+                        {
+                            return;
+                        }
+
+                        tcs.TrySetCanceled();
+                    });
+                }
+
+                thumbTask = Task.Factory.StartNew( () =>
+                {
+                    ret = Interop.MediaInfo.GenerateThumbnail(handle);
+
+                    if (ret != MediaContentError.None)
+                    {
+                        tcs.TrySetException(ret.AsException("Failed to create thumbnail"));
+                    }
+                    else
+                    {
+                        thumbnailPath = InteropHelper.GetString(handle, Interop.MediaInfo.GetThumbnailPath, true);
+                        tcs.TrySetResult(thumbnailPath);
+                    }
+                }, cancellationToken,
+                    TaskCreationOptions.DenyChildAttach | TaskCreationOptions.LongRunning,
+                    TaskScheduler.Default);
+
+                return await tcs.Task;
+            }
+        }
+        #endregion
+
+        private Interop.MediaInfoHandle ValidateFile(string mediaId)
+        {
             Interop.MediaInfo.GetMediaFromDB(mediaId, out var handle).ThrowIfError("Failed to create thumbnail");
 
             if (handle.IsInvalid)
@@ -928,7 +971,7 @@ namespace Tizen.Content.MediaContent
                 throw new RecordNotFoundException("Media does not exist.");
             }
 
-            using (handle)
+            try
             {
                 var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);
 
@@ -944,53 +987,15 @@ namespace Tizen.Content.MediaContent
                 {
                     throw new FileNotFoundException($"The media file does not exist. Path={path}.", path);
                 }
-
-                using (RegisterCancelThumbnail(cancellationToken, tcs, handle))
-                using (var cbKeeper = ObjectKeeper.Get(GetCreateThumbnailCallback(tcs)))
-                {
-                    Interop.MediaInfo.CreateThumbnail(handle, cbKeeper.Target).ThrowIfError("Failed to create thumbnail");
-
-                    return await tcs.Task;
-                }
             }
-        }
-
-        private static Interop.MediaInfo.ThumbnailCompletedCallback GetCreateThumbnailCallback(
-            TaskCompletionSource<string> tcs)
-        {
-            return (error, path, _) =>
+            catch (Exception ex)
             {
-                if (error != MediaContentError.None)
-                {
-                    tcs.TrySetException(error.AsException("Failed to create thumbnail"));
-                }
-                else
-                {
-                    tcs.TrySetResult(path);
-                }
-            };
-        }
-
-        private static IDisposable RegisterCancelThumbnail(CancellationToken cancellationToken,
-            TaskCompletionSource<string> tcs, Interop.MediaInfoHandle handle)
-        {
-            if (cancellationToken.CanBeCanceled == false)
-            {
-                return null;
+                handle.Dispose();
+                throw ex;
             }
 
-            return cancellationToken.Register(() =>
-            {
-                if (tcs.Task.IsCompleted)
-                {
-                    return;
-                }
-
-                Interop.MediaInfo.CancelThumbnail(handle).ThrowIfError("Failed to cancel");
-                tcs.TrySetCanceled();
-            });
+            return handle;
         }
-        #endregion
 
         #region DetectFaceAsync
         /// <summary>

@@ -211,6 +211,14 @@ namespace Tizen.NUI.Components
                 var appBar = (Owner as ContentPage)?.AppBar;
                 var content = (Owner as ContentPage)?.Content;
 
+                bool measureAppBarLayout = false;
+
+                if ((appBar != null) && (appBar.Layout != null) && (LayoutChildren.Contains(appBar.Layout)) && appBar.Layout.SetPositionByLayout)
+                {
+                    MeasureChildWithoutPadding(appBar.Layout, widthMeasureSpec, heightMeasureSpec);
+                    measureAppBarLayout = true;
+                }
+
                 foreach (var childLayout in LayoutChildren)
                 {
                     if (!childLayout.SetPositionByLayout)
@@ -218,13 +226,13 @@ namespace Tizen.NUI.Components
                         continue;
                     }
 
-                    if ((content != null) && (content == childLayout.Owner) && (content.HeightSpecification == LayoutParamPolicies.MatchParent))
+                    if ((content != null) && (content == childLayout.Owner) && (content.HeightSpecification == LayoutParamPolicies.MatchParent) && measureAppBarLayout)
                     {
                         var contentSizeH = heightMeasureSpec.Size.AsDecimal() - Padding.Top - Padding.Bottom - content.Margin.Top - content.Margin.Bottom - (appBar?.Layout.MeasuredHeight.Size.AsDecimal() ?? 0);
                         MeasureSpecification contentHeightSpec = new MeasureSpecification(new LayoutLength(contentSizeH), MeasureSpecification.ModeType.Exactly);
                         MeasureChildWithoutPadding(childLayout, widthMeasureSpec, contentHeightSpec);
                     }
-                    else
+                    else if (!measureAppBarLayout || (appBar != childLayout.Owner)) // if childLayout is not appBar.Layout
                     {
                         MeasureChildWithoutPadding(childLayout, widthMeasureSpec, heightMeasureSpec);
                     }

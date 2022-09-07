@@ -26,6 +26,7 @@ namespace Tizen.Multimedia
     /// <seealso cref="StreamRecorderOptions"/>
     /// <seealso cref="StreamRecorderVideoOptions"/>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated in API10; Will be removed in API12")]
     public class StreamRecorderAudioOptions
     {
         private const int DefaultSampleRate = 0;
@@ -41,6 +42,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="ArgumentException"><paramref name="codec"/> is not valid.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public StreamRecorderAudioOptions(RecorderAudioCodec codec) :
             this(codec, DefaultSampleRate, DefaultBitRate, DefaultChannels)
         {
@@ -63,6 +65,7 @@ namespace Tizen.Multimedia
         ///     <paramref name="channels"/> is less than or equal to zero.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public StreamRecorderAudioOptions(RecorderAudioCodec codec, int sampleRate, int bitRate, int channels)
         {
             Codec = codec;
@@ -80,6 +83,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <seealso cref="StreamRecorder.GetSupportedAudioCodecs"/>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public RecorderAudioCodec Codec
         {
             get => _codec;
@@ -105,6 +109,7 @@ namespace Tizen.Multimedia
         /// <value>The sample rate value for stream recorder. The default is zero.</value>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than zero.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public int SampleRate
         {
             get => _sampleRate;
@@ -128,6 +133,7 @@ namespace Tizen.Multimedia
         /// <value>The bit rate value for audio stream recording. The default is 128000.</value>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public int BitRate
         {
             get => _bitRate;
@@ -151,6 +157,7 @@ namespace Tizen.Multimedia
         /// <value>The number of audio channels for audio stream recording. The default is 2.</value>
         /// <exception cref="ArgumentOutOfRangeException"><paramref name="value"/> is less than or equal to zero.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public int Channels
         {
             get => _channels;

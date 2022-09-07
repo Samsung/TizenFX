@@ -414,6 +414,26 @@ namespace Tizen.NUI.BaseComponents
             ((ViewStyle)bindable).borderlineColor = (Color)newValue;
         }, defaultValueCreator: (bindable) => ((ViewStyle)bindable).borderlineColor ?? Tizen.NUI.Color.Black);
 
+        /// <summary> Bindable property of BorderlineColorSelector. Do not open it. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty BorderlineColorSelectorProperty = BindableProperty.Create(nameof(BorderlineColor), typeof(Selector<Color>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var viewStyle = (ViewStyle)bindable;
+
+            if (newValue == null)
+            {
+                viewStyle.borderlineColorSelector = null;
+            }
+            else
+            {
+                viewStyle.borderlineColorSelector = (Selector<Color>)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            return ((ViewStyle)bindable).borderlineColorSelector;
+        });
+
         /// <summary> Bindable property of BorderlineOffset. Do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty BorderlineOffsetProperty = BindableProperty.Create(nameof(BorderlineOffset), typeof(float?), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
