@@ -34,6 +34,7 @@ namespace Tizen.NUI.BaseComponents
         public TriggerableSelector<float?> Opacity{ get; set; }
         public TriggerableSelector<ImageShadow> ImageShadow{ get; set; }
         public TriggerableSelector<Shadow> BoxShadow{ get; set; }
+        public TriggerableSelector<Color> BorderlineColor{ get; set; }
 
         public void ClearBackground(View view)
         {
@@ -61,6 +62,7 @@ namespace Tizen.NUI.BaseComponents
             Opacity?.Reset(view);
             ImageShadow?.Reset(view);
             BoxShadow?.Reset(view);
+            BorderlineColor?.Reset(view);
         }
     }
 }
