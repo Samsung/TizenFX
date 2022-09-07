@@ -46,6 +46,7 @@ namespace Tizen.Multimedia
         private bool _disposed = false;
         private CameraState _state = CameraState.None;
         PinnedPreviewBuffer<byte> _previewBuffer;
+        private CameraDeviceManager _cameraDeviceManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> class.
@@ -94,12 +95,26 @@ namespace Tizen.Multimedia
             CameraDeviceType cameraDeviceType = CameraDeviceType.BuiltIn;
             CameraDevice cameraDevice = device;
 
-            if (CameraDeviceManager.IsSupported || device == CameraDevice.Default)
+            try
             {
-                var deviceInfo = GetDeviceInformation();
+                _cameraDeviceManager = new CameraDeviceManager();
+            }
+            catch (NotSupportedException)
+            {
+                Log.Info(CameraLog.Tag,
+                    $"CameraDeviceManager is not supported. Not error.");
+            }
+
+            if (_cameraDeviceManager != null || device == CameraDevice.Default)
+            {
+                var deviceInfo = _cameraDeviceManager.SupportedDevices;
+
+                // CameraDeviceManager is not used internally anymore.
+                _cameraDeviceManager.Dispose();
+
                 if (!deviceInfo.Any())
                 {
-                    throw new InvalidOperationException("CDM is supported but, there's no available camera device.");
+                    throw new InvalidOperationException("CameraDeviceManager is supported but, there's no available camera device.");
                 }
 
                 cameraDeviceType = deviceInfo.First().Type;
@@ -108,14 +123,6 @@ namespace Tizen.Multimedia
             }
 
             CreateNativeCameraDevice(cameraDeviceType, cameraDevice);
-        }
-
-        private IEnumerable<CameraDeviceInformation> GetDeviceInformation()
-        {
-            using (var cameraDeviceManager = new CameraDeviceManager())
-            {
-                return cameraDeviceManager.GetDeviceInformation();
-            }
         }
 
         private void CreateNativeCameraDevice(CameraDeviceType type, CameraDevice device)
@@ -235,7 +242,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of the ChangeDevice feature is not supported.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public void ChangeDevice(CameraDevice device)
         {
             ValidateState(CameraState.Created);
@@ -295,7 +302,7 @@ namespace Tizen.Multimedia
         /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StartPreview()
         {
@@ -316,7 +323,7 @@ namespace Tizen.Multimedia
         /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StopPreview()
         {
@@ -343,7 +350,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StartCapture()
         {
@@ -378,7 +385,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentOutOfRangeException">In case of invalid parameters.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StartCapture(int count, int interval, CancellationToken cancellationToken)
         {
@@ -424,7 +431,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StartFocusing(bool continuous)
         {
@@ -442,7 +449,7 @@ namespace Tizen.Multimedia
         /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StopFocusing()
         {
@@ -465,7 +472,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StartFaceDetection()
         {
@@ -497,7 +504,7 @@ namespace Tizen.Multimedia
         /// <feature> http://tizen.org/feature/camera </feature>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public void StopFaceDetection()
         {

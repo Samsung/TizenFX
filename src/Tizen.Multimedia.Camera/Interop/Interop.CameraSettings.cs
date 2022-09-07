@@ -246,5 +246,14 @@ internal static partial class Interop
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_extra_preview_bitrate")]
         internal static extern CameraError GetExtraPreviewBitrate(IntPtr handle, int streamId, out int bitrate);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_extra_preview_gop_interval")]
+        internal static extern CameraError SetExtraPreviewGopInterval(IntPtr handle, int streamId, int gopInterval);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_extra_preview_gop_interval")]
+        internal static extern CameraError GetExtraPreviewGopInterval(IntPtr handle, int streamId, out int gopInterval);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_preview_frame_rotation")]
+        internal static extern CameraError GetExtraPreviewRotation(IntPtr handle, int streamId, out Rotation rotation);
     }
 }

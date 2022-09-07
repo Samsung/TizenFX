@@ -79,7 +79,7 @@ namespace Tizen.Multimedia
         /// </remarks>
         /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
         /// <exception cref="NotSupportedException">In case of this feature is not supported.</exception>
-        /// <exception cref="ObjectDisposedException" > The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException" > The camera has already been disposed. </exception>
         /// <exception cref="UnauthorizedAccessException">In case of access to the resources cannot be granted.</exception>
         public Display Display
         {
@@ -128,7 +128,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value> None, Created, Preview, Capturing, Captured.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public CameraState State
         {
             get
@@ -149,7 +149,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="ArgumentException">In case of invalid parameters.</exception>
         /// <exception cref="InvalidOperationException">An invalid state.</exception>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public bool DisplayReuseHint
         {
             get
@@ -174,7 +174,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <value>A <see cref="CameraFacingDirection"/> that specifies the facing direction of the camera device.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public CameraFacingDirection Direction
         {
             get
@@ -193,7 +193,7 @@ namespace Tizen.Multimedia
         /// <since_tizen> 3 </since_tizen>
         /// <value>This returns 2, if the device supports primary and secondary cameras.
         /// Otherwise 1, if the device only supports primary camera.</value>
-        /// <exception cref="ObjectDisposedException">The camera already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public int CameraCount
         {
             get
