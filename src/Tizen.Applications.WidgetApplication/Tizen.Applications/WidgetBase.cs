@@ -23,6 +23,7 @@ namespace Tizen.Applications
     /// The abstract class for widget instances.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API10. Will be removed in API12.")]
     public abstract class WidgetBase
     {
         internal IntPtr Handle;
@@ -33,12 +34,14 @@ namespace Tizen.Applications
         /// It will be created after OnCreate method is invoked.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected Window Window;
 
         /// <summary>
         /// Delete type.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public enum WidgetDestroyType
         {
             /// <summary>
@@ -56,6 +59,7 @@ namespace Tizen.Applications
         /// Constructor.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public WidgetBase()
         {
         }
@@ -65,6 +69,7 @@ namespace Tizen.Applications
         /// It will be created after OnCreate method is invoked.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public string Id { get; private set; }
 
         /// <summary>
@@ -76,6 +81,7 @@ namespace Tizen.Applications
         /// <exception cref="NotSupportedException">Thrown when the API is not supported in this device.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of an unrecoverable error.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public void SetContent(Bundle info)
         {
             Interop.Widget.ErrorCode err = Interop.Widget.SetContent(Handle, info.SafeBundleHandle);
@@ -109,6 +115,7 @@ namespace Tizen.Applications
         /// <exception cref="NotSupportedException">Thrown when the API is not supported in this device.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of an unrecoverable error.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public void SetTitle(string title)
         {
             Interop.Widget.ErrorCode err = Interop.Widget.SetTitle(Handle, title);
@@ -139,6 +146,7 @@ namespace Tizen.Applications
         /// <exception cref="NotSupportedException">Thrown when the API is not supported in this device.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of an unrecoverable error.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public void Exit()
         {
             Interop.Widget.ErrorCode err = Interop.Widget.TerminateContext(Handle);
@@ -172,6 +180,7 @@ namespace Tizen.Applications
         /// <param name="w">The pixel value for the widget width.</param>
         /// <param name="h">The pixel value for the widget height.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public virtual void OnCreate(Bundle content, int w, int h)
         {
             IntPtr win;
@@ -188,6 +197,7 @@ namespace Tizen.Applications
         /// <param name="reason">The reason for destruction.</param>
         /// <param name="content">The data set to save.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public virtual void OnDestroy(WidgetDestroyType reason, Bundle content)
         {
         }
@@ -196,6 +206,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle the behavior when the widget instance is paused.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public virtual void OnPause()
         {
         }
@@ -204,6 +215,7 @@ namespace Tizen.Applications
         /// Overrides this method if want to handle the behavior when the widget instance is resumed.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public virtual void OnResume()
         {
         }
@@ -214,6 +226,7 @@ namespace Tizen.Applications
         /// <param name="w">Widget width.</param>
         /// <param name="h">Widget height.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public virtual void OnResize(int w, int h)
         {
         }
@@ -224,6 +237,7 @@ namespace Tizen.Applications
         /// <param name="content">The data set for updating this widget will be provided by the requester.</param>
         /// <param name="isForce">Although the widget is paused, if it is true, the widget can be updated.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public virtual void OnUpdate(Bundle content, bool isForce)
         {
         }

@@ -22,6 +22,7 @@ namespace Tizen.Applications
     /// Enumeration for the time tick resolution.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API10. Will be removed in API12.")]
     public enum TimeTickResolution
     {
         /// <summary>
