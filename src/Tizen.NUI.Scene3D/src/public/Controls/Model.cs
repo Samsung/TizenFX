@@ -78,6 +78,9 @@ namespace Tizen.NUI.Scene3D
     {
         internal Model(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            // Currenly, Model don't have API to access it's child. So, we make it false.
+            this.ChildrenSensitive = false;
+            this.FocusableChildren = false;
         }
 
         /// <summary>
@@ -121,6 +124,30 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// Set/Get whether allow this model's children allow to use touch events.
+        /// This property doesn't change Model itself's Sensitive info.
+        /// If this property is true, event can traversal this models children.
+        /// If this property is false, event traversal blocked.
+        /// Default is false.
+        /// </summary>
+        /// <remarks>
+        /// If ChildrenSensitive is true, it could decrease performance but we can connect events into it's children.
+        /// If ChildrenSensitive is false, the performance becomes better but we cannot connect events into it's children.
+        ///
+        /// Currenly, Model don't have API to access it's child. So, we make it as private.
+        /// </remarks>
+        private bool ChildrenSensitive
+        {
+            set
+            {
+                SetChildrenSensitive(value);
+            }
+            get
+            {
+                return GetChildrenSensitive();
+            }
+        }
+
         /// Set/Get the ImageBasedLight ScaleFactor.
         /// Scale factor controls light source intensity in [0.0f, 1.0f]
         /// </summary>
@@ -211,6 +238,19 @@ namespace Tizen.NUI.Scene3D
             View ret = new View(Interop.Model.GetModelRoot(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        internal void SetChildrenSensitive(bool enable)
+        {
+            Interop.Model.SetChildrenSensitive(SwigCPtr, enable);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal bool GetChildrenSensitive()
+        {
+            bool result = Interop.Model.GetChildrenSensitive(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
         }
 
         /// <summary>
