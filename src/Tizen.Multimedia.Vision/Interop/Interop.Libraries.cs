@@ -18,7 +18,6 @@ internal static partial class Interop
 {
     internal static partial class Libraries
     {
-        public const string MediaVisionRoiTracker = "libmv_roi_tracker.so";
         public const string MediaVisionCommon = "libmv_common.so";
         public const string MediaVisionFace = "libmv_face.so";
         public const string MediaVisionInference = "libmv_inference.so";
