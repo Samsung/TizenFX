@@ -31,28 +31,32 @@ namespace Tizen.NUI
     public class WebView : View
     {
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewPageLoadCallbackDelegate(IntPtr data, string pageUrl);
+        private delegate void WebViewPageLoadCallback(string pageUrl);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewPageLoadErrorCallbackDelegate(IntPtr data, string pageUrl, int errorCode);
+        private delegate void WebViewPageLoadErrorCallback(string pageUrl, int errorCode);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void WebViewScrollEdgeReachedCallbackDelegate(IntPtr data, int edge);
+        private delegate void WebViewScrollEdgeReachedCallback(int edge);
 
-        private readonly WebViewPageLoadSignal pageLoadStartedSignal;
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewPolicyDecidedCallback(IntPtr maker);
+
         private EventHandler<WebViewPageLoadEventArgs> pageLoadStartedEventHandler;
-        private WebViewPageLoadCallbackDelegate pageLoadStartedCallback;
+        private WebViewPageLoadCallback pageLoadStartedCallback;
 
-        private readonly WebViewPageLoadSignal pageLoadFinishedSignal;
         private EventHandler<WebViewPageLoadEventArgs> pageLoadFinishedEventHandler;
-        private WebViewPageLoadCallbackDelegate pageLoadFinishedCallback;
+        private WebViewPageLoadCallback pageLoadFinishedCallback;
 
-        private readonly WebViewPageLoadErrorSignal pageLoadErrorSignal;
         private EventHandler<WebViewPageLoadErrorEventArgs> pageLoadErrorEventHandler;
-        private WebViewPageLoadErrorCallbackDelegate pageLoadErrorCallback;
-        private readonly WebViewScrollEdgeReachedSignal scrollEdgeReachedSignal;
+        private WebViewPageLoadErrorCallback pageLoadErrorCallback;
+
         private EventHandler<WebViewScrollEdgeReachedEventArgs> scrollEdgeReachedEventHandler;
-        private WebViewScrollEdgeReachedCallbackDelegate scrollEdgeReachedCallback;
+        private WebViewScrollEdgeReachedCallback scrollEdgeReachedCallback;
+
+        private EventHandler<WebViewPolicyDecidedEventArgs> navigationPolicyDecidedEventHandler;
+        private WebViewPolicyDecidedCallback navigationPolicyDecidedCallback;
+
         private PlainTextReceivedCallback plainTextReceivedCallback;
 
         /// <summary>
@@ -64,11 +68,6 @@ namespace Tizen.NUI
 
         internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WebView.WebView_SWIGUpcast(cPtr), cMemoryOwn)
         {
-            pageLoadStartedSignal = new WebViewPageLoadSignal(Interop.WebView.new_WebViewPageLoadSignal_PageLoadStarted(swigCPtr));
-            pageLoadFinishedSignal = new WebViewPageLoadSignal(Interop.WebView.new_WebViewPageLoadSignal_PageLoadFinished(swigCPtr));
-            pageLoadErrorSignal = new WebViewPageLoadErrorSignal(Interop.WebView.new_WebViewPageLoadErrorSignal_PageLoadError(swigCPtr));
-            scrollEdgeReachedSignal = new WebViewScrollEdgeReachedSignal(Interop.WebView.NewWebViewScrollEdgeReachedSignalScrollEdgeReached(swigCPtr));
-
             BackForwardList = new WebBackForwardList(Interop.WebView.GetWebBackForwardList(SwigCPtr), false);
             Context = new WebContext(Interop.WebView.GetWebContext(SwigCPtr), false);
             CookieManager = new WebCookieManager(Interop.WebView.GetWebCookieManager(SwigCPtr), false);
@@ -110,10 +109,6 @@ namespace Tizen.NUI
                 //Called by User
                 //Release your own managed resources here.
                 //You should release all of your own disposable objects here.
-                pageLoadStartedSignal.Dispose();
-                pageLoadFinishedSignal.Dispose();
-                pageLoadErrorSignal.Dispose();
-
                 BackForwardList.Dispose();
                 Context.Dispose();
                 CookieManager.Dispose();
@@ -131,41 +126,45 @@ namespace Tizen.NUI
             Interop.WebView.delete_WebView(swigCPtr);
         }
 
-        private void OnPageLoadStarted(IntPtr data, string pageUrl)
+        private void OnPageLoadStarted(string pageUrl)
         {
             WebViewPageLoadEventArgs e = new WebViewPageLoadEventArgs();
 
-            e.WebView = Registry.GetManagedBaseHandleFromNativePtr(data) as WebView;
+            e.WebView = this;
             e.PageUrl = pageUrl;
 
             pageLoadStartedEventHandler?.Invoke(this, e);
         }
 
-        private void OnPageLoadFinished(IntPtr data, string pageUrl)
+        private void OnPageLoadFinished(string pageUrl)
         {
             WebViewPageLoadEventArgs e = new WebViewPageLoadEventArgs();
 
-            e.WebView = Registry.GetManagedBaseHandleFromNativePtr(data) as WebView;
+            e.WebView = this;
             e.PageUrl = pageUrl;
 
             pageLoadFinishedEventHandler?.Invoke(this, e);
         }
 
-        private void OnPageLoadError(IntPtr data, string pageUrl, int errorCode)
+        private void OnPageLoadError(string pageUrl, int errorCode)
         {
             WebViewPageLoadErrorEventArgs e = new WebViewPageLoadErrorEventArgs();
 
-            e.WebView = Registry.GetManagedBaseHandleFromNativePtr(data) as WebView;
+            e.WebView = this;
             e.PageUrl = pageUrl;
             e.ErrorCode = (WebViewPageLoadErrorEventArgs.LoadErrorCode)errorCode;
 
             pageLoadErrorEventHandler?.Invoke(this, e);
         }
 
-        private void OnScrollEdgeReached(IntPtr data, int edge)
+        private void OnScrollEdgeReached(int edge)
         {
-            WebViewScrollEdgeReachedEventArgs arg = new WebViewScrollEdgeReachedEventArgs((WebViewScrollEdgeReachedEventArgs.Edge)edge);
-            scrollEdgeReachedEventHandler?.Invoke(this, arg);
+            scrollEdgeReachedEventHandler?.Invoke(this, new WebViewScrollEdgeReachedEventArgs((WebViewScrollEdgeReachedEventArgs.Edge)edge));
+        }
+
+        private void OnNavigationPolicyDecided(IntPtr maker)
+        {
+            navigationPolicyDecidedEventHandler?.Invoke(this, new WebViewPolicyDecidedEventArgs(new WebPolicyDecisionMaker(maker, true)));
         }
 
         internal static new class Property
@@ -539,18 +538,15 @@ namespace Tizen.NUI
             {
                 if (pageLoadStartedEventHandler == null)
                 {
-                    pageLoadStartedCallback = (OnPageLoadStarted);
-                    pageLoadStartedSignal.Connect(pageLoadStartedCallback);
+                    pageLoadStartedCallback = OnPageLoadStarted;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(pageLoadStartedCallback);
+                    Interop.WebView.RegisterPageLoadStartedCallback(SwigCPtr, new HandleRef(this, ip));
                 }
                 pageLoadStartedEventHandler += value;
             }
             remove
             {
                 pageLoadStartedEventHandler -= value;
-                if (pageLoadStartedEventHandler == null && pageLoadStartedCallback != null)
-                {
-                    pageLoadStartedSignal.Disconnect(pageLoadStartedCallback);
-                }
             }
         }
 
@@ -565,18 +561,15 @@ namespace Tizen.NUI
             {
                 if (pageLoadFinishedEventHandler == null)
                 {
-                    pageLoadFinishedCallback = (OnPageLoadFinished);
-                    pageLoadFinishedSignal.Connect(pageLoadFinishedCallback);
+                    pageLoadFinishedCallback = OnPageLoadFinished;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(pageLoadFinishedCallback);
+                    Interop.WebView.RegisterPageLoadFinishedCallback(SwigCPtr, new HandleRef(this, ip));
                 }
                 pageLoadFinishedEventHandler += value;
             }
             remove
             {
                 pageLoadFinishedEventHandler -= value;
-                if (pageLoadFinishedEventHandler == null && pageLoadFinishedCallback != null)
-                {
-                    pageLoadFinishedSignal.Disconnect(pageLoadFinishedCallback);
-                }
             }
         }
 
@@ -589,20 +582,13 @@ namespace Tizen.NUI
         {
             add
             {
-                if (pageLoadErrorEventHandler == null)
-                {
-                    pageLoadErrorCallback = (OnPageLoadError);
-                    pageLoadErrorSignal.Connect(pageLoadErrorCallback);
-                }
-                pageLoadErrorEventHandler += value;
+                pageLoadErrorCallback = OnPageLoadError;
+                IntPtr ip = Marshal.GetFunctionPointerForDelegate(pageLoadErrorCallback);
+                Interop.WebView.RegisterPageLoadErrorCallback(SwigCPtr, new HandleRef(this, ip));
             }
             remove
             {
                 pageLoadErrorEventHandler -= value;
-                if (pageLoadErrorEventHandler == null && pageLoadErrorCallback != null)
-                {
-                    pageLoadErrorSignal.Disconnect(pageLoadErrorCallback);
-                }
             }
         }
 
@@ -615,20 +601,36 @@ namespace Tizen.NUI
         {
             add
             {
-                if (scrollEdgeReachedEventHandler == null)
-                {
-                    scrollEdgeReachedCallback = OnScrollEdgeReached;
-                    scrollEdgeReachedSignal.Connect(scrollEdgeReachedCallback);
-                }
-                scrollEdgeReachedEventHandler += value;
+                scrollEdgeReachedCallback = OnScrollEdgeReached;
+                IntPtr ip = Marshal.GetFunctionPointerForDelegate(scrollEdgeReachedCallback);
+                Interop.WebView.RegisterScrollEdgeReachedCallback(SwigCPtr, new HandleRef(this, ip));
             }
             remove
             {
                 scrollEdgeReachedEventHandler -= value;
-                if (scrollEdgeReachedEventHandler == null && scrollEdgeReachedCallback != null)
+            }
+        }
+
+        /// <summary>
+        /// Event for the NavigationPolicyDecided signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when response policy would be decided.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewPolicyDecidedEventArgs> NavigationPolicyDecided
+        {
+            add
+            {
+                if (navigationPolicyDecidedEventHandler == null)
                 {
-                    scrollEdgeReachedSignal.Disconnect(scrollEdgeReachedCallback);
+                    navigationPolicyDecidedCallback = OnNavigationPolicyDecided;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(navigationPolicyDecidedCallback);
+                    Interop.WebView.RegisterNavigationPolicyDecidedCallback(SwigCPtr, new HandleRef(this, ip));
                 }
+                navigationPolicyDecidedEventHandler += value;
+            }
+            remove
+            {
+                navigationPolicyDecidedEventHandler -= value;
             }
         }
 
