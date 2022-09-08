@@ -416,7 +416,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary> Bindable property of BorderlineColorSelector. Do not open it. </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty BorderlineColorSelectorProperty = BindableProperty.Create(nameof(BorderlineColor), typeof(Selector<Color>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty BorderlineColorSelectorProperty = BindableProperty.Create(nameof(BorderlineColorSelector), typeof(Selector<Color>), typeof(ViewStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var viewStyle = (ViewStyle)bindable;
 
