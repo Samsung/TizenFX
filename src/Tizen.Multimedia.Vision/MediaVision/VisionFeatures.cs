@@ -21,5 +21,6 @@ namespace Tizen.Multimedia
         internal const string RoiTracking = "http://tizen.org/feature/vision.roi_tracking";
         internal const string InferenceFace = "http://tizen.org/feature/vision.inference.face";
         internal const string InferenceImage = "http://tizen.org/feature/vision.inference.image";
+        internal const string FaceRecognition = "http://tizen.org/feature/vision.face_recognition";
     }
 }

@@ -156,12 +156,8 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_move_to_db")]
         internal static extern MediaContentError MoveToDB(MediaInfoHandle mediaInformationHandle, string dstPath);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_create_thumbnail")]
-        internal static extern MediaContentError CreateThumbnail(MediaInfoHandle handle,
-            ThumbnailCompletedCallback callback, IntPtr userData = default(IntPtr));
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_cancel_thumbnail")]
-        internal static extern MediaContentError CancelThumbnail(MediaInfoHandle mediaInformationHandle);
+        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_generate_thumbnail")]
+        internal static extern MediaContentError GenerateThumbnail(MediaInfoHandle handle);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_start_face_detection")]
         internal static extern MediaContentError StartFaceDetection(MediaInfoHandle handle,
