@@ -6229,6 +6229,21 @@
     "title": "Class Quadrangle",
     "keywords": ""
   },
+  "API10/api/Tizen.Multimedia.Vision.RoiTracker.html": {
+    "href": "API10/api/Tizen.Multimedia.Vision.RoiTracker.html",
+    "title": "Class RoiTracker",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Multimedia.Vision.RoiTrackerType.html": {
+    "href": "API10/api/Tizen.Multimedia.Vision.RoiTrackerType.html",
+    "title": "Enum RoiTrackerType",
+    "keywords": ""
+  },
+  "API10/api/Tizen.Multimedia.Vision.RoiTrackingConfiguration.html": {
+    "href": "API10/api/Tizen.Multimedia.Vision.RoiTrackingConfiguration.html",
+    "title": "Class RoiTrackingConfiguration",
+    "keywords": ""
+  },
   "API10/api/Tizen.Multimedia.Vision.SurveillanceEngine.html": {
     "href": "API10/api/Tizen.Multimedia.Vision.SurveillanceEngine.html",
     "title": "Class SurveillanceEngine",
