@@ -117,44 +117,20 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_SWIGUpcast")]
             public static extern global::System.IntPtr WebView_SWIGUpcast(global::System.IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WebViewPageLoadSignal_PageLoadStarted")]
-            public static extern global::System.IntPtr new_WebViewPageLoadSignal_PageLoadStarted(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterPageLoadStartedCallback")]
+            public static extern void RegisterPageLoadStartedCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WebViewPageLoadSignal_PageLoadFinished")]
-            public static extern global::System.IntPtr new_WebViewPageLoadSignal_PageLoadFinished(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterPageLoadFinishedCallback")]
+            public static extern void RegisterPageLoadFinishedCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebViewPageLoadSignal")]
-            public static extern void delete_WebViewPageLoadSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterPageLoadErrorCallback")]
+            public static extern void RegisterPageLoadErrorCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewPageLoadSignal_Connect")]
-            public static extern void WebViewPageLoadSignal_Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterScrollEdgeReachedCallback")]
+            public static extern void RegisterScrollEdgeReachedCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewPageLoadSignal_Disconnect")]
-            public static extern void WebViewPageLoadSignal_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WebViewPageLoadErrorSignal_PageLoadError")]
-            public static extern global::System.IntPtr new_WebViewPageLoadErrorSignal_PageLoadError(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebViewPageLoadErrorSignal")]
-            public static extern void delete_WebViewPageLoadErrorSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewPageLoadErrorSignal_Connect")]
-            public static extern void WebViewPageLoadErrorSignal_Connect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewPageLoadErrorSignal_Disconnect")]
-            public static extern void WebViewPageLoadErrorSignal_Disconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_WebViewScrollEdgeReachedSignal_ScrollEdgeReached")]
-            public static extern global::System.IntPtr NewWebViewScrollEdgeReachedSignalScrollEdgeReached(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_WebViewScrollEdgeReachedSignal")]
-            public static extern void DeleteWebViewScrollEdgeReachedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewScrollEdgeReachedSignal_Connect")]
-            public static extern void WebViewScrollEdgeReachedSignalConnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebViewScrollEdgeReachedSignal_Disconnect")]
-            public static extern void WebViewScrollEdgeReachedSignalDisconnect(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_RegisterNavigationPolicyDecidedCallback")]
+            public static extern void RegisterNavigationPolicyDecidedCallback(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_GetPlainTextAsynchronously")]
             public static extern void GetPlainTextAsynchronously(global::System.Runtime.InteropServices.HandleRef webViewRef, global::System.Runtime.InteropServices.HandleRef callbackRef);
