@@ -25,6 +25,6 @@ internal static partial class Interop
         public const string MediaVisionImage = "libmv_image.so";
         public const string MediaVisionSurveillance = "libmv_surveillance.so";
         public const string MediaVisionBarcodeDetector = "libmv_barcode_detector.so";
-        public const string MediaVisionBarcodeGenerator = "libmv_barcode_generator.so";        
+        public const string MediaVisionBarcodeGenerator = "libmv_barcode_generator.so";
     }
 }
