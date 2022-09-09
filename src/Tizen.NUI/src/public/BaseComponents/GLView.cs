@@ -24,6 +24,7 @@ namespace Tizen.NUI.BaseComponents
         /// Type of callback to initialize OpenGLES.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void GLInitializeDelegate();
 
         /// <summary>
@@ -32,12 +33,14 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <returns>The return value is not 0, the eglSwapBuffers() will be called.</returns>
         /// <since_tizen> 10 </since_tizen>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate int GLRenderFrameDelegate();
 
         /// <summary>
         /// Type of callback to clean up GL resource.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void GLTerminateDelegate();
 
         /// <summary>
@@ -46,6 +49,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="w">The resized width size of the GLView</param>
         /// <param name="h">The resized height size of the GLView</param>
         /// <since_tizen> 10 </since_tizen>
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void ViewResizeDelegate(int w, int h);
 
         internal GLView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

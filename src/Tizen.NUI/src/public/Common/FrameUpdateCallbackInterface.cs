@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -53,6 +54,7 @@ namespace Tizen.NUI
             return;
         }
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void DelegateFrameUpdateCallbackInterface(global::System.IntPtr proxy, float elapsedSeconds);
         private DelegateFrameUpdateCallbackInterface Delegate0;
 

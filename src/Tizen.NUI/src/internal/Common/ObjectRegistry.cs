@@ -65,12 +65,12 @@ namespace Tizen.NUI
             }
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ObjectCreatedEventCallbackDelegate(IntPtr baseHandle);
         private DaliEventHandler<object, ObjectCreatedEventArgs> objectRegistryObjectCreatedEventHandler;
         private ObjectCreatedEventCallbackDelegate objectRegistryObjectCreatedEventCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ObjectDestroyedEventCallbackDelegate(IntPtr fefObject);
         private DaliEventHandler<object, ObjectDestroyedEventArgs> objectRegistryObjectDestroyedEventHandler;
         private ObjectDestroyedEventCallbackDelegate objectRegistryObjectDestroyedEventCallbackDelegate;

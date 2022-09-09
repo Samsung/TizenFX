@@ -18,6 +18,7 @@
 using System;
 using System.ComponentModel;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -778,42 +779,79 @@ namespace Tizen.NUI
             SignalDisconnected((slotObserver == global::System.IntPtr.Zero) ? null : new SlotObserver(slotObserver, false), (callback == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_Dali__CallbackBase(callback));
         }
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_0(int depth);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_1();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_2(global::System.IntPtr child);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_3(global::System.IntPtr child);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_4(int index, global::System.IntPtr propertyValue);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_5(global::System.IntPtr targetSize);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_6(global::System.IntPtr animation, global::System.IntPtr targetSize);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate bool SwigDelegateViewImpl_9(global::System.IntPtr arg0);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_11(global::System.IntPtr size, global::System.IntPtr container);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_12(int policy, int dimension);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate global::System.IntPtr SwigDelegateViewImpl_13();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate float SwigDelegateViewImpl_14(global::System.IntPtr child, int dimension);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate float SwigDelegateViewImpl_15(float width);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate float SwigDelegateViewImpl_16(float height);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate bool SwigDelegateViewImpl_17(int dimension);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate bool SwigDelegateViewImpl_18();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_19(int dimension);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_20(float size, int dimension);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_21();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_22(global::System.IntPtr child);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_23(global::System.IntPtr child);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_24(global::System.IntPtr styleManager, int change);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate bool SwigDelegateViewImpl_25();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate bool SwigDelegateViewImpl_26(global::System.IntPtr gesture);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate bool SwigDelegateViewImpl_28(bool isIncrease);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate bool SwigDelegateViewImpl_29();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_30();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_31();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate global::System.IntPtr SwigDelegateViewImpl_32(global::System.IntPtr currentFocusedActor, int direction, bool loopEnabled);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_33(global::System.IntPtr commitedFocusableActor);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate bool SwigDelegateViewImpl_34();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_35(global::System.IntPtr pinch);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_36(global::System.IntPtr pan);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_37(global::System.IntPtr tap);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_38(global::System.IntPtr longPress);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_39(global::System.IntPtr slotObserver, global::System.IntPtr callback);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateViewImpl_40(global::System.IntPtr slotObserver, global::System.IntPtr callback);
 
         private SwigDelegateViewImpl_0 swigDelegate0;

@@ -28,6 +28,12 @@
         <ProjectReference Include="../../src/Tizen.NUI/Tizen.NUI.csproj" />
     </ItemGroup>
 
+    <ItemGroup Condition="'$(OS)'=='Windows_NT'">
+      <None Update="res\**\*.png;res\**\*.svg;res\**\*.jpg;res\**\*.json;res\**\*.tvg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
     <PropertyGroup>
         <XamlOptimization>2</XamlOptimization>
     </PropertyGroup>

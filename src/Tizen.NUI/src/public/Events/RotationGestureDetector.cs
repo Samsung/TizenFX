@@ -55,7 +55,7 @@ namespace Tizen.NUI
         }
 
         private DaliEventHandler<object, DetectedEventArgs> detectedEventHandler;
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void DetectedCallbackType(IntPtr actor, IntPtr rotationGesture);
         private DetectedCallbackType detectedCallback;
 

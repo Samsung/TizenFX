@@ -44,7 +44,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void StateChangedEventCallbackType(TTSState prevState, TTSState nextState);
         private event EventHandler<StateChangedEventArgs> stateChangedEventHandler;
 

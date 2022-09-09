@@ -50,13 +50,19 @@ namespace Tizen.NUI
         {
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ActivatedEventCallbackType(IntPtr data);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate IntPtr EventReceivedEventCallbackType(IntPtr inputMethodContext, IntPtr eventData);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void StatusChangedEventCallbackType(bool statusChanged);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ResizedEventCallbackType(int resized);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void LanguageChangedEventCallbackType(int languageChanged);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void KeyboardTypeChangedEventCallbackType(KeyboardType type);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void ContentReceivedCallbackType(string content, string description, string mimeType);
 
         private event EventHandler<ActivatedEventArgs> activatedEventHandler;

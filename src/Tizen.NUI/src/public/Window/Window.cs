@@ -1893,6 +1893,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="frameId">The Id to specify the frame. It will be passed when the callback is called.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void FrameCallbackType(int frameId);
 
         /// <summary>

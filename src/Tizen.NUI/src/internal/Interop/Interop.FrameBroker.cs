@@ -48,17 +48,17 @@ namespace Tizen.NUI
 
             [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void AppControlReplyCallback(IntPtr request, IntPtr reply, int result, IntPtr userData);
-
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void FrameContextCreateCallback(IntPtr context, IntPtr userData);
-
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void FrameContextResumeCallback(IntPtr context, IntPtr frame, IntPtr userData);
-
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void FrameContextPauseCallback(IntPtr context, IntPtr userData);
-
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void FrameContextDestroyCallback(IntPtr context, IntPtr userData);
-
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void FrameContextErrorCallback(IntPtr context, int error, IntPtr userData);
-
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void FrameContextUpdateCallback(IntPtr context, IntPtr frame, IntPtr userData);
 
             [StructLayout(LayoutKind.Sequential)]

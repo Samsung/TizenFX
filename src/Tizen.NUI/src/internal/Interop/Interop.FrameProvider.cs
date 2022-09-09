@@ -34,9 +34,9 @@ namespace Tizen.NUI
                 IoError = Tizen.Internals.Errors.ErrorCode.IoError,
                 OutOfMemory = Tizen.Internals.Errors.ErrorCode.OutOfMemory,
             }
-
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void ShowCallback(IntPtr handle, IntPtr userData);
-
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             internal delegate void HideCallback(IntPtr handle, IntPtr userData);
 
             [StructLayout(LayoutKind.Sequential)]

@@ -16,6 +16,7 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -23,6 +24,7 @@ namespace Tizen.NUI
     {
         private Dictionary<System.Type, string> widgetInfo;
         private List<Widget> widgetList = new List<Widget>();
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate System.IntPtr CreateWidgetFunctionDelegate(ref global::System.IntPtr widgetPtr);
         private List<CreateWidgetFunctionDelegate> createWidgetFunctionDelegateList = new List<CreateWidgetFunctionDelegate>();
 

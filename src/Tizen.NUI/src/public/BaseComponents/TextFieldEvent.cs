@@ -47,28 +47,28 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler textFieldSelectionStartedEventHandler;
         private SelectionStartedCallbackDelegate textFieldSelectionStartedCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void TextChangedCallbackDelegate(IntPtr textField);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void CursorPositionChangedCallbackDelegate(IntPtr textField, uint oldPosition);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void MaxLengthReachedCallbackDelegate(IntPtr textField);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textField, IntPtr href, uint hrefLength);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void SelectionChangedCallbackDelegate(IntPtr textField, uint oldStart, uint oldEnd);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void InputFilteredCallbackDelegate(IntPtr textField, InputFilterType type);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void SelectionClearedCallbackDelegate(IntPtr textField);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void SelectionStartedCallbackDelegate(IntPtr textField);
 
         private bool invokeTextChanged = true;

@@ -16,11 +16,13 @@
  */
 
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
     internal class EventThreadCallback : Disposable
     {
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void CallbackDelegate();
 
         internal EventThreadCallback(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)

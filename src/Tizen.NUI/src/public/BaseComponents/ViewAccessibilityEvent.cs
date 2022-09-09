@@ -231,7 +231,7 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
         // ***************** AccessiblityDoGestureSignal ****************//
         ///////////////////////////////////////////////////////////////////
-
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void GestureInfoHandlerType(IntPtr data);
         private GestureInfoHandlerType gestureInfoCallback;
         private EventHandler<GestureInfoEventArgs> gestureInfoHandler;
@@ -299,7 +299,7 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
         // ************** AccessiblityGetDescriptionSignal ************* //
         ///////////////////////////////////////////////////////////////////
-
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void GetDescriptionHandlerType(IntPtr data);
         private GetDescriptionHandlerType getDescriptionCallback;
         private EventHandler<GetDescriptionEventArgs> getDescriptionHandler;
@@ -361,7 +361,7 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
         // ***************** AccessiblityGetNameSignal ***************** //
         ///////////////////////////////////////////////////////////////////
-
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void GetNameHandlerType(IntPtr data);
         private GetNameHandlerType getNameCallback;
         private EventHandler<GetNameEventArgs> getNameHandler;
@@ -423,7 +423,7 @@ namespace Tizen.NUI.BaseComponents
         ///////////////////////////////////////////////////////////////////
         // **************** AccessibilityActivatedSignal **************** //
         ///////////////////////////////////////////////////////////////////
-
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void VoidHandlerType();
         private VoidHandlerType activateCallback;
         private EventHandler activateHandler;

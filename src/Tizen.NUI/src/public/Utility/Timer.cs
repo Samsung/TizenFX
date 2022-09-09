@@ -74,7 +74,7 @@ namespace Tizen.NUI
             Tizen.Log.Debug("NUI", $"(0x{SwigCPtr.Handle:X})Timer() destructor!, disposed={disposed}");
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate bool TickCallbackDelegate();
 
         /// <summary>

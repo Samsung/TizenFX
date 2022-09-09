@@ -128,7 +128,7 @@ namespace Tizen.NUI
             }
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void TimeTickCallbackType(IntPtr application, IntPtr watchTime);
         private TimeTickCallbackType timeTickCallback;
         private DaliEventHandler<object, TimeTickEventArgs> timeTickEventHandler;
@@ -200,7 +200,7 @@ namespace Tizen.NUI
             }
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AmbientTickCallbackType(IntPtr application, IntPtr watchTime);
         private AmbientTickCallbackType ambientTickCallback;
         private DaliEventHandler<object, AmbientTickEventArgs> ambientTickEventHandler;
@@ -272,7 +272,7 @@ namespace Tizen.NUI
             }
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AmbientChangedCallbackType(IntPtr application, bool changed);
         private AmbientChangedCallbackType ambientChangedCallback;
         private DaliEventHandler<object, AmbientChangedEventArgs> ambientChangedEventHandler;

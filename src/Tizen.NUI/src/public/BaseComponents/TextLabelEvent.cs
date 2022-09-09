@@ -35,10 +35,10 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler textLabelTextFitChangedEventHandler;
         private TextFitChangedCallbackDelegate textLabelTextFitChangedCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void AnchorClickedCallbackDelegate(IntPtr textLabel, IntPtr href, uint hrefLength);
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void TextFitChangedCallbackDelegate(IntPtr textLabel);
 
         /// <summary>

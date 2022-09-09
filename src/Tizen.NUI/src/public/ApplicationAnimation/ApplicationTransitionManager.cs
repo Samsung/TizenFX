@@ -16,6 +16,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 using Tizen.Applications;
 using Tizen.NUI.BaseComponents;
 
@@ -206,6 +207,7 @@ namespace Tizen.NUI
         /// AnimationEventHandler for FrameBroker animation
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void AnimationEventHandler(bool direction);
 
         /// <summary>

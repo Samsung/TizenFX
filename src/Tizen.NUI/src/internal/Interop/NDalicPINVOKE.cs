@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -26,8 +27,10 @@ namespace Tizen.NUI
         protected class SWIGExceptionHelper
         {
             /// <since_tizen> 3 </since_tizen>
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate void ExceptionDelegate(string message);
             /// <since_tizen> 3 </since_tizen>
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate void ExceptionArgumentDelegate(string message, string paramName);
             static ExceptionDelegate applicationDelegate = new ExceptionDelegate(SetPendingApplicationException);
             static ExceptionDelegate arithmeticDelegate = new ExceptionDelegate(SetPendingArithmeticException);
@@ -206,6 +209,7 @@ namespace Tizen.NUI
         public class SWIGStringHelper
         {
             /// <since_tizen> 3 </since_tizen>
+            [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
             public delegate string SWIGStringDelegate(string message);
             static SWIGStringDelegate stringDelegate = new SWIGStringDelegate(CreateString);
 

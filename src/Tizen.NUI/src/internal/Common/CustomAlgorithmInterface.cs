@@ -16,6 +16,7 @@
  */
 
 using System.Reflection;
+using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -79,6 +80,7 @@ namespace Tizen.NUI
             }
         }
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate global::System.IntPtr SwigDelegateCustomAlgorithmInterface_0(global::System.IntPtr current, global::System.IntPtr proposed, int direction, string deviceName);
 
         private SwigDelegateCustomAlgorithmInterface_0 swigDelegate0;

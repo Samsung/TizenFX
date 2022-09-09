@@ -82,7 +82,7 @@ namespace Tizen.NUI
             base.Dispose(type);
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void FinishedCallbackType(IntPtr application);
         private DaliEventHandler<object, EventArgs> finishedEventHandler;
         private FinishedCallbackType finishedCallback;

@@ -29,7 +29,7 @@ namespace Tizen.NUI
         private DaliEventHandler<object, SnapStartedEventArgs> scrollViewSnapStartedEventHandler;
         private SnapStartedCallbackDelegate scrollViewSnapStartedCallbackDelegate;
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void SnapStartedCallbackDelegate(IntPtr data);
 
         /// <summary>

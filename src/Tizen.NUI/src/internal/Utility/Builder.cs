@@ -37,7 +37,7 @@ namespace Tizen.NUI
         {
         }
 
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void QuitEventCallbackDelegate();
         private DaliEventHandler<object, QuitEventArgs> builderQuitEventHandler;
         private QuitEventCallbackDelegate builderQuitEventCallbackDelegate;

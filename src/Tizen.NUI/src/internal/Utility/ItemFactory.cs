@@ -17,6 +17,7 @@
 
 using System.ComponentModel;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
@@ -106,14 +107,17 @@ namespace Tizen.NUI
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate uint SwigDelegateItemFactory_0();
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate global::System.IntPtr SwigDelegateItemFactory_1(uint itemId);
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         public delegate void SwigDelegateItemFactory_2(uint itemId, global::System.IntPtr actor);
 
         private SwigDelegateItemFactory_0 swigDelegate0;
