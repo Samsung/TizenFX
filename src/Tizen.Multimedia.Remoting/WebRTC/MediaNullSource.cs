@@ -39,11 +39,35 @@ namespace Tizen.Multimedia.Remoting
         public MediaNullSource() : base() {}
 
         /// <summary>
+        /// Gets the transceiver codec for receiving media stream.
+        /// </summary>
+        /// <param name="type">The media type.</param>
+        /// <returns>The transceiver codec.</returns>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public TransceiverCodec GetTransceiverCodec(MediaType type)
+        {
+            if (!SourceId.HasValue)
+            {
+                throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+            }
+
+            NativeWebRTC.GetTransceiverCodec(WebRtc.Handle, SourceId.Value, type, out TransceiverCodec codec).
+                ThrowIfFailed("Failed to get transceiver codec");
+
+            return codec;
+        }
+
+        /// <summary>
         /// Sets the transceiver codec for receiving media stream.
         /// </summary>
         /// <remarks>
-        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state when transceiver codec is set.
+        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state when transceiver codec is set.<br/>
+        ///
         /// </remarks>
+        /// <param name="type">The media type.</param>
+        /// <param name="codec">The transceiver codec.</param>
         /// <exception cref="InvalidOperationException">
         ///     MediaSource is not attached yet.<br/>
         /// -or-<br/>
@@ -70,13 +94,14 @@ namespace Tizen.Multimedia.Remoting
         /// <remarks>
         /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>.
         /// </remarks>
-        /// <returns>The transceiver codecs.</returns>
+        /// <param name="type">The media type.</param>
+        /// <returns>The supported transceiver codecs.</returns>
         /// <exception cref="InvalidOperationException">This MediaSource is not supported type of MediaSource.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 10 </since_tizen>
         public ReadOnlyCollection<TransceiverCodec> GetSupportedTransceiverCodecs(MediaType type)
         {
-            return new ReadOnlyCollection<TransceiverCodec>(ForeachSupportedTransceiverCodecs(MediaType));
+            return new ReadOnlyCollection<TransceiverCodec>(ForeachSupportedTransceiverCodecs(type));
         }
 
         internal override void OnAttached(WebRTC webRtc)
