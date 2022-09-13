@@ -82,8 +82,9 @@ namespace Tizen.Multimedia.Remoting
         /// Gets or sets the transceiver direction of current media source.
         /// </summary>
         /// <remarks>
-        /// Both audio and video are set with same direction in <see cref="MediaFileSource"/> or <see cref="MediaNullSource"/> (Since API leve 10)<br/>
-        /// If you want to set each audio, video direction differently in <see cref="MediaFileSource"/> or <see cref="MediaNullSource"/>,
+        /// If user want to set each audio, video direction in <see cref="MediaFileSource"/>,
+        /// please use <see cref="MediaFileSource.SetTransceiverDirection"/>. (Since API leve 10)<br/>
+        /// In <see cref="MediaNullSource"/>, only <see cref="TransceiverDirection.SendRecv"/> can be set.(Since API leve 10)
         /// </remarks>
         /// <value>A <see cref="TransceiverDirection"/> that specifies the transceiver direction.</value>
         /// <exception cref="InvalidOperationException">
@@ -147,7 +148,8 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <remarks>
         /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>.<br/>
-        /// If <see cref="MediaNullSource"/>, please use <see cref="MediaNullSource.SetTransceiverCodec"/> instead.<br/>
+        /// If <see cref="MediaNullSource"/>, please use <see cref="MediaNullSource.GetTransceiverCodec"/>
+        /// or <see cref="MediaNullSource.SetTransceiverCodec"/> instead.<br/>
         /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state when transceiver codec is set.
         /// </remarks>
         /// <value>The transceiver codec.</value>
@@ -200,7 +202,9 @@ namespace Tizen.Multimedia.Remoting
         /// Retrieves the supported transceiver codecs.
         /// </summary>
         /// <remarks>
-        /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>.
+        /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>.<br/>
+        /// If user want to get supported codecs for each audio or video in<see cref="MediaNullSource"/>,
+        /// please use <see cref="MediaNullSource.GetSupportedTransceiverCodecs"/> instead.
         /// </remarks>
         /// <returns>The transceiver codecs.</returns>
         /// <exception cref="InvalidOperationException">This MediaSource is not supported type of MediaSource.</exception>
@@ -270,6 +274,8 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets or sets the pause status of current media source.
         /// </summary>
+        /// If <see cref="MediaFileSource"/>, please use <see cref="MediaFileSource.GetPause"/>
+        /// or <see cref="MediaFileSource.SetPause"/> instead.<br/> (Since API leve 10)
         /// <value>A value that specifies the pause status.</value>
         /// <exception cref="InvalidOperationException">
         ///     MediaSource is not attached yet.<br/>
@@ -286,7 +292,7 @@ namespace Tizen.Multimedia.Remoting
                 {
                     throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
                 }
-                if (this is MediaNullSource)
+                if (this is MediaFileSource || this is MediaNullSource)
                 {
                     throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
                 }
@@ -302,7 +308,7 @@ namespace Tizen.Multimedia.Remoting
                 {
                     throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
                 }
-                if (this is MediaNullSource)
+                if (this is MediaFileSource || this is MediaNullSource)
                 {
                     throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
                 }
@@ -315,6 +321,9 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets or sets the mute status of the current media source.
         /// </summary>
+        /// <remarks>
+        /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>, <see cref="MediaNullSource"/>. (Since API leve 10)
+        /// </remarks>
         /// <value>A value that specifies the mute status.</value>
         /// <exception cref="InvalidOperationException">
         ///     MediaSource is not attached yet.<br/>
@@ -331,7 +340,7 @@ namespace Tizen.Multimedia.Remoting
                 {
                     throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
                 }
-                if (this is MediaNullSource)
+                if (this is MediaFileSource || this is MediaPacketSource || this is MediaNullSource)
                 {
                     throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
                 }
@@ -347,7 +356,7 @@ namespace Tizen.Multimedia.Remoting
                 {
                     throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
                 }
-                if (this is MediaNullSource)
+                if (this is MediaFileSource || this is MediaPacketSource || this is MediaNullSource)
                 {
                     throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
                 }
@@ -480,7 +489,7 @@ namespace Tizen.Multimedia.Remoting
         /// Gets or sets the encoder bitrate of the current media source.
         /// </summary>
         /// <remarks>
-        /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>.<br/>
+        /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>.
         /// </remarks>
         /// <value>A value that specifies the encoder bitrate.</value>
         /// <exception cref="ArgumentException">EncoderBitrate is less than or equal to zero.</exception>
