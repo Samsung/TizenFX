@@ -50,6 +50,12 @@ namespace Tizen.Multimedia.Remoting
             MediaType = mediaType;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MediaSource"/> class.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        protected MediaSource() { }
+
         internal void AttachTo(WebRTC webRtc)
         {
             if (IsDetached)
@@ -70,11 +76,21 @@ namespace Tizen.Multimedia.Remoting
 
         internal abstract void OnDetached(WebRTC webRtc);
 
+        internal virtual MediaSourceType MediaSourceType => MediaSourceType.Null;
+
         /// <summary>
         /// Gets or sets the transceiver direction of current media source.
         /// </summary>
+        /// <remarks>
+        /// Both audio and video are set with same direction in <see cref="MediaFileSource"/> or <see cref="MediaNullSource"/> (Since API leve 10)<br/>
+        /// If you want to set each audio, video direction differently in <see cref="MediaFileSource"/> or <see cref="MediaNullSource"/>,
+        /// </remarks>
         /// <value>A <see cref="TransceiverDirection"/> that specifies the transceiver direction.</value>
-        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     MediaSource is not attached yet.<br/>
+        /// -or-<br/>
+        ///     <see cref="TransceiverDirection.SendOnly"/> or <see cref="TransceiverDirection.SendRecv"/> is set for MediaNullSource. (Since API leve 10)
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
         public TransceiverDirection TransceiverDirection
@@ -84,6 +100,10 @@ namespace Tizen.Multimedia.Remoting
                 if (!SourceId.HasValue)
                 {
                     throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+                if (this is MediaNullSource)
+                {
+                    return TransceiverDirection.RecvOnly;
                 }
 
                 NativeWebRTC.GetTransceiverDirection(WebRtc.Handle, SourceId.Value, MediaType, out TransceiverDirection mode).
@@ -97,9 +117,28 @@ namespace Tizen.Multimedia.Remoting
                 {
                     throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
                 }
+                if (this is MediaNullSource)
+                {
+                    if (value != TransceiverDirection.RecvOnly)
+                    {
+                        throw new InvalidOperationException("Only RecvOnly is allowed for MediaNullSource.");
+                    }
 
-                NativeWebRTC.SetTransceiverDirection(WebRtc.Handle, SourceId.Value, MediaType, value).
-                    ThrowIfFailed("Failed to get transceiver direction.");
+                    return;
+                }
+
+                if (this is MediaNullSource || this is MediaFileSource)
+                {
+                    NativeWebRTC.SetTransceiverDirection(WebRtc.Handle, SourceId.Value, MediaType.Audio, value).
+                        ThrowIfFailed("Failed to set audio transceiver direction.");
+                    NativeWebRTC.SetTransceiverDirection(WebRtc.Handle, SourceId.Value, MediaType.Video, value).
+                        ThrowIfFailed("Failed to set video transceiver direction.");
+                }
+                else
+                {
+                    NativeWebRTC.SetTransceiverDirection(WebRtc.Handle, SourceId.Value, MediaType, value).
+                        ThrowIfFailed("Failed to set transceiver direction.");
+                }
             }
         }
 
@@ -108,6 +147,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <remarks>
         /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>.<br/>
+        /// If <see cref="MediaNullSource"/>, please use <see cref="MediaNullSource.SetTransceiverCodec"/> instead.<br/>
         /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state when transceiver codec is set.
         /// </remarks>
         /// <value>The transceiver codec.</value>
@@ -128,7 +168,7 @@ namespace Tizen.Multimedia.Remoting
                 {
                     throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
                 }
-                if (this is MediaFileSource || this is MediaPacketSource)
+                if (this is MediaFileSource || this is MediaPacketSource || this is MediaNullSource)
                 {
                     throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
                 }
@@ -144,7 +184,7 @@ namespace Tizen.Multimedia.Remoting
                 {
                     throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
                 }
-                if (this is MediaFileSource || this is MediaPacketSource)
+                if (this is MediaFileSource || this is MediaPacketSource || this is MediaNullSource)
                 {
                     throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
                 }
@@ -174,82 +214,68 @@ namespace Tizen.Multimedia.Remoting
                 {
                     throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
                 }
-
-                var codecs = new List<TransceiverCodec>();
-                Exception caught = null;
-
-                NativeWebRTC.RetrieveTransceiverCodecCallback cb = (codec, _) =>
+                if (this is MediaNullSource)
                 {
-                    try
-                    {
-                        codecs.Add(codec);
-                    }
-                    catch (Exception e)
-                    {
-                        caught = e;
-                        return false;
-                    }
+                    var codecs = ForeachSupportedTransceiverCodecs(MediaType.Audio);
+                    codecs.AddRange(ForeachSupportedTransceiverCodecs(MediaType.Video));
 
-                    return true;
-                };
-
-                using (var cbKeeper = ObjectKeeper.Get(cb))
-                {
-                    NativeWebRTC.ForeachSupportedTransceiverCodec(WebRtc.Handle, GetMediaSourceType(), MediaType, cb).
-                        ThrowIfFailed("failed to retrieve stats");
-
-                    if (caught != null)
-                    {
-                        throw caught;
-                    }
+                    return new ReadOnlyCollection<TransceiverCodec>(codecs);
                 }
 
-                return new ReadOnlyCollection<TransceiverCodec>(codecs);
+                return new ReadOnlyCollection<TransceiverCodec>(ForeachSupportedTransceiverCodecs(MediaType));
             }
         }
 
-        private MediaSourceType GetMediaSourceType()
+        internal List<TransceiverCodec> ForeachSupportedTransceiverCodecs(MediaType type)
         {
-            if (this is MediaTestSource)
+            var codecs = new List<TransceiverCodec>();
+            Exception caught = null;
+
+            NativeWebRTC.RetrieveTransceiverCodecCallback cb = (codec, _) =>
             {
-                if (MediaType == MediaType.Audio)
+                try
                 {
-                    return MediaSourceType.AudioTest;
+                    codecs.Add(codec);
                 }
-                else
+                catch (Exception e)
                 {
-                    return MediaSourceType.VideoTest;
+                    caught = e;
+                    return false;
                 }
-            }
-            else if (this is MediaMicrophoneSource)
+
+                return true;
+            };
+
+            using (var cbKeeper = ObjectKeeper.Get(cb))
             {
-                return MediaSourceType.Microphone;
-            }
-            else if (this is MediaCameraSource)
-            {
-                return MediaSourceType.Camera;
-            }
-            else if (this is MediaScreenSource)
-            {
-                return MediaSourceType.Screen;
-            }
-            else if (this is MediaFileSource)
-            {
-                return MediaSourceType.File;
-            }
-            else if (this is MediaPacketSource)
-            {
-                return MediaSourceType.MediaPacket;
+                try
+                {
+                    NativeWebRTC.ForeachSupportedTransceiverCodec(WebRtc.Handle, MediaSourceType.Null, type, cb).
+                        ThrowIfFailed("failed to retrieve stats");
+                }
+                catch
+                {
+                    Log.Info(WebRTCLog.Tag, "This is not error in csharp.");
+                }
+
+                if (caught != null)
+                {
+                    throw caught;
+                }
             }
 
-            return MediaSourceType.Null;
+            return codecs;
         }
 
         /// <summary>
         /// Gets or sets the pause status of current media source.
         /// </summary>
         /// <value>A value that specifies the pause status.</value>
-        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     MediaSource is not attached yet.<br/>
+        /// -or-<br/>
+        ///     This MediaSource is not supported type of MediaSource. (Since API leve 10)
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
         public bool Pause
@@ -259,6 +285,10 @@ namespace Tizen.Multimedia.Remoting
                 if (!SourceId.HasValue)
                 {
                     throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+                if (this is MediaNullSource)
+                {
+                    throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
                 }
 
                 NativeWebRTC.GetPause(WebRtc.Handle, SourceId.Value, MediaType, out bool isPaused).
@@ -272,6 +302,10 @@ namespace Tizen.Multimedia.Remoting
                 {
                     throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
                 }
+                if (this is MediaNullSource)
+                {
+                    throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
+                }
 
                 NativeWebRTC.SetPause(WebRtc.Handle, SourceId.Value, MediaType, value).
                     ThrowIfFailed("Failed to set pause");
@@ -282,7 +316,11 @@ namespace Tizen.Multimedia.Remoting
         /// Gets or sets the mute status of the current media source.
         /// </summary>
         /// <value>A value that specifies the mute status.</value>
-        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="InvalidOperationException">
+        ///     MediaSource is not attached yet.<br/>
+        /// -or-<br/>
+        ///     This MediaSource is not supported type of MediaSource. (Since API leve 10)
+        /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
         public bool Mute
@@ -292,6 +330,10 @@ namespace Tizen.Multimedia.Remoting
                 if (!SourceId.HasValue)
                 {
                     throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+                if (this is MediaNullSource)
+                {
+                    throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
                 }
 
                 NativeWebRTC.GetMute(WebRtc.Handle, SourceId.Value, MediaType, out bool isMuted).
@@ -304,6 +346,10 @@ namespace Tizen.Multimedia.Remoting
                 if (!SourceId.HasValue)
                 {
                     throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+                if (this is MediaNullSource)
+                {
+                    throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
                 }
 
                 NativeWebRTC.SetMute(WebRtc.Handle, SourceId.Value, MediaType, value).
@@ -319,6 +365,8 @@ namespace Tizen.Multimedia.Remoting
         ///     MediaSource is not attached yet.<br/>
         /// -or-<br/>
         ///     This MediaSource is not Video.
+        /// -or-<br/>
+        ///     This MediaSource is not supported type of MediaSource.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
@@ -333,6 +381,10 @@ namespace Tizen.Multimedia.Remoting
                 if (MediaType != MediaType.Video)
                 {
                     throw new InvalidOperationException("This property is only for video.");
+                }
+                if (this is MediaFileSource || this is MediaPacketSource)
+                {
+                    throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
                 }
 
                 NativeWebRTC.GetVideoResolution(WebRtc.Handle, SourceId.Value, out int width, out int height).
@@ -349,6 +401,10 @@ namespace Tizen.Multimedia.Remoting
                 if (MediaType != MediaType.Video)
                 {
                     throw new InvalidOperationException("This property is only for video.");
+                }
+                if (this is MediaFileSource || this is MediaPacketSource)
+                {
+                    throw new InvalidOperationException($"This property is not supported in {this.GetType()}.");
                 }
 
                 NativeWebRTC.SetVideoResolution(WebRtc.Handle, SourceId.Value, value.Width, value.Height).
