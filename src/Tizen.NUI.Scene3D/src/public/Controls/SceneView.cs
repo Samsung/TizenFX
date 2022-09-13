@@ -161,6 +161,10 @@ namespace Tizen.NUI.Scene3D
         /// first camera in the list is set to selected Camera.
         /// </summary>
         /// <param name="camera"> camera Camera to be removed from this Camera.</param>
+        /// <remarks>
+        /// Camera.Dispose() don't automatically release memory. We should call this API if we want to release memory.
+        /// We cannot remove default camera. If we try to remove default camera, ignored.
+        /// </remarks>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveCamera(Camera camera)
@@ -194,7 +198,20 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Camera GetCamera(uint index)
         {
-            Camera camera = new Camera(Interop.SceneView.GetCamera(SwigCPtr, index), false);
+            global::System.IntPtr cPtr = Interop.SceneView.GetCamera(SwigCPtr, index);
+            Camera camera = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Camera;
+            if(camera == null)
+            {
+                // Register new camera into Registry.
+                camera = new Camera(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI camera. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Interop.Camera.DeleteCameraProperty(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return camera;
         }
@@ -208,7 +225,20 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Camera GetCamera(string name)
         {
-            Camera camera = new Camera(Interop.SceneView.GetCamera(SwigCPtr, name), false);
+            global::System.IntPtr cPtr = Interop.SceneView.GetCamera(SwigCPtr, name);
+            Camera camera = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Camera;
+            if(camera == null)
+            {
+                // Register new camera into Registry.
+                camera = new Camera(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI camera. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Interop.Camera.DeleteCameraProperty(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return camera;
         }
@@ -245,7 +275,20 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Camera GetSelectedCamera()
         {
-            Camera camera = new Camera(Interop.SceneView.GetSelectedCamera(SwigCPtr), false);
+            global::System.IntPtr cPtr = Interop.SceneView.GetSelectedCamera(SwigCPtr);
+            Camera camera = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Camera;
+            if(camera == null)
+            {
+                // Register new camera into Registry.
+                camera = new Camera(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI camera. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Interop.Camera.DeleteCameraProperty(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return camera;
         }
