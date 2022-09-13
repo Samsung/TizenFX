@@ -23,7 +23,7 @@ namespace Tizen.Multimedia.Remoting
 {
     /// <summary>Represents a null source.</summary>
     /// <remarks>
-    /// If WebRTC add this source, it only receives media stream.<br/>
+    /// If you add this source, WebRTC only receives media stream.<br/>
     /// <see cref="TransceiverDirection"/> is set <see cref="TransceiverDirection.RecvOnly"/> by default.
     /// </remarks>
     /// <seealso cref="WebRTC.AddSource"/>
@@ -93,9 +93,6 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Retrieves the supported transceiver codecs.
         /// </summary>
-        /// <remarks>
-        /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>.
-        /// </remarks>
         /// <param name="type">The media type.</param>
         /// <returns>The supported transceiver codecs.</returns>
         /// <exception cref="InvalidOperationException">This MediaSource is not supported type of MediaSource.</exception>

@@ -134,6 +134,7 @@ namespace Tizen.Multimedia.Remoting
         /// Gets the pause status of media file source.
         /// </summary>
         /// <param name="type">The media type.</param>
+        /// <returns>The pause status.</returns>
         /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 10 </since_tizen>

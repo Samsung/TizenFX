@@ -207,7 +207,7 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <remarks>
         /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>.<br/>
-        /// If user want to get supported codecs for each audio or video in<see cref="MediaNullSource"/>,
+        /// If user want to get supported codecs for each audio or video in <see cref="MediaNullSource"/>,
         /// please use <see cref="MediaNullSource.GetSupportedTransceiverCodecs"/> instead.
         /// </remarks>
         /// <returns>The transceiver codecs.</returns>
