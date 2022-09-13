@@ -83,14 +83,14 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <remarks>
         /// If user want to set each audio, video direction in <see cref="MediaFileSource"/>,
-        /// please use <see cref="MediaFileSource.SetTransceiverDirection"/>. (Since API leve 10)<br/>
-        /// In <see cref="MediaNullSource"/>, only <see cref="TransceiverDirection.SendRecv"/> can be set.(Since API leve 10)
+        /// please use <see cref="MediaFileSource.SetTransceiverDirection"/>. (Since API level 10)<br/>
+        /// In <see cref="MediaNullSource"/>, only <see cref="TransceiverDirection.SendRecv"/> can be set.(Since API level 10)
         /// </remarks>
         /// <value>A <see cref="TransceiverDirection"/> that specifies the transceiver direction.</value>
         /// <exception cref="InvalidOperationException">
         ///     MediaSource is not attached yet.<br/>
         /// -or-<br/>
-        ///     <see cref="TransceiverDirection.SendOnly"/> or <see cref="TransceiverDirection.SendRecv"/> is set for MediaNullSource. (Since API leve 10)
+        ///     <see cref="TransceiverDirection.SendOnly"/> or <see cref="TransceiverDirection.SendRecv"/> is set for MediaNullSource. (Since API level 10)
         /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="MediaFileSource.GetTransceiverDirection"/>
@@ -280,12 +280,12 @@ namespace Tizen.Multimedia.Remoting
         /// Gets or sets the pause status of current media source.
         /// </summary>
         /// If <see cref="MediaFileSource"/>, please use <see cref="MediaFileSource.GetPause"/>
-        /// or <see cref="MediaFileSource.SetPause"/> instead.<br/> (Since API leve 10)
+        /// or <see cref="MediaFileSource.SetPause"/> instead.<br/> (Since API level 10)
         /// <value>A value that specifies the pause status.</value>
         /// <exception cref="InvalidOperationException">
         ///     MediaSource is not attached yet.<br/>
         /// -or-<br/>
-        ///     This MediaSource is not supported type of MediaSource. (Since API leve 10)
+        ///     This MediaSource is not supported type of MediaSource. (Since API level 10)
         /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <seealso cref="MediaFileSource.GetPause"/>
@@ -329,13 +329,13 @@ namespace Tizen.Multimedia.Remoting
         /// Gets or sets the mute status of the current media source.
         /// </summary>
         /// <remarks>
-        /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>, <see cref="MediaNullSource"/>. (Since API leve 10)
+        /// This API is not supported in <see cref="MediaFileSource"/>, <see cref="MediaPacketSource"/>, <see cref="MediaNullSource"/>. (Since API level 10)
         /// </remarks>
         /// <value>A value that specifies the mute status.</value>
         /// <exception cref="InvalidOperationException">
         ///     MediaSource is not attached yet.<br/>
         /// -or-<br/>
-        ///     This MediaSource is not supported type of MediaSource. (Since API leve 10)
+        ///     This MediaSource is not supported type of MediaSource. (Since API level 10)
         /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 9 </since_tizen>
