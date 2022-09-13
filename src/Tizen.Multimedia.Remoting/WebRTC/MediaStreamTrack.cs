@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-using ElmSharp;
 using System;
 using System.Diagnostics;
 using static Interop;
@@ -103,7 +102,7 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
-        WebRTCErrorCode IDisplayable<WebRTCErrorCode>.ApplyEvasDisplay(DisplayType type, EvasObject evasObject)
+        WebRTCErrorCode IDisplayable<WebRTCErrorCode>.ApplyEvasDisplay(DisplayType type, ElmSharp.EvasObject evasObject)
         {
             Debug.Assert(Enum.IsDefined(typeof(DisplayType), type));
             Debug.Assert(type != DisplayType.None);
