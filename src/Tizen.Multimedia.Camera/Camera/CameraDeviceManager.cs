@@ -1,4 +1,3 @@
-using System.Linq;
 /*
  * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
  *
@@ -18,6 +17,7 @@ using System.Linq;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Native = Interop.CameraDeviceManager;
 
 namespace Tizen.Multimedia
@@ -28,9 +28,8 @@ namespace Tizen.Multimedia
     /// <remarks>
     /// This supports the product infrastructure and is not intended to be used directly from 3rd party application code.
     /// </remarks>
-    /// <since_tizen> 9 </since_tizen>
+    /// <since_tizen> 10 </since_tizen>
     /// <feature> http://tizen.org/feature/camera </feature>
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class CameraDeviceManager : IDisposable
     {
         private IntPtr _handle;
@@ -42,8 +41,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <exception cref="InvalidOperationException">Invalid operation.</exception>
         /// <exception cref="NotSupportedException">The camera device manager is not supported.</exception>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public CameraDeviceManager()
         {
             Native.Initialize(out _handle).ThrowIfFailed("Failed to initialize CameraDeviceManager");
@@ -52,7 +50,6 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Finalizes an instance of the Camera class.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
         ~CameraDeviceManager()
         {
             Dispose(false);
@@ -61,74 +58,80 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the status whether camera device(usb, network) is connected or not.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <returns>true if usb or network camera is connected.</returns>
+        /// <exception cref="ObjectDisposedException">The CameraDeviceManager already has been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
         public bool IsExternalCameraConnected =>
-            GetDeviceInformation().Where(d => d.Type == CameraDeviceType.Usb ||
-                                              d.Type == CameraDeviceType.Network)
-                                  .Any();
+            SupportedDevices.Where(d => d.Type == CameraDeviceType.Usb ||
+                                        d.Type == CameraDeviceType.Network)
+                            .Any();
 
         /// <summary>
-        /// Gets the current camera device information.
+        /// Retrieves all the supported camera devices and returns its information.
         /// </summary>
-        /// <returns></returns>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public IEnumerable<CameraDeviceInformation> GetDeviceInformation()
-        {
-            var deviceList = new Native.CameraDeviceListStruct();
-
-            Native.GetDeviceList(Handle, ref deviceList).
-                ThrowIfFailed("Failed to get camera device list");
-
-            return GetDeviceInformation(deviceList);
-        }
-
-        internal static bool IsSupported
+        /// <returns>
+        /// if camera device exist, returns list of <see cref="CameraDeviceInformation"/>; otherwise returns Enumerable.Empty.
+        /// </returns>
+        /// <exception cref="ArgumentException">Invalid enumeration.</exception>
+        /// <exception cref="ArgumentNullException">name or id is null.</exception>
+        /// <exception cref="ObjectDisposedException">The CameraDeviceManager already has been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public IEnumerable<CameraDeviceInformation> SupportedDevices
         {
             get
             {
-                try
+                var deviceList = new List<CameraDeviceInformation>();
+
+                Exception caught = null;
+
+                Native.SupportedDeviceCallback callback = (ref Native.CameraDeviceStruct supportedDevice, IntPtr userData) =>
                 {
-                    using (var cameraDeviceManager = new CameraDeviceManager())
+                    try
                     {
+                        var deviceInfo = new CameraDeviceInformation(supportedDevice.type, supportedDevice.device, supportedDevice.name,
+                            supportedDevice.id, supportedDevice.extraStreamNum);
+                        Log.Debug(CameraLog.Tag, deviceInfo.ToString());
+
+                        deviceList.Add(deviceInfo);
                         return true;
                     }
-                }
-                catch (NotSupportedException)
+                    catch (Exception e)
+                    {
+                        caught = e;
+                        return false;
+                    }
+                };
+
+                Native.SupportedDevices(Handle, callback, IntPtr.Zero).
+                    ThrowIfFailed("failed to get supported devices");
+
+                if (caught != null)
                 {
-                    Log.Info(CameraLog.Tag,
-                        $"CameraDeviceManager is not supported. Not error.");
+                    throw caught;
                 }
-                return false;
+
+                return deviceList.Any() ? deviceList.AsReadOnly() : Enumerable.Empty<CameraDeviceInformation>();
             }
         }
 
-        internal static IEnumerable<CameraDeviceInformation> GetDeviceInformation(Native.CameraDeviceListStruct list)
-        {
-            if (list.count == 0)
-            {
-                return Enumerable.Empty<CameraDeviceInformation>();
-            }
-
-            var deviceList = new List<CameraDeviceInformation>();
-
-            for (int i = 0 ; i < list.count ; i++)
-            {
-                deviceList.Add(GetDeviceInformation(list.device[i]));
-            }
-
-            return deviceList.AsReadOnly();
-        }
-
-        internal static CameraDeviceInformation GetDeviceInformation(Native.CameraDeviceStruct device) =>
-            new CameraDeviceInformation(device.Type, device.device, device.name, device.id, device.extraStreamNum);
+        /// <summary>
+        /// Gets the current camera device information.
+        /// Retrieves all the supported camera devices and returns its information.
+        /// </summary>
+        /// <remarks>This method is only for backward compatibility. Please use SupportedDevices instead.</remarks>
+        /// <returns>
+        /// if camera device exist, returns list of <see cref="CameraDeviceInformation"/>; otherwise returns Enumerable.Empty.
+        /// </returns>
+        /// <see also="WebRTCState"/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public IEnumerable<CameraDeviceInformation> GetDeviceInformation() => SupportedDevices;
 
         private event EventHandler<CameraDeviceConnectionChangedEventArgs> _deviceConnectionChanged;
         /// <summary>
         /// An event that occurs when camera device is connected or disconnected.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <exception cref="ObjectDisposedException">The CameraDeviceManager already has been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
         public event EventHandler<CameraDeviceConnectionChangedEventArgs> DeviceConnectionChanged
         {
             add
@@ -163,10 +166,13 @@ namespace Tizen.Multimedia
         private int _connectionCallbackId = -1;
         private void RegisterDeviceConnectionChangedCallback()
         {
-            _deviceConnectionChangedCallback = (ref Native.CameraDeviceStruct device, bool status, IntPtr userData) =>
+            _deviceConnectionChangedCallback = (ref Native.CameraDeviceStruct supportedDevice, bool isConnected, IntPtr userData) =>
             {
-                Log.Debug(CameraLog.Tag, "Invoke DeviceConnectionChanged event");
-                _deviceConnectionChanged?.Invoke(this, new CameraDeviceConnectionChangedEventArgs(ref device, status));
+                var deviceInfo = new CameraDeviceInformation(supportedDevice.type, supportedDevice.device, supportedDevice.name,
+                    supportedDevice.id, supportedDevice.extraStreamNum);
+                Log.Debug(CameraLog.Tag, deviceInfo.ToString());
+
+                _deviceConnectionChanged?.Invoke(this, new CameraDeviceConnectionChangedEventArgs(deviceInfo, isConnected));
             };
 
             Native.SetDeviceConnectionChangedCallback(Handle, _deviceConnectionChangedCallback, IntPtr.Zero, out _connectionCallbackId).
@@ -191,8 +197,7 @@ namespace Tizen.Multimedia
         /// Releases the unmanaged resources used by the camera.
         /// </summary>
         /// <param name="disposing">true to release both managed and unmanaged resources; false to release only unmanaged resources.</param>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -219,8 +224,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Releases all resources used by the camera.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public void Dispose()
         {
             Dispose(true);
@@ -241,22 +245,20 @@ namespace Tizen.Multimedia
     /// <summary>
     /// Provides the ability to get camera device information.
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 10 </since_tizen>
     public struct CameraDeviceInformation
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="CameraDeviceInformation"/> class.
         /// </summary>
-        /// <param name="type"><see cref="CameraDeviceType"/></param>
-        /// <param name="device"><see cref="CameraDevice"/></param>
+        /// <param name="type">The camera type</param>
+        /// <param name="device">The camera device</param>
         /// <param name="name">The name of camera device</param>
         /// <param name="id">The ID of camera device</param>
-        /// <param name="numberOfExtraStream">The number of extra stream</param>
+        /// <param name="numberOfExtraStream">The number of extra streams</param>
         /// <exception cref="ArgumentException">Invalid enumeration.</exception>
         /// <exception cref="ArgumentNullException">name or id is null.</exception>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         internal CameraDeviceInformation(CameraDeviceType type, CameraDevice device, string name, string id, int numberOfExtraStream)
         {
             ValidationUtil.ValidateEnum(typeof(CameraDeviceType), type, nameof(type));
@@ -275,48 +277,42 @@ namespace Tizen.Multimedia
         /// Gets the camera device type.
         /// </summary>
         /// <value><see cref="CameraDeviceType"/></value>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public CameraDeviceType Type { get; }
 
         /// <summary>
         /// Gets the <see cref="CameraDevice"/>.
         /// </summary>
         /// <value><see cref="CameraDevice"/></value>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public CameraDevice Device { get; }
 
         /// <summary>
         /// Gets the camera device name.
         /// </summary>
         /// <value>The camera device name</value>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public string Name { get; }
 
         /// <summary>
-        /// Gets the camera device Id.
+        /// Gets the camera device ID.
         /// </summary>
-        /// <value>The camera device id.</value>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <value>The camera device ID.</value>
+        /// <since_tizen> 10 </since_tizen>
         public string Id { get; }
 
         /// <summary>
-        /// Gets the number of extra stream.
+        /// Gets the number of extra streams.
         /// </summary>
-        /// <value>The number of extra stream.</value>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <value>The number of extra streams.</value>
+        /// <since_tizen> 10 </since_tizen>
         public int NumberOfExtraStream { get; }
 
         /// <summary>
         /// Returns a string that represents the current object.
         /// </summary>
         /// <returns>A string that represents the current object.</returns>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public override string ToString() =>
             $"Type:{Type.ToString()}, Device:{Device.ToString()}, Name:{Name}, Id:{Id}, NumberOfExtraStream:{NumberOfExtraStream}";
     }

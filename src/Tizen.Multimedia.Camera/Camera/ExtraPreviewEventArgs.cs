@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Samsung Electronics Co., Ltd All Rights Reserved
+ * Copyright (c) 2022 Samsung Electronics Co., Ltd All Rights Reserved
  *
  * Licensed under the Apache License, Version 2.0 (the License);
  * you may not use this file except in compliance with the License.
@@ -15,15 +15,13 @@
  */
 
 using System;
-using System.ComponentModel;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
     /// Provides data for the <see cref="Camera.ExtraPreview"/> event.
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 10 </since_tizen>
     public class ExtraPreviewEventArgs : EventArgs
     {
         internal ExtraPreviewEventArgs(PreviewFrame preview, int streadId)
@@ -35,15 +33,13 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Gets the preview frame data.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public PreviewFrame Preview { get; }
 
         /// <summary>
         /// Gets the stream ID.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public int StreamId { get; }
     }
 }

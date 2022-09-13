@@ -74,21 +74,25 @@ internal static partial class Interop
         internal delegate bool PtzTypeCallback(CameraPtzType type, IntPtr userData);
 
 
-        [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_continuous_capture")]
-        [return: MarshalAs(UnmanagedType.I1)]
-        internal static extern bool IsContinuousCaptureSupported(IntPtr handle);
-
         [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_face_detection")]
         [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool IsFaceDetectionSupported(IntPtr handle);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_media_packet_preview_cb")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        internal static extern bool IsMediaPacketPreviewCallbackSupported(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_zero_shutter_lag")]
         [return: MarshalAs(UnmanagedType.I1)]
         internal static extern bool IsZeroShutterLagSupported(IntPtr handle);
 
-        [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_media_packet_preview_cb")]
+        [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_continuous_capture")]
         [return: MarshalAs(UnmanagedType.I1)]
-        internal static extern bool IsMediaPacketPreviewCallbackSupported(IntPtr handle);
+        internal static extern bool IsContinuousCaptureSupported(IntPtr handle);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_is_supported_extra_preview")]
+        [return: MarshalAs(UnmanagedType.I1)]
+        internal static extern bool IsExtraPreviewSupported(IntPtr handle);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_is_supported_hdr_capture")]
         [return: MarshalAs(UnmanagedType.I1)]

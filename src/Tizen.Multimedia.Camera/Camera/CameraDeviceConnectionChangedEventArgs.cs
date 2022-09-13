@@ -15,38 +15,31 @@
  */
 
 using System;
-using System.ComponentModel;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using static Interop.CameraDeviceManager;
 
 namespace Tizen.Multimedia
 {
     /// <summary>
     /// Provides data for the <see cref="CameraDeviceManager.DeviceConnectionChanged"/> event.
     /// </summary>
-    /// <since_tizen> 9 </since_tizen>
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 10 </since_tizen>
     public class CameraDeviceConnectionChangedEventArgs : EventArgs
     {
-        internal CameraDeviceConnectionChangedEventArgs(ref CameraDeviceStruct device, bool status)
+        internal CameraDeviceConnectionChangedEventArgs(CameraDeviceInformation deviceInfo, bool status)
         {
-            CameraDeviceInformation = CameraDeviceManager.GetDeviceInformation(device);
+            CameraDeviceInformation = deviceInfo;
             IsConnected = status;
         }
 
         /// <summary>
         /// Gets the camera device information.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public CameraDeviceInformation CameraDeviceInformation { get; }
 
         /// <summary>
-        /// Gets the status of camera device.
+        /// Gets the connection status of camera device.
         /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public bool IsConnected { get; }
     }
 }
