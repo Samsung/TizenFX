@@ -49,6 +49,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="InvalidOperationException">An internal error occurs.</exception>
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        [Obsolete("Deprecated since API10; Will be removed in API12. Please use Extract instead")]
         public static Task<ThumbnailExtractionResult> ExtractAsync(string path)
         {
             return RunExtractAsync(path, null, CancellationToken.None);
@@ -67,6 +68,7 @@ namespace Tizen.Multimedia.Util
         /// <exception cref="UnauthorizedAccessException">The caller does not have required privilege for accessing the <paramref name="path"/>.</exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10; Will be removed in API12. Please use Extract instead")]
         public static Task<ThumbnailExtractionResult> ExtractAsync(string path, CancellationToken cancellationToken)
         {
             return RunExtractAsync(path, null, cancellationToken);
@@ -91,6 +93,7 @@ namespace Tizen.Multimedia.Util
         ///     The width or the height of <paramref name="size"/> is less than or equal to zero.
         /// </exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        [Obsolete("Deprecated since API10; Will be removed in API12. Please use Extract instead")]
         public static Task<ThumbnailExtractionResult> ExtractAsync(string path, Size size)
         {
             return RunExtractAsync(path, size, CancellationToken.None);
@@ -116,6 +119,7 @@ namespace Tizen.Multimedia.Util
         ///     The width or the height of <paramref name="size"/> is less than or equal to zero.
         /// </exception>
         /// <exception cref="FileFormatException">The specified file is not supported.</exception>
+        [Obsolete("Deprecated since API10; Will be removed in API12. Please use Extract instead")]
         public static Task<ThumbnailExtractionResult> ExtractAsync(string path, Size size,
             CancellationToken cancellationToken)
         {
