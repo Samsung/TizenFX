@@ -93,6 +93,8 @@ namespace Tizen.Multimedia.Remoting
         ///     <see cref="TransceiverDirection.SendOnly"/> or <see cref="TransceiverDirection.SendRecv"/> is set for MediaNullSource. (Since API leve 10)
         /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="MediaFileSource.GetTransceiverDirection"/>
+        /// <seealso cref="MediaFileSource.SetTransceiverDirection"/>
         /// <since_tizen> 9 </since_tizen>
         public TransceiverDirection TransceiverDirection
         {
@@ -161,6 +163,8 @@ namespace Tizen.Multimedia.Remoting
         /// The WebRTC is not in the valid state.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="MediaNullSource.GetTransceiverCodec"/>
+        /// <seealso cref="MediaNullSource.SetTransceiverCodec"/>
         /// <since_tizen> 10 </since_tizen>
         public TransceiverCodec TransceiverCodec
         {
@@ -209,6 +213,7 @@ namespace Tizen.Multimedia.Remoting
         /// <returns>The transceiver codecs.</returns>
         /// <exception cref="InvalidOperationException">This MediaSource is not supported type of MediaSource.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="MediaNullSource.GetSupportedTransceiverCodecs"/>
         /// <since_tizen> 10 </since_tizen>
         public ReadOnlyCollection<TransceiverCodec> SupportedTransceiverCodecs
         {
@@ -283,6 +288,8 @@ namespace Tizen.Multimedia.Remoting
         ///     This MediaSource is not supported type of MediaSource. (Since API leve 10)
         /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="MediaFileSource.GetPause"/>
+        /// <seealso cref="MediaFileSource.SetPause"/>
         /// <since_tizen> 9 </since_tizen>
         public bool Pause
         {

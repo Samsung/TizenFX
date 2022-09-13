@@ -33,7 +33,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaNullSource"/> class.
         /// </summary>
-        /// <remarks>TransceiverCodec have to be set first.</remarks>
+        /// <remarks>TransceiverCodec should be set to receive audio, video stream.</remarks>
         /// <seealso cref="SetTransceiverCodec"/>
         /// <since_tizen> 10 </since_tizen>
         public MediaNullSource() : base() {}
@@ -45,6 +45,7 @@ namespace Tizen.Multimedia.Remoting
         /// <returns>The transceiver codec.</returns>
         /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="SetTransceiverCodec"/>
         /// <since_tizen> 10 </since_tizen>
         public TransceiverCodec GetTransceiverCodec(MediaType type)
         {
@@ -74,6 +75,7 @@ namespace Tizen.Multimedia.Remoting
         ///     The WebRTC is not in the valid state.
         /// </exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <seealso cref="GetTransceiverCodec"/>
         /// <since_tizen> 10 </since_tizen>
         public void SetTransceiverCodec(MediaType type, TransceiverCodec codec)
         {
