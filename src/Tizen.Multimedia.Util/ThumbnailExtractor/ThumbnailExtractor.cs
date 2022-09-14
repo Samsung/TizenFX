@@ -126,11 +126,6 @@ namespace Tizen.Multimedia.Util
                 throw new FileNotFoundException("File does not exists.", path);
             }
 
-            if (!CheckFileExtension(path))
-            {
-                throw new FileFormatException("Not supported file.");
-            }
-
             if (size.HasValue)
             {
                 if (size.Value.Width <= 0)
@@ -150,17 +145,6 @@ namespace Tizen.Multimedia.Util
                 Task.FromCanceled<ThumbnailExtractionResult>(cancellationToken) :
                 ExtractAsyncCore(path, size, cancellationToken);
         }
-
-        private static bool CheckFileExtension(string path)
-        {
-            if (path.Contains("."))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
 
         private static async Task<ThumbnailExtractionResult> ExtractAsyncCore(string path, Size? size,
             CancellationToken cancellationToken)
@@ -184,15 +168,22 @@ namespace Tizen.Multimedia.Util
 
             thumbTask = Task.Factory.StartNew( () =>
             {
-                var result = Extract(path, size.HasValue ? size.Value : new Size(320, 240));
-
-                if (result != null)
+                try
                 {
-                    tcs.TrySetResult(result);
+                    var result = Extract(path, size.HasValue ? size.Value : new Size(320, 240));
+                    if (result != null)
+                    {
+                        tcs.TrySetResult(result);
+                    }
+                    else
+                    {
+                        tcs.TrySetException(new InvalidOperationException("Failed to extract thumbnail"));
+                    }
                 }
-                else
+                catch (Exception e)
                 {
-                    tcs.TrySetException(new InvalidOperationException("Failed to extract thumbnail"));
+                    Log.Error("Tizen.Multimedia.Util", e.ToString());
+                    tcs.TrySetException(e);
                 }
             }, cancellationToken,
                 TaskCreationOptions.DenyChildAttach | TaskCreationOptions.LongRunning,
