@@ -16,10 +16,8 @@
 
 using System;
 using System.IO;
-using System.Runtime.InteropServices;
 using System.Threading;
 using System.Threading.Tasks;
-using Handle = Interop.ThumbnailExtractorHandle;
 using Native = Interop.ThumbnailExtractor;
 
 namespace Tizen.Multimedia.Util
@@ -30,13 +28,6 @@ namespace Tizen.Multimedia.Util
     /// <since_tizen> 4 </since_tizen>
     public static class ThumbnailExtractor
     {
-        private static Handle CreateHandle()
-        {
-            Native.Create(out var handle).ThrowIfError("Failed to extract.");
-
-            return handle;
-        }
-
         /// <summary>
         /// Extracts the thumbnail for the given media with the specified path.
         /// </summary>
@@ -130,7 +121,7 @@ namespace Tizen.Multimedia.Util
                 throw new ArgumentNullException(nameof(path));
             }
 
-            if (File.Exists(path) == false)
+            if (!File.Exists(path))
             {
                 throw new FileNotFoundException("File does not exists.", path);
             }
@@ -155,89 +146,50 @@ namespace Tizen.Multimedia.Util
                 ExtractAsyncCore(path, size, cancellationToken);
         }
 
-
         private static async Task<ThumbnailExtractionResult> ExtractAsyncCore(string path, Size? size,
             CancellationToken cancellationToken)
         {
-            using (var handle = CreateHandle())
+            var tcs = new TaskCompletionSource<ThumbnailExtractionResult>();
+
+            Task thumbTask = null;
+
+            if (cancellationToken.CanBeCanceled)
             {
-                Native.SetPath(handle, path).ThrowIfError("Failed to extract; failed to set the path.");
-
-                if (size.HasValue)
+                cancellationToken.Register(() =>
                 {
-                    Native.SetSize(handle, size.Value.Width, size.Value.Height).
-                        ThrowIfError("Failed to extract; failed to set the size");
-                }
+                    if (tcs.Task.IsCompleted)
+                    {
+                        return;
+                    }
 
-                var tcs = new TaskCompletionSource<ThumbnailExtractionResult>();
+                    tcs.TrySetCanceled();
+                });
+            }
 
-                IntPtr id = IntPtr.Zero;
-
+            thumbTask = Task.Factory.StartNew( () =>
+            {
                 try
                 {
-                    var cb = GetCallback(tcs);
-                    using (var cbKeeper = ObjectKeeper.Get(cb))
+                    var result = Extract(path, size.HasValue ? size.Value : new Size(320, 240));
+                    if (result != null)
                     {
-                        Native.Extract(handle, cb, IntPtr.Zero, out id)
-                            .ThrowIfError("Failed to extract.");
-
-                        using (RegisterCancellationToken(tcs, cancellationToken, handle, Marshal.PtrToStringAnsi(id)))
-                        {
-                            return await tcs.Task;
-                        }
+                        tcs.TrySetResult(result);
+                    }
+                    else
+                    {
+                        tcs.TrySetException(new InvalidOperationException("Failed to extract thumbnail"));
                     }
                 }
-                finally
+                catch (Exception e)
                 {
-                    LibcSupport.Free(id);
+                    Log.Error("Tizen.Multimedia.Util", e.ToString());
+                    tcs.TrySetException(e);
                 }
-            }
-        }
+            }, cancellationToken,
+                TaskCreationOptions.DenyChildAttach | TaskCreationOptions.LongRunning,
+                TaskScheduler.Default);
 
-        private static Native.ThumbnailExtractCallback GetCallback(TaskCompletionSource<ThumbnailExtractionResult> tcs)
-        {
-            return (error, requestId, thumbWidth, thumbHeight, thumbData, dataSize, _) =>
-            {
-                if (error == ThumbnailExtractorError.None)
-                {
-                    try
-                    {
-                        tcs.TrySetResult(new ThumbnailExtractionResult(thumbData, thumbWidth, thumbHeight, dataSize));
-                    }
-                    catch (Exception e)
-                    {
-                        tcs.TrySetException(new InvalidOperationException("[" + error + "] Failed to create ThumbnailExtractionResult instance.", e));
-                    }
-                    finally
-                    {
-                        LibcSupport.Free(thumbData);
-                    }
-                }
-                else
-                {
-                    tcs.TrySetException(error.ToException("Failed to extract."));
-                }
-            };
-        }
-
-        private static IDisposable RegisterCancellationToken(TaskCompletionSource<ThumbnailExtractionResult> tcs,
-            CancellationToken cancellationToken, Handle handle, string id)
-        {
-            if (cancellationToken.CanBeCanceled == false)
-            {
-                return null;
-            }
-
-            return cancellationToken.Register(() =>
-            {
-                if (tcs.Task.IsCompleted)
-                {
-                    return;
-                }
-
-                Native.Cancel(handle, id).ThrowIfError("Failed to cancel.");
-                tcs.TrySetCanceled();
-            });
+            return await tcs.Task;
         }
 
         /// <summary>
