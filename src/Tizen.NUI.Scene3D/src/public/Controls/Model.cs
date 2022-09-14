@@ -108,6 +108,24 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// Set/Get the ImageBasedLight ScaleFactor.
+        /// Scale factor controls light source intensity in [0.0f, 1.0f]
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ImageBasedLightScaleFactor
+        {
+            set
+            {
+                SetImageBasedLightScaleFactor(value);
+            }
+            get
+            {
+                return GetImageBasedLightScaleFactor();
+            }
+        }
+
+        /// <summary>
         /// Changes Image Based Light according to the given input textures.
         /// </summary>
         /// <param name="diffuseUrl">The path of Cube map image that will be used as a diffuse IBL source.</param>
@@ -180,6 +198,27 @@ namespace Tizen.NUI.Scene3D
             View ret = new View(Interop.Model.GetModelRoot(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Set the ImageBasedLight ScaleFactor.
+        /// </summary>
+        /// <param name="scaleFactor">Scale factor that controls light source intensity in [0.0f, 1.0f].</param>
+        private void SetImageBasedLightScaleFactor(float scaleFactor)
+        {
+            Interop.Model.SetImageBasedLightScaleFactor(SwigCPtr, scaleFactor);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get the ImageBasedLight ScaleFactor.
+        /// </summary>
+        /// <returns>ImageBasedLightScaleFactor that controls light source intensity.</returns>
+        private float GetImageBasedLightScaleFactor()
+        {
+            float scaleFactor = Interop.Model.GetImageBasedLightScaleFactor(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return scaleFactor;
         }
 
         /// <summary>

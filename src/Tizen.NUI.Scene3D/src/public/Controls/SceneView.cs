@@ -107,6 +107,24 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// Set/Get the ImageBasedLight ScaleFactor.
+        /// Scale factor controls light source intensity in [0.0f, 1.0f]
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ImageBasedLightScaleFactor
+        {
+            set
+            {
+                SetImageBasedLightScaleFactor(value);
+            }
+            get
+            {
+                return GetImageBasedLightScaleFactor();
+            }
+        }
+
+        /// <summary>
         /// Set/Get the UseFramebuffer.
         /// If this property is true, rendering result of SceneView is drawn on FBO and it is mapping on this SceneView plane.
         /// If this property is false, each item in SceneView is rendered on window directly.
@@ -318,6 +336,27 @@ namespace Tizen.NUI.Scene3D
             bool result = Interop.SceneView.IsUsingFramebuffer(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
+        }
+
+        /// <summary>
+        /// Set the ImageBasedLight ScaleFactor.
+        /// </summary>
+        /// <param name="scaleFactor">Scale factor that controls light source intensity in [0.0f, 1.0f].</param>
+        private void SetImageBasedLightScaleFactor(float scaleFactor)
+        {
+            Interop.SceneView.SetImageBasedLightScaleFactor(SwigCPtr, scaleFactor);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get the ImageBasedLight ScaleFactor.
+        /// </summary>
+        /// <returns>ImageBasedLightScaleFactor that controls light source intensity.</returns>
+        private float GetImageBasedLightScaleFactor()
+        {
+            float scaleFactor = Interop.SceneView.GetImageBasedLightScaleFactor(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return scaleFactor;
         }
 
         /// <summary>
