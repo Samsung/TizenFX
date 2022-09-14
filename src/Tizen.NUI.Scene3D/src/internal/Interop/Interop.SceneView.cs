@@ -66,6 +66,12 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_SetImageBasedLightSource")]
             public static extern void SetImageBasedLightSource(global::System.Runtime.InteropServices.HandleRef sceneView, string diffuseUrl, string specularUrl, float scaleFactor);
 
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_SetImageBasedLightScaleFactor")]
+            public static extern global::System.IntPtr SetImageBasedLightScaleFactor(global::System.Runtime.InteropServices.HandleRef sceneView, float scaleFactor);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_GetImageBasedLightScaleFactor")]
+            public static extern float GetImageBasedLightScaleFactor(global::System.Runtime.InteropServices.HandleRef sceneView);
+
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_UseFramebuffer")]
             public static extern void UseFramebuffer(global::System.Runtime.InteropServices.HandleRef sceneView, bool useFramebuffer);
 
