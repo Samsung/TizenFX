@@ -21,7 +21,7 @@ namespace Tizen.NUI.Scene3D
     {
         internal static partial class SceneView
         {
-            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_New_SWIG_1")]
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_New_SWIG_0")]
             public static extern global::System.IntPtr SceneNew();
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_new_SceneView_SWIG_0")]
