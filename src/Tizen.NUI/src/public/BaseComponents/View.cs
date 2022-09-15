@@ -689,6 +689,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The color selector for the borderline of the View.
+        /// Like BackgroundColor, color selector typed BorderlineColor should be used in ViewStyle only.
+        /// So this API is internally used only.
+        /// </summary>
+        internal Selector<Color> BorderlineColorSelector
+        {
+            get
+            {
+                return (Selector<Color>)GetValue(BorderlineColorSelectorProperty);
+            }
+            set
+            {
+                SetValue(BorderlineColorSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Relative offset for the borderline of the View.
         /// Recommended range : [-1.0f to 1.0f].
         /// If -1.0f, draw borderline inside of the View.
