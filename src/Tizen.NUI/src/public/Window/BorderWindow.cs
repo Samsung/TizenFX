@@ -149,13 +149,13 @@ namespace Tizen.NUI
 
                 if (minSize != borderInterface.MinSize)
                 {
-                    using Size2D mimimumSize = new Size2D(borderInterface.MinSize.Width, borderInterface.MinSize.Height + (int)borderHeight);
+                    using Size2D mimimumSize = new Size2D((borderInterface.MinSize?.Width ?? 0), (borderInterface.MinSize?.Height ?? 0) + (int)borderHeight);
                     SetMimimumSize(mimimumSize);
                     minSize = borderInterface.MinSize;
                 }
                 if (maxSize != borderInterface.MaxSize)
                 {
-                    using Size2D maximumSize = new Size2D(borderInterface.MaxSize.Width, borderInterface.MaxSize.Height + (int)borderHeight);
+                    using Size2D maximumSize = new Size2D((borderInterface.MaxSize?.Width ?? 0), (borderInterface.MaxSize?.Height ?? 0) + (int)borderHeight);
                     SetMaximumSize(maximumSize);
                     maxSize = borderInterface.MaxSize;
                 }
