@@ -1116,7 +1116,8 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="touchPoint">The touch point to feed.</param>
         /// <param name="timeStamp">The timeStamp.</param>
-        internal void FeedTouch(TouchPoint touchPoint, int timeStamp)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void FeedTouch(TouchPoint touchPoint, int timeStamp)
         {
             Interop.Window.FeedTouchPoint(SwigCPtr, TouchPoint.getCPtr(touchPoint), timeStamp);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
