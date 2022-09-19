@@ -75,6 +75,9 @@ namespace Tizen.NUI.Scene3D
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SceneView : View
     {
+        private bool inCameraTransition = false;
+        private Animation cameraTransition;
+
         internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
@@ -275,6 +278,10 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SelectCamera(uint index)
         {
+            if(inCameraTransition)
+            {
+                return;
+            }
             Interop.SceneView.SelectCamera(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -287,8 +294,62 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SelectCamera(string name)
         {
+            if(inCameraTransition)
+            {
+                return;
+            }
             Interop.SceneView.SelectCamera(SwigCPtr, name);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Start camera transition from currently selected camera to a camera of index.
+        /// Camera Position and Orientation is smoothly animated.
+        /// </summary>
+        /// <remarks>
+        /// The selected camera is switched when the transition is started.
+        /// During camera transition, Selected Camera cannot be changed by using SelectCamera() or CameraTransition() method.
+        /// </remarks>
+        /// <param name="index"> Index of destination Camera of Camera transition.</param>
+        /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
+        /// <param name="alphaFunction">The alpha function to apply.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void CameraTransition(uint index, int durationMilliSeconds, AlphaFunction alphaFunction = null)
+        {
+            if(inCameraTransition)
+            {
+                return;
+            }
+            Camera source = GetSelectedCamera();
+            SelectCamera(index);
+            Camera destination = GetSelectedCamera();
+            CameraTransition(source, destination, durationMilliSeconds, alphaFunction);
+        }
+
+        /// <summary>
+        /// Start camera transition from currently selected camera to a camera of input name.
+        /// Camera Position and Orientation is smoothly animated.
+        /// </summary>
+        /// <remarks>
+        /// The selected camera is switched when the transition is started.
+        /// During camera transition, Selected Camera cannot be changed by using SelectCamera() or CameraTransition() method.
+        /// </remarks>
+        /// <param name="name"> string keyword of destination Camera of Camera transition.</param>
+        /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
+        /// <param name="alphaFunction">The alpha function to apply.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void CameraTransition(string name, int durationMilliSeconds, AlphaFunction alphaFunction = null)
+        {
+            if(inCameraTransition)
+            {
+                return;
+            }
+            Camera source = GetSelectedCamera();
+            SelectCamera(name);
+            Camera destination = GetSelectedCamera();
+            CameraTransition(source, destination, durationMilliSeconds, alphaFunction);
         }
 
         /// <summary>
@@ -363,6 +424,33 @@ namespace Tizen.NUI.Scene3D
             float scaleFactor = Interop.SceneView.GetImageBasedLightScaleFactor(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return scaleFactor;
+        }
+
+        private void CameraTransition(Camera sourceCamera, Camera destinationCamera, int durationMilliSeconds, AlphaFunction alphaFunction)
+        {
+            inCameraTransition = true;
+
+            Position sourcePosition = sourceCamera.Position;
+            Rotation sourceOrientation = sourceCamera.Orientation;
+
+            Position destinationPosition = destinationCamera.Position;
+            Rotation destinationOrientation = destinationCamera.Orientation;
+
+            cameraTransition = new Animation(durationMilliSeconds);
+            KeyFrames positionKeyFrames = new KeyFrames();
+            positionKeyFrames.Add(0.0f, sourcePosition);
+            positionKeyFrames.Add(1.0f, destinationPosition);
+            KeyFrames orientationKeyFrames = new KeyFrames();
+            orientationKeyFrames.Add(0.0f, sourceOrientation);
+            orientationKeyFrames.Add(1.0f, destinationOrientation);
+            cameraTransition.AnimateBetween(destinationCamera, "Position", positionKeyFrames, Animation.Interpolation.Linear, alphaFunction);
+            cameraTransition.AnimateBetween(destinationCamera, "Orientation", orientationKeyFrames, Animation.Interpolation.Linear, alphaFunction);
+
+            cameraTransition.Finished += (s, e) =>
+            {
+                inCameraTransition = false;
+            };
+            cameraTransition.Play();
         }
 
         /// <summary>
