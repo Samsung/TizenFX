@@ -281,7 +281,7 @@ namespace Tizen.NUI.Samples
 
             for (int i = 0; i < AutoDisposedObjectCount; i++)
             {
-                int viewSize = 150;
+                int viewSize = rand.Next(100, 150);
                 var view = new Custom3DView()
                 {
                     Size = new Size(viewSize, viewSize, viewSize),
@@ -316,7 +316,7 @@ namespace Tizen.NUI.Samples
 
             for (int i = 0; i < ManualDisposedObjectCount; i++)
             {
-                int viewSize = 150;
+                int viewSize = rand.Next(100, 150);
                 var view = new Custom3DView()
                 {
                     Size = new Size(viewSize, viewSize, viewSize),
@@ -348,6 +348,39 @@ namespace Tizen.NUI.Samples
                 view.AddRenderer(renderer);
 
                 rotateAnimation.AnimateBy(view, "Orientation", new Rotation(new Radian(new Degree(-360.0f)), Vector3.YAxis));
+#if NUI_PROPERTY_TEST
+                Console.WriteLine($"current size=({view.Size.Width},{view.Size.Height}) position=({view.Position.X},{view.Position.Y}), current size=({view.CurrentSize.Width},{view.CurrentSize.Height})");
+                
+                var text = new TextLabel();
+                for(int k=0; k < i; k++)
+                {
+                    text.Text += $"test{k} ";
+                }
+                text.Size = new Size(rand.Next(100, 400), rand.Next(100,110));
+                text.Position = new Position(rand.Next(5, 20), rand.Next(10,600));
+
+                PropertyMap map = text.TextFit;
+                uint mapCnt = map.Count();
+                Tizen.Log.Fatal("NUITEST", $"mapCnt={mapCnt}\n");
+                for(int j=0; j < (int)mapCnt; j++)
+                {
+                    PropertyKey key = map.GetKeyAt((uint)j);
+                    PropertyValue value = map.GetValue((uint)j);
+                    float tmpVal;
+                    value.Get(out tmpVal);
+                    Tizen.Log.Fatal("NUITEST", $"[{j}]key={key.StringKey}({key.Type}) val={tmpVal}({value.GetType()})\n");
+                    key.Dispose();
+                    value.Dispose();
+                }
+                //map.Clear();
+                //map.Add("enable", new PropertyValue(true)).Add("minSize", new PropertyValue(5)).Add("maxSize", new PropertyValue(50));
+                //text.TextFit = map;
+
+                PropertyMap map2 = new PropertyMap();
+                map2.Add("enable", new PropertyValue(true)).Add("minSize", new PropertyValue(5)).Add("maxSize", new PropertyValue(50));
+                text.TextFit = map2;
+                root.Add(text);
+#endif //#if NUI_PROPERTY_TEST                
             }
             rotateAnimation.Looping = true;
             rotateAnimation.Play();
@@ -357,6 +390,24 @@ namespace Tizen.NUI.Samples
             uint cnt = root.ChildCount;
             for (int i = (int)(cnt - 1); i >= 0; i--)
             {
+#if NUI_PROPERTY_TEST
+                if(root.GetChildAt((uint)i) is TextLabel text)
+                {
+                    PropertyMap map = text.TextFit;
+                    uint mapCnt = map.Count();
+                    for(int j=0; j < (int)mapCnt; j++)
+                    {
+                        PropertyKey key = map.GetKeyAt((uint)j);
+                        PropertyValue value = map.GetValue((uint)j);
+                        float tmpVal;
+                        value.Get(out tmpVal);
+                        Tizen.Log.Fatal("NUITEST", $"[{j}]key={key.StringKey}({key.Type}) val={tmpVal}({value.GetType()})\n");
+                        key.Dispose();
+                        value.Dispose();
+                    }
+                    map.Dispose();
+                }
+#endif //#if NUI_PROPERTY_TEST
                 root.Remove(root.GetChildAt((uint)i));
             }
             foreach(var view in views)

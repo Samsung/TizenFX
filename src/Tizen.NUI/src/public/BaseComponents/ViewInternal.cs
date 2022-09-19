@@ -584,6 +584,23 @@ namespace Tizen.NUI.BaseComponents
             return ret;
         }
 
+#if NUI_PROPERTY_TEST
+        private Size2D internalCurrentSize;
+        internal Size2D GetCurrentSize()
+        {
+            if (internalCurrentSize == null)
+            {
+                internalCurrentSize = new Size2D(0, 0);
+            }
+            float width, height, dummy;
+            var retVal = Interop.Actor.InternalGetValues(SwigCPtr, (int)InternalGetSetValueType.CurrentSize, out width, out height, out dummy, out dummy);
+
+            internalCurrentSize.Width = (int)width;
+            internalCurrentSize.Height = (int)height;
+
+            return internalCurrentSize;
+        }
+#else
         internal Size2D GetCurrentSize()
         {
             Size ret = new Size(Interop.Actor.GetCurrentSize(SwigCPtr), true);
@@ -593,6 +610,7 @@ namespace Tizen.NUI.BaseComponents
             ret.Dispose();
             return size;
         }
+#endif //#if NUI_PROPERTY_TEST
 
         internal Size2D GetCurrentSizeFloat()
         {
@@ -1593,3 +1611,21 @@ namespace Tizen.NUI.BaseComponents
 
     }
 }
+
+#if NUI_PROPERTY_TEST
+namespace Tizen.NUI
+{
+    internal enum InternalGetSetValueType
+    {
+        CurrentSize = 1,
+        Size = 2,
+        TextFit = 3,
+    }
+
+    internal enum InternalGetSetReturnType
+    {
+        NoError = 0,
+        ErrorUnknown = 1,
+    }
+}
+#endif

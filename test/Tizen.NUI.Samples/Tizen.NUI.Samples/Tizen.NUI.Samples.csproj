@@ -6,6 +6,7 @@
     <RootNamespace>Tizen.NUI.Samples</RootNamespace>
     <AssemblyName>Tizen.NUI.Samples</AssemblyName>
     <StartupObject>Tizen.NUI.Samples.Application</StartupObject>
+    <DefineConstants>NUI_DEBUG_OFF;NUI_PROPERTY_TEST</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

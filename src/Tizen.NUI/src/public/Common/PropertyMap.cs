@@ -425,6 +425,14 @@ namespace Tizen.NUI
         {
             Interop.PropertyMap.DeletePropertyMap(swigCPtr);
         }
+
+#if NUI_PROPERTY_TEST
+        internal void SwitchNativeHandle(global::System.IntPtr newHandle)
+        {
+            Interop.PropertyMap.DeletePropertyMap(SwigCPtr);
+            SwigCPtr = new global::System.Runtime.InteropServices.HandleRef(this, newHandle);
+        }
+#endif
     }
 
     internal static class PropertyMapSetterHelper

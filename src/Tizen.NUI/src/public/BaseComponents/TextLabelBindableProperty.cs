@@ -630,6 +630,40 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.CharacterSpacing).Get(out temp);
             return temp;
         }));
+
+#if NUI_PROPERTY_TEST
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty TextFitProperty = BindableProperty.Create(nameof(TextFit), typeof(PropertyMap), typeof(TextLabel), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            if (newValue != null)
+            {
+                if(textLabel.internalTextFit != (PropertyMap)newValue)
+                {
+                    textLabel.internalTextFit?.Dispose();
+                    textLabel.internalTextFit = (PropertyMap)newValue;
+                    Tizen.Log.Fatal("NUITEST", $"textLabel.internalTextFit != (PropertyMap)newValue\n");
+                }
+                var ret = Interop.Actor.InternalSetPropertyMap(textLabel.SwigCPtr, (int)Tizen.NUI.InternalGetSetValueType.TextFit, textLabel.internalTextFit.SwigCPtr);
+                Tizen.Log.Fatal("NUITEST", $"TextFitProperty setter ret={ret}");
+            }
+        }),
+        defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
+        {
+            var textLabel = (TextLabel)bindable;
+            global::System.IntPtr nativeHandle = Interop.Actor.InternalGetPropertyMap(textLabel.SwigCPtr, (int)Tizen.NUI.InternalGetSetValueType.TextFit);
+            
+            if(textLabel.internalTextFit == null)
+            {
+                textLabel.internalTextFit = new PropertyMap(nativeHandle, true);
+            }
+            else
+            {
+                textLabel.internalTextFit.SwitchNativeHandle(nativeHandle);
+            }
+            return textLabel.internalTextFit;
+        }));
+#else
         /// Only for XAML. No need of public API. Make hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty TextFitProperty = BindableProperty.Create(nameof(TextFit), typeof(PropertyMap), typeof(TextLabel), null, propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -647,6 +681,7 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.TextFit).Get(temp);
             return temp;
         }));
+#endif //#if NUI_PROPERTY_TEST
 
         /// Only for XAML. No need of public API. Make hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]

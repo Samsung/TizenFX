@@ -1619,6 +1619,55 @@ namespace Tizen.NUI.BaseComponents
             }
         );
 
+#if NUI_PROPERTY_TEST
+        /// <summary>
+        /// SizeProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(View), null,
+            propertyChanged: (bindable, oldValue, newValue) =>
+            {
+                var view = (View)bindable;
+                if (newValue != null)
+                {
+                    // Size property setter is only used by user.
+                    // Framework code uses SetSize() instead of Size property setter.
+                    // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                    // SuggestedMinimumWidth/Height is used by Layout calculation.
+                    view.userSizeWidth = ((Size)newValue).Width;
+                    view.userSizeHeight = ((Size)newValue).Height;
+
+                    // Set Specification so when layouts measure this View it matches the value set here.
+                    // All Views are currently Layouts.
+                    view.WidthSpecification = (int)System.Math.Ceiling(((Size)newValue).Width);
+                    view.HeightSpecification = (int)System.Math.Ceiling(((Size)newValue).Height);
+        
+                    float dummy = -1;
+                    var ret = Interop.Actor.InternalSetValues(view.SwigCPtr, (int)InternalGetSetValueType.Size, ((Size)newValue).Width, ((Size)newValue).Height, ((Size)newValue).Depth, dummy);
+                    Tizen.Log.Fatal("NUITEST", $"SizeProperty setter ret={ret}");
+                }
+            },
+            defaultValueCreator: (bindable) =>
+            {
+                var view = (View)bindable;
+                float width, height, depth, dummy;
+                var retVal = Interop.Actor.InternalGetValues(view.SwigCPtr, (int)InternalGetSetValueType.Size, out width, out height, out depth, out dummy);
+
+                if (view.internalSize == null)
+                {
+                    view.internalSize = new Size(view.OnSizeChanged, width, height, depth);
+                }
+                else
+                {
+                    view.internalSize.Width = width;
+                    view.internalSize.Height = height;
+                    view.internalSize.Depth = depth;
+                }
+                Tizen.Log.Fatal("NUITEST", $"SizeProperty getter retVal={retVal} width={width}, height={height}, depth={depth}");
+                return view.internalSize;
+            }
+        );
+#else
         /// <summary>
         /// SizeProperty
         /// </summary>
@@ -1659,6 +1708,7 @@ namespace Tizen.NUI.BaseComponents
                 return view.internalSize;
             }
         );
+#endif
 
         /// <summary>
         /// MinimumSizeProperty

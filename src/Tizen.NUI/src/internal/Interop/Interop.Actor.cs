@@ -145,6 +145,20 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetNeedGesturePropagation")]
             public static extern float SetNeedGesturePropagation(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
+#if NUI_PROPERTY_TEST
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Internal_Get_Values")]
+            public static extern int InternalGetValues(global::System.Runtime.InteropServices.HandleRef actor, int type, out float value1, out float value2, out float value3, out float value4);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Internal_Set_Values")]
+            public static extern int InternalSetValues(global::System.Runtime.InteropServices.HandleRef actor, int type, float value1, float value2, float value3, float value4);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Internal_Get_PropertyMap")]
+            public static extern global::System.IntPtr InternalGetPropertyMap(global::System.Runtime.InteropServices.HandleRef actor, int type);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_Internal_Set_PropertyMap")]
+            public static extern int InternalSetPropertyMap(global::System.Runtime.InteropServices.HandleRef actor, int type, global::System.Runtime.InteropServices.HandleRef propertyMap);
+#endif
         }
     }
 }

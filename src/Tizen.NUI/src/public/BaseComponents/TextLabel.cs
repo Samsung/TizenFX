@@ -1268,6 +1268,10 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+#if NUI_PROPERTY_TEST
+        internal PropertyMap internalTextFit;
+#endif
+
         /// <summary>
         /// The text fit parameters.<br />
         /// The textFit map contains the following keys :<br />
@@ -1489,6 +1493,9 @@ namespace Tizen.NUI.BaseComponents
                 SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
             }
 
+#if NUI_PROPERTY_TEST
+            DisposeAllInteranlObject();
+#endif
             removeFontSizeChangedCallback();
 
             if (type == DisposeTypes.Explicit)
@@ -1538,6 +1545,19 @@ namespace Tizen.NUI.BaseComponents
         {
             base.OnBindingContextChanged();
         }
+
+#if NUI_PROPERTY_TEST
+        internal void DisposeAllInteranlObject()
+        {
+            Tizen.Log.Fatal("NUITEST", $"DisposeAllInteranlObject()");
+            if(internalTextFit != null)
+            {
+                Tizen.Log.Fatal("NUITEST", $"dispose internalTextFit!");
+                internalTextFit.Dispose();
+                internalTextFit = null;
+            }
+        }
+#endif
 
         private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
         {
