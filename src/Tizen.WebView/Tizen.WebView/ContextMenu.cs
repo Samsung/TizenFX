@@ -23,6 +23,7 @@ namespace Tizen.WebView
     /// Enumeration for Context Menu Item Tag.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public enum ContextMenuItemTag
     {
         /// <summary>
@@ -403,6 +404,7 @@ namespace Tizen.WebView
     /// This class provides the properties of Context Menu item.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class ContextMenuItem
     {
         private IntPtr _handle;
@@ -421,6 +423,7 @@ namespace Tizen.WebView
         /// Gets Tag of the context menu item.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public ContextMenuItemTag ItemTag
         {
             get
@@ -434,6 +437,7 @@ namespace Tizen.WebView
     /// Arguments from the ContextMenuItem event.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class ContextMenuItemEventArgs : EventArgs
     {
         internal ContextMenuItemEventArgs(ContextMenuItem item)
@@ -446,6 +450,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>The context menu item.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public ContextMenuItem Item { get; }
 
         internal static ContextMenuItemEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
@@ -458,6 +463,7 @@ namespace Tizen.WebView
     /// This class provides the properties of Context Menu.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class ContextMenu
     {
         private IntPtr _handle;
@@ -471,6 +477,7 @@ namespace Tizen.WebView
         /// Gets the context menu items count.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public int ItemCount
         {
             get
@@ -485,6 +492,7 @@ namespace Tizen.WebView
         /// <param name="n"> To get item at index n.</param>
         /// <returns>The context menu item.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public ContextMenuItem GetItemAtIndex(int n)
         {
             IntPtr itemHandle = Interop.ChromiumEwk.ewk_context_menu_nth_item_get(_handle, n);
@@ -496,6 +504,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <param name="item"> The context menu item to be removed.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void RemoveItem(ContextMenuItem item)
         {
             IntPtr itemHandle = item.GetHandle();
@@ -511,6 +520,7 @@ namespace Tizen.WebView
         /// <param name="enabled"> if true the context menu item is enabled else false.</param>
         /// <returns>Appended context menu item.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public ContextMenuItem AppendItem(ContextMenuItemTag tag, string title, string iconPath, bool enabled)
         {
             bool ret = false;
@@ -523,10 +533,6 @@ namespace Tizen.WebView
         }
     }
 
-    /// <summary>
-    /// Arguments from the ContextMenu Item event.
-    /// </summary>
-    /// <since_tizen> 6 </since_tizen>
     internal class ContextMenuCustomizeEventArgs : EventArgs
     {
         internal ContextMenuCustomizeEventArgs(ContextMenu menu)
