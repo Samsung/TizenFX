@@ -35,12 +35,20 @@ namespace Tizen.NUI.Scene3D
     /// The Animations defined in the glTF or DLI are also loaded and can be retrieved by using <see cref="GetAnimation(uint)"/> and <see cref="GetAnimation(string)"/> methods.
     /// The number of animation is also retrieved by GetAnimationCount() method.
     ///
+    /// Model also supports Physically Based Rendering(PBR) with Image Based Lighting(IBL).
+    /// For the IBL, two cube map textures(diffuse and specular) are required.
+    /// Model supports 4 types layout for Cube Map: Vertical/Horizontal Cross layouts, and Vertical/Horizontal Array layouts.
+    /// And also, ktx format with cube map is supported.
+    ///
+    /// The model and IBL textures start to be loaded asynchronously when the Model object is on Window.
+    /// ResourcesLoaded signal notifies that the loading of the model and IBL resources have been completed.
+    /// If Model or IBL is requested to be loaded before the other loading is completed, the ResourcesLoaded signal is called after all resources are loaded.
+    /// <see cref="GetAnimation(uint)"/> and <see cref="GetAnimation(string)"/> methods can be used after the model loading is finished.
+    ///
     /// By default, the loaded mesh has its own size and <see cref="PivotPoint"/> inferred from position of vertices.
+    /// The <see cref="PivotPoint"/> can be modified after model loading is finished.
     /// If user set size property, the mesh will be scaled to the input size.
     /// Default value of <see cref="ParentOrigin"/> of the Model is Center.
-    ///
-    /// The model starts to be loaded synchronously when the Model object is on Window.
-    /// So, <see cref="GetAnimation(uint)"/> and <see cref="GetAnimation(string)"/> methods should be called after the Model object is added on Window.
     /// </remarks>
     ///
     /// <example>
@@ -49,15 +57,20 @@ namespace Tizen.NUI.Scene3D
     /// {
     ///     Size = new Size(width, height),
     /// };
+    /// model.ResourcesLoaded += (s, e) =>
+    /// {
+    ///     model.PivotPoint = new Vector3(0.5f, 0.5f, 0.5f); // Use center as a Pivot.
+    ///
+    ///     int animationCount = model.GetAnimationCount();
+    ///     if(animationCount > 0)
+    ///     {
+    ///         // Play an Animation of index 0.
+    ///         model.GetAnimation(0).Play();
+    ///     }
+    /// };
     /// model.SetImageBasedLightSource(diffuseUrl, specularUrl, scaleFactor);
     /// window.Add(model);
     ///
-    /// int animationCount = model.GetAnimationCount();
-    /// if(animationCount > 0)
-    /// {
-    ///     // Play an Animation of index 0.
-    ///     model.GetAnimation(0).Play();
-    /// }
     /// </code>
     /// </example>
     /// <since_tizen> 10 </since_tizen>
