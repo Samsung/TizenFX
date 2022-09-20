@@ -51,8 +51,14 @@ namespace Tizen.NUI.Scene3D
     /// The Camera's FieldOfView is vertical fov. The horizontal fov is updated internally according to the SceneView size.
     ///
     /// The <see cref="SetImageBasedLightSource(string, string, float)"/> method sets the same IBL to all Model objects added to the SceneView.
+    /// For the IBL, two cube map textures(diffuse and specular) are required.
+    /// SceneView supports 4 types layout for Cube Map: Vertical/Horizontal Cross layouts, and Vertical/Horizontal Array layouts.
+    /// And also, ktx format with cube map is supported.
     /// If a model already has an IBL, it is batch overridden with the IBL of the SceneView.
     /// If the SceneView has IBL, the IBL of newly added models is also overridden.
+    ///
+    /// The IBL textures start to be loaded asynchronously when <see cref="SetImageBasedLightSource(string, string, float)"/> method is called.
+    /// ResourcesLoaded signal notifies that the loading of the IBL resources have been completed.
     ///
     /// SceneView provides an option to use FBO for rendering result with <see cref="UseFramebuffer"/> property.
     /// If it is false, SceneView is always drawn in the form of a rectangle on the default window surface directly.
