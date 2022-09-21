@@ -37,11 +37,10 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaFileSource"/> class.
         /// </summary>
-        /// <param name="type">The <see cref="MediaType"/> of file source.</param>
         /// <param name="path">The file path.</param>
         /// <exception cref="ArgumentNullException"><paramref name="path"/> is null.</exception>
         /// <since_tizen> 10 </since_tizen>
-        public MediaFileSource(MediaType type, string path) : base(type)
+        public MediaFileSource(string path) : base()
         {
             _path = path ?? throw new ArgumentNullException(nameof(path), "path is null");
         }
@@ -82,6 +81,99 @@ namespace Tizen.Multimedia.Remoting
             }
         }
 
+        /// <summary>
+        /// Gets the transceiver direction for receiving media stream.
+        /// </summary>
+        /// <param name="type">The media type.</param>
+        /// <returns>The transceiver direction.</returns>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public TransceiverDirection GetTransceiverDirection(MediaType type)
+        {
+            if (!SourceId.HasValue)
+            {
+                throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+            }
+
+            NativeWebRTC.GetTransceiverDirection(WebRtc.Handle, SourceId.Value, type, out TransceiverDirection direction).
+                ThrowIfFailed("Failed to get transceiver direction.");
+
+            return direction;
+        }
+
+        /// <summary>
+        /// Sets the transceiver direction for receiving media stream.
+        /// </summary>
+        /// <remarks>
+        /// The WebRTC must be in the <see cref="WebRTCState.Idle"/> state when transceiver direction is set.
+        /// </remarks>
+        /// <param name="type">The media type.</param>
+        /// <param name="direction">The transceiver direction.</param>
+        /// <exception cref="InvalidOperationException">
+        ///     MediaSource is not attached yet.<br/>
+        /// -or-<br/>
+        ///     The WebRTC is not in the valid state.
+        /// </exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public void SetTransceiverDirection(MediaType type, TransceiverDirection direction)
+        {
+            if (!SourceId.HasValue)
+            {
+                throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+            }
+
+            WebRtc.ValidateWebRTCState(WebRTCState.Idle);
+
+            NativeWebRTC.SetTransceiverDirection(WebRtc.Handle, SourceId.Value, type, direction).
+                ThrowIfFailed("Failed to set transceiver direction");
+        }
+
+        /// <summary>
+        /// Gets the pause status of media file source.
+        /// </summary>
+        /// <param name="type">The media type.</param>
+        /// <returns>The pause status.</returns>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public bool GetPause(MediaType type)
+        {
+            if (!SourceId.HasValue)
+            {
+                throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+            }
+
+            WebRtc.ValidateWebRTCState(WebRTCState.Idle);
+
+            NativeWebRTC.GetPause(WebRtc.Handle, SourceId.Value, MediaType, out bool isPaused).
+                ThrowIfFailed("Failed to get pause");
+
+            return isPaused;
+        }
+
+        /// <summary>
+        /// Sets the pause status of media file source.
+        /// </summary>
+        /// <param name="type">The media type.</param>
+        /// <param name="isPaused">The pause status.</param>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public void SetPause(MediaType type, bool isPaused)
+        {
+            if (!SourceId.HasValue)
+            {
+                throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+            }
+
+            WebRtc.ValidateWebRTCState(WebRTCState.Idle);
+
+            NativeWebRTC.SetPause(WebRtc.Handle, SourceId.Value, type, isPaused).
+                ThrowIfFailed("Failed to set pause");
+        }
+
         internal override void OnAttached(WebRTC webRtc)
         {
             Debug.Assert(webRtc != null);
@@ -108,5 +200,7 @@ namespace Tizen.Multimedia.Remoting
 
             WebRtc = null;
         }
+
+        internal override MediaSourceType MediaSourceType => MediaSourceType.File;
     }
 }
