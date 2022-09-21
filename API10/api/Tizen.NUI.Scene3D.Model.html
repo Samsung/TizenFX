@@ -131,31 +131,42 @@ Physically Based Rendering with Image Based Lighting is also supported.</p>
   <div class="markdown level0 remarks"><p>Since NUI uses a left-handed coordinate system, loaded models are transformed into a left-handed coordinate system with Y pointing down.
 The Animations defined in the glTF or DLI are also loaded and can be retrieved by using <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(UInt32)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(String)</a> methods.
 The number of animation is also retrieved by GetAnimationCount() method.</p>
+<p>Model also supports Physically Based Rendering(PBR) with Image Based Lighting(IBL).
+For the IBL, two cube map textures(diffuse and specular) are required.
+Model supports 4 types layout for Cube Map: Vertical/Horizontal Cross layouts, and Vertical/Horizontal Array layouts.
+And also, ktx format with cube map is supported.</p>
+<p>The model and IBL textures start to be loaded asynchronously when the Model object is on Window.
+ResourcesLoaded signal notifies that the loading of the model and IBL resources have been completed.
+If Model or IBL is requested to be loaded before the other loading is completed, the ResourcesLoaded signal is called after all resources are loaded.
+<a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(UInt32)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(String)</a> methods can be used after the model loading is finished.</p>
 <p>By default, the loaded mesh has its own size and <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> inferred from position of vertices.
+The <a class="xref" href="Tizen.NUI.PivotPoint.html">PivotPoint</a> can be modified after model loading is finished.
 If user set size property, the mesh will be scaled to the input size.
 Default value of <a class="xref" href="Tizen.NUI.ParentOrigin.html">ParentOrigin</a> of the Model is Center.</p>
-<p>The model starts to be loaded synchronously when the Model object is on Window.
-So, <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_">GetAnimation(UInt32)</a> and <a class="xref" href="Tizen.NUI.Scene3D.Model.html#Tizen_NUI_Scene3D_Model_GetAnimation_System_String_">GetAnimation(String)</a> methods should be called after the Model object is added on Window.</p>
 </div>
   <h5 id="Tizen_NUI_Scene3D_Model_examples"><strong>Examples</strong></h5>
   <pre><code>Model model = new Model(modelUrl)
 {
     Size = new Size(width, height),
 };
-model.SetImageBasedLightSource(diffuseUrl, specularUrl, scaleFactor);
-window.Add(model);
-
-int animationCount = model.GetAnimationCount();
-if(animationCount > 0)
+model.ResourcesLoaded += (s, e) =>
 {
-    // Play an Animation of index 0.
-    model.GetAnimation(0).Play();
-}</code></pre>
+    model.PivotPoint = new Vector3(0.5f, 0.5f, 0.5f); // Use center as a Pivot.
+
+    int animationCount = model.GetAnimationCount();
+    if(animationCount > 0)
+    {
+        // Play an Animation of index 0.
+        model.GetAnimation(0).Play();
+    }
+};
+model.SetImageBasedLightSource(diffuseUrl, specularUrl, scaleFactor);
+window.Add(model);</code></pre>
 
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L82">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L95">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_Model__ctor_" data-uid="Tizen.NUI.Scene3D.Model.#ctor*"></a>
   <h4 id="Tizen_NUI_Scene3D_Model__ctor_System_String_System_String_" data-uid="Tizen.NUI.Scene3D.Model.#ctor(System.String,System.String)">Model(String, String)</h4>
@@ -201,7 +212,7 @@ if(animationCount > 0)
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L93">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L106">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_Model__ctor_" data-uid="Tizen.NUI.Scene3D.Model.#ctor*"></a>
   <h4 id="Tizen_NUI_Scene3D_Model__ctor_Tizen_NUI_Scene3D_Model_" data-uid="Tizen.NUI.Scene3D.Model.#ctor(Tizen.NUI.Scene3D.Model)">Model(Model)</h4>
@@ -238,7 +249,7 @@ if(animationCount > 0)
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L165">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L196">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_Model_GetAnimation_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimation*"></a>
   <h4 id="Tizen_NUI_Scene3D_Model_GetAnimation_System_String_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimation(System.String)">GetAnimation(String)</h4>
@@ -290,7 +301,7 @@ Note: This method should be called after Model load finished.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L151">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L182">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_Model_GetAnimation_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimation*"></a>
   <h4 id="Tizen_NUI_Scene3D_Model_GetAnimation_System_UInt32_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimation(System.UInt32)">GetAnimation(UInt32)</h4>
@@ -344,7 +355,7 @@ Note: This method should be called after Model load finished.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L135">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L166">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_Model_GetAnimationCount_" data-uid="Tizen.NUI.Scene3D.Model.GetAnimationCount*"></a>
   <h4 id="Tizen_NUI_Scene3D_Model_GetAnimationCount" data-uid="Tizen.NUI.Scene3D.Model.GetAnimationCount">GetAnimationCount()</h4>
@@ -380,7 +391,7 @@ Note: This method should be called after Model load finished.</p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L121">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L152">View Source</a>
   </span>
   <a id="Tizen_NUI_Scene3D_Model_SetImageBasedLightSource_" data-uid="Tizen.NUI.Scene3D.Model.SetImageBasedLightSource*"></a>
   <h4 id="Tizen_NUI_Scene3D_Model_SetImageBasedLightSource_System_String_System_String_System_Single_" data-uid="Tizen.NUI.Scene3D.Model.SetImageBasedLightSource(System.String,System.String,System.Single)">SetImageBasedLightSource(String, String, Single)</h4>
@@ -445,7 +456,7 @@ Note: This method should be called after Model load finished.</p>
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L64" class="contribution-link">View Source</a>
+                    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Scene3D/src/public/Controls/Model.cs/#L77" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>
