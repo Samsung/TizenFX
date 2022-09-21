@@ -46,7 +46,6 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The actually used buffer size.
         /// </summary>
-        /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public uint UsedSize { get; }
     }
