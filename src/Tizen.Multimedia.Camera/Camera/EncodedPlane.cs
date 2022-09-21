@@ -14,8 +14,6 @@
  * limitations under the License.
  */
 
-using System.ComponentModel;
-
 namespace Tizen.Multimedia
 {
     /// <summary>
@@ -46,7 +44,7 @@ namespace Tizen.Multimedia
         /// <summary>
         /// The actually used buffer size.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public uint UsedSize { get; }
     }
 }
