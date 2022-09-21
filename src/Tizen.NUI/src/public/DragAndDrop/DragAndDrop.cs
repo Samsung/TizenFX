@@ -24,14 +24,13 @@ using Tizen.NUI.BaseComponents;
 namespace Tizen.NUI
 {
     /// <summary>
-    /// DragAndDrop controls the drag objet and data.
+    /// DragAndDrop controls the drag object and data.
     /// </summary>
+    /// <since_tizen> 10 </since_tizen>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000: Dispose objects before losing scope", Justification = "It does not have ownership.")]
-    [EditorBrowsable(EditorBrowsableState.Never)]
     public class DragAndDrop : BaseHandle
     {
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void SourceEventHandler(SourceEventType sourceEventType);
+        public delegate void SourceEventHandler(DragSourceEventType sourceEventType);
         private delegate void InternalSourceEventHandler(int sourceEventType);
         public delegate void DragAndDropEventHandler(View targetView, DragEvent dragEvent);
         private delegate void InternalDragAndDropEventHandler(global::System.IntPtr dragEvent);
@@ -42,7 +41,6 @@ namespace Tizen.NUI
         private int shadowWidth = 100;
         private int shadowHeight = 100;
 
-        [EditorBrowsable(EditorBrowsableState.Never)]
         private DragAndDrop() : this(Interop.DragAndDrop.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -56,7 +54,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the singleton instance of DragAndDrop.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public static DragAndDrop Instance { get; } = new DragAndDrop();
 
         /// <summary>
@@ -66,8 +64,7 @@ namespace Tizen.NUI
         /// <param name="shadowView">The shadow view for drag object</param>
         /// <param name="dragData">The data to send</param>
         /// <param name="callback">The source event callback</param>
-        /// <exception cref="NotSupportedException">The multi-window feature is not supported.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public void StartDragAndDrop(View sourceView, View shadowView, DragData dragData, SourceEventHandler callback)
         {
             if (Window.IsSupportedMultiWindow() == false)
@@ -128,7 +125,7 @@ namespace Tizen.NUI
 
             sourceEventCb = (sourceEventType) =>
             {
-                if ((SourceEventType)sourceEventType == SourceEventType.Finish)
+                if ((DragSourceEventType)sourceEventType == DragSourceEventType.Finish)
                 {
                     if (mShadowView)
                     {
@@ -142,7 +139,7 @@ namespace Tizen.NUI
                     mDragWindow.RenderOnce();
                 }
 
-                callback((SourceEventType)sourceEventType);
+                callback((DragSourceEventType)sourceEventType);
             };
 
             if (!Interop.DragAndDrop.StartDragAndDrop(SwigCPtr, View.getCPtr(sourceView), Window.getCPtr(mDragWindow), dragData.MimeType, dragData.Data,
@@ -158,8 +155,8 @@ namespace Tizen.NUI
         /// Adds listener for drop targets
         /// </summary>
         /// <param name="targetView">The target view</param>
-        /// <param name="callback">The callback function to get drag event</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <param name="callback">The callback function to get drag event when the drag source enters, moves, leaves and drops on the drop target</param>
+        /// <since_tizen> 10 </since_tizen>
         public void AddListener(View targetView, DragAndDropEventHandler callback)
         {
             InternalDragAndDropEventHandler cb = (dragEvent) =>
@@ -207,7 +204,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="targetView">The target view</param>
         /// <param name="callback">The callback function to remove</param>
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public void RemoveListener(View targetView, DragAndDropEventHandler callback)
         {
             if (!targetEventDictionary.ContainsKey(targetView))

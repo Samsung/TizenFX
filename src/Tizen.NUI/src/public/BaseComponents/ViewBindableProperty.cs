@@ -154,7 +154,7 @@ namespace Tizen.NUI.BaseComponents
             defaultValueCreator: (bindable) =>
             {
                 var view = (View)bindable;
-                var tmpProperty = view.GetProperty(Interop.ActorProperty.ColorGet());
+                var tmpProperty = view.GetProperty(View.Property.COLOR);
 
                 if (view.internalColor == null)
                 {
@@ -165,6 +165,63 @@ namespace Tizen.NUI.BaseComponents
                 tmpProperty?.Dispose();
 
                 return view.internalColor;
+            }
+        );
+
+        /// <summary>
+        /// ColorRedProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ColorRedProperty = BindableProperty.Create(nameof(ColorRed), typeof(float), typeof(View), default(float),
+            propertyChanged: (bindable, oldValue, newValue) =>
+            {
+                var view = (View)bindable;
+                view.SetColorRed((float?)newValue);
+            },
+            defaultValueCreator: (bindable) =>
+            {
+                var view = (View)bindable;
+                float temp = 0.0f;
+                Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ColorRed).Get(out temp);
+                return temp;
+            }
+        );
+
+        /// <summary>
+        /// ColorGreenProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ColorGreenProperty = BindableProperty.Create(nameof(ColorGreen), typeof(float), typeof(View), default(float),
+            propertyChanged: (bindable, oldValue, newValue) =>
+            {
+                var view = (View)bindable;
+                view.SetColorGreen((float?)newValue);
+            },
+            defaultValueCreator: (bindable) =>
+            {
+                var view = (View)bindable;
+                float temp = 0.0f;
+                Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ColorGreen).Get(out temp);
+                return temp;
+            }
+        );
+
+        /// <summary>
+        /// ColorBlueProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ColorBlueProperty = BindableProperty.Create(nameof(ColorBlue), typeof(float), typeof(View), default(float),
+            propertyChanged: (bindable, oldValue, newValue) =>
+            {
+                var view = (View)bindable;
+                view.SetColorBlue((float?)newValue);
+            },
+            defaultValueCreator: (bindable) =>
+            {
+                var view = (View)bindable;
+                float temp = 0.0f;
+                Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ColorBlue).Get(out temp);
+                return temp;
             }
         );
 
@@ -2025,6 +2082,30 @@ namespace Tizen.NUI.BaseComponents
         );
 
         /// <summary>
+        /// BorderlineColorSelector Property
+        /// Like BackgroundColor, color selector typed BorderlineColor should be used in ViewStyle only.
+        /// So this API is internally used only.
+        /// </summary>
+        internal static readonly BindableProperty BorderlineColorSelectorProperty = BindableProperty.Create(nameof(BorderlineColorSelector), typeof(Selector<Color>), typeof(View), null,
+            propertyChanged: (bindable, oldValue, newValue) =>
+            {
+                var view = (View)bindable;
+
+                view.themeData?.selectorData?.BorderlineColor?.Reset(view);
+
+                Selector<Color> selector = newValue as Selector<Color>;
+                if (selector.HasAll()) view.SetBorderlineColor(selector.All);
+                else view.EnsureSelectorData().BorderlineColor = new TriggerableSelector<Color>(view, selector, view.SetBorderlineColor, true);
+            },
+            defaultValueCreator: (bindable) =>
+            {
+                var view = (View)bindable;
+                var selector = view.themeData?.selectorData?.BorderlineColor?.Get();
+                return (null != selector) ? selector : new Selector<Color>();
+            }
+        );
+
+        /// <summary>
         /// BorderlineOffset Property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -2757,6 +2838,45 @@ namespace Tizen.NUI.BaseComponents
             }
 
             Interop.ActorInternal.SetColor(SwigCPtr, value.SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        private void SetColorRed(float? value)
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            using var propertyValue = new Tizen.NUI.PropertyValue((float)value);
+            Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.ColorRed, propertyValue);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        private void SetColorGreen(float? value)
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            using var propertyValue = new Tizen.NUI.PropertyValue((float)value);
+            Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.ColorGreen, propertyValue);
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        private void SetColorBlue(float? value)
+        {
+            if (value == null)
+            {
+                return;
+            }
+
+            using var propertyValue = new Tizen.NUI.PropertyValue((float)value);
+            Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.ColorBlue, propertyValue);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
