@@ -94,6 +94,38 @@ namespace Tizen.NUI.Accessibility
             }
         }
 
+        /// <summary>
+        /// Gets or sets the enabled state of Screen Reader.
+        /// </summary>
+        /// <remarks>
+        /// Getter returns true if Screen Reader is enabled, false otherwise.
+        /// </remarks>
+        /// This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool EnableScreenReader
+        {
+            // TODO -1 : Can we move this setter to the above IsScreenReaderEnabled?
+            // TODO -2 : This setting is just able to handle the gesture, not highlight box and tts.
+            set
+            {
+                int ret = Interop.Vconf.SetVconfBool("db/setting/accessibility/tts", value);
+                if (ret != 0)
+                {
+                    NUILog.Error("Setting vconf is failed. \n");
+                }
+            }
+            get
+            {
+                bool isEnabled = false;
+                int ret = Interop.Vconf.GetVconfBool("db/setting/accessibility/tts", out isEnabled);
+                if (ret != 0)
+                {
+                    NUILog.Error("Getting vconf is failed. \n");
+                }
+                return isEnabled;
+            }
+        }
+
         #endregion Property
 
         #region Method
