@@ -224,6 +224,10 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int ScaleZ = Interop.ActorProperty.ScaleZGet();
             internal static readonly int WorldScale = Interop.ActorProperty.WorldScaleGet();
             internal static readonly int VISIBLE = Interop.ActorProperty.VisibleGet();
+            internal static readonly int COLOR = Interop.ActorProperty.ColorGet();
+            internal static readonly int ColorRed = Interop.ActorProperty.ColorRedGet();
+            internal static readonly int ColorGreen = Interop.ActorProperty.ColorGreenGet();
+            internal static readonly int ColorBlue = Interop.ActorProperty.ColorBlueGet();
             internal static readonly int WorldColor = Interop.ActorProperty.WorldColorGet();
             internal static readonly int WorldMatrix = Interop.ActorProperty.WorldMatrixGet();
             internal static readonly int NAME = Interop.ActorProperty.NameGet();

@@ -124,5 +124,88 @@ namespace Tizen.NUI.Devel.Tests
 
             testView.Dispose();
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("Get value test for View.ColorRed")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.View.ColorRed")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "eunkiki.hong@samsung.com")]
+        public void ColorRed_GET_SET_VALUE()
+        {
+            /* TEST CODE */
+            View testView = new View();
+
+            Assert.AreEqual(1.0f, testView.ColorRed, "Default red value is 1.0f");
+
+            testView.ColorRed = 0.5f;
+
+            Assert.AreEqual(0.5f, testView.ColorRed, "ColorRed set");
+            Assert.AreEqual(new Color(0.5f, 1.0f, 1.0f, 1.0f), testView.Color, "ColorRed should change View.Color");
+
+            testView.Color = new Color(0.0f, 0.0f, 0.0f, 0.5f);
+
+            Assert.AreEqual(new Color(0.0f, 0.0f, 0.0f, 0.5f), testView.Color, "Color set");
+            Assert.AreEqual(0.0f, testView.ColorRed, "Color should change View.ColorRed");
+
+            testView.Dispose();
+        }
+
+
+        [Test]
+        [Category("P1")]
+        [Description("Get value test for View.ColorGreen")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.View.ColorGreen")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "eunkiki.hong@samsung.com")]
+        public void ColorGreen_GET_SET_VALUE()
+        {
+            /* TEST CODE */
+            View testView = new View();
+
+            Assert.AreEqual(1.0f, testView.ColorGreen, "Default green value is 1.0f");
+
+            testView.ColorGreen = 0.5f;
+
+            Assert.AreEqual(0.5f, testView.ColorGreen, "ColorGreen set");
+            Assert.AreEqual(new Color(1.0f, 0.5f, 1.0f, 1.0f), testView.Color, "ColorGreen should change View.Color");
+
+            testView.Color = new Color(0.0f, 0.0f, 0.0f, 0.5f);
+
+            Assert.AreEqual(new Color(0.0f, 0.0f, 0.0f, 0.5f), testView.Color, "Color set");
+            Assert.AreEqual(0.0f, testView.ColorGreen, "Color should change View.ColorGreen");
+
+            testView.Dispose();
+        }
+
+
+        [Test]
+        [Category("P1")]
+        [Description("Get value test for View.ColorBlue")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.View.ColorBlue")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "eunkiki.hong@samsung.com")]
+        public void ColorBlue_GET_SET_VALUE()
+        {
+            /* TEST CODE */
+            View testView = new View();
+
+            Assert.AreEqual(1.0f, testView.ColorBlue, "Default blue value is 1.0f");
+
+            testView.ColorBlue = 0.5f;
+
+            Assert.AreEqual(0.5f, testView.ColorBlue, "ColorBlue set");
+            Assert.AreEqual(new Color(1.0f, 1.0f, 0.5f, 1.0f), testView.Color, "ColorBlue should change View.Color");
+
+            testView.Color = new Color(0.0f, 0.0f, 0.0f, 0.5f);
+
+            Assert.AreEqual(new Color(0.0f, 0.0f, 0.0f, 0.5f), testView.Color, "Color set");
+            Assert.AreEqual(0.0f, testView.ColorBlue, "Color should change View.ColorBlue");
+
+            testView.Dispose();
+        }
     }
 }
