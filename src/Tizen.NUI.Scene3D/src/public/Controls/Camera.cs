@@ -29,15 +29,14 @@ namespace Tizen.NUI.Scene3D
     /// <remarks>
     /// Transform inheritance cannot be guaranteed when adding children to a camera.
     /// </remarks>
-    /// This will be released at Tizen.NET API Level 10, so currently this would be used as inhouse API.
-    [EditorBrowsable(EditorBrowsableState.Never)]
+    /// <since_tizen> 10 </since_tizen>
     public partial class Camera : View
     {
         /// <summary>
         /// Enumeration for the projectionMode.
+        /// ProjectionMode defines how the camera shows 3D objects or scene on a 2D plane with projection.
         /// </summary>
-        /// This will be released at Tizen.NET API Level 10, so currently this would be used as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public enum ProjectionModeType
         {
             /// <summary>
@@ -57,8 +56,7 @@ namespace Tizen.NUI.Scene3D
         /// <summary>
         /// Creates an uninitialized Camera.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public Camera() : this(Interop.Camera.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -67,9 +65,9 @@ namespace Tizen.NUI.Scene3D
         /// <summary>
         /// Copy constructor.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public Camera(Camera copy) : this(Interop.Camera.NewCamera(Camera.getCPtr(copy)), true)
+        /// <param name="camera">The Camera object to be copied.</param>
+        /// <since_tizen> 10 </since_tizen>
+        public Camera(Camera camera) : this(Interop.Camera.NewCamera(Camera.getCPtr(camera)), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -112,8 +110,7 @@ namespace Tizen.NUI.Scene3D
         /// Sets/Gets the projection mode.
         /// The default is Perspective
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public ProjectionModeType ProjectionMode
         {
             get
@@ -131,8 +128,7 @@ namespace Tizen.NUI.Scene3D
         /// Sets/Gets the field of view in Radians.
         /// The default field of view is 45 degrees.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public Radian FieldOfView
         {
             get
@@ -151,8 +147,7 @@ namespace Tizen.NUI.Scene3D
         /// OrthographicSize is height/2 of viewing cube of Orthographic projection.
         /// Width of viewing cube is internally computed by using aspect ratio of Viewport.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public float OrthographicSize
         {
             get
@@ -174,8 +169,7 @@ namespace Tizen.NUI.Scene3D
         /// <summary>
         /// Gets the aspect ratio of the camera.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public float AspectRatio
         {
             get
@@ -187,8 +181,7 @@ namespace Tizen.NUI.Scene3D
         /// <summary>
         /// Sets/Gets the near clipping plane distance.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public float NearPlaneDistance
         {
             get
@@ -205,8 +198,7 @@ namespace Tizen.NUI.Scene3D
         /// <summary>
         /// Sets/Gets the far clipping plane distance.
         /// </summary>
-        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
-        [EditorBrowsable(EditorBrowsableState.Never)]
+        /// <since_tizen> 10 </since_tizen>
         public float FarPlaneDistance
         {
             get
