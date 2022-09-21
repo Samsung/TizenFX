@@ -8714,6 +8714,41 @@
     "title": "Enum DisposeTypes",
     "keywords": ""
   },
+  "API10/api/Tizen.NUI.DragAndDrop.DragAndDropEventHandler.html": {
+    "href": "API10/api/Tizen.NUI.DragAndDrop.DragAndDropEventHandler.html",
+    "title": "Delegate DragAndDrop.DragAndDropEventHandler",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.DragAndDrop.html": {
+    "href": "API10/api/Tizen.NUI.DragAndDrop.html",
+    "title": "Class DragAndDrop",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.DragAndDrop.SourceEventHandler.html": {
+    "href": "API10/api/Tizen.NUI.DragAndDrop.SourceEventHandler.html",
+    "title": "Delegate DragAndDrop.SourceEventHandler",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.DragData.html": {
+    "href": "API10/api/Tizen.NUI.DragData.html",
+    "title": "Struct DragData",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.DragEvent.html": {
+    "href": "API10/api/Tizen.NUI.DragEvent.html",
+    "title": "Struct DragEvent",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.DragSourceEventType.html": {
+    "href": "API10/api/Tizen.NUI.DragSourceEventType.html",
+    "title": "Enum DragSourceEventType",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.DragType.html": {
+    "href": "API10/api/Tizen.NUI.DragType.html",
+    "title": "Enum DragType",
+    "keywords": ""
+  },
   "API10/api/Tizen.NUI.DrawModeType.html": {
     "href": "API10/api/Tizen.NUI.DrawModeType.html",
     "title": "Enum DrawModeType",
