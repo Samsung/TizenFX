@@ -437,6 +437,7 @@ namespace Tizen.Multimedia.Remoting
         /// <privilege>http://tizen.org/privilege/mediastorage</privilege>
         /// <privilege>http://tizen.org/privilege/externalstorage</privilege>
         /// <privilege>http://tizen.org/privilege/recorder</privilege>
+        /// <privilege>http://tizen.org/privilege/internal/default/platform</privilege>
         /// <exception cref="ArgumentNullException">The media source is null.</exception>
         /// <exception cref="InvalidOperationException">
         /// The WebRTC is not in the valid state.<br/>
