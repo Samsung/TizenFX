@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System.ComponentModel;
+
 namespace Tizen.Multimedia
 {
     /// <summary>
@@ -22,10 +24,11 @@ namespace Tizen.Multimedia
     /// <since_tizen> 3 </since_tizen>
     public class EncodedPlane : IPreviewPlane
     {
-        internal EncodedPlane(byte[] data, bool isDeltaFrame)
+        internal EncodedPlane(byte[] data, bool isDeltaFrame, uint usedSize)
         {
             Data = data;
             IsDeltaFrame = isDeltaFrame;
+            UsedSize = usedSize;
         }
 
         /// <summary>
@@ -39,5 +42,12 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         public bool IsDeltaFrame { get; }
+
+        /// <summary>
+        /// The actually used buffer size.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint UsedSize { get; }
     }
 }
