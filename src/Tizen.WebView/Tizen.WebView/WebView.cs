@@ -127,7 +127,7 @@ namespace Tizen.WebView
     /// A view used to render the web contents.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
-    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12. The WebView provided by .NET MAUI or Tizen.NUI can be used instead.")]
     public class WebView : EvasObject
     {
         private static IDictionary<string, JavaScriptMessageHandler> _javaScriptMessageHandlerMap = new Dictionary<string, JavaScriptMessageHandler>();
