@@ -1380,7 +1380,7 @@ namespace Tizen.NUI.Components
 
         internal override bool OnAccessibilityPan(PanGesture gestures)
         {
-            return OnPanGesture(gestures);
+            return (mScrollEnabled ? OnPanGesture(gestures) : false);
         }
 
         private float CustomScrollAlphaFunction(float progress)
