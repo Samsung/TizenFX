@@ -5214,6 +5214,11 @@
     "title": "Class MediaMicrophoneSource",
     "keywords": ""
   },
+  "API10/api/Tizen.Multimedia.Remoting.MediaNullSource.html": {
+    "href": "API10/api/Tizen.Multimedia.Remoting.MediaNullSource.html",
+    "title": "Class MediaNullSource",
+    "keywords": ""
+  },
   "API10/api/Tizen.Multimedia.Remoting.MediaPacketBufferStatus.html": {
     "href": "API10/api/Tizen.Multimedia.Remoting.MediaPacketBufferStatus.html",
     "title": "Enum MediaPacketBufferStatus",
