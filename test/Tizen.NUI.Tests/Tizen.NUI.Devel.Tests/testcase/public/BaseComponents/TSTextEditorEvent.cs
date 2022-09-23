@@ -55,6 +55,9 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.SelectionStarted += OnSelectionStarted;
             testingTarget.SelectionStarted -= OnSelectionStarted;
+			
+			testingTarget.InputFiltered += OnInputFiltered;
+            testingTarget.InputFiltered -= OnInputFiltered;
                         
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextEditorEventEvents END (OK)");
@@ -119,6 +122,10 @@ namespace Tizen.NUI.Devel.Tests
         private void OnSelectionStarted(object sender, EventArgs e) 
         {
             selectionStartedFlag = true;
+        }
+		
+		private void OnInputFiltered(object sender, InputFilteredEventArgs e)
+        {
         }
     }
 }

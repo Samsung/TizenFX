@@ -28,6 +28,47 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("DaliEnumConstants Property.")]
+        [Property("SPEC", "Tizen.NUI.DaliEnumConstants.Property A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void DaliEnumConstantsProperty()
+        {
+            tlog.Debug(tag, $"DaliEnumConstantsProperty START");
+
+            var Content = Tizen.NUI.Constants.Tooltip.Property.Content;
+            tlog.Debug(tag, "Content  : " + Content);
+
+            var Layout = Tizen.NUI.Constants.Tooltip.Property.Layout;
+            tlog.Debug(tag, "Layout  : " + Layout);
+
+            var WaitTime = Tizen.NUI.Constants.Tooltip.Property.WaitTime;
+            tlog.Debug(tag, "WaitTime   : " + WaitTime);
+
+            var Background = Tizen.NUI.Constants.Tooltip.Property.Background;
+            tlog.Debug(tag, "Background   : " + Background);
+
+            var Tail = Tizen.NUI.Constants.Tooltip.Property.Tail;
+            tlog.Debug(tag, "Tail    : " + Tail);
+
+            var Position = Tizen.NUI.Constants.Tooltip.Property.Position;
+            tlog.Debug(tag, "Position    : " + Position);
+
+            var HoverPointOffset = Tizen.NUI.Constants.Tooltip.Property.HoverPointOffset;
+            tlog.Debug(tag, "HoverPointOffset     : " + HoverPointOffset);
+
+            var MovementThreshold = Tizen.NUI.Constants.Tooltip.Property.MovementThreshold;
+            tlog.Debug(tag, "MovementThreshold : " + MovementThreshold);
+
+            var DisappearOnMovement = Tizen.NUI.Constants.Tooltip.Property.DisappearOnMovement;
+            tlog.Debug(tag, "DisappearOnMovement  : " + DisappearOnMovement);
+
+            tlog.Debug(tag, $"DaliEnumConstantsBackgroundProperty END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("DaliEnumConstants BackgroundProperty.")]
         [Property("SPEC", "Tizen.NUI.DaliEnumConstants.BackgroundProperty A")]
         [Property("SPEC_URL", "-")]
