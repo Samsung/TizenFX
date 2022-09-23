@@ -22,6 +22,8 @@ namespace Tizen.WebView
     /// <summary>
     /// Enumeration values used to specify Policy Navigation Type.
     /// </summary>
+    /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public enum NavigationType {
         /// <summary>
         /// Link Clicked.
@@ -54,6 +56,7 @@ namespace Tizen.WebView
     /// This class also provides the properties for Policy Decision of WebView.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public abstract class PolicyDecisionEventArgs : EventArgs
     {
         private IntPtr _handle;
@@ -67,6 +70,7 @@ namespace Tizen.WebView
         /// Gets the Url.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string Url
         {
             get
@@ -79,6 +83,7 @@ namespace Tizen.WebView
         /// Gets the scheme.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string Scheme
         {
             get
@@ -91,6 +96,7 @@ namespace Tizen.WebView
         /// Ignores the action which triggers this decision.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void Ignore()
         {
             Interop.ChromiumEwk.ewk_policy_decision_ignore(_handle);
@@ -100,6 +106,7 @@ namespace Tizen.WebView
         /// Accepts the action which triggers this decision.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void Use()
         {
             Interop.ChromiumEwk.ewk_policy_decision_use(_handle);
@@ -110,10 +117,11 @@ namespace Tizen.WebView
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public bool IsMainFrame()
         {
             return Interop.ChromiumEwk.ewk_policy_decision_is_main_frame(_handle);
-        } 
+        }
     }
 
     /// <summary>
@@ -121,14 +129,15 @@ namespace Tizen.WebView
     /// This class provides the properties for New Window Policy of WebView.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
-    public class NewWindowPolicyEventArgs : PolicyDecisionEventArgs 
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
+    public class NewWindowPolicyEventArgs : PolicyDecisionEventArgs
     {
         private IntPtr _handle;
         internal NewWindowPolicyEventArgs(IntPtr handle) : base(handle)
         {
             _handle = handle;
         }
-        
+
         internal static NewWindowPolicyEventArgs CreateFromSmartEvent(IntPtr data, IntPtr obj, IntPtr info)
         {
             return new NewWindowPolicyEventArgs(info);
@@ -141,6 +150,7 @@ namespace Tizen.WebView
     /// This class provides the properties for Navigation Policy of WebView.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class NavigationPolicyEventArgs : PolicyDecisionEventArgs
     {
         private IntPtr _handle;
@@ -153,6 +163,7 @@ namespace Tizen.WebView
         /// Gets the Navigation Type of policy.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public NavigationType NavigationType
         {
             get
@@ -165,6 +176,7 @@ namespace Tizen.WebView
         /// Gets the cookie.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string Cookie
         {
             get
@@ -184,6 +196,7 @@ namespace Tizen.WebView
     /// This class provides the properties for Response Policy of WebView.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class ResponsePolicyEventArgs : PolicyDecisionEventArgs
     {
         private IntPtr _handle;
@@ -196,6 +209,7 @@ namespace Tizen.WebView
         /// Gets http response status code.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public int StatusCode
         {
             get
@@ -208,6 +222,7 @@ namespace Tizen.WebView
         /// Gets the cookie.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string Cookie
         {
             get
@@ -215,11 +230,12 @@ namespace Tizen.WebView
                 return Interop.ChromiumEwk.ewk_policy_decision_cookie_get(_handle);
             }
         }
-        
+
         /// <summary>
         /// Checks policy decision type is Download.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public bool IsDownload
         {
             get

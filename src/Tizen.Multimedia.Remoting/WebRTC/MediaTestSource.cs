@@ -28,6 +28,8 @@ namespace Tizen.Multimedia.Remoting
     /// <since_tizen> 9 </since_tizen>
     public sealed class MediaTestSource : MediaSource
     {
+        private MediaSourceType _mediaSourceType;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MediaTestSource"/> class.
         /// </summary>
@@ -42,9 +44,9 @@ namespace Tizen.Multimedia.Remoting
                 throw new InvalidOperationException("The source is has already been assigned to another WebRTC.");
             }
 
-            var type = MediaType == MediaType.Video ? MediaSourceType.VideoTest : MediaSourceType.AudioTest;
+            _mediaSourceType = MediaType == MediaType.Video ? MediaSourceType.VideoTest : MediaSourceType.AudioTest;
 
-            NativeWebRTC.AddMediaSource(webRtc.Handle, type, out uint sourceId).
+            NativeWebRTC.AddMediaSource(webRtc.Handle, _mediaSourceType, out uint sourceId).
                 ThrowIfFailed($"Failed to add {MediaType.ToString()} MediaTestSource.");
 
             WebRtc = webRtc;
@@ -58,5 +60,7 @@ namespace Tizen.Multimedia.Remoting
 
             WebRtc = null;
         }
+
+        internal override MediaSourceType MediaSourceType => _mediaSourceType;
     }
 }
