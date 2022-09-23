@@ -175,7 +175,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"GLWindowHide END (OK)");
         }
 
-
         [Test]
         [Category("P1")]
         [Description("GLWindow Raise")]

@@ -310,6 +310,42 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("ItemView InsertItems.")]
+        [Property("SPEC", "Tizen.NUI.ItemView.InsertItems M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ItemViewInsertItems()
+        {
+            tlog.Debug(tag, $"ItemViewInsertItems START");
+
+            using (ItemFactory factory = new ItemFactory())
+            {
+                var testingTarget = new ItemView(factory);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<ItemView>(testingTarget, "Should be an Instance of ItemView!");
+
+                try
+                {
+                    using (ItemCollection  newItems = new ItemCollection())
+                    {
+                        testingTarget.InsertItems(new ItemCollection(), 30.0f);
+                    }
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ItemViewInsertItems END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("ItemView RemoveItem.")]
         [Property("SPEC", "Tizen.NUI.ItemView.RemoveItem M")]
         [Property("SPEC_URL", "-")]

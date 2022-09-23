@@ -247,6 +247,83 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("ViewImpl OnInitialize.")]
+        [Property("SPEC", "Tizen.NUI.ViewImpl.OnInitialize M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewImplOnInitialize()
+        {
+            tlog.Debug(tag, $"ViewImplOnInitialize START");
+
+            using (ViewWrapperImpl impl = new ViewWrapperImpl(CustomViewBehaviour.ViewBehaviourDefault))
+            {
+                var testingTarget = new ViewWrapper("CustomView", impl);
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<ViewWrapper>(testingTarget, "should be an instance of testing target class!");
+
+                testingTarget.viewWrapperImpl.OnInitialize();
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ViewImplOnInitialize (OK)");
+        }
+        
+        [Test]
+        [Category("P1")]
+        [Description("ViewImpl OnKeyInputFocusGained.")]
+        [Property("SPEC", "Tizen.NUI.ViewImpl.OnKeyInputFocusGained M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewImplOnKeyInputFocusGained()
+        {
+            tlog.Debug(tag, $"ViewImplOnKeyInputFocusGained START");
+
+            using (ViewWrapperImpl impl = new ViewWrapperImpl(CustomViewBehaviour.ViewBehaviourDefault))
+            {
+                var testingTarget = new ViewWrapper("CustomView", impl);
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<ViewWrapper>(testingTarget, "should be an instance of testing target class!");
+
+                testingTarget.viewWrapperImpl.OnKeyInputFocusGained();
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ViewImplOnKeyInputFocusGained (OK)");
+        }
+        
+        [Test]
+        [Category("P1")]
+        [Description("ViewImpl OnKeyInputFocusLost.")]
+        [Property("SPEC", "Tizen.NUI.ViewImpl.OnKeyInputFocusLost M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewImplOnKeyInputFocusLost()
+        {
+            tlog.Debug(tag, $"ViewImplOnKeyInputFocusLost START");
+
+            using (ViewWrapperImpl impl = new ViewWrapperImpl(CustomViewBehaviour.ViewBehaviourDefault))
+            {
+                var testingTarget = new ViewWrapper("CustomView", impl);
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<ViewWrapper>(testingTarget, "should be an instance of testing target class!");
+
+                testingTarget.viewWrapperImpl.OnKeyInputFocusLost();
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ViewImplOnKeyInputFocusLost (OK)");
+        }
+        [Test]
+        [Category("P1")]
         [Description("ViewImpl KeyEventSignal.")]
         [Property("SPEC", "Tizen.NUI.ViewImpl.KeyEventSignal M")]
         [Property("SPEC_URL", "-")]

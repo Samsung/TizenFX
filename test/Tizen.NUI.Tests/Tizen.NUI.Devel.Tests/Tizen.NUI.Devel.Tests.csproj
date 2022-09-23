@@ -3,7 +3,7 @@
   <!-- Property Group for .NET Core Project -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>tizen90</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
     <TargetFrameworkIdentifier>Tizen</TargetFrameworkIdentifier>
   </PropertyGroup>
 
@@ -30,15 +30,10 @@
     <None Remove="testcase\public\Xaml\TotalSample\BuiltInConversions.xaml" />
     <None Remove="testcase\public\Xaml\TotalSample\ClockView.xaml" />
     <None Remove="testcase\public\Xaml\TotalSample\CustomXamlView.xaml" />
-    <None Remove="testcase\public\Xaml\TotalSample\DuplicatePropertyElements.xaml" />
-    <None Remove="testcase\public\Xaml\TotalSample\DuplicateXArgumentsElements.xaml" />
     <None Remove="testcase\public\Xaml\TotalSample\DynamicResource.xaml" />
-    <None Remove="testcase\public\Xaml\TotalSample\FactoryMethodMissingCtor.xaml" />
-    <None Remove="testcase\public\Xaml\TotalSample\FactoryMethodMissingMethod.xaml" />
     <None Remove="testcase\public\Xaml\TotalSample\FactoryMethods.xaml" />
     <None Remove="testcase\public\Xaml\TotalSample\FieldModifier.xaml" />
     <None Remove="testcase\public\Xaml\TotalSample\FindByName.xaml" />
-    <None Remove="testcase\public\Xaml\TotalSample\GenericCollections.xaml" />
     <None Remove="testcase\public\Xaml\TotalSample\HslColorScrollView.xaml" />
     <None Remove="testcase\public\Xaml\TotalSample\I8.xaml" />
     <None Remove="testcase\public\Xaml\TotalSample\McIgnorable.xaml" />
@@ -52,7 +47,6 @@
     <None Remove="testcase\public\Xaml\TotalSample\XArray.xaml" />
     <None Remove="testcase\public\Xaml\TotalSample\XReference.xaml" />
     <None Remove="testcase\public\Xaml\TotalSample\XStatic.xaml" />
-    <None Remove="testcase\public\Xaml\TotalSample\XStaticException.xaml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="res\layout\MyResourceDictionary.xaml">
@@ -97,19 +91,7 @@
     <EmbeddedResource Include="testcase\public\Xaml\TotalSample\CustomXamlView.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="testcase\public\Xaml\TotalSample\DuplicatePropertyElements.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="testcase\public\Xaml\TotalSample\DuplicateXArgumentsElements.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Include="testcase\public\Xaml\TotalSample\DynamicResource.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="testcase\public\Xaml\TotalSample\FactoryMethodMissingCtor.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="testcase\public\Xaml\TotalSample\FactoryMethodMissingMethod.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="testcase\public\Xaml\TotalSample\FactoryMethods.xaml">
@@ -119,9 +101,6 @@
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="testcase\public\Xaml\TotalSample\FindByName.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Include="testcase\public\Xaml\TotalSample\GenericCollections.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Include="testcase\public\Xaml\TotalSample\HslColorScrollView.xaml">
@@ -157,9 +136,6 @@
     <EmbeddedResource Include="testcase\public\Xaml\TotalSample\XStatic.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="testcase\public\Xaml\TotalSample\XStaticException.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -169,7 +145,7 @@
 
   <Import Project="..\Common\dependencies.props" />
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="9.0.0.16796">
+    <PackageReference Include="Tizen.NET" Version="10.0.0.17356">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Tizen.NET.Sdk" Version="$(TizenNETSdkVersion)" />

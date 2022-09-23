@@ -83,5 +83,43 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"EXamlGetValueActionInit END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("GetValueAction DealChar, ('\"' != sign)")]
+        [Property("SPEC", "Tizen.NUI.EXaml.GetValueAction.DealChar M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void EXamlGetValueActionDealChar2()
+        {
+            tlog.Debug(tag, $"EXamlGetValueActionDealChar2 START");
+
+            var testingTarget = new Tizen.NUI.EXaml.GetValueAction('\'', new MyAction());
+            Assert.IsNotNull(testingTarget, "Can't create success object GetValueAction");
+            Assert.IsInstanceOf<Tizen.NUI.EXaml.GetValueAction>(testingTarget, "Should be an instance of GetValueAction type.");
+
+            try
+            {
+                testingTarget.DealChar(' ');
+            }
+            catch (Exception e)
+            {
+                tlog.Error(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            try
+            {
+                testingTarget.DealChar('(');
+            }
+            catch (Exception e)
+            {
+                tlog.Error(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"EXamlGetValueActionDealChar2 END (OK)");
+        }
     }
 }

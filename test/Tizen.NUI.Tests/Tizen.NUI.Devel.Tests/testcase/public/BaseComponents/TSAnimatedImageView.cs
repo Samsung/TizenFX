@@ -223,6 +223,35 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("AnimatedImageView SetValues.")]
+        [Property("SPEC", "Tizen.NUI.AnimatedImageView.SetValues A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimatedImageViewSetValues()
+        {
+            tlog.Debug(tag, $"AnimatedImageViewSetValues START");
+
+            var testingTarget = new AnimatedImageView();
+            Assert.IsNotNull(testingTarget, "Can't create success object AnimatedImageView");
+            Assert.IsInstanceOf<AnimatedImageView>(testingTarget, "Should be an instance of AnimatedImageView type.");
+            
+            try
+			{
+                testingTarget.SetValues();
+			}
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }   
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"AnimatedImageViewSetValues END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("AnimatedImageView StopBehavior.")]
         [Property("SPEC", "Tizen.NUI.AnimatedImageView.StopBehavior A")]
         [Property("SPEC_URL", "-")]

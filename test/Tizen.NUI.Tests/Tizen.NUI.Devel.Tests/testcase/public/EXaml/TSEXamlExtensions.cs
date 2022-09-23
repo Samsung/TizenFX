@@ -200,7 +200,6 @@ namespace Tizen.NUI.Devel.Tests
             catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                tlog.Debug(tag, e.StackTrace);
                 Assert.Fail("Caught Exception: Failed!");
             }
 

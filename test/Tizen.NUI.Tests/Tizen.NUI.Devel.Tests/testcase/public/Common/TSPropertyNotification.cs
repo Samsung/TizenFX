@@ -337,6 +337,12 @@ namespace Tizen.NUI.Devel.Tests
             {
                 flag = true;
             };
+
+            testingTarget.Notified -= (obj, e) =>
+            {
+                flag = false;
+            };
+
             view.Position = new Position(300.0f, 0.0f, 0.0f);
             await Task.Delay(200);
 
