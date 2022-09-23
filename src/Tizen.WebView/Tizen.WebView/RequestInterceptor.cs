@@ -27,6 +27,7 @@ namespace Tizen.WebView
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class RequestInterceptor {
         private const string ResponseHeaderTemplate =
             "HTTP/1.1 {0} {1}\r\n" +
@@ -45,6 +46,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public Uri Url
         {
             get
@@ -67,6 +69,7 @@ namespace Tizen.WebView
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="data"/> is null.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the native operation failed to set response.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void SetResponse(string mimeType, string encoding, int statusCode, string reasonPhrase, IDictionary<string, string> responseHeaders, Stream data)
         {
             if (data == null)
@@ -109,6 +112,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void Ignore()
         {
             Interop.ChromiumEwk.ewk_intercept_request_ignore(_handle);
