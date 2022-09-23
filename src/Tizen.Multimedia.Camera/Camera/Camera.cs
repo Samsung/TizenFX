@@ -105,7 +105,7 @@ namespace Tizen.Multimedia
                     $"CameraDeviceManager is not supported. Not error.");
             }
 
-            if (_cameraDeviceManager != null || device == CameraDevice.Default)
+            if (_cameraDeviceManager != null)
             {
                 var deviceInfo = _cameraDeviceManager.SupportedDevices;
 
