@@ -76,6 +76,62 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("Touch GetTime")]
+        [Property("SPEC", "Tizen.NUI.Touch.GetTime M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TouchGetTime()
+        {
+            tlog.Debug(tag, $"TouchGetTime START");
+
+            var testingTarget = new Touch();
+            Assert.IsNotNull(testingTarget, "Can't create success object Touch");
+            Assert.IsInstanceOf<Touch>(testingTarget, "Should be an instance of Touch type.");
+
+            try
+            {
+                var result = testingTarget.GetTime();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"TouchGetTime END (OK)");
+                Assert.Pass("Caught Exception : Passed!");
+            }
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Touch GetPointCount")]
+        [Property("SPEC", "Tizen.NUI.Touch.GetPointCount M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TouchGetPointCount()
+        {
+            tlog.Debug(tag, $"TouchGetPointCount START");
+
+            var testingTarget = new Touch();
+            Assert.IsNotNull(testingTarget, "Can't create success object Touch");
+            Assert.IsInstanceOf<Touch>(testingTarget, "Should be an instance of Touch type.");
+
+            try
+            {
+               var result = testingTarget.GetPointCount();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"TouchGetPointCount END (OK)");
+                Assert.Pass("Caught Exception : Passed!");
+            }
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("Touch GetState")]
         [Property("SPEC", "Tizen.NUI.Touch.GetState M")]
         [Property("SPEC_URL", "-")]
@@ -348,5 +404,4 @@ namespace Tizen.NUI.Devel.Tests
             }
         }
     }
-
 }

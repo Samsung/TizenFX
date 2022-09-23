@@ -19,7 +19,7 @@ namespace Tizen.NUI.Devel.Tests
         private string path = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "Test_Style_Manager.json";
 
         [Obsolete]
-        private void StyleManager_StyleChanged(object sender, StyleManager.StyleChangedEventArgs e)
+        private void OnStyleChanged(object sender, StyleManager.StyleChangedEventArgs e)
         {
             flag = true;
         }
@@ -171,21 +171,60 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "EVL")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         [Obsolete]
-        public void StyleManagerStyleChanged()
+        public async Task StyleManagerStyleChanged()
         {
             tlog.Debug(tag, $"StyleManagerStyleChanged START");
+
+            flag = false;
+            var testingTarget = StyleManager.Get();
+            Assert.IsNotNull(testingTarget, "The value of Get return should not be null");
+            Assert.IsInstanceOf<StyleManager>(testingTarget, "Should be an instance of StyleManager type.");
+            
+            try
+			{
+                testingTarget.StyleChanged += OnStyleChanged;
+			    testingTarget.StyleChanged -= OnStyleChanged;
+            }
+			catch(Exception e)
+            {
+                Assert.Fail("Catch exception: " + e.Message.ToString());
+            }
+
+			testingTarget.ApplyTheme(path);
+            await Task.Delay(200);
+            tlog.Error(tag, "StyleChanged : " + flag);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"StyleManagerStyleChanged END (OK)");
+        }
+		
+		[Test]
+        [Category("P1")]
+        [Description("StyleManager ApplyDefaultTheme.")]
+        [Property("SPEC", "Tizen.NUI.StyleManager.ApplyDefaultTheme E")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "EVL")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void StyleManagerApplyDefaultTheme()
+        {
+            tlog.Debug(tag, $"StyleManagerApplyDefaultTheme START");
 
             var testingTarget = StyleManager.Get();
             Assert.IsNotNull(testingTarget, "The value of Get return should not be null");
             Assert.IsInstanceOf<StyleManager>(testingTarget, "Should be an instance of StyleManager type.");
-
-            testingTarget.StyleChanged += StyleManager_StyleChanged;
-            testingTarget.ApplyTheme(path);
-
-            Assert.IsTrue(flag, "StyleChanged is not be called");
+            
+            try
+			{
+                 testingTarget.ApplyDefaultTheme();
+			}
+			catch(Exception e)
+            {
+                Assert.Fail("Catch exception: " + e.Message.ToString());
+            }
 
             testingTarget.Dispose();
-            tlog.Debug(tag, $"StyleManagerStyleChanged END (OK)");
+            tlog.Debug(tag, $"StyleManagerApplyDefaultTheme END (OK)");
         }
     }
 }

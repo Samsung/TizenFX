@@ -85,6 +85,108 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"AnimationDownCast END (OK)");
         }
+        
+		[Test]
+        [Category("P1")]
+        [Description("Animation GetCurrentProgress")]
+        [Property("SPEC", "Tizen.NUI.Animation.GetCurrentProgress M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationGetCurrentProgress()
+        {
+            tlog.Debug(tag, $"AnimationGetCurrentProgress START");
+
+            var testingTarget = new Animation(2000);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            try
+			{
+                testingTarget.SetCurrentProgress(0.3f);
+                
+                var result = testingTarget.GetCurrentProgress();
+                tlog.Debug(tag, "Current progress : " + result);
+			}
+			catch(Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Catch exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            
+            tlog.Debug(tag, $"AnimationGetCurrentProgress END (OK)");
+        }
+		
+		[Test]
+        [Category("P1")]
+        [Description("Animation GetSpeedFactor")]
+        [Property("SPEC", "Tizen.NUI.Animation.GetSpeedFactor M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationGetSpeedFactor()
+        {
+            tlog.Debug(tag, $"AnimationGetSpeedFactor START");
+
+            var testingTarget = new Animation(2000);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            try
+			{
+                testingTarget.SetSpeedFactor(0.3f);
+
+			    var result = testingTarget.GetSpeedFactor();
+                tlog.Debug(tag, "Speed factor : " + result);
+			}
+			catch(Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Pass("Catch exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            
+            tlog.Debug(tag, $"AnimationGetSpeedFactor END (OK)");
+        }
+
+		[Test]
+        [Category("P1")]
+        [Description("Animation PlayRange")]
+        [Property("SPEC", "Tizen.NUI.Animation.PlayRange M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationPlayRange()
+        {
+            tlog.Debug(tag, $"AnimationGetPlayRange START");
+            
+            var testingTarget = new Animation(2000);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            using (Vector2 vec = new Vector2(0.0f, 1.0f))
+			{
+                try
+			    {
+                    testingTarget.PlayRange = vec;
+
+                    var result = testingTarget.PlayRange;
+                    Assert.AreEqual(0.0f, result.X, "Should be equal!");
+                    Assert.AreEqual(1.0f, result.Y, "Should be equal!");
+			    }
+			    catch(Exception e)
+                {
+                    Assert.Pass("Catch exception: " + e.Message.ToString());
+                }
+			}
+
+            testingTarget.Dispose();
+            
+            tlog.Debug(tag, $"AnimationGetPlayRange END (OK)");
+        }
 
         [Test]
         [Category("P2")]

@@ -69,8 +69,6 @@ namespace Tizen.NUI.Devel.Tests
                     Assert.IsInstanceOf<TransitionItemBase>(testingTarget, "Should be an Instance of TransitionItemBase!");
 
                     testingTarget.Dispose();
-                    // disposed
-                    testingTarget.Dispose();
                 }
             }
 

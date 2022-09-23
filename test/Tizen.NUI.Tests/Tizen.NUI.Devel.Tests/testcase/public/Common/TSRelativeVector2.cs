@@ -70,6 +70,37 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"RelativeVector2ConstructorWithFloat END (OK)");
         }
 
+		[Test]
+        [Category("P1")]
+        [Description("RelativeVector2 XY. With Float.")]
+        [Property("SPEC", "Tizen.NUI.RelativeVector2.XY. With Float. C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "Single, Single")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void RelativeVector2XYWithFloat()
+        {
+            tlog.Debug(tag, $"RelativeVector2XYWithFloat START");
+
+            var testingTarget = new RelativeVector2(0.5f, 0.6f);
+            Assert.IsNotNull(testingTarget, "Can't create success object RelativeVector2");
+            Assert.IsInstanceOf<RelativeVector2>(testingTarget, "Should return Vector2 instance.");
+            
+            try
+			{
+                testingTarget.X = 0.1f;
+                testingTarget.Y = 0.9f;
+			}
+			catch(Exception e)
+            {
+                Assert.Fail("Catch exception: " + e.Message.ToString());
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RelativeVector2XYWithFloat END (OK)");
+        }
+
         [Test]
         [Category("P1")]
         [Description("RelativeVector2 constructor. With RelativeVector3.")]

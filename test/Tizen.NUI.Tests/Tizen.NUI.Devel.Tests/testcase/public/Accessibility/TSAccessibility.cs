@@ -53,6 +53,31 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("Accessibility IsScreenReaderEnabled.")]
+        [Property("SPEC", "Tizen.NUI.Accessibility.IsScreenReaderEnabled A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AccessibilityIsScreenReaderEnabled()
+        {
+            tlog.Debug(tag, $"AccessibilityIsScreenReaderEnabled START");
+
+            try
+            {
+                var result = Accessibility.Accessibility.IsScreenReaderEnabled;
+                tlog.Debug(tag, "IsScreenReaderEnabled : " + result);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"AccessibilityIsScreenReaderEnabled END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("Accessibility Say.")]
         [Property("SPEC", "Tizen.NUI.Accessibility.Say M")]
         [Property("SPEC_URL", "-")]

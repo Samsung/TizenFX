@@ -4,6 +4,7 @@ using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using System.Collections.Generic;
+using Tizen.Applications;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -31,33 +32,30 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P2")]
-        [Description("FrameBrokerBase SendLaunchRequest.")]
+        [Description("FrameBrokerBase SendLaunchRequest. With null.")]
         [Property("SPEC", "Tizen.NUI.FrameBrokerBase.SendLaunchRequest M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void FrameBrokerBaseSendLaunchRequestNullAppControl()
+        public void FrameBrokerBaseSendLaunchRequestWithNull()
         {
-            tlog.Debug(tag, $"FrameBrokerBaseSendLaunchRequestNullAppControl START");
+            tlog.Debug(tag, $"FrameBrokerBaseSendLaunchRequestWithNull START");
 
-            //using (Window window = new Window(new Rectangle(0, 0, 100, 200), false))
-            //{
-                var testingTarget = new DefaultFrameBroker(Window.Instance);
-                Assert.IsNotNull(testingTarget, "Can't create success object CustomView");
-                Assert.IsInstanceOf<DefaultFrameBroker>(testingTarget, "Should be an instance of DefaultFrameBroker type.");
+            var testingTarget = new DefaultFrameBroker(Window.Instance);
+            Assert.IsNotNull(testingTarget, "Can't create success object CustomView");
+            Assert.IsInstanceOf<DefaultFrameBroker>(testingTarget, "Should be an instance of DefaultFrameBroker type.");
 
-                try
-                {
-                    testingTarget.SendLaunchRequest(null);
-                }
-                catch (Exception e)
-                {
-                    testingTarget.Dispose();
-                    tlog.Debug(tag, e.Message.ToString());
-                    tlog.Debug(tag, $"FrameBrokerBaseSendLaunchRequestNullAppControl END (OK)");
-                    Assert.Pass("Caught ArgumentException : Passed!");
-                }
-            //}
+            try
+            {
+                testingTarget.SendLaunchRequest(null);
+            }
+            catch (Exception e)
+            {
+                testingTarget.Dispose();
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"FrameBrokerBaseSendLaunchRequestWithNull END (OK)");
+                Assert.Pass("Caught ArgumentException : Passed!");
+            }
         }
     }
 }

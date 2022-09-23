@@ -341,6 +341,45 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("TextEditor SetInputFontStyle.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.SetInputFontStyle M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextEditorSetInputFontStyle()
+        {
+            tlog.Debug(tag, $"TextEditorSetInputFontStyle START");
+
+            var testingTarget = new TextEditor(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            var setFontStyle = new Tizen.NUI.Text.FontStyle()
+            {
+                Width = FontWidthType.Expanded,
+                Weight = FontWeightType.Bold,
+                Slant = FontSlantType.Italic,
+            };
+
+            try
+			{
+                testingTarget.SetInputFontStyle(setFontStyle);
+
+                var fontStyle = testingTarget.GetInputFontStyle();
+                Assert.AreEqual(FontWidthType.Expanded, fontStyle.Width, "Sholud be equal!");
+			}
+			catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+            
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextEditorSetInputFontStyle END (OK)");
+        }		
+
+        [Test]
+        [Category("P1")]
         [Description("TextEditor GetShadow.")]
         [Property("SPEC", "Tizen.NUI.TextEditor.GetShadow M")]
         [Property("SPEC_URL", "-")]
