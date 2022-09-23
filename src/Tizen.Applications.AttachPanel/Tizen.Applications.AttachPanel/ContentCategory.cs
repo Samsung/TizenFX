@@ -4,6 +4,7 @@ namespace Tizen.Applications.AttachPanel
     /// Enumeration for the attach panel content category.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public enum ContentCategory
     {
         /// <summary>

@@ -23,6 +23,7 @@ namespace Tizen.Applications.AttachPanel
         /// Results are from the content category.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public ContentCategory Category
         {
             get
@@ -36,6 +37,7 @@ namespace Tizen.Applications.AttachPanel
         /// The caller application has to use the ExtraData property to get received data.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public AppControl Result
         {
             get
@@ -48,6 +50,7 @@ namespace Tizen.Applications.AttachPanel
         /// Property for the result of the AppControl.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public AppControlReplyResult ResultCode
         {
             get

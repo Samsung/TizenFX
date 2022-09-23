@@ -19,6 +19,7 @@ namespace Tizen.Applications.AttachPanel
         /// Property for the event type.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public EventType EventType
         {
             get
