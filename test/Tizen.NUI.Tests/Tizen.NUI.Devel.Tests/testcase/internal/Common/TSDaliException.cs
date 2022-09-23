@@ -59,8 +59,17 @@ namespace Tizen.NUI.Devel.Tests
             var testingTarget = new DaliException("China", "Chinese speaking!");
             Assert.IsNotNull(testingTarget, "Can't create success object DaliException.");
             Assert.IsInstanceOf<DaliException>(testingTarget, "Should return DaliException instance.");
-
-            tlog.Debug(tag, "location : " + testingTarget.location);
+            
+			try
+            {
+                testingTarget.location = "Chinese speaking!";
+				tlog.Debug(tag, "location : " + testingTarget.location);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"DaliExceptionLocation END (OK)");

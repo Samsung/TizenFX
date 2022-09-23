@@ -51,6 +51,11 @@ namespace Tizen.NUI.Devel.Tests
             {
                 base.OnDestroy();
             }
+			
+			public void MyCreateWindowInfo()
+            {
+                base.CreateWindowInfo();
+            }
         }
 
         [SetUp]
@@ -199,6 +204,34 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"NUIFrameComponentOnResume END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("NUIFrameComponent CreateWindowInfo.")]
+        [Property("SPEC", "Tizen.NUI.NUIFrameComponent.CreateWindowInfo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void NUIFrameComponentCreateWindowInfo()
+        {
+            tlog.Debug(tag, $"NUIFrameComponentCreateWindowInfo START");
+
+            var testingTarget = new MyNUIFrameComponent();
+            Assert.IsNotNull(testingTarget, "Should be not null.");
+            Assert.IsInstanceOf<NUIFrameComponent>(testingTarget, "Should be an instance of NUIFrameComponent type.");
+
+            try
+            {
+                testingTarget.MyCreateWindowInfo();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            tlog.Debug(tag, $"NUIFrameComponentCreateWindowInfo END (OK)");
         }
 
         [Test]

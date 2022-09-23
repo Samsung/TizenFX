@@ -40,5 +40,25 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget = null;
             tlog.Debug(tag, $"XamlFilePathAttributeConstructor END");
         }
+		
+        [Test]
+        [Category("P1")]
+        [Description("XamlFilePathAttribute FilePath ")]
+        [Property("SPEC", "Tizen.NUI.XamlFilePathAttribute.FilePath  A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        public void XamlFilePathAttributeFilePath()
+        {
+            tlog.Debug(tag, $"XamlFilePathAttributeFilePath START");
+
+            var testingTarget = new XamlFilePathAttribute("myPath");
+            Assert.IsNotNull(testingTarget, "null XamlFilePathAttribute");
+            Assert.IsInstanceOf<XamlFilePathAttribute>(testingTarget, "Should return XamlFilePathAttribute instance.");
+
+            tlog.Debug(tag, "FilePath : " + testingTarget.FilePath);
+
+            testingTarget = null;
+            tlog.Debug(tag, $"XamlFilePathAttributeFilePath END");
+        }
     }
 }

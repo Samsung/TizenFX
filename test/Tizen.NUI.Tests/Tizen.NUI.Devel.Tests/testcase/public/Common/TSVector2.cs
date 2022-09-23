@@ -72,6 +72,33 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("Vector2 X/Y.")]
+        [Property("SPEC", "Tizen.NUI.Vector2.X M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("COVPARAM", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void Vector2X()
+        {
+            tlog.Debug(tag, $"Vector2X START");
+
+            var testingTarget = new Vector2(100.0f, 200.0f);
+            Assert.IsNotNull(testingTarget, "Can't create success object Vector2");
+            Assert.IsInstanceOf<Vector2>(testingTarget, "Should return Vector2 instance.");
+
+            testingTarget.X = 200.0f;
+            Assert.AreEqual(200.0f, testingTarget.X, "Should be equal!");
+
+            testingTarget.Y = 100.0f;
+            Assert.AreEqual(100.0f, testingTarget.Y, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Vector2X END (OK)");
+        }		
+
+        [Test]
+        [Category("P1")]
         [Description("Vector2 constructor. With array.")]
         [Property("SPEC", "Tizen.NUI.Vector2.Vector2 C")]
         [Property("SPEC_URL", "-")]
