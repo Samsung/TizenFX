@@ -57,5 +57,7 @@ namespace Tizen.Multimedia.Remoting
 
             WebRtc = null;
         }
+
+        internal override MediaSourceType MediaSourceType => MediaSourceType.Screen;
     }
 }

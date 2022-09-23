@@ -689,6 +689,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The color selector for the borderline of the View.
+        /// Like BackgroundColor, color selector typed BorderlineColor should be used in ViewStyle only.
+        /// So this API is internally used only.
+        /// </summary>
+        internal Selector<Color> BorderlineColorSelector
+        {
+            get
+            {
+                return (Selector<Color>)GetValue(BorderlineColorSelectorProperty);
+            }
+            set
+            {
+                SetValue(BorderlineColorSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Relative offset for the borderline of the View.
         /// Recommended range : [-1.0f to 1.0f].
         /// If -1.0f, draw borderline inside of the View.
@@ -2755,6 +2773,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The Color of View. This is an RGBA value.
+        /// Each RGBA components match as <see cref="ColorRed"/>, <see cref="ColorGreen"/>, <see cref="ColorBlue"/>, and <see cref="Opacity"/>.
+        /// This property will multiply the final color of this view. (BackgroundColor, BorderlineColor, BackgroundImage, etc).
+        /// For example, if view.BackgroundColor = Color.Yellow and view.Color = Color.Purple, this view will shown as Red.
+        /// Inherient of color value depend on <see cref="ColorMode"/>.
         /// </summary>
         /// <remarks>
         /// <para>
@@ -2783,6 +2805,72 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(ColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The Red component of View.Color.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ColorRed
+        {
+            get
+            {
+                return (float)GetValue(ColorRedProperty);
+            }
+            set
+            {
+                SetValue(ColorRedProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The Green component of View.Color.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ColorGreen
+        {
+            get
+            {
+                return (float)GetValue(ColorGreenProperty);
+            }
+            set
+            {
+                SetValue(ColorGreenProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The Blue component of View.Color.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ColorBlue
+        {
+            get
+            {
+                return (float)GetValue(ColorBlueProperty);
+            }
+            set
+            {
+                SetValue(ColorBlueProperty, value);
                 NotifyPropertyChanged();
             }
         }

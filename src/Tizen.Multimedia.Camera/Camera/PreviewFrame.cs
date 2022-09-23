@@ -125,7 +125,7 @@ namespace Tizen.Multimedia
                     }
 
                     Marshal.Copy(encodedPlane.Data, buffers[0], 0, (int)encodedPlane.DataLength);
-                    Plane = new EncodedPlane(buffers[0], encodedPlane.IsDeltaFrame);
+                    Plane = new EncodedPlane(buffers[0], encodedPlane.IsDeltaFrame, encodedPlane.DataLength);
 
                     break;
                 case PlaneType.DepthPlane:
