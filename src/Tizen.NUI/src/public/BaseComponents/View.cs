@@ -73,6 +73,32 @@ namespace Tizen.NUI.BaseComponents
         private ControlState propagatableControlStates = ControlState.All;
         private bool dispatchTouchEvents = true;
 
+#if NUI_PROPERTY_CHANGE_DEBUG
+internal static int LayoutSetGetter = 0;
+internal static int SizeGetter = 0;
+internal static int SizeSetter = 0;
+internal static int Size2DGetter = 0;
+internal static int Size2DSetter = 0;
+internal static int MaximumSizeGetter = 0;
+internal static int MaximumSizeSetter = 0;
+internal static int MinimumSizeGetter = 0;
+internal static int MinimumSizeSetter = 0;
+internal static int PositionGetter = 0;
+internal static int PositionSetter = 0;
+internal static int Position2DGetter = 0;
+internal static int Position2DSetter = 0;
+internal static int SizeWidthGetter = 0;
+internal static int SizeWidthSetter = 0;
+internal static int SizeHeightGetter = 0;
+internal static int SizeHeightSetter = 0;
+internal static int PositionXGetter = 0;
+internal static int PositionXSetter = 0;
+internal static int PositionYGetter = 0;
+internal static int PositionYSetter = 0;
+internal static int PositionZGetter = 0;
+internal static int PositionZSetter = 0;
+#endif
+
         static View()
         {
             RegisterPropertyGroup(PositionProperty, positionPropertyGroup);
@@ -188,6 +214,9 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+LayoutSetGetter++;
+#endif
                 return layoutSet;
             }
         }
@@ -1218,6 +1247,10 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+Size2DGetter++;
+#endif
+
                 var temp = (Size2D)GetValue(Size2DProperty);
 
                 if (this.Layout == null)
@@ -1230,6 +1263,10 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+Size2DSetter++;
+#endif
+
                 SetValue(Size2DProperty, value);
 
                 NotifyPropertyChanged();
@@ -1304,10 +1341,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+Position2DGetter++;
+#endif
+
                 return (Position2D)GetValue(Position2DProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+Position2DSetter++;
+#endif
+
                 SetValue(Position2DProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1553,10 +1598,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeWidthGetter++;
+#endif
+
                 return (float)GetValue(SizeWidthProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeWidthSetter++;
+#endif
+
                 SetValue(SizeWidthProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1578,10 +1631,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeHeightGetter++;
+#endif
+
                 return (float)GetValue(SizeHeightProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeHeightSetter++;
+#endif
+
                 SetValue(SizeHeightProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1617,10 +1678,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionGetter++;
+#endif
+
                 return (Position)GetValue(PositionProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionSetter++;
+#endif
+
                 SetValue(PositionProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1642,10 +1711,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionXGetter++;
+#endif
                 return (float)GetValue(PositionXProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionXSetter++;
+#endif
                 SetValue(PositionXProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1667,10 +1742,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionYGetter++;
+#endif
                 return (float)GetValue(PositionYProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionYSetter++;
+#endif
                 SetValue(PositionYProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1692,10 +1773,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionZGetter++;
+#endif
+
                 return (float)GetValue(PositionZProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionZSetter++;
+#endif
+
                 SetValue(PositionZProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2259,10 +2348,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+MinimumSizeGetter++;
+#endif
                 return (Size2D)GetValue(MinimumSizeProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+MinimumSizeSetter++;
+#endif
                 if (value == null)
                 {
                     throw new ArgumentNullException(nameof(value));
@@ -2299,10 +2394,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+MaximumSizeGetter++;
+#endif
                 return (Size2D)GetValue(MaximumSizeProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+MaximumSizeSetter++;
+#endif
                 // We don't have Layout.Maximum(Width|Height) so we cannot apply it to layout.
                 // MATCH_PARENT spec + parent container size can be used to limit
                 if (layout != null)
@@ -2439,10 +2540,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeGetter++;
+#endif
                 return (Size)GetValue(SizeProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeSetter++;
+#endif
                 SetValue(SizeProperty, value);
                 NotifyPropertyChanged();
             }

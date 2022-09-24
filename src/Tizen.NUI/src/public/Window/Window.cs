@@ -54,7 +54,9 @@ namespace Tizen.NUI
             }
             return isSupported;
         }
-
+#if NUI_PROPERTY_CHANGE_DEBUG
+private bool flag1 = false;
+#endif
         internal Window(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
             if (Interop.Stage.IsInstalled())
@@ -63,8 +65,50 @@ namespace Tizen.NUI
 
                 localController = new LayoutController(this);
                 NUILog.Debug("layoutController id:" + localController.GetId());
+
+#if NUI_PROPERTY_CHANGE_DEBUG
+Tizen.Log.Fatal("NUITEST", $"Window constructor called!");
+if(flag1 == false)
+{
+    flag1 = true;
+    var curTh = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+    Tizen.Log.Fatal("NUITEST", $"current threadID : {curTh}");
+    if(curTh == 1)
+    {
+        this.KeyEvent += TestWindowKeyEventHandler;
+        Tizen.Log.Fatal("NUITEST", $"TestWindowKeyEventHandler() added");
+    }
+}
+#endif
+
             }
         }
+
+#if NUI_PROPERTY_CHANGE_DEBUG
+private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
+{
+    if(e.Key.State == Key.StateType.Down && e.Key.KeyPressedName == "1")
+    {
+#if NUI_PROPERTY_CHANGE_1
+        Tizen.Log.Fatal("NUITEST", $"### (FIXED) currently used View's properties ###");
+#else
+        Tizen.Log.Fatal("NUITEST", $"### currently used View's properties ###");
+#endif
+        Tizen.Log.Fatal("NUITEST", $"PropertyValueConstructor: {Tizen.NUI.PropertyValue.PropertyValueConstructor}");
+        Tizen.Log.Fatal("NUITEST", $"SizeGetter: {View.SizeGetter}, SizeSetter: {View.SizeSetter}");
+        Tizen.Log.Fatal("NUITEST", $"Size2DGetter: {View.Size2DGetter}, Size2DSetter: {View.Size2DSetter}");
+        Tizen.Log.Fatal("NUITEST", $"SizeWidthGetter: {View.SizeWidthGetter}, SizeWidthSetter: {View.SizeWidthSetter}");
+        Tizen.Log.Fatal("NUITEST", $"SizeHeightGetter: {View.SizeHeightGetter}, SizeHeightSetter: {View.SizeHeightSetter}");
+        Tizen.Log.Fatal("NUITEST", $"PositionGetter: {View.PositionGetter}, PositionSetter: {View.PositionSetter}");
+        Tizen.Log.Fatal("NUITEST", $"Position2DGetter: {View.Position2DGetter}, Position2DSetter: {View.Position2DSetter}");
+        Tizen.Log.Fatal("NUITEST", $"PositionXGetter: {View.PositionXGetter}, PositionXSetter: {View.PositionXSetter}");
+        Tizen.Log.Fatal("NUITEST", $"PositionYGetter: {View.PositionYGetter}, PositionYSetter: {View.PositionYSetter}");
+        Tizen.Log.Fatal("NUITEST", $"PositionZGetter: {View.PositionZGetter}, PositionZSetter: {View.PositionZSetter}");
+        Tizen.Log.Fatal("NUITEST", $"MaximumSizeGetter: {View.MaximumSizeGetter}, MaximumSizeSetter: {View.MaximumSizeSetter}");
+        Tizen.Log.Fatal("NUITEST", $"MinimumSizeGetter: {View.MinimumSizeGetter}, MinimumSizeSetter: {View.MinimumSizeSetter}");
+    }
+}
+#endif
 
         /// <summary>
         /// A helper method to get the current window where the view is added
