@@ -763,8 +763,11 @@ namespace Tizen.NUI.BaseComponents
                     view.userSizeWidth = ((Size2D)newValue).Width;
                     view.userSizeHeight = ((Size2D)newValue).Height;
 
+#if NUI_PROPERTY_CHANGE_1
+                    Interop.Actor.InternalSetPropertyVector2ActualVector3(view.SwigCPtr, View.Property.SIZE, ((Size2D)newValue).SwigCPtr);
+#else
                     view.SetSize(((Size2D)newValue).Width, ((Size2D)newValue).Height, 0);
-
+#endif
                     view.widthPolicy = ((Size2D)newValue).Width;
                     view.heightPolicy = ((Size2D)newValue).Height;
 
@@ -774,6 +777,13 @@ namespace Tizen.NUI.BaseComponents
             defaultValueCreator: (bindable) =>
             {
                 var view = (View)bindable;
+#if NUI_PROPERTY_CHANGE_1
+                if (view.internalSize2D == null)
+                {
+                    view.internalSize2D = new Size2D(view.OnSize2DChanged, 0, 0);
+                }
+                Interop.Actor.InternalRetrievingPropertyVector2ActualVector3(view.SwigCPtr, View.Property.SIZE, view.internalSize2D.SwigCPtr);
+#else
                 var tmp = new Size(0, 0, 0);
                 var tmpProperty = Object.GetProperty(view.SwigCPtr, Property.SIZE);
                 tmpProperty?.Get(tmp);
@@ -793,7 +803,7 @@ namespace Tizen.NUI.BaseComponents
 
                 tmpProperty?.Dispose();
                 tmp?.Dispose();
-
+#endif
                 return view.internalSize2D;
             }
         );
@@ -836,12 +846,23 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
                 if (newValue != null)
                 {
+#if NUI_PROPERTY_CHANGE_1
+                    Interop.Actor.InternalSetPropertyVector2ActualVector3(view.SwigCPtr, View.Property.POSITION, ((Position2D)newValue).SwigCPtr);
+#else
                     view.SetPosition(((Position2D)newValue).X, ((Position2D)newValue).Y, 0);
+#endif
                 }
             },
             defaultValueCreator: (bindable) =>
             {
                 var view = (View)bindable;
+#if NUI_PROPERTY_CHANGE_1
+                if (view.internalPosition2D == null)
+                {
+                    view.internalPosition2D = new Position2D(view.OnPosition2DChanged, 0, 0);
+                }
+                Interop.Actor.InternalRetrievingPropertyVector2ActualVector3(view.SwigCPtr, View.Property.POSITION, view.internalPosition2D.SwigCPtr);
+#else
                 var tmp = new Position(0, 0, 0);
                 var tmpProperty = Object.GetProperty(view.SwigCPtr, Property.POSITION);
                 tmpProperty?.Get(tmp);
@@ -861,7 +882,7 @@ namespace Tizen.NUI.BaseComponents
 
                 tmpProperty?.Dispose();
                 tmp?.Dispose();
-
+#endif
                 return view.internalPosition2D;
             }
         );
@@ -998,8 +1019,11 @@ namespace Tizen.NUI.BaseComponents
                 // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
                 // SuggestedMinimumWidth/Height is used by Layout calculation.
                 view.userSizeWidth = (float)newValue;
-
+#if NUI_PROPERTY_CHANGE_1
+                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, View.Property.SizeWidth, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeWidth, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
                 view.WidthSpecification = (int)System.Math.Ceiling((float)newValue);
             }
         }),
@@ -1007,7 +1031,11 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             float temp = 0.0f;
+#if NUI_PROPERTY_CHANGE_1
+            Interop.Actor.InternalRetrievingPropertyFloat(view.SwigCPtr, View.Property.SizeWidth, out temp);
+#else
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeWidth).Get(out temp);
+#endif
             return temp;
         }));
 
@@ -1025,8 +1053,11 @@ namespace Tizen.NUI.BaseComponents
                 // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
                 // SuggestedMinimumWidth/Height is used by Layout calculation.
                 view.userSizeHeight = (float)newValue;
-
+#if NUI_PROPERTY_CHANGE_1
+                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, View.Property.SizeHeight, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeHeight, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
                 view.HeightSpecification = (int)System.Math.Ceiling((float)newValue);
             }
         }),
@@ -1034,7 +1065,11 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
             float temp = 0.0f;
+#if NUI_PROPERTY_CHANGE_1
+            Interop.Actor.InternalRetrievingPropertyFloat(view.SwigCPtr, View.Property.SizeHeight, out temp);
+#else
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeHeight).Get(out temp);
+#endif
             return temp;
         }));
 
@@ -1048,12 +1083,23 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
                 if (newValue != null)
                 {
+#if NUI_PROPERTY_CHANGE_1
+                    Interop.Actor.InternalSetPropertyVector3(view.SwigCPtr, View.Property.POSITION, ((Position)newValue).SwigCPtr);
+#else
                     view.SetPosition(((Position)newValue).X, ((Position)newValue).Y, ((Position)newValue).Z);
+#endif
                 }
             },
             defaultValueCreator: (bindable) =>
             {
                 var view = (View)bindable;
+#if NUI_PROPERTY_CHANGE_1
+                if (view.internalPosition == null)
+                {
+                    view.internalPosition = new Position(view.OnPositionChanged, 0, 0, 0);
+                }
+                Interop.Actor.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.POSITION, view.internalPosition.SwigCPtr);
+#else
                 var tmpProperty = Object.GetProperty(view.SwigCPtr, Property.POSITION);
 
                 if (view.internalPosition == null)
@@ -1062,7 +1108,7 @@ namespace Tizen.NUI.BaseComponents
                 }
                 tmpProperty?.Get(view.internalPosition);
                 tmpProperty?.Dispose();
-
+#endif
                 return view.internalPosition;
             }
         );
@@ -1076,14 +1122,22 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_1
+                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, View.Property.PositionX, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.PositionX, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var view = (View)bindable;
             float temp = 0.0f;
+#if NUI_PROPERTY_CHANGE_1
+            Interop.Actor.InternalRetrievingPropertyFloat(view.SwigCPtr, View.Property.PositionX, out temp);
+#else
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.PositionX).Get(out temp);
+#endif
             return temp;
         }));
 
@@ -1096,14 +1150,22 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_1
+                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, View.Property.PositionY, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.PositionY, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var view = (View)bindable;
             float temp = 0.0f;
+#if NUI_PROPERTY_CHANGE_1
+            Interop.Actor.InternalRetrievingPropertyFloat(view.SwigCPtr, View.Property.PositionY, out temp);
+#else
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.PositionY).Get(out temp);
+#endif
             return temp;
         }));
 
@@ -1116,14 +1178,22 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_1
+                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, View.Property.PositionZ, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.PositionZ, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var view = (View)bindable;
             float temp = 0.0f;
+#if NUI_PROPERTY_CHANGE_1
+            Interop.Actor.InternalRetrievingPropertyFloat(view.SwigCPtr, View.Property.PositionZ, out temp);
+#else
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.PositionZ).Get(out temp);
+#endif
             return temp;
         }));
 
@@ -1676,6 +1746,45 @@ namespace Tizen.NUI.BaseComponents
             }
         );
 
+#if NUI_PROPERTY_CHANGE_1
+        /// <summary>
+        /// SizeProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty SizeProperty = BindableProperty.Create(nameof(Size), typeof(Size), typeof(View), null,
+            propertyChanged: (bindable, oldValue, newValue) =>
+            {
+                var view = (View)bindable;
+                if (newValue != null)
+                {
+                    // Size property setter is only used by user.
+                    // Framework code uses SetSize() instead of Size property setter.
+                    // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
+                    // SuggestedMinimumWidth/Height is used by Layout calculation.
+                    view.userSizeWidth = ((Size)newValue).Width;
+                    view.userSizeHeight = ((Size)newValue).Height;
+
+                    // Set Specification so when layouts measure this View it matches the value set here.
+                    // All Views are currently Layouts.
+                    view.WidthSpecification = (int)System.Math.Ceiling(((Size)newValue).Width);
+                    view.HeightSpecification = (int)System.Math.Ceiling(((Size)newValue).Height);
+
+                    Interop.Actor.InternalSetPropertyVector2(view.SwigCPtr, View.Property.SIZE, ((Size)newValue).SwigCPtr);
+                }
+            },
+            defaultValueCreator: (bindable) =>
+            {
+                var view = (View)bindable;
+
+                if (view.internalSize == null)
+                {
+                    view.internalSize = new Size(view.OnSizeChanged, 0, 0, 0);
+                }
+                Interop.Actor.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.SIZE, view.internalSize.SwigCPtr);
+                return view.internalSize;
+            }
+        );
+#else
         /// <summary>
         /// SizeProperty
         /// </summary>
@@ -1716,7 +1825,7 @@ namespace Tizen.NUI.BaseComponents
                 return view.internalSize;
             }
         );
-
+#endif
         /// <summary>
         /// MinimumSizeProperty
         /// </summary>
@@ -1727,11 +1836,23 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
                 if (newValue != null)
                 {
+#if NUI_PROPERTY_CHANGE_1
+                    Interop.Actor.InternalSetPropertyVector2(view.SwigCPtr, View.Property.MinimumSize, ((Size2D)newValue).SwigCPtr);
+#else
                     view.SetMinimumSize((Size2D)newValue);
+#endif                    
                 }
             },
             defaultValueCreator: (bindable) =>
             {
+#if NUI_PROPERTY_CHANGE_1
+                var view = (View)bindable;
+                if (view.internalMinimumSize == null)
+                {
+                    view.internalMinimumSize = new Size2D(view.OnMinimumSizeChanged, 0, 0);
+                }
+                Interop.Actor.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.MinimumSize, view.internalMinimumSize.SwigCPtr);
+#else
                 var view = (View)bindable;
                 if (view.internalMinimumSize == null)
                 {
@@ -1740,7 +1861,7 @@ namespace Tizen.NUI.BaseComponents
                 var tmp = Object.GetProperty(view.SwigCPtr, Property.MinimumSize);
                 tmp?.Get(view.internalMinimumSize);
                 tmp?.Dispose();
-
+#endif
                 return view.internalMinimumSize;
             }
         );
@@ -1755,20 +1876,32 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
                 if (newValue != null)
                 {
+#if NUI_PROPERTY_CHANGE_1
+                    Interop.Actor.InternalSetPropertyVector2(view.SwigCPtr, View.Property.MaximumSize, ((Size2D)newValue).SwigCPtr);
+#else
                     view.SetMaximumSize((Size2D)newValue);
+#endif                    
                 }
             },
             defaultValueCreator: (bindable) =>
             {
                 var view = (View)bindable;
+#if NUI_PROPERTY_CHANGE_1
                 if (view.internalMaximumSize == null)
                 {
                     view.internalMaximumSize = new Size2D(view.OnMaximumSizeChanged, 0, 0);
                 }
+                Interop.Actor.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.MaximumSize, view.internalMaximumSize.SwigCPtr);
+#else
+                if (view.internalMaximumSize == null)
+                {
+                    view.internalMaximumSize = new Size2D(view.OnMaximumSizeChanged, 0, 0);
+                }
+
                 var tmp = Object.GetProperty(view.SwigCPtr, Property.MaximumSize);
                 tmp?.Get(view.internalMaximumSize);
                 tmp?.Dispose();
-
+#endif
                 return view.internalMaximumSize;
             }
         );
