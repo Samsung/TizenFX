@@ -23,6 +23,9 @@ namespace Tizen.Multimedia.Remoting
     /// <summary>
     /// Represents a screen source.
     /// </summary>
+    /// <remarks>
+    /// MediaScreenSource is not allowed to be used by third-party applications due to the security reasons. (Since Tizen 7.0)
+    /// </remarks>
     /// <seealso cref="WebRTC.AddSource"/>
     /// <seealso cref="WebRTC.AddSources"/>
     /// <since_tizen> 9 </since_tizen>
