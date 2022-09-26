@@ -39,7 +39,7 @@ namespace Tizen.Maps
         /// <param name="color">Line color.</param>
         /// <param name="width">The width of line [1 ~ 100] \(pixels).</param>
         /// <exception cref="ArgumentException">Thrown when input values are invalid.</exception>
-	[Obsolete("Deprecated since API10. Will be removed in API12.")]
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public Polyline(List<Geocoordinates> coordinates, Color color, int width) : base()
         {
             var err = Interop.ErrorCode.InvalidParameter;
@@ -64,7 +64,7 @@ namespace Tizen.Maps
         /// Adds or removes the clicked event handlers.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-	[Obsolete("Deprecated since API10. Will be removed in API12.")]
+	[Obsolete("Deprecated since API10. Might be removed in API12.")]
         public event EventHandler Clicked;
 
         /// <summary>
