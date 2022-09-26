@@ -1569,8 +1569,8 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
             {
                 throw new ArgumentNullException(nameof(position));
             }
-            var val = new Uint16Pair((uint)position.X, (uint)position.Y);
-            Interop.Window.SetPosition(SwigCPtr, Uint16Pair.getCPtr(val));
+            var val = new Vector2(position.X, position.Y);
+            Interop.Window.SetPosition(SwigCPtr, Vector2.getCPtr(val));
             val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             // Setting Position of the window should request a relayout of the tree.
@@ -1578,8 +1578,8 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
 
         internal Position2D GetPosition()
         {
-            var val = new Uint16Pair(Interop.Window.GetPosition(SwigCPtr), true);
-            Position2D ret = new Position2D(val.GetX(), val.GetY());
+            var val = new Vector2(Interop.Window.GetPosition(SwigCPtr), true);
+            Position2D ret = new Position2D((int)val.X, (int)val.Y);
             val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
