@@ -35,6 +35,7 @@ namespace Tizen.Maps
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when a native operation fails to allocate memory.</exception>
+	[Obsolete("Deprecated since API10. Will be removed in API12.")]
         public Area(Geocoordinates topLeft, Geocoordinates bottomRight)
         {
             handle = new Interop.AreaHandle(topLeft?.handle, bottomRight?.handle);
@@ -49,6 +50,7 @@ namespace Tizen.Maps
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.ArgumentException">Thrown when input coordinates are invalid.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when a native operation fails to allocate memory.</exception>
+	[Obsolete("Deprecated since API10. Will be removed in API12.")]
         public Area(Geocoordinates center, double radius)
         {
             handle = new Interop.AreaHandle(center?.handle, radius);

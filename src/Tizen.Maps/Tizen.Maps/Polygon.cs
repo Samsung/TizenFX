@@ -38,6 +38,7 @@ namespace Tizen.Maps
         /// <param name="coordinates">List of geographical coordinates.</param>
         /// <param name="color">Background color.</param>
         /// <exception cref="ArgumentException">Thrown when input values are invalid.</exception>
+	[Obsolete("Deprecated since API10. Will be removed in API12.")]
         public Polygon(IEnumerable<Geocoordinates> coordinates, Color color) : base()
         {
             var err = Interop.ErrorCode.InvalidParameter;
@@ -62,6 +63,7 @@ namespace Tizen.Maps
         /// Adds or removes the clicked event handlers.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API10. Will be removed in API12.")]
         public event EventHandler Clicked;
 
         /// <summary>

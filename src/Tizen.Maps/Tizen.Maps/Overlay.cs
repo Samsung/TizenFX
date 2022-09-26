@@ -34,6 +34,7 @@ namespace Tizen.Maps
         /// <param name="coordinates"></param>
         /// <param name="objectToContain"></param>
         /// <exception cref="ArgumentException">Thrown when the input coordinates or objectToContain are invalid.</exception>
+	[Obsolete("Deprecated since API10. Will be removed in API12.")]
         public Overlay(Geocoordinates coordinates, EvasObject objectToContain)
             : this(coordinates, objectToContain, Interop.ViewOverlayType.Normal)
         {
@@ -89,6 +90,7 @@ namespace Tizen.Maps
         /// Gets or sets minimum zoom level for an overlay map object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API10. Will be removed in API12.")]
         public int MinimumZoomLevel
         {
             get
@@ -105,6 +107,7 @@ namespace Tizen.Maps
         /// Gets or sets maximum zoom lever for an overlay map object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API10. Will be removed in API12.")]
         public int MaximumZoomLevel
         {
             get

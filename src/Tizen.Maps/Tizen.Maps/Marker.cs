@@ -49,6 +49,7 @@ namespace Tizen.Maps
         /// Gets or sets the clicked event handlers.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API10. Will be removed in API12.")]
         public event EventHandler Clicked;
 
         /// <summary>
