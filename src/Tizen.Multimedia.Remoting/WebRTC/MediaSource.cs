@@ -262,6 +262,10 @@ namespace Tizen.Multimedia.Remoting
                     NativeWebRTC.ForeachSupportedTransceiverCodec(WebRtc.Handle, MediaSourceType.Null, type, cb).
                         ThrowIfFailed("failed to retrieve stats");
                 }
+                catch (ObjectDisposedException)
+                {
+                    throw;
+                }
                 catch
                 {
                     Log.Info(WebRTCLog.Tag, "This is not error in csharp.");
