@@ -1,3 +1,4 @@
+using System;
 namespace Tizen.Applications.AttachPanel
 {
     /// <summary>

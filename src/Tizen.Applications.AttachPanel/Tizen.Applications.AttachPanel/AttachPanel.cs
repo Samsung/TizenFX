@@ -6,6 +6,7 @@ namespace Tizen.Applications.AttachPanel
     /// <summary>
     /// Represents the immutable class for the attach panel.
     /// </summary>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public partial class AttachPanel
     {
         /// <summary>
