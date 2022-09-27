@@ -24,10 +24,10 @@ namespace Tizen.Multimedia
     /// <since_tizen> 3 </since_tizen>
     public class EncodedPlane : IPreviewPlane
     {
-        internal EncodedPlane(byte[] data, bool isDeltaFrame, uint usedSize)
+        internal EncodedPlane(byte[] data, byte isDeltaFrame, uint usedSize)
         {
             Data = data;
-            IsDeltaFrame = isDeltaFrame;
+            IsDeltaFrame = isDeltaFrame == 0 ? false : true;
             UsedSize = usedSize;
         }
 
