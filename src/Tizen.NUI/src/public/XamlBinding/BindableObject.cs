@@ -45,8 +45,6 @@ namespace Tizen.NUI.Binding
         bool applying;
         object inheritedContext;
 
-        private object bindingContext;
-
         /// <summary>
         /// Gets or sets object that contains the properties that will be targeted by the bound properties that belong to this BindableObject.
         /// </summary>
