@@ -1210,6 +1210,17 @@ namespace Tizen.NUI.BaseComponents
             internalSize2D?.Dispose();
             internalSize2D = null;
 
+            panGestureDetector?.Dispose();
+            panGestureDetector = null;
+            longGestureDetector?.Dispose();
+            longGestureDetector = null;
+            pinchGestureDetector?.Dispose();
+            pinchGestureDetector = null;
+            tapGestureDetector?.Dispose();
+            tapGestureDetector = null;
+            rotationGestureDetector?.Dispose();
+            rotationGestureDetector = null;
+
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
