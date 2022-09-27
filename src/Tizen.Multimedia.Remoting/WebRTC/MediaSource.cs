@@ -259,7 +259,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 try
                 {
-                    NativeWebRTC.ForeachSupportedTransceiverCodec(WebRtc.Handle, MediaSourceType.Null, type, cb).
+                    NativeWebRTC.ForeachSupportedTransceiverCodec(WebRtc.Handle, MediaSourceType, type, cb).
                         ThrowIfFailed("failed to retrieve stats");
                 }
                 catch (ObjectDisposedException)
