@@ -69,9 +69,18 @@ namespace Tizen.Network.Stc
             Interop.Stc.Filter.SetAppId(handle, AppId);
             if (From.HasValue && To.HasValue)
             {
-                Interop.Stc.Filter.SetTimeInterval(handle,
-                        Interop.ConvertDateTimeToTimestamp(From.Value),
-                        Interop.ConvertDateTimeToTimestamp(To.Value));
+                if (Environment.Is64BitOperatingSystem)
+                {
+                    Interop.Stc.Filter.SetTimeInterval64(handle,
+                            Interop.ConvertDateTimeToTimestamp64(From.Value),
+                            Interop.ConvertDateTimeToTimestamp64(To.Value));
+                }
+                else
+                {
+                    Interop.Stc.Filter.SetTimeInterval(handle,
+                            Interop.ConvertDateTimeToTimestamp(From.Value),
+                            Interop.ConvertDateTimeToTimestamp(To.Value));
+                }
             }
             if (InterfaceType.HasValue)
             {
