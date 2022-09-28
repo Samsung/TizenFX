@@ -109,6 +109,9 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Recognizes a face in by finding the closest match among the registered faces and returns the label of the found face.
         /// </summary>
+        /// <remarks>
+        /// If there's no recognized face, <see cref="DeepLearningFaceRecognitionResult.Label"/> will be <see cref="String.Empty"/>.
+        /// </remarks>
         /// <param name="source">The face data to recognize.</param>
         /// <returns>A label of recognized face.</returns>
         /// <exception cref="ObjectDisposedException">The DeepLearningFaceRecognizer already has been disposed.</exception>
@@ -124,7 +127,16 @@ namespace Tizen.Multimedia.Vision
                 throw new ArgumentNullException(nameof(source));
             }
 
-            InteropFace.Inference(_handle, source.Handle).Validate("Failed to recognize face");
+            var ret = InteropFace.Inference(_handle, source.Handle);
+            if (ret == MediaVisionError.NoData)
+            {
+                Log.Info(MediaVisionLog.Tag, "There's no recognized face. It's not error.");
+                return new DeepLearningFaceRecognitionResult(String.Empty);
+            }
+            else
+            {
+                ret.Validate("failed to recognize face");
+            }
 
             InteropFace.GetLabel(_handle, out string label).Validate("Failed to get label");
 
