@@ -82,9 +82,10 @@ namespace Tizen.Multimedia.Remoting
         /// Gets or sets the transceiver direction of current media source.
         /// </summary>
         /// <remarks>
+        /// The default value is <see cref="TransceiverDirection.SendRecv"/> except <see cref="MediaNullSource"/>.<br/>
         /// If user want to set each audio, video direction in <see cref="MediaFileSource"/>,
         /// please use <see cref="MediaFileSource.SetTransceiverDirection"/>. (Since API level 10)<br/>
-        /// In <see cref="MediaNullSource"/>, only <see cref="TransceiverDirection.SendRecv"/> can be set.(Since API level 10)
+        /// In <see cref="MediaNullSource"/>, only <see cref="TransceiverDirection.RecvOnly"/> can be set.(Since API level 10)
         /// </remarks>
         /// <value>A <see cref="TransceiverDirection"/> that specifies the transceiver direction.</value>
         /// <exception cref="InvalidOperationException">
