@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Runtime.InteropServices;
 using InteropFace = Interop.MediaVision.FaceRecognition;
 
 namespace Tizen.Multimedia.Vision
@@ -138,9 +139,9 @@ namespace Tizen.Multimedia.Vision
                 ret.Validate("failed to recognize face");
             }
 
-            InteropFace.GetLabel(_handle, out string label).Validate("Failed to get label");
+            InteropFace.GetLabel(_handle, out IntPtr label).Validate("Failed to get label");
 
-            return new DeepLearningFaceRecognitionResult(label);
+            return new DeepLearningFaceRecognitionResult(Marshal.PtrToStringAnsi(label));
         }
 
         /// <summary>
