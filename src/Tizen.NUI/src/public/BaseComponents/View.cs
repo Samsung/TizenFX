@@ -71,7 +71,17 @@ namespace Tizen.NUI.BaseComponents
         private Size2D internalSize2D = null;
         private int layoutCount = 0;
         private ControlState propagatableControlStates = ControlState.All;
+
+        // List of dispatch Event
+        private PanGestureDetector panGestureDetector = null;
+        private LongPressGestureDetector longGestureDetector = null;
+        private PinchGestureDetector pinchGestureDetector = null;
+        private TapGestureDetector tapGestureDetector = null;
+        private RotationGestureDetector rotationGestureDetector = null;
+        private int configGestureCount = 0;
         private bool dispatchTouchEvents = true;
+        private bool dispatchGestureEvents = true;
+        private bool dispatchParentGestureEvents = true;
 
 #if NUI_PROPERTY_CHANGE_DEBUG
 internal static int LayoutSetGetter = 0;
@@ -1210,7 +1220,7 @@ LayoutSetGetter++;
         /// <remarks>
         /// The <see cref="Size"/>, <see cref="Position"/>, <see cref="Color"/>, and <see cref="Scale"/> properties are set in the main thread.
         /// Therefore, it is not updated in real time when the value is changed in the render thread (for example, the value is changed during animation).
-        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time, 
+        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time,
         /// and users can get the current actual values through them.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -1280,7 +1290,7 @@ Size2DSetter++;
         /// <remarks>
         /// The <see cref="Size"/>, <see cref="Position"/>, <see cref="Color"/>, and <see cref="Scale"/> properties are set in the main thread.
         /// Therefore, it is not updated in real time when the value is changed in the render thread (for example, the value is changed during animation).
-        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time, 
+        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time,
         /// and users can get the current actual values through them.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -3542,7 +3552,7 @@ SizeSetter++;
 
         /// <summary>
         /// Gets or sets the status of whether the view should emit key event signals.
-        /// If a View's DispatchKeyEvents is set to false, then it's children will not emit a key event signal either.
+        /// If a View's DispatchKeyEvents is set to false, then itself and parents will not receive key event signals.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DispatchKeyEvents
@@ -3596,6 +3606,107 @@ SizeSetter++;
         }
 
         /// <summary>
+        /// Gets or sets the status of whether the view should emit Gesture event signals.
+        /// If a View's DispatchGestureEvents is set to false, then itself and parents will not receive all gesture event signals.
+        /// The itself and parents does not receive tap, pinch, pan, rotation, or longpress gestures.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchGestureEvents
+        {
+            get
+            {
+                return dispatchGestureEvents;
+            }
+            set
+            {
+                if (dispatchGestureEvents != value)
+                {
+                    dispatchGestureEvents = value;
+                    ConfigGestureDetector(dispatchGestureEvents);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether the view should emit Gesture event signals.
+        /// If a View's DispatchParentGestureEvents is set to false, then parents will not receive all gesture event signals.
+        /// The parents does not receive tap, pinch, pan, rotation, or longpress gestures.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchParentGestureEvents
+        {
+            get
+            {
+                return dispatchParentGestureEvents;
+            }
+            set
+            {
+                if (dispatchParentGestureEvents != value)
+                {
+                    dispatchParentGestureEvents = value;
+                    ConfigGestureDetector(dispatchParentGestureEvents);
+                }
+            }
+        }
+
+        private void ConfigGestureDetector(bool dispatch)
+        {
+            if (panGestureDetector == null) panGestureDetector = new PanGestureDetector();
+            if (longGestureDetector == null) longGestureDetector = new LongPressGestureDetector();
+            if (pinchGestureDetector == null) pinchGestureDetector = new PinchGestureDetector();
+            if (tapGestureDetector == null) tapGestureDetector = new TapGestureDetector();
+            if (rotationGestureDetector == null) rotationGestureDetector = new RotationGestureDetector();
+
+            if (dispatch == true)
+            {
+                configGestureCount = configGestureCount > 0 ? configGestureCount-- : 0;
+                if (configGestureCount == 0)
+                {
+                    panGestureDetector.Detach(this);
+                    longGestureDetector.Detach(this);
+                    pinchGestureDetector.Detach(this);
+                    tapGestureDetector.Detach(this);
+                    rotationGestureDetector.Detach(this);
+
+                    panGestureDetector.Detected -= OnGestureDetected;
+                    longGestureDetector.Detected -= OnGestureDetected;
+                    pinchGestureDetector.Detected -= OnGestureDetected;
+                    tapGestureDetector.Detected -= OnGestureDetected;
+                    rotationGestureDetector.Detected -= OnGestureDetected;
+
+                    panGestureDetector = null;
+                    longGestureDetector = null;
+                    pinchGestureDetector = null;
+                    tapGestureDetector = null;
+                    rotationGestureDetector = null;
+                }
+            }
+            else
+            {
+                if (configGestureCount == 0)
+                {
+                    panGestureDetector.Attach(this);
+                    longGestureDetector.Attach(this);
+                    pinchGestureDetector.Attach(this);
+                    tapGestureDetector.Attach(this);
+                    rotationGestureDetector.Attach(this);
+
+                    panGestureDetector.Detected += OnGestureDetected;
+                    longGestureDetector.Detected += OnGestureDetected;
+                    pinchGestureDetector.Detected += OnGestureDetected;
+                    tapGestureDetector.Detected += OnGestureDetected;
+                    rotationGestureDetector.Detected += OnGestureDetected;
+                }
+                configGestureCount++;
+            }
+        }
+
+        private void OnGestureDetected(object source, EventArgs e)
+        {
+            // Does notting. This is to consume the gesture.
+        }
+
+        /// <summary>
         /// Called when the view is hit through TouchEvent or GestureEvent.
         /// If it returns true, it means that it was hit, and the touch/gesture event is called from the view.
         /// If it returns false, it means that it will not be hit, and the hit-test continues to the next view.
@@ -3616,7 +3727,7 @@ SizeSetter++;
         /// <remarks>
         /// The <see cref="Size"/>, <see cref="Position"/>, <see cref="Color"/>, and <see cref="Scale"/> properties are set in the main thread.
         /// Therefore, it is not updated in real time when the value is changed in the render thread (for example, the value is changed during animation).
-        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time, 
+        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time,
         /// and users can get the current actual values through them.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -3628,7 +3739,7 @@ SizeSetter++;
         /// <remarks>
         /// The <see cref="Size"/>, <see cref="Position"/>, <see cref="Color"/>, and <see cref="Scale"/> properties are set in the main thread.
         /// Therefore, it is not updated in real time when the value is changed in the render thread (for example, the value is changed during animation).
-        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time, 
+        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time,
         /// and users can get the current actual values through them.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]

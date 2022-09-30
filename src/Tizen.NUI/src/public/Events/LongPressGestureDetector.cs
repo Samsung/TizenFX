@@ -217,6 +217,12 @@ namespace Tizen.NUI
                 e.View = Registry.GetManagedBaseHandleFromRefObject(actor) as View;
             }
 
+            // If DispatchGestureEvents is false, no gesture events are dispatched.
+            if (e.View != null && e.View.DispatchGestureEvents == false)
+            {
+                return;
+            }
+
             e.LongPressGesture = Tizen.NUI.LongPressGesture.GetLongPressGestureFromPtr(longPressGesture);
 
             if (detectedEventHandler != null)

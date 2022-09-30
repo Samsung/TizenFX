@@ -569,6 +569,12 @@ namespace Tizen.NUI
                     e.View = Registry.GetManagedBaseHandleFromRefObject(actor) as View;
                 }
 
+                // If DispatchGestureEvents is false, no gesture events are dispatched.
+                if (e.View != null && e.View.DispatchGestureEvents == false)
+                {
+                    return;
+                }
+
                 e.PanGesture = Tizen.NUI.PanGesture.GetPanGestureFromPtr(panGesture);
                 detectedEventHandler(this, e);
             }
