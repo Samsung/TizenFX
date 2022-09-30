@@ -3,7 +3,7 @@
   <profile name="common" />
   <component-based-application  appid="org.tizen.example.NUIComponentApplication"
 					exec="NUIComponentApplication.dll"
-					type="dotnet"
+					type="dotnet-nui"
 					multiple="false"
 					taskmanage="true"
 					nodisplay="false"

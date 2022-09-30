@@ -3,7 +3,7 @@
   <profile name="common" />
   <ui-application appid="org.tizen.example.Tizen.NUI.Samples"
 					exec="Tizen.NUI.Samples.dll"
-					type="dotnet"
+					type="dotnet-nui"
 					multiple="false"
 					taskmanage="true"
 					nodisplay="false"
