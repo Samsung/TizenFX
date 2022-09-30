@@ -3,7 +3,7 @@
   <profile name="tv" />
   <ui-application appid="Tizen.NUI.WidgetViewTest" exec="Tizen.NUI.WidgetViewTest.dll" multiple="false" nodisplay="false" taskmanage="true"
                   splash-screen-display="true"
-                  type="dotnet"
+                  type="dotnet-nui"
                   launch_mode="single">
     <label>Tizen.NUI.WidgetViewTest</label>
     <icon>Tizen.NUI.WidgetViewTest.png</icon>
