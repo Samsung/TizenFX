@@ -450,6 +450,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnLeftTopCornerIconTouched(object sender, View.TouchEventArgs e)
         {
+            SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
               ClearWindowGesture();
@@ -468,6 +469,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnRightTopCornerIconTouched(object sender, View.TouchEventArgs e)
         {
+            SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
               ClearWindowGesture();
@@ -487,6 +489,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnLeftBottomCornerIconTouched(object sender, View.TouchEventArgs e)
         {
+            SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
               ClearWindowGesture();
@@ -505,6 +508,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnRightBottomCornerIconTouched(object sender, View.TouchEventArgs e)
         {
+            SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
               ClearWindowGesture();
@@ -535,6 +539,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnMinimizeIconTouched(object sender, View.TouchEventArgs e)
         {
+            SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Up)
             {
                 MinimizeBorderWindow();
@@ -565,6 +570,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnMaximizeIconTouched(object sender, View.TouchEventArgs e)
         {
+            SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Up)
             {
                 MaximizeBorderWindow();
@@ -587,11 +593,22 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public virtual bool OnCloseIconTouched(object sender, View.TouchEventArgs e)
         {
+            SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Up)
             {
                 CloseBorderWindow();
             }
             return true;
+        }
+
+        private void SetDispatchParentGestureEvents(View view, bool dispatch)
+        {
+            if (view != null)
+            {
+                // If this is set, my parents will not receive gesture events.
+                // This is to prevent the move action by PanGesture when the icon is touched.
+                view.DispatchParentGestureEvents = dispatch;
+            }
         }
 
 
