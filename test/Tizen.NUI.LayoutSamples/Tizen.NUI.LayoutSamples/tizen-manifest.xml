@@ -3,7 +3,7 @@
   <profile name="common" />
   <ui-application appid="org.tizen.example.Tizen.NUI.LayoutSamples"
 					exec="Tizen.NUI.LayoutSamples.dll"
-					type="dotnet"
+					type="dotnet-nui"
 					multiple="false"
 					taskmanage="true"
 					nodisplay="false"

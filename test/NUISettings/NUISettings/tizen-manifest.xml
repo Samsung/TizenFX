@@ -3,7 +3,7 @@
   <profile name="tv" />
   <ui-application appid="NUISettings" exec="NUISettings.dll" multiple="false" nodisplay="false" taskmanage="true"
                   splash-screen-display="true"
-                  type="dotnet"
+                  type="dotnet-nui"
                   launch_mode="single">
     <label>NUISettings</label>
     <icon>NUISettings.png</icon>
