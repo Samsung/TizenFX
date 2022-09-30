@@ -32,23 +32,6 @@ namespace Tizen.NUI.Scene3D
     /// <since_tizen> 10 </since_tizen>
     public partial class Camera : View
     {
-        /// <summary>
-        /// Enumeration for the projectionMode.
-        /// ProjectionMode defines how the camera shows 3D objects or scene on a 2D plane with projection.
-        /// </summary>
-        /// <since_tizen> 10 </since_tizen>
-        public enum ProjectionModeType
-        {
-            /// <summary>
-            /// Distance causes foreshortening; objects further from the camera appear smaller.
-            /// </summary>
-            Perspective,
-            /// <summary>
-            /// Relative distance from the camera does not affect the size of objects.
-            /// </summary>
-            Orthographic
-        }
-
         internal Camera(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
@@ -107,6 +90,40 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// Enumeration for the projectionMode.
+        /// ProjectionMode defines how the camera shows 3D objects or scene on a 2D plane with projection.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        public enum ProjectionModeType
+        {
+            /// <summary>
+            /// Distance causes foreshortening; objects further from the camera appear smaller.
+            /// </summary>
+            Perspective,
+            /// <summary>
+            /// Relative distance from the camera does not affect the size of objects.
+            /// </summary>
+            Orthographic
+        }
+
+        /// <summary>
+        /// Enumeration for the projectionDirection.
+        /// </summary>
+        /// This will be released at Tizen.NET API Level 10, so currently this would be used as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ProjectionDirectionType
+        {
+            /// <summary>
+            /// Distance causes foreshortening; objects further from the camera appear smaller.
+            /// </summary>
+            Vertical,
+            /// <summary>
+            /// Relative distance from the camera does not affect the size of objects.
+            /// </summary>
+            Horizontal
+        }
+
+        /// <summary>
         /// Sets/Gets the projection mode.
         /// The default is Perspective
         /// </summary>
@@ -125,7 +142,41 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// <para>
+        /// Sets/Gets the projection direction.
+        /// Projection direction determine basic direction of projection relative properties.
+        /// It will be used when we need to calculate some values relative with aspect ratio.
+        /// <see cref="FieldOfView"/>, and <see cref="OrthographicSize"/>
+        /// </para>
+        /// <para>
+        /// For example, if aspect ratio is 4:3 and set fieldOfView as 60 degree.
+        /// If ProjectionDirectionType.Vertical, basic direction is vertical. so, FoV of horizontal direction become ~75.2 degree
+        /// If ProjectionDirectionType.Horizontal, basic direction is horizontal. so, FoV of vertical direction become ~46.8 degree
+        /// </para>
+        /// <note>
+        /// This property doesn't change <see cref="FieldOfView"/> and <see cref="OrthographicSize"/> value automatically.
+        /// So result scene might be changed.
+        /// </note>
+        /// <para>The default is Vertical.</para>
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ProjectionDirectionType ProjectionDirection
+        {
+            get
+            {
+                return (ProjectionDirectionType)GetValue(ProjectionDirectionProperty);
+            }
+            set
+            {
+                SetValue(ProjectionDirectionProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// Sets/Gets the field of view in Radians.
+        /// FieldOfView depends on <see cref="ProjectionDirection"/> value.
         /// The default field of view is 45 degrees.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
@@ -144,20 +195,32 @@ namespace Tizen.NUI.Scene3D
 
         /// <summary>
         /// Sets/Gets Orthographic Size of this camera.
-        /// OrthographicSize is height/2 of viewing cube of Orthographic projection.
-        /// Width of viewing cube is internally computed by using aspect ratio of Viewport.
+        /// OrthographicSize depends on <see cref="ProjectionDirection"/> value.
+        /// If ProjectoinDirection is Vertical, OrthographicSize is height/2 of viewing cube of Orthographic projection.
+        /// If ProjectoinDirection is Horizontal, OrthographicSize is width/2 of viewing cube of Orthographic projection.
+        /// Remained Width or Height of viewing cube is internally computed by using aspect ratio of Viewport.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public float OrthographicSize
         {
             get
             {
-                return TopPlaneDistance;
+                return InternalProjectionDirection == ProjectionDirectionType.Vertical ? TopPlaneDistance : RightPlaneDistance;
             }
             set
             {
-                float halfHeight = value;
-                float halfWidth = AspectRatio * value;
+                float halfHeight;
+                float halfWidth;
+                if(InternalProjectionDirection == ProjectionDirectionType.Vertical)
+                {
+                    halfHeight = value;
+                    halfWidth = AspectRatio * value;
+                }
+                else
+                {
+                    halfHeight = value / AspectRatio;
+                    halfWidth = value;
+                }
                 SetValue(TopPlaneDistanceProperty, halfHeight);
                 SetValue(BottomPlaneDistanceProperty, -halfHeight);
                 SetValue(LeftPlaneDistanceProperty, -halfWidth);
@@ -329,6 +392,24 @@ namespace Tizen.NUI.Scene3D
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue((int)value);
                 SetProperty(Interop.Camera.ProjectionModeGet(), setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private ProjectionDirectionType InternalProjectionDirection
+        {
+            get
+            {
+                int returnValue = (int)ProjectionDirectionType.Vertical;
+                PropertyValue projectionDirection = GetProperty(Interop.Camera.ProjectionDirectionGet());
+                projectionDirection?.Get(out returnValue);
+                projectionDirection?.Dispose();
+                return (ProjectionDirectionType)returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue((int)value);
+                SetProperty(Interop.Camera.ProjectionDirectionGet(), setValue);
                 setValue.Dispose();
             }
         }
@@ -571,6 +652,34 @@ namespace Tizen.NUI.Scene3D
             bool ret = Interop.Camera.GetInvertYAxis(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Convert from vertical fov to horizontal fov consider with camera's AspectRatio.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Radian ConvertFovFromVerticalToHorizontal(float aspect, Radian verticalFov)
+        {
+            if(verticalFov == null)
+            {
+                return null;
+            }
+            return new Radian(2.0f * (float)Math.Atan(Math.Tan(verticalFov.ConvertToFloat() * 0.5f) * aspect));
+        }
+
+        /// <summary>
+        /// Convert from horizontal fov to vertical fov consider with camera's AspectRatio.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Radian ConvertFovFromHorizontalToVertical(float aspect, Radian horizontalFov)
+        {
+            if(horizontalFov == null)
+            {
+                return null;
+            }
+            return new Radian(2.0f * (float)Math.Atan(Math.Tan(horizontalFov.ConvertToFloat() * 0.5f) / aspect));
         }
 
         /// <summary>
