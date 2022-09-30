@@ -57,6 +57,9 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CameraActor_Property_INVERT_Y_AXIS_get")]
             public static extern int InvertYAxisGet();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_CameraActor_Property_PROJECTION_DIRECTION_get")]
+            public static extern int ProjectionDirectionGet();
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_CameraActor_Property")]
             public static extern global::System.IntPtr NewCameraProperty();
 
