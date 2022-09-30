@@ -29,7 +29,6 @@ namespace Tizen.Multimedia
     /// This supports the product infrastructure and is not intended to be used directly from 3rd party application code.
     /// </remarks>
     /// <since_tizen> 10 </since_tizen>
-    /// <feature> http://tizen.org/feature/camera </feature>
     public class CameraDeviceManager : IDisposable
     {
         private IntPtr _handle;
