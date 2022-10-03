@@ -160,7 +160,7 @@ namespace Tizen.NUI.Devel.Tests
             v1.Dispose();
             v2.Dispose();
             v3.Dispose();
-            
+
             expectValue.Dispose();
             getValue.Dispose();
         }

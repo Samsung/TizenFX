@@ -29,7 +29,6 @@ namespace Tizen.NUI.BaseComponents
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class TextGeometry
     {
-
         private static void ValidateRange(int start, int end)
         {
             if (start < 0)
@@ -216,58 +215,58 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
-        /// Get the rendered size and position of the line. <br />
+        /// Get the bounding rectangle of a line. <br />
         /// </summary>
         /// <param name="textLabel">The TextLabel control containing the text.</param>
-        /// <param name="lineIndex">The index of the line to get the size and position for</param>
+        /// <param name="lineIndex">The index of the line to get the bounding rectangle for</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Tizen.NUI.Rectangle GetLineBoundingRectangle(TextLabel textLabel, uint lineIndex)
+        public static Tizen.NUI.PaddingType GetLineBoundingRectangle(TextLabel textLabel, uint lineIndex)
         {
             if (textLabel == null)
             {
                 throw new ArgumentNullException(null, "textLabel object is null");
             }
 
-            Rectangle rect = new Rectangle (Interop.TextGeometry.GetLineBoundingRectangleTextLabel(textLabel.SwigCPtr, lineIndex), true);
-            CheckSWIGPendingException();                         
+            Tizen.NUI.PaddingType rect = new Tizen.NUI.PaddingType(Interop.TextGeometry.GetLineBoundingRectangleTextLabel(textLabel.SwigCPtr, lineIndex), true);
+            CheckSWIGPendingException();
             return rect;
         }
 
         /// <summary>
-        /// Get the rendered size and position of the line. <br />
+        /// Get the bounding rectangle of a line. <br />
         /// </summary>
         /// <param name="textEditor">The TextEditor control containing the text.</param>
-        /// <param name="lineIndex">The index of the line to get the size and position for</param>
+        /// <param name="lineIndex">The index of the line to get the bounding rectangle for</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Tizen.NUI.Rectangle GetLineBoundingRectangle(TextEditor textEditor, uint lineIndex)
+        public static Tizen.NUI.PaddingType GetLineBoundingRectangle(TextEditor textEditor, uint lineIndex)
         {
             if (textEditor == null)
             {
                 throw new ArgumentNullException(null, "textEditor object is null");
             }
 
-            Rectangle rect = new Rectangle (Interop.TextGeometry.GetLineBoundingRectangleTextEditor(textEditor.SwigCPtr, lineIndex), true);
+            Tizen.NUI.PaddingType rect = new Tizen.NUI.PaddingType (Interop.TextGeometry.GetLineBoundingRectangleTextEditor(textEditor.SwigCPtr, lineIndex), true);
             CheckSWIGPendingException();
             return rect;
         }
 
         /// <summary>
-        /// Get the rendered size and position of the line. <br />
+        /// Get the bounding rectangle of a line. <br />
         /// </summary>
         /// <param name="textField">The TextField control containing the text.</param>
-        /// <param name="lineIndex">The index of the line to get the size and position for</param>
+        /// <param name="lineIndex">The index of the line to get the bounding rectangle for</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Tizen.NUI.Rectangle GetLineBoundingRectangle(TextField textField, uint lineIndex)
+        public static Tizen.NUI.PaddingType GetLineBoundingRectangle(TextField textField, uint lineIndex)
         {
             if (textField == null)
             {
                 throw new ArgumentNullException(null, "textField object is null");
             }
 
-            Rectangle rect = new Rectangle (Interop.TextGeometry.GetLineBoundingRectangleTextField(textField.SwigCPtr, lineIndex), true);
+            Tizen.NUI.PaddingType rect = new Tizen.NUI.PaddingType (Interop.TextGeometry.GetLineBoundingRectangleTextField(textField.SwigCPtr, lineIndex), true);
             CheckSWIGPendingException();
             return rect;
         }
