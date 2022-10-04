@@ -95,7 +95,6 @@ namespace Tizen.Multimedia.Remoting
         /// </summary>
         /// <param name="type">The media type.</param>
         /// <returns>The supported transceiver codecs.</returns>
-        /// <exception cref="InvalidOperationException">This MediaSource is not supported type of MediaSource.</exception>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <since_tizen> 10 </since_tizen>
         public ReadOnlyCollection<TransceiverCodec> GetSupportedTransceiverCodecs(MediaType type)

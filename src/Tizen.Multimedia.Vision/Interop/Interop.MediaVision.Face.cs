@@ -174,7 +174,7 @@ internal static partial class Interop
             internal static extern MediaVisionError Inference(IntPtr handle, IntPtr source);
 
             [DllImport(Libraries.MediaVisionFaceRecognition, EntryPoint = "mv_face_recognition_get_label")]
-            internal static extern MediaVisionError GetLabel(IntPtr handle, out string label);
+            internal static extern MediaVisionError GetLabel(IntPtr handle, out IntPtr label);
         }
     }
 }

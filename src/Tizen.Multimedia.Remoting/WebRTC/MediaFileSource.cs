@@ -84,6 +84,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the transceiver direction for receiving media stream.
         /// </summary>
+        /// <remarks>The default value is <see cref="TransceiverDirection.SendRecv"/></remarks>
         /// <param name="type">The media type.</param>
         /// <returns>The transceiver direction.</returns>
         /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
@@ -133,6 +134,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets the pause status of media file source.
         /// </summary>
+        /// <remarks>The default value is false.</remarks>
         /// <param name="type">The media type.</param>
         /// <returns>The pause status.</returns>
         /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
