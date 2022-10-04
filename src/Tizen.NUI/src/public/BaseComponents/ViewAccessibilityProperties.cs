@@ -36,10 +36,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AccessibilityNameGetter++;
+#endif
                 return (string)GetValue(AccessibilityNameProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AccessibilityNameSetter++;
+#endif
                 SetValue(AccessibilityNameProperty, value);
                 NotifyPropertyChanged();
             }
@@ -53,10 +59,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AccessibilityDescriptionGetter++;
+#endif
                 return (string)GetValue(AccessibilityDescriptionProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AccessibilityDescriptionSetter++;
+#endif
                 SetValue(AccessibilityDescriptionProperty, value);
                 NotifyPropertyChanged();
             }
@@ -70,10 +82,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AccessibilityTranslationDomainGetter++;
+#endif
                 return (string)GetValue(AccessibilityTranslationDomainProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AccessibilityTranslationDomainSetter++;
+#endif
                 SetValue(AccessibilityTranslationDomainProperty, value);
                 NotifyPropertyChanged();
             }
@@ -87,10 +105,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AccessibilityRoleGetter++;
+#endif
                 return (Role)GetValue(AccessibilityRoleProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AccessibilityRoleSetter++;
+#endif
                 SetValue(AccessibilityRoleProperty, value);
                 NotifyPropertyChanged();
             }
@@ -108,10 +132,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AccessibilityHighlightableGetter++;
+#endif
                 return (bool)GetValue(AccessibilityHighlightableProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AccessibilityHighlightableSetter++;
+#endif
                 SetValue(AccessibilityHighlightableProperty, value);
                 NotifyPropertyChanged();
             }
@@ -128,10 +158,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AccessibilityHiddenGetter++;
+#endif
                 return (bool)GetValue(AccessibilityHiddenProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AccessibilityHiddenSetter++;
+#endif
                 SetValue(AccessibilityHiddenProperty, value);
                 NotifyPropertyChanged();
             }
@@ -145,10 +181,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AutomationIdGetter++;
+#endif
                 return GetValue(AutomationIdProperty) as string;
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AutomationIdSetter++;
+#endif
                 SetValue(AutomationIdProperty, value);
                 NotifyPropertyChanged();
             }

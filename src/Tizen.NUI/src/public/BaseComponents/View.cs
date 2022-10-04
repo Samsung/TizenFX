@@ -107,6 +107,113 @@ internal static int PositionYGetter = 0;
 internal static int PositionYSetter = 0;
 internal static int PositionZGetter = 0;
 internal static int PositionZSetter = 0;
+internal static int StyleNameGetter = 0;
+internal static int StyleNameSetter = 0;
+internal static int KeyInputFocusGetter = 0;
+internal static int KeyInputFocusSetter = 0;
+internal static int ColorGetter = 0;
+internal static int ColorSetter = 0;
+
+
+internal static int ColorRedSetter = 0;
+internal static int ColorGreenSetter = 0;
+internal static int ColorBlueSetter = 0;
+internal static int StateSetter = 0;
+internal static int SubStateSetter = 0;
+internal static int FlexSetter = 0;
+internal static int AlignSelfSetter = 0;
+internal static int FlexMarginSetter = 0;
+internal static int CellIndexSetter = 0;
+internal static int RowSpanSetter = 0;
+internal static int ColumnSpanSetter = 0;
+internal static int CellHorizontalAlignmentSetter = 0;
+internal static int CellVerticalAlignmentSetter = 0;
+internal static int OpacitySetter = 0;
+internal static int PositionUsesPivotPointSetter = 0;
+internal static int ParentOriginSetter = 0;
+internal static int PivotPointSetter = 0;
+internal static int OrientationSetter = 0;
+internal static int ScaleSetter = 0;
+internal static int ScaleXSetter = 0;
+internal static int ScaleYSetter = 0;
+internal static int ScaleZSetter = 0;
+internal static int NameSetter = 0;
+internal static int SensitiveSetter = 0;
+internal static int IsEnabledSetter = 0;
+internal static int DispatchKeyEventsSetter = 0;
+internal static int LeaveRequiredSetter = 0;
+internal static int InheritOrientationSetter = 0;
+internal static int InheritScaleSetter = 0;
+internal static int DrawModeSetter = 0;
+internal static int SizeModeFactorSetter = 0;
+internal static int WidthResizePolicySetter = 0;
+internal static int HeightResizePolicySetter = 0;
+internal static int SizeScalePolicySetter = 0;
+internal static int WidthForHeightSetter = 0;
+internal static int HeightForWidthSetter = 0;
+internal static int InheritPositionSetter = 0;
+internal static int ClippingModeSetter = 0;
+internal static int InheritLayoutDirectionSetter = 0;
+internal static int LayoutDirectionSetter = 0;
+internal static int UpdateAreaHintSetter = 0;
+internal static int AccessibilityNameSetter = 0;
+internal static int AccessibilityDescriptionSetter = 0;
+internal static int AccessibilityTranslationDomainSetter = 0;
+internal static int AccessibilityRoleSetter = 0;
+internal static int AccessibilityHighlightableSetter = 0;
+internal static int AccessibilityHiddenSetter = 0;
+internal static int AutomationIdSetter = 0;
+
+internal static int ColorRedGetter = 0;
+internal static int ColorGreenGetter = 0;
+internal static int ColorBlueGetter = 0;
+internal static int StateGetter = 0;
+internal static int SubStateGetter = 0;
+internal static int FlexGetter = 0;
+internal static int AlignSelfGetter = 0;
+internal static int FlexMarginGetter = 0;
+internal static int CellIndexGetter = 0;
+internal static int RowSpanGetter = 0;
+internal static int ColumnSpanGetter = 0;
+internal static int CellHorizontalAlignmentGetter = 0;
+internal static int CellVerticalAlignmentGetter = 0;
+internal static int OpacityGetter = 0;
+internal static int PositionUsesPivotPointGetter = 0;
+internal static int ParentOriginGetter = 0;
+internal static int PivotPointGetter = 0;
+internal static int OrientationGetter = 0;
+internal static int ScaleGetter = 0;
+internal static int ScaleXGetter = 0;
+internal static int ScaleYGetter = 0;
+internal static int ScaleZGetter = 0;
+internal static int NameGetter = 0;
+internal static int SensitiveGetter = 0;
+internal static int IsEnabledGetter = 0;
+internal static int DispatchKeyEventsGetter = 0;
+internal static int LeaveRequiredGetter = 0;
+internal static int InheritOrientationGetter = 0;
+internal static int InheritScaleGetter = 0;
+internal static int DrawModeGetter = 0;
+internal static int SizeModeFactorGetter = 0;
+internal static int WidthResizePolicyGetter = 0;
+internal static int HeightResizePolicyGetter = 0;
+internal static int SizeScalePolicyGetter = 0;
+internal static int WidthForHeightGetter = 0;
+internal static int HeightForWidthGetter = 0;
+internal static int InheritPositionGetter = 0;
+internal static int ClippingModeGetter = 0;
+internal static int InheritLayoutDirectionGetter = 0;
+internal static int LayoutDirectionGetter = 0;
+internal static int UpdateAreaHintGetter = 0;
+internal static int AccessibilityNameGetter = 0;
+internal static int AccessibilityDescriptionGetter = 0;
+internal static int AccessibilityTranslationDomainGetter = 0;
+internal static int AccessibilityRoleGetter = 0;
+internal static int AccessibilityHighlightableGetter = 0;
+internal static int AccessibilityHiddenGetter = 0;
+internal static int AutomationIdGetter = 0;
+
+
 #endif
 
         static View()
@@ -452,10 +559,16 @@ LayoutSetGetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+StyleNameGetter++;
+#endif
                 return (string)GetValue(StyleNameProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+StyleNameSetter++;
+#endif
                 SetValue(StyleNameProperty, value);
                 NotifyPropertyChanged();
             }
@@ -469,10 +582,16 @@ LayoutSetGetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+KeyInputFocusGetter++;
+#endif
                 return (bool)GetValue(KeyInputFocusProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+KeyInputFocusSetter++;
+#endif
                 SetValue(KeyInputFocusProperty, value);
                 NotifyPropertyChanged();
             }
@@ -783,10 +902,16 @@ LayoutSetGetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+StateGetter++;
+#endif
                 return (States)GetValue(StateProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+StateSetter++;
+#endif
                 SetValue(StateProperty, value);
                 NotifyPropertyChanged();
             }
@@ -800,10 +925,16 @@ LayoutSetGetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SubStateGetter++;
+#endif
                 return (States)GetValue(SubStateProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SubStateSetter++;
+#endif
                 SetValue(SubStateProperty, value);
                 NotifyPropertyChanged();
             }
@@ -876,10 +1007,16 @@ LayoutSetGetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+FlexGetter++;
+#endif
                 return (float)GetValue(FlexProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+FlexSetter++;
+#endif
                 SetValue(FlexProperty, value);
                 NotifyPropertyChanged();
             }
@@ -895,10 +1032,16 @@ LayoutSetGetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AlignSelfGetter++;
+#endif
                 return (int)GetValue(AlignSelfProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AlignSelfSetter++;
+#endif
                 SetValue(AlignSelfProperty, value);
                 NotifyPropertyChanged();
             }
@@ -917,11 +1060,17 @@ LayoutSetGetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+FlexMarginGetter++;
+#endif
                 Vector4 temp = (Vector4)GetValue(FlexMarginProperty);
                 return new Vector4(OnFlexMarginChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+FlexMarginSetter++;
+#endif
                 SetValue(FlexMarginProperty, value);
                 NotifyPropertyChanged();
             }
@@ -950,10 +1099,16 @@ LayoutSetGetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+CellIndexGetter++;
+#endif
                 return (Vector2)GetValue(CellIndexProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+CellIndexSetter++;
+#endif
                 SetValue(CellIndexProperty, value);
                 NotifyPropertyChanged();
             }
@@ -970,10 +1125,16 @@ LayoutSetGetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+RowSpanGetter++;
+#endif
                 return (float)GetValue(RowSpanProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+RowSpanSetter++;
+#endif
                 SetValue(RowSpanProperty, value);
                 NotifyPropertyChanged();
             }
@@ -990,10 +1151,16 @@ LayoutSetGetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColumnSpanGetter++;
+#endif
                 return (float)GetValue(ColumnSpanProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColumnSpanSetter++;
+#endif
                 SetValue(ColumnSpanProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1010,10 +1177,16 @@ LayoutSetGetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+CellHorizontalAlignmentGetter++;
+#endif
                 return (HorizontalAlignmentType)GetValue(CellHorizontalAlignmentProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+CellHorizontalAlignmentSetter++;
+#endif
                 SetValue(CellHorizontalAlignmentProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1030,10 +1203,16 @@ LayoutSetGetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+CellVerticalAlignmentGetter++;
+#endif
                 return (VerticalAlignmentType)GetValue(CellVerticalAlignmentProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+CellVerticalAlignmentSetter++;
+#endif
                 SetValue(CellVerticalAlignmentProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1318,10 +1497,16 @@ Size2DSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+OpacityGetter++;
+#endif
                 return (float)GetValue(OpacityProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+OpacitySetter++;
+#endif
                 SetValue(OpacityProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1396,10 +1581,16 @@ Position2DSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionUsesPivotPointGetter++;
+#endif
                 return (bool)GetValue(PositionUsesPivotPointProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionUsesPivotPointSetter++;
+#endif
                 SetValue(PositionUsesPivotPointProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1546,11 +1737,17 @@ Position2DSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ParentOriginGetter++;
+#endif
                 Position tmp = (Position)GetValue(ParentOriginProperty);
                 return new Position(OnParentOriginChanged, tmp.X, tmp.Y, tmp.Z);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ParentOriginSetter++;
+#endif
                 SetValue(ParentOriginProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1583,10 +1780,16 @@ Position2DSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PivotPointGetter++;
+#endif
                 return (Position)GetValue(PivotPointProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PivotPointSetter++;
+#endif
                 SetValue(PivotPointProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1836,10 +2039,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+OrientationGetter++;
+#endif
                 return (Rotation)GetValue(OrientationProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+OrientationSetter++;
+#endif
                 SetValue(OrientationProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1889,10 +2098,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleGetter++;
+#endif
                 return (Vector3)GetValue(ScaleProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleSetter++;
+#endif
                 SetValue(ScaleProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1914,10 +2129,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleXGetter++;
+#endif
                 return (float)GetValue(ScaleXProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleXSetter++;
+#endif
                 SetValue(ScaleXProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1939,10 +2160,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleYGetter++;
+#endif
                 return (float)GetValue(ScaleYProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleYSetter++;
+#endif
                 SetValue(ScaleYProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1964,10 +2191,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleZGetter++;
+#endif
                 return (float)GetValue(ScaleZProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleZSetter++;
+#endif
                 SetValue(ScaleZProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2041,10 +2274,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+NameGetter++;
+#endif
                 return (string)GetValue(NameProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+NameSetter++;
+#endif
                 SetValue(NameProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2084,10 +2323,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SensitiveGetter++;
+#endif
                 return (bool)GetValue(SensitiveProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SensitiveSetter++;
+#endif
                 SetValue(SensitiveProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2103,10 +2348,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+IsEnabledGetter++;
+#endif
                 return (bool)GetValue(IsEnabledProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+IsEnabledSetter++;
+#endif
                 SetValue(IsEnabledProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2120,10 +2371,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+LeaveRequiredGetter++;
+#endif
                 return (bool)GetValue(LeaveRequiredProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+LeaveRequiredSetter++;
+#endif
                 SetValue(LeaveRequiredProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2154,10 +2411,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+InheritScaleGetter++;
+#endif
                 return (bool)GetValue(InheritScaleProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+InheritScaleSetter++;
+#endif
                 SetValue(InheritScaleProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2176,10 +2439,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+DrawModeGetter++;
+#endif
                 return (DrawModeType)GetValue(DrawModeProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+DrawModeSetter++;
+#endif
                 SetValue(DrawModeProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2209,10 +2478,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeModeFactorGetter++;
+#endif
                 return (Vector3)GetValue(SizeModeFactorProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeModeFactorSetter++;
+#endif
                 SetValue(SizeModeFactorProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2226,10 +2501,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+WidthResizePolicyGetter++;
+#endif
                 return (ResizePolicyType)GetValue(WidthResizePolicyProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+WidthResizePolicySetter++;
+#endif
                 SetValue(WidthResizePolicyProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2243,10 +2524,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+HeightResizePolicyGetter++;
+#endif
                 return (ResizePolicyType)GetValue(HeightResizePolicyProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+HeightResizePolicySetter++;
+#endif
                 SetValue(HeightResizePolicyProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2261,10 +2548,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeScalePolicyGetter++;
+#endif
                 return (SizeScalePolicyType)GetValue(SizeScalePolicyProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeScalePolicySetter++;
+#endif
                 SetValue(SizeScalePolicyProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2278,10 +2571,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+WidthForHeightGetter++;
+#endif
                 return (bool)GetValue(WidthForHeightProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+WidthForHeightSetter++;
+#endif
                 SetValue(WidthForHeightProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2295,10 +2594,16 @@ PositionZSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+HeightForWidthGetter++;
+#endif
                 return (bool)GetValue(HeightForWidthProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+HeightForWidthSetter++;
+#endif
                 SetValue(HeightForWidthProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2435,10 +2740,16 @@ MaximumSizeSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+InheritPositionGetter++;
+#endif
                 return (bool)GetValue(InheritPositionProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+InheritPositionSetter++;
+#endif
                 SetValue(InheritPositionProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2452,10 +2763,16 @@ MaximumSizeSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ClippingModeGetter++;
+#endif
                 return (ClippingModeType)GetValue(ClippingModeProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ClippingModeSetter++;
+#endif
                 SetValue(ClippingModeProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2609,10 +2926,16 @@ SizeSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+InheritLayoutDirectionGetter++;
+#endif
                 return (bool)GetValue(InheritLayoutDirectionProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+InheritLayoutDirectionSetter++;
+#endif
                 SetValue(InheritLayoutDirectionProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2626,10 +2949,16 @@ SizeSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+LayoutDirectionGetter++;
+#endif
                 return (ViewLayoutDirectionType)GetValue(LayoutDirectionProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+LayoutDirectionSetter++;
+#endif
                 SetValue(LayoutDirectionProperty, value);
                 NotifyPropertyChanged();
                 layout?.RequestLayout();
@@ -2917,10 +3246,16 @@ SizeSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorGetter++;
+#endif
                 return (Color)GetValue(ColorProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorSetter++;
+#endif
                 SetValue(ColorProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2939,10 +3274,16 @@ SizeSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorRedGetter++;
+#endif
                 return (float)GetValue(ColorRedProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorRedSetter++;
+#endif
                 SetValue(ColorRedProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2961,10 +3302,16 @@ SizeSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorGreenGetter++;
+#endif
                 return (float)GetValue(ColorGreenProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorGreenSetter++;
+#endif
                 SetValue(ColorGreenProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2983,10 +3330,16 @@ SizeSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorBlueGetter++;
+#endif
                 return (float)GetValue(ColorBlueProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorBlueSetter++;
+#endif
                 SetValue(ColorBlueProperty, value);
                 NotifyPropertyChanged();
             }
@@ -3207,10 +3560,16 @@ SizeSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+UpdateAreaHintGetter++;
+#endif
                 return (Vector4)GetValue(UpdateAreaHintProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+UpdateAreaHintSetter++;
+#endif
                 SetValue(UpdateAreaHintProperty, value);
                 NotifyPropertyChanged();
             }
@@ -3559,10 +3918,16 @@ SizeSetter++;
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+DispatchKeyEventsGetter++;
+#endif
                 return (bool)GetValue(DispatchKeyEventsProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+DispatchKeyEventsSetter++;
+#endif
                 SetValue(DispatchKeyEventsProperty, value);
                 NotifyPropertyChanged();
             }
