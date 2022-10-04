@@ -1349,22 +1349,14 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             if (newValue != null)
             {
-#if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyVector3(view.SwigCPtr, View.Property.ORIENTATION, ((Rotation)newValue).SwigCPtr);
-#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ORIENTATION, new Tizen.NUI.PropertyValue((Rotation)newValue));
-#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var view = (View)bindable;
             Rotation temp = new Rotation();
-#if NUI_PROPERTY_CHANGE_1
-            Interop.Actor.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.ORIENTATION, temp.SwigCPtr);
-#else
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ORIENTATION).Get(temp);
-#endif
             return temp;
         }));
 
