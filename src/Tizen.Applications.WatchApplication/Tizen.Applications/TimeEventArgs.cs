@@ -22,6 +22,7 @@ namespace Tizen.Applications
     /// Arguments for the event that are raised when the time tick comes.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API10. Will be removed in API12.")]
     public class TimeEventArgs : EventArgs
     {
         /// <summary>

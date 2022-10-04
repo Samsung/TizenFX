@@ -1051,8 +1051,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (current.TryGetTarget(out currentView))
                 {
-                    if (currentView.InternalSavedDynamicPropertyCallbacks != null &&
-                        currentView.InternalSavedDynamicPropertyCallbacks.TryGetValue(id, out currentCallback) && currentView != null)
+                    if (currentView != null && currentView.InternalSavedDynamicPropertyCallbacks != null &&
+                        currentView.InternalSavedDynamicPropertyCallbacks.TryGetValue(id, out currentCallback))
                     {
                         ret = currentCallback?.Invoke(returnType, frameNumber);
                     }

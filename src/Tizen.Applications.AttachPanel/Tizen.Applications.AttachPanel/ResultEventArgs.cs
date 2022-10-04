@@ -6,6 +6,7 @@ namespace Tizen.Applications.AttachPanel
     /// A class for the event arguments of the result event.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class ResultEventArgs : EventArgs
     {
         private readonly ContentCategory _category;
