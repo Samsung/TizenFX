@@ -24,12 +24,14 @@ namespace Tizen.Applications
     /// Represents the proxy class for the widget application.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API10. Will be removed in API12.")]
     public class RemoteView
     {
         /// <summary>
         /// The event types to send.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public enum Event
         {
             /// <summary>
@@ -48,6 +50,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public Layout Layout { get; internal set; }
 
         /// <summary>
@@ -55,6 +58,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public string Id
         {
             get
@@ -70,6 +74,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public double Period
         {
             get
@@ -86,6 +91,7 @@ namespace Tizen.Applications
         /// </remarks>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public string Content
         {
             get
@@ -101,6 +107,7 @@ namespace Tizen.Applications
         /// </summary>
         /// <privilege>http://tizen.org/privilege/widget.viewer</privilege>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public string Title
         {
             get
@@ -147,6 +154,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public static void PauseAll()
         {
             CheckException(Interop.WidgetViewerEvas.NotifyPausedStatusOfViewer());
@@ -160,6 +168,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public static void ResumeAll()
         {
             CheckException(Interop.WidgetViewerEvas.NotifyResumedStatusOfViewer());
@@ -173,6 +182,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public void Pause()
         {
             CheckException(Interop.WidgetViewerEvas.PauseWidget(Layout));
@@ -186,6 +196,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public void Resume()
         {
             CheckException(Interop.WidgetViewerEvas.ResumeWidget(Layout));
@@ -198,6 +209,7 @@ namespace Tizen.Applications
         /// <exception cref="UnauthorizedAccessException">Thrown when this operation is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when this operation is not supported for this device.</exception>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public void SendEvent(Event ev)
         {
             switch (ev)
