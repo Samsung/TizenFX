@@ -9539,6 +9539,16 @@
     "title": "Class ScaleTransition",
     "keywords": ""
   },
+  "API10/api/Tizen.NUI.Scene3D.Camera.html": {
+    "href": "API10/api/Tizen.NUI.Scene3D.Camera.html",
+    "title": "Class Camera",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.Scene3D.Camera.ProjectionModeType.html": {
+    "href": "API10/api/Tizen.NUI.Scene3D.Camera.ProjectionModeType.html",
+    "title": "Enum Camera.ProjectionModeType",
+    "keywords": ""
+  },
   "API10/api/Tizen.NUI.Scene3D.html": {
     "href": "API10/api/Tizen.NUI.Scene3D.html",
     "title": "Namespace Tizen.NUI.Scene3D",
@@ -9547,6 +9557,11 @@
   "API10/api/Tizen.NUI.Scene3D.Model.html": {
     "href": "API10/api/Tizen.NUI.Scene3D.Model.html",
     "title": "Class Model",
+    "keywords": ""
+  },
+  "API10/api/Tizen.NUI.Scene3D.SceneView.html": {
+    "href": "API10/api/Tizen.NUI.Scene3D.SceneView.html",
+    "title": "Class SceneView",
     "keywords": ""
   },
   "API10/api/Tizen.NUI.ScreenOffMode.html": {
