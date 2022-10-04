@@ -8,6 +8,7 @@ namespace Tizen.Applications.ComponentBased.Default
     /// Window information class for ComponentBasedApplication
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API10. Will be removed in API12.")]
     public class EFLWindowInfo : IWindowInfo
     {
         private const string LogTag = "Tizen.Applications";
@@ -20,6 +21,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// </summary>
         /// <param name="win">The window object of component.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public EFLWindowInfo(Window win)
         {
             _win = win;
@@ -30,6 +32,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// </summary>
         /// <returns>The native handle of window</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public int ResourceId
         {
             get
@@ -50,6 +53,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected virtual void Dispose(bool disposing)
         {
             if (_disposed)
@@ -68,6 +72,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// </summary>
         /// <returns></returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public void Dispose()
         {
             Dispose(true);
