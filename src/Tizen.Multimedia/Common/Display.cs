@@ -100,6 +100,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="mediaView">A <see cref="MediaView"/> to display.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public Display(MediaView mediaView)
         {
             if (mediaView == null)
@@ -117,6 +118,7 @@ namespace Tizen.Multimedia
         /// </summary>
         /// <param name="window">A <see cref="Window"/> to display.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API10; Will be removed in API12")]
         public Display(Window window)
         {
             if (window == null)

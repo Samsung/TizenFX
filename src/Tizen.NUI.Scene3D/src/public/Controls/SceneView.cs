@@ -51,8 +51,14 @@ namespace Tizen.NUI.Scene3D
     /// The Camera's FieldOfView is vertical fov. The horizontal fov is updated internally according to the SceneView size.
     ///
     /// The <see cref="SetImageBasedLightSource(string, string, float)"/> method sets the same IBL to all Model objects added to the SceneView.
+    /// For the IBL, two cube map textures(diffuse and specular) are required.
+    /// SceneView supports 4 types layout for Cube Map: Vertical/Horizontal Cross layouts, and Vertical/Horizontal Array layouts.
+    /// And also, ktx format with cube map is supported.
     /// If a model already has an IBL, it is batch overridden with the IBL of the SceneView.
     /// If the SceneView has IBL, the IBL of newly added models is also overridden.
+    ///
+    /// The IBL textures start to be loaded asynchronously when <see cref="SetImageBasedLightSource(string, string, float)"/> method is called.
+    /// ResourcesLoaded signal notifies that the loading of the IBL resources have been completed.
     ///
     /// SceneView provides an option to use FBO for rendering result with <see cref="UseFramebuffer"/> property.
     /// If it is false, SceneView is always drawn in the form of a rectangle on the default window surface directly.
@@ -69,6 +75,9 @@ namespace Tizen.NUI.Scene3D
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SceneView : View
     {
+        private bool inCameraTransition = false;
+        private Animation cameraTransition;
+
         internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
@@ -104,6 +113,24 @@ namespace Tizen.NUI.Scene3D
             SceneView ret = new SceneView(Interop.SceneView.SceneAssign(SwigCPtr, SceneView.getCPtr(sceneView)), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Set/Get the ImageBasedLight ScaleFactor.
+        /// Scale factor controls light source intensity in [0.0f, 1.0f]
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ImageBasedLightScaleFactor
+        {
+            set
+            {
+                SetImageBasedLightScaleFactor(value);
+            }
+            get
+            {
+                return GetImageBasedLightScaleFactor();
+            }
         }
 
         /// <summary>
@@ -161,6 +188,10 @@ namespace Tizen.NUI.Scene3D
         /// first camera in the list is set to selected Camera.
         /// </summary>
         /// <param name="camera"> camera Camera to be removed from this Camera.</param>
+        /// <remarks>
+        /// Camera.Dispose() don't automatically release memory. We should call this API if we want to release memory.
+        /// We cannot remove default camera. If we try to remove default camera, ignored.
+        /// </remarks>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RemoveCamera(Camera camera)
@@ -194,7 +225,20 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Camera GetCamera(uint index)
         {
-            Camera camera = new Camera(Interop.SceneView.GetCamera(SwigCPtr, index), false);
+            global::System.IntPtr cPtr = Interop.SceneView.GetCamera(SwigCPtr, index);
+            Camera camera = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Camera;
+            if(camera == null)
+            {
+                // Register new camera into Registry.
+                camera = new Camera(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI camera. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Interop.Camera.DeleteCameraProperty(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return camera;
         }
@@ -208,7 +252,20 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Camera GetCamera(string name)
         {
-            Camera camera = new Camera(Interop.SceneView.GetCamera(SwigCPtr, name), false);
+            global::System.IntPtr cPtr = Interop.SceneView.GetCamera(SwigCPtr, name);
+            Camera camera = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Camera;
+            if(camera == null)
+            {
+                // Register new camera into Registry.
+                camera = new Camera(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI camera. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Interop.Camera.DeleteCameraProperty(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return camera;
         }
@@ -221,6 +278,10 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SelectCamera(uint index)
         {
+            if(inCameraTransition)
+            {
+                return;
+            }
             Interop.SceneView.SelectCamera(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -233,8 +294,62 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SelectCamera(string name)
         {
+            if(inCameraTransition)
+            {
+                return;
+            }
             Interop.SceneView.SelectCamera(SwigCPtr, name);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Start camera transition from currently selected camera to a camera of index.
+        /// Camera Position and Orientation is smoothly animated.
+        /// </summary>
+        /// <remarks>
+        /// The selected camera is switched when the transition is started.
+        /// During camera transition, Selected Camera cannot be changed by using SelectCamera() or CameraTransition() method.
+        /// </remarks>
+        /// <param name="index"> Index of destination Camera of Camera transition.</param>
+        /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
+        /// <param name="alphaFunction">The alpha function to apply.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void CameraTransition(uint index, int durationMilliSeconds, AlphaFunction alphaFunction = null)
+        {
+            if(inCameraTransition)
+            {
+                return;
+            }
+            Camera source = GetSelectedCamera();
+            SelectCamera(index);
+            Camera destination = GetSelectedCamera();
+            CameraTransition(source, destination, durationMilliSeconds, alphaFunction);
+        }
+
+        /// <summary>
+        /// Start camera transition from currently selected camera to a camera of input name.
+        /// Camera Position and Orientation is smoothly animated.
+        /// </summary>
+        /// <remarks>
+        /// The selected camera is switched when the transition is started.
+        /// During camera transition, Selected Camera cannot be changed by using SelectCamera() or CameraTransition() method.
+        /// </remarks>
+        /// <param name="name"> string keyword of destination Camera of Camera transition.</param>
+        /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
+        /// <param name="alphaFunction">The alpha function to apply.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void CameraTransition(string name, int durationMilliSeconds, AlphaFunction alphaFunction = null)
+        {
+            if(inCameraTransition)
+            {
+                return;
+            }
+            Camera source = GetSelectedCamera();
+            SelectCamera(name);
+            Camera destination = GetSelectedCamera();
+            CameraTransition(source, destination, durationMilliSeconds, alphaFunction);
         }
 
         /// <summary>
@@ -245,7 +360,20 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Camera GetSelectedCamera()
         {
-            Camera camera = new Camera(Interop.SceneView.GetSelectedCamera(SwigCPtr), false);
+            global::System.IntPtr cPtr = Interop.SceneView.GetSelectedCamera(SwigCPtr);
+            Camera camera = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Camera;
+            if(camera == null)
+            {
+                // Register new camera into Registry.
+                camera = new Camera(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI camera. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Interop.Camera.DeleteCameraProperty(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return camera;
         }
@@ -275,6 +403,54 @@ namespace Tizen.NUI.Scene3D
             bool result = Interop.SceneView.IsUsingFramebuffer(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
+        }
+
+        /// <summary>
+        /// Set the ImageBasedLight ScaleFactor.
+        /// </summary>
+        /// <param name="scaleFactor">Scale factor that controls light source intensity in [0.0f, 1.0f].</param>
+        private void SetImageBasedLightScaleFactor(float scaleFactor)
+        {
+            Interop.SceneView.SetImageBasedLightScaleFactor(SwigCPtr, scaleFactor);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get the ImageBasedLight ScaleFactor.
+        /// </summary>
+        /// <returns>ImageBasedLightScaleFactor that controls light source intensity.</returns>
+        private float GetImageBasedLightScaleFactor()
+        {
+            float scaleFactor = Interop.SceneView.GetImageBasedLightScaleFactor(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return scaleFactor;
+        }
+
+        private void CameraTransition(Camera sourceCamera, Camera destinationCamera, int durationMilliSeconds, AlphaFunction alphaFunction)
+        {
+            inCameraTransition = true;
+
+            Position sourcePosition = sourceCamera.Position;
+            Rotation sourceOrientation = sourceCamera.Orientation;
+
+            Position destinationPosition = destinationCamera.Position;
+            Rotation destinationOrientation = destinationCamera.Orientation;
+
+            cameraTransition = new Animation(durationMilliSeconds);
+            KeyFrames positionKeyFrames = new KeyFrames();
+            positionKeyFrames.Add(0.0f, sourcePosition);
+            positionKeyFrames.Add(1.0f, destinationPosition);
+            KeyFrames orientationKeyFrames = new KeyFrames();
+            orientationKeyFrames.Add(0.0f, sourceOrientation);
+            orientationKeyFrames.Add(1.0f, destinationOrientation);
+            cameraTransition.AnimateBetween(destinationCamera, "Position", positionKeyFrames, Animation.Interpolation.Linear, alphaFunction);
+            cameraTransition.AnimateBetween(destinationCamera, "Orientation", orientationKeyFrames, Animation.Interpolation.Linear, alphaFunction);
+
+            cameraTransition.Finished += (s, e) =>
+            {
+                inCameraTransition = false;
+            };
+            cameraTransition.Play();
         }
 
         /// <summary>

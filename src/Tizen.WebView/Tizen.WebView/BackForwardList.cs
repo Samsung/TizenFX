@@ -25,6 +25,7 @@ namespace Tizen.WebView
     /// This class provides the properties of Back Forward list item of a specific WebView.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class BackForwardListItem
     {
         private IntPtr _item_handle;
@@ -33,6 +34,7 @@ namespace Tizen.WebView
         /// Creates a Back Forward List Item object.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         internal BackForwardListItem(IntPtr handle)
         {
             _item_handle = handle;
@@ -42,6 +44,7 @@ namespace Tizen.WebView
         /// Url of the back forward list item.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string Url
         {
             get
@@ -54,6 +57,7 @@ namespace Tizen.WebView
         /// Title of the back forward list item.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string Title
         {
             get
@@ -66,6 +70,7 @@ namespace Tizen.WebView
         /// Original Url of the back forward list item.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string OriginalUrl
         {
             get
@@ -79,14 +84,11 @@ namespace Tizen.WebView
     /// This class provides the properties of Back Forward list of a specific WebView.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class BackForwardList
     {
         private IntPtr _list_handle;
 
-        /// <summary>
-        /// Creates a Back Forward List object.
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
         internal BackForwardList(IntPtr handle)
         {
             _list_handle = handle;
@@ -99,6 +101,7 @@ namespace Tizen.WebView
         /// BackForward List can be null if there is no current item.
         /// </remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public BackForwardListItem CurrentItem
         {
             get
@@ -121,6 +124,7 @@ namespace Tizen.WebView
         /// BackForward List can be null if there is no previous item.
         /// </remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public BackForwardListItem PreviousItem
         {
             get
@@ -140,6 +144,7 @@ namespace Tizen.WebView
         /// Gets the back forward list count.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public uint Count
         {
             get
@@ -154,6 +159,7 @@ namespace Tizen.WebView
         /// <param name="limit"> limit The number of items to retrieve, if limit -1 all items preceding current item are returned.</param>
         /// <returns>The list of the BackForwardListItem of back items.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public IList<BackForwardListItem> BackItems(int limit)
         {
             IntPtr list = Interop.ChromiumEwk.ewk_back_forward_list_n_back_items_copy(_list_handle, limit);
@@ -177,6 +183,7 @@ namespace Tizen.WebView
         /// <param name="limit"> limit The number of items to retrieve, if limit is -1 all items following current item are returned.</param>
         /// <returns>The list of the BackForwardListItem of forward items.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public IList<BackForwardListItem> ForwardItems(int limit)
         {
             IntPtr list = Interop.ChromiumEwk.ewk_back_forward_list_n_forward_items_copy(_list_handle, limit);

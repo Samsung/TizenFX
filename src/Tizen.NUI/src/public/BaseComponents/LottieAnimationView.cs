@@ -676,7 +676,7 @@ namespace Tizen.NUI.BaseComponents
                     }
                 }
                 contentMap.Dispose();
-                val.Dispose();
+                val?.Dispose();
             }
             NUILog.Debug($">");
 
@@ -1051,8 +1051,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (current.TryGetTarget(out currentView))
                 {
-                    if (currentView.InternalSavedDynamicPropertyCallbacks.TryGetValue(id, out currentCallback) && currentView != null
-                        && currentView.InternalSavedDynamicPropertyCallbacks != null)
+                    if (currentView != null && currentView.InternalSavedDynamicPropertyCallbacks != null &&
+                        currentView.InternalSavedDynamicPropertyCallbacks.TryGetValue(id, out currentCallback))
                     {
                         ret = currentCallback?.Invoke(returnType, frameNumber);
                     }
@@ -1079,7 +1079,7 @@ namespace Tizen.NUI.BaseComponents
                 case (int)(VectorProperty.FillColor):
                 case (int)(VectorProperty.StrokeColor):
                     Vector3 tmpVector3 = new Vector3(-1, -1, -1);
-                    if (ret.Get(tmpVector3))
+                    if ((ret != null) && ret.Get(tmpVector3))
                     {
                         val1 = tmpVector3.X;
                         val2 = tmpVector3.Y;
@@ -1092,7 +1092,7 @@ namespace Tizen.NUI.BaseComponents
                 case (int)(VectorProperty.TransformPosition):
                 case (int)(VectorProperty.TransformScale):
                     Vector2 tmpVector2 = new Vector2(-1, -1);
-                    if (ret.Get(tmpVector2))
+                    if ((ret != null) && ret.Get(tmpVector2))
                     {
                         val1 = tmpVector2.X;
                         val2 = tmpVector2.Y;
@@ -1106,7 +1106,7 @@ namespace Tizen.NUI.BaseComponents
                 case (int)(VectorProperty.TransformRotation):
                 case (int)(VectorProperty.TransformOpacity):
                     float tmpFloat = -1;
-                    if (ret.Get(out tmpFloat))
+                    if ((ret != null) && ret.Get(out tmpFloat))
                     {
                         val1 = tmpFloat;
                     }
@@ -1115,7 +1115,7 @@ namespace Tizen.NUI.BaseComponents
                     //do nothing
                     break;
             }
-            ret.Dispose();
+            ret?.Dispose();
         }
         #endregion Internal
 

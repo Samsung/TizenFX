@@ -35,6 +35,39 @@ namespace Tizen.Multimedia.Remoting
         /// <since_tizen> 9 </since_tizen>
         public MediaCameraSource() : base(MediaType.Video) {}
 
+        /// <summary>
+        /// Gets or sets the camera device id.
+        /// </summary>
+        /// <value>A value that specifies the camera device id.</value>
+        /// <exception cref="InvalidOperationException">MediaSource is not attached yet.</exception>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public uint CameraDeviceId
+        {
+            get
+            {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+
+                NativeWebRTC.GetCameraDeviceId(WebRtc.Handle, SourceId.Value, out uint deviceId).
+                    ThrowIfFailed("Failed to get camera device id");
+
+                return deviceId;
+            }
+            set
+            {
+                if (!SourceId.HasValue)
+                {
+                    throw new InvalidOperationException("MediaSource is not attached yet. Call AddSource() first.");
+                }
+
+                NativeWebRTC.SetCameraDeviceId(WebRtc.Handle, SourceId.Value, value).
+                    ThrowIfFailed("Failed to set camera device id");
+            }
+        }
+
         internal override void OnAttached(WebRTC webRtc)
         {
             Debug.Assert(webRtc != null);
@@ -58,5 +91,7 @@ namespace Tizen.Multimedia.Remoting
 
             WebRtc = null;
         }
+
+        internal override MediaSourceType MediaSourceType => MediaSourceType.Camera;
     }
 }

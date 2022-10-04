@@ -59,6 +59,8 @@ namespace Tizen.Multimedia.Remoting
             WebRtc = (WebRTC)null;
         }
 
+        internal override MediaSourceType MediaSourceType => MediaSourceType.Microphone;
+
         /// <summary>
         /// Applies the audio stream policy to <see cref="MediaMicrophoneSource"/>.
         /// </summary>
