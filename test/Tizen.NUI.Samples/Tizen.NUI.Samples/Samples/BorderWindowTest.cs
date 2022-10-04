@@ -12,6 +12,16 @@ namespace Tizen.NUI.Samples
   public class BorderWindowTest : IExample
   {
     string tag = "NUITEST";
+    private const string KEY_BACK = "XF86Back";
+    private const string KEY_ESCAPE = "Escape";
+    private const string KEY_NUM_1 = "1";
+    private const string KEY_NUM_2 = "2";
+    private const string KEY_NUM_3 = "3";
+    private const string KEY_NUM_4 = "4";
+    private const string KEY_NUM_5 = "5";
+    private const string KEY_PARENT_ABOVE = "6";
+    private const string KEY_PARENT_BELOW = "7";
+
     private Window win;
     private Window subWindowOne = null;
     private Window subWindowTwo = null;
@@ -269,6 +279,49 @@ namespace Tizen.NUI.Samples
     }
 
 
+    private void OnKeyEvent(object sender, Window.KeyEventArgs e)
+    {
+        if (e.Key.State == Key.StateType.Down)
+        {
+            log.Debug(tag, $"key down! key={e.Key.KeyPressedName}");
+
+            switch (e.Key.KeyPressedName)
+            {
+                case KEY_BACK:
+                case KEY_ESCAPE:
+                    break;
+
+                case KEY_NUM_1:
+                    subWindowOne.WindowPosition = new Position2D(10, 20);
+                    break;
+
+                case KEY_NUM_2:
+                    subWindowOne.WindowPosition = new Position2D(-10, 20);
+                    break;
+
+                case KEY_NUM_3:
+
+                    break;
+
+                case KEY_NUM_4:
+                    break;
+
+                case KEY_NUM_5:
+                    break;
+
+                case KEY_PARENT_ABOVE:
+                    break;
+
+                case KEY_PARENT_BELOW:
+                    break;
+
+                default:
+                    log.Debug(tag, $"no test!");
+                    break;
+            }
+        }
+    }
+
     private void OnWindowMoved(object sender, WindowMovedEventArgs e)
     {
         Position2D position = e.WindowPosition;
@@ -305,6 +358,7 @@ namespace Tizen.NUI.Samples
         animation.Looping = true;
         animation.Play();
 
+        subWindowOne.KeyEvent += OnKeyEvent;
         subWindowOne.Moved += OnWindowMoved;
       }
       else
