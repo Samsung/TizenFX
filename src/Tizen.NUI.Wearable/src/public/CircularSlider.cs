@@ -146,7 +146,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of ThumbSize</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbSizeProperty = BindableProperty.Create(nameof(ThumbSize), typeof(Size), typeof(CircularSlider), new Size(0,0), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThumbSizeProperty = BindableProperty.Create(nameof(ThumbSize), typeof(Size), typeof(CircularSlider), new Size(0, 0), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (CircularSlider)bindable;
             if (newValue != null)
@@ -176,7 +176,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of IsEnabled</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(CircularSlider), true, propertyChanged: (bindable, oldValue, newValue) =>
+        public new static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool), typeof(CircularSlider), true, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (CircularSlider)bindable;
             if (newValue != null)
@@ -395,7 +395,7 @@ namespace Tizen.NUI.Wearable
         /// Flag to be enabled or disabled in CircularSlider.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public bool IsEnabled
+        public new bool IsEnabled
         {
             get
             {
@@ -533,7 +533,7 @@ namespace Tizen.NUI.Wearable
                 StartAngle = 0.0f,
                 SweepAngle = 0.0f
             };
-            this.AddVisual(ThumbVisualName,  thumbVisual);
+            this.AddVisual(ThumbVisualName, thumbVisual);
 
             HandleProgressVisualVisibility();
 

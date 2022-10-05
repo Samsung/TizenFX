@@ -260,6 +260,7 @@ namespace Tizen.NUI.Wearable
             return scrollPosition;
         }
 
+        /// <inheritdoc/>
         public override View RequestNextFocusableView(View currentFocusedView, View.FocusDirection direction, bool loopEnabled)
         {
             View nextFocusedView = null;
