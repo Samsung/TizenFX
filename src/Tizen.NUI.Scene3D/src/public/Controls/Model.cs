@@ -148,6 +148,7 @@ namespace Tizen.NUI.Scene3D
             }
         }
 
+        /// <summary>
         /// Set/Get the ImageBasedLight ScaleFactor.
         /// Scale factor controls light source intensity in [0.0f, 1.0f]
         /// </summary>
