@@ -6,6 +6,7 @@ namespace Tizen.Applications.AttachPanel
     /// <summary>
     /// Represents the immutable class for the attach panel.
     /// </summary>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public partial class AttachPanel
     {
         /// <summary>
@@ -18,6 +19,7 @@ namespace Tizen.Applications.AttachPanel
         /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate the memory fails.</exception>
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel already exists or the <paramref name="conformant"/> is not a conformant object.</exception>
         /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public AttachPanel(EvasObject conformant)
         {
             if (conformant == IntPtr.Zero)
@@ -63,6 +65,7 @@ namespace Tizen.Applications.AttachPanel
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel already exists or the <paramref name="conformant"/> is not a conformant object.</exception>
         /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <exception cref="ArgumentNullException">Thrown when the parameter is null</exception>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public AttachPanel(Conformant conformant) : this(conformant as EvasObject)
         {
         }
@@ -88,6 +91,7 @@ namespace Tizen.Applications.AttachPanel
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is not created yet or is already destroyed.</exception>
         /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <exception cref="ArgumentException">Thrown when the parameter is invalid</exception>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public StateType State
         {
             get
@@ -117,6 +121,7 @@ namespace Tizen.Applications.AttachPanel
         /// <feature>http://tizen.org/feature/attach_panel</feature>
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is not created yet or is already destroyed.</exception>
         /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public bool Visible
         {
             get
@@ -175,6 +180,7 @@ namespace Tizen.Applications.AttachPanel
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is not created yet or is already destroyed.</exception>
         /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void AddCategory(ContentCategory category, Bundle extraData)
         {
             if (IsAttachPanelSupported() == false)
@@ -206,6 +212,7 @@ namespace Tizen.Applications.AttachPanel
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is not created yet or is already destroyed.</exception>
         /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void RemoveCategory(ContentCategory category)
         {
             if (IsAttachPanelSupported() == false)
@@ -233,6 +240,7 @@ namespace Tizen.Applications.AttachPanel
         /// <exception cref="OutOfMemoryException">Thrown when an attempt to allocate the memory fails.</exception>
         /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void SetExtraData(ContentCategory category, Bundle extraData)
         {
             if (extraData == null)
@@ -267,6 +275,7 @@ namespace Tizen.Applications.AttachPanel
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed.</exception>
         /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void Show()
         {
             if (IsAttachPanelSupported() == false)
@@ -291,6 +300,7 @@ namespace Tizen.Applications.AttachPanel
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed.</exception>
         /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void Show(bool animation)
         {
             if (IsAttachPanelSupported() == false)
@@ -322,6 +332,7 @@ namespace Tizen.Applications.AttachPanel
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed.</exception>
         /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void Hide()
         {
             if (IsAttachPanelSupported() == false)
@@ -346,6 +357,7 @@ namespace Tizen.Applications.AttachPanel
         /// <exception cref="InvalidOperationException">Thrown when the AttachPanel is destroyed.</exception>
         /// <exception cref="NotSupportedException">Thrown when the AttachPanel is not supported in the device.</exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void Hide(bool animation)
         {
             if (IsAttachPanelSupported() == false)
@@ -374,6 +386,7 @@ namespace Tizen.Applications.AttachPanel
         /// Occurs when the reserved events are published from the panel-side.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public event EventHandler<StateEventArgs> EventChanged
         {
             add
@@ -400,6 +413,7 @@ namespace Tizen.Applications.AttachPanel
         /// Occurs when a user selects and confirms something to attach in the AttachPanel.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public event EventHandler<ResultEventArgs> ResultCallback
         {
             add

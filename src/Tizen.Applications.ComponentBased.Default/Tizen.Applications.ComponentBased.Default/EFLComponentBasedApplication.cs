@@ -9,6 +9,7 @@ namespace Tizen.Applications.ComponentBased.Default
     /// The basic EFL component-based application class.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API10. Will be removed in API12.")]
     public class EFLComponentBasedApplication : ComponentBasedApplication
     {
         private const string LogTag = "Tizen.Applications";
@@ -21,6 +22,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// The value should be a component id which is declared in tizen-manifest.xml.
         /// </param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public EFLComponentBasedApplication(IDictionary<Type, string> typeInfo) : base(typeInfo)
         {
         }
@@ -30,6 +32,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// </summary>
         /// <param name="args"></param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected override void OnInit(string[] args)
         {
             Interop.Elementary.ElmInit(args.Length, args);
@@ -55,6 +58,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// This method will be called after exiting main-loop
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected override void OnFinished()
         {
             Interop.Elementary.ElmShutdown();
@@ -69,6 +73,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// This method will be called to start main-loop
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected override void OnRun()
         {
             Interop.Elementary.ElmRun();
@@ -78,6 +83,7 @@ namespace Tizen.Applications.ComponentBased.Default
         /// This method will be called to exit main-loop
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         protected override void OnExit()
         {
             Interop.Elementary.ElmExit();
