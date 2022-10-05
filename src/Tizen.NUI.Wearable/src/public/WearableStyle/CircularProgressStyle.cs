@@ -95,7 +95,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of IsEnabled</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public new static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(CircularProgressStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((CircularProgressStyle)bindable).isEnabled = (bool?)newValue;
         },
@@ -232,7 +232,7 @@ namespace Tizen.NUI.Wearable
         /// Flag to be enabled or disabled in CircularProgress.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public bool? IsEnabled
+        public new bool? IsEnabled
         {
             get
             {

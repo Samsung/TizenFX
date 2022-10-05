@@ -106,6 +106,57 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         Tizen.Log.Fatal("NUITEST", $"PositionZGetter: {View.PositionZGetter}, PositionZSetter: {View.PositionZSetter}");
         Tizen.Log.Fatal("NUITEST", $"MaximumSizeGetter: {View.MaximumSizeGetter}, MaximumSizeSetter: {View.MaximumSizeSetter}");
         Tizen.Log.Fatal("NUITEST", $"MinimumSizeGetter: {View.MinimumSizeGetter}, MinimumSizeSetter: {View.MinimumSizeSetter}");
+        Tizen.Log.Fatal("NUITEST", $"StyleNameGetter: {View.StyleNameGetter}, StyleNameSetter: {View.StyleNameSetter}");
+        Tizen.Log.Fatal("NUITEST", $"KeyInputFocusGetter: {View.KeyInputFocusGetter}, KeyInputFocusSetter: {View.KeyInputFocusSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ColorGetter: {View.ColorGetter}, ColorSetter: {View.ColorSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ColorRedGetter: {View.ColorRedGetter}, ColorRedSetter: {View.ColorRedSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ColorGreenGetter: {View.ColorGreenGetter}, ColorGreenSetter: {View.ColorGreenSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ColorBlueGetter: {View.ColorBlueGetter}, ColorBlueSetter: {View.ColorBlueSetter}");
+        Tizen.Log.Fatal("NUITEST", $"StateGetter: {View.StateGetter}, StateSetter: {View.StateSetter}");
+        Tizen.Log.Fatal("NUITEST", $"SubStateGetter: {View.SubStateGetter}, SubStateSetter: {View.SubStateSetter}");
+        Tizen.Log.Fatal("NUITEST", $"FlexGetter: {View.FlexGetter}, FlexSetter: {View.FlexSetter}");
+        Tizen.Log.Fatal("NUITEST", $"AlignSelfGetter: {View.AlignSelfGetter}, AlignSelfSetter: {View.AlignSelfSetter}");
+        Tizen.Log.Fatal("NUITEST", $"FlexMarginGetter: {View.FlexMarginGetter}, FlexMarginSetter: {View.FlexMarginSetter}");
+        Tizen.Log.Fatal("NUITEST", $"CellIndexGetter: {View.CellIndexGetter}, CellIndexSetter: {View.CellIndexSetter}");
+        Tizen.Log.Fatal("NUITEST", $"RowSpanGetter: {View.RowSpanGetter}, RowSpanSetter: {View.RowSpanSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ColumnSpanGetter: {View.ColumnSpanGetter}, ColumnSpanSetter: {View.ColumnSpanSetter}");
+        Tizen.Log.Fatal("NUITEST", $"CellHorizontalAlignmentGetter: {View.CellHorizontalAlignmentGetter}, CellHorizontalAlignmentSetter: {View.CellHorizontalAlignmentSetter}");
+        Tizen.Log.Fatal("NUITEST", $"CellVerticalAlignmentGetter: {View.CellVerticalAlignmentGetter}, CellVerticalAlignmentSetter: {View.CellVerticalAlignmentSetter}");
+        Tizen.Log.Fatal("NUITEST", $"OpacityGetter: {View.OpacityGetter}, OpacitySetter: {View.OpacitySetter}");
+        Tizen.Log.Fatal("NUITEST", $"PositionUsesPivotPointGetter: {View.PositionUsesPivotPointGetter}, PositionUsesPivotPointSetter: {View.PositionUsesPivotPointSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ParentOriginGetter: {View.ParentOriginGetter}, ParentOriginSetter: {View.ParentOriginSetter}");
+        Tizen.Log.Fatal("NUITEST", $"PivotPointGetter: {View.PivotPointGetter}, PivotPointSetter: {View.PivotPointSetter}");
+        Tizen.Log.Fatal("NUITEST", $"OrientationGetter: {View.OrientationGetter}, OrientationSetter: {View.OrientationSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ScaleGetter: {View.ScaleGetter}, ScaleSetter: {View.ScaleSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ScaleXGetter: {View.ScaleXGetter}, ScaleXSetter: {View.ScaleXSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ScaleYGetter: {View.ScaleYGetter}, ScaleYSetter: {View.ScaleYSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ScaleZGetter: {View.ScaleZGetter}, ScaleZSetter: {View.ScaleZSetter}");
+        Tizen.Log.Fatal("NUITEST", $"NameGetter: {View.NameGetter}, NameSetter: {View.NameSetter}");
+        Tizen.Log.Fatal("NUITEST", $"SensitiveGetter: {View.SensitiveGetter}, SensitiveSetter: {View.SensitiveSetter}");
+        Tizen.Log.Fatal("NUITEST", $"IsEnabledGetter: {View.IsEnabledGetter}, IsEnabledSetter: {View.IsEnabledSetter}");
+        Tizen.Log.Fatal("NUITEST", $"DispatchKeyEventsGetter: {View.DispatchKeyEventsGetter}, DispatchKeyEventsSetter: {View.DispatchKeyEventsSetter}");
+        Tizen.Log.Fatal("NUITEST", $"LeaveRequiredGetter: {View.LeaveRequiredGetter}, LeaveRequiredSetter: {View.LeaveRequiredSetter}");
+        Tizen.Log.Fatal("NUITEST", $"InheritOrientationGetter: {View.InheritOrientationGetter}, InheritOrientationSetter: {View.InheritOrientationSetter}");
+        Tizen.Log.Fatal("NUITEST", $"InheritScaleGetter: {View.InheritScaleGetter}, InheritScaleSetter: {View.InheritScaleSetter}");
+        Tizen.Log.Fatal("NUITEST", $"DrawModeGetter: {View.DrawModeGetter}, DrawModeSetter: {View.DrawModeSetter}");
+        Tizen.Log.Fatal("NUITEST", $"SizeModeFactorGetter: {View.SizeModeFactorGetter}, SizeModeFactorSetter: {View.SizeModeFactorSetter}");
+        Tizen.Log.Fatal("NUITEST", $"WidthResizePolicyGetter: {View.WidthResizePolicyGetter}, WidthResizePolicySetter: {View.WidthResizePolicySetter}");
+        Tizen.Log.Fatal("NUITEST", $"HeightResizePolicyGetter: {View.HeightResizePolicyGetter}, HeightResizePolicySetter: {View.HeightResizePolicySetter}");
+        Tizen.Log.Fatal("NUITEST", $"SizeScalePolicyGetter: {View.SizeScalePolicyGetter}, SizeScalePolicySetter: {View.SizeScalePolicySetter}");
+        Tizen.Log.Fatal("NUITEST", $"WidthForHeightGetter: {View.WidthForHeightGetter}, WidthForHeightSetter: {View.WidthForHeightSetter}");
+        Tizen.Log.Fatal("NUITEST", $"HeightForWidthGetter: {View.HeightForWidthGetter}, HeightForWidthSetter: {View.HeightForWidthSetter}");
+        Tizen.Log.Fatal("NUITEST", $"InheritPositionGetter: {View.InheritPositionGetter}, InheritPositionSetter: {View.InheritPositionSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ClippingModeGetter: {View.ClippingModeGetter}, ClippingModeSetter: {View.ClippingModeSetter}");
+        Tizen.Log.Fatal("NUITEST", $"InheritLayoutDirectionGetter: {View.InheritLayoutDirectionGetter}, InheritLayoutDirectionSetter: {View.InheritLayoutDirectionSetter}");
+        Tizen.Log.Fatal("NUITEST", $"LayoutDirectionGetter: {View.LayoutDirectionGetter}, LayoutDirectionSetter: {View.LayoutDirectionSetter}");
+        Tizen.Log.Fatal("NUITEST", $"UpdateAreaHintGetter: {View.UpdateAreaHintGetter}, UpdateAreaHintSetter: {View.UpdateAreaHintSetter}");
+        Tizen.Log.Fatal("NUITEST", $"AccessibilityNameGetter: {View.AccessibilityNameGetter}, AccessibilityNameSetter: {View.AccessibilityNameSetter}");
+        Tizen.Log.Fatal("NUITEST", $"AccessibilityDescriptionGetter: {View.AccessibilityDescriptionGetter}, AccessibilityDescriptionSetter: {View.AccessibilityDescriptionSetter}");
+        Tizen.Log.Fatal("NUITEST", $"AccessibilityTranslationDomainGetter: {View.AccessibilityTranslationDomainGetter}, AccessibilityTranslationDomainSetter: {View.AccessibilityTranslationDomainSetter}");
+        Tizen.Log.Fatal("NUITEST", $"AccessibilityRoleGetter: {View.AccessibilityRoleGetter}, AccessibilityRoleSetter: {View.AccessibilityRoleSetter}");
+        Tizen.Log.Fatal("NUITEST", $"AccessibilityHighlightableGetter: {View.AccessibilityHighlightableGetter}, AccessibilityHighlightableSetter: {View.AccessibilityHighlightableSetter}");
+        Tizen.Log.Fatal("NUITEST", $"AccessibilityHiddenGetter: {View.AccessibilityHiddenGetter}, AccessibilityHiddenSetter: {View.AccessibilityHiddenSetter}");
+        Tizen.Log.Fatal("NUITEST", $"AutomationIdGetter: {View.AutomationIdGetter}, AutomationIdSetter: {View.AutomationIdSetter}");
     }
 }
 #endif
@@ -1569,8 +1620,8 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
             {
                 throw new ArgumentNullException(nameof(position));
             }
-            var val = new Uint16Pair((uint)position.X, (uint)position.Y);
-            Interop.Window.SetPosition(SwigCPtr, Uint16Pair.getCPtr(val));
+            var val = new IntPair(position.X, position.Y);
+            Interop.Window.SetPosition(SwigCPtr, IntPair.getCPtr(val));
             val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             // Setting Position of the window should request a relayout of the tree.
@@ -1578,8 +1629,8 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
 
         internal Position2D GetPosition()
         {
-            var val = new Uint16Pair(Interop.Window.GetPosition(SwigCPtr), true);
-            Position2D ret = new Position2D(val.GetX(), val.GetY());
+            var val = new IntPair(Interop.Window.GetPosition(SwigCPtr), true);
+            Position2D ret = new Position2D((int)val.GetX(), (int)val.GetY());
             val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;

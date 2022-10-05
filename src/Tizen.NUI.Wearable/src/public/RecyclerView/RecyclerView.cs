@@ -33,13 +33,16 @@ namespace Tizen.NUI.Wearable
         private int totalItemCount = 15;
         private List<PropertyNotification> notifications = new List<PropertyNotification>();
 
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
         public RecyclerView() : base()
         {
             Initialize(new RecycleAdapter(), new RecycleLayoutManager());
         }
 
         /// <summary>
-        /// Default constructor.
+        /// A constructor of <see cref="RecyclerView" />.
         /// </summary>
         /// <param name="adapter">Recycle adapter of RecyclerView.</param>
         /// <param name="layoutManager">Recycle layoutManager of RecyclerView.</param>

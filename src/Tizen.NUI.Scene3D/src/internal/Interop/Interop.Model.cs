@@ -42,6 +42,13 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_GetModelRoot")]
             public static extern global::System.IntPtr GetModelRoot(global::System.Runtime.InteropServices.HandleRef model);
 
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_SetChildrenSensitive")]
+            public static extern void SetChildrenSensitive(global::System.Runtime.InteropServices.HandleRef model, bool enable);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_GetChildrenSensitive")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool GetChildrenSensitive(global::System.Runtime.InteropServices.HandleRef model);
+
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_SetImageBasedLightSource")]
             public static extern global::System.IntPtr SetImageBasedLightSource(global::System.Runtime.InteropServices.HandleRef model, string diffuse, string specular, float scaleFactor);
 
