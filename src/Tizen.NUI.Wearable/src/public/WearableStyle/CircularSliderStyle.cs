@@ -95,7 +95,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of ThumbSize</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ThumbSizeProperty = BindableProperty.Create(nameof(ThumbSize), typeof(Size), typeof(CircularSliderStyle), new Size(0,0), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ThumbSizeProperty = BindableProperty.Create(nameof(ThumbSize), typeof(Size), typeof(CircularSliderStyle), new Size(0, 0), propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((CircularSliderStyle)bindable).thumbSize = (Size)newValue;
         },
@@ -117,7 +117,7 @@ namespace Tizen.NUI.Wearable
 
         /// <summary>Bindable property of IsEnabled</summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(CircularSliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        public new static readonly BindableProperty IsEnabledProperty = BindableProperty.Create(nameof(IsEnabled), typeof(bool?), typeof(CircularSliderStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             ((CircularSliderStyle)bindable).isEnabled = (bool?)newValue;
         },
@@ -288,7 +288,7 @@ namespace Tizen.NUI.Wearable
         /// Flag to be enabled or disabled in CircularSlider.
         /// </summary>
         /// <since_tizen> 8 </since_tizen>
-        public bool? IsEnabled
+        public new bool? IsEnabled
         {
             get
             {
