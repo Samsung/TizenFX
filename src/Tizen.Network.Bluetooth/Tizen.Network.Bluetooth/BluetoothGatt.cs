@@ -231,6 +231,7 @@ namespace Tizen.Network.Bluetooth
             return _impl.GetAttMtu(clientAddress);
         }
 
+        /// <summary>
         /// The AttMtuChanged event is raised when the MTU value changed.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
@@ -1056,7 +1057,7 @@ namespace Tizen.Network.Bluetooth
                 _parent = parent;
                 ReleaseHandleOwnership();
             }
-         }
+        }
     }
 
     /// <summary>
@@ -1077,7 +1078,7 @@ namespace Tizen.Network.Bluetooth
         /// <remarks>throws in case of internal error.</remarks>
         /// <exception cref="InvalidOperationException">Thrown when the create GATT descriptor procedure fails.</exception>
         /// <since_tizen> 3 </since_tizen>
-        public BluetoothGattDescriptor(string uuid, BluetoothGattPermission permisions, byte[] value) : base (uuid, permisions)
+        public BluetoothGattDescriptor(string uuid, BluetoothGattPermission permisions, byte[] value) : base(uuid, permisions)
         {
             _impl = new BluetoothGattDescriptorImpl(uuid, permisions, value);
         }
