@@ -1020,17 +1020,17 @@ namespace Tizen.Content.MediaContent
             {
                 var path = InteropHelper.GetString(handle, Interop.MediaInfo.GetFilePath);
 
+                if (String.IsNullOrEmpty(path) || File.Exists(path) == false)
+                {
+                    throw new FileNotFoundException($"The media file does not exist. Path={path}.", path);
+                }
+
                 foreach (var extendedInternal in StorageManager.Storages.Where(s => s.StorageType == StorageArea.ExtendedInternal))
                 {
                     if (path.Contains(extendedInternal.RootDirectory))
                     {
                         throw new UnsupportedContentException("The media is in external usb storage.");
                     }
-                }
-
-                if (File.Exists(path) == false)
-                {
-                    throw new FileNotFoundException($"The media file does not exist. Path={path}.", path);
                 }
             }
             catch (Exception ex)
