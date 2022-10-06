@@ -14,6 +14,7 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalWidgetApplicationTest
     {
         private const string tag = "NUITEST";
+        private Widget widget = null;
 
         internal class MyWidgetApplication : WidgetApplication
         {
@@ -30,11 +31,16 @@ namespace Tizen.NUI.Devel.Tests
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
+
+            widget = new Widget();
         }
 
         [TearDown]
         public void Destroy()
         {
+            widget.Dispose();
+            widget = null;
+
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -49,17 +55,13 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WidgetApplicationConstructor START");
 
-            Widget widget = new Widget();
-
             var testingTarget = new WidgetApplication(widget.GetIntPtr(), false);
             Assert.IsNotNull(testingTarget, "Can't create success object WidgetApplication");
             Assert.IsInstanceOf<WidgetApplication>(testingTarget, "Should be an instance of WidgetApplication type.");
 
-            widget.Dispose();
-            widget = null;
-
             testingTarget.Dispose();
             testingTarget = null;
+
             tlog.Debug(tag, $"WidgetApplicationConstructor END (OK)");
         }
 
@@ -74,24 +76,16 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WidgetApplicationConstructorWithWidgetApplication START");
 
-            Widget widget = new Widget();
+            using (WidgetApplication widgetApplication = new WidgetApplication(widget.GetIntPtr(), false))
+            {
+                var testingTarget = new WidgetApplication(widgetApplication);
+                Assert.IsNotNull(testingTarget, "Can't create success object WidgetApplication");
+                Assert.IsInstanceOf<WidgetApplication>(testingTarget, "Should be an instance of WidgetApplication type.");
 
-            WidgetApplication widgetApplication = new WidgetApplication(widget.GetIntPtr(), false);
-            Assert.IsNotNull(widgetApplication, "Can't create success object WidgetApplication");
-            Assert.IsInstanceOf<WidgetApplication>(widgetApplication, "Should be an instance of WidgetApplication type.");
+                testingTarget.Dispose();
+                testingTarget = null;
+            }
 
-            var testingTarget = new WidgetApplication(widgetApplication);
-            Assert.IsNotNull(testingTarget, "Can't create success object WidgetApplication");
-            Assert.IsInstanceOf<WidgetApplication>(testingTarget, "Should be an instance of WidgetApplication type.");
-
-            widget.Dispose();
-            widget = null;
-
-            widgetApplication.Dispose();
-            widgetApplication = null;
-
-            testingTarget.Dispose();
-            testingTarget = null;
             tlog.Debug(tag, $"WidgetApplicationConstructorWithWidgetApplication END (OK)");
         }
 
@@ -106,24 +100,16 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WidgetApplicationAssign START");
 
-            Widget widget = new Widget();
+            using (WidgetApplication widgetApplication = new WidgetApplication(widget.GetIntPtr(), false))
+            {
+                var testingTarget = widgetApplication.Assign(widgetApplication);
+                Assert.IsNotNull(testingTarget, "Can't create success object WidgetApplication");
+                Assert.IsInstanceOf<WidgetApplication>(testingTarget, "Should be an instance of WidgetApplication type.");
 
-            WidgetApplication widgetApplication = new WidgetApplication(widget.GetIntPtr(), false);
-            Assert.IsNotNull(widgetApplication, "Can't create success object WidgetApplication");
-            Assert.IsInstanceOf<WidgetApplication>(widgetApplication, "Should be an instance of WidgetApplication type.");
+                testingTarget.Dispose();
+                testingTarget = null;
+            }
 
-            var testingTarget = widgetApplication.Assign(widgetApplication);
-            Assert.IsNotNull(testingTarget, "Can't create success object WidgetApplication");
-            Assert.IsInstanceOf<WidgetApplication>(testingTarget, "Should be an instance of WidgetApplication type.");
-
-            widget.Dispose();
-            widget = null;
-
-            widgetApplication.Dispose();
-            widgetApplication = null;
-
-            testingTarget.Dispose();
-            testingTarget = null;
             tlog.Debug(tag, $"WidgetApplicationAssign END (OK)");
         }
 
@@ -137,8 +123,6 @@ namespace Tizen.NUI.Devel.Tests
         public void WidgetApplicationReleaseSwigCPtr()
         {
             tlog.Debug(tag, $"WidgetApplicationReleaseSwigCPtr START");
-
-            Widget widget = new Widget();
 
             var testingTarget = new MyWidgetApplication(widget.GetIntPtr(), false);
             Assert.IsNotNull(testingTarget, "Can't create success object WidgetApplication");
@@ -156,6 +140,7 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             testingTarget = null;
+
             tlog.Debug(tag, $"WidgetApplicationReleaseSwigCPtr END (OK)");
         }
 
@@ -205,8 +190,6 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WidgetApplicationRegisterWidgetInfo START");
 
-            Widget widget = new Widget();
-
             var testingTarget = new WidgetApplication(widget.GetIntPtr(), false);
             Assert.IsNotNull(testingTarget, "Can't create success object WidgetApplication");
             Assert.IsInstanceOf<WidgetApplication>(testingTarget, "Should be an instance of WidgetApplication type.");
@@ -224,11 +207,9 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception: Failed!");
             }
 
-            widget.Dispose();
-            widget = null;
-
             testingTarget.Dispose();
             testingTarget = null;
+
             tlog.Debug(tag, $"WidgetApplicationRegisterWidgetInfo END (OK)");
         }
 
@@ -243,11 +224,11 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WidgetApplicationWidgetCreateFunction START");
 
-            tlog.Debug(tag, "WidgetApplication.Instance : " + WidgetApplication.Instance);
+            var instance = WidgetApplication.Instance;
+            tlog.Debug(tag, "WidgetApplication.Instance : " + instance);
 
             try
             {
-                Widget widget = new Widget();
                 global::System.IntPtr widgetPtr = widget.GetIntPtr();
                 WidgetApplication.WidgetCreateFunction(ref widgetPtr);
             }
@@ -271,8 +252,6 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WidgetApplicationWidgetInfo START");
 
-            Widget widget = new Widget();
-
             var testingTarget = new WidgetApplication(widget.GetIntPtr(), false);
             Assert.IsNotNull(testingTarget, "Can't create success object WidgetApplication");
             Assert.IsInstanceOf<WidgetApplication>(testingTarget, "Should be an instance of WidgetApplication type.");
@@ -281,15 +260,46 @@ namespace Tizen.NUI.Devel.Tests
                 { typeof(Widget), "w1@org.tizen.WidgetApp"} };
             testingTarget.RegisterWidgetInfo(widgetInfo);
 
-            tlog.Debug(tag, "testingTarget.WidgetInfo : " + testingTarget.WidgetInfo);
-
-            widget.Dispose();
-            widget = null;
+            var info = testingTarget.WidgetInfo;
+            tlog.Debug(tag, "testingTarget.WidgetInfo : " + info);
 
             testingTarget.Dispose();
             testingTarget = null;
 
             tlog.Debug(tag, $"WidgetApplicationWidgetInfo END (OK)");
+        }
+		
+        [Test]
+        [Category("P1")]
+        [Description("WidgetApplication AddWidgetInfo.")]
+        [Property("SPEC", "Tizen.Applications.WidgetApplication.AddWidgetInfo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WidgetApplicationAddWidgetInfo()
+        {
+            tlog.Debug(tag, $"WidgetApplicationAddWidgetInfo START");
+
+            var testingTarget = new WidgetApplication(widget.GetIntPtr(), false);
+            Assert.IsNotNull(testingTarget, "Can't create success object WidgetApplication");
+            Assert.IsInstanceOf<WidgetApplication>(testingTarget, "Should be an instance of WidgetApplication type.");
+
+            global::System.Collections.Generic.Dictionary<Type, string> widgetInfo = new global::System.Collections.Generic.Dictionary<Type, string>(){
+                { typeof(Widget), "w1@org.tizen.WidgetApp"} };
+			
+            try
+			{
+                testingTarget.AddWidgetInfo(widgetInfo);
+            }
+			catch(Exception e)
+            {
+                Assert.Pass("Catch exception: " + e.Message.ToString());
+            }
+
+            testingTarget.Dispose();
+            testingTarget = null;
+
+            tlog.Debug(tag, $"WidgetApplicationAddWidgetInfo END (OK)");
         }
     }
 }

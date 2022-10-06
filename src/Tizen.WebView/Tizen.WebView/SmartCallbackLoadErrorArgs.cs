@@ -23,6 +23,7 @@ namespace Tizen.WebView
     /// Enumeration for providing an option to the error codes.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public enum LoadErrorCode
     {
         /// <summary>
@@ -91,6 +92,7 @@ namespace Tizen.WebView
     /// Arguments from the LoadError SmartCallback.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public class SmartCallbackLoadErrorArgs : EventArgs
     {
         IntPtr _handle;
@@ -104,6 +106,7 @@ namespace Tizen.WebView
         /// Failing URL for the error.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string Url
         {
             get
@@ -116,6 +119,7 @@ namespace Tizen.WebView
         /// The error code.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public LoadErrorCode Code
         {
             get
@@ -128,6 +132,7 @@ namespace Tizen.WebView
         /// The description for the error.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string Description
         {
             get
@@ -140,6 +145,7 @@ namespace Tizen.WebView
         /// Whether the error should be treated as a cancellation.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public bool Cancellation
         {
             get

@@ -28,6 +28,7 @@ namespace Tizen.WebView
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     [Flags]
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public enum FindOption
     {
         /// <summary>
@@ -72,6 +73,7 @@ namespace Tizen.WebView
     /// Enumeration for Http Method.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public enum HttpMethod
     {
         /// <summary>
@@ -100,6 +102,7 @@ namespace Tizen.WebView
     /// Enumeration for Orientation of the device.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
     public enum Orientation
     {
         /// <summary>
@@ -124,6 +127,7 @@ namespace Tizen.WebView
     /// A view used to render the web contents.
     /// </summary>
     /// <since_tizen> 4 </since_tizen>
+    [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12. The WebView provided by .NET MAUI or Tizen.NUI can be used instead.")]
     public class WebView : EvasObject
     {
         private static IDictionary<string, JavaScriptMessageHandler> _javaScriptMessageHandlerMap = new Dictionary<string, JavaScriptMessageHandler>();
@@ -159,54 +163,63 @@ namespace Tizen.WebView
         /// Event that occurs when the load is started.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public event EventHandler LoadStarted;
 
         /// <summary>
         /// Event that occurs when the load is finished.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public event EventHandler LoadFinished;
 
         /// <summary>
         /// Event that occurs when the load throws an error.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public event EventHandler<SmartCallbackLoadErrorArgs> LoadError;
 
         /// <summary>
         /// Event that occurs when the title of the main frame is changed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public event EventHandler<SmartCallbackArgs> TitleChanged;
 
         /// <summary>
         /// Event that occurs when the URL of the main frame is changed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public event EventHandler<SmartCallbackArgs> UrlChanged;
 
         /// <summary>
         /// Event that occurs when the policy navigation is decided.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public event EventHandler<NavigationPolicyEventArgs> NavigationPolicyDecideRequested;
 
         /// <summary>
         /// Event that occurs when the policy new window is decided.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public event EventHandler<NewWindowPolicyEventArgs> NewWindowPolicyDecideRequested;
 
         /// <summary>
         /// Event that occurs when the policy response is decided.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public event EventHandler<ResponsePolicyEventArgs> ResponsePolicyDecideRequested;
 
         /// <summary>
         /// Event that occurs when the context menu item selected.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public event EventHandler<ContextMenuItemEventArgs> ContextMenuItemSelected;
 
         /// <summary>
@@ -214,6 +227,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <param name="menu">The instance of ContextMenu.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public delegate void ContextMenuCustomize(ContextMenu menu);
 
 
@@ -221,6 +235,7 @@ namespace Tizen.WebView
         /// Current URL of the main frame.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string Url
         {
             get
@@ -233,6 +248,7 @@ namespace Tizen.WebView
         /// Current title of the main frame.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string Title
         {
             get
@@ -245,6 +261,7 @@ namespace Tizen.WebView
         /// Current user agent string of this view.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public string UserAgent
         {
             get
@@ -262,6 +279,7 @@ namespace Tizen.WebView
         /// Whether a view has the focus.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public bool HasFocus
         {
             get
@@ -275,6 +293,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <param name="parent">Parent object of the WebView.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public WebView(EvasObject parent) : base(parent)
         {
             InitializeSmartEvent();
@@ -285,6 +304,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>The context object of this view.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public Context GetContext()
         {
             if (_context == null)
@@ -304,6 +324,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>The settings object of this view.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public Settings GetSettings()
         {
             if (_settings == null)
@@ -323,6 +344,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>The BackForward List object of this view.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public BackForwardList GetBackForwardList()
         {
             IntPtr backforwardlistHandle = Interop.ChromiumEwk.ewk_view_back_forward_list_get(_realHandle);
@@ -337,6 +359,7 @@ namespace Tizen.WebView
         /// Clear the back/forward list object of this view.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void ClearBackForwardList()
         {
             Interop.ChromiumEwk.ewk_view_back_forward_list_clear(_realHandle);
@@ -350,6 +373,7 @@ namespace Tizen.WebView
         /// </remarks>
         /// <param name="url">The uniform resource identifier to load.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void LoadUrl(string url)
         {
             Interop.ChromiumEwk.ewk_view_url_set(_realHandle, url);
@@ -361,6 +385,7 @@ namespace Tizen.WebView
         /// <param name="html">HTML data to load.</param>
         /// <param name="baseUrl">Base URL used for relative paths to external objects.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void LoadHtml(string html, string baseUrl)
         {
             Interop.ChromiumEwk.ewk_view_html_string_load(_realHandle, html, baseUrl, null);
@@ -370,6 +395,7 @@ namespace Tizen.WebView
         /// Asks the main frame to stop loading.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void StopLoading()
         {
             Interop.ChromiumEwk.ewk_view_stop(_realHandle);
@@ -379,6 +405,7 @@ namespace Tizen.WebView
         /// Asks the main frame to reload the current document.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void Reload()
         {
             Interop.ChromiumEwk.ewk_view_reload(_realHandle);
@@ -388,6 +415,7 @@ namespace Tizen.WebView
         /// Asks the main frame to navigate back in history.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void GoBack()
         {
             Interop.ChromiumEwk.ewk_view_back(_realHandle);
@@ -397,6 +425,7 @@ namespace Tizen.WebView
         /// Asks the main frame to navigate forward in history.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void GoForward()
         {
             Interop.ChromiumEwk.ewk_view_forward(_realHandle);
@@ -407,6 +436,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>Whether it is possible to navigate backward one item in history.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public bool CanGoBack()
         {
             return Interop.ChromiumEwk.ewk_view_back_possible(_realHandle);
@@ -417,6 +447,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>Whether it is possible to navigate forward one item in history.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public bool CanGoForward()
         {
             return Interop.ChromiumEwk.ewk_view_forward_possible(_realHandle);
@@ -429,6 +460,7 @@ namespace Tizen.WebView
         /// <param name="handler">The name used to expose the object in JavaScript.</param>
         /// <returns>'true' on success, otherwise 'false'.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public bool AddJavaScriptMessageHandler(string name, JavaScriptMessageHandler handler)
         {
             lock (_javaScriptMessageHandlerMap)
@@ -467,6 +499,7 @@ namespace Tizen.WebView
         /// <param name="name">The name used to expose the object in JavaScript.</param>
         /// <param name="result">The result to the JavaScript runtime.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void EvalWithResult(string name, string result)
         {
             Interop.ChromiumEwk.ewk_view_evaluate_javascript(_realHandle, name, result);
@@ -477,6 +510,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <param name="script">The JavaScript code string to execute.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void Eval(string script)
         {
             Interop.ChromiumEwk.ewk_view_script_execute(_realHandle, script, null, IntPtr.Zero);
@@ -489,6 +523,7 @@ namespace Tizen.WebView
         /// <returns>A task that contains the result of the evaluation as a string.</returns>
         /// <since_tizen> 8 </since_tizen>
         /// <exception cref="ArgumentException">Thrown when a script is null or empty string.</exception>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public async Task<string> EvalAsync(string script)
         {
             if (string.IsNullOrEmpty(script))
@@ -521,6 +556,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <param name="focused">'true' to set the focus on the view, 'false' to remove the focus from the view.</param>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void SetFocus(bool focused)
         {
             Interop.ChromiumEwk.ewk_view_focus_set(_realHandle, focused);
@@ -531,6 +567,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns> size of the coordinate.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public Size ContentsSize
         {
             get
@@ -545,6 +582,7 @@ namespace Tizen.WebView
         /// Exit full screen.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void ExitFullscreen ()
         {
             Interop.ChromiumEwk.ewk_view_fullscreen_exit(_realHandle);
@@ -555,6 +593,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>'value 0.0 to 1.0' on success, otherwise '-1.0'.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public double LoadProgress
         {
             get
@@ -568,6 +607,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <param name="orientation">The new orientation of the device in degree.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void SendOrientation (Orientation orientation)
         {
             Interop.ChromiumEwk.ewk_view_orientation_send(_realHandle, orientation);
@@ -577,6 +617,7 @@ namespace Tizen.WebView
         /// Suspends the operation associated with the view.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void Suspend ()
         {
             Interop.ChromiumEwk.ewk_view_suspend(_realHandle);
@@ -586,6 +627,7 @@ namespace Tizen.WebView
         /// Resumes the operation associated with the view.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void Resume ()
         {
             Interop.ChromiumEwk.ewk_view_resume(_realHandle);
@@ -595,6 +637,7 @@ namespace Tizen.WebView
         /// Gets the current scale factor of the page.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public double Scale
         {
             get
@@ -609,6 +652,7 @@ namespace Tizen.WebView
         /// <param name="scaleFactor">A new level to set.</param>
         /// <param name="scrollTo">The class Point object with X, Y coordinates.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void SetScale (double scaleFactor, Point scrollTo)
         {
             Interop.ChromiumEwk.ewk_view_scale_set(_realHandle, scaleFactor, scrollTo.X, scrollTo.Y);
@@ -619,6 +663,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <param name="enable">'true' to set on the visibility of the page, 'false' otherwise.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void SetViewVisibility (bool enable)
         {
             Interop.ChromiumEwk.ewk_view_visibility_set(_realHandle, enable);
@@ -629,6 +674,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <returns>The class Point object with X, Y coordinates.</returns>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public Point ScrollPosition
         {
             get
@@ -648,6 +694,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <param name="delta">The class Point object with X, Y coordinates.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void ScrollBy (Point delta)
         {
             Interop.ChromiumEwk.ewk_view_scroll_by(_realHandle, delta.X, delta.Y);
@@ -660,6 +707,7 @@ namespace Tizen.WebView
         /// <param name="option">The options to find.</param>
         /// <param name="maxMatchCount">The maximum match count to find, unlimited if 0.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void FindText (string text, FindOption option, int maxMatchCount)
         {
             Interop.ChromiumEwk.ewk_view_text_find(_realHandle, text, option, maxMatchCount);
@@ -673,6 +721,7 @@ namespace Tizen.WebView
         /// <param name="httpHeaders">The http headers.</param>
         /// <param name="httpBody">The http body data.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void SetUrlRequest (string url, HttpMethod httpMethod, IDictionary<string, string> httpHeaders, string httpBody)
         {
             List<IntPtr> stringHandles = new List<IntPtr>();
@@ -700,6 +749,7 @@ namespace Tizen.WebView
         /// <param name="parent">Parent EvasObject.</param>
         /// <returns>IntPtr of the widget handle.</returns>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         protected override IntPtr CreateHandle(EvasObject parent)
         {
             // focus dummy
@@ -719,6 +769,7 @@ namespace Tizen.WebView
         /// </summary>
         /// <param name="contextMenuCustomizeDelegate">The delegate for context menu customization.</param>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API Level 10. Will be removed in API Level 12.")]
         public void SetContextMenuCustomizeDelegate(ContextMenuCustomize contextMenuCustomizeDelegate)
         {
             _contextMenuCustomizeDelegate = contextMenuCustomizeDelegate;

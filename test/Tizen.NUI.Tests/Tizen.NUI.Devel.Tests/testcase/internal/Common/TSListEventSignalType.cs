@@ -25,5 +25,28 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Info(tag, "Destroy() is called!");
         }
+        
+        [Test]
+        [Category("P1")]
+        [Description("ListEventSignalType constructor.")]
+        [Property("SPEC", "Tizen.NUI.ListEventSignalType.ListEventSignalType  C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ListEventSignalTypeConstructor()
+        {
+            tlog.Debug(tag, $"ListEventSignalTypeConstructor START");
+
+            using (View view = new View())
+            {
+                var testingTarget = new ListEventSignalType (view.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<ListEventSignalType >(testingTarget, "Should be an Instance of ListEventSignalType !");
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ListEventSignalTypeConstructor END (OK)");
+        }
     }
 }

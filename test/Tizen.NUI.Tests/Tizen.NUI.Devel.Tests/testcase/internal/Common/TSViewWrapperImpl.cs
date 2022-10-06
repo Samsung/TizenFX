@@ -43,8 +43,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<ViewWrapperImpl>(testingTarget, "should be an instance of testing target class!");
 
             testingTarget.Dispose();
-            // disposed
-            testingTarget.Dispose();
             tlog.Debug(tag, $"ViewWrapperImplConstructor END (OK)");
         }
 

@@ -15,7 +15,9 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicTextLabelEventTest
     {
         private const string tag = "NUITEST";
-
+        
+		private void MyTextFitChanged(object sender, EventArgs e) {}
+		
         [SetUp]
         public void Init()
         {
@@ -55,6 +57,30 @@ namespace Tizen.NUI.Devel.Tests
         {
             var label = sender as TextLabel;
             e.Href = Marshal.PtrToStringAnsi(label.SwigCPtr.Handle);
+        }
+		
+		
+		[Test]
+        [Category("P1")]
+        [Description("TextLabelEvent.TextFitChanged.")]
+        [Property("SPEC", "Tizen.NUI.TextLabelEvent.TextFitChanged A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextLabelEventTextFitChanged()
+        {
+            tlog.Debug(tag, $"TextLabelEventTextFitChanged START");
+
+            TextLabel label = new TextLabel()
+            {
+                Text = "hypertext",
+            };
+
+            label.TextFitChanged += MyTextFitChanged;
+            label.TextFitChanged -= MyTextFitChanged;
+
+            label.Dispose();
+            tlog.Debug(tag, $"TextLabelEventTextFitChanged END (OK)");
         }
     }
 }

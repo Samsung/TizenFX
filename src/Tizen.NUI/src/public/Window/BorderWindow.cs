@@ -149,13 +149,13 @@ namespace Tizen.NUI
 
                 if (minSize != borderInterface.MinSize)
                 {
-                    using Size2D mimimumSize = new Size2D(borderInterface.MinSize.Width, borderInterface.MinSize.Height + (int)borderHeight);
+                    using Size2D mimimumSize = new Size2D((borderInterface.MinSize?.Width + (int)borderInterface.BorderLineThickness * 2 ?? 0), (borderInterface.MinSize?.Height ?? 0) + (int)(borderHeight + borderInterface.BorderLineThickness * 2));
                     SetMimimumSize(mimimumSize);
                     minSize = borderInterface.MinSize;
                 }
                 if (maxSize != borderInterface.MaxSize)
                 {
-                    using Size2D maximumSize = new Size2D(borderInterface.MaxSize.Width, borderInterface.MaxSize.Height + (int)borderHeight);
+                    using Size2D maximumSize = new Size2D((borderInterface.MaxSize?.Width + (int)borderInterface.BorderLineThickness * 2 ?? 0), (borderInterface.MaxSize?.Height ?? 0) + (int)(borderHeight + borderInterface.BorderLineThickness * 2));
                     SetMaximumSize(maximumSize);
                     maxSize = borderInterface.MaxSize;
                 }
@@ -245,12 +245,12 @@ namespace Tizen.NUI
                 // Sets the minimum / maximum size to be resized by RequestResizeToServer.
                 if (borderInterface.MinSize != null)
                 {
-                    using Size2D mimimumSize = new Size2D(borderInterface.MinSize.Width, borderInterface.MinSize.Height + (int)borderHeight);
+                    using Size2D mimimumSize = new Size2D(borderInterface.MinSize.Width + (int)borderInterface.BorderLineThickness * 2, borderInterface.MinSize.Height + (int)(borderHeight + borderInterface.BorderLineThickness * 2));
                     SetMimimumSize(mimimumSize);
                 }
                 if (borderInterface.MaxSize != null)
                 {
-                    using Size2D maximumSize = new Size2D(borderInterface.MaxSize.Width, borderInterface.MaxSize.Height + (int)borderHeight);
+                    using Size2D maximumSize = new Size2D(borderInterface.MaxSize.Width + (int)borderInterface.BorderLineThickness * 2, borderInterface.MaxSize.Height + (int)(borderHeight + borderInterface.BorderLineThickness * 2));
                     SetMaximumSize(maximumSize);
                 }
 

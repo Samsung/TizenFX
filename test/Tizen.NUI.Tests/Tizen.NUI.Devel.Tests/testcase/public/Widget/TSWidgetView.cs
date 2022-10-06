@@ -48,7 +48,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(widgetView, "Can't create success object WidgetView");
             Assert.IsInstanceOf<WidgetView>(widgetView, "Should be an instance of WidgetView type.");
 
-            tlog.Debug(tag, " widgetView.ID : " + widgetView.ID);
+            tlog.Debug(tag, "widgetView.WidgetID : " + widgetView.WidgetID);
             tlog.Debug(tag, "widgetView.InstanceID : " + widgetView.InstanceID);
             tlog.Debug(tag, "widgetView.ContentInfo : " + widgetView.ContentInfo);
             tlog.Debug(tag, "widgetView.Title : " + widgetView.Title);

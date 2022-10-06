@@ -71,7 +71,150 @@ namespace Tizen.NUI.BaseComponents
         private Size2D internalSize2D = null;
         private int layoutCount = 0;
         private ControlState propagatableControlStates = ControlState.All;
+
+        // List of dispatch Event
+        private PanGestureDetector panGestureDetector = null;
+        private LongPressGestureDetector longGestureDetector = null;
+        private PinchGestureDetector pinchGestureDetector = null;
+        private TapGestureDetector tapGestureDetector = null;
+        private RotationGestureDetector rotationGestureDetector = null;
+        private int configGestureCount = 0;
         private bool dispatchTouchEvents = true;
+        private bool dispatchGestureEvents = true;
+        private bool dispatchParentGestureEvents = true;
+
+#if NUI_PROPERTY_CHANGE_DEBUG
+internal static int LayoutSetGetter = 0;
+internal static int SizeGetter = 0;
+internal static int SizeSetter = 0;
+internal static int Size2DGetter = 0;
+internal static int Size2DSetter = 0;
+internal static int MaximumSizeGetter = 0;
+internal static int MaximumSizeSetter = 0;
+internal static int MinimumSizeGetter = 0;
+internal static int MinimumSizeSetter = 0;
+internal static int PositionGetter = 0;
+internal static int PositionSetter = 0;
+internal static int Position2DGetter = 0;
+internal static int Position2DSetter = 0;
+internal static int SizeWidthGetter = 0;
+internal static int SizeWidthSetter = 0;
+internal static int SizeHeightGetter = 0;
+internal static int SizeHeightSetter = 0;
+internal static int PositionXGetter = 0;
+internal static int PositionXSetter = 0;
+internal static int PositionYGetter = 0;
+internal static int PositionYSetter = 0;
+internal static int PositionZGetter = 0;
+internal static int PositionZSetter = 0;
+internal static int StyleNameGetter = 0;
+internal static int StyleNameSetter = 0;
+internal static int KeyInputFocusGetter = 0;
+internal static int KeyInputFocusSetter = 0;
+internal static int ColorGetter = 0;
+internal static int ColorSetter = 0;
+
+
+internal static int ColorRedSetter = 0;
+internal static int ColorGreenSetter = 0;
+internal static int ColorBlueSetter = 0;
+internal static int StateSetter = 0;
+internal static int SubStateSetter = 0;
+internal static int FlexSetter = 0;
+internal static int AlignSelfSetter = 0;
+internal static int FlexMarginSetter = 0;
+internal static int CellIndexSetter = 0;
+internal static int RowSpanSetter = 0;
+internal static int ColumnSpanSetter = 0;
+internal static int CellHorizontalAlignmentSetter = 0;
+internal static int CellVerticalAlignmentSetter = 0;
+internal static int OpacitySetter = 0;
+internal static int PositionUsesPivotPointSetter = 0;
+internal static int ParentOriginSetter = 0;
+internal static int PivotPointSetter = 0;
+internal static int OrientationSetter = 0;
+internal static int ScaleSetter = 0;
+internal static int ScaleXSetter = 0;
+internal static int ScaleYSetter = 0;
+internal static int ScaleZSetter = 0;
+internal static int NameSetter = 0;
+internal static int SensitiveSetter = 0;
+internal static int IsEnabledSetter = 0;
+internal static int DispatchKeyEventsSetter = 0;
+internal static int LeaveRequiredSetter = 0;
+internal static int InheritOrientationSetter = 0;
+internal static int InheritScaleSetter = 0;
+internal static int DrawModeSetter = 0;
+internal static int SizeModeFactorSetter = 0;
+internal static int WidthResizePolicySetter = 0;
+internal static int HeightResizePolicySetter = 0;
+internal static int SizeScalePolicySetter = 0;
+internal static int WidthForHeightSetter = 0;
+internal static int HeightForWidthSetter = 0;
+internal static int InheritPositionSetter = 0;
+internal static int ClippingModeSetter = 0;
+internal static int InheritLayoutDirectionSetter = 0;
+internal static int LayoutDirectionSetter = 0;
+internal static int UpdateAreaHintSetter = 0;
+internal static int AccessibilityNameSetter = 0;
+internal static int AccessibilityDescriptionSetter = 0;
+internal static int AccessibilityTranslationDomainSetter = 0;
+internal static int AccessibilityRoleSetter = 0;
+internal static int AccessibilityHighlightableSetter = 0;
+internal static int AccessibilityHiddenSetter = 0;
+internal static int AutomationIdSetter = 0;
+
+internal static int ColorRedGetter = 0;
+internal static int ColorGreenGetter = 0;
+internal static int ColorBlueGetter = 0;
+internal static int StateGetter = 0;
+internal static int SubStateGetter = 0;
+internal static int FlexGetter = 0;
+internal static int AlignSelfGetter = 0;
+internal static int FlexMarginGetter = 0;
+internal static int CellIndexGetter = 0;
+internal static int RowSpanGetter = 0;
+internal static int ColumnSpanGetter = 0;
+internal static int CellHorizontalAlignmentGetter = 0;
+internal static int CellVerticalAlignmentGetter = 0;
+internal static int OpacityGetter = 0;
+internal static int PositionUsesPivotPointGetter = 0;
+internal static int ParentOriginGetter = 0;
+internal static int PivotPointGetter = 0;
+internal static int OrientationGetter = 0;
+internal static int ScaleGetter = 0;
+internal static int ScaleXGetter = 0;
+internal static int ScaleYGetter = 0;
+internal static int ScaleZGetter = 0;
+internal static int NameGetter = 0;
+internal static int SensitiveGetter = 0;
+internal static int IsEnabledGetter = 0;
+internal static int DispatchKeyEventsGetter = 0;
+internal static int LeaveRequiredGetter = 0;
+internal static int InheritOrientationGetter = 0;
+internal static int InheritScaleGetter = 0;
+internal static int DrawModeGetter = 0;
+internal static int SizeModeFactorGetter = 0;
+internal static int WidthResizePolicyGetter = 0;
+internal static int HeightResizePolicyGetter = 0;
+internal static int SizeScalePolicyGetter = 0;
+internal static int WidthForHeightGetter = 0;
+internal static int HeightForWidthGetter = 0;
+internal static int InheritPositionGetter = 0;
+internal static int ClippingModeGetter = 0;
+internal static int InheritLayoutDirectionGetter = 0;
+internal static int LayoutDirectionGetter = 0;
+internal static int UpdateAreaHintGetter = 0;
+internal static int AccessibilityNameGetter = 0;
+internal static int AccessibilityDescriptionGetter = 0;
+internal static int AccessibilityTranslationDomainGetter = 0;
+internal static int AccessibilityRoleGetter = 0;
+internal static int AccessibilityHighlightableGetter = 0;
+internal static int AccessibilityHiddenGetter = 0;
+internal static int AutomationIdGetter = 0;
+
+
+#endif
 
         static View()
         {
@@ -188,6 +331,9 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+LayoutSetGetter++;
+#endif
                 return layoutSet;
             }
         }
@@ -413,10 +559,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+StyleNameGetter++;
+#endif
                 return (string)GetValue(StyleNameProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+StyleNameSetter++;
+#endif
                 SetValue(StyleNameProperty, value);
                 NotifyPropertyChanged();
             }
@@ -430,10 +582,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+KeyInputFocusGetter++;
+#endif
                 return (bool)GetValue(KeyInputFocusProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+KeyInputFocusSetter++;
+#endif
                 SetValue(KeyInputFocusProperty, value);
                 NotifyPropertyChanged();
             }
@@ -689,6 +847,24 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// The color selector for the borderline of the View.
+        /// Like BackgroundColor, color selector typed BorderlineColor should be used in ViewStyle only.
+        /// So this API is internally used only.
+        /// </summary>
+        internal Selector<Color> BorderlineColorSelector
+        {
+            get
+            {
+                return (Selector<Color>)GetValue(BorderlineColorSelectorProperty);
+            }
+            set
+            {
+                SetValue(BorderlineColorSelectorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
         /// The Relative offset for the borderline of the View.
         /// Recommended range : [-1.0f to 1.0f].
         /// If -1.0f, draw borderline inside of the View.
@@ -726,10 +902,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+StateGetter++;
+#endif
                 return (States)GetValue(StateProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+StateSetter++;
+#endif
                 SetValue(StateProperty, value);
                 NotifyPropertyChanged();
             }
@@ -743,10 +925,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SubStateGetter++;
+#endif
                 return (States)GetValue(SubStateProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SubStateSetter++;
+#endif
                 SetValue(SubStateProperty, value);
                 NotifyPropertyChanged();
             }
@@ -819,10 +1007,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+FlexGetter++;
+#endif
                 return (float)GetValue(FlexProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+FlexSetter++;
+#endif
                 SetValue(FlexProperty, value);
                 NotifyPropertyChanged();
             }
@@ -838,10 +1032,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AlignSelfGetter++;
+#endif
                 return (int)GetValue(AlignSelfProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+AlignSelfSetter++;
+#endif
                 SetValue(AlignSelfProperty, value);
                 NotifyPropertyChanged();
             }
@@ -860,11 +1060,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+FlexMarginGetter++;
+#endif
                 Vector4 temp = (Vector4)GetValue(FlexMarginProperty);
                 return new Vector4(OnFlexMarginChanged, temp.X, temp.Y, temp.Z, temp.W);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+FlexMarginSetter++;
+#endif
                 SetValue(FlexMarginProperty, value);
                 NotifyPropertyChanged();
             }
@@ -893,10 +1099,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+CellIndexGetter++;
+#endif
                 return (Vector2)GetValue(CellIndexProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+CellIndexSetter++;
+#endif
                 SetValue(CellIndexProperty, value);
                 NotifyPropertyChanged();
             }
@@ -913,10 +1125,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+RowSpanGetter++;
+#endif
                 return (float)GetValue(RowSpanProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+RowSpanSetter++;
+#endif
                 SetValue(RowSpanProperty, value);
                 NotifyPropertyChanged();
             }
@@ -933,10 +1151,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColumnSpanGetter++;
+#endif
                 return (float)GetValue(ColumnSpanProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColumnSpanSetter++;
+#endif
                 SetValue(ColumnSpanProperty, value);
                 NotifyPropertyChanged();
             }
@@ -953,10 +1177,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+CellHorizontalAlignmentGetter++;
+#endif
                 return (HorizontalAlignmentType)GetValue(CellHorizontalAlignmentProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+CellHorizontalAlignmentSetter++;
+#endif
                 SetValue(CellHorizontalAlignmentProperty, value);
                 NotifyPropertyChanged();
             }
@@ -973,10 +1203,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+CellVerticalAlignmentGetter++;
+#endif
                 return (VerticalAlignmentType)GetValue(CellVerticalAlignmentProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+CellVerticalAlignmentSetter++;
+#endif
                 SetValue(CellVerticalAlignmentProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1163,7 +1399,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// The <see cref="Size"/>, <see cref="Position"/>, <see cref="Color"/>, and <see cref="Scale"/> properties are set in the main thread.
         /// Therefore, it is not updated in real time when the value is changed in the render thread (for example, the value is changed during animation).
-        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time, 
+        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time,
         /// and users can get the current actual values through them.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -1200,6 +1436,10 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+Size2DGetter++;
+#endif
+
                 var temp = (Size2D)GetValue(Size2DProperty);
 
                 if (this.Layout == null)
@@ -1212,6 +1452,10 @@ namespace Tizen.NUI.BaseComponents
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+Size2DSetter++;
+#endif
+
                 SetValue(Size2DProperty, value);
 
                 NotifyPropertyChanged();
@@ -1225,7 +1469,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// The <see cref="Size"/>, <see cref="Position"/>, <see cref="Color"/>, and <see cref="Scale"/> properties are set in the main thread.
         /// Therefore, it is not updated in real time when the value is changed in the render thread (for example, the value is changed during animation).
-        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time, 
+        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time,
         /// and users can get the current actual values through them.
         /// </remarks>
         /// <since_tizen> 3 </since_tizen>
@@ -1253,10 +1497,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+OpacityGetter++;
+#endif
                 return (float)GetValue(OpacityProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+OpacitySetter++;
+#endif
                 SetValue(OpacityProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1286,10 +1536,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+Position2DGetter++;
+#endif
+
                 return (Position2D)GetValue(Position2DProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+Position2DSetter++;
+#endif
+
                 SetValue(Position2DProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1323,10 +1581,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionUsesPivotPointGetter++;
+#endif
                 return (bool)GetValue(PositionUsesPivotPointProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionUsesPivotPointSetter++;
+#endif
                 SetValue(PositionUsesPivotPointProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1473,11 +1737,17 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ParentOriginGetter++;
+#endif
                 Position tmp = (Position)GetValue(ParentOriginProperty);
                 return new Position(OnParentOriginChanged, tmp.X, tmp.Y, tmp.Z);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ParentOriginSetter++;
+#endif
                 SetValue(ParentOriginProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1510,10 +1780,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PivotPointGetter++;
+#endif
                 return (Position)GetValue(PivotPointProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PivotPointSetter++;
+#endif
                 SetValue(PivotPointProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1535,10 +1811,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeWidthGetter++;
+#endif
+
                 return (float)GetValue(SizeWidthProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeWidthSetter++;
+#endif
+
                 SetValue(SizeWidthProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1560,10 +1844,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeHeightGetter++;
+#endif
+
                 return (float)GetValue(SizeHeightProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeHeightSetter++;
+#endif
+
                 SetValue(SizeHeightProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1599,10 +1891,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionGetter++;
+#endif
+
                 return (Position)GetValue(PositionProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionSetter++;
+#endif
+
                 SetValue(PositionProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1624,10 +1924,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionXGetter++;
+#endif
                 return (float)GetValue(PositionXProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionXSetter++;
+#endif
                 SetValue(PositionXProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1649,10 +1955,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionYGetter++;
+#endif
                 return (float)GetValue(PositionYProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionYSetter++;
+#endif
                 SetValue(PositionYProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1674,10 +1986,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionZGetter++;
+#endif
+
                 return (float)GetValue(PositionZProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PositionZSetter++;
+#endif
+
                 SetValue(PositionZProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1719,10 +2039,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+OrientationGetter++;
+#endif
                 return (Rotation)GetValue(OrientationProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+OrientationSetter++;
+#endif
                 SetValue(OrientationProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1772,10 +2098,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleGetter++;
+#endif
                 return (Vector3)GetValue(ScaleProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleSetter++;
+#endif
                 SetValue(ScaleProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1797,10 +2129,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleXGetter++;
+#endif
                 return (float)GetValue(ScaleXProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleXSetter++;
+#endif
                 SetValue(ScaleXProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1822,10 +2160,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleYGetter++;
+#endif
                 return (float)GetValue(ScaleYProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleYSetter++;
+#endif
                 SetValue(ScaleYProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1847,10 +2191,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleZGetter++;
+#endif
                 return (float)GetValue(ScaleZProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ScaleZSetter++;
+#endif
                 SetValue(ScaleZProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1924,10 +2274,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+NameGetter++;
+#endif
                 return (string)GetValue(NameProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+NameSetter++;
+#endif
                 SetValue(NameProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1967,10 +2323,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SensitiveGetter++;
+#endif
                 return (bool)GetValue(SensitiveProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SensitiveSetter++;
+#endif
                 SetValue(SensitiveProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1986,10 +2348,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+IsEnabledGetter++;
+#endif
                 return (bool)GetValue(IsEnabledProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+IsEnabledSetter++;
+#endif
                 SetValue(IsEnabledProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2003,10 +2371,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+LeaveRequiredGetter++;
+#endif
                 return (bool)GetValue(LeaveRequiredProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+LeaveRequiredSetter++;
+#endif
                 SetValue(LeaveRequiredProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2037,10 +2411,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+InheritScaleGetter++;
+#endif
                 return (bool)GetValue(InheritScaleProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+InheritScaleSetter++;
+#endif
                 SetValue(InheritScaleProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2059,10 +2439,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+DrawModeGetter++;
+#endif
                 return (DrawModeType)GetValue(DrawModeProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+DrawModeSetter++;
+#endif
                 SetValue(DrawModeProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2092,10 +2478,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeModeFactorGetter++;
+#endif
                 return (Vector3)GetValue(SizeModeFactorProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeModeFactorSetter++;
+#endif
                 SetValue(SizeModeFactorProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2109,10 +2501,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+WidthResizePolicyGetter++;
+#endif
                 return (ResizePolicyType)GetValue(WidthResizePolicyProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+WidthResizePolicySetter++;
+#endif
                 SetValue(WidthResizePolicyProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2126,10 +2524,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+HeightResizePolicyGetter++;
+#endif
                 return (ResizePolicyType)GetValue(HeightResizePolicyProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+HeightResizePolicySetter++;
+#endif
                 SetValue(HeightResizePolicyProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2144,10 +2548,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeScalePolicyGetter++;
+#endif
                 return (SizeScalePolicyType)GetValue(SizeScalePolicyProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeScalePolicySetter++;
+#endif
                 SetValue(SizeScalePolicyProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2161,10 +2571,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+WidthForHeightGetter++;
+#endif
                 return (bool)GetValue(WidthForHeightProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+WidthForHeightSetter++;
+#endif
                 SetValue(WidthForHeightProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2178,10 +2594,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+HeightForWidthGetter++;
+#endif
                 return (bool)GetValue(HeightForWidthProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+HeightForWidthSetter++;
+#endif
                 SetValue(HeightForWidthProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2241,10 +2663,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+MinimumSizeGetter++;
+#endif
                 return (Size2D)GetValue(MinimumSizeProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+MinimumSizeSetter++;
+#endif
                 if (value == null)
                 {
                     throw new ArgumentNullException(nameof(value));
@@ -2281,10 +2709,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+MaximumSizeGetter++;
+#endif
                 return (Size2D)GetValue(MaximumSizeProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+MaximumSizeSetter++;
+#endif
                 // We don't have Layout.Maximum(Width|Height) so we cannot apply it to layout.
                 // MATCH_PARENT spec + parent container size can be used to limit
                 if (layout != null)
@@ -2306,10 +2740,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+InheritPositionGetter++;
+#endif
                 return (bool)GetValue(InheritPositionProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+InheritPositionSetter++;
+#endif
                 SetValue(InheritPositionProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2323,10 +2763,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ClippingModeGetter++;
+#endif
                 return (ClippingModeType)GetValue(ClippingModeProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ClippingModeSetter++;
+#endif
                 SetValue(ClippingModeProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2421,10 +2867,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeGetter++;
+#endif
                 return (Size)GetValue(SizeProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+SizeSetter++;
+#endif
                 SetValue(SizeProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2474,10 +2926,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+InheritLayoutDirectionGetter++;
+#endif
                 return (bool)GetValue(InheritLayoutDirectionProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+InheritLayoutDirectionSetter++;
+#endif
                 SetValue(InheritLayoutDirectionProperty, value);
                 NotifyPropertyChanged();
             }
@@ -2491,10 +2949,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+LayoutDirectionGetter++;
+#endif
                 return (ViewLayoutDirectionType)GetValue(LayoutDirectionProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+LayoutDirectionSetter++;
+#endif
                 SetValue(LayoutDirectionProperty, value);
                 NotifyPropertyChanged();
                 layout?.RequestLayout();
@@ -2755,6 +3219,10 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// The Color of View. This is an RGBA value.
+        /// Each RGBA components match as <see cref="ColorRed"/>, <see cref="ColorGreen"/>, <see cref="ColorBlue"/>, and <see cref="Opacity"/>.
+        /// This property will multiply the final color of this view. (BackgroundColor, BorderlineColor, BackgroundImage, etc).
+        /// For example, if view.BackgroundColor = Color.Yellow and view.Color = Color.Purple, this view will shown as Red.
+        /// Inherient of color value depend on <see cref="ColorMode"/>.
         /// </summary>
         /// <remarks>
         /// <para>
@@ -2778,11 +3246,101 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorGetter++;
+#endif
                 return (Color)GetValue(ColorProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorSetter++;
+#endif
                 SetValue(ColorProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The Red component of View.Color.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ColorRed
+        {
+            get
+            {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorRedGetter++;
+#endif
+                return (float)GetValue(ColorRedProperty);
+            }
+            set
+            {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorRedSetter++;
+#endif
+                SetValue(ColorRedProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The Green component of View.Color.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ColorGreen
+        {
+            get
+            {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorGreenGetter++;
+#endif
+                return (float)GetValue(ColorGreenProperty);
+            }
+            set
+            {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorGreenSetter++;
+#endif
+                SetValue(ColorGreenProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The Blue component of View.Color.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// Animatable - This property can be animated using <c>Animation</c> class.
+        /// </para>
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float ColorBlue
+        {
+            get
+            {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorBlueGetter++;
+#endif
+                return (float)GetValue(ColorBlueProperty);
+            }
+            set
+            {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ColorBlueSetter++;
+#endif
+                SetValue(ColorBlueProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -3002,10 +3560,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+UpdateAreaHintGetter++;
+#endif
                 return (Vector4)GetValue(UpdateAreaHintProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+UpdateAreaHintSetter++;
+#endif
                 SetValue(UpdateAreaHintProperty, value);
                 NotifyPropertyChanged();
             }
@@ -3347,17 +3911,23 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Gets or sets the status of whether the view should emit key event signals.
-        /// If a View's DispatchKeyEvents is set to false, then it's children will not emit a key event signal either.
+        /// If a View's DispatchKeyEvents is set to false, then itself and parents will not receive key event signals.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool DispatchKeyEvents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+DispatchKeyEventsGetter++;
+#endif
                 return (bool)GetValue(DispatchKeyEventsProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+DispatchKeyEventsSetter++;
+#endif
                 SetValue(DispatchKeyEventsProperty, value);
                 NotifyPropertyChanged();
             }
@@ -3401,6 +3971,107 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Gets or sets the status of whether the view should emit Gesture event signals.
+        /// If a View's DispatchGestureEvents is set to false, then itself and parents will not receive all gesture event signals.
+        /// The itself and parents does not receive tap, pinch, pan, rotation, or longpress gestures.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchGestureEvents
+        {
+            get
+            {
+                return dispatchGestureEvents;
+            }
+            set
+            {
+                if (dispatchGestureEvents != value)
+                {
+                    dispatchGestureEvents = value;
+                    ConfigGestureDetector(dispatchGestureEvents);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether the view should emit Gesture event signals.
+        /// If a View's DispatchParentGestureEvents is set to false, then parents will not receive all gesture event signals.
+        /// The parents does not receive tap, pinch, pan, rotation, or longpress gestures.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchParentGestureEvents
+        {
+            get
+            {
+                return dispatchParentGestureEvents;
+            }
+            set
+            {
+                if (dispatchParentGestureEvents != value)
+                {
+                    dispatchParentGestureEvents = value;
+                    ConfigGestureDetector(dispatchParentGestureEvents);
+                }
+            }
+        }
+
+        private void ConfigGestureDetector(bool dispatch)
+        {
+            if (panGestureDetector == null) panGestureDetector = new PanGestureDetector();
+            if (longGestureDetector == null) longGestureDetector = new LongPressGestureDetector();
+            if (pinchGestureDetector == null) pinchGestureDetector = new PinchGestureDetector();
+            if (tapGestureDetector == null) tapGestureDetector = new TapGestureDetector();
+            if (rotationGestureDetector == null) rotationGestureDetector = new RotationGestureDetector();
+
+            if (dispatch == true)
+            {
+                configGestureCount = configGestureCount > 0 ? configGestureCount-- : 0;
+                if (configGestureCount == 0)
+                {
+                    panGestureDetector.Detach(this);
+                    longGestureDetector.Detach(this);
+                    pinchGestureDetector.Detach(this);
+                    tapGestureDetector.Detach(this);
+                    rotationGestureDetector.Detach(this);
+
+                    panGestureDetector.Detected -= OnGestureDetected;
+                    longGestureDetector.Detected -= OnGestureDetected;
+                    pinchGestureDetector.Detected -= OnGestureDetected;
+                    tapGestureDetector.Detected -= OnGestureDetected;
+                    rotationGestureDetector.Detected -= OnGestureDetected;
+
+                    panGestureDetector = null;
+                    longGestureDetector = null;
+                    pinchGestureDetector = null;
+                    tapGestureDetector = null;
+                    rotationGestureDetector = null;
+                }
+            }
+            else
+            {
+                if (configGestureCount == 0)
+                {
+                    panGestureDetector.Attach(this);
+                    longGestureDetector.Attach(this);
+                    pinchGestureDetector.Attach(this);
+                    tapGestureDetector.Attach(this);
+                    rotationGestureDetector.Attach(this);
+
+                    panGestureDetector.Detected += OnGestureDetected;
+                    longGestureDetector.Detected += OnGestureDetected;
+                    pinchGestureDetector.Detected += OnGestureDetected;
+                    tapGestureDetector.Detected += OnGestureDetected;
+                    rotationGestureDetector.Detected += OnGestureDetected;
+                }
+                configGestureCount++;
+            }
+        }
+
+        private void OnGestureDetected(object source, EventArgs e)
+        {
+            // Does notting. This is to consume the gesture.
+        }
+
+        /// <summary>
         /// Called when the view is hit through TouchEvent or GestureEvent.
         /// If it returns true, it means that it was hit, and the touch/gesture event is called from the view.
         /// If it returns false, it means that it will not be hit, and the hit-test continues to the next view.
@@ -3421,7 +4092,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// The <see cref="Size"/>, <see cref="Position"/>, <see cref="Color"/>, and <see cref="Scale"/> properties are set in the main thread.
         /// Therefore, it is not updated in real time when the value is changed in the render thread (for example, the value is changed during animation).
-        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time, 
+        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time,
         /// and users can get the current actual values through them.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -3433,7 +4104,7 @@ namespace Tizen.NUI.BaseComponents
         /// <remarks>
         /// The <see cref="Size"/>, <see cref="Position"/>, <see cref="Color"/>, and <see cref="Scale"/> properties are set in the main thread.
         /// Therefore, it is not updated in real time when the value is changed in the render thread (for example, the value is changed during animation).
-        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time, 
+        /// However, <see cref="CurrentSize"/>, <see cref="CurrentPosition"/>, <see cref="CurrentColor"/>, and <see cref="CurrentScale"/> properties are updated in real time,
         /// and users can get the current actual values through them.
         /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]

@@ -142,10 +142,9 @@ namespace Tizen.Peripheral.Gpio
                         break;
                 }
             }
-            catch (Exception err)
+            finally
             {
                 Dispose();
-                throw;
             }
         }
 

@@ -62,9 +62,9 @@ namespace Tizen.NUI
             }
         }
 
-        public bool Emit(Window window, Rectangle positionSize)
+        public bool Emit(Window window, Position2D position)
         {
-            bool ret = Interop.WindowMovedSignal.Emit(SwigCPtr, Window.getCPtr(window), Rectangle.getCPtr(positionSize));
+            bool ret = Interop.WindowMovedSignal.Emit(SwigCPtr, Window.getCPtr(window), Position2D.getCPtr(position));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

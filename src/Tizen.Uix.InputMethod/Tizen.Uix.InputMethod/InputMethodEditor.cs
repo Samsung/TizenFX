@@ -1891,6 +1891,7 @@ namespace Tizen.Uix.InputMethod
         /// 2) Operation failed.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
+        [Obsolete("Deprecated since API10. Will be removed in API12.")]
         public static EditorWindow GetMainWindow()
         {
             EditorWindow._handle = ImeGetMainWindow();

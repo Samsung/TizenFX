@@ -191,9 +191,10 @@ namespace Tizen.NUI.Components
                         instance.curValue = value;
                     }
 
-                    instance.sliderValueChangedHandler?.Invoke(instance, new SliderValueChangedEventArgs {
+                    instance.sliderValueChangedHandler?.Invoke(instance, new SliderValueChangedEventArgs
+                    {
                         CurrentValue = instance.curValue
-                        });
+                    });
                     if (Accessibility.Accessibility.IsEnabled && instance.IsHighlighted)
                     {
                         instance.EmitAccessibilityEvent(AccessibilityPropertyChangeEvent.Value);
@@ -1474,8 +1475,8 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    /// TODO : Currently we set the velocity of value as 1% hardly.
-                    /// Can we use AccessibilityGetMinimumIncrement?
+                    // TODO : Currently we set the velocity of value as 1% hardly.
+                    // Can we use AccessibilityGetMinimumIncrement?
                     valueDiff = (maxValue - minValue) * 0.01f;
                 }
                 if ((direction == DirectionType.Horizontal && key.KeyPressedName == "Left") ||
@@ -1784,9 +1785,10 @@ namespace Tizen.NUI.Components
 
                 UpdateState(isFocused, true);
 
-                sliderSlidingStartedHandler?.Invoke(this, new SliderSlidingStartedEventArgs {
+                sliderSlidingStartedHandler?.Invoke(this, new SliderSlidingStartedEventArgs
+                {
                     CurrentValue = curValue
-                    });
+                });
 
                 Vector2 pos = e.Touch.GetLocalPosition(0);
                 CalculateCurrentValueByTouch(pos);
@@ -1801,9 +1803,10 @@ namespace Tizen.NUI.Components
 
                 UpdateState(isFocused, false);
 
-                sliderSlidingFinishedHandler?.Invoke(this, new SliderSlidingFinishedEventArgs {
+                sliderSlidingFinishedHandler?.Invoke(this, new SliderSlidingFinishedEventArgs
+                {
                     CurrentValue = curValue
-                    });
+                });
             }
             return false;
         }

@@ -40,6 +40,28 @@ namespace Tizen.NUI.Scene3D
         });
 
         /// <summary>
+        /// ProjectionDirectionProperty
+        /// </summary>
+        internal static readonly BindableProperty ProjectionDirectionProperty = BindableProperty.Create(nameof(ProjectionDirection), typeof(ProjectionDirectionType), typeof(Tizen.NUI.Scene3D.Camera), ProjectionDirectionType.Vertical, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.Scene3D.Camera)bindable;
+            if (newValue != null)
+            {
+                // Keep previous orthographicSize.
+                float orthographicSize = instance.OrthographicSize;
+                instance.InternalProjectionDirection = (ProjectionDirectionType)newValue;
+
+                // Recalculate orthographicSize by changed direction.
+                instance.OrthographicSize = orthographicSize;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.Scene3D.Camera)bindable;
+            return instance.InternalProjectionDirection;
+        });
+
+        /// <summary>
         /// FieldOfViewProperty
         /// </summary>
         internal static readonly BindableProperty FieldOfViewProperty = BindableProperty.Create(nameof(FieldOfView), typeof(float), typeof(Tizen.NUI.Scene3D.Camera), default(float), propertyChanged: (bindable, oldValue, newValue) =>

@@ -29,7 +29,7 @@ namespace Tizen.NUI.Wearable
     /// <since_tizen> 8 </since_tizen>
     /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class CircularPagination: Control
+    public class CircularPagination : Control
     {
         private CircularPaginationStyle circularPaginationStyle;
 
@@ -254,7 +254,7 @@ namespace Tizen.NUI.Wearable
 
                     for (int i = (indicatorCount + 1); i <= value; i++)
                     {
-                        CreateIndicator( arrayIndex );
+                        CreateIndicator(arrayIndex);
                         arrayIndex++;
                     }
 
@@ -320,7 +320,7 @@ namespace Tizen.NUI.Wearable
                 {
                     for (int i = (middleIndex - value); i < (middleIndex - leftIndicatorCount); i++)
                     {
-                        CreateIndicator( i );
+                        CreateIndicator(i);
                         selectedIndex++;
                     }
                 }
@@ -392,7 +392,7 @@ namespace Tizen.NUI.Wearable
                 {
                     for (int i = (middleIndex + rightIndicatorCount + 1); i <= (middleIndex + value); i++)
                     {
-                        CreateIndicator( i );
+                        CreateIndicator(i);
                     }
                 }
                 else
@@ -443,8 +443,8 @@ namespace Tizen.NUI.Wearable
 
                 if (selectedIndex >= 0)
                 {
-                    if ( (isSymmetrical && selectedIndex < indicatorCount) ||
-                         (!isSymmetrical && selectedIndex <= (middleIndex + rightIndicatorCount) ) )
+                    if ((isSymmetrical && selectedIndex < indicatorCount) ||
+                         (!isSymmetrical && selectedIndex <= (middleIndex + rightIndicatorCount)))
                     {
                         CheckCenterIndicator(selectedIndex);
                         SelectOut(indicatorList[selectedIndex]);
@@ -453,8 +453,8 @@ namespace Tizen.NUI.Wearable
                 selectedIndex = value;
                 if (selectedIndex >= 0)
                 {
-                    if ( (isSymmetrical && selectedIndex < indicatorCount) ||
-                         (!isSymmetrical && selectedIndex <= (middleIndex + rightIndicatorCount) ) )
+                    if ((isSymmetrical && selectedIndex < indicatorCount) ||
+                         (!isSymmetrical && selectedIndex <= (middleIndex + rightIndicatorCount)))
                     {
                         CheckCenterIndicator(selectedIndex);
                         SelectIn(indicatorList[selectedIndex]);
@@ -664,9 +664,9 @@ namespace Tizen.NUI.Wearable
         {
             if (isCenterImageSet &&
                 (isSymmetrical && (index == indicatorCount / 2)) ||
-                (!isSymmetrical && (index == leftIndicatorCount)) )
+                (!isSymmetrical && (index == leftIndicatorCount)))
             {
-                isCurrentIndicatorCentered  = true;
+                isCurrentIndicatorCentered = true;
             }
             else
             {
@@ -780,7 +780,7 @@ namespace Tizen.NUI.Wearable
                 {
                     newOne.URL = circularPaginationStyle.IndicatorImageURL.Normal;
                 }
-                newOne.Opacity  = 0.5f;
+                newOne.Opacity = 0.5f;
                 container.AddVisual("Indicator" + i, newOne);
                 indicatorList.Add(newOne);
             }
