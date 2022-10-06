@@ -26,6 +26,7 @@ namespace Tizen.Maps
     /// Map View class to show a map on the screen.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API10. Might be removed in API12.")]
     public class MapView : Layout, IDisposable
     {
         internal Interop.ViewHandle handle;
