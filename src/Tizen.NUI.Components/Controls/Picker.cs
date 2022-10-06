@@ -557,9 +557,9 @@ namespace Tizen.NUI.Components
                 {
                     PageAdjust(e.Position.Y);
                 }
-                if (currentIdx != ((int)(-e.Position.Y / itemHeight) + middleItemIdx))
+                if (currentIdx != ((int)(-e.Position.Y / itemHeight + 0.5) + middleItemIdx))
                 {
-                    currentIdx = ((int)(-e.Position.Y / itemHeight) + middleItemIdx);
+                    currentIdx = ((int)(-e.Position.Y / itemHeight + 0.5) + middleItemIdx);
                     OnValueChanged();
                 }
 
@@ -574,9 +574,9 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (currentIdx != ((int)(-e.Position.Y / itemHeight) + middleItemIdx))
+                if (currentIdx != ((int)(-e.Position.Y / itemHeight + 0.5) + middleItemIdx))
                 {
-                    currentIdx = ((int)(-e.Position.Y / itemHeight) + middleItemIdx);
+                    currentIdx = ((int)(-e.Position.Y / itemHeight + 0.5) + middleItemIdx);
                     OnValueChanged();
                 }
             }
