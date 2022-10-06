@@ -141,7 +141,10 @@ namespace Tizen.NUI
 
         private void TransitionSetFinished(object sender, EventArgs e)
         {
-            (sender as TransitionSet).Finished -= TransitionSetFinished;
+            if (sender is TransitionSet transitionSet)
+            {
+                transitionSet.Finished -= TransitionSetFinished;
+            }
             providerImage.Unparent();
             providerImage.Dispose();
             providerImage = null;

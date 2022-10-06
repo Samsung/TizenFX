@@ -54,11 +54,11 @@ namespace Tizen.NUI.EXaml
 
                 if (null != fieldName)
                 {
-                    obj = type.GetField(fieldName, BindingFlags.Static | BindingFlags.Public).GetValue(null);
+                    obj = type.GetField(fieldName, BindingFlags.Static | BindingFlags.Public)?.GetValue(null);
                 }
                 else
                 {
-                    obj = type.GetProperty(propertyName, BindingFlags.Static | BindingFlags.Public).GetValue(null);
+                    obj = type.GetProperty(propertyName, BindingFlags.Static | BindingFlags.Public)?.GetValue(null);
                 }
             }
 
