@@ -66,7 +66,7 @@ instrument() {
   dotnet $MINICOVER_PATH/dotnet-minicover.dll instrument \
       --workdir $ROOTDIR \
       --sources "/src/$1/**/*.cs" \
-      --exclude-sources "$2" \
+      --exclude-sources $2 \
       --assemblies "/src/$1/bin/$BUILD_CONF/*/$1.dll" \
       --hits-file $1
 }
