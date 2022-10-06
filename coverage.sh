@@ -15,7 +15,7 @@ TARGET_COV_PATH=/home/owner/share/cov
 
 
 usage() {
-  echo "Usage: $0 [command] [module]"
+  echo "Usage: $0 [command] [module] [exclude-sources]"
   echo "Commands:"
   echo "    instrument|--instrument|-i : Instrument assemblies to record code coverage."
   echo "    replace |--replace |-c     : Replace runtime assemblies with intrumented."
@@ -47,7 +47,7 @@ update_coverage_tools() {
     popd > /dev/null
   else
     git clone https://github.sec.samsung.net/RS8-DotNetTctTools/CSharpCoverageTool $COV_TOOL_PATH
-  fi  
+  fi
 }
 
 public_modules() {
@@ -66,6 +66,7 @@ instrument() {
   dotnet $MINICOVER_PATH/dotnet-minicover.dll instrument \
       --workdir $ROOTDIR \
       --sources "/src/$1/**/*.cs" \
+      --exclude-sources "$2" \
       --assemblies "/src/$1/bin/$BUILD_CONF/*/$1.dll" \
       --hits-file $1
 }
@@ -75,7 +76,7 @@ prepare_replace() {
   sdb shell mount -o remount,rw /
   sdb shell "rm -f $TARGET_ASSEMBLY_PATH/*.ni.dll"
   sdb shell "rm -fr $TARGET_COV_PATH"
-  sdb shell "mkdir -p $TARGET_COV_PATH" 
+  sdb shell "mkdir -p $TARGET_COV_PATH"
   sdb push $MINICOVER_PATH/MiniCover.HitServices.dll $TARGET_ASSEMBLY_PATH
   sdb shell chsmack -a '_' $TARGET_ASSEMBLY_PATH/MiniCover.HitServices.dll
 }
@@ -87,7 +88,7 @@ replace() {
 }
 
 prepare_report() {
-  rm -fr $COV_REPORT_PATH  
+  rm -fr $COV_REPORT_PATH
   mkdir -p $COV_REPORT_PATH
   sdb pull $TARGET_COV_PATH
 }
@@ -108,7 +109,7 @@ report() {
 
 cmd_instrument() {
   build $1
-  instrument $1
+  instrument $1 $2
 }
 
 cmd_replace() {
