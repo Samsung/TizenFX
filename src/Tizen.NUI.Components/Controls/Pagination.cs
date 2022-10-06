@@ -710,9 +710,9 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            if (container != null && container.Layout is LinearLayout)
+            if (container != null && (container.Layout is LinearLayout linearLayout))
             {
-                (container.Layout as LinearLayout).CellPadding = new Size2D(indicatorSpacing, 0);
+                linearLayout.CellPadding = new Size2D(indicatorSpacing, 0);
             }
 
             for (int i = 0; i < indicatorList.Count; i++)

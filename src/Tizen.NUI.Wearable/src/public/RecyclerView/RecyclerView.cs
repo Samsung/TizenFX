@@ -264,8 +264,7 @@ namespace Tizen.NUI.Wearable
                 {
                     for (int i = 0; i < Children.Count; i++)
                     {
-                        RecycleItem item = Children[i] as RecycleItem;
-                        if (item.DataIndex == prevFocusedDataIndex)
+                        if ((Children[i] is RecycleItem item) && (item.DataIndex == prevFocusedDataIndex))
                         {
                             nextFocusedView = item;
                             break;
@@ -323,9 +322,9 @@ namespace Tizen.NUI.Wearable
                 }
 
                 focusedView = nextFocusedView;
-                if ((nextFocusedView as RecycleItem) != null)
+                if (nextFocusedView is RecycleItem item)
                 {
-                    prevFocusedDataIndex = (nextFocusedView as RecycleItem).DataIndex;
+                    prevFocusedDataIndex = item.DataIndex;
                 }
 
                 ScrollTo(targetPosition, true);

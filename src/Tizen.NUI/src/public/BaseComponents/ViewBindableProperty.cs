@@ -2530,9 +2530,15 @@ namespace Tizen.NUI.BaseComponents
 
                 view.themeData?.selectorData?.BorderlineColor?.Reset(view);
 
-                Selector<Color> selector = newValue as Selector<Color>;
-                if (selector.HasAll()) view.SetBorderlineColor(selector.All);
-                else view.EnsureSelectorData().BorderlineColor = new TriggerableSelector<Color>(view, selector, view.SetBorderlineColor, true);
+                if (newValue is Selector<Color> selector)
+                {
+                    if (selector.HasAll()) view.SetBorderlineColor(selector.All);
+                    else view.EnsureSelectorData().BorderlineColor = new TriggerableSelector<Color>(view, selector, view.SetBorderlineColor, true);
+                }
+                else
+                {
+                    view.SetBorderlineColor((Color)newValue);
+                }
             },
             defaultValueCreator: (bindable) =>
             {
