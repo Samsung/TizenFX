@@ -208,7 +208,7 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("XamlStyle  TargetType ")]
+        [Description("XamlStyle TargetType ")]
         [Property("SPEC", "Tizen.NUI.Binding.XamlStyle.TargetType    A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
@@ -231,53 +231,57 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("XamlStyle  Apply")]
-        [Property("SPEC", "Tizen.NUI.Binding.XamlStyle.Apply   A")]
+        [Description("XamlStyle Apply")]
+        [Property("SPEC", "Tizen.NUI.Binding.XamlStyle.Apply A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MCST")]
-        public void ApplyTest1()
+        public void ApplyTest()
         {
-            tlog.Debug(tag, $"ApplyTest1 START");
+            tlog.Debug(tag, $"ApplyTest START");
             try
             {
-                View view = new View();
-                Assert.IsNotNull(view, "null View");
-                var style = view.MergedStyle;
-                Assert.IsNotNull(style, "null MergedStyle");
-                style.Style = new XamlStyle(typeof(View));
-                style.Apply(view);
+                using (View view = new View())
+                {
+                    var testingTarget = view.MergedStyle;
+                    Assert.IsNotNull(testingTarget, "null MergedStyle");
+
+                    testingTarget.Style = new XamlStyle(typeof(View));
+                    testingTarget.Apply(view);
+                    testingTarget.UnApply(view);
+                }
             }
             catch (Exception e)
             {
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception :  Failed!");
             }
-            tlog.Debug(tag, $"ApplyTest1 END");
+
+            tlog.Debug(tag, $"ApplyTest END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("XamlStyle  CanBeAppliedTo")]
+        [Description("XamlStyle CanBeAppliedTo")]
         [Property("SPEC", "Tizen.NUI.Binding.XamlStyle.CanBeAppliedTo M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         public void CanBeAppliedTo()
         {
             tlog.Debug(tag, $"CanBeAppliedTo START");
+            
             try
             {
-                View view = new View();
-                Assert.IsNotNull(view, "null View");
                 var style = new XamlStyle(typeof(View));
                 style.CanBeAppliedTo(typeof(View));
-
                 style.CanBeAppliedTo(typeof(TextLabel));
             }
             catch (Exception e)
             {
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
+
             tlog.Debug(tag, $"CanBeAppliedTo END");
         }
-
     }
 }

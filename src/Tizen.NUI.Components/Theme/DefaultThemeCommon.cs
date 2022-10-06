@@ -276,11 +276,18 @@ namespace Tizen.NUI.Components
                 },
                 ValueIndicatorImage = new ImageViewStyle()
                 {
-                    Size = new Size(16, 24),
-                    BorderlineWidth = 0.5f,
+                    Size = new Size(43, 40),
+                    BorderlineWidth = 1.0f,
                     BorderlineColor = new Color("#FF6200"),
-                    BackgroundColor = new Color(0.0f, 0.04f, 0.16f, 1.0f),
+                    BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.0f),
+                    CornerRadius = 12.0f,
                 },
+                ValueIndicatorText = new TextLabelStyle()
+                {
+                    SizeHeight = 24,
+                    PixelSize = 16,
+                    TextColor = new Color("#FF6200"),
+                }
             });
 
             // Switch base style

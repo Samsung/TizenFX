@@ -20,7 +20,7 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI
 {
-    /// This will be released at Tizen.NET API Level 6, so currently this would be used as inhouse API.
+    [global::System.Obsolete("Do not use this. Use Tizen.NUI.Scene3D.Camera instead.")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public partial class Camera : View
     {

@@ -35,9 +35,9 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void PixelDataConstructor()
+        public void PixelDataConstructorWithReleaseFunction()
         {
-            tlog.Debug(tag, $"PixelDataConstructor START");
+            tlog.Debug(tag, $"PixelDataConstructorWithReleaseFunction START");
 
             byte[] buffer = new byte[1024];
 
@@ -47,7 +47,30 @@ namespace Tizen.NUI.Devel.Tests
 
             buffer = null;
             testingTarget.Dispose();
-            tlog.Debug(tag, $"PixelDataConstructor END (OK)");
+            tlog.Debug(tag, $"PixelDataConstructorWithReleaseFunction END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("PixelData constructor.")]
+        [Property("SPEC", "Tizen.NUI.PixelData.PixelData C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PixelDataConstructor()
+        {
+            tlog.Debug(tag, $"PixelDataconstructor START");
+
+            byte[] buffer = new byte[1024];
+
+            var testingTarget = new PixelData(buffer, 1024, 100, 150, PixelFormat.L8);
+            Assert.IsNotNull(testingTarget, "Can't create success object PixelData");
+            Assert.IsInstanceOf<PixelData>(testingTarget, "Should be an instance of PixelData type.");
+
+			buffer = null;
+            testingTarget.Dispose();
+            
+            tlog.Debug(tag, $"PixelDataconstructor END (OK)");
         }
 
         [Test]

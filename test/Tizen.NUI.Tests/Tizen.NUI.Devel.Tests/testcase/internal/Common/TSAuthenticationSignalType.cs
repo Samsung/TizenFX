@@ -31,29 +31,29 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Info(tag, "Destroy() is called!");
         }
-		
-  //      [Test]
-  //      [Category("P1")]
-  //      [Description("AuthenticationSignalType constructor.")]
-  //      [Property("SPEC", "Tizen.NUI.AuthenticationSignalType.AuthenticationSignalType C")]
-  //      [Property("SPEC_URL", "-")]
-  //      [Property("CRITERIA", "CONSTR")]
-  //      [Property("AUTHOR", "guowei.wang@samsung.com")]
-  //      public void AuthenticationSignalTypeConstructor()
-  //      {
-  //          tlog.Debug(tag, $"AuthenticationSignalTypeConstructor START");
 
-  //          using (View view = new View())
-  //          {
-  //              var testingTarget = new AuthenticationSignalType(view.SwigCPtr.Handle, false);
-  //              Assert.IsNotNull(testingTarget, "Should be not null!");
-  //              Assert.IsInstanceOf<AuthenticationSignalType>(testingTarget, "Should be an Instance of AuthenticationSignalType!");
+        [Test]
+        [Category("P1")]
+        [Description("AuthenticationSignalType constructor.")]
+        [Property("SPEC", "Tizen.NUI.AuthenticationSignalType.AuthenticationSignalType C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AuthenticationSignalTypeConstructor()
+        {
+            tlog.Debug(tag, $"AuthenticationSignalTypeConstructor START");
 
-  //              testingTarget.Dispose();
-  //          }
+            using (View view = new View())
+            {
+                var testingTarget = new AuthenticationSignalType(view.SwigCPtr.Handle, false);
+                Assert.IsNotNull(testingTarget, "Should be not null!");
+                Assert.IsInstanceOf<AuthenticationSignalType>(testingTarget, "Should be an Instance of AuthenticationSignalType!");
 
-  //          tlog.Debug(tag, $"AuthenticationSignalTypeConstructor END (OK)");
-  //      }
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"AuthenticationSignalTypeConstructor END (OK)");
+        }
 
   //      [Test]
   //      [Category("P1")]

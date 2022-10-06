@@ -329,6 +329,164 @@ namespace Tizen.NUI.Devel.Tests
         }
 
         [Test]
+        [Category("P2")]
+        [Description("PropertyMap Remove. With null PropertyKey ")]
+        [Property("SPEC", "Tizen.NUI.PropertyMap.Remove M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR MCST")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Property("COVPARAM", "KeyValue")]
+        public void PropertyMapRemoveNullPropertyKey()
+        {
+            tlog.Debug(tag, $"PropertyMapRemoveNullPropertyKey START");
+
+            var testingTarget = new PropertyMap();
+            Assert.IsNotNull(testingTarget, "should not be null.");
+            Assert.IsInstanceOf<PropertyMap>(testingTarget, "should be an instance of PropertyMap class!");
+
+            try
+            {
+                PropertyKey key = null;
+                var result = testingTarget.Remove(key);
+            }
+            catch (ArgumentNullException)
+            {
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"PropertyMapRemoveNullPropertyKey END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed！");
+            }
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("PropertyMap Remove. With int PropertyKey ")]
+        [Property("SPEC", "Tizen.NUI.PropertyMap.Remove M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR MCST")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Property("COVPARAM", "KeyValue")]
+        public void PropertyMapRemoveIntPropertyKey()
+        {
+            tlog.Debug(tag, $"PropertyMapRemoveIntPropertyKey START");
+
+            var testingTarget = new PropertyMap();
+            Assert.IsNotNull(testingTarget, "should not be null.");
+            Assert.IsInstanceOf<PropertyMap>(testingTarget, "should be an instance of PropertyMap class!");
+
+            testingTarget.Add(1, new PropertyValue(100));
+
+            var result = testingTarget.Remove(new PropertyKey(1));
+            tlog.Debug(tag, "Remove result : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"PropertyMapRemoveIntPropertyKey END (OK)");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("PropertyMap Remove. With String PropertyKey ")]
+        [Property("SPEC", "Tizen.NUI.PropertyMap.Remove M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR MCST")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Property("COVPARAM", "KeyValue")]
+        public void PropertyMapRemoveStringPropertyKey()
+        {
+            tlog.Debug(tag, $"PropertyMapRemoveStringPropertyKey START");
+
+            var testingTarget = new PropertyMap();
+            Assert.IsNotNull(testingTarget, "should not be null.");
+            Assert.IsInstanceOf<PropertyMap>(testingTarget, "should be an instance of PropertyMap class!");
+
+            testingTarget.Add("nui", new PropertyValue("dali"));
+
+            var result = testingTarget.Remove(new PropertyKey("nui"));
+            tlog.Debug(tag, "Remove result : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"PropertyMapRemoveStringPropertyKey END (OK)");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("PropertyMap Contains. With null PropertyKey ")]
+        [Property("SPEC", "Tizen.NUI.PropertyMap.Contains M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR MCST")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Property("COVPARAM", "KeyValue")]
+        public void PropertyMapContainsNullPropertyKey()
+        {
+            tlog.Debug(tag, $"PropertyMapContainsNullPropertyKey START");
+
+            var testingTarget = new PropertyMap();
+            Assert.IsNotNull(testingTarget, "should not be null.");
+            Assert.IsInstanceOf<PropertyMap>(testingTarget, "should be an instance of PropertyMap class!");
+
+            try
+            {
+                PropertyKey key = null;
+               var result3 = testingTarget.Contains(key);
+            }
+            catch (ArgumentNullException)
+            {
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"PropertyMapContainsNullPropertyKey END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed！");
+            }
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("PropertyMap Contains. With Int PropertyKey ")]
+        [Property("SPEC", "Tizen.NUI.PropertyMap.Contains M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR MCST")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Property("COVPARAM", "KeyValue")]
+        public void PropertyMapContainsIntPropertyKey()
+        {
+            tlog.Debug(tag, $"PropertyMapContainsIntPropertyKey START");
+
+            var testingTarget = new PropertyMap();
+            Assert.IsNotNull(testingTarget, "should not be null.");
+            Assert.IsInstanceOf<PropertyMap>(testingTarget, "should be an instance of PropertyMap class!");
+
+            testingTarget.Add(1, new PropertyValue(100));
+
+            var result = testingTarget.Contains(new PropertyKey(1));
+            tlog.Debug(tag, "Contains : " + result);
+            
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"PropertyMapContainsIntPropertyKey END (OK)");
+        }
+
+        [Test]
+        [Category("P2")]
+        [Description("PropertyMap Contains. With String PropertyKey ")]
+        [Property("SPEC", "Tizen.NUI.PropertyMap.Contains M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR MCST")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Property("COVPARAM", "KeyValue")]
+        public void PropertyMapContainsStringPropertyKey()
+        {
+            tlog.Debug(tag, $"PropertyMapContainsStringPropertyKey START");
+
+            var testingTarget = new PropertyMap();
+            Assert.IsNotNull(testingTarget, "should not be null.");
+            Assert.IsInstanceOf<PropertyMap>(testingTarget, "should be an instance of PropertyMap class!");
+
+            testingTarget.Add("nui", new PropertyValue("dali"));
+
+            var result = testingTarget.Contains(new PropertyKey("nui"));
+            tlog.Debug(tag, "Contains : " + result);
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"PropertyMapContainsStringPropertyKey END (OK)");
+        }
+
+        [Test]
         [Category("P1")]
         [Description("PropertyMap GetValue")]
         [Property("SPEC", "Tizen.NUI.PropertyMap.GetValue M")]
