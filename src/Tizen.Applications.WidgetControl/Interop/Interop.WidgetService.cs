@@ -59,7 +59,7 @@ internal static partial class Interop
         internal delegate int LifecycleCallback(string widgetId, LifecycleEvent e, string instanceId, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void WidgetListCallback(string widgetId, int isPrime, IntPtr userData);
+        internal delegate int WidgetListCallback(string widgetId, int isPrime, IntPtr userData);
 
         [DllImport(Libraries.WidgetService, EntryPoint = "widget_service_get_icon")]
         internal static extern string GetIcon(string pkgId, string lang);
