@@ -284,6 +284,8 @@ namespace Tizen.Applications
             Interop.WidgetService.ErrorCode err = Interop.WidgetService.GetWidgetListByPkgId(pkgId, (widgetId, isPrime, userData) =>
             {
                 list.Add(new WidgetControl(widgetId));
+
+                return (int)Interop.WidgetService.ErrorCode.None;
             }, IntPtr.Zero);
 
             switch (err)
@@ -323,6 +325,8 @@ namespace Tizen.Applications
             Interop.WidgetService.ErrorCode err = Interop.WidgetService.GetWidgetListByPkgId(pkgId, (widgetId, isPrime, userData) =>
             {
                 list.Add(widgetId);
+
+                return (int)Interop.WidgetService.ErrorCode.None;
             }, IntPtr.Zero);
 
             switch (err)
