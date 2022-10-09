@@ -66,6 +66,18 @@ namespace Tizen.NUI.BaseComponents
         private TriggerableSelector<string> resourceUrlSelector;
         private TriggerableSelector<Rectangle> borderSelector;
 
+#if NUI_PROPERTY_CHANGE_2
+        private RelativeVector4 internalPixelArea;
+#endif
+
+#if NUI_PROPERTY_CHANGE_DEBUG
+        internal static int PreMultipliedAlphaGetter = 0;
+        internal static int PreMultipliedAlphaSetter = 0;
+        internal static int PixelAreaGetter = 0;
+        internal static int PixelAreaSetter = 0;
+#endif
+
+
         /// <summary>
         /// Creates an initialized ImageView.
         /// </summary>
@@ -389,10 +401,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PreMultipliedAlphaGetter++;
+#endif
                 return (bool)GetValue(PreMultipliedAlphaProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PreMultipliedAlphaSetter++;
+#endif
                 SetValue(PreMultipliedAlphaProperty, value);
                 NotifyPropertyChanged();
             }
@@ -410,11 +428,22 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PixelAreaGetter++;
+#endif
+
+#if NUI_PROPERTY_CHANGE_2
+                return (RelativeVector4)GetValue(PixelAreaProperty);
+#else
                 RelativeVector4 temp = (RelativeVector4)GetValue(PixelAreaProperty);
                 return new RelativeVector4(OnPixelAreaChanged, temp.X, temp.Y, temp.Z, temp.W);
+#endif                
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PixelAreaSetter++;
+#endif
                 SetValue(PixelAreaProperty, value);
                 NotifyPropertyChanged();
             }
@@ -1250,6 +1279,10 @@ namespace Tizen.NUI.BaseComponents
             {
                 return;
             }
+
+#if NUI_PROPERTY_CHANGE_2
+            internalPixelArea?.Dispose();
+#endif
 
             if (type == DisposeTypes.Explicit)
             {
