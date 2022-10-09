@@ -90,10 +90,11 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
     if(e.Key.State == Key.StateType.Down && e.Key.KeyPressedName == "1")
     {
 #if NUI_PROPERTY_CHANGE_1
-        Tizen.Log.Fatal("NUITEST", $"### (FIXED) currently used View's properties ###");
+        Tizen.Log.Fatal("NUITEST", $"### (FIXED) currently used properties ###");
 #else
-        Tizen.Log.Fatal("NUITEST", $"### currently used View's properties ###");
+        Tizen.Log.Fatal("NUITEST", $"### currently used properties ###");
 #endif
+        Tizen.Log.Fatal("NUITEST", $"View properties =>");
         Tizen.Log.Fatal("NUITEST", $"PropertyValueConstructor: {Tizen.NUI.PropertyValue.PropertyValueConstructor}");
         Tizen.Log.Fatal("NUITEST", $"SizeGetter: {View.SizeGetter}, SizeSetter: {View.SizeSetter}");
         Tizen.Log.Fatal("NUITEST", $"Size2DGetter: {View.Size2DGetter}, Size2DSetter: {View.Size2DSetter}");
@@ -157,6 +158,14 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         Tizen.Log.Fatal("NUITEST", $"AccessibilityHighlightableGetter: {View.AccessibilityHighlightableGetter}, AccessibilityHighlightableSetter: {View.AccessibilityHighlightableSetter}");
         Tizen.Log.Fatal("NUITEST", $"AccessibilityHiddenGetter: {View.AccessibilityHiddenGetter}, AccessibilityHiddenSetter: {View.AccessibilityHiddenSetter}");
         Tizen.Log.Fatal("NUITEST", $"AutomationIdGetter: {View.AutomationIdGetter}, AutomationIdSetter: {View.AutomationIdSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ImageView properties =>");
+        Tizen.Log.Fatal("NUITEST", $"PreMultipliedAlphaGetter: {ImageView.PreMultipliedAlphaGetter}, PreMultipliedAlphaSetter: {ImageView.PreMultipliedAlphaSetter}");
+        Tizen.Log.Fatal("NUITEST", $"PixelAreaGetter: {ImageView.PixelAreaGetter}, PixelAreaSetter: {ImageView.PixelAreaSetter}");
+        Tizen.Log.Fatal("NUITEST", $"TextLabel properties =>");
+        Tizen.Log.Fatal("NUITEST", $"TextGetter: {TextLabel.TextGetter}, TextSetter: {TextLabel.TextSetter}");
+        Tizen.Log.Fatal("NUITEST", $"FontFamilyGetter: {TextLabel.FontFamilyGetter}, FontFamilySetter: {TextLabel.FontFamilySetter}");
+        Tizen.Log.Fatal("NUITEST", $"PointSizeGetter: {TextLabel.PointSizeGetter}");
+
     }
 }
 #endif

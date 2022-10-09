@@ -40,6 +40,17 @@ namespace Tizen.NUI.BaseComponents
         private bool hasFontSizeChangedCallback = false;
         private bool isSettingTextInCSharp = false;
 
+#if NUI_PROPERTY_CHANGE_2
+        private Vector4 internalPlaceholderTextColor = null;
+        private Vector4 internalPrimaryCursorColor = null;
+        private Vector4 internalSecondaryCursorColor = null;
+        private Vector4 internalSelectionHighlightColor = null;
+        private Vector4 internalInputColor = null;
+        private Color internalTextColor = null;
+        private Color internalGrabHandleColor = null;
+
+#endif
+
         static TextEditor() { }
 
         /// <summary>
@@ -2409,6 +2420,16 @@ namespace Tizen.NUI.BaseComponents
             {
                 return;
             }
+
+#if NUI_PROPERTY_CHANGE_2
+            internalPlaceholderTextColor?.Dispose();
+            internalPrimaryCursorColor?.Dispose();
+            internalSecondaryCursorColor?.Dispose();
+            internalSelectionHighlightColor?.Dispose();
+            internalInputColor?.Dispose();
+            internalTextColor?.Dispose();
+            internalGrabHandleColor?.Dispose();
+#endif
 
             if (systemlangTextFlag)
             {
