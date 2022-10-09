@@ -87,6 +87,19 @@ namespace Tizen.NUI.BaseComponents
         private float fontSizeScale = 1.0f;
         private bool hasFontSizeChangedCallback = false;
 
+#if NUI_PROPERTY_CHANGE_2
+        private Color internalTextColor;
+#endif
+
+#if NUI_PROPERTY_CHANGE_DEBUG
+internal static int TextGetter = 0;
+internal static int TextSetter = 0;
+internal static int FontFamilyGetter = 0;
+internal static int FontFamilySetter = 0;
+internal static int PointSizeGetter = 0;
+#endif
+
+
         /// <summary>
         /// Creates the TextLabel control.
         /// </summary>
@@ -223,10 +236,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+TextGetter++;
+#endif
                 return (string)GetValue(TextProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+TextSetter++;
+#endif
                 SetValue(TextProperty, value);
                 NotifyPropertyChanged();
             }
@@ -241,10 +260,16 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+FontFamilyGetter++;
+#endif
                 return (string)GetValue(FontFamilyProperty);
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+FontFamilySetter++;
+#endif
                 SetValue(FontFamilyProperty, value);
                 NotifyPropertyChanged();
             }
@@ -329,6 +354,9 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PointSizeGetter++;
+#endif
                 return (float)GetValue(PointSizeProperty);
             }
             set
@@ -1483,6 +1511,10 @@ namespace Tizen.NUI.BaseComponents
             {
                 return;
             }
+
+#if NUI_PROPERTY_CHANGE_2
+            internalTextColor?.Dispose();
+#endif
 
             if (systemlangTextFlag)
             {
