@@ -33,7 +33,11 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ItemsSourceProperty = BindableProperty.Create(nameof(ItemsSource), typeof(IEnumerable), typeof(RecyclerView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (RecyclerView)bindable;
+            var instance = bindable as RecyclerView;
+            if (instance == null)
+            {
+                throw new Exception("Bindable object is not RecyclerView.");
+            }
             if (newValue != null)
             {
                 instance.InternalItemsSource = newValue as IEnumerable;
@@ -41,7 +45,11 @@ namespace Tizen.NUI.Components
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (RecyclerView)bindable;
+            var instance = bindable as RecyclerView;
+            if (instance == null)
+            {
+                throw new Exception("Bindable object is not RecyclerView.");
+            }
             return instance.InternalItemsSource;
         });
 
@@ -51,7 +59,11 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty ItemTemplateProperty = BindableProperty.Create(nameof(ItemTemplate), typeof(DataTemplate), typeof(RecyclerView), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
-            var instance = (RecyclerView)bindable;
+            var instance = bindable as RecyclerView;
+            if (instance == null)
+            {
+                throw new Exception("Bindable object is not RecyclerView.");
+            }
             if (newValue != null)
             {
                 instance.InternalItemTemplate = newValue as DataTemplate;
@@ -59,7 +71,11 @@ namespace Tizen.NUI.Components
         },
         defaultValueCreator: (bindable) =>
         {
-            var instance = (RecyclerView)bindable;
+            var instance = bindable as RecyclerView;
+            if (instance == null)
+            {
+                throw new Exception("Bindable object is not RecyclerView.");
+            }
             return instance.InternalItemTemplate;
         });
 
@@ -330,7 +346,11 @@ namespace Tizen.NUI.Components
         /// <param name="recycle"> Allow recycle. default is true </param>
         internal virtual void UnrealizeItem(RecyclerViewItem item, bool recycle = true)
         {
-            if (item == null) return;
+            if (item == null)
+            {
+                return;
+            }
+
             item.Index = -1;
             item.ParentItemsView = null;
             item.BindingContext = null;
@@ -368,12 +388,20 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool PushRecycleCache(RecyclerViewItem item)
         {
-            if (item == null) throw new ArgumentNullException(nameof(item));
-            if (RecycleCache.Count >= CacheMax) return false;
-            if (item.Template == null) return false;
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
+            if (item.Template == null || RecycleCache.Count >= CacheMax)
+            {
+                return false;
+            }
+
             item.Hide();
             item.Index = -1;
             RecycleCache.Add(item);
+
             return true;
         }
 
@@ -416,7 +444,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         protected virtual void OnScrolling(object source, ScrollEventArgs args)
         {
-            if (args == null) throw new ArgumentNullException(nameof(args));
+            if (args == null)
+            {
+                throw new ArgumentNullException(nameof(args));
+            }
+
             if (!disposed && InternalItemsLayouter != null && ItemsSource != null && ItemTemplate != null)
             {
                 //Console.WriteLine("[NUI] On Scrolling! {0} => {1}", ScrollPosition.Y, args.Position.Y);
