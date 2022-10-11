@@ -572,7 +572,7 @@ namespace Tizen.Multimedia
 
         private bool _isNativeHandleDestroyEnabled = true;
         /// <summary>
-        /// Disable native handle destroy when native fw destroy media packet handle itself.
+        /// Disables native handle destruction when native fw destroys media packet handle itself.
         /// </summary>
         internal void DisableNativeHandleDestroy()
         {
