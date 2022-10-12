@@ -53,7 +53,7 @@ internal static partial class Interop
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void InstanceCallback(string widgetId, string instanceId, IntPtr userData);
+        internal delegate int InstanceCallback(string widgetId, string instanceId, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate int LifecycleCallback(string widgetId, LifecycleEvent e, string instanceId, IntPtr userData);

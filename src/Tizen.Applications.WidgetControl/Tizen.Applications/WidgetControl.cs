@@ -643,6 +643,8 @@ namespace Tizen.Applications
             Interop.WidgetService.ErrorCode err = Interop.WidgetService.GetInstances(Id, (widgetId, instanceId, userData) =>
             {
                 instances.Add(new Instance(widgetId) { Id = instanceId });
+
+                return (int)Interop.WidgetService.ErrorCode.None;
             }, IntPtr.Zero);
 
             switch (err)
