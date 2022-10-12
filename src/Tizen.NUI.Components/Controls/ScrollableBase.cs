@@ -1781,6 +1781,10 @@ namespace Tizen.NUI.Components
                 float realDuration = progress * panAnimationDuration;
                 float realDistance = velocityOfLastPan * ((float)Math.Pow(decelerationRate, realDuration) - 1) / logValueOfDeceleration;
                 float result = Math.Min(realDistance / Math.Abs(panAnimationDelta), 1.0f);
+
+                // This is hot-fix for if the velocity has very small value, result is not updated even progress done.
+                if (progress > 0.99) result = 1.0f;
+
                 return result;
             }
         }

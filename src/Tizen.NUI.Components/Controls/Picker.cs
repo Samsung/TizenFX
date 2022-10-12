@@ -541,7 +541,7 @@ namespace Tizen.NUI.Components
         private void OnScrollAnimationEnded(object sender, ScrollEventArgs e)
         {
             //Ignore if the scroll position was not changed. (called it from this function)
-            if (lastScrollPosion == (int)e.Position.Y) return;
+            if (lastScrollPosion == (int)e.Position.Y && !onAlignAnimation) return;
 
             //Calc offset from closest item.
             int offset = (int)(e.Position.Y + startScrollOffset) % itemHeight;
@@ -875,6 +875,9 @@ namespace Tizen.NUI.Components
                     float realDuration = progress * panAnimationDuration;
                     float realDistance = velocityOfLastPan * ((float)Math.Pow(decelerationRate, realDuration) - 1) / logValueOfDeceleration;
                     float result = Math.Min(realDistance / Math.Abs(panAnimationDelta), 1.0f);
+
+                    // This is hot-fix for if the velocity has very small value, result is not updated even progress done.
+                    if (progress > 0.99) result = 1.0f;
 
                     return result;
                 }
