@@ -41,12 +41,12 @@ namespace Tizen.NUI.BaseComponents
         private bool isSettingTextInCSharp = false;
 
 #if NUI_PROPERTY_CHANGE_2
-        private Vector4 internalPlaceholderTextColor = null;
+        private Color internalPlaceholderTextColor = null;
         private Vector4 internalPrimaryCursorColor = null;
         private Vector4 internalSecondaryCursorColor = null;
         private Vector4 internalSelectionHighlightColor = null;
         private Vector4 internalInputColor = null;
-        private Color internalTextColor = null;
+        private Vector4 internalTextColor = null;
         private Color internalGrabHandleColor = null;
 
 #endif
