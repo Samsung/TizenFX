@@ -165,7 +165,31 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         Tizen.Log.Fatal("NUITEST", $"TextGetter: {TextLabel.TextGetter}, TextSetter: {TextLabel.TextSetter}");
         Tizen.Log.Fatal("NUITEST", $"FontFamilyGetter: {TextLabel.FontFamilyGetter}, FontFamilySetter: {TextLabel.FontFamilySetter}");
         Tizen.Log.Fatal("NUITEST", $"PointSizeGetter: {TextLabel.PointSizeGetter}");
-
+#if NUI_PROPERTY_CHANGE_3
+        Tizen.Log.Fatal("NUITEST", $"View internal properties =>");
+        Tizen.Log.Fatal("NUITEST", $"WorldPositionXGetter: {View.WorldPositionXGetter}, WorldPositionYGetter: {View.WorldPositionYGetter}, WorldPositionZGetter: {View.WorldPositionZGetter}");
+        Tizen.Log.Fatal("NUITEST", $"ParentOriginXGetter: {View.ParentOriginXGetter} ParentOriginXSetter: {View.ParentOriginXSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ParentOriginYGetter: {View.ParentOriginYGetter} ParentOriginYSetter: {View.ParentOriginYSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ParentOriginZGetter: {View.ParentOriginZGetter} ParentOriginZSetter: {View.ParentOriginZSetter}");
+        Tizen.Log.Fatal("NUITEST", $"PivotPointXGetter: {View.PivotPointXGetter} PivotPointXSetter: {View.PivotPointXSetter}");
+        Tizen.Log.Fatal("NUITEST", $"PivotPointYGetter: {View.PivotPointYGetter} PivotPointXSetter: {View.PivotPointYSetter}");
+        Tizen.Log.Fatal("NUITEST", $"PivotPointZGetter: {View.PivotPointZGetter} PivotPointXSetter: {View.PivotPointZSetter}");
+        Tizen.Log.Fatal("NUITEST", $"LeftFocusableViewIdGetter: {View.LeftFocusableViewIdGetter} LeftFocusableViewIdSetter: {View.LeftFocusableViewIdSetter}");
+        Tizen.Log.Fatal("NUITEST", $"RightFocusableViewIdGetter: {View.RightFocusableViewIdGetter} RightFocusableViewIdSetter: {View.RightFocusableViewIdSetter}");
+        Tizen.Log.Fatal("NUITEST", $"UpFocusableViewIdGetter: {View.UpFocusableViewIdGetter} UpFocusableViewIdSetter: {View.UpFocusableViewIdSetter}");
+        Tizen.Log.Fatal("NUITEST", $"DownFocusableViewIdGetter: {View.DownFocusableViewIdGetter} DownFocusableViewIdSetter: {View.DownFocusableViewIdSetter}");
+        Tizen.Log.Fatal("NUITEST", $"ClockwiseFocusableViewIdGetter: {View.ClockwiseFocusableViewIdGetter} ClockwiseFocusableViewIdSetter: {View.ClockwiseFocusableViewIdSetter}");
+        Tizen.Log.Fatal("NUITEST", $"CounterClockwiseFocusableViewIdGetter: {View.CounterClockwiseFocusableViewIdGetter} CounterClockwiseFocusableViewIdSetter: {View.CounterClockwiseFocusableViewIdSetter}");        
+        Tizen.Log.Fatal("NUITEST", $"View internal method =>");
+        Tizen.Log.Fatal("NUITEST", $"GetCurrentParentOriginCnt: {View.GetCurrentParentOriginCnt} GetCurrentAnchorPointCnt: {View.GetCurrentAnchorPointCnt}");        
+        Tizen.Log.Fatal("NUITEST", $"GetTargetSizeCnt: {View.GetTargetSizeCnt} GetCurrentSizeCnt: {View.GetCurrentSizeCnt}");        
+        Tizen.Log.Fatal("NUITEST", $"GetCurrentSizeFloatCnt: {View.GetCurrentSizeFloatCnt} GetNaturalSizeCnt: {View.GetNaturalSizeCnt}");        
+        Tizen.Log.Fatal("NUITEST", $"GetCurrentPositionCnt: {View.GetCurrentPositionCnt} GetCurrentWorldPositionCnt: {View.GetCurrentWorldPositionCnt}");
+        Tizen.Log.Fatal("NUITEST", $"GetCurrentScaleCnt: {View.GetCurrentScaleCnt} GetCurrentWorldScaleCnt: {View.GetCurrentWorldScaleCnt}");
+        Tizen.Log.Fatal("NUITEST", $"GetCurrentColorCnt: {View.GetCurrentColorCnt} GetCurrentWorldColorCnt: {View.GetCurrentWorldColorCnt}");
+        Tizen.Log.Fatal("NUITEST", $"GetSizeModeFactorCnt: {View.GetSizeModeFactorCnt} GetMinimumSizeCnt: {View.GetMinimumSizeCnt}");
+        Tizen.Log.Fatal("NUITEST", $"GetMaximumSizeCnt: {View.GetMaximumSizeCnt}");
+#endif
     }
 }
 #endif
@@ -186,7 +210,7 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
 
             //to fix memory leak issue, match the handle count with native side.
             Window ret = view.GetInstanceSafely<Window>(Interop.Window.Get(View.getCPtr(view)));
-            if (NDalicPINVOKE.SWIGPendingException.Pending)throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
 
@@ -1531,7 +1555,7 @@ private void TestWindowKeyEventHandler(object o, Window.KeyEventArgs e)
         {
             if (isBorderWindow)
             {
-                if(borderLayer == null)
+                if (borderLayer == null)
                 {
                     borderLayer = GetBorderWindowRootLayer();
                     LayersChildren?.Add(borderLayer);
