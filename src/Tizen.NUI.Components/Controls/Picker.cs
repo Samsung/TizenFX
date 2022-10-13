@@ -938,6 +938,7 @@ namespace Tizen.NUI.Components
 
                 customScrollAlphaFunction = new UserAlphaFunctionDelegate(CustomScrollAlphaFunction);
                 animation.DefaultAlphaFunction = new AlphaFunction(customScrollAlphaFunction);
+                GC.KeepAlive(customScrollAlphaFunction);
                 animation.Duration = (int)panAnimationDuration;
                 animation.AnimateTo(ContentContainer, "PositionY", (int)destination);
                 animation.Play();
