@@ -51,6 +51,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Picker is a class which provides a function that allows the user to select
     /// a value through a scrolling motion by expressing the specified value as a list.
+    /// It is recommended to use when selecting less than 100 selections.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     public partial class Picker : Control
@@ -383,7 +384,7 @@ namespace Tizen.NUI.Components
 
             if (pickerScroller != null && itemList != null)
             {
-                pickerScroller.ScrollAvailableArea = new Vector2(0, (itemList.Count * itemHeight) - size.Height);
+                pickerScroller.ScrollAvailableArea = new Vector2(0, (itemList.Count * itemHeight) - (itemHeight * scrollVisibleItems));
             }
         }
 
@@ -416,7 +417,7 @@ namespace Tizen.NUI.Components
                 },
                 //FIXME: Need to expand as many as possible;
                 //       When user want to start list middle of the list item. currently confused how to create list before render.
-                ScrollAvailableArea = new Vector2(0, 10000),
+                ScrollAvailableArea = new Vector2(0, 30000),
                 Name = "pickerScroller",
             };
 
@@ -433,6 +434,7 @@ namespace Tizen.NUI.Components
             displayedValuesUpdate = false;
             onAnimation = false;
             loopEnabled = false;
+            lastScrollPosion = (int)pickerScroller.ScrollAvailableArea.Y;
 
             Add(pickerScroller);
             AddMasks();
@@ -735,7 +737,7 @@ namespace Tizen.NUI.Components
             //Give a correct scroll area.
             if (size != null)
             {
-                pickerScroller.ScrollAvailableArea = new Vector2(0, (itemList.Count * itemHeight) - size.Height);
+                pickerScroller.ScrollAvailableArea = new Vector2(0, (itemList.Count * itemHeight) - (itemHeight * scrollVisibleItems));
             }
 
             needItemUpdate = false;
