@@ -83,6 +83,20 @@ namespace Tizen.NUI.BaseComponents
         private bool dispatchGestureEvents = true;
         private bool dispatchParentGestureEvents = true;
 
+#if NUI_PROPERTY_CHANGE_3
+        private Vector3 internalCurrentParentOrigin = null;
+        private Vector3 internalCurrentAnchorPoint = null;
+        private Vector3 internalTargetSize = null;
+        private Size2D internalCurrentSize = null;
+        private Vector3 internalNaturalSize = null;
+        private Position internalCurrentPosition = null;
+        private Vector3 internalCurrentWorldPosition = null;
+        private Vector3 internalCurrentScale = null;
+        private Vector3 internalCurrentWorldScale = null;
+        private Vector4 internalCurrentColor = null;
+        private Vector4 internalCurrentWorldColor = null;
+#endif
+
 #if NUI_PROPERTY_CHANGE_DEBUG
 internal static int LayoutSetGetter = 0;
 internal static int SizeGetter = 0;
@@ -213,6 +227,51 @@ internal static int AccessibilityHighlightableGetter = 0;
 internal static int AccessibilityHiddenGetter = 0;
 internal static int AutomationIdGetter = 0;
 
+#if NUI_PROPERTY_CHANGE_3
+internal static int WorldPositionXGetter = 0;
+internal static int WorldPositionYGetter = 0;
+internal static int WorldPositionZGetter = 0;
+internal static int ParentOriginXGetter = 0;
+internal static int ParentOriginXSetter = 0;
+internal static int ParentOriginYGetter = 0;
+internal static int ParentOriginYSetter = 0;
+internal static int ParentOriginZGetter = 0;
+internal static int ParentOriginZSetter = 0;
+internal static int PivotPointXGetter = 0;
+internal static int PivotPointXSetter = 0;
+internal static int PivotPointYGetter = 0;
+internal static int PivotPointYSetter = 0;
+internal static int PivotPointZGetter = 0;
+internal static int PivotPointZSetter = 0;
+internal static int LeftFocusableViewIdGetter = 0;
+internal static int LeftFocusableViewIdSetter = 0;
+internal static int RightFocusableViewIdGetter = 0;
+internal static int RightFocusableViewIdSetter = 0;
+internal static int UpFocusableViewIdGetter = 0;
+internal static int UpFocusableViewIdSetter = 0;
+internal static int DownFocusableViewIdGetter = 0;
+internal static int DownFocusableViewIdSetter = 0;
+internal static int ClockwiseFocusableViewIdGetter = 0;
+internal static int ClockwiseFocusableViewIdSetter = 0;
+internal static int CounterClockwiseFocusableViewIdGetter = 0;
+internal static int CounterClockwiseFocusableViewIdSetter = 0;
+
+internal static int GetCurrentParentOriginCnt = 0;
+internal static int GetCurrentAnchorPointCnt = 0;
+internal static int GetTargetSizeCnt = 0;
+internal static int GetCurrentSizeCnt = 0;
+internal static int GetCurrentSizeFloatCnt = 0;
+internal static int GetNaturalSizeCnt = 0;
+internal static int GetCurrentPositionCnt = 0;
+internal static int GetCurrentWorldPositionCnt = 0;
+internal static int GetCurrentScaleCnt = 0;
+internal static int GetCurrentWorldScaleCnt = 0;
+internal static int GetCurrentColorCnt = 0;
+internal static int GetCurrentWorldColorCnt = 0;
+internal static int GetSizeModeFactorCnt = 0;
+internal static int GetMinimumSizeCnt = 0;
+internal static int GetMaximumSizeCnt = 0;
+#endif
 
 #endif
 
