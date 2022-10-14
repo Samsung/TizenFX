@@ -41,7 +41,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 string styleName = (string)newValue;
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyString(view.SwigCPtr, View.Property.StyleName, styleName);
+                Object.InternalSetPropertyString(view.SwigCPtr, View.Property.StyleName, styleName);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.StyleName, new Tizen.NUI.PropertyValue(styleName));
 #endif
@@ -64,7 +64,7 @@ namespace Tizen.NUI.BaseComponents
             if (!string.IsNullOrEmpty(view.styleName)) return view.styleName;
 
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyString(view.SwigCPtr, View.Property.StyleName);
+            return Object.InternalGetPropertyString(view.SwigCPtr, View.Property.StyleName);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.StyleName).Get(out temp);
@@ -82,7 +82,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyBool(view.SwigCPtr, View.Property.KeyInputFocus, (bool)newValue);
+                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.KeyInputFocus, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.KeyInputFocus, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif                
@@ -92,7 +92,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyBool(view.SwigCPtr, View.Property.KeyInputFocus);
+            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.KeyInputFocus);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.KeyInputFocus).Get(out temp);
@@ -174,7 +174,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     view.internalColor = new Color(view.OnColorChanged, 0, 0, 0, 0);
                 }
-                Interop.Actor.InternalRetrievingPropertyVector4(view.SwigCPtr, View.Property.COLOR, view.internalColor.SwigCPtr);
+                Object.InternalRetrievingPropertyVector4(view.SwigCPtr, View.Property.COLOR, view.internalColor.SwigCPtr);
 #else
                 var tmpProperty = view.GetProperty(View.Property.COLOR);
 
@@ -204,7 +204,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-                return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ColorRed);
+                return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ColorRed);
 #else
                 float temp = 0.0f;
                 Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ColorRed).Get(out temp);
@@ -227,7 +227,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-                return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ColorGreen);
+                return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ColorGreen);
 #else
                 float temp = 0.0f;
                 Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ColorGreen).Get(out temp);
@@ -250,7 +250,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-                return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ColorBlue);
+                return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ColorBlue);
 #else
                 float temp = 0.0f;
                 Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ColorBlue).Get(out temp);
@@ -364,7 +364,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyInt(view.SwigCPtr, View.Property.STATE, (int)newValue);
+                Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.STATE, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.STATE, new Tizen.NUI.PropertyValue((int)newValue));
 #endif                
@@ -375,7 +375,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             int temp = 0;
 #if NUI_PROPERTY_CHANGE_1
-            temp = Interop.Actor.InternalGetPropertyInt(view.SwigCPtr, View.Property.STATE);
+            temp = Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.STATE);
 #else
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.STATE).Get(out temp) == false)
             {
@@ -403,7 +403,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 valueToString = ((States)newValue).GetDescription();
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyString(view.SwigCPtr, View.Property.SubState, valueToString);
+                Object.InternalSetPropertyString(view.SwigCPtr, View.Property.SubState, valueToString);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SubState, new Tizen.NUI.PropertyValue(valueToString));
 #endif                
@@ -414,7 +414,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             string temp;
 #if NUI_PROPERTY_CHANGE_1
-            temp = Interop.Actor.InternalGetPropertyString(view.SwigCPtr, View.Property.SubState);
+            temp = Object.InternalGetPropertyString(view.SwigCPtr, View.Property.SubState);
 #else
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SubState).Get(out temp) == false)
             {
@@ -454,7 +454,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, FlexContainer.ChildProperty.FLEX, (float)newValue);
+                Object.InternalSetPropertyFloat(view.SwigCPtr, FlexContainer.ChildProperty.FLEX, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, FlexContainer.ChildProperty.FLEX, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -464,7 +464,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, FlexContainer.ChildProperty.FLEX);
+            return Object.InternalGetPropertyFloat(view.SwigCPtr, FlexContainer.ChildProperty.FLEX);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, FlexContainer.ChildProperty.FLEX).Get(out temp);
@@ -482,7 +482,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyInt(view.SwigCPtr, FlexContainer.ChildProperty.AlignSelf, (int)newValue);
+                Object.InternalSetPropertyInt(view.SwigCPtr, FlexContainer.ChildProperty.AlignSelf, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, FlexContainer.ChildProperty.AlignSelf, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -492,7 +492,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyInt(view.SwigCPtr, FlexContainer.ChildProperty.AlignSelf);
+            return Object.InternalGetPropertyInt(view.SwigCPtr, FlexContainer.ChildProperty.AlignSelf);
 #else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, FlexContainer.ChildProperty.AlignSelf).Get(out temp);
@@ -510,7 +510,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyVector4(view.SwigCPtr, FlexContainer.ChildProperty.FlexMargin, ((Vector4)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(view.SwigCPtr, FlexContainer.ChildProperty.FlexMargin, ((Vector4)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, FlexContainer.ChildProperty.FlexMargin, new Tizen.NUI.PropertyValue((Vector4)newValue));
 #endif
@@ -521,7 +521,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
 #if NUI_PROPERTY_CHANGE_1
-            Interop.Actor.InternalRetrievingPropertyVector4(view.SwigCPtr, FlexContainer.ChildProperty.FlexMargin, temp.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(view.SwigCPtr, FlexContainer.ChildProperty.FlexMargin, temp.SwigCPtr);
 #else
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, FlexContainer.ChildProperty.FlexMargin).Get(temp);
 #endif
@@ -539,7 +539,7 @@ namespace Tizen.NUI.BaseComponents
                 if (newValue != null)
                 {
 #if NUI_PROPERTY_CHANGE_1
-                    Interop.Actor.InternalSetPropertyVector2(view.SwigCPtr, TableView.ChildProperty.CellIndex, ((Vector2)newValue).SwigCPtr);
+                    Object.InternalSetPropertyVector2(view.SwigCPtr, TableView.ChildProperty.CellIndex, ((Vector2)newValue).SwigCPtr);
 #else
                     var tmp = new PropertyValue((Vector2)newValue);
                     Object.SetProperty(view.SwigCPtr, TableView.ChildProperty.CellIndex, tmp);
@@ -555,7 +555,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     view.internalCellIndex = new Vector2(view.OnCellIndexChanged, 0, 0);
                 }
-                Interop.Actor.InternalRetrievingPropertyVector2(view.SwigCPtr, TableView.ChildProperty.CellIndex, view.internalCellIndex.SwigCPtr);
+                Object.InternalRetrievingPropertyVector2(view.SwigCPtr, TableView.ChildProperty.CellIndex, view.internalCellIndex.SwigCPtr);
 #else
                 if (view.internalCellIndex == null)
                 {
@@ -580,7 +580,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, TableView.ChildProperty.RowSpan, (float)newValue);
+                Object.InternalSetPropertyFloat(view.SwigCPtr, TableView.ChildProperty.RowSpan, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, TableView.ChildProperty.RowSpan, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -590,7 +590,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, TableView.ChildProperty.RowSpan);
+            return Object.InternalGetPropertyFloat(view.SwigCPtr, TableView.ChildProperty.RowSpan);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, TableView.ChildProperty.RowSpan).Get(out temp);
@@ -608,7 +608,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, TableView.ChildProperty.ColumnSpan, (float)newValue);
+                Object.InternalSetPropertyFloat(view.SwigCPtr, TableView.ChildProperty.ColumnSpan, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, TableView.ChildProperty.ColumnSpan, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -618,7 +618,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, TableView.ChildProperty.ColumnSpan);
+            return Object.InternalGetPropertyFloat(view.SwigCPtr, TableView.ChildProperty.ColumnSpan);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, TableView.ChildProperty.ColumnSpan).Get(out temp);
@@ -639,7 +639,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 valueToString = ((HorizontalAlignmentType)newValue).GetDescription();
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyString(view.SwigCPtr, TableView.ChildProperty.CellHorizontalAlignment, valueToString);
+                Object.InternalSetPropertyString(view.SwigCPtr, TableView.ChildProperty.CellHorizontalAlignment, valueToString);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, TableView.ChildProperty.CellHorizontalAlignment, new Tizen.NUI.PropertyValue(valueToString));
 #endif
@@ -650,7 +650,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             string temp;
 #if NUI_PROPERTY_CHANGE_1
-            temp = Interop.Actor.InternalGetPropertyString(view.SwigCPtr, TableView.ChildProperty.CellHorizontalAlignment);
+            temp = Object.InternalGetPropertyString(view.SwigCPtr, TableView.ChildProperty.CellHorizontalAlignment);
 #else
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, TableView.ChildProperty.CellHorizontalAlignment).Get(out temp) == false)
             {
@@ -673,7 +673,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 valueToString = ((VerticalAlignmentType)newValue).GetDescription();
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyString(view.SwigCPtr, TableView.ChildProperty.CellVerticalAlignment, valueToString);
+                Object.InternalSetPropertyString(view.SwigCPtr, TableView.ChildProperty.CellVerticalAlignment, valueToString);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, TableView.ChildProperty.CellVerticalAlignment, new Tizen.NUI.PropertyValue(valueToString));
 #endif
@@ -684,7 +684,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             string temp;
 #if NUI_PROPERTY_CHANGE_1
-            temp = Interop.Actor.InternalGetPropertyString(view.SwigCPtr, TableView.ChildProperty.CellVerticalAlignment);
+            temp = Object.InternalGetPropertyString(view.SwigCPtr, TableView.ChildProperty.CellVerticalAlignment);
 #else
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, TableView.ChildProperty.CellVerticalAlignment).Get(out temp);
             {
@@ -879,7 +879,7 @@ namespace Tizen.NUI.BaseComponents
                     view.userSizeHeight = ((Size2D)newValue).Height;
 
 #if NUI_PROPERTY_CHANGE_1
-                    Interop.Actor.InternalSetPropertyVector2ActualVector3(view.SwigCPtr, View.Property.SIZE, ((Size2D)newValue).SwigCPtr);
+                    Object.InternalSetPropertyVector2ActualVector3(view.SwigCPtr, View.Property.SIZE, ((Size2D)newValue).SwigCPtr);
 #else
                     view.SetSize(((Size2D)newValue).Width, ((Size2D)newValue).Height, 0);
 #endif
@@ -897,7 +897,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     view.internalSize2D = new Size2D(view.OnSize2DChanged, 0, 0);
                 }
-                Interop.Actor.InternalRetrievingPropertyVector2ActualVector3(view.SwigCPtr, View.Property.SIZE, view.internalSize2D.SwigCPtr);
+                Object.InternalRetrievingPropertyVector2ActualVector3(view.SwigCPtr, View.Property.SIZE, view.internalSize2D.SwigCPtr);
 #else
                 var tmp = new Size(0, 0, 0);
                 var tmpProperty = Object.GetProperty(view.SwigCPtr, Property.SIZE);
@@ -947,7 +947,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, View.Property.OPACITY);
+            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.OPACITY);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.OPACITY).Get(out temp);
@@ -966,7 +966,7 @@ namespace Tizen.NUI.BaseComponents
                 if (newValue != null)
                 {
 #if NUI_PROPERTY_CHANGE_1
-                    Interop.Actor.InternalSetPropertyVector2ActualVector3(view.SwigCPtr, View.Property.POSITION, ((Position2D)newValue).SwigCPtr);
+                    Object.InternalSetPropertyVector2ActualVector3(view.SwigCPtr, View.Property.POSITION, ((Position2D)newValue).SwigCPtr);
 #else
                     view.SetPosition(((Position2D)newValue).X, ((Position2D)newValue).Y, 0);
 #endif
@@ -980,7 +980,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     view.internalPosition2D = new Position2D(view.OnPosition2DChanged, 0, 0);
                 }
-                Interop.Actor.InternalRetrievingPropertyVector2ActualVector3(view.SwigCPtr, View.Property.POSITION, view.internalPosition2D.SwigCPtr);
+                Object.InternalRetrievingPropertyVector2ActualVector3(view.SwigCPtr, View.Property.POSITION, view.internalPosition2D.SwigCPtr);
 #else
                 var tmp = new Position(0, 0, 0);
                 var tmpProperty = Object.GetProperty(view.SwigCPtr, Property.POSITION);
@@ -1016,7 +1016,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyBool(view.SwigCPtr, View.Property.PositionUsesAnchorPoint, (bool)newValue);
+                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.PositionUsesAnchorPoint, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.PositionUsesAnchorPoint, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1026,7 +1026,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyBool(view.SwigCPtr, View.Property.PositionUsesAnchorPoint);
+            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.PositionUsesAnchorPoint);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.PositionUsesAnchorPoint).Get(out temp);
@@ -1093,7 +1093,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyVector3(view.SwigCPtr, View.Property.ParentOrigin, ((Position)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector3(view.SwigCPtr, View.Property.ParentOrigin, ((Position)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ParentOrigin, new Tizen.NUI.PropertyValue((Position)newValue));
 #endif
@@ -1104,7 +1104,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             Position temp = new Position(0.0f, 0.0f, 0.0f);
 #if NUI_PROPERTY_CHANGE_1
-            Interop.Actor.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.ParentOrigin, temp.SwigCPtr);
+            Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.ParentOrigin, temp.SwigCPtr);
 #else
 
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ParentOrigin).Get(temp);
@@ -1134,7 +1134,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     view.internalPivotPoint = new Position(view.OnPivotPointChanged, 0, 0, 0);
                 }
-                Interop.Actor.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.AnchorPoint, view.internalPivotPoint.SwigCPtr);
+                Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.AnchorPoint, view.internalPivotPoint.SwigCPtr);
 #else
                 if (view.internalPivotPoint == null)
                 {
@@ -1163,7 +1163,7 @@ namespace Tizen.NUI.BaseComponents
                 // SuggestedMinimumWidth/Height is used by Layout calculation.
                 view.userSizeWidth = (float)newValue;
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, View.Property.SizeWidth, (float)newValue);
+                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.SizeWidth, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeWidth, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1174,7 +1174,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, View.Property.SizeWidth);
+            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.SizeWidth);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeWidth).Get(out temp);
@@ -1197,7 +1197,7 @@ namespace Tizen.NUI.BaseComponents
                 // SuggestedMinimumWidth/Height is used by Layout calculation.
                 view.userSizeHeight = (float)newValue;
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, View.Property.SizeHeight, (float)newValue);
+                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.SizeHeight, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeHeight, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1208,7 +1208,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, View.Property.SizeHeight);
+            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.SizeHeight);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeHeight).Get(out temp);
@@ -1227,7 +1227,7 @@ namespace Tizen.NUI.BaseComponents
                 if (newValue != null)
                 {
 #if NUI_PROPERTY_CHANGE_1
-                    Interop.Actor.InternalSetPropertyVector3(view.SwigCPtr, View.Property.POSITION, ((Position)newValue).SwigCPtr);
+                    Object.InternalSetPropertyVector3(view.SwigCPtr, View.Property.POSITION, ((Position)newValue).SwigCPtr);
 #else
                     view.SetPosition(((Position)newValue).X, ((Position)newValue).Y, ((Position)newValue).Z);
 #endif
@@ -1241,7 +1241,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     view.internalPosition = new Position(view.OnPositionChanged, 0, 0, 0);
                 }
-                Interop.Actor.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.POSITION, view.internalPosition.SwigCPtr);
+                Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.POSITION, view.internalPosition.SwigCPtr);
 #else
                 var tmpProperty = Object.GetProperty(view.SwigCPtr, Property.POSITION);
 
@@ -1266,7 +1266,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, View.Property.PositionX, (float)newValue);
+                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.PositionX, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.PositionX, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1276,7 +1276,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionX);
+            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionX);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.PositionX).Get(out temp);
@@ -1294,7 +1294,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, View.Property.PositionY, (float)newValue);
+                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.PositionY, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.PositionY, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1304,7 +1304,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionY);
+            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionY);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.PositionY).Get(out temp);
@@ -1322,7 +1322,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, View.Property.PositionZ, (float)newValue);
+                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.PositionZ, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.PositionZ, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1332,7 +1332,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionZ);
+            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.PositionZ);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.PositionZ).Get(out temp);
@@ -1381,7 +1381,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     view.internalScale = new Vector3(view.OnScaleChanged, 0, 0, 0);
                 }
-                Interop.Actor.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SCALE, view.internalScale.SwigCPtr);
+                Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SCALE, view.internalScale.SwigCPtr);
 #else
                 if (view.internalScale == null)
                 {
@@ -1406,7 +1406,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, View.Property.ScaleX, (float)newValue);
+                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.ScaleX, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ScaleX, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1416,7 +1416,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleX);
+            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleX);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ScaleX).Get(out temp);
@@ -1434,7 +1434,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, View.Property.ScaleY, (float)newValue);
+                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.ScaleY, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ScaleY, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1444,7 +1444,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleY);
+            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleY);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ScaleY).Get(out temp);
@@ -1462,7 +1462,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyFloat(view.SwigCPtr, View.Property.ScaleZ, (float)newValue);
+                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.ScaleZ, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ScaleZ, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1472,7 +1472,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleZ);
+            return Object.InternalGetPropertyFloat(view.SwigCPtr, View.Property.ScaleZ);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ScaleZ).Get(out temp);
@@ -1491,7 +1491,8 @@ namespace Tizen.NUI.BaseComponents
                 if (newValue != null)
                 {
 #if NUI_PROPERTY_CHANGE_1
-                    Interop.Actor.InternalSetPropertyString(view.SwigCPtr, View.Property.NAME, (string)newValue);
+                    view.internalName = (string)newValue;
+                    Object.InternalSetPropertyString(view.SwigCPtr, View.Property.NAME, (string)newValue);
 #else
                     view.SetName((string)newValue);
 #endif                    
@@ -1501,7 +1502,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-                return Interop.Actor.InternalGetPropertyString(view.SwigCPtr, View.Property.NAME);
+                return view.internalName;
 #else
                 string temp;
                 temp = view.GetName();
@@ -1520,7 +1521,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyBool(view.SwigCPtr, View.Property.SENSITIVE, (bool)newValue);
+                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.SENSITIVE, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SENSITIVE, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1530,7 +1531,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyBool(view.SwigCPtr, View.Property.SENSITIVE);
+            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.SENSITIVE);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SENSITIVE).Get(out temp);
@@ -1548,7 +1549,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyBool(view.SwigCPtr, View.Property.UserInteractionEnabled, (bool)newValue);
+                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.UserInteractionEnabled, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.UserInteractionEnabled, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1559,7 +1560,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyBool(view.SwigCPtr, View.Property.UserInteractionEnabled);
+            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.UserInteractionEnabled);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.UserInteractionEnabled).Get(out temp);
@@ -1577,7 +1578,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyBool(view.SwigCPtr, View.Property.DispatchKeyEvents, (bool)newValue);
+                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.DispatchKeyEvents, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.DispatchKeyEvents, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1587,7 +1588,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyBool(view.SwigCPtr, View.Property.DispatchKeyEvents);
+            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.DispatchKeyEvents);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.DispatchKeyEvents).Get(out temp);
@@ -1605,7 +1606,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyBool(view.SwigCPtr, View.Property.LeaveRequired, (bool)newValue);
+                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.LeaveRequired, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.LeaveRequired, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1615,7 +1616,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyBool(view.SwigCPtr, View.Property.LeaveRequired);
+            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.LeaveRequired);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.LeaveRequired).Get(out temp);
@@ -1633,7 +1634,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyBool(view.SwigCPtr, View.Property.InheritOrientation, (bool)newValue);
+                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.InheritOrientation, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.InheritOrientation, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1643,7 +1644,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritOrientation);
+            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritOrientation);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.InheritOrientation).Get(out temp);
@@ -1661,7 +1662,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyBool(view.SwigCPtr, View.Property.InheritScale, (bool)newValue);
+                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.InheritScale, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.InheritScale, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1671,7 +1672,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritScale);
+            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritScale);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.InheritScale).Get(out temp);
@@ -1689,7 +1690,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyInt(view.SwigCPtr, View.Property.DrawMode, (int)newValue);
+                Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.DrawMode, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.DrawMode, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -1699,7 +1700,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return (DrawModeType)Interop.Actor.InternalGetPropertyInt(view.SwigCPtr, View.Property.DrawMode);
+            return (DrawModeType)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.DrawMode);
 #else
             int temp;
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.DrawMode).Get(out temp) == false)
@@ -1721,7 +1722,7 @@ namespace Tizen.NUI.BaseComponents
                 if (newValue != null)
                 {
 #if NUI_PROPERTY_CHANGE_1
-                    Interop.Actor.InternalSetPropertyVector3(view.SwigCPtr, View.Property.SizeModeFactor, ((Vector3)newValue).SwigCPtr);
+                    Object.InternalSetPropertyVector3(view.SwigCPtr, View.Property.SizeModeFactor, ((Vector3)newValue).SwigCPtr);
 #else
                     var tmp = new PropertyValue((Vector3)newValue);
                     Object.SetProperty(view.SwigCPtr, Property.SizeModeFactor, tmp);
@@ -1737,7 +1738,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     view.internalSizeModeFactor = new Vector3(view.OnSizeModeFactorChanged, 0, 0, 0);
                 }
-                Interop.Actor.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SizeModeFactor, view.internalSizeModeFactor.SwigCPtr);
+                Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SizeModeFactor, view.internalSizeModeFactor.SwigCPtr);
 #else
                 if (view.internalSizeModeFactor == null)
                 {
@@ -1768,7 +1769,7 @@ namespace Tizen.NUI.BaseComponents
                         view.widthConstraint.Apply();
                     }
 #if NUI_PROPERTY_CHANGE_1
-                    Interop.Actor.InternalSetPropertyInt(view.SwigCPtr, View.Property.WidthResizePolicy, (int)ResizePolicyType.FillToParent);
+                    Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.WidthResizePolicy, (int)ResizePolicyType.FillToParent);
 #else
                     Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.WidthResizePolicy, new Tizen.NUI.PropertyValue((int)ResizePolicyType.FillToParent));
 #endif
@@ -1779,7 +1780,7 @@ namespace Tizen.NUI.BaseComponents
                     view.widthConstraint?.Dispose();
                     view.widthConstraint = null;
 #if NUI_PROPERTY_CHANGE_1
-                    Interop.Actor.InternalSetPropertyInt(view.SwigCPtr, View.Property.WidthResizePolicy, (int)newValue);
+                    Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.WidthResizePolicy, (int)newValue);
 #else
                     Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.WidthResizePolicy, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -1813,7 +1814,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             string temp;
 #if NUI_PROPERTY_CHANGE_1
-            temp = Interop.Actor.InternalGetPropertyString(view.SwigCPtr, View.Property.WidthResizePolicy);
+            temp = Object.InternalGetPropertyString(view.SwigCPtr, View.Property.WidthResizePolicy);
 #else
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.WidthResizePolicy).Get(out temp) == false)
             {
@@ -1840,7 +1841,7 @@ namespace Tizen.NUI.BaseComponents
                         view.heightConstraint.Apply();
                     }
 #if NUI_PROPERTY_CHANGE_1
-                    Interop.Actor.InternalSetPropertyInt(view.SwigCPtr, View.Property.HeightResizePolicy, (int)ResizePolicyType.FillToParent);
+                    Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.HeightResizePolicy, (int)ResizePolicyType.FillToParent);
 #else
                     Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.HeightResizePolicy, new Tizen.NUI.PropertyValue((int)ResizePolicyType.FillToParent));
 #endif
@@ -1851,7 +1852,7 @@ namespace Tizen.NUI.BaseComponents
                     view.heightConstraint?.Dispose();
                     view.heightConstraint = null;
 #if NUI_PROPERTY_CHANGE_1
-                    Interop.Actor.InternalSetPropertyInt(view.SwigCPtr, View.Property.HeightResizePolicy, (int)newValue);
+                    Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.HeightResizePolicy, (int)newValue);
 #else
                     Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.HeightResizePolicy, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -1885,7 +1886,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             string temp;
 #if NUI_PROPERTY_CHANGE_1
-            temp = Interop.Actor.InternalGetPropertyString(view.SwigCPtr, View.Property.HeightResizePolicy);
+            temp = Object.InternalGetPropertyString(view.SwigCPtr, View.Property.HeightResizePolicy);
 #else
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.HeightResizePolicy).Get(out temp) == false)
             {
@@ -1907,7 +1908,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 valueToString = ((SizeScalePolicyType)newValue).GetDescription();
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyString(view.SwigCPtr, View.Property.SizeScalePolicy, valueToString);
+                Object.InternalSetPropertyString(view.SwigCPtr, View.Property.SizeScalePolicy, valueToString);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeScalePolicy, new Tizen.NUI.PropertyValue(valueToString));
 #endif
@@ -1917,7 +1918,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return (SizeScalePolicyType)Interop.Actor.InternalGetPropertyInt(view.SwigCPtr, View.Property.SizeScalePolicy);
+            return (SizeScalePolicyType)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.SizeScalePolicy);
 #else
             int temp;
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.SizeScalePolicy).Get(out temp) == false)
@@ -1938,7 +1939,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyBool(view.SwigCPtr, View.Property.WidthForHeight, (bool)newValue);
+                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.WidthForHeight, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.WidthForHeight, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1948,7 +1949,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyBool(view.SwigCPtr, View.Property.WidthForHeight);
+            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.WidthForHeight);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.WidthForHeight).Get(out temp);
@@ -1966,7 +1967,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyBool(view.SwigCPtr, View.Property.HeightForWidth, (bool)newValue);
+                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.HeightForWidth, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.HeightForWidth, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1976,7 +1977,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyBool(view.SwigCPtr, View.Property.HeightForWidth);
+            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.HeightForWidth);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.HeightForWidth).Get(out temp);
@@ -2076,7 +2077,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     view.internalSize = new Size(view.OnSizeChanged, 0, 0, 0);
                 }
-                Interop.Actor.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SIZE, view.internalSize.SwigCPtr);
+                Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SIZE, view.internalSize.SwigCPtr);
 #else
                 var tmpProperty = Object.GetProperty(view.SwigCPtr, Property.SIZE);
                 if (view.internalSize == null)
@@ -2101,7 +2102,7 @@ namespace Tizen.NUI.BaseComponents
                 if (newValue != null)
                 {
 #if NUI_PROPERTY_CHANGE_1
-                    Interop.Actor.InternalSetPropertyVector2(view.SwigCPtr, View.Property.MinimumSize, ((Size2D)newValue).SwigCPtr);
+                    Object.InternalSetPropertyVector2(view.SwigCPtr, View.Property.MinimumSize, ((Size2D)newValue).SwigCPtr);
 #else
                     view.SetMinimumSize((Size2D)newValue);
 #endif                    
@@ -2115,7 +2116,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     view.internalMinimumSize = new Size2D(view.OnMinimumSizeChanged, 0, 0);
                 }
-                Interop.Actor.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.MinimumSize, view.internalMinimumSize.SwigCPtr);
+                Object.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.MinimumSize, view.internalMinimumSize.SwigCPtr);
 #else
                 var view = (View)bindable;
                 if (view.internalMinimumSize == null)
@@ -2141,7 +2142,7 @@ namespace Tizen.NUI.BaseComponents
                 if (newValue != null)
                 {
 #if NUI_PROPERTY_CHANGE_1
-                    Interop.Actor.InternalSetPropertyVector2(view.SwigCPtr, View.Property.MaximumSize, ((Size2D)newValue).SwigCPtr);
+                    Object.InternalSetPropertyVector2(view.SwigCPtr, View.Property.MaximumSize, ((Size2D)newValue).SwigCPtr);
 #else
                     view.SetMaximumSize((Size2D)newValue);
 #endif                    
@@ -2155,7 +2156,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     view.internalMaximumSize = new Size2D(view.OnMaximumSizeChanged, 0, 0);
                 }
-                Interop.Actor.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.MaximumSize, view.internalMaximumSize.SwigCPtr);
+                Object.InternalRetrievingPropertyVector2(view.SwigCPtr, View.Property.MaximumSize, view.internalMaximumSize.SwigCPtr);
 #else
                 if (view.internalMaximumSize == null)
                 {
@@ -2180,7 +2181,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyBool(view.SwigCPtr, View.Property.InheritPosition, (bool)newValue);
+                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.InheritPosition, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.InheritPosition, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -2190,7 +2191,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritPosition);
+            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritPosition);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.InheritPosition).Get(out temp);
@@ -2208,7 +2209,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyInt(view.SwigCPtr, View.Property.ClippingMode, (int)newValue);
+                Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.ClippingMode, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ClippingMode, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -2218,7 +2219,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return (ClippingModeType)Interop.Actor.InternalGetPropertyInt(view.SwigCPtr, View.Property.ClippingMode);
+            return (ClippingModeType)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.ClippingMode);
 #else
             int temp = 0;
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.ClippingMode).Get(out temp) == false)
@@ -2239,7 +2240,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyBool(view.SwigCPtr, View.Property.InheritLayoutDirection, (bool)newValue);
+                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.InheritLayoutDirection, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.InheritLayoutDirection, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -2249,7 +2250,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritLayoutDirection);
+            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.InheritLayoutDirection);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.InheritLayoutDirection).Get(out temp);
@@ -2267,7 +2268,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyInt(view.SwigCPtr, View.Property.LayoutDirection, (int)newValue);
+                Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.LayoutDirection, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.LayoutDirection, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -2277,7 +2278,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return (ViewLayoutDirectionType)Interop.Actor.InternalGetPropertyInt(view.SwigCPtr, View.Property.LayoutDirection);
+            return (ViewLayoutDirectionType)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.LayoutDirection);
 #else
             int temp;
             if (false == Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.LayoutDirection).Get(out temp))
@@ -2338,7 +2339,7 @@ namespace Tizen.NUI.BaseComponents
 
                 if (view.Layout == null)
                 {
-                    
+
                     var tmp = Object.GetProperty(view.SwigCPtr, Property.MARGIN);
                     tmp?.Get(view.internalMargin);
                     tmp?.Dispose();
@@ -2358,7 +2359,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyVector4(view.SwigCPtr, Interop.ActorProperty.UpdateAreaHintGet(), ((Vector4)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(view.SwigCPtr, Interop.ActorProperty.UpdateAreaHintGet(), ((Vector4)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, Interop.ActorProperty.UpdateAreaHintGet(), new Tizen.NUI.PropertyValue((Vector4)newValue));
 #endif
@@ -2369,7 +2370,7 @@ namespace Tizen.NUI.BaseComponents
             var view = (View)bindable;
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
 #if NUI_PROPERTY_CHANGE_1
-            Interop.Actor.InternalRetrievingPropertyVector4(view.SwigCPtr, Interop.ActorProperty.UpdateAreaHintGet(), temp.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(view.SwigCPtr, Interop.ActorProperty.UpdateAreaHintGet(), temp.SwigCPtr);
 #else
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, Interop.ActorProperty.UpdateAreaHintGet()).Get(temp);
 #endif
@@ -2633,7 +2634,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyString(view.SwigCPtr, View.Property.AccessibilityName, (string)newValue);
+                Object.InternalSetPropertyString(view.SwigCPtr, View.Property.AccessibilityName, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityName, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -2643,7 +2644,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyString(view.SwigCPtr, View.Property.AccessibilityName);
+            return Object.InternalGetPropertyString(view.SwigCPtr, View.Property.AccessibilityName);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityName).Get(out temp);
@@ -2661,7 +2662,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyString(view.SwigCPtr, View.Property.AccessibilityDescription, (string)newValue);
+                Object.InternalSetPropertyString(view.SwigCPtr, View.Property.AccessibilityDescription, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityDescription, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -2671,7 +2672,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyString(view.SwigCPtr, View.Property.AccessibilityDescription);
+            return Object.InternalGetPropertyString(view.SwigCPtr, View.Property.AccessibilityDescription);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityDescription).Get(out temp);
@@ -2689,7 +2690,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyString(view.SwigCPtr, View.Property.AccessibilityTranslationDomain, (string)newValue);
+                Object.InternalSetPropertyString(view.SwigCPtr, View.Property.AccessibilityTranslationDomain, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityTranslationDomain, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -2699,7 +2700,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyString(view.SwigCPtr, View.Property.AccessibilityTranslationDomain);
+            return Object.InternalGetPropertyString(view.SwigCPtr, View.Property.AccessibilityTranslationDomain);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityTranslationDomain).Get(out temp);
@@ -2717,7 +2718,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyInt(view.SwigCPtr, View.Property.AccessibilityRole, (int)newValue);
+                Object.InternalSetPropertyInt(view.SwigCPtr, View.Property.AccessibilityRole, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityRole, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -2727,7 +2728,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return (Role)Interop.Actor.InternalGetPropertyInt(view.SwigCPtr, View.Property.AccessibilityRole);
+            return (Role)Object.InternalGetPropertyInt(view.SwigCPtr, View.Property.AccessibilityRole);
 #else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityRole).Get(out temp);
@@ -2745,7 +2746,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyBool(view.SwigCPtr, View.Property.AccessibilityHighlightable, (bool)newValue);
+                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.AccessibilityHighlightable, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityHighlightable, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -2755,7 +2756,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyBool(view.SwigCPtr, View.Property.AccessibilityHighlightable);
+            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.AccessibilityHighlightable);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityHighlightable).Get(out temp);
@@ -2773,7 +2774,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyBool(view.SwigCPtr, View.Property.AccessibilityHidden, (bool)newValue);
+                Object.InternalSetPropertyBool(view.SwigCPtr, View.Property.AccessibilityHidden, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityHidden, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -2783,7 +2784,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var view = (View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyBool(view.SwigCPtr, View.Property.AccessibilityHidden);
+            return Object.InternalGetPropertyBool(view.SwigCPtr, View.Property.AccessibilityHidden);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)view.SwigCPtr, View.Property.AccessibilityHidden).Get(out temp);
@@ -3108,7 +3109,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyString(instance.SwigCPtr, View.Property.AutomationId, (string)newValue);
+                Object.InternalSetPropertyString(instance.SwigCPtr, View.Property.AutomationId, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)instance.SwigCPtr, View.Property.AutomationId, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -3118,7 +3119,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var instance = (Tizen.NUI.BaseComponents.View)bindable;
 #if NUI_PROPERTY_CHANGE_1
-            return Interop.Actor.InternalGetPropertyString(instance.SwigCPtr, View.Property.AutomationId);
+            return Object.InternalGetPropertyString(instance.SwigCPtr, View.Property.AutomationId);
 #else
             string temp = "";
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)instance.SwigCPtr, View.Property.AutomationId).Get(out temp);
@@ -3172,7 +3173,7 @@ namespace Tizen.NUI.BaseComponents
             if (backgroundExtraData == null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyString(SwigCPtr, View.Property.BACKGROUND, value);
+                Object.InternalSetPropertyString(SwigCPtr, View.Property.BACKGROUND, value);
                 BackgroundImageSynchronousLoading = backgroundImageSynchronousLoading;
 #else
                 var propertyValue = new PropertyValue(value);
@@ -3290,7 +3291,7 @@ namespace Tizen.NUI.BaseComponents
             if (backgroundExtraData == null)
             {
 #if NUI_PROPERTY_CHANGE_1
-                Interop.Actor.InternalSetPropertyVector4(SwigCPtr, View.Property.BACKGROUND, ((Color)value).SwigCPtr);
+                Object.InternalSetPropertyVector4(SwigCPtr, View.Property.BACKGROUND, ((Color)value).SwigCPtr);
 #else
                 var background = new PropertyValue(value);
                 Object.SetProperty(SwigCPtr, Property.BACKGROUND, background);
@@ -3353,7 +3354,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 #if NUI_PROPERTY_CHANGE_1
-            Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.ColorRed, (float)value);
+            Object.InternalSetPropertyFloat(SwigCPtr, View.Property.ColorRed, (float)value);
 #else
             using var propertyValue = new Tizen.NUI.PropertyValue((float)value);
             Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.ColorRed, propertyValue);
@@ -3369,7 +3370,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 #if NUI_PROPERTY_CHANGE_1
-            Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.ColorGreen, (float)value);
+            Object.InternalSetPropertyFloat(SwigCPtr, View.Property.ColorGreen, (float)value);
 #else
             using var propertyValue = new Tizen.NUI.PropertyValue((float)value);
             Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.ColorGreen, propertyValue);
@@ -3385,7 +3386,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 #if NUI_PROPERTY_CHANGE_1
-            Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.ColorBlue, (float)value);
+            Object.InternalSetPropertyFloat(SwigCPtr, View.Property.ColorBlue, (float)value);
 #else
             using var propertyValue = new Tizen.NUI.PropertyValue((float)value);
             Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.ColorBlue, propertyValue);
@@ -3401,7 +3402,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 #if NUI_PROPERTY_CHANGE_1
-            Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.OPACITY, (float)value);
+            Object.InternalSetPropertyFloat(SwigCPtr, View.Property.OPACITY, (float)value);
 #else
             Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, View.Property.OPACITY, new Tizen.NUI.PropertyValue((float)value));
 #endif
