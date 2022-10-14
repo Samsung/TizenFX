@@ -197,7 +197,7 @@ namespace Tizen.NUI.Components
                                             width + itemMargin.Start + itemMargin.End:
                                             height + itemMargin.Top + itemMargin.Bottom;
                         groupFooterMargin = new Extents(itemMargin);
-                    
+
                         colView.UnrealizeItem(groupFooter);
                     }
                 }
@@ -378,7 +378,7 @@ namespace Tizen.NUI.Components
 
             //Console.WriteLine("[NUI] itemsView [{0},{1}] [{2},{3}]", colView.Size.Width, colView.Size.Height, colView.ContentContainer.Size.Width, colView.ContentContainer.Size.Height);
 
-            // 1. Set First/Last Visible Item Index. 
+            // 1. Set First/Last Visible Item Index.
             (int start, int end) = FindVisibleItems(visibleArea);
             FirstVisible = start;
             LastVisible = end;
@@ -889,7 +889,7 @@ namespace Tizen.NUI.Components
                 {
                     currentSize = StepCandidate;
                 }
-                
+
             }
 
             ScrollContentSize -= currentSize;
@@ -1053,7 +1053,7 @@ namespace Tizen.NUI.Components
             float offset = 0F;
             (topInScreenIndex, offset) = FindTopItemInScreen();
             */
-            
+
             // Move can only happen in it's own groups.
             // so there will be no changes in position, startIndex in ohter groups.
             // check visible item and update indexs.
@@ -1155,7 +1155,7 @@ namespace Tizen.NUI.Components
 
                 int startGroup = (diff > 0? fromParentIndex: toParentIndex);
                 int endGroup =  (diff > 0? toParentIndex: fromParentIndex);
-                
+
                 for (int i = startGroup; i <= endGroup; i++)
                 {
                     if (i == toParentIndex) continue;
@@ -1501,7 +1501,7 @@ namespace Tizen.NUI.Components
         }
 
         internal override (float Width, float Height) GetItemSize(int index)
-        {            
+        {
             return (sizeCandidate.Width - CandidateMargin.Start - CandidateMargin.End,
                     sizeCandidate.Height - CandidateMargin.Top - CandidateMargin.Bottom);
         }
@@ -1519,6 +1519,7 @@ namespace Tizen.NUI.Components
                 RequestLayout(scrollPosition, force);
                 return false;
             });
+            requestLayoutTimer.Start();
         }
 
         private RecyclerViewItem GetVisibleItem(int index)
