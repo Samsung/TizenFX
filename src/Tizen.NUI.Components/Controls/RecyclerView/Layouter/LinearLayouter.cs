@@ -190,7 +190,7 @@ namespace Tizen.NUI.Components
                         groupFooterSize = IsHorizontal?
                                             width + itemMargin.Start + itemMargin.End:
                                             height + itemMargin.Top + itemMargin.Bottom;
-                        groupFooterMargin = new Extents(itemMargin);  
+                        groupFooterMargin = new Extents(itemMargin);
                         colView.UnrealizeItem(groupFooter);
                     }
                 }
@@ -202,12 +202,14 @@ namespace Tizen.NUI.Components
             else isGrouped = false;
 
             bool failed = false;
+
             //Final Check of FirstIndex
             while (colView.InternalItemSource.IsHeader(firstIndex) ||
                     colView.InternalItemSource.IsGroupHeader(firstIndex) ||
                     colView.InternalItemSource.IsGroupFooter(firstIndex))
             {
-                if (colView.InternalItemSource.IsFooter(firstIndex))
+                if (colView.InternalItemSource.IsFooter(firstIndex)
+                    || ((colView.InternalItemSource.Count - 1) <= firstIndex))
                 {
                     StepCandidate = 0F;
                     failed = true;
@@ -245,7 +247,7 @@ namespace Tizen.NUI.Components
                 StepCandidate = IsHorizontal?
                                 width + itemMargin.Start + itemMargin.End:
                                 height + itemMargin.Top + itemMargin.Bottom;
-                CandidateMargin = new Extents(itemMargin);  
+                CandidateMargin = new Extents(itemMargin);
                 if (StepCandidate == 0) StepCandidate = 1; //????
 
                 colView.UnrealizeItem(sizeDeligate);
@@ -388,7 +390,7 @@ namespace Tizen.NUI.Components
                 PrevScrollPosition + (IsHorizontal? colView.Size.Width : colView.Size.Height)
             );
 
-            // 1. Set First/Last Visible Item Index. 
+            // 1. Set First/Last Visible Item Index.
             (int start, int end) = FindVisibleItems(visibleArea);
             FirstVisible = start;
             LastVisible = end;
@@ -571,7 +573,7 @@ namespace Tizen.NUI.Components
             float offset = 0F;
             (topInScreenIndex, offset) = FindTopItemInScreen();
             */
-        
+
             // 1. Handle MeasureAll
             /*
             if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
@@ -1133,7 +1135,7 @@ namespace Tizen.NUI.Components
                 //Need To Implement
             }
             */
-            
+
             // Move can only happen in it's own groups.
             // so there will be no changes in position, startIndex in ohter groups.
             // check visible item and update indexs.
@@ -1235,7 +1237,7 @@ namespace Tizen.NUI.Components
 
                 int startGroup = (diff > 0? fromParentIndex: toParentIndex);
                 int endGroup =  (diff > 0? toParentIndex: fromParentIndex);
-                
+
                 for (int i = startGroup; i <= endGroup; i++)
                 {
                     if (i == toParentIndex) continue;
@@ -1594,7 +1596,7 @@ namespace Tizen.NUI.Components
                         - CandidateMargin.Start - CandidateMargin.End,
                         (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)StepCandidate)
                         - CandidateMargin.Top - CandidateMargin.Bottom);
-            }            
+            }
         }
 
         private void DelayedRequestLayout(float scrollPosition , bool force = true)
@@ -1611,6 +1613,7 @@ namespace Tizen.NUI.Components
                 RequestLayout(scrollPosition, force);
                 return false;
             });
+            requestLayoutTimer.Start();
         }
 
         /*
@@ -1653,7 +1656,7 @@ namespace Tizen.NUI.Components
                     return groupFooterSize;
                 else
                     return StepCandidate;
-            }            
+            }
         }
 
         private void UpdatePosition(int index)
