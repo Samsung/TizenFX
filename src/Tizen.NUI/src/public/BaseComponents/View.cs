@@ -83,6 +83,9 @@ namespace Tizen.NUI.BaseComponents
         private bool dispatchGestureEvents = true;
         private bool dispatchParentGestureEvents = true;
 
+#if NUI_PROPERTY_CHANGE_1
+        private string internalName = string.Empty;
+#endif
 #if NUI_PROPERTY_CHANGE_3
         private Vector3 internalCurrentParentOrigin = null;
         private Vector3 internalCurrentAnchorPoint = null;
