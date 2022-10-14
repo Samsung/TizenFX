@@ -369,6 +369,9 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
+#if NUI_PROPERTY_CHANGE_1
+            internalName = null;
+#endif            
             if (disposing == false)
             {
                 if (IsNativeHandleInvalid() || SwigCMemOwn == false)
