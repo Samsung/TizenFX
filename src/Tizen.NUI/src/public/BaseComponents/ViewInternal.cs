@@ -18,6 +18,7 @@
 using System;
 using System.ComponentModel;
 using global::System.Diagnostics;
+using Tizen.NUI;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -127,11 +128,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+WorldPositionXGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.WorldPositionX);
+#else
                 float returnValue = 0.0f;
                 PropertyValue wordPositionX = GetProperty(View.Property.WorldPositionX);
                 wordPositionX?.Get(out returnValue);
                 wordPositionX?.Dispose();
                 return returnValue;
+#endif                
             }
         }
 
@@ -139,11 +147,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+WorldPositionYGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.WorldPositionY);
+#else
                 float returnValue = 0.0f;
                 PropertyValue wordPositionY = GetProperty(View.Property.WorldPositionY);
                 wordPositionY?.Get(out returnValue);
                 wordPositionY?.Dispose();
                 return returnValue;
+#endif
             }
         }
 
@@ -151,11 +166,18 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+WorldPositionZGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.WorldPositionZ);
+#else
                 float returnValue = 0.0f;
                 PropertyValue wordPositionZ = GetProperty(View.Property.WorldPositionZ);
                 wordPositionZ?.Get(out returnValue);
                 wordPositionZ?.Dispose();
                 return returnValue;
+#endif
             }
         }
 
@@ -195,17 +217,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ParentOriginXGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.ParentOriginX);
+#else
                 float returnValue = 0.0f;
                 PropertyValue parentOriginX = GetProperty(View.Property.ParentOriginX);
                 parentOriginX?.Get(out returnValue);
                 parentOriginX?.Dispose();
                 return returnValue;
+#endif
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ParentOriginXSetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.WorldPositionX, value);
+#else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.ParentOriginX, setValue);
                 setValue.Dispose();
+#endif
                 NotifyPropertyChanged();
             }
         }
@@ -214,17 +250,32 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ParentOriginYGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.ParentOriginY);
+#else
                 float returnValue = 0.0f;
                 PropertyValue parentOriginY = GetProperty(View.Property.ParentOriginY);
                 parentOriginY?.Get(out returnValue);
                 parentOriginY?.Dispose();
                 return returnValue;
+#endif
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ParentOriginYSetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.ParentOriginY, value);
+#else
+
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.ParentOriginY, setValue);
                 setValue.Dispose();
+#endif
                 NotifyPropertyChanged();
             }
         }
@@ -233,17 +284,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ParentOriginZGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.ParentOriginZ);
+#else
                 float returnValue = 0.0f;
                 PropertyValue parentOriginZ = GetProperty(View.Property.ParentOriginZ);
                 parentOriginZ?.Get(out returnValue);
                 parentOriginZ?.Dispose();
                 return returnValue;
+#endif            
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ParentOriginZSetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.ParentOriginZ, value);
+#else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.ParentOriginZ, setValue);
                 setValue.Dispose();
+#endif
                 NotifyPropertyChanged();
             }
         }
@@ -252,17 +317,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PivotPointXGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.AnchorPointX);
+#else
                 float returnValue = 0.0f;
                 PropertyValue anchorPointX = GetProperty(View.Property.AnchorPointX);
                 anchorPointX?.Get(out returnValue);
                 anchorPointX?.Dispose();
                 return returnValue;
+#endif
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PivotPointXSetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.AnchorPointX, value);
+#else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.AnchorPointX, setValue);
                 setValue.Dispose();
+#endif
             }
         }
 
@@ -270,17 +349,32 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PivotPointYGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.AnchorPointY);
+#else
+
                 float returnValue = 0.0f;
                 PropertyValue anchorPointY = GetProperty(View.Property.AnchorPointY);
                 anchorPointY?.Get(out returnValue);
                 anchorPointY?.Dispose();
                 return returnValue;
+#endif
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PivotPointYSetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.AnchorPointY, value);
+#else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.AnchorPointY, setValue);
                 setValue.Dispose();
+#endif
             }
         }
 
@@ -288,17 +382,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PivotPointZGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.AnchorPointZ);
+#else
                 float returnValue = 0.0f;
                 PropertyValue anchorPointZ = GetProperty(View.Property.AnchorPointZ);
                 anchorPointZ?.Get(out returnValue);
                 anchorPointZ?.Dispose();
                 return returnValue;
+#endif            
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+PivotPointZSetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.AnchorPointZ, value);
+#else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.AnchorPointZ, setValue);
                 setValue.Dispose();
+#endif
             }
         }
 
@@ -362,17 +470,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+LeftFocusableViewIdGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyInt(SwigCPtr, View.Property.LeftFocusableViewId);
+#else
                 int returnValue = 0;
                 PropertyValue leftFocusableViewId = GetProperty(View.Property.LeftFocusableViewId);
                 leftFocusableViewId?.Get(out returnValue);
                 leftFocusableViewId?.Dispose();
                 return returnValue;
+#endif
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+LeftFocusableViewIdSetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                Interop.Actor.InternalSetPropertyInt(SwigCPtr, View.Property.LeftFocusableViewId, value);
+#else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.LeftFocusableViewId, setValue);
                 setValue.Dispose();
+#endif
             }
         }
 
@@ -380,17 +502,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+RightFocusableViewIdGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyInt(SwigCPtr, View.Property.RightFocusableViewId);
+#else
                 int returnValue = 0;
                 PropertyValue rightFocusableViewId = GetProperty(View.Property.RightFocusableViewId);
                 rightFocusableViewId?.Get(out returnValue);
                 rightFocusableViewId?.Dispose();
                 return returnValue;
+#endif
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+RightFocusableViewIdSetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                Interop.Actor.InternalSetPropertyInt(SwigCPtr, View.Property.RightFocusableViewId, value);
+#else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.RightFocusableViewId, setValue);
                 setValue.Dispose();
+#endif
             }
         }
 
@@ -398,17 +534,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+UpFocusableViewIdGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyInt(SwigCPtr, View.Property.UpFocusableViewId);
+#else
                 int returnValue = 0;
                 PropertyValue upFocusableViewId = GetProperty(View.Property.UpFocusableViewId);
                 upFocusableViewId?.Get(out returnValue);
                 upFocusableViewId?.Dispose();
                 return returnValue;
+#endif
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+UpFocusableViewIdSetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                Interop.Actor.InternalSetPropertyInt(SwigCPtr, View.Property.UpFocusableViewId, value);
+#else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.UpFocusableViewId, setValue);
                 setValue.Dispose();
+#endif
             }
         }
 
@@ -416,17 +566,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+DownFocusableViewIdGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyInt(SwigCPtr, View.Property.DownFocusableViewId);
+#else
                 int returnValue = 0;
                 PropertyValue downFocusableViewId = GetProperty(View.Property.DownFocusableViewId);
                 downFocusableViewId?.Get(out returnValue);
                 downFocusableViewId?.Dispose();
                 return returnValue;
+#endif
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+DownFocusableViewIdSetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                Interop.Actor.InternalSetPropertyInt(SwigCPtr, View.Property.DownFocusableViewId, value);
+#else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.DownFocusableViewId, setValue);
                 setValue.Dispose();
+#endif
             }
         }
 
@@ -434,17 +598,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ClockwiseFocusableViewIdGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyInt(SwigCPtr, View.Property.ClockwiseFocusableViewId);
+#else
                 int returnValue = -1;
                 PropertyValue clockwiseFocusableViewId = GetProperty(View.Property.ClockwiseFocusableViewId);
                 clockwiseFocusableViewId?.Get(out returnValue);
                 clockwiseFocusableViewId?.Dispose();
                 return returnValue;
+#endif
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+ClockwiseFocusableViewIdSetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                Interop.Actor.InternalSetPropertyInt(SwigCPtr, View.Property.ClockwiseFocusableViewId, value);
+#else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.ClockwiseFocusableViewId, setValue);
                 setValue.Dispose();
+#endif
             }
         }
 
@@ -452,17 +630,31 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+CounterClockwiseFocusableViewIdGetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                return Interop.Actor.InternalGetPropertyInt(SwigCPtr, View.Property.CounterClockwiseFocusableViewId);
+#else
                 int returnValue = -1;
                 PropertyValue counterClockwiseFocusableViewId = GetProperty(View.Property.CounterClockwiseFocusableViewId);
                 counterClockwiseFocusableViewId?.Get(out returnValue);
                 counterClockwiseFocusableViewId?.Dispose();
                 return returnValue;
+#endif
             }
             set
             {
+#if NUI_PROPERTY_CHANGE_DEBUG
+CounterClockwiseFocusableViewIdSetter++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+                Interop.Actor.InternalSetPropertyInt(SwigCPtr, View.Property.CounterClockwiseFocusableViewId, value);
+#else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.CounterClockwiseFocusableViewId, setValue);
                 setValue.Dispose();
+#endif
             }
         }
 
@@ -527,10 +719,29 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector3 GetCurrentParentOrigin()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetCurrentParentOriginCnt++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+            if(internalCurrentParentOrigin == null)
+            {
+                internalCurrentParentOrigin = new Vector3(0, 0, 0);
+            }
+            
+            Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.ParentOrigin, internalCurrentParentOrigin.SwigCPtr);
+            
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return internalCurrentParentOrigin;
+#else
             Vector3 ret = new Vector3(Interop.ActorInternal.GetCurrentParentOrigin(SwigCPtr), true);
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+#endif            
         }
 
         internal void SetAnchorPoint(Vector3 anchorPoint)
@@ -542,10 +753,28 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector3 GetCurrentAnchorPoint()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetCurrentAnchorPointCnt++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+            if(internalCurrentAnchorPoint == null)
+            {
+                internalCurrentAnchorPoint = new Vector3(0, 0, 0);
+            }
+            
+            Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.AnchorPoint, internalCurrentAnchorPoint.SwigCPtr);
+            
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return internalCurrentAnchorPoint;
+#else
             Vector3 ret = new Vector3(Interop.ActorInternal.GetCurrentAnchorPoint(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+#endif            
         }
 
         internal void SetSize(float width, float height)
@@ -578,24 +807,63 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector3 GetTargetSize()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetTargetSizeCnt++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+            if(internalTargetSize == null)
+            {
+                internalTargetSize = new Vector3(0, 0, 0);
+            }
+            
+            Interop.ActorInternal.RetrieveTargetSize(SwigCPtr, internalTargetSize.SwigCPtr);
+            
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return internalTargetSize;
+#else
             Vector3 ret = new Vector3(Interop.ActorInternal.GetTargetSize(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+#endif
         }
 
         internal Size2D GetCurrentSize()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetCurrentSizeCnt++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+            if(internalCurrentSize == null)
+            {
+                internalCurrentSize = new Size2D(0, 0);
+            }
+            
+            Interop.ActorInternal.RetrieveCurrentPropertyVector2ActualVector3(SwigCPtr, Property.SIZE, internalCurrentSize.SwigCPtr);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return internalCurrentSize;
+#else
             Size ret = new Size(Interop.Actor.GetCurrentSize(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             Size2D size = new Size2D((int)ret.Width, (int)ret.Height);
             ret.Dispose();
             return size;
+#endif
         }
 
         internal Size2D GetCurrentSizeFloat()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetCurrentSizeFloatCnt++;
+#endif
             Size ret = new Size(Interop.Actor.GetCurrentSize(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -608,6 +876,10 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         internal virtual Vector3 GetNaturalSize()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetNaturalSizeCnt++;
+#endif
+
             Vector3 ret = new Vector3(Interop.Actor.GetNaturalSize(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -644,18 +916,55 @@ namespace Tizen.NUI.BaseComponents
 
         internal Position GetCurrentPosition()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetCurrentPositionCnt++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+            if(internalCurrentPosition == null)
+            {
+                internalCurrentPosition = new Position(0, 0, 0);
+            }
+            
+            Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, Property.POSITION, internalCurrentPosition.SwigCPtr);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return internalCurrentPosition;
+#else
+
             Position ret = new Position(Interop.Actor.GetCurrentPosition(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+#endif
         }
 
         internal Vector3 GetCurrentWorldPosition()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetCurrentWorldPositionCnt++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+            if(internalCurrentWorldPosition == null)
+            {
+                internalCurrentWorldPosition = new Vector3(0, 0, 0);
+            }
+            
+            Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.WorldPosition, internalCurrentWorldPosition.SwigCPtr);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return internalCurrentWorldPosition;
+#else
             Vector3 ret = new Vector3(Interop.ActorInternal.GetCurrentWorldPosition(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+#endif
         }
 
         internal void SetInheritPosition(bool inherit)
@@ -748,18 +1057,56 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector3 GetCurrentScale()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetCurrentScaleCnt++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+            if(internalCurrentScale == null)
+            {
+                internalCurrentScale = new Vector3(0, 0, 0);
+            }
+            
+            Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.SCALE, internalCurrentScale.SwigCPtr);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return internalCurrentScale;
+#else
+
             Vector3 ret = new Vector3(Interop.ActorInternal.GetCurrentScale(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+#endif        
         }
 
         internal Vector3 GetCurrentWorldScale()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetCurrentWorldScaleCnt++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+            if(internalCurrentWorldScale == null)
+            {
+                internalCurrentWorldScale = new Vector3(0, 0, 0);
+            }
+            
+            Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.WorldScale, internalCurrentWorldScale.SwigCPtr);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return internalCurrentWorldScale;
+#else
+
             Vector3 ret = new Vector3(Interop.ActorInternal.GetCurrentWorldScale(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+#endif
         }
 
         internal void SetInheritScale(bool inherit)
@@ -824,10 +1171,29 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector4 GetCurrentColor()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetCurrentColorCnt++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+            if(internalCurrentColor == null)
+            {
+                internalCurrentColor = new Vector4(0, 0, 0, 0);
+            }
+            
+            Interop.ActorInternal.RetrieveCurrentPropertyVector4(SwigCPtr, Interop.ActorProperty.ColorGet(), internalCurrentColor.SwigCPtr);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return internalCurrentColor;
+#else
+
             Vector4 ret = new Vector4(Interop.ActorInternal.GetCurrentColor(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+#endif
         }
         internal ColorMode GetColorMode()
         {
@@ -839,10 +1205,29 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector4 GetCurrentWorldColor()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetCurrentWorldColorCnt++;
+#endif
+#if NUI_PROPERTY_CHANGE_3
+            if(internalCurrentWorldColor == null)
+            {
+                internalCurrentWorldColor = new Vector4(0, 0, 0, 0);
+            }
+            
+            Interop.ActorInternal.RetrieveCurrentPropertyVector4(SwigCPtr, Property.WorldColor, internalCurrentWorldColor.SwigCPtr);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return internalCurrentWorldColor;
+#else
+
             Vector4 ret = new Vector4(Interop.ActorInternal.GetCurrentWorldColor(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+#endif            
         }
 
         internal void SetDrawMode(DrawModeType drawMode)
@@ -922,10 +1307,23 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector3 GetSizeModeFactor()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetSizeModeFactorCnt++;
+#endif
+#if NUI_PROPERTY_CHANGE_1
+                if (internalSizeModeFactor == null)
+                {
+                    internalSizeModeFactor = new Vector3(OnSizeModeFactorChanged, 0, 0, 0);
+                }
+                Interop.Actor.InternalRetrievingPropertyVector3(SwigCPtr, View.Property.SizeModeFactor, internalSizeModeFactor.SwigCPtr);
+                return internalSizeModeFactor;
+#else
+
             Vector3 ret = new Vector3(Interop.Actor.GetSizeModeFactor(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+#endif
         }
 
         internal void SetMinimumSize(Vector2 size)
@@ -937,10 +1335,22 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector2 GetMinimumSize()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetMinimumSizeCnt++;
+#endif
+#if NUI_PROPERTY_CHANGE_1
+            if (internalMinimumSize == null)
+            {
+                internalMinimumSize = new Size2D(OnMinimumSizeChanged, 0, 0);
+            }
+            Interop.Actor.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.MinimumSize, internalMinimumSize.SwigCPtr);
+            return internalMinimumSize;
+#else
             Vector2 ret = new Vector2(Interop.ActorInternal.GetMinimumSize(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+#endif
         }
 
         internal void SetMaximumSize(Vector2 size)
@@ -952,10 +1362,23 @@ namespace Tizen.NUI.BaseComponents
 
         internal Vector2 GetMaximumSize()
         {
+#if NUI_PROPERTY_CHANGE_DEBUG
+GetMaximumSizeCnt++;
+#endif
+#if NUI_PROPERTY_CHANGE_1
+            if (internalMaximumSize == null)
+            {
+                internalMaximumSize = new Size2D(OnMaximumSizeChanged, 0, 0);
+            }
+            Interop.Actor.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.MaximumSize, internalMaximumSize.SwigCPtr);
+            return internalMaximumSize;
+#else
+
             Vector2 ret = new Vector2(Interop.ActorInternal.GetMaximumSize(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+#endif
         }
 
         internal int GetHierarchyDepth()
@@ -1035,6 +1458,11 @@ namespace Tizen.NUI.BaseComponents
 
         internal void RemoveChild(View child)
         {
+            // If the view had focus, it clears focus.
+            if (child == FocusManager.Instance.GetCurrentFocusView())
+            {
+                FocusManager.Instance.ClearFocus();
+            }
             // Do actual child removal
             Interop.Actor.Remove(SwigCPtr, View.getCPtr(child));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -1220,6 +1648,33 @@ namespace Tizen.NUI.BaseComponents
             tapGestureDetector = null;
             rotationGestureDetector?.Dispose();
             rotationGestureDetector = null;
+
+#if NUI_PROPERTY_CHANGE_3
+            internalCurrentParentOrigin?.Dispose();
+            internalCurrentParentOrigin = null;
+            internalCurrentAnchorPoint?.Dispose();
+            internalCurrentAnchorPoint = null;
+            internalTargetSize?.Dispose();
+            internalTargetSize = null;
+            internalCurrentSize?.Dispose();
+            internalCurrentSize = null;
+            internalNaturalSize?.Dispose();
+            internalNaturalSize = null;
+            internalCurrentPosition?.Dispose();
+            internalCurrentPosition = null;
+            internalCurrentWorldPosition?.Dispose();
+            internalCurrentWorldPosition = null;
+            internalCurrentScale?.Dispose();
+            internalCurrentScale = null;
+            internalCurrentWorldScale?.Dispose();
+            internalCurrentWorldScale = null;
+            internalCurrentColor?.Dispose();
+            internalCurrentColor = null;
+            internalCurrentWorldColor?.Dispose();
+            internalCurrentWorldColor = null;
+            internalSizeModeFactor?.Dispose();
+            internalSizeModeFactor = null;
+#endif
 
             if (type == DisposeTypes.Explicit)
             {

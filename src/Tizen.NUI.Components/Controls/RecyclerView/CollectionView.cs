@@ -39,23 +39,43 @@ namespace Tizen.NUI.Components
             BindableProperty.Create(nameof(SelectedItem), typeof(object), typeof(CollectionView), null,
                 propertyChanged: (bindable, oldValue, newValue) =>
                 {
-                    var colView = (CollectionView)bindable;
+                    var colView = bindable as CollectionView;
+                    if (colView == null)
+                    {
+                        throw new Exception("Bindable object is not CollectionView.");
+                    }
+
                     oldValue = colView.selectedItem;
                     colView.selectedItem = newValue;
                     var args = new SelectionChangedEventArgs(oldValue, newValue);
 
                     foreach (RecyclerViewItem item in colView.ContentContainer.Children.Where((item) => item is RecyclerViewItem))
                     {
-                        if (item.BindingContext == null) continue;
-                        if (item.BindingContext == oldValue) item.IsSelected = false;
-                        else if (item.BindingContext == newValue) item.IsSelected = true;
+                        if (item.BindingContext == null)
+                        {
+                            continue;
+                        }
+
+                        if (item.BindingContext == oldValue)
+                        {
+                            item.IsSelected = false;
+                        }
+                        else if (item.BindingContext == newValue)
+                        {
+                            item.IsSelected = true;
+                        }
                     }
 
                     SelectionPropertyChanged(colView, args);
                 },
                 defaultValueCreator: (bindable) =>
                 {
-                    var colView = (CollectionView)bindable;
+                    var colView = bindable as CollectionView;
+                    if (colView == null)
+                    {
+                        throw new Exception("Bindable object is not CollectionView.");
+                    }
+
                     return colView.selectedItem;
                 });
 
@@ -67,7 +87,12 @@ namespace Tizen.NUI.Components
             BindableProperty.Create(nameof(SelectedItems), typeof(IList<object>), typeof(CollectionView), null,
                 propertyChanged: (bindable, oldValue, newValue) =>
                 {
-                    var colView = (CollectionView)bindable;
+                    var colView = bindable as CollectionView;
+                    if (colView == null)
+                    {
+                        throw new Exception("Bindable object is not CollectionView.");
+                    }
+
                     var oldSelection = colView.selectedItems ?? selectEmpty;
                     //FIXME : CoerceSelectedItems calls only isCreatedByXaml
                     var newSelection = (SelectionList)CoerceSelectedItems(colView, newValue);
@@ -76,7 +101,12 @@ namespace Tizen.NUI.Components
                 },
                 defaultValueCreator: (bindable) =>
                 {
-                    var colView = (CollectionView)bindable;
+                    var colView = bindable as CollectionView;
+                    if (colView == null)
+                    {
+                        throw new Exception("Bindable object is not CollectionView.");
+                    }
+
                     colView.selectedItems = colView.selectedItems ?? new SelectionList(colView);
                     return colView.selectedItems;
                 });
@@ -89,14 +119,24 @@ namespace Tizen.NUI.Components
             BindableProperty.Create(nameof(SelectionMode), typeof(ItemSelectionMode), typeof(CollectionView), ItemSelectionMode.None,
                 propertyChanged: (bindable, oldValue, newValue) =>
                 {
-                    var colView = (CollectionView)bindable;
+                    var colView = bindable as CollectionView;
+                    if (colView == null)
+                    {
+                        throw new Exception("Bindable object is not CollectionView.");
+                    }
+
                     oldValue = colView.selectionMode;
                     colView.selectionMode = (ItemSelectionMode)newValue;
                     SelectionModePropertyChanged(colView, oldValue, newValue);
                 },
                 defaultValueCreator: (bindable) =>
                 {
-                    var colView = (CollectionView)bindable;
+                    var colView = bindable as CollectionView;
+                    if (colView == null)
+                    {
+                        throw new Exception("Bindable object is not CollectionView.");
+                    }
+
                     return colView.selectionMode;
                 });
 
@@ -202,7 +242,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public override IEnumerable ItemsSource
         {
-            get => (IEnumerable)GetValue(RecyclerView.ItemsSourceProperty);
+            get => GetValue(RecyclerView.ItemsSourceProperty) as IEnumerable;
             set => SetValue(RecyclerView.ItemsSourceProperty, value);
         }
 
@@ -221,11 +261,14 @@ namespace Tizen.NUI.Components
                     {
                         prevNotifyCollectionChanged.CollectionChanged -= CollectionChanged;
                     }
-                    if (selectedItem != null) selectedItem = null;
+                    if (selectedItem != null)
+                    {
+                        selectedItem = null;
+                    }
                     selectedItems?.Clear();
                 }
 
-                itemsSource = (IEnumerable)value;
+                itemsSource = value as IEnumerable;
 
                 if (itemsSource == null)
                 {
@@ -246,7 +289,7 @@ namespace Tizen.NUI.Components
                 if (itemsLayouter == null) return;
 
                 needInitalizeLayouter = true;
-                Init();
+                ReinitializeLayout();
 
             }
         }
@@ -285,7 +328,7 @@ namespace Tizen.NUI.Components
                 }
 
                 needInitalizeLayouter = true;
-                Init();
+                ReinitializeLayout();
             }
         }
 
@@ -340,7 +383,7 @@ namespace Tizen.NUI.Components
                 {
                     itemsLayouter.Padding = new Extents(layouterStyle.Padding);
                 }
-                Init();
+                ReinitializeLayout();
             }
         }
 
@@ -372,7 +415,7 @@ namespace Tizen.NUI.Components
                 {
                     base.ScrollingDirection = value;
                     needInitalizeLayouter = true;
-                    Init();
+                    ReinitializeLayout();
                 }
             }
         }
@@ -393,7 +436,7 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public IList<object> SelectedItems
         {
-            get => (IList<object>)GetValue(SelectedItemsProperty);
+            get => GetValue(SelectedItemsProperty) as IList<object>;
             // set => SetValue(SelectedItemsProperty, new SelectionList(this, value));
         }
 
@@ -483,7 +526,7 @@ namespace Tizen.NUI.Components
                     InternalItemSource.HasHeader = (value != null);
                 }
                 needInitalizeLayouter = true;
-                Init();
+                ReinitializeLayout();
             }
         }
 
@@ -527,7 +570,7 @@ namespace Tizen.NUI.Components
                     InternalItemSource.HasFooter = (value != null);
                 }
                 needInitalizeLayouter = true;
-                Init();
+                ReinitializeLayout();
             }
         }
 
@@ -561,8 +604,11 @@ namespace Tizen.NUI.Components
                     InternalItemSource = null;
                 }
                 if (ItemsSource != null)
+                {
                     InternalItemSource = ItemsSourceFactory.Create(this);
-                Init();
+                }
+
+                ReinitializeLayout();
             }
         }
 
@@ -594,15 +640,20 @@ namespace Tizen.NUI.Components
             {
                 groupHeaderTemplate = value;
                 needInitalizeLayouter = true;
+
                 //Need to re-intialize Internal Item Source.
                 if (InternalItemSource != null)
                 {
                     InternalItemSource.Dispose();
                     InternalItemSource = null;
                 }
+
                 if (ItemsSource != null)
+                {
                     InternalItemSource = ItemsSourceFactory.Create(this);
-                Init();
+                }
+
+                ReinitializeLayout();
             }
         }
 
@@ -633,15 +684,20 @@ namespace Tizen.NUI.Components
             {
                 groupFooterTemplate = value;
                 needInitalizeLayouter = true;
+
                 //Need to re-intialize Internal Item Source.
                 if (InternalItemSource != null)
                 {
                     InternalItemSource.Dispose();
                     InternalItemSource = null;
                 }
+
                 if (ItemsSource != null)
+                {
                     InternalItemSource = ItemsSourceFactory.Create(this);
-                Init();
+                }
+
+                ReinitializeLayout();
             }
         }
 
@@ -673,7 +729,10 @@ namespace Tizen.NUI.Components
             base.OnRelayout(size, container);
 
             wasRelayouted = true;
-            if (needInitalizeLayouter) Init();
+            if (needInitalizeLayouter)
+            {
+                ReinitializeLayout();
+            }
         }
 
         /// <inheritdoc/>
@@ -729,7 +788,11 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public new void ScrollTo(float position, bool animate)
         {
-            if (ItemsLayouter == null) throw new Exception("Item Layouter must exist.");
+            if (ItemsLayouter == null)
+            {
+                throw new Exception("Item Layouter must exist.");
+            }
+
             if ((InternalItemSource == null) || needInitalizeLayouter)
             {
                 delayedScrollTo = true;
@@ -759,13 +822,18 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public virtual void ScrollTo(int index, bool animate = false, ItemScrollTo align = ItemScrollTo.Nearest)
         {
-            if (ItemsLayouter == null) throw new Exception("Item Layouter must exist.");
+            if (ItemsLayouter == null)
+            {
+                throw new Exception("Item Layouter must exist.");
+            }
+
             if ((InternalItemSource == null) || needInitalizeLayouter)
             {
                 delayedIndexScrollTo = true;
                 delayedIndexScrollToParam = (index, animate, align);
                 return;
             }
+
             if (index < 0 || index >= InternalItemSource.Count)
             {
                 throw new Exception("index is out of boundary. index should be a value between (0, " + InternalItemSource.Count.ToString() + ").");
@@ -774,6 +842,7 @@ namespace Tizen.NUI.Components
             float scrollPos, curPos, curSize, curItemSize;
             (float x, float y) = ItemsLayouter.GetItemPosition(index);
             (float width, float height) = ItemsLayouter.GetItemSize(index);
+
             if (ScrollingDirection == Direction.Horizontal)
             {
                 scrollPos = x;
@@ -840,7 +909,9 @@ namespace Tizen.NUI.Components
                 string styleName = "Tizen.NUI.Compoenents." + (itemsLayouter is LinearLayouter? "LinearLayouter" : (itemsLayouter is GridLayouter ? "GridLayouter" : "ItemsLayouter"));
                 ViewStyle layouterStyle = ThemeManager.GetStyle(styleName);
                 if (layouterStyle != null)
+                {
                     itemsLayouter.Padding = new Extents(layouterStyle.Padding);
+                }
             }
         }
 
@@ -889,6 +960,7 @@ namespace Tizen.NUI.Components
         }
 
         // Realize and Decorate the item.
+
         internal override RecyclerViewItem RealizeItem(int index)
         {
             RecyclerViewItem item;
@@ -909,59 +981,21 @@ namespace Tizen.NUI.Components
                 var context = InternalItemSource.GetItem(index);
                 if (InternalItemSource.IsGroupHeader(index))
                 {
-                    DataTemplate templ = (groupHeaderTemplate as DataTemplateSelector)?.SelectDataTemplate(context, this) ?? groupHeaderTemplate;
-
-                    RecyclerViewItem groupHeader = PopRecycleGroupCache(templ, true);
-                    if (groupHeader == null)
-                    {
-                        groupHeader = (RecyclerViewItem)DataTemplateExtensions.CreateContent(groupHeaderTemplate, context, this);
-
-                        groupHeader.Template = templ;
-                        groupHeader.isGroupHeader = true;
-                        groupHeader.isGroupFooter = false;
-                        ContentContainer.Add(groupHeader);
-                    }
-
-                    if (groupHeader != null)
-                    {
-                        groupHeader.ParentItemsView = this;
-                        groupHeader.Index = index;
-                        groupHeader.ParentGroup = context;
-                        groupHeader.BindingContext = context;
-                    }
-                    //group selection?
-                    item = groupHeader;
+                    item = RealizeGroupHeader(index, context);
                 }
                 else if (InternalItemSource.IsGroupFooter(index))
                 {
-                    DataTemplate templ = (groupFooterTemplate as DataTemplateSelector)?.SelectDataTemplate(context, this) ?? groupFooterTemplate;
 
-                    RecyclerViewItem groupFooter = PopRecycleGroupCache(templ, false);
-                    if (groupFooter == null)
-                    {
-                        groupFooter = (RecyclerViewItem)DataTemplateExtensions.CreateContent(groupFooterTemplate, context, this);
-
-                        groupFooter.Template = templ;
-                        groupFooter.isGroupHeader = false;
-                        groupFooter.isGroupFooter = true;
-                        ContentContainer.Add(groupFooter);
-                    }
-
-                    if (groupFooter != null)
-                    {
-                        groupFooter.ParentItemsView = this;
-                        groupFooter.Index = index;
-                        groupFooter.ParentGroup = context;
-                        groupFooter.BindingContext = context;
-                    }
                     //group selection?
-                    item = groupFooter;
+                    item = RealizeGroupFooter(index, context);
                 }
                 else
                 {
                     item = base.RealizeItem(index);
                     if (item == null)
+                    {
                         throw new Exception("Item realize failed by Null content return.");
+                    }
                     item.ParentGroup = InternalItemSource.GetGroupParent(index);
                 }
             }
@@ -999,7 +1033,11 @@ namespace Tizen.NUI.Components
         // Unrealize and caching the item.
         internal override void UnrealizeItem(RecyclerViewItem item, bool recycle = true)
         {
-            if (item == null) return;
+            if (item == null)
+            {
+                return;
+            }
+
             if (item == Header)
             {
                 item?.Hide();
@@ -1010,6 +1048,7 @@ namespace Tizen.NUI.Components
                 item.Hide();
                 return;
             }
+
             if (item.isGroupHeader || item.isGroupFooter)
             {
                 item.Index = -1;
@@ -1021,7 +1060,9 @@ namespace Tizen.NUI.Components
                 item.UpdateState();
                 //item.Relayout -= OnItemRelayout;
                 if (!recycle || !PushRecycleGroupCache(item))
+                {
                     Utility.Dispose(item);
+                }
                 return;
             }
 
@@ -1040,11 +1081,17 @@ namespace Tizen.NUI.Components
                 if (item.BindingContext == null) continue;
                 if (newSelection.Contains(item.BindingContext))
                 {
-                    if (!item.IsSelected) item.IsSelected = true;
+                    if (!item.IsSelected)
+                    {
+                        item.IsSelected = true;
+                    }
                 }
                 else
                 {
-                    if (item.IsSelected) item.IsSelected = false;
+                    if (item.IsSelected)
+                    {
+                        item.IsSelected = false;
+                    }
                 }
             }
             SelectionPropertyChanged(this, new SelectionChangedEventArgs(oldSelection, newSelection));
@@ -1184,9 +1231,10 @@ namespace Tizen.NUI.Components
 
         private static object CoerceSelectedItems(BindableObject bindable, object value)
         {
+            var colView = bindable as CollectionView;
             if (value == null)
             {
-                return new SelectionList((CollectionView)bindable);
+                return new SelectionList(colView);
             }
 
             if (value is SelectionList)
@@ -1194,12 +1242,12 @@ namespace Tizen.NUI.Components
                 return value;
             }
 
-            return new SelectionList((CollectionView)bindable, value as IList<object>);
+            return new SelectionList(colView, value as IList<object>);
         }
 
         private static void SelectionModePropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
-            var colView = (CollectionView)bindable;
+            var colView = bindable as CollectionView;
 
             var oldMode = (ItemSelectionMode)oldValue;
             var newMode = (ItemSelectionMode)newValue;
@@ -1250,31 +1298,40 @@ namespace Tizen.NUI.Components
             SelectionPropertyChanged(colView, args);
         }
 
-        private void Init()
+        private void ReinitializeLayout()
         {
-            if (ItemsSource == null) return;
-            if (ItemsLayouter == null) return;
-            if (ItemTemplate == null) return;
+            if (ItemsSource == null || ItemsLayouter == null || ItemTemplate == null)
+            {
+                return;
+            }
 
-            if (disposed) return;
+            if (disposed)
+            {
+                return;
+            }
+
+            if (!wasRelayouted)
+            {
+                return;
+            }
+
             if (needInitalizeLayouter)
             {
-                if (InternalItemSource == null) return;
+                if (InternalItemSource == null)
+                {
+                    return;
+                }
 
                 InternalItemSource.HasHeader = (header != null);
                 InternalItemSource.HasFooter = (footer != null);
-            }
 
-            if (!wasRelayouted) return;
-
-            if (needInitalizeLayouter)
-            {
                 itemsLayouter.Clear();
                 ClearCache();
 
                 ItemsLayouter.Initialize(this);
                 needInitalizeLayouter = false;
             }
+
             ItemsLayouter.RequestLayout(0.0f, true);
 
             if (delayedScrollTo)
@@ -1301,9 +1358,16 @@ namespace Tizen.NUI.Components
 
         private bool PushRecycleGroupCache(RecyclerViewItem item)
         {
-            if (item == null) throw new ArgumentNullException(nameof(item));
-            if (RecycleCache.Count >= 20) return false;
-            if (item.Template == null) return false;
+            if (item == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }
+
+            if  (item.Template == null || RecycleCache.Count >= 20)
+            {
+                return false;
+            }
+
             if (item.isGroupHeader)
             {
                 recycleGroupHeaderCache.Add(item);
@@ -1312,9 +1376,14 @@ namespace Tizen.NUI.Components
             {
                 recycleGroupFooterCache.Add(item);
             }
-            else return false;
+            else
+            {
+                return false;
+            }
+
             item.Hide();
             item.Index = -1;
+
             return true;
         }
 
@@ -1326,7 +1395,10 @@ namespace Tizen.NUI.Components
             for (int i = 0; i < Cache.Count; i++)
             {
                 viewItem = Cache[i];
-                if (Template == viewItem.Template) break;
+                if (Template == viewItem.Template)
+                {
+                    break;
+                }
             }
 
             if (viewItem != null)
@@ -1334,8 +1406,67 @@ namespace Tizen.NUI.Components
                 Cache.Remove(viewItem);
                 viewItem.Show();
             }
+
             return viewItem;
         }
+
+        private RecyclerViewItem RealizeGroupHeader(int index, object context)
+        {
+            DataTemplate templ = (groupHeaderTemplate as DataTemplateSelector)?.SelectDataTemplate(context, this) ?? groupHeaderTemplate;
+
+            RecyclerViewItem groupHeader = PopRecycleGroupCache(templ, true);
+
+            if (groupHeader == null)
+            {
+                groupHeader = (RecyclerViewItem)DataTemplateExtensions.CreateContent(groupHeaderTemplate, context, this);
+
+                groupHeader.Template = templ;
+                groupHeader.isGroupHeader = true;
+                groupHeader.isGroupFooter = false;
+                ContentContainer.Add(groupHeader);
+            }
+
+            if (groupHeader != null)
+            {
+                groupHeader.ParentItemsView = this;
+                groupHeader.Index = index;
+                groupHeader.ParentGroup = context;
+                groupHeader.BindingContext = context;
+
+                return groupHeader;
+            }
+
+            return null;
+        }
+
+        private RecyclerViewItem RealizeGroupFooter(int index, object context)
+        {
+            DataTemplate templ = (groupFooterTemplate as DataTemplateSelector)?.SelectDataTemplate(context, this) ?? groupFooterTemplate;
+
+            RecyclerViewItem groupFooter = PopRecycleGroupCache(templ, false);
+
+            if (groupFooter == null)
+            {
+                groupFooter = DataTemplateExtensions.CreateContent(groupFooterTemplate, context, this) as RecyclerViewItem;
+
+                groupFooter.Template = templ;
+                groupFooter.isGroupHeader = false;
+                groupFooter.isGroupFooter = true;
+                ContentContainer.Add(groupFooter);
+            }
+
+            if (groupFooter != null)
+            {
+                groupFooter.ParentItemsView = this;
+                groupFooter.Index = index;
+                groupFooter.ParentGroup = context;
+                groupFooter.BindingContext = context;
+                return groupFooter;
+            }
+
+            return null;
+        }
+
         private void CollectionChanged(object sender, NotifyCollectionChangedEventArgs args)
         {
             switch (args.Action)

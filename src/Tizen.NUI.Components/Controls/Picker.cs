@@ -51,6 +51,7 @@ namespace Tizen.NUI.Components
     /// <summary>
     /// Picker is a class which provides a function that allows the user to select
     /// a value through a scrolling motion by expressing the specified value as a list.
+    /// It is recommended to use when selecting less than 100 selections.
     /// </summary>
     /// <since_tizen> 9 </since_tizen>
     public partial class Picker : Control
@@ -383,7 +384,7 @@ namespace Tizen.NUI.Components
 
             if (pickerScroller != null && itemList != null)
             {
-                pickerScroller.ScrollAvailableArea = new Vector2(0, (itemList.Count * itemHeight) - size.Height);
+                pickerScroller.ScrollAvailableArea = new Vector2(0, (itemList.Count * itemHeight) - (itemHeight * scrollVisibleItems));
             }
         }
 
@@ -416,7 +417,7 @@ namespace Tizen.NUI.Components
                 },
                 //FIXME: Need to expand as many as possible;
                 //       When user want to start list middle of the list item. currently confused how to create list before render.
-                ScrollAvailableArea = new Vector2(0, 10000),
+                ScrollAvailableArea = new Vector2(0, 30000),
                 Name = "pickerScroller",
             };
 
@@ -433,6 +434,7 @@ namespace Tizen.NUI.Components
             displayedValuesUpdate = false;
             onAnimation = false;
             loopEnabled = false;
+            lastScrollPosion = (int)pickerScroller.ScrollAvailableArea.Y;
 
             Add(pickerScroller);
             AddMasks();
@@ -541,7 +543,7 @@ namespace Tizen.NUI.Components
         private void OnScrollAnimationEnded(object sender, ScrollEventArgs e)
         {
             //Ignore if the scroll position was not changed. (called it from this function)
-            if (lastScrollPosion == (int)e.Position.Y) return;
+            if (lastScrollPosion == (int)e.Position.Y && !onAlignAnimation) return;
 
             //Calc offset from closest item.
             int offset = (int)(e.Position.Y + startScrollOffset) % itemHeight;
@@ -735,7 +737,7 @@ namespace Tizen.NUI.Components
             //Give a correct scroll area.
             if (size != null)
             {
-                pickerScroller.ScrollAvailableArea = new Vector2(0, (itemList.Count * itemHeight) - size.Height);
+                pickerScroller.ScrollAvailableArea = new Vector2(0, (itemList.Count * itemHeight) - (itemHeight * scrollVisibleItems));
             }
 
             needItemUpdate = false;
@@ -876,6 +878,9 @@ namespace Tizen.NUI.Components
                     float realDistance = velocityOfLastPan * ((float)Math.Pow(decelerationRate, realDuration) - 1) / logValueOfDeceleration;
                     float result = Math.Min(realDistance / Math.Abs(panAnimationDelta), 1.0f);
 
+                    // This is hot-fix for if the velocity has very small value, result is not updated even progress done.
+                    if (progress > 0.99) result = 1.0f;
+
                     return result;
                 }
             }
@@ -933,6 +938,7 @@ namespace Tizen.NUI.Components
 
                 customScrollAlphaFunction = new UserAlphaFunctionDelegate(CustomScrollAlphaFunction);
                 animation.DefaultAlphaFunction = new AlphaFunction(customScrollAlphaFunction);
+                GC.KeepAlive(customScrollAlphaFunction);
                 animation.Duration = (int)panAnimationDuration;
                 animation.AnimateTo(ContentContainer, "PositionY", (int)destination);
                 animation.Play();
