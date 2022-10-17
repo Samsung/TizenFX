@@ -71,7 +71,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.TEXT);
+            return Object.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.TEXT);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.TEXT).Get(out temp);
@@ -98,7 +98,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.FontFamily);
+            return Object.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.FontFamily);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.FontFamily).Get(out temp);
@@ -143,7 +143,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.PointSize);
+            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.PointSize);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.PointSize).Get(out temp);
@@ -158,7 +158,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.MultiLine, (bool)newValue);
+                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.MultiLine, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.MultiLine, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -169,7 +169,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.MultiLine);
+            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.MultiLine);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.MultiLine).Get(out temp);
@@ -184,7 +184,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.HorizontalAlignment, (int)newValue);
+                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.HorizontalAlignment, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.HorizontalAlignment, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -195,7 +195,7 @@ namespace Tizen.NUI.BaseComponents
             var textLabel = (TextLabel)bindable;
             string temp;
 #if NUI_PROPERTY_CHANGE_2
-            temp = Interop.Actor.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.HorizontalAlignment);
+            temp = Object.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.HorizontalAlignment);
 #else
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.HorizontalAlignment).Get(out temp) == false)
             {
@@ -228,7 +228,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.VerticalAlignment, (int)newValue);
+                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.VerticalAlignment, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.VerticalAlignment, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -239,7 +239,7 @@ namespace Tizen.NUI.BaseComponents
             var textLabel = (TextLabel)bindable;
             string temp;
 #if NUI_PROPERTY_CHANGE_2
-            temp = Interop.Actor.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.VerticalAlignment);
+            temp = Object.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.VerticalAlignment);
 #else
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.VerticalAlignment).Get(out temp) == false)
             {
@@ -288,7 +288,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textLabel.internalTextColor = new Color(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textLabel.SwigCPtr, TextLabel.Property.TextColor, textLabel.internalTextColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textLabel.SwigCPtr, TextLabel.Property.TextColor, textLabel.internalTextColor.SwigCPtr);
             return textLabel.internalTextColor;
 #else
             Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
@@ -305,7 +305,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableMarkup, (bool)newValue);
+                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableMarkup, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.EnableMarkup, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -315,7 +315,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableMarkup);
+            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableMarkup);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.EnableMarkup).Get(out temp);
@@ -330,7 +330,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableAutoScroll, (bool)newValue);
+                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableAutoScroll, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.EnableAutoScroll, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -340,7 +340,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableAutoScroll);
+            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableAutoScroll);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.EnableAutoScroll).Get(out temp);
@@ -355,7 +355,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollSpeed, (int)newValue);
+                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollSpeed, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.AutoScrollSpeed, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -365,7 +365,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollSpeed);
+            return Object.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollSpeed);
 #else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.AutoScrollSpeed).Get(out temp);
@@ -380,7 +380,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopCount, (int)newValue);
+                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopCount, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopCount, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -390,7 +390,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopCount);
+            return Object.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopCount);
 #else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopCount).Get(out temp);
@@ -405,7 +405,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.AutoScrollGap, (float)newValue);
+                Object.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.AutoScrollGap, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.AutoScrollGap, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -415,7 +415,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.AutoScrollGap);
+            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.AutoScrollGap);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.AutoScrollGap).Get(out temp);
@@ -430,7 +430,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.LineSpacing, (float)newValue);
+                Object.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.LineSpacing, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.LineSpacing, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -441,7 +441,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.LineSpacing);
+            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.LineSpacing);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.LineSpacing).Get(out temp);
@@ -455,7 +455,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.RelativeLineHeight, (float)newValue);
+                Object.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.RelativeLineHeight, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.RelativeLineHeight, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -465,7 +465,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.RelativeLineHeight);
+            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.RelativeLineHeight);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.RelativeLineHeight).Get(out temp);
@@ -538,7 +538,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textLabel.SwigCPtr, TextLabel.Property.EMBOSS, (string)newValue);
+                Object.InternalSetPropertyString(textLabel.SwigCPtr, TextLabel.Property.EMBOSS, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.EMBOSS, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -548,7 +548,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.EMBOSS);
+            return Object.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.EMBOSS);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.EMBOSS).Get(out temp);
@@ -592,7 +592,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.PixelSize);
+            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.PixelSize);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.PixelSize).Get(out temp);
@@ -607,7 +607,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.ELLIPSIS, (bool)newValue);
+                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.ELLIPSIS, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.ELLIPSIS, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -617,7 +617,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.ELLIPSIS);
+            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.ELLIPSIS);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.ELLIPSIS).Get(out temp);
@@ -632,7 +632,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.EllipsisPosition, (int)newValue);
+                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.EllipsisPosition, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.EllipsisPosition, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -642,7 +642,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return (EllipsisPosition)Interop.Actor.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.EllipsisPosition);
+            return (EllipsisPosition)Object.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.EllipsisPosition);
 #else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.EllipsisPosition).Get(out temp);
@@ -657,7 +657,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopDelay, (float)newValue);
+                Object.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopDelay, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopDelay, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -667,7 +667,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopDelay);
+            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopDelay);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.AutoScrollLoopDelay).Get(out temp);
@@ -682,7 +682,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollStopMode, (int)newValue);
+                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.AutoScrollStopMode, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.AutoScrollStopMode, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -693,7 +693,7 @@ namespace Tizen.NUI.BaseComponents
             var textLabel = (TextLabel)bindable;
             string temp;
 #if NUI_PROPERTY_CHANGE_2
-            temp = Interop.Actor.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.AutoScrollStopMode);
+            temp = Object.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.AutoScrollStopMode);
 #else
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.AutoScrollStopMode).Get(out temp) == false)
             {
@@ -710,7 +710,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.LineWrapMode, (int)newValue);
+                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.LineWrapMode, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.LineWrapMode, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -720,7 +720,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return (LineWrapMode)Interop.Actor.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.LineWrapMode);
+            return (LineWrapMode)Object.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.LineWrapMode);
 #else
             int temp;
             if (false == Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.LineWrapMode).Get(out temp))
@@ -738,7 +738,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.VerticalLineAlignment, (int)newValue);
+                Object.InternalSetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.VerticalLineAlignment, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.VerticalLineAlignment, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -748,7 +748,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return (VerticalLineAlignment)Interop.Actor.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.VerticalLineAlignment);
+            return (VerticalLineAlignment)Object.InternalGetPropertyInt(textLabel.SwigCPtr, TextLabel.Property.VerticalLineAlignment);
 #else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.VerticalLineAlignment).Get(out temp);
@@ -763,7 +763,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.MatchSystemLanguageDirection, (bool)newValue);
+                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.MatchSystemLanguageDirection, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.MatchSystemLanguageDirection, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -773,7 +773,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.MatchSystemLanguageDirection);
+            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.MatchSystemLanguageDirection);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.MatchSystemLanguageDirection).Get(out temp);
@@ -788,7 +788,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.CharacterSpacing, (float)newValue);
+                Object.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.CharacterSpacing, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.CharacterSpacing, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -798,7 +798,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.CharacterSpacing);
+            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.CharacterSpacing);
 #else
             float temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.CharacterSpacing).Get(out temp);
@@ -831,7 +831,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.MinLineSize, (float)newValue);
+                Object.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.MinLineSize, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.MinLineSize, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -842,7 +842,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.MinLineSize);
+            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.MinLineSize);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.MinLineSize).Get(out temp);
@@ -857,7 +857,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.FontSizeScale, (float)newValue);
+                Object.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.FontSizeScale, (float)newValue);
                 textLabel.RequestLayout();
 #else
                 using (var property = new Tizen.NUI.PropertyValue((float)newValue))
@@ -872,7 +872,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.FontSizeScale);
+            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.FontSizeScale);
 #else
             float temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.FontSizeScale).Get(out temp);
@@ -887,7 +887,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableFontSizeScale, (bool)newValue);
+                Object.InternalSetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableFontSizeScale, (bool)newValue);
                 textLabel.RequestLayout();
 #else
                 using (var property = new Tizen.NUI.PropertyValue((bool)newValue))
@@ -902,7 +902,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textLabel = (TextLabel)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableFontSizeScale);
+            return Object.InternalGetPropertyBool(textLabel.SwigCPtr, TextLabel.Property.EnableFontSizeScale);
 #else
             bool temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.EnableFontSizeScale).Get(out temp);
@@ -1118,7 +1118,7 @@ namespace Tizen.NUI.BaseComponents
             if (value != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(SwigCPtr, TextLabel.Property.TEXT, value);
+                Object.InternalSetPropertyString(SwigCPtr, TextLabel.Property.TEXT, value);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextLabel.Property.TEXT, new Tizen.NUI.PropertyValue(value));
 #endif
@@ -1131,7 +1131,7 @@ namespace Tizen.NUI.BaseComponents
             if (value != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(SwigCPtr, TextLabel.Property.FontFamily, value);
+                Object.InternalSetPropertyString(SwigCPtr, TextLabel.Property.FontFamily, value);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextLabel.Property.FontFamily, new Tizen.NUI.PropertyValue(value));
 #endif
@@ -1144,7 +1144,7 @@ namespace Tizen.NUI.BaseComponents
             if (value != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(SwigCPtr, TextLabel.Property.TextColor, value.SwigCPtr);
+                Object.InternalSetPropertyVector4(SwigCPtr, TextLabel.Property.TextColor, value.SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextLabel.Property.TextColor, new Tizen.NUI.PropertyValue(value));
 #endif
@@ -1156,7 +1156,7 @@ namespace Tizen.NUI.BaseComponents
             if (value != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(SwigCPtr, TextLabel.Property.PointSize, (float)value);
+                Object.InternalSetPropertyFloat(SwigCPtr, TextLabel.Property.PointSize, (float)value);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextLabel.Property.PointSize, new Tizen.NUI.PropertyValue((float)value));
 #endif
@@ -1169,7 +1169,7 @@ namespace Tizen.NUI.BaseComponents
             if (value != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(SwigCPtr, TextLabel.Property.PixelSize, (float)value);
+                Object.InternalSetPropertyFloat(SwigCPtr, TextLabel.Property.PixelSize, (float)value);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)SwigCPtr, TextLabel.Property.PixelSize, new Tizen.NUI.PropertyValue((float)value));
 #endif

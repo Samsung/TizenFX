@@ -86,7 +86,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textField.isSettingTextInCSharp = true;
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.TEXT, (string)newValue);
+                Object.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.TEXT, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.TEXT, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -97,7 +97,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.TEXT);
+            return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.TEXT);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.TEXT).Get(out temp);
@@ -112,7 +112,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.PlaceholderText, (string)newValue);
+                Object.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.PlaceholderText, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.PlaceholderText, new Tizen.NUI.PropertyValue((string)newValue));
 #endif            
@@ -122,7 +122,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.PlaceholderText);
+            return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.PlaceholderText);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.PlaceholderText).Get(out temp);
@@ -137,7 +137,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.PlaceholderTextFocused, (string)newValue);
+                Object.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.PlaceholderTextFocused, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.PlaceholderTextFocused, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -147,7 +147,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.PlaceholderTextFocused);
+            return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.PlaceholderTextFocused);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.PlaceholderTextFocused).Get(out temp);
@@ -162,7 +162,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.FontFamily, (string)newValue);
+                Object.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.FontFamily, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.FontFamily, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -172,7 +172,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.FontFamily);
+            return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.FontFamily);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.FontFamily).Get(out temp);
@@ -205,7 +205,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.PointSize, (float)newValue);
+                Object.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.PointSize, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.PointSize, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -215,7 +215,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.PointSize);
+            return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.PointSize);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.PointSize).Get(out temp);
@@ -230,7 +230,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textField.SwigCPtr, TextField.Property.MaxLength, (int)newValue);
+                Object.InternalSetPropertyInt(textField.SwigCPtr, TextField.Property.MaxLength, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.MaxLength, new Tizen.NUI.PropertyValue((int)newValue));
 #endif            
@@ -240,7 +240,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyInt(textField.SwigCPtr, TextField.Property.MaxLength);
+            return Object.InternalGetPropertyInt(textField.SwigCPtr, TextField.Property.MaxLength);
 #else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.MaxLength).Get(out temp);
@@ -255,7 +255,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textField.SwigCPtr, TextField.Property.ExceedPolicy, (int)newValue);
+                Object.InternalSetPropertyInt(textField.SwigCPtr, TextField.Property.ExceedPolicy, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.ExceedPolicy, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -265,7 +265,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyInt(textField.SwigCPtr, TextField.Property.ExceedPolicy);
+            return Object.InternalGetPropertyInt(textField.SwigCPtr, TextField.Property.ExceedPolicy);
 #else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.ExceedPolicy).Get(out temp);
@@ -280,7 +280,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textField.SwigCPtr, TextField.Property.HorizontalAlignment, (int)newValue);
+                Object.InternalSetPropertyInt(textField.SwigCPtr, TextField.Property.HorizontalAlignment, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.HorizontalAlignment, new Tizen.NUI.PropertyValue((int)newValue));
 #endif            
@@ -291,7 +291,7 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             string temp;
 #if NUI_PROPERTY_CHANGE_2
-            temp = Interop.Actor.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.HorizontalAlignment);
+            temp = Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.HorizontalAlignment);
 #else
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.HorizontalAlignment).Get(out temp) == false)
             {
@@ -308,7 +308,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textField.SwigCPtr, TextField.Property.VerticalAlignment, (int)newValue);
+                Object.InternalSetPropertyInt(textField.SwigCPtr, TextField.Property.VerticalAlignment, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.VerticalAlignment, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -319,7 +319,7 @@ namespace Tizen.NUI.BaseComponents
             var textField = (TextField)bindable;
             string temp;
 #if NUI_PROPERTY_CHANGE_2
-            temp = Interop.Actor.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.VerticalAlignment);
+            temp = Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.VerticalAlignment);
 #else
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.VerticalAlignment).Get(out temp) == false)
             {
@@ -336,7 +336,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(textField.SwigCPtr, TextField.Property.TextColor, ((Color)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(textField.SwigCPtr, TextField.Property.TextColor, ((Color)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.TextColor, new Tizen.NUI.PropertyValue((Color)newValue));
 #endif
@@ -350,7 +350,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textField.internalTextColor = new Color(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textField.SwigCPtr, TextField.Property.TextColor, textField.internalTextColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textField.SwigCPtr, TextField.Property.TextColor, textField.internalTextColor.SwigCPtr);
             return textField.internalTextColor;
 
 #else
@@ -367,7 +367,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(textField.SwigCPtr, TextField.Property.PlaceholderTextColor, ((Vector4)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(textField.SwigCPtr, TextField.Property.PlaceholderTextColor, ((Vector4)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.PlaceholderTextColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
 #endif
@@ -381,7 +381,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textField.internalPlaceholderTextColor = new Vector4(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textField.SwigCPtr, TextField.Property.PlaceholderTextColor, textField.internalPlaceholderTextColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textField.SwigCPtr, TextField.Property.PlaceholderTextColor, textField.internalPlaceholderTextColor.SwigCPtr);
             return textField.internalPlaceholderTextColor;
 #else
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -397,7 +397,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.EnableGrabHandle, (bool)newValue);
+                Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.EnableGrabHandle, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableGrabHandle, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -407,7 +407,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableGrabHandle);
+            return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableGrabHandle);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableGrabHandle).Get(out temp);
@@ -422,7 +422,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.EnableGrabHandlePopup, (bool)newValue);
+                Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.EnableGrabHandlePopup, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableGrabHandlePopup, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -432,7 +432,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableGrabHandlePopup);
+            return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableGrabHandlePopup);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableGrabHandlePopup).Get(out temp);
@@ -447,7 +447,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(textField.SwigCPtr, TextField.Property.PrimaryCursorColor, ((Vector4)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(textField.SwigCPtr, TextField.Property.PrimaryCursorColor, ((Vector4)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.PrimaryCursorColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
 #endif
@@ -461,7 +461,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textField.internalPrimaryCursorColor = new Vector4(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textField.SwigCPtr, TextField.Property.PrimaryCursorColor, textField.internalPrimaryCursorColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textField.SwigCPtr, TextField.Property.PrimaryCursorColor, textField.internalPrimaryCursorColor.SwigCPtr);
             return textField.internalPrimaryCursorColor;
 #else
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -477,7 +477,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(textField.SwigCPtr, TextField.Property.SecondaryCursorColor, ((Vector4)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(textField.SwigCPtr, TextField.Property.SecondaryCursorColor, ((Vector4)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.SecondaryCursorColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
 #endif
@@ -491,7 +491,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textField.internalSecondaryCursorColor = new Vector4(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textField.SwigCPtr, TextField.Property.SecondaryCursorColor, textField.internalSecondaryCursorColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textField.SwigCPtr, TextField.Property.SecondaryCursorColor, textField.internalSecondaryCursorColor.SwigCPtr);
             return textField.internalSecondaryCursorColor;
 #else
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -507,7 +507,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.EnableCursorBlink, (bool)newValue);
+                Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.EnableCursorBlink, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableCursorBlink, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -517,7 +517,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableCursorBlink);
+            return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableCursorBlink);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableCursorBlink).Get(out temp);
@@ -532,7 +532,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.CursorBlinkInterval, (float)newValue);
+                Object.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.CursorBlinkInterval, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.CursorBlinkInterval, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -542,7 +542,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.CursorBlinkInterval);
+            return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.CursorBlinkInterval);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.CursorBlinkInterval).Get(out temp);
@@ -557,7 +557,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.CursorBlinkDuration, (float)newValue);
+                Object.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.CursorBlinkDuration, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.CursorBlinkDuration, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -567,7 +567,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.CursorBlinkDuration);
+            return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.CursorBlinkDuration);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.CursorBlinkDuration).Get(out temp);
@@ -582,7 +582,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textField.SwigCPtr, TextField.Property.CursorWidth, (int)newValue);
+                Object.InternalSetPropertyInt(textField.SwigCPtr, TextField.Property.CursorWidth, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.CursorWidth, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -592,7 +592,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyInt(textField.SwigCPtr, TextField.Property.CursorWidth);
+            return Object.InternalGetPropertyInt(textField.SwigCPtr, TextField.Property.CursorWidth);
 #else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.CursorWidth).Get(out temp);
@@ -607,7 +607,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.GrabHandleImage, (string)newValue);
+                Object.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.GrabHandleImage, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.GrabHandleImage, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -617,7 +617,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.GrabHandleImage);
+            return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.GrabHandleImage);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.GrabHandleImage).Get(out temp);
@@ -632,7 +632,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.GrabHandlePressedImage, (string)newValue);
+                Object.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.GrabHandlePressedImage, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.GrabHandlePressedImage, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -642,7 +642,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.GrabHandlePressedImage);
+            return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.GrabHandlePressedImage);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.GrabHandlePressedImage).Get(out temp);
@@ -657,7 +657,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.ScrollThreshold, (float)newValue);
+                Object.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.ScrollThreshold, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.ScrollThreshold, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -667,7 +667,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.ScrollThreshold);
+            return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.ScrollThreshold);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.ScrollThreshold).Get(out temp);
@@ -682,7 +682,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.ScrollSpeed, (float)newValue);
+                Object.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.ScrollSpeed, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.ScrollSpeed, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -692,7 +692,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.ScrollSpeed);
+            return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.ScrollSpeed);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.ScrollSpeed).Get(out temp);
@@ -827,7 +827,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(textField.SwigCPtr, TextField.Property.SelectionHighlightColor, ((Vector4)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(textField.SwigCPtr, TextField.Property.SelectionHighlightColor, ((Vector4)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.SelectionHighlightColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
 #endif
@@ -841,7 +841,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textField.internalSelectionHighlightColor = new Vector4(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textField.SwigCPtr, TextField.Property.SelectionHighlightColor, textField.internalSelectionHighlightColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textField.SwigCPtr, TextField.Property.SelectionHighlightColor, textField.internalSelectionHighlightColor.SwigCPtr);
             return textField.internalSelectionHighlightColor;
 #else
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -891,7 +891,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(textField.SwigCPtr, TextField.Property.InputColor, ((Vector4)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(textField.SwigCPtr, TextField.Property.InputColor, ((Vector4)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
 #endif
@@ -905,7 +905,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textField.internalInputColor = new Vector4(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textField.SwigCPtr, TextField.Property.InputColor, textField.internalInputColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textField.SwigCPtr, TextField.Property.InputColor, textField.internalInputColor.SwigCPtr);
             return textField.internalInputColor;
 #else
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -921,7 +921,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.EnableMarkup, (bool)newValue);
+                Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.EnableMarkup, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableMarkup, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -931,7 +931,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableMarkup);
+            return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableMarkup);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableMarkup).Get(out temp);
@@ -946,7 +946,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.InputFontFamily, (string)newValue);
+                Object.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.InputFontFamily, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputFontFamily, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -956,7 +956,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputFontFamily);
+            return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputFontFamily);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputFontFamily).Get(out temp);
@@ -988,7 +988,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.InputPointSize, (float)newValue);
+                Object.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.InputPointSize, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputPointSize, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -998,7 +998,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.InputPointSize);
+            return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.InputPointSize);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputPointSize).Get(out temp);
@@ -1030,7 +1030,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.InputUnderline, (string)newValue);
+                Object.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.InputUnderline, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputUnderline, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -1040,7 +1040,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputUnderline);
+            return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputUnderline);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputUnderline).Get(out temp);
@@ -1073,7 +1073,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.InputShadow, (string)newValue);
+                Object.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.InputShadow, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputShadow, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -1083,7 +1083,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputShadow);
+            return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputShadow);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputShadow).Get(out temp);
@@ -1098,7 +1098,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.EMBOSS, (string)newValue);
+                Object.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.EMBOSS, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EMBOSS, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -1108,7 +1108,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.EMBOSS);
+            return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.EMBOSS);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EMBOSS).Get(out temp);
@@ -1123,7 +1123,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.InputEmboss, (string)newValue);
+                Object.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.InputEmboss, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputEmboss, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -1133,7 +1133,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputEmboss);
+            return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputEmboss);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputEmboss).Get(out temp);
@@ -1165,7 +1165,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.InputOutline, (string)newValue);
+                Object.InternalSetPropertyString(textField.SwigCPtr, TextField.Property.InputOutline, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputOutline, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -1175,7 +1175,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputOutline);
+            return Object.InternalGetPropertyString(textField.SwigCPtr, TextField.Property.InputOutline);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.InputOutline).Get(out temp);
@@ -1207,7 +1207,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.PixelSize, (float)newValue);
+                Object.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.PixelSize, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.PixelSize, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1217,7 +1217,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.PixelSize);
+            return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.PixelSize);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.PixelSize).Get(out temp);
@@ -1232,7 +1232,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.EnableSelection, (bool)newValue);
+                Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.EnableSelection, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableSelection, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1242,7 +1242,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableSelection);
+            return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableSelection);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableSelection).Get(out temp);
@@ -1274,7 +1274,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.ELLIPSIS, (bool)newValue);
+                Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.ELLIPSIS, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.ELLIPSIS, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1284,7 +1284,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.ELLIPSIS);
+            return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.ELLIPSIS);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.ELLIPSIS).Get(out temp);
@@ -1299,7 +1299,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textField.SwigCPtr, TextField.Property.EllipsisPosition, (int)newValue);
+                Object.InternalSetPropertyInt(textField.SwigCPtr, TextField.Property.EllipsisPosition, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EllipsisPosition, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -1309,7 +1309,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyInt(textField.SwigCPtr, TextField.Property.EllipsisPosition);
+            return Object.InternalGetPropertyInt(textField.SwigCPtr, TextField.Property.EllipsisPosition);
 #else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EllipsisPosition).Get(out temp);
@@ -1324,7 +1324,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.EnableShiftSelection, (bool)newValue);
+                Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.EnableShiftSelection, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableShiftSelection, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1334,7 +1334,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableShiftSelection);
+            return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableShiftSelection);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableShiftSelection).Get(out temp);
@@ -1349,7 +1349,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.MatchSystemLanguageDirection, (bool)newValue);
+                Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.MatchSystemLanguageDirection, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.MatchSystemLanguageDirection, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1359,7 +1359,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.MatchSystemLanguageDirection);
+            return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.MatchSystemLanguageDirection);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.MatchSystemLanguageDirection).Get(out temp);
@@ -1374,7 +1374,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.FontSizeScale, (float)newValue);
+                Object.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.FontSizeScale, (float)newValue);
 #else
                 using (var property = new Tizen.NUI.PropertyValue((float)newValue))
                 {
@@ -1387,7 +1387,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.FontSizeScale);
+            return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.FontSizeScale);
 #else
             float temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.FontSizeScale).Get(out temp);
@@ -1402,7 +1402,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.EnableFontSizeScale, (bool)newValue);
+                Object.InternalSetPropertyBool(textField.SwigCPtr, TextField.Property.EnableFontSizeScale, (bool)newValue);
 #else
                 using (var property = new Tizen.NUI.PropertyValue((bool)newValue))
                 {
@@ -1415,7 +1415,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableFontSizeScale);
+            return Object.InternalGetPropertyBool(textField.SwigCPtr, TextField.Property.EnableFontSizeScale);
 #else
             bool temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.EnableFontSizeScale).Get(out temp);
@@ -1431,7 +1431,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(textField.SwigCPtr, TextField.Property.GrabHandleColor, ((Color)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(textField.SwigCPtr, TextField.Property.GrabHandleColor, ((Color)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.GrabHandleColor, new Tizen.NUI.PropertyValue((Color)newValue));
 #endif
@@ -1445,7 +1445,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textField.internalGrabHandleColor = new Color(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textField.SwigCPtr, TextField.Property.GrabHandleColor, textField.internalGrabHandleColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textField.SwigCPtr, TextField.Property.GrabHandleColor, textField.internalGrabHandleColor.SwigCPtr);
             return textField.internalGrabHandleColor;
 #else
             Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
@@ -1533,7 +1533,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.CharacterSpacing, (float)newValue);
+                Object.InternalSetPropertyFloat(textField.SwigCPtr, TextField.Property.CharacterSpacing, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.CharacterSpacing, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1543,7 +1543,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textField = (TextField)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.CharacterSpacing);
+            return Object.InternalGetPropertyFloat(textField.SwigCPtr, TextField.Property.CharacterSpacing);
 #else
             float temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textField.SwigCPtr, TextField.Property.CharacterSpacing).Get(out temp);
