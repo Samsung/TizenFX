@@ -1330,19 +1330,27 @@ namespace Tizen.NUI.Components
                 return;
             }
 
+            StopOverShootingShadowAnimation();
+            StopScroll();
+
+            if (mPanGestureDetector != null)
+            {
+                mPanGestureDetector.Detected -= OnPanGestureDetected;
+                mPanGestureDetector.Dispose();
+                mPanGestureDetector = null;
+            }
+
+            if (propertyNotification != null)
+            {
+                propertyNotification.Notified -= OnPropertyChanged;
+                Interop.Handle.RemovePropertyNotifications(propertyNotification.SwigCPtr);
+                propertyNotification.Dispose();
+                propertyNotification = null;
+            }
+
             if (type == DisposeTypes.Explicit)
             {
-                StopOverShootingShadowAnimation();
-                StopScroll();
 
-                if (mPanGestureDetector != null)
-                {
-                    mPanGestureDetector.Detected -= OnPanGestureDetected;
-                    mPanGestureDetector.Dispose();
-                    mPanGestureDetector = null;
-                }
-
-                propertyNotification.Dispose();
             }
             base.Dispose(type);
         }
