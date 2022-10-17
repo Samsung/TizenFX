@@ -35,7 +35,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textEditor.isSettingTextInCSharp = true;
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.TEXT, (string)newValue);
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.TEXT, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.TEXT, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -46,7 +46,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.TEXT);
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.TEXT);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.TEXT).Get(out temp);
@@ -61,7 +61,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.TextColor, ((Vector4)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.TextColor, ((Vector4)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.TextColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
 #endif
@@ -75,7 +75,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textEditor.internalTextColor = new Vector4(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.TextColor, textEditor.internalTextColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.TextColor, textEditor.internalTextColor.SwigCPtr);
             return textEditor.internalTextColor;
 #else
 
@@ -92,7 +92,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.FontFamily, (string)newValue);
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.FontFamily, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.FontFamily, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -102,7 +102,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.FontFamily);
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.FontFamily);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.FontFamily).Get(out temp);
@@ -134,7 +134,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.PointSize, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.PointSize, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PointSize, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -144,7 +144,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.PointSize);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.PointSize);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PointSize).Get(out temp);
@@ -159,7 +159,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.HorizontalAlignment, (int)newValue);
+                Object.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.HorizontalAlignment, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.HorizontalAlignment, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -170,7 +170,7 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             string temp;
 #if NUI_PROPERTY_CHANGE_2
-            temp = Interop.Actor.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.HorizontalAlignment);
+            temp = Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.HorizontalAlignment);
 #else
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.HorizontalAlignment).Get(out temp) == false)
             {
@@ -186,7 +186,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.VerticalAlignment, (int)newValue);
+                Object.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.VerticalAlignment, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.VerticalAlignment, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -197,7 +197,7 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             string temp;
 #if NUI_PROPERTY_CHANGE_2
-            temp = Interop.Actor.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.VerticalAlignment);
+            temp = Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.VerticalAlignment);
 #else
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.VerticalAlignment).Get(out temp) == false)
             {
@@ -214,7 +214,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollThreshold, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollThreshold, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollThreshold, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -224,7 +224,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollThreshold);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollThreshold);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollThreshold).Get(out temp);
@@ -239,7 +239,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollSpeed, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollSpeed, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollSpeed, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -249,7 +249,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollSpeed);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollSpeed);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollSpeed).Get(out temp);
@@ -264,7 +264,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.PrimaryCursorColor, ((Vector4)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.PrimaryCursorColor, ((Vector4)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PrimaryCursorColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
 #endif
@@ -278,7 +278,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textEditor.internalPrimaryCursorColor = new Vector4(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.PrimaryCursorColor, textEditor.internalPrimaryCursorColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.PrimaryCursorColor, textEditor.internalPrimaryCursorColor.SwigCPtr);
             return textEditor.internalPrimaryCursorColor;
 #else
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -294,7 +294,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.SecondaryCursorColor, ((Vector4)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.SecondaryCursorColor, ((Vector4)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.SecondaryCursorColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
 #endif            
@@ -308,7 +308,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textEditor.internalSecondaryCursorColor = new Vector4(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.SecondaryCursorColor, textEditor.internalSecondaryCursorColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.SecondaryCursorColor, textEditor.internalSecondaryCursorColor.SwigCPtr);
             return textEditor.internalSecondaryCursorColor;
 #else
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -324,7 +324,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableCursorBlink, (bool)newValue);
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableCursorBlink, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableCursorBlink, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -334,7 +334,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableCursorBlink);
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableCursorBlink);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableCursorBlink).Get(out temp);
@@ -349,7 +349,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CursorBlinkInterval, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CursorBlinkInterval, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CursorBlinkInterval, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -359,7 +359,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CursorBlinkInterval);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CursorBlinkInterval);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CursorBlinkInterval).Get(out temp);
@@ -374,7 +374,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CursorBlinkDuration, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CursorBlinkDuration, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CursorBlinkDuration, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -384,7 +384,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CursorBlinkDuration);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CursorBlinkDuration);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CursorBlinkDuration).Get(out temp);
@@ -399,7 +399,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.CursorWidth, (int)newValue);
+                Object.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.CursorWidth, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CursorWidth, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -409,7 +409,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.CursorWidth);
+            return Object.InternalGetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.CursorWidth);
 #else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CursorWidth).Get(out temp);
@@ -424,7 +424,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.GrabHandleImage, (string)newValue);
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.GrabHandleImage, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.GrabHandleImage, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -434,7 +434,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.GrabHandleImage);
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.GrabHandleImage);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.GrabHandleImage).Get(out temp);
@@ -449,7 +449,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.GrabHandlePressedImage, (string)newValue);
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.GrabHandlePressedImage, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.GrabHandlePressedImage, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -459,7 +459,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.GrabHandlePressedImage);
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.GrabHandlePressedImage);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.GrabHandlePressedImage).Get(out temp);
@@ -594,7 +594,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.SelectionHighlightColor, ((Vector4)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.SelectionHighlightColor, ((Vector4)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.SelectionHighlightColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
 #endif
@@ -608,7 +608,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textEditor.internalSelectionHighlightColor = new Vector4(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.SelectionHighlightColor, textEditor.internalSelectionHighlightColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.SelectionHighlightColor, textEditor.internalSelectionHighlightColor.SwigCPtr);
             return textEditor.internalSelectionHighlightColor;
 #else
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -641,7 +641,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableMarkup, (bool)newValue);
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableMarkup, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableMarkup, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -651,7 +651,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableMarkup);
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableMarkup);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableMarkup).Get(out temp);
@@ -666,7 +666,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.InputColor, ((Vector4)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.InputColor, ((Vector4)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
 #endif
@@ -680,7 +680,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textEditor.internalInputColor = new Vector4(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.InputColor, textEditor.internalInputColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.InputColor, textEditor.internalInputColor.SwigCPtr);
             return textEditor.internalInputColor;
 #else
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -696,7 +696,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputFontFamily, (string)newValue);
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputFontFamily, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputFontFamily, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -706,7 +706,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputFontFamily);
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputFontFamily);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputFontFamily).Get(out temp);
@@ -738,7 +738,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.InputPointSize, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.InputPointSize, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputPointSize, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -748,7 +748,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.InputPointSize);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.InputPointSize);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputPointSize).Get(out temp);
@@ -763,7 +763,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.LineSpacing, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.LineSpacing, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.LineSpacing, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -773,7 +773,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.LineSpacing);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.LineSpacing);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.LineSpacing).Get(out temp);
@@ -788,7 +788,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.InputLineSpacing, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.InputLineSpacing, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputLineSpacing, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -798,7 +798,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.InputLineSpacing);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.InputLineSpacing);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputLineSpacing).Get(out temp);
@@ -812,7 +812,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.RelativeLineHeight, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.RelativeLineHeight, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.RelativeLineHeight, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -822,7 +822,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.RelativeLineHeight);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.RelativeLineHeight);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.RelativeLineHeight).Get(out temp);
@@ -854,7 +854,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputUnderline, (string)newValue);
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputUnderline, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputUnderline, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -864,7 +864,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputUnderline);
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputUnderline);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputUnderline).Get(out temp);
@@ -897,7 +897,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputShadow, (string)newValue);
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputShadow, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputShadow, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -907,7 +907,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputShadow);
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputShadow);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputShadow).Get(out temp);
@@ -922,7 +922,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.EMBOSS, (string)newValue);
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.EMBOSS, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EMBOSS, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -932,7 +932,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.EMBOSS);
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.EMBOSS);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EMBOSS).Get(out temp);
@@ -947,7 +947,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputEmboss, (string)newValue);
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputEmboss, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputEmboss, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -957,7 +957,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputEmboss);
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputEmboss);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputEmboss).Get(out temp);
@@ -989,7 +989,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputOutline, (string)newValue);
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputOutline, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputOutline, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -999,7 +999,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputOutline);
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputOutline);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputOutline).Get(out temp);
@@ -1014,7 +1014,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.SmoothScroll, (bool)newValue);
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.SmoothScroll, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.SmoothScroll, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1024,7 +1024,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.SmoothScroll);
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.SmoothScroll);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.SmoothScroll).Get(out temp);
@@ -1039,7 +1039,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.SmoothScrollDuration, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.SmoothScrollDuration, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.SmoothScrollDuration, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1049,7 +1049,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.SmoothScrollDuration);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.SmoothScrollDuration);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.SmoothScrollDuration).Get(out temp);
@@ -1064,7 +1064,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableScrollBar, (bool)newValue);
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableScrollBar, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableScrollBar, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1074,7 +1074,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableScrollBar);
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableScrollBar);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableScrollBar).Get(out temp);
@@ -1089,7 +1089,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollBarShowDuration, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollBarShowDuration, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollBarShowDuration, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1099,7 +1099,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollBarShowDuration);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollBarShowDuration);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollBarShowDuration).Get(out temp);
@@ -1114,7 +1114,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollBarFadeDuration, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollBarFadeDuration, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollBarFadeDuration, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1124,7 +1124,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollBarFadeDuration);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollBarFadeDuration);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollBarFadeDuration).Get(out temp);
@@ -1139,7 +1139,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.PixelSize, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.PixelSize, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PixelSize, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1149,7 +1149,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.PixelSize);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.PixelSize);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PixelSize).Get(out temp);
@@ -1164,7 +1164,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.PlaceholderText, (string)newValue);
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.PlaceholderText, (string)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PlaceholderText, new Tizen.NUI.PropertyValue((string)newValue));
 #endif
@@ -1174,7 +1174,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.PlaceholderText);
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.PlaceholderText);
 #else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PlaceholderText).Get(out temp);
@@ -1189,7 +1189,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.PlaceholderTextColor, ((Color)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.PlaceholderTextColor, ((Color)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PlaceholderTextColor, new Tizen.NUI.PropertyValue((Color)newValue));
 #endif
@@ -1203,7 +1203,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textEditor.internalPlaceholderTextColor = new Color(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.PlaceholderTextColor, textEditor.internalPlaceholderTextColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.PlaceholderTextColor, textEditor.internalPlaceholderTextColor.SwigCPtr);
             return textEditor.internalPlaceholderTextColor;
 #else
             Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
@@ -1219,7 +1219,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableSelection, (bool)newValue);
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableSelection, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableSelection, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1229,7 +1229,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableSelection);
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableSelection);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableSelection).Get(out temp);
@@ -1261,7 +1261,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.LineWrapMode, (int)newValue);
+                Object.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.LineWrapMode, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.LineWrapMode, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -1271,7 +1271,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.LineWrapMode);
+            return Object.InternalGetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.LineWrapMode);
 #else
             int temp;
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.LineWrapMode).Get(out temp) == false)
@@ -1289,7 +1289,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableShiftSelection, (bool)newValue);
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableShiftSelection, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableShiftSelection, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1300,7 +1300,7 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             //textEditor.mShiftSelectionFlag(true);
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableShiftSelection);
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableShiftSelection);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableShiftSelection).Get(out temp);
@@ -1315,7 +1315,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.MatchSystemLanguageDirection, (bool)newValue);
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.MatchSystemLanguageDirection, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.MatchSystemLanguageDirection, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1325,7 +1325,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.MatchSystemLanguageDirection);
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.MatchSystemLanguageDirection);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.MatchSystemLanguageDirection).Get(out temp);
@@ -1340,7 +1340,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.MaxLength, (int)newValue);
+                Object.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.MaxLength, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.MaxLength, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -1350,7 +1350,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.MaxLength);
+            return Object.InternalGetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.MaxLength);
 #else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.MaxLength).Get(out temp);
@@ -1365,7 +1365,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.FontSizeScale, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.FontSizeScale, (float)newValue);
 #else
                 using (var property = new Tizen.NUI.PropertyValue((float)newValue))
                 {
@@ -1378,7 +1378,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.FontSizeScale);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.FontSizeScale);
 #else
             float temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.FontSizeScale).Get(out temp);
@@ -1393,7 +1393,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableFontSizeScale, (bool)newValue);
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableFontSizeScale, (bool)newValue);
 #else
                 using (var property = new Tizen.NUI.PropertyValue((bool)newValue))
                 {
@@ -1406,7 +1406,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableFontSizeScale);
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableFontSizeScale);
 #else
             bool temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableFontSizeScale).Get(out temp);
@@ -1422,7 +1422,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.GrabHandleColor, ((Color)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.GrabHandleColor, ((Color)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.GrabHandleColor, new Tizen.NUI.PropertyValue((Color)newValue));
 #endif
@@ -1436,7 +1436,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 textEditor.internalGrabHandleColor = new Color(0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.GrabHandleColor, textEditor.internalGrabHandleColor.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.GrabHandleColor, textEditor.internalGrabHandleColor.SwigCPtr);
             return textEditor.internalGrabHandleColor;
 #else
             Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
@@ -1452,7 +1452,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandle, (bool)newValue);
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandle, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandle, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1462,7 +1462,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandle);
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandle);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandle).Get(out temp);
@@ -1477,7 +1477,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandlePopup, (bool)newValue);
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandlePopup, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandlePopup, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1487,7 +1487,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandlePopup);
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandlePopup);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandlePopup).Get(out temp);
@@ -1519,7 +1519,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.ELLIPSIS, (bool)newValue);
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.ELLIPSIS, (bool)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ELLIPSIS, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif
@@ -1529,7 +1529,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.ELLIPSIS);
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.ELLIPSIS);
 #else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ELLIPSIS).Get(out temp);
@@ -1544,7 +1544,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.EllipsisPosition, (int)newValue);
+                Object.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.EllipsisPosition, (int)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EllipsisPosition, new Tizen.NUI.PropertyValue((int)newValue));
 #endif
@@ -1554,7 +1554,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.EllipsisPosition);
+            return Object.InternalGetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.EllipsisPosition);
 #else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EllipsisPosition).Get(out temp);
@@ -1570,7 +1570,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.MinLineSize, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.MinLineSize, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.MinLineSize, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1580,7 +1580,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.MinLineSize);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.MinLineSize);
 #else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.MinLineSize).Get(out temp);
@@ -1704,7 +1704,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CharacterSpacing, (float)newValue);
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CharacterSpacing, (float)newValue);
 #else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CharacterSpacing, new Tizen.NUI.PropertyValue((float)newValue));
 #endif
@@ -1714,7 +1714,7 @@ namespace Tizen.NUI.BaseComponents
         {
             var textEditor = (TextEditor)bindable;
 #if NUI_PROPERTY_CHANGE_2
-            return Interop.Actor.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CharacterSpacing);
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CharacterSpacing);
 #else
             float temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CharacterSpacing).Get(out temp);
