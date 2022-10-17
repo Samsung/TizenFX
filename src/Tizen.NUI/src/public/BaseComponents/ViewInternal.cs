@@ -132,7 +132,7 @@ namespace Tizen.NUI.BaseComponents
 WorldPositionXGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.WorldPositionX);
+                return Object.InternalGetPropertyFloat(SwigCPtr, View.Property.WorldPositionX);
 #else
                 float returnValue = 0.0f;
                 PropertyValue wordPositionX = GetProperty(View.Property.WorldPositionX);
@@ -151,7 +151,7 @@ WorldPositionXGetter++;
 WorldPositionYGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.WorldPositionY);
+                return Object.InternalGetPropertyFloat(SwigCPtr, View.Property.WorldPositionY);
 #else
                 float returnValue = 0.0f;
                 PropertyValue wordPositionY = GetProperty(View.Property.WorldPositionY);
@@ -170,7 +170,7 @@ WorldPositionYGetter++;
 WorldPositionZGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.WorldPositionZ);
+                return Object.InternalGetPropertyFloat(SwigCPtr, View.Property.WorldPositionZ);
 #else
                 float returnValue = 0.0f;
                 PropertyValue wordPositionZ = GetProperty(View.Property.WorldPositionZ);
@@ -221,7 +221,7 @@ WorldPositionZGetter++;
 ParentOriginXGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.ParentOriginX);
+                return Object.InternalGetPropertyFloat(SwigCPtr, View.Property.ParentOriginX);
 #else
                 float returnValue = 0.0f;
                 PropertyValue parentOriginX = GetProperty(View.Property.ParentOriginX);
@@ -236,7 +236,7 @@ ParentOriginXGetter++;
 ParentOriginXSetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.WorldPositionX, value);
+                Object.InternalSetPropertyFloat(SwigCPtr, View.Property.WorldPositionX, value);
 #else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.ParentOriginX, setValue);
@@ -254,7 +254,7 @@ ParentOriginXSetter++;
 ParentOriginYGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.ParentOriginY);
+                return Object.InternalGetPropertyFloat(SwigCPtr, View.Property.ParentOriginY);
 #else
                 float returnValue = 0.0f;
                 PropertyValue parentOriginY = GetProperty(View.Property.ParentOriginY);
@@ -269,7 +269,7 @@ ParentOriginYGetter++;
 ParentOriginYSetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.ParentOriginY, value);
+                Object.InternalSetPropertyFloat(SwigCPtr, View.Property.ParentOriginY, value);
 #else
 
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
@@ -288,7 +288,7 @@ ParentOriginYSetter++;
 ParentOriginZGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.ParentOriginZ);
+                return Object.InternalGetPropertyFloat(SwigCPtr, View.Property.ParentOriginZ);
 #else
                 float returnValue = 0.0f;
                 PropertyValue parentOriginZ = GetProperty(View.Property.ParentOriginZ);
@@ -303,7 +303,7 @@ ParentOriginZGetter++;
 ParentOriginZSetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.ParentOriginZ, value);
+                Object.InternalSetPropertyFloat(SwigCPtr, View.Property.ParentOriginZ, value);
 #else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.ParentOriginZ, setValue);
@@ -321,7 +321,7 @@ ParentOriginZSetter++;
 PivotPointXGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.AnchorPointX);
+                return Object.InternalGetPropertyFloat(SwigCPtr, View.Property.AnchorPointX);
 #else
                 float returnValue = 0.0f;
                 PropertyValue anchorPointX = GetProperty(View.Property.AnchorPointX);
@@ -336,7 +336,7 @@ PivotPointXGetter++;
 PivotPointXSetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.AnchorPointX, value);
+                Object.InternalSetPropertyFloat(SwigCPtr, View.Property.AnchorPointX, value);
 #else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.AnchorPointX, setValue);
@@ -353,7 +353,7 @@ PivotPointXSetter++;
 PivotPointYGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.AnchorPointY);
+                return Object.InternalGetPropertyFloat(SwigCPtr, View.Property.AnchorPointY);
 #else
 
                 float returnValue = 0.0f;
@@ -369,7 +369,7 @@ PivotPointYGetter++;
 PivotPointYSetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.AnchorPointY, value);
+                Object.InternalSetPropertyFloat(SwigCPtr, View.Property.AnchorPointY, value);
 #else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.AnchorPointY, setValue);
@@ -386,7 +386,7 @@ PivotPointYSetter++;
 PivotPointZGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyFloat(SwigCPtr, View.Property.AnchorPointZ);
+                return Object.InternalGetPropertyFloat(SwigCPtr, View.Property.AnchorPointZ);
 #else
                 float returnValue = 0.0f;
                 PropertyValue anchorPointZ = GetProperty(View.Property.AnchorPointZ);
@@ -401,7 +401,7 @@ PivotPointZGetter++;
 PivotPointZSetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                Interop.Actor.InternalSetPropertyFloat(SwigCPtr, View.Property.AnchorPointZ, value);
+                Object.InternalSetPropertyFloat(SwigCPtr, View.Property.AnchorPointZ, value);
 #else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.AnchorPointZ, setValue);
@@ -474,7 +474,7 @@ PivotPointZSetter++;
 LeftFocusableViewIdGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyInt(SwigCPtr, View.Property.LeftFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.LeftFocusableViewId);
 #else
                 int returnValue = 0;
                 PropertyValue leftFocusableViewId = GetProperty(View.Property.LeftFocusableViewId);
@@ -489,7 +489,7 @@ LeftFocusableViewIdGetter++;
 LeftFocusableViewIdSetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                Interop.Actor.InternalSetPropertyInt(SwigCPtr, View.Property.LeftFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, View.Property.LeftFocusableViewId, value);
 #else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.LeftFocusableViewId, setValue);
@@ -506,7 +506,7 @@ LeftFocusableViewIdSetter++;
 RightFocusableViewIdGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyInt(SwigCPtr, View.Property.RightFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.RightFocusableViewId);
 #else
                 int returnValue = 0;
                 PropertyValue rightFocusableViewId = GetProperty(View.Property.RightFocusableViewId);
@@ -521,7 +521,7 @@ RightFocusableViewIdGetter++;
 RightFocusableViewIdSetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                Interop.Actor.InternalSetPropertyInt(SwigCPtr, View.Property.RightFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, View.Property.RightFocusableViewId, value);
 #else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.RightFocusableViewId, setValue);
@@ -538,7 +538,7 @@ RightFocusableViewIdSetter++;
 UpFocusableViewIdGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyInt(SwigCPtr, View.Property.UpFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.UpFocusableViewId);
 #else
                 int returnValue = 0;
                 PropertyValue upFocusableViewId = GetProperty(View.Property.UpFocusableViewId);
@@ -553,7 +553,7 @@ UpFocusableViewIdGetter++;
 UpFocusableViewIdSetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                Interop.Actor.InternalSetPropertyInt(SwigCPtr, View.Property.UpFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, View.Property.UpFocusableViewId, value);
 #else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.UpFocusableViewId, setValue);
@@ -570,7 +570,7 @@ UpFocusableViewIdSetter++;
 DownFocusableViewIdGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyInt(SwigCPtr, View.Property.DownFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.DownFocusableViewId);
 #else
                 int returnValue = 0;
                 PropertyValue downFocusableViewId = GetProperty(View.Property.DownFocusableViewId);
@@ -585,7 +585,7 @@ DownFocusableViewIdGetter++;
 DownFocusableViewIdSetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                Interop.Actor.InternalSetPropertyInt(SwigCPtr, View.Property.DownFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, View.Property.DownFocusableViewId, value);
 #else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.DownFocusableViewId, setValue);
@@ -602,7 +602,7 @@ DownFocusableViewIdSetter++;
 ClockwiseFocusableViewIdGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyInt(SwigCPtr, View.Property.ClockwiseFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.ClockwiseFocusableViewId);
 #else
                 int returnValue = -1;
                 PropertyValue clockwiseFocusableViewId = GetProperty(View.Property.ClockwiseFocusableViewId);
@@ -617,7 +617,7 @@ ClockwiseFocusableViewIdGetter++;
 ClockwiseFocusableViewIdSetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                Interop.Actor.InternalSetPropertyInt(SwigCPtr, View.Property.ClockwiseFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, View.Property.ClockwiseFocusableViewId, value);
 #else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.ClockwiseFocusableViewId, setValue);
@@ -634,7 +634,7 @@ ClockwiseFocusableViewIdSetter++;
 CounterClockwiseFocusableViewIdGetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                return Interop.Actor.InternalGetPropertyInt(SwigCPtr, View.Property.CounterClockwiseFocusableViewId);
+                return Object.InternalGetPropertyInt(SwigCPtr, View.Property.CounterClockwiseFocusableViewId);
 #else
                 int returnValue = -1;
                 PropertyValue counterClockwiseFocusableViewId = GetProperty(View.Property.CounterClockwiseFocusableViewId);
@@ -649,7 +649,7 @@ CounterClockwiseFocusableViewIdGetter++;
 CounterClockwiseFocusableViewIdSetter++;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-                Interop.Actor.InternalSetPropertyInt(SwigCPtr, View.Property.CounterClockwiseFocusableViewId, value);
+                Object.InternalSetPropertyInt(SwigCPtr, View.Property.CounterClockwiseFocusableViewId, value);
 #else
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.CounterClockwiseFocusableViewId, setValue);
@@ -1315,7 +1315,7 @@ GetSizeModeFactorCnt++;
                 {
                     internalSizeModeFactor = new Vector3(OnSizeModeFactorChanged, 0, 0, 0);
                 }
-                Interop.Actor.InternalRetrievingPropertyVector3(SwigCPtr, View.Property.SizeModeFactor, internalSizeModeFactor.SwigCPtr);
+                Object.InternalRetrievingPropertyVector3(SwigCPtr, View.Property.SizeModeFactor, internalSizeModeFactor.SwigCPtr);
                 return internalSizeModeFactor;
 #else
 
@@ -1343,7 +1343,7 @@ GetMinimumSizeCnt++;
             {
                 internalMinimumSize = new Size2D(OnMinimumSizeChanged, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.MinimumSize, internalMinimumSize.SwigCPtr);
+            Object.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.MinimumSize, internalMinimumSize.SwigCPtr);
             return internalMinimumSize;
 #else
             Vector2 ret = new Vector2(Interop.ActorInternal.GetMinimumSize(SwigCPtr), true);
@@ -1370,7 +1370,7 @@ GetMaximumSizeCnt++;
             {
                 internalMaximumSize = new Size2D(OnMaximumSizeChanged, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.MaximumSize, internalMaximumSize.SwigCPtr);
+            Object.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.MaximumSize, internalMaximumSize.SwigCPtr);
             return internalMaximumSize;
 #else
 
