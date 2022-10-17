@@ -144,7 +144,7 @@ namespace Tizen.NUI.BaseComponents
                 {
                     // Else, we don't need to re-create view. Get value from current ImageView.
 #if NUI_PROPERTY_CHANGE_2
-                    Interop.Actor.InternalSetPropertyBool(imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, (bool)newValue);
+                    Object.InternalSetPropertyBool(imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, (bool)newValue);
 #else
                     Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, new Tizen.NUI.PropertyValue((bool)newValue));
 #endif                    
@@ -165,7 +165,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 // Else, PremultipliedAlpha may not setuped in cached property. Get value from current ImageView.
 #if NUI_PROPERTY_CHANGE_2
-                temp = Interop.Actor.InternalGetPropertyBool(imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha);
+                temp = Object.InternalGetPropertyBool(imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha);
 #else
                 Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha).Get(out temp);
 #endif                
@@ -181,7 +181,7 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
 #if NUI_PROPERTY_CHANGE_2
-                Interop.Actor.InternalSetPropertyVector4(imageView.SwigCPtr, ImageView.Property.PixelArea, ((RelativeVector4)newValue).SwigCPtr);
+                Object.InternalSetPropertyVector4(imageView.SwigCPtr, ImageView.Property.PixelArea, ((RelativeVector4)newValue).SwigCPtr);
 #else
                 Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PixelArea, new Tizen.NUI.PropertyValue((RelativeVector4)newValue));
 #endif
@@ -195,7 +195,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 imageView.internalPixelArea = new RelativeVector4(imageView.OnPixelAreaChanged, 0, 0, 0, 0);
             }
-            Interop.Actor.InternalRetrievingPropertyVector4(imageView.SwigCPtr, ImageView.Property.PixelArea, imageView.internalPixelArea.SwigCPtr);
+            Object.InternalRetrievingPropertyVector4(imageView.SwigCPtr, ImageView.Property.PixelArea, imageView.internalPixelArea.SwigCPtr);
             return imageView.internalPixelArea;
 #else
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
