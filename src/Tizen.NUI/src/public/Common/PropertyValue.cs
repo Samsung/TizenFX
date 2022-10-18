@@ -224,14 +224,8 @@ namespace Tizen.NUI
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-#if NUI_PROPERTY_CHANGE_DEBUG
-        internal static int PropertyValueConstructor = 0;
-#endif        
         internal PropertyValue(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
-#if NUI_PROPERTY_CHANGE_DEBUG
-            PropertyValueConstructor++;
-#endif
         }
 
         internal PropertyValue(Matrix3 matrixValue) : this(Interop.PropertyValue.NewPropertyValueMatrix3(Matrix3.getCPtr(matrixValue)), true)

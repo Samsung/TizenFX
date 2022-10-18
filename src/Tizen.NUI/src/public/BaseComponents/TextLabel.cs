@@ -91,15 +91,6 @@ namespace Tizen.NUI.BaseComponents
         private Color internalTextColor;
 #endif
 
-#if NUI_PROPERTY_CHANGE_DEBUG
-internal static int TextGetter = 0;
-internal static int TextSetter = 0;
-internal static int FontFamilyGetter = 0;
-internal static int FontFamilySetter = 0;
-internal static int PointSizeGetter = 0;
-#endif
-
-
         /// <summary>
         /// Creates the TextLabel control.
         /// </summary>
@@ -236,16 +227,10 @@ internal static int PointSizeGetter = 0;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-TextGetter++;
-#endif
                 return (string)GetValue(TextProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-TextSetter++;
-#endif
                 SetValue(TextProperty, value);
                 NotifyPropertyChanged();
             }
@@ -260,16 +245,10 @@ TextSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-FontFamilyGetter++;
-#endif
                 return (string)GetValue(FontFamilyProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-FontFamilySetter++;
-#endif
                 SetValue(FontFamilyProperty, value);
                 NotifyPropertyChanged();
             }
@@ -354,9 +333,6 @@ FontFamilySetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PointSizeGetter++;
-#endif
                 return (float)GetValue(PointSizeProperty);
             }
             set
