@@ -70,14 +70,6 @@ namespace Tizen.NUI.BaseComponents
         private RelativeVector4 internalPixelArea;
 #endif
 
-#if NUI_PROPERTY_CHANGE_DEBUG
-        internal static int PreMultipliedAlphaGetter = 0;
-        internal static int PreMultipliedAlphaSetter = 0;
-        internal static int PixelAreaGetter = 0;
-        internal static int PixelAreaSetter = 0;
-#endif
-
-
         /// <summary>
         /// Creates an initialized ImageView.
         /// </summary>
