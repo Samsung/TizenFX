@@ -260,6 +260,27 @@ namespace Tizen.NUI
                 return PropertyValue.CreateFromObject(refined);
             }
 
+            // Refine object as IntPtr of PropertyValue to optimize.
+            // Warning : This API don't automatically release memory.
+            internal global::System.IntPtr RefineValueIntPtr(object value)
+            {
+                Debug.Assert(Property != null && value != null);
+
+                var refined = value;
+
+                if (objectConverter != null)
+                {
+                    refined = objectConverter(value);
+                }
+
+                if (refined == null)
+                {
+                    return global::System.IntPtr.Zero;
+                }
+
+                return PropertyValue.CreateFromObjectIntPtr(refined);
+            }
+
             internal KeyFrames RefineKeyFrames(KeyFrames keyFrames)
             {
                 Debug.Assert(keyFrames != null);
