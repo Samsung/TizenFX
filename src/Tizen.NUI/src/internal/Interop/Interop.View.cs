@@ -15,6 +15,8 @@
  *
  */
 
+using global::System.Runtime.InteropServices;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -85,6 +87,29 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_DoActionExtension")]
             public static extern void DoActionExtension(global::System.Runtime.InteropServices.HandleRef control, int visualIndex, int actionId, int id, string keyPath, int property, global::System.IntPtr callback);
+
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_DoActionWithEmptyAttributes")]
+            public static extern void DoActionWithEmptyAttributes(HandleRef control, int visualIndex, int actionId);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyFloat")]
+            public static extern int InternalUpdateVisualPropertyFloat(HandleRef control, int visualIndex, int visualPropertyIndex, float valFloat);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyInt")]
+            public static extern int InternalUpdateVisualPropertyInt(HandleRef control, int visualIndex, int visualPropertyIndex, int valInt);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyVector4")]
+            public static extern int InternalUpdateVisualPropertyVector4(HandleRef control, int visualIndex, int visualPropertyIndex, HandleRef vector4);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingVisualPropertyInt")]
+            public static extern int InternalRetrievingVisualPropertyInt(HandleRef actor,  int visualIndex, int visualPropertyIndex, out int valInt);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingVisualPropertyString")]
+            public static extern int InternalRetrievingVisualPropertyString(HandleRef actor,  int visualIndex, int visualPropertyIndex, out string valString);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InternalRetrievingVisualPropertyVector4")]
+            public static extern int InternalRetrievingVisualPropertyVector4(HandleRef actor,  int visualIndex, int visualPropertyIndex, HandleRef retrievingVector4);
+#endif
         }
     }
 }

@@ -669,9 +669,13 @@ PixelAreaSetter++;
             // Sync as current properties
             UpdateImage();
 
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+            Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionReload);
+#else
             PropertyValue attributes = new PropertyValue(0);
             this.DoAction(ImageView.Property.IMAGE, ActionReload, attributes);
             attributes?.Dispose();
+#endif
         }
 
         /// <summary>
@@ -683,9 +687,13 @@ PixelAreaSetter++;
             // Sync as current properties
             UpdateImage();
 
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+            Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionPlay);
+#else
             PropertyValue attributes = new PropertyValue(0);
             this.DoAction(ImageView.Property.IMAGE, ActionPlay, attributes);
             attributes?.Dispose();
+#endif
         }
 
         /// <summary>
@@ -697,9 +705,13 @@ PixelAreaSetter++;
             // Sync as current properties
             UpdateImage();
 
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+            Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionPause);
+#else
             PropertyValue attributes = new PropertyValue(0);
             this.DoAction(ImageView.Property.IMAGE, ActionPause, attributes);
             attributes?.Dispose();
+#endif
         }
 
         /// <summary>
@@ -711,9 +723,14 @@ PixelAreaSetter++;
             // Sync as current properties
             UpdateImage();
 
+
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+            Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionStop);
+#else
             PropertyValue attributes = new PropertyValue(0);
             this.DoAction(ImageView.Property.IMAGE, ActionStop, attributes);
             attributes?.Dispose();
+#endif
         }
 
         /// <summary>
@@ -1208,6 +1225,14 @@ PixelAreaSetter++;
 
             if (backgroundExtraData == null) return;
 
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+            // Update corner radius properties to image by ActionUpdateProperty
+            if (backgroundExtraData.CornerRadius != null)
+            {
+                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+            }
+            Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+#else
             // Apply corner radius to IMAGE.
             var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
             var cornerRadiusPolicyValue = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
@@ -1225,6 +1250,7 @@ PixelAreaSetter++;
             currentPropertyMap.Dispose();
             cornerRadiusValue.Dispose();
             cornerRadiusPolicyValue.Dispose();
+#endif
         }
 
         internal override void ApplyBorderline()
@@ -1233,6 +1259,12 @@ PixelAreaSetter++;
 
             if (backgroundExtraData == null) return;
 
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+            // Update borderline properties to image by ActionUpdateProperty
+            Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
+            Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineColor, Vector4.getCPtr(backgroundExtraData.BorderlineColor ?? Color.Black));
+            Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
+#else
             // Apply borderline to IMAGE.
             var borderlineWidthValue = new PropertyValue(backgroundExtraData.BorderlineWidth);
             var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
@@ -1253,6 +1285,7 @@ PixelAreaSetter++;
             borderlineWidthValue.Dispose();
             borderlineColorValue.Dispose();
             borderlineOffsetValue.Dispose();
+#endif
         }
 
         internal ResourceLoadingStatusType GetResourceStatus()
