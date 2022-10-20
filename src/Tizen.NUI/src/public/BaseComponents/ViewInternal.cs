@@ -629,30 +629,30 @@ namespace Tizen.NUI.BaseComponents
             return FindChildById(id);
         }
 
-        internal void SetParentOrigin(Vector3 origin)
+        internal void SetParentOrigin(Position origin)
         {
-            Interop.ActorInternal.SetParentOrigin(SwigCPtr, Vector3.getCPtr(origin));
+            Interop.ActorInternal.SetParentOrigin(SwigCPtr, Position.getCPtr(origin));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Vector3 GetCurrentParentOrigin()
+        internal Position GetCurrentParentOrigin()
         {
 #if NUI_PROPERTY_CHANGE_3
             if(internalCurrentParentOrigin == null)
             {
-                internalCurrentParentOrigin = new Vector3(0, 0, 0);
+                internalCurrentParentOrigin = new Position(0, 0, 0);
             }
-            
+
             Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.ParentOrigin, internalCurrentParentOrigin.SwigCPtr);
-            
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             return internalCurrentParentOrigin;
 #else
-            Vector3 ret = new Vector3(Interop.ActorInternal.GetCurrentParentOrigin(SwigCPtr), true);
+            Position ret = new Position(Interop.ActorInternal.GetCurrentParentOrigin(SwigCPtr), true);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -660,30 +660,30 @@ namespace Tizen.NUI.BaseComponents
 #endif            
         }
 
-        internal void SetAnchorPoint(Vector3 anchorPoint)
+        internal void SetAnchorPoint(Position anchorPoint)
         {
-            Interop.Actor.SetAnchorPoint(SwigCPtr, Vector3.getCPtr(anchorPoint));
+            Interop.Actor.SetAnchorPoint(SwigCPtr, Position.getCPtr(anchorPoint));
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        internal Vector3 GetCurrentAnchorPoint()
+        internal Position GetCurrentAnchorPoint()
         {
 #if NUI_PROPERTY_CHANGE_3
             if(internalCurrentAnchorPoint == null)
             {
-                internalCurrentAnchorPoint = new Vector3(0, 0, 0);
+                internalCurrentAnchorPoint = new Position(0, 0, 0);
             }
-            
+
             Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.AnchorPoint, internalCurrentAnchorPoint.SwigCPtr);
-            
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             return internalCurrentAnchorPoint;
 #else
-            Vector3 ret = new Vector3(Interop.ActorInternal.GetCurrentAnchorPoint(SwigCPtr), true);
+            Position ret = new Position(Interop.ActorInternal.GetCurrentAnchorPoint(SwigCPtr), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -837,7 +837,6 @@ namespace Tizen.NUI.BaseComponents
             return ret;
 #endif
         }
-
         internal Vector3 GetCurrentWorldPosition()
         {
 #if NUI_PROPERTY_CHANGE_3
@@ -858,6 +857,30 @@ namespace Tizen.NUI.BaseComponents
             if (NDalicPINVOKE.SWIGPendingException.Pending)
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+#endif
+        }
+
+        internal Vector2 GetCurrentScreenPosition()
+        {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+            if(internalCurrentScreenPosition == null)
+            {
+                internalCurrentScreenPosition = new Vector2(0, 0);
+            }
+
+            Object.InternalRetrievingPropertyVector2(SwigCPtr, View.Property.ScreenPosition, internalCurrentScreenPosition.SwigCPtr);
+
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+            {
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return internalCurrentScreenPosition;
+#else
+            Vector2 temp = new Vector2(0.0f, 0.0f);
+            var pValue = GetProperty(View.Property.ScreenPosition);
+            pValue.Get(temp);
+            pValue.Dispose();
+            return temp;
 #endif
         }
 
@@ -1284,6 +1307,21 @@ namespace Tizen.NUI.BaseComponents
             return false;
         }
 
+        /// <summary>
+        /// Check whether Current view don't has BackgroundVisual or not.
+        /// Some API (like Animation, Borderline) required non-empty backgrounds.
+        /// </summary>
+        internal bool IsBackgroundEmpty()
+        {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+            int visualType = (int)Visual.Type.Invalid;
+            Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, Property.BACKGROUND, Visual.Property.Type, out visualType);
+            return visualType == (int)Visual.Type.Invalid;
+#else
+            return Background.Empty();
+#endif
+        }
+
         internal void SetKeyInputFocus()
         {
             Interop.ViewInternal.SetKeyInputFocus(SwigCPtr);
@@ -1376,6 +1414,16 @@ namespace Tizen.NUI.BaseComponents
         {
             if (backgroundExtraData == null) return;
 
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+            // Update corner radius properties to background and shadow by ActionUpdateProperty
+            if (backgroundExtraData.CornerRadius != null)
+            {
+                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+            }
+            Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+            Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+#else
             var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
             var cornerRadiusPolicyValue = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
 
@@ -1393,6 +1441,7 @@ namespace Tizen.NUI.BaseComponents
             currentPropertyMap.Dispose();
             cornerRadiusValue.Dispose();
             cornerRadiusPolicyValue.Dispose();
+#endif
         }
 
         /// TODO open as a protected level
@@ -1400,6 +1449,23 @@ namespace Tizen.NUI.BaseComponents
         {
             if (backgroundExtraData == null) return;
 
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+            // ActionUpdateProperty works well only if BACKGROUND visual setup before.
+            // If view don't have BACKGROUND visual, we set transparent background color in default.
+            if (IsBackgroundEmpty())
+            {
+                // BACKGROUND visual doesn't exist.
+                SetBackgroundColor(Color.Transparent);
+                // SetBackgroundColor function apply borderline internally.
+                // So we can just return now.
+                return;
+            }
+
+            // Update borderline properties to background by ActionUpdateProperty
+            Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
+            Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineColor, Vector4.getCPtr(backgroundExtraData.BorderlineColor ?? Color.Black));
+            Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
+#else
             // ActionUpdateProperty works well only if BACKGROUND visual setup before.
             // If view don't have BACKGROUND visual, we set transparent background color in default.
             using (PropertyMap backgroundPropertyMap = new PropertyMap())
@@ -1437,6 +1503,7 @@ namespace Tizen.NUI.BaseComponents
             borderlineWidthValue.Dispose();
             borderlineColorValue.Dispose();
             borderlineOffsetValue.Dispose();
+#endif
         }
 
         /// <summary>
@@ -1547,6 +1614,10 @@ namespace Tizen.NUI.BaseComponents
             internalCurrentWorldColor = null;
             internalSizeModeFactor?.Dispose();
             internalSizeModeFactor = null;
+#endif
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+            internalCurrentScreenPosition?.Dispose();
+            internalCurrentScreenPosition = null;
 #endif
 
             if (type == DisposeTypes.Explicit)
