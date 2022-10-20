@@ -666,9 +666,19 @@ namespace Tizen.NUI
                 var current = result;
                 while (current != null)
                 {
+#if NUI_ANIMATION_PROPERTY_CHANGE_1
+                    var targetValueIntPtr = current.RefineValueIntPtr(relativeValue);
+                    if (targetValueIntPtr == global::System.IntPtr.Zero)
+                    {
+                        throw new ArgumentException("Invalid " + nameof(relativeValue));
+                    }
+                    AnimateByIntPtr(current.Property, targetValueIntPtr, alphaFunction);
+                    Interop.PropertyValue.DeletePropertyValueIntPtr(targetValueIntPtr);
+#else
                     var targetValue = current.RefineValue(relativeValue) ?? throw new ArgumentException("Invalid " + nameof(relativeValue));
                     AnimateBy(current.Property, targetValue, alphaFunction);
                     targetValue.Dispose();
+#endif
                     current = current.NextResult;
                 }
             }
@@ -712,9 +722,19 @@ namespace Tizen.NUI
                 using (var time = new TimePeriod(startTime, endTime - startTime))
                     while (current != null)
                     {
+#if NUI_ANIMATION_PROPERTY_CHANGE_1
+                        var targetValueIntPtr = current.RefineValueIntPtr(relativeValue);
+                        if (targetValueIntPtr == global::System.IntPtr.Zero)
+                        {
+                            throw new ArgumentException("Invalid " + nameof(relativeValue));
+                        }
+                        AnimateByIntPtr(current.Property, targetValueIntPtr, alphaFunction, time);
+                        Interop.PropertyValue.DeletePropertyValueIntPtr(targetValueIntPtr);
+#else
                         var targetValue = current.RefineValue(relativeValue) ?? throw new ArgumentException("Invalid " + nameof(relativeValue));
                         AnimateBy(current.Property, targetValue, alphaFunction, time);
                         targetValue.Dispose();
+#endif
                         current = current.NextResult;
                     }
             }
@@ -755,9 +775,19 @@ namespace Tizen.NUI
                 var current = result;
                 while (current != null)
                 {
+#if NUI_ANIMATION_PROPERTY_CHANGE_1
+                    var targetValueIntPtr = current.RefineValueIntPtr(destinationValue);
+                    if (targetValueIntPtr == global::System.IntPtr.Zero)
+                    {
+                        throw new ArgumentException("Invalid " + nameof(destinationValue));
+                    }
+                    AnimateToIntPtr(current.Property, targetValueIntPtr, alphaFunction);
+                    Interop.PropertyValue.DeletePropertyValueIntPtr(targetValueIntPtr);
+#else
                     var targetValue = current.RefineValue(destinationValue) ?? throw new ArgumentException("Invalid " + nameof(destinationValue));
                     AnimateTo(current.Property, targetValue, alphaFunction);
                     targetValue.Dispose();
+#endif
                     current = current.NextResult;
                 }
             }
@@ -868,9 +898,19 @@ namespace Tizen.NUI
                 using (var time = new TimePeriod(startTime, endTime - startTime))
                     while (current != null)
                     {
+#if NUI_ANIMATION_PROPERTY_CHANGE_1
+                        var targetValueIntPtr = current.RefineValueIntPtr(destinationValue);
+                        if (targetValueIntPtr == global::System.IntPtr.Zero)
+                        {
+                            throw new ArgumentException("Invalid " + nameof(destinationValue));
+                        }
+                        AnimateToIntPtr(current.Property, targetValueIntPtr, alphaFunction, time);
+                        Interop.PropertyValue.DeletePropertyValueIntPtr(targetValueIntPtr);
+#else
                         var targetValue = current.RefineValue(destinationValue) ?? throw new ArgumentException("Invalid " + nameof(destinationValue));
                         AnimateTo(current.Property, targetValue, alphaFunction, time);
                         targetValue.Dispose();
+#endif
                         current = current.NextResult;
                     }
             }
@@ -1441,6 +1481,60 @@ namespace Tizen.NUI
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+#if NUI_ANIMATION_PROPERTY_CHANGE_1
+        internal void AnimateByIntPtr(Property target, global::System.IntPtr relativeValueIntPtr, AlphaFunction alpha)
+        {
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateBy(SwigCPtr, Property.getCPtr(target), relativeValueIntPtr);
+            }
+            else
+            {
+                Interop.Animation.AnimateByAlphaFunction(SwigCPtr, Property.getCPtr(target), relativeValueIntPtr, AlphaFunction.getCPtr(alpha));
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void AnimateByIntPtr(Property target, global::System.IntPtr relativeValueIntPtr, AlphaFunction alpha, TimePeriod period)
+        {
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateByTimePeriod(SwigCPtr, Property.getCPtr(target), relativeValueIntPtr, TimePeriod.getCPtr(period));
+            }
+            else
+            {
+                Interop.Animation.AnimateBy(SwigCPtr, Property.getCPtr(target), relativeValueIntPtr, AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void AnimateToIntPtr(Property target, global::System.IntPtr destinationValueIntPtr, AlphaFunction alpha)
+        {
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateTo(SwigCPtr, Property.getCPtr(target), destinationValueIntPtr);
+            }
+            else
+            {
+                Interop.Animation.AnimateToAlphaFunction(SwigCPtr, Property.getCPtr(target), destinationValueIntPtr, AlphaFunction.getCPtr(alpha));
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void AnimateToIntPtr(Property target, global::System.IntPtr destinationValueIntPtr, AlphaFunction alpha, TimePeriod period)
+        {
+            if (alpha == null)
+            {
+                Interop.Animation.AnimateToTimePeriod(SwigCPtr, Property.getCPtr(target), destinationValueIntPtr, TimePeriod.getCPtr(period));
+            }
+            else
+            {
+                Interop.Animation.AnimateTo(SwigCPtr, Property.getCPtr(target), destinationValueIntPtr, AlphaFunction.getCPtr(alpha), TimePeriod.getCPtr(period));
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+#endif
 
         internal void AnimateBetween(Property target, KeyFrames keyFrames)
         {
