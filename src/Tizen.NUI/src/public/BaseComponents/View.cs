@@ -87,8 +87,8 @@ namespace Tizen.NUI.BaseComponents
         private string internalName = string.Empty;
 #endif
 #if NUI_PROPERTY_CHANGE_3
-        private Vector3 internalCurrentParentOrigin = null;
-        private Vector3 internalCurrentAnchorPoint = null;
+        private Position internalCurrentParentOrigin = null;
+        private Position internalCurrentAnchorPoint = null;
         private Vector3 internalTargetSize = null;
         private Size2D internalCurrentSize = null;
         private Vector3 internalNaturalSize = null;
@@ -98,6 +98,9 @@ namespace Tizen.NUI.BaseComponents
         private Vector3 internalCurrentWorldScale = null;
         private Vector4 internalCurrentColor = null;
         private Vector4 internalCurrentWorldColor = null;
+#endif
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+        private Vector2 internalCurrentScreenPosition = null;
 #endif
 
         static View()
@@ -1348,11 +1351,7 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-                Vector2 temp = new Vector2(0.0f, 0.0f);
-                var pValue = GetProperty(View.Property.ScreenPosition);
-                pValue.Get(temp);
-                pValue.Dispose();
-                return temp;
+                return GetCurrentScreenPosition();
             }
         }
 
@@ -1404,17 +1403,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.PositionUsesAnchorPoint);
+#else
                 bool temp = false;
                 var pValue = GetProperty(View.Property.PositionUsesAnchorPoint);
                 pValue.Get(out temp);
                 pValue.Dispose();
                 return temp;
+#endif
             }
             set
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                Object.InternalSetPropertyBool(SwigCPtr, View.Property.PositionUsesAnchorPoint, value);
+#else
                 var temp = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.PositionUsesAnchorPoint, temp);
                 temp.Dispose();
+#endif
                 NotifyPropertyChanged();
             }
         }
@@ -1736,11 +1743,15 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                return GetCurrentWorldPosition();
+#else
                 Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
                 var pValue = GetProperty(View.Property.WorldPosition);
                 pValue.Get(temp);
                 pValue.Dispose();
                 return temp;
+#endif
             }
         }
 
@@ -1909,11 +1920,15 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                return GetCurrentWorldScale();
+#else
                 Vector3 temp = new Vector3(0.0f, 0.0f, 0.0f);
                 var pValue = GetProperty(View.Property.WorldScale);
                 pValue.Get(temp);
                 pValue.Dispose();
                 return temp;
+#endif
             }
         }
 
@@ -1937,11 +1952,15 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.VISIBLE);
+#else
                 bool temp = false;
                 var pValue = GetProperty(View.Property.VISIBLE);
                 pValue.Get(out temp);
                 pValue.Dispose();
                 return temp;
+#endif
             }
         }
 
@@ -1953,11 +1972,15 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                return GetCurrentWorldColor();
+#else
                 Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
                 var pValue = GetProperty(View.Property.WorldColor);
                 pValue.Get(temp);
                 pValue.Dispose();
                 return temp;
+#endif
             }
         }
 
@@ -2418,6 +2441,9 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                return GetCurrentAnchorPoint();
+#else
                 Position temp = new Position(0.0f, 0.0f, 0.0f);
                 var pValue = GetProperty(View.Property.AnchorPoint);
                 pValue.Get(temp);
@@ -2425,12 +2451,17 @@ namespace Tizen.NUI.BaseComponents
                 Position ret = new Position(OnAnchorPointChanged, temp.X, temp.Y, temp.Z);
                 temp.Dispose();
                 return ret;
+#endif
             }
             set
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                SetAnchorPoint(value);
+#else
                 var temp = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.AnchorPoint, temp);
                 temp.Dispose();
+#endif
                 NotifyPropertyChanged();
             }
         }
@@ -3095,12 +3126,16 @@ namespace Tizen.NUI.BaseComponents
             {
                 backgroundImageSynchronousLoading = value;
 
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                if (!string.IsNullOrEmpty(BackgroundImage))
+#else
                 string bgUrl = null;
                 var pValue = Background.Find(ImageVisualProperty.URL);
                 pValue?.Get(out bgUrl);
                 pValue?.Dispose();
 
                 if (!string.IsNullOrEmpty(bgUrl))
+#endif
                 {
                     PropertyMap bgMap = this.Background;
                     var temp = new PropertyValue(backgroundImageSynchronousLoading);
@@ -3229,17 +3264,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.CaptureAllTouchAfterStart);
+#else
                 bool temp = false;
                 var pValue = GetProperty(View.Property.CaptureAllTouchAfterStart);
                 pValue.Get(out temp);
                 pValue.Dispose();
                 return temp;
+#endif
             }
             set
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                Object.InternalSetPropertyBool(SwigCPtr, View.Property.CaptureAllTouchAfterStart, value);
+#else
                 var temp = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.CaptureAllTouchAfterStart, temp);
                 temp.Dispose();
+#endif
                 NotifyPropertyChanged();
             }
         }
@@ -3265,17 +3308,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.AllowOnlyOwnTouch);
+#else
                 bool temp = false;
                 var pValue = GetProperty(View.Property.AllowOnlyOwnTouch);
                 pValue.Get(out temp);
                 pValue.Dispose();
                 return temp;
+#endif
             }
             set
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                Object.InternalSetPropertyBool(SwigCPtr, View.Property.AllowOnlyOwnTouch, value);
+#else
                 var temp = new Tizen.NUI.PropertyValue(value);
                 SetProperty(View.Property.AllowOnlyOwnTouch, temp);
                 temp.Dispose();
+#endif
                 NotifyPropertyChanged();
             }
         }
@@ -3302,17 +3353,25 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                return (BlendEquationType)Object.InternalGetPropertyInt(SwigCPtr, View.Property.BlendEquation);
+#else
                 int temp = 0;
                 var pValue = GetProperty(View.Property.BlendEquation);
                 pValue.Get(out temp);
                 pValue.Dispose();
                 return (BlendEquationType)temp;
+#endif
             }
             set
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                Object.InternalSetPropertyInt(SwigCPtr, View.Property.BlendEquation, (int)value);
+#else
                 var temp = new Tizen.NUI.PropertyValue((int)value);
                 SetProperty(View.Property.BlendEquation, temp);
                 temp.Dispose();
+#endif
                 NotifyPropertyChanged();
             }
         }
@@ -3422,11 +3481,15 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                return Object.InternalGetPropertyBool(SwigCPtr, View.Property.Culled);
+#else
                 bool temp = false;
                 var pValue = GetProperty(View.Property.Culled);
                 pValue.Get(out temp);
                 pValue.Dispose();
                 return temp;
+#endif
             }
         }
 
