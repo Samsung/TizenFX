@@ -5,7 +5,7 @@
         <LangVersion>8.0</LangVersion>
     </PropertyGroup>
     <PropertyGroup>
-        <DefineConstants>NUI_DEBUG_OFF;NUI_PROPERTY_CHANGE_1;NUI_PROPERTY_CHANGE_2;NUI_PROPERTY_CHANGE_3;NUI_VISUAL_PROPERTY_CHANGE_1;</DefineConstants>
+        <DefineConstants>NUI_DEBUG_OFF;NUI_PROPERTY_CHANGE_1;NUI_PROPERTY_CHANGE_2;NUI_PROPERTY_CHANGE_3;NUI_VISUAL_PROPERTY_CHANGE_1;NUI_ANIMATION_PROPERTY_CHANGE_1;</DefineConstants>
     </PropertyGroup>
     <ItemGroup>
         <TizenPreloadFile Include="Tizen.NUI.preload"
