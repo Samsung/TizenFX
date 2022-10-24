@@ -201,9 +201,8 @@ namespace Tizen.NUI
 
                         if (null != parent)
                         {
-                            if (null != xNameToElements)
+                            if ((null != xNameToElements) && (xNameToElements[pair.Key] is View holdedXElements))
                             {
-                                var holdedXElements = xNameToElements[pair.Key] as View;
                                 holdedXElements.CopyBindingRelationShip(view);
                                 holdedXElements.CopyFrom(view);
 

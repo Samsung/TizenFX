@@ -115,31 +115,37 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Dispatches an asynchronous message to the main loop of the CoreApplication.
+        /// Dispatches an asynchronous message to a main loop of the CoreTask.
         /// </summary>
+        /// <remarks>
+        /// The asynchronous message will be delivered to the main thread.
+        /// </remarks>
         /// <param name="runner">The runner callback.</param>
         /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
         /// <since_tizen> 10 </since_tizen>
-        public void Post(Action runner)
+        public static void Post(Action runner)
         {
             if (runner == null)
             {
                 throw new ArgumentNullException(nameof(runner));
             }
 
-            GSourceManager.Post(runner, true);
+            GSourceManager.Post(runner);
         }
 
         /// <summary>
-        /// Dispatches an asynchronous message to the main loop of the CoreApplication.
+        /// Dispatches an asynchronous message to a main loop of the CoreTask.
         /// </summary>
+        /// <remarks>
+        /// The asynchronous message will be delivered to the main thread.
+        /// </remarks>
         /// <typeparam name="T">The type of the result. </typeparam>
         /// <param name="runner">The runner callback.</param>
         /// <exception cref="ArgumentNullException">Thrown when the runner is null.</exception>
         /// <returns>A task with the result.</returns>
         /// <since_tizen> 10 </since_tizen>
 
-        public async Task<T> Post<T>(Func<T> runner)
+        public static async Task<T> Post<T>(Func<T> runner)
         {
             if (runner == null)
             {
@@ -147,7 +153,7 @@ namespace Tizen.Applications
             }
 
             var task = new TaskCompletionSource<T>();
-            GSourceManager.Post(() => { task.SetResult(runner()); }, true);
+            GSourceManager.Post(() => { task.SetResult(runner()); });
             return await task.Task.ConfigureAwait(false);
         }
     }

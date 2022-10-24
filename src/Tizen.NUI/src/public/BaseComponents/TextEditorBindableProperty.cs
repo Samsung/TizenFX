@@ -34,16 +34,24 @@ namespace Tizen.NUI.BaseComponents
             if (newValue != null)
             {
                 textEditor.isSettingTextInCSharp = true;
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.TEXT, (string)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.TEXT, new Tizen.NUI.PropertyValue((string)newValue));
+#endif
                 textEditor.isSettingTextInCSharp = false;
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.TEXT);
+#else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.TEXT).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -52,15 +60,29 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.TextColor, ((Vector4)newValue).SwigCPtr);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.TextColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            if (textEditor.internalTextColor == null)
+            {
+                textEditor.internalTextColor = new Vector4(0, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.TextColor, textEditor.internalTextColor.SwigCPtr);
+            return textEditor.internalTextColor;
+#else
+
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.TextColor).Get(temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -69,15 +91,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.FontFamily, (string)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.FontFamily, new Tizen.NUI.PropertyValue((string)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.FontFamily);
+#else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.FontFamily).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -103,15 +133,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.PointSize, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PointSize, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.PointSize);
+#else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PointSize).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -120,18 +158,25 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.HorizontalAlignment, (int)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.HorizontalAlignment, new Tizen.NUI.PropertyValue((int)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
             string temp;
+#if NUI_PROPERTY_CHANGE_2
+            temp = Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.HorizontalAlignment);
+#else
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.HorizontalAlignment).Get(out temp) == false)
             {
                 NUILog.Error("HorizontalAlignment get error!");
             }
-
+#endif
             return temp.GetValueByDescription<HorizontalAlignment>();
         }));
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -140,18 +185,25 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.VerticalAlignment, (int)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.VerticalAlignment, new Tizen.NUI.PropertyValue((int)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
             string temp;
+#if NUI_PROPERTY_CHANGE_2
+            temp = Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.VerticalAlignment);
+#else
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.VerticalAlignment).Get(out temp) == false)
             {
                 NUILog.Error("VerticalAlignment get error!");
             }
-
+#endif
             return temp.GetValueByDescription<VerticalAlignment>();
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -161,15 +213,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollThreshold, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollThreshold, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollThreshold);
+#else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollThreshold).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -178,15 +238,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollSpeed, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollSpeed, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollSpeed);
+#else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollSpeed).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -195,15 +263,28 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.PrimaryCursorColor, ((Vector4)newValue).SwigCPtr);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PrimaryCursorColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            if (textEditor.internalPrimaryCursorColor == null)
+            {
+                textEditor.internalPrimaryCursorColor = new Vector4(0, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.PrimaryCursorColor, textEditor.internalPrimaryCursorColor.SwigCPtr);
+            return textEditor.internalPrimaryCursorColor;
+#else
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PrimaryCursorColor).Get(temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -212,15 +293,28 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.SecondaryCursorColor, ((Vector4)newValue).SwigCPtr);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.SecondaryCursorColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
+#endif            
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            if (textEditor.internalSecondaryCursorColor == null)
+            {
+                textEditor.internalSecondaryCursorColor = new Vector4(0, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.SecondaryCursorColor, textEditor.internalSecondaryCursorColor.SwigCPtr);
+            return textEditor.internalSecondaryCursorColor;
+#else
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.SecondaryCursorColor).Get(temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -229,15 +323,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableCursorBlink, (bool)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableCursorBlink, new Tizen.NUI.PropertyValue((bool)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableCursorBlink);
+#else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableCursorBlink).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -246,15 +348,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CursorBlinkInterval, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CursorBlinkInterval, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CursorBlinkInterval);
+#else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CursorBlinkInterval).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -263,15 +373,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CursorBlinkDuration, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CursorBlinkDuration, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CursorBlinkDuration);
+#else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CursorBlinkDuration).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -280,15 +398,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.CursorWidth, (int)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CursorWidth, new Tizen.NUI.PropertyValue((int)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.CursorWidth);
+#else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CursorWidth).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -297,15 +423,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.GrabHandleImage, (string)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.GrabHandleImage, new Tizen.NUI.PropertyValue((string)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.GrabHandleImage);
+#else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.GrabHandleImage).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -314,15 +448,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.GrabHandlePressedImage, (string)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.GrabHandlePressedImage, new Tizen.NUI.PropertyValue((string)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.GrabHandlePressedImage);
+#else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.GrabHandlePressedImage).Get(out temp);
             return temp;
+#endif
         }));
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -451,15 +593,28 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.SelectionHighlightColor, ((Vector4)newValue).SwigCPtr);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.SelectionHighlightColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            if (textEditor.internalSelectionHighlightColor == null)
+            {
+                textEditor.internalSelectionHighlightColor = new Vector4(0, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.SelectionHighlightColor, textEditor.internalSelectionHighlightColor.SwigCPtr);
+            return textEditor.internalSelectionHighlightColor;
+#else
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.SelectionHighlightColor).Get(temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -485,15 +640,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableMarkup, (bool)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableMarkup, new Tizen.NUI.PropertyValue((bool)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableMarkup);
+#else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableMarkup).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -502,15 +665,28 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.InputColor, ((Vector4)newValue).SwigCPtr);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputColor, new Tizen.NUI.PropertyValue((Vector4)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            if (textEditor.internalInputColor == null)
+            {
+                textEditor.internalInputColor = new Vector4(0, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.InputColor, textEditor.internalInputColor.SwigCPtr);
+            return textEditor.internalInputColor;
+#else
             Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputColor).Get(temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -519,15 +695,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputFontFamily, (string)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputFontFamily, new Tizen.NUI.PropertyValue((string)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputFontFamily);
+#else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputFontFamily).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -553,15 +737,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.InputPointSize, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputPointSize, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.InputPointSize);
+#else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputPointSize).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -570,15 +762,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.LineSpacing, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.LineSpacing, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.LineSpacing);
+#else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.LineSpacing).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -587,15 +787,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.InputLineSpacing, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputLineSpacing, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.InputLineSpacing);
+#else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputLineSpacing).Get(out temp);
             return temp;
+#endif
         }));
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty RelativeLineHeightProperty = BindableProperty.Create(nameof(RelativeLineHeight), typeof(float), typeof(TextEditor), default(float), propertyChanged: (BindableProperty.BindingPropertyChangedDelegate)((bindable, oldValue, newValue) =>
@@ -603,15 +811,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.RelativeLineHeight, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.RelativeLineHeight, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.RelativeLineHeight);
+#else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.RelativeLineHeight).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -637,15 +853,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputUnderline, (string)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputUnderline, new Tizen.NUI.PropertyValue((string)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputUnderline);
+#else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputUnderline).Get(out temp);
             return temp;
+#endif
         }));
 
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -672,15 +896,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputShadow, (string)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputShadow, new Tizen.NUI.PropertyValue((string)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputShadow);
+#else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputShadow).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -689,15 +921,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.EMBOSS, (string)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EMBOSS, new Tizen.NUI.PropertyValue((string)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.EMBOSS);
+#else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EMBOSS).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -706,15 +946,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputEmboss, (string)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputEmboss, new Tizen.NUI.PropertyValue((string)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputEmboss);
+#else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputEmboss).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -740,15 +988,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputOutline, (string)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputOutline, new Tizen.NUI.PropertyValue((string)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.InputOutline);
+#else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.InputOutline).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -757,15 +1013,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.SmoothScroll, (bool)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.SmoothScroll, new Tizen.NUI.PropertyValue((bool)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.SmoothScroll);
+#else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.SmoothScroll).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -774,15 +1038,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.SmoothScrollDuration, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.SmoothScrollDuration, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.SmoothScrollDuration);
+#else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.SmoothScrollDuration).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -791,15 +1063,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableScrollBar, (bool)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableScrollBar, new Tizen.NUI.PropertyValue((bool)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableScrollBar);
+#else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableScrollBar).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -808,15 +1088,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollBarShowDuration, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollBarShowDuration, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollBarShowDuration);
+#else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollBarShowDuration).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -825,15 +1113,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollBarFadeDuration, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollBarFadeDuration, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.ScrollBarFadeDuration);
+#else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ScrollBarFadeDuration).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -842,15 +1138,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.PixelSize, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PixelSize, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.PixelSize);
+#else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PixelSize).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -859,15 +1163,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.PlaceholderText, (string)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PlaceholderText, new Tizen.NUI.PropertyValue((string)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.PlaceholderText);
+#else
             string temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PlaceholderText).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -876,15 +1188,28 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.PlaceholderTextColor, ((Color)newValue).SwigCPtr);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PlaceholderTextColor, new Tizen.NUI.PropertyValue((Color)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            if (textEditor.internalPlaceholderTextColor == null)
+            {
+                textEditor.internalPlaceholderTextColor = new Color(0, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.PlaceholderTextColor, textEditor.internalPlaceholderTextColor.SwigCPtr);
+            return textEditor.internalPlaceholderTextColor;
+#else
             Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.PlaceholderTextColor).Get(temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -893,15 +1218,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableSelection, (bool)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableSelection, new Tizen.NUI.PropertyValue((bool)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableSelection);
+#else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableSelection).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -927,18 +1260,26 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.LineWrapMode, (int)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.LineWrapMode, new Tizen.NUI.PropertyValue((int)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.LineWrapMode);
+#else
             int temp;
             if (Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.LineWrapMode).Get(out temp) == false)
             {
                 NUILog.Error("LineWrapMode get error!");
             }
             return (LineWrapMode)temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -947,16 +1288,24 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableShiftSelection, (bool)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableShiftSelection, new Tizen.NUI.PropertyValue((bool)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
             //textEditor.mShiftSelectionFlag(true);
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableShiftSelection);
+#else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableShiftSelection).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -965,15 +1314,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.MatchSystemLanguageDirection, (bool)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.MatchSystemLanguageDirection, new Tizen.NUI.PropertyValue((bool)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.MatchSystemLanguageDirection);
+#else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.MatchSystemLanguageDirection).Get(out temp);
             return (bool)temp;
+#endif
         }));
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -982,15 +1339,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.MaxLength, (int)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.MaxLength, new Tizen.NUI.PropertyValue((int)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.MaxLength);
+#else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.MaxLength).Get(out temp);
             return temp;
+#endif
         }));
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -999,18 +1364,26 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.FontSizeScale, (float)newValue);
+#else
                 using (var property = new Tizen.NUI.PropertyValue((float)newValue))
                 {
                     Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.FontSizeScale, property);
                 }
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.FontSizeScale);
+#else
             float temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.FontSizeScale).Get(out temp);
             return temp;
+#endif
         }));
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1019,18 +1392,26 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableFontSizeScale, (bool)newValue);
+#else
                 using (var property = new Tizen.NUI.PropertyValue((bool)newValue))
                 {
                     Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableFontSizeScale, property);
                 }
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableFontSizeScale);
+#else
             bool temp;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableFontSizeScale).Get(out temp);
             return temp;
+#endif
         }));
 
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -1040,15 +1421,28 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.GrabHandleColor, ((Color)newValue).SwigCPtr);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.GrabHandleColor, new Tizen.NUI.PropertyValue((Color)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            if (textEditor.internalGrabHandleColor == null)
+            {
+                textEditor.internalGrabHandleColor = new Color(0, 0, 0, 0);
+            }
+            Object.InternalRetrievingPropertyVector4(textEditor.SwigCPtr, TextEditor.Property.GrabHandleColor, textEditor.internalGrabHandleColor.SwigCPtr);
+            return textEditor.internalGrabHandleColor;
+#else
             Color temp = new Color(0.0f, 0.0f, 0.0f, 0.0f);
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.GrabHandleColor).Get(temp);
             return temp;
+#endif
         }));
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1057,15 +1451,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandle, (bool)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandle, new Tizen.NUI.PropertyValue((bool)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandle);
+#else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandle).Get(out temp);
             return temp;
+#endif
         }));
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1074,15 +1476,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandlePopup, (bool)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandlePopup, new Tizen.NUI.PropertyValue((bool)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandlePopup);
+#else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EnableGrabHandlePopup).Get(out temp);
             return temp;
+#endif
         }));
 
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1108,15 +1518,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.ELLIPSIS, (bool)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ELLIPSIS, new Tizen.NUI.PropertyValue((bool)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyBool(textEditor.SwigCPtr, TextEditor.Property.ELLIPSIS);
+#else
             bool temp = false;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.ELLIPSIS).Get(out temp);
             return temp;
+#endif
         }));
         /// This will be public opened in tizen_6.5 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -1125,15 +1543,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.EllipsisPosition, (int)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EllipsisPosition, new Tizen.NUI.PropertyValue((int)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyInt(textEditor.SwigCPtr, TextEditor.Property.EllipsisPosition);
+#else
             int temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.EllipsisPosition).Get(out temp);
             return (EllipsisPosition)temp;
+#endif
         }));
 
         /// currently need to be hidden as inhouse API.
@@ -1143,15 +1569,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.MinLineSize, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.MinLineSize, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.MinLineSize);
+#else
             float temp = 0.0f;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.MinLineSize).Get(out temp);
             return temp;
+#endif
         }));
 
         /// <summary>
@@ -1269,15 +1703,23 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
+#if NUI_PROPERTY_CHANGE_2
+                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CharacterSpacing, (float)newValue);
+#else
                 Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CharacterSpacing, new Tizen.NUI.PropertyValue((float)newValue));
+#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
+#if NUI_PROPERTY_CHANGE_2
+            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.CharacterSpacing);
+#else
             float temp = 0;
             Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.CharacterSpacing).Get(out temp);
             return temp;
+#endif
         }));
     }
 }
