@@ -445,6 +445,12 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Arc = AnimatedImage + 3,
+
+            /// <summary>
+            /// Keyword for invalid visual type. (NUI only)
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Invalid = Border - 1,
         }
 
         /// <summary>

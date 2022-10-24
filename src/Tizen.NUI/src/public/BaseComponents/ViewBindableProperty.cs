@@ -130,6 +130,14 @@ namespace Tizen.NUI.BaseComponents
                     view.internalBackgroundColor = new Color(view.OnBackgroundColorChanged, 0, 0, 0, 0);
                 }
 
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                int visualType = (int)Visual.Type.Invalid;
+                Interop.View.InternalRetrievingVisualPropertyInt(view.SwigCPtr, Property.BACKGROUND, Visual.Property.Type, out visualType);
+                if (visualType == (int)Visual.Type.Color)
+                {
+                    Interop.View.InternalRetrievingVisualPropertyVector4(view.SwigCPtr, Property.BACKGROUND, ColorVisualProperty.MixColor, Color.getCPtr(view.internalBackgroundColor));
+                }
+#else
                 PropertyMap background = view.Background;
                 int visualType = 0;
                 background.Find(Visual.Property.Type)?.Get(out visualType);
@@ -140,7 +148,7 @@ namespace Tizen.NUI.BaseComponents
 
                 background?.Dispose();
                 background = null;
-
+#endif
                 return view.internalBackgroundColor;
             }
         );
@@ -287,11 +295,15 @@ namespace Tizen.NUI.BaseComponents
                 var view = (View)bindable;
                 string backgroundImage = "";
 
+#if NUI_VISUAL_PROPERTY_CHANGE_1
+                Interop.View.InternalRetrievingVisualPropertyString(view.SwigCPtr, Property.BACKGROUND, ImageVisualProperty.URL, out backgroundImage);
+#else
                 PropertyMap background = view.Background;
                 background.Find(ImageVisualProperty.URL)?.Get(out backgroundImage);
 
                 background.Dispose();
                 background = null;
+#endif
 
                 return backgroundImage;
             }
