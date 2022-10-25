@@ -401,7 +401,6 @@ namespace Tizen.NUI.Components
             {
                 if (item.Index < FirstVisible || item.Index > LastVisible)
                 {
-                    //Console.WriteLine("[NUI] Unrealize{0}!", item.Index);
                     unrealizedItems.Add(item);
                     colView.UnrealizeItem(item);
                 }
@@ -684,6 +683,18 @@ namespace Tizen.NUI.Components
                 }
             }
 
+            if (startIndex <= FirstVisible)
+            {
+                FirstVisible++;
+                LastVisible++;
+            }
+            else if (startIndex > FirstVisible && startIndex <= LastVisible)
+            {
+                LastVisible++;
+            }
+
+            if (FirstVisible > colView.InternalItemSource.Count - 1) FirstVisible = colView.InternalItemSource.Count -1;
+            if (LastVisible > colView.InternalItemSource.Count - 1) LastVisible = colView.InternalItemSource.Count -1;
 
             float scrollPosition = PrevScrollPosition;
 
@@ -851,6 +862,19 @@ namespace Tizen.NUI.Components
                 }
             }
 
+            if (startIndex <= FirstVisible)
+            {
+                FirstVisible = FirstVisible + count;
+                LastVisible = LastVisible + count;
+            }
+            else if (startIndex > FirstVisible && startIndex <= LastVisible)
+            {
+                LastVisible = LastVisible + count;
+            }
+
+            if (FirstVisible > colView.InternalItemSource.Count - 1) FirstVisible = colView.InternalItemSource.Count -1;
+            if (LastVisible > colView.InternalItemSource.Count - 1) LastVisible = colView.InternalItemSource.Count -1;
+
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
             /*
@@ -980,6 +1004,20 @@ namespace Tizen.NUI.Components
             }
             VisibleItems.Remove(targetItem);
 
+
+            if (startIndex <= FirstVisible)
+            {
+                FirstVisible--;
+                LastVisible--;
+            }
+            else if (startIndex > FirstVisible && startIndex <= LastVisible)
+            {
+                LastVisible--;
+            }
+
+            if (FirstVisible < 0) FirstVisible = 0;
+            if (LastVisible < 0) LastVisible = 0;
+
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
             /*
@@ -1089,6 +1127,19 @@ namespace Tizen.NUI.Components
             VisibleItems.RemoveAll(unrealizedItems.Contains);
             unrealizedItems.Clear();
 
+            if (startIndex <= FirstVisible)
+            {
+                FirstVisible = FirstVisible - count;
+                LastVisible = LastVisible - count;
+            }
+            else if (startIndex > FirstVisible && startIndex <= LastVisible)
+            {
+                LastVisible = LastVisible - count;
+            }
+
+            if (FirstVisible < 0) FirstVisible = 0;
+            if (LastVisible < 0) LastVisible = 0;
+
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
             /*
@@ -1158,6 +1209,48 @@ namespace Tizen.NUI.Components
                     }
                 }
             }
+
+            if (fromPosition > FirstVisible)
+            {
+                if (toPosition > LastVisible)
+                {
+                    FirstVisible--;
+                    LastVisible--;
+                }
+                else if (toPosition > FirstVisible && toPosition <= LastVisible)
+                {
+                    LastVisible--;
+                }
+            }
+            else if (fromPosition >= FirstVisible && fromPosition <= LastVisible)
+            {
+                if (toPosition < FirstVisible)
+                {
+                    FirstVisible++;
+                }
+                else if (toPosition > LastVisible)
+                {
+                    LastVisible--;
+                }
+            }
+            else if (fromPosition > LastVisible)
+            {
+                if (toPosition <= FirstVisible)
+                {
+                    FirstVisible++;
+                    LastVisible++;
+                }
+                else if (toPosition > FirstVisible && toPosition <= LastVisible)
+                {
+                    LastVisible++;
+                }
+            }
+
+            if (FirstVisible < 0) FirstVisible = 0;
+            if (LastVisible < 0) LastVisible = 0;
+            if (FirstVisible > colView.InternalItemSource.Count - 1) FirstVisible = colView.InternalItemSource.Count -1;
+            if (LastVisible > colView.InternalItemSource.Count - 1) LastVisible = colView.InternalItemSource.Count -1;
+
 
             if (IsHorizontal) colView.ContentContainer.SizeWidth = ScrollContentSize;
             else colView.ContentContainer.SizeHeight = ScrollContentSize;
@@ -1275,6 +1368,14 @@ namespace Tizen.NUI.Components
                     }
                 }
             }
+            // FIXME!! Unraelize All and reset First/Last Visible
+            foreach (RecyclerViewItem item in VisibleItems)
+            {
+                colView.UnrealizeItem(item);
+            }
+            VisibleItems.Clear();
+            FirstVisible = 0;
+            LastVisible = 0;
 
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
