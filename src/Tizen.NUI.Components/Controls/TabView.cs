@@ -156,6 +156,19 @@ namespace Tizen.NUI.Components
             {
                 return tabBar;
             }
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            protected set
+            {
+                if (tabBar != null)
+                {
+                    tabBar.TabButtonSelected -= tabButtonSelectedHandler;
+                    Utility.Dispose(tabBar);
+                }
+
+                tabBar = value;
+                Add(tabBar);
+            }
         }
 
         /// <summary>
@@ -167,6 +180,18 @@ namespace Tizen.NUI.Components
             get
             {
                 return content;
+            }
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            protected set
+            {
+                if (content != null)
+                {
+                    Utility.Dispose(content);
+                }
+
+                content = value;
+                Add(content);
             }
         }
 
