@@ -61,7 +61,7 @@ internal static partial class Interop
         }
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void ThemeLoaderChangedCallback(IntPtr handle, IntPtr userData);
+        internal delegate int ThemeLoaderChangedCallback(IntPtr handle, IntPtr userData);
 
         [DllImport(Libraries.ThemeManager, EntryPoint = "theme_get_id")]
         internal static extern ErrorCode GetId(IntPtr handle, out string id);

@@ -22,7 +22,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Applications.ThemeManager
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     /// <since_tizen> 8 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
@@ -51,10 +51,14 @@ namespace Tizen.Applications.ThemeManager
             }
         }
 
-        private void OnThemeChanged(IntPtr handle, IntPtr userData)
+        private int OnThemeChanged(IntPtr handle, IntPtr userData)
         {
-            Interop.ThemeManager.ThemeClone(handle, out IntPtr cloned);
+            Interop.ThemeManager.ErrorCode err = Interop.ThemeManager.ThemeClone(handle, out IntPtr cloned);
+            if (err != Interop.ThemeManager.ErrorCode.None)
+                return -1;
+
             _changedEventHandler?.Invoke(this, new ThemeEventArgs(new Theme(cloned)));
+            return 0;
         }
 
         /// <summary>
