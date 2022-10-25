@@ -108,7 +108,7 @@ namespace Tizen.NUI.Components
         /// <param name="tabButton">A tab button to be added to TabBar.</param>
         /// <exception cref="ArgumentNullException">Thrown when the argument tabButton is null.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal void AddTabButton(TabButton tabButton)
+        protected internal virtual void AddTabButton(TabButton tabButton)
         {
             if (tabButton == null)
             {
@@ -157,7 +157,7 @@ namespace Tizen.NUI.Components
         /// <exception cref="ArgumentNullException">Thrown when the argument tabButton is null.</exception>
         /// <exception cref="ArgumentException">Thrown when the argument tabButton does not exist in TabBar.</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected internal void RemoveTabButton(TabButton tabButton)
+        protected internal virtual void RemoveTabButton(TabButton tabButton)
         {
             if (tabButton == null)
             {
