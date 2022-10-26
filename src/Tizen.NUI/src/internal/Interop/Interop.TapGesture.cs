@@ -63,8 +63,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGesture_localPoint_get")]
             public static extern global::System.IntPtr LocalPointGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TapGesture_sourceType_get")]
-            public static extern int SourceTypeGet(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }

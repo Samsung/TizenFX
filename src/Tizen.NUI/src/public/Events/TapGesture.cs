@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System;
 using System.ComponentModel;
 
 namespace Tizen.NUI
@@ -89,15 +90,17 @@ namespace Tizen.NUI
 
         /// <summary>
         /// The gesture source type of touches property (read-only).
-        /// If you tap with a mouse button, this will tell you which mouse input you tapped.
+        /// If you touch with a mouse button, this will tell you which mouse input you touched.
         /// Primary(Left), Secondary(Right). Tertiary(Wheel).
+        /// Deprecated. This api will be deleted without notice. Please do not use it.
         /// </summary>
+        [Obsolete("This property will be deleted without notice. Please do not use it. Use Gesture.SourceData instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public GestureSourceType SourceType
+        public new GestureSourceType SourceType
         {
             get
             {
-                return sourceType;
+                return (GestureSourceType)SourceData;
             }
         }
 
@@ -163,16 +166,6 @@ namespace Tizen.NUI
             }
         }
 
-        private GestureSourceType sourceType
-        {
-            get
-            {
-                GestureSourceType ret = (GestureSourceType)Interop.TapGesture.SourceTypeGet(SwigCPtr);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-                return ret;
-            }
-        }
-
         /// <summary>
         /// Gets the TapGesture from the pointer.
         /// </summary>
@@ -195,7 +188,9 @@ namespace Tizen.NUI
 
     /// <summary>
     /// Gesture source type.
+    /// Deprecated. This value will be deleted without notice. Please do not use it.
     /// </summary>
+    [Obsolete("This enum will be deleted without notice. Please do not use it.")]
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum GestureSourceType
     {
@@ -220,4 +215,5 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         Tertiary = 2,
     }
+
 }
