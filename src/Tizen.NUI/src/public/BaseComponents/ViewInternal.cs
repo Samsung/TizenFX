@@ -1318,7 +1318,8 @@ namespace Tizen.NUI.BaseComponents
             Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, Property.BACKGROUND, Visual.Property.Type, out visualType);
             return visualType == (int)Visual.Type.Invalid;
 #else
-            return Background.Empty();
+            PropertyMap background = Background;
+            return (background == null || background.Empty());
 #endif
         }
 
