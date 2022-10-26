@@ -89,9 +89,10 @@ namespace Tizen.NUI.Components
                     itemIcon = CreateIcon(ItemStyle?.Icon);
                     if (itemIcon != null)
                     {
-                        layoutChanged = true;
                         Add(itemIcon);
                         itemIcon.Relayout += OnIconRelayout;
+                        layoutChanged = true;
+                        LayoutChild();
                     }
                 }
                 return itemIcon;
@@ -108,6 +109,7 @@ namespace Tizen.NUI.Components
                     itemIcon.Relayout += OnIconRelayout;
                 }
                 layoutChanged = true;
+                LayoutChild();
             }
         }
 
@@ -147,8 +149,9 @@ namespace Tizen.NUI.Components
                     itemLabel = CreateLabel(ItemStyle?.Label);
                     if (itemLabel != null)
                     {
-                        layoutChanged = true;
                         Add(itemLabel);
+                        layoutChanged = true;
+                        LayoutChild();
                     }
                 }
                 return itemLabel;
@@ -156,6 +159,8 @@ namespace Tizen.NUI.Components
             internal set
             {
                 itemLabel = value;
+                layoutChanged = true;
+                LayoutChild();
             }
         }
 
@@ -200,8 +205,9 @@ namespace Tizen.NUI.Components
                     itemSubLabel = CreateLabel(ItemStyle?.SubLabel);
                     if (itemLabel != null)
                     {
-                        layoutChanged = true;
                         Add(itemSubLabel);
+                        layoutChanged = true;
+                        LayoutChild();
                     }
                 }
                 return itemSubLabel;
@@ -209,6 +215,8 @@ namespace Tizen.NUI.Components
             internal set
             {
                 itemSubLabel = value;
+                layoutChanged = true;
+                LayoutChild();
             }
         }
 
@@ -265,9 +273,10 @@ namespace Tizen.NUI.Components
                     itemExtra = CreateIcon(ItemStyle?.Extra);
                     if (itemExtra != null)
                     {
-                        layoutChanged = true;
                         Add(itemExtra);
                         itemExtra.Relayout += OnExtraRelayout;
+                        layoutChanged = true;
+                        LayoutChild();
                     }
                 }
                 return itemExtra;
@@ -283,6 +292,7 @@ namespace Tizen.NUI.Components
                     Add(itemExtra);
                 }
                 layoutChanged = true;
+                LayoutChild();
             }
         }
 
@@ -342,6 +352,8 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void OnRelayout(Vector2 size, RelayoutContainer container)
         {
+            LayoutChild();
+
             base.OnRelayout(size, container);
 
             if (prevSize != Size)
