@@ -145,7 +145,7 @@
 
   <Import Project="..\Common\dependencies.props" />
   <ItemGroup>
-    <PackageReference Include="Tizen.NET" Version="10.0.0.17356">
+    <PackageReference Include="Tizen.NET" Version="10.0.0.*">
       <ExcludeAssets>Runtime</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Tizen.NET.Sdk" Version="$(TizenNETSdkVersion)" />
