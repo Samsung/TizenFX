@@ -66,6 +66,8 @@ namespace Tizen.NUI.Devel.Tests
             public void OnRequestResize() { }
 
             public void OnResized(int width, int height) { }
+
+            public void OnMoved(int x, int y) { }
         }
 
         [SetUp]
