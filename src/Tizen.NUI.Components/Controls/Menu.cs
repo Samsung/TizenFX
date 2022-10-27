@@ -528,24 +528,9 @@ namespace Tizen.NUI.Components
 
         private void CalculateSizeAndPosition()
         {
-            CalculateMenuSize();
-
             CalculateMenuPosition();
 
             CalculateScrimPosition();
-        }
-
-        // Calculate menu's size based on content's size
-        private void CalculateMenuSize()
-        {
-            if (Content == null)
-            {
-                return;
-            }
-            if (Size.Equals(Content.Size) == false)
-            {
-                Size = new Size(Content.SizeWidth, Content.SizeHeight);
-            }
         }
 
         private View GetRootView()
@@ -642,7 +627,11 @@ namespace Tizen.NUI.Components
             if (menuScreenPosX < 0)
             {
                 menuScreenPosX = 0;
-                menuSizeW = Window.Size.Width;
+
+                if (menuSizeW > Window.Size.Width)
+                {
+                    menuSizeW = Window.Size.Width;
+                }
             }
 
             // Check if menu is not inside parent's boundary in y coordinate system.
@@ -660,7 +649,11 @@ namespace Tizen.NUI.Components
             if (menuScreenPosY < 0)
             {
                 menuScreenPosY = 0;
-                menuSizeH = Window.Size.Height;
+
+                if (menuSizeH > Window.Size.Height)
+                {
+                    menuSizeH = Window.Size.Height;
+                }
             }
 
             // Position is relative to parent's coordinate system.
