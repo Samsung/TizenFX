@@ -9,7 +9,8 @@ TizenFX API, which allows you to access platform-specific features not covered b
 
 | Branch | API Level | Target Framework | API Reference | Platform          | myget.org | nuget.org  |
 |--------|:---------:|------------------|---------------|-------------------|-----------|------------|
-|master  | 10        | tizen10.0 | [Link](https://samsung.github.io/TizenFX/master/) | Tizen vNext | [![api10_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API10.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) |  |
+|master  | 11        | tizen10.0 | [Link](https://samsung.github.io/TizenFX/master/) | Tizen vNext | [![ap110_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API11.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) |  |
+|API10   | 10        | tizen10.0 | [Link](https://samsung.github.io/TizenFX/master/) | Tizen vNext | [![api10_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API10.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api10_nuget](https://img.shields.io/nuget/v/Tizen.NET.API10.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 |API9    | 9         | tizen90   | [Link](https://samsung.github.io/TizenFX/API9/) | Tizen 6.5 | [![api9_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API9.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api9_nuget](https://img.shields.io/nuget/v/Tizen.NET.API9.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 |API8    | 8         | tizen80   | [Link](https://samsung.github.io/TizenFX/API8/) | Tizen 6.0 | [![api8_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API8.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api8_nuget](https://img.shields.io/nuget/v/Tizen.NET.API8.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 |API7    | 7         | tizen70   | [Link](https://samsung.github.io/TizenFX/API7/) | Tizen 5.5 M3 | [![api7_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API7.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api7_nuget](https://img.shields.io/nuget/v/Tizen.NET.API7.svg)](https://www.nuget.org/packages/Tizen.NET/) |
@@ -18,16 +19,16 @@ TizenFX API, which allows you to access platform-specific features not covered b
 |API4    | 4         | tizen40   | [Link](https://samsung.github.io/TizenFX/API4/) | Tizen 4.0         | [![api4_myget](https://img.shields.io/tizen.myget/dotnet/vpre/Tizen.NET.API4.svg)](https://tizen.myget.org/feed/dotnet/package/nuget/Tizen.NET) | [![api4_nuget](https://img.shields.io/nuget/v/Tizen.NET.API4.svg)](https://www.nuget.org/packages/Tizen.NET/) |
 
 ### master
-The __master__ branch is the main development branch for the Tizen .NET __API Level 10__.
+The __master__ branch is the main development branch for the Tizen .NET __API Level 11__.
 
 The following NuGet packages will be published to [Tizen MyGet Gallery](https://tizen.myget.org/gallery/dotnet) every day if there are any changes. (Nightly Build)
-* Tizen.NET 10.0.0.#####
-* Tizen.NET.API10 10.0.0.#####
-* Tizen.NET.Internals 10.0.0.#####
+* Tizen.NET 11.0.0.#####
+* Tizen.NET.API11 11.0.0.#####
+* Tizen.NET.Internals 11.0.0.#####
 
 And, This branch is pushed to the [tizen branch](https://git.tizen.org/cgit/platform/core/csapi/tizenfx/?h=tizen) in the tizen gerrit and submitted for the Tizen vNext platform.
 
-### API4,5,6,7,8,9 branches
+### API4 ~ API10 branches
 The __API#__ branches are the release branch for Tizen .NET __API Level #__.
 
 These release branches were __FROZEN__. No new public APIs can be added to these branches, only bug fixes and internal APIs can be added.
@@ -35,9 +36,9 @@ These release branches were __FROZEN__. No new public APIs can be added to these
 ## Using `tizen` target framework
 If you want to use the `tizen` target framework, you need to use `Tizen.NET.Sdk` package as the project sdk.
 ```xml
-<Project Sdk="Tizen.NET.Sdk/1.1.7">
+<Project Sdk="Tizen.NET.Sdk/1.1.9">
   <PropertyGroup>
-    <TargetFramework>tizen90</TargetFramework>
+    <TargetFramework>tizen11.0</TargetFramework>
   </PropertyGroup>
 </Project>
 ```
@@ -46,8 +47,9 @@ For more information, please see [Using Tizen.NET.Sdk as SDK-style](https://deve
 ### Minimum required versions of Tizen.NET.Sdk and Visual Studio
 | API Level | Target Framework | Tizen.NET.Sdk | Visual Studio     |
 |:---------:|------------------|---------------|-------------------|
-| API10     | tizen10.0        | 1.1.8 (not yet) | 2019            |
-| API9      | tizen90          | 1.1.7 (recommend)        | 2019              |
+| API11     | tizen11.0        | 1.1.10 (not yet) | 2022           |
+| API10     | tizen10.0        | 1.1.9 (recommend) | 2019          |
+| API9      | tizen90          | 1.1.7         | 2019              |
 | API8      | tizen80          | 1.1.6         | 2019              |
 | API7      | tizen70          | 1.0.9         | 2019              |
 | API6      | tizen60          | 1.0.9         | 2019              |
