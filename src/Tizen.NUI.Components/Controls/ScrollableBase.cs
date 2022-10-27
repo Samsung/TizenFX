@@ -1342,8 +1342,8 @@ namespace Tizen.NUI.Components
 
             if (propertyNotification != null)
             {
+                ContentContainer?.RemovePropertyNotification(propertyNotification);
                 propertyNotification.Notified -= OnPropertyChanged;
-                Interop.Handle.RemovePropertyNotifications(propertyNotification.SwigCPtr);
                 propertyNotification.Dispose();
                 propertyNotification = null;
             }
