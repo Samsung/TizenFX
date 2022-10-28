@@ -57,11 +57,7 @@ namespace Tizen.NUI.Components
 
         private TabButtonGroup tabButtonGroup;
 
-        /// <summary>
-        /// Creates a new instance of TabBar.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public TabBar()
+        private void Initialize()
         {
             Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal };
 
@@ -70,6 +66,25 @@ namespace Tizen.NUI.Components
             tabButtons = new List<TabButton>();
             tabButtonGroup = new TabButtonGroup();
             SelectedIndex = -1;
+        }
+
+        /// <summary>
+        /// Creates a new instance of TabBar.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public TabBar()
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a TabBar with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created TabBar.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TabBar(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <summary>

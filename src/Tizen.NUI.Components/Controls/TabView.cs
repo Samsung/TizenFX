@@ -85,11 +85,7 @@ namespace Tizen.NUI.Components
 
         private TabContent content = null;
 
-        /// <summary>
-        /// Creates a new instance of TabView.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public TabView()
+        private void Initialize()
         {
             Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Vertical };
             WidthSpecification = LayoutParamPolicies.MatchParent;
@@ -100,6 +96,25 @@ namespace Tizen.NUI.Components
 
             // To show TabBar's shadow TabBar is raised above Content.
             TabBar.RaiseAbove(Content);
+        }
+
+        /// <summary>
+        /// Creates a new instance of TabView.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public TabView()
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a TabView with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created TabView.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TabView(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <inheritdoc/>

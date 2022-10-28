@@ -873,11 +873,7 @@ namespace Tizen.NUI.Components
         private bool isOverShootingShadowShown = false;
         private float startShowShadowDisplacement;
 
-        /// <summary>
-        /// Default Constructor
-        /// </summary>
-        /// <since_tizen> 8 </since_tizen>
-        public ScrollableBase() : base()
+        private void Initialize()
         {
             DecelerationRate = 0.998f;
 
@@ -949,6 +945,25 @@ namespace Tizen.NUI.Components
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
 
             SetKeyboardNavigationSupport(true);
+        }
+
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
+        /// <since_tizen> 8 </since_tizen>
+        public ScrollableBase() : base()
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a ScrollableBase with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created ScrollableBase.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScrollableBase(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         private bool OnInterruptTouchingChildTouched(object source, View.TouchEventArgs args)
