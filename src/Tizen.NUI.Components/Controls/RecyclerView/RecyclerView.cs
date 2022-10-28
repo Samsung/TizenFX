@@ -79,13 +79,28 @@ namespace Tizen.NUI.Components
             return instance.InternalItemTemplate;
         });
 
+        private void Initialize()
+        {
+            Scrolling += OnScrolling;
+        }
+
         /// <summary>
         /// Base Constructor
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public RecyclerView() : base()
         {
-            Scrolling += OnScrolling;
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a RecyclerView with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created RecyclerView.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public RecyclerView(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <summary>

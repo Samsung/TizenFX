@@ -29,14 +29,29 @@ namespace Tizen.NUI.Components
     {
         private IList<View> views;
 
+        private void Initialize()
+        {
+            SelectedIndex = -1;
+            views = new List<View>();
+        }
+
         /// <summary>
         /// Creates a new instance of TabContent.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public TabContent()
         {
-            SelectedIndex = -1;
-            views = new List<View>();
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a TabContent with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created TabContent.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TabContent(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <summary>

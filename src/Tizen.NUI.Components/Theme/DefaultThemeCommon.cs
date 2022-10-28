@@ -777,6 +777,7 @@ namespace Tizen.NUI.Components
             // Menu base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Menu", new MenuStyle()
             {
+                BackgroundColor = Color.Transparent,
                 Content = new ViewStyle()
                 {
                     BackgroundColor = new Color("#FFFEFE"),
