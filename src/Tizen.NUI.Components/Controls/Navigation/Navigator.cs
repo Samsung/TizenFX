@@ -117,13 +117,28 @@ namespace Tizen.NUI.Components
 
         private List<Page> navigationPages = new List<Page>();
 
+        private void Initialize()
+        {
+            Layout = new AbsoluteLayout();
+        }
+
         /// <summary>
         /// Creates a new instance of a Navigator.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public Navigator() : base()
         {
-            Layout = new AbsoluteLayout();
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a Navigator with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created Navigator.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Navigator(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <inheritdoc/>

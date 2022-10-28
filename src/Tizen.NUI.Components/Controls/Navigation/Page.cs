@@ -114,6 +114,15 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Creates a new instance of a Page with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created Page.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Page(ControlStyle style) : base(style)
+        {
+        }
+
+        /// <summary>
         /// Navigator which has pushed the Page into its stack.
         /// If this Page has not been pushed into any Navigator, then Navigator is null.
         /// </summary>
