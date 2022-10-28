@@ -29,17 +29,32 @@ namespace Tizen.NUI.Components
         private AppBar appBar = null;
         private View content = null;
 
-        /// <summary>
-        /// Creates a new instance of a ContentPage.
-        /// </summary>
-        /// <since_tizen> 9 </since_tizen>
-        public ContentPage() : base()
+        private void Initialize()
         {
             Layout = new ContentPageLayout();
 
             // ContentPage matches to parent by default.
             WidthSpecification = LayoutParamPolicies.MatchParent;
             HeightSpecification = LayoutParamPolicies.MatchParent;
+        }
+
+        /// <summary>
+        /// Creates a new instance of a ContentPage.
+        /// </summary>
+        /// <since_tizen> 9 </since_tizen>
+        public ContentPage() : base()
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a ContentPage with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created ContentPage.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ContentPage(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <summary>

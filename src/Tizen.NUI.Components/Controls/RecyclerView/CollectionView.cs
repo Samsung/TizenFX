@@ -164,14 +164,19 @@ namespace Tizen.NUI.Components
         private bool delayedIndexScrollTo;
         private (int index, bool anim, ItemScrollTo scrollTo) delayedIndexScrollToParam;
 
+        private void Initialize()
+        {
+            FocusGroup = true;
+            SetKeyboardNavigationSupport(true);
+        }
+
         /// <summary>
         /// Base constructor.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public CollectionView() : base()
         {
-            FocusGroup = true;
-            SetKeyboardNavigationSupport(true);
+            Initialize();
         }
 
         /// <summary>
@@ -196,6 +201,16 @@ namespace Tizen.NUI.Components
             ItemsSource = itemsSource;
             ItemTemplate = template;
             ItemsLayouter = layouter;
+        }
+
+        /// <summary>
+        /// Creates a new instance of a CollectionView with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created CollectionView.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CollectionView(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <summary>

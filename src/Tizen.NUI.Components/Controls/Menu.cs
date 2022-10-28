@@ -58,6 +58,16 @@ namespace Tizen.NUI.Components
             Initialize();
         }
 
+        /// <summary>
+        /// Creates a new instance of a Menu with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created Menu.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Menu(MenuStyle style) : base(style)
+        {
+            Initialize();
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)
@@ -467,8 +477,6 @@ namespace Tizen.NUI.Components
 
             WidthSpecification = LayoutParamPolicies.WrapContent;
             HeightSpecification = LayoutParamPolicies.WrapContent;
-
-            BackgroundColor = Color.Transparent;
 
             // Menu is added to Anchor so Menu should exclude layouting because
             // if Anchor has Layout, then Menu is displayed at an incorrect position.
