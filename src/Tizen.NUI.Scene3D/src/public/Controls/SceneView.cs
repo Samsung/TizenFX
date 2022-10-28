@@ -69,6 +69,7 @@ namespace Tizen.NUI.Scene3D
     {
         private bool inCameraTransition = false;
         private Animation cameraTransition;
+        private string skyboxUrl;
 
         internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -143,6 +144,63 @@ namespace Tizen.NUI.Scene3D
             get
             {
                 return IsUsingFramebuffer();
+            }
+        }
+
+        /// <summary>
+        /// Set/Get SkyboxUrl.
+        /// If SkyboxUrl is set, the cube map image is loaded and skybox is attached on scene.
+        /// Skybox texture is asynchronously loaded. When loading is finished, ResourcesLoaded is emitted.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string SkyboxUrl
+        {
+            set
+            {
+                SetSkybox(value);
+            }
+            get
+            {
+                return skyboxUrl;
+            }
+        }
+
+        /// <summary>
+        /// Set/Get Skybox intensity.
+        /// The skybox intensity is multiplied to the color of skybox texture.
+        /// Default value is 1.0f.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float SkyboxIntensity
+        {
+            set
+            {
+                SetSkyboxIntensity(value);
+            }
+            get
+            {
+                return GetSkyboxIntensity();
+            }
+        }
+
+        /// <summary>
+        /// Set/Get angle of orientation of the skybox.
+        /// If orientation is set, the skybox will be rotate by the Radian orientation along YAxis.
+        /// Default value is 0.0f.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation SkyboxOrientation
+        {
+            set
+            {
+                SetSkyboxOrientation(value);
+            }
+            get
+            {
+                return GetSkyboxOrientation();
             }
         }
 
@@ -307,6 +365,8 @@ namespace Tizen.NUI.Scene3D
             SelectCamera(index);
             Camera destination = GetSelectedCamera();
             CameraTransition(source, destination, durationMilliSeconds, alphaFunction);
+            source.Dispose();
+            destination.Dispose();
         }
 
         /// <summary>
@@ -331,6 +391,8 @@ namespace Tizen.NUI.Scene3D
             SelectCamera(name);
             Camera destination = GetSelectedCamera();
             CameraTransition(source, destination, durationMilliSeconds, alphaFunction);
+            source.Dispose();
+            destination.Dispose();
         }
 
         /// <summary>
@@ -409,6 +471,64 @@ namespace Tizen.NUI.Scene3D
             return scaleFactor;
         }
 
+        /// <summary>
+        /// Set the Skybox from cube map image.
+        /// Skybox texture is asynchronously loaded. When loading is finished, ResourcesLoaded is emitted.
+        /// </summary>
+        /// <param name="skyboxUrl">Cube map image url for skybox.</param>
+        private void SetSkybox(string skyboxUrl)
+        {
+            this.skyboxUrl = skyboxUrl;
+            Interop.SceneView.SetSkybox(SwigCPtr, skyboxUrl);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Sets Skybox intensity.
+        /// The skybox intensity is multiplied to the color of skybox texture.
+        /// Default value is 1.0f.
+        /// </summary>
+        /// <param name="intensity">Intensity value to be multiplied to the cube map color.</param>
+        private void SetSkyboxIntensity(float intensity)
+        {
+            Interop.SceneView.SetSkyboxIntensity(SwigCPtr, intensity);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets Skybox intensity.
+        /// Default value is 1.0f.
+        /// </summary>
+        /// <returns>skybox intensity.</returns>
+        private float GetSkyboxIntensity()
+        {
+            float intensity = Interop.SceneView.GetSkyboxIntensity(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return intensity;
+        }
+
+        /// <summary>
+        /// Sets orientation of the skybox.
+        /// </summary>
+        /// <param name="orientation">Rotation angle of the skybox along YAxis.</param>
+        private void SetSkyboxOrientation(Rotation orientation)
+        {
+            Interop.SceneView.SetSkyboxOrientation(SwigCPtr, Rotation.getCPtr(orientation));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Gets Skybox orientation.
+        /// </summary>
+        /// <returns>skybox orientation.</returns>
+        private Rotation GetSkyboxOrientation()
+        {
+            global::System.IntPtr cPtr = Interop.SceneView.GetSkyboxOrientation(SwigCPtr);
+            Rotation ret = (cPtr == global::System.IntPtr.Zero) ? null : new Rotation(cPtr, false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         private void CameraTransition(Camera sourceCamera, Camera destinationCamera, int durationMilliSeconds, AlphaFunction alphaFunction)
         {
             inCameraTransition = true;
@@ -458,6 +578,11 @@ namespace Tizen.NUI.Scene3D
                 inCameraTransition = false;
             };
             cameraTransition.Play();
+
+            sourceFieldOfView.Dispose();
+            positionKeyFrames.Dispose();
+            orientationKeyFrames.Dispose();
+            orientationKeyFrames.Dispose();
         }
 
         /// <summary>
