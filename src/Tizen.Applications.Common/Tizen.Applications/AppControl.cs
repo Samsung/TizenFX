@@ -111,6 +111,11 @@ namespace Tizen.Applications
                 throw new ArgumentNullException(nameof(handle));
             }
 
+            if (handle.IsInvalid)
+            {
+                throw new ArgumentNullException(nameof(handle), "handle is invalid");
+            }
+
             bool mustRelease = false;
             try
             {
@@ -120,6 +125,10 @@ namespace Tizen.Applications
                 {
                     throw new InvalidOperationException("Failed to clone the appcontrol handle. Err = " + err);
                 }
+            }
+            catch (ObjectDisposedException e)
+            {
+                throw new ArgumentNullException(nameof(handle), e.Message);
             }
             finally
             {
