@@ -65,12 +65,12 @@ namespace Tizen.Applications
         {
             if (handle == null)
             {
-                throw new ArgumentNullException("handle");
+                throw new ArgumentNullException(nameof(handle));
             }
 
             if (handle.IsInvalid)
             {
-                throw new ArgumentNullException("handle", "handle is invalid");
+                throw new ArgumentNullException(nameof(handle), "handle is invalid");
             }
 
             bool mustRelease = false;
@@ -78,6 +78,10 @@ namespace Tizen.Applications
             {
                 handle.DangerousAddRef(ref mustRelease);
                 _handle = Interop.Bundle.DangerousClone(handle.DangerousGetHandle());
+            }
+            catch (ObjectDisposedException e)
+            {
+                throw new ArgumentNullException(nameof(handle), e.Message);
             }
             finally
             {
