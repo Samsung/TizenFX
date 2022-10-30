@@ -108,13 +108,25 @@ namespace Tizen.Applications
         {
             if (handle == null)
             {
-                throw new ArgumentNullException("handle");
+                throw new ArgumentNullException(nameof(handle));
             }
 
-            Interop.AppControl.ErrorCode err = Interop.AppControl.DangerousClone(out _handle, handle.DangerousGetHandle());
-            if (err != Interop.AppControl.ErrorCode.None)
+            bool mustRelease = false;
+            try
             {
-                throw new InvalidOperationException("Failed to clone the appcontrol handle. Err = " + err);
+                handle.DangerousAddRef(ref mustRelease);
+                Interop.AppControl.ErrorCode err = Interop.AppControl.DangerousClone(out _handle, handle.DangerousGetHandle());
+                if (err != Interop.AppControl.ErrorCode.None)
+                {
+                    throw new InvalidOperationException("Failed to clone the appcontrol handle. Err = " + err);
+                }
+            }
+            finally
+            {
+                if (mustRelease)
+                {
+                    handle.DangerousRelease();
+                }
             }
         }
 

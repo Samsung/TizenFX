@@ -73,7 +73,20 @@ namespace Tizen.Applications
                 throw new ArgumentNullException("handle", "handle is invalid");
             }
 
-            _handle = Interop.Bundle.DangerousClone(handle.DangerousGetHandle());
+            bool mustRelease = false;
+            try
+            {
+                handle.DangerousAddRef(ref mustRelease);
+                _handle = Interop.Bundle.DangerousClone(handle.DangerousGetHandle());
+            }
+            finally
+            {
+                if (mustRelease)
+                {
+                    handle.DangerousRelease();
+                }
+            }
+
             _keys = new HashSet<string>();
             Interop.Bundle.Iterator iterator = (string key, int type, IntPtr keyval, IntPtr userData) =>
             {
