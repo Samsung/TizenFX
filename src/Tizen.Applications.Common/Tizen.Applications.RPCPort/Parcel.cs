@@ -429,7 +429,6 @@ namespace Tizen.Applications.RPCPort
             using (SafeBundleHandle safeBundleHandle = new SafeBundleHandle(b, true))
             {
                 bundle = new Bundle(safeBundleHandle);
-
             }
 
             return bundle;
