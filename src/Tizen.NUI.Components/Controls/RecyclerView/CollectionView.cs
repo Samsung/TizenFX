@@ -1244,9 +1244,8 @@ namespace Tizen.NUI.Components
             colView.OnSelectionChanged(args);
         }
 
-        private static object CoerceSelectedItems(BindableObject bindable, object value)
+        private static object CoerceSelectedItems(CollectionView colView, object value)
         {
-            var colView = bindable as CollectionView;
             if (value == null)
             {
                 return new SelectionList(colView);
@@ -1260,10 +1259,8 @@ namespace Tizen.NUI.Components
             return new SelectionList(colView, value as IList<object>);
         }
 
-        private static void SelectionModePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void SelectionModePropertyChanged(CollectionView colView, object oldValue, object newValue)
         {
-            var colView = bindable as CollectionView;
-
             var oldMode = (ItemSelectionMode)oldValue;
             var newMode = (ItemSelectionMode)newValue;
 
@@ -1433,7 +1430,11 @@ namespace Tizen.NUI.Components
 
             if (groupHeader == null)
             {
-                groupHeader = (RecyclerViewItem)DataTemplateExtensions.CreateContent(groupHeaderTemplate, context, this);
+                groupHeader = DataTemplateExtensions.CreateContent(groupHeaderTemplate, context, this) as RecyclerViewItem;
+                if (groupHeader == null)
+                {
+                    return null;
+                }
 
                 groupHeader.Template = templ;
                 groupHeader.isGroupHeader = true;
@@ -1463,6 +1464,10 @@ namespace Tizen.NUI.Components
             if (groupFooter == null)
             {
                 groupFooter = DataTemplateExtensions.CreateContent(groupFooterTemplate, context, this) as RecyclerViewItem;
+                if (groupFooter == null)
+                {
+                    return null;
+                }
 
                 groupFooter.Template = templ;
                 groupFooter.isGroupHeader = false;
