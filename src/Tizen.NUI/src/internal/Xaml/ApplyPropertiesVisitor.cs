@@ -900,8 +900,7 @@ namespace Tizen.NUI.Xaml
                 return false;
             }
 
-            if (property.ReturnTypeInfo.GenericTypeArguments.Length != 1
-                ||
+            if (property.ReturnTypeInfo.GenericTypeArguments.Length != 1 ||
                 !property.ReturnTypeInfo.GenericTypeArguments[0].IsInstanceOfType(value))
             {
                 return false;
