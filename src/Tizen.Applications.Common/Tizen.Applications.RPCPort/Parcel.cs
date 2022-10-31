@@ -425,7 +425,13 @@ namespace Tizen.Applications.RPCPort
         {
             Interop.LibRPCPort.Parcel.ReadBundle(_handle, out IntPtr b);
 
-            return new Bundle(new SafeBundleHandle(b, true));
+            Bundle bundle = null;
+            using (SafeBundleHandle safeBundleHandle = new SafeBundleHandle(b, true))
+            {
+                bundle = new Bundle(safeBundleHandle);
+            }
+
+            return bundle;
         }
 
         /// <summary>
