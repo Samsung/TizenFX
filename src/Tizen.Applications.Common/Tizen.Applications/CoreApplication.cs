@@ -37,8 +37,6 @@ namespace Tizen.Applications
         private readonly ICoreTask _task;
         private bool _disposedValue = false;
 
-        private static System.Timers.Timer sTimer;
-
         /// <summary>
         /// Initializes the CoreApplication class.
         /// </summary>
