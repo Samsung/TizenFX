@@ -10,7 +10,7 @@
     <meta name="title" content="Class FocusManager.FocusChangedEventArgs
    ">
     <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API9">
+    <meta name="version" content="API10">
     
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -53,7 +53,7 @@
   FocusManager.FocusChangedEventArgs
   </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L660" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L827" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -89,12 +89,47 @@
   <h2 id="properties">Properties
   </h2>
   
+  <a id="Tizen_NUI_FocusManager_FocusChangedEventArgs_Current_" data-uid="Tizen.NUI.FocusManager.FocusChangedEventArgs.Current*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L885">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_FocusManager_FocusChangedEventArgs_Current" data-uid="Tizen.NUI.FocusManager.FocusChangedEventArgs.Current">Current</h4>
+    <section>
+      <p>The current focused view after focus changed.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public View Current { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>10</span></h6>
+  
+  
   <a id="Tizen_NUI_FocusManager_FocusChangedEventArgs_CurrentView_" data-uid="Tizen.NUI.FocusManager.FocusChangedEventArgs.CurrentView*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L669">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L838">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_FocusManager_FocusChangedEventArgs_CurrentView" data-uid="Tizen.NUI.FocusManager.FocusChangedEventArgs.CurrentView">CurrentView</h4>
+    <h4 id="Tizen_NUI_FocusManager_FocusChangedEventArgs_CurrentView" data-uid="Tizen.NUI.FocusManager.FocusChangedEventArgs.CurrentView" data-obsolete="Please do not use! This will be deprecated! Please use Previous instead!" class="obsolete">CurrentView</h4>
     <section>
       <p>The current focus view.</p>
 
@@ -103,7 +138,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public View CurrentView { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use! This will be deprecated! Please use Previous instead!&quot;)]
+public View CurrentView { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -127,9 +163,9 @@
   <a id="Tizen_NUI_FocusManager_FocusChangedEventArgs_NextView_" data-uid="Tizen.NUI.FocusManager.FocusChangedEventArgs.NextView*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/API9/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L684">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L854">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_FocusManager_FocusChangedEventArgs_NextView" data-uid="Tizen.NUI.FocusManager.FocusChangedEventArgs.NextView">NextView</h4>
+    <h4 id="Tizen_NUI_FocusManager_FocusChangedEventArgs_NextView" data-uid="Tizen.NUI.FocusManager.FocusChangedEventArgs.NextView" data-obsolete="Please do not use! This will be deprecated! Please use Current instead!" class="obsolete">NextView</h4>
     <section>
       <p>The next focus view.</p>
 
@@ -138,7 +174,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public View NextView { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use! This will be deprecated! Please use Current instead!&quot;)]
+public View NextView { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -157,6 +194,41 @@
   </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
+  
+  
+  <a id="Tizen_NUI_FocusManager_FocusChangedEventArgs_Previous_" data-uid="Tizen.NUI.FocusManager.FocusChangedEventArgs.Previous*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/API10/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L870">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_FocusManager_FocusChangedEventArgs_Previous" data-uid="Tizen.NUI.FocusManager.FocusChangedEventArgs.Previous">Previous</h4>
+    <section>
+      <p>The previously focused view.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public View Previous { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>10</span></h6>
   
   </div></section>
             </div>
