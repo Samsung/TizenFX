@@ -10,7 +10,7 @@
     <meta name="title" content="Namespace Tizen.NUI
    ">
     <meta name="generator" content="docfx 2.56.1.0">
-    <meta name="version" content="API9">
+    <meta name="version" content="API10">
     
     <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
     <link rel="stylesheet" href="../../styles/docfx.vendor.css">
@@ -173,6 +173,9 @@ This reduces ambiguity when using methods which accept angles in degrees or radi
       <h4><a class="xref" href="Tizen.NUI.Disposable.html">Disposable</a></h4>
       <section><p>Disposable class.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.DragAndDrop.html">DragAndDrop</a></h4>
+      <section><p>DragAndDrop controls the drag object and data.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></h4>
       <section><p>Extents class describing the a collection of uint16_t.</p>
 </section>
@@ -184,6 +187,9 @@ This reduces ambiguity when using methods which accept angles in degrees or radi
 The flex layout implementation is based on open source Facebook Yoga layout engine.
 For more information about the flex layout API and how to use it please refer to <a href="https://yogalayout.com/docs/">https://yogalayout.com/docs/</a>
 We implement the subset of the API in the class below.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.FocusChangingEventArgs.html">FocusChangingEventArgs</a></h4>
+      <section><p>Event arguments passed via the FocusChanging signal.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.FocusManager.html">FocusManager</a></h4>
       <section><p>Provides the functionality of handling keyboard navigation and maintaining the two-dimensional keyboard focus chain.<br>
@@ -422,9 +428,9 @@ All values (x, y, and z) should be between [0, 1].</p>
       <h4><a class="xref" href="Tizen.NUI.ScaleTransition.html">ScaleTransition</a></h4>
       <section><p>ScaleTransition provides smoothly appearing/disappearing scale effects for target View.
 If this transition is for appearing, the View comes out with the scale factor applied
-and will be animated at its original scale.
+and will be animated to its original scale.
 If this transition is for disappearing, the View starts at its original size
-but will become the scale of scale factor and vanished.</p>
+and will finally become scaled by scale factor and vanishes.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.ScriptableProperty.html">ScriptableProperty</a></h4>
       <section><p>Adds this attribute to any property belonging to a view (control) you want to be scriptable from JSON.</p>
@@ -653,6 +659,12 @@ This resized event arguments.</p>
       <h4><a class="xref" href="Tizen.NUI.ColorVisualProperty.html">ColorVisualProperty</a></h4>
       <section><p>This specifies properties of the ColorVisual.</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.DragData.html">DragData</a></h4>
+      <section><p>This specifies drag data.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.DragEvent.html">DragEvent</a></h4>
+      <section><p>This specifies drag event.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.FontSizeScale.html">FontSizeScale</a></h4>
       <section><p>FontSizeScale constant.</p>
 </section>
@@ -770,6 +782,12 @@ Interface that defines a layout Parent. Enables a layout child to access methods
 </section>
       <h4><a class="xref" href="Tizen.NUI.DisposeTypes.html">DisposeTypes</a></h4>
       <section></section>
+      <h4><a class="xref" href="Tizen.NUI.DragSourceEventType.html">DragSourceEventType</a></h4>
+      <section><p>Drag source event type.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.DragType.html">DragType</a></h4>
+      <section><p>Drag event type.</p>
+</section>
       <h4><a class="xref" href="Tizen.NUI.DrawModeType.html">DrawModeType</a></h4>
       <section><p>Enumeration for the instance of how the actor and it&apos;s children will be drawn.</p>
 </section>
@@ -818,6 +836,15 @@ used to determine how the coordinates will be used.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.Gesture.StateType.html">Gesture.StateType</a></h4>
       <section><p>Enumeration for state of the gesture.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.GLESVersion.html">GLESVersion</a></h4>
+      <section><p>This Enumeration is used the GLES version for EGL configuration.
+It is for GLWindow and GLView.</p>
+</section>
+      <h4><a class="xref" href="Tizen.NUI.GLRenderingMode.html">GLRenderingMode</a></h4>
+      <section><p>Enumeration for rendering mode
+This Enumeration is used to choose the rendering mode.
+It is for GLWindow and GLView.</p>
 </section>
       <h4><a class="xref" href="Tizen.NUI.GlyphType.html">GlyphType</a></h4>
       <section><p>Enumeration type for the glyph type.</p>
@@ -1063,6 +1090,10 @@ this should be removed with EventHandler from .NET</p>
       <h4><a class="xref" href="Tizen.NUI.DaliEventHandlerWithReturnType-3.html">DaliEventHandlerWithReturnType&lt;T, U, R&gt;</a></h4>
       <section><p>[UnmanagedFunctionPointer(CallingConvention.StdCall)]</p>
 </section>
+      <h4><a class="xref" href="Tizen.NUI.DragAndDrop.DragAndDropEventHandler.html">DragAndDrop.DragAndDropEventHandler</a></h4>
+      <section></section>
+      <h4><a class="xref" href="Tizen.NUI.DragAndDrop.SourceEventHandler.html">DragAndDrop.SourceEventHandler</a></h4>
+      <section></section>
       <h4><a class="xref" href="Tizen.NUI.EventHandlerWithReturnType-3.html">EventHandlerWithReturnType&lt;T, U, R&gt;</a></h4>
       <section><p>[UnmanagedFunctionPointer(CallingConvention.StdCall)]</p>
 </section>
@@ -1093,7 +1124,7 @@ this should be removed with EventHandler from .NET</p>
             <span class="pull-right">
               <a href="#top">Back to top</a>
             </span>
-            <span>Copyright &copy; 2016-2021 Samsung <br> Generated by <strong>DocFX</strong></span>
+            <span>Copyright &copy; 2016-2022 Samsung <br> Generated by <strong>DocFX</strong></span>
             
           </div>
         </div>

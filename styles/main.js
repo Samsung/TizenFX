@@ -1,6 +1,7 @@
 $(function () {
   var monikers = {
-    "API10": "API Level 10 / Tizen vNext",
+    "API11": "API Level 11 / Tizen vNext",
+    "API10": "API Level 10 / Tizen 7.0",
     "API9": "API Level 9 / Tizen 6.5",
     "API8": "API Level 8 / Tizen 6.0",
     "API7": "API Level 7 / Tizen 5.5 M3",
@@ -30,7 +31,7 @@ $(function () {
   }
 
   function registerMonikers(obj) {
-    var levels = Object.keys(monikers).sort().reverse();
+    var levels = Object.keys(monikers);
     levels.forEach(function(k) {
       obj.append(new Option(monikers[k], k));
     });
