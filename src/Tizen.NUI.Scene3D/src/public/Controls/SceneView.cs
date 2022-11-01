@@ -287,7 +287,7 @@ namespace Tizen.NUI.Scene3D
 
         /// <summary>
         /// Starts camera transition from currently selected camera to a camera of index.
-        /// Camera Position and Orientation is smoothly animated.
+        /// Camera Position, Orientation and FieldOfView are smoothly animated.
         /// </summary>
         /// <remarks>
         /// The selected camera is switched when the transition is started.
@@ -311,7 +311,7 @@ namespace Tizen.NUI.Scene3D
 
         /// <summary>
         /// Starts camera transition from currently selected camera to a camera of input name.
-        /// Camera Position and Orientation is smoothly animated.
+        /// Camera Position, Orientation and FieldOfView are smoothly animated.
         /// </summary>
         /// <remarks>
         /// The selected camera is switched when the transition is started.
@@ -415,19 +415,43 @@ namespace Tizen.NUI.Scene3D
 
             Position sourcePosition = sourceCamera.Position;
             Rotation sourceOrientation = sourceCamera.Orientation;
+            Radian   sourceFieldOfView = sourceCamera.FieldOfView;
 
             Position destinationPosition = destinationCamera.Position;
             Rotation destinationOrientation = destinationCamera.Orientation;
+            Radian   destinationFieldOfView = destinationCamera.FieldOfView;
+
+            // If ProjectionDirection is not equal, match the value.
+            if (sourceCamera.ProjectionDirection != destinationCamera.ProjectionDirection)
+            {
+                float aspect = destinationCamera.AspectRatio;
+                if (destinationCamera.ProjectionDirection == Camera.ProjectionDirectionType.Vertical)
+                {
+                    sourceFieldOfView = Camera.ConvertFovFromHorizontalToVertical(aspect, sourceFieldOfView);
+                }
+                else
+                {
+                    sourceFieldOfView = Camera.ConvertFovFromVerticalToHorizontal(aspect, sourceFieldOfView);
+                }
+            }
 
             cameraTransition = new Animation(durationMilliSeconds);
+
             KeyFrames positionKeyFrames = new KeyFrames();
             positionKeyFrames.Add(0.0f, sourcePosition);
             positionKeyFrames.Add(1.0f, destinationPosition);
+
             KeyFrames orientationKeyFrames = new KeyFrames();
             orientationKeyFrames.Add(0.0f, sourceOrientation);
             orientationKeyFrames.Add(1.0f, destinationOrientation);
+
+            KeyFrames fieldOfViewKeyFrames = new KeyFrames();
+            fieldOfViewKeyFrames.Add(0.0f, sourceFieldOfView.ConvertToFloat());
+            fieldOfViewKeyFrames.Add(1.0f, destinationFieldOfView.ConvertToFloat());
+
             cameraTransition.AnimateBetween(destinationCamera, "Position", positionKeyFrames, Animation.Interpolation.Linear, alphaFunction);
             cameraTransition.AnimateBetween(destinationCamera, "Orientation", orientationKeyFrames, Animation.Interpolation.Linear, alphaFunction);
+            cameraTransition.AnimateBetween(destinationCamera, "FieldOfView", fieldOfViewKeyFrames, Animation.Interpolation.Linear, alphaFunction);
 
             cameraTransition.Finished += (s, e) =>
             {
