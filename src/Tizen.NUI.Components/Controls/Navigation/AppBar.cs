@@ -203,7 +203,9 @@ namespace Tizen.NUI.Components
                 {
                     return;
                 }
+
                 navigationContent.Focusable = true;
+                navigationContent.AutomationId = "NavigationContent";
                 ResetContent();
             }
         }
@@ -665,6 +667,7 @@ namespace Tizen.NUI.Components
         private View CreateDefaultNavigationContent()
         {
             var backButton = new Button();
+            backButton.AutomationId = "NavigationContent";
 
             backButton.Clicked += (object sender, ClickedEventArgs args) =>
             {
