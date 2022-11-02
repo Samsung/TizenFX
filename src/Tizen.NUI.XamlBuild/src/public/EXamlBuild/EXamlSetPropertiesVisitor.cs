@@ -181,6 +181,13 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                     new EXamlAddToResourceDictionary(Context, parentVar, keyName, Context.Values[node]);
                     isAdded = true;
                 }
+
+                if (!isAdded && CanAddToDictionary(parentVar, parentVar.GetType(), node, node, Context))
+                {
+                    var key = (node.Properties[XmlName.xKey] as ValueNode).Value as string;
+                    new EXamlAddToDictionary(Context, parentVar, key, Context.Values[node]);
+                    isAdded = true;
+                }
                 
                 // Collection element, implicit content, or implicit collection element.
                 if (!isAdded && parentVar.GetType().GetMethods(md => md.Name == "Add" && md.Parameters.Count == 1, Module).Any())
@@ -1048,6 +1055,31 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 return true;
 
             throw new XamlParseException("resources in ResourceDictionary require a x:Key attribute", lineInfo);
+        }
+
+        static bool CanAddToDictionary(EXamlCreateObject parent, TypeReference collectionType, IElementNode node, IXmlLineInfo lineInfo, EXamlContext context)
+        {
+            var typeOfDictionary = collectionType.GetRealTypeOfDictionary();
+
+            if (null != typeOfDictionary)
+            {
+                if ("System.String" == typeOfDictionary.GenericArguments[0].FullName)
+                {
+                    if (node.Properties.ContainsKey(XmlName.xKey))
+                    {
+                        var valueType = node.XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.OnlyGetType, parent.GetType().Module, lineInfo);
+
+                        if ("System.Object" == typeOfDictionary.GenericArguments[1].FullName
+                            ||
+                            valueType.InheritsFromOrImplements(typeOfDictionary.GenericArguments[1]))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+
+            return false;
         }
 
         static void Add(EXamlCreateObject parent, string propertyName, INode node, IXmlLineInfo iXmlLineInfo, EXamlContext context)
