@@ -24,21 +24,21 @@ namespace Tizen.NUI
     /// Simple class for window position pairs of  integers.
     /// Use this for integer position with window coordinates.
     /// </summary>
-    internal class IntPair : Disposable
+    internal class Int32Pair : Disposable
     {
-        internal IntPair(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal Int32Pair(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            Interop.IntPair.DeleteIntPair(swigCPtr);
+            Interop.Int32Pair.DeleteInt32Pair(swigCPtr);
         }
 
         /// <summary>
         /// Default constructor for the(0, 0) tuple.
         /// </summary>
-        public IntPair() : this(Interop.IntPair.NewIntPair(), true)
+        public Int32Pair() : this(Interop.Int32Pair.NewInt32Pair(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -48,7 +48,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="x">The X dimension of the tuple.</param>
         /// <param name="y">The Y dimension of the tuple.</param>
-        public IntPair(int x, int y) : this(Interop.IntPair.NewIntPair(x, y), true)
+        public Int32Pair(int x, int y) : this(Interop.Int32Pair.NewInt32Pair(x, y), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -59,7 +59,7 @@ namespace Tizen.NUI
         /// <param name="x">The x dimension to be stored in this 2-tuple.</param>
         public void SetX(int x)
         {
-            Interop.IntPair.SetX(SwigCPtr, x);
+            Interop.Int32Pair.SetX(SwigCPtr, x);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -71,7 +71,7 @@ namespace Tizen.NUI
         /// </return>
         public int GetX()
         {
-            int ret = Interop.IntPair.GetX(SwigCPtr);
+            int ret = Interop.Int32Pair.GetX(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -82,7 +82,7 @@ namespace Tizen.NUI
         /// <param name="y">The y dimension to be stored in this 2-tuple.</param>
         public void SetY(int y)
         {
-            Interop.IntPair.SetY(SwigCPtr, y);
+            Interop.Int32Pair.SetY(SwigCPtr, y);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -94,7 +94,7 @@ namespace Tizen.NUI
         /// </return>
         public int GetY()
         {
-            int ret = Interop.IntPair.GetY(SwigCPtr);
+            int ret = Interop.Int32Pair.GetY(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
