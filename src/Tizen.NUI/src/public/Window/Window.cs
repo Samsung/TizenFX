@@ -1797,6 +1797,8 @@ namespace Tizen.NUI
             {
                 return;
             }
+            
+            this.DisconnectNativeSignals();
 
             if (type == DisposeTypes.Explicit)
             {
@@ -1822,7 +1824,6 @@ namespace Tizen.NUI
                 localController?.Dispose();
             }
 
-            this.DisconnectNativeSignals();
 
             base.Dispose(type);
         }
