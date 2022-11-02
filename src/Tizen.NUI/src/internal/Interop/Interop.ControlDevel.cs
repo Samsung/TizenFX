@@ -389,7 +389,7 @@ namespace Tizen.NUI
             public static extern IntPtr DaliAccessibilityDuplicateString(string arg);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_SetAccessibilityDelegate")]
-            public static extern IntPtr DaliAccessibilitySetAccessibilityDelegate(IntPtr arg1_accessibilityDelegate, int arg2_accessibilityDelegateSize);
+            public static extern IntPtr DaliAccessibilitySetAccessibilityDelegate(IntPtr arg1_accessibilityDelegate, uint arg2_accessibilityDelegateSize);
         }
     }
 }
