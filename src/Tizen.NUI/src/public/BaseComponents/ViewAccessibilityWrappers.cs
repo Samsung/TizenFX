@@ -41,7 +41,7 @@ namespace Tizen.NUI.BaseComponents
             var ptr  = Marshal.AllocHGlobal(size);
 
             Marshal.StructureToPtr(ad, ptr, false);
-            Interop.ControlDevel.DaliAccessibilitySetAccessibilityDelegate(ptr, size);
+            Interop.ControlDevel.DaliAccessibilitySetAccessibilityDelegate(ptr, Convert.ToUInt32(size));
         }
 
         private static View GetViewFromRefObject(IntPtr refObjectPtr)
