@@ -290,6 +290,7 @@ namespace Tizen.NUI
                 }
                 else
                 {
+                    borderInterface.OnMaximize(IsMaximized());
                     WindowSize += new Size2D((int)borderInterface.BorderLineThickness * 2, (int)(borderHeight + borderInterface.BorderLineThickness * 2));
                 }
 
@@ -638,7 +639,7 @@ namespace Tizen.NUI
                 {
                     Padding = prePadding;
                 }
-                
+
             }
 
             protected override bool HitTest(Touch touch)
