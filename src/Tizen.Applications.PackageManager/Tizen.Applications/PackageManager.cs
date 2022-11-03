@@ -353,6 +353,31 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Clears the application's user file or directory from the file path.
+        /// </summary>
+        /// <remarks>
+        /// A file or directory under user data folder in the internal storage is removed.
+        /// </remarks>
+        /// <param name="packageId">ID of the package.</param>
+        /// <param name="filePath">The path of the file or directory in the package user data folder.</param>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <exception cref="System.IO.IOException">Thrown when the method failed due to an internal IO error.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+        /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <since_tizen> 11 </since_tizen>
+        public static void ClearUserData(string packageId, string filePath)
+        {
+            Interop.PackageManager.ErrorCode err = Interop.PackageManager.PackageManagerClearUserDataWithPath(packageId, filePath);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Log.Warn(LogTag, string.Format("Failed to clear user data for {0} of {1}. err = {2}", filePath, packageId, err));
+                throw PackageManagerErrorFactory.GetException(err, "Failed to clear user data");
+            }
+        }
+
+        /// <summary>
         /// Retrieves the package information of all installed packages.
         /// </summary>
         /// <returns>Returns the list of packages.</returns>
