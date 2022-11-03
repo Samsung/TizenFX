@@ -157,7 +157,7 @@ namespace Tizen.NUI.Components
         {
             if ((content != null) && (content.ViewCount > args.Index))
             {
-                content.Select(args.Index);
+                content.SelectContentView(args.Index);
             }
         }
 
@@ -225,7 +225,7 @@ namespace Tizen.NUI.Components
 
             if (Content != null)
             {
-                Content.AddView(view);
+                Content.AddContentView(view);
             }
         }
 
@@ -248,7 +248,7 @@ namespace Tizen.NUI.Components
             var view = Content.GetView(index);
             if (view != null)
             {
-                Content.RemoveView(view);
+                Content.RemoveContentView(view);
             }
         }
 
