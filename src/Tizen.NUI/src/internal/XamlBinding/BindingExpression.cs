@@ -644,6 +644,16 @@ namespace Tizen.NUI.Binding
             {
                 value = source;
 
+                if (null == LastGetter)
+                {
+                    var property = source.GetType().GetRuntimeProperties().FirstOrDefault(p => p.Name == Content);
+
+                    if (null != property)
+                    {
+                        LastGetter = property.GetMethod;
+                    }
+                }
+
                 if (LastGetter != null && value != null)
                 {
                     if (IsIndexer)
