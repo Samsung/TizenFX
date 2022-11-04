@@ -107,6 +107,13 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// An event emitted when Camera Transition is finished.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler CameraTransitionFinished;
+
+        /// <summary>
         /// Set/Get the ImageBasedLight ScaleFactor.
         /// Scale factor controls light source intensity in [0.0f, 1.0f]
         /// </summary>
@@ -576,13 +583,14 @@ namespace Tizen.NUI.Scene3D
             cameraTransition.Finished += (s, e) =>
             {
                 inCameraTransition = false;
+                CameraTransitionFinished?.Invoke(this, EventArgs.Empty);
             };
             cameraTransition.Play();
 
             sourceFieldOfView.Dispose();
             positionKeyFrames.Dispose();
             orientationKeyFrames.Dispose();
-            orientationKeyFrames.Dispose();
+            fieldOfViewKeyFrames.Dispose();
         }
 
         /// <summary>
