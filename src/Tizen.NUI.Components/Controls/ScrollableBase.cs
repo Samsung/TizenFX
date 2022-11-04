@@ -2172,6 +2172,13 @@ namespace Tizen.NUI.Components
             return true;
         }
 
+        public override bool OnWheel(Wheel wheel)
+        {
+            float currentScrollPosition = -(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
+            ScrollTo(currentScrollPosition + (wheelScrollDistance * wheel.Z), false);
+
+            return true;
+        }
 
         private bool OnWheelEvent(object o, WheelEventArgs e)
         {
@@ -2181,12 +2188,8 @@ namespace Tizen.NUI.Components
                 return false;
             }
 
-            float currentScrollPosition = -(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
-            ScrollTo(currentScrollPosition + (wheelScrollDistance * wheel.Z), false);
-
-            return true;
+            return OnWheel(wheel);
         }
-
     }
 
 } // namespace
