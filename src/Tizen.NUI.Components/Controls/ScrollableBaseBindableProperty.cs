@@ -312,6 +312,24 @@ namespace Tizen.NUI.Components
         });
 
         /// <summary>
+        /// WheelScrollDistanceProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty WheelScrollDistanceProperty = BindableProperty.Create(nameof(WheelScrollDistance), typeof(float), typeof(ScrollableBase), default(float), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (ScrollableBase)bindable;
+            if (newValue != null)
+            {
+                instance.wheelScrollDistance = (float)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (ScrollableBase)bindable;
+            return instance.stepScrollDistance;
+        });
+
+        /// <summary>
         /// FadeScrollbarProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
