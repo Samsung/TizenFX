@@ -1059,6 +1059,11 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
         static bool CanAddToDictionary(EXamlCreateObject parent, TypeReference collectionType, IElementNode node, IXmlLineInfo lineInfo, EXamlContext context)
         {
+            if ("Tizen.NUI.Xaml.Build.Tasks.ArrayExtension" == collectionType.FullName)
+            {
+                return false;
+            }
+
             var typeOfDictionary = collectionType.GetRealTypeOfDictionary();
 
             if (null != typeOfDictionary)
@@ -1186,6 +1191,11 @@ namespace Tizen.NUI.EXaml.Build.Tasks
         {
             var typeref = parentContext.Module.ImportReference(rootnode.XmlType.GetTypeReference(XmlTypeExtensions.ModeOfGetType.Both, parentContext.Module, rootnode));
             var visitorContext = new EXamlContext(typeref.ResolveCached(), typeref.Module, parentContext.EmbeddedResourceNameSpace);
+
+            foreach (var pair in parentContext.resourceDictionary)
+            {
+                visitorContext.resourceDictionary.Add(pair.Key, pair.Value);
+            }
 
             rootnode.Accept(new XamlNodeVisitor((node, parent) => node.Parent = parent), null);
             rootnode.Accept(new EXamlExpandMarkupsVisitor(visitorContext), null);

@@ -217,6 +217,13 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 ReadSymbols = NeedDebug,
             };
 
+            if (UseInjection)
+            {
+                XamlOptimization = 1;
+            }
+
+            LoggingHelper.LogWarning($"XamlOptimization is {XamlOptimization}.");
+
             using (var assemblyDefinition = AssemblyDefinition.ReadAssembly(System.IO.Path.GetFullPath(Assembly), readerParameters))
             {
                 if (null != XamlFilePath)
@@ -293,13 +300,6 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
                         bool currentRetOfType = false;
                         IList<Exception> currentExceptionsOfType = null;
-
-                        if (UseInjection)
-                        {
-                            XamlOptimization = 1;
-                        }
-
-                        LoggingHelper.LogWarning($"XamlOptimization is {XamlOptimization}.");
 
                         if (0 == XamlOptimization)
                         {
