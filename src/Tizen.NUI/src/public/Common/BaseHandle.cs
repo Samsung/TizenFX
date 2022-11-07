@@ -624,6 +624,15 @@ namespace Tizen.NUI
                         $"OR the native dali object handle of NUI becomes null! \n" +
                         $" process:{process} thread:{thread}, isDisposed:{this.disposed}, isDisposeQueued:{this.isDisposeQueued}, me:{me}\n");
 
+                    Tizen.Log.Fatal("NUI", $"[ERROR] back trace!");
+                    global::System.Diagnostics.StackTrace st = new global::System.Diagnostics.StackTrace(true);
+                    for (int i = 0; i < st.FrameCount; i++)
+                    {
+                        global::System.Diagnostics.StackFrame sf = st.GetFrame(i);
+                        Tizen.Log.Fatal("NUI", " Method " + sf.GetMethod());
+                    }
+                    Tizen.Log.Fatal("NUI", "Error! just return here with null swigCPtr! this can cause unknown error or crash in next step");
+
                     //to fix ArtApp black screen issue. this will be enabled after talking with ArtApp team and fixing it.
                     // throw new ObjectDisposedException(nameof(SwigCPtr), $"Error! NUI's native dali object is already disposed. " +
                     //     $"OR the native dali object handle of NUI becomes null! \n" +
