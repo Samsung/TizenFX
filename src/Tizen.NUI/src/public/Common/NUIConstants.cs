@@ -777,7 +777,13 @@ namespace Tizen.NUI
         /// <remarks>
         /// See <see cref="NUIApplication" /> for this type. <br />
         /// </remarks>
-        Ime
+        Ime,
+        /// <summary>
+        /// Used for desktop windows.
+        /// This is a desktop type. No other windows can be placed below this type of window.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Desktop        
     }
 
     /// <since_tizen> 3 </since_tizen>
