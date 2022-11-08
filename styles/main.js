@@ -1,5 +1,6 @@
 $(function () {
   const apiVersions = {
+    "API11": "version 11",
     "API10": "version 10",
     "API9": "version 9",
     "API8": "version 8",
@@ -21,7 +22,7 @@ $(function () {
   }, 10);
 
   function createDropdownVersionsMenuItems($menu) {
-    Object.keys(apiVersions).sort().reverse().forEach(function(version) {
+    Object.keys(apiVersions).forEach(function(version) {
       const $item = $('<a class="dropdown-item" data-value="' + version + '">' + apiVersions[version] + '</a>');
 
       if (apiVersion === version) {
