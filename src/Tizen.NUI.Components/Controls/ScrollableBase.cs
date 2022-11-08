@@ -848,6 +848,25 @@ namespace Tizen.NUI.Components
         }
         private float stepScrollDistance = 0f;
 
+        /// <summary>
+        /// Wheel scroll move distance.
+        /// This value decide how long distance will it moves in wheel event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float WheelScrollDistance
+        {
+            get
+            {
+                return (float)GetValue(WheelScrollDistanceProperty);
+            }
+            set
+            {
+                SetValue(WheelScrollDistanceProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+        private float wheelScrollDistance = 50f;
+
 
         // Let's consider more whether this needs to be set as protected.
         private float finalTargetPosition;
@@ -941,6 +960,8 @@ namespace Tizen.NUI.Components
                 ParentOrigin = NUI.ParentOrigin.CenterRight,
                 PivotPoint = NUI.PivotPoint.CenterRight,
             };
+
+            WheelEvent += OnWheelEvent;
 
             AccessibilityManager.Instance.SetAccessibilityAttribute(this, AccessibilityManager.AccessibilityAttribute.Trait, "ScrollableBase");
 
@@ -1362,6 +1383,8 @@ namespace Tizen.NUI.Components
                 propertyNotification.Dispose();
                 propertyNotification = null;
             }
+
+            WheelEvent -= OnWheelEvent;
 
             if (type == DisposeTypes.Explicit)
             {
@@ -2147,6 +2170,26 @@ namespace Tizen.NUI.Components
             }
 
             return true;
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool OnWheel(Wheel wheel)
+        {
+            if (wheel == null)
+            {
+                return false;
+            }
+
+            float currentScrollPosition = -(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
+            ScrollTo(currentScrollPosition + (wheelScrollDistance * wheel.Z), false);
+
+            return true;
+        }
+
+        private bool OnWheelEvent(object o, WheelEventArgs e)
+        {
+            return OnWheel(e?.Wheel);
         }
     }
 
