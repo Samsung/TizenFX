@@ -1360,11 +1360,11 @@ namespace Tizen.NUI.Components
 
             if (ScrollingDirection == Direction.Horizontal)
             {
-                ContentContainer.SizeWidth = ItemsLayouter.CalculateLayoutOrientationSize();
+                ContentContainer.SizeWidth = (float)ItemsLayouter?.CalculateLayoutOrientationSize();
             }
             else
             {
-                ContentContainer.SizeHeight = ItemsLayouter.CalculateLayoutOrientationSize();
+                ContentContainer.SizeHeight = (float)ItemsLayouter?.CalculateLayoutOrientationSize();
             }
         }
 
