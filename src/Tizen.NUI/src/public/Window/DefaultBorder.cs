@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// This class creates a border UI.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class DefaultBorder : BaseHandle, IBorderInterface
+    public class DefaultBorder : BindableObject, IDisposable, IBorderInterface
     {
         #region Constant Fields
         private static readonly string ResourcePath = FrameworkInformation.ResourcePath;
@@ -53,6 +53,7 @@ namespace Tizen.NUI
 
 
         #region Fields
+        private bool disposed = false;
         private Color backgroundColor;
         private View borderView;
 
@@ -269,7 +270,7 @@ namespace Tizen.NUI
         /// Creates a default border
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public DefaultBorder()
+        public DefaultBorder() : base()
         {
             BorderLineThickness = DefaultLineThickness;
             TouchThickness = DefaultTouchThickness;
@@ -663,6 +664,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void CloseBorderWindow()
         {
+            Dispose();
             BorderWindow.BorderDestroy();
         }
 
@@ -1056,14 +1058,21 @@ namespace Tizen.NUI
             return false;
         }
 
-        protected override void Dispose(DisposeTypes type)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Dispose()
+        {
+            Dispose(true);
+            global::System.GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
         {
             if (disposed)
             {
                 return;
             }
 
-            if (type == DisposeTypes.Explicit)
+            if (disposing)
             {
                 ClearWindowGesture();
 
@@ -1085,9 +1094,7 @@ namespace Tizen.NUI
                 timer?.Dispose();
                 overlayTimer?.Dispose();
             }
-
-            //You must call base.Dispose(type) just before exit.
-            base.Dispose(type);
+            disposed = true;
         }
 
         #endregion //Methods
