@@ -2172,8 +2172,15 @@ namespace Tizen.NUI.Components
             return true;
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public override bool OnWheel(Wheel wheel)
         {
+            if (wheel == null)
+            {
+                return false;
+            }
+
             float currentScrollPosition = -(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
             ScrollTo(currentScrollPosition + (wheelScrollDistance * wheel.Z), false);
 
@@ -2182,13 +2189,7 @@ namespace Tizen.NUI.Components
 
         private bool OnWheelEvent(object o, WheelEventArgs e)
         {
-            Wheel wheel = e?.Wheel;
-            if (wheel == null)
-            {
-                return false;
-            }
-
-            return OnWheel(wheel);
+            return OnWheel(e?.Wheel);
         }
     }
 
