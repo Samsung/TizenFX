@@ -1116,12 +1116,12 @@ namespace Tizen.NUI.BaseComponents
                 {
                     ThemeManager.ThemeChangedInternal -= OnThemeChanged;
                 }
-                if(widthConstraint != null)
+                if (widthConstraint != null)
                 {
                     widthConstraint.Remove();
                     widthConstraint.Dispose();
                 }
-                if(heightConstraint != null)
+                if (heightConstraint != null)
                 {
                     heightConstraint.Remove();
                     heightConstraint.Dispose();
@@ -1158,7 +1158,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool HandleControlStateOnTouch(Touch touch)
         {
-            switch(touch.GetState(0))
+            switch (touch.GetState(0))
             {
                 case PointStateType.Down:
                     ControlState += ControlState.Pressed;
@@ -1179,33 +1179,42 @@ namespace Tizen.NUI.BaseComponents
 
         private void DisConnectFromSignals()
         {
-            // Save current CPtr.
-            global::System.Runtime.InteropServices.HandleRef currentCPtr = swigCPtr;
-
-            // Use BaseHandle CPtr as current might have been deleted already in derived classes.
-            swigCPtr = GetBaseHandleCPtrHandleRef;
+            if (HasBody() == false)
+            {
+                NUILog.Debug($"View.DisConnectFromSignals() No native body! No need to Disconnect Signals!");
+                return;
+            }
 
             if (_onRelayoutEventCallback != null)
             {
-                this.OnRelayoutSignal().Disconnect(_onRelayoutEventCallback);
+                ViewSignal signal = new ViewSignal(Interop.ActorSignal.Actor_OnRelayoutSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_onRelayoutEventCallback);
+                signal?.Dispose();
                 _onRelayoutEventCallback = null;
             }
 
             if (_offWindowEventCallback != null)
             {
-                this.OffWindowSignal().Disconnect(_offWindowEventCallback);
+                ViewSignal signal = new ViewSignal(Interop.ActorSignal.Actor_OffSceneSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_offWindowEventCallback);
+                signal?.Dispose();
                 _offWindowEventCallback = null;
             }
 
             if (_onWindowEventCallback != null)
             {
-                this.OnWindowSignal().Disconnect(_onWindowEventCallback);
+                ViewSignal signal = new ViewSignal(Interop.ActorSignal.Actor_OnSceneSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_onWindowEventCallback);
+                signal?.Dispose();
                 _onWindowEventCallback = null;
             }
 
             if (_wheelEventCallback != null)
             {
-                this.WheelEventSignal().Disconnect(_wheelEventCallback);
+                WheelSignal signal = new WheelSignal(Interop.ActorSignal.Actor_WheelEventSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_wheelEventCallback);
+                signal?.Dispose();
+                _wheelEventCallback = null;
             }
 
             if (WindowWheelEventHandler != null)
@@ -1215,55 +1224,91 @@ namespace Tizen.NUI.BaseComponents
 
             if (_hoverEventCallback != null)
             {
-                this.HoveredSignal().Disconnect(_hoverEventCallback);
+                HoverSignal signal = new HoverSignal(Interop.ActorSignal.Actor_HoveredSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_hoverEventCallback);
+                signal?.Dispose();
+                _hoverEventCallback = null;
             }
 
             if (_interceptTouchDataCallback != null)
             {
-                this.InterceptTouchSignal().Disconnect(_interceptTouchDataCallback);
+                TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.Actor_InterceptTouchSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_interceptTouchDataCallback);
+                signal?.Dispose();
+                _interceptTouchDataCallback = null;
             }
 
             if (_touchDataCallback != null)
             {
-                this.TouchSignal().Disconnect(_touchDataCallback);
+                TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.Actor_TouchSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_touchDataCallback);
+                signal?.Dispose();
+                _touchDataCallback = null;
             }
 
             if (_ResourcesLoadedCallback != null)
             {
-                this.ResourcesLoadedSignal().Disconnect(_ResourcesLoadedCallback);
+                ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_ResourcesLoadedCallback);
+                signal?.Dispose();
                 _ResourcesLoadedCallback = null;
             }
 
             if (_keyCallback != null)
             {
-                this.KeyEventSignal().Disconnect(_keyCallback);
+                ControlKeySignal signal = new ControlKeySignal(Interop.ViewSignal.View_KeyEventSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_keyCallback);
+                signal?.Dispose();
+                _keyCallback = null;
             }
 
             if (_keyInputFocusLostCallback != null)
             {
-                this.KeyInputFocusLostSignal().Disconnect(_keyInputFocusLostCallback);
+                KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.View_KeyInputFocusLostSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_keyInputFocusLostCallback);
+                signal?.Dispose();
+                _keyInputFocusLostCallback = null;
             }
 
             if (_keyInputFocusGainedCallback != null)
             {
-                this.KeyInputFocusGainedSignal().Disconnect(_keyInputFocusGainedCallback);
+                KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.View_KeyInputFocusGainedSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_keyInputFocusGainedCallback);
+                signal?.Dispose();
+                _keyInputFocusGainedCallback = null;
             }
 
             if (_backgroundResourceLoadedCallback != null)
             {
-                this.ResourcesLoadedSignal().Disconnect(_backgroundResourceLoadedCallback);
+                ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_backgroundResourceLoadedCallback);
+                signal?.Dispose();
                 _backgroundResourceLoadedCallback = null;
             }
 
             if (_onWindowSendEventCallback != null)
             {
-                this.OnWindowSignal().Disconnect(_onWindowSendEventCallback);
+                ViewSignal signal = new ViewSignal(Interop.ActorSignal.Actor_OnSceneSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_onWindowSendEventCallback);
+                signal?.Dispose();
                 _onWindowSendEventCallback = null;
             }
 
-            // BaseHandle CPtr is used in Registry and there is danger of deletion if we keep using it here.
-            // Restore current CPtr.
-            swigCPtr = currentCPtr;
+            if (_visibilityChangedEventCallback != null)
+            {
+                ViewVisibilityChangedSignal signal = new ViewVisibilityChangedSignal(Interop.NDalic.VisibilityChangedSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_visibilityChangedEventCallback);
+                signal?.Dispose();
+                _visibilityChangedEventCallback = null;
+            }
+
+            if (_layoutDirectionChangedEventCallback != null)
+            {
+                ViewLayoutDirectionChangedSignal signal = new ViewLayoutDirectionChangedSignal(Interop.Layout.LayoutDirectionChangedSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(_layoutDirectionChangedEventCallback);
+                signal?.Dispose();
+                _layoutDirectionChangedEventCallback = null;
+            }
         }
 
         private View ConvertIdToView(uint id)
