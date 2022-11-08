@@ -664,7 +664,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void CloseBorderWindow()
         {
-            Dispose();
             BorderWindow.BorderDestroy();
         }
 
