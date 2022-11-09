@@ -15,9 +15,13 @@
  *
  */
 
+using System;
+using System.ComponentModel;
+
 namespace Tizen.NUI
-{
-    internal class Matrix : Disposable
+{    /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class Matrix : Disposable
     {
         internal Matrix(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -26,12 +30,6 @@ namespace Tizen.NUI
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Matrix.DeleteMatrix(swigCPtr);
-        }
-
-
-        public static Vector4 operator *(Matrix arg1, Vector4 arg2)
-        {
-            return arg1.Multiply(arg2);
         }
 
         public Matrix() : this(Interop.Matrix.NewMatrix(), true)
@@ -75,6 +73,35 @@ namespace Tizen.NUI
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 return ret;
             }
+        }
+
+        public float this[uint index]
+        {
+            set
+            {
+                SetValueAtIndex(index, value);
+            }
+            get
+            {
+                return ValueOfIndex(index);
+            }
+        }
+
+        public static Vector4 operator *(Matrix arg1, Vector4 arg2)
+        {
+            return arg1?.Multiply(arg2);
+        }
+
+        public static Matrix operator *(Matrix arg1, Rotation arg2)
+        {
+            Matrix ret = new Matrix(false);
+            Matrix.Multiply(ret, arg1, arg2);
+            return ret;
+        }
+
+        public static Matrix operator *(Matrix arg1, Matrix arg2)
+        {
+            return arg1?.Multiply(arg2);
         }
 
         public void SetIdentity()
@@ -179,14 +206,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public SWIGTYPE_p_float AsFloat()
-        {
-            global::System.IntPtr cPtr = Interop.Matrix.AsFloat(SwigCPtr);
-            SWIGTYPE_p_float ret = (cPtr == global::System.IntPtr.Zero) ? null : new SWIGTYPE_p_float(cPtr);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public static void Multiply(Matrix result, Matrix lhs, Matrix rhs)
         {
             Interop.Matrix.Multiply(Matrix.getCPtr(result), Matrix.getCPtr(lhs), Matrix.getCPtr(rhs));
@@ -201,9 +220,27 @@ namespace Tizen.NUI
 
         public Vector4 Multiply(Vector4 rhs)
         {
-            Vector4 ret = new Vector4(Interop.Matrix.Multiply(SwigCPtr, Vector4.getCPtr(rhs)), true);
+            Vector4 ret = new Vector4(Interop.Matrix.MultiplyVector4(SwigCPtr, Vector4.getCPtr(rhs)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        public Matrix Multiply(Matrix rhs)
+        {
+            Matrix ret = new Matrix(Interop.Matrix.Multiply(SwigCPtr, Matrix.getCPtr(rhs)), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void MultiplyAssign(Matrix rhs)
+        {
+            Interop.Matrix.MultiplyAssign(SwigCPtr, Matrix.getCPtr(rhs));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public override int GetHashCode()
+        {
+            return SwigCPtr.Handle.GetHashCode();
         }
 
         public bool EqualTo(Matrix rhs)
@@ -241,6 +278,32 @@ namespace Tizen.NUI
         public void GetTransformComponents(Vector3 position, Rotation rotation, Vector3 scale)
         {
             Interop.Matrix.GetTransformComponents(SwigCPtr, Vector3.getCPtr(position), Rotation.getCPtr(rotation), Vector3.getCPtr(scale));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public float ValueOfIndex(uint index)
+        {
+            float ret = Interop.Matrix.ValueOfIndex(SwigCPtr, index);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public float ValueOfIndex(uint indexRow, uint indexColumn)
+        {
+            float ret = Interop.Matrix.ValueOfIndex(SwigCPtr, indexRow, indexColumn);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        public void SetValueAtIndex(uint index, float val)
+        {
+            Interop.Matrix.SetValueAtIndex(SwigCPtr, index, val);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        public void SetValueAtIndex(uint indexRow, uint indexColumn, float val)
+        {
+            Interop.Matrix.SetValueAtIndex(SwigCPtr, indexRow, indexColumn, val);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
     }

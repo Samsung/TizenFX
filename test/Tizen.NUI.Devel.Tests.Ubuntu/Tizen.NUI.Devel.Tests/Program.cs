@@ -47,6 +47,7 @@ namespace Tizen.NUI.Devel.Tests
         public static int mainTid;
         Timer timer;
         private EventThreadCallback eventThreadCallback;
+        private EventThreadCallback.CallbackDelegate callbackDelegate;
         private NUnitLite.TUnit.TRunner trunner;
         private ManualResetEvent methodExecutionResetEvent;
         private TAsyncThreadMgr asyncThreadMgr;
@@ -104,7 +105,8 @@ namespace Tizen.NUI.Devel.Tests
                     methodExecutionResetEvent.Set();
                 });
 
-            eventThreadCallback = new EventThreadCallback(new EventThreadCallback.CallbackDelegate(ProcessTest));
+            callbackDelegate = new EventThreadCallback.CallbackDelegate(ProcessTest);
+            eventThreadCallback = new EventThreadCallback(callbackDelegate);
             eventThreadCallback.Trigger();
         }
 
