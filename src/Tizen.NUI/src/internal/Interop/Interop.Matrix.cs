@@ -91,9 +91,6 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix_OrthoNormalize")]
             public static extern void OrthoNormalize(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix_AsFloat__SWIG_0")]
-            public static extern global::System.IntPtr AsFloat(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix_Multiply__SWIG_0")]
             public static extern void Multiply(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
@@ -101,7 +98,13 @@ namespace Tizen.NUI
             public static extern void MultiplyQuaternion(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix_Multiply__SWIG_2")]
+            public static extern global::System.IntPtr MultiplyVector4(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix_Multiply__SWIG_4")]
             public static extern global::System.IntPtr Multiply(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix_MultiplyAssign")]
+            public static extern global::System.IntPtr MultiplyAssign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix_EqualTo")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
@@ -122,6 +125,18 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix_GetTransformComponents")]
             public static extern void GetTransformComponents(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3, global::System.Runtime.InteropServices.HandleRef jarg4);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix_ValueOfIndex__SWIG_0")]
+            public static extern float ValueOfIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix_ValueOfIndex__SWIG_1")]
+            public static extern float ValueOfIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint indexRow, uint indexColumn);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix_SetValueAtIndex__SWIG_0")]
+            public static extern void SetValueAtIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint index, float val);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix_SetValueAtIndex__SWIG_1")]
+            public static extern void SetValueAtIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint indexRow, uint indexColumn, float val);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Matrix")]
             public static extern void DeleteMatrix(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -184,6 +199,27 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix3_Multiply")]
             public static extern void Matrix3Multiply(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix3_Multiply__SWIG_1")]
+            public static extern global::System.IntPtr Matrix3MultiplyVector3(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix3_Multiply__SWIG_3")]
+            public static extern global::System.IntPtr Matrix3Multiply(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix3_MultiplyAssign")]
+            public static extern global::System.IntPtr Matrix3MultiplyAssign(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix3_ValueOfIndex__SWIG_0")]
+            public static extern float Matrix3ValueOfIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint index);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix3_ValueOfIndex__SWIG_1")]
+            public static extern float Matrix3ValueOfIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint indexRow, uint indexColumn);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix3_SetValueAtIndex__SWIG_0")]
+            public static extern void Matrix3SetValueAtIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint index, float val);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Matrix3_SetValueAtIndex__SWIG_1")]
+            public static extern void Matrix3SetValueAtIndex(global::System.Runtime.InteropServices.HandleRef jarg1, uint indexRow, uint indexColumn, float val);
         }
     }
 }

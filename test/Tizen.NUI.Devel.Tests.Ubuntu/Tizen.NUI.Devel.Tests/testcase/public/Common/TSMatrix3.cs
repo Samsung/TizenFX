@@ -1,16 +1,15 @@
 ﻿using global::System;
 using NUnit.Framework;
 using NUnit.Framework.TUnit;
-using Tizen.NUI.Components;
-using Tizen.NUI.BaseComponents;
+using Tizen.NUI;
 
 namespace Tizen.NUI.Devel.Tests
 {
     using tlog = Tizen.Log;
 
     [TestFixture]
-    [Description("internal/Common/Matrix3")]
-    public class InternalMatrix3Test
+    [Description("public/Common/Matrix3")]
+    public class Matrix3Test
     {
         private const string tag = "NUITEST";
 
@@ -184,6 +183,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 var result = testingTarget.EqualTo(matrix3);
                 tlog.Debug(tag, "EqualTo : " + result);
+                Assert.AreEqual(false, result, "EqualTo should be false");
             }
 
             testingTarget.Dispose();
@@ -209,6 +209,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 var result = testingTarget.NotEqualTo(matrix3);
                 tlog.Debug(tag, "NotEqualTo : " + result);
+                Assert.AreEqual(true, result, "NotEqualTo should be true");
             }
 
             testingTarget.Dispose();
@@ -246,35 +247,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Matrix3 AsFloat.")]
-        [Property("SPEC", "Tizen.NUI.Matrix3.AsFloat M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void Matrix3AsFloat()
-        {
-            tlog.Debug(tag, $"Matrix3AsFloat START");
-
-            var testingTarget = new Matrix3();
-            Assert.IsNotNull(testingTarget, "Can't create success object Matrix3.");
-            Assert.IsInstanceOf<Matrix3>(testingTarget, "Should return Matrix3 instance.");
-
-            try
-            {
-                testingTarget.AsFloat();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"Matrix3AsFloat END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Matrix3 Invert.")]
         [Property("SPEC", "Tizen.NUI.Matrix3.Invert M")]
         [Property("SPEC_URL", "-")]
@@ -284,12 +256,14 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"Matrix3Invert START");
 
-            var testingTarget = new Matrix3();
+            // Initialize as invertable matrix
+            var testingTarget = new Matrix3(1.0f, 0.0f, 0.0f, 0.0f, 2.0f, 0.0f, 0.0f, 0.0f, 3.0f);
             Assert.IsNotNull(testingTarget, "Can't create success object Matrix3.");
             Assert.IsInstanceOf<Matrix3>(testingTarget, "Should return Matrix3 instance.");
 
             var result = testingTarget.Invert();
             tlog.Debug(tag, "Invert :" + result);
+            Assert.AreEqual(true, result, "Invert should be successed");
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"Matrix3Invert END (OK)");
@@ -423,6 +397,235 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"Matrix3Multiply END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Matrix3 MultiplyAssign.")]
+        [Property("SPEC", "Tizen.NUI.Matrix3.MultiplyAssign M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "eunkiki.hong@samsung.com")]
+        public void Matrix3MultiplyAssign()
+        {
+            tlog.Debug(tag, $"Matrix3MultiplyAssign START");
+
+            var testingTarget = new Matrix3();
+            Assert.IsNotNull(testingTarget, "Can't create success object Matrix3.");
+            Assert.IsInstanceOf<Matrix3>(testingTarget, "Should return Matrix3 instance.");
+
+            using (Matrix3 rhs = new Matrix3(0.0f, 0.1f, 0.2f, 1.0f, 1.1f, 1.2f, 2.0f, 2.1f, 2.2f))
+            {
+                try
+                {
+                    testingTarget.MultiplyAssign(rhs);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception : Failed!");
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Matrix3MultiplyAssign END (OK)");
+        }
+
+
+        [Test]
+        [Category("P1")]
+        [Description("Matrix ValueOfIndex with signle index.")]
+        [Property("SPEC", "Tizen.NUI.Matrix.ValueOfIndex M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "Eunki Hong, eunkiki.hong@samsung.com")]
+        public void Matrix3ValueOfIndexSingleIndex()
+        {
+            /* TEST CODE */
+            tlog.Debug(tag, $"Matrix3ValueOfIndexSingleIndex START");
+
+            Matrix3 testingTarget = new Matrix3(0.0f, 1.0f, 2.0f, 0.1f, 1.1f, 2.1f, 0.2f, 1.2f, 2.2f);
+            Assert.IsNotNull(testingTarget, "Can't create success object Matrix.");
+            Assert.IsInstanceOf<Matrix3>(testingTarget, "Should return Matrix instance.");
+
+            for(uint index = 0; index < 9; ++index)
+            {
+                float expectResult = (index / 3) * 0.1f + (index % 3) * 1.0f;
+                Assert.AreEqual(expectResult, testingTarget.ValueOfIndex(index), "The value of index is not correct!");
+            }
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Matrix3ValueOfIndexSingleIndex END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Matrix3 ValueOfIndex with double index.")]
+        [Property("SPEC", "Tizen.NUI.Matrix3.ValueOfIndex M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "Eunki Hong, eunkiki.hong@samsung.com")]
+        public void Matrix3ValueOfIndexDoubleIndex()
+        {
+            /* TEST CODE */
+            tlog.Debug(tag, $"Matrix3ValueOfIndexDoubleIndex START");
+
+            Matrix3 testingTarget = new Matrix3(0.0f, 1.0f, 2.0f, 0.1f, 1.1f, 2.1f, 0.2f, 1.2f, 2.2f);
+            Assert.IsNotNull(testingTarget, "Can't create success object Matrix.");
+            Assert.IsInstanceOf<Matrix3>(testingTarget, "Should return Matrix instance.");
+
+            for(uint indexRow = 0; indexRow < 3; ++indexRow)
+            {
+                for(uint indexColumn = 0; indexColumn < 3; ++indexColumn)
+                {
+                    float expectResult = indexColumn * 0.1f + indexRow * 1.0f;
+                    Assert.AreEqual(expectResult, testingTarget.ValueOfIndex(indexRow, indexColumn), "The value of index is not correct!");
+                }
+            }
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Matrix3ValueOfIndexDoubleIndex END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Matrix3 SetValueAtIndex with signle index.")]
+        [Property("SPEC", "Tizen.NUI.Matrix3.SetValueAtIndex M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "Eunki Hong, eunkiki.hong@samsung.com")]
+        public void Matrix3SetValueAtIndexSingleIndex()
+        {
+            /* TEST CODE */
+            tlog.Debug(tag, $"Matrix3SetValueAtIndexSingleIndex START");
+            Matrix3 testingTarget = new Matrix3();
+            Assert.IsNotNull(testingTarget, "Can't create success object Matrix.");
+            Assert.IsInstanceOf<Matrix3>(testingTarget, "Should return Matrix instance.");
+
+            for(uint index = 0; index < 9; ++index)
+            {
+                float expectResult = (index / 3) * 0.1f + (index % 3) * 1.0f;
+                testingTarget.SetValueAtIndex(index, expectResult);
+                Assert.AreEqual(expectResult, testingTarget[index], "The value of index is not correct!");
+            }
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Matrix3SetValueAtIndexSingleIndex END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Matrix3 SetValueAtIndex with double index.")]
+        [Property("SPEC", "Tizen.NUI.Matrix3.SetValueAtIndex M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "Eunki Hong, eunkiki.hong@samsung.com")]
+        public void Matrix3SetValueAtIndexDoubleIndex()
+        {
+            /* TEST CODE */
+            tlog.Debug(tag, $"Matrix3SetValueAtIndexDoubleIndex START");
+            Matrix3 testingTarget = new Matrix3();
+            Assert.IsNotNull(testingTarget, "Can't create success object Matrix.");
+            Assert.IsInstanceOf<Matrix3>(testingTarget, "Should return Matrix instance.");
+
+            for(uint indexRow = 0; indexRow < 3; ++indexRow)
+            {
+                for(uint indexColumn = 0; indexColumn < 3; ++indexColumn)
+                {
+                    float expectResult = indexColumn * 0.1f + indexRow * 1.0f;
+                    testingTarget.SetValueAtIndex(indexRow, indexColumn, expectResult);
+                    Assert.AreEqual(expectResult, testingTarget.ValueOfIndex(indexRow, indexColumn), "The value of index is not correct!");
+                }
+            }
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Matrix3SetValueAtIndexDoubleIndex END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Test Tizen.NUI.Matrix3.operator * with Matrix3.")]
+        [Property("SPEC", "Tizen.NUI.Matrix3.operator *() A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "Eunki Hong, eunkiki.hong@samsung.com")]
+        public void Matrix3MultiplyOperator()
+        {
+            /* TEST CODE */
+            tlog.Debug(tag, $"Matrix3MultiplyOperator START");
+            Matrix3 testingTarget = new Matrix3();
+            Assert.IsNotNull(testingTarget, "Can't create success object Matrix.");
+            Assert.IsInstanceOf<Matrix3>(testingTarget, "Should return Matrix instance.");
+
+            try
+            {
+                Matrix3 rhs = new Matrix3(1.0f, 0.0f, 0.0f, 0.0f, 2.0f, 0.0f, 0.0f, 0.0f, 3.0f);
+                Matrix3 ret = testingTarget * rhs;
+                rhs.Dispose();
+                ret.Dispose();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Matrix3MultiplyOperator END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Test Tizen.NUI.Matrix3.operator * with Vector3.")]
+        [Property("SPEC", "Tizen.NUI.Matrix3.operator *() A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "Eunki Hong, eunkiki.hong@samsung.com")]
+        public void Matrix3MultiplyOperatorWithVector3()
+        {
+            /* TEST CODE */
+            tlog.Debug(tag, $"Matrix3MultiplyOperatorWithVector3 START");
+            Matrix3 testingTarget = new Matrix3();
+            Assert.IsNotNull(testingTarget, "Can't create success object Matrix.");
+            Assert.IsInstanceOf<Matrix3>(testingTarget, "Should return Matrix instance.");
+
+            try
+            {
+                Vector3 rhs = new Vector3();
+                Vector3 ret = testingTarget * rhs;
+                rhs.Dispose();
+                ret.Dispose();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Matrix3MultiplyOperatorWithVector4 END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Test this[uint index]. Check whether this[uint index] returns expected value or not.")]
+        [Property("SPEC", "Tizen.NUI.Matrix3.this[uint] A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "Eunki Hong, eunkiki.hong@samsung.com")]
+        public void this_SET_GET_VALUE()
+        {
+            /* TEST CODE */
+            tlog.Debug(tag, $"Matrix3this_SET_GET_VALUE START");
+            Matrix3 testingTarget = new Matrix3();
+            try
+            {
+                testingTarget[0] = 100.0f;
+                testingTarget[1] = 200.0f;
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+            Assert.AreEqual(100.0f, testingTarget[0], "The value of index[0] is not correct!");
+            Assert.AreEqual(200.0f, testingTarget[1], "The value of index[1] is not correct!");
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"Matrix3this_SET_GET_VALUE END (OK)");
         }
     }
 }
