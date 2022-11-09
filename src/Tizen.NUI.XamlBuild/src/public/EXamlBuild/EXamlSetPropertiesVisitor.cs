@@ -913,6 +913,8 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             var valueNode = node as ValueNode;
             var elementNode = node as IElementNode;
 
+            bool needToSetProperty = true;
+
             //if it's a value type, load the address so we can invoke methods on it
             if (parent.Type.IsValueType)
             {
@@ -937,15 +939,24 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 }
                 else
                 {
-                    var converterType = valueNode.GetConverterType(new ICustomAttributeProvider[] { property, propertyType.ResolveCached() });
-                    if (null != converterType)
+                    if ("Tizen.NUI.Binding.ResourceDictionary" == parent.GetType().FullName &&
+                        "Source" == property.Name)
                     {
-                        var converterValue = new EXamlValueConverterFromString(context, converterType.Resolve(), valueNode.Value as string);
-                        context.Values[node] = new EXamlCreateObject(context, converterValue, propertyType);
+                        ImportXamlToResourceDictionary(parent, valueNode, context);
+                        needToSetProperty = false;
                     }
                     else
                     {
-                        context.Values[node] = valueNode.GetBaseValue(context, property.PropertyType);
+                        var converterType = valueNode.GetConverterType(new ICustomAttributeProvider[] { property, propertyType.ResolveCached() });
+                        if (null != converterType)
+                        {
+                            var converterValue = new EXamlValueConverterFromString(context, converterType.Resolve(), valueNode.Value as string);
+                            context.Values[node] = new EXamlCreateObject(context, converterValue, propertyType);
+                        }
+                        else
+                        {
+                            context.Values[node] = valueNode.GetBaseValue(context, propertyType);
+                        }
                     }
                 }
             }
@@ -977,7 +988,63 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 }
             }
 
-            new EXamlSetProperty(context, parent, localName, context.Values[node]);
+            if (needToSetProperty)
+            {
+                new EXamlSetProperty(context, parent, localName, context.Values[node]);
+            }
+        }
+
+        static void ImportXamlToResourceDictionary(EXamlCreateObject parentObj, ValueNode valueNode, EXamlContext context)
+        {
+            var resourceName = valueNode.Value as string;
+
+            foreach (var resource in context.Module.Resources.OfType<EmbeddedResource>())
+            {
+                var embeddedResourceNameSpace = context.EmbeddedResourceNameSpace;
+                if (resource.Name.StartsWith(embeddedResourceNameSpace) && resource.Name.EndsWith(resourceName))
+                {
+                    string classname = null;
+
+                    if (resource.IsResourceDictionaryXaml(context.Module, out classname))
+                    {
+                        int lastIndex = classname.LastIndexOf('.');
+                        var realClassName = classname.Substring(lastIndex + 1);
+                        var typeref = XmlTypeExtensions.GetTypeReference(realClassName, context.Module, valueNode, XmlTypeExtensions.ModeOfGetType.Both);
+
+                        var rootnode = XamlTask.ParseXaml(resource.GetResourceStream(), typeref);
+
+                        var typeDef = typeref.ResolveCached();
+                        var visitorContext = new EXamlContext(typeDef, typeDef.Module, embeddedResourceNameSpace);
+
+                        visitorContext.Values[rootnode] = new EXamlCreateObject(visitorContext, null, rootnode.TypeReference);
+
+                        rootnode.Accept(new XamlNodeVisitor((node, parent) => node.Parent = parent), null);
+                        rootnode.Accept(new EXamlExpandMarkupsVisitor(visitorContext), null);
+                        rootnode.Accept(new PruneIgnoredNodesVisitor(), null);
+                        rootnode.Accept(new EXamlCreateObjectVisitor(visitorContext), null);
+                        rootnode.Accept(new EXamlSetNamescopesAndRegisterNamesVisitor(visitorContext), null);
+                        rootnode.Accept(new EXamlSetFieldVisitor(visitorContext), null);
+                        rootnode.Accept(new EXamlSetResourcesVisitor(visitorContext), null);
+                        rootnode.Accept(new EXamlSetPropertiesVisitor(visitorContext, true), null);
+
+                        foreach (var pair in visitorContext.resourceDictionary)
+                        {
+                            new EXamlAddToResourceDictionary(context, parentObj, pair.Key, pair.Value);
+                        }
+
+                        break;
+                    }
+                }
+            }
+
+            //rootnode.Accept(new XamlNodeVisitor((node, parent) => node.Parent = parent), null);
+            //rootnode.Accept(new EXamlExpandMarkupsVisitor(context), null);
+            //rootnode.Accept(new PruneIgnoredNodesVisitor(), null);
+            //rootnode.Accept(new EXamlCreateObjectVisitor(context), null);
+            //rootnode.Accept(new EXamlSetNamescopesAndRegisterNamesVisitor(context), null);
+            //rootnode.Accept(new EXamlSetFieldVisitor(context), null);
+            //rootnode.Accept(new EXamlSetResourcesVisitor(context), null);
+            //rootnode.Accept(new EXamlSetPropertiesVisitor(context, true), null);
         }
 
         static void Get(EXamlCreateObject parent, string localName, IXmlLineInfo iXmlLineInfo, EXamlContext context, out TypeReference propertyType)
