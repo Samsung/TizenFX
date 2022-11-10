@@ -87,12 +87,11 @@ namespace Tizen.NUI.Devel.Tests
             {
                 var testingTarget = ImageLoader.LoadImageFromFile(image_path, null);
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
+                tlog.Debug(tag, $"ImageLoaderLoadImageFromFileWithSize END (OK)");
                 Assert.Pass("Catch ArgumentNullException, Pass!");
             }
-
-            tlog.Debug(tag, $"ImageLoaderLoadImageFromFileWithSize END (OK)");
         }
 
         [Test]
@@ -120,12 +119,11 @@ namespace Tizen.NUI.Devel.Tests
             {
                 var testingTarget = ImageLoader.LoadImageFromFile(image_path, null, FittingModeType.ScaleToFill);
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
+                tlog.Debug(tag, $"ImageLoaderLoadImageFromFileWithFittingMode END (OK)");
                 Assert.Pass("Catch ArgumentNullException, Pass!");
             }
-
-            tlog.Debug(tag, $"ImageLoaderLoadImageFromFileWithFittingMode END (OK)");
         }
 
         [Test]
@@ -153,12 +151,11 @@ namespace Tizen.NUI.Devel.Tests
             {
                 var testingTarget = ImageLoader.LoadImageFromFile(image_path, null, FittingModeType.ScaleToFill, SamplingModeType.Linear);
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
+                tlog.Debug(tag, $"ImageLoaderLoadImageFromFileWithSamplingMode END (OK)");
                 Assert.Pass("Catch ArgumentNullException, Pass!");
             }
-
-            tlog.Debug(tag, $"ImageLoaderLoadImageFromFileWithSamplingMode END (OK)");
         }
 
         [Test]

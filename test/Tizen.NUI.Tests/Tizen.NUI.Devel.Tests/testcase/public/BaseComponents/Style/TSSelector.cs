@@ -329,5 +329,97 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"SelectorGetValue END (OK)");
         }
+        [Test]
+        [Category("P1")]
+        [Description("Selector Get.")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.Selector.Get M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void SelectorGet()
+        {
+            tlog.Debug(tag, $"SelectorGet START");
+
+            Color result = null;
+            var testingTarget = new Selector<Color>();
+            Assert.IsNotNull(testingTarget, "Can't create success object RenderTask.");
+            Assert.IsInstanceOf<Selector<Color>>(testingTarget, "Should return Selector<Color> instance.");
+
+			try
+			{
+                testingTarget.Normal = Color.Blue;  // 1100
+                result = testingTarget.Normal;      
+                Assert.AreEqual(1, result.A, "Should be equal!");
+                Assert.AreEqual(1, result.B, "Should be equal!");
+                Assert.AreEqual(0, result.G, "Should be equal!");
+                Assert.AreEqual(0, result.R, "Should be equal!");
+
+                testingTarget.Pressed = Color.Green;    // 1010
+                result = testingTarget.Pressed;
+                Assert.AreEqual(1, result.A, "Should be equal!");
+                Assert.AreEqual(0, result.B, "Should be equal!");
+                Assert.AreEqual(1, result.G, "Should be equal!");
+                Assert.AreEqual(0, result.R, "Should be equal!");
+
+                testingTarget.Focused = Color.Red;      // 1001
+                result = testingTarget.Focused;
+                Assert.AreEqual(1, result.A, "Should be equal!");
+                Assert.AreEqual(0, result.B, "Should be equal!");
+                Assert.AreEqual(0, result.G, "Should be equal!");
+                Assert.AreEqual(1, result.R, "Should be equal!");
+
+                testingTarget.Selected = Color.Cyan;    // 1110
+                result = testingTarget.Selected;
+                Assert.AreEqual(1, result.A, "Should be equal!");
+                Assert.AreEqual(1, result.B, "Should be equal!");
+                Assert.AreEqual(1, result.G, "Should be equal!");
+                Assert.AreEqual(0, result.R, "Should be equal!");
+
+                testingTarget.Disabled = Color.Gray;    // 1 0.74509805 0.74509805 0.74509805
+                result = testingTarget.Disabled;
+                Assert.AreEqual(1, result.A, "Should be equal!");
+
+                testingTarget.DisabledFocused = Color.Orange;       // 1 0 0.64705884 1
+                result = testingTarget.DisabledFocused;
+                Assert.AreEqual(1, result.A, "Should be equal!");
+                Assert.AreEqual(0, result.B, "Should be equal!");
+                Assert.AreEqual(1, result.R, "Should be equal!");
+
+                testingTarget.SelectedFocused = Color.Magenta;      // 1101
+                result = testingTarget.SelectedFocused;
+                Assert.AreEqual(1, result.A, "Should be equal!");
+                Assert.AreEqual(1, result.B, "Should be equal!");
+                Assert.AreEqual(0, result.G, "Should be equal!");
+                Assert.AreEqual(1, result.R, "Should be equal!");
+
+                testingTarget.DisabledSelected = Color.Black;   // 1000 
+                result = testingTarget.DisabledSelected;
+                Assert.AreEqual(1, result.A, "Should be equal!");
+                Assert.AreEqual(0, result.B, "Should be equal!");
+                Assert.AreEqual(0, result.G, "Should be equal!");
+                Assert.AreEqual(0, result.R, "Should be equal!");
+
+                testingTarget.SelectedPressed = Color.Yellow;   //1011
+                result = testingTarget.SelectedPressed;
+                Assert.AreEqual(1, result.A, "Should be equal!");
+                Assert.AreEqual(0, result.B, "Should be equal!");
+                Assert.AreEqual(1, result.G, "Should be equal!");
+                Assert.AreEqual(1, result.R, "Should be equal!");
+
+                testingTarget.Other = Color.White;      // 1111
+                result = testingTarget.Other;
+                Assert.AreEqual(1, result.A, "Should be equal!");
+                Assert.AreEqual(1, result.B, "Should be equal!");
+                Assert.AreEqual(1, result.G, "Should be equal!");
+                Assert.AreEqual(1, result.R, "Should be equal!");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!"　);
+            }
+
+            tlog.Debug(tag, $"SelectorGet END (OK)");
+        }
     }
 }

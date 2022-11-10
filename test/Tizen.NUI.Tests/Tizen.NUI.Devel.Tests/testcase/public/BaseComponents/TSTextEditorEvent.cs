@@ -89,7 +89,7 @@ namespace Tizen.NUI.Devel.Tests
                 testingTarget.SelectionStarted += OnSelectionStarted;
 
                 testingTarget.SelectWholeText();
-                await Task.Delay(500);
+                await Task.Delay(1000);
 
                 testingTarget.SelectionStarted -= OnSelectionStarted;
             }

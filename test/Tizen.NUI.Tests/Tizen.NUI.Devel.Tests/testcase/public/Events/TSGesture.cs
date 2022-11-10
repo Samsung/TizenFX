@@ -142,7 +142,6 @@ namespace Tizen.NUI.Devel.Tests
             Assert.Pass("GestureTime");
         }
 
-
         [Test]
         [Category("P1")]
         [Description("Gesture GetGestureFromPtr")]

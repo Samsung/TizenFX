@@ -14,22 +14,15 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
-using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Components;
-using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
 {
     public class HslViewModel : INotifyPropertyChanged
     {
-        float hue, saturation, luminosity;
-        Color color;
+        private float hue, saturation, luminosity;
+        private Color color;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -44,10 +37,7 @@ namespace Tizen.NUI.Devel.Tests
                     SetNewColor();
                 }
             }
-            get
-            {
-                return hue;
-            }
+            get => hue;
         }
 
         public float Saturation
@@ -61,10 +51,7 @@ namespace Tizen.NUI.Devel.Tests
                     SetNewColor();
                 }
             }
-            get
-            {
-                return saturation;
-            }
+            get => saturation;
         }
 
         public float Luminosity
@@ -78,10 +65,7 @@ namespace Tizen.NUI.Devel.Tests
                     SetNewColor();
                 }
             }
-            get
-            {
-                return luminosity;
-            }
+            get => luminosity;
         }
 
         public Color Color
@@ -98,13 +82,10 @@ namespace Tizen.NUI.Devel.Tests
                     Luminosity = value.B;
                 }
             }
-            get
-            {
-                return color;
-            }
+            get => color;
         }
 
-        void SetNewColor()
+        private void SetNewColor()
         {
             Color = new Color(Hue, Saturation, Luminosity, 1.0f);
         }
@@ -120,7 +101,9 @@ namespace Tizen.NUI.Devel.Tests
 
         public HslColorScrollView()
         {
+#pragma warning disable Reflection // The code contains reflection
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(HslColorScrollView));
+#pragma warning restore Reflection // The code contains reflection
         }
     }
 }

@@ -374,7 +374,8 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Assert.Fail("Fail!");
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             testingTarget.Dispose();
@@ -405,7 +406,8 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Assert.Fail("Fail!");
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             testingTarget.Dispose();
@@ -436,7 +438,8 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Assert.Fail("Fail!");
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             testingTarget.Dispose();
@@ -467,7 +470,8 @@ namespace Tizen.NUI.Devel.Tests
             }
             catch (Exception e)
             {
-                Assert.Fail("Fail!");
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             testingTarget.Dispose();

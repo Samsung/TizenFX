@@ -19,10 +19,6 @@ namespace Tizen.NUI.Devel.Tests
         private static bool flagOnUnparentOverride;
         private static bool flagOnAttachedToOwnerOverride;
 
-        // LayoutGroup used for testing
-        private static bool flagOnMeasureLayoutGroupOverride;
-        private static bool flagOnLayoutOverrideLayoutGroup;
-
         internal class MyLayoutItem : LayoutItem
         {
             public MyLayoutItem() : base()
@@ -69,47 +65,14 @@ namespace Tizen.NUI.Devel.Tests
                 base.OnAttachedToOwner();
             }
 
-            public MeasuredSize ResolveSizeAndState(LayoutLength size, MeasureSpecification measureSpecification, MeasuredSize.StateType childMeasuredState)
+            public new MeasuredSize ResolveSizeAndState(LayoutLength size, MeasureSpecification measureSpecification, MeasuredSize.StateType childMeasuredState)
             {
                 return base.ResolveSizeAndState(size, measureSpecification, childMeasuredState);
             }
 
-            public void SetMeasuredDimensions(MeasuredSize measuredWidth, MeasuredSize measuredHeight)
+            public new void SetMeasuredDimensions(MeasuredSize measuredWidth, MeasuredSize measuredHeight)
             {
                 base.SetMeasuredDimensions(measuredWidth, measuredHeight);
-            }
-        }
-
-        // LayoutGroup used for testing LayoutItem Layout and Measure functions.
-        internal class MyLayoutGroup : LayoutGroup
-        {
-            public MyLayoutGroup() : base()
-            { }
-
-            public int ChildCount()
-            {
-                return LayoutChildren.Count;
-            }
-
-            // This method needs to call protected method, OnMeasure for the test cases.
-            public void OnMeasureTest(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
-            {
-                OnMeasure(widthMeasureSpec, heightMeasureSpec);
-            }
-            protected override void OnMeasure(MeasureSpecification widthMeasureSpec, MeasureSpecification heightMeasureSpec)
-            {
-                flagOnMeasureLayoutGroupOverride = true;
-                base.OnMeasure(widthMeasureSpec, heightMeasureSpec);
-            }
-
-            public void OnLayoutTest(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
-            {
-                OnLayout(changed, left, top, right, bottom);
-            }
-            protected override void OnLayout(bool changed, LayoutLength left, LayoutLength top, LayoutLength right, LayoutLength bottom)
-            {
-                flagOnLayoutOverrideLayoutGroup = true;
-                base.OnLayout(changed, left, top, right, bottom);
             }
         }
 

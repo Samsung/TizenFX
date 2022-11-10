@@ -145,7 +145,46 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"publicBaseComponentsVideoViewUnderlay END (OK)");
         }
 
-		[Test]
+
+        [Test]
+        [Category("P1")]
+        [Description("VideoView  Volume.")]
+        [Property("SPEC", "Tizen.NUI.VideoView .Volume  M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void publicBaseComponentsVideoViewVolume()
+        {
+            tlog.Debug(tag, $"publicBaseComponentsVideoViewVolume START");
+
+            try
+            {
+                var testingTarget = new VideoView();
+                Assert.IsNotNull(testingTarget, "Can't create success object VideoView ");
+                Assert.IsInstanceOf<VideoView>(testingTarget, "Should be an instance of VideoView  type.");
+
+                PropertyMap volumeMap = new PropertyMap();
+                volumeMap.Add("left", new PropertyValue(50.0f));
+                volumeMap.Add("right", new PropertyValue(60.0f));
+
+                testingTarget.Volume = volumeMap;
+
+                var resultMap = testingTarget.Volume;
+                var result = resultMap.Find(-1, "volumeRight").Get(out float value);
+                Assert.IsTrue(result);
+
+                testingTarget.Dispose();
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Catch exception: " + e.Message.ToString());
+            }
+
+            tlog.Debug(tag, $"publicBaseComponentsVideoViewVolume END (OK)");
+        }
+
+
+        [Test]
         [Category("P1")]
         [Description("VideoView Muted.")]
         [Property("SPEC", "Tizen.NUI.VideoView .Muted A")]

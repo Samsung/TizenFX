@@ -23,6 +23,8 @@ namespace Tizen.NUI.Devel.Tests
         private void VideoCallback (bool arg) { }
         private void GeolocationCallback (string arg1, string arg2) { }
         private void PromptCallback (string arg1, string arg2) { }
+        private void PlainReceivedCallback(string arg2) { }
+        private void ScreenshotAcquiredCallbackCase(ImageView image){}
 
         internal class MyWebView : Tizen.NUI.BaseComponents.WebView
         {
@@ -284,6 +286,24 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("WebView NavigationPolicyDecided.")]
+        [Property("SPEC", "Tizen.NUI.WebView.NavigationPolicyDecided A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WebViewNavigationPolicyDecided()
+        {
+            tlog.Debug(tag, $"WebViewNavigationPolicyDecided START");
+
+            webView.NavigationPolicyDecided += OnNavigationPolicyDecided;
+            webView.NavigationPolicyDecided -= OnNavigationPolicyDecided;
+
+            tlog.Debug(tag, $"WebViewNavigationPolicyDecided END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("WebView CertificateConfirmed.")]
         [Property("SPEC", "Tizen.NUI.WebView.CertificateConfirmed A")]
         [Property("SPEC_URL", "-")]
@@ -353,7 +373,43 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WebViewConsoleMessageReceived END (OK)");
         }
+         
+        [Test]
+        [Category("P1")]
+        [Description("WebView ContextMenuShown.")]
+        [Property("SPEC", "Tizen.NUI.WebView.ContextMenuShown A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WebViewContextMenuShown()
+        {
+            tlog.Debug(tag, $"WebViewContextMenuShown START");
 
+            webView.ContextMenuShown += OnContextMenuShown;
+            webView.ContextMenuShown -= OnContextMenuShown;
+
+            tlog.Debug(tag, $"WebViewContextMenuShown END (OK)");
+        }		 
+
+        [Test]
+        [Category("P1")]
+        [Description("WebView ContextMenuHidden.")]
+        [Property("SPEC", "Tizen.NUI.WebView.ContextMenuHidden A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WebViewContextMenuHidden()
+        {
+            tlog.Debug(tag, $"WebViewContextMenuHidden START");
+
+            webView.ContextMenuHidden += OnContextMenuHidden;
+            webView.ContextMenuHidden -= OnContextMenuHidden;
+
+            tlog.Debug(tag, $"WebViewContextMenuHidden END (OK)");
+        }	
+		 		
         [Test]
         [Category("P1")]
         [Description("WebView BackForwardList.")]
@@ -902,6 +958,31 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"WebViewLoadHtmlString END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebView LoadHTMLString.")]
+        [Property("SPEC", "Tizen.NUI.WebView.LoadHTMLString M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WebViewLoadHTMLString()
+        {
+            tlog.Debug(tag, $"WebViewLoadHTMLString START");
+
+            try
+            {
+                webView.LoadHTMLString("<html><head lang=\"en\"></head></html>");
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"WebViewLoadHTMLString END (OK)");
         }
 
         [Test]
@@ -1539,6 +1620,133 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("WebView GetPlainTextAsynchronously.")]
+        [Property("SPEC", "Tizen.NUI.WebView.GetPlainTextAsynchronously M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WebViewGetPlainTextAsynchronously()
+        {
+            tlog.Debug(tag, $"WebViewGetPlainTextAsynchronously START");
+
+            try
+            {
+                webView.GetPlainTextAsynchronously(PlainReceivedCallback);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"WebViewGetPlainTextAsynchronously END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebView SetTtsFocus.")]
+        [Property("SPEC", "Tizen.NUI.WebView.SetTtsFocus M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WebViewSetTtsFocus()
+        {
+            tlog.Debug(tag, $"WebViewSetTtsFocus START");
+
+            try
+            {
+                webView.SetTtsFocus(false);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"WebViewSetTtsFocus END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebView GetScreenshot.")]
+        [Property("SPEC", "Tizen.NUI.WebView.GetScreenshot M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WebViewGetScreenshot()
+        {
+            tlog.Debug(tag, $"WebViewGetScreenshot START");
+
+            try
+            {
+                var result = webView.GetScaleFactor();
+                webView.GetScreenshot(new Rectangle(5, 6, 100, 200),result);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"WebViewGetScreenshot END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebView GetScreenshotAsynchronously.")]
+        [Property("SPEC", "Tizen.NUI.WebView.GetScreenshotAsynchronously M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WebViewGetScreenshotAsynchronously()
+        {
+            tlog.Debug(tag, $"WebViewGetScreenshotAsynchronously START");
+
+            try
+            {
+                var result = webView.GetScaleFactor();
+                webView.GetScreenshotAsynchronously(new Rectangle(5, 6, 100, 200),result,ScreenshotAcquiredCallbackCase);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"WebViewGetScreenshotAsynchronously END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebView EvaluateJavaScript.")]
+        [Property("SPEC", "Tizen.NUI.WebView.EvaluateJavaScript M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void WebViewEvaluateJavaScriptWithCallback()
+        {
+            tlog.Debug(tag, $"WebViewEvaluateJavaScriptWithCallback START");
+
+            try
+            {
+                webView.EvaluateJavaScript("<script type=\"text / javascript\">document.write(\"page\");</script>",JsCallback);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"WebViewEvaluateJavaScriptWithCallback END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("WebView ClearCache.")]
         [Property("SPEC", "Tizen.NUI.WebView.ClearCache M")]
         [Property("SPEC_URL", "-")]
@@ -1673,5 +1881,8 @@ namespace Tizen.NUI.Devel.Tests
         private void OnSslCertificateChange(object sender, WebViewCertificateReceivedEventArgs e) {  }
         private void OnHttpAuthRequeste(object sender, WebViewHttpAuthRequestedEventArgs e) { }
         private void OnConsoleMessageReceive(object sender, WebViewConsoleMessageReceivedEventArgs e) { }
+		private void OnNavigationPolicyDecided(object sender, WebViewPolicyDecidedEventArgs e) { }
+		private void OnContextMenuShown(object sender, WebViewContextMenuShownEventArgs e) { }
+		private void OnContextMenuHidden(object sender, WebViewContextMenuHiddenEventArgs e) { }
     }
 }

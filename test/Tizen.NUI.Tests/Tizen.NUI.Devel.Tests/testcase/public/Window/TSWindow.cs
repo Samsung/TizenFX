@@ -16,7 +16,6 @@ namespace Tizen.NUI.Devel.Tests
         private const string tag = "NUITEST";
         private Window win = null;
         private Rectangle rec = null;
-        private IBorderInterface borderInterface = null;
 
         [SetUp]
         public void Init()
@@ -369,8 +368,32 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WindowSetOpaqueState END (OK)");
         }
-		
-		[Test]
+
+        [Test]
+        [Category("P1")]
+        [Description("Window SetBrightness")]
+        [Property("SPEC", "Tizen.NUI.Window.SetBrightness M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void WindowSetBrightness()
+        {
+            tlog.Debug(tag, $"WindowSetBrightness START");
+
+            try
+            {
+                var result = win.SetBrightness(50);
+                tlog.Debug(tag, "SetBrightness : " + result);
+            }
+            catch (Exception e)
+            {
+                tlog.Error(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"WindowSetBrightness END (OK)");
+        }
+
+        [Test]
         [Category("P1")]
         [Description("Window SetClass")]
         [Property("SPEC", "Tizen.NUI.Window.SetClass M")]
@@ -703,8 +726,40 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WindowObjectDump END (OK)");
         }
-		
-		[Test]
+
+        [Test]
+        [Category("P1")]
+        [Description("Window GetPreferredOrientation")]
+        [Property("SPEC", "Tizen.NUI.Window.GetPreferredOrientation M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        public void WindowGetPreferredOrientation()
+        {
+            tlog.Debug(tag, $"WindowGetPreferredOrientation START");
+
+            try
+            {
+                var orientation = Window.WindowOrientation.Portrait;
+                Window.Instance.AddAvailableOrientation(orientation);
+
+                orientation = Window.WindowOrientation.LandscapeInverse;
+                Window.Instance.SetPreferredOrientation(orientation);
+
+                var result = Window.Instance.GetPreferredOrientation();
+                Assert.AreEqual(Window.WindowOrientation.LandscapeInverse, result, "Should be equal!");
+
+                Window.Instance.RemoveAvailableOrientation(orientation);
+            }
+            catch (Exception e)
+            {
+                tlog.Error(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            tlog.Debug(tag, $"WindowGetPreferredOrientation END (OK)");
+        }
+
+        [Test]
         [Category("P2")]
         [Description("Window SetMimimumSize")]
         [Property("SPEC", "Tizen.NUI.Window.SetMimimumSize M")]

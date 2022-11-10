@@ -67,5 +67,33 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"FadeTransitionOpacity END (OK)");
         }
+        [Test]
+        [Category("P1")]
+        [Description("FadeTransition CreateTransition.")]
+        [Property("SPEC", "Tizen.NUI.FadeTransition.CreateTransition M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FadeTransitionCreateTransition()
+        {
+            tlog.Debug(tag, $"FadeTransitionCreateTransition START");
+
+            var testingTarget = new FadeTransition();
+            Assert.IsNotNull(testingTarget, "Can't create success object FadeTransition");
+            Assert.IsInstanceOf<FadeTransition>(testingTarget, "Should be an instance of FadeTransition type.");
+
+            using (View view = new View())
+            {
+                TimePeriod timePeriod = new TimePeriod(0);
+                AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default);
+				
+                var result = testingTarget.CreateTransition(view, true,timePeriod,alphaFunction);
+                Assert.IsNotNull(result, "Can't create success object TransitionItemBase");
+                Assert.IsInstanceOf<TransitionItemBase>(result, "Should be an instance of TransitionItemBase type.");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"FadeTransitionCreateTransition END (OK)");
+        }
     }
 }

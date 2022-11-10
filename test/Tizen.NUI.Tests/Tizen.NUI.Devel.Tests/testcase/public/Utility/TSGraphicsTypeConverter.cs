@@ -41,6 +41,11 @@ namespace Tizen.NUI.Devel.Tests
             {
                 return base.ConvertFromPixel(scriptValue);
             }
+			
+            public override float ConvertToPixel(float scriptValue)
+            {
+                return base.ConvertToPixel(scriptValue);
+            }            
         }
 
         [Test]
@@ -89,6 +94,27 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(result);
 
             tlog.Debug(tag, $"GraphicsTypeConverterConvertFromPixel END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("GraphicsTypeConverter ConvertToPixel.")]
+        [Property("SPEC", "Tizen.NUI.GraphicsTypeConverter.ConvertToPixel M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void GraphicsTypeConverterConvertToPixel()
+        {
+            tlog.Debug(tag, $"GraphicsTypeConverterConvertToPixel START");
+
+            var testingTarget = new MyGraphicsTypeConverter();
+            Assert.IsNotNull(testingTarget, "Can't create success object GraphicsTypeConverter");
+            Assert.IsInstanceOf<GraphicsTypeConverter>(testingTarget, "Should be an instance of GraphicsTypeConverter type.");
+
+            var result = testingTarget.ConvertToPixel(160.0f);
+            Assert.IsNotNull(result);
+
+            tlog.Debug(tag, $"GraphicsTypeConverterConvertToPixel END (OK)");
         }
     }
 }
