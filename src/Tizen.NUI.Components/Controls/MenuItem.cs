@@ -48,6 +48,16 @@ namespace Tizen.NUI.Components
             Initialize();
         }
 
+        /// <summary>
+        /// Creates a new instance of a MenuItem with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created MenuItem.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public MenuItem(ButtonStyle style) : base(style)
+        {
+            Initialize();
+        }
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void Dispose(DisposeTypes type)

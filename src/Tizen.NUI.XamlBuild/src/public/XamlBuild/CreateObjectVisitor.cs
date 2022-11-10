@@ -269,7 +269,8 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 Context.Body.Variables.Add(vardef);
 
                 ValueNode vnode = null;
-                if (node.CollectionItems.Count == 1 && (vnode = node.CollectionItems.First() as ValueNode) != null &&
+                if (node.CollectionItems.Count == 1 &&
+                   (vnode = node.CollectionItems.First() as ValueNode) != null &&
                     vardef.VariableType.IsValueType)
                 {
                     //<Color>Purple</Color>
@@ -315,6 +316,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                     {
                         Context.IL.Emit(OpCodes.Newobj, ctor);
                     }
+
                     Context.IL.Emit(OpCodes.Stloc, vardef);
                 }
                 else if (ctorInfo != null && node.Properties.ContainsKey(XmlName.xArguments) &&

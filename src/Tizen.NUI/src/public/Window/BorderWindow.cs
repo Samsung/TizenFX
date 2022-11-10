@@ -55,6 +55,7 @@ namespace Tizen.NUI
         // for config
         private Size2D minSize = null;
         private Size2D maxSize = null;
+        private uint borderLineThickness;
         private BorderResizePolicyType borderResizePolicy = BorderResizePolicyType.Free;
         #endregion //Fields
 
@@ -168,6 +169,29 @@ namespace Tizen.NUI
                         AddAuxiliaryHint("wm.policy.win.resize_aspect_ratio", "1");
                     }
                 }
+                if (borderLineThickness != borderInterface.BorderLineThickness)
+                {
+                    int diffBorderLine = (int)(borderInterface.BorderLineThickness - borderLineThickness);
+                    borderLineThickness = borderInterface.BorderLineThickness;
+
+                    if (borderView != null)
+                    {
+                        Extents extents = borderView.Padding;
+                        ushort start = (extents.Start + diffBorderLine) > 0 ? (ushort)(extents.Start + diffBorderLine) : (ushort)0;
+                        ushort end = (extents.End + diffBorderLine) > 0 ? (ushort)(extents.End + diffBorderLine) : (ushort)0;
+                        ushort top = (extents.Top + diffBorderLine) > 0 ? (ushort)(extents.Top + diffBorderLine) : (ushort)0;
+                        ushort bottom = (extents.Bottom + diffBorderLine) > 0 ? (ushort)(extents.Bottom + diffBorderLine) : (ushort)0;
+                        borderView.Padding = new Extents(start, end, top, bottom);
+                        if (IsMaximized() == true)
+                        {
+                            borderView.OnMaximize(true);
+                        }
+                    }
+
+                    ResizedEventArgs e = new ResizedEventArgs();
+                    e.WindowSize = WindowSize;
+                    windowResizeEventHandler?.Invoke(this, e);
+                }
             }
         }
         /// <summary>
@@ -218,11 +242,10 @@ namespace Tizen.NUI
             }
             this.borderInterface = borderInterface;
             this.borderCloseDelegate = borderCloseDelegate;
+            borderLineThickness = borderInterface.BorderLineThickness;
 
             GetDefaultLayer().Name = "OriginalRootLayer";
 
-            SetTransparency(true);
-            BackgroundColor = Color.Transparent;
             borderInterface.BorderWindow = this;
 
             if (CreateBorder() == true)
@@ -263,10 +286,11 @@ namespace Tizen.NUI
                     borderInterface.OnMaximize(true);
                     ResizedEventArgs e = new ResizedEventArgs();
                     e.WindowSize = WindowSize;
-                    OnBorderWindowResized(this, e);
+                    windowResizeEventHandler?.Invoke(this, e);
                 }
                 else
                 {
+                    borderInterface.OnMaximize(IsMaximized());
                     WindowSize += new Size2D((int)borderInterface.BorderLineThickness * 2, (int)(borderHeight + borderInterface.BorderLineThickness * 2));
                 }
 
@@ -567,8 +591,9 @@ namespace Tizen.NUI
         {
             if (isBorderWindow == true && !(borderInterface.OverlayMode == true && IsMaximized() == true))
             {
-                var height = (ushort)(size.GetHeight() - borderHeight - borderInterface.BorderLineThickness * 2);
-                var width = (ushort)(size.GetWidth() - borderInterface.BorderLineThickness * 2);
+                var borderLine = IsMaximized() == true ? 0 : borderInterface.BorderLineThickness * 2;
+                var height = (ushort)(size.GetHeight() - borderHeight - borderLine);
+                var width = (ushort)(size.GetWidth() - borderLine);
                 size.SetHeight(height);
                 size.SetWidth(width);
             }
@@ -614,7 +639,7 @@ namespace Tizen.NUI
                 {
                     Padding = prePadding;
                 }
-                
+
             }
 
             protected override bool HitTest(Touch touch)

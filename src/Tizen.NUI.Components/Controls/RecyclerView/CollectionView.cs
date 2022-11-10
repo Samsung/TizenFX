@@ -164,14 +164,19 @@ namespace Tizen.NUI.Components
         private bool delayedIndexScrollTo;
         private (int index, bool anim, ItemScrollTo scrollTo) delayedIndexScrollToParam;
 
+        private void Initialize()
+        {
+            FocusGroup = true;
+            SetKeyboardNavigationSupport(true);
+        }
+
         /// <summary>
         /// Base constructor.
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public CollectionView() : base()
         {
-            FocusGroup = true;
-            SetKeyboardNavigationSupport(true);
+            Initialize();
         }
 
         /// <summary>
@@ -196,6 +201,16 @@ namespace Tizen.NUI.Components
             ItemsSource = itemsSource;
             ItemTemplate = template;
             ItemsLayouter = layouter;
+        }
+
+        /// <summary>
+        /// Creates a new instance of a CollectionView with style.
+        /// </summary>
+        /// <param name="style">A style applied to the newly created CollectionView.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public CollectionView(ControlStyle style) : base(style)
+        {
+            Initialize();
         }
 
         /// <summary>
@@ -1229,9 +1244,8 @@ namespace Tizen.NUI.Components
             colView.OnSelectionChanged(args);
         }
 
-        private static object CoerceSelectedItems(BindableObject bindable, object value)
+        private static object CoerceSelectedItems(CollectionView colView, object value)
         {
-            var colView = bindable as CollectionView;
             if (value == null)
             {
                 return new SelectionList(colView);
@@ -1245,10 +1259,8 @@ namespace Tizen.NUI.Components
             return new SelectionList(colView, value as IList<object>);
         }
 
-        private static void SelectionModePropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        private static void SelectionModePropertyChanged(CollectionView colView, object oldValue, object newValue)
         {
-            var colView = bindable as CollectionView;
-
             var oldMode = (ItemSelectionMode)oldValue;
             var newMode = (ItemSelectionMode)newValue;
 
@@ -1348,11 +1360,11 @@ namespace Tizen.NUI.Components
 
             if (ScrollingDirection == Direction.Horizontal)
             {
-                ContentContainer.SizeWidth = ItemsLayouter.CalculateLayoutOrientationSize();
+                ContentContainer.SizeWidth = (float)ItemsLayouter?.CalculateLayoutOrientationSize();
             }
             else
             {
-                ContentContainer.SizeHeight = ItemsLayouter.CalculateLayoutOrientationSize();
+                ContentContainer.SizeHeight = (float)ItemsLayouter?.CalculateLayoutOrientationSize();
             }
         }
 
@@ -1418,7 +1430,11 @@ namespace Tizen.NUI.Components
 
             if (groupHeader == null)
             {
-                groupHeader = (RecyclerViewItem)DataTemplateExtensions.CreateContent(groupHeaderTemplate, context, this);
+                groupHeader = DataTemplateExtensions.CreateContent(groupHeaderTemplate, context, this) as RecyclerViewItem;
+                if (groupHeader == null)
+                {
+                    return null;
+                }
 
                 groupHeader.Template = templ;
                 groupHeader.isGroupHeader = true;
@@ -1448,6 +1464,10 @@ namespace Tizen.NUI.Components
             if (groupFooter == null)
             {
                 groupFooter = DataTemplateExtensions.CreateContent(groupFooterTemplate, context, this) as RecyclerViewItem;
+                if (groupFooter == null)
+                {
+                    return null;
+                }
 
                 groupFooter.Template = templ;
                 groupFooter.isGroupHeader = false;

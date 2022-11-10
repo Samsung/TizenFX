@@ -558,7 +558,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                         ret = 0;
                     break;
                 case "System.UInt16":
-                    if (hasValue && short.TryParse(valueString, NumberStyles.Number, CultureInfo.InvariantCulture, out short outushort))
+                    if (hasValue && ushort.TryParse(valueString, NumberStyles.Number, CultureInfo.InvariantCulture, out ushort outushort))
                         ret = outushort;
                     else
                         ret = 0;
@@ -570,7 +570,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                         ret = 0;
                     break;
                 case "System.UInt64":
-                    if (hasValue && long.TryParse(valueString, NumberStyles.Number, CultureInfo.InvariantCulture, out long outulong))
+                    if (hasValue && ulong.TryParse(valueString, NumberStyles.Number, CultureInfo.InvariantCulture, out ulong outulong))
                         ret = outulong;
                     else
                         ret = 0;

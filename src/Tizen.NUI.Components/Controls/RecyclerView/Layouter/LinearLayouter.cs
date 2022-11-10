@@ -190,7 +190,7 @@ namespace Tizen.NUI.Components
                         groupFooterSize = IsHorizontal?
                                             width + itemMargin.Start + itemMargin.End:
                                             height + itemMargin.Top + itemMargin.Bottom;
-                        groupFooterMargin = new Extents(itemMargin);  
+                        groupFooterMargin = new Extents(itemMargin);
                         colView.UnrealizeItem(groupFooter);
                     }
                 }
@@ -202,12 +202,14 @@ namespace Tizen.NUI.Components
             else isGrouped = false;
 
             bool failed = false;
+
             //Final Check of FirstIndex
             while (colView.InternalItemSource.IsHeader(firstIndex) ||
                     colView.InternalItemSource.IsGroupHeader(firstIndex) ||
                     colView.InternalItemSource.IsGroupFooter(firstIndex))
             {
-                if (colView.InternalItemSource.IsFooter(firstIndex))
+                if (colView.InternalItemSource.IsFooter(firstIndex)
+                    || ((colView.InternalItemSource.Count - 1) <= firstIndex))
                 {
                     StepCandidate = 0F;
                     failed = true;
@@ -245,7 +247,7 @@ namespace Tizen.NUI.Components
                 StepCandidate = IsHorizontal?
                                 width + itemMargin.Start + itemMargin.End:
                                 height + itemMargin.Top + itemMargin.Bottom;
-                CandidateMargin = new Extents(itemMargin);  
+                CandidateMargin = new Extents(itemMargin);
                 if (StepCandidate == 0) StepCandidate = 1; //????
 
                 colView.UnrealizeItem(sizeDeligate);
@@ -388,7 +390,7 @@ namespace Tizen.NUI.Components
                 PrevScrollPosition + (IsHorizontal? colView.Size.Width : colView.Size.Height)
             );
 
-            // 1. Set First/Last Visible Item Index. 
+            // 1. Set First/Last Visible Item Index.
             (int start, int end) = FindVisibleItems(visibleArea);
             FirstVisible = start;
             LastVisible = end;
@@ -399,7 +401,6 @@ namespace Tizen.NUI.Components
             {
                 if (item.Index < FirstVisible || item.Index > LastVisible)
                 {
-                    //Console.WriteLine("[NUI] Unrealize{0}!", item.Index);
                     unrealizedItems.Add(item);
                     colView.UnrealizeItem(item);
                 }
@@ -571,7 +572,7 @@ namespace Tizen.NUI.Components
             float offset = 0F;
             (topInScreenIndex, offset) = FindTopItemInScreen();
             */
-        
+
             // 1. Handle MeasureAll
             /*
             if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
@@ -682,6 +683,18 @@ namespace Tizen.NUI.Components
                 }
             }
 
+            if (startIndex <= FirstVisible)
+            {
+                FirstVisible++;
+                LastVisible++;
+            }
+            else if (startIndex > FirstVisible && startIndex <= LastVisible)
+            {
+                LastVisible++;
+            }
+
+            if (FirstVisible > colView.InternalItemSource.Count - 1) FirstVisible = colView.InternalItemSource.Count -1;
+            if (LastVisible > colView.InternalItemSource.Count - 1) LastVisible = colView.InternalItemSource.Count -1;
 
             float scrollPosition = PrevScrollPosition;
 
@@ -849,6 +862,19 @@ namespace Tizen.NUI.Components
                 }
             }
 
+            if (startIndex <= FirstVisible)
+            {
+                FirstVisible = FirstVisible + count;
+                LastVisible = LastVisible + count;
+            }
+            else if (startIndex > FirstVisible && startIndex <= LastVisible)
+            {
+                LastVisible = LastVisible + count;
+            }
+
+            if (FirstVisible > colView.InternalItemSource.Count - 1) FirstVisible = colView.InternalItemSource.Count -1;
+            if (LastVisible > colView.InternalItemSource.Count - 1) LastVisible = colView.InternalItemSource.Count -1;
+
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
             /*
@@ -978,6 +1004,20 @@ namespace Tizen.NUI.Components
             }
             VisibleItems.Remove(targetItem);
 
+
+            if (startIndex <= FirstVisible)
+            {
+                FirstVisible--;
+                LastVisible--;
+            }
+            else if (startIndex > FirstVisible && startIndex <= LastVisible)
+            {
+                LastVisible--;
+            }
+
+            if (FirstVisible < 0) FirstVisible = 0;
+            if (LastVisible < 0) LastVisible = 0;
+
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
             /*
@@ -1087,6 +1127,19 @@ namespace Tizen.NUI.Components
             VisibleItems.RemoveAll(unrealizedItems.Contains);
             unrealizedItems.Clear();
 
+            if (startIndex <= FirstVisible)
+            {
+                FirstVisible = FirstVisible - count;
+                LastVisible = LastVisible - count;
+            }
+            else if (startIndex > FirstVisible && startIndex <= LastVisible)
+            {
+                LastVisible = LastVisible - count;
+            }
+
+            if (FirstVisible < 0) FirstVisible = 0;
+            if (LastVisible < 0) LastVisible = 0;
+
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
             /*
@@ -1133,7 +1186,7 @@ namespace Tizen.NUI.Components
                 //Need To Implement
             }
             */
-            
+
             // Move can only happen in it's own groups.
             // so there will be no changes in position, startIndex in ohter groups.
             // check visible item and update indexs.
@@ -1156,6 +1209,48 @@ namespace Tizen.NUI.Components
                     }
                 }
             }
+
+            if (fromPosition > FirstVisible)
+            {
+                if (toPosition > LastVisible)
+                {
+                    FirstVisible--;
+                    LastVisible--;
+                }
+                else if (toPosition > FirstVisible && toPosition <= LastVisible)
+                {
+                    LastVisible--;
+                }
+            }
+            else if (fromPosition >= FirstVisible && fromPosition <= LastVisible)
+            {
+                if (toPosition < FirstVisible)
+                {
+                    FirstVisible++;
+                }
+                else if (toPosition > LastVisible)
+                {
+                    LastVisible--;
+                }
+            }
+            else if (fromPosition > LastVisible)
+            {
+                if (toPosition <= FirstVisible)
+                {
+                    FirstVisible++;
+                    LastVisible++;
+                }
+                else if (toPosition > FirstVisible && toPosition <= LastVisible)
+                {
+                    LastVisible++;
+                }
+            }
+
+            if (FirstVisible < 0) FirstVisible = 0;
+            if (LastVisible < 0) LastVisible = 0;
+            if (FirstVisible > colView.InternalItemSource.Count - 1) FirstVisible = colView.InternalItemSource.Count -1;
+            if (LastVisible > colView.InternalItemSource.Count - 1) LastVisible = colView.InternalItemSource.Count -1;
+
 
             if (IsHorizontal) colView.ContentContainer.SizeWidth = ScrollContentSize;
             else colView.ContentContainer.SizeHeight = ScrollContentSize;
@@ -1235,7 +1330,7 @@ namespace Tizen.NUI.Components
 
                 int startGroup = (diff > 0? fromParentIndex: toParentIndex);
                 int endGroup =  (diff > 0? toParentIndex: fromParentIndex);
-                
+
                 for (int i = startGroup; i <= endGroup; i++)
                 {
                     if (i == toParentIndex) continue;
@@ -1273,6 +1368,14 @@ namespace Tizen.NUI.Components
                     }
                 }
             }
+            // FIXME!! Unraelize All and reset First/Last Visible
+            foreach (RecyclerViewItem item in VisibleItems)
+            {
+                colView.UnrealizeItem(item);
+            }
+            VisibleItems.Clear();
+            FirstVisible = 0;
+            LastVisible = 0;
 
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
@@ -1594,7 +1697,7 @@ namespace Tizen.NUI.Components
                         - CandidateMargin.Start - CandidateMargin.End,
                         (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)StepCandidate)
                         - CandidateMargin.Top - CandidateMargin.Bottom);
-            }            
+            }
         }
 
         private void DelayedRequestLayout(float scrollPosition , bool force = true)
@@ -1611,6 +1714,7 @@ namespace Tizen.NUI.Components
                 RequestLayout(scrollPosition, force);
                 return false;
             });
+            requestLayoutTimer.Start();
         }
 
         /*
@@ -1653,7 +1757,7 @@ namespace Tizen.NUI.Components
                     return groupFooterSize;
                 else
                     return StepCandidate;
-            }            
+            }
         }
 
         private void UpdatePosition(int index)

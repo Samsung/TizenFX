@@ -1525,8 +1525,8 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(position));
             }
-            var val = new IntPair(position.X, position.Y);
-            Interop.Window.SetPosition(SwigCPtr, IntPair.getCPtr(val));
+            var val = new Int32Pair(position.X, position.Y);
+            Interop.Window.SetPosition(SwigCPtr, Int32Pair.getCPtr(val));
             val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             // Setting Position of the window should request a relayout of the tree.
@@ -1534,7 +1534,7 @@ namespace Tizen.NUI
 
         internal Position2D GetPosition()
         {
-            var val = new IntPair(Interop.Window.GetPosition(SwigCPtr), true);
+            var val = new Int32Pair(Interop.Window.GetPosition(SwigCPtr), true);
             Position2D ret = new Position2D((int)val.GetX(), (int)val.GetY());
             val.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -1797,6 +1797,8 @@ namespace Tizen.NUI
             {
                 return;
             }
+            
+            this.DisconnectNativeSignals();
 
             if (type == DisposeTypes.Explicit)
             {
@@ -1822,7 +1824,6 @@ namespace Tizen.NUI
                 localController?.Dispose();
             }
 
-            this.DisconnectNativeSignals();
 
             base.Dispose(type);
         }
