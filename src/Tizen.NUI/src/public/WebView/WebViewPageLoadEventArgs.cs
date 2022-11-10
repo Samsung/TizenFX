@@ -27,6 +27,9 @@ namespace Tizen.NUI
     /// <since_tizen> 9 </since_tizen>
     public class WebViewPageLoadEventArgs : EventArgs
     {
+        private WebView _webView;
+        private string _pageUrl;
+
         /// <summary>
         /// Deprecated. The view for displaying webpages.
         /// </summary>
