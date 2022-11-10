@@ -15,13 +15,8 @@
  *
  */
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using Tizen.NUI;
-using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
-using Tizen.NUI.Components;
-using Tizen.NUI.Xaml;
 //using static Tizen.NUI.Xaml.VisualStateManager;
 
 namespace Tizen.NUI.Devel.Tests
@@ -42,14 +37,14 @@ namespace Tizen.NUI.Devel.Tests
 
     public partial class TotalSample : UIElement
     {
-		private void LoadEXaml()
+        private void LoadEXaml()
         {
             eXamlData = global::Tizen.NUI.EXaml.EXamlExtensions.LoadFromEXamlByRelativePath(this, @"examl/Tizen.NUI.Devel.Tests.TotalSample.examl");
             global::Tizen.NUI.EXaml.EXamlExtensions.RemoveEventsInXaml(eXamlData);
             global::Tizen.NUI.EXaml.EXamlExtensions.DisposeXamlElements(this);
         }
-		
-		private void UIElementEvent(object sender, EventArgs e)
+
+        private void UIElementEvent(object sender, EventArgs e)
         {
         }
 
@@ -59,9 +54,11 @@ namespace Tizen.NUI.Devel.Tests
 
         private void LoadXaml()
         {
+#pragma warning disable Reflection // The code contains reflection
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(TotalSample));
+#pragma warning restore Reflection // The code contains reflection
         }
-		
+
         public TotalSample(bool examl = false)
         {
             if (!examl)

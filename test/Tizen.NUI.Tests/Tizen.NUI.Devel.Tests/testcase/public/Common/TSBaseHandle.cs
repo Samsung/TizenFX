@@ -15,7 +15,6 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicBaseHandleTest
     {
         private const string tag = "NUITEST";
-        private bool flag = false;
 
         [SetUp]
         public void Init()
@@ -29,10 +28,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        private void baseHandleEventCallback(object sender, EventArgs e)
-        {
-            flag = true;
-        }
+        private void baseHandleEventCallback(object sender, EventArgs e) { }
 
         [Test]
         [Category("P1")]

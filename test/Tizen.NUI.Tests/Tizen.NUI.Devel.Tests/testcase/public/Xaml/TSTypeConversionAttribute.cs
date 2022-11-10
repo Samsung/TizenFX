@@ -11,7 +11,7 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicTypeConversionAttributeTest
     {
         private const string tag = "NUITEST";
-        private TypeConversionAttribute conversionAttr;
+
         [SetUp]
         public void Init()
         {
@@ -21,23 +21,25 @@ namespace Tizen.NUI.Devel.Tests
         [TearDown]
         public void Destroy()
         {
-            conversionAttr = null;
             tlog.Info(tag, "Destroy() is called!");
         }
 
         [Test]
         [Category("P1")]
-        [Description("TypeConversionAttribute TypeConversionAttribute")]
+        [Description("TypeConversionAttribute constructor")]
         [Property("SPEC", "Tizen.NUI.Xaml.TypeConversionAttribute.TypeConversionAttribute C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         public void TypeConversionAttributeConstructor()
         {
             tlog.Debug(tag, $"TypeConversionAttributeConstructor START");
-            Type type = typeof(string);
-            TypeConversionAttribute t2 = new TypeConversionAttribute(type);
-            Assert.IsNotNull(t2, "null TypeConversionAttribute");
-            Assert.IsInstanceOf<TypeConversionAttribute>(t2, "Should return TypeConversionAttribute instance.");
+
+#pragma warning disable Reflection // The code contains reflection
+            var testingTarget = new TypeConversionAttribute(typeof(string));
+#pragma warning restore Reflection // The code contains reflection
+            Assert.IsNotNull(testingTarget, "null TypeConversionAttribute");
+            Assert.IsInstanceOf<TypeConversionAttribute>(testingTarget, "Should return TypeConversionAttribute instance.");
+            
             tlog.Debug(tag, $"TypeConversionAttributeConstructor END");
         }
 
@@ -50,17 +52,21 @@ namespace Tizen.NUI.Devel.Tests
         public void TypeConversionAttributeTargetType()
         {
             tlog.Debug(tag, $"TypeConversionAttributeTargetType START");
+
             try
             {
-
+#pragma warning disable Reflection // The code contains reflection
                 Type type = typeof(string);
-                TypeConversionAttribute t1 = new TypeConversionAttribute(type);
-                Assert.AreEqual(type, t1.TargetType, "Should be equal");
+#pragma warning restore Reflection // The code contains reflection
+                var testingTarget = new TypeConversionAttribute(type);
+                Assert.AreEqual(type, testingTarget.TargetType, "Should be equal");
             }
             catch (Exception e)
             {
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
+
             tlog.Debug(tag, $"TypeConversionAttributeTargetType END");
         }
     }

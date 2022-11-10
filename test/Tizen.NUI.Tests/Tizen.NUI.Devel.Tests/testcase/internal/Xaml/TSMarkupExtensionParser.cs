@@ -98,7 +98,6 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                string str = "{Binding Red}";
                 IServiceProviderImpl provider = new IServiceProviderImpl();
                 Assert.IsNotNull(provider, "null IServiceProviderImplement");
                 string str3 = "}";

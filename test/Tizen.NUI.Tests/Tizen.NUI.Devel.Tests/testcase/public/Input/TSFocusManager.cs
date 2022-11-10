@@ -345,7 +345,7 @@ namespace Tizen.NUI.Devel.Tests
                 View view = null;
                 testingTarget.SetCurrentFocusView(view);
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
                 tlog.Debug(tag, $"FocusManagerSetCurrentFocusViewWithNull END (OK)");
                 Assert.Pass("Caught ArgumentNullException : Passed");

@@ -143,6 +143,32 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("Constraint Tag")]
+        [Property("SPEC", "Tizen.NUI.Constraint.Tag A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ConstraintTag()
+        {
+            tlog.Debug(tag, $"ConstraintTag START");
+
+            using (Animatable ani = new Animatable())
+            {
+                var testingTarget = new Constraint((global::System.IntPtr)ani.SwigCPtr, false);
+                Assert.IsNotNull(testingTarget, "should be not null");
+                Assert.IsInstanceOf<Constraint>(testingTarget, "should be an instance of testing target class!");
+
+                testingTarget.Tag = 5;  // set
+                Assert.AreEqual(5, testingTarget.Tag, "Should be equal!"); // get
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"ConstraintTag END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("Constraint GetTargetObject")]
         [Property("SPEC", "Tizen.NUI.Constraint.GetTargetObject M")]
         [Property("SPEC_URL", "-")]

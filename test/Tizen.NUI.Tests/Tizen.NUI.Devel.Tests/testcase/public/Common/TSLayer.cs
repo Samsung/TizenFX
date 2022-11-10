@@ -63,6 +63,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void LayerDownCast()
         {
             tlog.Debug(tag, $"LayerDownCast START");

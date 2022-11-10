@@ -157,6 +157,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void ExtentsStart()
         {
             tlog.Debug(tag, $"ExtentsStart START");
@@ -180,6 +181,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void ExtentsEnd()
         {
             tlog.Debug(tag, $"ExtentsEnd START");
@@ -203,6 +205,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void ExtentsTop()
         {
             tlog.Debug(tag, $"ExtentsTop START");
@@ -226,6 +229,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void ExtentsBottom()
         {
             tlog.Debug(tag, $"ExtentsBottom START");

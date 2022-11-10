@@ -31,8 +31,8 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Info(tag, "Destroy() is called!");
         }
-		
-		[Test]
+
+        [Test]
         [Category("P1")]
         [Description("GatherEvent  constructor.")]
         [Property("SPEC", "Tizen.NUI.EXaml.GatherEvent.GatherEvent C")]
@@ -42,19 +42,19 @@ namespace Tizen.NUI.Devel.Tests
         public void EXamlGatherEventConstructor()
         {
             tlog.Debug(tag, $"EXamlGatherEventConstructor START");
-			try
-			{
+            try
+            {
                 var globalDataList = new GlobalDataList();
-			    List<object> operationInfo = new List<object>();
-            
-			    operationInfo.Add(1);
-			    operationInfo.Add(2);
-			
+                List<object> operationInfo = new List<object>();
+
+                operationInfo.Add(1);
+                operationInfo.Add(2);
+
                 var testingTarget = new Tizen.NUI.EXaml.GatherEvent(globalDataList, operationInfo);
                 Assert.IsNotNull(testingTarget, "Can't create success object GatherEvent");
                 Assert.IsInstanceOf<Tizen.NUI.EXaml.GatherEvent>(testingTarget, "Should be an instance of GatherEvent type.");
             }
-			catch (Exception e)
+            catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception : Failed!");
@@ -62,39 +62,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"EXamlGatherEventConstructor END (OK)");
         }
-		
-		[Test]
-        [Category("P1")]
-        [Description("GatherEvent Do.")]
-        [Property("SPEC", "Tizen.NUI.EXaml.GatherEvent.Do M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-		public void EXamlGatherEventDo()
-        {
-            tlog.Debug(tag, $"EXamlGatherEventDo START");
-			
-            var globalDataList = new GlobalDataList();
-			List<object> operationInfo = new List<object>();
-            
-			operationInfo.Add(1);
-			operationInfo.Add(2);
-			
-            var testingTarget = new Tizen.NUI.EXaml.GatherEvent(globalDataList, operationInfo);
-			Assert.IsNotNull(testingTarget, "Can't create success object GatherEvent");
-            Assert.IsInstanceOf<Tizen.NUI.EXaml.GatherEvent>(testingTarget, "Should be an instance of GatherEvent type.");
-			
-			try
-			{
-			    testingTarget.Do();
-			}
-			catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Pass("Caught Exception : Passed!");
-            }
-           
-            tlog.Debug(tag, $"EXamlGatherEventDo END (OK)");
-        }	
-	}
+    }
 }
