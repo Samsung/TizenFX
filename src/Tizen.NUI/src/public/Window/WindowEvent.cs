@@ -47,6 +47,7 @@ namespace Tizen.NUI
         private WindowFocusChangedEventCallbackType windowFocusChangedEventCallback2;
         private TransitionEffectEventCallbackType transitionEffectEventCallback;
         private MovedEventCallbackType movedEventCallback;
+        private OrientationChangedEventCallbackType orientationChangedEventCallback;
         private KeyboardRepeatSettingsChangedEventCallbackType keyboardRepeatSettingsChangedEventCallback;
         private AuxiliaryMessageEventCallbackType auxiliaryMessageEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -63,6 +64,8 @@ namespace Tizen.NUI
         private delegate void TransitionEffectEventCallbackType(IntPtr window, int state, int type);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void MovedEventCallbackType(IntPtr window, IntPtr position);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void OrientationChangedEventCallbackType(IntPtr window, int orientation);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void KeyboardRepeatSettingsChangedEventCallbackType();
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -415,6 +418,38 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Window Orientation Changed event
+        /// This event is for per windows
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WindowOrientationChangedEventArgs> OrientationChanged
+        {
+            add
+            {
+                if (orientationChangedHandler == null)
+                {
+                    orientationChangedEventCallback = OnOrientationChanged;
+                    using WindowOrientationChangedSignal signal = new WindowOrientationChangedSignal(Interop.WindowOrientationChangedSignal.GetSignal(SwigCPtr), false);
+                    signal?.Connect(orientationChangedEventCallback);
+                }
+                orientationChangedHandler += value;
+            }
+            remove
+            {
+                orientationChangedHandler -= value;
+                if (orientationChangedHandler == null && orientationChangedEventCallback != null)
+                {
+                    using WindowOrientationChangedSignal signal = new WindowOrientationChangedSignal(Interop.WindowOrientationChangedSignal.GetSignal(SwigCPtr), false);
+                    signal?.Disconnect(orientationChangedEventCallback);
+                    if (signal?.Empty() == true)
+                    {
+                        orientationChangedEventCallback = null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Keyboard Repeat Settings Changed
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -463,6 +498,7 @@ namespace Tizen.NUI
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler2;
         private event EventHandler<TransitionEffectEventArgs> transitionEffectHandler;
         private event EventHandler<WindowMovedEventArgs> movedHandler;
+        private event EventHandler<WindowOrientationChangedEventArgs> orientationChangedHandler;
         private event EventHandler keyboardRepeatSettingsChangedHandler;
         private event EventHandler<AuxiliaryMessageEventArgs> auxiliaryMessageEventHandler;
 
@@ -704,6 +740,13 @@ namespace Tizen.NUI
                 movedEventCallback = null;
             }
 
+            if (orientationChangedEventCallback != null)
+            {
+                using WindowOrientationChangedSignal signal = new WindowOrientationChangedSignal(Interop.WindowOrientationChangedSignal.GetSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(orientationChangedEventCallback);
+                orientationChangedEventCallback = null;
+            }
+
             if (keyboardRepeatSettingsChangedEventCallback != null)
             {
                 using KeyboardRepeatSettingsChangedSignal signal = new KeyboardRepeatSettingsChangedSignal(Interop.KeyboardRepeatSettingsChangedSignal.GetSignal(GetBaseHandleCPtrHandleRef), false);
@@ -912,6 +955,22 @@ namespace Tizen.NUI
                 WindowMovedEventArgs e = new WindowMovedEventArgs();
                 e.WindowPosition = this.WindowPosition;
                 movedHandler(this, e);
+            }
+            return;
+        }
+
+        private void OnOrientationChanged(IntPtr window, int orientation)
+        {
+            if (window == global::System.IntPtr.Zero)
+            {
+                return;
+            }
+
+            if (orientationChangedHandler != null)
+            {
+                WindowOrientationChangedEventArgs e = new WindowOrientationChangedEventArgs();
+                e.WindowOrientation = (WindowOrientation)orientation;
+                orientationChangedHandler(this, e);
             }
             return;
         }
@@ -1402,6 +1461,28 @@ namespace Tizen.NUI
             set
             {
                 position = value;
+            }
+        }
+    }
+
+    /// <summary>
+    /// OrientationChangedArgs
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class WindowOrientationChangedEventArgs : EventArgs
+    {
+        private Window.WindowOrientation orientation;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Window.WindowOrientation WindowOrientation
+        {
+            get
+            {
+                return orientation;
+            }
+            set
+            {
+                orientation = value;
             }
         }
     }
