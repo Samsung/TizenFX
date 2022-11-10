@@ -68,6 +68,27 @@ namespace Tizen.NUI.Devel.Tests
 		
 		[Test]
         [Category("P1")]
+        [Description("SpTypeConverter ConvertScriptToPixel with 'dp'.")]
+        [Property("SPEC", "Tizen.NUI.SpTypeConverter ConvertScriptToPixel M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void SpTypeConverterConvertScriptToPixelWithDp()
+        {
+            tlog.Debug(tag, $"SpTypeConverterConvertScriptToPixelWithDp START");
+
+            var testingTarget = SpTypeConverter.Instance;
+            Assert.IsNotNull(testingTarget, "Can't create success object SpTypeConverter ");
+            Assert.IsInstanceOf<SpTypeConverter>(testingTarget, "Should be an instance of SpTypeConverter  type.");
+            
+            var result = testingTarget.ConvertScriptToPixel("100dp");
+            tlog.Debug(tag, "ConvertScriptToPixelbranch : " + result);
+
+            tlog.Debug(tag, $"SpTypeConverterConvertScriptToPixelWithDp END (OK)");
+        }
+
+		[Test]
+        [Category("P1")]
         [Description("SpTypeConverter ConvertToPixel.")]
         [Property("SPEC", "Tizen.NUI.SpTypeConverter ConvertToPixel M")]
         [Property("SPEC_URL", "-")]

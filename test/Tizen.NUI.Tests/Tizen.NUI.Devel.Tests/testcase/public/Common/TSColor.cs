@@ -236,6 +236,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void ColorR()
         {
             tlog.Debug(tag, $"ColorR START");
@@ -260,6 +261,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void ColorG()
         {
             tlog.Debug(tag, $"ColorG START");
@@ -284,6 +286,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void ColorB()
         {
             tlog.Debug(tag, $"ColorB START");
@@ -308,6 +311,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void ColorA()
         {
             tlog.Debug(tag, $"ColorA START");

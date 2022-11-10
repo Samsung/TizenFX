@@ -696,13 +696,13 @@ namespace Tizen.NUI.Devel.Tests
 
             using (PropertyMap map = TextMapHelper.GetPlaceholderMap(placeholder))
             {
-                map.Find(0).Get(out text);
-                map.Find(1).Get(out textFocused);
-                map.Find(2).Get(color);
-                map.Find(3).Get(out fontFamily);
-                map.Find(4).Get(fontStyle);
-                map.Find(5).Get(out pointSize);
-                map.Find(7).Get(out ellipsis);
+                map.Find(0, "text").Get(out text);
+                map.Find(1, "textFocused").Get(out textFocused);
+                map.Find(2, "color").Get(color);
+                map.Find(3, "fontFamily").Get(out fontFamily);
+                map.Find(4, "fontStyle").Get(fontStyle);
+                map.Find(5, "pointSize").Get(out pointSize);
+                map.Find(7, "ellipsis").Get(out ellipsis);
                 fontStyle.Find(0, "width").Get(out string width);
                 fontStyle.Find(0, "weight").Get(out string weight);
                 fontStyle.Find(0, "slant").Get(out string slant);
@@ -1075,7 +1075,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TextMapHelperGetColorFromMap START");
 
             var stringKey = "color";
-            var stringInvalidKey = "invalidKey";
             var intKey = 1;
             var value = new Color(1.0f, 0.2f, 0.5f, 1.0f);
 
@@ -1106,7 +1105,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TextMapHelperGetVector2FromMap START");
 
             var stringKey = "position";
-            var stringInvalidKey = "invalidKey";
             var value = new Vector2(3, 10);
 
             using (var map = new PropertyMap())

@@ -115,6 +115,45 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("TextPageUtil GetText situation.")]
+        [Property("SPEC", "Tizen.NUI.TextPageUtil.GetText situation M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TextPageUtilGetTextsituation()
+        {
+            tlog.Debug(tag, $"TextPageUtilGetTextsituation START");
+
+            TextPageUtil testingTarget = new TextPageUtil();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextPageUtil");
+            Assert.IsInstanceOf<TextPageUtil>(testingTarget, "Should be an instance of TextPageUtil type.");
+
+            using (TextLabel label = new TextLabel())
+            {
+                label.EnableMarkup = true;
+                label.Text = "PublicPageUtilTest";
+                
+                var result = testingTarget.SetText(label, "MyPageUtil");
+                Assert.IsNotNull(result);
+
+                /** if param is 0 will return */
+                try
+                {
+                    testingTarget.GetText(-1);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextPageUtilGetTextsituation END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("TextPageUtil PageData.")]
         [Property("SPEC", "Tizen.NUI.TextPageUtil.PageData A")]
         [Property("SPEC_URL", "-")]

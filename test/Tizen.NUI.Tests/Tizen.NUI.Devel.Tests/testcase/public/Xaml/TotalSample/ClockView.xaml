@@ -4,10 +4,9 @@
   xmlns:l="clr-namespace:Tizen.NUI.Devel.Tests;assembly=Tizen.NUI.Devel.Tests"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <TextLabel Text="{Binding DateTime, Mode=TwoWay, StringFormat='{0:T}'}" PositionY="50"  >
+  <TextLabel Text="{Binding DateTime, Mode=TwoWay, StringFormat='{0:T}'}" PositionY="50"  >
       <TextLabel.BindingContext>
-        <l:ClockViewModel />
+            <l:ClockViewModel />
       </TextLabel.BindingContext>
-    </TextLabel>
-
+  </TextLabel>
 </View>

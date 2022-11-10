@@ -36,23 +36,23 @@ namespace Tizen.NUI.Devel.Tests
             {
                 base.OnLocaleChanged(e);
             }
-			
-			public void MyOnRegionFormatChanged(RegionFormatChangedEventArgs e)
+
+            public void MyOnRegionFormatChanged(RegionFormatChangedEventArgs e)
             {
                 base.OnRegionFormatChanged(e);
             }
-			
-			public void MyOnLowMemory(LowMemoryEventArgs e)
+
+            public void MyOnLowMemory(LowMemoryEventArgs e)
             {
                 base.OnLowMemory(e);
             }
-			
-			public void MyOnLowBattery(LowBatteryEventArgs e)
+
+            public void MyOnLowBattery(LowBatteryEventArgs e)
             {
                 base.OnLowBattery(e);
             }
-			
-			public void MyExit()
+
+            public void MyExit()
             {
                 base.Exit();
             }
@@ -77,6 +77,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void NUIApplicationConstructor()
         {
             tlog.Debug(tag, $"NUIApplicationConstructor START");
@@ -193,6 +194,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void NUIApplicationConstructorWithBackendType()
         {
             tlog.Debug(tag, $"NUIApplicationConstructorWithBackendType START");
@@ -275,7 +277,9 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
+#pragma warning disable Reflection // The code contains reflection
                 NUIApplication.RegisterAssembly(typeof(NUIApplication).Assembly);
+#pragma warning restore Reflection // The code contains reflection
             }
             catch (Exception e)
             {
@@ -445,8 +449,8 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"NUIApplicationOnTerminate END (OK)");
         }
-		
-		[Test]
+
+        [Test]
         [Category("P1")]
         [Description("NUIApplication OnRegionFormatChanged")]
         [Property("SPEC", "Tizen.NUI.NUIApplication.OnRegionFormatChanged M")]
@@ -473,8 +477,8 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"NUIApplicationOnRegionFormatChanged END (OK)");
         }
-		
-		[Test]
+
+        [Test]
         [Category("P1")]
         [Description("NUIApplication OnLowMemory")]
         [Property("SPEC", "Tizen.NUI.NUIApplication.OnLowMemory M")]
@@ -491,7 +495,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-				LowMemoryStatus status = LowMemoryStatus.None;
+                LowMemoryStatus status = LowMemoryStatus.None;
                 testingTarget.MyOnLowMemory(new LowMemoryEventArgs (status));
             }
             catch (Exception e)
@@ -501,9 +505,9 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"NUIApplicationOnLowMemory END (OK)");
-        }		
-		
-		[Test]
+        }
+
+        [Test]
         [Category("P1")]
         [Description("NUIApplication OnLowBattery")]
         [Property("SPEC", "Tizen.NUI.NUIApplication.OnLowBattery M")]
@@ -520,7 +524,7 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-				LowBatteryStatus status = LowBatteryStatus.None;
+                LowBatteryStatus status = LowBatteryStatus.None;
                 testingTarget.MyOnLowBattery(new LowBatteryEventArgs (status));
             }
             catch (Exception e)
@@ -532,7 +536,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"NUIApplicationOnLowBattery END (OK)");
         }
 
-		[Test]
+        [Test]
         [Category("P1")]
         [Description("NUIApplication Exit")]
         [Property("SPEC", "Tizen.NUI.NUIApplication.Exit M")]

@@ -15,14 +15,8 @@
  *
  */
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Globalization;
-using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
-using Tizen.NUI.Binding;
-using Tizen.NUI.Components;
-using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -51,16 +45,10 @@ namespace Tizen.NUI.Devel.Tests
                 {
                     dateTime = value;
 
-                    if (PropertyChanged != null)
-                    {
-                        PropertyChanged(this, new PropertyChangedEventArgs("DateTime"));
-                    }
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("DateTime"));
                 }
             }
-            get
-            {
-                return dateTime;
-            }
+            get => dateTime;
         }
     }
 
@@ -69,7 +57,9 @@ namespace Tizen.NUI.Devel.Tests
 
         public ClockView()
         {
+#pragma warning disable Reflection // The code contains reflection
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(ClockView));
+#pragma warning restore Reflection // The code contains reflection
         }
     }
 }

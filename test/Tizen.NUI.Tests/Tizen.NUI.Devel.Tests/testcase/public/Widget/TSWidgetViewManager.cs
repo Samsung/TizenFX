@@ -22,6 +22,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Init() is called!");
 
             widget = new Widget();
+            widget.SetContentInfo("widget");
             tlog.Debug(tag, "widget.Id : " + widget.Id);
         }
 

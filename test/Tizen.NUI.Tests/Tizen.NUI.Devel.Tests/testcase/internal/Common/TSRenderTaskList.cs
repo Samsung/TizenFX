@@ -98,5 +98,43 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"RenderTaskListAssign END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("RenderTaskList CreateTask.")]
+        [Property("SPEC", "Tizen.NUI.RenderTaskList.CreateTask M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RenderTaskListCreateTask()
+        {
+            tlog.Debug(tag, $"RenderTaskListCreateTask START");
+
+            var testingTarget = Window.Instance.GetRenderTaskList();
+            Assert.IsInstanceOf<RenderTaskList>(testingTarget, "Should return RenderTaskList instance.");
+            tlog.Debug(tag, "TaskCount : " + testingTarget.GetTaskCount());
+            
+            try
+            {
+                var task = testingTarget.CreateTask();
+                Assert.IsInstanceOf<RenderTask>(testingTarget, "Should return RenderTask instance.");
+                tlog.Debug(tag, "TaskCount : " + testingTarget.GetTaskCount());
+
+                using (View view = new View() { Size = new Size(Window.Instance.WindowSize.Width, Window.Instance.WindowSize.Height) })
+                {
+                    task.SetSourceView(view);
+                }
+
+                testingTarget.GetTask(0);
+                testingTarget.RemoveTask(task);
+            }
+            catch (Exception e)
+            {
+                tlog.Info(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RenderTaskListCreateTask END (OK)");
+        }
     }
 }

@@ -14,11 +14,6 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalWebContextMenuTest
     {
         private const string tag = "NUITEST";
-        private static string[] runtimeArgs = { "Tizen.NUI.Devel.Tests", "--enable-dali-window", "--enable-spatial-navigation" };
-        private const string USER_AGENT = "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36";
-
-        private WebContextMenu contextMenu;
-        private Button[] buttons;
 
         internal class MyWebContextMenu : WebContextMenu
         {

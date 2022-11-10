@@ -830,6 +830,54 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("PropertyValue Get. Matrix3 value")]
+        [Property("SPEC", "Tizen.NUI.PropertyValue.Get M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PropertyValueGetMatrix3Value()
+        {
+            tlog.Debug(tag, $"PropertyValueGetMatrix3Value START");
+
+            var testingTarget = new PropertyValue(new Matrix3());
+            Assert.IsNotNull(testingTarget, "Should be not null!");
+            Assert.IsInstanceOf<PropertyValue>(testingTarget, "Should be an Instance of PropertyValue class!");
+            
+            Matrix3 matrix = new Matrix3();
+            var result = testingTarget.Get(matrix);
+            Assert.IsTrue(result);
+
+            matrix.Dispose();
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"PropertyValueGetMatrix3Value END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("PropertyValue Get. AngleAxis value")]
+        [Property("SPEC", "Tizen.NUI.PropertyValue.Get M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PropertyValueGetAngleAxisValue()
+        {
+            tlog.Debug(tag, $"PropertyValueGetAngleAxisValue START");
+
+            var testingTarget = new PropertyValue(new AngleAxis());
+            Assert.IsNotNull(testingTarget, "Should be not null!");
+            Assert.IsInstanceOf<PropertyValue>(testingTarget, "Should be an Instance of PropertyValue class!");
+            
+            AngleAxis angleAxis = new AngleAxis();
+            var result = testingTarget.Get(angleAxis);
+            Assert.IsTrue(result);
+
+            angleAxis.Dispose();
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"PropertyValueGetAngleAxisValue END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("PropertyValue Get. Color value")]
         [Property("SPEC", "Tizen.NUI.PropertyValue.Get M")]
         [Property("SPEC_URL", "-")]
