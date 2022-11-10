@@ -277,6 +277,9 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_LowMemorySignal")]
         public static extern global::System.IntPtr ApplicationLowMemorySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_DeviceOrientationChangedSignal")]
+        public static extern global::System.IntPtr ApplicationDeviceOrientationChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+
         //Task
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TaskInitSignal")]
         public static extern global::System.IntPtr ApplicationTaskInitSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
@@ -299,6 +302,8 @@ namespace Tizen.NUI
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TaskLowMemorySignal")]
         public static extern global::System.IntPtr ApplicationTaskLowMemorySignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+        [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_TaskDeviceOrientationChangedSignal")]
+        public static extern global::System.IntPtr ApplicationTaskDeviceOrientationChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
         [Obsolete("This has been deprecated in API9 and will be removed in API11. Use NDalicPINVOKE.DeleteBaseHandle(...) instead.")]
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseHandle")]
