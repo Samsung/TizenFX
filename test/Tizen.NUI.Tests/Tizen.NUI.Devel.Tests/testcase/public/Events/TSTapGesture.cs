@@ -140,6 +140,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void TapGestureSourceType()
         {
             tlog.Debug(tag, $"TapGestureSourceType START");

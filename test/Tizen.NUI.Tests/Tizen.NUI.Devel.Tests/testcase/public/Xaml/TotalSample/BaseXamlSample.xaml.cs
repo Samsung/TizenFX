@@ -14,15 +14,8 @@
  * limitations under the License.
  *
  */
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Globalization;
-using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
-using Tizen.NUI.Components;
-using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -30,7 +23,9 @@ namespace Tizen.NUI.Devel.Tests
     {
         public FocusEffect() { }
 
+#pragma warning disable Reflection // The code contains reflection
         public static readonly BindableProperty FocusableProperty = BindableProperty.CreateAttached("Focusable", typeof(bool), typeof(FocusEffect), false);
+#pragma warning restore Reflection // The code contains reflection
 
         public static bool GetFocusable(View view)
         {
@@ -54,7 +49,9 @@ namespace Tizen.NUI.Devel.Tests
     {
         public BaseXamlSample()
         {
+#pragma warning disable Reflection // The code contains reflection
             global::Tizen.NUI.Xaml.Extensions.LoadFromXaml(this, typeof(BaseXamlSample));
+#pragma warning restore Reflection // The code contains reflection
         }
     }
 }

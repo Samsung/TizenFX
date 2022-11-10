@@ -903,6 +903,36 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("TextField SelectionPopupStyle.")]
+        [Property("SPEC", "Tizen.NUI.TextField.SelectionPopupStyle A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void TextFieldSelectionPopupStyle()
+        {
+            tlog.Debug(tag, $"TextFieldSelectionPopupStyle START");
+
+            var testingTarget = new TextField(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            using (PropertyMap map = new PropertyMap())
+            {
+                map.Add(SelectionPopupStyleProperty.MaxSize, new PropertyValue(new Vector2(1150.0f, 35.0f)));
+
+                testingTarget.SelectionPopupStyle = map;
+
+                var result = testingTarget.SelectionPopupStyle;
+                Assert.IsNotNull(result, "Can't create success object PropertyMap");
+                Assert.IsInstanceOf<PropertyMap>(result, "Should be an instance of PropertyMap type.");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextFieldSelectionPopupStyle END (OK)");
+        }
+        [Test]
+        [Category("P1")]
         [Description("TextField SelectionHandleImageRight.")]
         [Property("SPEC", "Tizen.NUI.TextField.SelectionHandleImageRight A")]
         [Property("SPEC_URL", "-")]
@@ -2361,7 +2391,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "bowon.ryu@samsung.com")]
-        public async Task TextFieldSelectTextStartIndexException()
+        public void TextFieldSelectTextStartIndexException()
         {
             tlog.Debug(tag, $"TextFieldSelectTextStartIndexException START");
 
@@ -2392,7 +2422,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "bowon.ryu@samsung.com")]
-        public async Task TextFieldSelectTextEndIndexException()
+        public void TextFieldSelectTextEndIndexException()
         {
             tlog.Debug(tag, $"TextFieldSelectTextEndIndexException START");
 

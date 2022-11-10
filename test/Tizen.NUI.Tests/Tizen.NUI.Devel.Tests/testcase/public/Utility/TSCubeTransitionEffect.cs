@@ -18,8 +18,6 @@ namespace Tizen.NUI.Devel.Tests
         private string currentpath = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
         private string targetpath = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
 
-        private bool OnTransitionCompletedFlag = false;
-
         [SetUp]
         public void Init()
         {
@@ -364,10 +362,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TransitionCompletedEventArgsCubeTransitionEffect END (OK)");
         }
 
-        private void OnCubeEffectCompleted(object sender, CubeTransitionEffect.TransitionCompletedEventArgs args)
-        {
-            OnTransitionCompletedFlag = true;
-        }
+        private void OnCubeEffectCompleted(object sender, CubeTransitionEffect.TransitionCompletedEventArgs args) { }
 
         private Texture LoadStageFillingTexture(string filepath)
         {

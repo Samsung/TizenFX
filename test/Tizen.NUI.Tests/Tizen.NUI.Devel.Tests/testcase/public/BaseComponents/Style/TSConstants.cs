@@ -33,6 +33,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void ControlStatesExtensionFromControlStateClass()
         {
             tlog.Debug(tag, $"ControlStatesExtensionFromControlStateClass START");

@@ -332,7 +332,9 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<PropertyNotification>(testingTarget, "should be an instance of PropertyNotification class!");
 
             testingTarget.SetNotifyMode(PropertyNotification.NotifyMode.NotifyOnChanged);
+#pragma warning disable CS0219 // Variable is assigned but its value is never used
             bool flag = false;
+#pragma warning restore CS0219 // Variable is assigned but its value is never used
             testingTarget.Notified += (obj, e) =>
             {
                 flag = true;
@@ -403,9 +405,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"PropertyNotificationAssignNegative START");
 
-            var view = new View();
-            Assert.IsNotNull(view, "should not be null.");
-            Assert.IsInstanceOf<View>(view, "should be an instance of View class!");
+            View view = new View();
             Window.Instance.Add(view);
 
             var testingTarget = view.AddPropertyNotification("positionX", PropertyCondition.GreaterThan(100.0f));
@@ -415,17 +415,18 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 testingTarget.Assign(null);
-                Assert.Fail("Should throw the System.ArgumentNullException!");
             }
             catch (ArgumentNullException e)
             {
-                Assert.True(true);
-            }
+                tlog.Debug(tag, e.Message.ToString());
+                
+                Window.Instance.Remove(view);
+                testingTarget.Dispose();
+                view.Dispose();
+                Assert.Pass("Caught ArgumentNullException : Passed!");
 
-            Window.Instance.Remove(view);
-            testingTarget.Dispose();
-            view.Dispose();
-            tlog.Debug(tag, $"PropertyNotificationAssignNegative END (OK)");
+                tlog.Debug(tag, $"PropertyNotificationAssignNegative END (OK)");
+            }
         }
 
         [Test]

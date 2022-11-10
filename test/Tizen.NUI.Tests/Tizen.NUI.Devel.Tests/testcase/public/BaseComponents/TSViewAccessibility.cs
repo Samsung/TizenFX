@@ -135,6 +135,8 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
 
             testingTarget.SetAccessibilityAttributes("view", "test");
+            var result = testingTarget.GetAccessibilityAttributes("view");
+            Assert.AreEqual("test", result, "Should be equal.");
 
             try
             {
@@ -145,8 +147,6 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
-
-            Assert.IsEmpty(testingTarget.GetAccessibilityAttributes("view"));
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewAccessibilityViewRemoveAccessibilityAttribute END (OK)");
@@ -178,8 +178,6 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
-
-            Assert.IsEmpty(testingTarget.GetAccessibilityAttributes("view"));
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewAccessibilityViewClearAccessibilityAttributes END (OK)");

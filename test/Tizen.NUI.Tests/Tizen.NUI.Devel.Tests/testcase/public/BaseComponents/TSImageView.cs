@@ -31,6 +31,11 @@ namespace Tizen.NUI.Devel.Tests
             {
                 // not implemented
             }
+
+			public void OnCreateViewStyle()
+			{
+				base.CreateViewStyle();
+			}
         }
 
         [SetUp]
@@ -381,6 +386,36 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"ImageViewApplyCornerRadius END (OK)");
         }
+		[Test]
+        [Category("P1")]
+        [Description("ImageView ApplyCornerRadius.")]
+        [Property("SPEC", "Tizen.NUI.ImageView.ApplyCornerRadius M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ImageViewApplyCornerRadiusWithBackgroundExtraData()
+        {
+            tlog.Debug(tag, $"ImageViewApplyCornerRadiusWithBackgroundExtraData START");
+
+            var testingTarget = new ImageView();
+            Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
+            Assert.IsInstanceOf<ImageView>(testingTarget, "Should be an instance of ImageView type.");
+
+            testingTarget.CornerRadius = new Vector4(0.3f, 0.8f, 0.6f, 1.0f);
+            
+            try
+            {
+                testingTarget.ApplyCornerRadius();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ImageViewApplyCornerRadiusWithBackgroundExtraData END (OK)");
+        }
        
 	   	[Test]
         [Category("P1")]
@@ -409,6 +444,39 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ImageViewApplyBorderline END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ImageView ApplyBorderline.")]
+        [Property("SPEC", "Tizen.NUI.ImageView.ApplyBorderline M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ImageViewApplyBorderlineWithBackgroundExtraData()
+        {
+            tlog.Debug(tag, $"ImageViewApplyBorderlineWithBackgroundExtraData START");
+
+            var testingTarget = new ImageView();
+            Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
+            Assert.IsInstanceOf<ImageView>(testingTarget, "Should be an instance of ImageView type.");
+
+            testingTarget.BorderlineColor = Color.Black;
+            testingTarget.BorderlineOffset = 10.0f;
+            testingTarget.BorderlineWidth = 2.0f;
+
+            try
+            {
+                testingTarget.ApplyBorderline();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ImageViewApplyBorderlineWithBackgroundExtraData END (OK)");
         }
 
         [Test]
@@ -592,6 +660,62 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, "WrapModeV : " + testingTarget.WrapModeV);
 
             tlog.Debug(tag, $"ImageViewWrapModeV END (OK)");
+        }
+        [Test]
+        [Category("P1")]
+        [Description("ImageView GetResourceStatus.")]
+        [Property("SPEC", "Tizen.NUI.ImageView.GetResourceStatus A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ImageViewGetResourceStatus()
+        {
+            tlog.Debug(tag, $"ImageViewGetResourceStatus START");
+
+            var testingTarget = new ImageView();
+            Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
+            Assert.IsInstanceOf<ImageView>(testingTarget, "Should be an instance of ImageView type.");
+			
+			try
+			{
+                testingTarget.GetResourceStatus();
+			}
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            tlog.Debug(tag, $"ImageViewGetResourceStatus END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("ImageView CreateViewStyle.")]
+        [Property("SPEC", "Tizen.NUI.ImageView.CreateViewStyle A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ImageViewCreateViewStyle()
+        {
+            tlog.Debug(tag, $"ImageViewCreateViewStyle START");
+
+            var testingTarget = new MyImageView();
+            Assert.IsNotNull(testingTarget, "Can't create success object ImageView");
+            Assert.IsInstanceOf<ImageView>(testingTarget, "Should be an instance of ImageView type.");
+			
+			try
+			{
+				testingTarget.OnCreateViewStyle();
+			}
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+			
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ImageViewCreateViewStyle END (OK)");
         }
     }
 }

@@ -17,7 +17,6 @@ namespace Tizen.NUI.Devel.Tests
     internal class PublicBorderWindowTest
     {
         private const string tag = "NUITEST";
-        private Window win = null;
 
         internal class IBorderInterfaceImpl : IBorderInterface
         {
@@ -31,16 +30,10 @@ namespace Tizen.NUI.Devel.Tests
 
             public Size2D MaxSize => new Size2D(5, 5);
 
-            public Window BorderWindow 
+            public Window BorderWindow
             {
-                get
-                {
-                    return Window.Instance;
-                }
-                set
-                {
-                    this.BorderWindow = Window.Instance;   
-                } 
+                get => Window.Instance;
+                set => this.BorderWindow = Window.Instance;
             }
 
             public bool OverlayMode => true;
@@ -82,7 +75,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Info(tag, "Destroy() is called!");
         }
 
-		[Test]
+        [Test]
         [Category("P1")]
         [Description("Window EnableBorder")]
         [Property("SPEC", "Tizen.NUI.Window.EnableBorder M")]

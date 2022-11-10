@@ -70,5 +70,33 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"ScaleTransitionScaleFactor END (OK)");
         }
+        [Test]
+        [Category("P1")]
+        [Description("ScaleTransition CreateTransition.")]
+        [Property("SPEC", "Tizen.NUI.ScaleTransition.CreateTransition M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ScaleTransitionCreateTransition()
+        {
+            tlog.Debug(tag, $"ScaleTransitionCreateTransition START");
+
+            var testingTarget = new ScaleTransition();
+            Assert.IsNotNull(testingTarget, "Can't create success object ScaleTransition");
+            Assert.IsInstanceOf<ScaleTransition>(testingTarget, "Should be an instance of ScaleTransition type.");
+
+            using (View view = new View())
+            {
+                TimePeriod timePeriod = new TimePeriod(0);
+                AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default);
+				
+                var result = testingTarget.CreateTransition(view, true, timePeriod, alphaFunction);
+                Assert.IsNotNull(result, "Can't create success object TransitionItemBase");
+                Assert.IsInstanceOf<TransitionItemBase>(result, "Should be an instance of TransitionItemBase type.");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ScaleTransitionCreateTransition END (OK)");
+        }
     }
 }
