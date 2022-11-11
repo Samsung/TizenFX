@@ -162,6 +162,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_New")]
             public static extern global::System.IntPtr New();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_New_With_Style")]
+            public static extern global::System.IntPtr New(bool hasStyle);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TextEditor__SWIG_0")]
             public static extern global::System.IntPtr NewTextEditor();
 

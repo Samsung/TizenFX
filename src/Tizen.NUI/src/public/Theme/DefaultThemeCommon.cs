@@ -44,6 +44,7 @@ namespace Tizen.NUI
                 AutoScrollLoopCount = 2,
                 AutoScrollGap = 50.0f,
                 AutoScrollSpeed = 80,
+                FontSizeScale = Tizen.NUI.FontSizeScale.UseSystemSetting,
             });
 
             // TextField style.
@@ -57,6 +58,7 @@ namespace Tizen.NUI
                 PrimaryCursorColor = new Vector4(0.04f, 0.05f, 0.13f, 1),
                 SecondaryCursorColor = new Vector4(0.04f, 0.05f, 0.13f, 1),
                 CursorWidth = 2,
+                FontSizeScale = Tizen.NUI.FontSizeScale.UseSystemSetting,
                 SelectionHighlightColor = new Vector4(1.00f, 0.38f, 0.00f, 0.30f),
                 GrabHandleColor = new Color(1.00f, 1.00f, 1.00f, 1),
                 GrabHandleImage = FrameworkInformation.ResourcePath + "IoT_handler_center_downW.png",
@@ -93,6 +95,7 @@ namespace Tizen.NUI
                 PrimaryCursorColor = new Vector4(0.04f, 0.05f, 0.13f, 1),
                 SecondaryCursorColor = new Vector4(0.04f, 0.05f, 0.13f, 1),
                 CursorWidth = 2,
+                FontSizeScale = Tizen.NUI.FontSizeScale.UseSystemSetting,
                 SelectionHighlightColor = new Vector4(1.00f, 0.38f, 0.00f, 0.30f),
                 GrabHandleColor = new Color(1.00f, 1.00f, 1.00f, 1),
                 GrabHandleImage = FrameworkInformation.ResourcePath + "IoT_handler_center_downW.png",
