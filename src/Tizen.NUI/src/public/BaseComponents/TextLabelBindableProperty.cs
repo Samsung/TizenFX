@@ -856,28 +856,13 @@ namespace Tizen.NUI.BaseComponents
             var textLabel = (TextLabel)bindable;
             if (newValue != null)
             {
-#if NUI_PROPERTY_CHANGE_2
-                Object.InternalSetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.FontSizeScale, (float)newValue);
-                textLabel.RequestLayout();
-#else
-                using (var property = new Tizen.NUI.PropertyValue((float)newValue))
-                {
-                    Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.FontSizeScale, property);
-                    textLabel.RequestLayout();
-                }
-#endif                
+                textLabel.InternalFontSizeScale = (float)newValue;
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textLabel = (TextLabel)bindable;
-#if NUI_PROPERTY_CHANGE_2
-            return Object.InternalGetPropertyFloat(textLabel.SwigCPtr, TextLabel.Property.FontSizeScale);
-#else
-            float temp;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textLabel.SwigCPtr, TextLabel.Property.FontSizeScale).Get(out temp);
-            return temp;
-#endif
+            return textLabel.InternalFontSizeScale;
         }));
 
         [EditorBrowsable(EditorBrowsableState.Never)]

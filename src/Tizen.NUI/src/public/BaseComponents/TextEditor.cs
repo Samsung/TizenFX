@@ -39,6 +39,7 @@ namespace Tizen.NUI.BaseComponents
         private float fontSizeScale = 1.0f;
         private bool hasFontSizeChangedCallback = false;
         private bool isSettingTextInCSharp = false;
+        static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextEditor";
 
 #if NUI_PROPERTY_CHANGE_2
         private Color internalPlaceholderTextColor = null;
@@ -57,7 +58,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates the TextEditor control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TextEditor() : this(Interop.TextEditor.New(), true)
+        public TextEditor() : this(Interop.TextEditor.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -66,7 +67,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates the TextEditor with specified style.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextEditor(TextEditorStyle style) : this(Interop.TextLabel.New(), true, style: style)
+        public TextEditor(TextEditorStyle style) : this(Interop.TextEditor.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true, style: style)
         {
         }
 
@@ -76,7 +77,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextEditor(bool shown) : this(Interop.TextEditor.New(), true)
+        public TextEditor(bool shown) : this(Interop.TextEditor.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
@@ -2170,6 +2171,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (float)GetValue(FontSizeScaleProperty);
+            }
+            set
+            {
+                SetValue(FontSizeScaleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private float InternalFontSizeScale
+        {
+            get
+            {
                 return fontSizeScale;
             }
             set
@@ -2201,9 +2215,20 @@ namespace Tizen.NUI.BaseComponents
                     removeFontSizeChangedCallback();
                 }
 
-                SetValue(FontSizeScaleProperty, newFontSizeScale);
-                NotifyPropertyChanged();
+                SetInternalFontSizeScale(newFontSizeScale);
             }
+        }
+
+        private void SetInternalFontSizeScale(float fontSizeScale)
+        {
+#if NUI_PROPERTY_CHANGE_2
+            Object.InternalSetPropertyFloat(this.SwigCPtr, TextEditor.Property.FontSizeScale, (float)fontSizeScale);
+#else
+            using (var property = new Tizen.NUI.PropertyValue((float)fontSizeScale))
+            {
+                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)this.SwigCPtr, TextEditor.Property.FontSizeScale, property);
+            }
+#endif
         }
 
         /// <summary>
@@ -2535,8 +2560,7 @@ namespace Tizen.NUI.BaseComponents
         private void SystemSettingsFontSizeChanged(object sender, FontSizeChangedEventArgs e)
         {
             float newFontSizeScale = TextUtils.GetFontSizeScale(e.Value);
-            SetValue(FontSizeScaleProperty, newFontSizeScale);
-            NotifyPropertyChanged();
+            SetInternalFontSizeScale(newFontSizeScale);
         }
 
         private void addFontSizeChangedCallback()
