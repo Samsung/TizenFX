@@ -171,6 +171,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_New")]
             public static extern global::System.IntPtr New();
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_New_With_Style")]
+            public static extern global::System.IntPtr New(bool hasStyle);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TextField__SWIG_0")]
             public static extern global::System.IntPtr NewTextField();
 
