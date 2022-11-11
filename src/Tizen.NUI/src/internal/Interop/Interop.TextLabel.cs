@@ -88,7 +88,13 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr New();
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_New__SWIG_1")]
-            public static extern global::System.IntPtr New(string jarg1);
+            public static extern global::System.IntPtr New(string text);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_New_With_Style")]
+            public static extern global::System.IntPtr New(bool hasStyle);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextLabel_New_With_String_Style")]
+            public static extern global::System.IntPtr New(string text, bool hasStyle);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TextLabel__SWIG_0")]
             public static extern global::System.IntPtr NewTextLabel();

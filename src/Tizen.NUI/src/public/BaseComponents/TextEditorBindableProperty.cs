@@ -1364,26 +1364,13 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
-#if NUI_PROPERTY_CHANGE_2
-                Object.InternalSetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.FontSizeScale, (float)newValue);
-#else
-                using (var property = new Tizen.NUI.PropertyValue((float)newValue))
-                {
-                    Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.FontSizeScale, property);
-                }
-#endif
+                textEditor.InternalFontSizeScale = (float)newValue;
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
-#if NUI_PROPERTY_CHANGE_2
-            return Object.InternalGetPropertyFloat(textEditor.SwigCPtr, TextEditor.Property.FontSizeScale);
-#else
-            float temp;
-            Tizen.NUI.Object.GetProperty((System.Runtime.InteropServices.HandleRef)textEditor.SwigCPtr, TextEditor.Property.FontSizeScale).Get(out temp);
-            return temp;
-#endif
+            return textEditor.InternalFontSizeScale;
         }));
 
         [EditorBrowsable(EditorBrowsableState.Never)]
