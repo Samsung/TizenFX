@@ -277,6 +277,18 @@ namespace Tizen.NUI.BaseComponents
         });
 
         [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FontSizeScaleProperty = BindableProperty.Create(nameof(FontSizeScale), typeof(float?), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textEditorStyle = (TextEditorStyle)bindable;
+            textEditorStyle.fontSizeScale = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textEditorStyle = (TextEditorStyle)bindable;
+            return textEditorStyle.fontSizeScale;
+        });
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty SelectionPopupStyleProperty = BindableProperty.Create(nameof(SelectionPopupStyle), typeof(PropertyMap), typeof(TextEditorStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
         {
             var textEditorStyle = (TextEditorStyle)bindable;
@@ -326,6 +338,7 @@ namespace Tizen.NUI.BaseComponents
         private float? lineSpacing;
         private float? minLineSize;
         private float? relativeLineHeight;
+        private float? fontSizeScale;
 
         static TextEditorStyle() { }
 
@@ -710,6 +723,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (float?)GetValue(RelativeLineHeightProperty);
             set => SetValue(RelativeLineHeightProperty, value);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? FontSizeScale
+        {
+            get => (float?)GetValue(FontSizeScaleProperty);
+            set => SetValue(FontSizeScaleProperty, value);
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
