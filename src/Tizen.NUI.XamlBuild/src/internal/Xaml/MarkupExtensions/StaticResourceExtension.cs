@@ -74,7 +74,7 @@ namespace Tizen.NUI.Xaml
             var propertyType = bp?.ReturnType ?? pi?.PropertyType;
             if (propertyType == null) {
                 if (resource != null) {
-                    if (resource.GetType().GetTypeInfo().IsGenericType && (resource.GetType().GetGenericTypeDefinition() == typeof(OnPlatform<>) || resource.GetType().GetGenericTypeDefinition() == typeof(OnIdiom<>))) {
+                    if (resource.GetType().GetTypeInfo().IsGenericType || resource.GetType().GetGenericTypeDefinition() == typeof(OnIdiom<>)) {
                         // This is only there to support our backward compat story with pre 2.3.3 compiled Xaml project who was not providing TargetProperty
                         var method = resource.GetType().GetRuntimeMethod("op_Implicit", new[] { resource.GetType() });
                         if (method != null) {
@@ -96,8 +96,7 @@ namespace Tizen.NUI.Xaml
                 //On OnPlatform, check for an opImplicit from the targetType
                 if (   Device.Flags != null
                     && Device.Flags.Contains("xamlDoubleImplicitOpHack")
-                    && resource.GetType().GetTypeInfo().IsGenericType
-                    && (resource.GetType().GetGenericTypeDefinition() == typeof(OnPlatform<>))) {
+                    && resource.GetType().GetTypeInfo().IsGenericType) {
                     var tType = resource.GetType().GenericTypeArguments[0];
                     var opImplicit = tType.GetImplicitConversionOperator(fromType: tType, toType: propertyType)
                                     ?? propertyType.GetImplicitConversionOperator(fromType: tType, toType: propertyType);

@@ -175,7 +175,13 @@ namespace Tizen.NUI.EXaml.Build.Tasks
 
                 bool isAdded = false;
 
-                if (CanAddToResourceDictionary(parentVar, parentVar.GetType(), node, node, Context))
+                if (!isAdded && parentVar is EXamlCreateArrayObject arrayObject)
+                {
+                    arrayObject.AddItem(node);
+                    isAdded = true;
+                }
+
+                if (!isAdded && CanAddToResourceDictionary(parentVar, parentVar.GetType(), node, node, Context))
                 {
                     var keyName = (node.Properties[XmlName.xKey] as ValueNode).Value as string;
                     new EXamlAddToResourceDictionary(Context, parentVar, keyName, Context.Values[node]);
@@ -465,7 +471,6 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                     var value = context.Values[valueNode] as EXamlCreateObject;
                     if (null != value)
                     {
-                        arrayExtension.Type = value.Instance as TypeReference;
                         parent.IsValid = false;
                     }
                 }
@@ -486,6 +491,11 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             var module = context.Module;
             var localName = propertyName.LocalName;
             bool attached;
+
+            if (parent is EXamlCreateArrayObject && "Type" == localName)
+            {
+                return;
+            }
 
             if (SetPropertyValueToLocalType(parent, propertyName, valueNode, context))
             {
@@ -931,7 +941,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 {
                     var bindableProperty = BindablePropertyConverter.GetBindablePropertyFieldReference(valueNode.Value as string, module, node as BaseNode);
                     var fieldRef = bindableProperty.DeclaringType.ResolveCached().Fields.FirstOrDefault(a => a.FullName == bindableProperty.FullName);
-                    context.Values[node] = new EXamlCreateObject(context, bindableProperty.DeclaringType, fieldRef, null);
+                    context.Values[node] = new EXamlGetStaticValue(context, bindableProperty.DeclaringType, fieldRef, null);
                 }
                 else if ("Tizen.NUI.Binding.ResourceDictionary" == propertyType.FullName)
                 {

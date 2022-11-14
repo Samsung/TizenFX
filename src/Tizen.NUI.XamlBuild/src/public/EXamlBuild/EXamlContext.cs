@@ -234,6 +234,11 @@ namespace Tizen.NUI.EXaml.Build.Tasks
             {
                 if (examlOp.IsValid)
                 {
+                    if (examlOp is EXamlGetStaticValue getStaticValue)
+                    {
+                        GatherType(getStaticValue.DeclareType);
+                    }
+
                     GatherType(examlOp.Type);
 
                     foreach (var property in examlOp.PropertyList)
@@ -277,9 +282,9 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                         }
                     }
 
-                    if (null != examlOp.XFactoryMethod)
+                    if (examlOp is EXamlCreateObjectByFactoryMethod factoryMethodObj)
                     {
-                        GatherMethod((examlOp.XFactoryMethod.DeclaringType, examlOp.XFactoryMethod));
+                        GatherMethod((factoryMethodObj.XFactoryMethod.DeclaringType, factoryMethodObj.XFactoryMethod));
                     }
                 }
             }

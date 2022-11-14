@@ -19,11 +19,15 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Tizen.NUI.EXaml.Build.Tasks;
+using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.EXaml
 {
     internal class EXamlCreateArrayObject : EXamlCreateObject
     {
+        private List<object> items;
+        private HashSet<ElementNode> addedNodes = new HashSet<ElementNode>();
+
         public EXamlCreateArrayObject(EXamlContext context, TypeReference type, List<object> items) : base(context, null, type)
         {
             this.items = items;
@@ -57,7 +61,25 @@ namespace Tizen.NUI.EXaml
             return ret;
         }
 
-        private List<object> items;
+        public void AddItem(ElementNode node)
+        {
+            if (addedNodes.Contains(node))
+            {
+                return;
+            }
+            else
+            {
+                addedNodes.Add(node);
+            }
+
+            if (null == items)
+            {
+                items = new List<object>();
+            }
+
+            var item = eXamlContext.Values[node];
+            items.Add(item);
+        }
     }
 }
  

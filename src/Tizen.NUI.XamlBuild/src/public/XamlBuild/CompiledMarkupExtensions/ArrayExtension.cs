@@ -65,7 +65,10 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
         public EXamlCreateObject ProvideValue(IElementNode node, ModuleDefinition module, EXamlContext Context)
         {
-            return new EXamlCreateArrayObject(Context, Type.MakeArrayType(), items);
+            var typeNode = node.Properties[new XmlName("", "Type")] as IElementNode;
+            var typeTypeRef = Context.TypeExtensions[typeNode];
+
+            return new EXamlCreateArrayObject(Context, typeTypeRef.MakeArrayType(), items);
         }
 
         public TypeReference Type
