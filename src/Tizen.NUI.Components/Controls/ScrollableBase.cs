@@ -1158,6 +1158,7 @@ namespace Tizen.NUI.Components
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
             ScrollDragStarted?.Invoke(this, eventArgs);
+	        EmitScrollStartedEvent();
 
             if (!hideScrollbar && fadeScrollbar)
             {
@@ -1169,6 +1170,7 @@ namespace Tizen.NUI.Components
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
             ScrollDragEnded?.Invoke(this, eventArgs);
+            EmitScrollFinishedEvent();
 
             if (!hideScrollbar && fadeScrollbar)
             {
@@ -1180,6 +1182,7 @@ namespace Tizen.NUI.Components
         {
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
             ScrollAnimationStarted?.Invoke(this, eventArgs);
+	        EmitScrollStartedEvent();
 
             if (!hideScrollbar && fadeScrollbar)
             {
@@ -1194,6 +1197,7 @@ namespace Tizen.NUI.Components
 
             ScrollEventArgs eventArgs = new ScrollEventArgs(ContentContainer.CurrentPosition);
             ScrollAnimationEnded?.Invoke(this, eventArgs);
+            EmitScrollFinishedEvent();
 
             if (!hideScrollbar && fadeScrollbar)
             {
