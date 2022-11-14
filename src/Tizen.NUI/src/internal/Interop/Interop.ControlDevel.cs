@@ -130,6 +130,14 @@ namespace Tizen.NUI
             public static extern IntPtr DaliAccessibilityEmitTextCursorMovedEvent(HandleRef arg1, int arg2_pos);
 
             [EditorBrowsable(EditorBrowsableState.Never)]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitScrollStartedEvent")]
+            public static extern IntPtr DaliAccessibilityEmitScrollStartedEvent(HandleRef arg1_actor);
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_EmitScrollFinishedEvent")]
+            public static extern IntPtr DaliAccessibilityEmitScrollFinishedEvent(HandleRef arg1_actor);
+
+            [EditorBrowsable(EditorBrowsableState.Never)]
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_IsSuppressedEvent")]
             public static extern bool DaliAccessibilityIsSuppressedEvent(HandleRef arg1, int accessibilityEvent);
 
