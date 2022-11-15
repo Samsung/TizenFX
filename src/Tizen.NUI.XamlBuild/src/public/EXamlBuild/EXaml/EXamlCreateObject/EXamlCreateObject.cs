@@ -36,34 +36,7 @@ namespace Tizen.NUI.EXaml
 
             string ret = "";
 
-            if (true == isStaticInstance)
-            {
-                int typeIndex = eXamlContext.GetTypeIndex(Type);
-
-                if (0 > typeIndex)
-                {
-                    throw new Exception($"Can't get type index of {Type.FullName}");
-                }
-
-                
-                if (MemberOfStaticInstance is FieldReference field)
-                {
-                    ret += String.Format("({0} ({1} {2} {3}))\n",
-                                      eXamlContext.GetValueString((int)EXamlOperationType.GetStaticObject),
-                                      eXamlContext.GetValueString(typeIndex),
-                                      eXamlContext.GetValueString(null),
-                                      eXamlContext.GetValueString(field.Name));
-                }
-                else if (MemberOfStaticInstance is PropertyReference property)
-                {
-                    ret += String.Format("({0} ({1} {2} {3}))\n",
-                                      eXamlContext.GetValueString((int)EXamlOperationType.GetStaticObject),
-                                      eXamlContext.GetValueString(typeIndex),
-                                      eXamlContext.GetValueString(property.Name),
-                                      eXamlContext.GetValueString(null));
-                }
-            }
-            else if (true == isTypeObject)
+            if (true == isTypeObject)
             {
                 int typeIndex = eXamlContext.GetTypeIndex(Type);
 
@@ -95,11 +68,6 @@ namespace Tizen.NUI.EXaml
                 {
                     int typeIndex = eXamlContext.GetTypeIndex(Type);
                     int xFactoryMethodIndex = -1;
-
-                    if (null != XFactoryMethod)
-                    {
-                        xFactoryMethodIndex = eXamlContext.definedMethods.IndexOf((XFactoryMethod.DeclaringType, XFactoryMethod));
-                    }
 
                     if (-1 == typeIndex)
                     {
@@ -142,25 +110,7 @@ namespace Tizen.NUI.EXaml
 
         internal new TypeReference GetType()
         {
-            if (isStaticInstance)
-            {
-                if (MemberOfStaticInstance is FieldReference field)
-                {
-                    return field.FieldType;
-                }
-                else if (MemberOfStaticInstance is PropertyReference property)
-                {
-                    return property.PropertyType;
-                }
-                else
-                {
-                    throw new Exception($"Invalid static instance, type is {Type.FullName}");
-                }
-            }
-            else
-            {
-                return Type;
-            }
+            return Type;
         }
 
         public EXamlCreateObject(EXamlContext context, object instance, TypeReference type, object[] @params = null)
@@ -194,86 +144,6 @@ namespace Tizen.NUI.EXaml
             eXamlContext.eXamlCreateObjects.Add(this);
         }
 
-        public EXamlCreateObject(EXamlContext context, object instance, TypeReference type, MethodDefinition xFactoryMethod, object[] @params = null)
-            : base(context)
-        {
-            if (null == type.Resolve())
-            {
-                throw new Exception("Type can't be null when create object");
-            }
-
-            Instance = instance;
-            Type = type;
-
-            if (null != @params)
-            {
-                foreach (var obj in @params)
-                {
-                    paramsList.Add(obj);
-                }
-            }
-
-            eXamlContext.eXamlOperations.Add(this);
-
-            Index = eXamlContext.eXamlCreateObjects.Count;
-            XFactoryMethod = xFactoryMethod;
-            eXamlContext.eXamlCreateObjects.Add(this);
-        }
-
-        public static EXamlCreateObject GetStaticInstance(EXamlContext context, TypeReference type, FieldReference field, PropertyReference property)
-        {
-            MemberReference memberRef = null;
-
-            if (null != field)
-            {
-                memberRef = field;
-            }
-            else if (null != property)
-            {
-                memberRef = property;
-            }
-
-            if (null == memberRef)
-            {
-                return null;
-            }
-
-            if (context.StaticInstances.ContainsKey((type, memberRef)))
-            {
-                return context.StaticInstances[(type, memberRef)];
-            }
-            else
-            {
-                var staticInstance = new EXamlCreateObject(context, type, field, property);
-                context.StaticInstances.Add((type, memberRef), staticInstance);
-                return staticInstance;
-            }
-        }
-
-        public EXamlCreateObject(EXamlContext context, TypeReference type, FieldReference field, PropertyReference property)
-            : base(context)
-        {
-            MemberReference memberRef = null;
-
-            if (null != field)
-            {
-                memberRef = field;
-            }
-            else if (null != property)
-            {
-                memberRef = property;
-            }
-
-            Type = type;
-            MemberOfStaticInstance = memberRef;
-            isStaticInstance = true;
-
-            eXamlContext.eXamlOperations.Add(this);
-
-            Index = eXamlContext.eXamlCreateObjects.Count;
-            eXamlContext.eXamlCreateObjects.Add(this);
-        }
-
         internal bool IsValid
         {
             get;
@@ -292,18 +162,6 @@ namespace Tizen.NUI.EXaml
         }
 
         internal int Index
-        {
-            get;
-            set;
-        }
-
-        internal MethodDefinition XFactoryMethod
-        {
-            get;
-            set;
-        }
-
-        internal MemberReference MemberOfStaticInstance
         {
             get;
             set;
@@ -346,8 +204,6 @@ namespace Tizen.NUI.EXaml
                 BindableProperties.Add(bindalbeProperty.Resolve());
             }
         }
-
-        private bool isStaticInstance = false;
 
         private bool isTypeObject = false;
     }

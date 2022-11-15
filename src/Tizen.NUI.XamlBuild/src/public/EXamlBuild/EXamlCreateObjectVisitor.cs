@@ -166,7 +166,7 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                 Context.Variables[node] = vardef;
 
                 var argumentList = GetCtorXArguments(node, factoryMethodInfo.Parameters.Count, false);
-                Context.Values[node] = new EXamlCreateObject(Context, null, typedef, factoryMethodInfo, argumentList?.ToArray());
+                Context.Values[node] = new EXamlCreateObjectByFactoryMethod(Context, typedef, factoryMethodInfo, argumentList?.ToArray());
                 return;
             }
 
@@ -284,14 +284,14 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                     //IL_0006:  stloc.0
                     //Context.IL.Emit(OpCodes.Newobj, ctor);
                     //Context.IL.Emit(OpCodes.Stloc, vardef);
-                    if (typeref.FullName == "Tizen.NUI.Xaml.ArrayExtension")
-                    {
-                        typeref = Module.ImportReference(typeof(ArrayExtension));
-                    }
 
                     var accordingType = this.GetType().Assembly.GetType(typeref.FullName);
 
-                    if (null != accordingType && accordingType != typeof(Binding.Setter) && accordingType != typeof(ResourceDictionary))
+                    if ("Tizen.NUI.Xaml.ArrayExtension" == typeref.FullName)
+                    {
+                        Context.Values[node] = new ArrayExtension().ProvideValue(node, Module, Context);
+                    }
+                    else if (null != accordingType && accordingType != typeof(Binding.Setter) && accordingType != typeof(ResourceDictionary))
                     {
                         Context.Values[node] = new EXamlCreateObject(Context, Activator.CreateInstance(accordingType), typeref);
                     }
@@ -320,11 +320,6 @@ namespace Tizen.NUI.EXaml.Build.Tasks
                                 else
                                 {
                                     var valueItem = valueNode.GetBaseValue(Context, typeref);
-                                    if (null == valueItem)
-                                    {
-                                        throw new XamlParseException($"Can't convert collection item \"{vnode.Value}\" to object", node);
-                                    }
-
                                     Context.Values[node] = valueItem;
                                 }
 
