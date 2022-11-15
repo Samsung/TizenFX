@@ -34,11 +34,6 @@ namespace Tizen.NUI.Components.Devel.Tests
             {
                 base.RemoveView(view);
             }
-
-            public void OnSelect(int index)
-            {
-                base.Select(index);
-            }
         }
 
         [SetUp]
@@ -116,8 +111,6 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.OnAddView(dummy1);
             testingTarget.OnAddView(dummy2);
-
-            testingTarget.OnSelect(0);
 
             try
             {

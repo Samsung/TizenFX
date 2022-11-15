@@ -36,11 +36,6 @@ namespace Tizen.NUI.Components.Devel.Tests
             {
                 base.OnEnabled(enabled);
             }
-
-            public bool AccessibilityShouldReportZeroChildrenImpl()
-            {
-                return base.AccessibilityShouldReportZeroChildren();
-            }
         }
 
         [Test]
@@ -104,32 +99,6 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ProgressOnEnabled END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Progress AccessibilityShouldReportZeroChildren.")]
-        [Property("SPEC", "Tizen.NUI.Components.Progress.AccessibilityShouldReportZeroChildren M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ProgressAccessibilityShouldReportZeroChildren()
-        {
-            tlog.Debug(tag, $"ProgressAccessibilityShouldReportZeroChildren START");
-
-            var testingTarget = new ProgressImpl()
-            {
-                Size = new Size(100, 200)
-            };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<ProgressImpl>(testingTarget, "Should return ProgressImpl instance.");
-
-            var result = testingTarget.AccessibilityShouldReportZeroChildrenImpl();
-            tlog.Debug(tag, "AccessibilityShouldReportZeroChildren : " + result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ProgressAccessibilityShouldReportZeroChildren END (OK)");
         }
     }
 }
