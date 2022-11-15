@@ -163,6 +163,77 @@ namespace Tizen.NUI.Extension
         }
 
         /// <summary>
+        /// Informs the current state machine that a pointing device coordinates are changed.
+        /// </summary>
+        /// <param name="x">The x position of the mouse or the touch pointer</param>
+        /// <param name="y">The y position of the mouse or the touch pointer</param>
+        /// <since_tizen> 10 </since_tizen>
+        public void PointerMove(float x, float y)
+        {
+            Interop.RiveAnimationView.PointerMove(SwigCPtr, x, y);
+        }
+
+        /// <summary>
+        /// Informs the current state machine that a pointing device button is pressed.
+        /// </summary>
+        /// <param name="x">The x position of the mouse or the touch pointer</param>
+        /// <param name="y">The y position of the mouse or the touch pointer</param>
+        /// <since_tizen> 10 </since_tizen>
+        public void PointerDown(float x, float y)
+        {
+            Interop.RiveAnimationView.PointerDown(SwigCPtr, x, y);
+        }
+
+        /// <summary>
+        /// Informs the current state machine that a pointing device button is released.
+        /// </summary>
+        /// <param name="x">The x position of the mouse or the touch pointer</param>
+        /// <param name="y">The y position of the mouse or the touch pointer</param>
+        /// <since_tizen> 10 </since_tizen>
+        public void PointerUp(float x, float y)
+        {
+            Interop.RiveAnimationView.PointerUp(SwigCPtr, x, y);
+        }
+
+        /// <summary>
+        /// Sets the input state on a number input.
+        /// </summary>
+        /// <param name="stateMachineName">The state machine name. Empty string for a default state machine</param>
+        /// <param name="inputName">The input name</param>
+        /// <param name="value">The number value</param>
+        /// <return> Returns true is success, false otherwise.</return>
+        /// <since_tizen> 10 </since_tizen>
+        public bool SetNumberState(string stateMachineName, string inputName, float value)
+        {
+            return Interop.RiveAnimationView.SetNumberState(SwigCPtr, stateMachineName, inputName, value);
+        }
+
+        /// <summary>
+        /// Sets the input state on a boolean input.
+        /// </summary>
+        /// <param name="stateMachineName">The state machine name. Empty string for a default state machine</param>
+        /// <param name="inputName">The input name</param>
+        /// <param name="value">The boolean value</param>
+        /// <return> Returns true is success, false otherwise.</return>
+        /// <since_tizen> 10 </since_tizen>
+        public bool SetBooleanState(string stateMachineName, string inputName, bool value)
+        {
+            return Interop.RiveAnimationView.SetBooleanState(SwigCPtr, stateMachineName, inputName, value);
+        }
+
+        /// <summary>
+        /// Fires a trigger input.
+        /// </summary>
+        /// <param name="stateMachineName">The state machine name. Empty string for a default state machine</param>
+        /// <param name="inputName">The input name</param>
+        /// <return> Returns true is success, false otherwise.</return>
+        /// <since_tizen> 10 </since_tizen>
+        public bool FireState(string stateMachineName, string inputName)
+        {
+            return Interop.RiveAnimationView.FireState(SwigCPtr, stateMachineName, inputName);
+        }
+
+        /// <summary>
         /// Sets the animation elapsed time.
         /// </summary>
         /// <param name="animationName">The animation name</param>

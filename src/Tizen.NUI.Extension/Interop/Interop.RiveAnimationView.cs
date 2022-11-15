@@ -45,6 +45,27 @@ namespace Tizen.NUI.Extension
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_SetNodePosition")]
             public static extern void SetNodePosition(global::System.Runtime.InteropServices.HandleRef handle, string nodeName, global::System.Runtime.InteropServices.HandleRef position);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_PointerMove")]
+            public static extern void PointerMove(global::System.Runtime.InteropServices.HandleRef handle, float x, float y);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_PointerDown")]
+            public static extern void PointerDown(global::System.Runtime.InteropServices.HandleRef handle, float x, float y);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_PointerUp")]
+            public static extern void PointerUp(global::System.Runtime.InteropServices.HandleRef handle, float x, float y);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_SetNumberState")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool SetNumberState(global::System.Runtime.InteropServices.HandleRef handle, string stateMachineName, string inputName, float value);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_SetBooleanState")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool SetBooleanState(global::System.Runtime.InteropServices.HandleRef handle, string stateMachineName, string inputName, bool value);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_FireState")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool FireState(global::System.Runtime.InteropServices.HandleRef handle, string stateMachineName, string inputName);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_RiveAnimationView_PlayAnimation")]
             public static extern void Play(global::System.Runtime.InteropServices.HandleRef handle);
             
