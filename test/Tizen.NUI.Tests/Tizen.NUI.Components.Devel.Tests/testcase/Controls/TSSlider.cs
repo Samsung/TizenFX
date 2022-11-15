@@ -52,11 +52,6 @@ namespace Tizen.NUI.Components.Devel.Tests
             public MySlider() : base()
             { }
 
-            public bool OnAccessibilityShouldReportZeroChildren()
-            {
-                return base.AccessibilityShouldReportZeroChildren();
-            }
-
             public void MyOnUpdate()
             {
                 base.OnUpdate();
@@ -545,34 +540,6 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"SliderThumbColor END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Slider AccessibilityShouldReportZeroChildren.")]
-        [Property("SPEC", "Tizen.NUI.Components.Slider.AccessibilityShouldReportZeroChildren M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        [Obsolete]
-        public void SliderAccessibilityShouldReportZeroChildren()
-        {
-            tlog.Debug(tag, $"SliderAccessibilityShouldReportZeroChildren START");
-
-            var testingTarget = new MySlider()
-            {
-                Direction = Slider.DirectionType.Vertical,
-                IsEnabled = true,
-            };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Slider>(testingTarget, "Should return Slider instance.");
-
-            var result = testingTarget.OnAccessibilityShouldReportZeroChildren();
-            tlog.Debug(tag, "AccessibilityShouldReportZeroChildren : " + result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"SliderAccessibilityShouldReportZeroChildren END (OK)");
         }
 
         [Test]
