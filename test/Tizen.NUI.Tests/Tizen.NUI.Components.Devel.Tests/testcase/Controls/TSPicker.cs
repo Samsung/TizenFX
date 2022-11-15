@@ -85,15 +85,7 @@ namespace Tizen.NUI.Components.Devel.Tests
         {
             tlog.Debug(tag, $"PickerConstructorWithPickStyle START");
 
-            PickerStyle style = new PickerStyle()
-            {
-                Divider = new ViewStyle()
-                {
-                    Focusable = true,
-                    Size = new Size(100, 2),
-                    Position = new Position(100, 200)
-                },
-            };
+            PickerStyle style = new PickerStyle() { };
 
             var testingTarget = new Picker(style);
             Assert.IsNotNull(testingTarget, "null handle");
