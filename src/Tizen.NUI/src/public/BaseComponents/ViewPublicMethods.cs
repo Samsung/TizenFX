@@ -217,6 +217,25 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Retrieves a child view as Animatable by index.
+        /// </summary>
+        /// <param name="index">The index of the Animatable to find.</param>
+        /// <returns>A handle to the view as Animatable if found, or an empty handle if not.</returns>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Animatable GetChildAnimatableAt(uint index)
+        {
+            if (index < Children.Count)
+            {
+                return Children[Convert.ToInt32(index)] as Animatable;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
         /// Retrieves the number of children held by the view.
         /// </summary>
         /// <seealso cref="Container.GetChildCount" />
@@ -442,6 +461,36 @@ namespace Tizen.NUI.BaseComponents
             //to fix memory leak issue, match the handle count with native side.
             IntPtr cPtr = Interop.Actor.FindChildByName(SwigCPtr, viewName);
             View ret = this.GetInstanceSafely<View>(cPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Search through this view's hierarchy for a view as Animatable with the given name.
+        /// The view itself is also considered in the search.
+        /// </summary>
+        /// <pre>The view has been initialized.</pre>
+        /// <param name="childName">The name of the Animatable to find.</param>
+        /// <returns>A handle to the view as Animatable if found, or an empty handle if not.</returns>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Animatable FindChildAnimatableByName(string childName)
+        {
+            //to fix memory leak issue, match the handle count with native side.
+            IntPtr cPtr = Interop.Actor.FindChildByName(SwigCPtr, childName);
+            Animatable ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animatable;
+            if(ret == null)
+            {
+                // Register new camera into Registry.
+                ret = new Animatable(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI camera. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Interop.Actor.DeleteActor(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
