@@ -71,16 +71,21 @@ namespace Tizen.NUI
         ///<summary>
         /// Returns a Property if stringProperty is a valid index
         ///</summary>
-        internal static SearchResult Search(View view, string stringProperty)
+        internal static SearchResult Search(Animatable animatable, string stringProperty)
         {
             var propertyName = LowerFirstLetter(stringProperty);
 
-            return SearchProperty(view, propertyName) ?? SearchVisualProperty(view, propertyName);
+            if(animatable is View)
+            {
+                View view = animatable as View;
+                return SearchProperty(view, propertyName) ?? SearchVisualProperty(view, propertyName);
+            }
+            return SearchProperty(animatable, propertyName);
         }
 
-        private static SearchResult SearchProperty(View view, string lowercasePropertyString)
+        private static SearchResult SearchProperty(Animatable animatable, string lowercasePropertyString)
         {
-            Property property = new Property(view, lowercasePropertyString);
+            Property property = new Property(animatable, lowercasePropertyString);
 
             if (property.propertyIndex == Property.InvalidIndex)
             {
@@ -89,7 +94,7 @@ namespace Tizen.NUI
             }
 
             OOConverter converter = null;
-            if (view.GetPropertyType(property.propertyIndex).Equals(PropertyType.Float))
+            if (animatable.GetPropertyType(property.propertyIndex).Equals(PropertyType.Float))
             {
                 converter = ObjectIntToFloat;
             }
