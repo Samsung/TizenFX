@@ -1500,9 +1500,9 @@ PixelAreaSetter++;
             }
 
             // Checkup the cached visual type is AnimatedImage.
-            // It is trick to know that this code is running on AnimatedImageView.UpdateImage() or not.
-            int visualType = -1;
-            if(!((GetCachedImageVisualProperty(Visual.Property.Type)?.Get(out visualType) ?? false) && visualType == (int)Visual.Type.AnimatedImage))
+            // It is trick to know that this code is running on AnimatedImageView.UpdateImage() / LottieAnimationView.UpdateImage() or not.
+            int visualType = (int)Visual.Type.Invalid;
+            if(!((GetCachedImageVisualProperty(Visual.Property.Type)?.Get(out visualType) ?? false) && (visualType == (int)Visual.Type.AnimatedImage || visualType == (int)Visual.Type.AnimatedVectorImage)))
             {
                 // If ResourceUrl is not setuped, don't set property. fast return.
                 if(string.IsNullOrEmpty(_resourceUrl))
