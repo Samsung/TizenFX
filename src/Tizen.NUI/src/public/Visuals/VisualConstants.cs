@@ -441,6 +441,16 @@ namespace Tizen.NUI
             /// </summary>
             AnimatedImage,
             /// <summary>
+            /// Renders an animated gradient.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            AnimatedGradient = Visual.Type.AnimatedImage + 1,
+            /// <summary>
+            /// Renders an animated vector image.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            AnimatedVectorImage = Visual.Type.AnimatedImage + 2,
+            /// <summary>
             /// Renders an arc.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]

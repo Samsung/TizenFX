@@ -60,10 +60,13 @@ namespace Tizen.NUI.BaseComponents
             currentStates.stopEndAction = StopBehaviorType.CurrentFrame;
             currentStates.framePlayRangeMin = -1;
             currentStates.framePlayRangeMax = -1;
-            currentStates.changed = false;
             currentStates.totalFrame = -1;
             currentStates.scale = scale;
             currentStates.redrawInScalingDown = true;
+
+            // Set changed flag as true when initalized state.
+            // After some properties change, LottieAnimationView.UpdateImage will apply these inital values.
+            currentStates.changed = true;
             SetVisible(shown);
         }
 
@@ -132,23 +135,27 @@ namespace Tizen.NUI.BaseComponents
             {
                 string ret = (value == null ? "" : value);
                 currentStates.url = ret;
-                currentStates.changed = true;
 
                 NUILog.Debug($"<[{GetId()}]SET url={currentStates.url}");
 
                 using PropertyMap map = new PropertyMap();
-                using PropertyValue type = new PropertyValue((int)DevelVisual.Type.AnimatedVectorImage);
+                using PropertyValue type = new PropertyValue((int)Visual.Type.AnimatedVectorImage);
                 using PropertyValue url = new PropertyValue(currentStates.url);
                 using PropertyValue loopCnt = new PropertyValue(currentStates.loopCount);
                 using PropertyValue stopAction = new PropertyValue((int)currentStates.stopEndAction);
                 using PropertyValue loopMode = new PropertyValue((int)currentStates.loopMode);
+                using PropertyValue redrawInScalingDown = new PropertyValue(currentStates.redrawInScalingDown);
 
                 map.Add(Visual.Property.Type, type)
                     .Add(ImageVisualProperty.URL, url)
                     .Add(ImageVisualProperty.LoopCount, loopCnt)
                     .Add(ImageVisualProperty.StopBehavior, stopAction)
-                    .Add(ImageVisualProperty.LoopingMode, loopMode);
+                    .Add(ImageVisualProperty.LoopingMode, loopMode)
+                    .Add(ImageVisualProperty.RedrawInScalingDown, redrawInScalingDown);
                 Image = map;
+
+                // All states applied well.
+                currentStates.changed = false;
 
                 currentStates.contentInfo = null;
 
@@ -797,6 +804,58 @@ namespace Tizen.NUI.BaseComponents
             InternalSavedDynamicPropertyCallbacks?.Clear();
             InternalSavedDynamicPropertyCallbacks = null;
         }
+
+        /// <summary>
+        /// Update lottie-image-relative properties synchronously.
+        /// After call this API, All image properties updated.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void UpdateImage()
+        {
+            if (!imagePropertyUpdatedFlag) return;
+
+            // Update currentStates properties to cachedImagePropertyMap
+            if(currentStates.changed)
+            {
+                UpdateImage(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount));
+                UpdateImage(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction));
+                UpdateImage(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
+                UpdateImage(ImageVisualProperty.RedrawInScalingDown, new PropertyValue(currentStates.redrawInScalingDown));
+                currentStates.changed = false;
+            }
+
+            using PropertyValue animatiedImage = new PropertyValue((int)Visual.Type.AnimatedVectorImage);
+            UpdateImage(Visual.Property.Type, animatiedImage);
+
+            base.UpdateImage();
+        }
+
+        /// <summary>
+        /// Update NUI cached animated image visual property map by inputed property map.
+        /// And call base.MergeCachedImageVisualProperty()
+        /// </summary>
+        /// <remarks>
+        /// For performance issue, we will collect only "cachedLottieAnimationPropertyKeyList" hold in this class.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void MergeCachedImageVisualProperty(PropertyMap map)
+        {
+            if (map == null) return;
+            if (cachedImagePropertyMap == null)
+            {
+                cachedImagePropertyMap = new PropertyMap();
+            }
+            foreach (var key in cachedLottieAnimationPropertyKeyList)
+            {
+                PropertyValue value = map.Find(key);
+                if (value != null)
+                {
+                    // Update-or-Insert new value
+                    cachedImagePropertyMap[key] = value;
+                }
+            }
+            base.MergeCachedImageVisualProperty(map);
+        }
         #endregion Method
 
 
@@ -1121,6 +1180,15 @@ namespace Tizen.NUI.BaseComponents
 
 
         #region Private
+
+        // Collection of lottie-image-sensitive properties.
+        private static readonly List<int> cachedLottieAnimationPropertyKeyList = new List<int> {
+            ImageVisualProperty.LoopCount,
+            ImageVisualProperty.StopBehavior,
+            ImageVisualProperty.LoopingMode,
+            ImageVisualProperty.RedrawInScalingDown,
+        };
+
         private struct states
         {
             internal string url;
@@ -1130,24 +1198,15 @@ namespace Tizen.NUI.BaseComponents
             internal StopBehaviorType stopEndAction;
             internal int framePlayRangeMin;
             internal int framePlayRangeMax;
-            internal bool changed;
             internal int totalFrame;
             internal float scale;
             internal PlayStateType playState;
             internal List<Tuple<string, int, int>> contentInfo;
             internal string mark1, mark2;
             internal bool redrawInScalingDown;
+            internal bool changed;
         };
         private states currentStates;
-
-        private struct DevelVisual
-        {
-            internal enum Type
-            {
-                AnimatedGradient = Visual.Type.AnimatedImage + 1,
-                AnimatedVectorImage = Visual.Type.AnimatedImage + 2,
-            }
-        }
 
         private const string tag = "NUITEST";
         private event EventHandler finishedEventHandler;
