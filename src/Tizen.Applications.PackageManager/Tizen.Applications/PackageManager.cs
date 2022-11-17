@@ -355,9 +355,6 @@ namespace Tizen.Applications
         /// <summary>
         /// Removes a file or directory specified with <paramref name="path"/> from user data internal storage for the application
         /// </summary>
-        /// <remarks>
-        /// A file or directory under user data folder in the internal storage is removed.
-        /// </remarks>
         /// <param name="packageId">ID of the package.</param>
         /// <param name="path">The path of the file or directory in the package user data folder.</param>
         /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
