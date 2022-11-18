@@ -884,6 +884,13 @@ namespace Tizen.NUI.BaseComponents
 #endif
         }
 
+        internal Vector4 GetCurrentScreenPositionSize()
+        {
+            Vector4 ret = new Vector4(Interop.Actor.CalculateScreenExtents(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+            return ret;
+        }
+
         internal void SetInheritPosition(bool inherit)
         {
             Interop.ActorInternal.SetInheritPosition(SwigCPtr, inherit);

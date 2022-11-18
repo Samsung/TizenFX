@@ -1356,6 +1356,23 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Retrieves the screen position and size of the view.<br />
+        /// </summary>
+        /// <remarks>
+        /// The float type Rectangle class is not ready yet.
+        /// Therefore, it transmits data in Vector4 class.
+        /// This type should later be changed to the appropriate data type.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Vector4 ScreenPositionSize
+        {
+            get
+            {
+                return GetCurrentScreenPositionSize();
+            }
+        }
+
+        /// <summary>
         /// Determines whether the pivot point should be used to determine the position of the view.
         /// This is false by default.
         /// </summary>
