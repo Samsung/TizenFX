@@ -270,5 +270,62 @@ namespace Tizen.NUI.BaseComponents
             CheckSWIGPendingException();
             return rect;
         }
+
+        /// <summary>
+        /// Get the bounding rectangle of a character. <br />
+        /// </summary>
+        /// <param name="textLabel">The TextLabel control containing the text.</param>
+        /// <param name="characterIndex">The index of the character to get the bounding rectangle for</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Tizen.NUI.PaddingType GetCharacterBoundingRectangle(TextLabel textLabel, uint characterIndex)
+        {
+            if (textLabel == null)
+            {
+                throw new ArgumentNullException(null, "textLabel object is null");
+            }
+
+            Tizen.NUI.PaddingType rect = new Tizen.NUI.PaddingType(Interop.TextGeometry.GetCharacterBoundingRectangleTextLabel(textLabel.SwigCPtr, characterIndex), true);
+            CheckSWIGPendingException();
+            return rect;
+        }
+
+        /// <summary>
+        /// Get the bounding rectangle of a character. <br />
+        /// </summary>
+        /// <param name="textEditor">The TextEditor control containing the text.</param>
+        /// <param name="characterIndex">The index of the character to get the bounding rectangle for</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Tizen.NUI.PaddingType GetCharacterBoundingRectangle(TextEditor textEditor, uint characterIndex)
+        {
+            if (textEditor == null)
+            {
+                throw new ArgumentNullException(null, "textEditor object is null");
+            }
+
+            Tizen.NUI.PaddingType rect = new Tizen.NUI.PaddingType(Interop.TextGeometry.GetCharacterBoundingRectangleTextEditor(textEditor.SwigCPtr, characterIndex), true);
+            CheckSWIGPendingException();
+            return rect;
+        }
+
+        /// <summary>
+        /// Get the bounding rectangle of a character. <br />
+        /// </summary>
+        /// <param name="textField">The TextField control containing the text.</param>
+        /// <param name="characterIndex">The index of the character to get the bounding rectangle for</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Tizen.NUI.PaddingType GetCharacterBoundingRectangle(TextField textField, uint characterIndex)
+        {
+            if (textField == null)
+            {
+                throw new ArgumentNullException(null, "textField object is null");
+            }
+
+            Tizen.NUI.PaddingType rect = new Tizen.NUI.PaddingType(Interop.TextGeometry.GetCharacterBoundingRectangleTextField(textField.SwigCPtr, characterIndex), true);
+            CheckSWIGPendingException();
+            return rect;
+        }
     }
 }

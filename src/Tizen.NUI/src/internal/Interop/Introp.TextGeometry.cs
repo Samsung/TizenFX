@@ -29,6 +29,15 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextGeometry_TextEditor_GetLineBoundingRectangle")]
             public static extern global::System.IntPtr GetLineBoundingRectangleTextEditor(global::System.Runtime.InteropServices.HandleRef textEditorRef, uint lineIndex);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextGeometry_TextLabel_GetCharacterBoundingRectangle")]
+            public static extern global::System.IntPtr GetCharacterBoundingRectangleTextLabel(global::System.Runtime.InteropServices.HandleRef textLabelRef, uint characterIndex);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextGeometry_TextField_GetCharacterBoundingRectangle")]
+            public static extern global::System.IntPtr GetCharacterBoundingRectangleTextField(global::System.Runtime.InteropServices.HandleRef textFieldRef, uint characterIndex);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextGeometry_TextEditor_GetCharacterBoundingRectangle")]
+            public static extern global::System.IntPtr GetCharacterBoundingRectangleTextEditor(global::System.Runtime.InteropServices.HandleRef textEditorRef, uint characterIndex);
          }
     }
 }

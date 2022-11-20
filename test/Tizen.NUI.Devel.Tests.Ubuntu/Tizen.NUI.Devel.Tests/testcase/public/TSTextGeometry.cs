@@ -99,5 +99,76 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"GetLineBoundingRectangleTextLabel END (OK)");
         }
 
+        [Test]
+        [Category("P1")]
+        [Description("TextGeometry GetCharacterBoundingRectangleTextEditor")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.TextGeometry.GetCharacterBoundingRectangleTextEditor M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "s.al-jammal@partner.samsung.com")]
+        public void GetCharacterBoundingRectangleTextEditor()
+        {
+            tlog.Debug(tag, $"GetCharacterBoundingRectangleTextEditor START");
+
+            Tizen.NUI.PaddingType expectedCharGeometry = new Tizen.NUI.PaddingType(0, 0, 0, 0);
+
+            var testingTarget = new TextEditor();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            var charGeometry = TextGeometry.GetCharacterBoundingRectangle(testingTarget, 0);
+            Assert.IsNotNull(charGeometry, "Null object is detected!");
+            Assert.IsTrue(charGeometry == expectedCharGeometry, "Should be equal!");
+
+            tlog.Debug(tag, $"GetCharacterBoundingRectangleTextEditor END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextGeometry GetCharacterBoundingRectangleTextField")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.TextGeometry.GetCharacterBoundingRectangleTextField M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "s.al-jammal@partner.samsung.com")]
+        public void GetCharacterBoundingRectangleTextField()
+        {
+            tlog.Debug(tag, $"GetCharacterBoundingRectangleTextField START");
+
+            Tizen.NUI.PaddingType expectedCharGeometry = new Tizen.NUI.PaddingType(0, 0, 0, 0);
+
+            var testingTarget = new TextField();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var charGeometry = TextGeometry.GetCharacterBoundingRectangle(testingTarget, 0);
+            Assert.IsNotNull(charGeometry, "Null object is detected!");
+            Assert.IsTrue(charGeometry == expectedCharGeometry, "Should be equal!");
+
+            tlog.Debug(tag, $"GetCharacterBoundingRectangleTextField END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextGeometry GetCharacterBoundingRectangleTextLabel")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.TextGeometry.GetCharacterBoundingRectangleTextLabel M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "s.al-jammal@partner.samsung.com")]
+        public void GetCharacterBoundingRectangleTextLabel()
+        {
+            tlog.Debug(tag, $"GetCharacterBoundingRectangleTextLabel START");
+
+            Tizen.NUI.PaddingType expectedCharGeometry = new Tizen.NUI.PaddingType(0, 0, 0, 0);
+
+            var testingTarget = new TextLabel();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextLabel");
+            Assert.IsInstanceOf<TextLabel>(testingTarget, "Should be an instance of TextLabel type.");
+
+            var charGeometry = TextGeometry.GetCharacterBoundingRectangle(testingTarget, 0);
+            Assert.IsNotNull(charGeometry, "Null object is detected!");
+            Assert.IsTrue(charGeometry == expectedCharGeometry, "Should be equal!");
+
+            tlog.Debug(tag, $"GetCharacterBoundingRectangleTextLabel END (OK)");
+        }
     }
 }
