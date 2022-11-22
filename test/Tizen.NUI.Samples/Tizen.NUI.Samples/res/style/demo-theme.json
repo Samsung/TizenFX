@@ -41,7 +41,7 @@
           {
             "image":
             {
-              "url":"{APPLICATION_RESOURCE_PATH}/images/demo-tile-texture.9.png",
+              //"url":"{APPLICATION_RESOURCE_PATH}/images/demo-tile-texture.9.png",
 // TILE_BACKGROUND_ALPHA
 // This shader takes a texture.
 // An alpha discard is performed.
@@ -79,7 +79,7 @@
           {
             "image":
             {
-              "url":"{APPLICATION_RESOURCE_PATH}/images/demo-tile-texture-focused.9.png",
+              //"url":"{APPLICATION_RESOURCE_PATH}/images/demo-tile-texture-focused.9.png",
 // TILE_BACKGROUND_ALPHA
 // This shader takes a texture.
 // An alpha discard is performed.
@@ -128,7 +128,7 @@
       {
         "image":
         {
-          "url":"{APPLICATION_RESOURCE_PATH}/images/item-background.9.png" // TILE_BACKGROUND
+          //"url":"{APPLICATION_RESOURCE_PATH}/images/item-background.9.png" // TILE_BACKGROUND
         }
       }
     },
