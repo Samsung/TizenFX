@@ -54,24 +54,12 @@ namespace Tizen.NUI.BaseComponents
                                                  AlphaFunction.BuiltinFunctions? alphaFunction = null,
                                                  object initialValue = null)
         {
-#if NUI_VISUAL_PROPERTY_CHANGE_1
             if (IsBackgroundEmpty())
             {
                 // If there is no background yet, ensure there is a transparent
                 // color visual
                 BackgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
             }
-#else
-            Tizen.NUI.PropertyMap background = Background;
-
-            if (background.Empty())
-            {
-                // If there is no background yet, ensure there is a transparent
-                // color visual
-                BackgroundColor = new Color(0.0f, 0.0f, 0.0f, 0.0f);
-                background = Background;
-            }
-#endif
             return AnimateColor("background", destinationValue, startTime, endTime, alphaFunction, initialValue);
         }
 

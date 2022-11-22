@@ -41,7 +41,7 @@ namespace Tizen.NUI.BaseComponents
         private bool isSettingTextInCSharp = false;
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextField";
 
-#if NUI_PROPERTY_CHANGE_2
+
         private Vector4 internalPlaceholderTextColor = null;
         private Vector4 internalPrimaryCursorColor = null;
         private Vector4 internalSecondaryCursorColor = null;
@@ -50,7 +50,6 @@ namespace Tizen.NUI.BaseComponents
         private Color internalTextColor = null;
         private Color internalGrabHandleColor = null;
 
-#endif
 
         static TextField() { }
 
@@ -2340,14 +2339,8 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalFontSizeScale(float fontSizeScale)
         {
-#if NUI_PROPERTY_CHANGE_2
+
             Object.InternalSetPropertyFloat(this.SwigCPtr, TextField.Property.FontSizeScale, (float)fontSizeScale);
-#else
-            using (var property = new Tizen.NUI.PropertyValue((float)fontSizeScale))
-            {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)this.SwigCPtr, TextField.Property.FontSizeScale, property);
-            }
-#endif
         }
 
         /// <summary>
@@ -2445,7 +2438,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-#if NUI_PROPERTY_CHANGE_2
+
             internalPlaceholderTextColor?.Dispose();
             internalPrimaryCursorColor?.Dispose();
             internalSecondaryCursorColor?.Dispose();
@@ -2453,7 +2446,6 @@ namespace Tizen.NUI.BaseComponents
             internalInputColor?.Dispose();
             internalTextColor?.Dispose();
             internalGrabHandleColor?.Dispose();
-#endif
 
             if (systemlangTextFlag)
             {
