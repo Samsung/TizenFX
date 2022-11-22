@@ -48,7 +48,7 @@ namespace Tizen.NUI
             Interop.Handle.SetProperty(handle, index, PropertyValue.getCPtr(propertyValue));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-#if NUI_PROPERTY_CHANGE_1
+
         internal static int InternalSetPropertyString(HandleRef actor, int propertyType, string valString)
         {
             if (actor.Handle == System.IntPtr.Zero)
@@ -288,7 +288,5 @@ namespace Tizen.NUI
             }
             return ret;
         }
-
-#endif
     }
 }
