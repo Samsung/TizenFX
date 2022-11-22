@@ -87,9 +87,7 @@ namespace Tizen.NUI.BaseComponents
         private float fontSizeScale = 1.0f;
         private bool hasFontSizeChangedCallback = false;
 
-#if NUI_PROPERTY_CHANGE_2
         private Color internalTextColor;
-#endif
 
         /// <summary>
         /// Creates the TextLabel control.
@@ -1488,9 +1486,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-#if NUI_PROPERTY_CHANGE_2
             internalTextColor?.Dispose();
-#endif
 
             if (systemlangTextFlag)
             {
