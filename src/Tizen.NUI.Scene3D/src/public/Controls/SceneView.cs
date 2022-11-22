@@ -297,8 +297,9 @@ namespace Tizen.NUI.Scene3D
         /// Camera Position, Orientation and FieldOfView are smoothly animated.
         /// </summary>
         /// <remarks>
-        /// The selected camera is switched when the transition is started.
-        /// During camera transition, Selected Camera cannot be changed by using SelectCamera() or CameraTransition() method.
+        /// The selected camera is switched to the Camera of the index when the transition is started.
+        /// During camera transition, Selected Camera should not be changed by using SelectCamera() or CameraTransition() method.
+        /// During camera transition, Camera properties of Selected Camera should not be changed.
         /// </remarks>
         /// <param name="index"> Index of destination Camera of Camera transition.</param>
         /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
@@ -306,7 +307,7 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public void CameraTransition(uint index, int durationMilliSeconds, AlphaFunction alphaFunction = null)
         {
-            if(inCameraTransition)
+            if(inCameraTransition || GetSelectedCamera() == GetCamera(index))
             {
                 return;
             }
@@ -321,8 +322,9 @@ namespace Tizen.NUI.Scene3D
         /// Camera Position, Orientation and FieldOfView are smoothly animated.
         /// </summary>
         /// <remarks>
-        /// The selected camera is switched when the transition is started.
-        /// During camera transition, Selected Camera cannot be changed by using SelectCamera() or CameraTransition() method.
+        /// The selected camera is switched to the Camera of the input name when the transition is started.
+        /// During camera transition, Selected Camera should not be changed by using SelectCamera() or CameraTransition() method.
+        /// During camera transition, Camera properties of Selected Camera should not be changed.
         /// </remarks>
         /// <param name="name"> string keyword of destination Camera of Camera transition.</param>
         /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
@@ -330,7 +332,7 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public void CameraTransition(string name, int durationMilliSeconds, AlphaFunction alphaFunction = null)
         {
-            if(inCameraTransition)
+            if(inCameraTransition || GetSelectedCamera() == GetCamera(name))
             {
                 return;
             }
@@ -460,8 +462,15 @@ namespace Tizen.NUI.Scene3D
             cameraTransition.AnimateBetween(destinationCamera, "Orientation", orientationKeyFrames, Animation.Interpolation.Linear, alphaFunction);
             cameraTransition.AnimateBetween(destinationCamera, "FieldOfView", fieldOfViewKeyFrames, Animation.Interpolation.Linear, alphaFunction);
 
+            float destinationNearPlaneDistance = destinationCamera.NearPlaneDistance;
+            float destinationFarPlaneDistance = destinationCamera.FarPlaneDistance;
+            destinationCamera.NearPlaneDistance = Math.Min(sourceCamera.NearPlaneDistance, destinationCamera.NearPlaneDistance);
+            destinationCamera.FarPlaneDistance = Math.Max(sourceCamera.FarPlaneDistance, destinationCamera.FarPlaneDistance);
+
             cameraTransition.Finished += (s, e) =>
             {
+                this.GetSelectedCamera().NearPlaneDistance = destinationNearPlaneDistance;
+                this.GetSelectedCamera().FarPlaneDistance = destinationFarPlaneDistance;
                 inCameraTransition = false;
                 CameraTransitionFinished?.Invoke(this, EventArgs.Empty);
             };
