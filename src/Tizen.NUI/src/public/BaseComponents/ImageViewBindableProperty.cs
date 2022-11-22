@@ -143,11 +143,7 @@ namespace Tizen.NUI.BaseComponents
                 else
                 {
                     // Else, we don't need to re-create view. Get value from current ImageView.
-#if NUI_PROPERTY_CHANGE_2
                     Object.InternalSetPropertyBool(imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, (bool)newValue);
-#else
-                    Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha, new Tizen.NUI.PropertyValue((bool)newValue));
-#endif                    
                 }
             }
         }),
@@ -164,11 +160,7 @@ namespace Tizen.NUI.BaseComponents
             else
             {
                 // Else, PremultipliedAlpha may not setuped in cached property. Get value from current ImageView.
-#if NUI_PROPERTY_CHANGE_2
                 temp = Object.InternalGetPropertyBool(imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha);
-#else
-                Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PreMultipliedAlpha).Get(out temp);
-#endif                
             }
             return temp;
         }));
@@ -180,29 +172,20 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             if (newValue != null)
             {
-#if NUI_PROPERTY_CHANGE_2
+
                 Object.InternalSetPropertyVector4(imageView.SwigCPtr, ImageView.Property.PixelArea, ((RelativeVector4)newValue).SwigCPtr);
-#else
-                Tizen.NUI.Object.SetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PixelArea, new Tizen.NUI.PropertyValue((RelativeVector4)newValue));
-#endif
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var imageView = (ImageView)bindable;
-#if NUI_PROPERTY_CHANGE_2
+
             if (imageView.internalPixelArea == null)
             {
                 imageView.internalPixelArea = new RelativeVector4(imageView.OnPixelAreaChanged, 0, 0, 0, 0);
             }
             Object.InternalRetrievingPropertyVector4(imageView.SwigCPtr, ImageView.Property.PixelArea, imageView.internalPixelArea.SwigCPtr);
             return imageView.internalPixelArea;
-#else
-            Vector4 temp = new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
-            Tizen.NUI.Object.GetProperty((HandleRef)imageView.SwigCPtr, ImageView.Property.PixelArea).Get(temp);
-            RelativeVector4 relativeTemp = new RelativeVector4(temp.X, temp.Y, temp.Z, temp.W);
-            return relativeTemp;
-#endif            
         }));
 
         /// Intenal used, will never be opened.

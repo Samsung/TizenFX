@@ -88,9 +88,7 @@ namespace Tizen.NUI.BaseComponents
         private bool hasFontSizeChangedCallback = false;
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextLabel";
 
-#if NUI_PROPERTY_CHANGE_2
         private Color internalTextColor;
-#endif
 
         /// <summary>
         /// Creates the TextLabel control.
@@ -1450,14 +1448,8 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalFontSizeScale(float fontSizeScale)
         {
-#if NUI_PROPERTY_CHANGE_2
+
             Object.InternalSetPropertyFloat(this.SwigCPtr, TextLabel.Property.FontSizeScale, (float)fontSizeScale);
-#else
-            using (var property = new Tizen.NUI.PropertyValue((float)fontSizeScale))
-            {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)this.SwigCPtr, TextLabel.Property.FontSizeScale, property);
-            }
-#endif
             RequestLayout();
         }
 
@@ -1514,9 +1506,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-#if NUI_PROPERTY_CHANGE_2
             internalTextColor?.Dispose();
-#endif
 
             if (systemlangTextFlag)
             {

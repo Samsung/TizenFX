@@ -260,7 +260,7 @@ namespace Tizen.NUI
                 return PropertyValue.CreateFromObject(refined);
             }
 
-#if NUI_ANIMATION_PROPERTY_CHANGE_1
+
             // Refine object as IntPtr of PropertyValue to optimize.
             // Warning : This API don't automatically release memory.
             internal global::System.IntPtr RefineValueIntPtr(object value)
@@ -281,7 +281,6 @@ namespace Tizen.NUI
 
                 return PropertyValue.CreateFromObjectIntPtr(refined);
             }
-#endif
 
             internal KeyFrames RefineKeyFrames(KeyFrames keyFrames)
             {
