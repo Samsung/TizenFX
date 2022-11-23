@@ -92,6 +92,24 @@ namespace Tizen.NUI.Components
             return instance.InternalTransition;
         });
 
+        /// <summary>
+        /// EnableBackNavigationProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EnableBackNavigationProperty = BindableProperty.Create(nameof(EnableBackNavigation), typeof(bool), typeof(Navigator), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Navigator)bindable;
+            if (newValue != null)
+            {
+                instance.InternalEnableBackNavigation = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Navigator)bindable;
+            return instance.InternalEnableBackNavigation;
+        });
+
         private const int DefaultTransitionDuration = 300;
 
         //This will be replaced with view transition class instance.
@@ -117,9 +135,45 @@ namespace Tizen.NUI.Components
 
         private List<Page> navigationPages = new List<Page>();
 
+        private bool enableBackNavigation = true;
+
+        private Window parentWindow;
+
+        private void OnWindowKeyEvent(object sender, Window.KeyEventArgs e)
+        {
+            if (!EnableBackNavigation)
+            {
+                return;
+            }
+
+            if ((e.Key.State == Key.StateType.Up) && ((e.Key.KeyPressedName == "Escape") || (e.Key.KeyPressedName == "BackSpace") || (e.Key.KeyPressedName == "XF86Back")))
+            {
+                if (PageCount >= 1)
+                {
+                    Tizen.Log.Info("NUI", $"Navigator pops the peek page by {e.Key.KeyPressedName}.\n");
+                    Pop();
+                }
+            }
+        }
+
+        private void OnAddedToWindow(object sender, EventArgs e)
+        {
+            parentWindow = Window.Get(this);
+            parentWindow.KeyEvent += OnWindowKeyEvent;
+        }
+
+        private void OnRemovedFromWindow(object sender, EventArgs e)
+        {
+            parentWindow.KeyEvent -= OnWindowKeyEvent;
+            parentWindow = null;
+        }
+
         private void Initialize()
         {
             Layout = new AbsoluteLayout();
+
+            AddedToWindow += OnAddedToWindow;
+            RemovedFromWindow += OnRemovedFromWindow;
         }
 
         /// <summary>
@@ -456,6 +510,7 @@ namespace Tizen.NUI.Components
                 {
                     //Removes the current top page after transition is finished.
                     Remove(curTop);
+
                     curTop.PositionX = 0.0f;
 
                     //Invoke Page events
@@ -698,6 +753,35 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Gets or sets if Navigator pops the peek page when back button or back key is pressed and released.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableBackNavigation
+        {
+            get
+            {
+                return (bool)GetValue(EnableBackNavigationProperty);
+            }
+            set
+            {
+                SetValue(EnableBackNavigationProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalEnableBackNavigation
+        {
+            set
+            {
+                enableBackNavigation = value;
+            }
+            get
+            {
+                return enableBackNavigation;
+            }
+        }
+
+        /// <summary>
         /// Disposes Navigator and all children on it.
         /// </summary>
         /// <param name="type">Dispose type.</param>
@@ -724,6 +808,9 @@ namespace Tizen.NUI.Components
                     navigatorWindow.Remove(this);
                     windowNavigator.Remove(window);
                 }
+
+                AddedToWindow -= OnAddedToWindow;
+                RemovedFromWindow -= OnRemovedFromWindow;
             }
 
             base.Dispose(type);
