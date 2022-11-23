@@ -672,8 +672,8 @@ namespace Tizen.NUI.Components
                 var page = GetParent() as Page;
                 if (page != null)
                 {
-                    var navigator = page.GetParent() as Navigator;
-                    if (navigator != null)
+                    var navigator = page.Navigator;
+                    if ((navigator != null) && (navigator.EnableBackNavigation))
                     {
                         navigator.Pop();
                     }
