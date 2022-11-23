@@ -87,20 +87,31 @@ namespace Tizen.NUI
         /// The x component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Position2D(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Position2D position2d = new Position2D();
-        /// position2d.X = 1; 
-        /// // USE like this
-        /// int x = 1, y = 2;
-        /// Position2D position2d = new Position2D(x, y);
+        /// var view = new View();
+        /// view.Position2D = new Position2D(100, 200);
         /// </code>
+        /// or
+        /// <code>
+        /// var position = new Position2D();
+        /// position.X = 100;
+        /// position.Y = 200;
+        /// var view = new View();
+        /// view.Position2D = position;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Position2D.X = 100; //This does not guarantee a proper operation
+        /// view.Position2D.Y = 200; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public int X
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Position2D(...) constructor")]
             set
             {
                 Interop.Vector2.XSet(SwigCPtr, (float)value);
@@ -120,20 +131,31 @@ namespace Tizen.NUI
         /// The y component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Position2D(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Position2D position2d = new Position2D();
-        /// position2d.Y = 2; 
-        /// // USE like this
-        /// int x = 1, y = 2;
-        /// Position2D position2d = new Position2D(x, y);
+        /// var view = new View();
+        /// view.Position2D = new Position2D(100, 200);
         /// </code>
+        /// or
+        /// <code>
+        /// var position = new Position2D();
+        /// position.X = 100;
+        /// position.Y = 200;
+        /// var view = new View();
+        /// view.Position2D = position;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Position2D.X = 100; //This does not guarantee a proper operation
+        /// view.Position2D.Y = 200; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public int Y
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Position2D(...) constructor")]
             set
             {
                 Interop.Vector2.YSet(SwigCPtr, (float)value);

@@ -172,20 +172,35 @@ namespace Tizen.NUI
         /// The x component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector4 vector4 = new Vector4();
-        /// vector4.X = 0.1f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
-        /// Vector4 vector4 = new Vector4(x, y, z, w);
+        /// var view = new View();
+        /// view.CornerRadius = new Vector4(1.5f, 2.0f, 1.0f, 2.5f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector4();
+        /// vector.X = 1.5f;
+        /// vector.Y = 2.0f;
+        /// vector.Z = 1.0f;
+        /// vector.W = 2.5f;
+        /// var view = new View();
+        /// view.CornerRadius = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CornerRadius.X = 1.5f; //This does not guarantee a proper operation
+        /// view.CornerRadius.Y = 2.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.Z = 1.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.W = 2.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.XSet(SwigCPtr, value);
@@ -205,20 +220,35 @@ namespace Tizen.NUI
         /// The red component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector4 vector4 = new Vector4();
-        /// vector4.R = 0.1f; 
-        /// // USE like this
-        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
-        /// Vector4 vector4 = new Vector4(r, g, b, a);
+        /// var view = new View();
+        /// view.CornerRadius = new Vector4(1.5f, 2.0f, 1.0f, 2.5f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector4();
+        /// vector.R = 1.5f;
+        /// vector.G = 2.0f;
+        /// vector.B = 1.0f;
+        /// vector.A = 2.5f;
+        /// var view = new View();
+        /// view.CornerRadius = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CornerRadius.R = 1.5f; //This does not guarantee a proper operation
+        /// view.CornerRadius.G = 2.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.B = 1.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.A = 2.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float R
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.RSet(SwigCPtr, value);
@@ -238,20 +268,35 @@ namespace Tizen.NUI
         /// The s component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector4 vector4 = new Vector4();
-        /// vector4.S = 0.1f; 
-        /// // USE like this
-        /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
-        /// Vector4 vector4 = new Vector4(s, t, p, q);
+        /// var view = new View();
+        /// view.CornerRadius = new Vector4(1.5f, 2.0f, 1.0f, 2.5f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector4();
+        /// vector.S = 1.5f;
+        /// vector.T = 2.0f;
+        /// vector.P = 1.0f;
+        /// vector.Q = 2.5f;
+        /// var view = new View();
+        /// view.CornerRadius = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CornerRadius.S = 1.5f; //This does not guarantee a proper operation
+        /// view.CornerRadius.T = 2.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.P = 1.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.Q = 2.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float S
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.SSet(SwigCPtr, value);
@@ -271,20 +316,35 @@ namespace Tizen.NUI
         /// The y component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector4 vector4 = new Vector4();
-        /// vector4.Y = 0.5f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
-        /// Vector4 vector4 = new Vector4(x, y, z, w);
+        /// var view = new View();
+        /// view.CornerRadius = new Vector4(1.5f, 2.0f, 1.0f, 2.5f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector4();
+        /// vector.X = 1.5f;
+        /// vector.Y = 2.0f;
+        /// vector.Z = 1.0f;
+        /// vector.W = 2.5f;
+        /// var view = new View();
+        /// view.CornerRadius = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CornerRadius.X = 1.5f; //This does not guarantee a proper operation
+        /// view.CornerRadius.Y = 2.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.Z = 1.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.W = 2.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.YSet(SwigCPtr, value);
@@ -304,20 +364,35 @@ namespace Tizen.NUI
         /// The green component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector4 vector4 = new Vector4();
-        /// vector4.G = 0.5f; 
-        /// // USE like this
-        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
-        /// Vector4 vector4 = new Vector4(r, g, b, a);
+        /// var view = new View();
+        /// view.CornerRadius = new Vector4(1.5f, 2.0f, 1.0f, 2.5f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector4();
+        /// vector.R = 1.5f;
+        /// vector.G = 2.0f;
+        /// vector.B = 1.0f;
+        /// vector.A = 2.5f;
+        /// var view = new View();
+        /// view.CornerRadius = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CornerRadius.R = 1.5f; //This does not guarantee a proper operation
+        /// view.CornerRadius.G = 2.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.B = 1.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.A = 2.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float G
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.GSet(SwigCPtr, value);
@@ -337,20 +412,35 @@ namespace Tizen.NUI
         /// The t component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector4 vector4 = new Vector4();
-        /// vector4.T = 0.5f; 
-        /// // USE like this
-        /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
-        /// Vector4 vector4 = new Vector4(s, t, p, q);
+        /// var view = new View();
+        /// view.CornerRadius = new Vector4(1.5f, 2.0f, 1.0f, 2.5f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector4();
+        /// vector.S = 1.5f;
+        /// vector.T = 2.0f;
+        /// vector.P = 1.0f;
+        /// vector.Q = 2.5f;
+        /// var view = new View();
+        /// view.CornerRadius = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CornerRadius.S = 1.5f; //This does not guarantee a proper operation
+        /// view.CornerRadius.T = 2.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.P = 1.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.Q = 2.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float T
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.TSet(SwigCPtr, value);
@@ -370,20 +460,35 @@ namespace Tizen.NUI
         /// The z component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector4 vector4 = new Vector4();
-        /// vector4.Z = 0.9f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
-        /// Vector4 vector4 = new Vector4(x, y, z, w);
+        /// var view = new View();
+        /// view.CornerRadius = new Vector4(1.5f, 2.0f, 1.0f, 2.5f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector4();
+        /// vector.X = 1.5f;
+        /// vector.Y = 2.0f;
+        /// vector.Z = 1.0f;
+        /// vector.W = 2.5f;
+        /// var view = new View();
+        /// view.CornerRadius = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CornerRadius.X = 1.5f; //This does not guarantee a proper operation
+        /// view.CornerRadius.Y = 2.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.Z = 1.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.W = 2.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Z
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.ZSet(SwigCPtr, value);
@@ -403,20 +508,35 @@ namespace Tizen.NUI
         /// The blue component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector4 vector4 = new Vector4();
-        /// vector4.B = 0.9f; 
-        /// // USE like this
-        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
-        /// Vector4 vector4 = new Vector4(r, g, b, a);
+        /// var view = new View();
+        /// view.CornerRadius = new Vector4(1.5f, 2.0f, 1.0f, 2.5f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector4();
+        /// vector.R = 1.5f;
+        /// vector.G = 2.0f;
+        /// vector.B = 1.0f;
+        /// vector.A = 2.5f;
+        /// var view = new View();
+        /// view.CornerRadius = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CornerRadius.R = 1.5f; //This does not guarantee a proper operation
+        /// view.CornerRadius.G = 2.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.B = 1.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.A = 2.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float B
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.BSet(SwigCPtr, value);
@@ -436,20 +556,35 @@ namespace Tizen.NUI
         /// The p component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector4 vector4 = new Vector4();
-        /// vector4.P = 0.9f; 
-        /// // USE like this
-        /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
-        /// Vector4 vector4 = new Vector4(s, t, p, q);
+        /// var view = new View();
+        /// view.CornerRadius = new Vector4(1.5f, 2.0f, 1.0f, 2.5f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector4();
+        /// vector.S = 1.5f;
+        /// vector.T = 2.0f;
+        /// vector.P = 1.0f;
+        /// vector.Q = 2.5f;
+        /// var view = new View();
+        /// view.CornerRadius = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CornerRadius.S = 1.5f; //This does not guarantee a proper operation
+        /// view.CornerRadius.T = 2.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.P = 1.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.Q = 2.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float P
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.PSet(SwigCPtr, value);
@@ -469,20 +604,35 @@ namespace Tizen.NUI
         /// The w component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector4 vector4 = new Vector4();
-        /// vector4.W = 1.0f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
-        /// Vector4 vector4 = new Vector4(x, y, z, w);
+        /// var view = new View();
+        /// view.CornerRadius = new Vector4(1.5f, 2.0f, 1.0f, 2.5f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector4();
+        /// vector.X = 1.5f;
+        /// vector.Y = 2.0f;
+        /// vector.Z = 1.0f;
+        /// vector.W = 2.5f;
+        /// var view = new View();
+        /// view.CornerRadius = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CornerRadius.X = 1.5f; //This does not guarantee a proper operation
+        /// view.CornerRadius.Y = 2.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.Z = 1.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.W = 2.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float W
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.WSet(SwigCPtr, value);
@@ -502,20 +652,35 @@ namespace Tizen.NUI
         /// The alpha component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector4 vector4 = new Vector4();
-        /// vector4.A = 1.0f; 
-        /// // USE like this
-        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
-        /// Vector4 vector4 = new Vector4(r, g, b, a);
+        /// var view = new View();
+        /// view.CornerRadius = new Vector4(1.5f, 2.0f, 1.0f, 2.5f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector4();
+        /// vector.R = 1.5f;
+        /// vector.G = 2.0f;
+        /// vector.B = 1.0f;
+        /// vector.A = 2.5f;
+        /// var view = new View();
+        /// view.CornerRadius = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CornerRadius.R = 1.5f; //This does not guarantee a proper operation
+        /// view.CornerRadius.G = 2.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.B = 1.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.A = 2.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float A
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.ASet(SwigCPtr, value);
@@ -535,20 +700,35 @@ namespace Tizen.NUI
         /// The q component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector4 vector4 = new Vector4();
-        /// vector4.Q = 1.0f; 
-        /// // USE like this
-        /// float s = 0.1f, t = 0.5f, p = 0.9f, q = 1.0f;
-        /// Vector4 vector4 = new Vector4(s, t, p, q);
+        /// var view = new View();
+        /// view.CornerRadius = new Vector4(1.5f, 2.0f, 1.0f, 2.5f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector4();
+        /// vector.S = 1.5f;
+        /// vector.T = 2.0f;
+        /// vector.P = 1.0f;
+        /// vector.Q = 2.5f;
+        /// var view = new View();
+        /// view.CornerRadius = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CornerRadius.S = 1.5f; //This does not guarantee a proper operation
+        /// view.CornerRadius.T = 2.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.P = 1.0f; //This does not guarantee a proper operation
+        /// view.CornerRadius.Q = 2.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Q
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector4(...) constructor")]
             set
             {
                 Interop.Vector4.QSet(SwigCPtr, value);

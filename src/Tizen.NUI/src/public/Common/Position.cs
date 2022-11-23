@@ -521,20 +521,33 @@ namespace Tizen.NUI
         /// The x component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Position(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Position position = new Position();
-        /// position.X = 1.0f; 
-        /// // USE like this
-        /// float x = 1.0f, y = 2.0f, z = 3.0f;
-        /// Position position = new Position(x, y, z);
+        /// var view = new View();
+        /// view.Position = new Position(100, 200.5f, 0);
         /// </code>
+        /// or
+        /// <code>
+        /// var position = new Position();
+        /// position.X = 100;
+        /// position.Y = 200.5f;
+        /// position.Z = 0;
+        /// var view = new View();
+        /// view.Position = position;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Position.X = 100; //This does not guarantee a proper operation
+        /// view.Position.Y = 200.5f; //This does not guarantee a proper operation
+        /// view.Position.Z = 0; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Position(...) constructor")]
             set
             {
                 Interop.Vector3.XSet(SwigCPtr, value);
@@ -554,20 +567,33 @@ namespace Tizen.NUI
         /// The y component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Position(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Position position = new Position();
-        /// position.Y = 2.0f; 
-        /// // USE like this
-        /// float x = 1.0f, y = 2.0f, z = 3.0f;
-        /// Position position = new Position(x, y, z);
+        /// var view = new View();
+        /// view.Position = new Position(100, 200.5f, 0);
         /// </code>
+        /// or
+        /// <code>
+        /// var position = new Position();
+        /// position.X = 100;
+        /// position.Y = 200.5f;
+        /// position.Z = 0;
+        /// var view = new View();
+        /// view.Position = position;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Position.X = 100; //This does not guarantee a proper operation
+        /// view.Position.Y = 200.5f; //This does not guarantee a proper operation
+        /// view.Position.Z = 0; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Position(...) constructor")]
             set
             {
                 Interop.Vector3.YSet(SwigCPtr, value);
@@ -587,20 +613,33 @@ namespace Tizen.NUI
         /// The z component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Position(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Position position = new Position();
-        /// position.Z = 3.0f; 
-        /// // USE like this
-        /// float x = 1.0f, y = 2.0f, z = 3.0f;
-        /// Position position = new Position(x, y, z);
+        /// var view = new View();
+        /// view.Position = new Position(100, 200.5f, 0);
         /// </code>
+        /// or
+        /// <code>
+        /// var position = new Position();
+        /// position.X = 100;
+        /// position.Y = 200.5f;
+        /// position.Z = 0;
+        /// var view = new View();
+        /// view.Position = position;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Position.X = 100; //This does not guarantee a proper operation
+        /// view.Position.Y = 200.5f; //This does not guarantee a proper operation
+        /// view.Position.Z = 0; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Z
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Position(...) constructor")]
             set
             {
                 Interop.Vector3.ZSet(SwigCPtr, value);

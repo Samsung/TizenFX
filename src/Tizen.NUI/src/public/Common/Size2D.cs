@@ -108,20 +108,31 @@ namespace Tizen.NUI
         /// The property for the width component of a size.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Size2D(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Size2D size2d = new Size2D();
-        /// size2d.Width = 1; 
-        /// // USE like this
-        /// int width = 1, height = 2;
-        /// Size2D size2d = new Size2D(width, height);
+        /// var view = new View();
+        /// view.Size2D = new Size2D(100, 200);
         /// </code>
+        /// or
+        /// <code>
+        /// var size = new Size2D();
+        /// size.Width = 100;
+        /// size.Height = 200;
+        /// var view = new View();
+        /// view.Size2D = size;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Size2D.Width = 100; //This does not guarantee a proper operation
+        /// view.Size2D.Height = 200; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public int Width
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Size2D(...) constructor")]
             set
             {
                 Interop.Vector2.WidthSet(SwigCPtr, (float)value);
@@ -141,20 +152,31 @@ namespace Tizen.NUI
         /// The property for the height component of a size.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Size2D(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Size2D size2d = new Size2D();
-        /// size2d.Height = 2; 
-        /// // USE like this
-        /// int width = 1, height = 2;
-        /// Size2D size2d = new Size2D(width, height);
+        /// var view = new View();
+        /// view.Size2D = new Size2D(100, 200);
         /// </code>
+        /// or
+        /// <code>
+        /// var size = new Size2D();
+        /// size.Width = 100;
+        /// size.Height = 200;
+        /// var view = new View();
+        /// view.Size2D = size;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Size2D.Width = 100; //This does not guarantee a proper operation
+        /// view.Size2D.Height = 200; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public int Height
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Size2D(...) constructor")]
             set
             {
                 Interop.Vector2.HeightSet(SwigCPtr, (float)value);

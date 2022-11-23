@@ -381,7 +381,7 @@ namespace Tizen.NUI.BaseComponents
                             }
 
                             if (child.ControlState != newControlState)
-                            child.ControlState = newControlState;
+                                child.ControlState = newControlState;
                         }
                     }
                 }
@@ -482,9 +482,22 @@ namespace Tizen.NUI.BaseComponents
         /// var view = new View();
         /// view.BackgroundColor = new Color(0.5f, 0.1f, 0, 1);
         /// </code>
-        /// This way to set the property is prohibited
+        /// or
+        /// <code>
+        /// var color = new Color();
+        /// color.R = 0.5f;
+        /// color.G = 0.1f;
+        /// color.B = 0;
+        /// color.A = 1;
+        /// var view = new View();
+        /// view.BackgroundColor = color;
+        /// </code>
+        /// However, this way to set the property is prohibited
         /// <code>
         /// view.BackgroundColor.R = 0.5f; //This does not guarantee a proper operation
+        /// view.BackgroundColor.G = 0.1f; //This does not guarantee a proper operation
+        /// view.BackgroundColor.B = 0; //This does not guarantee a proper operation
+        /// view.BackgroundColor.A = 1; //This does not guarantee a proper operation
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
@@ -892,9 +905,6 @@ namespace Tizen.NUI.BaseComponents
         /// The Child property of FlexContainer.<br />
         /// The space around the flex item.<br />
         /// </summary>
-        /// <remarks>
-        /// The property cascade chaining set is possible. For example, this (view.FlexMargin.X = 0.1f;) is possible.
-        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("Deprecated in API8, will be removed in API10.")]
         public Vector4 FlexMargin
@@ -924,9 +934,18 @@ namespace Tizen.NUI.BaseComponents
         /// var view = new View();
         /// view.CellIndex = new Vector2(1, 3);
         /// </code>
-        /// This way to set the property is prohibited
+        /// or
+        /// <code>
+        /// var vector = new Vector2();
+        /// vector.X = 1;
+        /// vector.Y = 3;
+        /// var view = new View();
+        /// view.CellIndex = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
         /// <code>
         /// view.CellIndex.X = 1; //This does not guarantee a proper operation
+        /// view.CellIndex.Y = 3; //This does not guarantee a proper operation
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
@@ -1231,9 +1250,18 @@ namespace Tizen.NUI.BaseComponents
         /// var view = new View();
         /// view.Size2D = new Size2D(100, 200);
         /// </code>
-        /// This way to set the property is prohibited
+        /// or
+        /// <code>
+        /// var size = new Size2D();
+        /// size.Width = 100;
+        /// size.Height = 200;
+        /// var view = new View();
+        /// view.Size2D = size;
+        /// </code>
+        /// However, this way to set the property is prohibited
         /// <code>
         /// view.Size2D.Width = 100; //This does not guarantee a proper operation
+        /// view.Size2D.Height = 200; //This does not guarantee a proper operation
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
@@ -1317,9 +1345,18 @@ namespace Tizen.NUI.BaseComponents
         /// var view = new View();
         /// view.Position2D = new Position2D(100, 200);
         /// </code>
-        /// This way to set the property is prohibited
+        /// or
+        /// <code>
+        /// var position = new Position2D();
+        /// position.X = 100;
+        /// position.Y = 200;
+        /// var view = new View();
+        /// view.Position2D = position;
+        /// </code>
+        /// However, this way to set the property is prohibited
         /// <code>
         /// view.Position2D.X = 100; //This does not guarantee a proper operation
+        /// view.Position2D.Y = 200; //This does not guarantee a proper operation
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
@@ -1548,9 +1585,20 @@ namespace Tizen.NUI.BaseComponents
         /// var view = new View();
         /// view.PivotPoint = PivotPoint.Center;
         /// </code>
-        /// This way to set the property is prohibited
+        /// or
+        /// <code>
+        /// var position = new Position();
+        /// position.X = 0.5f;
+        /// position.Y = 0.5f;
+        /// position.Z = 0.5f;
+        /// var view = new View();
+        /// view.PivotPoint = position;
+        /// </code>
+        /// However, this way to set the property is prohibited
         /// <code>
         /// view.PivotPoint.X = 0.5f; //This does not guarantee a proper operation
+        /// view.PivotPoint.Y = 0.5f; //This does not guarantee a proper operation
+        /// view.PivotPoint.Z = 0.5f; //This does not guarantee a proper operation
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
@@ -1637,9 +1685,20 @@ namespace Tizen.NUI.BaseComponents
         /// var view = new View();
         /// view.Position = new Position(100, 200.5f, 0);
         /// </code>
-        /// This way to set the property is prohibited
+        /// or
         /// <code>
+        /// var position = new Position();
+        /// position.X = 100;
+        /// position.Y = 200.5f;
+        /// position.Z = 0;
+        /// var view = new View();
+        /// view.Position = position;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Position.X = 100; //This does not guarantee a proper operation
         /// view.Position.Y = 200.5f; //This does not guarantee a proper operation
+        /// view.Position.Z = 0; //This does not guarantee a proper operation
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
@@ -1806,9 +1865,18 @@ namespace Tizen.NUI.BaseComponents
         /// var view = new View();
         /// view.Scale = new Vector3(1.5f, 2.0f, 1.0f);
         /// </code>
-        /// This way to set the property is prohibited
+        /// or
+        /// <code>
+        /// var vector = new Vector3();
+        /// vector.Width = 1.5f;
+        /// vector.Height = 2.0f;
+        /// var view = new View();
+        /// view.Scale = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
         /// <code>
         /// view.Scale.Width = 1.5f; //This does not guarantee a proper operation
+        /// view.Scale.Height = 2.0f; //This does not guarantee a proper operation
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
@@ -2114,9 +2182,20 @@ namespace Tizen.NUI.BaseComponents
         /// var text = new TextField();
         /// text.SizeModeFactor = new Vector3(1.0f, 0.45f, 1.0f);
         /// </code>
-        /// This way to set the property is prohibited
+        /// or
+        /// <code>
+        /// var vector = new Vector3();
+        /// vector.Width = 1.0f;
+        /// vector.Height = 0.45f;
+        /// vector.Depth = 1.0f;
+        /// var view = new View();
+        /// view.SizeModeFactor = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
         /// <code>
         /// text.SizeModeFactor.Width = 1.0f; //This does not guarantee a proper operation
+        /// text.SizeModeFactor.Height = 0.45f; //This does not guarantee a proper operation
+        /// text.SizeModeFactor.Depth = 1.0f; //This does not guarantee a proper operation
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
@@ -2229,11 +2308,24 @@ namespace Tizen.NUI.BaseComponents
         /// This way is recommended for setting the property
         /// <code>
         /// var view = new View();
-        /// view.Padding = new Extents(5, 5, 5, 5);
+        /// view.Padding = new Extents(1, 2, 3, 4);
         /// </code>
-        /// This way to set the property is prohibited
+        /// or
         /// <code>
-        /// view.Padding.Start = 5; //This does not guarantee a proper operation
+        /// var extents = new Extents();
+        /// extents.Start = 1;
+        /// extents.End = 2;
+        /// extents.Top = 3;
+        /// extents.Bottom = 4;
+        /// var view = new View();
+        /// view.Padding = extents;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Padding.Start = 1; //This does not guarantee a proper operation
+        /// view.Padding.End = 2; //This does not guarantee a proper operation
+        /// view.Padding.Top = 3; //This does not guarantee a proper operation
+        /// view.Padding.Bottom = 4; //This does not guarantee a proper operation
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
@@ -2256,16 +2348,25 @@ namespace Tizen.NUI.BaseComponents
         /// <exception cref="ArgumentNullException"> Thrown when value is null. </exception>
         /// <remarks>
         /// The property cascade chaining set is not recommended.
-        /// </remarks>
+        /// </remarks> 
         /// <example>
         /// This way is recommended for setting the property
         /// <code>
         /// var view = new View();
         /// view.MinimumSize = new Size2D(100, 200);
         /// </code>
-        /// This way to set the property is prohibited
+        /// or
+        /// <code>
+        /// var size = new Size2D();
+        /// size.Width = 100;
+        /// size.Height = 200;
+        /// var view = new View();
+        /// view.MinimumSize = size;
+        /// </code>
+        /// However, this way to set the property is prohibited
         /// <code>
         /// view.MinimumSize.Width = 100; //This does not guarantee a proper operation
+        /// view.MinimumSize.Height = 200; //This does not guarantee a proper operation
         /// </code>
         /// </example>
         /// <since_tizen> 3 </since_tizen>
@@ -2379,9 +2480,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// This has been deprecated in API5 and will be removed in API8. Use PivotPoint instead.
         /// </summary>
-        /// <remarks>
-        /// The property cascade chaining set is possible. For example, this (view.AnchorPoint.X = 0.1f;) is possible.
-        /// </remarks>
         /// <since_tizen> 3 </since_tizen>
         [Obsolete("This has been deprecated in API5 and will be removed in API8. Use PivotPoint instead. " +
             "Like: " +
@@ -2435,9 +2533,20 @@ namespace Tizen.NUI.BaseComponents
         /// var view = new View();
         /// view.Size = new Size(100.5f, 200, 0);
         /// </code>
-        /// This way to set the property is prohibited
+        /// or
+        /// <code>
+        /// var size = new Size();
+        /// size.Width = 100.5f;
+        /// size.Height = 200;
+        /// size.Depth = 0;
+        /// var view = new View();
+        /// view.Size = size;
+        /// </code>
+        /// However, this way to set the property is prohibited
         /// <code>
         /// view.Size.Width = 100.5f; //This does not guarantee a proper operation
+        /// view.Size.Height = 200; //This does not guarantee a proper operation
+        /// view.Size.Depth = 0; //This does not guarantee a proper operation
         /// </code>
         /// </example>
         /// <since_tizen> 5 </since_tizen>
@@ -2539,9 +2648,22 @@ namespace Tizen.NUI.BaseComponents
         /// var view = new View();
         /// view.Margin = new Extents(10, 5, 15, 20);
         /// </code>
-        /// This way to set the property is prohibited
+        /// or
         /// <code>
+        /// var extents = new Extents();
+        /// extents.Start = 10;
+        /// extents.End = 5;
+        /// extents.Top = 15;
+        /// extents.Bottom = 20;
+        /// var view = new View();
+        /// view.Margin = extents;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Margin.Start = 10; //This does not guarantee a proper operation
+        /// view.Margin.End = 5; //This does not guarantee a proper operation
         /// view.Margin.Top = 15; //This does not guarantee a proper operation
+        /// view.Margin.Bottom = 20; //This does not guarantee a proper operation
         /// </code>
         /// </example>
         /// <since_tizen> 4 </since_tizen>
@@ -2737,9 +2859,6 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// This has been deprecated in API5 and will be removed in API8. Use Padding instead.
         /// </summary>
-        /// <remarks>
-        /// The property cascade chaining set is possible. For example, this (view.DecorationBoundingBox.X = 0.1f;) is possible.
-        /// </remarks>
         /// <since_tizen> 4 </since_tizen>
         [Obsolete("This has been deprecated in API5 and will be removed in API8. Use Padding instead.")]
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -2796,8 +2915,21 @@ namespace Tizen.NUI.BaseComponents
         /// var view = new View();
         /// view.Color = new Color(0.5f, 0.2f, 0.1f, 0.5f);
         /// </code>
-        /// This way to set the property is prohibited
+        /// or
         /// <code>
+        /// var color = new Color();
+        /// color.R = 0.5f;
+        /// color.G = 0.2f;
+        /// color.B = 0.1f;
+        /// color.A = 0.5f;
+        /// var view = new View();
+        /// view.Color = color;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Color.R = 0.5f; //This does not guarantee a proper operation
+        /// view.Color.G = 0.2f; //This does not guarantee a proper operation
+        /// view.Color.B = 0.1f; //This does not guarantee a proper operation
         /// view.Color.A = 0.5f; //This does not guarantee a proper operation
         /// </code>
         /// </example>

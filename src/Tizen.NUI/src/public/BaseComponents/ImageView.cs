@@ -405,8 +405,32 @@ namespace Tizen.NUI.BaseComponents
         /// Pixel area is a relative value with the whole image area as [0.0, 0.0, 1.0, 1.0].<br />
         /// </summary>
         /// <remarks>
-        /// The property cascade chaining set is possible. For example, this (imageView.PixelArea.X = 0.1f;) is possible.
+        /// The property cascade chaining set is not recommended.
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
+        /// <code>
+        /// var imageView = new ImageView();
+        /// imageView.PixelArea = new RelativeVector4(0.1f, 0.2f, 0.3f, 0.4f);
+        /// </code>
+        /// or
+        /// <code>
+        /// var pixelArea = new RelativeVector4();
+        /// pixelArea.X = 0.1f;
+        /// pixelArea.Y = 0.2f;
+        /// pixelArea.Z = 0.3f;
+        /// pixelArea.W = 0.4f;
+        /// var imageView = new ImageView();
+        /// imageView.PixelArea = pixelArea;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// imageView.PixelArea.X = 0.1f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.Y = 0.2f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.Z = 0.3f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.W = 0.4; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public RelativeVector4 PixelArea
         {
@@ -428,8 +452,32 @@ namespace Tizen.NUI.BaseComponents
         /// Optional.
         /// </summary>
         /// <remarks>
-        /// The property cascade chaining set is possible. For example, this (imageView.Border.X = 1;) is possible.
+        /// The property cascade chaining set is not recommended.
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
+        /// <code>
+        /// var imageView = new ImageView();
+        /// imageView.Border = new Rectangle(10, 20, 30, 40);
+        /// </code>
+        /// or
+        /// <code>
+        /// var rectangle = new Rectangle();
+        /// rectangle.X = 10;
+        /// rectangle.Y = 20;
+        /// rectangle.Width = 30;
+        /// rectangle.Height = 40;
+        /// var imageView = new ImageView();
+        /// imageView.Border = rectangle;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// imageView.Border.X = 10; //This does not guarantee a proper operation
+        /// imageView.Border.Y = 20; //This does not guarantee a proper operation
+        /// imageView.Border.Width = 30; //This does not guarantee a proper operation
+        /// imageView.Border.Height = 40; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public Rectangle Border
         {

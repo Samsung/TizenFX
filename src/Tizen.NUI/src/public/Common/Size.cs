@@ -95,20 +95,33 @@ namespace Tizen.NUI
         /// The Width property for the width component of size
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Size(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Size size = new Size();
-        /// size.Width = 0.1f; 
-        /// // USE like this
-        /// float width = 0.1f, height = 0.5f, depth = 0.9f;
-        /// Size size = new Size(width, height, depth);
+        /// var view = new View();
+        /// view.Size = new Size(100.5f, 200, 0);
         /// </code>
+        /// or
+        /// <code>
+        /// var size = new Size();
+        /// size.Width = 100.5f;
+        /// size.Height = 200;
+        /// size.Depth = 0;
+        /// var view = new View();
+        /// view.Size = size;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Size.Width = 100.5f; //This does not guarantee a proper operation
+        /// view.Size.Height = 200; //This does not guarantee a proper operation
+        /// view.Size.Depth = 0; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 5 </since_tizen>
         public float Width
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Size(...) constructor")]
             set
             {
                 Interop.Vector3.WidthSet(SwigCPtr, value);
@@ -128,20 +141,33 @@ namespace Tizen.NUI
         /// The Height property for the height component of size.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Size(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Size size = new Size();
-        /// size.Height = 0.5f; 
-        /// // USE like this
-        /// float width = 0.1f, height = 0.5f, depth = 0.9f;
-        /// Size size = new Size(width, height, depth);
+        /// var view = new View();
+        /// view.Size = new Size(100.5f, 200, 0);
         /// </code>
+        /// or
+        /// <code>
+        /// var size = new Size();
+        /// size.Width = 100.5f;
+        /// size.Height = 200;
+        /// size.Depth = 0;
+        /// var view = new View();
+        /// view.Size = size;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Size.Width = 100.5f; //This does not guarantee a proper operation
+        /// view.Size.Height = 200; //This does not guarantee a proper operation
+        /// view.Size.Depth = 0; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 5 </since_tizen>
         public float Height
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Size(...) constructor")]
             set
             {
                 Interop.Vector3.HeightSet(SwigCPtr, value);
@@ -161,20 +187,33 @@ namespace Tizen.NUI
         /// The Depth property for the depth component of size.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Size(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Size size = new Size();
-        /// size.Depth = 0.9f; 
-        /// // USE like this
-        /// float width = 0.1f, height = 0.5f, depth = 0.9f;
-        /// Size size = new Size(width, height, depth);
+        /// var view = new View();
+        /// view.Size = new Size(100.5f, 200, 0);
         /// </code>
+        /// or
+        /// <code>
+        /// var size = new Size();
+        /// size.Width = 100.5f;
+        /// size.Height = 200;
+        /// size.Depth = 0;
+        /// var view = new View();
+        /// view.Size = size;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Size.Width = 100.5f; //This does not guarantee a proper operation
+        /// view.Size.Height = 200; //This does not guarantee a proper operation
+        /// view.Size.Depth = 0; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 5 </since_tizen>
         public float Depth
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Size(...) constructor")]
             set
             {
                 Interop.Vector3.DepthSet(SwigCPtr, value);

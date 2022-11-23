@@ -74,20 +74,33 @@ namespace Tizen.NUI
         /// The x component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new RelativeVector3(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// RelativeVector3 relativeVector3 = new RelativeVector3();
-        /// relativeVector3.X = 0.1f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f, z = 0.9f;
-        /// RelativeVector3 relativeVector3 = new RelativeVector3(x, y, z);
+        /// var keyValue = new KeyValue();
+        /// keyValue.RelativeVector3Value = new RelativeVector3(0.1f, 0.2f, 0.3f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new RelativeVector3();
+        /// vector.X = 0.1f;
+        /// vector.Y = 0.2f;
+        /// vector.Z = 0.3f;
+        /// var keyValue = new KeyValue();
+        /// keyValue.RelativeVector3Value = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// keyValue.RelativeVector3Value.X = 0.1f; //This does not guarantee a proper operation
+        /// keyValue.RelativeVector3Value.Y = 0.2f; //This does not guarantee a proper operation
+        /// keyValue.RelativeVector3Value.Z = 0.3f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new RelativeVector3(...) constructor")]
             set
             {
                 Interop.Vector3.XSet(SwigCPtr, value);
@@ -105,20 +118,33 @@ namespace Tizen.NUI
         /// The y component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new RelativeVector3(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// RelativeVector3 relativeVector3 = new RelativeVector3();
-        /// relativeVector3.Y = 0.5f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f, z = 0.9f;
-        /// RelativeVector3 relativeVector3 = new RelativeVector3(x, y, z);
+        /// var keyValue = new KeyValue();
+        /// keyValue.RelativeVector3Value = new RelativeVector3(0.1f, 0.2f, 0.3f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new RelativeVector3();
+        /// vector.X = 0.1f;
+        /// vector.Y = 0.2f;
+        /// vector.Z = 0.3f;
+        /// var keyValue = new KeyValue();
+        /// keyValue.RelativeVector3Value = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// keyValue.RelativeVector3Value.X = 0.1f; //This does not guarantee a proper operation
+        /// keyValue.RelativeVector3Value.Y = 0.2f; //This does not guarantee a proper operation
+        /// keyValue.RelativeVector3Value.Z = 0.3f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new RelativeVector3(...) constructor")]
             set
             {
                 Interop.Vector3.YSet(SwigCPtr, value);
@@ -136,20 +162,33 @@ namespace Tizen.NUI
         /// The z component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new RelativeVector3(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// RelativeVector3 relativeVector3 = new RelativeVector3();
-        /// relativeVector3.Z = 0.9f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f, z = 0.9f;
-        /// RelativeVector3 relativeVector3 = new RelativeVector3(x, y, z);
+        /// var keyValue = new KeyValue();
+        /// keyValue.RelativeVector3Value = new RelativeVector3(0.1f, 0.2f, 0.3f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new RelativeVector3();
+        /// vector.X = 0.1f;
+        /// vector.Y = 0.2f;
+        /// vector.Z = 0.3f;
+        /// var keyValue = new KeyValue();
+        /// keyValue.RelativeVector3Value = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// keyValue.RelativeVector3Value.X = 0.1f; //This does not guarantee a proper operation
+        /// keyValue.RelativeVector3Value.Y = 0.2f; //This does not guarantee a proper operation
+        /// keyValue.RelativeVector3Value.Z = 0.3f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Z
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new RelativeVector3(...) constructor")]
             set
             {
                 Interop.Vector3.ZSet(SwigCPtr, value);

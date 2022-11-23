@@ -1082,20 +1082,35 @@ namespace Tizen.NUI
         /// The red component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use the new Color(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use as follows:
-        /// Color color = new Color();
-        /// color.R = 0.1f; 
-        /// // USE like this
-        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
-        /// Color color = new Color(r, g, b, a);
+        /// var view = new View();
+        /// view.BackgroundColor = new Color(0.5f, 0.1f, 0, 1);
         /// </code>
+        /// or
+        /// <code>
+        /// var color = new Color();
+        /// color.R = 0.5f;
+        /// color.G = 0.1f;
+        /// color.B = 0;
+        /// color.A = 1;
+        /// var view = new View();
+        /// view.BackgroundColor = color;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.BackgroundColor.R = 0.5f; //This does not guarantee a proper operation
+        /// view.BackgroundColor.G = 0.1f; //This does not guarantee a proper operation
+        /// view.BackgroundColor.B = 0; //This does not guarantee a proper operation
+        /// view.BackgroundColor.A = 1; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float R
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use the new Color(...) constructor")]
             set
             {
                 Interop.Vector4.RSet(SwigCPtr, ValueCheck(value));
@@ -1115,20 +1130,35 @@ namespace Tizen.NUI
         /// The green component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use the new Color(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use as follows:
-        /// Color color = new Color();
-        /// color.G = 0.5f; 
-        /// // USE like this
-        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
-        /// Color color = new Color(r, g, b, a);
+        /// var view = new View();
+        /// view.BackgroundColor = new Color(0.5f, 0.1f, 0, 1);
         /// </code>
+        /// or
+        /// <code>
+        /// var color = new Color();
+        /// color.R = 0.5f;
+        /// color.G = 0.1f;
+        /// color.B = 0;
+        /// color.A = 1;
+        /// var view = new View();
+        /// view.BackgroundColor = color;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.BackgroundColor.R = 0.5f; //This does not guarantee a proper operation
+        /// view.BackgroundColor.G = 0.1f; //This does not guarantee a proper operation
+        /// view.BackgroundColor.B = 0; //This does not guarantee a proper operation
+        /// view.BackgroundColor.A = 1; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float G
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use the new Color(...) constructor")]
             set
             {
                 Interop.Vector4.GSet(SwigCPtr, ValueCheck(value));
@@ -1148,20 +1178,35 @@ namespace Tizen.NUI
         /// The blue component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use the new Color(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use as follows:
-        /// Color color = new Color();
-        /// color.B = 0.9f; 
-        /// // USE like this
-        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
-        /// Color color = new Color(r, g, b, a);
+        /// var view = new View();
+        /// view.BackgroundColor = new Color(0.5f, 0.1f, 0, 1);
         /// </code>
+        /// or
+        /// <code>
+        /// var color = new Color();
+        /// color.R = 0.5f;
+        /// color.G = 0.1f;
+        /// color.B = 0;
+        /// color.A = 1;
+        /// var view = new View();
+        /// view.BackgroundColor = color;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.BackgroundColor.R = 0.5f; //This does not guarantee a proper operation
+        /// view.BackgroundColor.G = 0.1f; //This does not guarantee a proper operation
+        /// view.BackgroundColor.B = 0; //This does not guarantee a proper operation
+        /// view.BackgroundColor.A = 1; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float B
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use the new Color(...) constructor")]
             set
             {
                 Interop.Vector4.BSet(SwigCPtr, ValueCheck(value));
@@ -1181,20 +1226,35 @@ namespace Tizen.NUI
         /// The alpha component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use the new Color(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use as follows:
-        /// Color color = new Color();
-        /// color.A = 1.0f; 
-        /// // USE like this
-        /// float r = 0.1f, g = 0.5f, b = 0.9f, a = 1.0f;
-        /// Color color = new Color(r, g, b, a);
+        /// var view = new View();
+        /// view.BackgroundColor = new Color(0.5f, 0.1f, 0, 1);
         /// </code>
+        /// or
+        /// <code>
+        /// var color = new Color();
+        /// color.R = 0.5f;
+        /// color.G = 0.1f;
+        /// color.B = 0;
+        /// color.A = 1;
+        /// var view = new View();
+        /// view.BackgroundColor = color;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.BackgroundColor.R = 0.5f; //This does not guarantee a proper operation
+        /// view.BackgroundColor.G = 0.1f; //This does not guarantee a proper operation
+        /// view.BackgroundColor.B = 0; //This does not guarantee a proper operation
+        /// view.BackgroundColor.A = 1; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float A
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use the new Color(...) constructor")]
             set
             {
                 Interop.Vector4.ASet(SwigCPtr, ValueCheck(value));

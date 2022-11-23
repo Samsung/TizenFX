@@ -90,20 +90,35 @@ namespace Tizen.NUI
         /// The x position of the rectangle.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Rectangle rectangle = new Rectangle();
-        /// rectangle.X = 1; 
-        /// // USE like this
-        /// int x = 1, y = 2, width = 3, height = 4;
-        /// Rectangle rectangle = new Rectangle(x, y, width, height);
+        /// var imageView = new ImageView();
+        /// imageView.Border = new Rectangle(10, 20, 30, 40);
         /// </code>
+        /// or
+        /// <code>
+        /// var rectangle = new Rectangle();
+        /// rectangle.X = 10;
+        /// rectangle.Y = 20;
+        /// rectangle.Width = 30;
+        /// rectangle.Height = 40;
+        /// var imageView = new ImageView();
+        /// imageView.Border = rectangle;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// imageView.Border.X = 10; //This does not guarantee a proper operation
+        /// imageView.Border.Y = 20; //This does not guarantee a proper operation
+        /// imageView.Border.Width = 30; //This does not guarantee a proper operation
+        /// imageView.Border.Height = 40; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public int X
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor")]
             set
             {
                 x = (value);
@@ -120,20 +135,35 @@ namespace Tizen.NUI
         /// The Y position of the rectangle.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Rectangle rectangle = new Rectangle();
-        /// rectangle.Y = 2; 
-        /// // USE like this
-        /// int x = 1, y = 2, width = 3, height = 4;
-        /// Rectangle rectangle = new Rectangle(x, y, width, height);
+        /// var imageView = new ImageView();
+        /// imageView.Border = new Rectangle(10, 20, 30, 40);
         /// </code>
+        /// or
+        /// <code>
+        /// var rectangle = new Rectangle();
+        /// rectangle.X = 10;
+        /// rectangle.Y = 20;
+        /// rectangle.Width = 30;
+        /// rectangle.Height = 40;
+        /// var imageView = new ImageView();
+        /// imageView.Border = rectangle;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// imageView.Border.X = 10; //This does not guarantee a proper operation
+        /// imageView.Border.Y = 20; //This does not guarantee a proper operation
+        /// imageView.Border.Width = 30; //This does not guarantee a proper operation
+        /// imageView.Border.Height = 40; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public int Y
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor")]
             set
             {
                 y = (value);
@@ -150,20 +180,35 @@ namespace Tizen.NUI
         /// The width of the rectangle.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Rectangle rectangle = new Rectangle();
-        /// rectangle.Width = 3; 
-        /// // USE like this
-        /// int x = 1, y = 2, width = 3, height = 4;
-        /// Rectangle rectangle = new Rectangle(x, y, width, height);
+        /// var imageView = new ImageView();
+        /// imageView.Border = new Rectangle(10, 20, 30, 40);
         /// </code>
+        /// or
+        /// <code>
+        /// var rectangle = new Rectangle();
+        /// rectangle.X = 10;
+        /// rectangle.Y = 20;
+        /// rectangle.Width = 30;
+        /// rectangle.Height = 40;
+        /// var imageView = new ImageView();
+        /// imageView.Border = rectangle;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// imageView.Border.X = 10; //This does not guarantee a proper operation
+        /// imageView.Border.Y = 20; //This does not guarantee a proper operation
+        /// imageView.Border.Width = 30; //This does not guarantee a proper operation
+        /// imageView.Border.Height = 40; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public int Width
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor")]
             set
             {
                 width = (value);
@@ -180,20 +225,35 @@ namespace Tizen.NUI
         /// The height of the rectangle.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Rectangle rectangle = new Rectangle();
-        /// rectangle.Height = 4; 
-        /// // USE like this
-        /// int x = 1, y = 2, width = 3, height = 4;
-        /// Rectangle rectangle = new Rectangle(x, y, width, height);
+        /// var imageView = new ImageView();
+        /// imageView.Border = new Rectangle(10, 20, 30, 40);
         /// </code>
+        /// or
+        /// <code>
+        /// var rectangle = new Rectangle();
+        /// rectangle.X = 10;
+        /// rectangle.Y = 20;
+        /// rectangle.Width = 30;
+        /// rectangle.Height = 40;
+        /// var imageView = new ImageView();
+        /// imageView.Border = rectangle;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// imageView.Border.X = 10; //This does not guarantee a proper operation
+        /// imageView.Border.Y = 20; //This does not guarantee a proper operation
+        /// imageView.Border.Width = 30; //This does not guarantee a proper operation
+        /// imageView.Border.Height = 40; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public int Height
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Rectangle(...) constructor")]
             set
             {
                 height = (value);

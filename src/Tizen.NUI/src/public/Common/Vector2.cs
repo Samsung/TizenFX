@@ -200,20 +200,31 @@ namespace Tizen.NUI
         /// The x component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector2 vector2 = new Vector2();
-        /// vector2.X = 0.1f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f;
-        /// Vector2 vector2 = new Vector2(x, y);
+        /// var view = new View();
+        /// view.CellIndex = new Vector2(1.5f, 2.0f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector2();
+        /// vector.X = 1.5f;
+        /// vector.Y = 2.0f;
+        /// var view = new View();
+        /// view.CellIndex = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CellIndex.X = 1.5f; //This does not guarantee a proper operation
+        /// view.CellIndex.Y = 2.0f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor")]
             set
             {
                 Interop.Vector2.XSet(SwigCPtr, value);
@@ -233,20 +244,31 @@ namespace Tizen.NUI
         /// The width.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector2 vector2 = new Vector2();
-        /// vector2.Width = 1.0f; 
-        /// // USE like this
-        /// float width = 1.0f, height = 2.0f;
-        /// Vector2 vector2 = new Vector2(x, y);
+        /// var view = new View();
+        /// view.CellIndex = new Vector2(1.5f, 2.0f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector2();
+        /// vector.Width = 1.5f;
+        /// vector.Height = 2.0f;
+        /// var view = new View();
+        /// view.CellIndex = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CellIndex.Width = 1.5f; //This does not guarantee a proper operation
+        /// view.CellIndex.Height = 2.0f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Width
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor")]
             set
             {
                 Interop.Vector2.WidthSet(SwigCPtr, value);
@@ -266,20 +288,31 @@ namespace Tizen.NUI
         /// The y component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector2 vector2 = new Vector2();
-        /// vector2.Y = 0.5f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f;
-        /// Vector2 vector2 = new Vector2(x, y);
+        /// var view = new View();
+        /// view.CellIndex = new Vector2(1.5f, 2.0f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector2();
+        /// vector.X = 1.5f;
+        /// vector.Y = 2.0f;
+        /// var view = new View();
+        /// view.CellIndex = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CellIndex.X = 1.5f; //This does not guarantee a proper operation
+        /// view.CellIndex.Y = 2.0f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor")]
             set
             {
                 Interop.Vector2.YSet(SwigCPtr, value);
@@ -299,20 +332,31 @@ namespace Tizen.NUI
         /// The height.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector2 vector2 = new Vector2();
-        /// vector2.Height = 2.0f; 
-        /// // USE like this
-        /// float width = 1.0f, height = 2.0f;
-        /// Vector2 vector2 = new Vector2(x, y);
+        /// var view = new View();
+        /// view.CellIndex = new Vector2(1.5f, 2.0f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector2();
+        /// vector.Width = 1.5f;
+        /// vector.Height = 2.0f;
+        /// var view = new View();
+        /// view.CellIndex = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.CellIndex.Width = 1.5f; //This does not guarantee a proper operation
+        /// view.CellIndex.Height = 2.0f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Height
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector2(...) constructor")]
             set
             {
                 Interop.Vector2.HeightSet(SwigCPtr, value);

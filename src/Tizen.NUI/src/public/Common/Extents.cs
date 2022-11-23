@@ -128,20 +128,35 @@ namespace Tizen.NUI
         /// The Start extent.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Ue new Extents(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Extents extents = new Extents();
-        /// extents.Start = 1; 
-        /// // USE like this
-        /// ushort start = 1, end = 2, top = 3, bottom = 4;
-        /// Extents extents = new Extents(start, end, top, bottom);
+        /// var view = new View();
+        /// view.Padding = new Extents(1, 2, 3, 4);
         /// </code>
+        /// or
+        /// <code>
+        /// var extents = new Extents();
+        /// extents.Start = 1;
+        /// extents.End = 2;
+        /// extents.Top = 3;
+        /// extents.Bottom = 4;
+        /// var view = new View();
+        /// view.Padding = extents;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Padding.Start = 1; //This does not guarantee a proper operation
+        /// view.Padding.End = 2; //This does not guarantee a proper operation
+        /// view.Padding.Top = 3; //This does not guarantee a proper operation
+        /// view.Padding.Bottom = 4; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 4 </since_tizen>
         public ushort Start
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor")]
             set
             {
                 Interop.Extents.StartSet(SwigCPtr, value);
@@ -161,20 +176,35 @@ namespace Tizen.NUI
         /// The End extend.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Extents extents = new Extents();
-        /// extents.End = 2; 
-        /// // USE like this
-        /// ushort start = 1, end = 2, top = 3, bottom = 4;
-        /// Extents extents = new Extents(start, end, top, bottom);
+        /// var view = new View();
+        /// view.Padding = new Extents(1, 2, 3, 4);
         /// </code>
+        /// or
+        /// <code>
+        /// var extents = new Extents();
+        /// extents.Start = 1;
+        /// extents.End = 2;
+        /// extents.Top = 3;
+        /// extents.Bottom = 4;
+        /// var view = new View();
+        /// view.Padding = extents;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Padding.Start = 1; //This does not guarantee a proper operation
+        /// view.Padding.End = 2; //This does not guarantee a proper operation
+        /// view.Padding.Top = 3; //This does not guarantee a proper operation
+        /// view.Padding.Bottom = 4; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 4 </since_tizen>
         public ushort End
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor")]
             set
             {
                 Interop.Extents.EndSet(SwigCPtr, value);
@@ -194,20 +224,35 @@ namespace Tizen.NUI
         /// The Top extend.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Extents extents = new Extents();
-        /// extents.Top = 3; 
-        /// // USE like this
-        /// ushort start = 1, end = 2, top = 3, bottom = 4;
-        /// Extents extents = new Extents(start, end, top, bottom);
+        /// var view = new View();
+        /// view.Padding = new Extents(1, 2, 3, 4);
         /// </code>
+        /// or
+        /// <code>
+        /// var extents = new Extents();
+        /// extents.Start = 1;
+        /// extents.End = 2;
+        /// extents.Top = 3;
+        /// extents.Bottom = 4;
+        /// var view = new View();
+        /// view.Padding = extents;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Padding.Start = 1; //This does not guarantee a proper operation
+        /// view.Padding.End = 2; //This does not guarantee a proper operation
+        /// view.Padding.Top = 3; //This does not guarantee a proper operation
+        /// view.Padding.Bottom = 4; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 4 </since_tizen>
         public ushort Top
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor")]
             set
             {
                 Interop.Extents.TopSet(SwigCPtr, value);
@@ -227,20 +272,35 @@ namespace Tizen.NUI
         /// The Bottom Extend.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Extents extents = new Extents();
-        /// extents.Bottom = 4; 
-        /// // USE like this
-        /// ushort start = 1, end = 2, top = 3, bottom = 4;
-        /// Extents extents = new Extents(start, end, top, bottom);
+        /// var view = new View();
+        /// view.Padding = new Extents(1, 2, 3, 4);
         /// </code>
+        /// or
+        /// <code>
+        /// var extents = new Extents();
+        /// extents.Start = 1;
+        /// extents.End = 2;
+        /// extents.Top = 3;
+        /// extents.Bottom = 4;
+        /// var view = new View();
+        /// view.Padding = extents;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Padding.Start = 1; //This does not guarantee a proper operation
+        /// view.Padding.End = 2; //This does not guarantee a proper operation
+        /// view.Padding.Top = 3; //This does not guarantee a proper operation
+        /// view.Padding.Bottom = 4; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 4 </since_tizen>
         public ushort Bottom
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor")]
             set
             {
                 Interop.Extents.BottomSet(SwigCPtr, value);

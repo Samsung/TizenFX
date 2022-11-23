@@ -83,20 +83,35 @@ namespace Tizen.NUI
         /// The x component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new RelativeVector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// RelativeVector4 relativeVector4 = new RelativeVector4();
-        /// relativeVector4.X = 0.1f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
-        /// RelativeVector4 relativeVector4 = new RelativeVector4(x, y, z, w);
+        /// var imageView = new ImageView();
+        /// imageView.PixelArea = new RelativeVector4(0.1f, 0.2f, 0.3f, 0.4f);
         /// </code>
+        /// or
+        /// <code>
+        /// var pixelArea = new RelativeVector4();
+        /// pixelArea.X = 0.1f;
+        /// pixelArea.Y = 0.2f;
+        /// pixelArea.Z = 0.3f;
+        /// pixelArea.W = 0.4f;
+        /// var imageView = new ImageView();
+        /// imageView.PixelArea = pixelArea;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// imageView.PixelArea.X = 0.1f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.Y = 0.2f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.Z = 0.3f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.W = 0.4; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new RelativeVector4(...) constructor")]
             set
             {
                 Interop.Vector4.XSet(SwigCPtr, value);
@@ -116,20 +131,35 @@ namespace Tizen.NUI
         /// The y component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new RelativeVector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// RelativeVector4 relativeVector4 = new RelativeVector4();
-        /// relativeVector4.Y = 0.5f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
-        /// RelativeVector4 relativeVector4 = new RelativeVector4(x, y, z, w);
+        /// var imageView = new ImageView();
+        /// imageView.PixelArea = new RelativeVector4(0.1f, 0.2f, 0.3f, 0.4f);
         /// </code>
+        /// or
+        /// <code>
+        /// var pixelArea = new RelativeVector4();
+        /// pixelArea.X = 0.1f;
+        /// pixelArea.Y = 0.2f;
+        /// pixelArea.Z = 0.3f;
+        /// pixelArea.W = 0.4f;
+        /// var imageView = new ImageView();
+        /// imageView.PixelArea = pixelArea;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// imageView.PixelArea.X = 0.1f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.Y = 0.2f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.Z = 0.3f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.W = 0.4; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new RelativeVector4(...) constructor")]
             set
             {
                 Interop.Vector4.YSet(SwigCPtr, value);
@@ -149,20 +179,35 @@ namespace Tizen.NUI
         /// The z component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new RelativeVector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// RelativeVector4 relativeVector4 = new RelativeVector4();
-        /// relativeVector4.Z = 0.9f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
-        /// RelativeVector4 relativeVector4 = new RelativeVector4(x, y, z, w);
+        /// var imageView = new ImageView();
+        /// imageView.PixelArea = new RelativeVector4(0.1f, 0.2f, 0.3f, 0.4f);
         /// </code>
+        /// or
+        /// <code>
+        /// var pixelArea = new RelativeVector4();
+        /// pixelArea.X = 0.1f;
+        /// pixelArea.Y = 0.2f;
+        /// pixelArea.Z = 0.3f;
+        /// pixelArea.W = 0.4f;
+        /// var imageView = new ImageView();
+        /// imageView.PixelArea = pixelArea;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// imageView.PixelArea.X = 0.1f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.Y = 0.2f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.Z = 0.3f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.W = 0.4; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Z
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new RelativeVector4(...) constructor")]
             set
             {
                 Interop.Vector4.ZSet(SwigCPtr, value);
@@ -182,20 +227,35 @@ namespace Tizen.NUI
         /// The w component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new RelativeVector4(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// RelativeVector4 relativeVector4 = new RelativeVector4();
-        /// relativeVector4.W = 1.0f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f, z = 0.9f, w = 1.0f;
-        /// RelativeVector4 relativeVector4 = new RelativeVector4(x, y, z, w);
+        /// var imageView = new ImageView();
+        /// imageView.PixelArea = new RelativeVector4(0.1f, 0.2f, 0.3f, 0.4f);
         /// </code>
+        /// or
+        /// <code>
+        /// var pixelArea = new RelativeVector4();
+        /// pixelArea.X = 0.1f;
+        /// pixelArea.Y = 0.2f;
+        /// pixelArea.Z = 0.3f;
+        /// pixelArea.W = 0.4f;
+        /// var imageView = new ImageView();
+        /// imageView.PixelArea = pixelArea;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// imageView.PixelArea.X = 0.1f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.Y = 0.2f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.Z = 0.3f; //This does not guarantee a proper operation
+        /// imageView.PixelArea.W = 0.4; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float W
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new RelativeVector4(...) constructor")]
             set
             {
                 Interop.Vector4.WSet(SwigCPtr, value);

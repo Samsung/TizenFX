@@ -215,20 +215,33 @@ namespace Tizen.NUI
         /// The x component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector3 vector3 = new Vector3();
-        /// vector3.X = 0.1f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f, z = 0.9f;
-        /// Vector3 vector3 = new Vector3(x, y, z);
+        /// var view = new View();
+        /// view.Scale = new Vector3(1.5f, 2.0f, 1.0f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector3();
+        /// vector.X = 1.5f;
+        /// vector.Y = 2.0f;
+        /// vector.Z = 1.0f;
+        /// var view = new View();
+        /// view.Scale = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Scale.X = 1.5f; //This does not guarantee a proper operation
+        /// view.Scale.Y = 2.0f; //This does not guarantee a proper operation
+        /// view.Scale.Z = 1.0f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float X
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor")]
             set
             {
                 Interop.Vector3.XSet(SwigCPtr, value);
@@ -248,20 +261,33 @@ namespace Tizen.NUI
         /// The width component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector3 vector3 = new Vector3();
-        /// vector3.Width = 1.0f; 
-        /// // USE like this
-        /// float width = 1.0f, height = 2.0f, depth = 3.0f;
-        /// Vector3 vector3 = new Vector3(width, height, depth);
+        /// var view = new View();
+        /// view.Scale = new Vector3(1.5f, 2.0f, 1.0f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector3();
+        /// vector.Width = 1.5f;
+        /// vector.Height = 2.0f;
+        /// vector.Depth = 1.0f;
+        /// var view = new View();
+        /// view.Scale = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Scale.Width = 1.5f; //This does not guarantee a proper operation
+        /// view.Scale.Height = 2.0f; //This does not guarantee a proper operation
+        /// view.Scale.Depth = 1.0f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Width
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor")]
             set
             {
                 Interop.Vector3.WidthSet(SwigCPtr, value);
@@ -281,20 +307,33 @@ namespace Tizen.NUI
         /// The red component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector3 vector3 = new Vector3();
-        /// vector3.R = 0.1f; 
-        /// // USE like this
-        /// float r = 0.1f, g = 0.5f, b = 0.9f;
-        /// Vector3 vector3 = new Vector3(r, g, b);
+        /// var view = new View();
+        /// view.Scale = new Vector3(1.5f, 2.0f, 1.0f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector3();
+        /// vector.R = 1.5f;
+        /// vector.G = 2.0f;
+        /// vector.B = 1.0f;
+        /// var view = new View();
+        /// view.Scale = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Scale.R = 1.5f; //This does not guarantee a proper operation
+        /// view.Scale.G = 2.0f; //This does not guarantee a proper operation
+        /// view.Scale.B = 1.0f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float R
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor")]
             set
             {
                 Interop.Vector3.RSet(SwigCPtr, value);
@@ -314,20 +353,33 @@ namespace Tizen.NUI
         /// The y component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector3 vector3 = new Vector3();
-        /// vector3.Y = 0.5f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f, z = 0.9f;
-        /// Vector3 vector3 = new Vector3(x, y, z);
+        /// var view = new View();
+        /// view.Scale = new Vector3(1.5f, 2.0f, 1.0f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector3();
+        /// vector.X = 1.5f;
+        /// vector.Y = 2.0f;
+        /// vector.Z = 1.0f;
+        /// var view = new View();
+        /// view.Scale = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Scale.X = 1.5f; //This does not guarantee a proper operation
+        /// view.Scale.Y = 2.0f; //This does not guarantee a proper operation
+        /// view.Scale.Z = 1.0f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Y
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor")]
             set
             {
                 Interop.Vector3.YSet(SwigCPtr, value);
@@ -347,20 +399,33 @@ namespace Tizen.NUI
         /// The height component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector3 vector3 = new Vector3();
-        /// vector3.Height = 2.0f; 
-        /// // USE like this
-        /// float width = 1.0f, height = 2.0f, depth = 3.0f;
-        /// Vector3 vector3 = new Vector3(width, height, depth);
+        /// var view = new View();
+        /// view.Scale = new Vector3(1.5f, 2.0f, 1.0f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector3();
+        /// vector.Width = 1.5f;
+        /// vector.Height = 2.0f;
+        /// vector.Depth = 1.0f;
+        /// var view = new View();
+        /// view.Scale = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Scale.Width = 1.5f; //This does not guarantee a proper operation
+        /// view.Scale.Height = 2.0f; //This does not guarantee a proper operation
+        /// view.Scale.Depth = 1.0f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Height
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor")]
             set
             {
                 Interop.Vector3.HeightSet(SwigCPtr, value);
@@ -380,20 +445,33 @@ namespace Tizen.NUI
         /// The green component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector3 vector3 = new Vector3();
-        /// vector3.G = 0.5f; 
-        /// // USE like this
-        /// float r = 0.1f, g = 0.5f, b = 0.9f;
-        /// Vector3 vector3 = new Vector3(r, g, b);
+        /// var view = new View();
+        /// view.Scale = new Vector3(1.5f, 2.0f, 1.0f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector3();
+        /// vector.R = 1.5f;
+        /// vector.G = 2.0f;
+        /// vector.B = 1.0f;
+        /// var view = new View();
+        /// view.Scale = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Scale.R = 1.5f; //This does not guarantee a proper operation
+        /// view.Scale.G = 2.0f; //This does not guarantee a proper operation
+        /// view.Scale.B = 1.0f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float G
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor")]
             set
             {
                 Interop.Vector3.GSet(SwigCPtr, value);
@@ -413,20 +491,33 @@ namespace Tizen.NUI
         /// The z component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector3 vector3 = new Vector3();
-        /// vector3.Z = 0.9f; 
-        /// // USE like this
-        /// float x = 0.1f, y = 0.5f, z = 0.9f;
-        /// Vector3 vector3 = new Vector3(x, y, z);
+        /// var view = new View();
+        /// view.Scale = new Vector3(1.5f, 2.0f, 1.0f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector3();
+        /// vector.X = 1.5f;
+        /// vector.Y = 2.0f;
+        /// vector.Z = 1.0f;
+        /// var view = new View();
+        /// view.Scale = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Scale.X = 1.5f; //This does not guarantee a proper operation
+        /// view.Scale.Y = 2.0f; //This does not guarantee a proper operation
+        /// view.Scale.Z = 1.0f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Z
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor")]
             set
             {
                 Interop.Vector3.ZSet(SwigCPtr, value);
@@ -446,20 +537,33 @@ namespace Tizen.NUI
         /// The depth component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector3 vector3 = new Vector3();
-        /// vector3.Depth = 3.0f; 
-        /// // USE like this
-        /// float width = 1.0f, height = 2.0f, depth = 3.0f;
-        /// Vector3 vector3 = new Vector3(width, height, depth);
+        /// var view = new View();
+        /// view.Scale = new Vector3(1.5f, 2.0f, 1.0f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector3();
+        /// vector.Width = 1.5f;
+        /// vector.Height = 2.0f;
+        /// vector.Depth = 1.0f;
+        /// var view = new View();
+        /// view.Scale = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Scale.Width = 1.5f; //This does not guarantee a proper operation
+        /// view.Scale.Height = 2.0f; //This does not guarantee a proper operation
+        /// view.Scale.Depth = 1.0f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float Depth
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor")]
             set
             {
                 Interop.Vector3.DepthSet(SwigCPtr, value);
@@ -479,20 +583,33 @@ namespace Tizen.NUI
         /// The blue component.
         /// </summary>
         /// <remarks>
-        /// The setter is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor.
+        /// The cascade chaining set is not recommended when using this type of property
         /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
         /// <code>
-        /// // DO NOT use like the followings!
-        /// Vector3 vector3 = new Vector3();
-        /// vector3.B = 0.9f; 
-        /// // USE like this
-        /// float r = 0.1f, g = 0.5f, b = 0.9f;
-        /// Vector3 vector3 = new Vector3(r, g, b);
+        /// var view = new View();
+        /// view.Scale = new Vector3(1.5f, 2.0f, 1.0f);
         /// </code>
+        /// or
+        /// <code>
+        /// var vector = new Vector3();
+        /// vector.R = 1.5f;
+        /// vector.G = 2.0f;
+        /// vector.B = 1.0f;
+        /// var view = new View();
+        /// view.Scale = vector;
+        /// </code>
+        /// However, this way to set the property is prohibited
+        /// <code>
+        /// view.Scale.R = 1.5f; //This does not guarantee a proper operation
+        /// view.Scale.G = 2.0f; //This does not guarantee a proper operation
+        /// view.Scale.B = 1.0f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
         /// <since_tizen> 3 </since_tizen>
         public float B
         {
-            [Obsolete("Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Vector3(...) constructor")]
             set
             {
                 Interop.Vector3.BSet(SwigCPtr, value);
