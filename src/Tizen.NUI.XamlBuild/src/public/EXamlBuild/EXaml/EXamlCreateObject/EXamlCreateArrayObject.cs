@@ -37,7 +37,7 @@ namespace Tizen.NUI.EXaml
             }
 
             string itemsString = "";
-            if (0 < items.Count)
+            if (null != items && 0 < items.Count)
             {
                 itemsString += "(";
 

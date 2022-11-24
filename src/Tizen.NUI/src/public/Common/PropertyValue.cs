@@ -417,7 +417,7 @@ namespace Tizen.NUI
             return value;
         }
 
-#if NUI_ANIMATION_PROPERTY_CHANGE_1
+
         /// <summary>
         /// An extension to the property value class that allows us to create a
         /// Property value from a C# object, for example, integer, float, or string.<br />
@@ -521,7 +521,6 @@ namespace Tizen.NUI
             }
             return value;
         }
-#endif
 
         /// <summary>
         /// Retrieves a Size2D value.

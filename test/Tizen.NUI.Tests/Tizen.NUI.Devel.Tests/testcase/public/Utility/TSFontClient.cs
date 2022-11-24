@@ -210,6 +210,41 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("FontClient GetDescription.")]
+        [Property("SPEC", "Tizen.NUI.FontClient.GetDescription M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FontClientGetDescription()
+        {
+            tlog.Debug(tag, $"FontClientGetDescription START");
+
+            using (FontDescription description = new FontDescription())
+            {
+                description.Path = ttf_path;
+
+                var testingTarget = new FontClient(FontClient.Instance);
+                Assert.IsNotNull(testingTarget, "Return a null object of FontClient");
+                Assert.IsInstanceOf<FontClient>(testingTarget, "Should be an instance of FontClient type.");
+
+                try
+                {
+                    testingTarget.GetDescription(0,description);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed");
+                }
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"FontClientGetDescription END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("FontClient IsScalable.")]
         [Property("SPEC", "Tizen.NUI.FontClient.IsScalable M")]
         [Property("SPEC_URL", "-")]
@@ -271,6 +306,68 @@ namespace Tizen.NUI.Devel.Tests
             }
 
             tlog.Debug(tag, $"FontClientCreateVectorBlob END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FontClient CreateBitmap.")]
+        [Property("SPEC", "Tizen.NUI.FontClient.CreateBitmap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FontClientCreateBitmap3uint()
+        {
+            tlog.Debug(tag, $"FontClientCreateBitmap3uint START");
+
+            var testingTarget = new FontClient(FontClient.Instance);
+
+            using (Color color = new Color(0.4f, 1.0f, 0.3f, 0.0f))
+            {
+                try
+                {
+                    testingTarget.CreateBitmap(0, 0, 0);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"FontClientCreateBitmap3uint END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("FontClient CreateBitmap.")]
+        [Property("SPEC", "Tizen.NUI.FontClient.CreateBitmap M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void FontClientCreateBitmapWithuintAndBool()
+        {
+            tlog.Debug(tag, $"FontClientCreateBitmapWithuintAndBool START");
+
+            var testingTarget = new FontClient(FontClient.Instance);
+
+            using (Color color = new Color(0.4f, 1.0f, 0.3f, 0.0f))
+            {
+                try
+                {
+                    testingTarget.CreateBitmap(0, 0, true,true,new FontClient.GlyphBufferData(),0);
+                }
+                catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }
+
+                testingTarget.Dispose();
+            }
+
+            tlog.Debug(tag, $"FontClientCreateBitmapWithuintAndBool END (OK)");
         }
 
         [Test]

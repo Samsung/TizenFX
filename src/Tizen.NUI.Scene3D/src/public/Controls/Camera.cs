@@ -205,26 +205,11 @@ namespace Tizen.NUI.Scene3D
         {
             get
             {
-                return InternalProjectionDirection == ProjectionDirectionType.Vertical ? TopPlaneDistance : RightPlaneDistance;
+                return InternalOrthographicSize;
             }
             set
             {
-                float halfHeight;
-                float halfWidth;
-                if(InternalProjectionDirection == ProjectionDirectionType.Vertical)
-                {
-                    halfHeight = value;
-                    halfWidth = AspectRatio * value;
-                }
-                else
-                {
-                    halfHeight = value / AspectRatio;
-                    halfWidth = value;
-                }
-                SetValue(TopPlaneDistanceProperty, halfHeight);
-                SetValue(BottomPlaneDistanceProperty, -halfHeight);
-                SetValue(LeftPlaneDistanceProperty, -halfWidth);
-                SetValue(RightPlaneDistanceProperty, halfWidth);
+                SetValue(OrthographicSizeProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -428,6 +413,24 @@ namespace Tizen.NUI.Scene3D
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(Interop.Camera.FieldOfViewGet(), setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private float InternalOrthographicSize
+        {
+            get
+            {
+                float returnValue = 0.0f;
+                PropertyValue orthographicSize = GetProperty(Interop.Camera.OrthographicSizeGet());
+                orthographicSize?.Get(out returnValue);
+                orthographicSize?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.Camera.OrthographicSizeGet(), setValue);
                 setValue.Dispose();
             }
         }

@@ -2,7 +2,6 @@
 using System;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
-using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -32,29 +31,30 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.Binding.ResourceDictionary.MergedWith A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
-        public void MergedWithTest1()
+        [Obsolete]
+        public void ResourceDictionaryMergedWith()
         {
-            tlog.Debug(tag, $"MergedWithTest1 START");
+            tlog.Debug(tag, $"ResourceDictionaryMergedWith START");
             
             try
             {
-                ResourceDictionary t1 = new ResourceDictionary();
-                Assert.IsNotNull(t1, "null ResourceDictionary");
-                ResourceDictionary t2 = new ResourceDictionary();
-                Assert.IsNotNull(t2, "null ResourceDictionary");
-                t2.MergedWith = typeof(ResourceDictionary);
-                t2.MergedWith = typeof(ResourceDictionary); //Asign again
-                Assert.IsNotNull(t2.MergedWith, "Should not be null");
+                var testingTarget = new ResourceDictionary();
+                Assert.IsNotNull(testingTarget, "null ResourceDictionary");
 
-                t1.Source = null;
-                Assert.IsNull(t1.Source, "Should be null");
+#pragma warning disable Reflection // The code contains reflection
+                testingTarget.MergedWith = typeof(ResourceDictionary);
+#pragma warning restore Reflection // The code contains reflection
+#pragma warning disable Reflection // The code contains reflection
+                testingTarget.MergedWith = typeof(ResourceDictionary); //Asign again
+#pragma warning restore Reflection // The code contains reflection
+                Assert.IsNotNull(testingTarget.MergedWith, "Should not be null");
             }
             catch (Exception e)
             {
                 Assert.Fail("Caught Exception" + e.ToString());
             }
             
-            tlog.Debug(tag, $"MergedWithTest1 END");
+            tlog.Debug(tag, $"ResourceDictionaryMergedWith END");
         }
 
         [Test]
@@ -63,23 +63,22 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.Binding.ResourceDictionary.Source A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
-        public void Source()
+        public void ResourceDictionarySource()
         {
-            tlog.Debug(tag, $"Source START");
+            tlog.Debug(tag, $"ResourceDictionarySource START");
 
             try
             {
-                ResourceDictionary t1 = new ResourceDictionary();
-                Assert.IsNotNull(t1, "null ResourceDictionary");
+                var testingTarget = new ResourceDictionary();
+                Assert.IsNotNull(testingTarget, "null ResourceDictionary");
 
-                t1.Source = new Uri("http://www.contoso.com/");
+                testingTarget.Source = new Uri("http://www.contoso.com/");
             }
-            catch (InvalidOperationException e)
+            catch (InvalidOperationException)
             {
-                Assert.True(true, "Caught Exception" + e.ToString());
+                tlog.Debug(tag, $"ResourceDictionarySource END");
+                Assert.Pass("Caught InvalidOperationException : Passed!");
             }
-
-            tlog.Debug(tag, $"Source END");
         }
 
         [Test]
@@ -88,21 +87,26 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.Binding.ResourceDictionary.SetAndLoadSource M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MCST")]
-        public void SetAndLoadSourceTest()
+        public void ResourceDictionarySetAndLoadSourceTest()
         {
-            tlog.Debug(tag, $"SetAndLoadSourceTest START");
+            tlog.Debug(tag, $"ResourceDictionarySetAndLoadSourceTest START");
+
             try
             {
-                ResourceDictionary t1 = new ResourceDictionary();
-                Assert.IsNotNull(t1, "null ResourceDictionary");
-                t1.SetAndLoadSource(new Uri("http://www.contoso.com/"), "layout/MyResourceDictionary.xaml", typeof(UIElement).Assembly, null);
-                Assert.True(true, "Should go here");
+                var testingTarget = new ResourceDictionary();
+                Assert.IsNotNull(testingTarget, "null ResourceDictionary");
+
+#pragma warning disable Reflection // The code contains reflection
+                testingTarget.SetAndLoadSource(new Uri("http://www.contoso.com/"), "layout/MyResourceDictionary.xaml", typeof(UIElement).Assembly, null);
+#pragma warning restore Reflection // The code contains reflection
             }
             catch (Exception e)
             {
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
-            tlog.Debug(tag, $"SetAndLoadSourceTest END");
+
+            tlog.Debug(tag, $"ResourceDictionarySetAndLoadSourceTest END");
         }
 
         [Test]
@@ -111,175 +115,198 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC", "Tizen.NUI.Binding.ResourceDictionary.SetAndLoadSource M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MCST")]
-        public void SetAndLoadSourceTest2()
+        [Obsolete]
+        public void ResourceDictionarySetAndLoadSourceArgumentException()
         {
-            tlog.Debug(tag, $"SetAndLoadSourceTest2 START");
-            ResourceDictionary t1 = new ResourceDictionary();
-            Assert.IsNotNull(t1, "null ResourceDictionary");
-            ResourceDictionary t2 = new ResourceDictionary();
-            Assert.IsNotNull(t2, "null ResourceDictionary");
-            t1.MergedWith = typeof(ResourceDictionary);
-            Assert.Throws<ArgumentException>(() => t1.SetAndLoadSource(new Uri("http://www.contoso.com/"), "X", typeof(View).Assembly, null));
-            
-            tlog.Debug(tag, $"SetAndLoadSourceTest2 END");
+            tlog.Debug(tag, $"ResourceDictionarySetAndLoadSourceArgumentException START");
+
+            var testingTarget = new ResourceDictionary();
+            Assert.IsNotNull(testingTarget, "null ResourceDictionary");
+
+#pragma warning disable Reflection // The code contains reflection
+            testingTarget.MergedWith = typeof(ResourceDictionary);
+#pragma warning restore Reflection // The code contains reflection
+
+#pragma warning disable Reflection // The code contains reflection
+            Assert.Throws<ArgumentException>(() => testingTarget.SetAndLoadSource(new Uri("http://www.contoso.com/"), "X", typeof(View).Assembly, null));
+#pragma warning restore Reflection // The code contains reflection
+
+            tlog.Debug(tag, $"ResourceDictionarySetAndLoadSourceArgumentException END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("ResourceDictionary  MergedDictionaries")]
+        [Description("ResourceDictionary MergedDictionaries")]
         [Property("SPEC", "Tizen.NUI.Binding.ResourceDictionary.MergedDictionaries  A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
-        public void MergedDictionariesTest1()
+        public void ResourceDictionaryMergedDictionaries()
         {
-            tlog.Debug(tag, $"MergedDictionariesTest1 START");
+            tlog.Debug(tag, $"ResourceDictionaryMergedDictionaries START");
+
             try
             {
-                ResourceDictionary t2 = new ResourceDictionary();
-                Assert.IsNotNull(t2, "null ResourceDictionary");
-                Assert.IsNotNull(t2.MergedDictionaries, "Should be equal");
+                var testingTarget = new ResourceDictionary();
+                Assert.IsNotNull(testingTarget, "null ResourceDictionary");
+
+                Assert.IsNotNull(testingTarget.MergedDictionaries, "Should be equal");
             }
             catch (Exception e)
             {
                 Assert.Fail("Caught Exception" + e.ToString());
             }
-            tlog.Debug(tag, $"MergedDictionariesTest1 END");
+
+            tlog.Debug(tag, $"ResourceDictionaryMergedDictionaries END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("ResourceDictionary  Clear")]
+        [Description("ResourceDictionary Clear")]
         [Property("SPEC", "Tizen.NUI.Binding.ResourceDictionary.Clear  M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MCST")]
-        public void ClearTest1()
+        public void ResourceDictionaryClear()
         {
-            tlog.Debug(tag, $"ClearTest1 START");
+            tlog.Debug(tag, $"ResourceDictionaryClear START");
+
             try
             {
-                ResourceDictionary t2 = new ResourceDictionary();
-                Assert.IsNotNull(t2, "null ResourceDictionary");
-                t2.Clear();
-                Assert.AreEqual(0, t2.Count, "Should be equal");
-                Assert.True(true, "Should go here");
+                var testingTarget = new ResourceDictionary();
+                Assert.IsNotNull(testingTarget, "null ResourceDictionary");
+
+                testingTarget.Clear();
+                Assert.AreEqual(0, testingTarget.Count, "Should be equal");
             }
             catch (Exception e)
             {
                 Assert.Fail("Caught Exception" + e.ToString());
             }
-            tlog.Debug(tag, $"ClearTest1 END");
+
+            tlog.Debug(tag, $"ResourceDictionaryClear END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("ResourceDictionary  Add")]
+        [Description("ResourceDictionary Add")]
         [Property("SPEC", "Tizen.NUI.Binding.ResourceDictionary.Add  M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MCST")]
-        public void AddTest1()
+        public void ResourceDictionaryAdd()
         {
-            tlog.Debug(tag, $"AddTest1 START");
+            tlog.Debug(tag, $"ResourceDictionaryAdd START");
+
             try
             {
-                ResourceDictionary t2 = new ResourceDictionary();
-                Assert.IsNotNull(t2, "null ResourceDictionary");
-                t2.Add("AA", "AA");
-                var ret = t2.ContainsKey("AA");
+                var testingTarget = new ResourceDictionary();
+                Assert.IsNotNull(testingTarget, "null ResourceDictionary");
+
+                testingTarget.Add("AA", "AA");
+                var ret = testingTarget.ContainsKey("AA");
                 Assert.AreEqual(true, ret, "Should be equal");
-                var ret2 = t2["AA"];
+
+                var ret2 = testingTarget["AA"];
                 Assert.AreEqual("AA", ret2, "Should be equal");
-                Assert.AreEqual(1, t2.Keys.Count, "Should be equal");
-                Assert.AreEqual(1, t2.Values.Count, "Should be equal");
-                Assert.IsNotNull(t2.GetEnumerator(), "null Enumerator");
-                object ss;
-                t2.TryGetValue("AA", out ss);
-                Assert.AreEqual("AA", ss as string, "Should be equal");
-                var ret3 = t2.Remove("AA");
+
+                Assert.AreEqual(1, testingTarget.Keys.Count, "Should be equal");
+                Assert.AreEqual(1, testingTarget.Values.Count, "Should be equal");
+                Assert.IsNotNull(testingTarget.GetEnumerator(), "null Enumerator");
+                
+                object obj;
+                testingTarget.TryGetValue("AA", out obj);
+                Assert.AreEqual("AA", obj as string, "Should be equal");
+
+                var ret3 = testingTarget.Remove("AA");
                 Assert.True(ret3, "Should be true");
             }
             catch (Exception e)
             {
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
-            tlog.Debug(tag, $"AddTest1 END");
+
+            tlog.Debug(tag, $"ResourceDictionaryAdd END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("ResourceDictionary  Add")]
+        [Description("ResourceDictionary Add")]
         [Property("SPEC", "Tizen.NUI.Binding.ResourceDictionary.Add  M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MCST")]
-        public void AddTest2()
+        public void ResourceDictionaryAddResourceDictionary()
         {
-            tlog.Debug(tag, $"AddTest2 START");
+            tlog.Debug(tag, $"ResourceDictionaryAddResourceDictionary START");
+
             try
             {
-                ResourceDictionary t1 = new ResourceDictionary();
-                Assert.IsNotNull(t1, "null ResourceDictionary");
-                t1.Add("AA", "AA");
-                ResourceDictionary t2 = new ResourceDictionary();
-                Assert.IsNotNull(t2, "null ResourceDictionary");
-                t2.Add("BB", "BB");
-                t2.Add(t1);
+                ResourceDictionary dic = new ResourceDictionary();
+                dic.Add("AA", "AA");
+                
+                var testingTarget = new ResourceDictionary();
+                Assert.IsNotNull(testingTarget, "null ResourceDictionary");
 
-                Assert.True(true, "Should go here");
+                testingTarget.Add(dic);
             }
             catch (Exception e)
             {
-                Assert.Fail("Caught Exception" + e.ToString());
-            }  
-            tlog.Debug(tag, $"AddTest2 END");
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+            
+            tlog.Debug(tag, $"ResourceDictionaryAddResourceDictionary END");
         }
 
         [Test]
         [Category("P2")]
-        [Description("ResourceDictionary  Add")]
+        [Description("ResourceDictionary Add")]
         [Property("SPEC", "Tizen.NUI.Binding.ResourceDictionary.Add  M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MCST")]
-        public void AddTest3()
+        public void ResourceDictionaryAddKeyIsPresent()
         {
-            tlog.Debug(tag, $"AddTest3 START");
+            tlog.Debug(tag, $"ResourceDictionaryAddKeyIsPresent START");
+
             try
             {
-                ResourceDictionary t1 = new ResourceDictionary();
-                Assert.IsNotNull(t1, "null ResourceDictionary");
-                t1.Add("AA", "AA");
-                t1.Add("AA", "BB");
+                var testingTarget = new ResourceDictionary();
+                Assert.IsNotNull(testingTarget, "null ResourceDictionary");
 
-                Assert.False(true, "Should go here");
+                testingTarget.Add("AA", "AA");
+                testingTarget.Add("AA", "BB");
             }
-            catch (ArgumentException e)
+            catch (ArgumentException)
             {
-                Assert.True(true, "Caught Exception" + e.ToString());
+                tlog.Debug(tag, $"ResourceDictionaryAddKeyIsPresent END");
+                Assert.Pass("Caught ArgumentException : Passed!");
             }
-            tlog.Debug(tag, $"AddTest3 END");
         }
 
         [Test]
         [Category("P2")]
-        [Description("RDSourceTypeConverter  Add")]
+        [Description("RDSourceTypeConverter ConvertFromInvariantString")]
         [Property("SPEC", "Tizen.NUI.Binding.ResourceDictionary.RDSourceTypeConverter.ConvertFromInvariantString  M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MCST")]
-        public void ConvertFromInvariantStringTest()
+        public void RDSourceTypeConverterConvertFromInvariantString()
         {
-            tlog.Debug(tag, $"AddTest2 START");
-            ResourceDictionary.RDSourceTypeConverter r = new ResourceDictionary.RDSourceTypeConverter();
-            Assert.Throws<NotImplementedException>(() => r.ConvertFromInvariantString("Test"));
-            tlog.Debug(tag, $"AddTest2 END");
+            tlog.Debug(tag, $"RDSourceTypeConverterConvertFromInvariantString START");
+
+            var testingTarget = new ResourceDictionary.RDSourceTypeConverter();
+            Assert.Throws<NotImplementedException>(() => testingTarget.ConvertFromInvariantString("Test"));
+
+            tlog.Debug(tag, $"RDSourceTypeConverterConvertFromInvariantString END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("RDSourceTypeConverter  GetResourcePath")]
+        [Description("RDSourceTypeConverter GetResourcePath")]
         [Property("SPEC", "Tizen.NUI.Binding.ResourceDictionary.RDSourceTypeConverter.GetResourcePath  M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
-        public void GetResourcePath()
+        public void RDSourceTypeConverterGetResourcePath()
         {
-            tlog.Debug(tag, $"GetResourcePath START");
+            tlog.Debug(tag, $"RDSourceTypeConverterGetResourcePath START");
+
             try
             {
                 var ret = ResourceDictionary.RDSourceTypeConverter.GetResourcePath(new Uri("https://user:password@www.contoso.com:80/Home/Index.htm?q1=v1&q2=v2#FragmentName"), "");
@@ -290,7 +317,8 @@ namespace Tizen.NUI.Devel.Tests
             {
                 Assert.True(true, "Caught Exception" + e.ToString());
             }
-            tlog.Debug(tag, $"GetResourcePath END");
+
+            tlog.Debug(tag, $"RDSourceTypeConverterGetResourcePath END");
         }
     }
 }

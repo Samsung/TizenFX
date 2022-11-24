@@ -66,9 +66,7 @@ namespace Tizen.NUI.BaseComponents
         private TriggerableSelector<string> resourceUrlSelector;
         private TriggerableSelector<Rectangle> borderSelector;
 
-#if NUI_PROPERTY_CHANGE_2
         private RelativeVector4 internalPixelArea;
-#endif
 
         /// <summary>
         /// Creates an initialized ImageView.
@@ -393,16 +391,10 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PreMultipliedAlphaGetter++;
-#endif
                 return (bool)GetValue(PreMultipliedAlphaProperty);
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PreMultipliedAlphaSetter++;
-#endif
                 SetValue(PreMultipliedAlphaProperty, value);
                 NotifyPropertyChanged();
             }
@@ -420,22 +412,10 @@ PreMultipliedAlphaSetter++;
         {
             get
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PixelAreaGetter++;
-#endif
-
-#if NUI_PROPERTY_CHANGE_2
                 return (RelativeVector4)GetValue(PixelAreaProperty);
-#else
-                RelativeVector4 temp = (RelativeVector4)GetValue(PixelAreaProperty);
-                return new RelativeVector4(OnPixelAreaChanged, temp.X, temp.Y, temp.Z, temp.W);
-#endif                
             }
             set
             {
-#if NUI_PROPERTY_CHANGE_DEBUG
-PixelAreaSetter++;
-#endif
                 SetValue(PixelAreaProperty, value);
                 NotifyPropertyChanged();
             }
@@ -669,13 +649,8 @@ PixelAreaSetter++;
             // Sync as current properties
             UpdateImage();
 
-#if NUI_VISUAL_PROPERTY_CHANGE_1
+
             Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionReload);
-#else
-            PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(ImageView.Property.IMAGE, ActionReload, attributes);
-            attributes?.Dispose();
-#endif
         }
 
         /// <summary>
@@ -687,13 +662,8 @@ PixelAreaSetter++;
             // Sync as current properties
             UpdateImage();
 
-#if NUI_VISUAL_PROPERTY_CHANGE_1
+
             Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionPlay);
-#else
-            PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(ImageView.Property.IMAGE, ActionPlay, attributes);
-            attributes?.Dispose();
-#endif
         }
 
         /// <summary>
@@ -705,13 +675,8 @@ PixelAreaSetter++;
             // Sync as current properties
             UpdateImage();
 
-#if NUI_VISUAL_PROPERTY_CHANGE_1
+
             Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionPause);
-#else
-            PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(ImageView.Property.IMAGE, ActionPause, attributes);
-            attributes?.Dispose();
-#endif
         }
 
         /// <summary>
@@ -724,13 +689,8 @@ PixelAreaSetter++;
             UpdateImage();
 
 
-#if NUI_VISUAL_PROPERTY_CHANGE_1
+
             Interop.View.DoActionWithEmptyAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionStop);
-#else
-            PropertyValue attributes = new PropertyValue(0);
-            this.DoAction(ImageView.Property.IMAGE, ActionStop, attributes);
-            attributes?.Dispose();
-#endif
         }
 
         /// <summary>
@@ -1225,32 +1185,13 @@ PixelAreaSetter++;
 
             if (backgroundExtraData == null) return;
 
-#if NUI_VISUAL_PROPERTY_CHANGE_1
+
             // Update corner radius properties to image by ActionUpdateProperty
             if (backgroundExtraData.CornerRadius != null)
             {
                 Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
             }
             Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
-#else
-            // Apply corner radius to IMAGE.
-            var cornerRadiusValue = backgroundExtraData.CornerRadius == null ? new PropertyValue() : new PropertyValue(backgroundExtraData.CornerRadius);
-            var cornerRadiusPolicyValue = new PropertyValue((int)backgroundExtraData.CornerRadiusPolicy);
-
-            // Make current propertyMap
-            PropertyMap currentPropertyMap = new PropertyMap();
-            currentPropertyMap[Visual.Property.CornerRadius] = cornerRadiusValue;
-            currentPropertyMap[Visual.Property.CornerRadiusPolicy] = cornerRadiusPolicyValue;
-            var temp = new PropertyValue(currentPropertyMap);
-
-            // Update corner radius properties to image by ActionUpdateProperty
-            this.DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, temp);
-
-            temp.Dispose();
-            currentPropertyMap.Dispose();
-            cornerRadiusValue.Dispose();
-            cornerRadiusPolicyValue.Dispose();
-#endif
         }
 
         internal override void ApplyBorderline()
@@ -1259,33 +1200,11 @@ PixelAreaSetter++;
 
             if (backgroundExtraData == null) return;
 
-#if NUI_VISUAL_PROPERTY_CHANGE_1
+
             // Update borderline properties to image by ActionUpdateProperty
             Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
             Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineColor, Vector4.getCPtr(backgroundExtraData.BorderlineColor ?? Color.Black));
             Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, ImageView.Property.IMAGE, Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
-#else
-            // Apply borderline to IMAGE.
-            var borderlineWidthValue = new PropertyValue(backgroundExtraData.BorderlineWidth);
-            var borderlineColorValue = backgroundExtraData.BorderlineColor == null ? new PropertyValue(Color.Black) : new PropertyValue(backgroundExtraData.BorderlineColor);
-            var borderlineOffsetValue = new PropertyValue(backgroundExtraData.BorderlineOffset);
-
-            // Make current propertyMap
-            PropertyMap currentPropertyMap = new PropertyMap();
-            currentPropertyMap[Visual.Property.BorderlineWidth] = borderlineWidthValue;
-            currentPropertyMap[Visual.Property.BorderlineColor] = borderlineColorValue;
-            currentPropertyMap[Visual.Property.BorderlineOffset] = borderlineOffsetValue;
-            var temp = new PropertyValue(currentPropertyMap);
-
-            // Update borderline properties to image by ActionUpdateProperty
-            this.DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, temp);
-
-            temp.Dispose();
-            currentPropertyMap.Dispose();
-            borderlineWidthValue.Dispose();
-            borderlineColorValue.Dispose();
-            borderlineOffsetValue.Dispose();
-#endif
         }
 
         internal ResourceLoadingStatusType GetResourceStatus()
@@ -1305,9 +1224,7 @@ PixelAreaSetter++;
                 return;
             }
 
-#if NUI_PROPERTY_CHANGE_2
             internalPixelArea?.Dispose();
-#endif
 
             if (type == DisposeTypes.Explicit)
             {
@@ -1500,9 +1417,9 @@ PixelAreaSetter++;
             }
 
             // Checkup the cached visual type is AnimatedImage.
-            // It is trick to know that this code is running on AnimatedImageView.UpdateImage() or not.
-            int visualType = -1;
-            if(!((GetCachedImageVisualProperty(Visual.Property.Type)?.Get(out visualType) ?? false) && visualType == (int)Visual.Type.AnimatedImage))
+            // It is trick to know that this code is running on AnimatedImageView.UpdateImage() / LottieAnimationView.UpdateImage() or not.
+            int visualType = (int)Visual.Type.Invalid;
+            if(!((GetCachedImageVisualProperty(Visual.Property.Type)?.Get(out visualType) ?? false) && (visualType == (int)Visual.Type.AnimatedImage || visualType == (int)Visual.Type.AnimatedVectorImage)))
             {
                 // If ResourceUrl is not setuped, don't set property. fast return.
                 if(string.IsNullOrEmpty(_resourceUrl))

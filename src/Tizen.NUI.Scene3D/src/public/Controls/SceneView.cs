@@ -107,6 +107,13 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// An event emitted when Camera Transition is finished.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler CameraTransitionFinished;
+
+        /// <summary>
         /// Set/Get the ImageBasedLight ScaleFactor.
         /// Scale factor controls light source intensity in [0.0f, 1.0f]
         /// </summary>
@@ -535,25 +542,9 @@ namespace Tizen.NUI.Scene3D
 
             Position sourcePosition = sourceCamera.Position;
             Rotation sourceOrientation = sourceCamera.Orientation;
-            Radian   sourceFieldOfView = sourceCamera.FieldOfView;
 
             Position destinationPosition = destinationCamera.Position;
             Rotation destinationOrientation = destinationCamera.Orientation;
-            Radian   destinationFieldOfView = destinationCamera.FieldOfView;
-
-            // If ProjectionDirection is not equal, match the value.
-            if (sourceCamera.ProjectionDirection != destinationCamera.ProjectionDirection)
-            {
-                float aspect = destinationCamera.AspectRatio;
-                if (destinationCamera.ProjectionDirection == Camera.ProjectionDirectionType.Vertical)
-                {
-                    sourceFieldOfView = Camera.ConvertFovFromHorizontalToVertical(aspect, sourceFieldOfView);
-                }
-                else
-                {
-                    sourceFieldOfView = Camera.ConvertFovFromVerticalToHorizontal(aspect, sourceFieldOfView);
-                }
-            }
 
             cameraTransition = new Animation(durationMilliSeconds);
 
@@ -565,23 +556,72 @@ namespace Tizen.NUI.Scene3D
             orientationKeyFrames.Add(0.0f, sourceOrientation);
             orientationKeyFrames.Add(1.0f, destinationOrientation);
 
-            KeyFrames fieldOfViewKeyFrames = new KeyFrames();
-            fieldOfViewKeyFrames.Add(0.0f, sourceFieldOfView.ConvertToFloat());
-            fieldOfViewKeyFrames.Add(1.0f, destinationFieldOfView.ConvertToFloat());
-
             cameraTransition.AnimateBetween(destinationCamera, "Position", positionKeyFrames, Animation.Interpolation.Linear, alphaFunction);
             cameraTransition.AnimateBetween(destinationCamera, "Orientation", orientationKeyFrames, Animation.Interpolation.Linear, alphaFunction);
-            cameraTransition.AnimateBetween(destinationCamera, "FieldOfView", fieldOfViewKeyFrames, Animation.Interpolation.Linear, alphaFunction);
+
+            if(destinationCamera.ProjectionMode == Camera.ProjectionModeType.Perspective)
+            {
+                Radian sourceFieldOfView = sourceCamera.FieldOfView;
+                Radian destinationFieldOfView = destinationCamera.FieldOfView;
+
+                // If ProjectionDirection is not equal, match the value.
+                if (sourceCamera.ProjectionDirection != destinationCamera.ProjectionDirection)
+                {
+                    float aspect = destinationCamera.AspectRatio;
+                    if (destinationCamera.ProjectionDirection == Camera.ProjectionDirectionType.Vertical)
+                    {
+                        sourceFieldOfView = Camera.ConvertFovFromHorizontalToVertical(aspect, sourceFieldOfView);
+                    }
+                    else
+                    {
+                        sourceFieldOfView = Camera.ConvertFovFromVerticalToHorizontal(aspect, sourceFieldOfView);
+                    }
+                }
+
+                KeyFrames fieldOfViewKeyFrames = new KeyFrames();
+                fieldOfViewKeyFrames.Add(0.0f, sourceFieldOfView.ConvertToFloat());
+                fieldOfViewKeyFrames.Add(1.0f, destinationFieldOfView.ConvertToFloat());
+                cameraTransition.AnimateBetween(destinationCamera, "FieldOfView", fieldOfViewKeyFrames, Animation.Interpolation.Linear, alphaFunction);
+
+                sourceFieldOfView.Dispose();
+                destinationFieldOfView.Dispose();
+                fieldOfViewKeyFrames.Dispose();
+            }
+            else
+            {
+                float sourceOrthographicSize = sourceCamera.OrthographicSize;
+                float destinationOrthographicSize = destinationCamera.OrthographicSize;
+
+                // If ProjectionDirection is not equal, match the value.
+                if (sourceCamera.ProjectionDirection != destinationCamera.ProjectionDirection)
+                {
+                    float aspect = destinationCamera.AspectRatio;
+                    if (destinationCamera.ProjectionDirection == Camera.ProjectionDirectionType.Vertical)
+                    {
+                        sourceOrthographicSize = sourceOrthographicSize / aspect;
+                    }
+                    else
+                    {
+                        sourceOrthographicSize = sourceOrthographicSize * aspect;
+                    }
+                }
+
+                KeyFrames orthographicSizeKeyFrames = new KeyFrames();
+                orthographicSizeKeyFrames.Add(0.0f, sourceOrthographicSize);
+                orthographicSizeKeyFrames.Add(1.0f, destinationOrthographicSize);
+                cameraTransition.AnimateBetween(destinationCamera, "OrthographicSize", orthographicSizeKeyFrames, Animation.Interpolation.Linear, alphaFunction);
+
+                orthographicSizeKeyFrames.Dispose();
+            }
 
             cameraTransition.Finished += (s, e) =>
             {
                 inCameraTransition = false;
+                CameraTransitionFinished?.Invoke(this, EventArgs.Empty);
             };
             cameraTransition.Play();
 
-            sourceFieldOfView.Dispose();
             positionKeyFrames.Dispose();
-            orientationKeyFrames.Dispose();
             orientationKeyFrames.Dispose();
         }
 

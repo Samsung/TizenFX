@@ -211,6 +211,7 @@ namespace Tizen.NUI
             application.LanguageChanged += OnLanguageChanged;
             application.MemoryLow += OnMemoryLow;
             application.RegionChanged += OnRegionChanged;
+            application.DeviceOrientationChanged += OnDeviceOrientationChanged;
 
             application.Initialized += OnInitialized;
             application.Resumed += OnResumed;
@@ -227,6 +228,7 @@ namespace Tizen.NUI
                 application.TaskLanguageChanged += OnTaskLanguageChanged;
                 application.TaskMemoryLow += OnTaskMemoryLow;
                 application.TaskRegionChanged += OnTaskRegionChanged;
+                application.TaskDeviceOrientationChanged += OnTaskDeviceOrientationChanged;
 
                 application.TaskInitialized += OnTaskInitialized;
                 application.TaskTerminating += OnTaskTerminated;
@@ -326,6 +328,41 @@ namespace Tizen.NUI
                 case Application.BatteryStatus.PowerOff:
                     {
                         handler?.Invoke(new LowBatteryEventArgs(LowBatteryStatus.PowerOff));
+                        break;
+                    }
+            }
+        }
+
+        /// <summary>
+        /// The Device Orientation changed event callback function.
+        /// </summary>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for DeviceOrientationChanged.</param>
+        private void OnDeviceOrientationChanged(object source, NUIApplicationDeviceOrientationChangedEventArgs e)
+        {
+            Log.Info("NUI", "NUICorebackend OnDeviceOrientationChanged Called");
+            var handler = Handlers[EventType.DeviceOrientationChanged] as Action<DeviceOrientationEventArgs>;
+
+            switch (e.DeviceOrientationStatus)
+            {
+                case Application.DeviceOrientationStatus.Orientation_0:
+                    {
+                        handler?.Invoke(new DeviceOrientationEventArgs(DeviceOrientation.Orientation_0));
+                        break;
+                    }
+                case Application.DeviceOrientationStatus.Orientation_90:
+                    {
+                        handler?.Invoke(new DeviceOrientationEventArgs(DeviceOrientation.Orientation_90));
+                        break;
+                    }
+                case Application.DeviceOrientationStatus.Orientation_180:
+                    {
+                        handler?.Invoke(new DeviceOrientationEventArgs(DeviceOrientation.Orientation_180));
+                        break;
+                    }
+                case Application.DeviceOrientationStatus.Orientation_270:
+                    {
+                        handler?.Invoke(new DeviceOrientationEventArgs(DeviceOrientation.Orientation_270));
                         break;
                     }
             }
@@ -486,6 +523,39 @@ namespace Tizen.NUI
                 case Application.BatteryStatus.PowerOff:
                     {
                         coreTask?.OnLowBattery(new LowBatteryEventArgs(LowBatteryStatus.PowerOff));
+                        break;
+                    }
+            }
+        }
+
+        /// <summary>
+        /// The Orientation Changed event callback function. The callback is emitted on the main thread.
+        /// </summary>
+        /// <param name="source">The application instance.</param>
+        /// <param name="e">The event argument for changing device orientation.</param>
+        private void OnTaskDeviceOrientationChanged(object source, NUIApplicationDeviceOrientationChangedEventArgs e)
+        {
+            Log.Info("NUI", "NUICorebackend OnTaskBatteryLow Called");
+            switch (e.DeviceOrientationStatus)
+            {
+                case Application.DeviceOrientationStatus.Orientation_0:
+                    {
+                        coreTask?.OnDeviceOrientationChanged(new DeviceOrientationEventArgs(DeviceOrientation.Orientation_0));
+                        break;
+                    }
+                case Application.DeviceOrientationStatus.Orientation_90:
+                    {
+                        coreTask?.OnDeviceOrientationChanged(new DeviceOrientationEventArgs(DeviceOrientation.Orientation_90));
+                        break;
+                    }
+                case Application.DeviceOrientationStatus.Orientation_180:
+                    {
+                        coreTask?.OnDeviceOrientationChanged(new DeviceOrientationEventArgs(DeviceOrientation.Orientation_180));
+                        break;
+                    }
+                case Application.DeviceOrientationStatus.Orientation_270:
+                    {
+                        coreTask?.OnDeviceOrientationChanged(new DeviceOrientationEventArgs(DeviceOrientation.Orientation_270));
                         break;
                     }
             }

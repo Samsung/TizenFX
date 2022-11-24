@@ -15,14 +15,10 @@
  *
  */
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Globalization;
-using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
-using Tizen.NUI.Components;
-using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -71,13 +67,17 @@ namespace Tizen.NUI.Devel.Tests
         float GetParameter(object parameter)
         {
             if (parameter is float)
+            {
                 return (float)parameter;
-
+            }
             else if (parameter is int)
+            {
                 return (int)parameter;
-
+            }
             else if (parameter is string)
+            {
                 return float.Parse((string)parameter);
+            }
 
             return 1;
         }
@@ -99,10 +99,7 @@ namespace Tizen.NUI.Devel.Tests
                     Color = new Color(value, color.G, color.B, 1.0f);
                 }
             }
-            get
-            {
-                return color.R;
-            }
+            get => color.R;
         }
 
 
@@ -119,10 +116,7 @@ namespace Tizen.NUI.Devel.Tests
                     Name = "Red";
                 }
             }
-            get
-            {
-                return color;
-            }
+            get => color;
         }
 
         public string Name
@@ -135,10 +129,7 @@ namespace Tizen.NUI.Devel.Tests
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
                 }
             }
-            get
-            {
-                return name;
-            }
+            get => name;
         }
     }
 

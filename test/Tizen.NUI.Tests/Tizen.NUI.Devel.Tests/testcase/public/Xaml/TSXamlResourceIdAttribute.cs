@@ -169,7 +169,7 @@ namespace Tizen.NUI.Devel.Tests
             catch (Exception e)
             {
                 Tizen.Log.Error(tag, "Caught Exception" + e.ToString());
-                Assert.Fail("Caught Exception" + e.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
 
             tlog.Debug(tag, $"XamlResourceIdAttributeGetResourceIdForPath END");

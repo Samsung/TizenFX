@@ -111,15 +111,16 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.URL = lottieFilePath;
 
-            string maker = "startframe: 1; endframe: 10";
+            string marker1 = "startframe: 1; endframe: 10";
+            string marker2 = "startframe: 2; endframe: 20";
 
             try
             {
-                testingTarget.SetMinMaxFrameByMarker(maker, null);
+                testingTarget.SetMinMaxFrameByMarker(marker1, marker2);
             }
             catch (Exception e)
             {
-                tlog.Debug(tag, e.Message.ToString());
+                tlog.Error(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
 
@@ -150,16 +151,17 @@ namespace Tizen.NUI.Devel.Tests
                 .Add(ImageVisualProperty.PlayRange, new PropertyValue(50));
             testingTarget.Image = map;
 
-            string maker = "startframe: 1; endframe: 10";
-            testingTarget.SetMinMaxFrameByMarker(maker, null);
+            string marker1 = "startframe: 1; endframe: 10";
+            string marker2 = "startframe: 1; endframe: 10";
+            testingTarget.SetMinMaxFrameByMarker(marker1, marker2);
 
             try
             {
-                testingTarget.GetMinMaxFrame();    
+                testingTarget.GetMinMaxFrame();
             }
             catch (Exception e)
             {
-                tlog.Debug(tag, e.Message.ToString());
+                tlog.Error(tag, e.Message.ToString());
                 Assert.Fail("Caught Exception: Failed!");
             }
 
@@ -304,8 +306,67 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"LottieFrameInfoConstructorWithString END (OK)");
         }
 
-        public void OnFinishedEvent(object sender, EventArgs e) { }
+        [Test]
+        [Category("P1")]
+        [Description("LottieFrameInfo CreateAnimationRange.")]
+        [Property("SPEC", "Tizen.NUI.LottieFrameInfo.CreateAnimationRange M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LottieFrameInfoCreateAnimationRange()
+        {
+            tlog.Debug(tag, $"LottieFrameInfoCreateAnimationRange START");
+			
+			try
+			{
+			    LottieFrameInfo.CreateAnimationRange(0,10);
+			    LottieFrameInfo.CreateStillImage(300);
+			}
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }			
 
+            tlog.Debug(tag, $"LottieFrameInfoCreateAnimationRange END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("LottieFrameInfo Show.")]
+        [Property("SPEC", "Tizen.NUI.LottieFrameInfo.Show M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void LottieFrameInfoShow()
+        {
+            tlog.Debug(tag, $"LottieFrameInfoShow START");
+
+            var testingTarget = new LottieFrameInfo(300);
+            Assert.IsNotNull(testingTarget, "Can't create success object LottieFrameInfo");
+            Assert.IsInstanceOf<LottieFrameInfo>(testingTarget, "Should be an instance of LottieFrameInfo type.");
+			
+            using (Uint16Pair size = new Uint16Pair(40, 60))
+            {
+                var myLottie = new LottieAnimationView(1.0f, true);
+                Assert.IsNotNull(myLottie, "Can't create success object LottieAnimationView");
+                Assert.IsInstanceOf<LottieAnimationView>(myLottie, "Should be an instance of LottieAnimationView type.");
+			    
+                try
+			    {
+                    testingTarget.Show(myLottie,false);
+			    }
+	            catch (Exception e)
+                {
+                    tlog.Debug(tag, e.Message.ToString());
+                    Assert.Fail("Caught Exception: Failed!");
+                }	
+			}				
+
+            tlog.Debug(tag, $"LottieFrameInfoShow END (OK)");
+        }
+
+        public void OnFinishedEvent(object sender, EventArgs e) { }
         private void OnVisualEvent(object sender, LottieAnimationView.VisualEventSignalArgs e) { }
     }
 }

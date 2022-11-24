@@ -89,5 +89,40 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"TransitionGroupAddTransition END (OK)");
         }
+        [Test]
+        [Category("P1")]
+        [Description("TransitionGroup CreateTransition.")]
+        [Property("SPEC", "Tizen.NUI.TransitionGroup.CreateTransition M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void TransitionGroupCreateTransition()
+        {
+            tlog.Debug(tag, $"TransitionGroupCreateTransition START");
+
+            var testingTarget = new TransitionGroup();
+            Assert.IsNotNull(testingTarget, "Can't create success object TransitionGroup");
+            Assert.IsInstanceOf<TransitionGroup>(testingTarget, "Should be an instance of TransitionGroup type.");
+
+            using (TransitionBase tb = new TransitionBase())
+            {
+                tb.TimePeriod = new TimePeriod(300);
+                tb.AlphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Bounce);
+                testingTarget.AddTransition(tb);
+
+                using (View view = new View())
+                {
+                    TimePeriod timePeriod = new TimePeriod(0);
+                    AlphaFunction alphaFunction = new AlphaFunction(AlphaFunction.BuiltinFunctions.Default);
+
+                    var result = testingTarget.CreateTransition(view, true, timePeriod, alphaFunction);
+                    Assert.IsNotNull(result, "Can't create success object TransitionItemBase");
+                    Assert.IsInstanceOf<TransitionItemBase>(result, "Should be an instance of TransitionItemBase type.");
+                }
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TransitionGroupCreateTransition END (OK)");
+        }
     }
 }

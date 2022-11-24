@@ -58,13 +58,7 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             TimePickerStyle ts = new TimePickerStyle()
             {
-                Pickers = new PickerStyle()
-                {
-                    Divider = new ViewStyle()
-                    {
-                        Position = new Position(100, 100),
-                    }
-                }
+                Pickers = new PickerStyle(),
             };
 
             var testingTarget = new TimePicker(ts);
@@ -219,10 +213,6 @@ namespace Tizen.NUI.Components.Devel.Tests
                 Pickers = new PickerStyle()
                 {
                     StartScrollOffset = new Size(10, 10),
-                    Divider = new ViewStyle()
-                    {
-                        Position = new Position(30, 40),
-                    }
                 },
                 CellPadding = new Size2D(20, 20),
             };

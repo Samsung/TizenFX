@@ -2,7 +2,6 @@
 using System;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
-using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -28,7 +27,7 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Trigger Trigger")]
+        [Description("Trigger constructor")]
         [Property("SPEC", "Tizen.NUI.Binding.Trigger.Trigger C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
@@ -38,10 +37,11 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                Trigger t2 = new Trigger(typeof(View));
-
-                Assert.IsNotNull(t2, "null Trigger");
-                Assert.IsInstanceOf<Trigger>(t2, "Should return Trigger instance.");
+#pragma warning disable Reflection // The code contains reflection
+                var testingTarget = new Trigger(typeof(View));
+#pragma warning restore Reflection // The code contains reflection
+                Assert.IsNotNull(testingTarget, "null Trigger");
+                Assert.IsInstanceOf<Trigger>(testingTarget, "Should return Trigger instance.");
             }
             catch (Exception e)
             {
@@ -53,50 +53,59 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P2")]
-        [Description("Trigger Trigger")]
+        [Description("Trigger constructor")]
         [Property("SPEC", "Tizen.NUI.Binding.Trigger.Trigger C")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "CONSTR")]
-        public void TriggerConstructor2()
+        public void TriggerConstructorWithNull()
         {
-            tlog.Debug(tag, $"TriggerConstructor2 START");
+            tlog.Debug(tag, $"TriggerConstructorWithNull START");
 
             Assert.Throws<ArgumentNullException>(() => new Trigger(null));
 
-            tlog.Debug(tag, $"TriggerConstructor2 END");
+            tlog.Debug(tag, $"TriggerConstructorWithNull END");
         }
 
         [Test]
         [Category("P1")]
-        [Description("Trigger  BindableProperty")]
+        [Description("Trigger BindableProperty")]
         [Property("SPEC", "Tizen.NUI.Binding.Trigger.BindableProperty  A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
-        public void BindablePropertyTest1()
+        [Obsolete]
+        public void TriggerBindableProperty()
         {
-            tlog.Debug(tag, $"BindablePropertyTest1 START");
+            tlog.Debug(tag, $"TriggerBindableProperty START");
+
             try
             {
-                Trigger t2 = new Trigger(typeof(ImageView));
-                Assert.IsNotNull(t2, "null Trigger");
-                t2.Property = ImageView.ResourceUrlProperty;
-                Assert.AreEqual(ImageView.ResourceUrlProperty, t2.Property, "Should be equal");
-                //<Setter Property="PositionX" Value="500" />
-                t2.Value = "*Resource*/arrow.jpg";
-                Assert.IsNotNull(t2.Value, "null Trigger value");
+#pragma warning disable Reflection // The code contains reflection
+                var testingTarget = new Trigger(typeof(ImageView));
+#pragma warning restore Reflection // The code contains reflection
+                Assert.IsNotNull(testingTarget, "null Trigger");
 
-                Assert.AreEqual(0, t2.Setters.Count, "Should be equal");
-                Assert.AreEqual(0, t2.EnterActions.Count, "Should be equal");
-                Assert.AreEqual(0, t2.ExitActions.Count, "Should be equal");
-                Type re = t2.TargetType;
-                Assert.IsNotNull(re, "null Trigger value");
-                Assert.AreEqual(false, t2.IsSealed, "Should be equal");
+                testingTarget.Property = ImageView.ResourceUrlProperty;
+                Assert.AreEqual(ImageView.ResourceUrlProperty, testingTarget.Property, "Should be equal");
+                
+                testingTarget.Value = "*Resource*/arrow.jpg";
+                Assert.IsNotNull(testingTarget.Value, "null Trigger value");
+
+                Assert.AreEqual(0, testingTarget.Setters.Count, "Should be equal");
+                Assert.AreEqual(0, testingTarget.EnterActions.Count, "Should be equal");
+                Assert.AreEqual(0, testingTarget.ExitActions.Count, "Should be equal");
+
+                var result = testingTarget.TargetType;
+                Assert.IsNotNull(result, "null Trigger value");
+
+                Assert.AreEqual(false, testingTarget.IsSealed, "Should be equal");
             }
             catch (Exception e)
             {
-                Assert.Fail("Caught Exception" + e.ToString());
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
             }
-            tlog.Debug(tag, $"BindablePropertyTest1 END");
+
+            tlog.Debug(tag, $"TriggerBindableProperty END");
         }
 
     }

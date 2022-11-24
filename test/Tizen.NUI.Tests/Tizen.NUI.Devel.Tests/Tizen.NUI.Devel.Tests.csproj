@@ -3,7 +3,7 @@
   <!-- Property Group for .NET Core Project -->
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
     <TargetFrameworkIdentifier>Tizen</TargetFrameworkIdentifier>
   </PropertyGroup>
 
@@ -71,7 +71,9 @@
     <EmbeddedResource Include="res\layout\XamlStyleSample.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Include="res\layout\TotalSample.xaml" />
+    <EmbeddedResource Include="res\layout\TotalSample.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Include="testcase\public\Xaml\TotalSample\BaseXamlSample2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

@@ -144,7 +144,7 @@ namespace Tizen.NUI.Devel.Tests
 			catch(Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
-                Assert.Pass("Catch exception: Failed!");
+                Assert.Fail("Catch exception: Failed!");
             }
 
             testingTarget.Dispose();
@@ -154,14 +154,47 @@ namespace Tizen.NUI.Devel.Tests
 
 		[Test]
         [Category("P1")]
-        [Description("Animation PlayRange")]
-        [Property("SPEC", "Tizen.NUI.Animation.PlayRange M")]
+        [Description("Animation SetPlayRange")]
+        [Property("SPEC", "Tizen.NUI.Animation.SetPlayRange M")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationSetPlayRange()
+        {
+            tlog.Debug(tag, $"AnimationSetPlayRange START");
+
+            var testingTarget = new Animation(2000);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            try
+			{
+                Vector2 val = new Vector2(0.0f, 10.0f);
+                testingTarget.SetPlayRange(val);
+
+			    var result = testingTarget.GetPlayRange();
+                tlog.Debug(tag, "PlayRange : " + result);
+			}
+			catch(Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Catch exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"AnimationSetPlayRange END (OK)");
+        }
+
+		[Test]
+        [Category("P1")]
+        [Description("Animation PlayRange")]
+        [Property("SPEC", "Tizen.NUI.Animation.PlayRange A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public void AnimationPlayRange()
         {
-            tlog.Debug(tag, $"AnimationGetPlayRange START");
+            tlog.Debug(tag, $"AnimationPlayRange START");
             
             var testingTarget = new Animation(2000);
             Assert.IsNotNull(testingTarget, "should be not null");
@@ -179,13 +212,12 @@ namespace Tizen.NUI.Devel.Tests
 			    }
 			    catch(Exception e)
                 {
-                    Assert.Pass("Catch exception: " + e.Message.ToString());
+                    Assert.Fail("Catch exception: " + e.Message.ToString());
                 }
 			}
 
             testingTarget.Dispose();
-            
-            tlog.Debug(tag, $"AnimationGetPlayRange END (OK)");
+            tlog.Debug(tag, $"AnimationPlayRange END (OK)");
         }
 
         [Test]
@@ -1210,7 +1242,7 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Animation AnimateBetween. With start time and end time")]
+        [Description("Animation AnimateBetween. With startTime and endTime")]
         [Property("SPEC", "Tizen.NUI.Animation.AnimateBetween M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
@@ -1240,6 +1272,51 @@ namespace Tizen.NUI.Devel.Tests
             keyFrames.Dispose();
             view.Dispose();
             tlog.Debug(tag, $"AnimationAnimateBetweenWithStartTimeAndEndTime END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Animation AnimateBetween. With KeyFrames and TimePeriod ")]
+        [Property("SPEC", "Tizen.NUI.Animation.AnimateBetween M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationAnimateBetweenWithPropertyKeyFramesandTimePeriod()
+        {
+            tlog.Debug(tag, $"AnimationAnimateBetweenWithPropertyKeyFramesandTimePeriod START");
+
+            View view = new View()
+            {
+                Opacity = 0.0f
+            };
+
+            var keyFrames = new KeyFrames();
+            Assert.IsNotNull(keyFrames, "should be not null");
+            Assert.IsInstanceOf<KeyFrames>(keyFrames, "should be an instance of Animation class!");
+            keyFrames.Add(0.0f, 1.0f);
+
+            var testingTarget = new Animation(600);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            testingTarget.EndAction = Animation.EndActions.StopFinal;
+            
+            try
+            {
+                testingTarget.AnimateBetween(view, "Opacity", keyFrames);
+                testingTarget.AnimateBetween(view, "Opacity", keyFrames, 0, 600);
+                testingTarget.AnimateBetween(view, "Opacity", keyFrames,0);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            keyFrames.Dispose();
+            view.Dispose();
+            tlog.Debug(tag, $"AnimationAnimateBetweenWithPropertyKeyFramesandTimePeriod END (OK)");
         }
 
         [Test]

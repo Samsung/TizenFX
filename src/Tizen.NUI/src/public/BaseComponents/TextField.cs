@@ -39,8 +39,9 @@ namespace Tizen.NUI.BaseComponents
         private float fontSizeScale = 1.0f;
         private bool hasFontSizeChangedCallback = false;
         private bool isSettingTextInCSharp = false;
+        static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextField";
 
-#if NUI_PROPERTY_CHANGE_2
+
         private Vector4 internalPlaceholderTextColor = null;
         private Vector4 internalPrimaryCursorColor = null;
         private Vector4 internalSecondaryCursorColor = null;
@@ -49,7 +50,6 @@ namespace Tizen.NUI.BaseComponents
         private Color internalTextColor = null;
         private Color internalGrabHandleColor = null;
 
-#endif
 
         static TextField() { }
 
@@ -57,7 +57,7 @@ namespace Tizen.NUI.BaseComponents
         /// Creates the TextField control.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public TextField() : this(Interop.TextField.New(), true)
+        public TextField() : this(Interop.TextField.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -68,7 +68,7 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public TextField(bool shown) : this(Interop.TextField.New(), true)
+        public TextField(bool shown) : this(Interop.TextField.New(ThemeManager.GetStyle(defaultStyleName) == null ? false : true), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
@@ -2289,6 +2289,19 @@ namespace Tizen.NUI.BaseComponents
         {
             get
             {
+                return (float)GetValue(FontSizeScaleProperty);
+            }
+            set
+            {
+                SetValue(FontSizeScaleProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private float InternalFontSizeScale
+        {
+            get
+            {
                 return fontSizeScale;
             }
             set
@@ -2320,9 +2333,14 @@ namespace Tizen.NUI.BaseComponents
                     removeFontSizeChangedCallback();
                 }
 
-                SetValue(FontSizeScaleProperty, newFontSizeScale);
-                NotifyPropertyChanged();
+                SetInternalFontSizeScale(newFontSizeScale);
             }
+        }
+
+        private void SetInternalFontSizeScale(float fontSizeScale)
+        {
+
+            Object.InternalSetPropertyFloat(this.SwigCPtr, TextField.Property.FontSizeScale, (float)fontSizeScale);
         }
 
         /// <summary>
@@ -2420,7 +2438,7 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-#if NUI_PROPERTY_CHANGE_2
+
             internalPlaceholderTextColor?.Dispose();
             internalPrimaryCursorColor?.Dispose();
             internalSecondaryCursorColor?.Dispose();
@@ -2428,7 +2446,6 @@ namespace Tizen.NUI.BaseComponents
             internalInputColor?.Dispose();
             internalTextColor?.Dispose();
             internalGrabHandleColor?.Dispose();
-#endif
 
             if (systemlangTextFlag)
             {
@@ -2545,8 +2562,7 @@ namespace Tizen.NUI.BaseComponents
         private void SystemSettingsFontSizeChanged(object sender, FontSizeChangedEventArgs e)
         {
             float newFontSizeScale = TextUtils.GetFontSizeScale(e.Value);
-            SetValue(FontSizeScaleProperty, newFontSizeScale);
-            NotifyPropertyChanged();
+            SetInternalFontSizeScale(newFontSizeScale);
         }
 
         private void addFontSizeChangedCallback()

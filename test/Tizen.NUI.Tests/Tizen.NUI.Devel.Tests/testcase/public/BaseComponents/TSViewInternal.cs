@@ -1112,6 +1112,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void ViewSetDrawMode()
         {
             tlog.Debug(tag, $"ViewSetDrawMode START");
@@ -1503,6 +1504,40 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewResetLayout END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("View GetBackgroundResourceStatus.")]
+        [Property("SPEC", "Tizen.NUI.View.GetBackgroundResourceStatus M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void ViewGetBackgroundResourceStatus()
+        {
+            tlog.Debug(tag, $"ViewGetBackgroundResourceStatus START");
+
+            var testingTarget = new View()
+            {
+                Size = new Size(100, 50),
+                Color = Color.Cyan,
+                Layout = new LinearLayout()
+            };
+            Assert.IsNotNull(testingTarget, "Can't create success object View");
+            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
+
+            try
+            {
+                testingTarget.GetBackgroundResourceStatus();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"ViewGetBackgroundResourceStatus END (OK)");
         }
 
         [Test]

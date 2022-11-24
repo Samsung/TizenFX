@@ -34,6 +34,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "CONSTR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextConstructor()
         {
             tlog.Debug(tag, $"InputMethodContextConstructor START");
@@ -54,6 +55,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextActivated()
         {
             tlog.Debug(tag, $"InputMethodContextActivated START");
@@ -84,6 +86,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextEventReceived()
         {
             tlog.Debug(tag, $"InputMethodContextEventReceived START");
@@ -119,6 +122,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextStatusChanged()
         {
             tlog.Debug(tag, $"InputMethodContextStatusChanged START");
@@ -149,6 +153,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextResized()
         {
             tlog.Debug(tag, $"InputMethodContextResized START");
@@ -179,6 +184,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextLanguageChanged()
         {
             tlog.Debug(tag, $"InputMethodContextLanguageChanged START");
@@ -209,6 +215,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextKeyboardTypeChanged()
         {
             tlog.Debug(tag, $"InputMethodContextKeyboardTypeChanged START");
@@ -239,6 +246,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextContentReceived()
         {
             tlog.Debug(tag, $"InputMethodContextContentReceived START");
@@ -275,6 +283,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextDestroyContext()
         {
             tlog.Debug(tag, $"InputMethodContextDestroyContext START");
@@ -294,6 +303,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextActivate()
         {
             tlog.Debug(tag, $"InputMethodContextActivate START");
@@ -314,6 +324,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextDeactivate()
         {
             tlog.Debug(tag, $"InputMethodContextDeactivate START");
@@ -334,6 +345,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextRestoreAfterFocusLost()
         {
             tlog.Debug(tag, $"InputMethodContextRestoreAfterFocusLost START");
@@ -353,6 +365,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextSetRestoreAfterFocusLost()
         {
             tlog.Debug(tag, $"InputMethodContextSetRestoreAfterFocusLost START");
@@ -372,6 +385,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextReset()
         {
             tlog.Debug(tag, $"InputMethodContextReset START");
@@ -391,6 +405,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextNotifyCursorPosition()
         {
             tlog.Debug(tag, $"InputMethodContextNotifyCursorPosition START");
@@ -410,6 +425,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextSetCursorPosition()
         {
             tlog.Debug(tag, $"InputMethodContextSetCursorPosition START");
@@ -429,6 +445,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextGetCursorPosition()
         {
             tlog.Debug(tag, $"InputMethodContextGetCursorPosition START");
@@ -448,6 +465,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextSetSurroundingText()
         {
             tlog.Debug(tag, $"InputMethodContextSetSurroundingText START");
@@ -467,6 +485,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextGetSurroundingText()
         {
             tlog.Debug(tag, $"InputMethodContextGetSurroundingText START");
@@ -486,6 +505,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextNotifyTextInputMultiLine()
         {
             tlog.Debug(tag, $"InputMethodContextNotifyTextInputMultiLine START");
@@ -505,6 +525,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextGetTextDirection()
         {
             tlog.Debug(tag, $"InputMethodContextGetTextDirection START");
@@ -524,6 +545,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextGetInputMethodArea()
         {
             tlog.Debug(tag, $"InputMethodContextGetInputMethodArea START");
@@ -543,6 +565,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextSetInputPanelUserData()
         {
             tlog.Debug(tag, $"InputMethodContextSetInputPanelUserData START");
@@ -562,6 +585,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextGetInputPanelUserData()
         {
             tlog.Debug(tag, $"InputMethodContextGetInputPanelUserData START");
@@ -581,6 +605,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextGetInputPanelState()
         {
             tlog.Debug(tag, $"InputMethodContextGetInputPanelState START");
@@ -600,6 +625,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextSetReturnKeyState()
         {
             tlog.Debug(tag, $"InputMethodContextSetReturnKeyState START");
@@ -619,6 +645,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextAutoEnableInputPanel()
         {
             tlog.Debug(tag, $"InputMethodContextAutoEnableInputPanel START");
@@ -638,6 +665,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextShowInputPanel()
         {
             tlog.Debug(tag, $"InputMethodContextShowInputPanel START");
@@ -657,6 +685,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextAssign()
         {
             tlog.Debug(tag, $"InputMethodContextAssign START");
@@ -674,6 +703,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextDownCast()
         {
             tlog.Debug(tag, $"InputMethodContextDownCast START");
@@ -698,6 +728,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextApplyOptions()
         {
             tlog.Debug(tag, $"InputMethodContextApplyOptions START");
@@ -718,6 +749,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextLanguageChangedSignal()
         {
             tlog.Debug(tag, $"InputMethodContextLanguageChangedSignal START");
@@ -737,6 +769,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextKeyboardTypeChangedSignal()
         {
             tlog.Debug(tag, $"InputMethodContextKeyboardTypeChangedSignal START");
@@ -756,6 +789,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
         public void InputMethodContextContentReceivedSignal()
         {
             tlog.Debug(tag, $"InputMethodContextContentReceivedSignal START");

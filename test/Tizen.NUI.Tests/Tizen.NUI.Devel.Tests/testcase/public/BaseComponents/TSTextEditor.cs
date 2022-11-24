@@ -180,6 +180,37 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("TextEditor InputMethodSettings.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.InputMethodSettings A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextEditorInputMethodSettings()
+        {
+            tlog.Debug(tag, $"TextEditorEnableFontSizeScale START");
+
+            var testingTarget = new TextEditor(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");		
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+			
+            InputMethod method = new InputMethod()
+            {
+                PanelLayout = InputMethod.PanelLayoutType.Normal,
+                ActionButton = InputMethod.ActionButtonTitleType.Default,
+                AutoCapital = InputMethod.AutoCapitalType.Word,
+                Variation = 1
+            };
+            testingTarget.InputMethodSettings = method.OutputMap;
+			
+			var map = testingTarget.InputMethodSettings;
+            map.Find(-1, "VARIATION").Get(out int result);
+            Assert.AreEqual(1, result, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextEditorInputMethodSettings END (OK)");
+        }
+        [Test]
+        [Category("P1")]
         [Description("TextEditor Strikethrough.")]
         [Property("SPEC", "Tizen.NUI.TextEditor.GetStrikethrough M")]
         [Property("SPEC_URL", "-")]
@@ -839,7 +870,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "bowon.ryu@samsung.com")]
-        public async Task TextEditorSelectTextStartIndexException()
+        public void TextEditorSelectTextStartIndexException()
         {
             tlog.Debug(tag, $"TextEditorSelectTextStartIndexException START");
 
@@ -870,7 +901,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "MR")]
         [Property("AUTHOR", "bowon.ryu@samsung.com")]
-        public async Task TextEditorSelectTextEndIndexException()
+        public void TextEditorSelectTextEndIndexException()
         {
             tlog.Debug(tag, $"TextEditorSelectTextEndIndexException START");
 

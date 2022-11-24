@@ -303,6 +303,17 @@ namespace Tizen.NUI.BaseComponents
             var textLabelStyle = (TextLabelStyle)bindable;
             return textLabelStyle.characterSpacing;
         });
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FontSizeScaleProperty = BindableProperty.Create(nameof(FontSizeScale), typeof(float?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            textLabelStyle.fontSizeScale = (float?)newValue;
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var textLabelStyle = (TextLabelStyle)bindable;
+            return textLabelStyle.fontSizeScale;
+        });
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly BindableProperty MatchSystemLanguageDirectionProperty = BindableProperty.Create(nameof(MatchSystemLanguageDirection), typeof(bool?), typeof(TextLabelStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
@@ -365,6 +376,7 @@ namespace Tizen.NUI.BaseComponents
         private Selector<TextShadow> textShadow;
         private PropertyMap fontStyle;
         private float? characterSpacing;
+        private float? fontSizeScale;
 
         static TextLabelStyle() { }
 
@@ -552,6 +564,13 @@ namespace Tizen.NUI.BaseComponents
         {
             get => (float?)GetValue(CharacterSpacingProperty);
             set => SetValue(CharacterSpacingProperty, value);
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float? FontSizeScale
+        {
+            get => (float?)GetValue(FontSizeScaleProperty);
+            set => SetValue(FontSizeScaleProperty, value);
         }
 
         /// This will be public opened in tizen_6.0 after ACR done. Before ACR, need to be hidden as inhouse API.

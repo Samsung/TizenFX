@@ -172,13 +172,12 @@ namespace Tizen.NUI.Devel.Tests
                 testingTarget.Connect(null);
                 Assert.Fail("Should throw the ArgumentNullException!");
             }
-            catch (ArgumentNullException e)
+            catch (ArgumentNullException)
             {
-                Assert.True(true);
+                testingTarget.Dispose();
+                tlog.Debug(tag, $"WidgetViewSignalConnectWithNull END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
             }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"WidgetViewSignalConnectWithNull END (OK)");
         }
 
         [Test]
@@ -202,7 +201,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 testingTarget.Connect(signalCallback);
                 Assert.AreEqual(1, testingTarget.GetConnectionCount(), "Should be one here!");
-                
+
                 testingTarget.Disconnect(signalCallback);
                 Assert.AreEqual(0, testingTarget.GetConnectionCount(), "Should be zero here!");
             }
@@ -233,15 +232,14 @@ namespace Tizen.NUI.Devel.Tests
             try
             {
                 testingTarget.Disconnect(null);
-                Assert.Fail("Should throw the ArgumentNullException!");
             }
             catch (ArgumentNullException e)
             {
-                Assert.True(true);
+                testingTarget.Dispose();
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"WidgetViewSignalDisconnect END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
             }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"WidgetViewSignalDisconnect END (OK)");
         }
 
         [Test]
@@ -258,20 +256,18 @@ namespace Tizen.NUI.Devel.Tests
             var testingTarget = new WidgetViewSignal();
             Assert.IsNotNull(testingTarget, "Should be not null!");
             Assert.IsInstanceOf<WidgetViewSignal>(testingTarget, "Should be an Instance of WidgetViewSignal!");
-            
+
             try
             {
                 testingTarget.Emit(null);
-                Assert.Fail("Should throw the ArgumentNullException!");
             }
             catch (ArgumentNullException e)
             {
-                Assert.True(true);
+                testingTarget.Dispose();
+                tlog.Debug(tag, e.Message.ToString());
+                tlog.Debug(tag, $"WidgetViewSignalEmitWithNull END (OK)");
+                Assert.Pass("Caught ArgumentNullException : Passed!");
             }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"WidgetViewSignalEmitWithNull END (OK)");
         }
     }
-
 }
