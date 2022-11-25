@@ -76,7 +76,7 @@ jobs:
         dotnet nuget push Artifacts/*.nupkg -k $APIKEY -s $NUGET_SOURCE -t 3000
 
     - name: Setup SSH private keys
-      uses: webfactory/ssh-agent@v0.5.2
+      uses: webfactory/ssh-agent@v0.7.0
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
