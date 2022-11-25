@@ -148,11 +148,7 @@ namespace Tizen.NUI.Components
 
             if ((e.Key.State == Key.StateType.Up) && ((e.Key.KeyPressedName == "Escape") || (e.Key.KeyPressedName == "BackSpace") || (e.Key.KeyPressedName == "XF86Back")))
             {
-                if (PageCount >= 1)
-                {
-                    Tizen.Log.Info("NUI", $"Navigator pops the peek page by {e.Key.KeyPressedName}.\n");
-                    Pop();
-                }
+                OnBackNavigation(new BackNavigationEventArgs());
             }
         }
 
@@ -855,6 +851,28 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Called when the back navigation is started.
+        /// </summary>
+        /// <param name="eventArgs">The back navigation information.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnBackNavigation(BackNavigationEventArgs eventArgs)
+        {
+            if (PageCount >= 1)
+            {
+                Tizen.Log.Info("NUI", $"Navigator pops the peek page.\n");
+                Pop();
+            }
+        }
+
+        /// <summary>
+        /// Called when the back navigation is required outside Navigator.
+        /// </summary>
+        internal void NavigateBack()
+        {
+            OnBackNavigation(new BackNavigationEventArgs());
+        }
+
+        /// <summary>
         /// Create Transitions between currentTopPage and newTopPage
         /// </summary>
         /// <param name="currentTopPage">The top page of Navigator.</param>
@@ -1050,5 +1068,13 @@ namespace Tizen.NUI.Components
                 content.Hide(); // Calls UnregisterDefaultLabel()
             }
         }
+    }
+
+    /// <summary>
+    /// BackNavigationEventArgs is a class to record back navigation event arguments which will sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class BackNavigationEventArgs : EventArgs
+    {
     }
 }
