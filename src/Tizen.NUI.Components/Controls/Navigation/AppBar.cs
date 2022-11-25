@@ -675,7 +675,7 @@ namespace Tizen.NUI.Components
                     var navigator = page.Navigator;
                     if ((navigator != null) && (navigator.EnableBackNavigation))
                     {
-                        navigator.Pop();
+                        navigator.NavigateBack();
                     }
                 }
             };
