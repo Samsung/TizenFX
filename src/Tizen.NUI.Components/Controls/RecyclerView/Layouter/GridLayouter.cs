@@ -210,11 +210,19 @@ namespace Tizen.NUI.Components
 
             bool failed = false;
             //Final Check of FirstIndex
-            while (colView.InternalItemSource.IsHeader(firstIndex) ||
-                    colView.InternalItemSource.IsGroupHeader(firstIndex) ||
-                    colView.InternalItemSource.IsGroupFooter(firstIndex))
+            if (colView.InternalItemSource.Count - 1 < firstIndex)
             {
-                if (colView.InternalItemSource.IsFooter(firstIndex))
+                StepCandidate = 0F;
+                failed = true;
+            }
+
+            while (!failed &&
+                   (colView.InternalItemSource.IsHeader(firstIndex) ||
+                    colView.InternalItemSource.IsGroupHeader(firstIndex) ||
+                    colView.InternalItemSource.IsGroupFooter(firstIndex)))
+            {
+                if (colView.InternalItemSource.IsFooter(firstIndex)
+                    || ((colView.InternalItemSource.Count - 1) <= firstIndex))
                 {
                     StepCandidate = 0F;
                     failed = true;
@@ -509,7 +517,7 @@ namespace Tizen.NUI.Components
             // Insert Single item.
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (colView == null) return;
-            if (isSourceEmpty)
+            if (isSourceEmpty || StepCandidate == 0)
             {
                 Initialize(colView);
             }
@@ -661,7 +669,7 @@ namespace Tizen.NUI.Components
              // Insert Group
             if (source == null) throw new ArgumentNullException(nameof(source));
             if (colView == null) return;
-            if (isSourceEmpty)
+            if (isSourceEmpty || StepCandidate == 0)
             {
                 Initialize(colView);
             }
