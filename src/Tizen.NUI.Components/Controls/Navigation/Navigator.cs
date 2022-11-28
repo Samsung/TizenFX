@@ -894,7 +894,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void OnBackNavigation(BackNavigationEventArgs eventArgs)
         {
-            if (PageCount >= 1)
+            if ((PageCount >= 1) && Peek().EnableBackNavigation)
             {
                 Tizen.Log.Info("NUI", $"Navigator pops the peek page.\n");
                 Pop();
