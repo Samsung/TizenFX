@@ -40,6 +40,9 @@ namespace Tizen.NUI
         private delegate void WebViewScrollEdgeReachedCallback(int edge);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewUrlChangedCallbackDelegate(string pageUrl);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewPolicyDecidedCallback(IntPtr maker);
 
         private EventHandler<WebViewPageLoadEventArgs> pageLoadStartedEventHandler;
@@ -53,6 +56,9 @@ namespace Tizen.NUI
 
         private EventHandler<WebViewScrollEdgeReachedEventArgs> scrollEdgeReachedEventHandler;
         private WebViewScrollEdgeReachedCallback scrollEdgeReachedCallback;
+
+        private EventHandler<WebViewUrlChangedEventArgs> urlChangedEventHandler;
+        private WebViewUrlChangedCallbackDelegate urlChangedCallback;
 
         private EventHandler<WebViewPolicyDecidedEventArgs> navigationPolicyDecidedEventHandler;
         private WebViewPolicyDecidedCallback navigationPolicyDecidedCallback;
@@ -160,6 +166,11 @@ namespace Tizen.NUI
         private void OnScrollEdgeReached(int edge)
         {
             scrollEdgeReachedEventHandler?.Invoke(this, new WebViewScrollEdgeReachedEventArgs((WebViewScrollEdgeReachedEventArgs.Edge)edge));
+        }
+
+        private void OnUrlChanged(string pageUrl)
+        {
+            urlChangedEventHandler?.Invoke(this, new WebViewUrlChangedEventArgs(pageUrl));
         }
 
         private void OnNavigationPolicyDecided(IntPtr maker)
@@ -608,6 +619,29 @@ namespace Tizen.NUI
             remove
             {
                 scrollEdgeReachedEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// Event for the UrlChanged signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when url is changed.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WebViewUrlChangedEventArgs> UrlChanged
+        {
+            add
+            {
+                if (urlChangedEventHandler == null)
+                {
+                    urlChangedCallback = OnUrlChanged;
+                    IntPtr ip = Marshal.GetFunctionPointerForDelegate(urlChangedCallback);
+                    Interop.WebView.RegisterUrlChangedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                urlChangedEventHandler += value;
+            }
+            remove
+            {
+                urlChangedEventHandler -= value;
             }
         }
 
