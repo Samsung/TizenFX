@@ -94,6 +94,24 @@ namespace Tizen.NUI.Components
             return instance.InternalDisappearingTransition;
         });
 
+        /// <summary>
+        /// EnableBackNavigationProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty EnableBackNavigationProperty = BindableProperty.Create(nameof(EnableBackNavigation), typeof(bool), typeof(Page), default(bool), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Page)bindable;
+            if (newValue != null)
+            {
+                instance.InternalEnableBackNavigation = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Page)bindable;
+            return instance.InternalEnableBackNavigation;
+        });
+
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal BaseComponents.View LastFocusedView = null;
@@ -104,6 +122,8 @@ namespace Tizen.NUI.Components
         private TransitionBase appearingTransition = null;
 
         private TransitionBase disappearingTransition = null;
+
+        private bool enableBackNavigation = true;
 
         /// <summary>
         /// Creates a new instance of a Page.
@@ -233,6 +253,35 @@ namespace Tizen.NUI.Components
         /// <since_tizen> 9 </since_tizen>
         public event EventHandler<PageDisappearedEventArgs> Disappeared;
 
+        /// <summary>
+        /// Gets or sets if this page is popped when back button or back key is pressed and released.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool EnableBackNavigation
+        {
+            get
+            {
+                return (bool)GetValue(EnableBackNavigationProperty);
+            }
+            set
+            {
+                SetValue(EnableBackNavigationProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalEnableBackNavigation
+        {
+            set
+            {
+                enableBackNavigation = value;
+            }
+            get
+            {
+                return enableBackNavigation;
+            }
+        }
+
         internal void InvokeAppearing()
         {
             Appearing?.Invoke(this, new PageAppearingEventArgs());
@@ -323,7 +372,6 @@ namespace Tizen.NUI.Components
                     FocusManager.Instance.SetFocusFinderRootView(this);
                 }
             }
-
         }
 
     }
