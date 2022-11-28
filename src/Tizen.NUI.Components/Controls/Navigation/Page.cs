@@ -365,5 +365,30 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <summary>
+        /// Called when the back navigation is started.
+        /// </summary>
+        /// <param name="eventArgs">The back navigation information.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual void OnBackNavigation(PageBackNavigationEventArgs eventArgs)
+        {
+            Navigator.Pop();
+        }
+
+        /// <summary>
+        /// Called when the back navigation is required outside Navigator.
+        /// </summary>
+        internal void NavigateBack()
+        {
+            OnBackNavigation(new PageBackNavigationEventArgs());
+        }
+    }
+
+    /// <summary>
+    /// PageBackNavigationEventArgs is a class to record back navigation event arguments which will sent to user.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class PageBackNavigationEventArgs : EventArgs
+    {
     }
 }
