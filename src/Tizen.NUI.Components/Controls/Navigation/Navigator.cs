@@ -851,6 +851,43 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Sets the default navigator of the given window.
+        /// SetDefaultNavigator does not remove the previous default navigator from the window.
+        /// Therefore, if a user does not want to show the previous default navigator, then it should be removed from the window manually.
+        /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown when the argument window is null.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when the argument newNavigator is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SetDefaultNavigator(Window window, Navigator newNavigator)
+        {
+            if (window == null)
+            {
+                throw new ArgumentNullException(nameof(window), "window should not be null.");
+            }
+
+            if (newNavigator == null)
+            {
+                throw new ArgumentNullException(nameof(newNavigator), "newNavigator should not be null.");
+            }
+
+            if (windowNavigator.ContainsKey(window) == true)
+            {
+                var oldNavigator = windowNavigator[window];
+                if (oldNavigator == newNavigator)
+                {
+                    return;
+                }
+
+                navigatorWindow.Remove(oldNavigator);
+                windowNavigator.Remove(window);
+            }
+
+            window.Add(newNavigator);
+            windowNavigator.Add(window, newNavigator);
+            navigatorWindow.Add(newNavigator, window);
+        }
+
+        /// <summary>
         /// Called when the back navigation is started.
         /// </summary>
         /// <param name="eventArgs">The back navigation information.</param>
