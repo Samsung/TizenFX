@@ -165,6 +165,27 @@ namespace Tizen.NUI.StyleGuide
         }
     }
 
+    public class CustomNavigator : Navigator
+    {
+        // Customizes how to handle back navigation.
+        // base.OnBackNavigation() pops the peek page.
+        protected override void OnBackNavigation(BackNavigationEventArgs args)
+        {
+            if (PageCount > 1)
+            {
+                // Deactivates the peek page example before page pop.
+                if (Peek() is IExample currentExample)
+                {
+                    currentExample.Deactivate();
+                }
+            }
+
+            // Pops the peek page if navigator has more than one page.
+            // If navigator has only one page, then the program is exited.
+            base.OnBackNavigation(args);
+        }
+    }
+
     class Program : NUIApplication
     {
         private Window window;
@@ -174,26 +195,6 @@ namespace Tizen.NUI.StyleGuide
         private ContentPage page;
         private SearchField field;
         private List<ControlMenu> testSource;
-
-        public void OnKeyEvent(object sender, Window.KeyEventArgs e)
-        {
-            // FIXME:: Navigator should provide Back/Escape event processing.
-            if (e.Key.State == Key.StateType.Up)
-            {
-                Log.Info("StyleGuide", $"[{e.Key.KeyPressedName}] is pressed!\n");
-                if (e.Key.KeyPressedName == "Escape" || e.Key.KeyPressedName == "XF86Back" || e.Key.KeyPressedName == "BackSpace")
-                {
-                    if (navigator == null) return;
-
-                    ExitSample();
-
-                    if (navigator.PageCount == 0)
-                    {
-                        Exit();
-                    }
-                }
-            }
-        }
 
         public void OnSelectionChanged(object sender, SelectionChangedEventArgs ev)
         {
@@ -222,13 +223,30 @@ namespace Tizen.NUI.StyleGuide
         {
             window = GetDefaultWindow();
             window.Title = "NUI Style Guide";
-            window.KeyEvent += OnKeyEvent;
 
-            navigator = window.GetDefaultNavigator();
+            // In this example, GetDefaultNavigator() has not been called before so default navigator has not been set yet.
+            // Therefore, the following codes for unsetting and disposing the previous default navigator are not required in this example.
+            /*
+            var prevDefaultNavigator = window.GetDefaultNavigator();
+            window.Remove(prevDefaultNavigator);
+            prevDefaultNavigator.Dispose();
+            prevDefaultNavigator = null;
+            */
+
+            // Uses customized navigator to customize how to handle back navigation.
+            navigator = new CustomNavigator()
+            {
+                WidthSpecification = LayoutParamPolicies.MatchParent,
+                HeightSpecification = LayoutParamPolicies.MatchParent,
+            };
+
             navigator.Popped += (object obj, PoppedEventArgs ev) =>
             {
                 Page top = navigator.Peek();
             };
+
+            // Sets the customized navigator as the default navigator of the window.
+            window.SetDefaultNavigator(navigator);
         }
 
         void OnSearchBtnClicked(object sender, ClickedEventArgs e)
@@ -337,17 +355,6 @@ namespace Tizen.NUI.StyleGuide
             {
                 Console.WriteLine($"examle is null!");
             }
-        }
-
-        private void ExitSample()
-        {
-            if (navigator.Peek() is IExample currentExample)
-            {
-                currentExample.Deactivate();
-            }
-
-            navigator.Pop();
-            // FullGC();
         }
 
         private void FullGC()
