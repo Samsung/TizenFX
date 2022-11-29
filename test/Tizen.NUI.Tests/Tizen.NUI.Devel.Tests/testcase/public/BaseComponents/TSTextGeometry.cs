@@ -170,5 +170,77 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"GetCharacterBoundingRectangleTextLabel END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextGeometry GetCharacterIndexAtPositionTextEditor")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.TextGeometry.GetCharacterIndexAtPositionTextEditor M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "s.al-jammal@partner.samsung.com")]
+        public void GetCharacterIndexAtPositionTextEditor()
+        {
+            tlog.Debug(tag, $"GetCharacterIndexAtPositionTextEditor START");
+
+            int expectedCharacterIndex = -1;
+
+            var testingTarget = new TextEditor();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            var characterIndex = TextGeometry.GetCharacterIndexAtPosition(testingTarget, 0, 0);
+            Assert.IsNotNull(characterIndex, "Null object is detected!");
+            Assert.IsTrue(characterIndex == expectedCharacterIndex, "Should be equal!");
+
+            tlog.Debug(tag, $"GetCharacterIndexAtPositionTextEditor END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextGeometry GetCharacterIndexAtPositionTextField")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.TextGeometry.GetCharacterIndexAtPositionTextField M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "s.al-jammal@partner.samsung.com")]
+        public void GetCharacterIndexAtPositionTextField()
+        {
+            tlog.Debug(tag, $"GetCharacterIndexAtPositionTextField START");
+
+            int expectedCharacterIndex = -1;
+
+            var testingTarget = new TextField();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextField");
+            Assert.IsInstanceOf<TextField>(testingTarget, "Should be an instance of TextField type.");
+
+            var characterIndex = TextGeometry.GetCharacterIndexAtPosition(testingTarget, 0, 0);
+            Assert.IsNotNull(characterIndex, "Null object is detected!");
+            Assert.IsTrue(characterIndex == expectedCharacterIndex, "Should be equal!");
+
+            tlog.Debug(tag, $"GetCharacterIndexAtPositionTextField END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextGeometry GetCharacterIndexAtPositionTextLabel")]
+        [Property("SPEC", "Tizen.NUI.BaseComponents.TextGeometry.GetCharacterIndexAtPositionTextLabel M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "s.al-jammal@partner.samsung.com")]
+        public void GetCharacterIndexAtPositionTextLabel()
+        {
+            tlog.Debug(tag, $"GetCharacterIndexAtPositionTextLabel START");
+
+            int expectedCharacterIndex = -1;
+
+            var testingTarget = new TextLabel();
+            Assert.IsNotNull(testingTarget, "Can't create success object TextLabel");
+            Assert.IsInstanceOf<TextLabel>(testingTarget, "Should be an instance of TextLabel type.");
+
+            var characterIndex = TextGeometry.GetCharacterIndexAtPosition(testingTarget, 0, 0);
+            Assert.IsNotNull(characterIndex, "Null object is detected!");
+            Assert.IsTrue(characterIndex == expectedCharacterIndex, "Should be equal!");
+
+            tlog.Debug(tag, $"GetCharacterIndexAtPositionTextLabel END (OK)");
+        }
     }
 }

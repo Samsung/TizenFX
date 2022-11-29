@@ -327,5 +327,66 @@ namespace Tizen.NUI.BaseComponents
             CheckSWIGPendingException();
             return rect;
         }
+
+        /// <summary>
+        /// Get the character Index at the given position. <br />
+        /// </summary>
+        /// <param name="textLabel">The TextLabel control containing the text.</param>
+        /// <param name="visualX">The visual x point</param>
+        /// <param name="visualY">The visual y point</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int GetCharacterIndexAtPosition(TextLabel textLabel, float visualX, float visualY)
+        {
+            if (textLabel == null)
+            {
+                throw new ArgumentNullException(null, "textLabel object is null");
+            }
+
+            int characterIndex = (int)(Interop.TextGeometry.GetCharacterIndexAtPositionTextLabel(textLabel.SwigCPtr, visualX, visualY));
+            CheckSWIGPendingException();
+            return characterIndex;
+        }
+
+        /// <summary>
+        /// Get the character Index at the given position. <br />
+        /// </summary>
+        /// <param name="textField">The TextField control containing the text.</param>
+        /// <param name="visualX">The visual x point</param>
+        /// <param name="visualY">The visual y point</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int GetCharacterIndexAtPosition(TextField textField, float visualX, float visualY)
+        {
+            if (textField == null)
+            {
+                throw new ArgumentNullException(null, "textField object is null");
+            }
+
+            int characterIndex = (int)(Interop.TextGeometry.GetCharacterIndexAtPositionTextField(textField.SwigCPtr, visualX, visualY));
+            CheckSWIGPendingException();
+            return characterIndex;
+        }
+
+        /// <summary>
+        /// Get the character Index at the given position. <br />
+        /// </summary>
+        /// <param name="textEditor">The TextEditor control containing the text.</param>
+        /// <param name="visualX">The visual x point</param>
+        /// <param name="visualY">The visual y point</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int GetCharacterIndexAtPosition(TextEditor textEditor, float visualX, float visualY)
+        {
+            if (textEditor == null)
+            {
+                throw new ArgumentNullException(null, "textEditor object is null");
+            }
+
+            int characterIndex = (int)(Interop.TextGeometry.GetCharacterIndexAtPositionTextEditor(textEditor.SwigCPtr, visualX, visualY));
+            CheckSWIGPendingException();
+            return characterIndex;
+        }
+
     }
 }
