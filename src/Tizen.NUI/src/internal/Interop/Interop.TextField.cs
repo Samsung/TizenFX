@@ -313,6 +313,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_GetTextPosition")]
             public static extern global::System.IntPtr GetTextPosition(global::System.Runtime.InteropServices.HandleRef textFieldRef, uint start, uint end);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextGeometry_TextField_GetTextBoundingRectangle")]
+            public static extern global::System.IntPtr GetTextBoundingRectangle(global::System.Runtime.InteropServices.HandleRef textFieldRef, uint startIndex, uint endIndex);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextField_CopyText")]
             public static extern string CopyText(global::System.Runtime.InteropServices.HandleRef textFieldRef);
 
