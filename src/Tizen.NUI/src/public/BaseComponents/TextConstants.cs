@@ -801,4 +801,70 @@ namespace Tizen.NUI.Text
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override int GetHashCode() => (LeftImageUrl, RightImageUrl).GetHashCode();
     }
+
+    /// <summary>
+    /// A struct to pass data of FontInfo PropertyMap.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct FontInfo : IEquatable<FontInfo>
+    {
+        /// <summary>
+        /// The FontFamily of the font.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Family { get; set; }
+
+        /// <summary>
+        /// The FontPath of the font.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Path { get; set; }
+
+        /// <summary>
+        /// The FontStyle of the font.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public FontStyle Style { get; set; }
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="obj">The object to compare with the current object.</param>
+        /// <returns>true if equal FontInfo, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object obj) => obj is FontInfo other && this.Equals(other);
+
+        /// <summary>
+        /// Determines whether the specified object is equal to the current object.
+        /// </summary>
+        /// <param name="other">The FontInfo to compare with the current FontInfo.</param>
+        /// <returns>true if equal FontInfo, else false.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool Equals(FontInfo other) => Family == other.Family && Path == other.Path && Style == other.Style;
+
+        /// <summary>
+        /// The == operator.
+        /// </summary>
+        /// <param name="lhsFontInfo">FontInfo to compare</param>
+        /// <param name="rhsFontInfo">FontInfo to be compared</param>
+        /// <returns>true if FontInfos are equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(FontInfo lhsFontInfo, FontInfo rhsFontInfo) => lhsFontInfo.Equals(rhsFontInfo);
+
+        /// <summary>
+        /// The != operator.
+        /// </summary>
+        /// <param name="lhsFontInfo">FontInfo to compare</param>
+        /// <param name="rhsFontInfo">FontInfo to be compared</param>
+        /// <returns>true if FontInfos are not equal</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(FontInfo lhsFontInfo, FontInfo rhsFontInfo) => !lhsFontInfo.Equals(rhsFontInfo);
+
+        /// <summary>
+        /// Gets the hash code of this FontInfo.
+        /// </summary>
+        /// <returns>The hash code.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode() => (Family, Path, Style).GetHashCode();
+    }
 }
