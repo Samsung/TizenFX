@@ -19,6 +19,8 @@ extern alias TizenSystemSettings;
 using TizenSystemSettings.Tizen.System;
 using System;
 using System.ComponentModel;
+using System.Collections.Generic;
+using Tizen.NUI.Text;
 
 namespace Tizen.NUI.BaseComponents
 {
@@ -1081,6 +1083,43 @@ namespace Tizen.NUI.BaseComponents
             Tizen.NUI.PropertyArray ret = new Tizen.NUI.PropertyArray(Interop.TextUtils.GetLastCharacterIndex(RendererParameters.getCPtr(textParameters)), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// This method converts a FontInfo property array to a list and returns it.
+        /// <param name="fontArray">The FontInfo PropertyArray.</param>
+        /// <returns> A list of FontInfo struct. </returns>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static List<FontInfo> GetFontInfoList(PropertyArray fontArray)
+        {
+            var fontList = new List<FontInfo>();
+            if (fontArray != null)
+            {
+                for (uint i = 0 ; i < fontArray.Count(); i ++)
+                {
+                    using (var fontInfoMap = new PropertyMap())
+                    using (var propertyValue = fontArray[i])
+                    {
+                        propertyValue.Get(fontInfoMap);
+
+                        if (fontInfoMap.Count() > 0)
+                        {
+                            var fontInfo = new FontInfo();
+                            fontInfo.Family = TextMapHelper.GetStringFromMap(fontInfoMap, "family", "TizenSans");
+                            fontInfo.Path = TextMapHelper.GetStringFromMap(fontInfoMap, "path", "");
+                            fontInfo.Style = new FontStyle()
+                            {
+                                Width = (FontWidthType)TextMapHelper.GetIntFromMap(fontInfoMap, "width", 0),
+                                Weight = (FontWeightType)TextMapHelper.GetIntFromMap(fontInfoMap, "weight", 0),
+                                Slant = (FontSlantType)TextMapHelper.GetIntFromMap(fontInfoMap, "slant", 0),
+                            };
+                            fontList.Add(fontInfo);
+                        }
+                    }
+                }
+            }
+            return fontList;
         }
 
 #if PROFILE_TV

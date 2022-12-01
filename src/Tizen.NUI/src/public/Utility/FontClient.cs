@@ -15,6 +15,9 @@
  *
  */
 using System.ComponentModel;
+using System.Collections.Generic;
+using Tizen.NUI.BaseComponents;
+using Tizen.NUI.Text;
 
 namespace Tizen.NUI
 {
@@ -209,6 +212,38 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// Retrieve the list of font info supported by the system.
+        /// </summary>
+        /// <returns>The list of FontInfo</returns>
+        /// <remarks>
+        /// <see cref="Tizen.NUI.Text.FontInfo"/>
+        /// </remarks>
+        /// <example>
+        /// The following example demonstrates how to use the GetSystemFonts method.
+        /// <code>
+        /// var fontList = FontClient.Instance.GetSystemFonts();
+        /// foreach(Tizen.NUI.Text.FontInfo fontInfo in fontList)
+        /// {
+        ///    string fontFamily = fontInfo.Family;
+        ///    string fontPath = fontInfo.Path;
+        ///    FontWidthType fontWidth = fontInfo.Style.Width;
+        ///    FontWeightType fontWeight = fontInfo.Style.Weight;
+        ///    FontSlantType fontSlant = fontInfo.Style.Slant;
+        /// }
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public List<FontInfo> GetSystemFonts()
+        {
+            using PropertyArray fontArray = new PropertyArray(Interop.FontClient.GetSystemFonts(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            List<FontInfo> fontInfoList;
+            fontInfoList = TextUtils.GetFontInfoList(fontArray);
+            return fontInfoList;
+        }
+
         internal static FontClient Get()
         {
             FontClient ret = new FontClient(Interop.FontClient.Get(), true);
@@ -251,12 +286,6 @@ namespace Tizen.NUI
         internal void GetDefaultPlatformFontDescription(FontDescription fontDescription)
         {
             Interop.FontClient.GetDefaultPlatformFontDescription(SwigCPtr, FontDescription.getCPtr(fontDescription));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-        }
-
-        internal void GetSystemFonts(SWIGTYPE_p_std__vectorT_Dali__TextAbstraction__FontDescription_t systemFonts)
-        {
-            Interop.FontClient.GetSystemFonts(SwigCPtr, SWIGTYPE_p_std__vectorT_Dali__TextAbstraction__FontDescription_t.getCPtr(systemFonts));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
