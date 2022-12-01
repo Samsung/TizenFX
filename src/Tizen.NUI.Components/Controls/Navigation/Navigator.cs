@@ -582,6 +582,7 @@ namespace Tizen.NUI.Components
 
             navigationPages.Insert(index, page);
             Add(page);
+            page.SiblingOrder = index;
             page.Navigator = this;
             if (index == PageCount - 1)
             {
