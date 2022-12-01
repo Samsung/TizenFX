@@ -109,7 +109,7 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             try
             {
-                new Picker(Tizen.NUI.DefaultThemeCreator.DefaultId);
+                new Picker("Tizen.NUI.Components.Picker");
             }
             catch (Exception e)
             {
