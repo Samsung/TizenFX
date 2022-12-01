@@ -177,28 +177,5 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"GestureDetectorDownCast END (OK)");
             Assert.Pass("GestureDetectorDownCast");
         }
-		
-        [Test]
-        [Category("P1")]
-        [Description("GestureDetector Assign")]
-        [Property("SPEC", "Tizen.NUI.GestureDetector.Assign M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void GestureDetectorAssign()
-        {
-            tlog.Debug(tag, $"GestureDetectorAssign START");
-
-            using (GestureDetector detector = new GestureDetector())
-            {
-                var testingTarget = detector.Assign(detector);
-                Assert.IsInstanceOf<GestureDetector>(testingTarget, "should be an instance of testing target class!");
-
-                testingTarget.Dispose();
-            }
-            
-            tlog.Debug(tag, $"GestureDetectorAssign END (OK)");
-            Assert.Pass("GestureDetectorAssign");
-        }
     }
 }

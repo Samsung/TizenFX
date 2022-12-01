@@ -163,6 +163,7 @@
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>./NuiTest.snk</AssemblyOriginatorKeyFile>
     <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+    <XFKeepXamlResources>true</XFKeepXamlResources>
   </PropertyGroup>
 
 </Project>

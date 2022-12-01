@@ -41,8 +41,8 @@ namespace Tizen.NUI.Devel.Tests
         public void SupportUsingXmlns()
         {
             var page = new TestXmlnsUsing();
-            Assert.That(page.view0, Is.Not.Null);
-            Assert.That(page.view0, Is.TypeOf<CustomXamlView>());
+            Assert.IsNotNull(page.view0, "Should not be null!");
+            Assert.IsInstanceOf<CustomXamlView>(page.view0, "Should be an instance of CustomXamlView type.");
         }
     }
 }

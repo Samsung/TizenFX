@@ -30,14 +30,8 @@ namespace Tizen.NUI.Devel.Tests
 
             public Window BorderWindow
             {
-                get
-                {
-                    return Window.Instance;
-                }
-                set
-                {
-                    this.BorderWindow = Window.Instance;
-                }
+                get => Window.Instance;
+                set => this.BorderWindow = Window.Instance;
             }
 
             public bool OverlayMode => true;
@@ -78,8 +72,8 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Info(tag, "Destroy() is called!");
         }
-		
-		[Test]
+
+        [Test]
         [Category("P1")]
         [Description("Create a DefaultBorder object.")]
         [Property("SPEC", "Tizen.NUI.DefaultBorder.contructor C")]
@@ -89,16 +83,16 @@ namespace Tizen.NUI.Devel.Tests
         public void DefaultBorderConstructor()
         {
             tlog.Debug(tag, $"DefaultBorderConstructor START");
-              
-		    var testingTarget = new DefaultBorder();
+
+            var testingTarget = new DefaultBorder();
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<DefaultBorder>(testingTarget, "should be an instance of testing target class!");
 
             testingTarget.Dispose();
-			
+
             tlog.Debug(tag, $"DefaultBorderConstructor END (OK)");
         }
-		
+
         [Test]
         [Category("P1")]
         [Description("DefaultBorder MaxSize  ")]
@@ -121,8 +115,8 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"DefaultBorderMaxSize END (OK)");
         }
-		
-		[Test]
+
+        [Test]
         [Category("P1")]
         [Description("  DefaultBorder CreateTopBorderView.")]
         [Property("SPEC", "Tizen.NUI.DefaultBorder.CreateTopBorderView M")]
@@ -132,23 +126,23 @@ namespace Tizen.NUI.Devel.Tests
         public void DefaultBorderCreateTopBorderViewtopView()
         {
             tlog.Debug(tag, $"DefaultBorderCreateTopBorderViewtopView START");
-			
-			using (View topView = new View() { Size = new Size(Window.Instance.WindowSize.Width, 10) } )
+
+            using (View topView = new View() { Size = new Size(Window.Instance.WindowSize.Width, 10) })
             {
-			    var testingTarget = new DefaultBorder();
+                var testingTarget = new DefaultBorder();
                 Assert.IsNotNull(testingTarget, "should be not null");
                 Assert.IsInstanceOf<DefaultBorder>(testingTarget, "should be an instance of testing target class!");
-                
-				var result = testingTarget.CreateTopBorderView(topView);
+
+                var result = testingTarget.CreateTopBorderView(topView);
                 tlog.Debug(tag, "CreateTopBorderView : " + result);
 
                 testingTarget.Dispose();
             }
-            
+
             tlog.Debug(tag, $"DefaultBorderCreateTopBorderViewtopView END (OK)");
         }
-		
-		[Test]
+
+        [Test]
         [Category("P1")]
         [Description("  DefaultBorder  CreateBottomBorderView.")]
         [Property("SPEC", "Tizen.NUI.DefaultBorder.CreateBottomBorderView M")]
@@ -158,23 +152,23 @@ namespace Tizen.NUI.Devel.Tests
         public void DefaultBorderCreateTopBorderViewbottomView()
         {
             tlog.Debug(tag, $"DefaultBorderCreateBottomBorderViewbottomView START");
-		
-			using (View bottomView = new View() { Size = new Size(Window.Instance.WindowSize.Width, 10) })
+
+            using (View bottomView = new View() { Size = new Size(Window.Instance.WindowSize.Width, 10) })
             {
-			    var testingTarget = new DefaultBorder();
+                var testingTarget = new DefaultBorder();
                 Assert.IsNotNull(testingTarget, "should be not null");
                 Assert.IsInstanceOf<DefaultBorder>(testingTarget, "should be an instance of testing target class!");
-                
-				var result = testingTarget.CreateBottomBorderView(bottomView);
+
+                var result = testingTarget.CreateBottomBorderView(bottomView);
                 tlog.Debug(tag, "CreateBottomBorderView : " + result);
 
                 testingTarget.Dispose();
             }
-			        
+
             tlog.Debug(tag, $"DefaultBorderCreateBottomBorderViewbottomView END (OK)");
         }
-		
-		[Test]
+
+        [Test]
         [Category("P1")]
         [Description("  DefaultBorder  CreateBorderView.")]
         [Property("SPEC", "Tizen.NUI.DefaultBorder.CreateBorderView M")]
@@ -184,8 +178,8 @@ namespace Tizen.NUI.Devel.Tests
         public void DefaultBorderCreateBorderView()
         {
             tlog.Debug(tag, $"DefaultBorderCreateBorderView START");
-			
-			using (View borderView  = new View() )
+
+            using (View borderView = new View())
             {
 				var testingTarget = new DefaultBorder();
                 Assert.IsNotNull(testingTarget, "should be not null");
@@ -217,8 +211,8 @@ namespace Tizen.NUI.Devel.Tests
         public void DefaultBorderCreateBorderView1()
         {
             tlog.Debug(tag, $"DefaultBorderCreateBorderView1 START");
-			
-			var testingTarget = new DefaultBorder();
+
+            var testingTarget = new DefaultBorder();
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<DefaultBorder>(testingTarget, "should be an instance of testing target class!");
 
@@ -246,8 +240,8 @@ namespace Tizen.NUI.Devel.Tests
         public void DefaultBorderOnResized()
         {
             tlog.Debug(tag, $"DefaultBorderOnResized START");
-			    
-			var testingTarget = new DefaultBorder();
+
+            var testingTarget = new DefaultBorder();
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<DefaultBorder>(testingTarget, "should be an instance of testing target class!");
 
@@ -264,40 +258,8 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"DefaultBorderOnResized END (OK)");
         }
-		
-		[Test]
-        [Category("P1")]
-        [Description("DefaultBorder  OnMaximizeAndOnMinimize.")]
-        [Property("SPEC", "Tizen.NUI.DefaultBorder.OnMaximizeAndOnMinimize M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        public void DefaultBorderOnMaximize()
-        {
-           tlog.Debug(tag, $"DefaultBorderOnMaximizeAndOnMinimize START");
-    
-			var testingTarget = new DefaultBorder();			
-            Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<DefaultBorder>(testingTarget, "should be an instance of testing target class!");
 
-            try
-            {
-                testingTarget.OnMaximize(true);
-                testingTarget.OnMaximize(false);
-                testingTarget.OnMinimize(true);
-                testingTarget.OnMinimize(false);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"DefaultBorderOnMaximizeAndOnMinimize END (OK)");
-        }
-		
-		[Test]
+        [Test]
         [Category("P1")]
         [Description("DefaultBorder  OnOverlayMode.")]
         [Property("SPEC", "Tizen.NUI.DefaultBorder.OnOverlayMode M")]
@@ -307,8 +269,8 @@ namespace Tizen.NUI.Devel.Tests
         public void DefaultBorderOnOverlayMode()
         {
             tlog.Debug(tag, $"DefaultBorderOnOverlayMode START");
-			
-			var testingTarget = new DefaultBorder();
+
+            var testingTarget = new DefaultBorder();
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<DefaultBorder>(testingTarget, "should be an instance of testing target class!");
 
