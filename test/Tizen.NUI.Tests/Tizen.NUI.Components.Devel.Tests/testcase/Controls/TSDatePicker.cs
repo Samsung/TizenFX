@@ -90,7 +90,7 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             try
             {
-                new DatePicker(Tizen.NUI.DefaultThemeCreator.DefaultId);
+                new DatePicker("Tizen.NUI.Components.DatePicker");
             }
             catch (Exception e)
             {
