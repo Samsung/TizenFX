@@ -749,7 +749,9 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Gets or sets if Navigator pops the peek page when back button or back key is pressed and released.
+        /// Gets or sets if Navigator proceeds back navigation when back button or back key is pressed and released.
+        /// Back navigation pops the peek page if Navigator has more than one page.
+        /// If Navigator has only one page, then the current program is exited.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool EnableBackNavigation
@@ -879,6 +881,8 @@ namespace Tizen.NUI.Components
 
         /// <summary>
         /// Called when the back navigation is started.
+        /// Back navigation pops the peek page if Navigator has more than one page.
+        /// If Navigator has only one page, then the current program is exited.
         /// </summary>
         /// <param name="eventArgs">The back navigation information.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -890,6 +894,10 @@ namespace Tizen.NUI.Components
                 {
                     Peek().NavigateBack();
                 }
+            }
+            else
+            {
+                NUIApplication.Current?.Exit();
             }
         }
 
