@@ -149,5 +149,40 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"NativeImageQueueDequeueBuffer END (OK)");
         }
-	}
+
+        [Test]
+        [Category("P1")]
+        [Description("NativeImageQueue EnqueueBuffer.")]
+        [Property("SPEC", "Tizen.NUI.NativeImageQueue.EnqueueBuffer M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        [Obsolete]
+        public void NativeImageQueueEnqueueBuffer()
+        {
+            tlog.Debug(tag, $"NativeImageQueueEnqueueBuffer START");
+
+            var testingTarget = new NativeImageQueue(100, 50, NativeImageQueue.ColorFormat.RGBA8888);
+            Assert.IsNotNull(testingTarget, "Can't create success object NativeImageQueue");
+            Assert.IsInstanceOf<NativeImageQueue>(testingTarget, "Should be an instance of NativeImageQueue type.");
+
+            try
+            {
+                if (testingTarget.CanDequeueBuffer())
+                {
+                    int width = 4, height = 2, stride = 4;
+                    var buffer = testingTarget.DequeueBuffer(ref width, ref height, ref stride);
+                    testingTarget.EnqueueBuffer(buffer);
+                }
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught exception : Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"NativeImageQueueEnqueueBuffer END (OK)");
+        }
+    }
 }

@@ -329,6 +329,25 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("Rotation constructor, with(Vector3, Vector3).")]
+        [Property("SPEC", "Tizen.NUI.Rotation.Rotation C")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void RotationConstructortwoVector3()
+        {
+            tlog.Debug(tag, $"RotationConstructortwoVector3 START");
+
+            var testingTarget = new Rotation(new Vector3(1.0f, 2.0f, 3.0f),new Vector3(3.0f, 2.0f, 1.0f));
+            Assert.IsNotNull(testingTarget, "Can't create success object Rotation");
+            Assert.IsInstanceOf<Rotation>(testingTarget, "Should return Rotation instance.");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"RotationConstructortwoVector3 END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("Rotation constructor. With Radian and Vector3.")]
         [Property("SPEC", "Tizen.NUI.Rotation.Rotation C")]
         [Property("SPEC_URL", "-")]
