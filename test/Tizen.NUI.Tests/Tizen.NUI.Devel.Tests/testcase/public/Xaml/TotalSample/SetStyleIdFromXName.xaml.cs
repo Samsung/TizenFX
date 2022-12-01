@@ -39,9 +39,9 @@ namespace Tizen.NUI.Devel.Tests
         public void SetStyleId()
         {
             var layout = new SetStyleIdFromXName();
-            Assert.That(layout.label0.StyleId, Is.EqualTo("label0"));
-            Assert.That(layout.label1.StyleId, Is.EqualTo("foo"));
-            Assert.That(layout.label2.StyleId, Is.EqualTo("bar"));
+            Assert.AreEqual("label0", layout.label0.StyleId, "Should be equal!");
+            Assert.AreEqual("foo", layout.label1.StyleId, "Should be equal!");
+            Assert.AreEqual("bar", layout.label2.StyleId, "Should be equal!");
         }
     }
 }
