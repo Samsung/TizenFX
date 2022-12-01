@@ -180,6 +180,16 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
+            try
+            {
+                testingTarget.DealChar('\\');
+            }
+            catch (Exception e)
+            {
+                tlog.Error(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception : Failed!");
+            }
+
             tlog.Debug(tag, $"EXamlGetValueActionDealChar2 END (OK)");
         }
     }

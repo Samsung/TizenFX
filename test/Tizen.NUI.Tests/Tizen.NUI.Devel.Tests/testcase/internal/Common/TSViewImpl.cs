@@ -285,7 +285,7 @@ namespace Tizen.NUI.Devel.Tests
 
             var testingTarget = NDalic.GetImplementation(new View());
             Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<ViewWrapper>(testingTarget, "should be an instance of testing target class!");
+            Assert.IsInstanceOf<ViewImpl>(testingTarget, "should be an instance of testing target class!");
 
             var result = testingTarget.OnAccessibilityActivated();
             Assert.IsTrue(!result);
@@ -308,7 +308,7 @@ namespace Tizen.NUI.Devel.Tests
 
             var testingTarget = NDalic.GetImplementation(new View());
             Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<ViewWrapper>(testingTarget, "should be an instance of testing target class!");
+            Assert.IsInstanceOf<ViewImpl>(testingTarget, "should be an instance of testing target class!");
 
             var result = testingTarget.OnAccessibilityValueChange(true);
             Assert.IsTrue(!result);
@@ -331,7 +331,7 @@ namespace Tizen.NUI.Devel.Tests
 
             var testingTarget = NDalic.GetImplementation(new View());
             Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<ViewWrapper>(testingTarget, "should be an instance of testing target class!");
+            Assert.IsInstanceOf<ViewImpl>(testingTarget, "should be an instance of testing target class!");
 
             var result = testingTarget.OnAccessibilityZoom();
             Assert.IsTrue(!result);
@@ -354,7 +354,7 @@ namespace Tizen.NUI.Devel.Tests
 
             var testingTarget = NDalic.GetImplementation(new View());
             Assert.IsNotNull(testingTarget, "should be not null");
-            Assert.IsInstanceOf<ViewWrapper>(testingTarget, "should be an instance of testing target class!");
+            Assert.IsInstanceOf<ViewImpl>(testingTarget, "should be an instance of testing target class!");
 
             var result = testingTarget.OnKeyboardEnter();
             Assert.IsTrue(!result);

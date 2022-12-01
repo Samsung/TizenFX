@@ -85,8 +85,8 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"AnimationDownCast END (OK)");
         }
-        
-		[Test]
+
+        [Test]
         [Category("P1")]
         [Description("Animation GetCurrentProgress")]
         [Property("SPEC", "Tizen.NUI.Animation.GetCurrentProgress M")]
@@ -102,24 +102,24 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
 
             try
-			{
+            {
                 testingTarget.SetCurrentProgress(0.3f);
-                
+
                 var result = testingTarget.GetCurrentProgress();
                 tlog.Debug(tag, "Current progress : " + result);
-			}
-			catch(Exception e)
+            }
+            catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Catch exception: Failed!");
             }
 
             testingTarget.Dispose();
-            
+
             tlog.Debug(tag, $"AnimationGetCurrentProgress END (OK)");
         }
-		
-		[Test]
+
+        [Test]
         [Category("P1")]
         [Description("Animation GetSpeedFactor")]
         [Property("SPEC", "Tizen.NUI.Animation.GetSpeedFactor M")]
@@ -135,24 +135,24 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
 
             try
-			{
+            {
                 testingTarget.SetSpeedFactor(0.3f);
 
-			    var result = testingTarget.GetSpeedFactor();
+                var result = testingTarget.GetSpeedFactor();
                 tlog.Debug(tag, "Speed factor : " + result);
-			}
-			catch(Exception e)
+            }
+            catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Catch exception: Failed!");
             }
 
             testingTarget.Dispose();
-            
+
             tlog.Debug(tag, $"AnimationGetSpeedFactor END (OK)");
         }
 
-		[Test]
+        [Test]
         [Category("P1")]
         [Description("Animation SetPlayRange")]
         [Property("SPEC", "Tizen.NUI.Animation.SetPlayRange M")]
@@ -168,14 +168,14 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
 
             try
-			{
+            {
                 Vector2 val = new Vector2(0.0f, 10.0f);
                 testingTarget.SetPlayRange(val);
 
-			    var result = testingTarget.GetPlayRange();
+                var result = testingTarget.GetPlayRange();
                 tlog.Debug(tag, "PlayRange : " + result);
-			}
-			catch(Exception e)
+            }
+            catch (Exception e)
             {
                 tlog.Debug(tag, e.Message.ToString());
                 Assert.Fail("Catch exception: Failed!");
@@ -185,7 +185,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"AnimationSetPlayRange END (OK)");
         }
 
-		[Test]
+        [Test]
         [Category("P1")]
         [Description("Animation PlayRange")]
         [Property("SPEC", "Tizen.NUI.Animation.PlayRange A")]
@@ -195,26 +195,26 @@ namespace Tizen.NUI.Devel.Tests
         public void AnimationPlayRange()
         {
             tlog.Debug(tag, $"AnimationPlayRange START");
-            
+
             var testingTarget = new Animation(2000);
             Assert.IsNotNull(testingTarget, "should be not null");
             Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
 
             using (Vector2 vec = new Vector2(0.0f, 1.0f))
-			{
+            {
                 try
-			    {
+                {
                     testingTarget.PlayRange = vec;
 
                     var result = testingTarget.PlayRange;
                     Assert.AreEqual(0.0f, result.X, "Should be equal!");
                     Assert.AreEqual(1.0f, result.Y, "Should be equal!");
-			    }
-			    catch(Exception e)
+                }
+                catch (Exception e)
                 {
                     Assert.Fail("Catch exception: " + e.Message.ToString());
                 }
-			}
+            }
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationPlayRange END (OK)");
@@ -856,7 +856,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
 
             testingTarget.DefaultAlphaFunction = new AlphaFunction(new Vector2(0.3f, 0), new Vector2(0.15f, 1));
-            
+
             try
             {
                 string property = null;
@@ -1086,7 +1086,7 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.EndAction = Animation.EndActions.StopFinal;
             testingTarget.DefaultAlphaFunction = new AlphaFunction(new Vector2(0.3f, 0), new Vector2(0.15f, 1));
             testingTarget.AnimateTo(view, "Position", new Position(100, 150));
-            
+
             testingTarget.Play();
             Assert.AreEqual(100, view.Position.X, "sholud be equal.");
             Assert.AreEqual(150, view.Position.Y, "sholud be equal.");
@@ -1156,7 +1156,7 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.EndAction = Animation.EndActions.StopFinal;
             testingTarget.DefaultAlphaFunction = new AlphaFunction(new Vector2(0.3f, 0), new Vector2(0.15f, 1));
-            
+
             testingTarget.PropertyList.Add("SizeWidth");
             testingTarget.DestValueList.Add("80");
             testingTarget.StartTimeList.Add(0);
@@ -1300,12 +1300,12 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
 
             testingTarget.EndAction = Animation.EndActions.StopFinal;
-            
+
             try
             {
                 testingTarget.AnimateBetween(view, "Opacity", keyFrames);
                 testingTarget.AnimateBetween(view, "Opacity", keyFrames, 0, 600);
-                testingTarget.AnimateBetween(view, "Opacity", keyFrames,0);
+                testingTarget.AnimateBetween(view, "Opacity", keyFrames, 0);
             }
             catch (Exception e)
             {
@@ -1331,7 +1331,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"AnimationAnimatePath START");
 
             View view = new View()
-            { 
+            {
                 Size = new Size(200, 300)
             };
 
@@ -1418,7 +1418,7 @@ namespace Tizen.NUI.Devel.Tests
                 LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "Caught Exception" + e.ToString());
                 Assert.Fail("Caught Exception" + e.ToString());
             }
-            
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationPlay END (OK)");
         }
@@ -1450,7 +1450,7 @@ namespace Tizen.NUI.Devel.Tests
                 LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "Caught Exception" + e.ToString());
                 Assert.Fail("Caught Exception" + e.ToString());
             }
-            
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationPlayFrom END (OK)");
         }
@@ -1546,9 +1546,67 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Play();
             testingTarget.Stop();
-            
+
             testingTarget.Dispose();
             tlog.Debug(tag, $"AnimationShow END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Animation SetDisconnectAction")]
+        [Property("SPEC", "Tizen.NUI.Animation.SetDisconnectAction M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationSetDisconnectAction()
+        {
+            tlog.Debug(tag, $"AnimationSetDisconnectAction START");
+
+            var testingTarget = new Animation(2000);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            try
+            {
+                testingTarget.SetDisconnectAction(Animation.EndActions.Cancel);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Catch exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"AnimationSetDisconnectAction END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("Animation GetDisconnectAction")]
+        [Property("SPEC", "Tizen.NUI.Animation.GetDisconnectAction M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void AnimationGetDisconnectAction()
+        {
+            tlog.Debug(tag, $"AnimationGetDisconnectAction START");
+
+            var testingTarget = new Animation(2000);
+            Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsInstanceOf<Animation>(testingTarget, "should be an instance of Animation class!");
+
+            try
+            {
+                testingTarget.GetDisconnectAction();
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Catch exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"AnimationGetDisconnectAction END (OK)");
         }
     }
 }

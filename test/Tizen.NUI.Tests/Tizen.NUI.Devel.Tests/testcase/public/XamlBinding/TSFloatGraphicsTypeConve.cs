@@ -57,7 +57,7 @@ namespace Tizen.NUI.Devel.Tests
             var testingTarget = new FloatGraphicsTypeConverter();
             Assert.IsNotNull(testingTarget, "null FloatGraphicsTypeConverter");
 
-			var ret1 = testingTarget.ConvertToString(110);
+			var ret1 = testingTarget.ConvertToString(110.0f);
             Assert.AreEqual("110", ret1, "Should be equal!");
 
             var ret2 = testingTarget.ConvertToString(null);

@@ -43,8 +43,8 @@ namespace Tizen.NUI.Devel.Tests
 
             layout.XamlResources = new ResourceDictionary {
                     {"FooBar", "FOOBAR"},
-                };
-            Assert.AreEqual(string.Empty, label.Text);
+            };
+            Assert.AreEqual("FOOBAR", label.Text);
         }
     }
 }

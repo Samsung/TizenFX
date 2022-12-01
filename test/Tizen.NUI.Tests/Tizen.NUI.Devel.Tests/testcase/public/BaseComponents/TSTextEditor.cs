@@ -155,6 +155,35 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("TextEditor ScrollBy.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.ScrollBy A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextEditorScrollBy()
+        {
+            tlog.Debug(tag, $"TextEditorScrollBy START");
+
+            var testingTarget = new TextEditor(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            try
+            {
+                testingTarget.ScrollBy(new Vector2(0.3f, 0.5f));
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextEditorScrollBy END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("TextEditor EnableFontSizeScale.")]
         [Property("SPEC", "Tizen.NUI.TextEditor.EnableFontSizeScale A")]
         [Property("SPEC_URL", "-")]
@@ -688,6 +717,62 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextEditorEnableEditing END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEditor HorizontalScrollPosition.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.HorizontalScrollPosition A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "s.sabah@samsung.com")]
+        public void TextEditorHorizontalScrollPosition()
+        {
+            tlog.Debug(tag, $"TextEditorHorizontalScrollPosition START");
+
+            var testingTarget = new TextEditor(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            testingTarget.Text ="Hello World!";
+            int textLen = testingTarget.Text.Length;
+
+            int expectedValue = textLen;
+
+            expectedValue = 5;
+            testingTarget.HorizontalScrollPosition = expectedValue;
+            Assert.AreEqual(0, testingTarget.HorizontalScrollPosition, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextEditorHorizontalScrollPosition END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextEditor VerticalScrollPosition.")]
+        [Property("SPEC", "Tizen.NUI.TextEditor.VerticalScrollPosition A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "s.sabah@samsung.com")]
+        public void TextEditorVerticalScrollPosition()
+        {
+            tlog.Debug(tag, $"TextEditorVerticalScrollPosition START");
+
+            var testingTarget = new TextEditor(true);
+            Assert.IsNotNull(testingTarget, "Can't create success object TextEditor");
+            Assert.IsInstanceOf<TextEditor>(testingTarget, "Should be an instance of TextEditor type.");
+
+            testingTarget.Text ="Hello World!";
+            int textLen = testingTarget.Text.Length;
+
+            int expectedValue = textLen;
+
+            expectedValue = 5;
+            testingTarget.VerticalScrollPosition = expectedValue;
+            Assert.AreEqual(0, testingTarget.VerticalScrollPosition, "Should be equal!");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"TextEditorVerticalScrollPosition END (OK)");
         }
 
         [Test]

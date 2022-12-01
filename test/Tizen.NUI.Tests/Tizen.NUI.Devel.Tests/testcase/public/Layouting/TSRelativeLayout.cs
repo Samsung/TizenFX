@@ -1291,20 +1291,20 @@ namespace Tizen.NUI.Devel.Tests
 
             LayoutItem layoutItem = new LinearLayout();
 
-            View view = new View()
+            TextLabel label = new TextLabel()
             {
-                ExcludeLayouting = false,
+                Ellipsis = true,
                 Size = new Size(100, 150),
                 Layout = new RelativeLayout()
             };
 
-            layoutItem.AttachToOwner(view);
+            layoutItem.AttachToOwner(label);
 
             var testingTarget = new MyRelativeLayout();
             Assert.IsNotNull(testingTarget, "Should not be null.");
             Assert.IsInstanceOf<RelativeLayout>(testingTarget, "Should be an instance of RelativeLayout type.");
 
-            testingTarget.AttachToOwner(view);
+            testingTarget.AttachToOwner(label);
             testingTarget.Add(layoutItem);
 
             MeasureSpecification measureWidth = new MeasureSpecification(new LayoutLength(50.0f), MeasureSpecification.ModeType.Exactly);
