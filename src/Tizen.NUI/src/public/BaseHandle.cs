@@ -439,6 +439,11 @@ namespace Tizen.NUI
 
         internal void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {
+            if (isDisposeQueued)
+            {
+                NUILog.Error("implicit disposed(unreachable)! just return here!");
+                return;
+            }
             PropertySet?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
@@ -453,6 +458,8 @@ namespace Tizen.NUI
                 return;
             }
 
+            PropertySet = null;
+            
             if (type == DisposeTypes.Explicit)
             {
                 //Called by User
@@ -471,7 +478,7 @@ namespace Tizen.NUI
                 Registry.Unregister(this);
             }
 
-            if(swigCPtr.Handle != IntPtr.Zero)
+            if (swigCPtr.Handle != IntPtr.Zero)
             {
                 if (swigCMemOwn)
                 {
@@ -528,6 +535,8 @@ namespace Tizen.NUI
         /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool Disposed => disposed;
+
+        protected internal bool IsDisposeQueued => isDisposeQueued;
     }
 
 }

@@ -1131,10 +1131,8 @@ namespace Tizen.NUI.BaseComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-            if (this != null)
-            {
-                DisConnectFromSignals();
-            }
+            
+            DisConnectFromSignals();
 
             foreach (View view in Children)
             {
@@ -1404,7 +1402,6 @@ namespace Tizen.NUI.BaseComponents
         {
             SizeModeFactor = new Vector3(x, y, z);
         }
-
         private void UpdateShadowCornerRadius(float value)
         {
             // TODO Update corner radius property only whe DALi supports visual property update.
