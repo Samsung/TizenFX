@@ -683,7 +683,7 @@ namespace Tizen.Applications
             {
                 if (type != PackageType.UNKNOWN)
                 {
-                    err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
+                    err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLowerInvariant());
                     if (err != Interop.PackageManager.ErrorCode.None)
                     {
                         Log.Warn(LogTag, string.Format("Failed to install packages. Error in setting request package type. err = {0}", err));
@@ -893,7 +893,7 @@ namespace Tizen.Applications
 
             try
             {
-                err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
+                err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLowerInvariant());
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
                     Log.Warn(LogTag, string.Format("Failed to uninstall package {0}. Error in setting request package type. err = {1}", packageId, err));
@@ -1024,7 +1024,7 @@ namespace Tizen.Applications
             try
             {
                 bool result = true;
-                err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLower());
+                err = Interop.PackageManager.PackageManagerRequestSetType(RequestHandle, type.ToString().ToLowerInvariant());
                 if (err != Interop.PackageManager.ErrorCode.None)
                 {
                     Log.Warn(LogTag, string.Format("Failed to move package. Error in setting request package type. err = {0}", err));
