@@ -961,6 +961,7 @@ namespace Tizen.NUI.Components
                     // Remove Group
                     // groupInfo.Dispose();
                     groups.Remove(groupInfo);
+                    parentIndex--;
                 }
                 else
                 {
