@@ -919,6 +919,12 @@ namespace Tizen.NUI.BaseComponents
         // Callback for View TouchSignal
         private bool OnTouch(IntPtr view, IntPtr touchData)
         {
+            if (IsDisposeQueued)
+            {
+                NUILog.Error("implicit disposed(unreachable)! just return here!");
+                return true;
+            }
+            
             if (touchData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("touchData should not be null!");
