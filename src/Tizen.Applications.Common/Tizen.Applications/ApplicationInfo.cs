@@ -34,7 +34,9 @@ namespace Tizen.Applications
         private Interop.ApplicationManager.AppInfoCategoryCallback _categoryCallback;
         private Interop.ApplicationManager.AppInfoResControlCallback _resControlCallback;
 
-        private readonly object _lock = new object();
+        private readonly object _metadataLock = new object();
+        private readonly object _categoryLock = new object();
+        private readonly object _resControlLock = new object();
 
         internal ApplicationInfo(IntPtr infoHandle)
         {
@@ -228,7 +230,7 @@ namespace Tizen.Applications
         {
             get
             {
-                lock (_lock)
+                lock (_metadataLock)
                 {
                     Dictionary<string, string> metadata = new Dictionary<String, String>();
 
@@ -333,7 +335,7 @@ namespace Tizen.Applications
         {
             get
             {
-                lock (_lock)
+                lock (_categoryLock)
                 {
                     List<string> categories = new List<string>();
 
@@ -440,7 +442,7 @@ namespace Tizen.Applications
         {
             get
             {
-                lock (_lock)
+                lock (_resControlLock)
                 {
                     List<ResourceControl> resourceControls = new List<ResourceControl>();
                     _resControlCallback = (string resType, string minResourceVersion, string maxResourceVersion, string isAutoClose, IntPtr userData) =>
