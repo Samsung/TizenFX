@@ -403,6 +403,9 @@ namespace Tizen.NUI.Components
             //Duplicate page is not pushed.
             if (navigationPages.Contains(page)) return;
 
+            //TODO: The following transition codes will be replaced with view transition.
+            InitializeAnimation();
+
             var curTop = Peek();
 
             if (!curTop)
@@ -420,9 +423,6 @@ namespace Tizen.NUI.Components
             curTop.InvokeDisappearing();
 
             curTop.SaveKeyFocus();
-
-            //TODO: The following transition codes will be replaced with view transition.
-            InitializeAnimation();
 
             if (page is DialogPage == false)
             {
@@ -485,6 +485,9 @@ namespace Tizen.NUI.Components
                 throw new InvalidOperationException("There is no page in Navigator.");
             }
 
+            //TODO: The following transition codes will be replaced with view transition.
+            InitializeAnimation();
+
             var curTop = Peek();
 
             if (navigationPages.Count == 1)
@@ -503,9 +506,6 @@ namespace Tizen.NUI.Components
             newTop.InvokeAppearing();
             curTop.InvokeDisappearing();
             curTop.SaveKeyFocus();
-
-            //TODO: The following transition codes will be replaced with view transition.
-            InitializeAnimation();
 
             if (curTop is DialogPage == false)
             {
@@ -1081,17 +1081,50 @@ namespace Tizen.NUI.Components
         //TODO: The following transition codes will be replaced with view transition.
         private void InitializeAnimation()
         {
+            bool isCurAnimPlaying = false;
+            bool isNewAnimPlaying = false;
+
             if (curAnimation != null)
             {
-                curAnimation.Stop();
-                curAnimation.Clear();
-                curAnimation = null;
+                if (curAnimation.State == Animation.States.Playing)
+                {
+                    isCurAnimPlaying = true;
+                    curAnimation.Stop();
+                }
             }
 
             if (newAnimation != null)
             {
-                newAnimation.Stop();
+                if (newAnimation.State == Animation.States.Playing)
+                {
+                    isNewAnimPlaying = true;
+                    newAnimation.Stop();
+                }
+            }
+
+            if (isCurAnimPlaying)
+            {
+                // To enable multiple Pop(), animation's Finished callback is required.
+                // To call animation's Finished callback, FinishedSignal is emitted.
+                curAnimation.FinishedSignal().Emit(curAnimation);
+                curAnimation.Clear();
+
+                // InitializeAnimation() can be called by FinishedSignal().Emit().
+                // Not to cause null pointer dereference by calling InitializeAnimation() in InitializeAnimation(),
+                // animation handle is assigned to be null only if the animation is playing.
+                curAnimation = null;
+            }
+
+            if (isNewAnimPlaying)
+            {
+                // To enable multiple Pop(), animation's Finished callback is required.
+                // To call animation's Finished callback, FinishedSignal is emitted.
+                newAnimation.FinishedSignal().Emit(newAnimation);
                 newAnimation.Clear();
+
+                // InitializeAnimation() can be called by FinishedSignal().Emit().
+                // Not to cause null pointer dereference by calling InitializeAnimation() in InitializeAnimation(),
+                // animation handle is assigned to be null only if the animation is playing.
                 newAnimation = null;
             }
         }
