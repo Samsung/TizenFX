@@ -92,8 +92,7 @@ namespace Tizen.NUI.BaseComponents
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textLabel = (TextLabel)bindable;
-
-            return Object.InternalGetPropertyString(textLabel.SwigCPtr, TextLabel.Property.FontFamily);
+            return textLabel.InternalFontFamily;
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -909,9 +908,7 @@ namespace Tizen.NUI.BaseComponents
         {
             if (value != null)
             {
-
-                Object.InternalSetPropertyString(SwigCPtr, TextLabel.Property.FontFamily, value);
-                RequestLayout();
+                InternalFontFamily = (string)value;
             }
         }
 
