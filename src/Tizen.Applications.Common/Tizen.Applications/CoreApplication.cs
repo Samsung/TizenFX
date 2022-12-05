@@ -379,6 +379,11 @@ namespace Tizen.Applications
             if (cultureInfo != null)
             {
                 CultureInfo.CurrentCulture = cultureInfo;
+                Thread thread = new Thread(() =>
+                {
+                    Log.Info(LogTag, "Locale: " + locale.ToLower(cultureInfo) + ", " + locale.ToUpper(cultureInfo));
+                });
+                thread.Start();
             }
             else
             {
@@ -392,6 +397,11 @@ namespace Tizen.Applications
             if (cultureInfo != null)
             {
                 CultureInfo.CurrentUICulture = cultureInfo;
+                Thread thread = new Thread(() =>
+                {
+                    Log.Info(LogTag, "Locale: " + locale.ToLower(cultureInfo) + ", " + locale.ToUpper(cultureInfo));
+                });
+                thread.Start();
             }
             else
             {
