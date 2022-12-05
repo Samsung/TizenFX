@@ -34,6 +34,10 @@ namespace Tizen.Applications
         private Interop.ApplicationManager.AppInfoCategoryCallback _categoryCallback;
         private Interop.ApplicationManager.AppInfoResControlCallback _resControlCallback;
 
+        private readonly object _metadataLock = new object();
+        private readonly object _categoryLock = new object();
+        private readonly object _resControlLock = new object();
+
         internal ApplicationInfo(IntPtr infoHandle)
         {
             err = Interop.ApplicationManager.AppInfoGetAppId(infoHandle, out _applicationId);
@@ -226,28 +230,31 @@ namespace Tizen.Applications
         {
             get
             {
-                IDictionary<string, string> metadata = new Dictionary<String, String>();
-
-                _metadataCallback = (string key, string value, IntPtr userData) =>
+                lock (_metadataLock)
                 {
-                    if (key.Length != 0)
-                    {
-                        if (!metadata.ContainsKey(key))
-                            metadata.Add(key, value);
-                    }
-                    return true;
-                };
+                    Dictionary<string, string> metadata = new Dictionary<String, String>();
 
-                IntPtr infoHandle = GetInfoHandle();
-                if (infoHandle != IntPtr.Zero)
-                {
-                    err = Interop.ApplicationManager.AppInfoForeachMetadata(infoHandle, _metadataCallback, IntPtr.Zero);
-                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    _metadataCallback = (string key, string value, IntPtr userData) =>
                     {
-                        Log.Warn(LogTag, "Failed to get application metadata of " + _applicationId + ". err = " + err);
+                        if (key.Length != 0)
+                        {
+                            if (!metadata.ContainsKey(key))
+                                metadata.Add(key, value);
+                        }
+                        return true;
+                    };
+
+                    IntPtr infoHandle = GetInfoHandle();
+                    if (infoHandle != IntPtr.Zero)
+                    {
+                        err = Interop.ApplicationManager.AppInfoForeachMetadata(infoHandle, _metadataCallback, IntPtr.Zero);
+                        if (err != Interop.ApplicationManager.ErrorCode.None)
+                        {
+                            Log.Warn(LogTag, "Failed to get application metadata of " + _applicationId + ". err = " + err);
+                        }
                     }
+                    return metadata;
                 }
-                return metadata;
             }
         }
 
@@ -328,24 +335,27 @@ namespace Tizen.Applications
         {
             get
             {
-                List<string> categories = new List<string>();
-
-                _categoryCallback = (string category, IntPtr userData) =>
+                lock (_categoryLock)
                 {
-                    categories.Add(category);
-                    return true;
-                };
+                    List<string> categories = new List<string>();
 
-                IntPtr infoHandle = GetInfoHandle();
-                if (infoHandle != IntPtr.Zero)
-                {
-                    err = Interop.ApplicationManager.AppInfoForeachCategory(infoHandle, _categoryCallback, IntPtr.Zero);
-                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    _categoryCallback = (string category, IntPtr userData) =>
                     {
-                        Log.Warn(LogTag, "Failed to get application category of " + _applicationId + ". err = " + err);
+                        categories.Add(category);
+                        return true;
+                    };
+
+                    IntPtr infoHandle = GetInfoHandle();
+                    if (infoHandle != IntPtr.Zero)
+                    {
+                        err = Interop.ApplicationManager.AppInfoForeachCategory(infoHandle, _categoryCallback, IntPtr.Zero);
+                        if (err != Interop.ApplicationManager.ErrorCode.None)
+                        {
+                            Log.Warn(LogTag, "Failed to get application category of " + _applicationId + ". err = " + err);
+                        }
                     }
+                    return categories;
                 }
-                return categories;
             }
         }
 
@@ -432,24 +442,27 @@ namespace Tizen.Applications
         {
             get
             {
-                List<ResourceControl> resourceControls = new List<ResourceControl>();
-                _resControlCallback = (string resType, string minResourceVersion, string maxResourceVersion, string isAutoClose, IntPtr userData) =>
+                lock (_resControlLock)
                 {
-                    resourceControls.Add(new ResourceControl(resType, minResourceVersion, maxResourceVersion, isAutoClose == "true"));
-                    return true;
-                };
-
-                IntPtr infoHandle = GetInfoHandle();
-                if (infoHandle != null)
-                {
-                    err = Interop.ApplicationManager.AppInfoForeachResControl(infoHandle, _resControlCallback, IntPtr.Zero);
-                    if (err != Interop.ApplicationManager.ErrorCode.None)
+                    List<ResourceControl> resourceControls = new List<ResourceControl>();
+                    _resControlCallback = (string resType, string minResourceVersion, string maxResourceVersion, string isAutoClose, IntPtr userData) =>
                     {
-                        Log.Warn(LogTag, "Failed to get the resource controls of " + _applicationId + ". err = " + err);
-                    }
-                }
+                        resourceControls.Add(new ResourceControl(resType, minResourceVersion, maxResourceVersion, isAutoClose == "true"));
+                        return true;
+                    };
 
-                return resourceControls;
+                    IntPtr infoHandle = GetInfoHandle();
+                    if (infoHandle != null)
+                    {
+                        err = Interop.ApplicationManager.AppInfoForeachResControl(infoHandle, _resControlCallback, IntPtr.Zero);
+                        if (err != Interop.ApplicationManager.ErrorCode.None)
+                        {
+                            Log.Warn(LogTag, "Failed to get the resource controls of " + _applicationId + ". err = " + err);
+                        }
+                    }
+
+                    return resourceControls;
+                }
             }
         }
 
