@@ -74,15 +74,13 @@ namespace Tizen.NUI.BaseComponents
             var textEditor = (TextEditor)bindable;
             if (newValue != null)
             {
-
-                Object.InternalSetPropertyString(textEditor.SwigCPtr, TextEditor.Property.FontFamily, (string)newValue);
+                textEditor.InternalFontFamily = (string)newValue;
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
         {
             var textEditor = (TextEditor)bindable;
-
-            return Object.InternalGetPropertyString(textEditor.SwigCPtr, TextEditor.Property.FontFamily);
+            return textEditor.InternalFontFamily;
         }));
         /// This will be public opened in tizen_5.0 after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
