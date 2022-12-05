@@ -2037,6 +2037,19 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// FontFamily constant.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public struct FontFamily
+    {
+        /// <summary>
+        /// UseSystemSetting
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly string UseSystemSetting = string.Empty;
+    }
+
+    /// <summary>
     /// Offset has left, right, bottom, top value.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]

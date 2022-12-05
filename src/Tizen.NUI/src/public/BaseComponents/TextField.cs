@@ -31,6 +31,9 @@ namespace Tizen.NUI.BaseComponents
     /// <since_tizen> 3 </since_tizen>
     public partial class TextField : View
     {
+        static private string defaultFontFamily = "TizenSans";
+        private string fontFamily = defaultFontFamily;
+        private bool hasSystemFontTypeChanged = false;
         private string textFieldTextSid = null;
         private string textFieldPlaceHolderTextSid = null;
         private string textFieldPlaceHolderTextFocusedSid = null;
@@ -112,6 +115,11 @@ namespace Tizen.NUI.BaseComponents
         {
             ExceedPolicyOriginal,
             ExceedPolicyClip
+        }
+
+        private bool HasStyle()
+        {
+            return ThemeManager.GetStyle(this.GetType()) == null ? false : true;
         }
 
         /// <summary>
@@ -296,6 +304,50 @@ namespace Tizen.NUI.BaseComponents
                 SetValue(FontFamilyProperty, value);
                 NotifyPropertyChanged();
             }
+        }
+
+        private string InternalFontFamily
+        {
+            get
+            {
+                if (HasStyle())
+                    return fontFamily;
+                else
+                    return Object.InternalGetPropertyString(this.SwigCPtr, TextField.Property.FontFamily);
+            }
+            set
+            {
+                string newFontFamily;
+
+                if (string.Equals(fontFamily, value)) return;
+
+                fontFamily = value;
+                if (fontFamily == Tizen.NUI.FontFamily.UseSystemSetting)
+                {
+                    try
+                    {
+                        newFontFamily = SystemSettings.FontType;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine("{0} Exception caught.", e);
+                        newFontFamily = defaultFontFamily;
+                    }
+                    AddSystemSettingsFontTypeChanged();
+                }
+                else
+                {
+                    newFontFamily = fontFamily;
+                    RemoveSystemSettingsFontTypeChanged();
+                }
+
+                SetInternalFontFamily(newFontFamily);
+            }
+        }
+
+        private void SetInternalFontFamily(string fontFamily)
+        {
+            Object.InternalSetPropertyString(this.SwigCPtr, TextField.Property.FontFamily, (string)fontFamily);
         }
 
         /// <summary>
@@ -2458,6 +2510,8 @@ namespace Tizen.NUI.BaseComponents
                 SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
             }
 
+            RemoveSystemSettingsFontTypeChanged();
+
             removeFontSizeChangedCallback();
 
             if (type == DisposeTypes.Explicit)
@@ -2601,6 +2655,45 @@ namespace Tizen.NUI.BaseComponents
                 {
                     Console.WriteLine("{0} Exception caught.", e);
                     hasFontSizeChangedCallback = true;
+                }
+            }
+        }
+
+        private void SystemSettingsFontTypeChanged(object sender, FontTypeChangedEventArgs e)
+        {
+            SetInternalFontFamily(e.Value);
+        }
+
+        private void AddSystemSettingsFontTypeChanged()
+        {
+            if (HasStyle() && !hasSystemFontTypeChanged)
+            {
+                try
+                {
+                    SystemSettings.FontTypeChanged += SystemSettingsFontTypeChanged;
+                    hasSystemFontTypeChanged = true;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemFontTypeChanged = false;
+                }
+            }
+        }
+        
+        private void RemoveSystemSettingsFontTypeChanged()
+        {
+            if (hasSystemFontTypeChanged)
+            {
+                try
+                {
+                    SystemSettings.FontTypeChanged -= SystemSettingsFontTypeChanged;
+                    hasSystemFontTypeChanged = false;
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("{0} Exception caught.", e);
+                    hasSystemFontTypeChanged = true;
                 }
             }
         }
