@@ -9,18 +9,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <TizenPreloadFile Include="Tizen.NUI.preload"
-                          Sequence="30" />
+        <TizenPreloadFile Include="Tizen.NUI.preload" Sequence="30" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Microsoft.CSharp"
-                          Version="4.3.0" />
-        <PackageReference Include="System.Reflection"
-                          Version="4.3.0" />
-        <PackageReference Include="System.Reflection.TypeExtensions"
-                          Version="4.3.0" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection"
-                          Version="1.1.0" />
+      <PackageReference Include="Microsoft.CSharp" Version="4.3.0" />
+      <PackageReference Include="System.Reflection.TypeExtensions" Version="4.3.0" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Tizen.Applications.Common\Tizen.Applications.Common.csproj" />
@@ -30,8 +23,7 @@
         <ProjectReference Include="..\Tizen.Applications.ThemeManager\Tizen.Applications.ThemeManager.csproj" />
         <ProjectReference Include="..\Tizen.Tracer\Tizen.Tracer.csproj" />
     </ItemGroup>
-    <Target Name="ChangeAliasesOfStrongNameAssemblies"
-            BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
         <ItemGroup>
             <ReferencePath Condition="'%(FileName)' == 'Tizen.System.SystemSettings'">
                 <Aliases>TizenSystemSettings</Aliases>
