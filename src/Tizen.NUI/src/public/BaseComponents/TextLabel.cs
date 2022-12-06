@@ -81,15 +81,15 @@ namespace Tizen.NUI.BaseComponents
 
         static TextLabel() { }
 
-        static private string defaultFontFamily = "TizenSans";
-        private string fontFamily = defaultFontFamily;
-        private bool hasSystemFontTypeChanged = false;
-        private string textLabelSid = null;
-        private bool systemlangTextFlag = false;
-        private TextLabelSelectorData selectorData;
-        private float fontSizeScale = 1.0f;
-        private bool hasFontSizeChangedCallback = false;
         static private string defaultStyleName = "Tizen.NUI.BaseComponents.TextLabel";
+        static private string defaultFontFamily = "BreezeSans";
+        private string textLabelSid = null;
+        private TextLabelSelectorData selectorData;
+        private string fontFamily = defaultFontFamily;
+        private float fontSizeScale = 1.0f;
+        private bool hasSystemLanguageChanged = false;
+        private bool hasSystemFontSizeChanged = false;
+        private bool hasSystemFontTypeChanged = false;
 
         private Color internalTextColor;
 
@@ -211,10 +211,10 @@ namespace Tizen.NUI.BaseComponents
                 if (translatableText != null)
                 {
                     Text = translatableText;
-                    if (systemlangTextFlag == false)
+                    if (hasSystemLanguageChanged == false)
                     {
-                        SystemSettings.LocaleLanguageChanged += SystemSettings_LocaleLanguageChanged;
-                        systemlangTextFlag = true;
+                        SystemSettings.LocaleLanguageChanged += SystemSettingsLocaleLanguageChanged;
+                        hasSystemLanguageChanged = true;
                     }
                 }
                 else
@@ -1487,12 +1487,12 @@ namespace Tizen.NUI.BaseComponents
                         systemSettingsFontSize = SystemSettingsFontSize.Normal;
                     }
                     newFontSizeScale = TextUtils.GetFontSizeScale(systemSettingsFontSize);
-                    addFontSizeChangedCallback();
+                    AddSystemSettingsFontSizeChanged();
                 }
                 else
                 {
                     newFontSizeScale = fontSizeScale;
-                    removeFontSizeChangedCallback();
+                    RemoveSystemSettingsFontSizeChanged();
                 }
 
                 SetInternalFontSizeScale(newFontSizeScale);
@@ -1561,14 +1561,13 @@ namespace Tizen.NUI.BaseComponents
 
             internalTextColor?.Dispose();
 
-            if (systemlangTextFlag)
+            if (hasSystemLanguageChanged)
             {
-                SystemSettings.LocaleLanguageChanged -= SystemSettings_LocaleLanguageChanged;
+                SystemSettings.LocaleLanguageChanged -= SystemSettingsLocaleLanguageChanged;
             }
 
             RemoveSystemSettingsFontTypeChanged();
-
-            removeFontSizeChangedCallback();
+            RemoveSystemSettingsFontSizeChanged();
 
             if (type == DisposeTypes.Explicit)
             {
@@ -1618,7 +1617,7 @@ namespace Tizen.NUI.BaseComponents
             base.OnBindingContextChanged();
         }
 
-        private void SystemSettings_LocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
+        private void SystemSettingsLocaleLanguageChanged(object sender, LocaleLanguageChangedEventArgs e)
         {
             Text = NUIApplication.MultilingualResourceManager?.GetString(textLabelSid, new CultureInfo(e.Value.Replace("_", "-")));
         }
@@ -1629,36 +1628,36 @@ namespace Tizen.NUI.BaseComponents
             SetInternalFontSizeScale(newFontSizeScale);
         }
 
-        private void addFontSizeChangedCallback()
+        private void AddSystemSettingsFontSizeChanged()
         {
-            if (hasFontSizeChangedCallback != true)
+            if (hasSystemFontSizeChanged != true)
             {
                 try
                 {
                     SystemSettings.FontSizeChanged += SystemSettingsFontSizeChanged;
-                    hasFontSizeChangedCallback = true;
+                    hasSystemFontSizeChanged = true;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("{0} Exception caught.", e);
-                    hasFontSizeChangedCallback = false;
+                    hasSystemFontSizeChanged = false;
                 }
             }
         }
 
-        private void removeFontSizeChangedCallback()
+        private void RemoveSystemSettingsFontSizeChanged()
         {
-            if (hasFontSizeChangedCallback == true)
+            if (hasSystemFontSizeChanged == true)
             {
                 try
                 {
                     SystemSettings.FontSizeChanged -= SystemSettingsFontSizeChanged;
-                    hasFontSizeChangedCallback = false;
+                    hasSystemFontSizeChanged = false;
                 }
                 catch (Exception e)
                 {
                     Console.WriteLine("{0} Exception caught.", e);
-                    hasFontSizeChangedCallback = true;
+                    hasSystemFontSizeChanged = true;
                 }
             }
         }
