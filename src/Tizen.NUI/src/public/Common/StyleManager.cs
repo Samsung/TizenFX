@@ -283,5 +283,17 @@ namespace Tizen.NUI
                 }
             }
         }
+
+        internal static void SetBrokenImage(BrokenImageType type, string url)
+        {
+            Interop.StyleManager.SetBrokenImageUrl(Instance.SwigCPtr, (uint)type, url);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+        internal static string GetBrokenImageURL(BrokenImageType type)
+        {
+            string ret = Interop.StyleManager.GetBrokenImageUrl(Instance.SwigCPtr, (uint)type);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
     }
 }
