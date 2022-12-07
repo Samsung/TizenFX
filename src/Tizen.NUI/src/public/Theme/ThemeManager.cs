@@ -352,6 +352,12 @@ namespace Tizen.NUI
 
         internal static void AddPackageTheme(IThemeCreator themeCreator)
         {
+#if PROFILE_TV
+            Tizen.Log.Info("NUI", $"PROFILE_TV AddPackageTheme()");
+            userTheme = null;
+            baseTheme = themeCreator.Create();
+            return;
+#endif
             if (packages.Contains(themeCreator))
             {
                 return;
