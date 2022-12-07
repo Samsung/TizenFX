@@ -23,6 +23,8 @@ namespace Tizen.NUI
     {
         public Theme Create()
         {
+            Tizen.Log.Info("NUI", $"PROFILE_TV DefaultThemeCreator.Create()");
+
             Theme theme = new Theme()
             {
                 Id = DefaultId,

@@ -583,7 +583,9 @@ namespace Tizen.NUI
             FocusManager ret = new FocusManager(Interop.FocusManager.Get(), true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
+#if !PROFILE_TV
             ret.FocusIndicator = ret.GetDefaultFocusIndicator();
+#endif
             return ret;
         }
 
