@@ -662,24 +662,38 @@ namespace Tizen.NUI
         // Callback for Application InitSignal
         private void OnApplicationInit(IntPtr data)
         {
+            Log.Info("NUI", "[NUI] OnApplicationInit: DisposeQueue Initialize");
+            Tizen.Tracer.Begin("[NUI] OnApplicationInit: DisposeQueue Initialize");
             // Initialize DisposeQueue Singleton class. This is also required to create DisposeQueue on main thread.
             DisposeQueue.Instance.Initialize();
-            Window.Instance = GetWindow();
-            _ = FocusManager.Instance;
+            Tizen.Tracer.End();
 
+            Log.Info("NUI", "[NUI] OnApplicationInit: GetWindow");
+            Tizen.Tracer.Begin("[NUI] OnApplicationInit: GetWindow");
+            Window.Instance = GetWindow();
+#if !PROFILE_TV
+            _ = FocusManager.Instance;
+#endif
+            Tizen.Tracer.End();
+
+            Log.Info("NUI", "[NUI] OnApplicationInit: Window Show");
+            Tizen.Tracer.Begin("[NUI] OnApplicationInit: Window Show");
             // Notify that the window is displayed to the app core.
             if (NUIApplication.IsPreload)
             {
                 Window.Instance.Show();
             }
+            Tizen.Tracer.End();
 
+            Log.Info("NUI", "[NUI] OnApplicationInit: applicationInitEventHandler Invoke");
+            Tizen.Tracer.Begin("[NUI] OnApplicationInit: applicationInitEventHandler Invoke");
             if (applicationInitEventHandler != null)
             {
                 NUIApplicationInitEventArgs e = new NUIApplicationInitEventArgs();
                 e.Application = this;
                 applicationInitEventHandler.Invoke(this, e);
             }
-
+            Tizen.Tracer.End();
         }
 
         /**
