@@ -14,6 +14,9 @@
  * limitations under the License.
  *
  */
+#if !PROFILE_TV
+#define ExternalThemeEnabled
+#endif
 
 using System;
 using System.ComponentModel;
