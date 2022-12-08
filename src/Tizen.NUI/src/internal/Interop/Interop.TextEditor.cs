@@ -367,6 +367,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TextEditor_Property_CHARACTER_SPACING_get")]
             public static extern int CharacterSpacingGet();
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_TextGeometry_TextEditor_GetTextBoundingRectangle")]
+            public static extern global::System.IntPtr GetTextBoundingRectangle(global::System.Runtime.InteropServices.HandleRef textEditorRef, int startIndex, int endIndex);
         }
     }
 }
