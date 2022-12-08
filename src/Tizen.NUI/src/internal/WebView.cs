@@ -30,6 +30,20 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WebView : View
     {
+        /// <summary>
+        /// The callback function that is invoked when the message is received from the script.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void JavaScriptMessageHandler(string message);
+
+        /// <summary>
+        /// The callback function that is invoked when the plain text of the current page is received.
+        /// </summary>
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public delegate void PlainTextReceivedCallback(string plainText);
+
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewPageLoadCallback(string pageUrl);
 
@@ -44,6 +58,9 @@ namespace Tizen.NUI
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewPolicyDecidedCallback(IntPtr maker);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewNewWindowCreatedCallback(out IntPtr outView);
 
         private EventHandler<WebViewPageLoadEventArgs> pageLoadStartedEventHandler;
         private WebViewPageLoadCallback pageLoadStartedCallback;
@@ -63,14 +80,10 @@ namespace Tizen.NUI
         private EventHandler<WebViewPolicyDecidedEventArgs> navigationPolicyDecidedEventHandler;
         private WebViewPolicyDecidedCallback navigationPolicyDecidedCallback;
 
-        private PlainTextReceivedCallback plainTextReceivedCallback;
+        private EventHandlerWithReturnType<object, EventArgs, WebView> newWindowCreatedEventHandler;
+        private WebViewNewWindowCreatedCallback newWindowCreatedCallback;
 
-        /// <summary>
-        /// The callback function that is invoked when the plain text of the current page is received.
-        /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void PlainTextReceivedCallback(string plainText);
+        private PlainTextReceivedCallback plainTextReceivedCallback;
 
         internal WebView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.WebView.WebView_SWIGUpcast(cPtr), cMemoryOwn)
         {
@@ -176,6 +189,12 @@ namespace Tizen.NUI
         private void OnNavigationPolicyDecided(IntPtr maker)
         {
             navigationPolicyDecidedEventHandler?.Invoke(this, new WebViewPolicyDecidedEventArgs(new WebPolicyDecisionMaker(maker, true)));
+        }
+
+        private void OnNewWindowCreated(out IntPtr viewHandle)
+        {
+            WebView view = newWindowCreatedEventHandler?.Invoke(this, new EventArgs());
+            viewHandle = (IntPtr)view.SwigCPtr;
         }
 
         internal static new class Property
@@ -539,6 +558,33 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets title of web page.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Title
+        {
+            get
+            {
+                return (string)GetValue(TitleProperty);
+            }
+        }
+
+        /// <summary>
+        /// Gets fav icon.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ImageView Favicon
+        {
+            get
+            {
+                global::System.IntPtr imageView = Interop.WebView.WebView_GetFavicon(swigCPtr);
+                if (imageView == IntPtr.Zero)
+                    return null;
+                return new ImageView(imageView, false);
+            }
+        }
+
+        /// <summary>
         /// Event for the PageLoadStarted signal which can be used to subscribe or unsubscribe the event handler.<br />
         /// This signal is emitted when page loading has started.<br />
         /// </summary>
@@ -669,29 +715,25 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets title of web page.
+        /// Event for the NewWindowCreated signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when a new window would be created.<br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string Title
+        public event EventHandlerWithReturnType<object, EventArgs, WebView> NewWindowCreated
         {
-            get
+            add
             {
-                return (string)GetValue(TitleProperty);
+                if (newWindowCreatedEventHandler == null)
+                {
+                    newWindowCreatedCallback = OnNewWindowCreated;
+                    System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(newWindowCreatedCallback);
+                    Interop.WebView.RegisterNewWindowCreatedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                newWindowCreatedEventHandler += value;
             }
-        }
-
-        /// <summary>
-        /// Gets fav icon.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView Favicon
-        {
-            get
+            remove
             {
-                global::System.IntPtr imageView = Interop.WebView.WebView_GetFavicon(swigCPtr);
-                if (imageView == IntPtr.Zero)
-                    return null;
-                return new ImageView(imageView, false);
+                newWindowCreatedEventHandler -= value;
             }
         }
 
@@ -823,13 +865,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
-
-        /// <summary>
-        /// The callback function that is invoked when the message is received from the script.
-        /// </summary>
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public delegate void JavaScriptMessageHandler(string message);
 
         /// <summary>
         /// Evaluates JavaScript code represented as a string.
