@@ -732,6 +732,13 @@ namespace Tizen.NUI.BaseComponents
                     view.internalSize2D = new Size2D(view.OnSize2DChanged, 0, 0);
                 }
                 Object.InternalRetrievingPropertyVector2ActualVector3(view.SwigCPtr, View.Property.SIZE, view.internalSize2D.SwigCPtr);
+
+                // Update NUI stored internal size informations only both widthPolicy and heightPolicy are fixed.
+                if(view.widthPolicy >= 0 && view.heightPolicy >= 0)
+                {
+                    view.widthPolicy = view.internalSize2D.Width;
+                    view.heightPolicy = view.internalSize2D.Height;
+                }
                 return view.internalSize2D;
             }
         );
@@ -1572,6 +1579,13 @@ namespace Tizen.NUI.BaseComponents
                     view.internalSize = new Size(view.OnSizeChanged, 0, 0, 0);
                 }
                 Object.InternalRetrievingPropertyVector3(view.SwigCPtr, View.Property.SIZE, view.internalSize.SwigCPtr);
+
+                // Update NUI stored internal size informations only both widthPolicy and heightPolicy are fixed.
+                if(view.WidthSpecification >= 0 && view.HeightSpecification >= 0)
+                {
+                    view.WidthSpecification = (int)System.Math.Ceiling(view.internalSize.Width);
+                    view.HeightSpecification = (int)System.Math.Ceiling(view.internalSize.Height);
+                }
                 return view.internalSize;
             }
         );
