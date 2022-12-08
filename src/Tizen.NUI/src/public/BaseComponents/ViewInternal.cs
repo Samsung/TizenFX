@@ -1560,6 +1560,10 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void InitializeStyle(ViewStyle style = null)
         {
+#if PROFILE_TV
+            Tizen.Log.Info("NUI", $"InitializeStyle() just return here in PROFILE_TV");
+            return;
+#endif
             var initialStyle = ThemeManager.GetInitialStyleWithoutClone(GetType());
             if (style == null)
             {
