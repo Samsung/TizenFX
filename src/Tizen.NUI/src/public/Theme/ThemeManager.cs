@@ -54,6 +54,7 @@ namespace Tizen.NUI
         static ThemeManager()
         {
 #if ExternalThemeEnabled
+            Tizen.Log.Info("NUI", $"must not be shown in PROFILE_TV");
             ExternalThemeManager.Initialize();
 #endif
             AddPackageTheme(DefaultThemeCreator.Instance);
