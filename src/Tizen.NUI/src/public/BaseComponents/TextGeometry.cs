@@ -36,6 +36,12 @@ namespace Tizen.NUI.BaseComponents
                 throw new global::System.ArgumentOutOfRangeException(nameof(end), "Value is less than zero");
         }
 
+        private static void ValidateIndex(int index)
+        {
+            if (index < 0)
+                throw new global::System.ArgumentOutOfRangeException(nameof(index), "Value is less than zero");
+        }
+
         private static List<Size2D> GetSizeListFromNativeVector(System.IntPtr ptr)
         {
             using (VectorVector2 sizeVector = new VectorVector2 (ptr, true))
@@ -68,6 +74,18 @@ namespace Tizen.NUI.BaseComponents
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
+
+        private static Tizen.NUI.Rectangle ConvertPaddingTypeToRectangle(Tizen.NUI.PaddingType paddingType)
+        {
+            Tizen.NUI.Rectangle rect = new  Tizen.NUI.Rectangle();
+            rect.X = (int) paddingType.Start;
+            rect.Y = (int) paddingType.End;
+            rect.Width = (int) paddingType.Bottom;
+            rect.Height = (int) paddingType.Top;
+
+            return rect;
+        }
+
 
         /// <summary>
         /// Get the rendered size of the text between start and end (included). <br />
@@ -212,5 +230,204 @@ namespace Tizen.NUI.BaseComponents
             CheckSWIGPendingException();
             return list;
         }
+
+        /// <summary>
+        /// Get the bounding rectangle of a line. <br />
+        /// </summary>
+        /// <param name="textLabel">The TextLabel control containing the text.</param>
+        /// <param name="lineIndex">The index of the line to get the bounding rectangle for</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Tizen.NUI.Rectangle GetLineBoundingRectangle(TextLabel textLabel, int lineIndex)
+        {
+            if (textLabel == null)
+            {
+                throw new ArgumentNullException(null, "textLabel object is null");
+            }
+
+            ValidateIndex(lineIndex);
+
+            Tizen.NUI.PaddingType paddingType = new Tizen.NUI.PaddingType(Interop.TextGeometry.GetLineBoundingRectangleTextLabel(textLabel.SwigCPtr, lineIndex), true);
+            Tizen.NUI.Rectangle   rect        = ConvertPaddingTypeToRectangle(paddingType);
+
+            CheckSWIGPendingException();
+            return rect;
+        }
+
+        /// <summary>
+        /// Get the bounding rectangle of a line. <br />
+        /// </summary>
+        /// <param name="textEditor">The TextEditor control containing the text.</param>
+        /// <param name="lineIndex">The index of the line to get the bounding rectangle for</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Tizen.NUI.Rectangle GetLineBoundingRectangle(TextEditor textEditor, int lineIndex)
+        {
+            if (textEditor == null)
+            {
+                throw new ArgumentNullException(null, "textEditor object is null");
+            }
+
+            ValidateIndex(lineIndex);
+
+            Tizen.NUI.PaddingType paddingType = new Tizen.NUI.PaddingType(Interop.TextGeometry.GetLineBoundingRectangleTextEditor(textEditor.SwigCPtr, lineIndex), true);
+            Tizen.NUI.Rectangle   rect        = ConvertPaddingTypeToRectangle(paddingType);
+
+            CheckSWIGPendingException();
+            return rect;
+        }
+
+        /// <summary>
+        /// Get the bounding rectangle of a line. <br />
+        /// </summary>
+        /// <param name="textField">The TextField control containing the text.</param>
+        /// <param name="lineIndex">The index of the line to get the bounding rectangle for</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Tizen.NUI.Rectangle GetLineBoundingRectangle(TextField textField, int lineIndex)
+        {
+            if (textField == null)
+            {
+                throw new ArgumentNullException(null, "textField object is null");
+            }
+
+            ValidateIndex(lineIndex);
+
+            Tizen.NUI.PaddingType paddingType = new Tizen.NUI.PaddingType(Interop.TextGeometry.GetLineBoundingRectangleTextField(textField.SwigCPtr, lineIndex), true);
+            Tizen.NUI.Rectangle   rect        = ConvertPaddingTypeToRectangle(paddingType);
+
+            CheckSWIGPendingException();
+            return rect;
+        }
+
+        /// <summary>
+        /// Get the bounding rectangle of a character. <br />
+        /// </summary>
+        /// <param name="textLabel">The TextLabel control containing the text.</param>
+        /// <param name="characterIndex">The index of the character to get the bounding rectangle for</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Tizen.NUI.Rectangle GetCharacterBoundingRectangle(TextLabel textLabel, int characterIndex)
+        {
+            if (textLabel == null)
+            {
+                throw new ArgumentNullException(null, "textLabel object is null");
+            }
+
+            ValidateIndex(characterIndex);
+
+            Tizen.NUI.PaddingType paddingType = new Tizen.NUI.PaddingType(Interop.TextGeometry.GetCharacterBoundingRectangleTextLabel(textLabel.SwigCPtr, characterIndex), true);
+            Tizen.NUI.Rectangle   rect        = ConvertPaddingTypeToRectangle(paddingType);
+
+            CheckSWIGPendingException();
+            return rect;
+        }
+
+        /// <summary>
+        /// Get the bounding rectangle of a character. <br />
+        /// </summary>
+        /// <param name="textEditor">The TextEditor control containing the text.</param>
+        /// <param name="characterIndex">The index of the character to get the bounding rectangle for</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Tizen.NUI.Rectangle GetCharacterBoundingRectangle(TextEditor textEditor, int characterIndex)
+        {
+            if (textEditor == null)
+            {
+                throw new ArgumentNullException(null, "textEditor object is null");
+            }
+
+            ValidateIndex(characterIndex);
+
+            Tizen.NUI.PaddingType paddingType = new Tizen.NUI.PaddingType(Interop.TextGeometry.GetCharacterBoundingRectangleTextEditor(textEditor.SwigCPtr, characterIndex), true);
+            Tizen.NUI.Rectangle   rect        = ConvertPaddingTypeToRectangle(paddingType);
+
+            CheckSWIGPendingException();
+            return rect;
+        }
+
+        /// <summary>
+        /// Get the bounding rectangle of a character. <br />
+        /// </summary>
+        /// <param name="textField">The TextField control containing the text.</param>
+        /// <param name="characterIndex">The index of the character to get the bounding rectangle for</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Tizen.NUI.Rectangle GetCharacterBoundingRectangle(TextField textField, int characterIndex)
+        {
+            if (textField == null)
+            {
+                throw new ArgumentNullException(null, "textField object is null");
+            }
+
+            ValidateIndex(characterIndex);
+
+            Tizen.NUI.PaddingType paddingType = new Tizen.NUI.PaddingType(Interop.TextGeometry.GetCharacterBoundingRectangleTextField(textField.SwigCPtr, characterIndex), true);
+            Tizen.NUI.Rectangle   rect        = ConvertPaddingTypeToRectangle(paddingType);
+
+            CheckSWIGPendingException();
+            return rect;
+        }
+
+        /// <summary>
+        /// Get the character Index at the given position. <br />
+        /// </summary>
+        /// <param name="textLabel">The TextLabel control containing the text.</param>
+        /// <param name="visualX">The visual x point</param>
+        /// <param name="visualY">The visual y point</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int GetCharacterIndexAtPosition(TextLabel textLabel, float visualX, float visualY)
+        {
+            if (textLabel == null)
+            {
+                throw new ArgumentNullException(null, "textLabel object is null");
+            }
+
+            int characterIndex = (int)(Interop.TextGeometry.GetCharacterIndexAtPositionTextLabel(textLabel.SwigCPtr, visualX, visualY));
+            CheckSWIGPendingException();
+            return characterIndex;
+        }
+
+        /// <summary>
+        /// Get the character Index at the given position. <br />
+        /// </summary>
+        /// <param name="textField">The TextField control containing the text.</param>
+        /// <param name="visualX">The visual x point</param>
+        /// <param name="visualY">The visual y point</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int GetCharacterIndexAtPosition(TextField textField, float visualX, float visualY)
+        {
+            if (textField == null)
+            {
+                throw new ArgumentNullException(null, "textField object is null");
+            }
+
+            int characterIndex = (int)(Interop.TextGeometry.GetCharacterIndexAtPositionTextField(textField.SwigCPtr, visualX, visualY));
+            CheckSWIGPendingException();
+            return characterIndex;
+        }
+
+        /// <summary>
+        /// Get the character Index at the given position. <br />
+        /// </summary>
+        /// <param name="textEditor">The TextEditor control containing the text.</param>
+        /// <param name="visualX">The visual x point</param>
+        /// <param name="visualY">The visual y point</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int GetCharacterIndexAtPosition(TextEditor textEditor, float visualX, float visualY)
+        {
+            if (textEditor == null)
+            {
+                throw new ArgumentNullException(null, "textEditor object is null");
+            }
+
+            int characterIndex = (int)(Interop.TextGeometry.GetCharacterIndexAtPositionTextEditor(textEditor.SwigCPtr, visualX, visualY));
+            CheckSWIGPendingException();
+            return characterIndex;
+        }
+
     }
 }
