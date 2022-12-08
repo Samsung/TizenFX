@@ -552,7 +552,7 @@ namespace Tizen.NUI
             {
                 Position2D position = GetPosition();
                 Size2D size = GetSize();
-                Rectangle ret = new Rectangle(position.X, position.Y, size.Width, size.Height);
+                Rectangle ret = new Rectangle(position?.X ?? 0, position?.Y ?? 0, size?.Width ?? 0, size?.Height ?? 0);
                 position.Dispose();
                 return ret;
             }
