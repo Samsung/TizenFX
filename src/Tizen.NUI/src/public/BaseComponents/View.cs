@@ -2605,11 +2605,7 @@ namespace Tizen.NUI.BaseComponents
                 widthPolicy = value;
                 if (widthPolicy >= 0)
                 {
-                    if (heightPolicy >= 0) // Policy an exact value
-                    {
-                        // Create Size2D only both _widthPolicy and _heightPolicy are set.
-                        Size2D = new Size2D(widthPolicy, heightPolicy);
-                    }
+                    SizeWidth = widthPolicy;
                 }
                 layout?.RequestLayout();
             }
@@ -2662,11 +2658,7 @@ namespace Tizen.NUI.BaseComponents
                 heightPolicy = value;
                 if (heightPolicy >= 0)
                 {
-                    if (widthPolicy >= 0) // Policy an exact value
-                    {
-                        // Create Size2D only both _widthPolicy and _heightPolicy are set.
-                        Size2D = new Size2D(widthPolicy, heightPolicy);
-                    }
+                    SizeHeight = heightPolicy;
                 }
                 layout?.RequestLayout();
             }
