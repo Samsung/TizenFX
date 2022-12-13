@@ -201,6 +201,22 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// Load bvh animation and assign to model.
+        /// Scale is additional scale factor of bvh animation. It is possible that
+        /// Model's scale may not matched with bvh animation scale.
+        /// If scale is null, default use as Vector3.ONE
+        /// </summary>
+        /// <returns>Animaion of bvh</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Animation LoadBvhAnimation(string bvhFilename, Vector3 scale = null)
+        {
+            Animation ret = new Animation(Interop.Model.LoadBvhAnimation(SwigCPtr, bvhFilename, Vector3.getCPtr(scale)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Retrieves model root Actor.
         /// </summary>
         /// <returns>Root View of the model.</returns>
