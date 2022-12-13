@@ -419,7 +419,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             }
 
             CustomAttribute xamlFilePathAttr;
-            var xamlFilePath = typeDef.HasCustomAttributes && (xamlFilePathAttr = typeDef.CustomAttributes.FirstOrDefault(ca => ca.AttributeType.FullName == "Tizen.NUI.Xaml.XamlFilePathAttribute")) != null ?
+            var xamlFilePath = typeDef.HasCustomAttributes && (xamlFilePathAttr = typeDef.CustomAttributes.FirstOrDefault(ca => ca.AttributeType.FullName.Contains("Tizen.NUI.Xaml.XamlFilePathAttribute"))) != null ?
                                       (string)xamlFilePathAttr.ConstructorArguments[0].Value :
                                       resource.Name;
 
@@ -517,7 +517,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             ModuleDefinition module = typeDef.Module;
 
             CustomAttribute xamlFilePathAttr;
-            var xamlFilePath = typeDef.HasCustomAttributes && (xamlFilePathAttr = typeDef.CustomAttributes.FirstOrDefault(ca => ca.AttributeType.FullName == "Tizen.NUI.Xaml.XamlFilePathAttribute")) != null ?
+            var xamlFilePath = typeDef.HasCustomAttributes && (xamlFilePathAttr = typeDef.CustomAttributes.FirstOrDefault(ca => ca.AttributeType.FullName.Contains("Tizen.NUI.Xaml.XamlFilePathAttribute"))) != null ?
                                       (string)xamlFilePathAttr.ConstructorArguments[0].Value :
                                       resource.Name;
 
