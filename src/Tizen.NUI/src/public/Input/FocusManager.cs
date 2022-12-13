@@ -584,6 +584,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
 #if !PROFILE_TV
+            //tv profile never use default focus indicator, so this is not needed!
             ret.FocusIndicator = ret.GetDefaultFocusIndicator();
 #endif
             return ret;
