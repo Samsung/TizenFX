@@ -323,13 +323,13 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 IsPartial = true,
                 TypeAttributes = GetTypeAttributes(classModifier),
                 CustomAttributes = {
-                    new CodeAttributeDeclaration(new CodeTypeReference(NUIXamlCTask.xamlNameSpace + ".XamlFilePathAttribute"),
+                    new CodeAttributeDeclaration(new CodeTypeReference($"global::{NUIXamlCTask.xamlNameSpace}.XamlFilePathAttribute"),
                          new CodeAttributeArgument(new CodePrimitiveExpression(XamlFile))),
                 }
             };
             if (AddXamlCompilationAttribute)
                 declType.CustomAttributes.Add(
-                    new CodeAttributeDeclaration(new CodeTypeReference(NUIXamlCTask.xamlNameSpace + ".XamlCompilationAttribute"),
+                    new CodeAttributeDeclaration(new CodeTypeReference($"global::{NUIXamlCTask.xamlNameSpace}.XamlCompilationAttribute"),
                                                  new CodeAttributeArgument(new CodeSnippetExpression($"global::{typeof(XamlCompilationOptions).FullName}.Compile"))));
             if (HideFromIntellisense)
                 declType.CustomAttributes.Add(
