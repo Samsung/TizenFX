@@ -1561,7 +1561,7 @@ namespace Tizen.NUI.BaseComponents
         protected virtual void InitializeStyle(ViewStyle style = null)
         {
 #if PROFILE_TV
-            Tizen.Log.Info("NUI", $"InitializeStyle() just return here in PROFILE_TV");
+            // tv profile doesn't use NUI Style, so do nothing and just return here!
             return;
 #endif
             var initialStyle = ThemeManager.GetInitialStyleWithoutClone(GetType());

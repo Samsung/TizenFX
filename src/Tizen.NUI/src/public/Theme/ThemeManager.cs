@@ -54,10 +54,9 @@ namespace Tizen.NUI
         static ThemeManager()
         {
 #if ExternalThemeEnabled
-            Tizen.Log.Info("NUI", $"must not be shown in PROFILE_TV");
             ExternalThemeManager.Initialize();
-#endif
             AddPackageTheme(DefaultThemeCreator.Instance);
+#endif
         }
 
         /// <summary>
@@ -354,7 +353,7 @@ namespace Tizen.NUI
         internal static void AddPackageTheme(IThemeCreator themeCreator)
         {
 #if PROFILE_TV
-            Tizen.Log.Info("NUI", $"PROFILE_TV AddPackageTheme()");
+            // for tv profile, set empty theme and just return here!
             userTheme = null;
             baseTheme = themeCreator.Create();
             return;
