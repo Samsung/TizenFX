@@ -688,6 +688,7 @@ namespace Tizen.NUI
             Tizen.Tracer.Begin("[NUI] OnApplicationInit: GetWindow");
             Window.Instance = GetWindow();
 #if !PROFILE_TV
+            //tv profile never use default focus indicator, so this is not needed!
             _ = FocusManager.Instance;
 #endif
             Tizen.Tracer.End();
