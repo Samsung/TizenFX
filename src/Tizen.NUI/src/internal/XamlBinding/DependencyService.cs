@@ -18,12 +18,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.ComponentModel;
 using Tizen.NUI.Binding.Internals;
 using Tizen.NUI.Xaml;
 
 namespace Tizen.NUI.Binding
 {
-    internal static class DependencyService
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public static class DependencyService
     {
         static bool s_initialized;
 

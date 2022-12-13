@@ -14,9 +14,13 @@
  * limitations under the License.
  *
  */
+
+using System.ComponentModel;
+
 namespace Tizen.NUI.Binding
 {
-    internal enum DependencyFetchTarget
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum DependencyFetchTarget
     {
         GlobalInstance,
         NewInstance

@@ -15,11 +15,13 @@
  *
  */
 using System;
+using System.ComponentModel;
 
 namespace Tizen.NUI.Binding
 {
     [AttributeUsage(AttributeTargets.Assembly, AllowMultiple = true)]
-    internal class DependencyAttribute : Attribute
+	[EditorBrowsable(EditorBrowsableState.Never)]
+    public class DependencyAttribute : Attribute
     {
         public DependencyAttribute(Type implementorType)
         {
