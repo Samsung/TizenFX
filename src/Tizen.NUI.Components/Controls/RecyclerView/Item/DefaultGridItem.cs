@@ -164,23 +164,32 @@ namespace Tizen.NUI.Components
             }
         }
 
-        /* open when ImageView using Uri not string
-                /// <summary>
-                /// Image image's resource url in DefaultGridItem.
-                /// </summary>
-                [EditorBrowsable(EditorBrowsableState.Never)]
-                public string ImageUrl
-                {
-                    get
-                    {
-                        return Image.ResourceUrl;
-                    }
-                    set
-                    {
-                        Image.ResourceUrl = value;
-                    }
-                }
-        */
+        /// <summary>
+        /// Image image's resource url in DefaultGridItem.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string ImageUrl
+        {
+            get => GetValue(ImageUrlProperty) as string;
+            set
+            {
+                SetValue(ImageUrlProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        internal string InternalImageUrl
+        {
+            get
+            {
+                return Image.ResourceUrl;
+            }
+            set
+            {
+                Image.ResourceUrl = value;
+            }
+        }
+
 
         /// <summary>
         /// DefaultGridItem's text part.
