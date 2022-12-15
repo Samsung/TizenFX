@@ -58,49 +58,9 @@ namespace Tizen.NUI
 
             RegistryCurrentThreadCheck();
 
-            if (baseHandle == null)
+            if (Instance._controlMap.TryAdd(refCptr, new WeakReference(baseHandle, false)) != true)
             {
-                Tizen.Log.Info("NUI", $"Register() baseHandle == null, refCptr(key)={refCptr.ToString("X8")} just return!");
-                return;
-            }
-
-            if (baseHandle.HasBody() == false)
-            {
-                Tizen.Log.Info("NUI", $"HasBody() == false, just reture here!");
-                return;
-            }
-
-            const int retryCount = 3;
-            for (int i = 0; i < retryCount; i++)
-            {
-                if (Instance._controlMap.TryAdd(refCptr, new WeakReference(baseHandle, false)))
-                {
-                    break;
-                }
-                else
-                {
-                    Tizen.Log.Info("NUI", $"refCptr is already exist! OR something wrong! couldn't add, refCptr(key)={refCptr.ToString("X8")}");
-                    WeakReference wr;
-                    if (Instance._controlMap.TryGetValue(refCptr, out wr))
-                    {
-                        if (wr?.Target == null)
-                        {
-                            Tizen.Log.Info("NUI", $"wr?.Target == null!");
-                            if (Instance._controlMap.TryRemove(refCptr, out wr))
-                            {
-                                Tizen.Log.Info("NUI", $"remove OK");
-                            }
-                        }
-                        else
-                        {
-                            BaseHandle bh = wr?.Target as BaseHandle;
-                            if (bh != null)
-                            {
-                                Tizen.Log.Info("NUI", $"bh.Disposed={bh.Disposed} IsDisposeQueued={bh.IsDisposeQueued} type={bh.GetType()}");
-                            }
-                        }
-                    }
-                }
+                NUILog.Debug("refCptr is already exist! OR something wrong!");
             }
 
             NUILog.Debug($"[Registry] Register! type:{baseHandle.GetType()} count:{Instance._controlMap.Count} copyNativeHandle:{baseHandle.GetBaseHandleCPtrHandleRef.Handle.ToString("X8")}");
@@ -147,7 +107,7 @@ namespace Tizen.NUI
             if (refObjectPtr == global::System.IntPtr.Zero)
             {
                 NUILog.Debug("Registry refObjectPtr is NULL! This means bind native object is NULL!");
-                return null;
+                //return null;
             }
             else
             {
