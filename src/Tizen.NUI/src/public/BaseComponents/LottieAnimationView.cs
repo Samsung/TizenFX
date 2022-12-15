@@ -176,7 +176,7 @@ namespace Tizen.NUI.BaseComponents
                         }
                     }
                 }
-                //Tizen.Log.Info(tag, $"  [ERROR][{GetId()}](LottieAnimationView) Fail to get URL from dali >");
+                Tizen.Log.Error(tag, $"  [ERROR][{GetId()}](LottieAnimationView) Fail to get URL from dali >");
                 return ret;
             }
         }
