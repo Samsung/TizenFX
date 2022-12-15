@@ -345,6 +345,8 @@ namespace Tizen.NUI.Components
             RelativeLayout.SetRightTarget(itemImage, this);
             RelativeLayout.SetRightRelativeOffset(itemImage, 1.0F);
             RelativeLayout.SetHorizontalAlignment(itemImage, RelativeLayout.Alignment.Center);
+            RelativeLayout.SetFillHorizontal(itemImage, true);
+            RelativeLayout.SetFillVertical(itemImage, true);
 
             if (itemLabel != null)
             {
