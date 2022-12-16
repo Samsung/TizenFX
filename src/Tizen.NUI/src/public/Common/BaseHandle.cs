@@ -432,10 +432,12 @@ namespace Tizen.NUI
         /// Resets the handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <remark>
+        /// This will be deprecated, please use Dispose() instead.
+        /// </remark>
         public void Reset()
         {
-            Interop.BaseHandle.Reset(swigCPtrCopy);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            NUILog.Error("[ERROR] This(BaseHandle.Reset) will be deprecated, please use Dispose() instead!");
         }
 
         /// <summary>
