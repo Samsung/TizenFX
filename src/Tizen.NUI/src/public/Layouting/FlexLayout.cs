@@ -773,8 +773,16 @@ namespace Tizen.NUI
 
             NUILog.Debug("FlexLayout OnMeasure width:" + flexLayoutWidth.AsRoundedValue() + " height:" + flexLayoutHeight.AsRoundedValue());
 
-            SetMeasuredDimensions(GetDefaultSize(flexLayoutWidth, widthMeasureSpec),
-                                   GetDefaultSize(flexLayoutHeight, heightMeasureSpec));
+            // If flexLayoutWidth or flexLayoutHeight is 0,
+            // then the measured width or height can be assigned with parent's width or height.
+            // e.g. Let flexLayoutHeight be 0.
+            //      Let heightMeasureSpec.Mode be AtMost.
+            //      Then GetDefaultSize(flexLayoutHeight, heightMeasureSpec) returns the parent's height.
+            // Not to break backward compatibility of GetDefaultSize(), ResolveSizeAndState() is used instead.
+            Tizen.NUI.MeasuredSize widthMeasuredSize = ResolveSizeAndState(flexLayoutWidth, widthMeasureSpec, Tizen.NUI.MeasuredSize.StateType.MeasuredSizeOK);
+            Tizen.NUI.MeasuredSize heightMeasuredSize = ResolveSizeAndState(flexLayoutHeight, heightMeasureSpec, Tizen.NUI.MeasuredSize.StateType.MeasuredSizeOK);
+
+            SetMeasuredDimensions(widthMeasuredSize, heightMeasuredSize);
         }
 
         /// <summary>
