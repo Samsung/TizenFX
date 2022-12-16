@@ -82,6 +82,9 @@ namespace Tizen.NUI.Scene3D
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_SetSkybox")]
             public static extern void SetSkybox(global::System.Runtime.InteropServices.HandleRef sceneView, string skyboxUrl);
 
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_SetSkyboxWithType")]
+            public static extern void SetSkybox(global::System.Runtime.InteropServices.HandleRef sceneView, string skyboxUrl, int skyboxType);
+
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_SetSkyboxIntensity")]
             public static extern void SetSkyboxIntensity(global::System.Runtime.InteropServices.HandleRef sceneView, float intensity);
 

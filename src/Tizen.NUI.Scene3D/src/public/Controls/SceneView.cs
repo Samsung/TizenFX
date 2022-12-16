@@ -67,9 +67,16 @@ namespace Tizen.NUI.Scene3D
     /// <since_tizen> 10 </since_tizen>
     public class SceneView : View
     {
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum SkyboxType
+        {
+            CUBEMAP, ///< Skybox in cubemap
+            EQUIRECTANGULAR ///< Skybox in equirectangular projection
+        }
         private bool inCameraTransition = false;
         private Animation cameraTransition;
         private string skyboxUrl;
+        private SkyboxType skyboxType = SkyboxType.CUBEMAP;
 
         internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -170,6 +177,24 @@ namespace Tizen.NUI.Scene3D
             get
             {
                 return skyboxUrl;
+            }
+        }
+
+        /// <summary>
+        /// Set/Get SkyboxImageType.
+        /// Skybox texture is asynchronously loaded. When loading is finished, ResourcesLoaded is emitted.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public SkyboxType SkyboxImageType
+        {
+            set
+            {
+                SetSkyboxType(value);
+            }
+            get
+            {
+                return skyboxType;
             }
         }
 
@@ -481,15 +506,46 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Set the Skybox from cube map image.
+        /// Set the Skybox image with image type.
         /// Skybox texture is asynchronously loaded. When loading is finished, ResourcesLoaded is emitted.
         /// </summary>
-        /// <param name="skyboxUrl">Cube map image url for skybox.</param>
+        /// <param name="skyboxUrl">Image url for skybox.</param>
+        /// <param name="skyboxType">Type for skybox.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetSkybox(string skyboxUrl, SkyboxType skyboxType)
+        {
+            this.skyboxUrl = skyboxUrl;
+            this.skyboxType = skyboxType;
+            Interop.SceneView.SetSkybox(SwigCPtr, skyboxUrl, (int)skyboxType);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Set the Skybox from image.
+        /// Skybox texture is asynchronously loaded. When loading is finished, ResourcesLoaded is emitted.
+        /// </summary>
+        /// <param name="skyboxUrl">Image url for skybox.</param>
         private void SetSkybox(string skyboxUrl)
         {
             this.skyboxUrl = skyboxUrl;
-            Interop.SceneView.SetSkybox(SwigCPtr, skyboxUrl);
+            Interop.SceneView.SetSkybox(SwigCPtr, skyboxUrl, (int)this.skyboxType);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Set the Skybox image type.
+        /// Skybox texture is asynchronously loaded. When loading is finished, ResourcesLoaded is emitted.
+        /// </summary>
+        /// <param name="skyboxType">Type url for skybox.</param>
+        private void SetSkyboxType(SkyboxType skyboxType)
+        {
+            this.skyboxType = skyboxType;
+            if(!string.IsNullOrEmpty(this.skyboxUrl))
+            {
+                Interop.SceneView.SetSkybox(SwigCPtr, this.skyboxUrl, (int)skyboxType);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
         }
 
         /// <summary>
