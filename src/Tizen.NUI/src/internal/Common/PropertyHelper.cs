@@ -50,6 +50,12 @@ namespace Tizen.NUI
                                         new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.BorderlineOffset, null, null)) },
             { "imageShadow.Offset",     new VisualPropertyData(View.Property.SHADOW, (int)VisualTransformPropertyType.Offset) },
             { "shadow.CornerRadius",    new VisualPropertyData(View.Property.SHADOW, Visual.Property.CornerRadius, ObjectIntToFloat) },
+            { "mixColor",               new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.MixColor, ObjectColorToVector3, PropertyValueColorToVector3,
+                                        new VisualPropertyData(View.Property.BACKGROUND, Visual.Property.Opacity, ObjectColorToAlpha, PropertyValueColorToAlpha,
+                                        new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.MixColor, ObjectColorToVector3, PropertyValueColorToVector3,
+                                        new VisualPropertyData(ImageView.Property.IMAGE, Visual.Property.Opacity, ObjectColorToAlpha, PropertyValueColorToAlpha,
+                                        new VisualPropertyData(View.Property.SHADOW, Visual.Property.MixColor, ObjectColorToVector3, PropertyValueColorToVector3,
+                                        new VisualPropertyData(View.Property.SHADOW, Visual.Property.Opacity, ObjectColorToAlpha, PropertyValueColorToAlpha)))))) },
         };
 
         static PropertyHelper() { }
