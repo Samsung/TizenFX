@@ -44,21 +44,21 @@ namespace Tizen.NUI.Components
 
 
         /// <summary>
-        /// ImageUrlProperty
+        /// ResourceUrlProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ImageUrlProperty = BindableProperty.Create(nameof(ImageUrl), typeof(string), typeof(DefaultGridItem), default(string), propertyChanged: (bindable, oldValue, newValue) =>
+        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(DefaultGridItem), default(string), propertyChanged: (bindable, oldValue, newValue) =>
         {
             var instance = (DefaultGridItem)bindable;
             if (newValue != null)
             {
-                instance.InternalImageUrl = newValue as string;
+                instance.InternalResourceUrl = newValue as string;
             }
         },
         defaultValueCreator: (bindable) =>
         {
             var instance = (DefaultGridItem)bindable;
-            return instance.InternalImageUrl;
+            return instance.InternalResourceUrl;
         });
 
         /// <summary>
