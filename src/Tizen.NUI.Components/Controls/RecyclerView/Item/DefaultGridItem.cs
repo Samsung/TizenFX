@@ -165,20 +165,20 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
-        /// Image image's resource url in DefaultGridItem.
+        /// Image resource url in DefaultGridItem.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public string ImageUrl
+        public string ResourceUrl
         {
-            get => GetValue(ImageUrlProperty) as string;
+            get => GetValue(ResourceUrlProperty) as string;
             set
             {
-                SetValue(ImageUrlProperty, value);
+                SetValue(ResourceUrlProperty, value);
                 NotifyPropertyChanged();
             }
         }
 
-        internal string InternalImageUrl
+        internal string InternalResourceUrl
         {
             get
             {
