@@ -19,6 +19,10 @@
                 <LinearLayout LinearOrientation="Vertical" CellPadding="0,20"/>
             </View.Layout>
 
+            <Button x:Name="buttonWithXaml"
+                        Text="Show AlertDialog with xaml"
+                        WidthSpecification="{Static LayoutParamPolicies.MatchParent}" />
+
             <Button x:Name="buttonOneAction"
                         Text="Show AlertDialog with one button"
                         WidthSpecification="{Static LayoutParamPolicies.MatchParent}" />
