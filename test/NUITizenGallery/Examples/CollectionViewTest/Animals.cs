@@ -19,7 +19,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using Tizen.NUI;
+using Tizen.NUI.Components;
 using Tizen.NUI.Binding;
 
 public class Animal : INotifyPropertyChanged
@@ -29,7 +31,7 @@ public class Animal : INotifyPropertyChanged
     private string _imageUrl = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "/images/animals/";
 
     public event PropertyChangedEventHandler PropertyChanged;
-    private void OnPropertyChanged(string propertyName) { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+    private void OnPropertyChanged([CallerMemberName] string propertyName="") { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
 
 
     public Animal(string name, string scientificName)
@@ -44,7 +46,7 @@ public class Animal : INotifyPropertyChanged
         set
         {
             _name = value;
-            OnPropertyChanged("Name");
+            OnPropertyChanged();
         }
     }
 
@@ -54,7 +56,7 @@ public class Animal : INotifyPropertyChanged
         set
         {
             _scientificName = value;
-            OnPropertyChanged("ScientificName");
+            OnPropertyChanged();
         }
     }
 
@@ -70,7 +72,7 @@ public class Animal : INotifyPropertyChanged
 }
 
 
-public class Animals
+public class Animals : INotifyPropertyChanged
 {
     (string Name,string ScientificName)[] namePool = {
     ("Bald Eagle", "Haliaeetus leucocephalus"),
@@ -97,12 +99,39 @@ public class Animals
     ("Tiger", "Panthera tigris"),
     ("Wolf", "Canis lupus"),
     ("Zebra", "Hippotigris"),
-};
+    };
+
+    public event PropertyChangedEventHandler PropertyChanged;
+    private void OnPropertyChanged([CallerMemberName] string propertyName="") { PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName)); }
+
     public ObservableCollection<Animal> Source {get; private set; } = new ObservableCollection<Animal>();
 
     public Animals()
     {
         for (int i = 0; i < namePool.Length; i++)
             Source.Add(new Animal(namePool[i].Name, namePool[i].ScientificName));
+
+        SelectedAnimalChangedCommand = new Command<SelectionChangedEventArgs>((param) =>
+        {
+            if (param == null) return;
+
+            Animal animal = null;
+            // Single Selection Only have 1 or nil object in the list.
+            foreach (object item in param.PreviousSelection)
+            {
+                animal = item as Animal;
+                if (animal == null) break;
+
+                Console.WriteLine($"Previous selected item {animal.Name}");
+            }
+            foreach (object item in param.CurrentSelection)
+            {
+                animal = item as Animal;
+                if (animal == null) break;
+
+                Console.WriteLine($"Current selected item {animal.Name}");
+        }       });
     }
+
+    public Command<SelectionChangedEventArgs> SelectedAnimalChangedCommand { get; }
 }
