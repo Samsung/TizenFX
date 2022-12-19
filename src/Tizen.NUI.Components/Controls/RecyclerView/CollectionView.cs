@@ -47,8 +47,8 @@ namespace Tizen.NUI.Components
 
                     oldValue = colView.selectedItem;
                     colView.selectedItem = newValue;
-                    var args = new SelectionChangedEventArgs(oldValue, newValue);
 
+                    var args = new SelectionChangedEventArgs(oldValue, newValue);
                     foreach (RecyclerViewItem item in colView.ContentContainer.Children.Where((item) => item is RecyclerViewItem))
                     {
                         if (item.BindingContext == null)
@@ -1234,6 +1234,10 @@ namespace Tizen.NUI.Components
             if (command != null)
             {
                 var commandParameter = colView.SelectionChangedCommandParameter;
+                if (commandParameter == null)
+                {
+                    commandParameter = args;
+                }
 
                 if (command.CanExecute(commandParameter))
                 {
