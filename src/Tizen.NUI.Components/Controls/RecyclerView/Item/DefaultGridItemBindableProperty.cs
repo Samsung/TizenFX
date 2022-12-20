@@ -42,6 +42,25 @@ namespace Tizen.NUI.Components
             return instance.InternalText;
         });
 
+
+        /// <summary>
+        /// ResourceUrlProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ResourceUrlProperty = BindableProperty.Create(nameof(ResourceUrl), typeof(string), typeof(DefaultGridItem), default(string), propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (DefaultGridItem)bindable;
+            if (newValue != null)
+            {
+                instance.InternalResourceUrl = newValue as string;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (DefaultGridItem)bindable;
+            return instance.InternalResourceUrl;
+        });
+
         /// <summary>
         /// LabelOrientationTypeProperty
         /// </summary>
