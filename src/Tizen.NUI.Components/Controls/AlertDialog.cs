@@ -346,19 +346,6 @@ namespace Tizen.NUI.Components
         {
             get
             {
-                return GetValue(ActionsProperty) as IEnumerable<View>;
-            }
-            set
-            {
-                SetValue(ActionsProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        private IEnumerable<View> InternalActions
-        {
-            get
-            {
                 return actionContentViews;
             }
             set

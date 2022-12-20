@@ -29,7 +29,7 @@
     </ItemGroup>
 
     <PropertyGroup>
-        <XamlOptimization>1</XamlOptimization>
+        <XamlOptimization>2</XamlOptimization>
     </PropertyGroup>
 
     <ImportGroup>
