@@ -17,19 +17,34 @@
 using System;
 using System.ComponentModel;
 
+
 namespace Tizen.NUI.Text.Spans
 {
     /// <summary>
     /// </summary>
     // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+    /// This is the base class for different spans available and provides functionality that is common to all the spans.<br />
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class BaseSpan : Disposable
     {
-
         internal BaseSpan(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }
 
+        /// <summary>
+        /// The span type value.
+        /// </summary>
+        /// This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TextSpanType SpanType
+        {
+            get
+            {
+                TextSpanType ret = (TextSpanType)Interop.BaseSpan.GetSpanType(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                return ret;
+            }
+        }
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]

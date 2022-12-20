@@ -17,6 +17,7 @@
 using System;
 using System.ComponentModel;
 using System.Collections.Generic;
+using Tizen.NUI.Text.Spans;
 
 namespace Tizen.NUI.Text
 {
@@ -31,14 +32,51 @@ namespace Tizen.NUI.Text
         {
         }
 
+        /// <summary>
+        /// Retrieve all spans<br />
+        /// </summary>
+        /// <returns>list of spans</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public List<BaseSpan> GetAllSpans( )
+        {
+            StdVectorBaseSpan ret = new StdVectorBaseSpan(Interop.Spanned.GetAllSpans(SwigCPtr), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            List<BaseSpan> list = ret.CreateListFromNativeVector();
+
+            return list;
+        }
+
+        /// <summary>
+        /// Retrieve all spans and ranges. Two lists are mapped by index.<br />
+        /// </summary>
+        /// <param name="spans">The container to clone spans.</param>
+        /// <param name="ranges">The container to clone ranges.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RetrieveAllSpansAndRanges( List<BaseSpan> spans, List<Range> ranges)
+        {
+            //Create native container for spans
+            StdVectorBaseSpan nativeVectorSpans = new StdVectorBaseSpan(Interop.StdVectorBaseSpan.CreateVector(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            //Create native container for ranges
+            StdVectorRange nativeVectorRanges = new StdVectorRange(Interop.StdVectorRange.CreateVector(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            Interop.Spanned.RetrieveAllSpansAndRanges(SwigCPtr, nativeVectorSpans.SwigCPtr, nativeVectorRanges.SwigCPtr);
+
+            // Copy from native containers
+            nativeVectorSpans.FillListFromNativeVector(spans);
+            nativeVectorRanges.FillListFromNativeVector(ranges);
+        }
+
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Spanned.DeleteSpanned(swigCPtr);
         }
-
-
 
     }
 }

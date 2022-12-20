@@ -1,0 +1,82 @@
+/*
+ * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ */
+using System;
+using System.ComponentModel;
+using System.Collections.Generic;
+using Tizen.NUI.Text.Spans;
+
+namespace Tizen.NUI.Text
+{
+    /// <summary>
+    /// </summary>
+    // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    internal class StdVectorRange : Disposable
+    {
+
+        internal StdVectorRange(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
+        }
+
+        public Range ValueOfIndex(uint index)
+        {
+            global::System.IntPtr cPtr = Interop.StdVectorRange.ValueOfIndex(SwigCPtr, index);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            Range ret = new Range(cPtr, true);
+
+            return ret;
+        }
+
+        public int Size()
+        {
+            int size = Interop.StdVectorRange.Size(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return size;
+        }
+
+        public List<Range> CreateListFromNativeVector( )
+        {
+            int count = this.Size();
+            List<Range> list = new List<Range>();
+
+            for(int i = 0; i < count; i++)
+                list.Add( ValueOfIndex((uint)i));
+
+            return list;
+        }
+
+        public List<Range> FillListFromNativeVector(List<Range> list )
+        {
+            if(list != null)
+            {
+                int count = this.Size();
+
+                for(int i = 0; i < count; i++)
+                    list.Add( ValueOfIndex((uint)i));
+            }
+            return list;
+        }
+
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.StdVectorRange.ReleaseVector(swigCPtr);
+        }
+    }
+}

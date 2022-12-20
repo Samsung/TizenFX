@@ -14,19 +14,28 @@
  * limitations under the License.
  *
  */
+using System;
+using System.ComponentModel;
 
-namespace Tizen.NUI
+namespace Tizen.NUI.Text.Spans
 {
-    internal static partial class Interop
+    /// This will not be public opened.
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    internal class BaseSpanFactory
     {
-        internal static partial class BaseSpan
+
+        internal static BaseSpan CreateBaseSpanFromPtr(global::System.IntPtr cPtr, TextSpanType type)
         {
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_BaseSpan_GetSpanType")]
-            public static extern int GetSpanType(global::System.Runtime.InteropServices.HandleRef refBaseSpan);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseSpan")]
-            public static extern void DeleteBaseSpan(global::System.Runtime.InteropServices.HandleRef refBaseSpan);
+            BaseSpan ret = null;
+            switch (type)
+            {
+                case TextSpanType.ForegroundColor:
+                    ret = new ForegroundColorSpan(cPtr, true);
+                break;
+                ///TODO: Add cases for other SpanTypes when merged them
+            }
+            return ret;
         }
+
     }
 }

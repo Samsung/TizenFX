@@ -21,6 +21,7 @@ namespace Tizen.NUI
     {
         internal static partial class ForegroundColorSpan
         {
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ForegroundColorSpan_New")]
             public static extern global::System.IntPtr New(global::System.Runtime.InteropServices.HandleRef argColor);
 

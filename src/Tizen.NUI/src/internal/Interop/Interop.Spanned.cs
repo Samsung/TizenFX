@@ -24,6 +24,11 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Spanned")]
             public static extern void DeleteSpanned(global::System.Runtime.InteropServices.HandleRef refSpanned);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Spanned_GetAllSpans")]
+            public static extern global::System.IntPtr GetAllSpans(global::System.Runtime.InteropServices.HandleRef refSpanned);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Spanned_RetrieveAllSpansAndRanges")]
+            public static extern global::System.IntPtr RetrieveAllSpansAndRanges(global::System.Runtime.InteropServices.HandleRef refSpanned, global::System.Runtime.InteropServices.HandleRef refVectorSpans, global::System.Runtime.InteropServices.HandleRef refVectorRanges);
         }
     }
 }

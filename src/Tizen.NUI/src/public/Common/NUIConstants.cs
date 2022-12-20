@@ -783,7 +783,7 @@ namespace Tizen.NUI
         /// This is a desktop type. No other windows can be placed below this type of window.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Desktop        
+        Desktop
     }
 
     /// <since_tizen> 3 </since_tizen>
@@ -2141,6 +2141,60 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         PixelSize
+    }
+
+    /// <summary>
+    /// Enumeration for the span type. <br />
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum TextSpanType
+    {
+        /// <summary>
+        /// The Base.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Base,
+        /// <summary>
+        /// The ForegroundColor.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        ForegroundColor,
+        /// <summary>
+        /// The BackgroundColor.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        BackgroundColor,
+        /// <summary>
+        /// The Font.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Font,
+        /// <summary>
+        /// The Bold.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Bold,
+        /// <summary>
+        /// The Italic.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Italic,
+        /// <summary>
+        /// The Underline.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Underline,
+        /// <summary>
+        /// The Strikethrough.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Strikethrough,
+        /// <summary>
+        /// The CharacterSpacing.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        CharacterSpacing
+
     }
 
     /// <summary>
