@@ -1,5 +1,4 @@
 using System.ComponentModel;
-using System.Collections.Generic;
 using Tizen.NUI.BaseComponents;
 using Tizen.NUI.Binding;
 
@@ -77,24 +76,6 @@ namespace Tizen.NUI.Components
         {
             var instance = (AlertDialog)bindable;
             return instance.InternalContent;
-        });
-
-        /// <summary>
-        /// ActionsProperty
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public static readonly BindableProperty ActionsProperty = BindableProperty.Create(nameof(Actions), typeof(IEnumerable<View>), typeof(AlertDialog), null, propertyChanged: (bindable, oldValue, newValue) =>
-        {
-            var instance = (AlertDialog)bindable;
-            if (newValue != null)
-            {
-                instance.InternalActions = newValue as IEnumerable<View>;
-            }
-        },
-        defaultValueCreator: (bindable) =>
-        {
-            var instance = (AlertDialog)bindable;
-            return instance.InternalActions;
         });
 
         /// <summary>
