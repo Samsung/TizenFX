@@ -137,6 +137,28 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets the value of an existing property.
+        /// </summary>
+        /// <param name="name">The index of the property.</param>
+        /// <param name="propertyValue">The new value of the property.</param>
+        /// This will not be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetProperty(string name, PropertyValue propertyValue)
+        {
+            var propertyName = LowerFirstLetter(name);
+            Property property = new Property(this, propertyName);
+            if (property.propertyIndex == Property.InvalidIndex)
+            {
+                Tizen.Log.Error("NUI", "Invalid property name\n");
+            }
+            else
+            {
+                Tizen.NUI.Object.SetProperty(SwigCPtr, property.propertyIndex, propertyValue);
+            }
+            property.Dispose();
+        }
+
+        /// <summary>
         /// Registers a new animatable property.
         /// </summary>
         /// <param name="name">The name of the property.</param>
@@ -238,6 +260,13 @@ namespace Tizen.NUI
         {
             Interop.HandleInternal.HandleRemoveConstraints(SwigCPtr, tag);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        private static string LowerFirstLetter(string original)
+        {
+            StringBuilder sb = new StringBuilder(original);
+            sb[0] = (char)(sb[0] | 0x20);
+            return sb.ToString();
         }
 
         /// This will not be public opened.
