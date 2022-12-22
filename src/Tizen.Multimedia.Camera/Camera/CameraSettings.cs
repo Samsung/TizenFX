@@ -1297,7 +1297,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public int GetExtraPreviewGopInterval(int streamId)
         {
-            Native.GetExtraPreviewBitrate(_camera.GetHandle(), streamId, out int gopInterval).
+            Native.GetExtraPreviewGopInterval(_camera.GetHandle(), streamId, out int gopInterval).
                 ThrowIfFailed("Failed to get extra preview gop interval");
 
             return gopInterval;
@@ -1312,7 +1312,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public void SetExtraPreviewGopInterval(int streamId, int gopInterval)
         {
-            Native.SetExtraPreviewBitrate(_camera.GetHandle(), streamId, gopInterval).
+            Native.SetExtraPreviewGopInterval(_camera.GetHandle(), streamId, gopInterval).
                 ThrowIfFailed("Failed to set extra preview gop interval");
         }
 
@@ -1325,8 +1325,31 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public Rotation GetExtraPreviewRotation(int streamId)
         {
-            Native.GetExtraPreviewRotation(_camera.GetHandle(), streamId, out Rotation rotation).
-                ThrowIfFailed("Failed to get extra preview gop interval");
+            Native.GetPreviewFrameRotation(_camera.GetHandle(), out Rotation rotation).
+                ThrowIfFailed("Failed to get extra preview frame rotation");
+
+            return rotation;
+        }
+
+        /// <summary>
+        /// Gets the rotation of preview frame.
+        /// </summary>
+        /// <returns>A rotation of preview frame.</returns>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation GetExtraPreviewRotation()
+            => GetExtraPreviewRotation(0);
+
+        /// <summary>
+        /// Gets the rotation of preview frame.
+        /// </summary>
+        /// <returns>A rotation of preview frame.</returns>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation GetPreviewFrameRotation()
+        {
+            Native.GetPreviewFrameRotation(_camera.GetHandle(), out Rotation rotation).
+                ThrowIfFailed("Failed to get preview frame rotation");
 
             return rotation;
         }
