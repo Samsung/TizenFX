@@ -30,7 +30,7 @@ namespace Tizen.NUI
     {
 
         private DaliEventHandler<object, NotifyEventArgs> propertyNotificationNotifyEventHandler;
-        private NotifyEventCallbackDelegate propertyNotificationNotifyEventCallbackDelegate;
+        private NotifyEventCallbackDelegate propertyNotificationNotifyEventCallback;
 
         /// <summary>
         /// Create a instance of PropertyNotification.
@@ -66,24 +66,29 @@ namespace Tizen.NUI
         {
             add
             {
-                // Restricted to only one listener
                 if (propertyNotificationNotifyEventHandler == null)
                 {
-                    propertyNotificationNotifyEventHandler += value;
-
-                    propertyNotificationNotifyEventCallbackDelegate = new NotifyEventCallbackDelegate(OnPropertyNotificationNotify);
-                    this.NotifySignal().Connect(propertyNotificationNotifyEventCallbackDelegate);
+                    propertyNotificationNotifyEventCallback = OnPropertyNotificationNotify;
+                    using PropertyNotifySignal signal = new PropertyNotifySignal(Interop.PropertyNotification.NotifySignal(SwigCPtr), false);
+                    signal?.Connect(propertyNotificationNotifyEventCallback);
                 }
+                propertyNotificationNotifyEventHandler += value;
             }
-
             remove
             {
-                if (propertyNotificationNotifyEventHandler != null)
-                {
-                    this.NotifySignal().Disconnect(propertyNotificationNotifyEventCallbackDelegate);
-                }
-
                 propertyNotificationNotifyEventHandler -= value;
+                if (propertyNotificationNotifyEventHandler == null)
+                {
+                    using PropertyNotifySignal signal = new PropertyNotifySignal(Interop.PropertyNotification.NotifySignal(SwigCPtr), false);
+                    if (signal?.Empty() == false)
+                    {
+                        signal?.Disconnect(propertyNotificationNotifyEventCallback);
+                        if (signal?.Empty() == true)
+                        {
+                            propertyNotificationNotifyEventCallback = null;
+                        }
+                    }
+                }
             }
         }
 
@@ -230,14 +235,38 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Connects to this signal to be notified when the notification has occurred.
+        /// override it to clean-up your own resources.
         /// </summary>
-        /// <returns>A signal object to Connect() with</returns>
-        internal PropertyNotifySignal NotifySignal()
+        /// <param name="type"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
         {
-            PropertyNotifySignal ret = new PropertyNotifySignal(Interop.PropertyNotification.NotifySignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (HasBody())
+            {
+                if (propertyNotificationNotifyEventCallback != null)
+                {
+                    using PropertyNotifySignal signal = new PropertyNotifySignal(Interop.PropertyNotification.NotifySignal(SwigCPtr), false);
+                    signal?.Disconnect(propertyNotificationNotifyEventCallback);
+                    propertyNotificationNotifyEventCallback = null;
+                }
+            }
+            base.Dispose(type);
         }
 
         /// This will not be public opened.
@@ -250,11 +279,42 @@ namespace Tizen.NUI
         // Callback for PropertyNotification NotifySignal
         private void OnPropertyNotificationNotify(IntPtr propertyNotification)
         {
-            NotifyEventArgs e = new NotifyEventArgs();
-            e.PropertyNotification = GetPropertyNotificationFromPtr(propertyNotification);
+            if (IsNativeHandleInvalid())
+            {
+                if (this.Disposed)
+                {
+                    if (propertyNotificationNotifyEventHandler != null)
+                    {
+                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                        var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                        var me = this.GetType().FullName;
+
+                        Tizen.Log.Error("NUI", $"Error! NUI's native dali object is already disposed. " +
+                            $"OR the native dali object handle of NUI becomes null! \n" +
+                            $" process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                    }
+                }
+                else
+                {
+                    if (this.IsDisposeQueued)
+                    {
+                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                        var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                        var me = this.GetType().FullName;
+
+                        //in this case, this object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked!
+                        Tizen.Log.Error("NUI", "in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \n" +
+                            $"process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                        return;
+                    }
+                }
+            }
 
             if (propertyNotificationNotifyEventHandler != null)
             {
+                NotifyEventArgs e = new NotifyEventArgs();
+                e.PropertyNotification = GetPropertyNotificationFromPtr(propertyNotification);
+
                 //here we send all data to user event handlers
                 propertyNotificationNotifyEventHandler(this, e);
             }
