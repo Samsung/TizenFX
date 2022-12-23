@@ -1110,11 +1110,11 @@ namespace Tizen.NUI.Components
 
             bool isHorizontal = (ScrollingDirection == Direction.Horizontal);
 
-            float viewScreenPosition = (isHorizontal? ScreenPosition.X : ScreenPosition.Y);
-            float childScreenPosition = (isHorizontal? child.ScreenPosition.X : child.ScreenPosition.Y);
-            float scrollPosition = (isHorizontal? ScrollPosition.X : ScrollPosition.Y);
-            float viewSize = (isHorizontal? SizeWidth : SizeHeight);
-            float childSize = (isHorizontal? child.SizeWidth : child.SizeHeight);
+            float viewScreenPosition = (isHorizontal ? ScreenPosition.X : ScreenPosition.Y);
+            float childScreenPosition = (isHorizontal ? child.ScreenPosition.X : child.ScreenPosition.Y);
+            float scrollPosition = (isHorizontal ? ScrollPosition.X : ScrollPosition.Y);
+            float viewSize = (isHorizontal ? SizeWidth : SizeHeight);
+            float childSize = (isHorizontal ? child.SizeWidth : child.SizeHeight);
 
             if (viewScreenPosition > childScreenPosition ||
                 viewScreenPosition + viewSize < childScreenPosition + childSize)
@@ -1348,24 +1348,14 @@ namespace Tizen.NUI.Components
             StopOverShootingShadowAnimation();
             StopScroll();
 
-            if (mPanGestureDetector != null)
-            {
-                mPanGestureDetector.Detected -= OnPanGestureDetected;
-                mPanGestureDetector.Dispose();
-                mPanGestureDetector = null;
-            }
-
-            if (propertyNotification != null)
-            {
-                ContentContainer?.RemovePropertyNotification(propertyNotification);
-                propertyNotification.Notified -= OnPropertyChanged;
-                propertyNotification.Dispose();
-                propertyNotification = null;
-            }
-
             if (type == DisposeTypes.Explicit)
             {
+                mPanGestureDetector?.Dispose();
+                mPanGestureDetector = null;
 
+                ContentContainer?.RemovePropertyNotification(propertyNotification);
+                propertyNotification?.Dispose();
+                propertyNotification = null;
             }
             base.Dispose(type);
         }
@@ -1698,7 +1688,7 @@ namespace Tizen.NUI.Components
                 var checkFinalTargetPosition = BoundScrollPosition(checkChildTargetPosition);
                 handled = !((int)checkFinalTargetPosition == 0 || -(int)checkFinalTargetPosition == (int)maxScrollDistance);
                 // If you propagate a gesture event, return;
-                if(!handled)
+                if (!handled)
                 {
                     return handled;
                 }
@@ -2005,7 +1995,7 @@ namespace Tizen.NUI.Components
         {
             bool isHorizontal = (ScrollingDirection == Direction.Horizontal);
             float targetPosition = -(ScrollingDirection == Direction.Horizontal ? ContentContainer.CurrentPosition.X : ContentContainer.CurrentPosition.Y);
-            float stepDistance = (stepScrollDistance != 0? stepScrollDistance : (isHorizontal ? Size.Width * 0.25f :  Size.Height * 0.25f));
+            float stepDistance = (stepScrollDistance != 0 ? stepScrollDistance : (isHorizontal ? Size.Width * 0.25f : Size.Height * 0.25f));
 
             bool forward = ((isHorizontal && direction == View.FocusDirection.Right) ||
                             (!isHorizontal && direction == View.FocusDirection.Down) ||
