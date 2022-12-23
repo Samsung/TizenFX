@@ -71,19 +71,25 @@ namespace Tizen.NUI
                 if (detectedEventHandler == null)
                 {
                     detectedCallback = OnPanGestureDetected;
-                    DetectedSignal().Connect(detectedCallback);
+                    using PanGestureDetectedSignal signal = new PanGestureDetectedSignal(Interop.PanGestureDetector.DetectedSignal(SwigCPtr), false);
+                    signal?.Connect(detectedCallback);
                 }
-
                 detectedEventHandler += value;
             }
-
             remove
             {
                 detectedEventHandler -= value;
-
-                if (detectedEventHandler == null && DetectedSignal().Empty() == false)
+                if (detectedEventHandler == null)
                 {
-                    DetectedSignal().Disconnect(detectedCallback);
+                    using PanGestureDetectedSignal signal = new PanGestureDetectedSignal(Interop.PanGestureDetector.DetectedSignal(SwigCPtr), false);
+                    if (signal?.Empty() == false)
+                    {
+                        signal?.Disconnect(detectedCallback);
+                        if (signal?.Empty() == true)
+                        {
+                            detectedCallback = null;
+                        }
+                    }
                 }
             }
         }
@@ -537,27 +543,81 @@ namespace Tizen.NUI
             return ret;
         }
 
-        internal PanGestureDetectedSignal DetectedSignal()
+        /// <summary>
+        /// override it to clean-up your own resources.
+        /// </summary>
+        /// <param name="type"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
         {
-            PanGestureDetectedSignal ret = new PanGestureDetectedSignal(Interop.PanGestureDetector.DetectedSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (HasBody())
+            {
+                if (detectedCallback != null)
+                {
+                    using PanGestureDetectedSignal signal = new PanGestureDetectedSignal(Interop.PanGestureDetector.DetectedSignal(GetBaseHandleCPtrHandleRef), false);
+                    signal?.Disconnect(detectedCallback);
+                    detectedCallback = null;
+                }
+            }
+            base.Dispose(type);
         }
 
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (detectedCallback != null)
-            {
-                DetectedSignal().Disconnect(detectedCallback);
-            }
-
             Interop.PanGestureDetector.DeletePanGestureDetector(swigCPtr);
         }
 
         private void OnPanGestureDetected(IntPtr actor, IntPtr panGesture)
         {
+            if (IsNativeHandleInvalid())
+            {
+                if (this.Disposed)
+                {
+                    if (detectedEventHandler != null)
+                    {
+                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                        var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                        var me = this.GetType().FullName;
+
+                        Tizen.Log.Error("NUI", $"Error! NUI's native dali object is already disposed. " +
+                            $"OR the native dali object handle of NUI becomes null! \n" +
+                            $" process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                    }
+                }
+                else
+                {
+                    if (this.IsDisposeQueued)
+                    {
+                        var process = global::System.Diagnostics.Process.GetCurrentProcess().Id;
+                        var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
+                        var me = this.GetType().FullName;
+
+                        //in this case, this object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked!
+                        Tizen.Log.Error("NUI", "in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \n" +
+                            $"process:{process} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
+                        return;
+                    }
+                }
+            }
+
             if (detectedEventHandler != null)
             {
                 DetectedEventArgs e = new DetectedEventArgs();
