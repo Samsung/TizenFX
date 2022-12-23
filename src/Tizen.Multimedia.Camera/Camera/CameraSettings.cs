@@ -1307,7 +1307,7 @@ namespace Tizen.Multimedia
         /// Sets The GOP(Group Of Pictures) interval of extra preview with given stream ID.
         /// </summary>
         /// <param name="streamId">The stream ID.</param>
-        /// <param name="gopInterval">The stream ID.</param>
+        /// <param name="gopInterval">The GOP interval for extra preview.</param>
         /// <since_tizen> 10 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public void SetExtraPreviewGopInterval(int streamId, int gopInterval)
@@ -1317,19 +1317,14 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the rotation of extra preview with given stream ID.
+        /// Gets the rotation of preview frame with given stream ID.
         /// </summary>
         /// <param name="streamId">The stream ID.</param>
         /// <returns>A rotation of extra preview.</returns>
         /// <since_tizen> 10 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public Rotation GetExtraPreviewRotation(int streamId)
-        {
-            Native.GetPreviewFrameRotation(_camera.GetHandle(), out Rotation rotation).
-                ThrowIfFailed("Failed to get extra preview frame rotation");
-
-            return rotation;
-        }
+            => GetPreviewFrameRotation();
 
         /// <summary>
         /// Gets the rotation of preview frame.
@@ -1338,7 +1333,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Rotation GetExtraPreviewRotation()
-            => GetExtraPreviewRotation(0);
+            => GetPreviewFrameRotation();
 
         /// <summary>
         /// Gets the rotation of preview frame.
