@@ -1,7 +1,7 @@
 # TizenFX
 
 [![License](https://img.shields.io/badge/licence-Apache%202.0-brightgreen.svg?label=License&style=flat-square)](LICENSE)
-[![Build](https://img.shields.io/github/workflow/status/Samsung/TizenFX/Build%20Branches/master?label=Build&style=flat-square)](https://github.com/Samsung/TizenFX/actions?query=workflow%3A%22Build+Branches%22+branch%3Amaster)
+[![Build](https://img.shields.io/github/actions/workflow/status/Samsung/TizenFX/build-branches.yml?query=branch%3Amaster?label=Build&style=flat-square)](https://github.com/Samsung/TizenFX/actions?query=workflow%3A%22Build+Branches%22+branch%3Amaster)
 
 TizenFX API, which allows you to access platform-specific features not covered by the generic .NET and .NET MAUI features, such as system information and status, battery status, sensor date, and account and connectivity services.
 
