@@ -62,7 +62,7 @@ namespace Tizen.NUI.EXaml
                     }
                 }
 
-                type = type.MakeGenericType(args);
+                type = type?.MakeGenericType(args);
             }
 
             globalDataList.GatheredTypes.Add(type);
