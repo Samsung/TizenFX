@@ -94,6 +94,10 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_New__SWIG_6")]
             public static extern global::System.IntPtr New(int jarg1, string jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5, bool jarg7);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_GetRenderThreadId")]
+            public static extern int GetRenderThreadId(global::System.Runtime.InteropServices.HandleRef application);
+
         }
     }
 }

@@ -616,6 +616,23 @@ namespace Tizen.NUI
             borderEnabled = true;
             this.borderInterface = borderInterface;
         }
+
+        /// <summary>
+        /// Get native rendering thread ID
+        /// </summary>
+        /// <returns>native render thread ID</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public int GetRenderThreadId()
+        {
+            int ret = 0;
+            if (ApplicationHandle != null && ApplicationHandle.SwigCPtr.Handle != IntPtr.Zero)
+            {
+                ret = Interop.Application.GetRenderThreadId(ApplicationHandle.SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return ret;
+        }
+
     }
 
     /// <summary>
