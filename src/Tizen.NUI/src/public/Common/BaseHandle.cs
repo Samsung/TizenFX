@@ -437,6 +437,7 @@ namespace Tizen.NUI
         /// </remark>
         public void Reset()
         {
+            this.Dispose();
             NUILog.Error("[ERROR] This(BaseHandle.Reset) will be deprecated, please use Dispose() instead!");
         }
 
