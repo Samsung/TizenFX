@@ -568,8 +568,11 @@ namespace Tizen.NUI
             if (swigCPtrCopy.Handle != global::System.IntPtr.Zero)
             {
                 swigCMemOwn = false;
-                Interop.BaseHandle.DeleteBaseHandle(swigCPtrCopy);
+                var nativeSwigCPtr = swigCPtrCopy.Handle;
+
+                // Remove swigCPtrCopy first. Now HasBody() return false.
                 swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                Interop.BaseHandle.DeleteBaseHandle(nativeSwigCPtr);
             }
             else
             {
