@@ -69,6 +69,7 @@ namespace Tizen.NUI.Scene3D
     {
         private bool inCameraTransition = false;
         private Animation cameraTransition;
+        private Camera previousCamera;
 
         internal SceneView(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -343,6 +344,31 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// Cancel currently running camera transition.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void CancelCameraTransition()
+        {
+            if(cameraTransition != null && cameraTransition.GetState() == Animation.States.Playing)
+            {
+                cameraTransition.EndAction = Animation.EndActions.Discard;
+                inCameraTransition = false;
+                cameraTransition.Stop();
+                uint cameraCnt = GetCameraCount();
+                for (uint i = 0; i < cameraCnt; ++i)
+                {
+                    if (GetCamera(i) == previousCamera)
+                    {
+                        SelectCamera(i);
+                        previousCamera = null;
+                        break;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Retrieves selected Camera.
         /// </summary>
         /// <returns> Camera currently used in SceneView as a selected Camera.</returns>
@@ -444,6 +470,7 @@ namespace Tizen.NUI.Scene3D
                 }
             }
 
+            previousCamera = sourceCamera;
             cameraTransition = new Animation(durationMilliSeconds);
 
             KeyFrames positionKeyFrames = new KeyFrames();
@@ -469,6 +496,7 @@ namespace Tizen.NUI.Scene3D
 
             cameraTransition.Finished += (s, e) =>
             {
+                previousCamera = null;
                 this.GetSelectedCamera().NearPlaneDistance = destinationNearPlaneDistance;
                 this.GetSelectedCamera().FarPlaneDistance = destinationFarPlaneDistance;
                 inCameraTransition = false;
