@@ -589,6 +589,37 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Sends the launch request with setting timeout.
+        /// </summary>
+        /// <remarks>
+        /// The operation is mandatory information for the launch request.
+        /// If the operation is not specified, AppControlOperations.Default is used by default.
+        /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br/>
+        /// To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.<br/>
+        /// It can set receiving timeout interval using timeout parameter.
+        /// If there is an error that is not related to timeout, the error is returned immediately regardless of the timeout value.
+        /// </remarks>
+        /// <param name="launchRequest">The AppControl.</param>
+        /// <param name="timeout">The timeout in milliseconds, the timeout range is 5000 to 30000.</param>
+        /// <exception cref="ArgumentNullException">Thrown when failed because of a null argument.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.ApplicationId = "org.tizen.calculator";
+        /// AppControl.SendLaunchRequest(appControl, 10000);
+        /// </code>
+        /// </example>
+        /// <since_tizen> 7.5 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SendLaunchRequest(AppControl launchRequest, uint timeout)
+        {
+            SendLaunchRequest(launchRequest, timeout, null);
+        }
+
+        /// <summary>
         /// Sends the launch request.
         /// </summary>
         /// <remarks>
