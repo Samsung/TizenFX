@@ -702,7 +702,7 @@ namespace Tizen.Applications
         /// </example>
         /// <since_tizen> 7.5 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void SendLaunchRequestWithTimeout(AppControl launchRequest, uint timeout, AppControlReplyCallback replyAfterLaunching)
+        public static void SendLaunchRequest(AppControl launchRequest, uint timeout, AppControlReplyCallback replyAfterLaunching)
         {
             if (launchRequest == null)
             {
