@@ -353,7 +353,7 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Removes a file or directory specified with <paramref name="path"/> from user data internal storage for the application
+        /// Removes a file or directory specified with <paramref name="path"/> from user data internal storage for the application.
         /// </summary>
         /// <param name="packageId">ID of the package.</param>
         /// <param name="path">The path of the file or directory in the package user data folder.</param>
