@@ -672,7 +672,6 @@ namespace Tizen.Applications
         /// Sends the launch request with setting timeout
         /// </summary>
         /// <remarks>
-        /// This is the extension of AppControl.SendLaunchRequest() API.<br/>
         /// The operation is mandatory information for the launch request.
         /// If the operation is not specified, AppControlOperations.Default is used by default.
         /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br/>
@@ -695,7 +694,7 @@ namespace Tizen.Applications
         /// <code>
         /// AppControl appControl = new AppControl();
         /// appControl.ApplicationId = "org.tizen.calculator";
-        /// AppControl.SendLaunchRequestWithTimeout(appControl, 10000, (launchRequest, replyRequest, result) => {
+        /// AppControl.SendLaunchRequest(appControl, 10000, (launchRequest, replyRequest, result) => {
         ///     // ...
         /// });
         /// </code>
