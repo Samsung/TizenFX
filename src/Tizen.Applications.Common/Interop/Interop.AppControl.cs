@@ -154,5 +154,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppControl, EntryPoint = "app_control_set_auto_restart")]
         internal static extern ErrorCode SetAutoRestart(SafeAppControlHandle handle);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_send_launch_request_with_timeout")]
+        internal static extern ErrorCode SendLaunchRequestWithTimeout(SafeAppControlHandle handle, uint timeout, ReplyCallback callback, IntPtr userData);
     }
 }
