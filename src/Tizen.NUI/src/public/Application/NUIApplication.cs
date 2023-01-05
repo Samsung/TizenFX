@@ -511,6 +511,20 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// This method is to handle behavior when the device orientation is changed.
+        ///
+        /// When device is rotated to ccw or cw, this event occurs.
+        /// In addition, this event is different to window orientation changed event.
+        /// The window orientation event is for per a window and occurs when some flags should be set before.
+        /// </summary>
+        /// <param name="e">The device orientation changed event argument</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
+        {
+            base.OnDeviceOrientationChanged(e);
+        }
+
+        /// <summary>
         /// Overrides this method if you want to handle behavior.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
