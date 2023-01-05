@@ -73,6 +73,9 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<WebViewPolicyDecidedEventArgs> navigationPolicyDecidedEventHandler;
         private WebViewPolicyDecidedCallback navigationPolicyDecidedCallback;
 
+        private EventHandlerWithReturnType<object, EventArgs, WebView> newWindowCreatedEventHandler;
+        private WebViewNewWindowCreatedCallback newWindowCreatedCallback;
+
         private EventHandler<WebViewCertificateReceivedEventArgs> certificateConfirmedEventHandler;
         private WebViewCertificateReceivedCallback certificateConfirmedCallback;
 
@@ -263,6 +266,9 @@ namespace Tizen.NUI.BaseComponents
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewPolicyDecidedCallback(IntPtr maker);
+
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void WebViewNewWindowCreatedCallback(out IntPtr outView);
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void WebViewCertificateReceivedCallback(IntPtr certificate);
@@ -506,6 +512,29 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 navigationPolicyDecidedEventHandler -= value;
+            }
+        }
+
+        /// <summary>
+        /// Event for the NewWindowCreated signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// This signal is emitted when a new window would be created.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandlerWithReturnType<object, EventArgs, WebView> NewWindowCreated
+        {
+            add
+            {
+                if (newWindowCreatedEventHandler == null)
+                {
+                    newWindowCreatedCallback = OnNewWindowCreated;
+                    System.IntPtr ip = Marshal.GetFunctionPointerForDelegate(newWindowCreatedCallback);
+                    Interop.WebView.RegisterNewWindowCreatedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
+                newWindowCreatedEventHandler += value;
+            }
+            remove
+            {
+                newWindowCreatedEventHandler -= value;
             }
         }
 
@@ -2152,6 +2181,12 @@ namespace Tizen.NUI.BaseComponents
         private void OnNavigationPolicyDecided(IntPtr maker)
         {
             navigationPolicyDecidedEventHandler?.Invoke(this, new WebViewPolicyDecidedEventArgs(new WebPolicyDecisionMaker(maker, true)));
+        }
+
+        private void OnNewWindowCreated(out IntPtr viewHandle)
+        {
+            WebView view = newWindowCreatedEventHandler?.Invoke(this, new EventArgs());
+            viewHandle = (IntPtr)view.SwigCPtr;
         }
 
         private void OnCertificateConfirmed(IntPtr certificate)
