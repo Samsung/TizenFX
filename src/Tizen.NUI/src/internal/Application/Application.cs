@@ -24,16 +24,12 @@ using Tizen.NUI.Binding;
 
 namespace Tizen.NUI
 {
-    /**
-      * @brief Event arguments that passed via NUIApplicationInit signal
-      */
+    // Event arguments that passed via NUIApplicationInit signal
     internal class NUIApplicationInitEventArgs : EventArgs
     {
         private Application application;
 
-        /**
-          * @brief Application - is the application that is being initialized
-          */
+        // Application - is the application that is being initialized
         public Application Application
         {
             get
@@ -47,15 +43,12 @@ namespace Tizen.NUI
         }
     }
 
-    /**
-      * @brief Event arguments that passed via NUIApplicationTerminate signal
-      */
+    // Event arguments that passed via NUIApplicationTerminate signal
     internal class NUIApplicationTerminatingEventArgs : EventArgs
     {
         private Application application;
-        /**
-          * @brief Application - is the application that is being Terminated
-          */
+
+        // Application - is the application that is being Terminated
         public Application Application
         {
             get
@@ -69,15 +62,12 @@ namespace Tizen.NUI
         }
     }
 
-    /**
-      * @brief Event arguments that passed via NUIApplicationPause signal
-      */
+    // Event arguments that passed via NUIApplicationPause signal
     internal class NUIApplicationPausedEventArgs : EventArgs
     {
         private Application application;
-        /**
-          * @brief Application - is the application that is being Paused
-          */
+
+        // Application - is the application that is being Paused
         public Application Application
         {
             get
@@ -91,15 +81,11 @@ namespace Tizen.NUI
         }
     }
 
-    /**
-      * @brief Event arguments that passed via NUIApplicationResume signal
-      */
+    // Event arguments that passed via NUIApplicationResume signal
     internal class NUIApplicationResumedEventArgs : EventArgs
     {
         private Application application;
-        /**
-          * @brief Application - is the application that is being Resumed
-          */
+        // Application - is the application that is being Resumed
         public Application Application
         {
             get
@@ -113,15 +99,12 @@ namespace Tizen.NUI
         }
     }
 
-    /**
-      * @brief Event arguments that passed via NUIApplicationReset signal
-      */
+    // Event arguments that passed via NUIApplicationReset signal
     internal class NUIApplicationResetEventArgs : EventArgs
     {
         private Application application;
-        /**
-          * @brief Application - is the application that is being Reset
-          */
+
+        // Application - is the application that is being Reset
         public Application Application
         {
             get
@@ -135,15 +118,12 @@ namespace Tizen.NUI
         }
     }
 
-    /**
-      * @brief Event arguments that passed via NUIApplicationLanguageChanged signal
-      */
+    // Event arguments that passed via NUIApplicationLanguageChanged signal
     internal class NUIApplicationLanguageChangedEventArgs : EventArgs
     {
         private Application application;
-        /**
-          * @brief Application - is the application that is being affected with Device's language change
-          */
+
+        // Application - is the application that is being affected with Device's language change
         public Application Application
         {
             get
@@ -157,15 +137,12 @@ namespace Tizen.NUI
         }
     }
 
-    /**
-      * @brief Event arguments that passed via NUIApplicationRegionChanged signal
-      */
+    // Event arguments that passed via NUIApplicationRegionChanged signal
     internal class NUIApplicationRegionChangedEventArgs : EventArgs
     {
         private Application application;
-        /**
-          * @brief Application - is the application that is being affected with Device's region change
-          */
+
+        // Application - is the application that is being affected with Device's region change
         public Application Application
         {
             get
@@ -179,15 +156,12 @@ namespace Tizen.NUI
         }
     }
 
-    /**
-      * @brief Event arguments that passed via NUIApplicationBatteryLow signal
-      */
+    // Event arguments that passed via NUIApplicationBatteryLow signal
     internal class NUIApplicationBatteryLowEventArgs : EventArgs
     {
         private Application.BatteryStatus status;
-        /**
-          * @brief Application - is the application that is being affected when the battery level of the device is low
-          */
+
+        // Application - is the application that is being affected when the battery level of the device is low
         public Application.BatteryStatus BatteryStatus
         {
             get
@@ -201,15 +175,12 @@ namespace Tizen.NUI
         }
     }
 
-    /**
-      * @brief Event arguments that passed via NUIApplicationMemoryLow signal
-      */
+    // Event arguments that passed via NUIApplicationMemoryLow signal
     internal class NUIApplicationMemoryLowEventArgs : EventArgs
     {
         private Application.MemoryStatus status;
-        /**
-          * @brief Application - is the application that is being affected when the memory level of the device is low
-          */
+
+        // Application - is the application that is being affected when the memory level of the device is low
         public Application.MemoryStatus MemoryStatus
         {
             get
@@ -223,16 +194,32 @@ namespace Tizen.NUI
         }
     }
 
-    /**
-      * @brief Event arguments that passed via NUIApplicationAppControl	 signal
-      */
+    // Event arguments that passed via NUIApplicationDeviceOrientationChanged signal
+    internal class NUIApplicationDeviceOrientationChangedEventArgs : EventArgs
+    {
+        private Application.DeviceOrientationStatus status;
+
+        // Application - is the application that is being affected when the device orientation is changed.
+        public Application.DeviceOrientationStatus DeviceOrientationStatus
+        {
+            get
+            {
+                return status;
+            }
+            set
+            {
+                status = value;
+            }
+        }
+    }
+
+    // Event arguments that passed via NUIApplicationAppControl	 signal
     internal class NUIApplicationAppControlEventArgs : EventArgs
     {
         private Application application;
         private IntPtr voidp;
-        /**
-          * @brief Application - is the application that is receiving the launch request from another application
-          */
+
+        // Application - is the application that is receiving the launch request from another application
         public Application Application
         {
             get
@@ -244,9 +231,8 @@ namespace Tizen.NUI
                 application = value;
             }
         }
-        /**
-          * @brief VoidP - contains the information about why the application is launched
-          */
+
+        // VoidP - contains the information about why the application is launched
         public IntPtr VoidP
         {
             get
@@ -456,6 +442,13 @@ namespace Tizen.NUI
                 memoryLowSignal = null;
             }
 
+            if (applicationDeviceOrientationChangedEventCallback != null)
+            {
+                deviceOrientationChangedSignal?.Disconnect(applicationDeviceOrientationChangedEventCallback);
+                deviceOrientationChangedSignal?.Dispose();
+                deviceOrientationChangedSignal = null;
+            }
+
             if (applicationAppControlEventCallbackDelegate != null)
             {
                 appControlSignal?.Disconnect(applicationAppControlEventCallbackDelegate);
@@ -506,6 +499,13 @@ namespace Tizen.NUI
                 taskMemoryLowSignal = null;
             }
 
+            if (applicationTaskDeviceOrientationChangedEventCallback != null)
+            {
+                taskDeviceOrientationChangedSignal?.Disconnect(applicationTaskDeviceOrientationChangedEventCallback);
+                taskDeviceOrientationChangedSignal?.Dispose();
+                taskDeviceOrientationChangedSignal = null;
+            }
+
             if (applicationTaskAppControlEventCallbackDelegate != null)
             {
                 taskAppControlSignal?.Disconnect(applicationTaskAppControlEventCallbackDelegate);
@@ -535,6 +535,14 @@ namespace Tizen.NUI
             Normal,
             Low,
             CriticallyLow
+        };
+
+        public enum DeviceOrientationStatus
+        {
+            Orientation_0 = 0,
+            Orientation_90 = 90,
+            Orientation_180 = 180,
+            Orientation_270 = 270
         };
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -593,6 +601,12 @@ namespace Tizen.NUI
         private LowMemorySignalType memoryLowSignal;
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void NUIApplicationDeviceOrientationChangedEventCallback(DeviceOrientationStatus status);
+        private DaliEventHandler<object, NUIApplicationDeviceOrientationChangedEventArgs> applicationDeviceOrientationChangedEventHandler;
+        private NUIApplicationDeviceOrientationChangedEventCallback applicationDeviceOrientationChangedEventCallback;
+        private DeviceOrientationChangedSignalType deviceOrientationChangedSignal;
+
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void NUIApplicationAppControlEventCallbackDelegate(IntPtr application, IntPtr voidp);
         private DaliEventHandler<object, NUIApplicationAppControlEventArgs> applicationAppControlEventHandler;
         private NUIApplicationAppControlEventCallbackDelegate applicationAppControlEventCallbackDelegate;
@@ -622,16 +636,18 @@ namespace Tizen.NUI
         private NUIApplicationMemoryLowEventCallbackDelegate applicationTaskMemoryLowEventCallbackDelegate;
         private LowMemorySignalType taskMemoryLowSignal;
 
+        private DaliEventHandler<object, NUIApplicationDeviceOrientationChangedEventArgs> applicationTaskDeviceOrientationChangedEventHandler;
+        private NUIApplicationDeviceOrientationChangedEventCallback applicationTaskDeviceOrientationChangedEventCallback;
+        private DeviceOrientationChangedSignalType taskDeviceOrientationChangedSignal;
+
         private DaliEventHandler<object, NUIApplicationAppControlEventArgs> applicationTaskAppControlEventHandler;
         private NUIApplicationAppControlEventCallbackDelegate applicationTaskAppControlEventCallbackDelegate;
         private ApplicationControlSignal taskAppControlSignal;
 
         private Window window;
 
-        /**
-          * @brief Event for Initialized signal which can be used to subscribe/unsubscribe the event handler
-          *  provided by the user. Initialized signal is emitted when application is initialized
-          */
+        // Event for Initialized signal which can be used to subscribe/unsubscribe the event handler
+        // provided by the user. Initialized signal is emitted when application is initialized
         public event DaliEventHandler<object, NUIApplicationInitEventArgs> Initialized
         {
             add
@@ -697,10 +713,8 @@ namespace Tizen.NUI
             Tizen.Tracer.End();
         }
 
-        /**
-          * @brief Event for Terminated signal which can be used to subscribe/unsubscribe the event handler
-          *  provided by the user. Terminated signal is emitted when application is terminating
-          */
+        // Event for Terminated signal which can be used to subscribe/unsubscribe the event handler
+        //  provided by the user. Terminated signal is emitted when application is terminating
         public event DaliEventHandler<object, NUIApplicationTerminatingEventArgs> Terminating
         {
             add
@@ -746,10 +760,8 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-          * @brief Event for Paused signal which can be used to subscribe/unsubscribe the event handler
-          * provided by the user. Paused signal is emitted when application is paused
-          */
+        // Event for Paused signal which can be used to subscribe/unsubscribe the event handler
+        // provided by the user. Paused signal is emitted when application is paused
         public event DaliEventHandler<object, NUIApplicationPausedEventArgs> Paused
         {
             add
@@ -789,10 +801,8 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-          * @brief Event for Resumed signal which can be used to subscribe/unsubscribe the event handler
-          *  provided by the user. Resumed signal is emitted when application is resumed
-          */
+        // Event for Resumed signal which can be used to subscribe/unsubscribe the event handler
+        //  provided by the user. Resumed signal is emitted when application is resumed
         public event DaliEventHandler<object, NUIApplicationResumedEventArgs> Resumed
         {
             add
@@ -832,10 +842,8 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-          * @brief Event for Reset signal which can be used to subscribe/unsubscribe the event handler
-          *  provided by the user. Reset signal is emitted when application is reset
-          */
+        // Event for Reset signal which can be used to subscribe/unsubscribe the event handler
+        //  provided by the user. Reset signal is emitted when application is reset
         public new event DaliEventHandler<object, NUIApplicationResetEventArgs> Reset
         {
             add
@@ -875,10 +883,8 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-          * @brief Event for LanguageChanged signal which can be used to subscribe/unsubscribe the event handler
-          *  provided by the user. LanguageChanged signal is emitted when the region of the device is changed.
-          */
+        // Event for LanguageChanged signal which can be used to subscribe/unsubscribe the event handler
+        //  provided by the user. LanguageChanged signal is emitted when the region of the device is changed.
         public event DaliEventHandler<object, NUIApplicationLanguageChangedEventArgs> LanguageChanged
         {
             add
@@ -918,10 +924,8 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-          * @brief Event for RegionChanged signal which can be used to subscribe/unsubscribe the event handler
-          *  provided by the user. RegionChanged signal is emitted when the region of the device is changed.
-          */
+        // Event for RegionChanged signal which can be used to subscribe/unsubscribe the event handler
+        //  provided by the user. RegionChanged signal is emitted when the region of the device is changed.
         public event DaliEventHandler<object, NUIApplicationRegionChangedEventArgs> RegionChanged
         {
             add
@@ -961,10 +965,8 @@ namespace Tizen.NUI
             }
         }
 
-        /**
-          * @brief Event for BatteryLow signal which can be used to subscribe/unsubscribe the event handler
-          * provided by the user. BatteryLow signal is emitted when the battery level of the device is low.
-          */
+        // Event for BatteryLow signal which can be used to subscribe/unsubscribe the event handler
+        // provided by the user. BatteryLow signal is emitted when the battery level of the device is low.
         public event DaliEventHandler<object, NUIApplicationBatteryLowEventArgs> BatteryLow
         {
             add
@@ -1003,10 +1005,8 @@ namespace Tizen.NUI
             applicationBatteryLowEventHandler?.Invoke(this, e);
         }
 
-        /**
-          * @brief Event for MemoryLow signal which can be used to subscribe/unsubscribe the event handler
-          *  provided by the user. MemoryLow signal is emitted when the memory level of the device is low.
-          */
+        // Event for MemoryLow signal which can be used to subscribe/unsubscribe the event handler
+        //  provided by the user. MemoryLow signal is emitted when the memory level of the device is low.
         public event DaliEventHandler<object, NUIApplicationMemoryLowEventArgs> MemoryLow
         {
             add
@@ -1045,10 +1045,47 @@ namespace Tizen.NUI
             applicationMemoryLowEventHandler?.Invoke(this, e);
         }
 
-        /**
-          * @brief Event for AppControl signal which can be used to subscribe/unsubscribe the event handler
-          *  provided by the user. AppControl signal is emitted when another application sends a launch request to the application.
-          */
+        // Event for changing Device orientation signal which can be used to subscribe/unsubscribe the event handler
+        //  provided by the user. DeviceOrientationChanged signal is emitted when the device orientation is changed.
+        public event DaliEventHandler<object, NUIApplicationDeviceOrientationChangedEventArgs> DeviceOrientationChanged
+        {
+            add
+            {
+                // Restricted to only one listener
+                if (applicationDeviceOrientationChangedEventHandler == null)
+                {
+                    applicationDeviceOrientationChangedEventHandler += value;
+
+                    applicationDeviceOrientationChangedEventCallback = new NUIApplicationDeviceOrientationChangedEventCallback(OnNUIApplicationDeviceOrientationChanged);
+                    deviceOrientationChangedSignal = this.DeviceOrientationChangedSignal();
+                    deviceOrientationChangedSignal?.Connect(applicationDeviceOrientationChangedEventCallback);
+                }
+            }
+
+            remove
+            {
+                if (applicationDeviceOrientationChangedEventHandler != null)
+                {
+                    deviceOrientationChangedSignal?.Disconnect(applicationDeviceOrientationChangedEventCallback);
+                    deviceOrientationChangedSignal?.Dispose();
+                    deviceOrientationChangedSignal = null;
+                }
+
+                applicationDeviceOrientationChangedEventHandler -= value;
+            }
+        }
+
+        // Callback for Application DeviceOrientationChangedSignal
+        private void OnNUIApplicationDeviceOrientationChanged(DeviceOrientationStatus status)
+        {
+            NUIApplicationDeviceOrientationChangedEventArgs e = new NUIApplicationDeviceOrientationChangedEventArgs();
+
+            e.DeviceOrientationStatus = status;
+            applicationDeviceOrientationChangedEventHandler?.Invoke(this, e);
+        }
+
+        // Event for AppControl signal which can be used to subscribe/unsubscribe the event handler
+        //  provided by the user. AppControl signal is emitted when another application sends a launch request to the application.
         public event DaliEventHandler<object, NUIApplicationAppControlEventArgs> AppControl
         {
             add
@@ -1090,7 +1127,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// @brief Event for Initialized signal which can be used to subscribe/unsubscribe the event handler
+        /// Event for Initialized signal which can be used to subscribe/unsubscribe the event handler
         ///  provided by the user. Initialized signal is emitted when application is initialized
         /// </summary>
         public event DaliEventHandler<object, NUIApplicationInitEventArgs> TaskInitialized
@@ -1133,7 +1170,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// @brief Event for Terminated signal which can be used to subscribe/unsubscribe the event handler
+        /// Event for Terminated signal which can be used to subscribe/unsubscribe the event handler
         ///  provided by the user. Terminated signal is emitted when application is terminating
         /// </summary>
         public event DaliEventHandler<object, NUIApplicationTerminatingEventArgs> TaskTerminating
@@ -1175,7 +1212,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// @brief Event for TaskLanguageChanged signal which can be used to subscribe/unsubscribe the event handler
+        /// Event for TaskLanguageChanged signal which can be used to subscribe/unsubscribe the event handler
         ///  provided by the user. TaskLanguageChanged signal is emitted when the region of the device is changed.
         /// </summary>
         public event DaliEventHandler<object, NUIApplicationLanguageChangedEventArgs> TaskLanguageChanged
@@ -1217,7 +1254,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// @brief Event for TaskRegionChanged signal which can be used to subscribe/unsubscribe the event handler
+        /// Event for TaskRegionChanged signal which can be used to subscribe/unsubscribe the event handler
         ///  provided by the user. TaskRegionChanged signal is emitted when the region of the device is changed.
         /// </summary>
         public event DaliEventHandler<object, NUIApplicationRegionChangedEventArgs> TaskRegionChanged
@@ -1259,7 +1296,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// @brief Event for TaskBatteryLow signal which can be used to subscribe/unsubscribe the event handler
+        /// Event for TaskBatteryLow signal which can be used to subscribe/unsubscribe the event handler
         /// provided by the user. TaskBatteryLow signal is emitted when the battery level of the device is low.
         /// </summary>
         public event DaliEventHandler<object, NUIApplicationBatteryLowEventArgs> TaskBatteryLow
@@ -1300,7 +1337,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// @brief Event for TaskMemoryLow signal which can be used to subscribe/unsubscribe the event handler
+        /// Event for TaskMemoryLow signal which can be used to subscribe/unsubscribe the event handler
         /// provided by the user. TaskMemoryLow signal is emitted when the memory level of the device is low.
         /// </summary>
         public event DaliEventHandler<object, NUIApplicationMemoryLowEventArgs> TaskMemoryLow
@@ -1341,7 +1378,46 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// @brief Event for TaskAppControl signal which can be used to subscribe/unsubscribe the event handler
+        /// Event for TaskDeviceOrientationChanged signal which can be used to subscribe/unsubscribe the event handler
+        /// provided by the user. TaskDeviceOrientationChanged signal is emitted when the device orientation is changed.
+        /// </summary>
+        public event DaliEventHandler<object, NUIApplicationDeviceOrientationChangedEventArgs> TaskDeviceOrientationChanged
+        {
+            add
+            {
+                if (applicationTaskDeviceOrientationChangedEventHandler == null)
+                {
+                    applicationTaskDeviceOrientationChangedEventHandler += value;
+
+                    applicationTaskDeviceOrientationChangedEventCallback = new NUIApplicationDeviceOrientationChangedEventCallback(OnNUIApplicationTaskDeviceOrientationChanged);
+                    taskDeviceOrientationChangedSignal = this.TaskDeviceOrientationChangedSignal();
+                    taskDeviceOrientationChangedSignal?.Connect(applicationTaskDeviceOrientationChangedEventCallback);
+                }
+            }
+
+            remove
+            {
+                if (applicationTaskDeviceOrientationChangedEventHandler != null)
+                {
+                    taskDeviceOrientationChangedSignal?.Disconnect(applicationTaskDeviceOrientationChangedEventCallback);
+                    taskDeviceOrientationChangedSignal?.Dispose();
+                    taskDeviceOrientationChangedSignal = null;
+                }
+
+                applicationTaskDeviceOrientationChangedEventHandler -= value;
+            }
+        }
+
+        private void OnNUIApplicationTaskDeviceOrientationChanged(DeviceOrientationStatus status)
+        {
+            NUIApplicationDeviceOrientationChangedEventArgs e = new NUIApplicationDeviceOrientationChangedEventArgs();
+
+            e.DeviceOrientationStatus = status;
+            applicationTaskDeviceOrientationChangedEventHandler?.Invoke(this, e);
+        }
+
+        /// <summary>
+        /// Event for TaskAppControl signal which can be used to subscribe/unsubscribe the event handler
         /// provided by the user. TaskAppControl signal is emitted when another application sends a launch request to the application.
         /// </summary>
         public event DaliEventHandler<object, NUIApplicationAppControlEventArgs> TaskAppControl
@@ -1818,6 +1894,13 @@ namespace Tizen.NUI
             return ret;
         }
 
+        internal DeviceOrientationChangedSignalType DeviceOrientationChangedSignal()
+        {
+            DeviceOrientationChangedSignalType ret = new DeviceOrientationChangedSignalType(NDalicPINVOKE.ApplicationDeviceOrientationChangedSignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         //Task
         internal ApplicationSignal TaskInitSignal()
         {
@@ -1864,6 +1947,13 @@ namespace Tizen.NUI
         internal LowMemorySignalType TaskMemoryLowSignal()
         {
             LowMemorySignalType ret = new LowMemorySignalType(NDalicPINVOKE.ApplicationTaskLowMemorySignal(SwigCPtr), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal DeviceOrientationChangedSignalType TaskDeviceOrientationChangedSignal()
+        {
+            DeviceOrientationChangedSignalType ret = new DeviceOrientationChangedSignalType(NDalicPINVOKE.ApplicationTaskDeviceOrientationChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
