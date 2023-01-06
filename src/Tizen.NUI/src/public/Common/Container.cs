@@ -228,6 +228,34 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Dispose itself and all children recursively.
+        /// We can call this even itself is disposed.
+        /// </summary>
+        /// <remarks>
+        /// Note that Container.DisposeIncludeChildren() disposed only if it created by xaml.
+        /// </remarks>
+        /// <remarks>
+        /// This is a hidden API(inhouse API) only for internal purpose.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void DisposeRecursively()
+        {
+            // To avoid useless "OnChildRemoved" callback invoke, Dispose itself before children.
+            if(!Disposed && !IsDisposeQueued)
+            {
+                Dispose();
+            }
+
+            foreach (View child in Children)
+            {
+                child.DisposeRecursively();
+            }
+
+            // Make sure that itself don't have children anymore.
+            childViews?.Clear();
+        }
+
+        /// <summary>
         /// Adds a child view to this Container.
         /// </summary>
         /// <pre>This Container (the parent) has been initialized. The child view has been initialized. The child view is not the same as the parent view.</pre>
