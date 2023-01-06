@@ -254,6 +254,6 @@ internal static partial class Interop
         internal static extern CameraError GetExtraPreviewGopInterval(IntPtr handle, int streamId, out int gopInterval);
 
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_preview_frame_rotation")]
-        internal static extern CameraError GetExtraPreviewRotation(IntPtr handle, int streamId, out Rotation rotation);
+        internal static extern CameraError GetPreviewFrameRotation(IntPtr handle, out Rotation rotation);
     }
 }
