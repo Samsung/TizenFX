@@ -26,7 +26,8 @@
               ScrollingDirection="Vertical"
               ItemsSource="{Binding Source}"
               HideScrollbar="true"
-              SelectionMode="None">
+              SelectionMode="SingleAlways"
+              SelectionChangedCommand="{Binding SelectedAnimalChangedCommand}">
 
                 <CollectionView.ItemsLayouter>
                       <GridLayouter />

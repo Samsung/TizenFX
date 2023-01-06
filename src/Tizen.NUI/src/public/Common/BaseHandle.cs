@@ -432,10 +432,13 @@ namespace Tizen.NUI
         /// Resets the handle.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+        /// <remark>
+        /// This will be deprecated, please use Dispose() instead.
+        /// </remark>
         public void Reset()
         {
-            Interop.BaseHandle.Reset(swigCPtrCopy);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            this.Dispose();
+            NUILog.Error("[ERROR] This(BaseHandle.Reset) will be deprecated, please use Dispose() instead!");
         }
 
         /// <summary>
@@ -565,8 +568,11 @@ namespace Tizen.NUI
             if (swigCPtrCopy.Handle != global::System.IntPtr.Zero)
             {
                 swigCMemOwn = false;
-                Interop.BaseHandle.DeleteBaseHandle(swigCPtrCopy);
+                var nativeSwigCPtr = swigCPtrCopy.Handle;
+
+                // Remove swigCPtrCopy first. Now HasBody() return false.
                 swigCPtrCopy = new global::System.Runtime.InteropServices.HandleRef(null, global::System.IntPtr.Zero);
+                Interop.BaseHandle.DeleteBaseHandle(nativeSwigCPtr);
             }
             else
             {

@@ -320,6 +320,26 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Emits accessibility scroll started event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void EmitScrollStartedEvent()
+        {
+            Interop.ControlDevel.DaliAccessibilityEmitScrollStartedEvent(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Emits accessibility scroll finished event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void EmitScrollFinishedEvent()
+        {
+            Interop.ControlDevel.DaliAccessibilityEmitScrollFinishedEvent(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Modifiable collection of suppressed AT-SPI events (D-Bus signals).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
