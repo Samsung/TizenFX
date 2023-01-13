@@ -19,6 +19,110 @@ using System.Diagnostics;
 
 namespace Tizen.Multimedia.Util
 {
+    /// <summary>
+    /// Specifies the JPEG Downscale options for decoding.
+    /// </summary>
+    /// <since_tizen> 4 </since_tizen>
+    public enum JpegDownscale
+    {
+        /// <summary>
+        /// No downscale.
+        /// </summary>
+        None,
+        /// <summary>
+        /// 1/2 downscale.
+        /// </summary>
+        OneHalf,
+        /// <summary>
+        /// 1/4 downscale.
+        /// </summary>
+        OneFourth,
+        /// <summary>
+        /// 1/8 downscale.
+        /// </summary>
+        OneEighth,
+    }
+
+    /// <summary>
+    /// Specifies the PNG compression levels.
+    /// </summary>
+    /// <since_tizen> 4 </since_tizen>
+    public enum PngCompression
+    {
+        /// <summary>
+        /// No Compression.
+        /// </summary>
+        None,
+        /// <summary>
+        /// Compression Level 1. Best speed.
+        /// </summary>
+        Level1,
+        /// <summary>
+        /// Compression Level 2.
+        /// </summary>
+        Level2,
+        /// <summary>
+        /// Compression Level 3.
+        /// </summary>
+        Level3,
+        /// <summary>
+        /// Compression Level 4.
+        /// </summary>
+        Level4,
+        /// <summary>
+        /// Compression Level 5.
+        /// </summary>
+        Level5,
+        /// <summary>
+        /// Compression Level 6.
+        /// </summary>
+        Level6,
+        /// <summary>
+        /// Compression Level 7.
+        /// </summary>
+        Level7,
+        /// <summary>
+        /// Compression Level 8.
+        /// </summary>
+        Level8,
+        /// <summary>
+        /// Compression Level 9.
+        /// </summary>
+        Level9,
+    }
+
+    /// <summary>
+    /// Specifies how an image is rotated or flipped.
+    /// </summary>
+    /// <seealso cref="RotateTransform"/>
+    internal enum ImageRotation
+    {
+        /// <summary>
+        /// No rotation.
+        /// </summary>
+        Rotate0,
+        /// <summary>
+        /// Rotate 90 degree clockwise.
+        /// </summary>
+        Rotate90,
+        /// <summary>
+        /// Rotate 180 degree clockwise.
+        /// </summary>
+        Rotate180,
+        /// <summary>
+        /// Rotate 270 degree clockwise.
+        /// </summary>
+        Rotate270,
+        /// <summary>
+        /// Flip horizontally.
+        /// </summary>
+        FlipHorizontal,
+        /// <summary>
+        /// Flip vertically.
+        /// </summary>
+        FlipVertical,
+    }
+
     internal enum ImageColorSpace
     {
         /// <summary>
