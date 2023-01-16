@@ -15,10 +15,6 @@
  *
  */
 
-// TODO : borderline, blur type need to solve partial update issue.
-// Until that issue exist, just block it.
-// #define ALLOW_BORDER_AND_BLUR
-
 using System;
 using Tizen.NUI;
 using Tizen.NUI.BaseComponents;
@@ -37,12 +33,10 @@ class PerformanceTestExample : NUIApplication
         TEST_TYPE_IMAGE,                ///< Test with simple image
         TEST_TYPE_TEXT,                 ///< Test with simple text label
         TEST_TYPE_ROUNDED_COLOR,        ///< Test with rounded color
-#if ALLOW_BORDER_AND_BLUR
         TEST_TYPE_BORDER_COLOR,         ///< Test with borderline color
         TEST_TYPE_ROUNDED_BORDER_COLOR, ///< Test with rounded borderline color
         TEST_TYPE_BLUR_COLOR,           ///< Test with blur color
         TEST_TYPE_ROUNDED_BLUR_COLOR,   ///< Test with blur color
-#endif
         TEST_TYPE_MAX,
     };
 
@@ -54,12 +48,10 @@ class PerformanceTestExample : NUIApplication
             case ViewTestType.TEST_TYPE_IMAGE:               return "IMAGE";
             case ViewTestType.TEST_TYPE_TEXT:                return "TEXT";
             case ViewTestType.TEST_TYPE_ROUNDED_COLOR:       return "ROUNDED COLOR";
-        #if ALLOW_BORDER_AND_BLUR
             case ViewTestType.TEST_TYPE_BORDER_COLOR:        return "BORDER COLOR";
             case ViewTestType.TEST_TYPE_ROUNDED_BORDER_COLOR:return "ROUNDED BORDER COLOR";
             case ViewTestType.TEST_TYPE_BLUR_COLOR:          return "BLUR COLOR";
             case ViewTestType.TEST_TYPE_ROUNDED_BLUR_COLOR:  return "ROUNDED BLUR COLOR";
-        #endif
             default:                                         return "UNKNOWN";
         }
     }
@@ -266,7 +258,6 @@ class PerformanceTestExample : NUIApplication
                     bgView = CreateRoundedColor();
                     break;
                 }
-#if ALLOW_BORDER_AND_BLUR
                 case ViewTestType.TEST_TYPE_BORDER_COLOR:
                 {
                     bgView = CreateBorderColor(Math.Min(mSize.X, mSize.Y) * VIEW_MARGIN_RATE);
@@ -287,7 +278,6 @@ class PerformanceTestExample : NUIApplication
                     bgView = CreateRoundedBlurColor(Math.Min(mSize.X, mSize.Y) * VIEW_MARGIN_RATE * 0.5f);
                     break;
                 }
-#endif
             }
             bgView.Size = new Size(mSize.X * (1.0f - VIEW_MARGIN_RATE), mSize.Y * (1.0f - VIEW_MARGIN_RATE));
             bgView.Position = new Position(mSize.X * VIEW_MARGIN_RATE * 0.5f, (mSize.Y * VIEW_MARGIN_RATE * 0.5f) + (mSize.Y * (float)i));
@@ -402,7 +392,6 @@ class PerformanceTestExample : NUIApplication
         return bgView;
     }
 
-#if ALLOW_BORDER_AND_BLUR
     private View CreateBorderColor(float requiredBorderlineWidth)
     {
         View bgView = new View(){
@@ -455,7 +444,6 @@ class PerformanceTestExample : NUIApplication
 
         return bgView;
     }
-#endif
 
     public void Activate()
     {
