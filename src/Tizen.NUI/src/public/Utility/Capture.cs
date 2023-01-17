@@ -305,7 +305,7 @@ namespace Tizen.NUI
             {
                 if (finishedEventHandler == null && disposed == false)
                 {
-                    finishedSignal = new CaptureSignal(Interop.Capture.Get(SwigCPtr), false);
+                    finishedSignal = new CaptureSignal(Interop.Capture.Get(SwigCPtr));
                     finishedCallback = onFinished;
                     finishedSignal.Connect(finishedCallback);
                 }
@@ -363,16 +363,13 @@ namespace Tizen.NUI
 
     internal class CaptureSignal : Disposable
     {
-        internal CaptureSignal(IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        internal CaptureSignal(IntPtr cPtr) : base(cPtr, false)
         {
         }
 
         protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
-            if (SwigCMemOwn)
-            {
-                Interop.Capture.DeleteSignal(swigCPtr);
-            }
+            // Do nothing because native didn't create new signal handle.
         }
 
         public bool Empty()

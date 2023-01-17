@@ -153,9 +153,9 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (swigCPtr.Handle == IntPtr.Zero || this.HasBody() == false)
+            if (swigCPtr.Handle == IntPtr.Zero || Disposed)
             {
-                Tizen.Log.Fatal("NUI", $"[ERROR] TransitionItemBase ReleaseSwigCPtr()! IntPtr=0x{swigCPtr.Handle:X} HasBody={this.HasBody()}");
+                Tizen.Log.Fatal("NUI", $"[ERROR] TransitionItemBase ReleaseSwigCPtr()! IntPtr=0x{swigCPtr.Handle:X} Disposed={Disposed}");
                 return;
             }
             Interop.TransitionItemBase.Delete(swigCPtr);
