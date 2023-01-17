@@ -34,7 +34,7 @@ namespace Tizen.NUI
     /// <since_tizen> 5 </since_tizen>
     /// This will be released at Tizen.NET API Level 5. Therefore, currently this would be used as an in-house API.
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class PixelBuffer : BaseHandle
+    public class PixelBuffer : Disposable
     {
 
         /// <summary>
