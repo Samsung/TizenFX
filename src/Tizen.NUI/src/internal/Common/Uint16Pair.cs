@@ -37,13 +37,6 @@ namespace Tizen.NUI
 
         protected override void ReleaseSwigCPtr(HandleRef swigCPtr)
         {
-            if (swigCPtr.Handle == IntPtr.Zero)
-            {
-                //Log.Fatal("NUI", "Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
-                //Log.Fatal("NUI", "Error! just return here! this can cause unknown error or crash in next step");
-                //return false;
-                throw new InvalidOperationException("Error! NUI.Uint16Pair's native DALi object is already disposed! OR the native DALi object handle of NUI.Uint16Pair's became null by unknown reason!");
-            }
             Interop.Uint16Pair.DeleteUint16Pair(swigCPtr);
         }
 
