@@ -100,6 +100,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Generate Url from native image queue.
         /// </summary>
+        /// <remarks>
+        /// This API should not be called at worker thread.
+        /// </remarks>
         /// <returns>The ImageUrl of NativeImageQueue.</returns>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageUrl GenerateUrl()

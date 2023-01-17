@@ -71,6 +71,9 @@ namespace Tizen.NUI
         /// Note : the url lifecycle is same as ImageUrl and it's internal usage.
         /// Store only ImageUrl.ToString() result and re-use that url is Undefined Behavior.
         /// </summary>
+        /// <remarks>
+        /// This API should not be called at worker thread.
+        /// </remarks>
         /// <remarks>Hidden API: Only for inhouse or developing usage. The behavior and interface can be changed anytime.</remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageUrl GenerateUrl()
