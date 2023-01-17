@@ -472,6 +472,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the screen size
+        /// </summary>
+        /// <returns>Screen size</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        static public Size GetScreenSize()
+        {
+            var ret = new Size(Interop.Application.GetScreenSize(), true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Overrides this method if you want to handle behavior.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
