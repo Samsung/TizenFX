@@ -98,6 +98,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_GetRenderThreadId")]
             public static extern int GetRenderThreadId(global::System.Runtime.InteropServices.HandleRef application);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GetScreenSize")]
+            public static extern global::System.IntPtr GetScreenSize();
         }
     }
 }
