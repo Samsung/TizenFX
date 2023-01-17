@@ -40,6 +40,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Generate Url from native image source.
         /// </summary>
+        /// <remarks>
+        /// This API should not be called at worker thread.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageUrl GenerateUrl()
         {
