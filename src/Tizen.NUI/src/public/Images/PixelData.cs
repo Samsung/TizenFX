@@ -77,6 +77,43 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Since this class is BaseHandle internally, return BaseHandle.HasBody
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool HasBody()
+        {
+            if (IsNativeHandleInvalid())
+            {
+                return false;
+            }
+
+            if (Disposed)
+            {
+                return false;
+            }
+            bool ret = Interop.BaseHandle.HasBody(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Since this class is BaseHandle internally, return BaseHandle.IsEqual
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool IsEqual(Disposable _rhs)
+        {
+            PixelData rhs = _rhs as PixelData;
+            if (Disposed == true || rhs == null || !rhs.HasBody())
+            {
+                return false;
+            }
+
+            bool ret = Interop.BaseHandle.IsEqual(SwigCPtr, PixelData.getCPtr(rhs));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Enumeration for function to release the pixel buffer.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>

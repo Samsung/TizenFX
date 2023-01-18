@@ -61,6 +61,195 @@ namespace Tizen.NUI
         /// <since_tizen> 6 </since_tizen>
         ~Disposable() => Dispose(false);
 
+
+        /// <summary>
+        /// Returns the bool value true to indicate that an operand is true and returns false otherwise.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator true(Disposable disposable)
+        {
+            // if the C# object is null, return false
+            if (Disposable.ReferenceEquals(disposable, null))
+            {
+                return false;
+            }
+            // returns true if the handle has a body, false otherwise
+            return disposable.HasBody();
+        }
+
+        /// <summary>
+        /// Returns the bool false  to indicate that an operand is false and returns true otherwise.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator false(Disposable disposable)
+        {
+            // if the C# object is null, return true
+            if (Disposable.ReferenceEquals(disposable, null))
+            {
+                return true;
+            }
+            return !disposable.HasBody();
+        }
+
+        /// <summary>
+        /// Explicit conversion from Disposable to bool.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static explicit operator bool(Disposable disposable)
+        {
+            // if the C# object is null, return false
+            if (Disposable.ReferenceEquals(disposable, null))
+            {
+                return false;
+            }
+            // returns true if the handle has a body, false otherwise
+            return disposable.HasBody();
+        }
+
+        /// <summary>
+        /// Equality operator
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator ==(Disposable x, Disposable y)
+        {
+            // if the C# objects are the same return true
+            if (Disposable.ReferenceEquals(x, y))
+            {
+                return true;
+            }
+            if (!Disposable.ReferenceEquals(x, null) && !Disposable.ReferenceEquals(y, null))
+            {
+                // drop into native code to see if both Disposable point to the same body
+                return x.IsEqual(y);
+            }
+
+            if (Disposable.ReferenceEquals(x, null) && !Disposable.ReferenceEquals(y, null))
+            {
+                if (y.HasBody()) return false;
+                else return true;
+            }
+            if (!Disposable.ReferenceEquals(x, null) && Disposable.ReferenceEquals(y, null))
+            {
+                if (x.HasBody()) return false;
+                else return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Inequality operator. Returns Null if either operand is Null
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !=(Disposable x, Disposable y)
+        {
+            return !(x == y);
+        }
+
+        /// <summary>
+        /// Logical AND operator.<br />
+        /// It's possible when doing a  operator this function (opBitwiseAnd) is never called due to short circuiting.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Disposable operator &(Disposable x, Disposable y)
+        {
+            if (x == y)
+            {
+                return x;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Logical OR operator for ||.<br />
+        /// It's possible when doing a || this function (opBitwiseOr) is never called due to short circuiting.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static Disposable operator |(Disposable x, Disposable y)
+        {
+            if (!Disposable.ReferenceEquals(x, null) || !Disposable.ReferenceEquals(y, null))
+            {
+                if (x != null && x.HasBody())
+                {
+                    return x;
+                }
+                if (y != null && y.HasBody())
+                {
+                    return y;
+                }
+                return null;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Logical ! operator
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool operator !(Disposable x)
+        {
+            // if the C# object is null, return true
+            if (Disposable.ReferenceEquals(x, null))
+            {
+                return true;
+            }
+            if (x.HasBody())
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// Equals
+        /// </summary>
+        /// <param name="o">The object should be compared.</param>
+        /// <returns>True if equal.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool Equals(object o)
+        {
+            return base.Equals(o);
+        }
+
+        /// <summary>
+        /// Gets the hash code of this Disposable.
+        /// </summary>
+        /// <returns>The hash code.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
+
+        /// <summary>
+        /// To check the Disposable instance has body or not.
+        /// </summary>
+        /// <remark>
+        /// Since Disposable it self done't have data ownership, just return true.
+        /// If some detail operation required, override it.
+        /// </remark>
+        /// <returns>True If the Disposable instance has body.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual bool HasBody()
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// To check the Disposable instance is equal or not.
+        /// </summary>
+        /// <param name="rhs">The Disposable instance.</param>
+        /// <remark>
+        /// Since Disposable it self done't have data ownership, just return false.
+        /// If some detail operation required, override it.
+        /// </remark>
+        /// <returns>True If equal.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual bool IsEqual(Disposable rhs)
+        {
+            return false;
+        }
+
         /// <summary>
         /// Dispose.
         /// </summary>
@@ -185,6 +374,11 @@ namespace Tizen.NUI
             {
                 swigCPtr = value;
             }
+        }
+
+        internal bool IsNativeHandleInvalid()
+        {
+            return swigCPtr.Handle == IntPtr.Zero;
         }
 
         internal bool SwigCMemOwn => swigCMemOwn;

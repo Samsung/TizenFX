@@ -61,6 +61,43 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Since this class is BaseHandle internally, return BaseHandle.HasBody
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool HasBody()
+        {
+            if (IsNativeHandleInvalid())
+            {
+                return false;
+            }
+
+            if (Disposed)
+            {
+                return false;
+            }
+            bool ret = Interop.BaseHandle.HasBody(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Since this class is BaseHandle internally, return BaseHandle.IsEqual
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override bool IsEqual(Disposable _rhs)
+        {
+            PixelBuffer rhs = _rhs as PixelBuffer;
+            if (Disposed == true || rhs == null || !rhs.HasBody())
+            {
+                return false;
+            }
+
+            bool ret = Interop.BaseHandle.IsEqual(SwigCPtr, PixelBuffer.getCPtr(rhs));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Convert to a pixel data and release the object of the pixelBuffer.
         /// This handle is left empty.
         /// Any other handles that keep a reference to this object
