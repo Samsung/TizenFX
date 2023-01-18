@@ -137,41 +137,9 @@ namespace Tizen.NUI
         {
             if (borderInterface != null)
             {
-                float height = 0;
-                if (hasTopView) height += topView.SizeHeight;
-                if (hasBottomView) height += bottomView.SizeHeight;
-
-                if (height != borderHeight)
-                {
-                    float diff = height - borderHeight;
-                    borderHeight = height;
-                    WindowSize = new Size2D(WindowSize.Width, WindowSize.Height + (int)(diff));
-                }
-
-                if (minSize != borderInterface.MinSize)
-                {
-                    using Size2D mimimumSize = new Size2D((borderInterface.MinSize?.Width + (int)borderInterface.BorderLineThickness * 2 ?? 0), (borderInterface.MinSize?.Height ?? 0) + (int)(borderHeight + borderInterface.BorderLineThickness * 2));
-                    SetMimimumSize(mimimumSize);
-                    minSize = borderInterface.MinSize;
-                }
-                if (maxSize != borderInterface.MaxSize)
-                {
-                    using Size2D maximumSize = new Size2D((borderInterface.MaxSize?.Width + (int)borderInterface.BorderLineThickness * 2 ?? 0), (borderInterface.MaxSize?.Height ?? 0) + (int)(borderHeight + borderInterface.BorderLineThickness * 2));
-                    SetMaximumSize(maximumSize);
-                    maxSize = borderInterface.MaxSize;
-                }
-                if (borderResizePolicy != borderInterface.ResizePolicy)
-                {
-                    AddAuxiliaryHint("wm.policy.win.resize_aspect_ratio", "0");
-                    borderResizePolicy = borderInterface.ResizePolicy;
-                    if (borderResizePolicy == BorderResizePolicyType.KeepRatio)
-                    {
-                        AddAuxiliaryHint("wm.policy.win.resize_aspect_ratio", "1");
-                    }
-                }
                 if (borderLineThickness != borderInterface.BorderLineThickness)
                 {
-                    int diffBorderLine = (int)(borderInterface.BorderLineThickness - borderLineThickness);
+                    int diffBorderLine = (int)borderInterface.BorderLineThickness - (int)borderLineThickness;
                     borderLineThickness = borderInterface.BorderLineThickness;
 
                     if (borderView != null)
@@ -188,10 +156,46 @@ namespace Tizen.NUI
                         }
                     }
 
-                    ResizedEventArgs e = new ResizedEventArgs();
-                    e.WindowSize = WindowSize;
-                    windowResizeEventHandler?.Invoke(this, e);
+                    using var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
+                    val.SetWidth((ushort)(val.GetWidth() + diffBorderLine * 2));
+                    val.SetHeight((ushort)(val.GetHeight() + diffBorderLine * 2));
+                    Interop.Window.SetSize(SwigCPtr, Uint16Pair.getCPtr(val));
                 }
+
+                float height = 0;
+                if (hasTopView) height += topView.SizeHeight;
+                if (hasBottomView) height += bottomView.SizeHeight;
+                if (height != borderHeight)
+                {
+                    float diff = height - borderHeight;
+                    borderHeight = height;
+                    WindowSize = new Size2D(WindowSize.Width, WindowSize.Height + (int)(diff));
+                }
+
+                if (minSize != borderInterface.MinSize)
+                {
+                    using Size2D mimimumSize = new Size2D((borderInterface.MinSize?.Width + (int)borderInterface.BorderLineThickness * 2 ?? 0), (borderInterface.MinSize?.Height ?? 0) + (int)(borderHeight + borderInterface.BorderLineThickness * 2));
+                    SetMimimumSize(mimimumSize);
+                    minSize = borderInterface.MinSize;
+                }
+                
+                if (maxSize != borderInterface.MaxSize)
+                {
+                    using Size2D maximumSize = new Size2D((borderInterface.MaxSize?.Width + (int)borderInterface.BorderLineThickness * 2 ?? 0), (borderInterface.MaxSize?.Height ?? 0) + (int)(borderHeight + borderInterface.BorderLineThickness * 2));
+                    SetMaximumSize(maximumSize);
+                    maxSize = borderInterface.MaxSize;
+                }
+                
+                if (borderResizePolicy != borderInterface.ResizePolicy)
+                {
+                    AddAuxiliaryHint("wm.policy.win.resize_aspect_ratio", "0");
+                    borderResizePolicy = borderInterface.ResizePolicy;
+                    if (borderResizePolicy == BorderResizePolicyType.KeepRatio)
+                    {
+                        AddAuxiliaryHint("wm.policy.win.resize_aspect_ratio", "1");
+                    }
+                }
+                
             }
         }
         /// <summary>
