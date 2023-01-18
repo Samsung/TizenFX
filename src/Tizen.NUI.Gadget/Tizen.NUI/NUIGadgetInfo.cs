@@ -30,7 +30,7 @@ namespace Tizen.NUI
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIGadgetInfo
     {
-        private const string MetadataUIGadgetExecutableFile = "http://tizen.org/metadata/ui-gadget/executable-file";
+        private const string MetadataUIGadgetDll = "http://tizen.org/metadata/ui-gadget/dll";
         private string _resourcePath = string.Empty;
         private NUIGadgetAssembly _assembly = null;
 
@@ -172,14 +172,14 @@ namespace Tizen.NUI
 
             info.Metadata = metadata;
 
-            if (info.Metadata.TryGetValue(MetadataUIGadgetExecutableFile, out string executableFile))
+            if (info.Metadata.TryGetValue(MetadataUIGadgetDll, out string executableFile))
             {
                 info.ExecutableFile = executableFile;
                 Log.Info("ExecutableFile: " + info.ExecutableFile);
             }
             else
             {
-                Log.Error("Failed to find meatada. " + MetadataUIGadgetExecutableFile);
+                Log.Error("Failed to find meatada. " + MetadataUIGadgetDll);
             }
 
             errorCode = Interop.PackageManagerInfo.PackageInfoDestroy(handle);

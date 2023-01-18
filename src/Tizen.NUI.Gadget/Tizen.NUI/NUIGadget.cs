@@ -37,6 +37,14 @@ namespace Tizen.NUI
             State = NUIGadgetLifecycleState.Initialized;
         }
 
+        /// <summary>
+        /// Finalizes the gadget.
+        /// </summary>
+        ~NUIGadget()
+        {
+            Log.Warn("NUIGadget dtor");
+        }
+
         internal event EventHandler<NUIGadgetLifecycleChangedEventArgs> LifecycleChanged;
 
         /// <summary>

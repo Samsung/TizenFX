@@ -109,6 +109,7 @@ namespace Tizen.NUI
 
             if (args.State == NUIGadgetLifecycleState.Destroyed)
             {
+                args.Gadget.LifecycleChanged -= OnNUIGadgetLifecycleChanged;
                 _gadgets.Remove(args.Gadget);
             }
         }
