@@ -155,13 +155,19 @@ namespace Tizen.NUI.Components
         private void OnAddedToWindow(object sender, EventArgs e)
         {
             parentWindow = Window.Get(this);
-            parentWindow.KeyEvent += OnWindowKeyEvent;
+            if (null != parentWindow)
+            {
+                parentWindow.KeyEvent += OnWindowKeyEvent;
+            }
         }
 
         private void OnRemovedFromWindow(object sender, EventArgs e)
         {
-            parentWindow.KeyEvent -= OnWindowKeyEvent;
-            parentWindow = null;
+            if (null != parentWindow)
+            {
+                parentWindow.KeyEvent -= OnWindowKeyEvent;
+                parentWindow = null;
+            }
         }
 
         private void Initialize()

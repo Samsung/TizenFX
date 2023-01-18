@@ -1445,9 +1445,10 @@ namespace Tizen.NUI.Components
                         ScrollContentSize - Padding.Bottom - footerSize + footerMargin.Top;
                 return (xPos, yPos);
             }
-            if (isGrouped)
+
+            GroupInfo myGroup = GetGroupInfo(index);
+            if (isGrouped && null != myGroup)
             {
-                GroupInfo myGroup = GetGroupInfo(index);
                 if (colView.InternalItemSource.IsGroupHeader(index))
                 {
                     spaceStartX+= groupHeaderMargin.Start;
