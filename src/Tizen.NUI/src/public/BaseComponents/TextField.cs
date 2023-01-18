@@ -2550,6 +2550,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             TextChanged -= TextFieldTextChanged;
+            GetInputMethodContext()?.DestroyContext();
 
             base.Dispose(type);
         }
@@ -2558,8 +2559,6 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            // In order to speed up IME hide, temporarily add
-            GetInputMethodContext()?.DestroyContext();
             Interop.TextField.DeleteTextField(swigCPtr);
         }
 
