@@ -594,7 +594,7 @@ namespace Tizen.NUI
                     if (detectedEventHandler != null)
                     {
                         var process = global::System.Diagnostics.Process.GetCurrentProcess();
-                        var processId = process.Id;
+                        var processId = process?.Id ?? -1;
                         var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                         var me = this.GetType().FullName;
 
@@ -602,7 +602,7 @@ namespace Tizen.NUI
                             $"OR the native dali object handle of NUI becomes null! \n" +
                             $" process:{processId} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
 
-                        process.Dispose();
+                        process?.Dispose();
                     }
                 }
                 else
@@ -610,7 +610,7 @@ namespace Tizen.NUI
                     if (this.IsDisposeQueued)
                     {
                         var process = global::System.Diagnostics.Process.GetCurrentProcess();
-                        var processId = process.Id;
+                        var processId = process?.Id ?? -1;
                         var thread = global::System.Threading.Thread.CurrentThread.ManagedThreadId;
                         var me = this.GetType().FullName;
 
@@ -618,7 +618,7 @@ namespace Tizen.NUI
                         Tizen.Log.Error("NUI", "in this case, the View object is ready to be disposed waiting on DisposeQueue, so event callback should not be invoked! just return here! \n" +
                             $"process:{processId} thread:{thread}, isDisposed:{this.Disposed}, isDisposeQueued:{this.IsDisposeQueued}, me:{me}\n");
 
-                        process.Dispose();
+                        process?.Dispose();
                         return;
                     }
                 }
