@@ -20,7 +20,7 @@ namespace Tizen.NUI.Devel.Tests
         private const string tag = "NUITEST";
         private const int testSize = 100;
         private const int testPosition = 100;
-        private const int RefCountWhenNew = 2;
+        private const int RefCountWhenNew = 1;
         private const int RefCountWhenAdd = 1;
         private const int RefCountWhenRemoveOrUnparent = -1;
         private const int RefCountWhenAddedInList = 0;
