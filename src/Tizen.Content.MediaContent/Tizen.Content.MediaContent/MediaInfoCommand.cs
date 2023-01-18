@@ -1134,11 +1134,6 @@ namespace Tizen.Content.MediaContent
 
             using (handle)
             {
-                if (InteropHelper.GetValue<StorageType>(handle, Interop.MediaInfo.GetStorageType) == StorageType.ExternalUsb)
-                {
-                    throw new UnsupportedContentException("The media is in external usb storage.");
-                }
-
                 if (InteropHelper.GetValue<MediaType>(handle, Interop.MediaInfo.GetMediaType) != MediaType.Image)
                 {
                     throw new UnsupportedContentException("Only image is supported.");
@@ -1162,7 +1157,13 @@ namespace Tizen.Content.MediaContent
                 using (RegisterCancelFaceDetection(cancellationToken, tcs, handle))
                 using (var cbKeeper = ObjectKeeper.Get(GetFaceDetectionCallback(tcs)))
                 {
-                    Interop.MediaInfo.StartFaceDetection(handle, cbKeeper.Target).ThrowIfError("Failed to detect faces");
+                    var ret = Interop.MediaInfo.StartFaceDetection(handle, cbKeeper.Target);
+                    if (ret == MediaContentError.InvalidParameter)
+                    {
+                        throw new UnsupportedContentException("The media is in external usb storage.");
+                    }
+
+                    ret.ThrowIfError("Failed to detect faces");
 
                     return await tcs.Task;
                 }
