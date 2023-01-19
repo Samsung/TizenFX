@@ -257,7 +257,7 @@ namespace Tizen.NUI.Samples
         {
             View background = new View();
             NUIApplication.GetDefaultWindow().Add(background);
-            background.SetStyleName(stylename);
+            background.StyleName = stylename;
             background.Name = "BACKGROUND";
             background.PositionUsesPivotPoint = true;
             background.PivotPoint = PivotPoint.Center;
@@ -271,7 +271,7 @@ namespace Tizen.NUI.Samples
         {
             ImageView focusableTile = new ImageView();
 
-            focusableTile.SetStyleName("DemoTile");
+            focusableTile.StyleName = "DemoTile";
             focusableTile.ResourceUrl = CommonResource.GetDaliResourcePath() + "DaliDemo/demo-tile-texture.9.png";
             focusableTile.PositionUsesPivotPoint = true;
             focusableTile.ParentOrigin = ParentOrigin.Center;
@@ -300,7 +300,7 @@ namespace Tizen.NUI.Samples
             label.PositionUsesPivotPoint = true;
             label.PivotPoint = PivotPoint.Center;
             label.ParentOrigin = ParentOrigin.Center;
-            label.SetStyleName("LauncherLabel");
+            label.StyleName = "LauncherLabel";
             label.MultiLine = true;
             label.Text = title;
             label.HorizontalAlignment = HorizontalAlignment.Center;

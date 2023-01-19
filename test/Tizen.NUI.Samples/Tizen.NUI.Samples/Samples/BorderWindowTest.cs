@@ -431,7 +431,7 @@ namespace Tizen.NUI.Samples
           ResourceUrl = imagePath + "gallery-large-14.jpg",
           Layout = new LinearLayout()
           {
-              LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+              HorizontalAlignment = HorizontalAlignment.Center,
               LinearOrientation = LinearLayout.Orientation.Horizontal,
               CellPadding = new Size(10, 10),
           }
@@ -450,7 +450,7 @@ namespace Tizen.NUI.Samples
           CornerRadiusPolicy = VisualTransformPolicyType.Relative,
           Layout = new LinearLayout()
           {
-              LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+              HorizontalAlignment = HorizontalAlignment.Center,
               LinearOrientation = LinearLayout.Orientation.Horizontal,
               CellPadding = new Size(10, 10),
               Padding = new Extents(10, 10, 10 , 10),
@@ -463,7 +463,8 @@ namespace Tizen.NUI.Samples
           Size = new Size(150, 180),
           Layout = new LinearLayout()
           {
-              LinearAlignment = LinearLayout.Alignment.Center,
+              HorizontalAlignment = HorizontalAlignment.Center,
+              VerticalAlignment = VerticalAlignment.Center,
               LinearOrientation = LinearLayout.Orientation.Vertical,
           },
           AccessibilityHighlightable = true,
@@ -503,7 +504,8 @@ namespace Tizen.NUI.Samples
           Size = new Size(150, 180),
           Layout = new LinearLayout()
           {
-              LinearAlignment = LinearLayout.Alignment.Center,
+              HorizontalAlignment = HorizontalAlignment.Center,
+              VerticalAlignment = VerticalAlignment.Center,
               LinearOrientation = LinearLayout.Orientation.Vertical,
           },
           AccessibilityHighlightable = true,

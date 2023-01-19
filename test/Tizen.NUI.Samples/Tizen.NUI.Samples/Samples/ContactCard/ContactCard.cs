@@ -179,7 +179,7 @@ namespace Tizen.NUI.Samples
 
                 // Fade out all the siblings
                 View parent = mContactCard.GetParent() as View;
-                for (uint i = 0; i < parent.GetChildCount(); ++i)
+                for (uint i = 0; i < parent.ChildCount; ++i)
                 {
                     View sibling = parent.GetChildAt(i);
                     if (sibling != mContactCard)
@@ -226,7 +226,7 @@ namespace Tizen.NUI.Samples
 
                 // Slowly fade in all the siblings
                 View parent = mContactCard.GetParent() as View;
-                for (uint i = 0; i < parent.GetChildCount(); ++i)
+                for (uint i = 0; i < parent.ChildCount; ++i)
                 {
                     View sibling = parent.GetChildAt(i);
                     if (sibling != mContactCard)
