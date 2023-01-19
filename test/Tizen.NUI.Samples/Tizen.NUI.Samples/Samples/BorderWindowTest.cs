@@ -67,7 +67,7 @@ namespace Tizen.NUI.Samples
         topView.Layout = new LinearLayout()
         {
           LinearOrientation = LinearLayout.Orientation.Horizontal, 
-          LinearAlignment = LinearLayout.Alignment.CenterVertical,
+          VerticalAlignment = VerticalAlignment.Center,
           CellPadding = new Size2D(20, 20),
         };
         title = new TextLabel()
@@ -389,10 +389,11 @@ namespace Tizen.NUI.Samples
             return false;
         };
 
-        var root = new View(){
+        var root = new View()
+        {
           Layout = new LinearLayout()
           {
-              LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+            HorizontalAlignment = HorizontalAlignment.Center,
           },
           WidthResizePolicy = ResizePolicyType.FillToParent,
           HeightResizePolicy = ResizePolicyType.FillToParent,

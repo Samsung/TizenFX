@@ -136,7 +136,7 @@ namespace Tizen.NUI.Samples
             root.BackgroundColor = Color.Green;
             root.Size2D = new Size2D(NUIApplication.GetDefaultWindow().Size.Width, NUIApplication.GetDefaultWindow().Size.Height);
             var layer = new LinearLayout();
-            layer.LinearAlignment = LinearLayout.Alignment.CenterHorizontal;
+            layer.HorizontalAlignment = HorizontalAlignment.Center;
             layer.LinearOrientation = LinearLayout.Orientation.Vertical;
             root.Layout = layer;
             NUIApplication.GetDefaultWindow().GetDefaultLayer().Add(root);
