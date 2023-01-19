@@ -729,11 +729,22 @@ namespace Tizen.Applications
             }
         }
 
+        /// <summary>
+        /// Imports a bundle object from the argument vector.
+        /// </summary>
+        /// <param name="argv">The argument vector</param>
+        /// <exception cref="System.ArgumentNullException">Thrown when because the argument is null or invalid.</exception>
+        /// <returns>The bundle object.</returns>
+        /// <since_tizen> 10 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Bundle ImportFromArgv(string[] argv)
         {
-            var ret = Interop.Bundle.ImportFromArgv(argv.Length, argv);
-            return new Bundle(ret);
+            if (argv == null)
+            {
+                throw new ArgumentNullException(nameof(argv));
+            }
+
+            return new Bundle(Interop.Bundle.ImportFromArgv(argv.Length, argv));
         }
 
         /// <summary>
