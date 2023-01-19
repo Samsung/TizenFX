@@ -181,15 +181,45 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// override it to clean-up your own resources.
+        /// </summary>
+        /// <param name="type"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (HasBody())
+            {
+                if (_detectedCallback != null)
+                {
+                    using TapGestureDetectedSignal signal = new TapGestureDetectedSignal(Interop.TapGestureDetector.DetectedSignal(GetBaseHandleCPtrHandleRef), false);
+                    signal?.Disconnect(_detectedCallback);
+                    _detectedCallback = null;
+                }
+            }
+            base.Dispose(type);
+        }
+
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (_detectedCallback != null)
-            {
-                DetectedSignal().Disconnect(_detectedCallback);
-            }
-
             Interop.TapGestureDetector.DeleteTapGestureDetector(swigCPtr);
         }
 

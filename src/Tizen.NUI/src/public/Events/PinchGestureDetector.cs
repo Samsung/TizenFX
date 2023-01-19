@@ -117,15 +117,45 @@ namespace Tizen.NUI
             return ret;
         }
 
+        /// <summary>
+        /// override it to clean-up your own resources.
+        /// </summary>
+        /// <param name="type"></param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                //Called by User
+                //Release your own managed resources here.
+                //You should release all of your own disposable objects here.
+            }
+
+            //Release your own unmanaged resources here.
+            //You should not access any managed member here except static instance.
+            //because the execution order of Finalizes is non-deterministic.
+
+            if (HasBody())
+            {
+                if (detectedCallback != null)
+                {
+                    using PinchGestureDetectedSignal signal = new PinchGestureDetectedSignal(Interop.PinchGesture.PinchGestureDetectorDetectedSignal(GetBaseHandleCPtrHandleRef), false);
+                    signal?.Disconnect(detectedCallback);
+                    detectedCallback = null;
+                }
+            }
+            base.Dispose(type);
+        }
+
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if (detectedCallback != null)
-            {
-                DetectedSignal().Disconnect(detectedCallback);
-            }
-
             Interop.PinchGesture.DeletePinchGestureDetector(swigCPtr);
         }
 
