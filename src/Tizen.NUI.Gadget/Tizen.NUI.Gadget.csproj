@@ -1,6 +1,6 @@
-﻿<Project Sdk="Tizen.NET.Sdk/1.1.9">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>tizen10.0</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>

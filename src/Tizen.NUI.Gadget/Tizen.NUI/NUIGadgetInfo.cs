@@ -32,7 +32,6 @@ namespace Tizen.NUI
     {
         private const string MetadataUIGadgetDll = "http://tizen.org/metadata/ui-gadget/dll";
         private string _resourcePath = string.Empty;
-        private NUIGadgetAssembly _assembly = null;
 
         internal NUIGadgetInfo(string packageId)
         {
@@ -101,23 +100,6 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         public IDictionary<string, string> Metadata { get; private set; }
-
-        /// <summary>
-        /// Gets the assembly of the gadget.
-        /// </summary>
-        /// <since_tizen> 11 </since_tizen>
-        internal NUIGadgetAssembly Assembly
-        {
-            get
-            {
-                if (_assembly == null)
-                {
-                    _assembly = new NUIGadgetAssembly(ResourcePath + ExecutableFile);
-                }
-
-                return _assembly;
-            }
-        }
 
         internal static NUIGadgetInfo CreateNUIGadgetInfo(string packageId)
         {

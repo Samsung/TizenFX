@@ -21,6 +21,7 @@ using System.IO;
 using Tizen.Applications;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
+using System.Reflection;
 
 namespace Tizen.NUI
 {
@@ -130,10 +131,11 @@ namespace Tizen.NUI
                 throw new ArgumentException("Failed to find NUIGadgetInfo. resource type: " + resourceType);
             }
 
+            Assembly assembly = null;
             try
             {
                 Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " ++");
-                info.Assembly.Load();
+                assembly = Assembly.Load(File.ReadAllBytes(info.ResourcePath + info.ExecutableFile));
                 Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " --");
             }
             catch (FileLoadException e)
@@ -141,28 +143,13 @@ namespace Tizen.NUI
                 throw new InvalidOperationException(e.Message);
             }
             
-            NUIGadget gadget = (NUIGadget)info.Assembly.CreateInstance(className);
+            NUIGadget gadget = (NUIGadget)assembly.CreateInstance(className);
             gadget.NUIGadgetInfo = info;
             gadget.ClassName = className;
             gadget.LifecycleChanged += OnNUIGadgetLifecycleChanged;
             _gadgets.Add(gadget);
             gadget.Create();
             return gadget;
-        }
-
-        /// <summary>
-        /// Unloads the dll of the gadget.
-        /// </summary>
-        /// <param name="resourceType">The resource type of the NUIGadget package.</param>
-        /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
-        public static void Unload(string resourceType)
-        {
-            if (!_gadgetInfos.TryGetValue(resourceType, out NUIGadgetInfo info))
-            {
-                throw new ArgumentException("Failed to find NUIGadgetInfo. resource type: " + resourceType);
-            }
-
-            info.Assembly.Unload();
         }
 
         /// <summary>
@@ -195,6 +182,7 @@ namespace Tizen.NUI
             TizenUISynchronizationContext.Current.Post((object state) => {
                 Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
                 gadget.Finish();
+                gadget.NUIGadgetInfo = null;
             }, null);
         }
 
