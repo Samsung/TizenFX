@@ -34,7 +34,7 @@ namespace Tizen.NUI
     {
         private static readonly Dictionary<string, NUIGadgetInfo> _gadgetInfos = new Dictionary<string, NUIGadgetInfo>();
         private static readonly List<NUIGadget> _gadgets = new List<NUIGadget>();
-                
+
         static NUIGadgetManager()
         {
             IntPtr resPkgIds = Interop.Libc.GetEnviornmentVariable("RES_PKGIDS");
@@ -103,7 +103,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         public static event EventHandler<NUIGadgetLifecycleChangedEventArgs> NUIGadgetLifecycleChanged;
-               
+
         private static void OnNUIGadgetLifecycleChanged(object sender, NUIGadgetLifecycleChangedEventArgs args)
         {
             NUIGadgetLifecycleChanged?.Invoke(sender, args);
@@ -127,7 +127,7 @@ namespace Tizen.NUI
         public static NUIGadget Add(string resourceType, string className)
         {
             if (!_gadgetInfos.TryGetValue(resourceType, out NUIGadgetInfo info))
-            { 
+            {
                 throw new ArgumentException("Failed to find NUIGadgetInfo. resource type: " + resourceType);
             }
 
@@ -142,7 +142,7 @@ namespace Tizen.NUI
             {
                 throw new InvalidOperationException(e.Message);
             }
-            
+
             NUIGadget gadget = (NUIGadget)assembly.CreateInstance(className);
             gadget.NUIGadgetInfo = info;
             gadget.ClassName = className;
@@ -161,7 +161,7 @@ namespace Tizen.NUI
         {
             return _gadgets;
         }
-        
+
         /// <summary>
         /// Removes the NUIGadget from a NUIGadgetManager.
         /// </summary>
@@ -277,7 +277,7 @@ namespace Tizen.NUI
                 {
                     gadget.HandleAppControlReceivedEvent(args);
                     return true;
-                }                
+                }
             }
 
             return false;

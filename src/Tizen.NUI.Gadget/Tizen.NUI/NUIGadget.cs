@@ -31,9 +31,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Initializes the gadget.
         /// </summary>
+        /// /// <param name="type">The type of the NUIGadget.</param>
         /// <since_tizen> 11 </since_tizen>
-        public NUIGadget()
+        public NUIGadget(NUIGadgetType type)
         {
+            Type = type;
             State = NUIGadgetLifecycleState.Initialized;
         }
 
@@ -52,6 +54,16 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         public NUIGadgetInfo NUIGadgetInfo
+        {
+            internal set;
+            get;
+        }
+
+        /// <summary>
+        /// Gets the type.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public NUIGadgetType Type
         {
             internal set;
             get;

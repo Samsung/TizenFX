@@ -86,7 +86,7 @@ namespace Tizen.NUI
                 }
 
                 return _resourcePath;
-            }            
+            }
         }
 
         /// <summary>
@@ -169,7 +169,7 @@ namespace Tizen.NUI
             {
                 Log.Warn("Failed to destroy package info. error = " + errorCode);
             }
-                        
+
             return info;
         }
     }
