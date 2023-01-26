@@ -2485,10 +2485,8 @@ namespace Tizen.NUI.BaseComponents
         {
             if (disposed)
             {
-                DisposeQueue.Instance.Add(this);
                 return;
             }
-
 
             internalPlaceholderTextColor?.Dispose();
             internalPrimaryCursorColor?.Dispose();
