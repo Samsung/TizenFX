@@ -943,6 +943,48 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Gets all default applications.
+        /// </summary>
+        /// <returns>ApplicationIds.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <example>
+        /// <code>
+        /// IEnumerable&lt;string&gt; applicationIds = AppControl.GetDefaultApplicationIds();
+        /// if (applicationIds != null)
+        /// {
+        ///     foreach (string id in applicationIds)
+        ///     {
+        ///         // ...
+        ///     }
+        /// }
+        /// </code>
+        /// </example>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static IEnumerable<string> GetDefaultApplicationIds()
+        {
+            List<string> ids = new List<string>();
+            Interop.AppControl.DefaultApplicationCallback callback = (applicationId, userData) =>
+            {
+                if (applicationId == null)
+                {
+                    return false;
+                }
+
+                ids.Add(applicationId);
+                return true;
+            };
+
+            Interop.AppControl.ErrorCode err = Interop.AppControl.ForeachDefaultApplication(callback, IntPtr.Zero);
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                throw new InvalidOperationException("Failed to get default application Ids. err = " + err);
+            }
+
+            return ids;
+        }
+
+        /// <summary>
         /// Class for extra data.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
