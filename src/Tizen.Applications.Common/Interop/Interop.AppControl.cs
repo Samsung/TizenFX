@@ -37,6 +37,9 @@ internal static partial class Interop
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void ResultCallback(IntPtr request, int result, IntPtr userData);
 
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        internal delegate bool DefaultApplicationCallback(string applicationId, IntPtr userData);
+
         internal enum ErrorCode
         {
             None = Tizen.Internals.Errors.ErrorCode.None,
@@ -157,5 +160,9 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppControl, EntryPoint = "app_control_send_launch_request_with_timeout")]
         internal static extern ErrorCode SendLaunchRequestWithTimeout(SafeAppControlHandle handle, uint timeout, ReplyCallback callback, IntPtr userData);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_foreach_default_application")]
+        internal static extern ErrorCode ForeachDefaultApplication(DefaultApplicationCallback callback, IntPtr userData);
+
     }
 }
