@@ -20,7 +20,6 @@ namespace Tizen.NUI.Samples
         private Animation mAnimation;
         private ContactCardLayoutInfo mContactCardLayoutInfo;
         private Vector2 foldedPosition;
-        private int mClippedImagePropertyIndex;
         private bool mFolded;
 
 
@@ -52,7 +51,6 @@ namespace Tizen.NUI.Samples
         {
             mContactCardLayoutInfo = contactCardLayoutInfo;
             foldedPosition = new Vector2(position.X, position.Y);
-            mClippedImagePropertyIndex = -1;
             mFolded = true;
 
             //NUIApplication.GetDefaultWindow().KeyEvent += OnKeyEvent;

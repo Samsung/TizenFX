@@ -736,12 +736,10 @@ namespace Tizen.NUI.Samples
         private RulerPtr mScrollRulerY;             //  ScrollView Y (vertical) ruler
         private View mPressedActor;             //  The currently pressed actor.
         private Timer mAnimationTimer;           //  Timer used to turn off animation after a specific time period
-        private TapGestureDetector mLogoTapDetector;          //  To detect taps on the logo
 
         // This struct encapsulates all data relevant to each of the elements used within the custom keyboard focus effect.
         private struct FocusEffect
         {
-            public ImageView actor;                   //  The parent keyboard focus highlight actor
             public Animation animation;               //  The animation for the parent keyboard focus highlight actor
         };
         FocusEffect[] mFocusEffect = new FocusEffect[FOCUS_ANIMATION_ACTOR_NUMBER];    //  The elements used to create the custom focus effect

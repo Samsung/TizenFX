@@ -51,7 +51,12 @@ namespace Tizen.NUI.Samples
             // Init parent of TextView
             parentView[0] = new View();
             parentView[0].Size = new Size(1920, 200);
-            parentView[0].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.CenterVertical, CellPadding = new Size2D(180, 0) };
+            parentView[0].Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                VerticalAlignment = VerticalAlignment.Center,
+                CellPadding = new Size2D(180, 0)
+            };
             root.Add(parentView[0]);
 
             for (int i = 0; i < 2; i++)

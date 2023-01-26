@@ -52,7 +52,13 @@ namespace Tizen.NUI.Samples
             // Init parent of TextView
             parentView[0] = new View();
             parentView[0].Size = new Size(1920, 300);
-            parentView[0].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(100, 0) };
+            parentView[0].Layout = new LinearLayout() 
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                CellPadding = new Size2D(100, 0)
+            };
             root.Add(parentView[0]);
 
             for (int i = 0; i < 2; i++)
@@ -79,7 +85,13 @@ namespace Tizen.NUI.Samples
             // Init parent of TabView
             parentView[1] = new View();
             parentView[1].Size = new Size(1920, 200);
-            parentView[1].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(100, 0) };
+            parentView[1].Layout = new LinearLayout() 
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                CellPadding = new Size2D(100, 0)
+            };
             root.Add(parentView[1]);
 
             ///////////////////////////////////////////////Create by Property//////////////////////////////////////////////////////////
@@ -153,7 +165,13 @@ namespace Tizen.NUI.Samples
             // Init parent of ButtonView
             parentView[2] = new View();
             parentView[2].Size = new Size(1920, 200);
-            parentView[2].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(100, 0) };
+            parentView[2].Layout = new LinearLayout() 
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                CellPadding = new Size2D(100, 0)
+            };
             root.Add(parentView[2]);
 
             // Create Buttons
