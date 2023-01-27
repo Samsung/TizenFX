@@ -91,9 +91,15 @@ namespace Tizen.NUI
             get;
         }
 
-        internal void Create()
+        internal bool Create()
         {
             MainView = OnCreate();
+            if (MainView == null)
+            {
+                return false;
+            }
+
+            return true;
         }
 
         internal void Resume()

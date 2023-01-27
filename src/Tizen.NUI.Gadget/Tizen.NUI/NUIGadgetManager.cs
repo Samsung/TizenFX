@@ -152,8 +152,12 @@ namespace Tizen.NUI
             gadget.NUIGadgetInfo = info;
             gadget.ClassName = className;
             gadget.LifecycleChanged += OnNUIGadgetLifecycleChanged;
+            if (!gadget.Create())
+            {
+                throw new InvalidOperationException("The View MUST be created");
+            }
+
             _gadgets.Add(gadget);
-            gadget.Create();
             return gadget;
         }
 
