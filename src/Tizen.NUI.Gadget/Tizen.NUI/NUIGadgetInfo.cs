@@ -161,7 +161,7 @@ namespace Tizen.NUI
             }
             else
             {
-                Log.Error("Failed to find meatada. " + MetadataUIGadgetDll);
+                Log.Error("Failed to find metadata. " + MetadataUIGadgetDll);
             }
 
             errorCode = Interop.PackageManagerInfo.PackageInfoDestroy(handle);
