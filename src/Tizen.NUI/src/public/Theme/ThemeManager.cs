@@ -265,12 +265,12 @@ namespace Tizen.NUI
         /// <summary>
         /// Load a initial component style.
         /// </summary>
-        internal static ViewStyle GetInitialStyleWithoutClone(string styleName) => themeForInitialize.GetStyle(styleName);
+        internal static ViewStyle GetInitialStyleWithoutClone(string styleName) => themeForInitialize?.GetStyle(styleName);
 
         /// <summary>
         /// Load a initial component style.
         /// </summary>
-        internal static ViewStyle GetInitialStyleWithoutClone(Type viewType) => themeForInitialize.GetStyle(viewType);
+        internal static ViewStyle GetInitialStyleWithoutClone(Type viewType) => themeForInitialize?.GetStyle(viewType);
 
         /// <summary>
         /// Get a platform installed theme.
