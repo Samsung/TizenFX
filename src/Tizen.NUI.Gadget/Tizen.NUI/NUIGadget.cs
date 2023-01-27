@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class NUIGadget
+    public abstract class NUIGadget
     {
         /// <summary>
         /// Initializes the gadget.
