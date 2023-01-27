@@ -143,7 +143,12 @@ namespace Tizen.NUI
                 throw new InvalidOperationException(e.Message);
             }
 
-            NUIGadget gadget = (NUIGadget)assembly.CreateInstance(className);
+            NUIGadget gadget = assembly.CreateInstance(className) as NUIGadget;
+            if (gadget == null)
+            {
+                throw new InvalidOperationException("Failed to create instance. className: " + className);
+            }
+
             gadget.NUIGadgetInfo = info;
             gadget.ClassName = className;
             gadget.LifecycleChanged += OnNUIGadgetLifecycleChanged;
