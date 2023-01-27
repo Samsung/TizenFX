@@ -81,7 +81,8 @@ namespace Tizen.NUI.Samples
                 Layout = new LinearLayout()
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    LinearAlignment = LinearLayout.Alignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
                 }
 
             };
