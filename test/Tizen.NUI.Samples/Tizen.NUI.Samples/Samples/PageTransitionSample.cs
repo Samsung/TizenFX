@@ -66,7 +66,8 @@ namespace Tizen.NUI.Samples
                 ParentOrigin = ParentOrigin.BottomCenter,
                 Layout = new LinearLayout()
                 {
-                    LinearAlignment = LinearLayout.Alignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                     CellPadding = new Size(convertSize(60), convertSize(60)),
                 },

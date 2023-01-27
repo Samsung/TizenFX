@@ -5,8 +5,6 @@ namespace Tizen.NUI.Samples
 {
     public class GraphicsTypeTest : IExample
     {
-        private int oldPageCount = 0;
-
         private Window window;
         private ScrollableBase rootView;
 

@@ -36,7 +36,6 @@ namespace Tizen.NUI.Samples
                 GridOrientation = GridLayout.Orientation.Horizontal,
                 
             };
-            //parent.Layout.Measure(new MeasureSpecification(new LayoutLength(1000), MeasureSpecification.ModeType.Exactly), new MeasureSpecification(new LayoutLength(780), MeasureSpecification.ModeType.Exactly));
             root.Add(gridLayout);
 
             imageArray = new string[36];
@@ -76,7 +75,8 @@ namespace Tizen.NUI.Samples
             layout[1].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
-                LinearAlignment = LinearLayout.Alignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
             };
             loading[0] = new Loading();
             loading[0].Size = new Size(100, 100);
@@ -104,7 +104,8 @@ namespace Tizen.NUI.Samples
             layout[0].Layout = new LinearLayout()
             { 
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
-                LinearAlignment = LinearLayout.Alignment.Center,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
                 CellPadding = new Size(10, 50)
             };
            
@@ -150,7 +151,8 @@ namespace Tizen.NUI.Samples
             layout[2].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
-                LinearAlignment = LinearLayout.Alignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
             };
             LoadingStyle style = new LoadingStyle
             {
@@ -167,7 +169,8 @@ namespace Tizen.NUI.Samples
             layout[3].Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
-                LinearAlignment = LinearLayout.Alignment.Center
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
             };
             button[2] = new Button();
             button[2].Size = new Size(400, 50);

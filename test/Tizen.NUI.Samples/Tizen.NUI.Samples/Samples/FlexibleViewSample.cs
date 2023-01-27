@@ -181,7 +181,7 @@ namespace Tizen.NUI.Samples
             parent.Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,
-                LinearAlignment = LinearLayout.Alignment.Bottom,
+                VerticalAlignment = VerticalAlignment.Bottom,
                 CellPadding = new Size(50, 50)
             };
             root.Add(parent);
@@ -261,20 +261,19 @@ namespace Tizen.NUI.Samples
             flexibleView2.AttachScrollBar(scrollBar2);
 
             FocusManager.Instance.SetCurrentFocusView(flexibleView1);
-            FocusManager.Instance.PreFocusChange += onPreFocusChange;
+            FocusManager.Instance.FocusChanging += OnFocusChanging;
         }
 
-        private View onPreFocusChange(object sender, NUI.FocusManager.PreFocusChangeEventArgs e)
+        private void OnFocusChanging(object sender, NUI.FocusChangingEventArgs e)
         {
-            if (e.CurrentView != null && e.CurrentView.Name == "RecyclerView1" && e.Direction == View.FocusDirection.Right && e.ProposedView == null)
+            if (e.Current != null && e.Current.Name == "RecyclerView1" && e.Direction == View.FocusDirection.Right && e.Proposed == null)
             {
-                return flexibleView2;
+                e.Proposed = flexibleView2;
             }
-            if (e.CurrentView != null && e.CurrentView.Name == "RecyclerView2" && e.Direction == View.FocusDirection.Left && e.ProposedView == null)
+            if (e.Current != null && e.Current.Name == "RecyclerView2" && e.Direction == View.FocusDirection.Left && e.Proposed == null)
             {
-                return flexibleView1;
+                e.Proposed = flexibleView1;
             }
-            return e.CurrentView;
         }
 
         private void FlexibleView_FocusLost(object sender, EventArgs e)
@@ -352,7 +351,7 @@ namespace Tizen.NUI.Samples
 
         public void Deactivate()
         {
-            FocusManager.Instance.PreFocusChange -= onPreFocusChange;
+            FocusManager.Instance.FocusChanging -= OnFocusChanging;
             FocusManager.Instance.ClearFocus();
 
             flexibleView1.DetachScrollBar();
