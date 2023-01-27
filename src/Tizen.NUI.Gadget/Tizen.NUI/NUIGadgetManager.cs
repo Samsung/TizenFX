@@ -175,14 +175,14 @@ namespace Tizen.NUI
             }
 
             if (gadget.State == NUIGadgetLifecycleState.Destroyed)
+            {
                 return;
-
+            }
 
             _gadgets.Remove(gadget);
             TizenUISynchronizationContext.Current.Post((object state) => {
                 Log.Warn("ResourceType: " + gadget.NUIGadgetInfo.ResourceType + ", State: " + gadget.State);
                 gadget.Finish();
-                gadget.NUIGadgetInfo = null;
             }, null);
         }
 
