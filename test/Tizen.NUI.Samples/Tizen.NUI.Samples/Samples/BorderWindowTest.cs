@@ -67,7 +67,7 @@ namespace Tizen.NUI.Samples
         topView.Layout = new LinearLayout()
         {
           LinearOrientation = LinearLayout.Orientation.Horizontal, 
-          LinearAlignment = LinearLayout.Alignment.CenterVertical,
+          VerticalAlignment = VerticalAlignment.Center,
           CellPadding = new Size2D(20, 20),
         };
         title = new TextLabel()
@@ -389,10 +389,11 @@ namespace Tizen.NUI.Samples
             return false;
         };
 
-        var root = new View(){
+        var root = new View()
+        {
           Layout = new LinearLayout()
           {
-              LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+            HorizontalAlignment = HorizontalAlignment.Center,
           },
           WidthResizePolicy = ResizePolicyType.FillToParent,
           HeightResizePolicy = ResizePolicyType.FillToParent,
@@ -430,7 +431,7 @@ namespace Tizen.NUI.Samples
           ResourceUrl = imagePath + "gallery-large-14.jpg",
           Layout = new LinearLayout()
           {
-              LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+              HorizontalAlignment = HorizontalAlignment.Center,
               LinearOrientation = LinearLayout.Orientation.Horizontal,
               CellPadding = new Size(10, 10),
           }
@@ -449,7 +450,7 @@ namespace Tizen.NUI.Samples
           CornerRadiusPolicy = VisualTransformPolicyType.Relative,
           Layout = new LinearLayout()
           {
-              LinearAlignment = LinearLayout.Alignment.CenterHorizontal,
+              HorizontalAlignment = HorizontalAlignment.Center,
               LinearOrientation = LinearLayout.Orientation.Horizontal,
               CellPadding = new Size(10, 10),
               Padding = new Extents(10, 10, 10 , 10),
@@ -462,7 +463,8 @@ namespace Tizen.NUI.Samples
           Size = new Size(150, 180),
           Layout = new LinearLayout()
           {
-              LinearAlignment = LinearLayout.Alignment.Center,
+              HorizontalAlignment = HorizontalAlignment.Center,
+              VerticalAlignment = VerticalAlignment.Center,
               LinearOrientation = LinearLayout.Orientation.Vertical,
           },
           AccessibilityHighlightable = true,
@@ -502,7 +504,8 @@ namespace Tizen.NUI.Samples
           Size = new Size(150, 180),
           Layout = new LinearLayout()
           {
-              LinearAlignment = LinearLayout.Alignment.Center,
+              HorizontalAlignment = HorizontalAlignment.Center,
+              VerticalAlignment = VerticalAlignment.Center,
               LinearOrientation = LinearLayout.Orientation.Vertical,
           },
           AccessibilityHighlightable = true,

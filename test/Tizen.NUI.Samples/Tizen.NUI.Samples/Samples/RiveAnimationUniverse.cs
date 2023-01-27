@@ -107,7 +107,8 @@ namespace Tizen.NUI.Samples
                     Layout = new LinearLayout()
                     {
                         LinearOrientation = LinearLayout.Orientation.Vertical,
-                        LinearAlignment = LinearLayout.Alignment.Center,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
                         CellPadding = new Size(40, 0)
                     }
                 };

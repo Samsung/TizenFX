@@ -34,7 +34,13 @@ namespace Tizen.NUI.Samples
             // Init parent of TextView
             parentView[0] = new View();
             parentView[0].Size = new Size(1920, 200);
-            parentView[0].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(300, 0) };
+            parentView[0].Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                CellPadding = new Size2D(300, 0)
+            };
             root.Add(parentView[0]);
 
             for (int i = 0; i < 2; i++)
@@ -63,7 +69,13 @@ namespace Tizen.NUI.Samples
             // Init parent of ToastView
             parentView[1] = new View();
             parentView[1].Size = new Size(1920, 500);
-            parentView[1].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center, CellPadding = new Size2D(300, 0) };
+            parentView[1].Layout = new LinearLayout() 
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                CellPadding = new Size2D(300, 0)
+            };
             root.Add(parentView[1]);
 
             // Create Toasts
@@ -92,7 +104,12 @@ namespace Tizen.NUI.Samples
             // Init parent of LogPadView
             parentView[2] = new View();
             parentView[2].Size = new Size(1920, 380);
-            parentView[2].Layout = new LinearLayout() { LinearOrientation = LinearLayout.Orientation.Horizontal, LinearAlignment = LinearLayout.Alignment.Center};
+            parentView[2].Layout = new LinearLayout()
+            {
+                LinearOrientation = LinearLayout.Orientation.Horizontal,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+            };
             root.Add(parentView[2]);
 
             // Create log pad

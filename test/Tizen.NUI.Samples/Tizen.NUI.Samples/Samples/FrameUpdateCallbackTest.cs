@@ -65,7 +65,6 @@ namespace Tizen.NUI.Samples
     private const int DEFAULT_SPACE = 9;
     private const int DEVIDE_BAR_SIZE = 4;
 
-    private TextLabel text;
     public class FrameUpdateCallback : FrameUpdateCallbackInterface
     {
       private int timeInterval;

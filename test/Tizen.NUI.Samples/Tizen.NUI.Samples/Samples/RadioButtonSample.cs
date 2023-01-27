@@ -49,7 +49,8 @@ namespace Tizen.NUI.Samples
                 {
                     LinearOrientation = LinearLayout.Orientation.Horizontal,
                     CellPadding = new Size(40, 40),
-                    LinearAlignment = LinearLayout.Alignment.Center,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
                 }
             };
             window.Add(root);

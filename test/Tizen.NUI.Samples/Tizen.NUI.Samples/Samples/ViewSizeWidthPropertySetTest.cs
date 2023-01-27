@@ -74,19 +74,19 @@ namespace Tizen.NUI.Samples
                 }
                 else if (e.Key.KeyPressedName == "5")
                 {
-                    view1.MinimumSize.Width = 500;
+                    view1.MinimumSize = new Size2D(500, view1.MinimumSize.Height);
                 }
                 else if (e.Key.KeyPressedName == "6")
                 {
-                    view1.MinimumSize.Width = 100;
+                    view1.MinimumSize = new Size2D(100, view1.MinimumSize.Height);
                 }
                 else if (e.Key.KeyPressedName == "7")
                 {
-                    view1.MaximumSize.Width = 700;
+                    view1.MaximumSize = new Size2D(700, view1.MaximumSize.Height);
                 }
                 else if (e.Key.KeyPressedName == "8")
                 {
-                    view1.MaximumSize.Width = 70;
+                    view1.MaximumSize = new Size2D(70, view1.MaximumSize.Height);
                 }
                 else if (e.Key.KeyPressedName == "9")
                 {
