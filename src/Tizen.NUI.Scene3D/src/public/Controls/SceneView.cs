@@ -154,6 +154,28 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// Set/Get the Framebuffer's MultiSamplingLevel.
+        /// Only has effects if UseFramebuffer is true, and Framebuffer MultiSampling is supported.
+        /// Default is 0.
+        /// </summary>
+        /// <remarks>
+        /// Getter didn't consider Framebuffer MultiSampling is supported or not.
+        /// </remarks>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint FramebufferMultiSamplingLevel
+        {
+            set
+            {
+                SetFramebufferMultiSamplingLevel(value);
+            }
+            get
+            {
+                return GetFramebufferMultiSamplingLevel();
+            }
+        }
+
+        /// <summary>
         /// Adds a Camera to the SceneView at the end of the camera list of SceneView.
         /// The Camera can be used as a selected camera to render the scene by using <see cref="SelectCamera(uint)"/> or <see cref="SelectCamera(string)"/>
         /// </summary>
@@ -393,6 +415,19 @@ namespace Tizen.NUI.Scene3D
         internal bool IsUsingFramebuffer()
         {
             bool result = Interop.SceneView.IsUsingFramebuffer(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        internal void SetFramebufferMultiSamplingLevel(uint multiSamplingLevel)
+        {
+            Interop.SceneView.SetFramebufferMultiSamplingLevel(SwigCPtr, multiSamplingLevel);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal uint GetFramebufferMultiSamplingLevel()
+        {
+            uint result = Interop.SceneView.GetFramebufferMultiSamplingLevel(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return result;
         }
