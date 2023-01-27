@@ -79,6 +79,12 @@ namespace Tizen.NUI.Scene3D
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsUsingFramebuffer(global::System.Runtime.InteropServices.HandleRef sceneView);
 
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_SetFramebufferMultiSamplingLevel")]
+            public static extern void SetFramebufferMultiSamplingLevel(global::System.Runtime.InteropServices.HandleRef sceneView, uint multiSamplingLevel);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_GetFramebufferMultiSamplingLevel")]
+            public static extern uint GetFramebufferMultiSamplingLevel(global::System.Runtime.InteropServices.HandleRef sceneView);
+
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_SceneView_SetSkybox")]
             public static extern void SetSkybox(global::System.Runtime.InteropServices.HandleRef sceneView, string skyboxUrl);
 
