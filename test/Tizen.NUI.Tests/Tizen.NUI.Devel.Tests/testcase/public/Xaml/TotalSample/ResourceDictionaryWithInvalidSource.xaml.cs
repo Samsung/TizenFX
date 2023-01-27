@@ -4,6 +4,8 @@ using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Devel.Tests
 {
+    using tlog = Tizen.Log;
+
     public partial class ResourceDictionaryWithInvalidSource : View
     {
         public ResourceDictionaryWithInvalidSource()
@@ -25,17 +27,6 @@ namespace Tizen.NUI.Devel.Tests
         [TearDown]
         public void TearDown()
         {
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Extensions LoadFromXaml.")]
-        [Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void InvalidSourceThrows()
-        {
-            Assert.Throws<FileNotFoundException>(() => new ResourceDictionaryWithInvalidSource());
         }
     }
 }

@@ -1297,7 +1297,7 @@ namespace Tizen.Multimedia
         /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public int GetExtraPreviewGopInterval(int streamId)
         {
-            Native.GetExtraPreviewBitrate(_camera.GetHandle(), streamId, out int gopInterval).
+            Native.GetExtraPreviewGopInterval(_camera.GetHandle(), streamId, out int gopInterval).
                 ThrowIfFailed("Failed to get extra preview gop interval");
 
             return gopInterval;
@@ -1307,26 +1307,44 @@ namespace Tizen.Multimedia
         /// Sets The GOP(Group Of Pictures) interval of extra preview with given stream ID.
         /// </summary>
         /// <param name="streamId">The stream ID.</param>
-        /// <param name="gopInterval">The stream ID.</param>
+        /// <param name="gopInterval">The GOP interval for extra preview.</param>
         /// <since_tizen> 10 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public void SetExtraPreviewGopInterval(int streamId, int gopInterval)
         {
-            Native.SetExtraPreviewBitrate(_camera.GetHandle(), streamId, gopInterval).
+            Native.SetExtraPreviewGopInterval(_camera.GetHandle(), streamId, gopInterval).
                 ThrowIfFailed("Failed to set extra preview gop interval");
         }
 
         /// <summary>
-        /// Gets the rotation of extra preview with given stream ID.
+        /// Gets the rotation of preview frame with given stream ID.
         /// </summary>
         /// <param name="streamId">The stream ID.</param>
         /// <returns>A rotation of extra preview.</returns>
         /// <since_tizen> 10 </since_tizen>
         /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
         public Rotation GetExtraPreviewRotation(int streamId)
+            => GetPreviewFrameRotation();
+
+        /// <summary>
+        /// Gets the rotation of preview frame.
+        /// </summary>
+        /// <returns>A rotation of preview frame.</returns>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation GetExtraPreviewRotation()
+            => GetPreviewFrameRotation();
+
+        /// <summary>
+        /// Gets the rotation of preview frame.
+        /// </summary>
+        /// <returns>A rotation of preview frame.</returns>
+        /// <exception cref="ObjectDisposedException">The camera has already been disposed. </exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation GetPreviewFrameRotation()
         {
-            Native.GetExtraPreviewRotation(_camera.GetHandle(), streamId, out Rotation rotation).
-                ThrowIfFailed("Failed to get extra preview gop interval");
+            Native.GetPreviewFrameRotation(_camera.GetHandle(), out Rotation rotation).
+                ThrowIfFailed("Failed to get preview frame rotation");
 
             return rotation;
         }

@@ -90,7 +90,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object DaliException.");
             Assert.IsInstanceOf<DaliException>(testingTarget, "Should return DaliException instance.");
 
-            testingTarget.condition= "Korea speaking!";
+            testingTarget.condition= "Korea";
             tlog.Debug(tag, "condition : " + testingTarget.condition);
 
             testingTarget.Dispose();

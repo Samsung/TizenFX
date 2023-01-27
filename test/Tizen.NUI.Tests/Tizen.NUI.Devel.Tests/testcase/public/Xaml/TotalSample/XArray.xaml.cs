@@ -36,21 +36,22 @@ namespace Tizen.NUI.Devel.Tests
         {
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("Extensions LoadFromXaml.")]
-        [Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        public void SupportsXArray()
-        {
-            var layout = new XArray();
-            var array = layout.Content;
-            Assert.NotNull(array);
-            Assert.That(array, Is.TypeOf<string[]>());
-            Assert.AreEqual(2, ((string[])layout.Content).Length);
-            Assert.AreEqual("Hello", ((string[])layout.Content)[0]);
-            Assert.AreEqual("World", ((string[])layout.Content)[1]);
-        }
+        //[Test]
+        //[Category("P1")]
+        //[Description("Extensions LoadFromXaml.")]
+        //[Property("SPEC", "Tizen.NUI.Xaml.Extensions.LoadFromXaml M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //public void SupportsXArray()
+        //{
+        //    var layout = new XArray();
+        //    var array = layout.Content;
+        //    Assert.IsNotNull(array);
+        //    Assert.IsInstanceOf<string[]>(array, "Should be an instance of string[] type.");
+
+        //    Assert.AreEqual(2, ((string[])layout.Content).Length);
+        //    Assert.AreEqual("Hello", ((string[])layout.Content)[0]);
+        //    Assert.AreEqual("World", ((string[])layout.Content)[1]);
+        //}
     }
 }

@@ -98,6 +98,9 @@ namespace Tizen.NUI
         /// <summary>
         /// Generate Url from pixel data.
         /// </summary>
+        /// <remarks>
+        /// This API should not be called at worker thread.
+        /// </remarks>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ImageUrl GenerateUrl()
         {

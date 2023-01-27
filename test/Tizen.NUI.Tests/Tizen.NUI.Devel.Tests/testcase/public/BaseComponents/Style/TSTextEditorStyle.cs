@@ -38,7 +38,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"publicBaseComponentTextEditorStyleFontFamily START");
 
             var testingTarget = new TextEditorStyle();
-			Assert.IsNotNull(testingTarget, "should be not null");
+            Assert.IsNotNull(testingTarget, "should be not null");
 			Assert.IsInstanceOf<TextEditorStyle>(testingTarget, "should be an instance of TextEditorStyle class!");
 
 			try
@@ -68,7 +68,7 @@ namespace Tizen.NUI.Devel.Tests
 				Assert.AreEqual(2, testingTarget.CursorWidth, "Should be equal!");
 
 				testingTarget.GrabHandleColor = new Color(1.0f, 1.0f, 1.0f, 1.0f);
-				Assert.AreEqual(1.0f, testingTarget.GrabHandleColor, "Should be equal!");	
+				Assert.AreEqual(1.0f, testingTarget.GrabHandleColor.A, "Should be equal!");	
 
 				testingTarget.GrabHandleImage = FrameworkInformation.ResourcePath + "IoT_handler_center_downW.png";
 				tlog.Debug(tag, "GrabHandleImage : " + testingTarget.GrabHandleImage);
@@ -89,7 +89,7 @@ namespace Tizen.NUI.Devel.Tests
 				Assert.AreEqual(2.0f, testingTarget.ScrollSpeed, "Should be equal!");
 
 				testingTarget.SelectionHighlightColor = new Vector4(1.0f, 0.3f, 0.0f, 0.8f);
-				Assert.AreEqual(0.8f, testingTarget.SelectionHighlightColor, "Should be equal!");	
+				Assert.AreEqual(0.8f, testingTarget.SelectionHighlightColor.A, "Should be equal!");	
 
 				testingTarget.DecorationBoundingBox = new Rectangle(5, 6, 100, 200);
 				Assert.AreEqual(5, testingTarget.DecorationBoundingBox.X, "Should be equal!");	
@@ -147,12 +147,12 @@ namespace Tizen.NUI.Devel.Tests
 				Assert.IsTrue(testingTarget.Ellipsis);
 
 				testingTarget.LineSpacing = 10.0f;
-				Assert.AreEqual(10.0f, testingTarget.LineSpacing, "Should be equal!");
+                Assert.AreEqual(10.0f, testingTarget.LineSpacing, "Should be equal!");
 
 				testingTarget.MinLineSize = 0.8f;
-				Assert.AreEqual(0.8f, testingTarget.MinLineSize, "Should be equal!");		
+                Assert.AreEqual(0.8f, testingTarget.MinLineSize, "Should be equal!");
 
-				testingTarget.RelativeLineHeight = 2.0f;
+                testingTarget.RelativeLineHeight = 2.0f;
 				Assert.AreEqual(2.0f, testingTarget.RelativeLineHeight, "Should be equal!");
 
 				testingTarget.SelectionPopupStyle = new PropertyMap()

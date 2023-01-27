@@ -966,6 +966,37 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
+        [Description("PropertyValue NotEqualTo")]
+        [Property("SPEC", "Tizen.NUI.PropertyValue.NotEqualTo M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void PropertyValueNotEqualTo()
+        {
+            tlog.Debug(tag, $"PropertyValueNotEqualTo START");
+
+            var testingTarget = new PropertyValue("DALI");
+            Assert.IsNotNull(testingTarget, "Should be not null!");
+            Assert.IsInstanceOf<PropertyValue>(testingTarget, "Should be an Instance of PropertyValue class!");
+
+            var temp = new PropertyValue((int)Visual.Type.Image);
+            try
+            {
+                var ret = testingTarget.NotEqualTo(temp);
+                Assert.IsTrue(ret);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Caught Exception" + e.ToString());
+            }
+
+            testingTarget.Dispose();
+            temp.Dispose();
+            tlog.Debug(tag, $"PropertyValueNotEqualTo END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
         [Description("PropertyValue Get. PropertyArray value")]
         [Property("SPEC", "Tizen.NUI.PropertyValue.Get M")]
         [Property("SPEC_URL", "-")]

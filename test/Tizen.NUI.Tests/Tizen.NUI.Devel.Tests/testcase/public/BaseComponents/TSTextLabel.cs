@@ -355,5 +355,31 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"TextLabelMinLineSize END (OK)");
         }
+
+        [Test]
+        [Category("P1")]
+        [Description("TextLabel DownCast.")]
+        [Property("SPEC", "Tizen.NUI.TextLabel.DownCast M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "CONSTR")]
+        [Property("AUTHOR", "bowon.ryu@samsung.com")]
+        public void TextLabelDownCast()
+        {
+            tlog.Debug(tag, $"TextLabelDownCast START");
+            try
+            {
+                BaseHandle handle = new TextLabel("Hello World!");
+                TextLabel label = handle as TextLabel;
+
+                TextLabel.DownCast(handle);
+            }
+            catch (Exception e)
+            {
+                tlog.Debug(tag, e.Message.ToString());
+                Assert.Fail("Caught Exception: Failed!");
+            }
+
+            tlog.Debug(tag, $"TextLabelDownCast END (OK)");
+        }
     }
 }

@@ -354,14 +354,14 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("AnimatedImageView Play.")]
-        [Property("SPEC", "Tizen.NUI.AnimatedImageView.Play M")]
+        [Description("AnimatedImageView Image.")]
+        [Property("SPEC", "Tizen.NUI.AnimatedImageView.Image A")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
+        [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AnimatedImageViewPlay()
+        public void AnimatedImageViewImage()
         {
-            tlog.Debug(tag, $"AnimatedImageViewPlay START");
+            tlog.Debug(tag, $"AnimatedImageViewImage START");
 
             var testingTarget = new AnimatedImageView();
             Assert.IsNotNull(testingTarget, "Can't create success object AnimatedImageView");
@@ -382,22 +382,12 @@ namespace Tizen.NUI.Devel.Tests
                 testingTarget.BatchSize = 2;
                 testingTarget.CacheSize = 2;
                 testingTarget.LoopCount = 3;
+                testingTarget.FrameDelay = 300;
                 testingTarget.StopBehavior = AnimatedImageView.StopBehaviorType.MinimumFrame;
-
-                try
-                {
-                    testingTarget.Play();
-                }
-                catch (Exception e)
-                {
-                    testingTarget.Dispose();
-                    tlog.Debug(tag, e.Message.ToString());
-                    tlog.Debug(tag, $"AnimatedImageViewPlay END (OK)");
-                    Assert.Pass("Passed!");
-                }
             }
-            testingTarget?.Dispose();
-            tlog.Debug(tag, $"AnimatedImageViewPlay END (OK)");
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"AnimatedImageViewImage END (OK)");
         }
     }
 }

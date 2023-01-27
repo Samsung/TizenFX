@@ -589,6 +589,37 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Sends the launch request with setting timeout.
+        /// </summary>
+        /// <remarks>
+        /// The operation is mandatory information for the launch request.
+        /// If the operation is not specified, AppControlOperations.Default is used by default.
+        /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br/>
+        /// To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.<br/>
+        /// It can set receiving timeout interval using timeout parameter.
+        /// If there is an error that is not related to timeout, the error is returned immediately regardless of the timeout value.
+        /// </remarks>
+        /// <param name="launchRequest">The AppControl.</param>
+        /// <param name="timeout">The timeout in milliseconds, the timeout range is 5000 to 30000.</param>
+        /// <exception cref="ArgumentNullException">Thrown when failed because of a null argument.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <exception cref="TimeoutException">Thrown when failed because of timeout.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.ApplicationId = "org.tizen.calculator";
+        /// AppControl.SendLaunchRequest(appControl, 10000);
+        /// </code>
+        /// </example>
+        /// <since_tizen> 7.5 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SendLaunchRequest(AppControl launchRequest, uint timeout)
+        {
+            SendLaunchRequest(launchRequest, timeout, null);
+        }
+
+        /// <summary>
         /// Sends the launch request.
         /// </summary>
         /// <remarks>
@@ -641,6 +672,88 @@ namespace Tizen.Applications
             else
             {
                 err = Interop.AppControl.SendLaunchRequest(launchRequest._handle, null, IntPtr.Zero);
+            }
+
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.AppControl.ErrorCode.TimedOut:
+                        throw new TimeoutException("Timed out");
+                    case Interop.AppControl.ErrorCode.OutOfMemory:
+                        throw new Exceptions.OutOfMemoryException("Out-of-memory");
+                    case Interop.AppControl.ErrorCode.AppNotFound:
+                        throw new Exceptions.AppNotFoundException("App(" + launchRequest.ApplicationId + ") not found. Operation(" + launchRequest.Operation + ")");
+                    case Interop.AppControl.ErrorCode.LaunchRejected:
+                        throw new Exceptions.LaunchRejectedException("Launch rejected");
+                    case Interop.AppControl.ErrorCode.LaunchFailed:
+                        throw new Exceptions.LaunchFailedException("Launch failed");
+                    case Interop.AppControl.ErrorCode.PermissionDenied:
+                        throw new Exceptions.PermissionDeniedException("Permission denied");
+
+                    default:
+                        throw new Exceptions.LaunchRejectedException("Launch rejected");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Sends the launch request with setting timeout
+        /// </summary>
+        /// <remarks>
+        /// The operation is mandatory information for the launch request.
+        /// If the operation is not specified, AppControlOperations.Default is used by default.
+        /// If the operation is AppControlOperations.Default, the application ID is mandatory to explicitly launch the application.<br/>
+        /// To launch a service application, an explicit launch request with the application ID given by property ApplicationId MUST be sent.<br/>
+        /// It can set receiving timeout interval using timeout parameter.
+        /// If there is an error that is not related to timeout, the error is returned immediately regardless of the timeout value.
+        /// </remarks>
+        /// <param name="launchRequest">The AppControl.</param>
+        /// <param name="timeout">The timeout in milliseconds, the timeout range is 5000 to 30000.</param>
+        /// <param name="replyAfterLaunching">The callback function to be called when the reply is delivered.</param>
+        /// <exception cref="ArgumentException">Thrown when failed because of the argument is invalid.</exception>
+        /// <exception cref="Exceptions.AppNotFoundException">Thrown when the application to run is not found.</exception>
+        /// <exception cref="Exceptions.LaunchFailedException">Thrown when the request failed to launch the application.</exception>
+        /// <exception cref="Exceptions.LaunchRejectedException">Thrown when the launch request is rejected.</exception>
+        /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
+        /// <exception cref="TimeoutException">Thrown when failed because of timeout. The timeout interval is set by timeout parameter.</exception>
+        /// <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
+        /// <example>
+        /// <code>
+        /// AppControl appControl = new AppControl();
+        /// appControl.ApplicationId = "org.tizen.calculator";
+        /// AppControl.SendLaunchRequest(appControl, 10000, (launchRequest, replyRequest, result) => {
+        ///     // ...
+        /// });
+        /// </code>
+        /// </example>
+        /// <since_tizen> 7.5 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void SendLaunchRequest(AppControl launchRequest, uint timeout, AppControlReplyCallback replyAfterLaunching)
+        {
+            if (launchRequest == null)
+            {
+                throw new ArgumentNullException("launchRequest");
+            }
+
+            Interop.AppControl.ErrorCode err;
+
+            if (replyAfterLaunching != null)
+            {
+                int id = 0;
+                lock (s_replyCallbackMaps)
+                {
+                    id = s_reaustId++;
+                    s_replyCallbackMaps[id] = replyAfterLaunching;
+                }
+                err = Interop.AppControl.SendLaunchRequestWithTimeout(launchRequest._handle, timeout, s_replyNativeCallback, (IntPtr)id);
+            }
+            else
+            {
+                err = Interop.AppControl.SendLaunchRequestWithTimeout(launchRequest._handle, timeout, null, IntPtr.Zero);
             }
 
             if (err != Interop.AppControl.ErrorCode.None)
@@ -827,6 +940,48 @@ namespace Tizen.Applications
                         throw new InvalidOperationException("err = " + err);
                 }
             }
+        }
+
+        /// <summary>
+        /// Gets all default applications.
+        /// </summary>
+        /// <returns>ApplicationIds.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <example>
+        /// <code>
+        /// IEnumerable&lt;string&gt; applicationIds = AppControl.GetDefaultApplicationIds();
+        /// if (applicationIds != null)
+        /// {
+        ///     foreach (string id in applicationIds)
+        ///     {
+        ///         // ...
+        ///     }
+        /// }
+        /// </code>
+        /// </example>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static IEnumerable<string> GetDefaultApplicationIds()
+        {
+            List<string> ids = new List<string>();
+            Interop.AppControl.DefaultApplicationCallback callback = (applicationId, userData) =>
+            {
+                if (applicationId == null)
+                {
+                    return false;
+                }
+
+                ids.Add(applicationId);
+                return true;
+            };
+
+            Interop.AppControl.ErrorCode err = Interop.AppControl.ForeachDefaultApplication(callback, IntPtr.Zero);
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                throw new InvalidOperationException("Failed to get default application Ids. err = " + err);
+            }
+
+            return ids;
         }
 
         /// <summary>

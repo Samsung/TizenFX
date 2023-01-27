@@ -36,7 +36,7 @@ namespace Tizen.NUI.Devel.Tests
         public void BaseComponentsStyleTextLabelStyle()
         {
             tlog.Debug(tag, $"BaseComponentsStyleTextLabelStyle START");
-			
+
             var testingTarget = new TextLabelStyle();
 			Assert.IsNotNull(testingTarget, "should be not null");
 			Assert.IsInstanceOf<TextLabelStyle>(testingTarget, "should be an instance of TextLabelStyle class!");
@@ -89,8 +89,11 @@ namespace Tizen.NUI.Devel.Tests
 				testingTarget.Emboss = FrameworkInformation.ResourcePath + "IoT_handler_center_downW.png";
 				tlog.Debug(tag, "Emboss : " + testingTarget.Emboss);
 
-				testingTarget.PixelSize = 24.0f;
-				Assert.AreEqual(24.0f, testingTarget.PixelSize, "Should be equal!");
+				testingTarget.PixelSize = new Selector<float?>()
+				{
+					All = 24.0f,
+				};
+				Assert.AreEqual(24.0f, testingTarget.PixelSize.All, "Should be equal!");
 
 				testingTarget.Ellipsis = true ;
 				Assert.IsTrue(testingTarget.Ellipsis);
@@ -121,10 +124,10 @@ namespace Tizen.NUI.Devel.Tests
                     Normal = new Color(0.2196f, 0.6131f, 0.9882f, 1),
                     Disabled = new Color(1, 1, 1, 0.35f),
                 };
-				Assert.AreEqual(0.35f, testingTarget.TextColor.Disabled.A, "Should be equal!");
+                Assert.AreEqual(0.35f, testingTarget.TextColor.Disabled.A, "Should be equal!");
 
-				testingTarget.PointSize = new Selector<float?>()
-				{
+                testingTarget.PointSize = new Selector<float?>()
+                {
 					All = 16.0f,
 				};
 				Assert.AreEqual(16.0f, testingTarget.PointSize.All, "Should be equal!");

@@ -83,7 +83,7 @@ namespace Tizen.NUI.Components.Devel.Tests
 
             try
             {
-                new TimePicker(Tizen.NUI.DefaultThemeCreator.DefaultId);
+                new TimePicker("Tizen.NUI.Components.TimePicker");
             }
             catch (Exception e)
             {

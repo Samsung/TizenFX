@@ -17,6 +17,12 @@ namespace Tizen.NUI.Devel.Tests
 
 	    public void ViewResize(int w, int h) { }
 		
+		public void GLInitialize() {}
+		
+	    public int GLRenderFrame() { return 5;}
+		
+		public void GLTerminate() {}
+		
         [SetUp]
         public void Init()
         {
@@ -28,8 +34,8 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Info(tag, "Destroy() is called!");
         }
-		
-		[Test]
+
+        [Test]
         [Category("P1")]
         [Description("GLView  constructor.")]
         [Property("SPEC", "Tizen.NUI.GLView .GLView  C")]
@@ -39,24 +45,24 @@ namespace Tizen.NUI.Devel.Tests
         public void GLViewConstructor()
         {
             tlog.Debug(tag, $"GLViewConstructor START");
-            
+
             try
-			{
+            {
                 var testingTarget = new GLView(GLView.ColorFormat.RGBA8888);
                 Assert.IsNotNull(testingTarget, "Can't create success object GLView ");
                 Assert.IsInstanceOf<GLView>(testingTarget, "Should be an instance of GLView  type.");
-            
+
                 testingTarget.Dispose();
-			}
-			catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Assert.Fail("Catch exception: " + e.Message.ToString());
             }
 
             tlog.Debug(tag, $"GLViewConstructor END (OK)");
         }
-		
-		[Test]
+
+        [Test]
         [Category("P1")]
         [Description("GLView RenderingMode")]
         [Property("SPEC", "Tizen.NUI.GLView.RenderingMode M")]
@@ -68,7 +74,7 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"GLViewRenderingMode START");
 
             try
-			{
+            {
                 var testingTarget = new GLView(GLView.ColorFormat.RGBA8888);
                 Assert.IsNotNull(testingTarget, "Can't create success object GLView");
                 Assert.IsInstanceOf<GLView>(testingTarget, "Should be an instance of GLView type.");
@@ -78,16 +84,16 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.AreEqual(GLRenderingMode.OnDemand, result, "Should be equal!");
 
                 testingTarget.Dispose();
-			}
-			catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Assert.Fail("Catch exception: " + e.Message.ToString());
             }
 
             tlog.Debug(tag, $"GLViewRenderingMode END (OK)");
         }
-		
-		[Test]
+
+        [Test]
         [Category("P1")]
         [Description("GLView RenderOnce")]
         [Property("SPEC", "Tizen.NUI.GLView.RenderOnce M")]
@@ -106,7 +112,7 @@ namespace Tizen.NUI.Devel.Tests
             {
                 testingTarget.RenderOnce();
             }
-			catch(Exception e)
+            catch (Exception e)
             {
                 Assert.Fail("Catch exception: " + e.Message.ToString());
             }
@@ -114,8 +120,8 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"GLViewRenderOnce END (OK)");
         }
-		
-		[Test]
+
+        [Test]
         [Category("P1")]
         [Description("GLView SetResizeCallback")]
         [Property("SPEC", "Tizen.NUI.GLView.SetResizeCallback M")]
@@ -131,10 +137,10 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsInstanceOf<GLView>(testingTarget, "Should be an instance of GLView type.");
 
             try
-			{
+            {
                 testingTarget.SetResizeCallback(ViewResize);
-			}
-			catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Assert.Fail("Catch exception: " + e.Message.ToString());
             }
@@ -142,5 +148,33 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.Dispose();
             tlog.Debug(tag, $"GLViewSetResizeCallback END (OK)");
         }
-	}
+
+        [Test]
+        [Category("P1")]
+        [Description("GLView RegisterGLCallbacks")]
+        [Property("SPEC", "Tizen.NUI.GLView.RegisterGLCallbacks M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public void GLViewRegisterGLCallbacks()
+        {
+            tlog.Debug(tag, $"GLViewRegisterGLCallbacks START");
+
+            var testingTarget = new GLView(GLView.ColorFormat.RGBA8888);
+            Assert.IsNotNull(testingTarget, "Can't create success object GLView");
+            Assert.IsInstanceOf<GLView>(testingTarget, "Should be an instance of GLView type.");
+
+            try
+            {
+                testingTarget.RegisterGLCallbacks(GLInitialize, GLRenderFrame, GLTerminate);
+            }
+            catch (Exception e)
+            {
+                Assert.Fail("Catch exception: " + e.Message.ToString());
+            }
+
+            testingTarget.Dispose();
+            tlog.Debug(tag, $"GLViewRegisterGLCallbacks END (OK)");
+        }
+    }
 }
