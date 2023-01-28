@@ -533,7 +533,7 @@ namespace Tizen.NUI.Scene3D
         private Rotation GetSkyboxOrientation()
         {
             global::System.IntPtr cPtr = Interop.SceneView.GetSkyboxOrientation(SwigCPtr);
-            Rotation ret = (cPtr == global::System.IntPtr.Zero) ? null : new Rotation(cPtr, false);
+            Rotation ret = (cPtr == global::System.IntPtr.Zero) ? null : new Rotation(cPtr, true);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
