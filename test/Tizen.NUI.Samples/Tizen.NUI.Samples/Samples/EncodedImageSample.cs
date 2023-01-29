@@ -30,6 +30,9 @@ namespace Tizen.NUI.Samples
                 ResourceUrl = imageUrl?.ToString(),
             };
 
+            imageUrl?.Dispose();
+            buffer?.Dispose();
+
             win.GetDefaultLayer().Add(imageView);
         }
 
