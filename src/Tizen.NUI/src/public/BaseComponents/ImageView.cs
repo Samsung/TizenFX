@@ -1297,6 +1297,11 @@ namespace Tizen.NUI.BaseComponents
                     {
                         UpdateImage(ImageVisualProperty.URL, setValue);
                     }
+                    // Special case. If we set GeneratedUrl, Create ImageVisual synchronously.
+                    if(value.StartsWith("dali://") || value.StartsWith("enbuf://"))
+                    {
+                        UpdateImage();
+                    }
                 }
             }
         }
