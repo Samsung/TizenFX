@@ -1005,7 +1005,7 @@ namespace Tizen.NUI.Components
         {
             Debug.Assert(buttonIcon != null && buttonText != null);
 
-            styleApplied = false;
+            styleApplying = true;
 
             base.ApplyStyle(viewStyle);
 
@@ -1041,7 +1041,7 @@ namespace Tizen.NUI.Components
                 }
             }
 
-            styleApplied = true;
+            styleApplying = false;
             UpdateState();
         }
 
