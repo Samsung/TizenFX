@@ -98,6 +98,7 @@ namespace Tizen.Applications
             };
 
             Interop.Bundle.Foreach(_handle, iterator, IntPtr.Zero);
+            GC.KeepAlive(iterator);
             if ((BundleErrorFactory.BundleError)ErrorFacts.GetLastResult() == BundleErrorFactory.BundleError.InvalidParameter)
             {
                 throw new ArgumentException("Invalid parameter - cannot create bundle instance");
