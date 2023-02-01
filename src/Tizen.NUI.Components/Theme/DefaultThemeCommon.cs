@@ -161,7 +161,7 @@ namespace Tizen.NUI.Components
                 },
                 Buttons = new ButtonStyle()
                 {
-                    Size = new Size(0, 80),
+                    SizeHeight = 80,
                     CornerRadius = 0,
                     BackgroundColor = new Selector<Color>()
                     {
@@ -603,7 +603,7 @@ namespace Tizen.NUI.Components
                     PixelSize = 24,
                     VerticalAlignment = VerticalAlignment.Center,
                     HorizontalAlignment = HorizontalAlignment.Center,
-                    Size = new Size(0, 44),
+                    SizeHeight = 44,
                     TextColor = new Selector<Color>()
                     {
                         Normal = new Color(0.035f, 0.055f, 0.123f, 1.0f),
@@ -737,7 +737,7 @@ namespace Tizen.NUI.Components
                         PixelSize = 24,
                         VerticalAlignment = VerticalAlignment.Center,
                         HorizontalAlignment = HorizontalAlignment.Center,
-                        Size = new Size(0, 44),
+                        SizeHeight = 44,
                         TextColor = new Selector<Color>()
                         {
                             Normal = new Color(0.035f, 0.055f, 0.123f, 1.0f),
@@ -762,7 +762,7 @@ namespace Tizen.NUI.Components
                         PixelSize = 24,
                         VerticalAlignment = VerticalAlignment.Center,
                         HorizontalAlignment = HorizontalAlignment.Center,
-                        Size = new Size(0, 44),
+                        SizeHeight = 44,
                         TextColor = new Selector<Color>()
                         {
                             Normal = new Color(0.035f, 0.055f, 0.123f, 1.0f),
