@@ -15,7 +15,6 @@
  *
  */
 
-using System.Collections.Generic;
 
 namespace Tizen.NUI
 {
