@@ -1560,10 +1560,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void InitializeStyle(ViewStyle style = null)
         {
-#if PROFILE_TV
-            // tv profile doesn't use NUI Style, so do nothing and just return here!
-            return;
-#endif
+            if (style == null && ThemeManager.InitialThemeDisabled)
+            {
+                // Fast return in most TV cases.
+                return;
+            }
+
             var initialStyle = ThemeManager.GetInitialStyleWithoutClone(GetType());
             if (style == null)
             {
