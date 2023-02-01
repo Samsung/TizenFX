@@ -370,7 +370,10 @@ namespace Tizen.NUI.Components
             // LinearLayouter base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.LinearLayouter", new ViewStyle()
             {
-                Padding = new Extents(0, 0, 0, 0)
+                Padding = new Extents(16, 16, 0, 0),
+                BackgroundColor = new Color("#FAFAFA"),
+                CornerRadius = 24.0f,
+                BoxShadow = new Shadow(8.0f, new Color(0.0f, 0.0f, 0.0f, 0.16f), new Vector2(0.0f, 2.0f)),
             });
 
             // GridLayouter base style

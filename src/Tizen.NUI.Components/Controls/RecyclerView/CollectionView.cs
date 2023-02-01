@@ -397,7 +397,9 @@ namespace Tizen.NUI.Components
                 if (layouterStyle != null)
                 {
                     itemsLayouter.Padding = new Extents(layouterStyle.Padding);
+                    ApplyStyle(layouterStyle);
                 }
+
                 ReinitializeLayout();
             }
         }

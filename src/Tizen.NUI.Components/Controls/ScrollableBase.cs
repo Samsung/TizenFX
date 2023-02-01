@@ -903,7 +903,7 @@ namespace Tizen.NUI.Components
             if (mPanGestureDetector.GetMaximumTouchesRequired() < 2) mPanGestureDetector.SetMaximumTouchesRequired(2);
             mPanGestureDetector.Detected += OnPanGestureDetected;
 
-            ClippingMode = ClippingModeType.ClipToBoundingBox;
+            ClippingMode = ClippingModeType.ClipChildren;
 
             //Default Scrolling child
             ContentContainer = new View()

@@ -3,7 +3,8 @@
   xmlns="http://tizen.org/Tizen.NUI/2018/XAML"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
-  HeightSpecification="{Static LayoutParamPolicies.MatchParent}">
+  HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+  BackgroundColor="#FFFFFF">
 
     <!-- AppBar is top-side bar with navigation content, title, and action. If you not set any contents, back button is automatically added. -->
     <ContentPage.AppBar>
@@ -13,8 +14,8 @@
     <!-- Content is main placeholder of ContentPage. Add your content into this view. -->
     <ContentPage.Content>
         <CollectionView x:Name="ColView"
-                          WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
-                          HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
+                          WidthSpecification="600"
+                          HeightSpecification="900"
                           ScrollingDirection="Vertical"
                           SelectionMode="Multiple"
                           SelectionChanged="OnSelectionChanged"
