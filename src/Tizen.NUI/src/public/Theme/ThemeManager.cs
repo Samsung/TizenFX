@@ -14,11 +14,6 @@
  * limitations under the License.
  *
  */
-
-#if !PROFILE_TV
-#define ExternalThemeEnabled
-#endif
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -53,10 +48,10 @@ namespace Tizen.NUI
 
         static ThemeManager()
         {
-#if ExternalThemeEnabled
+            if (InitialThemeDisabled) return;
+
             ExternalThemeManager.Initialize();
             AddPackageTheme(DefaultThemeCreator.Instance);
-#endif
         }
 
         /// <summary>
@@ -96,7 +91,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static string PlatformThemeId
         {
-            get => platformTheme?.Id ?? (platformThemeEnabled ? baseTheme.Id : null);
+            get => platformTheme?.Id ?? (platformThemeEnabled ? baseTheme?.Id : null);
         }
 
         /// <summary>
@@ -105,7 +100,15 @@ namespace Tizen.NUI
         /// </summary>
         internal static Theme BaseTheme
         {
-            get => baseTheme;
+            get
+            {
+                if (baseTheme == null)
+                {
+                    baseTheme = new Theme();
+                    UpdateThemeForInitialize();
+                }
+                return baseTheme;
+            }
             set
             {
                 baseTheme = value;
@@ -145,6 +148,12 @@ namespace Tizen.NUI
         }
 
         internal static bool ApplicationThemeChangeSensitive { get; set; } = false;
+
+#if PROFILE_TV
+        internal const bool InitialThemeDisabled = true;
+#else        
+        internal const bool InitialThemeDisabled = false;
+#endif
 
         /// <summary>
         /// Apply custom theme to the NUI.
@@ -314,8 +323,7 @@ namespace Tizen.NUI
         /// <param name="version">The external theme version.</param>
         internal static void ApplyExternalPlatformTheme(string id, string version)
         {
-#if ExternalThemeEnabled
-            Debug.Assert(baseTheme != null);
+            if (InitialThemeDisabled) return;
 
             // If the given theme is invalid, do nothing.
             if (string.IsNullOrEmpty(id))
@@ -324,7 +332,7 @@ namespace Tizen.NUI
             }
 
             // If no platform theme has been applied and the base theme can cover the given one, do nothing.
-            if (platformTheme == null && baseTheme.HasSameIdAndVersion(id, version))
+            if (platformTheme == null && baseTheme != null && baseTheme.HasSameIdAndVersion(id, version))
             {
                 Tizen.Log.Info("NUI", "The base theme can cover platform theme: Skip loading.");
                 return;
@@ -347,23 +355,16 @@ namespace Tizen.NUI
                 UpdateThemeForUpdate();
                 NotifyThemeChanged(true);
             }
-#endif
         }
 
         internal static void AddPackageTheme(IThemeCreator themeCreator)
         {
-#if PROFILE_TV
-            // for tv profile, set empty theme and just return here!
-            userTheme = null;
-            baseTheme = themeCreator.Create();
-            return;
-#endif
-            if (packages.Contains(themeCreator))
+            if (InitialThemeDisabled || packages.Contains(themeCreator))
             {
                 return;
             }
 
-            Tizen.Log.Info("NUI", $"AddPackageTheme({themeCreator.GetType().Assembly.GetName().Name})");
+            Tizen.Log.Debug("NUI", $"AddPackageTheme({themeCreator.GetType().Assembly.GetName().Name})");
             packages.Add(themeCreator);
 
             // Base theme
@@ -374,7 +375,6 @@ namespace Tizen.NUI
             else baseTheme.MergeWithoutClone(packageBaseTheme);
             baseTheme.PackageCount++;
 
-#if ExternalThemeEnabled
             if (platformThemeEnabled)
             {
                 Tizen.Log.Info("NUI", $"Platform theme is enabled");
@@ -395,19 +395,16 @@ namespace Tizen.NUI
                 }
                 UpdateThemeForUpdate();
             }
-#endif
             UpdateThemeForInitialize();
         }
 
         internal static void Preload()
         {
-#if ExternalThemeEnabled
-            Debug.Assert(baseTheme != null);
+            if (InitialThemeDisabled) return;
 
             if (string.IsNullOrEmpty(ExternalThemeManager.CurrentThemeId)) return;
 
             LoadPlatformTheme(ExternalThemeManager.CurrentThemeId);
-#endif
         }
 
         // TODO Please make it private after removing Tizen.NUI.Components.StyleManager.
@@ -440,7 +437,8 @@ namespace Tizen.NUI
             }
 
             themeForInitialize = new Theme();
-            themeForInitialize.Merge(baseTheme);
+
+            if (baseTheme != null) themeForInitialize.Merge(baseTheme);
 
             if (userTheme == null)
             {
@@ -529,8 +527,6 @@ namespace Tizen.NUI
 
         private static void NotifyThemeChanged(bool platformThemeUpdated = false)
         {
-            Debug.Assert(baseTheme != null);
-
             var platformThemeId = PlatformThemeId;
             var userThemeId = userTheme?.Id;
             ThemeChangedInternal.Invoke(null, new ThemeChangedEventArgs(userThemeId, platformThemeId, platformThemeUpdated));
