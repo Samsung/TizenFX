@@ -15,10 +15,6 @@
  *
  */
 
-#if !PROFILE_TV
-#define ExternalThemeEnabled
-#endif
-
 namespace Tizen.NUI.Components
 {
     internal partial class DefaultThemeCreator
@@ -29,13 +25,13 @@ namespace Tizen.NUI.Components
 
         public static void Preload()
         {
-#if ExternalThemeEnabled
+            if (ThemeManager.InitialThemeDisabled) return;
+
             ThemeManager.AddPackageTheme(Instance);
 
             if (string.IsNullOrEmpty(ExternalThemeManager.CurrentThemeId)) return;
 
             ThemeManager.LoadPlatformTheme(ExternalThemeManager.CurrentThemeId);
-#endif
         }
     }
 }

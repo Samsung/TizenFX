@@ -14,7 +14,6 @@
  * limitations under the License.
  *
  */
-#if !PROFILE_TV
 
 using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
@@ -130,4 +129,3 @@ namespace Tizen.NUI
     }
 }
 
-#endif // !PROFILE_TV
