@@ -26,7 +26,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This class provides properties to get information the gadget.
     /// </summary>
-    /// <since_tizen> 11 </since_tizen>
+    /// <since_tizen> 10 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIGadgetInfo
     {
@@ -50,25 +50,25 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the package ID of the gadget.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public string PackageId { get; private set; }
 
         /// <summary>
         /// Gets the resource type of the gadget.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public string ResourceType { get; private set; }
 
         /// <summary>
         /// Gets the resource version of the gadget.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public string ResourceVersion { get; private set; }
 
         /// <summary>
         /// Gets the resource path of the gadget.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public string ResourcePath
         {
             get
@@ -92,13 +92,13 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the executable file of the gadget.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public string ExecutableFile { get; internal set; }
 
         /// <summary>
         /// Gets the metadata of the gadget.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public IDictionary<string, string> Metadata { get; private set; }
 
         internal static NUIGadgetInfo CreateNUIGadgetInfo(string packageId)

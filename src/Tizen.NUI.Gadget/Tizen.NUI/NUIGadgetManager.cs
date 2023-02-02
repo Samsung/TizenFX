@@ -28,7 +28,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This class has the methods and events of the NUIGadgetManager.
     /// </summary>
-    /// <since_tizen> 11 </since_tizen>
+    /// <since_tizen> 10 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public static class NUIGadgetManager
     {
@@ -101,7 +101,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Occurs when the lifecycle of the NUIGadget is changed.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public static event EventHandler<NUIGadgetLifecycleChangedEventArgs> NUIGadgetLifecycleChanged;
 
         private static void OnNUIGadgetLifecycleChanged(object sender, NUIGadgetLifecycleChangedEventArgs args)
@@ -123,7 +123,7 @@ namespace Tizen.NUI
         /// <returns>The NUIGadget object.</returns>
         /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
         /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public static NUIGadget Add(string resourceType, string className)
         {
             if (!_gadgetInfos.TryGetValue(resourceType, out NUIGadgetInfo info))
@@ -165,7 +165,7 @@ namespace Tizen.NUI
         /// Gets the information of the running NUIGadgets.
         /// </summary>
         /// <returns>The NUIGadget list.</returns>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public static IEnumerable<NUIGadget> GetGadgets()
         {
             return _gadgets;
@@ -175,7 +175,7 @@ namespace Tizen.NUI
         /// Removes the NUIGadget from a NUIGadgetManager.
         /// </summary>
         /// <param name="gadget">The NUIGadget object.</param>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public static void Remove(NUIGadget gadget)
         {
             if (gadget == null || !_gadgets.Contains(gadget))
@@ -198,7 +198,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Removes all NUIGadget from a NUIGadgetManager.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public static void RemoveAll()
         {
             for (int i = _gadgets.Count - 1;  i >= 0; i--)
@@ -211,7 +211,7 @@ namespace Tizen.NUI
         /// Resumes the running NUIGadget.
         /// </summary>
         /// <param name="gadget">The NUIGadget object.</param>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public static void Resume(NUIGadget gadget)
         {
             if (!_gadgets.Contains(gadget))
@@ -230,7 +230,7 @@ namespace Tizen.NUI
         /// Pauses the running NUIGadget.
         /// </summary>
         /// <param name="gadget">The NUIGadget object.</param>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public static void Pause(NUIGadget gadget)
         {
             if (!_gadgets.Contains(gadget))
@@ -252,6 +252,7 @@ namespace Tizen.NUI
         /// <param name="appControl">The appcontrol object.</param>
         /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
         /// <exception cref="ArgumentNullException">Thrown when failed because the argument is null.</exception>
+        /// <since_tizen> 10 </since_tizen>
         public static void SendAppControl(NUIGadget gadget, AppControl appControl)
         {
             if (gadget == null)
