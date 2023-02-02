@@ -24,7 +24,7 @@ namespace Tizen.NUI
     /// <summary>
     /// This class represents a NUIGadget controlled lifecycles.
     /// </summary>
-    /// <since_tizen> 11 </since_tizen>
+    /// <since_tizen> 10 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public abstract class NUIGadget
     {
@@ -32,7 +32,7 @@ namespace Tizen.NUI
         /// Initializes the gadget.
         /// </summary>
         /// /// <param name="type">The type of the NUIGadget.</param>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public NUIGadget(NUIGadgetType type)
         {
             Type = type;
@@ -44,7 +44,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the class representing information of the current gadget.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public NUIGadgetInfo NUIGadgetInfo
         {
             internal set;
@@ -54,7 +54,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the type.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public NUIGadgetType Type
         {
             internal set;
@@ -64,7 +64,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the class name.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public string ClassName
         {
             internal set;
@@ -74,7 +74,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the main view.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public View MainView
         {
             internal set;
@@ -84,7 +84,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the lifecycle state.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public NUIGadgetLifecycleState State
         {
             internal set;
@@ -163,7 +163,7 @@ namespace Tizen.NUI
         /// If 'base.OnCreate()' is not called, the event 'NUIGadgetLifecycleChanged' with  the 'NUIGadgetLifecycleState.Created' state will not be emitted.
         /// </summary>
         /// <returns>The main view object.</returns>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         protected virtual Tizen.NUI.BaseComponents.View OnCreate()
         {
             State = NUIGadgetLifecycleState.Created;
@@ -175,7 +175,7 @@ namespace Tizen.NUI
         /// Overrides this method if want to handle behavior when the gadget receives the appcontrol message.
         /// </summary>
         /// <param name="e">The appcontrol received event argument.</param>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         protected virtual void OnAppControlReceived(AppControlReceivedEventArgs e)
         {
         }
@@ -184,7 +184,7 @@ namespace Tizen.NUI
         /// Overrides this method if want to handle behavior when the gadget is destroyed.
         /// If 'base.OnDestroy()' is not called. the event 'NUIGadgetLifecycleChanged' with the 'NUIGadgetLifecycleState.Destroyed' state will not be emitted.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         protected virtual void OnDestroy()
         {
             State = NUIGadgetLifecycleState.Destroyed;
@@ -195,7 +195,7 @@ namespace Tizen.NUI
         /// Overrides this method if want to handle behavior when the gadget is paused.
         /// If 'base.OnPause()' is not called. the event 'NUIGadgetLifecycleChanged' with the 'NUIGadgetLifecycleState.Paused' state will not be emitted.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         protected virtual void OnPause()
         {
             State = NUIGadgetLifecycleState.Paused;
@@ -206,7 +206,7 @@ namespace Tizen.NUI
         /// Overrides this method if want to handle behavior when the gadget is resumed.
         /// If 'base.OnResume()' is not called. the event 'NUIGadgetLifecycleChanged' with the 'NUIGadgetLifecycleState.Resumed' state will not be emitted.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         protected virtual void OnResume()
         {
             State = NUIGadgetLifecycleState.Resumed;
@@ -217,7 +217,7 @@ namespace Tizen.NUI
         /// Overrides this method if want to handle behavior when the system language is changed.
         /// </summary>
         /// <param name="e">The locale changed event argument.</param>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         protected virtual void OnLocaleChanged(LocaleChangedEventArgs e)
         {
         }
@@ -226,7 +226,7 @@ namespace Tizen.NUI
         /// Overrides this method if want to handle behavior when the system battery is low.
         /// </summary>
         /// <param name="e">The low batter event argument.</param>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         protected virtual void OnLowBattery(LowBatteryEventArgs e)
         {
         }
@@ -235,7 +235,7 @@ namespace Tizen.NUI
         /// Overrides this method if want to handle behavior when the system memory is low.
         /// </summary>
         /// <param name="e">The low memory event argument.</param>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         protected virtual void OnLowMemory(LowMemoryEventArgs e)
         {
         }
@@ -244,7 +244,7 @@ namespace Tizen.NUI
         /// Overrides this method if want to handle behavior when the region format is changed.
         /// </summary>
         /// <param name="e">The region format changed event argument.</param>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         protected virtual void OnRegionFormatChanged(RegionFormatChangedEventArgs e)
         {
         }
@@ -253,7 +253,7 @@ namespace Tizen.NUI
         /// Overrides this method if want to handle behavior when the device orientation is changed.
         /// </summary>
         /// <param name="e">The device orientation changed event argument.</param>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         protected virtual void OnDeviceOrientationChanged(DeviceOrientationEventArgs e)
         {
         }
@@ -261,7 +261,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Finishes the gadget.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public void Finish()
         {
             Pause();
