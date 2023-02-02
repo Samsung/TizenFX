@@ -21,20 +21,20 @@ namespace Tizen.NUI
     /// <summary>
     /// Enumeration for the type of the NUIGadget.
     /// </summary>
-    /// <since_tizen> 11 </since_tizen>
+    /// <since_tizen> 10 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public enum NUIGadgetType
     {
         /// <summary>
         /// The normal type.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         Normal = 0,
 
         /// <summary>
         /// The popup type.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         Popup = 1,
     }
 }

@@ -22,20 +22,20 @@ namespace Tizen.NUI
     /// <summary>
     /// Arguments for the event raised when the NUIGadget lifecycle is changed.
     /// </summary>
-    /// <since_tizen> 11 </since_tizen>
+    /// <since_tizen> 10 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIGadgetLifecycleChangedEventArgs : EventArgs
     {
         /// <summary>
         /// The NUIGadget object.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public NUIGadget Gadget { get; internal set; }
 
         /// <summary>
         /// The state of the NUIGadget lifecycle.
         /// </summary>
-        /// <since_tizen> 11 </since_tizen>
+        /// <since_tizen> 10 </since_tizen>
         public NUIGadgetLifecycleState State { get; internal set; }
     }
 }
