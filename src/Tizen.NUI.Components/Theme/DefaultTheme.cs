@@ -14,7 +14,7 @@
  * limitations under the License.
  *
  */
-
+#pragma warning disable CS0162 // Unreachable code detected: Some lines can be unreachable in TV profile
 namespace Tizen.NUI.Components
 {
     internal partial class DefaultThemeCreator
@@ -35,4 +35,4 @@ namespace Tizen.NUI.Components
         }
     }
 }
-
+#pragma warning restore CS0162

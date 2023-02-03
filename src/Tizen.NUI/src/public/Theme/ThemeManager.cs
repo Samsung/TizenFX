@@ -21,6 +21,7 @@ using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
 
+#pragma warning disable CS0162 // Unreachable code detected: Some lines can be unreachable in TV profile
 namespace Tizen.NUI
 {
     /// <summary>
@@ -534,3 +535,4 @@ namespace Tizen.NUI
         }
     }
 }
+#pragma warning restore CS0162 // Unreachable code detected
