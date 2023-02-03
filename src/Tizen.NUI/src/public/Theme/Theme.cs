@@ -300,6 +300,12 @@ namespace Tizen.NUI
             map[styleName] = value?.Clone();
         }
 
+        /// <summary>
+        /// For internal use
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Add(string key, ViewStyle style) => this[key] = style;
+
         /// <inheritdoc/>
         /// <since_tizen> 9 </since_tizen>
         public object Clone()

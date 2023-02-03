@@ -26,6 +26,7 @@ using Tizen.NUI.Binding;
 using Tizen.NUI.EXaml;
 using Tizen.NUI.EXaml.Build.Tasks;
 using Tizen.NUI.Xaml;
+using Mono.Cecil.Rocks;
 
 using static Mono.Cecil.Cil.Instruction;
 using static Mono.Cecil.Cil.OpCodes;
@@ -589,6 +590,10 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                         {
                             yield return ins;
                         }
+
+                        var realType = targetType.MakeGenericInstanceType(new TypeReference[] { typeReference });
+                        var realMethod = method.MakeGeneric(realType, new TypeReference[] { typeReference });
+                        yield return Create(Call, module.ImportReference(realMethod));
                     }
                 }
 
