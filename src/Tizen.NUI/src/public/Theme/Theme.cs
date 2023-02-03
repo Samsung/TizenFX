@@ -217,6 +217,8 @@ namespace Tizen.NUI
             }
         }
 
+        public void Add(string key, ViewStyle style) => this[key] = style;
+
         internal int Count => map.Count;
 
         internal int PackageCount { get; set; } = 0;

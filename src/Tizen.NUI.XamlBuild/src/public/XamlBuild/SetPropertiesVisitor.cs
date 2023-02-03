@@ -53,7 +53,6 @@ namespace Tizen.NUI.Xaml.Build.Tasks
             Module = context.Body.Method.Module;
             StopOnResourceDictionary = stopOnResourceDictionary;
         }
-
         public ILContext Context { get; }
         public bool StopOnResourceDictionary { get; }
         public TreeVisitingMode VisitingMode => TreeVisitingMode.BottomUp;
@@ -102,7 +101,6 @@ namespace Tizen.NUI.Xaml.Build.Tasks
         public void Visit(MarkupNode node, INode parentNode)
         {
         }
-
         public void Visit(ElementNode node, INode parentNode)
         {
             XmlName propertyName = XmlName.Empty;
@@ -170,6 +168,12 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 {
                     Context.IL.Emit(Ldloc, parentVar);
                     Context.IL.Append(AddToDictionary(node, parentVar, node, Context));
+                    isAdded = true;
+                }
+                else if (CanAddToTheme(parentVar.VariableType, node, vardef.VariableType, node, Context))
+                {
+                    Context.IL.Emit(Ldloc, parentVar);
+                    Context.IL.Append(AddToTheme(node, parentVar, node, Context));
                     isAdded = true;
                 }
                 // Collection element, implicit content, or implicit collection element.
@@ -1619,6 +1623,37 @@ namespace Tizen.NUI.Xaml.Build.Tasks
 
             Context.IL.Append(SetPropertyValue(variableDefinition, new XmlName("", runTimeName), node, Context, node));
             return true;
+        }
+
+        private bool CanAddToTheme(TypeReference parentType, ElementNode node, TypeReference nodeType, IXmlLineInfo lineInfo, ILContext context)
+        {
+            return node.Properties.ContainsKey(XmlName.xKey)
+                    && parentType.InheritsFromOrImplements("Tizen.NUI.Theme")
+                    && nodeType.InheritsFromOrImplements("Tizen.NUI.BaseComponents.ViewStyle");
+        }
+
+        private IEnumerable<Instruction> AddToTheme(IElementNode node, VariableDefinition parent, IXmlLineInfo lineInfo, ILContext context)
+        {
+            var varDef = context.Variables[node];
+            MethodReference addMethod = null;
+
+            foreach (var methodTuple in parent.VariableType.GetMethods(m => m.Name == "Add" && m.Parameters.Count == 2, Module))
+            {
+                addMethod = Module.ImportReference(Module.ImportReference(methodTuple.Item1).ResolveGenericParameters(methodTuple.Item2, Module));
+                if (varDef.VariableType.InheritsFromOrImplements(methodTuple.Item1.Parameters[1].ParameterType))
+                {
+                    break;
+                }
+            }
+
+            if (addMethod != null)
+            {
+                yield return Create(Ldstr, (node.Properties[XmlName.xKey] as ValueNode).Value as string);
+                yield return Create(Ldloc, varDef);
+                yield return Create(Callvirt, addMethod);
+            }
+
+            yield break;
         }
     }
 }

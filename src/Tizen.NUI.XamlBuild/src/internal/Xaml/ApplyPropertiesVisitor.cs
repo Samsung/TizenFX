@@ -137,6 +137,17 @@ namespace Tizen.NUI.Xaml
                 if (xpe == null && TryAddToResourceDictionary(source as ResourceDictionary, value, xKey, node, out xpe))
                     return;
 
+                // Dictionary with string key
+                if (xpe == null && xKey != null)
+                {
+                    var indexer = GetIndexer(source, typeof(string), value.GetType());
+                    if (indexer != null)
+                    {
+                        indexer.SetValue(source, value, new[] { xKey });
+                        return;
+                    }
+                }
+
                 // Collection element, implicit content, or implicit collection element.
                 if (xpe == null && typeof(IEnumerable).IsAssignableFrom(Context.Types[parentElement]) && Context.Types[parentElement].GetRuntimeMethods().Any(mi => mi.Name == "Add" && mi.GetParameters().Length == 1)) {
                     var addMethod =
@@ -724,6 +735,8 @@ namespace Tizen.NUI.Xaml
             SetPropertyValue(source, new XmlName("", runTimeName.Name), value, Context.RootElement, node, Context, node);
             return true;
         }
+
+        private PropertyInfo GetIndexer(object source, Type keyType, Type valueType) => source.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic).FirstOrDefault(p => p.Name == "Item" && p.PropertyType.IsAssignableFrom(valueType) && p.GetIndexParameters().Length != 0 && p.GetIndexParameters()[0].ParameterType == keyType);
     }
 }
  
