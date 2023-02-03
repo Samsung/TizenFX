@@ -26,6 +26,9 @@ internal static partial class Interop
         [DllImport(Libraries.Libc, EntryPoint = "free", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int Free(IntPtr ptr);
 
+        [DllImport(Libraries.Libc, EntryPoint = "getenv")]
+        internal static extern IntPtr GetEnvironmentVariable(string name);
+
         [NativeStruct("struct timespec", Include = "time.h")]
         [StructLayout(LayoutKind.Sequential)]
         internal struct TimeStamp
