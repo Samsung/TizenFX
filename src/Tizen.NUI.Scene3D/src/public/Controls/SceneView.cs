@@ -395,8 +395,6 @@ namespace Tizen.NUI.Scene3D
             SelectCamera(index);
             Camera destination = GetSelectedCamera();
             CameraTransition(source, destination, durationMilliSeconds, alphaFunction);
-            source.Dispose();
-            destination.Dispose();
         }
 
         /// <summary>
@@ -422,8 +420,6 @@ namespace Tizen.NUI.Scene3D
             SelectCamera(name);
             Camera destination = GetSelectedCamera();
             CameraTransition(source, destination, durationMilliSeconds, alphaFunction);
-            source.Dispose();
-            destination.Dispose();
         }
 
         /// <summary>
