@@ -50,7 +50,10 @@ namespace Tizen.NUI
                     foreach (string packageId in packages.Split(':').ToList())
                     {
                         NUIGadgetInfo info = NUIGadgetInfo.CreateNUIGadgetInfo(packageId);
-                        _gadgetInfos.Add(info.ResourceType, info);
+                        if (info != null)
+                        {
+                            _gadgetInfos.Add(info.ResourceType, info);
+                        }
                     }
                 }
             }
