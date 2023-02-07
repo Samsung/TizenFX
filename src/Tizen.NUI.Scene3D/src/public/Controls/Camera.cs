@@ -205,26 +205,11 @@ namespace Tizen.NUI.Scene3D
         {
             get
             {
-                return InternalProjectionDirection == ProjectionDirectionType.Vertical ? TopPlaneDistance : RightPlaneDistance;
+                return InternalOrthographicSize;
             }
             set
             {
-                float halfHeight;
-                float halfWidth;
-                if(InternalProjectionDirection == ProjectionDirectionType.Vertical)
-                {
-                    halfHeight = value;
-                    halfWidth = AspectRatio * value;
-                }
-                else
-                {
-                    halfHeight = value / AspectRatio;
-                    halfWidth = value;
-                }
-                SetValue(TopPlaneDistanceProperty, halfHeight);
-                SetValue(BottomPlaneDistanceProperty, -halfHeight);
-                SetValue(LeftPlaneDistanceProperty, -halfWidth);
-                SetValue(RightPlaneDistanceProperty, halfWidth);
+                SetValue(OrthographicSizeProperty, value);
                 NotifyPropertyChanged();
             }
         }
@@ -428,6 +413,24 @@ namespace Tizen.NUI.Scene3D
             {
                 PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
                 SetProperty(Interop.Camera.FieldOfViewGet(), setValue);
+                setValue.Dispose();
+            }
+        }
+
+        private float InternalOrthographicSize
+        {
+            get
+            {
+                float returnValue = 0.0f;
+                PropertyValue orthographicSize = GetProperty(Interop.Camera.OrthographicSizeGet());
+                orthographicSize?.Get(out returnValue);
+                orthographicSize?.Dispose();
+                return returnValue;
+            }
+            set
+            {
+                PropertyValue setValue = new Tizen.NUI.PropertyValue(value);
+                SetProperty(Interop.Camera.OrthographicSizeGet(), setValue);
                 setValue.Dispose();
             }
         }
@@ -659,13 +662,13 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Radian ConvertFovFromVerticalToHorizontal(float aspect, Radian verticalFov)
+        public static void ConvertFovFromVerticalToHorizontal(float aspect, ref Radian fov)
         {
-            if(verticalFov == null)
+            if(fov == null)
             {
-                return null;
+                return;
             }
-            return new Radian(2.0f * (float)Math.Atan(Math.Tan(verticalFov.ConvertToFloat() * 0.5f) * aspect));
+            fov.Value = 2.0f * (float)Math.Atan(Math.Tan(fov.ConvertToFloat() * 0.5f) * aspect);
         }
 
         /// <summary>
@@ -673,13 +676,13 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Radian ConvertFovFromHorizontalToVertical(float aspect, Radian horizontalFov)
+        public static void ConvertFovFromHorizontalToVertical(float aspect, ref Radian fov)
         {
-            if(horizontalFov == null)
+            if(fov == null)
             {
-                return null;
+                return;
             }
-            return new Radian(2.0f * (float)Math.Atan(Math.Tan(horizontalFov.ConvertToFloat() * 0.5f) / aspect));
+            fov.Value = 2.0f * (float)Math.Atan(Math.Tan(fov.ConvertToFloat() * 0.5f) / aspect);
         }
 
         /// <summary>
