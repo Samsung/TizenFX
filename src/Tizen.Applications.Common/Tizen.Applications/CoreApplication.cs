@@ -595,12 +595,7 @@ namespace Tizen.Applications
 
         internal static string GetDefaultLocale()
         {
-            IntPtr stringPtr = IntPtr.Zero;
-            if (Interop.BaseUtilsi18n.GetDefault(out stringPtr) != 0)
-            {
-                return string.Empty;
-            }
-
+            IntPtr stringPtr = Interop.Libc.GetEnvironmentVariable("LANG");
             if (stringPtr == IntPtr.Zero)
             {
                 return string.Empty;
