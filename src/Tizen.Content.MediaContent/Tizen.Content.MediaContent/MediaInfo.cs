@@ -26,7 +26,6 @@ namespace Tizen.Content.MediaContent
     /// <since_tizen> 4 </since_tizen>
     public class MediaInfo
     {
-#pragma warning disable CS0618 // Type or member is obsolete
         internal MediaInfo(Interop.MediaInfoHandle handle)
         {
             Id = InteropHelper.GetString(handle, Interop.MediaInfo.GetMediaId);
@@ -56,7 +55,6 @@ namespace Tizen.Content.MediaContent
             Title = InteropHelper.GetString(handle, Interop.MediaInfo.GetTitle);
             IsDrm = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.IsDrm);
         }
-#pragma warning restore CS0618 // Type or member is obsolete
 
         /// <summary>
         /// Gets the ID of media.

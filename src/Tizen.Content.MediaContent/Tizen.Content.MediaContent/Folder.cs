@@ -28,14 +28,13 @@ namespace Tizen.Content.MediaContent
     /// <since_tizen> 4 </since_tizen>
     public class Folder
     {
-#pragma warning disable CS0618 // Type or member is obsolete
         internal Folder(IntPtr handle)
         {
             Id = InteropHelper.GetString(handle, Interop.Folder.GetFolderId);
             Path = InteropHelper.GetString(handle, Interop.Folder.GetPath);
             Name = InteropHelper.GetString(handle, Interop.Folder.GetName);
         }
-#pragma warning restore CS0618 // Type or member is obsolete
+
         internal static Folder FromHandle(IntPtr handle) => new Folder(handle);
 
         /// <summary>
@@ -59,14 +58,11 @@ namespace Tizen.Content.MediaContent
         /// <since_tizen> 4 </since_tizen>
         public string Name { get; }
 
-#pragma warning disable CS0618 // Type or member is obsolete
         /// <summary>
         /// Returns a string representation of the folder.
         /// </summary>
         /// <returns>A string representation of the current folder.</returns>
         /// <since_tizen> 4 </since_tizen>
-        public override string ToString() =>
-            $"Id={Id}, Name={Name}, Path={Path}";
-#pragma warning restore CS0618 // Type or member is obsolete
+        public override string ToString() => $"Id={Id}, Name={Name}, Path={Path}";
     }
 }
