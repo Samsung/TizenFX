@@ -662,13 +662,13 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Radian ConvertFovFromVerticalToHorizontal(float aspect, Radian verticalFov)
+        public static void ConvertFovFromVerticalToHorizontal(float aspect, ref Radian fov)
         {
-            if(verticalFov == null)
+            if(fov == null)
             {
-                return null;
+                return;
             }
-            return new Radian(2.0f * (float)Math.Atan(Math.Tan(verticalFov.ConvertToFloat() * 0.5f) * aspect));
+            fov.Value = 2.0f * (float)Math.Atan(Math.Tan(fov.ConvertToFloat() * 0.5f) * aspect);
         }
 
         /// <summary>
@@ -676,13 +676,13 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static Radian ConvertFovFromHorizontalToVertical(float aspect, Radian horizontalFov)
+        public static void ConvertFovFromHorizontalToVertical(float aspect, ref Radian fov)
         {
-            if(horizontalFov == null)
+            if(fov == null)
             {
-                return null;
+                return;
             }
-            return new Radian(2.0f * (float)Math.Atan(Math.Tan(horizontalFov.ConvertToFloat() * 0.5f) / aspect));
+            fov.Value = 2.0f * (float)Math.Atan(Math.Tan(fov.ConvertToFloat() * 0.5f) / aspect);
         }
 
         /// <summary>
