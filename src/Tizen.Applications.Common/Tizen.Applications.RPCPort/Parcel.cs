@@ -158,13 +158,33 @@ namespace Tizen.Applications.RPCPort
         /// <summary>
         /// Constructor for this class.
         /// </summary>
+        /// <param name="withHeader">If it's false, the parcel object does not have the header.</param>
+        /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public Parcel(bool withHeader)
+        {
+            Interop.LibRPCPort.ErrorCode error;
+            if (withHeader)
+            {
+                error = Interop.LibRPCPort.Parcel.Create(out _handle);
+                if (error != Interop.LibRPCPort.ErrorCode.None)
+                    throw new InvalidIOException();
+            }
+            else
+            {
+                error = Interop.LibRPCPort.Parcel.CreateWithoutHeader(out _handle);
+                if (error != Interop.LibRPCPort.ErrorCode.None)
+                    throw new InvalidIOException();
+            }
+        }
+
+        /// <summary>
+        /// Constructor for this class.
+        /// </summary>
         /// <exception cref="InvalidIOException">Thrown when an internal IO error occurs.</exception>
         /// <since_tizen> 5 </since_tizen>
-        public Parcel()
+        public Parcel() : this(true)
         {
-            var r = Interop.LibRPCPort.Parcel.Create(out _handle);
-            if (r != Interop.LibRPCPort.ErrorCode.None)
-                throw new InvalidIOException();
         }
 
         /// <summary>
