@@ -188,7 +188,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the information of the running NUIGadgets.
+        /// Gets the instance of the running NUIGadgets.
         /// </summary>
         /// <returns>The NUIGadget list.</returns>
         /// <since_tizen> 10 </since_tizen>
