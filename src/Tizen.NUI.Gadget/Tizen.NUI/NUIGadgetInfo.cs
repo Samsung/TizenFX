@@ -31,6 +31,7 @@ namespace Tizen.NUI
     public class NUIGadgetInfo
     {
         private const string MetadataUIGadgetDll = "http://tizen.org/metadata/ui-gadget/dll";
+        private const string MetadataUIGadgetClassName = "http://tizen.org/metadata/ui-gadget/class_name";
         private string _resourcePath = string.Empty;
 
         internal NUIGadgetInfo(string packageId)
@@ -101,6 +102,12 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public IDictionary<string, string> Metadata { get; private set; }
 
+        /// <summary>
+        /// Gets the class name of the gadget.
+        /// </summary>
+        /// <since_tizen> 10 </since_tizen>
+        public string ClassName { get; internal set; }
+
         internal static NUIGadgetInfo CreateNUIGadgetInfo(string packageId)
         {
             Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoGet(packageId, out IntPtr handle);
@@ -162,6 +169,16 @@ namespace Tizen.NUI
             else
             {
                 Log.Error("Failed to find metadata. " + MetadataUIGadgetDll);
+            }
+
+            if (info.Metadata.TryGetValue(MetadataUIGadgetClassName, out string className))
+            {
+                info.ClassName = className;
+                Log.Info("ClassName: " + info.ClassName);
+            }
+            else
+            {
+                Log.Warn("There is no class name");
             }
 
             errorCode = Interop.PackageManagerInfo.PackageInfoDestroy(handle);

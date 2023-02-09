@@ -129,6 +129,11 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public static NUIGadget Add(string resourceType, string className)
         {
+            if (string.IsNullOrEmpty(resourceType) || string.IsNullOrEmpty(className))
+            {
+                throw new ArgumentException("Invalid argument");
+            }
+
             if (!_gadgetInfos.TryGetValue(resourceType, out NUIGadgetInfo info))
             {
                 throw new ArgumentException("Failed to find NUIGadgetInfo. resource type: " + resourceType);
@@ -165,6 +170,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// /// Adds a NUIGadget to a NUIGadgetManager by the given NUIGadgetInfo.
+        /// </summary>
+        /// <param name="gadgetInfo">The NUIGadget information.</param>
+        /// <returns>The NUIGadget object.</returns>
+        /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
+        /// <since_tizen> 10 </since_tizen>
+        public static NUIGadget Add(NUIGadgetInfo gadgetInfo)
+        {
+            if (gadgetInfo == null)
+            {
+                throw new ArgumentException("Invalid argument");
+            }
+
+            return Add(gadgetInfo.ResourceType, gadgetInfo.ClassName);
+        }
+
+        /// <summary>
         /// Gets the information of the running NUIGadgets.
         /// </summary>
         /// <returns>The NUIGadget list.</returns>
@@ -172,6 +195,21 @@ namespace Tizen.NUI
         public static IEnumerable<NUIGadget> GetGadgets()
         {
             return _gadgets;
+        }
+
+        /// <summary>
+        /// Gets the information of the available NUIGadgets.
+        /// </summary>
+        /// <remarks>
+        /// This method only returns the available gadget informations, not all installed gadget informations.
+        /// The resource package of the NUIGadget can set the allowed packages using "allowed-package".
+        /// When executing an application, the platform mounts the resource package into the resource path of the application.
+        /// </remarks>
+        /// <returns>The NUIGadgetInfo list.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        public static IEnumerable<NUIGadgetInfo> GetGadgetInfos()
+        {
+            return _gadgetInfos.Values.ToList();
         }
 
         /// <summary>
