@@ -180,4 +180,9 @@ namespace Tizen.Content.MediaContent
             }
         }
     }
+
+    static internal class MediaContentLog
+    {
+        internal const string Tag = "Tizen.Content.MediaContent";
+    }
 }
