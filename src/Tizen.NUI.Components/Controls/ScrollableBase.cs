@@ -1012,6 +1012,23 @@ namespace Tizen.NUI.Components
         public override void Add(View view)
         {
             ContentContainer.Add(view);
+
+            OnChildAdded(view);
+            if (ChildAdded != null)
+            {
+                ChildAddedEventArgs e = new ChildAddedEventArgs
+                {
+                    Added = view
+                };
+                ChildAdded?.Invoke(this, e);
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnChildAdded(Element child)
+        {
+            // Override for skipping OnChildAdded base behavior.
         }
 
         /// <summary>
@@ -1029,6 +1046,23 @@ namespace Tizen.NUI.Components
             }
 
             ContentContainer.Remove(view);
+
+            OnChildRemoved(view);
+            if (ChildRemoved != null)
+            {
+                ChildRemovedEventArgs e = new ChildRemovedEventArgs
+                {
+                    Removed = view
+                };
+                ChildRemoved?.Invoke(this, e);
+            }
+        }
+
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void OnChildRemoved(Element child)
+        {
+            // Override for skipping OnChildAdded base behavior.
         }
 
         private void OnScrollingChildRelayout(object source, EventArgs args)
