@@ -106,7 +106,7 @@ namespace Tizen.NUI
         /// Gets the class name of the gadget.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
-        public string ClassName { get; internal set; }
+        internal string ClassName { get; set; }
 
         internal static NUIGadgetInfo CreateNUIGadgetInfo(string packageId)
         {
