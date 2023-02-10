@@ -26,7 +26,6 @@ namespace Tizen.Content.MediaContent
     /// <since_tizen> 4 </since_tizen>
     public class MediaInfo
     {
-#pragma warning disable CS0618 // Type or member is obsolete
         internal MediaInfo(Interop.MediaInfoHandle handle)
         {
             Id = InteropHelper.GetString(handle, Interop.MediaInfo.GetMediaId);
@@ -54,12 +53,8 @@ namespace Tizen.Content.MediaContent
             Rating = InteropHelper.GetValue<int>(handle, Interop.MediaInfo.GetRating);
             IsFavorite = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.GetFavorite);
             Title = InteropHelper.GetString(handle, Interop.MediaInfo.GetTitle);
-            StorageId = InteropHelper.GetString(handle, Interop.MediaInfo.GetStorageId);
             IsDrm = InteropHelper.GetValue<bool>(handle, Interop.MediaInfo.IsDrm);
-
-            StorageType = InteropHelper.GetValue<StorageType>(handle, Interop.MediaInfo.GetStorageType);
         }
-#pragma warning restore CS0618 // Type or member is obsolete
 
         /// <summary>
         /// Gets the ID of media.
@@ -184,27 +179,11 @@ namespace Tizen.Content.MediaContent
         public string Title { get; }
 
         /// <summary>
-        /// Gets the storage ID of the storage that the media is stored on.
-        /// </summary>
-        /// <value>The storage ID of the storage that the media is stored on.</value>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated in level 6")]
-        public string StorageId { get; }
-
-        /// <summary>
         /// Gets the value indicating whether the media is DRM-protected.
         /// </summary>
         /// <value>A bool value indicating whether the media is DRM-protected.</value>
         /// <since_tizen> 4 </since_tizen>
         public bool IsDrm { get; }
-
-        /// <summary>
-        /// Gets the storage type of the storage that the media is stored on.
-        /// </summary>
-        /// <value>The storage type of the storage that the media is stored on.</value>
-        /// <since_tizen> 4 </since_tizen>
-        [Obsolete("Please do not use! this will be deprecated in level 6")]
-        public StorageType StorageType { get; }
 
         /// <summary>
         /// Returns a string representation of the media information.
