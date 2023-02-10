@@ -872,7 +872,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="UnsupportedContentException">
         ///     The thumbnail is not available for the given media.<br/>
         ///     -or-<br/>
-        ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
+        ///     The media is in the external USB storage.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         [Obsolete("Deprecated since API10; Will be removed in API12. Please use CreateThumbnail instead.")]
@@ -905,7 +905,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="UnsupportedContentException">
         ///     The thumbnail is not available for the given media.<br/>
         ///     -or-<br/>
-        ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
+        ///     The media is in the external USB storage.
         /// </exception>
         /// <since_tizen> 4 </since_tizen>
         [Obsolete("Deprecated since API10; Will be removed in API12. Please use CreateThumbnail instead.")]
@@ -989,7 +989,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="UnsupportedContentException">
         ///     The thumbnail is not available for the given media.<br/>
         ///     -or-<br/>
-        ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
+        ///     The media is in the external USB storage.
         /// </exception>
         /// <exception cref="UnauthorizedAccessException">The caller has no required privilege.</exception>
         /// <since_tizen> 10 </since_tizen>
@@ -1102,7 +1102,7 @@ namespace Tizen.Content.MediaContent
         /// <exception cref="UnsupportedContentException">
         ///     Face detection is not available for the given media.<br/>
         ///     -or-<br/>
-        ///     The media is in the external USB storage (<see cref="MediaInfo.StorageType"/> is <see cref="StorageType.ExternalUsb"/>).
+        ///     The media is in the external USB storage.
         /// </exception>
         /// <exception cref="NotSupportedException">The required feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
@@ -1134,11 +1134,6 @@ namespace Tizen.Content.MediaContent
 
             using (handle)
             {
-                if (InteropHelper.GetValue<StorageType>(handle, Interop.MediaInfo.GetStorageType) == StorageType.ExternalUsb)
-                {
-                    throw new UnsupportedContentException("The media is in external usb storage.");
-                }
-
                 if (InteropHelper.GetValue<MediaType>(handle, Interop.MediaInfo.GetMediaType) != MediaType.Image)
                 {
                     throw new UnsupportedContentException("Only image is supported.");
@@ -1162,7 +1157,13 @@ namespace Tizen.Content.MediaContent
                 using (RegisterCancelFaceDetection(cancellationToken, tcs, handle))
                 using (var cbKeeper = ObjectKeeper.Get(GetFaceDetectionCallback(tcs)))
                 {
-                    Interop.MediaInfo.StartFaceDetection(handle, cbKeeper.Target).ThrowIfError("Failed to detect faces");
+                    var ret = Interop.MediaInfo.StartFaceDetection(handle, cbKeeper.Target);
+                    if (ret == MediaContentError.InvalidParameter)
+                    {
+                        throw new UnsupportedContentException("The media is in external usb storage.");
+                    }
+
+                    ret.ThrowIfError("Failed to detect faces");
 
                     return await tcs.Task;
                 }

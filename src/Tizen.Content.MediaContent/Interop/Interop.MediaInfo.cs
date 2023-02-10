@@ -23,9 +23,6 @@ internal static partial class Interop
     internal static partial class MediaInfo
     {
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-        internal delegate void ThumbnailCompletedCallback(MediaContentError error, string filePath, IntPtr userData);
-
-        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         internal delegate void FaceDetectionCompletedCallback(MediaContentError error, int count, IntPtr userData);
 
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
@@ -38,8 +35,6 @@ internal static partial class Interop
         internal static extern MediaContentError BatchInsert(string[] filePathArray, int arrayLength,
             InsertCompletedCallback callback, IntPtr userData = default(IntPtr));
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_delete_from_db")]
-        internal static extern MediaContentError Delete(string mediaId);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_destroy")]
         internal static extern MediaContentError Destroy(IntPtr handle);
@@ -135,14 +130,8 @@ internal static partial class Interop
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_title")]
         internal static extern MediaContentError GetTitle(MediaInfoHandle mediaInformationHandle, out IntPtr title);
 
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_storage_id")]
-        internal static extern MediaContentError GetStorageId(MediaInfoHandle mediaInformationHandle, out IntPtr storageId);
-
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_is_drm")]
         internal static extern MediaContentError IsDrm(MediaInfoHandle mediaInformationHandle, out bool isDrm);
-
-        [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_storage_type")]
-        internal static extern MediaContentError GetStorageType(MediaInfoHandle mediaInformationHandle, out StorageType storageType);
 
         [DllImport(Libraries.MediaContent, EntryPoint = "media_info_get_media_from_db")]
         internal static extern MediaContentError GetMediaFromDB(string mediaId, out MediaInfoHandle handle);
