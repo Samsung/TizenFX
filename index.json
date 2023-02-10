@@ -16279,21 +16279,6 @@
     "title": "Class SelectArguments",
     "keywords": ""
   },
-  "API11/api/Tizen.Content.MediaContent.Storage.html": {
-    "href": "API11/api/Tizen.Content.MediaContent.Storage.html",
-    "title": "Class Storage",
-    "keywords": ""
-  },
-  "API11/api/Tizen.Content.MediaContent.StorageColumns.html": {
-    "href": "API11/api/Tizen.Content.MediaContent.StorageColumns.html",
-    "title": "Class StorageColumns",
-    "keywords": ""
-  },
-  "API11/api/Tizen.Content.MediaContent.StorageCommand.html": {
-    "href": "API11/api/Tizen.Content.MediaContent.StorageCommand.html",
-    "title": "Class StorageCommand",
-    "keywords": ""
-  },
   "API11/api/Tizen.Content.MediaContent.StorageType.html": {
     "href": "API11/api/Tizen.Content.MediaContent.StorageType.html",
     "title": "Enum StorageType",
