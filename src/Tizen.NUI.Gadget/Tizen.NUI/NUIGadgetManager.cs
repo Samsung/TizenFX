@@ -170,24 +170,6 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// /// Adds a NUIGadget to a NUIGadgetManager by the given NUIGadgetInfo.
-        /// </summary>
-        /// <param name="gadgetInfo">The NUIGadget information.</param>
-        /// <returns>The NUIGadget object.</returns>
-        /// <exception cref="ArgumentException">Thrown when failed because of a invalid argument.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when failed because of an invalid operation.</exception>
-        /// <since_tizen> 10 </since_tizen>
-        public static NUIGadget Add(NUIGadgetInfo gadgetInfo)
-        {
-            if (gadgetInfo == null)
-            {
-                throw new ArgumentException("Invalid argument");
-            }
-
-            return Add(gadgetInfo.ResourceType, gadgetInfo.ClassName);
-        }
-
-        /// <summary>
         /// Gets the instance of the running NUIGadgets.
         /// </summary>
         /// <returns>The NUIGadget list.</returns>
