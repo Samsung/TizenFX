@@ -402,8 +402,6 @@ namespace Tizen.NUI.Components
 
         private void Initialize()
         {
-            HeightSpecification = LayoutParamPolicies.MatchParent;
-
             //Picker Using scroller internally. actually it is a kind of scroller which has infinity loop,
             //and item center align features.
             pickerScroller = new PickerScroller()

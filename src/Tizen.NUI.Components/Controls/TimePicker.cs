@@ -393,8 +393,6 @@ namespace Tizen.NUI.Components
                          Justification = "The CellPadding will be dispose when the time picker disposed")]
         private void Initialize()
         {
-            HeightSpecification = LayoutParamPolicies.MatchParent;
-
             Layout = new LinearLayout()
             {
                 LinearOrientation = LinearLayout.Orientation.Horizontal,

@@ -18,6 +18,7 @@
 using System;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI;
 using Tizen.NUI.Binding;
 using Tizen.NUI.BaseComponents;
@@ -385,6 +386,7 @@ namespace Tizen.NUI.Scene3D
         /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
         /// <since_tizen> 10 </since_tizen>
+                [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "The ownership of camera object is not owned by this class.")]
         public void CameraTransition(uint index, int durationMilliSeconds, AlphaFunction alphaFunction = null)
         {
             if(inCameraTransition || GetSelectedCamera() == GetCamera(index))
@@ -395,8 +397,6 @@ namespace Tizen.NUI.Scene3D
             SelectCamera(index);
             Camera destination = GetSelectedCamera();
             CameraTransition(source, destination, durationMilliSeconds, alphaFunction);
-            source.Dispose();
-            destination.Dispose();
         }
 
         /// <summary>
@@ -412,6 +412,7 @@ namespace Tizen.NUI.Scene3D
         /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
         /// <since_tizen> 10 </since_tizen>
+                [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "The ownership of camera object is not owned by this class.")]
         public void CameraTransition(string name, int durationMilliSeconds, AlphaFunction alphaFunction = null)
         {
             if(inCameraTransition || GetSelectedCamera() == GetCamera(name))
@@ -422,8 +423,6 @@ namespace Tizen.NUI.Scene3D
             SelectCamera(name);
             Camera destination = GetSelectedCamera();
             CameraTransition(source, destination, durationMilliSeconds, alphaFunction);
-            source.Dispose();
-            destination.Dispose();
         }
 
         /// <summary>
@@ -607,11 +606,11 @@ namespace Tizen.NUI.Scene3D
                     float aspect = destinationCamera.AspectRatio;
                     if (destinationCamera.ProjectionDirection == Camera.ProjectionDirectionType.Vertical)
                     {
-                        sourceFieldOfView = Camera.ConvertFovFromHorizontalToVertical(aspect, sourceFieldOfView);
+                        Camera.ConvertFovFromHorizontalToVertical(aspect, ref sourceFieldOfView);
                     }
                     else
                     {
-                        sourceFieldOfView = Camera.ConvertFovFromVerticalToHorizontal(aspect, sourceFieldOfView);
+                        Camera.ConvertFovFromVerticalToHorizontal(aspect, ref sourceFieldOfView);
                     }
                 }
 
