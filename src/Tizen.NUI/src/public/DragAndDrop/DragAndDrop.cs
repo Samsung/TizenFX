@@ -41,6 +41,8 @@ namespace Tizen.NUI
         private int shadowWidth = 100;
         private int shadowHeight = 100;
 
+        private bool initDrag = false;
+
         private DragAndDrop() : this(Interop.DragAndDrop.New(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -49,6 +51,22 @@ namespace Tizen.NUI
         private DragAndDrop(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
 
+        }
+
+        private void ReleaseDragWindow()
+        {
+            if (mDragWindow)
+            {                        
+                if (mShadowView)
+                {
+                    //Application has Shadow View ownership, so DnD doesn't dispose Shadow View
+                    mDragWindow.Remove(mShadowView);
+                    mShadowView = null;
+                }
+            
+                mDragWindow.Dispose();
+                mDragWindow = null;                      
+            }         
         }
 
         /// <summary>
@@ -66,7 +84,14 @@ namespace Tizen.NUI
         /// <param name="callback">The source event callback</param>
         /// <since_tizen> 10 </since_tizen>
         public void StartDragAndDrop(View sourceView, View shadowView, DragData dragData, SourceEventHandler callback)
-        {
+        {            
+            if (initDrag)
+            {
+                 Tizen.Log.Fatal("NUI", "Start Drag And Drop Initializing...");
+                 return;
+            }
+            initDrag = true;
+
             if (Window.IsSupportedMultiWindow() == false)
             {
                 throw new NotSupportedException("This device does not support surfaceless_context. So Window cannot be created.");
@@ -76,6 +101,8 @@ namespace Tizen.NUI
             {
                 throw new ArgumentNullException(nameof(shadowView));
             }
+
+            ReleaseDragWindow();
 
             shadowWidth = (int)shadowView.Size.Width;
             shadowHeight = (int)shadowView.Size.Height;
@@ -91,64 +118,49 @@ namespace Tizen.NUI
                 shadowHeight = 100;
             }
 
-            if (null == mDragWindow)
+            mDragWindow = new Window("DragWindow", new Rectangle(-shadowWidth, -shadowHeight, shadowWidth, shadowHeight), true)
             {
-                mDragWindow = new Window("DragWindow", new Rectangle(-shadowWidth, -shadowHeight, shadowWidth, shadowHeight), true)
-                {
-                    BackgroundColor = Color.Transparent,
-                };
-            }
-
-            //Initialize Drag Window Position and Size based on Shadow View Position and Size
-            mDragWindow.SetPosition(new Position2D((int)shadowView.Position.X, (int)shadowView.Position.Y));
-            mDragWindow.SetWindowSize(new Size(shadowWidth, shadowHeight));
-
-            //Make Shadow View Transparent
-            shadowView.SetOpacity(0.9f);
-
-            //Make Position 0, 0 for Moving into Drag Window
-            shadowView.Position = new Position(0, 0);
-
-            if (mShadowView)
-            {
-                mShadowView.Hide();
-                mDragWindow.Remove(mShadowView);
-                mShadowView.Dispose();
-            }
-
-            mShadowView = shadowView;
-            mDragWindow.Add(mShadowView);
-
-            //Update Window Directly
-            mDragWindow.VisibiltyChangedSignalEmit(true);
-            mDragWindow.RenderOnce();
-
-            sourceEventCb = (sourceEventType) =>
-            {
-                if ((DragSourceEventType)sourceEventType == DragSourceEventType.Finish)
-                {
-                    if (mShadowView)
-                    {
-                        mShadowView.Hide();
-                        mDragWindow.Remove(mShadowView);
-                        mShadowView.Dispose();
-                    }
-
-                    //Update Window Directly
-                    mDragWindow.VisibiltyChangedSignalEmit(true);
-                    mDragWindow.RenderOnce();
-                }
-
-                callback((DragSourceEventType)sourceEventType);
+                BackgroundColor = Color.Transparent,
             };
 
-            if (!Interop.DragAndDrop.StartDragAndDrop(SwigCPtr, View.getCPtr(sourceView), Window.getCPtr(mDragWindow), dragData.MimeType, dragData.Data,
-                                                      new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(sourceEventCb))))
+            if (mDragWindow)
             {
-                throw new InvalidOperationException("Fail to StartDragAndDrop");
-            }
+                //Initialize Drag Window Size based on Shadow View Size,
+                //Don't set Drag Window Posiiton, Window Server sets Position Internally
+                mDragWindow.SetWindowSize(new Size(shadowWidth, shadowHeight));
 
-            mDragWindow.Show();
+                //Make Shadow View Transparent
+                shadowView.SetOpacity(0.9f);
+
+                //Make Position 0, 0 for Moving into Drag Window
+                shadowView.Position = new Position(0, 0);
+            
+                mShadowView = shadowView;
+                mDragWindow.Add(mShadowView);
+           
+                sourceEventCb = (sourceEventType) =>
+                {   
+                    if ((DragSourceEventType)sourceEventType != DragSourceEventType.Start)
+                    {     
+                        Tizen.Log.Fatal("NUI", "DnD Source Event is Called");  
+                        ReleaseDragWindow();                
+                    }
+
+                    callback((DragSourceEventType)sourceEventType);
+                };
+
+                //Show Drag Window before StartDragAndDrop
+                mDragWindow.Show();
+
+                if (!Interop.DragAndDrop.StartDragAndDrop(SwigCPtr, View.getCPtr(sourceView), Window.getCPtr(mDragWindow), dragData.MimeType, dragData.Data,
+                                                        new global::System.Runtime.InteropServices.HandleRef(this, Marshal.GetFunctionPointerForDelegate<Delegate>(sourceEventCb))))
+                {
+                    throw new InvalidOperationException("Fail to StartDragAndDrop");
+                }
+
+            }         
+            
+            initDrag = false;
         }
 
         /// <summary>
