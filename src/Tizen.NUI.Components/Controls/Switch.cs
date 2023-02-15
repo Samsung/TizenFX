@@ -115,6 +115,10 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
+            styleApplying++;
+
+            base.ApplyStyle(viewStyle);
+
             if (viewStyle is SwitchStyle switchStyle)
             {
                 if (Extension is SwitchExtension extension)
@@ -137,8 +141,9 @@ namespace Tizen.NUI.Components
                     Thumb.ApplyStyle(switchStyle.Thumb);
                 }
             }
+            styleApplying--;
 
-            base.ApplyStyle(viewStyle);
+            UpdateState();
         }
 
         /// <summary>
