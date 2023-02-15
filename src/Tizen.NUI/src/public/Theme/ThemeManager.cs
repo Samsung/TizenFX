@@ -38,14 +38,27 @@ namespace Tizen.NUI
     /// <since_tizen> 9 </since_tizen>
     public static class ThemeManager
     {
+        /// <summary>
+        /// The default light theme name preloaded in platform.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const string DefaultLightThemeName = "org.tizen.default-light-theme";
+
+        /// <summary>
+        /// The default dark theme name preloaded in platform.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public const string DefaultDarkThemeName = "org.tizen.default-dark-theme";
+
         private static Theme baseTheme; // The base theme. It includes all styles including structures (Size, Position, Policy) of components.
         private static Theme platformTheme; // The platform theme. This may include color and image information without structure detail.
         private static Theme userTheme; // The user custom theme.
         private static Theme themeForUpdate; // platformTheme + userTheme. It is used when the component need to update according to theme change.
         private static Theme themeForInitialize; // baseTheme + platformTheme + userTheme. It is used when the component is created.
         private static readonly List<Theme> cachedPlatformThemes = new List<Theme>(); // Themes provided by framework.
-        private static readonly List<IThemeCreator> packages = new List<IThemeCreator>();// This is to store base theme creators by packages.
+        private static readonly List<string> packages = new List<string>();// This is to store base theme creators by packages.
         private static bool platformThemeEnabled = false;
+        private static bool isInEventProgress = false;
 
         static ThemeManager()
         {
@@ -54,6 +67,12 @@ namespace Tizen.NUI
             ExternalThemeManager.Initialize();
             AddPackageTheme(DefaultThemeCreator.Instance);
         }
+
+        /// <summary>
+        /// An event invoked when the theme is about to change (not applied to the views yet).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static event EventHandler<ThemeChangedEventArgs> ThemeChanging;
 
         /// <summary>
         /// An event invoked after the theme has changed by <see cref="ApplyTheme(Theme)"/>.
@@ -184,8 +203,42 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Append a theme to the current theme and apply it.
+        /// This will change the appearance of the existing components with property <seealso cref="View.ThemeChangeSensitive"/> on.
+        /// This also affects all components created afterwards.
+        /// </summary>
+        /// <param name="theme">The theme instance to be appended.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the given theme is null.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void AppendTheme(Theme theme)
+        {
+            var newTheme = (Theme)theme?.Clone() ?? throw new ArgumentNullException(nameof(theme));
+
+            if (string.IsNullOrEmpty(newTheme.Id))
+            {
+                newTheme.Id = "NONAME";
+            }
+
+            StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Small, newTheme.SmallBrokenImageUrl ?? "");
+            StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Normal, newTheme.BrokenImageUrl ?? "");
+            StyleManager.Instance.SetBrokenImageUrl(StyleManager.BrokenImageType.Large, newTheme.LargeBrokenImageUrl ?? "");
+
+            if (userTheme == null) userTheme = theme;
+            else
+            {
+                userTheme = (Theme)userTheme.Clone();
+                userTheme.MergeWithoutClone(theme);
+            }
+
+            UpdateThemeForInitialize();
+            UpdateThemeForUpdate();
+            NotifyThemeChanged();
+        }
+
+        /// <summary>
         /// Change tizen theme.
         /// User may change this to one of platform installed one.
+        /// Note that this is global theme changing which effects all applications.
         /// </summary>
         /// <param name="themeId">The installed theme Id.</param>
         /// <returns>true on success, false when it failed to find installed theme with given themeId.</returns>
@@ -360,13 +413,14 @@ namespace Tizen.NUI
 
         internal static void AddPackageTheme(IThemeCreator themeCreator)
         {
-            if (InitialThemeDisabled || packages.Contains(themeCreator))
+            string packageName;
+            if (InitialThemeDisabled || packages.Contains(packageName = themeCreator.GetType().Assembly.GetName().Name))
             {
                 return;
             }
 
             Tizen.Log.Debug("NUI", $"AddPackageTheme({themeCreator.GetType().Assembly.GetName().Name})");
-            packages.Add(themeCreator);
+            packages.Add(packageName);
 
             // Base theme
             var packageBaseTheme = themeCreator.Create();
@@ -463,7 +517,7 @@ namespace Tizen.NUI
 
             for (var i = theme.PackageCount; i < packages.Count; i++)
             {
-                theme.MergeWithoutClone(CreatePlatformTheme(sharedResourcePath, packages[i].GetType().Assembly.GetName().Name));
+                theme.MergeWithoutClone(CreatePlatformTheme(sharedResourcePath, packages[i]));
             }
             theme.PackageCount = packages.Count;
         }
@@ -482,9 +536,9 @@ namespace Tizen.NUI
                 Id = id
             };
 
-            foreach (var packageCreator in packages)
+            foreach (var packageName in packages)
             {
-                newTheme.MergeWithoutClone(CreatePlatformTheme(sharedResourcePath, packageCreator.GetType().Assembly.GetName().Name));
+                newTheme.MergeWithoutClone(CreatePlatformTheme(sharedResourcePath, packageName));
             }
             newTheme.PackageCount = packages.Count;
 
@@ -528,10 +582,16 @@ namespace Tizen.NUI
 
         private static void NotifyThemeChanged(bool platformThemeUpdated = false)
         {
+            if (isInEventProgress) return;
+            isInEventProgress = true;
+
             var platformThemeId = PlatformThemeId;
             var userThemeId = userTheme?.Id;
+            ThemeChanging?.Invoke(null, new ThemeChangedEventArgs(userThemeId, platformThemeId, platformThemeUpdated));
             ThemeChangedInternal.Invoke(null, new ThemeChangedEventArgs(userThemeId, platformThemeId, platformThemeUpdated));
             ThemeChanged?.Invoke(null, new ThemeChangedEventArgs(userThemeId, platformThemeId, platformThemeUpdated));
+
+            isInEventProgress = false;
         }
     }
 }
