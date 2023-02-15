@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.IO;
 using System.Linq;
+using System.ComponentModel;
 
 namespace Tizen.Applications
 {
@@ -1191,6 +1192,80 @@ namespace Tizen.Applications
         public static PackageArchive GetPackageArchive(string archivePath)
         {
             return PackageArchive.GetPackageArchive(archivePath);
+        }
+
+        /// <summary>
+        /// Enable the given package.
+        /// </summary>
+        /// <param name="packageId">The ID of the package.</param>
+        /// <remarks>
+        /// This API is for inhouse app only.
+        /// </remarks>
+        /// <returns>Returns true if succeeds, otherwise false.</returns>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+        /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool EnablePackage(string packageId)
+        {
+            // 0 is PC_REQUEST
+            IntPtr clientHandle = Interop.PackageManagerInternal.PkgmgrClientNew(0);
+            if (clientHandle == null)
+            {
+                throw PackageManagerErrorFactory.GetException(Interop.PackageManager.ErrorCode.OutOfMemory, "Failed to create internal handle");
+            }
+
+            Interop.PackageManager.ErrorCode err = Interop.PackageManagerInternal.PkgmgrClientActivate(clientHandle, null, packageId);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Interop.PackageManagerInternal.PkgmgrClientFree(clientHandle);
+                throw PackageManagerErrorFactory.GetException(err, "Failed to activate the package");
+            }
+
+            Interop.PackageManagerInternal.PkgmgrClientFree(clientHandle);
+
+            return true;
+        }
+
+        /// <summary>
+        /// Disable the given package.
+        /// </summary>
+        /// <param name="packageId">The ID of the package.</param>
+        /// <remarks>
+        /// This API is for inhouse app only.
+        /// </remarks>
+        /// <returns>Returns true if succeeds, otherwise false.</returns>
+        /// <privilege>http://tizen.org/privilege/packagemanager.admin</privilege>
+        /// <privlevel>platform</privlevel>
+        /// <exception cref="ArgumentException">Thrown when failed when input package ID is invalid.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown when there is not enough memory to continue the execution of the method.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when an application does not have the privilege to access this method.</exception>
+        /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static bool DisablePackage(string packageId)
+        {
+            // 0 is PC_REQUEST
+            IntPtr clientHandle = Interop.PackageManagerInternal.PkgmgrClientNew(0);
+            if (clientHandle == null)
+            {
+                throw PackageManagerErrorFactory.GetException(Interop.PackageManager.ErrorCode.OutOfMemory, "Failed to create internal handle");
+            }
+
+            Interop.PackageManager.ErrorCode err = Interop.PackageManagerInternal.PkgmgrClientDeactivate(clientHandle, null, packageId);
+            if (err != Interop.PackageManager.ErrorCode.None)
+            {
+                Interop.PackageManagerInternal.PkgmgrClientFree(clientHandle);
+                throw PackageManagerErrorFactory.GetException(err, "Failed to activate the package");
+            }
+
+            Interop.PackageManagerInternal.PkgmgrClientFree(clientHandle);
+
+            return true;
         }
 
         /// <summary>
