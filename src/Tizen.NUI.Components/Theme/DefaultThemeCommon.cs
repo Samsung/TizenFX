@@ -57,6 +57,7 @@ namespace Tizen.NUI.Components
                 {
                     TextColor = new Color("#FDFDFD"),
                     PixelSize = 24,
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                 }
             });
 
@@ -90,6 +91,7 @@ namespace Tizen.NUI.Components
                         Disabled = new Color("#CACACA"),
                     },
                     PixelSize = 24,
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                 }
             });
 
@@ -112,6 +114,7 @@ namespace Tizen.NUI.Components
                         Disabled = new Color("#CACACA"),
                     },
                     PixelSize = 24,
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                 }
             });
 
@@ -141,6 +144,7 @@ namespace Tizen.NUI.Components
                 {
                     TextColor = new Color("#090E21"),
                     PixelSize = 24,
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                 }
             });
 
@@ -159,6 +163,7 @@ namespace Tizen.NUI.Components
                 {
                     PointSize = 16,
                     Padding = new Extents(20, 20, 20, 20),
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                 },
                 Buttons = new ButtonStyle()
                 {
@@ -180,6 +185,7 @@ namespace Tizen.NUI.Components
                     Text = new TextLabelStyle()
                     {
                         TextColor = new Color(0.05f, 0.63f, 0.9f, 1),
+                        FontSizeScale = FontSizeScale.UseSystemSetting,
                     }
                 }
             });
@@ -236,6 +242,7 @@ namespace Tizen.NUI.Components
                 {
                     TextColor = new Color("#090E21"),
                     PixelSize = 24,
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                 }
             });
 
@@ -288,6 +295,7 @@ namespace Tizen.NUI.Components
                     SizeHeight = 24,
                     PixelSize = 16,
                     TextColor = new Color("#FF6200"),
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                 }
             });
 
@@ -328,6 +336,7 @@ namespace Tizen.NUI.Components
                 {
                     TextColor = new Color("#090E21"),
                     PixelSize = 24,
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                 }
             });
 
@@ -416,6 +425,7 @@ namespace Tizen.NUI.Components
                         Disabled = new Color("#CACACA"),
                         Selected = new Color("#FF6200"),
                     },
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                     ThemeChangeSensitive = false
                 },
                 SubLabel = new TextLabelStyle()
@@ -430,6 +440,7 @@ namespace Tizen.NUI.Components
                         Disabled = new Color("#CACACA"),
                         Selected = new Color("#FF6200"),
                     },
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                     ThemeChangeSensitive = false
                 },
                 Icon = new ViewStyle()
@@ -475,6 +486,7 @@ namespace Tizen.NUI.Components
                         Disabled = new Color("#CACACA"),
                         Selected = new Color("#FF6200"),
                     },
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                     ThemeChangeSensitive = false
                 },
                 Badge = new ViewStyle()
@@ -497,6 +509,7 @@ namespace Tizen.NUI.Components
                     Ellipsis = true,
                     FontFamily = "SamsungOneUI400",
                     TextColor = new Color("#090E217F"),
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                     ThemeChangeSensitive = false
                 },
                 Icon = new ViewStyle()
@@ -551,6 +564,7 @@ namespace Tizen.NUI.Components
                     {
                         Normal = new Color("#17234D"),
                     },
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                     ThemeChangeSensitive = false
                 },
                 ActionView = new ViewStyle()
@@ -574,6 +588,7 @@ namespace Tizen.NUI.Components
                             Pressed = new Color("#D95300"),
                             Disabled = new Color("#CACACA"),
                         },
+                        FontSizeScale = FontSizeScale.UseSystemSetting,
                     },
                     Icon = new ImageViewStyle()
                     {
@@ -610,6 +625,7 @@ namespace Tizen.NUI.Components
                         Normal = new Color(0.035f, 0.055f, 0.123f, 1.0f),
                     },
                     BackgroundColor = new Color("#FAFAFA"),
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                 },
                 StartScrollOffset = new Size(0, 0),
             });
@@ -658,6 +674,7 @@ namespace Tizen.NUI.Components
                         Focused = new Color("#FF6200"),
                         Disabled = new Color("#CACACA"),
                     },
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                     ThemeChangeSensitive = false,
                 },
                 Icon = new ImageViewStyle()
@@ -689,6 +706,7 @@ namespace Tizen.NUI.Components
                 VerticalAlignment = VerticalAlignment.Center,
                 Padding = new Extents(16, 16, 16, 16),
                 PositionY = 120,
+                FontSizeScale = FontSizeScale.UseSystemSetting,
             });
 
             // AlertDialog base style
@@ -707,6 +725,7 @@ namespace Tizen.NUI.Components
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     TextColor = new Color("#090E21"),
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                     ThemeChangeSensitive = false,
                 },
                 MessageTextLabel = new TextLabelStyle()
@@ -717,6 +736,7 @@ namespace Tizen.NUI.Components
                     HorizontalAlignment = HorizontalAlignment.Center,
                     VerticalAlignment = VerticalAlignment.Center,
                     TextColor = new Color("#090E21"),
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                     ThemeChangeSensitive = false,
                 },
                 ActionContent = new ViewStyle()
@@ -744,6 +764,7 @@ namespace Tizen.NUI.Components
                             Normal = new Color(0.035f, 0.055f, 0.123f, 1.0f),
                         },
                         BackgroundColor = new Color("#FAFAFA"),
+                        FontSizeScale = FontSizeScale.UseSystemSetting,
                         ThemeChangeSensitive = false
                     },
                     StartScrollOffset = new Size2D(0, 0),
@@ -769,6 +790,7 @@ namespace Tizen.NUI.Components
                             Normal = new Color(0.035f, 0.055f, 0.123f, 1.0f),
                         },
                         BackgroundColor = new Color("#FAFAFA"),
+                        FontSizeScale = FontSizeScale.UseSystemSetting,
                         ThemeChangeSensitive = false
                     },
                     StartScrollOffset = new Size2D(0, 0),
@@ -815,6 +837,7 @@ namespace Tizen.NUI.Components
                         Disabled = new Color("#CACACA"),
                         Selected = new Color("#FF6200"),
                     },
+                    FontSizeScale = FontSizeScale.UseSystemSetting,
                     ThemeChangeSensitive = false
                 },
                 Icon = new ImageViewStyle()
