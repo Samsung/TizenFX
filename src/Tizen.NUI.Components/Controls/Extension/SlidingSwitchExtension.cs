@@ -82,6 +82,26 @@ namespace Tizen.NUI.Components.Extension
             }
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public override ImageView OnCreateTrack(Switch switchButton, ImageView track)
+        {
+            base.OnCreateTrack(switchButton, track);
+            track.Relayout += (s, e) => {
+                switchButton.Thumb.PositionX = switchButton.IsSelected ? switchButton.Track.Size.Width - switchButton.Thumb.Size.Width : 0;
+            };
+            return track;
+        }
+
+        /// <inheritdoc/>
+        public override ImageView OnCreateThumb(Switch switchButton, ImageView thumb)
+        {
+            base.OnCreateThumb(switchButton, thumb);
+            thumb.Relayout += (s, e) => {
+                thumb.PositionX = switchButton.IsSelected ? switchButton.Track.Size.Width - thumb.Size.Width : 0;
+            };
+            return thumb;
+        }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual void Dispose(bool disposing)
