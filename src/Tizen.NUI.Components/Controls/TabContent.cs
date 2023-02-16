@@ -45,6 +45,16 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Creates a new instance of TabContent with style.
+        /// </summary>
+        /// <param name="style">Creates TabContent by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TabContent(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
         /// Creates a new instance of a TabContent with style.
         /// </summary>
         /// <param name="style">A style applied to the newly created TabContent.</param>

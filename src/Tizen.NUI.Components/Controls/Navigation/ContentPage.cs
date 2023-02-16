@@ -48,6 +48,16 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Creates a new instance of ContentPage with style.
+        /// </summary>
+        /// <param name="style">Creates ContentPage by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ContentPage(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
         /// Creates a new instance of a ContentPage with style.
         /// </summary>
         /// <param name="style">A style applied to the newly created ContentPage.</param>

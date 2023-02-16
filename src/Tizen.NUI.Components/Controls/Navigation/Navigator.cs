@@ -132,6 +132,16 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Creates a new instance of Navigator with style.
+        /// </summary>
+        /// <param name="style">Creates Navigator by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Navigator(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
         /// Creates a new instance of a Navigator with style.
         /// </summary>
         /// <param name="style">A style applied to the newly created Navigator.</param>
