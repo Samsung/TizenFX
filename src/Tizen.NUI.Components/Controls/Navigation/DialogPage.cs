@@ -57,6 +57,16 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Creates a new instance of DialogPage with style.
+        /// </summary>
+        /// <param name="style">Creates DialogPage by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public DialogPage(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
         /// Creates a new instance of a DialogPage with style.
         /// </summary>
         /// <param name="style">A style applied to the newly created DialogPage.</param>
