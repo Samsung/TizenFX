@@ -109,6 +109,16 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Creates a new instance of TabView.
+        /// </summary>
+        /// <param name="style">Creates TabView by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TabView(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
         /// Creates a new instance of a TabView with style.
         /// </summary>
         /// <param name="style">A style applied to the newly created TabView.</param>

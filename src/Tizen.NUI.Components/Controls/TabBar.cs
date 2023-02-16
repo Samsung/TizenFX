@@ -78,6 +78,16 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Creates a new instance of TabBar with style.
+        /// </summary>
+        /// <param name="style">Creates TabBar by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TabBar(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
         /// Creates a new instance of a TabBar with style.
         /// </summary>
         /// <param name="style">A style applied to the newly created TabBar.</param>
