@@ -65,6 +65,16 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Creates a new instance of Dialog with style.
+        /// </summary>
+        /// <param name="style">Creates Dialog by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Dialog(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
         /// Creates a new instance of a Dialog with style.
         /// </summary>
         /// <param name="style">A style applied to the newly created Dialog.</param>
