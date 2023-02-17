@@ -34,7 +34,7 @@ namespace Tizen.NUI.Components
         private EventHandler<StateChangedEventArgs> stateChangeHandler;
 
         private bool isPressed = false;
-        internal int styleApplying = 0;
+        internal bool styleApplying = false;
 
         /// <summary>
         /// Gets accessibility name.
@@ -193,7 +193,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UpdateState()
         {
-            if (styleApplying > 0) return;
+            if (styleApplying) return;
 
             ControlState sourceState = ControlState;
             ControlState targetState;
@@ -240,19 +240,26 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                Extension?.OnDispose(this);
+                if (Extension != null)
+                {
+                    Extension.OnDispose(this);
+                    Extension = null;
+                }
 
                 if (buttonIcon != null)
                 {
                     Utility.Dispose(buttonIcon);
+                    buttonIcon = null;
                 }
                 if (buttonText != null)
                 {
                     Utility.Dispose(buttonText);
+                    buttonText = null;
                 }
                 if (overlayImage != null)
                 {
                     Utility.Dispose(overlayImage);
+                    overlayImage = null;
                 }
             }
 
@@ -346,54 +353,45 @@ namespace Tizen.NUI.Components
             Size2D cellPadding = String.IsNullOrEmpty(buttonText.Text) ? new Size2D(0, 0) : itemSpacing;
 #pragma warning restore CA2000
 
+            var linearLayout = Layout as LinearLayout;
+            if (linearLayout == null) Layout = (linearLayout = new LinearLayout());
+
             if (IconRelativeOrientation == IconOrientation.Left)
             {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    HorizontalAlignment = itemHorizontalAlignment,
-                    VerticalAlignment = itemVerticalAlignment,
-                    CellPadding = cellPadding
-                };
+                linearLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
+                linearLayout.HorizontalAlignment = itemHorizontalAlignment;
+                linearLayout.VerticalAlignment = itemVerticalAlignment;
+                linearLayout.CellPadding = cellPadding;
 
                 Add(buttonIcon);
                 Add(buttonText);
             }
             else if (IconRelativeOrientation == IconOrientation.Right)
             {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Horizontal,
-                    HorizontalAlignment = itemHorizontalAlignment,
-                    VerticalAlignment = itemVerticalAlignment,
-                    CellPadding = cellPadding
-                };
+                linearLayout.LinearOrientation = LinearLayout.Orientation.Horizontal;
+                linearLayout.HorizontalAlignment = itemHorizontalAlignment;
+                linearLayout.VerticalAlignment = itemVerticalAlignment;
+                linearLayout.CellPadding = cellPadding;
 
                 Add(buttonText);
                 Add(buttonIcon);
             }
             else if (IconRelativeOrientation == IconOrientation.Top)
             {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Vertical,
-                    HorizontalAlignment = itemHorizontalAlignment,
-                    VerticalAlignment = itemVerticalAlignment,
-                    CellPadding = cellPadding
-                };
+                linearLayout.LinearOrientation = LinearLayout.Orientation.Vertical;
+                linearLayout.HorizontalAlignment = itemHorizontalAlignment;
+                linearLayout.VerticalAlignment = itemVerticalAlignment;
+                linearLayout.CellPadding = cellPadding;
 
                 Add(buttonIcon);
                 Add(buttonText);
             }
             else if (IconRelativeOrientation == IconOrientation.Bottom)
             {
-                Layout = new LinearLayout()
-                {
-                    LinearOrientation = LinearLayout.Orientation.Vertical,
-                    HorizontalAlignment = itemHorizontalAlignment,
-                    VerticalAlignment = itemVerticalAlignment,
-                    CellPadding = cellPadding
-                };
+                linearLayout.LinearOrientation = LinearLayout.Orientation.Vertical;
+                linearLayout.HorizontalAlignment = itemHorizontalAlignment;
+                linearLayout.VerticalAlignment = itemVerticalAlignment;
+                linearLayout.CellPadding = cellPadding;
 
                 Add(buttonText);
                 Add(buttonIcon);
