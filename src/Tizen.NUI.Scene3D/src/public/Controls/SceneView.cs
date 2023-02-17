@@ -386,7 +386,7 @@ namespace Tizen.NUI.Scene3D
         /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
         /// <since_tizen> 10 </since_tizen>
-                [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "The ownership of camera object is not owned by this class.")]
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "The ownership of camera object is not owned by this class.")]
         public void CameraTransition(uint index, int durationMilliSeconds, AlphaFunction alphaFunction = null)
         {
             if(inCameraTransition || GetSelectedCamera() == GetCamera(index))
@@ -412,7 +412,7 @@ namespace Tizen.NUI.Scene3D
         /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
         /// <param name="alphaFunction">The alpha function to apply.</param>
         /// <since_tizen> 10 </since_tizen>
-                [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "The ownership of camera object is not owned by this class.")]
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "The ownership of camera object is not owned by this class.")]
         public void CameraTransition(string name, int durationMilliSeconds, AlphaFunction alphaFunction = null)
         {
             if(inCameraTransition || GetSelectedCamera() == GetCamera(name))
