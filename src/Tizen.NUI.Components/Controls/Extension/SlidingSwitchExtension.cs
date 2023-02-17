@@ -82,27 +82,12 @@ namespace Tizen.NUI.Components.Extension
             }
         }
 
-        /// <inheritdoc/>
+        /// <inheritdoc />
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public override ImageView OnCreateTrack(Switch switchButton, ImageView track)
+        public override void OnTrackOrThumbResized(Switch switchButton, ImageView track, ImageView thumb)
         {
-            base.OnCreateTrack(switchButton, track);
-            track.Relayout += (s, e) => {
-                if (slidingAnimation.State == Animation.States.Playing) return;
-                switchButton.Thumb.PositionX = switchButton.IsSelected ? switchButton.Track.Size.Width - switchButton.Thumb.Size.Width : 0;
-            };
-            return track;
-        }
-
-        /// <inheritdoc/>
-        public override ImageView OnCreateThumb(Switch switchButton, ImageView thumb)
-        {
-            base.OnCreateThumb(switchButton, thumb);
-            thumb.Relayout += (s, e) => {
-                if (slidingAnimation.State == Animation.States.Playing) return;
-                thumb.PositionX = switchButton.IsSelected ? switchButton.Track.Size.Width - thumb.Size.Width : 0;
-            };
-            return thumb;
+            var destX = switchButton.IsSelected ? switchButton.Track.Size.Width - thumb.Size.Width : 0;
+            if (destX != thumb.PositionX) thumb.PositionX = destX;
         }
 
         [EditorBrowsable(EditorBrowsableState.Never)]
