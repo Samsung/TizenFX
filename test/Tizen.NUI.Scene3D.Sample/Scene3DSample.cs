@@ -44,6 +44,10 @@ class Scene3DSample : NUIApplication
         // Model reference : https://sketchfab.com/models/b81008d513954189a063ff901f7abfe4
         // Get from KhronosGroup https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/DamagedHelmet
         "DamagedHelmet/DamagedHelmet.gltf",
+        
+        // Get from KhronosGroup https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/2CylinderEngine
+        "2CylinderEngine/2CylinderEngine_e.gltf",
+
         "BoxAnimated/BoxAnimated.gltf",
     };
     private int currentModelIndex = 0;
@@ -98,6 +102,7 @@ class Scene3DSample : NUIApplication
         },
     };
     uint currentCameraIndex = 0u;
+    Tizen.NUI.Scene3D.Camera additionalCamera;
     const int cameraAnimationDurationMilliseconds = 2000; // milliseconds
     #endregion
 
@@ -174,6 +179,20 @@ class Scene3DSample : NUIApplication
             mModel.Dispose();
         }
 
+        // Release old camera if exist
+        if (additionalCamera != null)
+        {
+            if (currentCameraIndex == CameraInfoList.Count)
+            {
+                currentCameraIndex = 0u;
+                Tizen.Log.Error("NUI", $"Use camera [{currentCameraIndex}]\n");
+                mSceneView.SelectCamera(currentCameraIndex);
+            }
+            mSceneView.RemoveCamera(additionalCamera);
+            additionalCamera.Dispose();
+            additionalCamera = null;
+        }
+
         mModel = new Model(MODEL_DIR + modelUrl)
         {
             Name = modelUrl,
@@ -188,7 +207,22 @@ class Scene3DSample : NUIApplication
                 model.GetAnimation(0u).Looping = true;
                 model.GetAnimation(0u).Play();
             }
+            // You can apply camera properties if the camera parameter exists.
+            if (model.GetCameraCount() > 0u)
+            {
+                additionalCamera = new Tizen.NUI.Scene3D.Camera();
+                // If we success to make additional camera from model, Add that camera into sceneview, and select that.
+                if (model.ApplyCamera(0u, additionalCamera))
+                {
+                    currentCameraIndex = mSceneView.GetCameraCount();
+                    mSceneView.AddCamera(additionalCamera);
+
+                    Tizen.Log.Error("NUI", $"Use additional camera [{currentCameraIndex}]\n");
+                    mSceneView.SelectCamera(currentCameraIndex);
+                }
+            }
             Tizen.Log.Error("NUI", $"{model.Name} size : {model.Size.Width}, {model.Size.Height}, {model.Size.Depth}\n");
+            Tizen.Log.Error("NUI", $"Animation count {model.GetAnimationCount()} , Camera count {model.GetCameraCount()}\n");
 
             if (mMutex)
             {
@@ -243,6 +277,7 @@ class Scene3DSample : NUIApplication
                         currentCameraIndex = 0;
                     }
 
+                    Tizen.Log.Error("NUI", $"Use camera [{currentCameraIndex}]\n");
                     mSceneView.CameraTransition(currentCameraIndex, cameraAnimationDurationMilliseconds);
 
                     mMutex = true;
@@ -257,6 +292,7 @@ class Scene3DSample : NUIApplication
                         currentModelIndex = 0;
                     }
 
+                    Tizen.Log.Error("NUI", $"Create model [{currentModelIndex}]\n");
                     CreateModel(ModelUrlList[currentModelIndex]);
                     break;
                 }
@@ -268,6 +304,7 @@ class Scene3DSample : NUIApplication
                         currentIBLIndex = 0;
                     }
 
+                    Tizen.Log.Error("NUI", $"Use Light image [{currentIBLIndex}]\n");
                     SetupIBLimage(IBLUrlList[currentIBLIndex].Item1, IBLUrlList[currentIBLIndex].Item2, IBLFactor);
                     break;
                 }
@@ -281,6 +318,12 @@ class Scene3DSample : NUIApplication
         mWindow = Window.Instance;
         mWindow.BackgroundColor = Color.DarkOrchid;
         mWindowSize = mWindow.WindowSize;
+
+        mWindow.Resized += (o, e) =>
+        {
+            mWindowSize = mWindow.WindowSize;
+            mSceneView.Size = new Size(mWindowSize);
+        };
 
         mWindow.KeyEvent += OnKeyEvent;
 
