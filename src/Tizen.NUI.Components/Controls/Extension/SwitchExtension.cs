@@ -65,5 +65,11 @@ namespace Tizen.NUI.Components.Extension
         public virtual void OnSelectedChanged(Switch switchButton)
         {
         }
+
+        /// <summary> Called when the Switch's track or thumb resized. </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public virtual void OnTrackOrThumbResized(Switch switchButton, ImageView track, ImageView thumb)
+        {
+        }
     }
 }
