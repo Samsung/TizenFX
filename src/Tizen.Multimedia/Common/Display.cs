@@ -163,8 +163,7 @@ namespace Tizen.Multimedia
             {
                 throw new ArgumentNullException(nameof(window));
             }
-            NUI.Rectangle rect = window.WindowPositionSize;
-            _setter = new EcoreDisplaySetter(window.GetNativeWindowHandler(), rect);
+            _setter = new EcoreDisplaySetter(window.GetNativeWindowHandler(), window.WindowPositionSize);
 
             UiSync = uiSync;
         }
