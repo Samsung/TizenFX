@@ -266,7 +266,8 @@ namespace Tizen.NUI.Components
                 },
                 Thumb = new ImageViewStyle()
                 {
-                    Size = new Size(40, 40),
+                    WidthResizePolicy = ResizePolicyType.UseNaturalSize,
+                    HeightResizePolicy = ResizePolicyType.UseNaturalSize,
                     ResourceUrl = new Selector<string>()
                     {
                         Normal = FrameworkInformation.ResourcePath + "IoT_slider_handler_normal.png",
@@ -277,7 +278,9 @@ namespace Tizen.NUI.Components
                 },
                 ValueIndicatorImage = new ImageViewStyle()
                 {
-                    Size = new Size(43, 40),
+                    SizeHeight = 40,
+                    WidthResizePolicy = ResizePolicyType.FitToChildren,
+                    Margin = new Extents(8, 8, 0, 0),
                     BorderlineWidth = 1.0f,
                     BorderlineColor = new Color("#FF6200"),
                     BackgroundColor = new Color(1.0f, 1.0f, 1.0f, 0.0f),
@@ -286,6 +289,7 @@ namespace Tizen.NUI.Components
                 ValueIndicatorText = new TextLabelStyle()
                 {
                     SizeHeight = 24,
+                    WidthResizePolicy = ResizePolicyType.UseNaturalSize,
                     PixelSize = 16,
                     TextColor = new Color("#FF6200"),
                 }
