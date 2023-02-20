@@ -134,7 +134,7 @@ namespace Tizen.Multimedia.Remoting
             return Native.SetDisplay(Handle, (int)type, evasObject);
         }
 
-        ScreenMirroringErrorCode IDisplayable<ScreenMirroringErrorCode>.ApplyEcoreWindow(IntPtr windowHandle, NUI.Rectangle rect)
+        ScreenMirroringErrorCode IDisplayable<ScreenMirroringErrorCode>.ApplyEcoreWindow(IntPtr windowHandle, int x, int y, int width, int height)
         {
             return Native.SetEcoreDisplay(Handle, windowHandle);
         }
