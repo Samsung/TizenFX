@@ -67,8 +67,18 @@ namespace Tizen.NUI.Components
         defaultValueCreator: (bindable) => ((LoadingStyle)bindable).images
         );
 
+        /// <summary>The lottie resource url bindable property.</summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty LottieResourceUrlProperty = BindableProperty.Create(nameof(LottieResourceUrl), typeof(string), typeof(LoadingStyle), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            ((LoadingStyle)bindable).lottieResourceUrl = newValue as string;
+        },
+        defaultValueCreator: (bindable) => ((LoadingStyle)bindable).lottieResourceUrl
+        );
+
         private Selector<int?> frameRate;
         private List<string> images;
+        private string lottieResourceUrl;
 
         static LoadingStyle() { }
 
@@ -108,6 +118,17 @@ namespace Tizen.NUI.Components
                 return GetValue(ImageListProperty) as List<string>;
             }
             internal set => SetValue(ImageListProperty, value);
+        }
+
+        /// <summary>
+        /// Gets or sets an lottie resource url.
+        /// The mutually exclusive with "ImageArray".
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string LottieResourceUrl
+        {
+            get => GetValue(LottieResourceUrlProperty) as string;
+            set => SetValue(LottieResourceUrlProperty, value);
         }
 
         /// <summary>
