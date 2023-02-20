@@ -227,6 +227,15 @@ namespace Tizen.NUI.Components
             set => SetValue(TrackPaddingProperty, value);
         }
 
+        /// <summary>
+        /// Gets or sets the maximum size of the thumb.
+        /// This is used to calculate the track length and thumb position.
+        /// The track length is calculated by subtracting the maximum size of the thumb from the slider size.
+        /// The thumb position is calculated by using the track length.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size ThumbMaximumSize { get; set; } = new Size();
+
         /// <inheritdoc/>
         /// <since_tizen> 8 </since_tizen>
         public override void CopyFrom(BindableObject bindableObject)
@@ -246,6 +255,7 @@ namespace Tizen.NUI.Components
                 HighIndicator.CopyFrom(sliderStyle.HighIndicator);
                 ValueIndicatorText.CopyFrom(sliderStyle.ValueIndicatorText);
                 ValueIndicatorImage.CopyFrom(sliderStyle.ValueIndicatorImage);
+                ThumbMaximumSize = new Size(sliderStyle.ThumbMaximumSize);
             }
         }
 

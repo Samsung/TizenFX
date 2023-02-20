@@ -1587,6 +1587,11 @@ namespace Tizen.NUI.Components
                 CreateWarningSlidedTrack().ApplyStyle(sliderStyle.WarningProgress);
             }
 
+            if (null != sliderStyle?.ThumbMaximumSize)
+            {
+                thumbMaximumSize = new Size(sliderStyle.ThumbMaximumSize);
+            }
+
             EnableControlStatePropagation = true;
         }
 
@@ -1709,6 +1714,12 @@ namespace Tizen.NUI.Components
                 {
                     editModeIndicator.Dispose();
                     editModeIndicator = null;
+                }
+
+                if (thumbMaximumSize != null)
+                {
+                    thumbMaximumSize.Dispose();
+                    thumbMaximumSize = null;
                 }
             }
 
