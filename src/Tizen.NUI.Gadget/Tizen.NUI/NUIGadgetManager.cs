@@ -146,7 +146,7 @@ namespace Tizen.NUI
                 throw new InvalidOperationException(e.Message);
             }
 
-            NUIGadget gadget = assembly.CreateInstance(className) as NUIGadget;
+            NUIGadget gadget = assembly.CreateInstance(className, true) as NUIGadget;
             if (gadget == null)
             {
                 throw new InvalidOperationException("Failed to create instance. className: " + className);
