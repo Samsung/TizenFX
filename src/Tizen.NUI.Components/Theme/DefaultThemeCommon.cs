@@ -136,7 +136,12 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    TextColor = new Color("#090E21"),
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#090E21"),
+                        Selected = new Color("#FF6200"),
+                        Disabled = new Color("#CACACA"),
+                    },
                     PixelSize = 24,
                 }
             });
@@ -231,7 +236,12 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    TextColor = new Color("#090E21"),
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#090E21"),
+                        Selected = new Color("#FF6200"),
+                        Disabled = new Color("#CACACA"),
+                    },
                     PixelSize = 24,
                 }
             });
@@ -327,7 +337,11 @@ namespace Tizen.NUI.Components
                 },
                 Text = new TextLabelStyle()
                 {
-                    TextColor = new Color("#090E21"),
+                    TextColor = new Selector<Color>()
+                    {
+                        Normal = new Color("#090E21"),
+                        Disabled = new Color("#CACACA"),
+                    },
                     PixelSize = 24,
                 }
             });
@@ -347,7 +361,7 @@ namespace Tizen.NUI.Components
                     Normal = FrameworkInformation.ResourcePath + "nui_component_default_pagination_normal_dot.png",
                     Selected = FrameworkInformation.ResourcePath + "nui_component_default_pagination_focus_dot.png",
                 },
-                IndicatorSize = new Size(64, 8),
+                IndicatorSize = new Size(80, 24),
                 IndicatorSpacing = 16,
             });
 
@@ -641,11 +655,9 @@ namespace Tizen.NUI.Components
                 TextSizeWithIcon = 16.0f,
                 BackgroundColor = new Selector<Color>()
                 {
-                    Normal = new Color("#FAFAFA"),
                     Selected = new Color("#FFE0CC"),
                     Pressed = new Color("#FFCAA8"),
-                    Focused = new Color("#FAFAFA"),
-                    Disabled = new Color("#FAFAFA"),
+                    Other = new Color("#FAFAFA"),
                 },
                 Text = new TextLabelStyle()
                 {
@@ -654,10 +666,8 @@ namespace Tizen.NUI.Components
                     TextColor = new Selector<Color>()
                     {
                         Normal = new Color("#090E21"),
-                        Selected = new Color("#FF6200"),
-                        Pressed = new Color("#FF6200"),
-                        Focused = new Color("#FF6200"),
                         Disabled = new Color("#CACACA"),
+                        Other = new Color("#FF6200"),
                     },
                     ThemeChangeSensitive = false,
                 },
@@ -667,10 +677,8 @@ namespace Tizen.NUI.Components
                     Color = new Selector<Color>()
                     {
                         Normal = new Color("#090E21"),
-                        Selected = new Color("#FF6200"),
-                        Pressed = new Color("#FF6200"),
-                        Focused = new Color("#FF6200"),
                         Disabled = new Color("#CACACA"),
+                        Other = new Color("#FF6200"),
                     },
                 },
             });
