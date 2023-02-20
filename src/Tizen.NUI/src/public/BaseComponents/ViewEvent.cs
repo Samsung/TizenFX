@@ -56,8 +56,6 @@ namespace Tizen.NUI.BaseComponents
         // Resource Ready Signal
         private EventHandler resourcesLoadedEventHandler;
         private ResourcesLoadedCallbackType ResourcesLoadedCallback;
-        private EventHandler<BackgroundResourceLoadedEventArgs> backgroundResourceLoadedEventHandler;
-        private _backgroundResourceLoadedCallbackType backgroundResourceLoadedCallback;
         private OnWindowEventCallbackType onWindowSendEventCallback;
         private void SendViewAddedEventToWindow(IntPtr data)
         {
@@ -617,94 +615,6 @@ namespace Tizen.NUI.BaseComponents
             _backKeyPressed.Invoke(this, null);
         }
 
-
-        internal event EventHandler<BackgroundResourceLoadedEventArgs> BackgroundResourceLoaded
-        {
-            add
-            {
-                if (backgroundResourceLoadedEventHandler == null)
-                {
-                    backgroundResourceLoadedCallback = OnBackgroundResourceLoaded;
-                    using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(SwigCPtr), false);
-                    signal?.Connect(backgroundResourceLoadedCallback);
-                }
-                backgroundResourceLoadedEventHandler += value;
-            }
-
-            remove
-            {
-                backgroundResourceLoadedEventHandler -= value;
-                if (backgroundResourceLoadedEventHandler == null)
-                {
-                    using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(SwigCPtr), false);
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(backgroundResourceLoadedCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            backgroundResourceLoadedCallback = null;
-                        }
-                    }
-                }
-            }
-        }
-
-        internal TouchDataSignal InterceptTouchSignal()
-        {
-            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal TouchDataSignal TouchSignal()
-        {
-            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal HoverSignal HoveredSignal()
-        {
-            HoverSignal ret = new HoverSignal(Interop.ActorSignal.ActorHoveredSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal WheelSignal WheelEventSignal()
-        {
-            WheelSignal ret = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ViewSignal OnWindowSignal()
-        {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ViewSignal OffWindowSignal()
-        {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.ActorOffSceneSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ViewSignal OnRelayoutSignal()
-        {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.ActorOnRelayoutSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal ViewVisibilityChangedSignal VisibilityChangedSignal(View view)
         {
             ViewVisibilityChangedSignal ret = new ViewVisibilityChangedSignal(Interop.NDalic.VisibilityChangedSignal(View.getCPtr(view)), false);
@@ -715,34 +625,6 @@ namespace Tizen.NUI.BaseComponents
         internal ViewLayoutDirectionChangedSignal LayoutDirectionChangedSignal(View view)
         {
             ViewLayoutDirectionChangedSignal ret = new ViewLayoutDirectionChangedSignal(Interop.Layout.LayoutDirectionChangedSignal(View.getCPtr(view)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ViewSignal ResourcesLoadedSignal()
-        {
-            ViewSignal ret = new ViewSignal(Interop.View.ResourceReadySignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ControlKeySignal KeyEventSignal()
-        {
-            ControlKeySignal ret = new ControlKeySignal(Interop.ViewSignal.KeyEventSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal KeyInputFocusSignal KeyInputFocusGainedSignal()
-        {
-            KeyInputFocusSignal ret = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusGainedSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal KeyInputFocusSignal KeyInputFocusLostSignal()
-        {
-            KeyInputFocusSignal ret = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusLostSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
@@ -790,21 +672,6 @@ namespace Tizen.NUI.BaseComponents
         private void OnPivotPointChanged(float x, float y, float z)
         {
             PivotPoint = new Position(x, y, z);
-        }
-
-        private void OnImageShadowChanged(ShadowBase instance)
-        {
-            ImageShadow = (ImageShadow)instance;
-        }
-
-        private void OnBoxShadowChanged(ShadowBase instance)
-        {
-            BoxShadow = (Shadow)instance;
-        }
-
-        private void OnBackgroundImageBorderChanged(int left, int right, int bottom, int top)
-        {
-            BackgroundImageBorder = new Rectangle(left, right, bottom, top);
         }
 
         private void OnKeyInputFocusGained(IntPtr view)
@@ -1094,17 +961,6 @@ namespace Tizen.NUI.BaseComponents
             if (resourcesLoadedEventHandler != null)
             {
                 resourcesLoadedEventHandler(this, null);
-            }
-        }
-
-        private void OnBackgroundResourceLoaded(IntPtr view)
-        {
-            BackgroundResourceLoadedEventArgs e = new BackgroundResourceLoadedEventArgs();
-            e.Status = (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.BACKGROUND);
-
-            if (backgroundResourceLoadedEventHandler != null)
-            {
-                backgroundResourceLoadedEventHandler(this, e);
             }
         }
 

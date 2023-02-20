@@ -143,17 +143,6 @@ namespace Tizen.NUI.BaseComponents
             SetVisible(shown);
         }
 
-        internal View(View uiControl, bool shown = true) : this(Interop.View.NewView(View.getCPtr(uiControl)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            if (!shown)
-            {
-                SetVisible(false);
-            }
-
-            backgroundExtraData = uiControl.backgroundExtraData == null ? null : new BackgroundExtraData(uiControl.backgroundExtraData);
-        }
-
         internal View(global::System.IntPtr cPtr, bool cMemoryOwn, ViewStyle viewStyle, bool shown = true) : this(cPtr, cMemoryOwn, shown)
         {
             InitializeStyle(viewStyle);
@@ -181,16 +170,6 @@ namespace Tizen.NUI.BaseComponents
 
             GrabTouchAfterLeave = defaultGrabTouchAfterLeave;
             AllowOnlyOwnTouch = defaultAllowOnlyOwnTouch;
-        }
-
-        internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
-        {
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-
-            if (!shown)
-            {
-                SetVisible(false);
-            }
         }
 
         /// <summary>
@@ -707,24 +686,6 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(BorderlineColorProperty, value);
-                NotifyPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// The color selector for the borderline of the View.
-        /// Like BackgroundColor, color selector typed BorderlineColor should be used in ViewStyle only.
-        /// So this API is internally used only.
-        /// </summary>
-        internal Selector<Color> BorderlineColorSelector
-        {
-            get
-            {
-                return (Selector<Color>)GetValue(BorderlineColorSelectorProperty);
-            }
-            set
-            {
-                SetValue(BorderlineColorSelectorProperty, value);
                 NotifyPropertyChanged();
             }
         }

@@ -182,42 +182,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("ViewImpl GetPinchGestureDetector.")]
-        [Property("SPEC", "Tizen.NUI.ViewImpl.GetPinchGestureDetector M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewImplGetGestureDetector()
-        {
-            tlog.Debug(tag, $"ViewImplGetGestureDetector START");
-
-            using (ViewWrapperImpl impl = new ViewWrapperImpl(CustomViewBehaviour.ViewBehaviourDefault))
-            {
-                var testingTarget = new ViewWrapper("CustomView", impl);
-                Assert.IsNotNull(testingTarget, "should be not null");
-                Assert.IsInstanceOf<ViewWrapper>(testingTarget, "should be an instance of testing target class!");
-
-                var pinchGesture = testingTarget.viewWrapperImpl.GetPinchGestureDetector();
-                Assert.IsInstanceOf<PinchGestureDetector>(pinchGesture, "should be an instance of testing target class!");
-
-                var panGesture = testingTarget.viewWrapperImpl.GetPanGestureDetector();
-                Assert.IsInstanceOf<PanGestureDetector>(panGesture, "should be an instance of testing target class!");
-
-                var tapGesture = testingTarget.viewWrapperImpl.GetTapGestureDetector();
-                Assert.IsInstanceOf<TapGestureDetector>(tapGesture, "should be an instance of testing target class!");
-
-                var pressGesture = testingTarget.viewWrapperImpl.GetLongPressGestureDetector();
-                Assert.IsInstanceOf<LongPressGestureDetector>(pressGesture, "should be an instance of testing target class!");
-
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"ViewImplGetGestureDetector (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("ViewImpl SetKeyInputFocus.")]
         [Property("SPEC", "Tizen.NUI.ViewImpl.SetKeyInputFocus M")]
         [Property("SPEC_URL", "-")]

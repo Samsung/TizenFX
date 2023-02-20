@@ -108,25 +108,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Alignment.Padding constructor.")]
-        [Property("SPEC", "Tizen.NUI.Alignment.Padding.Padding C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AlignmentPadding()
-        {
-            tlog.Debug(tag, $"AlignmentPadding START");
-
-            var testingTarget = new Alignment.Padding();
-            Assert.IsNotNull(testingTarget, "Can't create success object Alignment");
-            Assert.IsInstanceOf<Alignment.Padding>(testingTarget, "Should be an instance of Padding type.");
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AlignmentPadding END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("Alignment.Padding constructor. With floats.")]
         [Property("SPEC", "Tizen.NUI.Alignment.Padding.Padding C")]
         [Property("SPEC_URL", "-")]
@@ -275,102 +256,6 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"AlignmentDownCast END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Alignment.Padding left.")]
-        [Property("SPEC", "Tizen.NUI.Alignment.Padding left A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AlignmentPaddingLeft()
-        {
-            tlog.Debug(tag, $"AlignmentPaddingLeft START");
-
-            var testingTarget = new Alignment.Padding(1.0f, 2.0f, 3.0f, 4.0f);
-            Assert.IsNotNull(testingTarget, "Can't create success object Alignment");
-            Assert.IsInstanceOf<Alignment.Padding>(testingTarget, "Should be an instance of Padding type.");
-
-            Assert.AreEqual(1.0f, testingTarget.left, "Should be equal!");
-
-            testingTarget.left = 4.0f;
-            Assert.AreEqual(4.0f, testingTarget.left, "Should be equal!");
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AlignmentPaddingLeft END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Alignment.Padding right.")]
-        [Property("SPEC", "Tizen.NUI.Alignment.Padding right A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AlignmentPaddingRight()
-        {
-            tlog.Debug(tag, $"AlignmentPaddingRight START");
-
-            var testingTarget = new Alignment.Padding(1.0f, 2.0f, 3.0f, 4.0f);
-            Assert.IsNotNull(testingTarget, "Can't create success object Alignment");
-            Assert.IsInstanceOf<Alignment.Padding>(testingTarget, "Should be an instance of Padding type.");
-
-            Assert.AreEqual(2.0f, testingTarget.right, "Should be equal!");
-
-            testingTarget.right = 3.0f;
-            Assert.AreEqual(3.0f, testingTarget.right, "Should be equal!");
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AlignmentPaddingRight END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Alignment.Padding top.")]
-        [Property("SPEC", "Tizen.NUI.Alignment.Padding top A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AlignmentPaddingTop()
-        {
-            tlog.Debug(tag, $"AlignmentPaddingTop START");
-
-            var testingTarget = new Alignment.Padding(1.0f, 2.0f, 3.0f, 4.0f);
-            Assert.IsNotNull(testingTarget, "Can't create success object Alignment");
-            Assert.IsInstanceOf<Alignment.Padding>(testingTarget, "Should be an instance of Padding type.");
-
-            Assert.AreEqual(3.0f, testingTarget.top, "Should be equal!");
-
-            testingTarget.top = 2.0f;
-            Assert.AreEqual(2.0f, testingTarget.top, "Should be equal!");
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AlignmentPaddingTop END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("Alignment.Padding bottom.")]
-        [Property("SPEC", "Tizen.NUI.Alignment.Padding bottom A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AlignmentPaddingBottom()
-        {
-            tlog.Debug(tag, $"AlignmentPaddingBottom START");
-
-            var testingTarget = new Alignment.Padding(1.0f, 2.0f, 3.0f, 4.0f);
-            Assert.IsNotNull(testingTarget, "Can't create success object Alignment");
-            Assert.IsInstanceOf<Alignment.Padding>(testingTarget, "Should be an instance of Padding type.");
-
-            Assert.AreEqual(4.0f, testingTarget.bottom, "Should be equal!");
-
-            testingTarget.bottom = 1.0f;
-            Assert.AreEqual(1.0f, testingTarget.bottom, "Should be equal!");
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"AlignmentPaddingBottom END (OK)");
         }
     }
 }

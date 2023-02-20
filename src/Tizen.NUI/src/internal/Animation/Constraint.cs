@@ -63,17 +63,6 @@ namespace Tizen.NUI
             Interop.Constraint.Remove(SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
-
-
-        /// <summary>
-        /// Remove action. Determine the target values action after remove current constriant.
-        /// Default is RemoveActionType.Bake
-        /// </summary>
-        internal RemoveActionType RemoveAction
-        {
-            set => Interop.Constraint.SetRemoveAction(SwigCPtr, (int)value);
-            get => (RemoveActionType) Interop.Constraint.GetRemoveAction(SwigCPtr);
-        }
         
         /// <summary>
         /// Tag number. It will be useful when you want to seperate constraints

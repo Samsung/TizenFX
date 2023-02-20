@@ -199,11 +199,9 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int ParentOrigin = Interop.ActorProperty.ParentOriginGet();
             internal static readonly int ParentOriginX = Interop.ActorProperty.ParentOriginXGet();
             internal static readonly int ParentOriginY = Interop.ActorProperty.ParentOriginYGet();
-            internal static readonly int ParentOriginZ = Interop.ActorProperty.ParentOriginZGet();
             internal static readonly int AnchorPoint = Interop.ActorProperty.AnchorPointGet();
             internal static readonly int AnchorPointX = Interop.ActorProperty.AnchorPointXGet();
             internal static readonly int AnchorPointY = Interop.ActorProperty.AnchorPointYGet();
-            internal static readonly int AnchorPointZ = Interop.ActorProperty.AnchorPointZGet();
             internal static readonly int SIZE = Interop.ActorProperty.SizeGet();
             internal static readonly int SizeWidth = Interop.ActorProperty.SizeWidthGet();
             internal static readonly int SizeHeight = Interop.ActorProperty.SizeHeightGet();
@@ -215,7 +213,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int WorldPosition = Interop.ActorProperty.WorldPositionGet();
             internal static readonly int WorldPositionX = Interop.ActorProperty.WorldPositionXGet();
             internal static readonly int WorldPositionY = Interop.ActorProperty.WorldPositionYGet();
-            internal static readonly int WorldPositionZ = Interop.ActorProperty.WorldPositionZGet();
             internal static readonly int ORIENTATION = Interop.ActorProperty.OrientationGet();
             internal static readonly int WorldOrientation = Interop.ActorProperty.WorldOrientationGet();
             internal static readonly int SCALE = Interop.ActorProperty.ScaleGet();
@@ -229,7 +226,6 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int ColorGreen = Interop.ActorProperty.ColorGreenGet();
             internal static readonly int ColorBlue = Interop.ActorProperty.ColorBlueGet();
             internal static readonly int WorldColor = Interop.ActorProperty.WorldColorGet();
-            internal static readonly int WorldMatrix = Interop.ActorProperty.WorldMatrixGet();
             internal static readonly int NAME = Interop.ActorProperty.NameGet();
             internal static readonly int SENSITIVE = Interop.ActorProperty.SensitiveGet();
             internal static readonly int UserInteractionEnabled = Interop.ActorProperty.UserInteractionEnabledGet();

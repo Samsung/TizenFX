@@ -171,24 +171,5 @@ namespace Tizen.NUI.Devel.Tests
         //    testingTarget.Dispose();
         //    tlog.Debug(tag, $"AccessibilityDoGestureSignalEmit END (OK)");
         //}
-
-        [Test]
-        [Description("AccessibilityDoGestureSignal SetResult")]
-        [Property("AUTHOR", "dongsug.song@samsung.com")]
-        public void AccessibilityDoGestureSignalSetResult()
-        {
-            tlog.Debug(tag, $"AccessibilityDoGestureSignalSetResult START");
-
-            using (View view = new View())
-            {
-                view.OnWindowSignal();
-
-                AccessibilityDoGestureSignal.SetResult(view.SwigCPtr.Handle, true);
-                var result = AccessibilityDoGestureSignal.GetResult(view.SwigCPtr.Handle);
-                tlog.Debug(tag, "Result : " + result);
-            }
-
-            tlog.Debug(tag, $"AccessibilityDoGestureSignalSetResult END (OK)");
-        }
     }
 }

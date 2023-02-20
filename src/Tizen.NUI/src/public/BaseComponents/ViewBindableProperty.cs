@@ -1936,36 +1936,6 @@ namespace Tizen.NUI.BaseComponents
         );
 
         /// <summary>
-        /// BorderlineColorSelector Property
-        /// Like BackgroundColor, color selector typed BorderlineColor should be used in ViewStyle only.
-        /// So this API is internally used only.
-        /// </summary>
-        internal static readonly BindableProperty BorderlineColorSelectorProperty = BindableProperty.Create(nameof(BorderlineColorSelector), typeof(Selector<Color>), typeof(View), null,
-            propertyChanged: (bindable, oldValue, newValue) =>
-            {
-                var view = (View)bindable;
-
-                view.themeData?.selectorData?.BorderlineColor?.Reset(view);
-
-                if (newValue is Selector<Color> selector)
-                {
-                    if (selector.HasAll()) view.SetBorderlineColor(selector.All);
-                    else view.EnsureSelectorData().BorderlineColor = new TriggerableSelector<Color>(view, selector, view.SetBorderlineColor, true);
-                }
-                else
-                {
-                    view.SetBorderlineColor((Color)newValue);
-                }
-            },
-            defaultValueCreator: (bindable) =>
-            {
-                var view = (View)bindable;
-                var selector = view.themeData?.selectorData?.BorderlineColor?.Get();
-                return (null != selector) ? selector : new Selector<Color>();
-            }
-        );
-
-        /// <summary>
         /// BorderlineOffset Property
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

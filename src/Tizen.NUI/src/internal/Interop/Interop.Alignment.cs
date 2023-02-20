@@ -24,35 +24,8 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Alignment_SWIGUpcast")]
             public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Alignment_Padding__SWIG_0")]
-            public static extern global::System.IntPtr NewAlignmentPadding();
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_Alignment_Padding__SWIG_1")]
             public static extern global::System.IntPtr NewAlignmentPadding(float jarg1, float jarg2, float jarg3, float jarg4);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Alignment_Padding_left_set")]
-            public static extern void PaddingLeftSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Alignment_Padding_left_get")]
-            public static extern float PaddingLeftGet(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Alignment_Padding_right_set")]
-            public static extern void PaddingRightSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Alignment_Padding_right_get")]
-            public static extern float PaddingRightGet(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Alignment_Padding_top_set")]
-            public static extern void PaddingTopSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Alignment_Padding_top_get")]
-            public static extern float PaddingTopGet(global::System.Runtime.InteropServices.HandleRef jarg1);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Alignment_Padding_bottom_set")]
-            public static extern void PaddingBottomSet(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2);
-
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Alignment_Padding_bottom_get")]
-            public static extern float PaddingBottomGet(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_Alignment_Padding")]
             public static extern void DeleteAlignmentPadding(global::System.Runtime.InteropServices.HandleRef jarg1);

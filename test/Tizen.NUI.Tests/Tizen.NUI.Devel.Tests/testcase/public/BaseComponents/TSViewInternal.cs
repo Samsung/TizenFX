@@ -132,40 +132,9 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, "ViewWorldPositionX : " + testingTarget.WorldPositionX);
             tlog.Debug(tag, "ViewWorldPositionY : " + testingTarget.WorldPositionY);
-            tlog.Debug(tag, "ViewWorldPositionZ : " + testingTarget.WorldPositionZ);
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewWorldPosition END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View FocusState.")]
-        [Property("SPEC", "Tizen.NUI.View.FocusState A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRW")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewFocusState()
-        {
-            tlog.Debug(tag, $"ViewFocusState START");
-
-            var testingTarget = new View()
-            {
-                Size = new Size(100, 50),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            FocusManager.Instance.SetCurrentFocusView(testingTarget);
-            tlog.Debug(tag, "FocusState : " + testingTarget.FocusState);
-
-            testingTarget.FocusState = false;
-            tlog.Debug(tag, "FocusState : " + testingTarget.FocusState);
-
-            FocusManager.Instance.ClearFocus();
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewFocusState END (OK)");
         }
 
         [Test]
@@ -192,9 +161,6 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.ParentOriginY = 0.4f;
             tlog.Debug(tag, "ParentOriginY : " + testingTarget.ParentOriginY);
-
-            testingTarget.ParentOriginZ = 0.5f;
-            tlog.Debug(tag, "ParentOriginZ : " + testingTarget.ParentOriginZ);
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewParentOrigin END (OK)");
@@ -225,9 +191,6 @@ namespace Tizen.NUI.Devel.Tests
             testingTarget.PivotPointY = 0.4f;
             tlog.Debug(tag, "PivotPointY : " + testingTarget.PivotPointY);
 
-            testingTarget.PivotPointZ = 0.5f;
-            tlog.Debug(tag, "PivotPointZ : " + testingTarget.PivotPointZ);
-
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewPivotPoint END (OK)");
         }
@@ -250,9 +213,6 @@ namespace Tizen.NUI.Devel.Tests
             };
             Assert.IsNotNull(testingTarget, "Can't create success object View");
             Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            var result = testingTarget.WorldMatrix;
-            tlog.Debug(tag, "WorldMatrix : " + testingTarget.WorldMatrix);
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewWorldMatrix END (OK)");
@@ -401,10 +361,6 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, "IsRoot : " + testingTarget.IsRoot());
             tlog.Debug(tag, "OnWindow : " + testingTarget.OnWindow());
-            tlog.Debug(tag, "GetName : " + testingTarget.GetName());
-
-            testingTarget.SetName("grandpa");
-            tlog.Debug(tag, "GetName : " + testingTarget.GetName());
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewGetName END (OK)");
@@ -441,39 +397,6 @@ namespace Tizen.NUI.Devel.Tests
             child.Dispose();
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewFindChildById END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View SetParentOrigin.")]
-        [Property("SPEC", "Tizen.NUI.View.SetParentOrigin M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewSetParentOrigin()
-        {
-            tlog.Debug(tag, $"ViewSetParentOrigin START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100, 50),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            using (Vector3 vec = new Vector3(0.1f, 0.5f, 0.9f))
-            {
-                testingTarget.SetParentOrigin(vec);
-                var result = testingTarget.GetCurrentParentOrigin();
-                tlog.Debug(tag, "Current parent originX : " + result.X);
-                tlog.Debug(tag, "Current parent originY : " + result.Y);
-                tlog.Debug(tag, "Current parent originZ : " + result.Z);
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewSetParentOrigin END (OK)");
         }
 
         [Test]
@@ -552,177 +475,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("View SetSize.")]
-        [Property("SPEC", "Tizen.NUI.View.SetSize M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewSetSizeWithVector2()
-        {
-            tlog.Debug(tag, $"ViewSetSizeWithVector2 START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            try
-            {
-                using (Vector2 vec = new Vector2(80.0f, 50.0f))
-                {
-                    testingTarget.SetSize(vec);
-                }
-            }
-            catch (Exception e)
-            {
-                tlog.Debug("tag", e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewSetSizeWithVector2 END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View SetSize.")]
-        [Property("SPEC", "Tizen.NUI.View.SetSize M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewSetSizeWithVector3()
-        {
-            tlog.Debug(tag, $"ViewSetSizeWithVector3 START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            tlog.Debug(tag, "GetCurrentSizeFloat : " + testingTarget.GetCurrentSizeFloat());
-            tlog.Debug(tag, "GetNaturalSize : " + testingTarget.GetNaturalSize());
-
-            try
-            {
-                using (Vector3 vec = new Vector3(80.0f, 50.0f, 30.0f))
-                {
-                    testingTarget.SetSize(vec);
-                    testingTarget.GetTargetSize();
-                }
-            }
-            catch (Exception e)
-            {
-                tlog.Debug("tag", e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewSetSizeWithVector3 END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View SetPosition.")]
-        [Property("SPEC", "Tizen.NUI.View.SetPosition M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewSetPosition()
-        {
-            tlog.Debug(tag, $"ViewSetPosition START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            testingTarget.SetX(0.1f);
-            testingTarget.SetY(0.5f);
-            testingTarget.SetZ(0.9f);
-
-            try
-            {
-                Position pos = null;
-                testingTarget.SetPosition(0.2f, 0.6f);
-                pos = testingTarget.GetCurrentPosition();
-                tlog.Debug(tag, "GetCurrentPosition : " + pos);
-
-                testingTarget.SetPosition(0.2f, 0.6f, 1.0f);
-                pos = testingTarget.GetCurrentPosition();
-                tlog.Debug(tag, "GetCurrentPosition : " + pos);
-
-                using (Vector3 vec = new Vector3(0.3f, 0.7f, 0.4f))
-                {
-                    testingTarget.SetPosition(vec);
-                    pos = testingTarget.GetCurrentPosition();
-                    tlog.Debug(tag, "GetCurrentPosition : " + pos);
-                }
-            }
-            catch (Exception e)
-            {
-                tlog.Debug("tag", e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewSetPosition END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View TranslateBy.")]
-        [Property("SPEC", "Tizen.NUI.View.TranslateBy M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewTranslateBy()
-        {
-            tlog.Debug(tag, $"ViewTranslateBy START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            testingTarget.SetX(0.1f);
-            testingTarget.SetY(0.5f);
-            testingTarget.SetZ(0.9f);
-
-            try
-            {
-                using (Vector3 distance = new Vector3(0.3f, 0.7f, 0.4f))
-                {
-                    testingTarget.TranslateBy(distance);
-                }
-            }
-            catch (Exception e)
-            {
-                tlog.Debug("tag", e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewTranslateBy END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("View GetCurrentWorldPosition.")]
         [Property("SPEC", "Tizen.NUI.View.GetCurrentWorldPosition M")]
         [Property("SPEC_URL", "-")]
@@ -741,9 +493,7 @@ namespace Tizen.NUI.Devel.Tests
             Assert.IsNotNull(testingTarget, "Can't create success object View");
             Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
 
-            testingTarget.SetX(0.1f);
-            testingTarget.SetY(0.5f);
-            testingTarget.SetZ(0.9f);
+            testingTarget.Position = new Position(0.1f, 0.5f, 0.9f);
 
             try
             {
@@ -758,34 +508,6 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewGetCurrentWorldPosition END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View SetInheritPosition.")]
-        [Property("SPEC", "Tizen.NUI.View.SetInheritPosition M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewSetInheritPosition()
-        {
-            tlog.Debug(tag, $"ViewSetInheritPosition START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            testingTarget.SetInheritPosition(true);
-            var result = testingTarget.IsPositionInherited();
-            tlog.Debug(tag, "Is position inheirted : " + result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewSetInheritPosition END (OK)");
         }
 
         [Test]
@@ -815,209 +537,11 @@ namespace Tizen.NUI.Devel.Tests
                     testingTarget.SetOrientation(degree, axis);
                     var result = testingTarget.GetCurrentOrientation();
                     tlog.Debug(tag, "GetCurrentOrientation : " + result);
-                    tlog.Debug(tag, "GetCurrentWorldOrientation : " + testingTarget.GetCurrentWorldOrientation());
                 }
             }
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewSetOrientation END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View SetOrientation.")]
-        [Property("SPEC", "Tizen.NUI.View.SetOrientation M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewSetOrientationWithRadian()
-        {
-            tlog.Debug(tag, $"ViewSetOrientationWithRadian START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            using (Radian radian = new Radian(0.5f))
-            {
-                using (Vector3 axis = new Vector3(0.1f, 0.3f, 0.5f))
-                {
-                    testingTarget.SetOrientation(radian, axis);
-                    var result = testingTarget.GetCurrentOrientation();
-                    tlog.Debug(tag, "Get current orientation : " + result);
-                }
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewSetOrientationWithRadian END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View SetOrientation.")]
-        [Property("SPEC", "Tizen.NUI.View.SetOrientation M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewSetOrientationWithRotation()
-        {
-            tlog.Debug(tag, $"ViewSetOrientationWithRotation START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            using (Radian radian = new Radian(0.5f))
-            {
-                using (Vector3 axis = new Vector3(0.1f, 0.3f, 0.5f))
-                {
-                    using (Rotation rotation = new Rotation(radian, axis))
-                    {
-                        testingTarget.SetOrientation(rotation);
-                        var result = testingTarget.GetCurrentOrientation();
-                        tlog.Debug(tag, "Get current orientation : " + result);
-                    }
-                }
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewSetOrientationWithRotation END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View SetInheritOrientation.")]
-        [Property("SPEC", "Tizen.NUI.View.SetInheritOrientation M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewSetInheritOrientation()
-        {
-            tlog.Debug(tag, $"ViewSetInheritOrientation START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            testingTarget.SetInheritOrientation(true);
-            var result = testingTarget.IsOrientationInherited();
-            tlog.Debug(tag, "Is orientation inheirted : " + result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewSetInheritOrientation END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View SetScale.")]
-        [Property("SPEC", "Tizen.NUI.View.SetScale M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewSetScale()
-        {
-            tlog.Debug(tag, $"ViewSetScale START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            Vector3 result = null;
-            testingTarget.SetScale(0.3f);
-            result = testingTarget.GetCurrentScale();
-            tlog.Debug(tag, "Get current scale : " + result);
-
-            testingTarget.SetScale(0.3f, 0.5f, 0.8f);
-            result = testingTarget.GetCurrentScale();
-            tlog.Debug(tag, "Get current scale : " + result);
-
-            using (Vector3 scale = new Vector3(0.5f, 0.9f, 0.0f))
-            {
-                testingTarget.SetScale(scale);
-                result = testingTarget.GetCurrentScale();
-                tlog.Debug(tag, "Get current scale : " + result);
-            }
-
-            result = testingTarget.GetCurrentWorldScale();
-            tlog.Debug(tag, "Get current world scale : " + result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewSetScale END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View SetInheritScale.")]
-        [Property("SPEC", "Tizen.NUI.View.SetInheritScale M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewSetInheritScale()
-        {
-            tlog.Debug(tag, $"ViewSetInheritScale START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            testingTarget.SetInheritScale(true);
-            var result = testingTarget.IsScaleInherited();
-            tlog.Debug(tag, "Is scale inheirted : " + result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewSetInheritScale END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View GetCurrentWorldMatrix.")]
-        [Property("SPEC", "Tizen.NUI.View.GetCurrentWorldMatrix M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewGetCurrentWorldMatrix()
-        {
-            tlog.Debug(tag, $"ViewGetCurrentWorldMatrix START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            var result = testingTarget.GetCurrentWorldMatrix();
-            tlog.Debug(tag, "Current world matrix : " + result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewGetCurrentWorldMatrix END (OK)");
         }
 
         [Test]
@@ -1107,36 +631,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("View SetDrawMode.")]
-        [Property("SPEC", "Tizen.NUI.View.SetDrawMode M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        [Obsolete]
-        public void ViewSetDrawMode()
-        {
-            tlog.Debug(tag, $"ViewSetDrawMode START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            testingTarget.SetDrawMode(DrawModeType.Stencil);
-            var result = testingTarget.GetDrawMode();
-            tlog.Debug(tag, "Draw mode : " + result);
-            
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewSetDrawMode END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("View SetFocusableInTouch.")]
         [Property("SPEC", "Tizen.NUI.View.SetFocusableInTouch M")]
         [Property("SPEC_URL", "-")]
@@ -1198,122 +692,6 @@ namespace Tizen.NUI.Devel.Tests
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewSetResizePolicy END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View GetSizeModeFactor.")]
-        [Property("SPEC", "Tizen.NUI.View.GetSizeModeFactor M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewGetSizeModeFactor()
-        {
-            tlog.Debug(tag, $"ViewGetSizeModeFactor START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            var result = testingTarget.GetSizeModeFactor();
-            tlog.Debug(tag, "GetSizeModeFactor : " + result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewGetSizeModeFactor END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View SetMinimumSize.")]
-        [Property("SPEC", "Tizen.NUI.View.SetMinimumSize M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewSetMinimumSize()
-        {
-            tlog.Debug(tag, $"ViewSetMinimumSize START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            using (Vector2 vec = new Vector2(10.0f, 20.0f))
-            {
-                testingTarget.SetMinimumSize(vec);
-                var result = testingTarget.GetMinimumSize();
-                tlog.Debug(tag, "GetMinimumSize : " + result);
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewSetMinimumSize END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View SetMaximumSize.")]
-        [Property("SPEC", "Tizen.NUI.View.SetMaximumSize M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewSetMaximumSize()
-        {
-            tlog.Debug(tag, $"ViewSetMaximumSize START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            using (Vector2 vec = new Vector2(120.0f, 200.0f))
-            {
-                testingTarget.SetMaximumSize(vec);
-                var result = testingTarget.GetMaximumSize();
-                tlog.Debug(tag, "GetMaximumSize : " + result);
-            }
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewSetMaximumSize END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View IsTopLevelView.")]
-        [Property("SPEC", "Tizen.NUI.View.IsTopLevelView M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewIsTopLevelView()
-        {
-            tlog.Debug(tag, $"ViewIsTopLevelView START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            var result = testingTarget.IsTopLevelView();
-            tlog.Debug(tag, "IsTopLevelView : " + result);
-
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewIsTopLevelView END (OK)");
         }
 
         [Test]
@@ -1433,41 +811,6 @@ namespace Tizen.NUI.Devel.Tests
             var count = testingTarget.GetRendererCount();
             tlog.Debug(tag, "GetRendererCount : " + count);
 
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"ViewSetKeyboardFocusable END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("View SetKeyInputFocus.")]
-        [Property("SPEC", "Tizen.NUI.View.SetKeyInputFocus M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewSetKeyInputFocus()
-        {
-            tlog.Debug(tag, $"ViewSetKeyInputFocus START");
-
-            var testingTarget = new View()
-            {
-                Name = "parent",
-                Size = new Size(100.0f, 50.0f),
-                Color = Color.Cyan,
-            };
-            Assert.IsNotNull(testingTarget, "Can't create success object View");
-            Assert.IsInstanceOf<View>(testingTarget, "Should be an instance of View type.");
-
-            try
-            {
-                testingTarget.SetKeyInputFocus();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            testingTarget.ClearKeyInputFocus();
             testingTarget.Dispose();
             tlog.Debug(tag, $"ViewSetKeyboardFocusable END (OK)");
         }

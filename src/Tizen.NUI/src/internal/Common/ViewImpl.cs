@@ -105,34 +105,6 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
-        public PinchGestureDetector GetPinchGestureDetector()
-        {
-            PinchGestureDetector ret = new PinchGestureDetector(Interop.ViewImpl.GetPinchGestureDetector(SwigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public PanGestureDetector GetPanGestureDetector()
-        {
-            PanGestureDetector ret = new PanGestureDetector(Interop.ViewImpl.GetPanGestureDetector(SwigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public TapGestureDetector GetTapGestureDetector()
-        {
-            TapGestureDetector ret = new TapGestureDetector(Interop.ViewImpl.GetTapGestureDetector(SwigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        public LongPressGestureDetector GetLongPressGestureDetector()
-        {
-            LongPressGestureDetector ret = new LongPressGestureDetector(Interop.ViewImpl.GetLongPressGestureDetector(SwigCPtr), true);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         public void SetKeyboardNavigationSupport(bool isSupported)
         {
             Interop.ViewImpl.SetKeyboardNavigationSupport(SwigCPtr, isSupported);
