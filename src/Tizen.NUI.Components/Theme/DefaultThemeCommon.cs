@@ -39,7 +39,6 @@ namespace Tizen.NUI.Components
             // Button base style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Button", new ButtonStyle()
             {
-                MinimumSize = new Size(252, 48),
                 Padding = new Extents(32, 32, 8, 8),
                 ItemSpacing = new Size2D(8, 8),
                 CornerRadius = 12.0f,
@@ -64,7 +63,6 @@ namespace Tizen.NUI.Components
             // Outlined Button style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Button.Outlined", new ButtonStyle()
             {
-                MinimumSize = new Size(252, 48),
                 Padding = new Extents(32, 32, 8, 8),
                 ItemSpacing = new Size2D(8, 8),
                 CornerRadius = 12.0f,
@@ -98,7 +96,6 @@ namespace Tizen.NUI.Components
             // TextOnly Button style
             theme.AddStyleWithoutClone("Tizen.NUI.Components.Button.TextOnly", new ButtonStyle()
             {
-                MinimumSize = new Size(120, 48),
                 Padding = new Extents(32, 32, 8, 8),
                 ItemHorizontalAlignment = HorizontalAlignment.Center,
                 ItemVerticalAlignment = VerticalAlignment.Center,
