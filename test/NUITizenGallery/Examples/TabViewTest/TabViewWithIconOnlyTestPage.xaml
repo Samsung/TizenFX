@@ -14,7 +14,7 @@
     <ContentPage.Content>
         <TabView x:Name="tabView"
             WidthSpecification="{Static LayoutParamPolicies.MatchParent}">
-            <TabItem IconURL="res/home.png">
+            <TabItem IconUrl="res/home.png">
                 <TabItem.Content>
                     <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
                         HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
@@ -29,7 +29,7 @@
                 </TabItem.Content>
             </TabItem>
 
-            <TabItem IconURL="res/home.png">
+            <TabItem IconUrl="res/home.png">
                 <TabItem.Content>
                     <View WidthSpecification="{Static LayoutParamPolicies.MatchParent}"
                         HeightSpecification="{Static LayoutParamPolicies.MatchParent}"
