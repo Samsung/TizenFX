@@ -71,6 +71,11 @@ namespace Tizen.NUI.Components
 
         // To store the thumb size of normal state
         private Size thumbSize = null;
+        // To store the maximum size of the thumb
+        // This is used to calculate the track length and thumb position.
+        // The track length is calculated by subtracting the maximum size of the thumb from the slider size.
+        // The thumb position is calculated by using the track length.
+        private Size thumbMaximumSize = null;
         // To store the thumb image url of normal state
         private string thumbImageUrl = null;
         // To store the thumb color of normal state
@@ -619,11 +624,11 @@ namespace Tizen.NUI.Components
             {
                 if (direction == DirectionType.Horizontal)
                 {
-                    bgTrackLowIndicatorOffset = (int)(thumbImage.Size.Width * 0.5f);
+                    bgTrackLowIndicatorOffset = (int)((thumbSize != null ? thumbSize.Width : (thumbMaximumSize != null ? thumbMaximumSize.Width : 0)) * 0.5f);
                 }
                 else if (direction == DirectionType.Vertical)
                 {
-                    bgTrackLowIndicatorOffset = (int)(thumbImage.Size.Height * 0.5f);
+                    bgTrackLowIndicatorOffset = (int)((thumbSize != null ? thumbSize.Height : (thumbMaximumSize != null ? thumbMaximumSize.Height : 0)) * 0.5f);
                 }
             }
             else if (type == IndicatorType.Image || type == IndicatorType.Text)
@@ -654,11 +659,11 @@ namespace Tizen.NUI.Components
             {
                 if (direction == DirectionType.Horizontal)
                 {
-                    bgTrackHighIndicatorOffset = (int)(thumbImage.Size.Width * 0.5f);
+                     bgTrackHighIndicatorOffset = (int)((thumbSize != null ? thumbSize.Width : (thumbMaximumSize != null ? thumbMaximumSize.Width : 0)) * 0.5f);
                 }
                 else if (direction == DirectionType.Vertical)
                 {
-                    bgTrackHighIndicatorOffset = (int)(thumbImage.Size.Height * 0.5f);
+                    bgTrackHighIndicatorOffset = (int)((thumbSize != null ? thumbSize.Height : (thumbMaximumSize != null ? thumbMaximumSize.Height : 0)) * 0.5f);
                 }
             }
             else if (type == IndicatorType.Image || type == IndicatorType.Text)

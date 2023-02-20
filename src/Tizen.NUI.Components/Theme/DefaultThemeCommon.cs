@@ -248,6 +248,9 @@ namespace Tizen.NUI.Components
             {
                 Size = new Size(850, 50),
                 TrackThickness = 8,
+                // The maximum size of the Thumb.
+                // e.g. The size of IoT_slider_handler_pressed.png
+                ThumbMaximumSize = new Size(40, 40),
                 Track = new ImageViewStyle()
                 {
                     Size = new Size(800, 8),
