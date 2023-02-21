@@ -718,13 +718,13 @@ namespace Tizen.NUI.Components
             for (int i = 0; i < indicatorList.Count; i++)
             {
                 ImageView indicator = indicatorList[i];
-                indicator.ResourceUrl = indicatorImageUrl?.Normal;
+                indicator.ResourceUrl = selectedIndex == i ? indicatorImageUrl.Selected : indicatorImageUrl.Normal;
                 indicator.Size = indicatorSize;
             }
 
             if (lastIndicatorImageUrl != null && indicatorCount > 0)
             {
-                indicatorList[LastIndicatorIndex].ResourceUrl = lastIndicatorImageUrl.Normal;
+                indicatorList[LastIndicatorIndex].ResourceUrl = IsLastSelected ? lastIndicatorImageUrl.Selected : lastIndicatorImageUrl.Normal;
             }
         }
 
