@@ -883,6 +883,17 @@ namespace Tizen.NUI.Accessibility
             return ret;
         }
 
+        /// <summary>
+        /// Checks whether Inside Fridge is shown or not.
+        /// </summary>
+        /// <param name="isShown"> True if Inside Fridge is shown.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void ShowInsideFridge(bool isShown)
+        {
+            Interop.AccessibilityManager.ShowInsideFridge(swigCPtr, isShown);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         /// Queries whether EnableAccessibility() is called and Accessibility is enabled forcibly or not.
         /// This API is only used for internal checks.
         internal bool IsForcedEnable()
