@@ -98,6 +98,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AccessibilityManager_IsEnabled")]
             public static extern bool IsEnabled(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AccessibilityManager_ShowInsideFridge")]
+            public static extern void ShowInsideFridge(global::System.Runtime.InteropServices.HandleRef jarg1, bool jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AccessibilityManager_FocusChangedSignal")]
             public static extern global::System.IntPtr AccessibilityManager_FocusChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
