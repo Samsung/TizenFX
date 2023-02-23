@@ -165,13 +165,22 @@ namespace Tizen.NUI.Components
 
             set
             {
+                if (Content == null)
+                {
+                    Content = CreateDefaultContent();
+                    if (styleApplied && (menuStyle != null))
+                    {
+                        Content.ApplyStyle(menuStyle.Content);
+                    }
+                }
+
                 if (menuItems != null)
                 {
                     foreach (var oldItem in menuItems)
                     {
-                        if (content.Children?.Contains(oldItem) == true)
+                        if (Content.Children?.Contains(oldItem) == true)
                         {
-                            content.Remove(oldItem);
+                            Content.Remove(oldItem);
                         }
                     }
                 }
@@ -180,12 +189,18 @@ namespace Tizen.NUI.Components
 
                 if (menuItems == null)
                 {
+                    Content.SetVisible(false);
                     return;
+                }
+
+                if (Content.Visibility == false)
+                {
+                    Content.SetVisible(true);
                 }
 
                 foreach (var item in menuItems)
                 {
-                    content.Add(item);
+                    Content.Add(item);
                     menuItemGroup.Add(item);
                 }
             }
@@ -482,12 +497,6 @@ namespace Tizen.NUI.Components
             // if Anchor has Layout, then Menu is displayed at an incorrect position.
             ExcludeLayouting = true;
 
-            Content = CreateDefaultContent();
-            if (styleApplied && (menuStyle != null))
-            {
-                Content.ApplyStyle(menuStyle.Content);
-            }
-
             Scrim = CreateDefaultScrim();
 
             menuItemGroup = new MenuItemGroup();
@@ -559,12 +568,7 @@ namespace Tizen.NUI.Components
         // If there is not enought space, then menu's size can be also resized.
         private void CalculateMenuPosition()
         {
-            if ((Anchor == null) || (Content == null))
-            {
-                return;
-            }
-
-            if (Items == null)
+            if (Anchor == null)
             {
                 return;
             }
