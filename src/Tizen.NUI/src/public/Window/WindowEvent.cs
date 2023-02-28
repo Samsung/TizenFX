@@ -50,6 +50,7 @@ namespace Tizen.NUI
         private OrientationChangedEventCallbackType orientationChangedEventCallback;
         private KeyboardRepeatSettingsChangedEventCallbackType keyboardRepeatSettingsChangedEventCallback;
         private AuxiliaryMessageEventCallbackType auxiliaryMessageEventCallback;
+        private WindowMouseEventEventCallbackType windowMouseEventEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -72,6 +73,8 @@ namespace Tizen.NUI
         private delegate void AuxiliaryMessageEventCallbackType(IntPtr kData, IntPtr vData, IntPtr optionsArray);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool InterceptKeyEventDelegateType(IntPtr arg1);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WindowMouseEventEventCallbackType(IntPtr window, IntPtr mouseEvent);
 
         /// <summary>
         /// FocusChanged event.
@@ -481,6 +484,37 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// MouseEvent event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<MouseEventEventArgs> MouseEvent
+        {
+            add
+            {
+                if (windowMouseEventEventHandler == null)
+                {
+                    windowMouseEventEventCallback = OnWindowMouseEvent;
+                    using WindowMouseEventSignalType signal = new WindowMouseEventSignalType(Interop.Window.MouseEventSignal(SwigCPtr), false);
+                    signal?.Connect(windowMouseEventEventCallback);
+                }
+                windowMouseEventEventHandler += value;
+            }
+            remove
+            {
+                windowMouseEventEventHandler -= value;
+                if (windowMouseEventEventHandler == null && windowMouseEventEventCallback != null)
+                {
+                    using WindowMouseEventSignalType signal = new WindowMouseEventSignalType(Interop.Window.MouseEventSignal(SwigCPtr), false);
+                    signal?.Disconnect(windowMouseEventEventCallback);
+                    if (signal?.Empty() == true)
+                    {
+                        windowMouseEventEventCallback = null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// ViewAdded will be triggered when the view added on Window
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -501,6 +535,7 @@ namespace Tizen.NUI
         private event EventHandler<WindowOrientationChangedEventArgs> orientationChangedHandler;
         private event EventHandler keyboardRepeatSettingsChangedHandler;
         private event EventHandler<AuxiliaryMessageEventArgs> auxiliaryMessageEventHandler;
+        private event EventHandler<MouseEventEventArgs> windowMouseEventEventHandler;
 
         internal void SendViewAdded(View view)
         {
@@ -767,6 +802,14 @@ namespace Tizen.NUI
                 signal?.Disconnect(AccessibilityHighlightEventCallback);
                 AccessibilityHighlightEventCallback = null;
             }
+
+            if (windowMouseEventEventCallback != null)
+            {
+                using WindowMouseEventSignalType signal = new WindowMouseEventSignalType(Interop.Window.MouseEventSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(windowMouseEventEventCallback);
+                windowMouseEventEventCallback = null;
+            }
+
         }
 
         private void OnWindowFocusedChanged(IntPtr window, bool focusGained)
@@ -981,6 +1024,22 @@ namespace Tizen.NUI
             return;
         }
 
+        private void OnWindowMouseEvent(IntPtr view, IntPtr mouseEvent)
+        {
+            if (mouseEvent == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("mouseEvent should not be null!");
+                return;
+            }
+
+            if (windowMouseEventEventHandler != null)
+            {
+                MouseEventEventArgs e = new MouseEventEventArgs();
+                e.MouseEvent = Tizen.NUI.MouseEvent.GetMouseEventFromPtr(mouseEvent);
+                windowMouseEventEventHandler(this, e);
+            }
+        }
+
         /// <summary>
         /// The focus changed event argument.
         /// </summary>
@@ -1095,6 +1154,31 @@ namespace Tizen.NUI
                 set
                 {
                     windowSize = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Input action arguments.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class MouseEventEventArgs : EventArgs
+        {
+            private MouseEvent mouseEvent;
+
+            /// <summary>
+            /// MouseEvent.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public MouseEvent MouseEvent
+            {
+                get
+                {
+                    return mouseEvent;
+                }
+                set
+                {
+                    mouseEvent = value;
                 }
             }
         }
@@ -1272,7 +1356,7 @@ namespace Tizen.NUI
             {
                 // This is to defend against problems in the operation of unsubscribing the VisibilityChanged event of the sub window within the handler,
                 // where the sub window is disabled and the View RemovedFromWindow event occurs.
-                // The problem seems to have occurred because the native window object itself is invalid 
+                // The problem seems to have occurred because the native window object itself is invalid
                 // when trying to obtain the window native signal because the sub window is in the Dispose state.
                 if (Disposed)
                 {
@@ -1292,7 +1376,7 @@ namespace Tizen.NUI
             {
                 // This is to defend against problems in the operation of unsubscribing the VisibilityChanged event of the sub window within the handler,
                 // where the sub window is disabled and the View RemovedFromWindow event occurs.
-                // The problem seems to have occurred because the native window object itself is invalid 
+                // The problem seems to have occurred because the native window object itself is invalid
                 // when trying to obtain the window native signal because the sub window is in the Dispose state.
                 if (Disposed)
                 {
