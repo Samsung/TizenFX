@@ -319,6 +319,9 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SendRotationCompletedAcknowledgement")]
             public static extern void SendRotationCompletedAcknowledgement(global::System.Runtime.InteropServices.HandleRef window);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_MouseInOutEventSignal")]
+            public static extern global::System.IntPtr MouseInOutEventSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
         }
     }
 }
