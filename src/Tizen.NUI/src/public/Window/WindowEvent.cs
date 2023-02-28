@@ -50,6 +50,7 @@ namespace Tizen.NUI
         private OrientationChangedEventCallbackType orientationChangedEventCallback;
         private KeyboardRepeatSettingsChangedEventCallbackType keyboardRepeatSettingsChangedEventCallback;
         private AuxiliaryMessageEventCallbackType auxiliaryMessageEventCallback;
+        private WindowInputActionEventCallbackType windowInputActionEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -72,6 +73,8 @@ namespace Tizen.NUI
         private delegate void AuxiliaryMessageEventCallbackType(IntPtr kData, IntPtr vData, IntPtr optionsArray);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool InterceptKeyEventDelegateType(IntPtr arg1);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WindowInputActionEventCallbackType(IntPtr window, IntPtr inputAction);
 
         /// <summary>
         /// FocusChanged event.
@@ -481,6 +484,37 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// InputAction event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<InputActionEventArgs> InputAction
+        {
+            add
+            {
+                if (windowInputActionEventHandler == null)
+                {
+                    windowInputActionEventCallback = OnWindowInputAction;
+                    using WindowInputActionSignalType signal = new WindowInputActionSignalType(Interop.Window.InputActionSignal(SwigCPtr), false);
+                    signal?.Connect(windowInputActionEventCallback);
+                }
+                windowInputActionEventHandler += value;
+            }
+            remove
+            {
+                windowInputActionEventHandler -= value;
+                if (windowInputActionEventHandler == null && windowInputActionEventCallback != null)
+                {
+                    using WindowInputActionSignalType signal = new WindowInputActionSignalType(Interop.Window.InputActionSignal(SwigCPtr), false);
+                    signal?.Disconnect(windowInputActionEventCallback);
+                    if (signal?.Empty() == true)
+                    {
+                        windowInputActionEventCallback = null;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// ViewAdded will be triggered when the view added on Window
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
@@ -501,6 +535,7 @@ namespace Tizen.NUI
         private event EventHandler<WindowOrientationChangedEventArgs> orientationChangedHandler;
         private event EventHandler keyboardRepeatSettingsChangedHandler;
         private event EventHandler<AuxiliaryMessageEventArgs> auxiliaryMessageEventHandler;
+        private event EventHandler<InputActionEventArgs> windowInputActionEventHandler;
 
         internal void SendViewAdded(View view)
         {
@@ -767,6 +802,14 @@ namespace Tizen.NUI
                 signal?.Disconnect(AccessibilityHighlightEventCallback);
                 AccessibilityHighlightEventCallback = null;
             }
+
+            if (windowInputActionEventCallback != null)
+            {
+                using WindowInputActionSignalType signal = new WindowInputActionSignalType(Interop.Window.InputActionSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(windowInputActionEventCallback);
+                windowInputActionEventCallback = null;
+            }
+
         }
 
         private void OnWindowFocusedChanged(IntPtr window, bool focusGained)
@@ -981,6 +1024,22 @@ namespace Tizen.NUI
             return;
         }
 
+        private void OnWindowInputAction(IntPtr view, IntPtr inputAction)
+        {
+            if (inputAction == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("inputAction should not be null!");
+                return;
+            }
+
+            if (windowInputActionEventHandler != null)
+            {
+                InputActionEventArgs e = new InputActionEventArgs();
+                e.InputAction = Tizen.NUI.InputAction.GetInputActionFromPtr(inputAction);
+                windowInputActionEventHandler(this, e);
+            }
+        }
+
         /// <summary>
         /// The focus changed event argument.
         /// </summary>
@@ -1095,6 +1154,31 @@ namespace Tizen.NUI
                 set
                 {
                     windowSize = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Input action arguments.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class InputActionEventArgs : EventArgs
+        {
+            private InputAction inputAction;
+
+            /// <summary>
+            /// InputAction.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public InputAction InputAction
+            {
+                get
+                {
+                    return inputAction;
+                }
+                set
+                {
+                    inputAction = value;
                 }
             }
         }
