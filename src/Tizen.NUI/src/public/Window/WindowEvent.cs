@@ -50,6 +50,7 @@ namespace Tizen.NUI
         private OrientationChangedEventCallbackType orientationChangedEventCallback;
         private KeyboardRepeatSettingsChangedEventCallbackType keyboardRepeatSettingsChangedEventCallback;
         private AuxiliaryMessageEventCallbackType auxiliaryMessageEventCallback;
+        private WindowMouseInOutEventCallbackType windowMouseInOutEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -72,6 +73,8 @@ namespace Tizen.NUI
         private delegate void AuxiliaryMessageEventCallbackType(IntPtr kData, IntPtr vData, IntPtr optionsArray);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate bool InterceptKeyEventDelegateType(IntPtr arg1);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WindowMouseInOutEventCallbackType(IntPtr window, IntPtr mouseEvent);
 
         /// <summary>
         /// FocusChanged event.
@@ -441,6 +444,34 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// MouseInOutEvent event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<MouseInOutEventArgs> MouseInOutEvent
+        {
+            add
+            {
+                if (windowMouseInOutEventHandler == null)
+                {
+                    windowMouseInOutEventCallback = OnWindowMouseInOutEvent;
+                    using WindowMouseInOutEventSignal signal = new WindowMouseInOutEventSignal(Interop.WindowMouseInOutEventSignal.GetSignal(SwigCPtr), false);
+                    signal.Ensure()?.Connect(windowMouseInOutEventCallback);
+                }
+                windowMouseInOutEventHandler += value;
+            }
+            remove
+            {
+                windowMouseInOutEventHandler -= value;
+                if (windowMouseInOutEventHandler == null && windowMouseInOutEventCallback != null)
+                {
+                    using WindowMouseInOutEventSignal signal = new WindowMouseInOutEventSignal(Interop.WindowMouseInOutEventSignal.GetSignal(SwigCPtr), false);
+                    signal.Ensure()?.Disconnect(windowMouseInOutEventCallback);
+                    windowMouseInOutEventCallback = null;
+                }
+            }
+        }
+
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler;
         private event EventHandler<TouchEventArgs> rootLayerTouchDataEventHandler;
         private ReturnTypeEventHandler<object, TouchEventArgs, bool> rootLayerInterceptTouchDataEventHandler;
@@ -455,6 +486,7 @@ namespace Tizen.NUI
         private event EventHandler<WindowOrientationChangedEventArgs> orientationChangedHandler;
         private event EventHandler keyboardRepeatSettingsChangedHandler;
         private event EventHandler<AuxiliaryMessageEventArgs> auxiliaryMessageEventHandler;
+        private event EventHandler<MouseInOutEventArgs> windowMouseInOutEventHandler;
 
 
         internal event EventHandler EventProcessingFinished
@@ -704,6 +736,14 @@ namespace Tizen.NUI
                 signal?.Disconnect(AccessibilityHighlightEventCallback);
                 AccessibilityHighlightEventCallback = null;
             }
+
+            if (windowMouseInOutEventCallback != null)
+            {
+                using WindowMouseInOutEventSignal signal = new WindowMouseInOutEventSignal(Interop.WindowMouseInOutEventSignal.GetSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(windowMouseInOutEventCallback);
+                windowMouseInOutEventCallback = null;
+            }
+
         }
 
         private void OnWindowFocusedChanged(IntPtr window, bool focusGained)
@@ -918,6 +958,22 @@ namespace Tizen.NUI
             return;
         }
 
+        private void OnWindowMouseInOutEvent(IntPtr view, IntPtr mouseEvent)
+        {
+            if (mouseEvent == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("mouseEvent should not be null!");
+                return;
+            }
+
+            if (windowMouseInOutEventHandler != null)
+            {
+                MouseInOutEventArgs e = new MouseInOutEventArgs();
+                e.MouseInOut = Tizen.NUI.MouseInOut.GetMouseInOutFromPtr(mouseEvent);
+                windowMouseInOutEventHandler(this, e);
+            }
+        }
+
         /// <summary>
         /// The focus changed event argument.
         /// </summary>
@@ -1032,6 +1088,31 @@ namespace Tizen.NUI
                 set
                 {
                     windowSize = value;
+                }
+            }
+        }
+
+        /// <summary>
+        /// MouseInOut evnet arguments.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class MouseInOutEventArgs : EventArgs
+        {
+            private MouseInOut mouseEvent;
+
+            /// <summary>
+            /// MouseInOut event.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public MouseInOut MouseInOut
+            {
+                get
+                {
+                    return mouseEvent;
+                }
+                set
+                {
+                    mouseEvent = value;
                 }
             }
         }
