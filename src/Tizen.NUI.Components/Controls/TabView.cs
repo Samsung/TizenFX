@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2021 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
  */
 using System;
 using System.ComponentModel;
+using System.Diagnostics.CodeAnalysis;
 using Tizen.NUI.BaseComponents;
 
 namespace Tizen.NUI.Components
@@ -103,6 +104,16 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <since_tizen> 9 </since_tizen>
         public TabView()
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of TabView.
+        /// </summary>
+        /// <param name="style">Creates TabView by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TabView(string style) : base(style)
         {
             Initialize();
         }
@@ -249,6 +260,43 @@ namespace Tizen.NUI.Components
             if (view != null)
             {
                 Content.RemoveContentView(view);
+            }
+        }
+
+        /// <summary>
+        /// Adds a tab from the given TabItem.
+        /// TabItem contains Title and IconURL of a new TabButton in TabBar and Content of a new View in TabContent.
+        /// <param name="tabItem">The tab item which contains Title and IconURL of a new TabButton in TabBar and Content of a new View in TabContent.</param>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [SuppressMessage("Microsoft.Reliability",
+                         "CA2000:DisposeObjectsBeforeLosingScope",
+                         Justification = "The tabButton is added to TabBar and disposed when TabBar is disposed.")]
+        public virtual void Add(TabItem tabItem)
+        {
+            if (tabItem == null) return;
+
+            var hasTitle = (String.IsNullOrEmpty(tabItem.Title) == false);
+            var hasIconUrl = (String.IsNullOrEmpty(tabItem.IconUrl) == false);
+
+            // Adds a new TabButton and Content View only if TabItem has TabButton properties and Content View.
+            if ((hasTitle || hasIconUrl) && (tabItem.Content != null))
+            {
+                var tabButton = new TabButton(tabItem.TabButtonStyle);
+
+                if (hasTitle)
+                {
+                    tabButton.Text = tabItem.Title;
+                }
+
+                if (hasIconUrl)
+                {
+                    tabButton.IconURL = tabItem.IconUrl;
+                }
+
+                TabBar.AddTabButton(tabButton);
+
+                Content.AddContentView(tabItem.Content);
             }
         }
 

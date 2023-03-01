@@ -115,16 +115,29 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
+            styleApplying = true;
+
+            base.ApplyStyle(viewStyle);
+
             if (viewStyle is SwitchStyle switchStyle)
             {
-                if (Extension is SwitchExtension extension)
+                if (Extension != null) Extension.OnDispose(this);
+
+                if ((Extension = switchStyle.CreateExtension()) != null && Extension is SwitchExtension extension)
                 {
                     Icon.Unparent();
                     thumb.Unparent();
+                    TextLabel.Unparent();
                     Icon = extension.OnCreateTrack(this, Icon);
                     thumb = extension.OnCreateThumb(this, thumb);
                     Icon.Add(thumb);
                     LayoutItems();
+
+                    Icon.Relayout -= OnTrackOrThumbRelayout;
+                    Icon.Relayout += OnTrackOrThumbRelayout;
+
+                    thumb.Relayout -= OnTrackOrThumbRelayout;
+                    thumb.Relayout += OnTrackOrThumbRelayout;
                 }
 
                 if (switchStyle.Track != null)
@@ -136,9 +149,24 @@ namespace Tizen.NUI.Components
                 {
                     Thumb.ApplyStyle(switchStyle.Thumb);
                 }
-            }
 
-            base.ApplyStyle(viewStyle);
+                if (switchStyle.Text != null)
+                {
+                    TextLabel.ThemeChangeSensitive = false;
+                    TextLabel.ApplyStyle(switchStyle.Text);
+                }
+            }
+            styleApplying = false;
+
+            UpdateState();
+        }
+
+        private void OnTrackOrThumbRelayout(object sender, EventArgs args)
+        {
+            if (Extension is SwitchExtension switchExtension)
+            {
+                switchExtension.OnTrackOrThumbResized(this, Icon, thumb);
+            }
         }
 
         /// <summary>
@@ -287,7 +315,15 @@ namespace Tizen.NUI.Components
 
             if (type == DisposeTypes.Explicit)
             {
-                Utility.Dispose(thumb);
+                if (Icon != null)
+                {
+                    Icon.Relayout -= OnTrackOrThumbRelayout;
+                }
+                if (thumb != null)
+                {
+                    thumb.Relayout -= OnTrackOrThumbRelayout;
+                    Utility.Dispose(thumb);
+                }
             }
 
             base.Dispose(type);
