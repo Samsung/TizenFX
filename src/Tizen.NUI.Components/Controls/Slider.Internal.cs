@@ -325,9 +325,14 @@ namespace Tizen.NUI.Components
             {
                 valueIndicatorImage = new ImageView()
                 {
-                    WidthResizePolicy = ResizePolicyType.FitToChildren,
-                    HeightResizePolicy = ResizePolicyType.Fixed,
                     AccessibilityHidden = true,
+                    Layout = new LinearLayout()
+                    {
+                        LinearOrientation = LinearLayout.Orientation.Horizontal,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                    },
+                    WidthSpecification = LayoutParamPolicies.WrapContent,
                 };
                 if (thumbImage != null)
                 {

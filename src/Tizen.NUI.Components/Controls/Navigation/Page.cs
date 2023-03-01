@@ -134,6 +134,15 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// Creates a new instance of Page with style.
+        /// </summary>
+        /// <param name="style">Creates Page by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Page(string style) : base(style)
+        {
+        }
+
+        /// <summary>
         /// Creates a new instance of a Page with style.
         /// </summary>
         /// <param name="style">A style applied to the newly created Page.</param>

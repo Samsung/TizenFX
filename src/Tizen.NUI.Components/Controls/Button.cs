@@ -1005,20 +1005,18 @@ namespace Tizen.NUI.Components
         {
             Debug.Assert(buttonIcon != null && buttonText != null);
 
-            styleApplying = true;
-
             base.ApplyStyle(viewStyle);
 
-            if (viewStyle is ButtonStyle buttonStyle)
+            if (!styleApplying && viewStyle is ButtonStyle buttonStyle)
             {
-                Extension = buttonStyle.CreateExtension();
+                styleApplying = true;
 
                 if (buttonStyle.Overlay != null)
                 {
                     OverlayImage?.ApplyStyle(buttonStyle.Overlay);
                 }
 
-                if (Extension != null)
+                if ((Extension = buttonStyle.CreateExtension()) != null)
                 {
                     buttonIcon.Unparent();
                     buttonIcon = Extension.OnCreateIcon(this, buttonIcon);
@@ -1039,9 +1037,9 @@ namespace Tizen.NUI.Components
                 {
                     buttonIcon.ApplyStyle(buttonStyle.Icon);
                 }
+                styleApplying = false;
             }
 
-            styleApplying = false;
             UpdateState();
         }
 

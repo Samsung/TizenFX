@@ -980,6 +980,16 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Creates a new instance of a ScrollableBase with style.
         /// </summary>
+        /// <param name="style">Creates ScrollableBase by special style defined in UX.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ScrollableBase(string style) : base(style)
+        {
+            Initialize();
+        }
+
+        /// <summary>
+        /// Creates a new instance of a ScrollableBase with style.
+        /// </summary>
         /// <param name="style">A style applied to the newly created ScrollableBase.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ScrollableBase(ControlStyle style) : base(style)

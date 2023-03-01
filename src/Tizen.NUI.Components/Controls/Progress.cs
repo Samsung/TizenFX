@@ -30,6 +30,8 @@ namespace Tizen.NUI.Components
     /// <since_tizen> 6 </since_tizen>
     public partial class Progress : Control, IAtspiValue
     {
+        private const int IndeterminateAnimationDuration = 2000;
+
         /// <summary>
         /// MaxValueProperty
         /// </summary>
@@ -621,6 +623,8 @@ namespace Tizen.NUI.Components
 
             this.size = new Vector2(size);
             UpdateValue();
+
+            if (state == ProgressStatusType.Indeterminate) UpdateIndeterminateAnimation();
         }
 
         /// <summary>
@@ -668,28 +672,30 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         private void UpdateIndeterminateAnimation()
         {
-            indeterminateAnimation?.Stop();
+            if (indeterminateImage == null) return;
 
-            if (null != indeterminateImage)
+            if (indeterminateAnimation == null)
             {
-                if (indeterminateAnimation == null)
-                {
-                    indeterminateAnimation = new Animation(2000);
-                }
-
-                float destination = (this.SizeWidth - indeterminateImage.SizeWidth);
-
-                KeyFrames keyFrames = new KeyFrames();
-                keyFrames.Add(0.0f /*  0%*/, new Position(0, 0));
-                AlphaFunction ease = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOut);
-                keyFrames.Add(0.5f /* 50%*/, new Position(destination, 0), ease);
-                keyFrames.Add(1.0f /*100%*/, new Position(0, 0), ease);
-                ease.Dispose();
-
-                indeterminateAnimation.AnimateBetween(indeterminateImage, "Position", keyFrames);
-                indeterminateAnimation.Looping = true;
-                indeterminateAnimation.Play();
+                indeterminateAnimation = new Animation(IndeterminateAnimationDuration);
             }
+            else
+            {
+                indeterminateAnimation.Stop();
+                indeterminateAnimation.Clear();
+            }
+
+            float destination = (this.SizeWidth - indeterminateImage.SizeWidth);
+
+            KeyFrames keyFrames = new KeyFrames();
+            keyFrames.Add(0.0f /*  0%*/, new Position(0, 0));
+            AlphaFunction ease = new AlphaFunction(AlphaFunction.BuiltinFunctions.EaseInOut);
+            keyFrames.Add(0.5f /* 50%*/, new Position(destination, 0), ease);
+            keyFrames.Add(1.0f /*100%*/, new Position(0, 0), ease);
+            ease.Dispose();
+
+            indeterminateAnimation.AnimateBetween(indeterminateImage, "Position", keyFrames);
+            indeterminateAnimation.Looping = true;
+            indeterminateAnimation.Play();
         }
 
         /// <summary>
