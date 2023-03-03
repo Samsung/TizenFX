@@ -771,7 +771,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void SetInputRegion(Rectangle inputRegion)
         {
-            Interop.Window.IncludeInputRegion(SwigCPtr, Rectangle.getCPtr(inputRegion));
+            Interop.Window.SetInputRegion(SwigCPtr, Rectangle.getCPtr(inputRegion));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
