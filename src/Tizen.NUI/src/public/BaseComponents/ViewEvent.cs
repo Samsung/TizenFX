@@ -58,13 +58,6 @@ namespace Tizen.NUI.BaseComponents
         private ResourcesLoadedCallbackType ResourcesLoadedCallback;
         private EventHandler<BackgroundResourceLoadedEventArgs> backgroundResourceLoadedEventHandler;
         private _backgroundResourceLoadedCallbackType backgroundResourceLoadedCallback;
-        private OnWindowEventCallbackType onWindowSendEventCallback;
-        private void SendViewAddedEventToWindow(IntPtr data)
-        {
-            // Unused parameter
-            _ = data;
-            NUIApplication.GetDefaultWindow()?.SendViewAdded(this);
-        }
         private TouchDataCallbackType hitTestResultDataCallback;
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]

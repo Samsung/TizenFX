@@ -1541,14 +1541,6 @@ namespace Tizen.NUI.BaseComponents
                 backgroundResourceLoadedCallback = null;
             }
 
-            if (onWindowSendEventCallback != null)
-            {
-                NUILog.Debug($"[Dispose] onWindowSendEventCallback");
-
-                using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(onWindowSendEventCallback);
-                onWindowSendEventCallback = null;
-            }
             NUILog.Debug($"[Dispose] DisConnectFromSignals END");
         }
 
