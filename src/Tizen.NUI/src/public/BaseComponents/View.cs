@@ -163,23 +163,17 @@ namespace Tizen.NUI.BaseComponents
             if (HasBody())
             {
                 PositionUsesPivotPoint = false;
+                GrabTouchAfterLeave = defaultGrabTouchAfterLeave;
+                AllowOnlyOwnTouch = defaultAllowOnlyOwnTouch;
+
+                // TODO : Can we call this function only for required subclass?
+                RegisterHitTestCallback();
             }
-
-            onWindowSendEventCallback = SendViewAddedEventToWindow;
-            using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
-            signal?.Connect(onWindowSendEventCallback);
-
-            hitTestResultDataCallback = OnHitTestResult;
-            using TouchDataSignal touchDataSignal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(SwigCPtr), false);
-            touchDataSignal?.Connect(hitTestResultDataCallback);
 
             if (!shown)
             {
                 SetVisible(false);
             }
-
-            GrabTouchAfterLeave = defaultGrabTouchAfterLeave;
-            AllowOnlyOwnTouch = defaultAllowOnlyOwnTouch;
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
