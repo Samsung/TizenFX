@@ -102,7 +102,7 @@ namespace Tizen.NUI.Samples
                 childViewWindow.KeyEvent += OnChildViewWindowKeyEvent;
                 childViewWindow.TransitionEffect += OnChildViewWindowTransitionEffect;
                 childViewWindow.KeyboardRepeatSettingsChanged += OnChildViewWindowKeyboardRepeatSettingsChanged;
-                childViewWindow.ViewAdded += OnChildViewWindowViewAdded;
+                //childViewWindow.ViewAdded += OnChildViewWindowViewAdded; // Block this signal for temprary
                 childViewWindow.AuxiliaryMessage += OnAuxiliaryMessageEvent;
             }
         }
@@ -120,7 +120,7 @@ namespace Tizen.NUI.Samples
                 childViewWindow.KeyEvent -= OnChildViewWindowKeyEvent;
                 childViewWindow.TransitionEffect -= OnChildViewWindowTransitionEffect;
                 childViewWindow.KeyboardRepeatSettingsChanged -= OnChildViewWindowKeyboardRepeatSettingsChanged;
-                childViewWindow.ViewAdded -= OnChildViewWindowViewAdded;
+                //childViewWindow.ViewAdded -= OnChildViewWindowViewAdded; // Block this signal for temprary
                 childViewWindow.AuxiliaryMessage -= OnAuxiliaryMessageEvent;
                 childViewWindow = null;
             }

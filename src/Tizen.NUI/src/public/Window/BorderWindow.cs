@@ -663,6 +663,12 @@ namespace Tizen.NUI
             private bool isEnabledOverlay = false;
             private Extents prePadding = new Extents(0, 0, 0, 0);
 
+            internal BorderView() : base()
+            {
+                // BorderView will use custom HitTest function.
+                RegisterHitTestCallback();
+            }
+
             /// <summary>
             /// Set whether or not it is in overlay mode.
             /// The borderView's OverlayMode means that it is displayed at the top of the screen.

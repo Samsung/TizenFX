@@ -924,5 +924,41 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Register custom HitTest function for this view.
+        /// </summary>
+        /// <seealso cref="View.HitTest" />
+        /// <remarks>
+        /// This is a hidden API(inhouse API) only for internal purpose.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void RegisterHitTestCallback()
+        {
+            if (hitTestResultDataCallback == null)
+            {
+                hitTestResultDataCallback = OnHitTestResult;
+                using TouchDataSignal touchDataSignal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(SwigCPtr), false);
+                touchDataSignal?.Connect(hitTestResultDataCallback);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+        /// <summary>
+        /// Unregister custom HitTest function.
+        /// </summary>
+        /// <remarks>
+        /// This is a hidden API(inhouse API) only for internal purpose.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected void UnregisterHitTestCallback()
+        {
+            if (hitTestResultDataCallback != null)
+            {
+                using TouchDataSignal touchDataSignal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(SwigCPtr), false);
+                touchDataSignal?.Disconnect(hitTestResultDataCallback);
+                hitTestResultDataCallback = null;
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
     }
 }
