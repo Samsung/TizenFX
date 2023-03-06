@@ -77,7 +77,10 @@ namespace Tizen.NUI.Binding
         {
             using (var client = new HttpClient())
             using (HttpResponseMessage response = await client.GetAsync(uri, cancellationToken).ConfigureAwait(false))
-                return await response.Content.ReadAsStreamAsync().ConfigureAwait(false);
+                if (response.Content is var content && content != null)
+                    return await content.ReadAsStreamAsync().ConfigureAwait(false);
+                else
+                    return null;
         }
 
         public Assembly[] GetAssemblies()
