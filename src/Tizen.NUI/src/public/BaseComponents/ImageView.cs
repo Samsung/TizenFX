@@ -37,6 +37,22 @@ namespace Tizen.NUI.BaseComponents
         private EventHandler<ResourceLoadedEventArgs> _resourceLoadedEventHandler;
         private _resourceLoadedCallbackType _resourceLoadedCallback;
 
+        /// <summary>
+        /// Convert non-null string that some keyword change as application specific directory.
+        /// </summary>
+        /// <param name="value">Inputed and replaced after this function finished</param>
+        /// <returns>Replaced url</returns>
+        private static string ConvertResourceUrl(ref string value)
+        {
+            value ??= "";
+            if (value.StartsWith("*Resource*"))
+            {
+                string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
+                value = value.Replace("*Resource*", resource);
+            }
+            return value;
+        }
+
         // Collection of image-sensitive properties.
         private static readonly List<int> cachedImagePropertyKeyList = new List<int> {
             Visual.Property.Type,
@@ -101,9 +117,9 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <param name="url">The URL of the image resource to display.</param>
         /// <since_tizen> 3 </since_tizen>
-        public ImageView(string url) : this(Interop.ImageView.New(url), true)
+        public ImageView(string url) : this(Interop.ImageView.New(ConvertResourceUrl(ref url)), true)
         {
-            ResourceUrl = url;
+            _resourceUrl = url;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
         }
@@ -115,16 +131,18 @@ namespace Tizen.NUI.BaseComponents
         /// <param name="shown">false : Not displayed (hidden), true : displayed (shown)</param>
         /// This will be public opened in next release of tizen after ACR done. Before ACR, it is used as HiddenAPI (InhouseAPI).
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public ImageView(string url, bool shown) : this(Interop.ImageView.New(url), true)
+        public ImageView(string url, bool shown) : this(Interop.ImageView.New(ConvertResourceUrl(ref url)), true)
         {
-            ResourceUrl = url;
+            _resourceUrl = url;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             SetVisible(shown);
         }
 
-        internal ImageView(string url, Uint16Pair size, bool shown = true) : this(Interop.ImageView.New(url, Uint16Pair.getCPtr(size)), true)
+        internal ImageView(string url, Uint16Pair size, bool shown = true) : this(Interop.ImageView.New(ConvertResourceUrl(ref url), Uint16Pair.getCPtr(size)), true)
         {
-            ResourceUrl = url;
+            _resourceUrl = url;
+            _desired_width = size?.GetWidth() ?? -1;
+            _desired_height = size?.GetHeight() ?? -1;
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             if (!shown)
@@ -620,10 +638,10 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            Interop.ImageView.SetImage(SwigCPtr, url);
+            Interop.ImageView.SetImage(SwigCPtr, ConvertResourceUrl(ref url));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            ResourceUrl = url;
+            _resourceUrl = url;
         }
 
         /// <summary>
@@ -1166,10 +1184,12 @@ namespace Tizen.NUI.BaseComponents
                 return;
             }
 
-            Interop.ImageView.SetImage(SwigCPtr, url, Uint16Pair.getCPtr(size));
+            Interop.ImageView.SetImage(SwigCPtr, ConvertResourceUrl(ref url), Uint16Pair.getCPtr(size));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
-            ResourceUrl = url;
+            _resourceUrl = url;
+            _desired_width = size?.GetWidth() ?? -1;
+            _desired_height = size?.GetHeight() ?? -1;
         }
 
         internal ViewResourceReadySignal ResourceReadySignal(View view)
@@ -1277,13 +1297,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetResourceUrl(string value)
         {
-            value = (value == null ? "" : value);
-            if (value.StartsWith("*Resource*"))
-            {
-                string resource = Tizen.Applications.Application.Current.DirectoryInfo.Resource;
-                value = value.Replace("*Resource*", resource);
-            }
-            if(_resourceUrl != value)
+            if(_resourceUrl != ConvertResourceUrl(ref value))
             {
                 _resourceUrl = value;
                 if(string.IsNullOrEmpty(_resourceUrl))
