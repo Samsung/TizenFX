@@ -20,7 +20,7 @@ jobs:
 
     - name: Add Labels
       if: ${{ steps.metadata.outputs.data }}
-      uses: actions/github-script@v2
+      uses: actions/github-script@v6
       env:
         BRANCH_METADATA: ${{ steps.metadata.outputs.data }}
       with:
