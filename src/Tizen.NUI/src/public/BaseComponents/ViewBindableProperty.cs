@@ -713,15 +713,29 @@ namespace Tizen.NUI.BaseComponents
                     // Framework code uses SetSize() instead of Size property setter.
                     // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
                     // SuggestedMinimumWidth/Height is used by Layout calculation.
-                    view.userSizeWidth = ((Size2D)newValue).Width;
-                    view.userSizeHeight = ((Size2D)newValue).Height;
+                    int width = ((Size2D)newValue).Width;
+                    int height = ((Size2D)newValue).Height;
+                    view.userSizeWidth = (float)width;
+                    view.userSizeHeight = (float)height;
+
+                    bool relayoutRequired = false;
+                    // To avoid duplicated size setup, change internal policy directly.
+                    if (view.widthPolicy != width)
+                    {
+                        view.widthPolicy = width;
+                        relayoutRequired = true;
+                    }
+                    if (view.heightPolicy != height)
+                    {
+                        view.heightPolicy = height;
+                        relayoutRequired = true;
+                    }
+                    if (relayoutRequired)
+                    {
+                        view.layout?.RequestLayout();
+                    }
 
                     Object.InternalSetPropertyVector2ActualVector3(view.SwigCPtr, View.Property.SIZE, ((Size2D)newValue).SwigCPtr);
-
-                    view.widthPolicy = ((Size2D)newValue).Width;
-                    view.heightPolicy = ((Size2D)newValue).Height;
-
-                    view.layout?.RequestLayout();
                 }
             },
             defaultValueCreator: (bindable) =>
@@ -914,9 +928,18 @@ namespace Tizen.NUI.BaseComponents
                 // Framework code uses SetSize() instead of Size property setter.
                 // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
                 // SuggestedMinimumWidth/Height is used by Layout calculation.
-                view.userSizeWidth = (float)newValue;
-                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.SizeWidth, (float)newValue);
-                view.WidthSpecification = (int)System.Math.Ceiling((float)newValue);
+                float width = (float)newValue;
+                view.userSizeWidth = width;
+
+                // To avoid duplicated size setup, change internal policy directly.
+                int widthPolicy = (int)System.Math.Ceiling(width);
+                if (view.widthPolicy != widthPolicy)
+                {
+                    view.widthPolicy = widthPolicy;
+                    view.layout?.RequestLayout();
+                }
+
+                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.SizeWidth, width);
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -938,9 +961,18 @@ namespace Tizen.NUI.BaseComponents
                 // Framework code uses SetSize() instead of Size property setter.
                 // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
                 // SuggestedMinimumWidth/Height is used by Layout calculation.
-                view.userSizeHeight = (float)newValue;
-                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.SizeHeight, (float)newValue);
-                view.HeightSpecification = (int)System.Math.Ceiling((float)newValue);
+                float height = (float)newValue;
+                view.userSizeHeight = height;
+
+                // To avoid duplicated size setup, change internal policy directly.
+                int heightPolicy = (int)System.Math.Ceiling(height);
+                if (view.heightPolicy != heightPolicy)
+                {
+                    view.heightPolicy = heightPolicy;
+                    view.layout?.RequestLayout();
+                }
+
+                Object.InternalSetPropertyFloat(view.SwigCPtr, View.Property.SizeHeight, height);
             }
         }),
         defaultValueCreator: (BindableProperty.CreateDefaultValueDelegate)((bindable) =>
@@ -1553,15 +1585,36 @@ namespace Tizen.NUI.BaseComponents
                     // Framework code uses SetSize() instead of Size property setter.
                     // Size set by user is returned by GetUserSize2D() for SuggestedMinimumWidth/Height.
                     // SuggestedMinimumWidth/Height is used by Layout calculation.
-                    view.userSizeWidth = ((Size)newValue).Width;
-                    view.userSizeHeight = ((Size)newValue).Height;
+                    float width = ((Size)newValue).Width;
+                    float height = ((Size)newValue).Height;
+                    float depth = ((Size)newValue).Depth;
+
+                    view.userSizeWidth = width;
+                    view.userSizeHeight = height;
 
                     // Set Specification so when layouts measure this View it matches the value set here.
                     // All Views are currently Layouts.
-                    view.WidthSpecification = (int)System.Math.Ceiling(((Size)newValue).Width);
-                    view.HeightSpecification = (int)System.Math.Ceiling(((Size)newValue).Height);
+                    int widthPolicy = (int)System.Math.Ceiling(width);
+                    int heightPolicy = (int)System.Math.Ceiling(height);
 
-                    view.SetSize(((Size)newValue).Width, ((Size)newValue).Height, ((Size)newValue).Depth);
+                    bool relayoutRequired = false;
+                    // To avoid duplicated size setup, change internal policy directly.
+                    if (view.widthPolicy != widthPolicy)
+                    {
+                        view.widthPolicy = widthPolicy;
+                        relayoutRequired = true;
+                    }
+                    if (view.heightPolicy != heightPolicy)
+                    {
+                        view.heightPolicy = heightPolicy;
+                        relayoutRequired = true;
+                    }
+                    if (relayoutRequired)
+                    {
+                        view.layout?.RequestLayout();
+                    }
+
+                    view.SetSize(width, height, depth);
                 }
             },
             defaultValueCreator: (bindable) =>
