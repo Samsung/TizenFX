@@ -460,6 +460,44 @@ namespace Tizen.NUI
             return direction;
         }
 
+        /// <summary>
+        /// Gets position and size of the border window
+        /// </summary>
+        /// <returns>The total window size including the border area in the default window.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rectangle WindowPositionSizeWithBorder
+        {
+            get
+            {
+                using var position = GetPosition();
+                using var size = GetWindowSizeWithBorder();
+                Rectangle ret = new Rectangle(position?.X ?? 0, position?.Y ?? 0, size?.Width ?? 0, size?.Height ?? 0);
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// Gets size of the border window
+        /// </summary>
+        /// <returns>The total window size including the border area in the default window.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Size2D WindowSizeWithBorder
+        {
+            get
+            {
+                return GetWindowSizeWithBorder();
+            }
+        }
+
+        private Size2D GetWindowSizeWithBorder()
+        {
+            var val = new Uint16Pair(Interop.Window.GetSize(SwigCPtr), true);
+            Size2D size = new Size2D(val.GetWidth(), val.GetHeight());
+            val.Dispose();
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return size;
+        }
+
         private void DoOverlayMode(bool enable)
         {
             if (borderInterface.OverlayMode == true)
