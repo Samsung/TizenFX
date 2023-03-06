@@ -11,6 +11,12 @@ namespace Tizen.NUI.Samples
 
     class MyView : View
     {
+        public MyView() : base()
+        {
+            // Notify that we will use custom HitTest function for this class.
+            RegisterHitTestCallback();
+        }
+
         protected override bool HitTest(Touch touch)
         {
             Tizen.Log.Error("NUI", $"override HitTest\n");
