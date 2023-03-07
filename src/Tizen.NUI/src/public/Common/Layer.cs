@@ -533,8 +533,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void MoveAbove(Layer target)
         {
-            Interop.Layer.MoveAbove(SwigCPtr, Layer.getCPtr(target));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            RaiseAbove(target);
         }
 
         /// <summary>
@@ -545,8 +544,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void MoveBelow(Layer target)
         {
-            Interop.Layer.MoveBelow(SwigCPtr, Layer.getCPtr(target));
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            LowerBelow(target);
         }
 
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
