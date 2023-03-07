@@ -15,6 +15,7 @@
 */
 
 using System.Collections.Generic;
+using System;
 
 namespace Tizen.Nlp
 {
@@ -22,12 +23,14 @@ namespace Tizen.Nlp
     /// This class contains result of word tokenized.
     /// </summary>
     /// <since_tizen> 5 </since_tizen>
+    [Obsolete("Deprecated since API11. Will be removed in API13.")]
     public class WordTokenizeResult
     {
         /// <summary>
         /// The tokens of sentence.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
+        [Obsolete("Deprecated since API11. Will be removed in API13.")]
         public IList<string> Tokens { get; set; }
     }
 }
