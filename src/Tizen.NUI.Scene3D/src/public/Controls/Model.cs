@@ -227,6 +227,63 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// Gets number of camera parameters that has been loaded from model file.
+        /// </summary>
+        /// <remarks>
+        /// This method should be called after Model load has been finished.
+        /// </remarks>
+        /// <returns>The number of loaded camera parameters.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetCameraCount()
+        {
+            uint ret = Interop.Model.GetCameraCount(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Generate Camera using camera parameters at the index.
+        /// If camera parameter is valid, create new Camera.
+        /// Else, return empty Handle.
+        /// </summary>
+        /// <remarks>
+        /// This method should be called after Model load has been finished.
+        /// </remarks>
+        /// <returns>Generated Camera by the index, or empty Handle if generation failed.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Camera GenerateCamera(uint index)
+        {
+            global::System.IntPtr cPtr = Interop.Model.GenerateCamera(SwigCPtr, index);
+            Camera ret = new Camera(cPtr, true); // Always create new camera.
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+        
+        /// <summary>
+        /// Apply camera parameters at the index to inputed Camera.
+        /// If camera parameter is valid and camera is not empty, apply parameters.
+        /// It will change camera's transform and near / far / fov or orthographic size / aspect ratio (if defined)
+        /// </summary>
+        /// <remarks>
+        /// This method should be called after Model load has been finished.
+        /// </remarks>
+        /// <returns>True if Apply successed. False otherwise.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool ApplyCamera(uint index, Camera camera)
+        {
+            bool ret = false;
+            if(camera?.HasBody() == true)
+            {
+                ret = Interop.Model.ApplyCamera(SwigCPtr, index, Camera.getCPtr(camera));
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            return ret;
+        }
+
+        /// <summary>
         /// Load bvh animation and assign to model.
         /// Scale is additional scale factor of bvh animation. It is possible that
         /// Model's scale may not matched with bvh animation scale.

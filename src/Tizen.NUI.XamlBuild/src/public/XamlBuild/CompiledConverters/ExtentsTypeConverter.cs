@@ -62,7 +62,7 @@ namespace Tizen.NUI.Xaml.Core.XamlC
                     if (ushort.TryParse(thickness[0], NumberStyles.Number, CultureInfo.InvariantCulture, out start) &&
                         ushort.TryParse(thickness[1], NumberStyles.Number, CultureInfo.InvariantCulture, out end) &&
                         ushort.TryParse(thickness[2], NumberStyles.Number, CultureInfo.InvariantCulture, out top) &&
-                        ushort.TryParse(thickness[2], NumberStyles.Number, CultureInfo.InvariantCulture, out bottom))
+                        ushort.TryParse(thickness[3], NumberStyles.Number, CultureInfo.InvariantCulture, out bottom))
 
                         return GenerateIL(module, start, end, top, bottom);
                 }

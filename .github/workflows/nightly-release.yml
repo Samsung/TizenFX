@@ -28,7 +28,7 @@ jobs:
             TARGETS="${TARGETS} $x"
           fi
         done
-        echo "::set-output name=targets::${TARGETS}"
+        echo "targets=${TARGETS}" >> $GITHUB_OUTPUT
 
     - name: Trigger Release
       uses: actions/github-script@v4
