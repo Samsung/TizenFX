@@ -28,7 +28,7 @@ jobs:
         ref: ${{ env.TARGET_BRANCH }}
         fetch-depth: 0
     
-    - uses: actions/setup-dotnet@v1
+    - uses: actions/setup-dotnet@v3
       with:
         dotnet-version: '6.0.102'
 
@@ -51,7 +51,7 @@ jobs:
       run: |
         VERSION=$VERSION_PREFIX.$((10000+$(git rev-list --count HEAD)))
         echo VERSION=$VERSION
-        echo "::set-output name=version::$VERSION"
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
 
     - name: Build
       env:
