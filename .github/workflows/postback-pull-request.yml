@@ -26,7 +26,7 @@ jobs:
         WORKFLOW_HEAD_SHA: ${{ github.event.workflow_run.head_sha }}
       with:
         script: |
-          const res = await github.pulls.list({
+          const res = await github.rest.pulls.list({
             owner: context.repo.owner,
             repo: context.repo.repo,
             state: 'open'
