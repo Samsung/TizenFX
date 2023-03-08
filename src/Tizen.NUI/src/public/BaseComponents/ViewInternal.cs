@@ -1282,8 +1282,6 @@ namespace Tizen.NUI.BaseComponents
             internalTargetSize = null;
             internalCurrentSize?.Dispose();
             internalCurrentSize = null;
-            internalNaturalSize?.Dispose();
-            internalNaturalSize = null;
             internalCurrentPosition?.Dispose();
             internalCurrentPosition = null;
             internalCurrentWorldPosition?.Dispose();
