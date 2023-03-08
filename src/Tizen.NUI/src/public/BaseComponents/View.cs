@@ -87,7 +87,6 @@ namespace Tizen.NUI.BaseComponents
         private Position internalCurrentAnchorPoint = null;
         private Vector3 internalTargetSize = null;
         private Size2D internalCurrentSize = null;
-        private Vector3 internalNaturalSize = null;
         private Position internalCurrentPosition = null;
         private Vector3 internalCurrentWorldPosition = null;
         private Vector3 internalCurrentScale = null;
