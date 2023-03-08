@@ -129,6 +129,11 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public static NUIGadget Add(string resourceType, string className)
         {
+            if (string.IsNullOrEmpty(resourceType) || string.IsNullOrEmpty(className))
+            {
+                throw new ArgumentException("Invalid argument");
+            }
+
             if (!_gadgetInfos.TryGetValue(resourceType, out NUIGadgetInfo info))
             {
                 throw new ArgumentException("Failed to find NUIGadgetInfo. resource type: " + resourceType);
@@ -165,13 +170,28 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the information of the running NUIGadgets.
+        /// Gets the instance of the running NUIGadgets.
         /// </summary>
         /// <returns>The NUIGadget list.</returns>
         /// <since_tizen> 10 </since_tizen>
         public static IEnumerable<NUIGadget> GetGadgets()
         {
             return _gadgets;
+        }
+
+        /// <summary>
+        /// Gets the information of the available NUIGadgets.
+        /// </summary>
+        /// <remarks>
+        /// This method only returns the available gadget informations, not all installed gadget informations.
+        /// The resource package of the NUIGadget can set the allowed packages using "allowed-package".
+        /// When executing an application, the platform mounts the resource package into the resource path of the application.
+        /// </remarks>
+        /// <returns>The NUIGadgetInfo list.</returns>
+        /// <since_tizen> 10 </since_tizen>
+        public static IEnumerable<NUIGadgetInfo> GetGadgetInfos()
+        {
+            return _gadgetInfos.Values.ToList();
         }
 
         /// <summary>
