@@ -225,13 +225,13 @@ class Scene3DSample : NUIApplication
                     if (model.ApplyCamera(i, additionalCamera))
                     {
                         mSceneView.AddCamera(additionalCamera);
-                        if (firstSuccessedCamera)
+                        if (firstSucceededCamera)
                         {
                             currentCameraIndex = mSceneView.GetCameraCount() - 1u;
 
                             Tizen.Log.Error("NUI", $"Use additional camera [{currentCameraIndex}]\n");
                             mSceneView.SelectCamera(currentCameraIndex);
-                            firstSuccessedCamera = false;
+                            firstSucceededCamera = false;
                         }
                         additionalCameraList.Add(additionalCamera);
                     }
