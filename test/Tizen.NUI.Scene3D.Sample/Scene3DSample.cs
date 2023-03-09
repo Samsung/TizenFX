@@ -217,7 +217,7 @@ class Scene3DSample : NUIApplication
             if (model.GetCameraCount() > 0u)
             {
                 additionalCameraList = new List<Tizen.NUI.Scene3D.Camera>();
-                bool firstSuccessedCamera = true;
+                bool firstSucceededCamera = true;
                 for (uint i = 0; i < model.GetCameraCount(); ++i)
                 {
                     Tizen.NUI.Scene3D.Camera additionalCamera = new Tizen.NUI.Scene3D.Camera();
