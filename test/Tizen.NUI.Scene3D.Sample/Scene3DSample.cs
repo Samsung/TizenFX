@@ -48,6 +48,9 @@ class Scene3DSample : NUIApplication
         // Get from KhronosGroup https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/2CylinderEngine
         "2CylinderEngine/2CylinderEngine_e.gltf",
 
+        // Get from KhronosGroup https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/ToyCar
+        "ToyCar/ToyCar.glb",
+
         "BoxAnimated/BoxAnimated.gltf",
     };
     private int currentModelIndex = 0;
@@ -102,7 +105,7 @@ class Scene3DSample : NUIApplication
         },
     };
     uint currentCameraIndex = 0u;
-    Tizen.NUI.Scene3D.Camera additionalCamera;
+    List<Tizen.NUI.Scene3D.Camera> additionalCameraList;
     const int cameraAnimationDurationMilliseconds = 2000; // milliseconds
     #endregion
 
@@ -180,17 +183,20 @@ class Scene3DSample : NUIApplication
         }
 
         // Release old camera if exist
-        if (additionalCamera != null)
+        if (additionalCameraList != null)
         {
-            if (currentCameraIndex == CameraInfoList.Count)
+            if (currentCameraIndex >= CameraInfoList.Count)
             {
                 currentCameraIndex = 0u;
                 Tizen.Log.Error("NUI", $"Use camera [{currentCameraIndex}]\n");
                 mSceneView.SelectCamera(currentCameraIndex);
             }
-            mSceneView.RemoveCamera(additionalCamera);
-            additionalCamera.Dispose();
-            additionalCamera = null;
+            foreach (var additionalCamera in additionalCameraList)
+            {
+                mSceneView.RemoveCamera(additionalCamera);
+                additionalCamera.Dispose();
+            }
+            additionalCameraList = null;
         }
 
         mModel = new Model(MODEL_DIR + modelUrl)
@@ -210,30 +216,51 @@ class Scene3DSample : NUIApplication
             // You can apply camera properties if the camera parameter exists.
             if (model.GetCameraCount() > 0u)
             {
-                additionalCamera = new Tizen.NUI.Scene3D.Camera();
-                // If we success to make additional camera from model, Add that camera into sceneview, and select that.
-                if (model.ApplyCamera(0u, additionalCamera))
+                additionalCameraList = new List<Tizen.NUI.Scene3D.Camera>();
+                bool firstSucceededCamera = true;
+                for (uint i = 0; i < model.GetCameraCount(); ++i)
                 {
-                    currentCameraIndex = mSceneView.GetCameraCount();
-                    mSceneView.AddCamera(additionalCamera);
+                    Tizen.NUI.Scene3D.Camera additionalCamera = new Tizen.NUI.Scene3D.Camera();
+                    // If we success to make additional camera from model, Add that camera into sceneview, and select that.
+                    if (model.ApplyCamera(i, additionalCamera))
+                    {
+                        mSceneView.AddCamera(additionalCamera);
+                        if (firstSucceededCamera)
+                        {
+                            currentCameraIndex = mSceneView.GetCameraCount() - 1u;
 
-                    Tizen.Log.Error("NUI", $"Use additional camera [{currentCameraIndex}]\n");
-                    mSceneView.SelectCamera(currentCameraIndex);
+                            Tizen.Log.Error("NUI", $"Use additional camera [{currentCameraIndex}]\n");
+                            mSceneView.SelectCamera(currentCameraIndex);
+                            firstSucceededCamera = false;
+                        }
+                        additionalCameraList.Add(additionalCamera);
+                    }
+                    else
+                    {
+                        Tizen.Log.Error("NUI", $"Error! camera at [{i}] have some problem\n");
+                        additionalCamera.Dispose();
+                    }
                 }
             }
             Tizen.Log.Error("NUI", $"{model.Name} size : {model.Size.Width}, {model.Size.Height}, {model.Size.Depth}\n");
             Tizen.Log.Error("NUI", $"Animation count {model.GetAnimationCount()} , Camera count {model.GetCameraCount()}\n");
+            
+            // Auto rotate model only if it don't have camera.
+            if (mModel.GetCameraCount() == 0u)
+            {
+                mModelRotateAnimation.Play();
+            }
 
             if (mMutex)
             {
                 mMutex = false;
             }
         };
+
         mModelRotateAnimation = new Animation(modelRotateAnimationDurationMilliseconds);
         mModelRotateAnimation.AnimateBy(mModel, "Orientation", new Rotation(new Radian(new Degree(360.0f)), Vector3.YAxis));
 
         mModelRotateAnimation.Looping = true;
-        mModelRotateAnimation.Play();
 
         mSceneView.Add(mModel);
 
@@ -306,6 +333,18 @@ class Scene3DSample : NUIApplication
 
                     Tizen.Log.Error("NUI", $"Use Light image [{currentIBLIndex}]\n");
                     SetupIBLimage(IBLUrlList[currentIBLIndex].Item1, IBLUrlList[currentIBLIndex].Item2, IBLFactor);
+                    break;
+                }
+                case "r":
+                {
+                    if (mModelRotateAnimation.State == Animation.States.Playing)
+                    {
+                        mModelRotateAnimation.Pause();
+                    }
+                    else
+                    {
+                        mModelRotateAnimation.Play();
+                    }
                     break;
                 }
             }
