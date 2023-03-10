@@ -250,7 +250,7 @@ namespace Tizen.NUI.Components
                 CandidateMargin = new Extents(itemMargin);
                 if (StepCandidate == 0) StepCandidate = 1; //????
 
-                colView.UnrealizeItem(sizeDeligate);
+                colView.UnrealizeItem(sizeDeligate, false);
             }
 
             float Current = IsHorizontal? Padding.Start : Padding.Top;
