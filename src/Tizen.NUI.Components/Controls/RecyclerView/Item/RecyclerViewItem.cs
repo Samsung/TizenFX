@@ -50,6 +50,35 @@ namespace Tizen.NUI.Components
                     {
                         instance.UpdateState();
                     }
+                    if (instance.ParentItemsView is CollectionView colView)
+                    {
+                        var context = instance.BindingContext;
+                        if (colView.SelectionMode is ItemSelectionMode.Single ||
+                            colView.SelectionMode is ItemSelectionMode.SingleAlways)
+                        {
+                            if (newSelected && colView.SelectedItem != context)
+                            {
+                                colView.SelectedItem = context;
+                            }
+                            else if (!newSelected && colView.SelectedItem == context)
+                            {
+                                colView.SelectedItem = null;
+                            }
+                        }
+                        else if (colView.SelectionMode is ItemSelectionMode.Multiple)
+                        {
+                            var selectedList = colView.SelectedItems;
+                            bool contains = selectedList.Contains(context);
+                            if (newSelected && !contains)
+                            {
+                                selectedList.Add(context);
+                            }
+                            else if (!newSelected && contains)
+                            {
+                                selectedList.Remove(context);
+                            }
+                        }
+                    }
                 }
             }
         },
@@ -123,7 +152,11 @@ namespace Tizen.NUI.Components
         public bool IsSelectable
         {
             get => (bool)GetValue(IsSelectableProperty);
-            set => SetValue(IsSelectableProperty, value);
+            set
+            {
+                SetValue(IsSelectableProperty, value);
+                OnPropertyChanged("IsSelectable");
+            }
         }
 
         /// <summary>
@@ -133,7 +166,11 @@ namespace Tizen.NUI.Components
         public bool IsSelected
         {
             get => (bool)GetValue(IsSelectedProperty);
-            set => SetValue(IsSelectedProperty, value);
+            set
+            {
+                SetValue(IsSelectedProperty, value);
+                OnPropertyChanged("IsSelected");
+            }
         }
 
         /// <summary>
