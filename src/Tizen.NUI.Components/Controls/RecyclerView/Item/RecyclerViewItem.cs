@@ -50,24 +50,24 @@ namespace Tizen.NUI.Components
                     {
                         instance.UpdateState();
                     }
-                    if (instance.ParentItemsView is CollectionView colView)
+                    if (instance.ParentItemsView is CollectionView collectionView)
                     {
                         var context = instance.BindingContext;
-                        if (colView.SelectionMode is ItemSelectionMode.Single ||
-                            colView.SelectionMode is ItemSelectionMode.SingleAlways)
+                        if (collectionView.SelectionMode is ItemSelectionMode.Single ||
+                            collectionView.SelectionMode is ItemSelectionMode.SingleAlways)
                         {
-                            if (newSelected && colView.SelectedItem != context)
+                            if (newSelected && collectionView.SelectedItem != context)
                             {
-                                colView.SelectedItem = context;
+                                collectionView.SelectedItem = context;
                             }
-                            else if (!newSelected && colView.SelectedItem == context)
+                            else if (!newSelected && collectionView.SelectedItem == context)
                             {
-                                colView.SelectedItem = null;
+                                collectionView.SelectedItem = null;
                             }
                         }
-                        else if (colView.SelectionMode is ItemSelectionMode.Multiple)
+                        else if (collectionView.SelectionMode is ItemSelectionMode.Multiple)
                         {
-                            var selectedList = colView.SelectedItems;
+                            var selectedList = collectionView.SelectedItems;
                             bool contains = selectedList.Contains(context);
                             if (newSelected && !contains)
                             {
@@ -155,7 +155,7 @@ namespace Tizen.NUI.Components
             set
             {
                 SetValue(IsSelectableProperty, value);
-                OnPropertyChanged("IsSelectable");
+                OnPropertyChanged(nameof(IsSelectable));
             }
         }
 
@@ -169,7 +169,7 @@ namespace Tizen.NUI.Components
             set
             {
                 SetValue(IsSelectedProperty, value);
-                OnPropertyChanged("IsSelected");
+                OnPropertyChanged(nameof(IsSelected));
             }
         }
 
