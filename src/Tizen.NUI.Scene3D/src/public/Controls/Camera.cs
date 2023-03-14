@@ -664,7 +664,7 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ConvertFovFromVerticalToHorizontal(float aspect, ref Radian fov)
         {
-            if(fov == null)
+            if (fov == null)
             {
                 return;
             }
@@ -678,7 +678,7 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static void ConvertFovFromHorizontalToVertical(float aspect, ref Radian fov)
         {
-            if(fov == null)
+            if (fov == null)
             {
                 return;
             }
