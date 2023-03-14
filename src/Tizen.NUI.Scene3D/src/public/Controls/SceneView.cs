@@ -251,7 +251,7 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public void AddCamera(Camera camera)
         {
-            if(camera != null)
+            if (camera != null)
             {
                 Interop.SceneView.AddCamera(SwigCPtr, camera.SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -272,7 +272,7 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public void RemoveCamera(Camera camera)
         {
-            if(camera != null)
+            if (camera != null)
             {
                 Interop.SceneView.RemoveCamera(SwigCPtr, camera.SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -301,7 +301,7 @@ namespace Tizen.NUI.Scene3D
         {
             global::System.IntPtr cPtr = Interop.SceneView.GetCamera(SwigCPtr, index);
             Camera camera = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Camera;
-            if(camera == null)
+            if (camera == null)
             {
                 // Register new camera into Registry.
                 camera = new Camera(cPtr, true);
@@ -327,7 +327,7 @@ namespace Tizen.NUI.Scene3D
         {
             global::System.IntPtr cPtr = Interop.SceneView.GetCamera(SwigCPtr, name);
             Camera camera = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Camera;
-            if(camera == null)
+            if (camera == null)
             {
                 // Register new camera into Registry.
                 camera = new Camera(cPtr, true);
@@ -350,7 +350,7 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public void SelectCamera(uint index)
         {
-            if(inCameraTransition)
+            if (inCameraTransition)
             {
                 return;
             }
@@ -365,7 +365,7 @@ namespace Tizen.NUI.Scene3D
         /// <since_tizen> 10 </since_tizen>
         public void SelectCamera(string name)
         {
-            if(inCameraTransition)
+            if (inCameraTransition)
             {
                 return;
             }
@@ -389,7 +389,7 @@ namespace Tizen.NUI.Scene3D
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "The ownership of camera object is not owned by this class.")]
         public void CameraTransition(uint index, int durationMilliSeconds, AlphaFunction alphaFunction = null)
         {
-            if(inCameraTransition || GetSelectedCamera() == GetCamera(index))
+            if (inCameraTransition || GetSelectedCamera() == GetCamera(index))
             {
                 return;
             }
@@ -415,7 +415,7 @@ namespace Tizen.NUI.Scene3D
         [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "The ownership of camera object is not owned by this class.")]
         public void CameraTransition(string name, int durationMilliSeconds, AlphaFunction alphaFunction = null)
         {
-            if(inCameraTransition || GetSelectedCamera() == GetCamera(name))
+            if (inCameraTransition || GetSelectedCamera() == GetCamera(name))
             {
                 return;
             }
@@ -434,7 +434,7 @@ namespace Tizen.NUI.Scene3D
         {
             global::System.IntPtr cPtr = Interop.SceneView.GetSelectedCamera(SwigCPtr);
             Camera camera = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Camera;
-            if(camera == null)
+            if (camera == null)
             {
                 // Register new camera into Registry.
                 camera = new Camera(cPtr, true);
@@ -595,7 +595,7 @@ namespace Tizen.NUI.Scene3D
             cameraTransition.AnimateBetween(destinationCamera, "Position", positionKeyFrames, Animation.Interpolation.Linear, alphaFunction);
             cameraTransition.AnimateBetween(destinationCamera, "Orientation", orientationKeyFrames, Animation.Interpolation.Linear, alphaFunction);
 
-            if(destinationCamera.ProjectionMode == Camera.ProjectionModeType.Perspective)
+            if (destinationCamera.ProjectionMode == Camera.ProjectionModeType.Perspective)
             {
                 Radian sourceFieldOfView = sourceCamera.FieldOfView;
                 Radian destinationFieldOfView = destinationCamera.FieldOfView;
