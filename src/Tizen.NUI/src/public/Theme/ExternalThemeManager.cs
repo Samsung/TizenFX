@@ -47,7 +47,7 @@ namespace Tizen.NUI
             }
             catch (Exception e)
             {
-                Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occurred while setting Tizen.Applications.ThemeManager: {e.Message}");
+                Tizen.Log.Debug("NUI", $"[Ignorable] {e.GetType().Name} occurred while setting Tizen.Applications.ThemeManager: {e.Message}");
             }
         }
 
@@ -86,7 +86,7 @@ namespace Tizen.NUI
                 }
                 catch (Exception e)
                 {
-                    Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occurred while getting load theme using {themeLoader.GetType().FullName}: {e.Message}");
+                    Tizen.Log.Debug("NUI", $"[Ignorable] {e.GetType().Name} occurred while getting load theme using {themeLoader.GetType().FullName}: {e.Message}");
                 }
             }
 
@@ -132,7 +132,7 @@ namespace Tizen.NUI
             }
             catch (Exception e)
             {
-                Tizen.Log.Info("NUI", $"[Ignorable] {e.GetType().Name} occurred while getting current theme using {themeLoader.GetType().FullName}: {e.Message}");
+                Tizen.Log.Debug("NUI", $"[Ignorable] {e.GetType().Name} occurred while getting current theme using {themeLoader.GetType().FullName}: {e.Message}");
             }
 
             if (tizenTheme == null || string.IsNullOrEmpty(tizenTheme.Id) || string.IsNullOrEmpty(tizenTheme.Version))
@@ -140,7 +140,7 @@ namespace Tizen.NUI
                 return;
             }
 
-            Tizen.Log.Info("NUI", $"TizenTheme: Id({tizenTheme.Id}), Version({tizenTheme.Version}), Title({tizenTheme.Title})");
+            Tizen.Log.Debug("NUI", $"TizenTheme: Id({tizenTheme.Id}), Version({tizenTheme.Version}), Title({tizenTheme.Title})");
 
             id = tizenTheme.Id;
             version = tizenTheme.Version;
@@ -148,7 +148,7 @@ namespace Tizen.NUI
 
         private static void OnExternalPlatformThemeChanged(object sender, Tizen.Applications.ThemeManager.ThemeEventArgs e)
         {
-            Tizen.Log.Info("NUI", $"TizenTheme: Id({e.Theme.Id}), Version({e.Theme.Version}), Title({e.Theme.Title})");
+            Tizen.Log.Debug("NUI", $"TizenTheme: Id({e.Theme.Id}), Version({e.Theme.Version}), Title({e.Theme.Title})");
 
             id = e.Theme.Id;
             version = e.Theme.Version;
