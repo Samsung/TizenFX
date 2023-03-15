@@ -59,7 +59,7 @@ namespace AIAgentLayer
 
             if (resetEyeAnimation)
             {
-                resetEyeAnimation.Reset();
+                resetEyeAnimation.Stop();
             }
             else
             {
@@ -73,7 +73,7 @@ namespace AIAgentLayer
         {
             if (inAnimation)
             {
-                inAnimation.Reset();
+                inAnimation.Stop();
             }
             rav.SetAnimationElapsedTime("reset", -1.0f);
             rav.SetAnimationElapsedTime("eye 360", -1.0f);
@@ -237,7 +237,7 @@ namespace AIAgentLayer
             {
                 if (showAnimation)
                 {
-                    showAnimation.Reset();
+                    showAnimation.Stop();
                 }
                 rav.Play();
                 showAnimation.Play();
@@ -253,7 +253,7 @@ namespace AIAgentLayer
             {
                 if (outAnimation)
                 {
-                    outAnimation.Reset();
+                    outAnimation.Stop();
                 }
                 rav.EnableAnimation("in", false);
                 rav.EnableAnimation("out", true);
@@ -276,7 +276,7 @@ namespace AIAgentLayer
 
                 if (resetOkAnimation)
                 {
-                    resetOkAnimation.Reset();
+                    resetOkAnimation.Stop();
                 }
                 else
                 {
@@ -306,7 +306,7 @@ namespace AIAgentLayer
 
                 if (resetListenAnimation)
                 {
-                    resetListenAnimation.Reset();
+                    resetListenAnimation.Stop();
                 }
                 else
                 {
@@ -336,7 +336,7 @@ namespace AIAgentLayer
 
                 if (resetThinkingAnimation)
                 {
-                    resetThinkingAnimation.Reset();
+                    resetThinkingAnimation.Stop();
                 }
                 else
                 {
