@@ -31,6 +31,8 @@ namespace Tizen.NUI
 
         static ExternalThemeManager() { }
 
+        internal static event EventHandler PlatformThemeChanged;
+
         public static void Initialize()
         {
             if (themeLoader != null)
@@ -151,9 +153,7 @@ namespace Tizen.NUI
             id = e.Theme.Id;
             version = e.Theme.Version;
 
-            if (!ThemeManager.PlatformThemeEnabled) return;
-
-            ThemeManager.ApplyExternalPlatformTheme(id, version);
+            PlatformThemeChanged?.Invoke(null, EventArgs.Empty);
         }
     }
 }
