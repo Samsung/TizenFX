@@ -50,7 +50,7 @@ jobs:
           const fs = require('fs');
           const json = fs.readFileSync('Artifacts/errors.json', 'utf8');
           const errors = JSON.parse(json).join('\n');
-          github.issues.createComment({
+          github.rest.issues.createComment({
             issue_number: process.env.PR_NUMBER,
             owner: context.repo.owner,
             repo: context.repo.repo,
