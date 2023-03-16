@@ -31,7 +31,7 @@ jobs:
         echo "targets=${TARGETS}" >> $GITHUB_OUTPUT
 
     - name: Trigger Release
-      uses: actions/github-script@v4
+      uses: actions/github-script@v6
       env:
         TARGETS: ${{ steps.find-targets.outputs.targets }}
         WORKFLOW_NAME: 'Deploy Packages'
