@@ -34,6 +34,7 @@ namespace Tizen.Content.Download
         private EventHandler<ProgressChangedEventArgs> _downloadProgressChanged;
         private Interop.Download.ProgressChangedCallback _downloadProgressChangedCallback;
         private bool _disposed = false;
+        private bool _cacheEnable;
 
         /// <summary>
         /// Creates a Request object.
@@ -841,6 +842,70 @@ namespace Tizen.Content.Download
             if (ret != (int)DownloadError.None)
             {
                 DownloadErrorFactory.ThrowException(ret, "Unsetting ProgressChanged callback failed");
+            }
+        }
+
+        /// <summary>
+        /// Sets the 'enabled' state of the cache feature.
+        /// </summary>
+        /// <since_tizen> 7.5 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <remarks>
+        /// Enable/disable for _downloadId
+        /// Returns 0 on success, otherwise a negative error value
+        /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        public void SetCache(bool enable)
+        {
+            int ret = Interop.Download.SetDownloadCache(_downloadId, enable);
+            if (ret != (int)DownloadError.None)
+            {
+                DownloadErrorFactory.ThrowException(ret, "Failed to set enabled state of download cache");
+            }
+            _cacheEnable = enable;
+        }
+
+        /// <summary>
+        /// Gets the 'enabled' state of the cache feature.
+        /// </summary>
+        /// <since_tizen> 7.5 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <remarks>
+        /// Get Enable/disable for _downloadId
+        /// Returns 0 on success, otherwise a negative error value
+        /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        public void GetCache(out bool enable)
+        {
+            int ret = Interop.Download.GetDownloadCache(_downloadId, out enable);
+            if (ret != (int)DownloadError.None)
+            {
+                DownloadErrorFactory.ThrowException(ret, "Failed to get cache enable state");
+            }
+            _cacheEnable = enable;
+        }
+
+        /// <summary>
+        /// Clears the cache.
+        /// </summary>
+        /// <since_tizen> 7.5 </since_tizen>
+        /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <remarks>
+        /// Returns 0 on success, otherwise a negative error value
+        /// </remarks>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
+        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
+        public void ResetCache()
+        {
+            int ret = Interop.Download.ResetDownloadCache();
+            if (ret != (int)DownloadError.None)
+            {
+                DownloadErrorFactory.ThrowException(ret, "Failed to reset cache");
             }
         }
     }
