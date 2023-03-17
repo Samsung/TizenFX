@@ -32,39 +32,39 @@ namespace Tizen.NUI.Components.Extension
         protected Touch TouchInfo { get; private set; }
 
         /// <summary>
-        /// Called immediately after the Button creates the text part.
+        /// Perform further processing of the button text.
         /// </summary>
-        /// <param name="button">The Button instance that the extension currently applied to.</param>
-        /// <param name="text">The created Button's text part.</param>
-        /// <return>The refined button text.</return>
+        /// <param name="button">The button instance that the extension currently applied to.</param>
+        /// <param name="text">The reference of the button text.</param>
+        /// <return>True if the given text is replaced.</return>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual TextLabel OnCreateText(Button button, TextLabel text)
+        public virtual bool ProcessText(Button button, ref TextLabel text)
         {
-            return text;
+            return false;
         }
 
         /// <summary>
-        /// Called immediately after the Button creates the icon part.
+        /// Perform further processing of the button icon.
         /// </summary>
-        /// <param name="button">The Button instance that the extension currently applied to.</param>
-        /// <param name="icon">The created Button's icon part.</param>
-        /// <return>The refined button icon.</return>
+        /// <param name="button">The button instance that the extension currently applied to.</param>
+        /// <param name="icon">The reference of the button icon.</param>
+        /// <return>True if the given icon is replaced.</return>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual ImageView OnCreateIcon(Button button, ImageView icon)
+        public virtual bool ProcessIcon(Button button, ref ImageView icon)
         {
-            return icon;
+            return false;
         }
 
         /// <summary>
-        /// Called immediately after the Button creates the overlay image part.
+        /// Perform further processing of the button overlay image.
         /// </summary>
-        /// <param name="button">The Button instance that the extension currently applied to.</param>
-        /// <param name="overlayImage">The created Button's overlayImage part.</param>
-        /// <return>The refined button overlayImage.</return>
+        /// <param name="button">The button instance that the extension currently applied to.</param>
+        /// <param name="overlayImage">The reference of the button overlay image.</param>
+        /// <return>True if the given overlayImage is replaced.</return>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual ImageView OnCreateOverlayImage(Button button, ImageView overlayImage)
+        public virtual bool ProcessOverlayImage(Button button, ref ImageView overlayImage)
         {
-            return overlayImage;
+            return false;
         }
 
         /// <summary>
