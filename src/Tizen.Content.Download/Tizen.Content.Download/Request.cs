@@ -848,13 +848,13 @@ namespace Tizen.Content.Download
         /// <summary>
         /// Enabled state of the cache feature.
         /// </summary>
-        /// <since_tizen> 7.5 </since_tizen>
+        /// <since_tizen> 11 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
-        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
+        /// <exception cref="ArgumentException">Thrown when it is failed due to setting an invalid value.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when not supported.</exception>
-        public bool CacheEnable
+        public bool UsesCache
         {
             get
             {
@@ -872,140 +872,6 @@ namespace Tizen.Content.Download
                 if (ret != (int)DownloadError.None)
                 {
                     DownloadErrorFactory.ThrowException(ret, "Failed to set enabled state of download cache");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Clears the cache.
-        /// </summary>
-        /// <since_tizen> 7.5 </since_tizen>
-        /// <privilege>http://tizen.org/privilege/download</privilege>
-        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when not supported.</exception>
-        public void ResetCache()
-        {
-            int ret = Interop.Download.ResetDownloadCache();
-            if (ret != (int)DownloadError.None)
-            {
-                DownloadErrorFactory.ThrowException(ret, "Failed to reset cache");
-            }
-        }
-
-        /// <summary>
-        /// Max size(MB) of the cache.
-        /// </summary>
-        /// <since_tizen> 7.5 </since_tizen>
-        /// <privilege>http://tizen.org/privilege/download</privilege>
-        /// <remarks>The default size is 1000 MB.</remarks>
-        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when not supported.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint MaxCacheSize
-        {
-            get
-            {
-                uint maxCacheSize;
-                int ret = Interop.Download.GetDownloadCacheMaxSize(out maxCacheSize);
-                if (ret != (int)DownloadError.None)
-                {
-                    DownloadErrorFactory.ThrowException(ret, "Failed to get max size of cache");
-                }
-                return maxCacheSize;
-            }
-            set
-            {
-                int ret = Interop.Download.SetDownloadCacheMaxSize(value);
-                if (ret != (int)DownloadError.None)
-                {
-                    DownloadErrorFactory.ThrowException(ret, "Failed to set cache max size");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Clears all cache.
-        /// </summary>
-        /// <since_tizen> 7.5 </since_tizen>
-        /// <privilege>http://tizen.org/privilege/download</privilege>
-        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when not supported.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public void ResetAllCache()
-        {
-            int ret = Interop.Download.ResetAllDownloadCache();
-            if (ret != (int)DownloadError.None)
-            {
-                DownloadErrorFactory.ThrowException(ret, "Failed to reset all cache");
-            }
-        }
-
-        /// <summary>
-        /// Path of the stored cache.
-        /// </summary>
-        /// <since_tizen> 7.5 </since_tizen>
-        /// <privilege>http://tizen.org/privilege/download</privilege>
-        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when not supported.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public string CachePath
-        {
-            get
-            {
-                string cachePath;
-                int ret = Interop.Download.GetDownloadCachePath(out cachePath);
-                if (ret != (int)DownloadError.None)
-                {
-                    DownloadErrorFactory.ThrowException(ret, "Failed to get cache path");
-                }
-                return cachePath;
-            }
-            set
-            {
-                int ret = Interop.Download.SetDownloadCachePath(value);
-                if (ret != (int)DownloadError.None)
-                {
-                    DownloadErrorFactory.ThrowException(ret, "Failed to set cache path");
-                }
-            }
-        }
-
-        /// <summary>
-        /// Life cycle of the cache.
-        /// </summary>
-        /// <since_tizen> 7.5 </since_tizen>
-        /// <privilege>http://tizen.org/privilege/download</privilege>
-        /// <exception cref="ArgumentException">Thrown when it is failed due to an invalid parameter.</exception>
-        /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
-        /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
-        /// <exception cref="NotSupportedException">Thrown when not supported.</exception>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public uint CacheLifeCycle
-        {
-            get
-            {
-                uint lifeCycle;
-                int ret = Interop.Download.GetDownloadCacheLifeCycle(out lifeCycle);
-                if (ret != (int)DownloadError.None)
-                {
-                    DownloadErrorFactory.ThrowException(ret, "Failed to get cache life cycle.");
-                }
-                return lifeCycle;
-            }
-            set
-            {
-                int ret = Interop.Download.SetDownloadCacheLifeCycle(value);
-                if (ret != (int)DownloadError.None)
-                {
-                    DownloadErrorFactory.ThrowException(ret, "Failed to set cache life cycle.");
                 }
             }
         }
