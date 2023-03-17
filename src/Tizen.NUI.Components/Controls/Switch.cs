@@ -115,23 +115,18 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         public override void ApplyStyle(ViewStyle viewStyle)
         {
-            styleApplying = true;
+            styleApplying++;
 
             base.ApplyStyle(viewStyle);
 
             if (viewStyle is SwitchStyle switchStyle)
             {
-                if (Extension != null) Extension.OnDispose(this);
-
-                if ((Extension = switchStyle.CreateExtension()) != null && Extension is SwitchExtension extension)
+                if (Extension is SwitchExtension extension)
                 {
-                    Icon.Unparent();
-                    thumb.Unparent();
-                    TextLabel.Unparent();
-                    Icon = extension.OnCreateTrack(this, Icon);
-                    thumb = extension.OnCreateThumb(this, thumb);
-                    Icon.Add(thumb);
-                    LayoutItems();
+                    if (extension.ProcessThumb(this, ref thumb))
+                    {
+                        LayoutItems();
+                    }
 
                     Icon.Relayout -= OnTrackOrThumbRelayout;
                     Icon.Relayout += OnTrackOrThumbRelayout;
@@ -149,14 +144,8 @@ namespace Tizen.NUI.Components
                 {
                     Thumb.ApplyStyle(switchStyle.Thumb);
                 }
-
-                if (switchStyle.Text != null)
-                {
-                    TextLabel.ThemeChangeSensitive = false;
-                    TextLabel.ApplyStyle(switchStyle.Text);
-                }
             }
-            styleApplying = false;
+            styleApplying--;
 
             UpdateState();
         }
