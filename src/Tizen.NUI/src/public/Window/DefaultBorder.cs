@@ -82,9 +82,6 @@ namespace Tizen.NUI
 
         #region Events
         private PanGestureDetector borderPanGestureDetector;
-        private PinchGestureDetector borderPinchGestureDetector;
-        private PanGestureDetector winPanGestureDetector;
-        private TapGestureDetector winTapGestureDetector;
         #endregion //Events
 
         #region Enums
@@ -520,7 +517,6 @@ namespace Tizen.NUI
             else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
             {
                 direction = Window.BorderDirection.None;
-                ClearWindowGesture();
             }
         }
 
@@ -533,7 +529,6 @@ namespace Tizen.NUI
             SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
-              ClearWindowGesture();
               if (ResizePolicy != Window.BorderResizePolicyType.Fixed)
               {
                 OnRequestResize();
@@ -552,7 +547,6 @@ namespace Tizen.NUI
             SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
-              ClearWindowGesture();
               if (ResizePolicy != Window.BorderResizePolicyType.Fixed)
               {
                 OnRequestResize();
@@ -572,7 +566,6 @@ namespace Tizen.NUI
             SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
-              ClearWindowGesture();
               if (ResizePolicy != Window.BorderResizePolicyType.Fixed)
               {
                 OnRequestResize();
@@ -591,7 +584,6 @@ namespace Tizen.NUI
             SetDispatchParentGestureEvents(sender as View, false);
             if (e != null && e.Touch.GetState(0) == PointStateType.Down)
             {
-              ClearWindowGesture();
               if (ResizePolicy != Window.BorderResizePolicyType.Fixed)
               {
                 OnRequestResize();
@@ -608,7 +600,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void MinimizeBorderWindow()
         {
-            ClearWindowGesture();
             BorderWindow.Minimize(true);
             OnMinimize(true);
         }
@@ -633,7 +624,6 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void MaximizeBorderWindow()
         {
-            ClearWindowGesture();
             if (BorderWindow.IsMaximized())
             {
               BorderWindow.Maximize(false);
@@ -769,145 +759,7 @@ namespace Tizen.NUI
             borderPanGestureDetector.Attach(borderView);
             borderPanGestureDetector.Detected += OnPanGestureDetected;
 
-            borderPinchGestureDetector = new PinchGestureDetector();
-            borderPinchGestureDetector.Attach(borderView);
-            borderPinchGestureDetector.Detected += OnPinchGestureDetected;
-
-
-            AddInterceptGesture();
-
             UpdateIcons();
-        }
-
-
-        // Register an intercept touch event on the window.
-        private void AddInterceptGesture()
-        {
-            isWinGestures = false;
-            BorderWindow.InterceptTouchEvent += OnWinInterceptedTouch;
-        }
-
-        // Intercept touch on window.
-        private bool OnWinInterceptedTouch(object sender, Window.TouchEventArgs e)
-        {
-            if (e.Touch.GetState(0) == PointStateType.Stationary && e.Touch.GetPointCount() == 2)
-            {
-                if (isWinGestures == false && timer == null)
-                {
-                    timer = new Timer(300);
-                    timer.Tick += OnTick;
-                    timer.Start();
-                }
-            }
-            else
-            {
-                currentGesture = CurrentGesture.None;
-                if (timer != null)
-                {
-                    timer.Stop();
-                    timer.Dispose();
-                    timer = null;
-                }
-            }
-            return false;
-        }
-
-        // If two finger long press is done, create a windowView.
-        // then, Register a gesture on the windowView to do a resize or move.
-        private bool OnTick(object o, Timer.TickEventArgs e)
-        {
-            windowView = new View()
-            {
-                WidthResizePolicy = ResizePolicyType.FillToParent,
-                HeightResizePolicy = ResizePolicyType.FillToParent,
-                BackgroundColor = new Color(1, 1, 1, 0.5f),
-            };
-            windowView.TouchEvent += (s, e) =>
-            {
-                return true;
-            };
-            BorderWindow.Add(windowView);
-
-            winTapGestureDetector = new TapGestureDetector();
-            winTapGestureDetector.Attach(windowView);
-            winTapGestureDetector.SetMaximumTapsRequired(3);
-            winTapGestureDetector.Detected += OnWinTapGestureDetected;
-
-            winPanGestureDetector = new PanGestureDetector();
-            winPanGestureDetector.Attach(windowView);
-            winPanGestureDetector.Detected += OnWinPanGestureDetected;
-
-            BorderWindow.InterceptTouchEvent -= OnWinInterceptedTouch;
-            isWinGestures = true;
-            return false;
-        }
-
-        // Behavior when the window is tapped.
-        private void OnWinTapGestureDetected(object source, TapGestureDetector.DetectedEventArgs e)
-        {
-          if (currentGesture <= CurrentGesture.TapGesture)
-          {
-              currentGesture = CurrentGesture.TapGesture;
-              if (e.TapGesture.NumberOfTaps == 2)
-              {
-                  if (BorderWindow.IsMaximized() == false)
-                  {
-                    BorderWindow.Maximize(true);
-                  }
-                  else
-                  {
-                    BorderWindow.Maximize(false);
-                  }
-              }
-              else
-              {
-                  ClearWindowGesture();
-              }
-          }
-        }
-
-        // Window moves through pan gestures.
-        private void OnWinPanGestureDetected(object source, PanGestureDetector.DetectedEventArgs e)
-        {
-            if (currentGesture <= CurrentGesture.PanGesture /*&& panGesture.NumberOfTouches == 1*/)
-            {
-                PanGesture panGesture = e.PanGesture;
-
-                if (panGesture.State == Gesture.StateType.Started)
-                {
-                    currentGesture = CurrentGesture.PanGesture;
-                    if (BorderWindow.IsMaximized() == true)
-                    {
-                        BorderWindow.Maximize(false);
-                    }
-                    else
-                    {
-                        OnRequestMove();
-                        BorderWindow.RequestMoveToServer();
-                    }
-                }
-                else if (panGesture.State == Gesture.StateType.Finished || panGesture.State == Gesture.StateType.Cancelled)
-                {
-                    currentGesture = CurrentGesture.None;
-                    ClearWindowGesture();
-                }
-            }
-        }
-
-        private void ClearWindowGesture()
-        {
-            if (isWinGestures)
-            {
-                winPanGestureDetector.Dispose();
-                winTapGestureDetector.Dispose();
-
-                isWinGestures = false;
-                if (BorderWindow != null)
-                {
-                    BorderWindow.Remove(windowView);
-                    BorderWindow.InterceptTouchEvent += OnWinInterceptedTouch;
-                }
-            }
         }
 
         /// <summary>
@@ -1073,17 +925,9 @@ namespace Tizen.NUI
 
             if (disposing)
             {
-                ClearWindowGesture();
-
-                if (BorderWindow != null)
-                {
-                    BorderWindow.InterceptTouchEvent -= OnWinInterceptedTouch;
-                }
-
                 borderView?.Dispose();
                 windowView?.Dispose();
                 borderPanGestureDetector?.Dispose();
-                borderPinchGestureDetector?.Dispose();
                 backgroundColor?.Dispose();
                 minimalizeIcon?.Dispose();
                 maximalizeIcon?.Dispose();
