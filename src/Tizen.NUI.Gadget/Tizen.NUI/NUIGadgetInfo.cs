@@ -31,6 +31,8 @@ namespace Tizen.NUI
     public class NUIGadgetInfo
     {
         private const string MetadataUIGadgetDll = "http://tizen.org/metadata/ui-gadget/dll";
+        private const string MetadataUIGadgetLocaleDll = "http://tizen.org/metadata/ui-gadget/locale/dll";
+        private const string MetadataUIGadgetLocaleClassName = "http://tizen.org/metadata/ui-gadget/locale/class-name";
         private string _resourcePath = string.Empty;
 
         internal NUIGadgetInfo(string packageId)
@@ -101,6 +103,10 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public IDictionary<string, string> Metadata { get; private set; }
 
+        internal string LocaleFile { get; set; }
+
+        internal string LocaleClassName { get; set; }
+
         internal static NUIGadgetInfo CreateNUIGadgetInfo(string packageId)
         {
             Interop.PackageManagerInfo.ErrorCode errorCode = Interop.PackageManagerInfo.PackageInfoGet(packageId, out IntPtr handle);
@@ -162,6 +168,26 @@ namespace Tizen.NUI
             else
             {
                 Log.Error("Failed to find metadata. " + MetadataUIGadgetDll);
+            }
+
+            if (info.Metadata.TryGetValue(MetadataUIGadgetLocaleDll, out string localeFile))
+            {
+                info.LocaleFile = localeFile;
+                Log.Info("LocaleFile: " + info.LocaleFile);
+            }
+            else
+            {
+                Log.Warn("There is no locale dll");
+            }
+
+            if (info.Metadata.TryGetValue(MetadataUIGadgetLocaleClassName, out string localeClassName))
+            {
+                info.LocaleClassName = localeClassName;
+                Log.Info("LocaleClassName: " + info.LocaleClassName);
+            }
+            else
+            {
+                Log.Warn("There is no locale class");
             }
 
             errorCode = Interop.PackageManagerInfo.PackageInfoDestroy(handle);
