@@ -68,14 +68,17 @@ namespace Tizen.NUI.Components
                         else if (collectionView.SelectionMode is ItemSelectionMode.Multiple)
                         {
                             var selectedList = collectionView.SelectedItems;
-                            bool contains = selectedList.Contains(context);
-                            if (newSelected && !contains)
+                            if (selectedList != null)
                             {
-                                selectedList.Add(context);
-                            }
-                            else if (!newSelected && contains)
-                            {
-                                selectedList.Remove(context);
+                                bool contains = selectedList.Contains(context);
+                                if (newSelected && !contains)
+                                {
+                                    selectedList.Add(context);
+                                }
+                                else if (!newSelected && contains)
+                                {
+                                    selectedList.Remove(context);
+                                }
                             }
                         }
                     }
