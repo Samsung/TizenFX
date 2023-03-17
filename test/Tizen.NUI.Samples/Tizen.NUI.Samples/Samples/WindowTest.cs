@@ -18,12 +18,20 @@ namespace Tizen.NUI.Samples
 
         int addingInput;
         Timer tm;
+        bool manualRotation;
+        int rotationCount;
 
         private const string KEY_NUM_1 = "1";
         private const string KEY_NUM_2 = "2";
         private const string KEY_NUM_3 = "3";
         private const string KEY_NUM_4 = "4";
         private const string KEY_NUM_5 = "5";
+        private const string KEY_NUM_6 = "6";
+        private const string KEY_NUM_7 = "7";
+        private const string KEY_NUM_8 = "8";
+        private const string KEY_NUM_9 = "9";
+        private const string KEY_NUM_0 = "0";
+
 
         void Initialize()
         {
@@ -65,6 +73,9 @@ namespace Tizen.NUI.Samples
             animation.Looping = true;
             animation.Play();
 
+            manualRotation = false;
+            rotationCount = 0;
+
             tm = new Timer(100);
             tm.Tick += Tm_Tick;
             tm.Start();
@@ -74,6 +85,16 @@ namespace Tizen.NUI.Samples
         {
             bool rotating = mainWin.IsWindowRotating();
             log.Fatal(tag, $"window is Rotating: {rotating}");
+            if(rotating && manualRotation)
+            {
+                rotationCount++;
+                if(rotationCount > 100)
+                {
+                  log.Fatal(tag, $"call SendRotationCompletedAcknowledgement");
+                  mainWin.SendRotationCompletedAcknowledgement();
+                  rotationCount = 0;
+                }
+            }
             return true;
         }
 
@@ -140,6 +161,22 @@ namespace Tizen.NUI.Samples
                         mainWin.SetMaximumSize(new Size2D(700, 700));
                         break;
                     case KEY_NUM_5:
+                        mainWin.SetMimimumSize(new Size2D(100, 100));
+                        break;
+                    case KEY_NUM_6:
+                        if(manualRotation == false)
+                        {
+                            manualRotation = true;
+                            log.Fatal(tag, $"Enable manual rotation");
+                        }
+                        else
+                        {
+                            manualRotation = false;
+                            log.Fatal(tag, $"Disable manual rotation");
+                        }
+                        mainWin.SetNeedsRotationCompletedAcknowledgement(manualRotation);
+                        break;
+                    case KEY_NUM_7:
                         mainWin.SetMimimumSize(new Size2D(100, 100));
                         break;
 
