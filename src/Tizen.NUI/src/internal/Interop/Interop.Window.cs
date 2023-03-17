@@ -310,6 +310,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetLastTouchEvent")]
             public static extern global::System.IntPtr GetLastTouchEvent(global::System.Runtime.InteropServices.HandleRef window);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetNeedsRotationCompletedAcknowledgement")]
+            public static extern void SetNeedsRotationCompletedAcknowledgement(global::System.Runtime.InteropServices.HandleRef window, bool needAcknowledgement);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SendRotationCompletedAcknowledgement")]
+            public static extern void SendRotationCompletedAcknowledgement(global::System.Runtime.InteropServices.HandleRef window);
         }
     }
 }

@@ -1789,6 +1789,34 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets the necessary for window rotation Acknowledgement.
+        /// After this function called, SendRotationCompletedAcknowledgement() should be called to complete window rotation.
+        ///
+        /// This function is supprot that application has the window rotation acknowledgement's control.
+        /// It means display server waits when application's rotation work is finished.
+        /// It is useful application has the other rendering engine which works asynchronous.
+        /// For instance, GlView.
+        /// </summary>
+        /// <param name="needAcknowledgement">the flag is true if window rotation acknowledge is sent.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetNeedsRotationCompletedAcknowledgement(bool needAcknowledgement)
+        {
+            Interop.Window.SetNeedsRotationCompletedAcknowledgement(SwigCPtr, needAcknowledgement);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// send the Acknowledgement to complete window rotation.
+        /// For this function, SetNeedsRotationCompletedAcknowledgement should be already called with true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SendRotationCompletedAcknowledgement()
+        {
+            Interop.Window.SendRotationCompletedAcknowledgement(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Add FrameUpdateCallback
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
