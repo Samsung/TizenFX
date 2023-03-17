@@ -19,6 +19,7 @@ using System.Globalization;
 using System.Collections.Generic;
 using System.Reflection;
 using System.IO;
+using System.ComponentModel;
 
 namespace Tizen.NUI
 {
@@ -26,18 +27,33 @@ namespace Tizen.NUI
     /// This class has the methods of the NUIGadgetResourceManager.
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
     public class NUIGadgetResourceManager
     {
         private readonly string _resourcePath;
-        private readonly string _localeDll;
-        private readonly string _localeClassName;
+        private readonly string _resourceDll;
+        private readonly string _resourceClassName;
         private readonly IDictionary<string, global::System.Resources.ResourceManager> _resourceMap = new Dictionary<string, global::System.Resources.ResourceManager>();
 
-        internal NUIGadgetResourceManager(string resourcePath, string localeDll, string localeClassName)
+        internal NUIGadgetResourceManager(NUIGadgetInfo info)
+        {
+            _resourcePath = info.ResourcePath; ;
+            _resourceDll = info.ResourceFile;
+            _resourceClassName = info.ResourceClassName;
+        }
+
+        /// <summary>
+        /// Initializes the resource manager of the gadget.
+        /// </summary>
+        /// <param name="resourcePath">The path of the resource</param>
+        /// <param name="resourceDll">The file name of the resource.</param>
+        /// <param name="resourceClassName">The class name of the resource.</param>
+        /// <since_tizen> 10 </since_tizen>
+        public NUIGadgetResourceManager(string resourcePath, string resourceDll, string resourceClassName)
         {
             _resourcePath = resourcePath;
-            _localeDll = localeDll;
-            _localeClassName = localeClassName;
+            _resourceDll = resourceDll;
+            _resourceClassName = resourceClassName;
         }
 
         /// <summary>
@@ -75,6 +91,17 @@ namespace Tizen.NUI
             var resourceManager = GetResourceManager(cultureInfo.Name);
             if (resourceManager == null)
             {
+                if (cultureInfo.Name != "en")
+                {
+                    resourceManager = GetResourceManager("en");
+                    if (resourceManager != null)
+                    {
+#pragma warning disable CA1304
+                        return resourceManager.GetString(name);
+#pragma warning restore CA1304
+                    }
+                }
+
                 return string.Empty;
             }
 
@@ -89,19 +116,20 @@ namespace Tizen.NUI
                 return resourceManager;
             }
 
-            string path = _resourcePath + locale + "/" + _localeDll;
+            string path = _resourcePath + locale + "/" + _resourceDll;
             if (!File.Exists(path))
             {
                 Log.Warn(path + " does not exist");
                 return null;
             }
 
+#pragma warning disable CA1031
             try
             {
                 Assembly assembly = Assembly.Load(File.ReadAllBytes(path));
                 if (assembly != null)
                 {
-                    string baseName = _localeClassName + "." + locale;
+                    string baseName = _resourceClassName + "." + locale;
                     resourceManager = new global::System.Resources.ResourceManager(baseName, assembly);
                     if (resourceManager == null)
                     {
@@ -125,6 +153,7 @@ namespace Tizen.NUI
             {
                 Log.Error("Exception occurs. " + e.Message);
             }
+#pragma warning restore CA1031
 
             return resourceManager;
         }

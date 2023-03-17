@@ -31,8 +31,8 @@ namespace Tizen.NUI
     public class NUIGadgetInfo
     {
         private const string MetadataUIGadgetDll = "http://tizen.org/metadata/ui-gadget/dll";
-        private const string MetadataUIGadgetLocaleDll = "http://tizen.org/metadata/ui-gadget/locale/dll";
-        private const string MetadataUIGadgetLocaleClassName = "http://tizen.org/metadata/ui-gadget/locale/class-name";
+        private const string MetadataUIGadgetResourceDll = "http://tizen.org/metadata/ui-gadget/resource/dll";
+        private const string MetadataUIGadgetResourceClassName = "http://tizen.org/metadata/ui-gadget/resource/class-name";
         private string _resourcePath = string.Empty;
 
         internal NUIGadgetInfo(string packageId)
@@ -103,9 +103,9 @@ namespace Tizen.NUI
         /// <since_tizen> 10 </since_tizen>
         public IDictionary<string, string> Metadata { get; private set; }
 
-        internal string LocaleFile { get; set; }
+        internal string ResourceFile { get; set; }
 
-        internal string LocaleClassName { get; set; }
+        internal string ResourceClassName { get; set; }
 
         internal static NUIGadgetInfo CreateNUIGadgetInfo(string packageId)
         {
@@ -170,20 +170,20 @@ namespace Tizen.NUI
                 Log.Error("Failed to find metadata. " + MetadataUIGadgetDll);
             }
 
-            if (info.Metadata.TryGetValue(MetadataUIGadgetLocaleDll, out string localeFile))
+            if (info.Metadata.TryGetValue(MetadataUIGadgetResourceDll, out string resourceFile))
             {
-                info.LocaleFile = localeFile;
-                Log.Info("LocaleFile: " + info.LocaleFile);
+                info.ResourceFile = resourceFile;
+                Log.Info("LocaleFile: " + info.ResourceFile);
             }
             else
             {
                 Log.Warn("There is no locale dll");
             }
 
-            if (info.Metadata.TryGetValue(MetadataUIGadgetLocaleClassName, out string localeClassName))
+            if (info.Metadata.TryGetValue(MetadataUIGadgetResourceClassName, out string resourceClassName))
             {
-                info.LocaleClassName = localeClassName;
-                Log.Info("LocaleClassName: " + info.LocaleClassName);
+                info.ResourceClassName = resourceClassName;
+                Log.Info("LocaleClassName: " + info.ResourceClassName);
             }
             else
             {

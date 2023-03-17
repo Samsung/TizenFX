@@ -159,7 +159,7 @@ namespace Tizen.NUI
 
             gadget.NUIGadgetInfo = info;
             gadget.ClassName = className;
-            gadget.NUIGadgetResourceManager = new NUIGadgetResourceManager(info.ResourcePath, info.LocaleFile, info.LocaleClassName);
+            gadget.NUIGadgetResourceManager = new NUIGadgetResourceManager(info);
             gadget.LifecycleChanged += OnNUIGadgetLifecycleChanged;
             if (!gadget.Create())
             {
