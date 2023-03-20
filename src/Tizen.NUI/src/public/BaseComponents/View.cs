@@ -115,11 +115,35 @@ namespace Tizen.NUI.BaseComponents
             RegisterAccessibilityDelegate();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ViewAccessibilityMode {
+            Default, /// Use Toolkit::Internal::Control as the View's backend (comes with DevelControl::ControlAccessible)
+            Custom, /// Use SlimCustomViewImpl as the View's backend (comes with NUIViewAccessible)
+        }
+
+        private static IntPtr NewWithAccessibilityMode(ViewAccessibilityMode accessibilityMode)
+        {
+            switch (accessibilityMode)
+            {
+            default:
+            case ViewAccessibilityMode.Default:
+                return Interop.View.New();
+
+            case ViewAccessibilityMode.Custom:
+                return Interop.View.NewCustom();
+            }
+        }
+
         /// <summary>
         /// Creates a new instance of a view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public View() : this(Interop.View.New(), true)
+        public View() : this(ViewAccessibilityMode.Default)
+        {
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View(ViewAccessibilityMode accessibilityMode) : this(NewWithAccessibilityMode(accessibilityMode), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
