@@ -301,6 +301,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Set_Minimum_Size")]
             public static extern void SetMimimumSize(global::System.Runtime.InteropServices.HandleRef window, global::System.Runtime.InteropServices.HandleRef size);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetLayout")]
+            public static extern void SetLayout(global::System.Runtime.InteropServices.HandleRef window, uint numCols, uint numRows, uint column, uint row, uint colSpan, uint rowSpan);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_IsWindowRotating")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsWindowRotating(global::System.Runtime.InteropServices.HandleRef window);
