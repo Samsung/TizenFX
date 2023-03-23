@@ -1210,7 +1210,7 @@ namespace Tizen.Applications
         /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
         /// <since_tizen> 11 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool EnablePackage(string packageId)
+        public static void EnablePackage(string packageId)
         {
             // 0 is PC_REQUEST
             IntPtr clientHandle = Interop.PackageManagerInternal.PkgmgrClientNew(0);
@@ -1227,8 +1227,6 @@ namespace Tizen.Applications
             }
 
             Interop.PackageManagerInternal.PkgmgrClientFree(clientHandle);
-
-            return true;
         }
 
         /// <summary>
@@ -1247,7 +1245,7 @@ namespace Tizen.Applications
         /// <exception cref="SystemException">Thrown when the method failed due to an internal system error.</exception>
         /// <since_tizen> 11 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static bool DisablePackage(string packageId)
+        public static void DisablePackage(string packageId)
         {
             // 0 is PC_REQUEST
             IntPtr clientHandle = Interop.PackageManagerInternal.PkgmgrClientNew(0);
@@ -1264,8 +1262,6 @@ namespace Tizen.Applications
             }
 
             Interop.PackageManagerInternal.PkgmgrClientFree(clientHandle);
-
-            return true;
         }
 
         /// <summary>
