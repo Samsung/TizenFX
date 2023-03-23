@@ -31,6 +31,20 @@ namespace Tizen.Multimedia.Vision
         private const int NoneErrorCorrection = (int)ErrorCorrectionLevel.High + 1;
         private const int NoneQrMode = (int)QrMode.Utf8 + 1;
 
+        private static void SetDesignQrOptions(QrConfiguration qrConfig, BarcodeGenerationConfiguration config)
+        {
+            if (config != null && qrConfig != null)
+            {
+                if (qrConfig.EmbedImagePath != null)
+                {
+                    config.EmbedImagePath = qrConfig.EmbedImagePath;
+                }
+
+                config.DataShape = qrConfig.DataShape;
+                config.FinderShape = qrConfig.FinderShape;
+            }
+        }
+
         private static MediaVisionSource GenerateSource(BarcodeGenerationConfiguration config,
             string message, BarcodeType type, int qrMode, int qrEcc, int qrVersion)
         {
@@ -122,6 +136,21 @@ namespace Tizen.Multimedia.Vision
                 if (config.TextVisibility == Visibility.Visible)
                 {
                     throw new NotSupportedException("Text can't be visible in QR.");
+                }
+            }
+            else
+            {
+                if (qrConfig.DataShape != QrShape.Rectangular || qrConfig.FinderShape != QrShape.Rectangular)
+                {
+                    config = new BarcodeGenerationConfiguration();
+
+                    Log.Info(MediaVisionLog.Tag, $"Set DataShape = {qrConfig.DataShape.ToString()}");
+                    Log.Info(MediaVisionLog.Tag, $"Set FinderShape = {qrConfig.FinderShape.ToString()}");
+
+                    SetDesignQrOptions(qrConfig, config);
+
+                    Log.Info(MediaVisionLog.Tag, $"Get DataShape = {config.DataShape.ToString()}");
+                    Log.Info(MediaVisionLog.Tag, $"Get FinderShape = {config.FinderShape.ToString()}");
                 }
             }
 
@@ -282,6 +311,21 @@ namespace Tizen.Multimedia.Vision
                 if (config.TextVisibility == Visibility.Visible)
                 {
                     throw new NotSupportedException("Text can't be visible in QR.");
+                }
+            }
+            else
+            {
+                if (qrConfig.DataShape != QrShape.Rectangular || qrConfig.FinderShape != QrShape.Rectangular)
+                {
+                    config = new BarcodeGenerationConfiguration();
+
+                    Log.Info(MediaVisionLog.Tag, $"Set DataShape = {qrConfig.DataShape.ToString()}");
+                    Log.Info(MediaVisionLog.Tag, $"Set FinderShape = {qrConfig.FinderShape.ToString()}");
+
+                    SetDesignQrOptions(qrConfig, config);
+
+                    Log.Info(MediaVisionLog.Tag, $"Get DataShape = {config.DataShape.ToString()}");
+                    Log.Info(MediaVisionLog.Tag, $"Get FinderShape = {config.FinderShape.ToString()}");
                 }
             }
 
