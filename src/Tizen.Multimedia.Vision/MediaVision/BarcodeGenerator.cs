@@ -144,13 +144,7 @@ namespace Tizen.Multimedia.Vision
                 {
                     config = new BarcodeGenerationConfiguration();
 
-                    Log.Info(MediaVisionLog.Tag, $"Set DataShape = {qrConfig.DataShape.ToString()}");
-                    Log.Info(MediaVisionLog.Tag, $"Set FinderShape = {qrConfig.FinderShape.ToString()}");
-
                     SetDesignQrOptions(qrConfig, config);
-
-                    Log.Info(MediaVisionLog.Tag, $"Get DataShape = {config.DataShape.ToString()}");
-                    Log.Info(MediaVisionLog.Tag, $"Get FinderShape = {config.FinderShape.ToString()}");
                 }
             }
 
@@ -319,13 +313,7 @@ namespace Tizen.Multimedia.Vision
                 {
                     config = new BarcodeGenerationConfiguration();
 
-                    Log.Info(MediaVisionLog.Tag, $"Set DataShape = {qrConfig.DataShape.ToString()}");
-                    Log.Info(MediaVisionLog.Tag, $"Set FinderShape = {qrConfig.FinderShape.ToString()}");
-
                     SetDesignQrOptions(qrConfig, config);
-
-                    Log.Info(MediaVisionLog.Tag, $"Get DataShape = {config.DataShape.ToString()}");
-                    Log.Info(MediaVisionLog.Tag, $"Get FinderShape = {config.FinderShape.ToString()}");
                 }
             }
 
