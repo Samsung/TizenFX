@@ -786,6 +786,70 @@ namespace Tizen.NUI
         Desktop        
     }
 
+    /// <summary>
+    /// An enum of window layout types.
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum WindowLayoutType
+    {
+        /// <summary>
+        /// Window is placed on the left half of the screen
+        /// </summary>
+        LeftHalf,
+        /// <summary>
+        /// Window is placed on the right half of the screen
+        /// </summary>
+        RightHalf,
+        /// <summary>
+        /// Window is placed on the top half of the screen
+        /// </summary>
+        TopHalf,
+        /// <summary>
+        /// Window is placed on the bottom half of the screen
+        /// </summary>
+        BottomHalf,
+        /// <summary>
+        /// Window is placed on the upper-left quarter of the screen
+        /// </summary>
+        UpperLeftQuarter,
+        /// <summary>
+        /// Window is placed on the upper-right quarter of the screen
+        /// </summary>
+        UpperRightQuarter,
+        /// <summary>
+        /// Window is placed on the lower-left quarter of the screen
+        /// </summary>
+        LowerLeftQuarter,
+        /// <summary>
+        /// Window is placed on the lower-right quarter of the screen
+        /// </summary>
+        LowerRightQuarter,
+        /// <summary>
+        /// Window is placed on the left third of the screen horizontally
+        /// </summary>
+        LeftThird,
+        /// <summary>
+        /// Window is placed on the center third of the screen horizontally
+        /// </summary>
+        CenterThird,
+        /// <summary>
+        /// Window is placed on the right third of the screen horizontally
+        /// </summary>
+        RightThird,
+        /// <summary>
+        /// Window is placed on the top third of the screen vertically
+        /// </summary>
+        TopThird,
+        /// <summary>
+        /// Window is placed on the middle third of the screen vertically
+        /// </summary>
+        MiddleThird,
+        /// <summary>
+        /// Window is placed on the bottom third of the screen vertically
+        /// </summary>
+        BottomThird,
+    }
+
     /// <since_tizen> 3 </since_tizen>
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
     public enum DisposeTypes
