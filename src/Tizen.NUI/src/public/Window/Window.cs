@@ -1753,6 +1753,83 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets the layout of the window.
+        /// </summary>
+        /// <param name="numCols">The number of columns in the layout.</param>
+        /// <param name="numRows">The number of rows in the layout.</param>
+        /// <param name="column">The column number of the window within the layout.</param>
+        /// <param name="row">The row number of the window within the layout.</param>
+        /// <param name="colSpan">The number of columns the window should span within the layout.</param>
+        /// <param name="rowSpan">The number of rows the window should span within the layout.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetLayout(uint numCols, uint numRows, uint column, uint row, uint colSpan, uint rowSpan)
+        {
+            Interop.Window.SetLayout(SwigCPtr, numCols, numRows, column, row, colSpan, rowSpan);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        /// <summary>
+        /// Sets the layout of the window.
+        /// </summary>
+        /// <param name="layoutType">The type of layout to set for the window.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetLayout(WindowLayoutType layoutType)
+        {
+            switch (layoutType)
+            {
+                case WindowLayoutType.LeftHalf:
+                    Interop.Window.SetLayout(SwigCPtr, 2, 1, 0, 0, 1, 1);
+                    break;
+                case WindowLayoutType.RightHalf:
+                    Interop.Window.SetLayout(SwigCPtr, 2, 1, 1, 0, 1, 1);
+                    break;
+
+                case WindowLayoutType.TopHalf:
+                    Interop.Window.SetLayout(SwigCPtr, 1, 2, 0, 0, 1, 1);
+                    break;
+                case WindowLayoutType.BottomHalf:
+                    Interop.Window.SetLayout(SwigCPtr, 1, 2, 0, 1, 1, 1);
+                    break;
+
+                case WindowLayoutType.UpperLeftQuarter:
+                    Interop.Window.SetLayout(SwigCPtr, 2, 2, 0, 0, 1, 1);
+                    break;
+                case WindowLayoutType.UpperRightQuarter:
+                    Interop.Window.SetLayout(SwigCPtr, 2, 2, 1, 0, 1, 1);
+                    break;
+                case WindowLayoutType.LowerLeftQuarter:
+                    Interop.Window.SetLayout(SwigCPtr, 2, 2, 0, 1, 1, 1);
+                    break;
+                case WindowLayoutType.LowerRightQuarter:
+                    Interop.Window.SetLayout(SwigCPtr, 2, 2, 1, 1, 1, 1);
+                    break;
+
+                case WindowLayoutType.LeftThird:
+                    Interop.Window.SetLayout(SwigCPtr, 3, 1, 0, 0, 1, 1);
+                    break;
+                case WindowLayoutType.CenterThird:
+                    Interop.Window.SetLayout(SwigCPtr, 3, 1, 1, 0, 1, 1);
+                    break;
+                case WindowLayoutType.RightThird:
+                    Interop.Window.SetLayout(SwigCPtr, 3, 1, 2, 0, 1, 1);
+                    break;
+
+                case WindowLayoutType.TopThird:
+                    Interop.Window.SetLayout(SwigCPtr, 1, 3, 0, 0, 1, 1);
+                    break;
+                case WindowLayoutType.MiddleThird:
+                    Interop.Window.SetLayout(SwigCPtr, 1, 3, 0, 1, 1, 1);
+                    break;
+                case WindowLayoutType.BottomThird:
+                    Interop.Window.SetLayout(SwigCPtr, 1, 3, 0, 2, 1, 1);
+                    break;
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+        }
+
+        /// <summary>
         /// Query whether window is rotating or not.
         /// </summary>
         /// <returns>True if window is rotating, false otherwise.</returns>
@@ -1844,7 +1921,7 @@ namespace Tizen.NUI
             {
                 return;
             }
-            
+
             this.DisconnectNativeSignals();
 
             if (type == DisposeTypes.Explicit)
