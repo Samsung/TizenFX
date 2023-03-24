@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-
+using System;
 using System.Collections.Generic;
 
 namespace Tizen.Maps
@@ -23,12 +23,14 @@ namespace Tizen.Maps
     /// The preferences for a place search.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public interface IPlaceSearchPreference
     {
         /// <summary>
         /// Gets or sets the distance unit.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         DistanceUnit Unit { get; set; }
 
         /// <summary>
@@ -37,24 +39,28 @@ namespace Tizen.Maps
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>Language should be specified as an ISO 3166 alpha-2 two letter country-code
         /// followed by ISO 639-1 for the two-letter language code.<br/>e.g. "ko-KR", "en-US".</remarks>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         string Language { get; set; }
 
         /// <summary>
         /// Gets or sets the maximum number of results.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         int MaxResults { get; set; }
 
         /// <summary>
         /// Gets or sets a string that represents the code of a preferred country.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         string CountryCode { get; set; }
 
         /// <summary>
         /// Gets or sets the search properties as a key value pair.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         IReadOnlyDictionary<string, string> Properties { get; set; }
     }
 }

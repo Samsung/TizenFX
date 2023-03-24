@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// Place category information, used in place discovery and search requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class PlaceCategory : IDisposable
     {
         internal Interop.PlaceCategoryHandle handle;
@@ -31,6 +32,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceCategory()
         {
             handle = new Interop.PlaceCategoryHandle();
@@ -53,6 +55,7 @@ namespace Tizen.Maps
         /// Gets or sets an ID for this category.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Id
         {
             get { return handle.Id; }
@@ -63,6 +66,7 @@ namespace Tizen.Maps
         /// Gets or sets a name for this category.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Name
         {
             get { return handle.Name; }
@@ -73,6 +77,7 @@ namespace Tizen.Maps
         /// Gets or sets a URL for this category.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Url
         {
             get { return handle.Url; }
@@ -84,6 +89,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Returns a string which presents this object.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public override string ToString()
         {
             return $"{Name}";
@@ -97,6 +103,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -110,6 +117,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);
