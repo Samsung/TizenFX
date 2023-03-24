@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugType>portable</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="lib\" />
+    <Folder Include="res\" />
+    <PackageReference Include="Tizen.NET.Sdk" Version="1.0.9" />
+    <ProjectReference Include="../../src/Tizen/Tizen.csproj" />
+    <ProjectReference Include="../../src/Tizen.NUI/Tizen.NUI.csproj" />
+    <ProjectReference Include="../../src/Tizen.NUI.Components/Tizen.NUI.Components.csproj" />
+  </ItemGroup>
+
+</Project>
