@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 
 namespace Tizen.Maps
 {
@@ -21,6 +22,7 @@ namespace Tizen.Maps
     /// The map object.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public abstract class MapObject
     {
         internal MapObject() { }
@@ -29,6 +31,7 @@ namespace Tizen.Maps
         /// Gets or sets visibility of the map object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public abstract bool IsVisible { get; set; }
 
         internal abstract void HandleClickedEvent();

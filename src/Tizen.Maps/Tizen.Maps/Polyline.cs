@@ -26,6 +26,7 @@ namespace Tizen.Maps
     /// The polyline map object.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class Polyline : MapObject, IDisposable
     {
         internal Interop.PolylineHandle handle;
@@ -71,6 +72,7 @@ namespace Tizen.Maps
         /// Gets or sets the visibility for polyline.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public override bool IsVisible
         {
             get { return handle.IsVisible; }
@@ -81,6 +83,7 @@ namespace Tizen.Maps
         /// Gets or sets a list of geographical coordinates for polyline vertices.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IEnumerable<Geocoordinates> Coordinates
         {
             get
@@ -108,6 +111,7 @@ namespace Tizen.Maps
         /// Gets or sets the line color.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Color LineColor
         {
             get
@@ -124,6 +128,7 @@ namespace Tizen.Maps
         /// Gets or sets the line width from 1 to 100 pixels.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public int Width
         {
             get
@@ -159,6 +164,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -176,6 +182,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);

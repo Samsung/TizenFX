@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// A class representing geographical coordinates.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class Geocoordinates : IDisposable
     {
         internal Interop.CoordinatesHandle handle;
@@ -34,6 +35,7 @@ namespace Tizen.Maps
         /// <param name="longitude">Longitude value must be between (-180.0 ~ 180.0) degrees.</param>
         /// <exception cref="System.ArgumentException">Thrown when values for latitude and longitude are not valid.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when a native operation fails to allocate memory.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Geocoordinates(double latitude, double longitude)
         {
             handle = new Interop.CoordinatesHandle(latitude, longitude);
@@ -56,6 +58,7 @@ namespace Tizen.Maps
         /// Gets the latitude coordinates.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public double Latitude
         {
             get
@@ -68,6 +71,7 @@ namespace Tizen.Maps
         /// Gets the longitude coordinates.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public double Longitude
         {
             get
@@ -81,6 +85,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Returns a string that represents this object.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public override string ToString()
         {
             return $"[{Latitude}, {Longitude}]";
@@ -94,6 +99,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -107,6 +113,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);

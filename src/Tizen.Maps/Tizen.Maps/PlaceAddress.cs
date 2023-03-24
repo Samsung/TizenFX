@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// Address information for the map point used in geocode and reverse geocode requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class PlaceAddress : IDisposable
     {
         internal Interop.AddressHandle handle;
@@ -32,6 +33,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <exception cref="System.InvalidOperationException">Thrown when native operation failed to allocate memory.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceAddress()
         {
             handle = new Interop.AddressHandle();
@@ -54,6 +56,7 @@ namespace Tizen.Maps
         /// Gets a building number for this address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Building
         {
             get
@@ -70,6 +73,7 @@ namespace Tizen.Maps
         /// Gets a city name for this address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string City
         {
             get
@@ -86,6 +90,7 @@ namespace Tizen.Maps
         /// Gets a country name for this address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Country
         {
             get
@@ -102,6 +107,7 @@ namespace Tizen.Maps
         /// Gets a country code for this address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string CountryCode
         {
             get
@@ -118,6 +124,7 @@ namespace Tizen.Maps
         /// Gets a county for this address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string County
         {
             get
@@ -134,6 +141,7 @@ namespace Tizen.Maps
         /// Gets a district name for this address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string District
         {
             get
@@ -150,6 +158,7 @@ namespace Tizen.Maps
         /// Gets a free text associated with this address.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string FreeText
         {
             get
@@ -166,6 +175,7 @@ namespace Tizen.Maps
         /// Gets a postal code for this address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string PostalCode
         {
             get
@@ -182,6 +192,7 @@ namespace Tizen.Maps
         /// Gets a state name for this address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string State
         {
             get
@@ -198,6 +209,7 @@ namespace Tizen.Maps
         /// Gets a street name for this address.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Street
         {
             get
@@ -215,6 +227,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Returns a string which presents this object.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public override string ToString()
         {
             return $"{FreeText}";
@@ -228,6 +241,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -241,6 +255,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);

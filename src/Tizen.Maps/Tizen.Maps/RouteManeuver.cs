@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// Route maneuver information used in route search requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class RouteManeuver
     {
         private Interop.RouteDirection _direction;
@@ -49,48 +50,56 @@ namespace Tizen.Maps
         /// Gets the direction type for this maneuver.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public DirectionType Direction { get { return (DirectionType)_direction; } }
 
         /// <summary>
         /// Gets the turn type for this maneuver.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public TurnInstruction Turn { get { return (TurnInstruction)_turntype; } }
 
         /// <summary>
         /// Gets a geographical coordinates position for this maneuver.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Geocoordinates Position { get { return _coordinates; } }
 
         /// <summary>
         /// Gets a name of the road for this maneuver.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Road { get { return _road; } }
 
         /// <summary>
         /// Gets an instruction text for this maneuver.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Instruction { get { return _instruction; } }
 
         /// <summary>
         /// Gets a locale for this maneuver.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Locale { get { return _locale; } }
 
         /// <summary>
         /// Gets the  time to next instruction for this maneuver.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public int TimeToNextInstruction { get { return _timeToNextInstruction; } }
 
         /// <summary>
         /// Gets the distance to next instruction for this maneuver.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public double DistanceToNextInstruction { get { return _distanceToNextInstruction; } }
     }
 }

@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// Place review information, used in place discovery and search requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class PlaceReview
     {
         private DateTime _date;
@@ -52,12 +53,14 @@ namespace Tizen.Maps
         /// Gets an instance of <see cref="DateTime"/> object representing the time of this review.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public DateTime Date { get { return _date; } }
 
         /// <summary>
         /// Gets a string representing the title of this review.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Title { get { return _title; } }
 
         /// <summary>
@@ -70,24 +73,28 @@ namespace Tizen.Maps
         /// Gets a string representing the description of this review.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Description { get { return _description; } }
 
         /// <summary>
         /// Gets a string representing the language of this review.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Language { get { return _language; } }
 
         /// <summary>
         /// Gets an instance of <see cref="PlaceMedia"/> object representing the review media of this review.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceMedia ReviewMedia { get { return _media; } }
 
         /// <summary>
         /// Gets an instance of <see cref="PlaceLink"/> object representing the user link of this review.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceLink UserLink { get { return _userLink; } }
     }
 }

@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// Place rating information, used in place discovery and search requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class PlaceRating
     {
         private int _count;
@@ -37,12 +38,14 @@ namespace Tizen.Maps
         /// Gets the number of users rated for this place rating.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public int UserCount { get { return _count; } }
 
         /// <summary>
         /// Gets the average value of this place rating.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public double Average { get { return _average; } }
 
         /// <summary>
@@ -50,6 +53,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Returns a string which presents this object.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public override string ToString()
         {
             return $"{Average}({UserCount} reviews)";

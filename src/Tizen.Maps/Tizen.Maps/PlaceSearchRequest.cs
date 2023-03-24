@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// Place search request for Tizen map service.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class PlaceSearchRequest : MapServiceRequest<Place>
     {
         private Interop.SearchPlaceCallback _placeCallback;

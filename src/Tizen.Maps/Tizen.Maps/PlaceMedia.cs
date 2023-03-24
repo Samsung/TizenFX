@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// Place media information, used in place discovery and search requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class PlaceMedia
     {
         private string _attribution;
@@ -39,18 +40,21 @@ namespace Tizen.Maps
         /// Gets a string representing the attribution for this place media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Attribution { get { return _attribution; } }
 
         /// <summary>
         /// Gets an instance of <see cref="PlaceLink"/> object representing the supplier for this place media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceLink Supplier { get { return _supplier; } }
 
         /// <summary>
         /// Gets an instance of <see cref="PlaceLink"/> object representing via data for this place media.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceLink Via { get { return _via; } }
     }
 }

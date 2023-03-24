@@ -24,6 +24,7 @@ namespace Tizen.Maps
     /// Map service class for service request.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public partial class MapService : IDisposable
     {
         internal Interop.ServiceHandle handle;
@@ -47,6 +48,7 @@ namespace Tizen.Maps
         /// <exception cref="System.ArgumentException">Thrown when parameters are invalid.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when a native operation failed to allocate memory and connect to the service.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public MapService(string serviceProvider, string serviceProviderKey)
         {
             _serviceProvider = serviceProvider;
@@ -72,6 +74,7 @@ namespace Tizen.Maps
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have privilege to access this property.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public static IEnumerable<string> Providers
         {
             get
@@ -88,6 +91,7 @@ namespace Tizen.Maps
         /// Gets the name of the map service provider.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Provider { get { return _serviceProvider; } }
 
         /// <summary>
@@ -95,6 +99,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public bool UserConsented
         {
             get
@@ -109,6 +114,7 @@ namespace Tizen.Maps
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>Typically, the provider key is issued by each maps provider after signing up for a plan in the website.
         /// Depending on the plan and its provider which you have signed, you might have to pay for the network traffic.</remarks>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string ProviderKey
         {
             get
@@ -125,6 +131,7 @@ namespace Tizen.Maps
         /// Gets and sets a filter used for the place search result.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceFilter PlaceSearchFilter
         {
             get
@@ -144,6 +151,7 @@ namespace Tizen.Maps
         /// Gets the search preferences used for <see cref="GeocodeRequest"/> or <see cref="ReverseGeocodeRequest"/>.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IGeocodePreference GeocodePreferences
         {
             get
@@ -156,6 +164,7 @@ namespace Tizen.Maps
         /// Gets the search preferences used for <see cref="PlaceSearchRequest"/>.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IPlaceSearchPreference PlaceSearchPreferences
         {
             get
@@ -168,6 +177,7 @@ namespace Tizen.Maps
         /// Gets the search preferences used for <see cref="RouteSearchRequest"/>.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IRouteSearchPreference RouteSearchPreferences
         {
             get
@@ -180,6 +190,7 @@ namespace Tizen.Maps
         /// Gets and sets the search preferences.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public SearchPreference Preferences
         {
             get
@@ -208,6 +219,7 @@ namespace Tizen.Maps
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public async Task<bool> RequestUserConsent()
         {
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
@@ -233,6 +245,7 @@ namespace Tizen.Maps
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public bool IsSupported(ServiceRequestType type)
         {
             bool result = false;
@@ -250,6 +263,7 @@ namespace Tizen.Maps
         /// <privilege>http://tizen.org/privilege/mapservice</privilege>
         /// <exception cref="System.NotSupportedException">Thrown when the required feature is not supported.</exception>
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public bool IsSupported(ServiceData data)
         {
             bool result = false;
@@ -264,6 +278,7 @@ namespace Tizen.Maps
         /// <since_tizen> 3 </since_tizen>
         /// <param name="address">A string representing free-formed address.</param>
         /// <returns>Returns a GeocodeRequest object created with an address string.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public GeocodeRequest CreateGeocodeRequest(string address)
         {
             return new GeocodeRequest(this, address);
@@ -277,6 +292,7 @@ namespace Tizen.Maps
         /// <param name="boundary">An instance of Area object representing the interested area.</param>
         /// <seealso cref="Area"/>
         /// <returns>Returns a GeocodeRequest object created with an address string and a specified boundary.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public GeocodeRequest CreateGeocodeRequest(string address, Area boundary)
         {
             return new GeocodeRequest(this, address, boundary);
@@ -288,6 +304,7 @@ namespace Tizen.Maps
         /// <since_tizen> 3 </since_tizen>
         /// <param name="address">A string representing the address of interest.</param>
         /// <returns>Returns a GeocodeRequest object created with a structured address.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public GeocodeRequest CreateGeocodeRequest(PlaceAddress address)
         {
             return new GeocodeRequest(this, address);
@@ -300,6 +317,7 @@ namespace Tizen.Maps
         /// <param name="latitude">Latitude of the interested place.</param>
         /// <param name="longitude">Longitude of the interested place.</param>
         /// <returns>Returns a ReverseGeocodeRequest object created with the location coordinates.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public ReverseGeocodeRequest CreateReverseGeocodeRequest(double latitude, double longitude)
         {
             return new ReverseGeocodeRequest(this, latitude, longitude);
@@ -311,6 +329,7 @@ namespace Tizen.Maps
         /// <since_tizen> 3 </since_tizen>
         /// <param name="coordinates">Coordinates list with [2 ~ 100] coordinates.</param>
         /// <returns>Returns a MultiReverseGeocodeRequest object created with a list of location coordinates.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public MultiReverseGeocodeRequest CreateMultiReverseGeocodeRequest(IEnumerable<Geocoordinates> coordinates)
         {
             return new MultiReverseGeocodeRequest(this, coordinates);
@@ -323,6 +342,7 @@ namespace Tizen.Maps
         /// <param name="from">Starting point.</param>
         /// <param name="to">Destination.</param>
         /// <returns>Returns a RouteSearchRequest object created with the origin and destination coordinates.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public RouteSearchRequest CreateRouteSearchRequest(Geocoordinates from, Geocoordinates to)
         {
             return new RouteSearchRequest(this, from, to);
@@ -335,6 +355,7 @@ namespace Tizen.Maps
         /// <param name="coordinates">Geographical coordinates of the center.</param>
         /// <param name="distance">A double value representing the radius of an area to search places.</param>
         /// <returns>Returns a PlaceSearchRequest object created with the location coordinates and search radius.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceSearchRequest CreatePlaceSearchRequest(Geocoordinates coordinates, int distance)
         {
             return new PlaceSearchRequest(this, coordinates, distance);
@@ -346,6 +367,7 @@ namespace Tizen.Maps
         /// <since_tizen> 3 </since_tizen>
         /// <param name="boundary">An instance of Area object representing and area to search interested places.</param>
         /// <returns>Returns a PlaceSearchRequest object created with a specified boundary.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceSearchRequest CreatePlaceSearchRequest(Area boundary)
         {
             return new PlaceSearchRequest(this, boundary);
@@ -358,6 +380,7 @@ namespace Tizen.Maps
         /// <param name="address">A string which represents a free-formed address.</param>
         /// <param name="boundary">An instance of area object representing an area to search interested places.</param>
         /// <returns>Returns a PlaceSearchRequest object created with an address string and a specified boundary.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceSearchRequest CreatePlaceSearchRequest(string address, Area boundary)
         {
             return new PlaceSearchRequest(this, address, boundary);
@@ -371,6 +394,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -389,6 +413,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);

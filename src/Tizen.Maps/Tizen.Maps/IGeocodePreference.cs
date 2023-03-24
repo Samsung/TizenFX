@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+using System;
 
 namespace Tizen.Maps
 {
@@ -21,6 +22,7 @@ namespace Tizen.Maps
     /// The preference for geocode searches.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public interface IGeocodePreference
     {
         /// <summary>
@@ -29,6 +31,7 @@ namespace Tizen.Maps
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>Language should be specified as an ISO 3166 alpha-2 two-letter country-code
         /// followed by ISO 639-1 for the two-letter language code.<br/>e.g. "ko-KR", "en-US".</remarks>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         string Language { get; set; }
 
         /// <summary>
@@ -36,6 +39,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>Setting a negative value will not have any effect on MaxResults value.</remarks>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         int MaxResults { get; set; }
     }
 }

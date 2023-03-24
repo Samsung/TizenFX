@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// Place contact information, used in place discovery and search requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class PlaceContact
     {
         private string _label;
@@ -44,18 +45,21 @@ namespace Tizen.Maps
         /// Gets an ID for this place contact.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Id { get { return _type; } }
 
         /// <summary>
         /// Gets a label for this place contact.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Label { get { return _label; } }
 
         /// <summary>
         /// Gets a value for this place contact.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Value { get { return _value; } }
 
         /// <summary>
@@ -63,6 +67,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Returns a string which presents this object.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public override string ToString()
         {
             return $"{Label}: {Value}";

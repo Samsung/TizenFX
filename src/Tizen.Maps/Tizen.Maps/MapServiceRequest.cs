@@ -25,6 +25,7 @@ namespace Tizen.Maps
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
     /// <typeparam name="T"></typeparam>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public abstract class MapServiceRequest<T> : IDisposable
     {
         internal TaskCompletionSource<IEnumerable<T>> _requestTask;
@@ -68,6 +69,7 @@ namespace Tizen.Maps
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when the result is invalid.</exception>
         /// <exception cref="System.ArgumentException">Thrown when arguments are invalid.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public async Task<IEnumerable<T>> GetResponseAsync()
         {
             IEnumerable<T> task = null;
@@ -104,6 +106,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -120,6 +123,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);

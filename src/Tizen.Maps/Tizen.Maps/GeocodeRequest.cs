@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// Geocode request for the map service.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class GeocodeRequest : MapServiceRequest<Geocoordinates>
     {
         private Interop.GeocodeCallback _geocodeCallback;
@@ -73,6 +74,7 @@ namespace Tizen.Maps
             });
         }
 
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         private GeocodeRequest(MapService service, ServiceRequestType type) : base(service, type)
         {
             // The Maps Service invokes this callback while iterating through the list of obtained coordinates of the specified place.
