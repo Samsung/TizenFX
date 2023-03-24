@@ -116,7 +116,7 @@ namespace Tizen.Multimedia
             return CameraDisplay.SetDisplay(GetHandle(), type, evasObject);
         }
 
-        CameraError IDisplayable<CameraError>.ApplyEcoreWindow(IntPtr windowHandle, NUI.Rectangle rect)
+        CameraError IDisplayable<CameraError>.ApplyEcoreWindow(IntPtr windowHandle, Rectangle rect, Rotation rotation)
         {
             Debug.Assert(_disposed == false);
 
