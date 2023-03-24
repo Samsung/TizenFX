@@ -63,6 +63,7 @@ namespace Tizen.Maps
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -76,6 +77,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);

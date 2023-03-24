@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// Reverses the geocode request for a map service.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class ReverseGeocodeRequest : MapServiceRequest<PlaceAddress>
     {
         private Interop.ReverseGeocodeCallback _geocodeCallback;

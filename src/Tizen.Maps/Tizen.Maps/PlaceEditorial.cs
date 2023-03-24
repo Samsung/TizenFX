@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// Place editorial information, used in place discovery and search requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class PlaceEditorial
     {
         private string _description;
@@ -43,18 +44,21 @@ namespace Tizen.Maps
         /// Gets a description for this place editorial.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Description { get { return _description; } }
 
         /// <summary>
         /// Gets a language for this place editorial.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Language { get { return _language; } }
 
         /// <summary>
         /// Gets an instance of <see cref="PlaceMedia"/> object which representing media for this place editorial.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceMedia Media { get { return _media; } }
 
         /// <summary>
@@ -62,6 +66,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <returns>Returns a string which presents this object.</returns>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public override string ToString()
         {
             return $"{Description}";

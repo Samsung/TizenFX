@@ -58,6 +58,7 @@ namespace Tizen.Maps
         /// <exception cref="System.UnauthorizedAccessException">Thrown when application does not have some privilege to access this method.</exception>
         /// <exception cref="System.ArgumentException">Thrown when parameters are invalid.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when a native operation failed to allocate memory, and connect to the service.</exception>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public MapView(EvasObject parent, MapService service) : base(parent)
         {
             handle = new Interop.ViewHandle(service.handle, this);
@@ -794,6 +795,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
