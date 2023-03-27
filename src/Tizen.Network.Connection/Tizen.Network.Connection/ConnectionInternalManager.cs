@@ -126,32 +126,38 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                if (_ConnectionTypeChanged == null)
+                lock (_ConnectionTypeChanged)
                 {
-                    try
+                    if (_ConnectionTypeChanged == null)
                     {
-                        ConnectionTypeChangedStart();
+                        try
+                        {
+                            ConnectionTypeChangedStart();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding ConnectionTypeChanged\n" + e.ToString());
+                            return;
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on adding ConnectionTypeChanged\n" + e.ToString());
-                        return;
-                    }
+                    _ConnectionTypeChanged += value;
                 }
-                _ConnectionTypeChanged += value;
             }
             remove
             {
-                _ConnectionTypeChanged -= value;
-                if (_ConnectionTypeChanged == null)
+                lock (_ConnectionTypeChanged)
                 {
-                    try
+                    _ConnectionTypeChanged -= value;
+                    if (_ConnectionTypeChanged == null)
                     {
-                        ConnectionTypeChangedStop();
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on removing ConnectionTypeChanged\n" + e.ToString());
+                        try
+                        {
+                            ConnectionTypeChangedStop();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing ConnectionTypeChanged\n" + e.ToString());
+                        }
                     }
                 }
             }
