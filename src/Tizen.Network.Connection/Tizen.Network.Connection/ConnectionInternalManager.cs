@@ -197,32 +197,38 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                if (_EthernetCableStateChanged == null)
+                lock(_EthernetCableStateChanged)
                 {
-                    try
+                    if (_EthernetCableStateChanged == null)
                     {
-                        EthernetCableStateChangedStart();
+                        try
+                        {
+                            EthernetCableStateChangedStart();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding EthernetCableStateChanged\n" + e.ToString());
+                            return;
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on adding EthernetCableStateChanged\n" + e.ToString());
-                        return;
-                    }
+                    _EthernetCableStateChanged += value;
                 }
-                _EthernetCableStateChanged += value;
             }
             remove
             {
-                _EthernetCableStateChanged -= value;
-                if (_EthernetCableStateChanged == null)
+                lock(_EthernetCableStateChanged)
                 {
-                    try
+                    _EthernetCableStateChanged -= value;
+                    if (_EthernetCableStateChanged == null)
                     {
-                        EthernetCableStateChangedStop();
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on removing EthernetCableStateChanged\n" + e.ToString());
+                        try
+                        {
+                            EthernetCableStateChangedStop();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing EthernetCableStateChanged\n" + e.ToString());
+                        }
                     }
                 }
             }
@@ -266,33 +272,39 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                if (_IPAddressChanged == null)
+                lock (_IPAddressChanged)
                 {
-                    try
+                    if (_IPAddressChanged == null)
                     {
-                        IPAddressChangedStart();
+                        try
+                        {
+                            IPAddressChangedStart();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding IPAddressChanged\n" + e.ToString());
+                            return;
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on adding IPAddressChanged\n" + e.ToString());
-                        return;
-                    }
+                    _IPAddressChanged += value;
                 }
-                _IPAddressChanged += value;
             }
 
             remove
             {
-                _IPAddressChanged -= value;
-                if (_IPAddressChanged == null)
+                lock (_IPAddressChanged)
                 {
-                    try
+                    _IPAddressChanged -= value;
+                    if (_IPAddressChanged == null)
                     {
-                        IPAddressChangedStop();
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on removing IPAddressChanged\n" + e.ToString());
+                        try
+                        {
+                            IPAddressChangedStop();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing IPAddressChanged\n" + e.ToString());
+                        }
                     }
                 }
             }
@@ -336,32 +348,38 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                if (_ProxyAddressChanged == null)
+                lock (_ProxyAddressChanged)
                 {
-                    try
+                    if (_ProxyAddressChanged == null)
                     {
-                        ProxyAddressChangedStart();
+                        try
+                        {
+                            ProxyAddressChangedStart();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on adding ProxyAddressChanged\n" + e.ToString());
+                            return;
+                        }
                     }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on adding ProxyAddressChanged\n" + e.ToString());
-                        return;
-                    }
+                    _ProxyAddressChanged += value;
                 }
-                _ProxyAddressChanged += value;
             }
             remove
             {
-                _ProxyAddressChanged -= value;
-                if (_ProxyAddressChanged == null)
+                lock (_ProxyAddressChanged)
                 {
-                    try
+                    _ProxyAddressChanged -= value;
+                    if (_ProxyAddressChanged == null)
                     {
-                        ProxyAddressChangedStop();
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Error(Globals.LogTag, "Exception on removing ProxyAddressChanged\n" + e.ToString());
+                        try
+                        {
+                            ProxyAddressChangedStop();
+                        }
+                        catch (Exception e)
+                        {
+                            Log.Error(Globals.LogTag, "Exception on removing ProxyAddressChanged\n" + e.ToString());
+                        }
                     }
                 }
             }
