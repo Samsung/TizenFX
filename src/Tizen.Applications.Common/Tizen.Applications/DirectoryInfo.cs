@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 
+using System.IO;
+using System;
+
 namespace Tizen.Applications
 {
     /// <summary>
@@ -179,6 +182,74 @@ namespace Tizen.Applications
                     _expansionPackageResourcePath = Interop.AppCommon.AppGetTepResourcePath();
                 return _expansionPackageResourcePath;
             }
+        }
+
+        /// <summary>
+        /// Gets the absolute path to the application's resource control directory, which is used to share the resources of the allowed resource packages that available.
+        /// </summary>
+        /// <param name="res_type">The resource package's type</param>
+        /// <returns> The absolute path to the application's resource control directory, which is used to share the resources of the allowed resource packages that available.</returns>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown in case of nonexistence of available resource.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <since_tizen> 7.5 </since_tizen>
+        public string GetResControlAllowedResource(string res_type)
+        {
+            string path = string.Empty;
+            Interop.AppCommon.AppCommonErrorCode err = Interop.AppCommon.AppGetResControlAllowedResourcePath(res_type, out path);
+            if (err != Interop.AppCommon.AppCommonErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.AppCommon.AppCommonErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.AppCommon.AppCommonErrorCode.OutOfMemory:
+                        throw new OutOfMemoryException("Out of memory");
+                    case Interop.AppCommon.AppCommonErrorCode.InvalidContext:
+                        throw new InvalidOperationException("Invalid app context");
+                    case Interop.AppCommon.AppCommonErrorCode.PermissionDenied:
+                        throw new DirectoryNotFoundException(String.Format("Allowed Resource about {0} is not Found", res_type));
+                    default:
+                        throw new InvalidOperationException("Invalid Operation");
+                }
+            }
+
+            return path;
+        }
+
+        /// <summary>
+        /// Gets the absolute path to the application's resource control directory, which is used to share the resources of the global resource packages that available.
+        /// </summary>
+        /// <param name="res_type">The resource package's type</param>
+        /// <returns> The absolute path to the application's resource control directory, which is used to share the resources of the global resource packages that available.</returns>
+        /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
+        /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown in case of nonexistence of available resource.</exception>
+        /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
+        /// <since_tizen> 7.5 </since_tizen>
+        public string GetResControlGlobalResource(string res_type)
+        {
+            string path = string.Empty;
+            Interop.AppCommon.AppCommonErrorCode err = Interop.AppCommon.AppGetResControlGlobalResourcePath(res_type, out path);
+            if (err != Interop.AppCommon.AppCommonErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.AppCommon.AppCommonErrorCode.InvalidParameter:
+                        throw new ArgumentException("Invalid Arguments");
+                    case Interop.AppCommon.AppCommonErrorCode.OutOfMemory:
+                        throw new OutOfMemoryException("Out of memory");
+                    case Interop.AppCommon.AppCommonErrorCode.InvalidContext:
+                        throw new InvalidOperationException("Invalid app context");
+                    case Interop.AppCommon.AppCommonErrorCode.PermissionDenied:
+                        throw new DirectoryNotFoundException(String.Format("Allowed Resource about {0} is not Found", res_type));
+                    default:
+                        throw new InvalidOperationException("Invalid Operation");
+                }
+            }
+
+            return path;
         }
     }
 }
