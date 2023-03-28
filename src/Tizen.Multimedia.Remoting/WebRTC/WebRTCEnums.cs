@@ -688,7 +688,7 @@ namespace Tizen.Multimedia.Remoting
         Address,
 
         /// <summary>
-        /// Local ID.
+        /// Port number of the candidate.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         Port,
