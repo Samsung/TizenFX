@@ -48,10 +48,7 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected new IGroupableItemSource Source
-        {
-            get => collectionView?.InternalSource;
-        }
+        protected new IGroupableItemSource Source => collectionView?.InternalSource;
 
         /// <summary>
         /// Clean up ItemsLayouter.

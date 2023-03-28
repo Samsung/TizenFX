@@ -56,33 +56,13 @@ namespace Tizen.NUI.Components
         /// Check IItemSource and IGrouppedItemSoure also.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected IItemSource Source
-        {
-            get
-            {
-                if (ItemsView != null)
-                {
-                    return ItemsView.InternalSource;
-                }
-                else return null;
-            }
-        }
+        protected IItemSource Source => ItemsView?.InternalSource;
 
         /// <summary>
         /// Container which contains ViewItems.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected View Container
-        {
-            get
-            {
-                if (ItemsView != null)
-                {
-                    return ItemsView.ContentContainer;
-                }
-                else return null;
-            }
-        }
+        protected View Container =>ItemsView?.ContentContainer;
 
         /// <summary>
         /// Parent ItemsView.

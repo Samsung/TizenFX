@@ -48,28 +48,19 @@ namespace Tizen.NUI.Components
 
         /// <inheritdoc/>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected new IGroupableItemSource Source
-        {
-            get => collectionView?.InternalSource;
-        }
+        protected new IGroupableItemSource Source => collectionView?.InternalSource;
 
         /// <summary>
         /// Span Size
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected int SpanSize
-        {
-            get => spanSize;
-        }
+        protected int SpanSize => spanSize;
 
         /// <summary>
         /// Size Candidate
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected (float Width, float Height) SizeCandidate
-        {
-            get => sizeCandidate;
-        }
+        protected (float Width, float Height) SizeCandidate => sizeCandidate;
 
         /// <summary>
         /// Clean up ItemsLayouter.
