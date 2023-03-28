@@ -452,12 +452,12 @@ namespace Tizen.NUI.Components
 
                 if (colView.SizingStrategy == ItemSizingStrategy.MeasureFirst)
                 {
-                    if (item.IsHeader || item.IsFooter || item.isGroupHeader || item.isGroupFooter)
+                    if (item.IsHeader || item.IsFooter || item.IsGroupHeader || item.IsGroupFooter)
                     {
                         if (item.IsHeader) size = headerSize;
                         else if (item.IsFooter) size = footerSize;
-                        else if (item.isGroupHeader) size = groupHeaderSize;
-                        else if (item.isGroupFooter) size = groupFooterSize;
+                        else if (item.IsGroupHeader) size = groupHeaderSize;
+                        else if (item.IsGroupFooter) size = groupFooterSize;
                     }
                     else size = StepCandidate;
                 }

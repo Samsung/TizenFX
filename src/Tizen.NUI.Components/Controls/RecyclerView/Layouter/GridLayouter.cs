@@ -461,15 +461,15 @@ namespace Tizen.NUI.Components
                 item.Position = new Position(x, y);
 
                 //Linear Item need to be resized!
-                if (item.IsHeader || item.IsFooter || item.isGroupHeader || item.isGroupFooter)
+                if (item.IsHeader || item.IsFooter || item.IsGroupHeader || item.IsGroupFooter)
                 {
                     var size = (IsHorizontal? item.SizeWidth: item.SizeHeight);
                     if (colView.SizingStrategy == ItemSizingStrategy.MeasureFirst)
                     {
                         if (item.IsHeader) size = headerSize;
                         else if (item.IsFooter) size = footerSize;
-                        else if (item.isGroupHeader) size = groupHeaderSize;
-                        else if (item.isGroupFooter) size = groupFooterSize;
+                        else if (item.IsGroupHeader) size = groupHeaderSize;
+                        else if (item.IsGroupFooter) size = groupFooterSize;
                     }
                     if (IsHorizontal && item.HeightSpecification == LayoutParamPolicies.MatchParent)
                     {

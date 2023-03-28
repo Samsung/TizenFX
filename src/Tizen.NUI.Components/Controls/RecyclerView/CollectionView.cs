@@ -1065,7 +1065,7 @@ namespace Tizen.NUI.Components
                 return;
             }
 
-            if (item.isGroupHeader || item.isGroupFooter)
+            if (item.IsGroupHeader || item.IsGroupFooter)
             {
                 item.Index = -1;
                 item.ParentItemsView = null;
@@ -1385,11 +1385,11 @@ namespace Tizen.NUI.Components
                 return false;
             }
 
-            if (item.isGroupHeader)
+            if (item.IsGroupHeader)
             {
                 recycleGroupHeaderCache.Add(item);
             }
-            else if (item.isGroupFooter)
+            else if (item.IsGroupFooter)
             {
                 recycleGroupFooterCache.Add(item);
             }
@@ -1442,8 +1442,8 @@ namespace Tizen.NUI.Components
                 }
 
                 groupHeader.Template = templ;
-                groupHeader.isGroupHeader = true;
-                groupHeader.isGroupFooter = false;
+                groupHeader.IsGroupHeader = true;
+                groupHeader.IsGroupFooter = false;
                 ContentContainer.Add(groupHeader);
             }
 
@@ -1475,8 +1475,8 @@ namespace Tizen.NUI.Components
                 }
 
                 groupFooter.Template = templ;
-                groupFooter.isGroupHeader = false;
-                groupFooter.isGroupFooter = true;
+                groupFooter.IsGroupHeader = false;
+                groupFooter.IsGroupFooter = true;
                 ContentContainer.Add(groupFooter);
             }
 
