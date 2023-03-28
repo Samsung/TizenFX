@@ -95,6 +95,12 @@ namespace Tizen.NUI.Components
         protected List<RecyclerViewItem> VisibleItems { get; } = new List<RecyclerViewItem>();
 
         /// <summary>
+        /// Visible ViewItem.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected List<GroupInfo> GroupItems { get; }
+
+        /// <summary>
         /// Flag of layouter initialization.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]

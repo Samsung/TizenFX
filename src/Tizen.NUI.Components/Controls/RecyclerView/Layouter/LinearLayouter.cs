@@ -63,9 +63,16 @@ namespace Tizen.NUI.Components
             {
                 throw new ArgumentException("LinearLayouter only can be applied CollectionView.", nameof(view));
             }
-            // 1. Clean Up
-            Clear();
 
+            // 1. Clean Up
+            foreach (RecyclerViewItem item in VisibleItems)
+            {
+                collectionView.UnrealizeItem(item, false);
+            }
+            VisibleItems.Clear();
+            groups.Clear();
+
+            GroupItems = groups;
             FirstVisible = 0;
             LastVisible = 0;
 

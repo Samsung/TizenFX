@@ -62,6 +62,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected (float Width, float Height) SizeCandidate => sizeCandidate;
 
+
         /// <summary>
         /// Clean up ItemsLayouter.
         /// </summary>
@@ -84,6 +85,7 @@ namespace Tizen.NUI.Components
             VisibleItems.Clear();
             groups.Clear();
 
+            GroupItems = groups;
             FirstVisible = 0;
             LastVisible = 0;
 
