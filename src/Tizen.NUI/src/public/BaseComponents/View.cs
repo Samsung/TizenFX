@@ -209,9 +209,6 @@ namespace Tizen.NUI.BaseComponents
                 PositionUsesPivotPoint = false;
                 GrabTouchAfterLeave = defaultGrabTouchAfterLeave;
                 AllowOnlyOwnTouch = defaultAllowOnlyOwnTouch;
-
-                // TODO : Can we call this function only for required subclass?
-                RegisterHitTestCallback();
             }
 
             if (!shown)
@@ -3237,6 +3234,17 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 Object.InternalSetPropertyBool(SwigCPtr, View.Property.CaptureAllTouchAfterStart, value);
+
+                // Use custom HitTest callback only if GrabTouchAfterLeave is true.
+                if (value)
+                {
+                    RegisterHitTestCallback();
+                }
+                else
+                {
+                    UnregisterHitTestCallback();
+                }
+
                 NotifyPropertyChanged();
             }
         }
