@@ -78,6 +78,12 @@ namespace Tizen.Network.Connection
         private EventHandler<EthernetCableStateEventArgs> _EthernetCableStateChanged = null;
         private EventHandler<AddressEventArgs> _ProxyAddressChanged = null;
 
+        private static readonly object _ConnectionTypeChangedLock = new object();
+        private static readonly object _IPAddressChangedLock = new object();
+        private static readonly object _EthernetCableStateChangedLock = new object();
+        private static readonly object _ProxyAddressChangedLock = new object();
+
+
         private Interop.Connection.ConnectionAddressChangedCallback _connectionAddressChangedCallback;
         private Interop.Connection.ConnectionTypeChangedCallback _connectionTypeChangedCallback;
         private Interop.Connection.ConnectionAddressChangedCallback _proxyAddressChangedCallback;
@@ -126,7 +132,7 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                lock (_ConnectionTypeChanged)
+                lock (_ConnectionTypeChangedLock)
                 {
                     if (_ConnectionTypeChanged == null)
                     {
@@ -145,7 +151,7 @@ namespace Tizen.Network.Connection
             }
             remove
             {
-                lock (_ConnectionTypeChanged)
+                lock (_ConnectionTypeChangedLock)
                 {
                     _ConnectionTypeChanged -= value;
                     if (_ConnectionTypeChanged == null)
@@ -197,7 +203,7 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                lock(_EthernetCableStateChanged)
+                lock(_EthernetCableStateChangedLock)
                 {
                     if (_EthernetCableStateChanged == null)
                     {
@@ -216,7 +222,7 @@ namespace Tizen.Network.Connection
             }
             remove
             {
-                lock(_EthernetCableStateChanged)
+                lock(_EthernetCableStateChangedLock)
                 {
                     _EthernetCableStateChanged -= value;
                     if (_EthernetCableStateChanged == null)
@@ -272,7 +278,7 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                lock (_IPAddressChanged)
+                lock (_IPAddressChangedLock)
                 {
                     if (_IPAddressChanged == null)
                     {
@@ -292,7 +298,7 @@ namespace Tizen.Network.Connection
 
             remove
             {
-                lock (_IPAddressChanged)
+                lock (_IPAddressChangedLock)
                 {
                     _IPAddressChanged -= value;
                     if (_IPAddressChanged == null)
@@ -348,7 +354,7 @@ namespace Tizen.Network.Connection
         {
             add
             {
-                lock (_ProxyAddressChanged)
+                lock (_ProxyAddressChangedLock)
                 {
                     if (_ProxyAddressChanged == null)
                     {
@@ -367,7 +373,7 @@ namespace Tizen.Network.Connection
             }
             remove
             {
-                lock (_ProxyAddressChanged)
+                lock (_ProxyAddressChangedLock)
                 {
                     _ProxyAddressChanged -= value;
                     if (_ProxyAddressChanged == null)
