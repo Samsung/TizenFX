@@ -287,8 +287,8 @@ namespace Tizen.NUI.Components
 
                 if (itemsSource == null)
                 {
-                    InternalItemSource?.Dispose();
-                    InternalItemSource = null;
+                    InternalSource?.Dispose();
+                    InternalSource = null;
                     itemsLayouter?.Clear();
                     ClearCache();
                     return;
@@ -298,8 +298,8 @@ namespace Tizen.NUI.Components
                     newNotifyCollectionChanged.CollectionChanged += CollectionChanged;
                 }
 
-                InternalItemSource?.Dispose();
-                InternalItemSource = ItemsSourceFactory.Create(this);
+                InternalSource?.Dispose();
+                InternalSource = ItemsSourceFactory.Create(this);
 
                 if (itemsLayouter == null) return;
 
@@ -536,9 +536,9 @@ namespace Tizen.NUI.Components
                     ContentContainer.Add(value);
                 }
                 header = value;
-                if (InternalItemSource != null)
+                if (InternalSource != null)
                 {
-                    InternalItemSource.HasHeader = (value != null);
+                    InternalSource.HasHeader = (value != null);
                 }
                 needInitalizeLayouter = true;
                 ReinitializeLayout();
@@ -574,15 +574,15 @@ namespace Tizen.NUI.Components
                 }
                 if (value != null)
                 {
-                    value.Index = InternalItemSource?.Count ?? 0;
+                    value.Index = InternalSource?.Count ?? 0;
                     value.ParentItemsView = this;
                     value.IsFooter = true;
                     ContentContainer.Add(value);
                 }
                 footer = value;
-                if (InternalItemSource != null)
+                if (InternalSource != null)
                 {
-                    InternalItemSource.HasFooter = (value != null);
+                    InternalSource.HasFooter = (value != null);
                 }
                 needInitalizeLayouter = true;
                 ReinitializeLayout();
@@ -613,14 +613,14 @@ namespace Tizen.NUI.Components
                 isGrouped = value;
                 needInitalizeLayouter = true;
                 //Need to re-intialize Internal Item Source.
-                if (InternalItemSource != null)
+                if (InternalSource != null)
                 {
-                    InternalItemSource.Dispose();
-                    InternalItemSource = null;
+                    InternalSource.Dispose();
+                    InternalSource = null;
                 }
                 if (ItemsSource != null)
                 {
-                    InternalItemSource = ItemsSourceFactory.Create(this);
+                    InternalSource = ItemsSourceFactory.Create(this);
                 }
 
                 ReinitializeLayout();
@@ -657,15 +657,15 @@ namespace Tizen.NUI.Components
                 needInitalizeLayouter = true;
 
                 //Need to re-intialize Internal Item Source.
-                if (InternalItemSource != null)
+                if (InternalSource != null)
                 {
-                    InternalItemSource.Dispose();
-                    InternalItemSource = null;
+                    InternalSource.Dispose();
+                    InternalSource = null;
                 }
 
                 if (ItemsSource != null)
                 {
-                    InternalItemSource = ItemsSourceFactory.Create(this);
+                    InternalSource = ItemsSourceFactory.Create(this);
                 }
 
                 ReinitializeLayout();
@@ -701,15 +701,15 @@ namespace Tizen.NUI.Components
                 needInitalizeLayouter = true;
 
                 //Need to re-intialize Internal Item Source.
-                if (InternalItemSource != null)
+                if (InternalSource != null)
                 {
-                    InternalItemSource.Dispose();
-                    InternalItemSource = null;
+                    InternalSource.Dispose();
+                    InternalSource = null;
                 }
 
                 if (ItemsSource != null)
                 {
-                    InternalItemSource = ItemsSourceFactory.Create(this);
+                    InternalSource = ItemsSourceFactory.Create(this);
                 }
 
                 ReinitializeLayout();
@@ -719,15 +719,15 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Internal encapsulated items data source.
         /// </summary>
-        internal new IGroupableItemSource InternalItemSource
+        internal new IGroupableItemSource InternalSource
         {
             get
             {
-                return (base.InternalItemSource as IGroupableItemSource);
+                return (base.InternalSource as IGroupableItemSource);
             }
             set
             {
-                base.InternalItemSource = value;
+                base.InternalSource = value;
             }
         }
 
@@ -808,7 +808,7 @@ namespace Tizen.NUI.Components
                 throw new Exception("Item Layouter must exist.");
             }
 
-            if ((InternalItemSource == null) || needInitalizeLayouter)
+            if ((InternalSource == null) || needInitalizeLayouter)
             {
                 delayedScrollTo = true;
                 delayedScrollToParam = (position, animate);
@@ -842,16 +842,16 @@ namespace Tizen.NUI.Components
                 throw new Exception("Item Layouter must exist.");
             }
 
-            if ((InternalItemSource == null) || needInitalizeLayouter)
+            if ((InternalSource == null) || needInitalizeLayouter)
             {
                 delayedIndexScrollTo = true;
                 delayedIndexScrollToParam = (index, animate, align);
                 return;
             }
 
-            if (index < 0 || index >= InternalItemSource.Count)
+            if (index < 0 || index >= InternalSource.Count)
             {
-                throw new Exception("index is out of boundary. index should be a value between (0, " + InternalItemSource.Count.ToString() + ").");
+                throw new Exception("index is out of boundary. index should be a value between (0, " + InternalSource.Count.ToString() + ").");
             }
 
             float scrollPos, curPos, curSize, curItemSize;
@@ -873,7 +873,7 @@ namespace Tizen.NUI.Components
                 curItemSize = height;
             }
 
-            //Console.WriteLine("[NUI] ScrollTo [{0}:{1}], curPos{2}, itemPos{3}, curSize{4}, itemSize{5}", InternalItemSource.GetPosition(item), align, curPos, scrollPos, curSize, curItemSize);
+            //Console.WriteLine("[NUI] ScrollTo [{0}:{1}], curPos{2}, itemPos{3}, curSize{4}, itemSize{5}", InternalSource.GetPosition(item), align, curPos, scrollPos, curSize, curItemSize);
             switch (align)
             {
                 case ItemScrollTo.Start:
@@ -974,9 +974,9 @@ namespace Tizen.NUI.Components
             return true;
         }
 
-        // Realize and Decorate the item.
-
-        internal override RecyclerViewItem RealizeItem(int index)
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal override RecyclerViewItem RealizeItem(int index)
         {
             RecyclerViewItem item;
             if (index == 0 && Header != null)
@@ -985,7 +985,7 @@ namespace Tizen.NUI.Components
                 return Header;
             }
 
-            if (index == InternalItemSource.Count - 1 && Footer != null)
+            if (index == InternalSource.Count - 1 && Footer != null)
             {
                 Footer.Show();
                 return Footer;
@@ -993,12 +993,12 @@ namespace Tizen.NUI.Components
 
             if (isGrouped)
             {
-                var context = InternalItemSource.GetItem(index);
-                if (InternalItemSource.IsGroupHeader(index))
+                var context = InternalSource.GetItem(index);
+                if (InternalSource.IsGroupHeader(index))
                 {
                     item = RealizeGroupHeader(index, context);
                 }
-                else if (InternalItemSource.IsGroupFooter(index))
+                else if (InternalSource.IsGroupFooter(index))
                 {
 
                     //group selection?
@@ -1011,7 +1011,7 @@ namespace Tizen.NUI.Components
                     {
                         throw new Exception("Item realize failed by Null content return.");
                     }
-                    item.ParentGroup = InternalItemSource.GetGroupParent(index);
+                    item.ParentGroup = InternalSource.GetGroupParent(index);
                 }
             }
             else
@@ -1045,8 +1045,9 @@ namespace Tizen.NUI.Components
             return item;
         }
 
-        // Unrealize and caching the item.
-        internal override void UnrealizeItem(RecyclerViewItem item, bool recycle = true)
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal override void UnrealizeItem(RecyclerViewItem item, bool recycle = true)
         {
             if (item == null)
             {
@@ -1217,10 +1218,10 @@ namespace Tizen.NUI.Components
                     selectedItems.Clear();
                     selectedItems = null;
                 }
-                if (InternalItemSource != null)
+                if (InternalSource != null)
                 {
-                    InternalItemSource.Dispose();
-                    InternalItemSource = null;
+                    InternalSource.Dispose();
+                    InternalSource = null;
                 }
             }
 
@@ -1333,13 +1334,13 @@ namespace Tizen.NUI.Components
 
             if (needInitalizeLayouter)
             {
-                if (InternalItemSource == null)
+                if (InternalSource == null)
                 {
                     return;
                 }
 
-                InternalItemSource.HasHeader = (header != null);
-                InternalItemSource.HasFooter = (footer != null);
+                InternalSource.HasHeader = (header != null);
+                InternalSource.HasFooter = (footer != null);
 
                 itemsLayouter.Clear();
                 ClearCache();

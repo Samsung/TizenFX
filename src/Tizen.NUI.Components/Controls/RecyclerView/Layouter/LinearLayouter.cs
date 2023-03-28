@@ -46,6 +46,17 @@ namespace Tizen.NUI.Components
         private Timer requestLayoutTimer = null;
         private bool isSourceEmpty;
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected new IGroupableItemSource Source
+        {
+            get
+            {
+                if (colView) return colView.InternalSource;
+                else return null;
+            }
+        }
+
         /// <summary>
         /// Clean up ItemsLayouter.
         /// </summary>
@@ -70,7 +81,7 @@ namespace Tizen.NUI.Components
             RecyclerViewItem header = colView?.Header;
             RecyclerViewItem footer = colView?.Footer;
             float width, height;
-            int count = colView.InternalItemSource.Count;
+            int count = Source.Count;
 
             if (header != null)
             {
@@ -126,9 +137,9 @@ namespace Tizen.NUI.Components
 
                 if (colView.GroupHeaderTemplate != null)
                 {
-                    while (!colView.InternalItemSource.IsGroupHeader(firstIndex)) firstIndex++;
+                    while (!Source.IsGroupHeader(firstIndex)) firstIndex++;
                     //must be always true
-                    if (colView.InternalItemSource.IsGroupHeader(firstIndex))
+                    if (Source.IsGroupHeader(firstIndex))
                     {
                         RecyclerViewItem groupHeader = colView.RealizeItem(firstIndex);
                         firstIndex++;
@@ -165,9 +176,9 @@ namespace Tizen.NUI.Components
                 if (colView.GroupFooterTemplate != null)
                 {
                     int firstFooter = firstIndex;
-                    while (!colView.InternalItemSource.IsGroupFooter(firstFooter)) firstFooter++;
+                    while (!Source.IsGroupFooter(firstFooter)) firstFooter++;
                     //must be always true
-                    if (colView.InternalItemSource.IsGroupFooter(firstFooter))
+                    if (Source.IsGroupFooter(firstFooter))
                     {
                         RecyclerViewItem groupFooter = colView.RealizeItem(firstFooter);
 
@@ -204,21 +215,20 @@ namespace Tizen.NUI.Components
             bool failed = false;
 
             //Final Check of FirstIndex
-            if ((colView.InternalItemSource.Count - 1 < firstIndex) ||
-                (colView.InternalItemSource.IsFooter(firstIndex) && (colView.InternalItemSource.Count - 1) == firstIndex))
+            if ((Source.Count - 1 < firstIndex) ||
+                (Source.IsFooter(firstIndex) && (Source.Count - 1) == firstIndex))
             {
                 StepCandidate = 0F;
                 failed = true;
             }
 
             while (!failed &&
-                   (colView.InternalItemSource.IsHeader(firstIndex) ||
-                    colView.InternalItemSource.IsGroupHeader(firstIndex) ||
-                    colView.InternalItemSource.IsGroupFooter(firstIndex)))
+                    Source.IsHeader(firstIndex) ||
+                    Source.IsGroupHeader(firstIndex) ||
+                    Source.IsGroupFooter(firstIndex))
             {
-
-                if (colView.InternalItemSource.IsFooter(firstIndex)
-                    || ((colView.InternalItemSource.Count - 1) <= firstIndex))
+                if (Source.IsFooter(firstIndex)
+                    || ((Source.Count - 1) <= firstIndex))
                 {
                     StepCandidate = 0F;
                     failed = true;
@@ -236,7 +246,7 @@ namespace Tizen.NUI.Components
                     throw new Exception("Cannot create content from DatTemplate.");
                 }
 
-                sizeDeligate.BindingContext = colView.InternalItemSource.GetItem(firstIndex);
+                sizeDeligate.BindingContext = Source.GetItem(firstIndex);
 
                 // Need to Set proper height or width on scroll direction.
                 if (sizeDeligate.Layout == null)
@@ -263,7 +273,7 @@ namespace Tizen.NUI.Components
             }
 
             float Current = IsHorizontal? Padding.Start : Padding.Top;
-            IGroupableItemSource source = colView.InternalItemSource;
+            IGroupableItemSource source = Source;
             GroupInfo currentGroup = null;
             object currentParent = null;
             for (int i = 0; i < count; i++)
@@ -379,7 +389,7 @@ namespace Tizen.NUI.Components
                 force = true;
             }
 
-            int LastIndex = colView.InternalItemSource.Count - 1;
+            int LastIndex = Source.Count - 1;
 
             if (!force && PrevScrollPosition == Math.Abs(scrollPosition)) return;
             PrevScrollPosition = Math.Abs(scrollPosition);
@@ -534,7 +544,7 @@ namespace Tizen.NUI.Components
                 return;
 
             float PrevSize, CurrentSize;
-            if (item.Index == (colView.InternalItemSource.Count - 1))
+            if (item.Index == (Source.Count - 1))
             {
                 PrevSize = ScrollContentSize - ItemPosition[item.Index];
             }
@@ -702,8 +712,8 @@ namespace Tizen.NUI.Components
                 LastVisible++;
             }
 
-            if (FirstVisible > colView.InternalItemSource.Count - 1) FirstVisible = colView.InternalItemSource.Count -1;
-            if (LastVisible > colView.InternalItemSource.Count - 1) LastVisible = colView.InternalItemSource.Count -1;
+            if (FirstVisible > Source.Count - 1) FirstVisible = Source.Count -1;
+            if (LastVisible > Source.Count - 1) LastVisible = Source.Count -1;
 
             float scrollPosition = PrevScrollPosition;
 
@@ -881,8 +891,8 @@ namespace Tizen.NUI.Components
                 LastVisible = LastVisible + count;
             }
 
-            if (FirstVisible > colView.InternalItemSource.Count - 1) FirstVisible = colView.InternalItemSource.Count -1;
-            if (LastVisible > colView.InternalItemSource.Count - 1) LastVisible = colView.InternalItemSource.Count -1;
+            if (FirstVisible > Source.Count - 1) FirstVisible = Source.Count -1;
+            if (LastVisible > Source.Count - 1) LastVisible = Source.Count -1;
 
             // Position Adjust
             float scrollPosition = PrevScrollPosition;
@@ -1258,8 +1268,8 @@ namespace Tizen.NUI.Components
 
             if (FirstVisible < 0) FirstVisible = 0;
             if (LastVisible < 0) LastVisible = 0;
-            if (FirstVisible > colView.InternalItemSource.Count - 1) FirstVisible = colView.InternalItemSource.Count -1;
-            if (LastVisible > colView.InternalItemSource.Count - 1) LastVisible = colView.InternalItemSource.Count -1;
+            if (FirstVisible > Source.Count - 1) FirstVisible = Source.Count -1;
+            if (LastVisible > Source.Count - 1) LastVisible = Source.Count -1;
 
 
             if (IsHorizontal) colView.ContentContainer.SizeWidth = ScrollContentSize;
@@ -1489,7 +1499,7 @@ namespace Tizen.NUI.Components
             if (targetSibling > -1 && targetSibling < Container.Children.Count)
             {
                 RecyclerViewItem candidate = Container.Children[targetSibling] as RecyclerViewItem;
-                if (candidate != null && candidate.Index >= 0 && candidate.Index < colView.InternalItemSource.Count)
+                if (candidate != null && candidate.Index >= 0 && candidate.Index < Source.Count)
                 {
                     nextFocusedView = candidate;
                 }
@@ -1502,7 +1512,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override (int start, int end) FindVisibleItems((float X, float Y) visibleArea)
         {
-            int MaxIndex = colView.InternalItemSource.Count - 1 - (hasFooter? 1 : 0);
+            int MaxIndex = Source.Count - 1 - (hasFooter? 1 : 0);
             int adds = 5;
             int skipGroup = -2;
             (int start, int end) found = (0, 0);
@@ -1614,16 +1624,17 @@ namespace Tizen.NUI.Components
             return found;
         }
 
-        // Item position excluding margins.
-        internal override (float X, float Y) GetItemPosition(int index)
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal override (float X, float Y) GetItemPosition(int index)
         {
             int spaceStartX = Padding.Start;
             int spaceStartY = Padding.Top;
-            if (colView.InternalItemSource.IsHeader(index))
+            if (Source.IsHeader(index))
             {
                 return (spaceStartX + headerMargin.Start, spaceStartY + headerMargin.Top);
             }
-            else if (colView.InternalItemSource.IsFooter(index))
+            else if (Source.IsFooter(index))
             {
                 return ((IsHorizontal? ScrollContentSize - footerSize - Padding.End + footerMargin.Start : spaceStartX + footerMargin.Start),
                         (IsHorizontal? spaceStartY + footerMargin.Top : ScrollContentSize - footerSize - Padding.Bottom + footerMargin.Top));
@@ -1639,11 +1650,11 @@ namespace Tizen.NUI.Components
                 float current = GetGroupPosition(gInfo, index);
                 Extents itemMargin = CandidateMargin;
 
-                if (colView.InternalItemSource.IsGroupHeader(index))
+                if (Source.IsGroupHeader(index))
                 {
                     itemMargin = groupHeaderMargin;
                 }
-                else if (colView.InternalItemSource.IsGroupFooter(index))
+                else if (Source.IsGroupFooter(index))
                 {
                     itemMargin = groupFooterMargin;
                 }
@@ -1670,31 +1681,32 @@ namespace Tizen.NUI.Components
             }
         }
 
-        // Item size excluding margins. this size is approximated size.
-        internal override (float Width, float Height) GetItemSize(int index)
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal override (float Width, float Height) GetItemSize(int index)
         {
-            if (colView.InternalItemSource.IsHeader(index))
+            if (Source.IsHeader(index))
             {
                 return ((IsHorizontal? (int)headerSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
                         - headerMargin.Start - headerMargin.End,
                         (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)headerSize)
                         - headerMargin.Top - headerMargin.Bottom);
             }
-            else if (colView.InternalItemSource.IsFooter(index))
+            else if (Source.IsFooter(index))
             {
                 return ((IsHorizontal? (int)footerSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
                         - footerMargin.Start - footerMargin.End,
                         (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)footerSize)
                         - footerMargin.Top - footerMargin.Bottom);
             }
-            else if (colView.InternalItemSource.IsGroupHeader(index))
+            else if (Source.IsGroupHeader(index))
             {
                 return ((IsHorizontal? (int)groupHeaderSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
                         - groupHeaderMargin.Start - groupHeaderMargin.End,
                         (IsHorizontal? (int)colView.Size.Height - Padding.Top - Padding.Bottom: (int)groupHeaderSize)
                         - groupHeaderMargin.Top - groupHeaderMargin.Bottom);
             }
-            else if (colView.InternalItemSource.IsGroupFooter(index))
+            else if (Source.IsGroupFooter(index))
             {
                 return ((IsHorizontal? (int)groupFooterSize : (int)(colView.Size.Width) - Padding.Start - Padding.End)
                         - groupFooterMargin.Start - groupFooterMargin.End,
@@ -1757,13 +1769,13 @@ namespace Tizen.NUI.Components
             }
             else
             {
-                if (colView.InternalItemSource.IsHeader(index))
+                if (Source.IsHeader(index))
                     return headerSize;
-                else if (colView.InternalItemSource.IsFooter(index))
+                else if (Source.IsFooter(index))
                     return footerSize;
-                else if (colView.InternalItemSource.IsGroupHeader(index))
+                else if (Source.IsGroupHeader(index))
                     return groupHeaderSize;
-                else if (colView.InternalItemSource.IsGroupFooter(index))
+                else if (Source.IsGroupFooter(index))
                     return groupFooterSize;
                 else
                     return StepCandidate;
@@ -1772,28 +1784,19 @@ namespace Tizen.NUI.Components
 
         private void UpdatePosition(int index)
         {
-            bool IsGroup = (colView.InternalItemSource is IGroupableItemSource);
+            bool IsGroup = (Source is IGroupableItemSource);
 
             if (index <= 0) return;
-            if (index >= colView.InternalItemSource.Count)
+            if (index >= Source.Count)
 
                 if (IsGroup)
                 {
-                    //IsGroupHeader = (colView.InternalItemSource as IGroupableItemSource).IsGroupHeader(index);
-                    //IsGroupFooter = (colView.InternalItemSource as IGroupableItemSource).IsGroupFooter(index);
+                    //IsGroupHeader = (Source as IGroupableItemSource).IsGroupHeader(index);
+                    //IsGroupFooter = (Source as IGroupableItemSource).IsGroupFooter(index);
                     //Do Something
                 }
             if (colView.SizingStrategy == ItemSizingStrategy.MeasureAll)
                 ItemPosition[index] = ItemPosition[index - 1] + GetItemStepSize(index - 1);
-        }
-
-        private RecyclerViewItem GetVisibleItem(int index)
-        {
-            foreach (RecyclerViewItem item in VisibleItems)
-            {
-                if (item.Index == index) return item;
-            }
-            return null;
         }
 
         private GroupInfo GetGroupInfo(int index)
@@ -1851,15 +1854,5 @@ namespace Tizen.NUI.Components
                     return null;
                 }
         */
-        class GroupInfo
-        {
-            public object GroupParent;
-            public int StartIndex;
-            public int Count;
-            public float GroupSize;
-            public float GroupPosition;
-            //Items relative position from the GroupPosition. Only use for MeasureAll.
-            public List<float> ItemPosition = new List<float>();
-        }
     }
 }
