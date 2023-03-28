@@ -531,7 +531,7 @@ namespace Tizen.Multimedia.Remoting
         /// All types of WebRTC statistics.
         /// </summary>
         [Obsolete("Deprecated since API11; Will be removed in API13.")]
-        All = Codec | InboundRtp | OutboundRtp | RemoteInboundRtp | RemoteOutboundRtp
+        All = Codec | InboundRtp | OutboundRtp | RemoteInboundRtp | RemoteOutboundRtp | CandidatePair | LocalCandidate | RemoteCandidate
     }
 
     /// <summary>
