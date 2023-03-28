@@ -16,6 +16,7 @@
 
 using System;
 using System.Diagnostics;
+using System.ComponentModel;
 using Tizen.Internals.Errors;
 using Native = Tizen.Multimedia.Interop.MediaPacket;
 using NativeFormat = Tizen.Multimedia.Interop.MediaFormat;
@@ -686,7 +687,13 @@ namespace Tizen.Multimedia
             return new SimpleMediaPacket(mediaPacket);
         }
 
-        internal static MediaPacket From(IntPtr handle)
+        /// <summary>
+        /// Creates an object of the MediaPacket based on native media packet handle.
+        /// </summary>
+        /// <param name="handle">The native media packet handle.</param>
+        /// <returns>A MediaPacket object.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static MediaPacket From(IntPtr handle)
         {
             return new SimpleMediaPacket(handle);
         }
