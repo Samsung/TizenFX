@@ -98,7 +98,7 @@ namespace Tizen.NUI.Components
         /// Visible ViewItem.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected List<GroupInfo> GroupItems { get; }
+        protected List<GroupInfo> GroupItems { get; internal set; }
 
         /// <summary>
         /// Flag of layouter initialization.
