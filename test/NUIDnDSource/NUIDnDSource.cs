@@ -12,6 +12,8 @@ namespace NUIDnDSource
         ImageView targetViewA;
         ImageView targetViewB;
         DragAndDrop dnd;
+        KeyFrames keyFrames;
+        Animation scaleAnimation;
 
         LongPressGestureDetector longPressed;
         protected override void OnCreate()
@@ -22,6 +24,12 @@ namespace NUIDnDSource
 
         void Initialize()
         {
+            //Scale Keyframe Animation for Acceleration
+            keyFrames = new KeyFrames();
+            keyFrames.Add(0.0f, new Position(1.0f, 1.0f));
+            keyFrames.Add(0.15f, new Position(0.85f, 0.85f));
+            keyFrames.Add(1.0f, new Position(1.0f, 1.0f));
+
             // Create DnD Instance
             dnd = DragAndDrop.Instance;
 
@@ -94,6 +102,16 @@ namespace NUIDnDSource
                 dragData.MimeType = "text/uri-list";
                 dragData.Data = Tizen.Applications.Application.Current.DirectoryInfo.SharedResource + "dragsource.png";
                 dnd.StartDragAndDrop(sourceView, shadowView, dragData, OnSourceEventFunc);
+
+                if (scaleAnimation)
+                {
+                   scaleAnimation.Stop();
+                   scaleAnimation.Dispose();
+                }
+
+                scaleAnimation = new Animation(1000);
+                scaleAnimation.AnimateBetween(shadowView, "Scale", keyFrames);
+                scaleAnimation.Play();
               }
             };
         }
