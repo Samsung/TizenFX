@@ -66,8 +66,7 @@ namespace Tizen.NUI.Components
         /// Visible ViewItem.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected new List<GroupInfo> GroupItems => groups;
-
+        protected override List<GroupInfo> GroupItems => groups;
 
         /// <summary>
         /// Clean up ItemsLayouter.
