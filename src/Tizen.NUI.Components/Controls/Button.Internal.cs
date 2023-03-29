@@ -34,7 +34,7 @@ namespace Tizen.NUI.Components
         private EventHandler<StateChangedEventArgs> stateChangeHandler;
 
         private bool isPressed = false;
-        internal bool styleApplying = false;
+        internal int styleApplying = 0;
 
         /// <summary>
         /// Gets accessibility name.
@@ -193,7 +193,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected void UpdateState()
         {
-            if (styleApplying) return;
+            if (styleApplying > 0) return;
 
             ControlState sourceState = ControlState;
             ControlState targetState;
