@@ -208,9 +208,37 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public bool IsRealized { get; internal set; }
-        internal bool IsHeader { get; set; }
-        internal bool IsFooter { get; set; }
-        internal bool IsPressed { get; set; } = false;
+
+        /// <summary>
+        /// State of Pressed.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsPressed { get; set; } = false;
+
+        /// <summary>
+        /// Boolean flag to check this item is header.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsHeader { get; set; }
+
+        /// <summary>
+        /// Boolean flag to check this item is footer.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsFooter { get; set; }
+
+        /// <summary>
+        /// Boolean flag to check this item is group header.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsGroupHeader { get; set; }
+
+        /// <summary>
+        /// Boolean flag to check this item is group footer.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsGroupFooter { get; set; }
+
 
         /// <summary>
         /// Called after a key event is received by the view that has had its focus set.
