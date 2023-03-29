@@ -142,7 +142,7 @@ namespace Tizen.NUI.Components
         /// <summary>
         /// Internal encapsulated items data source.
         /// </summary>
-        internal IItemSource InternalItemSource { get; set; }
+        internal IItemSource InternalSource { get; set; }
 
         /// <summary>
         /// RecycleCache of ViewItem.
@@ -320,9 +320,10 @@ namespace Tizen.NUI.Components
         /// Realize indexed item.
         /// </summary>
         /// <param name="index"> Index position of realizing item </param>
-        internal virtual RecyclerViewItem RealizeItem(int index)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal virtual RecyclerViewItem RealizeItem(int index)
         {
-            object context = InternalItemSource.GetItem(index);
+            object context = InternalSource.GetItem(index);
             // Check DataTemplate is Same!
             if (ItemTemplate is DataTemplateSelector)
             {
@@ -359,7 +360,8 @@ namespace Tizen.NUI.Components
         /// </summary>
         /// <param name="item"> Target item for unrealizing </param>
         /// <param name="recycle"> Allow recycle. default is true </param>
-        internal virtual void UnrealizeItem(RecyclerViewItem item, bool recycle = true)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal virtual void UnrealizeItem(RecyclerViewItem item, bool recycle = true)
         {
             if (item == null)
             {
@@ -494,10 +496,10 @@ namespace Tizen.NUI.Components
                 InternalItemsLayouter = null;
                 ItemsSource = null;
                 ItemTemplate = null;
-                if (InternalItemSource != null)
+                if (InternalSource != null)
                 {
-                    InternalItemSource.Dispose();
-                    InternalItemSource = null;
+                    InternalSource.Dispose();
+                    InternalSource = null;
                 }
                 //
             }
@@ -516,7 +518,7 @@ namespace Tizen.NUI.Components
         {
             item.Index = index;
             item.ParentItemsView = this;
-            item.Template = (ItemTemplate as DataTemplateSelector)?.SelectDataTemplate(InternalItemSource.GetItem(index), this) ?? ItemTemplate;
+            item.Template = (ItemTemplate as DataTemplateSelector)?.SelectDataTemplate(InternalSource.GetItem(index), this) ?? ItemTemplate;
             item.BindingContext = context;
             item.Relayout += OnItemRelayout;
         }
