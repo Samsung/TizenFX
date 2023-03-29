@@ -209,4 +209,12 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected internal bool Disposed => disposed;
     }
+
+    internal static class DisposableExtension
+    {
+        internal static T Ensure<T>(this T caller) where T : Disposable
+        {
+            return (caller.SwigCPtr.Handle == System.IntPtr.Zero ? null : caller);
+        }
+    }
 }
