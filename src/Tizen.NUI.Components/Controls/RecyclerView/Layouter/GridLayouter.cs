@@ -62,6 +62,12 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected (float Width, float Height) SizeCandidate => sizeCandidate;
 
+        /// <summary>
+        /// Visible ViewItem.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected new List<GroupInfo> GroupItems => groups;
+
 
         /// <summary>
         /// Clean up ItemsLayouter.
@@ -84,8 +90,6 @@ namespace Tizen.NUI.Components
             }
             VisibleItems.Clear();
             groups.Clear();
-
-            GroupItems = groups;
             FirstVisible = 0;
             LastVisible = 0;
 

@@ -51,6 +51,12 @@ namespace Tizen.NUI.Components
         protected new IGroupableItemSource Source => collectionView?.InternalSource;
 
         /// <summary>
+        /// Visible ViewItem.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected new List<GroupInfo> GroupItems => groups;
+
+        /// <summary>
         /// Clean up ItemsLayouter.
         /// </summary>
         /// <param name="view"> CollectionView of layouter.</param>
@@ -71,8 +77,6 @@ namespace Tizen.NUI.Components
             }
             VisibleItems.Clear();
             groups.Clear();
-
-            GroupItems = groups;
             FirstVisible = 0;
             LastVisible = 0;
 
