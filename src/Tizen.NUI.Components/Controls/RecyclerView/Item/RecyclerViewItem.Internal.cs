@@ -25,8 +25,6 @@ namespace Tizen.NUI.Components
     {
         internal RecyclerView ParentItemsView = null;
         internal object ParentGroup = null;
-        internal bool isGroupHeader;
-        internal bool isGroupFooter;
         private bool styleApplied = false;
 
         /// <summary>
