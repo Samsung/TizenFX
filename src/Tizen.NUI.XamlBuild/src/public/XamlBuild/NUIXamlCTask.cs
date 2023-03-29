@@ -164,8 +164,6 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 PrintParam(@"XamlC_Log.txt", "ReferencePath is " + ReferencePath);
             }
 
-            LoggingHelper.LogWarning("Assembly is " + Assembly);
-
             thrownExceptions = null;
 
             LoggingHelper.LogMessage(Normal, $"{new string(' ', 0)}Compiling Xaml, assembly: {Assembly}");
