@@ -21,9 +21,6 @@ namespace Tizen.NUI
     {
         internal static partial class Layout
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_LayoutDirectionChangedSignal")]
-            public static extern global::System.IntPtr LayoutDirectionChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
-
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_ViewLayoutDirectionChangedSignal_Empty")]
             public static extern bool ViewLayoutDirectionChangedSignalEmpty(global::System.Runtime.InteropServices.HandleRef jarg1);
 
