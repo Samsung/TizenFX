@@ -14,6 +14,7 @@
  * limitations under the License.
  *
  */
+using System.Runtime.InteropServices;
 
 namespace Tizen.NUI
 {
@@ -21,14 +22,29 @@ namespace Tizen.NUI
     {
         internal static partial class ViewSignal
         {
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyEventSignal")]
-            public static extern global::System.IntPtr KeyEventSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyEventSignal_Connect")]
+            public static extern void KeyEventConnect(HandleRef view, HandleRef handler);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyInputFocusGainedSignal")]
-            public static extern global::System.IntPtr KeyInputFocusGainedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyEventSignal_Disconnect")]
+            public static extern void KeyEventDisconnect(HandleRef view, HandleRef handler);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyInputFocusLostSignal")]
-            public static extern global::System.IntPtr KeyInputFocusLostSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyInputFocusGainedSignal_Connect")]
+            public static extern void KeyInputFocusGainedConnect(HandleRef view, HandleRef handler);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyInputFocusGainedSignal_Disconnect")]
+            public static extern void KeyInputFocusGainedDisconnect(HandleRef view, HandleRef handler);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyInputFocusLostSignal_Connect")]
+            public static extern void KeyInputFocusLostConnect(HandleRef view, HandleRef handler);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_KeyInputFocusLostSignal_Disconnect")]
+            public static extern void KeyInputFocusLostDisconnect(HandleRef view, HandleRef handler);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_ResourceReadySignal_Connect")]
+            public static extern void ResourceReadyConnect(HandleRef view, HandleRef handler);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_ResourceReadySignal_Disconnect")]
+            public static extern void ResourceReadyDisconnect(HandleRef view, HandleRef handler);
         }
     }
 }
