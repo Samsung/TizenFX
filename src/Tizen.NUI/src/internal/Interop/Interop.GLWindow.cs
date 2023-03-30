@@ -122,8 +122,11 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_SWIGUpcast")]
             public static extern global::System.IntPtr GlWindowUpcast(global::System.IntPtr jarg1);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_TouchSignal")]
-            public static extern global::System.IntPtr GlWindowTouchSignal(HandleRef jarg1);
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_TouchedSignal_Connect")]
+            public static extern void GlWindowTouchSignalConnect(HandleRef glWindow, HandleRef handler);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_TouchedSignal_Disconnect")]
+            public static extern void GlWindowTouchSignalDisconnect(HandleRef glWindow, HandleRef handler);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_GlWindow_FocusChangedSignal")]
             public static extern global::System.IntPtr GlWindowFocusChangedSignal(HandleRef jarg1);

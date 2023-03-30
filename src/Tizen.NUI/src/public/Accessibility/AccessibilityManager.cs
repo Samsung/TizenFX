@@ -720,13 +720,6 @@ namespace Tizen.NUI.Accessibility
             return ret;
         }
 
-        internal ViewSignal FocusedViewActivatedSignal()
-        {
-            ViewSignal ret = new ViewSignal(Interop.AccessibilityManager.FocusedActorActivatedSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
         internal AccessibilityActionSignal StatusChangedSignal()
         {
             AccessibilityActionSignal ret = new AccessibilityActionSignal(Interop.AccessibilityManager.StatusChangedSignal(SwigCPtr), false);

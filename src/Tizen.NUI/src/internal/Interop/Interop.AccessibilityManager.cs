@@ -114,8 +114,11 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AccessibilityManager_FocusOvershotSignal")]
             public static extern global::System.IntPtr FocusOvershotSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
-            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AccessibilityManager_FocusedActorActivatedSignal")]
-            public static extern global::System.IntPtr FocusedActorActivatedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AccessibilityManager_FocusedActorActivatedSignal_Connect")]
+            public static extern void FocusedActorActivatedSignalConnect(global::System.Runtime.InteropServices.HandleRef accessibilityManager, global::System.Runtime.InteropServices.HandleRef handler);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AccessibilityManager_FocusedActorActivatedSignal_Disconnect")]
+            public static extern void FocusedActorActivatedSignalDisconnect(global::System.Runtime.InteropServices.HandleRef accessibilityManager, global::System.Runtime.InteropServices.HandleRef handler);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_AccessibilityManager_StatusChangedSignal")]
             public static extern global::System.IntPtr StatusChangedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);

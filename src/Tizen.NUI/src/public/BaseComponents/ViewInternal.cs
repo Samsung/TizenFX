@@ -1425,8 +1425,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] onRelayoutEventCallback");
 
-                using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnRelayoutSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(onRelayoutEventCallback);
+                Interop.ActorSignal.OnRelayoutDisconnect(GetBaseHandleCPtrHandleRef, onRelayoutEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 onRelayoutEventCallback = null;
             }
 
@@ -1434,8 +1434,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] offWindowEventCallback");
 
-                using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOffSceneSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(offWindowEventCallback);
+                Interop.ActorSignal.OffSceneDisconnect(GetBaseHandleCPtrHandleRef, offWindowEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 offWindowEventCallback = null;
             }
 
@@ -1443,8 +1443,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] onWindowEventCallback");
 
-                using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(onWindowEventCallback);
+                Interop.ActorSignal.OnSceneDisconnect(GetBaseHandleCPtrHandleRef, onWindowEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 onWindowEventCallback = null;
             }
 
@@ -1452,8 +1452,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] wheelEventCallback");
 
-                using WheelSignal signal = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(wheelEventCallback);
+                Interop.ActorSignal.WheelEventDisconnect(GetBaseHandleCPtrHandleRef, wheelEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 wheelEventCallback = null;
             }
 
@@ -1461,8 +1461,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] hoverEventCallback");
 
-                using HoverSignal signal = new HoverSignal(Interop.ActorSignal.ActorHoveredSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(hoverEventCallback);
+                Interop.ActorSignal.HoveredDisconnect(GetBaseHandleCPtrHandleRef, hoverEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 hoverEventCallback = null;
             }
 
@@ -1470,8 +1470,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] hitTestResultDataCallback");
 
-                using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(hitTestResultDataCallback);
+                Interop.ActorSignal.HitTestResultDisconnect(GetBaseHandleCPtrHandleRef, hitTestResultDataCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 hitTestResultDataCallback = null;
             }
 
@@ -1480,8 +1480,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] interceptTouchDataCallback");
 
-                using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(interceptTouchDataCallback);
+                Interop.ActorSignal.InterceptTouchDisconnect(GetBaseHandleCPtrHandleRef, interceptTouchDataCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 interceptTouchDataCallback = null;
             }
 
@@ -1489,26 +1489,26 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] touchDataCallback");
 
-                using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(touchDataCallback);
+                Interop.ActorSignal.TouchDisconnect(GetBaseHandleCPtrHandleRef, touchDataCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 touchDataCallback = null;
             }
 
-            if (ResourcesLoadedCallback != null)
+            if (resourcesLoadedCallback != null)
             {
                 NUILog.Debug($"[Dispose] ResourcesLoadedCallback");
 
-                using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(ResourcesLoadedCallback);
-                ResourcesLoadedCallback = null;
+                Interop.ViewSignal.ResourceReadyDisconnect(GetBaseHandleCPtrHandleRef, resourcesLoadedCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                resourcesLoadedCallback = null;
             }
 
             if (keyCallback != null)
             {
                 NUILog.Debug($"[Dispose] keyCallback");
 
-                using ControlKeySignal signal = new ControlKeySignal(Interop.ViewSignal.KeyEventSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(keyCallback);
+                Interop.ViewSignal.KeyEventDisconnect(GetBaseHandleCPtrHandleRef, keyCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 keyCallback = null;
             }
 
@@ -1516,8 +1516,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] keyInputFocusLostCallback");
 
-                using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusLostSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(keyInputFocusLostCallback);
+                Interop.ViewSignal.KeyInputFocusLostDisconnect(GetBaseHandleCPtrHandleRef, keyInputFocusLostCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 keyInputFocusLostCallback = null;
                 keyInputFocusLostEventHandler = null;
             }
@@ -1526,8 +1526,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] keyInputFocusGainedCallback");
 
-                using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusGainedSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(keyInputFocusGainedCallback);
+                Interop.ViewSignal.KeyInputFocusGainedDisconnect(GetBaseHandleCPtrHandleRef, keyInputFocusGainedCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 keyInputFocusGainedCallback = null;
                 keyInputFocusGainedEventHandler = null;
             }
@@ -1536,8 +1536,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] backgroundResourceLoadedCallback");
 
-                using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(backgroundResourceLoadedCallback);
+                Interop.ViewSignal.ResourceReadyDisconnect(GetBaseHandleCPtrHandleRef, backgroundResourceLoadedCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 backgroundResourceLoadedCallback = null;
             }
 
@@ -1545,10 +1545,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug($"[Dispose] onWindowSendEventCallback");
 
-                using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(onWindowSendEventCallback);
+                Interop.ActorSignal.OnSceneDisconnect(GetBaseHandleCPtrHandleRef, onWindowSendEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 onWindowSendEventCallback = null;
             }
+            NDalicPINVOKE.ThrowExceptionIfExists();
             NUILog.Debug($"[Dispose] DisConnectFromSignals END");
         }
 

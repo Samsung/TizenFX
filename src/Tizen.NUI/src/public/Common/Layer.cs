@@ -62,7 +62,8 @@ namespace Tizen.NUI
 
             if (visibilityChangedEventCallback != null)
             {
-                VisibilityChangedSignal(this).Disconnect(visibilityChangedEventCallback);
+                Interop.ActorSignal.VisibilityChangedDisconnect(GetBaseHandleCPtrHandleRef, visibilityChangedEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 visibilityChangedEventCallback = null;
             }
 
@@ -634,7 +635,8 @@ namespace Tizen.NUI
                 if (visibilityChangedEventHandler == null)
                 {
                     visibilityChangedEventCallback = OnVisibilityChanged;
-                    VisibilityChangedSignal(this).Connect(visibilityChangedEventCallback);
+                    Interop.ActorSignal.VisibilityChangedConnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
 
                 visibilityChangedEventHandler += value;
@@ -643,14 +645,11 @@ namespace Tizen.NUI
             remove
             {
                 visibilityChangedEventHandler -= value;
-
-                if (visibilityChangedEventHandler == null && VisibilityChangedSignal(this).Empty() == false)
+                if (visibilityChangedEventHandler == null && visibilityChangedEventCallback != null)
                 {
-                    VisibilityChangedSignal(this).Disconnect(visibilityChangedEventCallback);
-                    if (VisibilityChangedSignal(this).Empty() == true)
-                    {
-                        visibilityChangedEventCallback = null;
-                    }
+                    Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    visibilityChangedEventCallback = null;
                 }
             }
         }
@@ -695,14 +694,6 @@ namespace Tizen.NUI
                     visibility = value;
                 }
             }
-        }
-
-        // Since ViewVisibilityChangedSignal uses Actor's visibility, Layer uses it as well.
-        internal ViewVisibilityChangedSignal VisibilityChangedSignal(Layer layer)
-        {
-            ViewVisibilityChangedSignal ret = new ViewVisibilityChangedSignal(Interop.NDalic.VisibilityChangedSignal(Layer.getCPtr(layer)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         internal uint GetDepth()

@@ -210,12 +210,12 @@ namespace Tizen.NUI.BaseComponents
             }
 
             onWindowSendEventCallback = SendViewAddedEventToWindow;
-            using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
-            signal?.Connect(onWindowSendEventCallback);
+            Interop.ActorSignal.OnSceneConnect(SwigCPtr, onWindowSendEventCallback.ToHandleRef(this));
+            NDalicPINVOKE.ThrowExceptionIfExists();
 
             hitTestResultDataCallback = OnHitTestResult;
-            using TouchDataSignal touchDataSignal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(SwigCPtr), false);
-            touchDataSignal?.Connect(hitTestResultDataCallback);
+            Interop.ActorSignal.HitTestResultConnect(GetBaseHandleCPtrHandleRef, hitTestResultDataCallback.ToHandleRef(this));
+            NDalicPINVOKE.ThrowExceptionIfExistsDebug();
 
             if (!shown)
             {

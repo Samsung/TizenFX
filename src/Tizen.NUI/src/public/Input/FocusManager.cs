@@ -217,19 +217,19 @@ namespace Tizen.NUI
                 if (focusedViewEnterKeyEventCallback == null)
                 {
                     focusedViewEnterKeyEventCallback = OnFocusedViewEnterKey;
-                    using ViewSignal signal = FocusedViewEnterKeySignal();
-                    signal?.Connect(focusedViewEnterKeyEventCallback);
+                    Interop.FocusManager.FocusedActorEnterKeySignalConnect(SwigCPtr, focusedViewEnterKeyEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 focusedViewEnterKeyEventHandler += value;
             }
             remove
             {
                 focusedViewEnterKeyEventHandler -= value;
-
-                using ViewSignal signal = FocusedViewEnterKeySignal();
-                if (focusedViewEnterKeyEventCallback != null && signal?.Empty() == false)
+                if (focusedViewEnterKeyEventHandler == null && focusedViewEnterKeyEventCallback != null)
                 {
-                    signal?.Disconnect(focusedViewEnterKeyEventCallback);
+                    Interop.FocusManager.FocusedActorEnterKeySignalDisconnect(SwigCPtr, focusedViewEnterKeyEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    focusedViewEnterKeyEventCallback = null;
                 }
             }
         }
@@ -252,8 +252,8 @@ namespace Tizen.NUI
                 if (focusedViewEnterKeyEventCallback2 == null)
                 {
                     focusedViewEnterKeyEventCallback2 = OnFocusedViewEnterKey2;
-                    using ViewSignal signal = FocusedViewEnterKeySignal();
-                    signal?.Connect(focusedViewEnterKeyEventCallback2);
+                    Interop.FocusManager.FocusedActorEnterKeySignalConnect(SwigCPtr, focusedViewEnterKeyEventCallback2.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 focusedViewEnterKeyEventHandler2 += value;
             }
@@ -261,10 +261,11 @@ namespace Tizen.NUI
             {
                 focusedViewEnterKeyEventHandler2 -= value;
 
-                using ViewSignal signal = FocusedViewEnterKeySignal();
-                if (focusedViewEnterKeyEventCallback2 != null && signal?.Empty() == false)
+                if (focusedViewEnterKeyEventHandler2 == null && focusedViewEnterKeyEventCallback2 != null)
                 {
-                    signal?.Disconnect(focusedViewEnterKeyEventCallback2);
+                    Interop.FocusManager.FocusedActorEnterKeySignalDisconnect(SwigCPtr, focusedViewEnterKeyEventCallback2.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    focusedViewEnterKeyEventCallback2 = null;
                 }
             }
         }
@@ -656,13 +657,6 @@ namespace Tizen.NUI
         internal FocusGroupChangedSignal FocusGroupChangedSignal()
         {
             FocusGroupChangedSignal ret = new FocusGroupChangedSignal(Interop.FocusManager.FocusGroupChangedSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ViewSignal FocusedViewEnterKeySignal()
-        {
-            ViewSignal ret = new ViewSignal(Interop.FocusManager.FocusedActorEnterKeySignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }

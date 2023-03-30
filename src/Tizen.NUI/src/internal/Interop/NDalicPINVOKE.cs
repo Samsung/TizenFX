@@ -148,6 +148,18 @@ namespace Tizen.NUI
         }
         protected static SWIGExceptionHelper swigExceptionHelper = new SWIGExceptionHelper();
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal static void ThrowExceptionIfExists()
+        {
+            if (SWIGPendingException.Pending) throw SWIGPendingException.Retrieve();
+        }
+
+        [System.Diagnostics.Conditional("DEBUG")]
+        internal static void ThrowExceptionIfExistsDebug()
+        {
+            if (SWIGPendingException.Pending) throw SWIGPendingException.Retrieve();
+        }
+
         /// <since_tizen> 3 </since_tizen>
         public class SWIGPendingException
         {

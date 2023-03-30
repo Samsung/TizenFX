@@ -121,8 +121,8 @@ namespace Tizen.NUI
                 if (rootLayerTouchDataEventHandler == null)
                 {
                     rootLayerTouchDataCallback = OnWindowTouch;
-                    using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(Layer.getCPtr(GetRootLayer())), false);
-                    signal.Ensure()?.Connect(rootLayerTouchDataCallback);
+                    Interop.ActorSignal.TouchConnect(Layer.getCPtr(GetRootLayer()), rootLayerTouchDataCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 rootLayerTouchDataEventHandler += value;
             }
@@ -131,8 +131,8 @@ namespace Tizen.NUI
                 rootLayerTouchDataEventHandler -= value;
                 if (rootLayerTouchDataEventHandler == null && rootLayerTouchDataCallback != null)
                 {
-                    using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(Layer.getCPtr(GetRootLayer())), false);
-                    signal.Ensure()?.Disconnect(rootLayerTouchDataCallback);
+                    Interop.ActorSignal.TouchDisconnect(Layer.getCPtr(GetRootLayer()), rootLayerTouchDataCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                     rootLayerTouchDataCallback = null;
                 }
             }
@@ -152,8 +152,8 @@ namespace Tizen.NUI
                 if (rootLayerInterceptTouchDataEventHandler == null)
                 {
                     rootLayerInterceptTouchDataCallback = OnWindowInterceptTouch;
-                    using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(Layer.getCPtr(GetRootLayer())), false);
-                    signal.Ensure()?.Connect(rootLayerInterceptTouchDataCallback);
+                    Interop.ActorSignal.InterceptTouchConnect(Layer.getCPtr(GetRootLayer()), rootLayerInterceptTouchDataCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 rootLayerInterceptTouchDataEventHandler += value;
             }
@@ -162,8 +162,8 @@ namespace Tizen.NUI
                 rootLayerInterceptTouchDataEventHandler -= value;
                 if (rootLayerInterceptTouchDataEventHandler == null && rootLayerInterceptTouchDataCallback != null)
                 {
-                    using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(Layer.getCPtr(GetRootLayer())), false);
-                    signal.Ensure()?.Disconnect(rootLayerInterceptTouchDataCallback);
+                    Interop.ActorSignal.InterceptTouchDisconnect(Layer.getCPtr(GetRootLayer()), rootLayerInterceptTouchDataCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                     rootLayerInterceptTouchDataCallback = null;
                 }
             }
@@ -180,8 +180,8 @@ namespace Tizen.NUI
                 if (stageWheelHandler == null)
                 {
                     wheelEventCallback = OnStageWheel;
-                    using WheelSignal signal = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(Layer.getCPtr(this.GetRootLayer())), false);
-                    signal.Ensure()?.Connect(wheelEventCallback);
+                    Interop.ActorSignal.WheelEventConnect(Layer.getCPtr(GetRootLayer()), wheelEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 stageWheelHandler += value;
 
@@ -198,8 +198,8 @@ namespace Tizen.NUI
                 stageWheelHandler -= value;
                 if (stageWheelHandler == null && wheelEventCallback != null)
                 {
-                    using WheelSignal signal = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(Layer.getCPtr(this.GetRootLayer())), false);
-                    signal.Ensure()?.Disconnect(wheelEventCallback);
+                    Interop.ActorSignal.WheelEventDisconnect(Layer.getCPtr(GetRootLayer()), wheelEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                     wheelEventCallback = null;
                 }
 
@@ -628,22 +628,22 @@ namespace Tizen.NUI
 
             if (rootLayerTouchDataCallback != null)
             {
-                using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(Layer.getCPtr(GetRootLayer())), false);
-                signal?.Disconnect(rootLayerTouchDataCallback);
+                Interop.ActorSignal.TouchDisconnect(Layer.getCPtr(GetRootLayer()), rootLayerTouchDataCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
                 rootLayerTouchDataCallback = null;
             }
 
             if (rootLayerInterceptTouchDataCallback != null)
             {
-                using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(Layer.getCPtr(GetRootLayer())), false);
-                signal?.Disconnect(rootLayerInterceptTouchDataCallback);
+                Interop.ActorSignal.InterceptTouchDisconnect(Layer.getCPtr(GetRootLayer()), rootLayerInterceptTouchDataCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
                 rootLayerInterceptTouchDataCallback = null;
             }
 
             if (wheelEventCallback != null)
             {
-                using WheelSignal signal = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(Layer.getCPtr(this.GetRootLayer())), false);
-                signal?.Disconnect(wheelEventCallback);
+                Interop.ActorSignal.WheelEventDisconnect(Layer.getCPtr(GetRootLayer()), wheelEventCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
                 wheelEventCallback = null;
             }
 

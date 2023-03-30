@@ -1082,7 +1082,8 @@ namespace Tizen.NUI.Accessibility
                 if (accessibilityManagerFocusedViewActivatedEventHandler == null)
                 {
                     accessibilityManagerFocusedViewActivatedEventCallbackDelegate = new FocusedViewActivatedEventCallbackDelegate(OnFocusedViewActivated);
-                    this.FocusedViewActivatedSignal().Connect(accessibilityManagerFocusedViewActivatedEventCallbackDelegate);
+                    Interop.AccessibilityManager.FocusedActorActivatedSignalConnect(SwigCPtr, accessibilityManagerFocusedViewActivatedEventCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
 
                 accessibilityManagerFocusedViewActivatedEventHandler += value;
@@ -1092,9 +1093,11 @@ namespace Tizen.NUI.Accessibility
             {
                 accessibilityManagerFocusedViewActivatedEventHandler -= value;
 
-                if (accessibilityManagerFocusedViewActivatedEventHandler == null && FocusedViewActivatedSignal().Empty() == false)
+                if (accessibilityManagerFocusedViewActivatedEventHandler == null && accessibilityManagerFocusedViewActivatedEventCallbackDelegate != null)
                 {
-                    this.FocusedViewActivatedSignal().Disconnect(accessibilityManagerFocusedViewActivatedEventCallbackDelegate);
+                    Interop.AccessibilityManager.FocusedActorActivatedSignalDisconnect(SwigCPtr, accessibilityManagerFocusedViewActivatedEventCallbackDelegate.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    accessibilityManagerFocusedViewActivatedEventCallbackDelegate = null;
                 }
             }
         }
