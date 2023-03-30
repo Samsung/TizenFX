@@ -937,9 +937,8 @@ namespace Tizen.NUI.BaseComponents
             if (hitTestResultDataCallback == null)
             {
                 hitTestResultDataCallback = OnHitTestResult;
-                using TouchDataSignal touchDataSignal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(SwigCPtr), false);
-                touchDataSignal?.Connect(hitTestResultDataCallback);
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                Interop.ActorSignal.HitTestResultConnect(SwigCPtr, hitTestResultDataCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
             }
         }
 
@@ -954,10 +953,9 @@ namespace Tizen.NUI.BaseComponents
         {
             if (hitTestResultDataCallback != null)
             {
-                using TouchDataSignal touchDataSignal = new TouchDataSignal(Interop.ActorSignal.ActorHitTestResultSignal(SwigCPtr), false);
-                touchDataSignal?.Disconnect(hitTestResultDataCallback);
+                Interop.ActorSignal.HitTestResultDisconnect(SwigCPtr, hitTestResultDataCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 hitTestResultDataCallback = null;
-                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
         }
     }
