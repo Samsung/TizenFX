@@ -129,9 +129,6 @@ namespace Tizen.NUI
                 //Don't set Drag Window Posiiton, Window Server sets Position Internally
                 mDragWindow.SetWindowSize(new Size(shadowWidth, shadowHeight));
 
-                //Make Shadow View Transparent
-                shadowView.SetOpacity(0.9f);
-
                 //Make Position 0, 0 for Moving into Drag Window
                 shadowView.Position = new Position(0, 0);
             

@@ -36,6 +36,7 @@ namespace Tizen.NUI
     {
         private HandleRef stageCPtr;
         private Layer rootLayer;
+        private Layer overlayLayer;
         private Layer borderLayer;
         private string windowTitle;
         private List<Layer> childLayers = new List<Layer>();
@@ -931,6 +932,24 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Gets the overlay layer.
+        /// </summary>
+        /// <returns>The overlay layer.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Layer GetOverlayLayer()
+        {
+            // Window.IsInstalled() is actually true only when called from event thread and
+            // Core has been initialized, not when Stage is ready.
+            if (overlayLayer == null && Window.IsInstalled())
+            {
+                overlayLayer = new Layer(Interop.Window.GetOverlayLayer(SwigCPtr), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                overlayLayer.SetWindow(this);
+            }
+            return overlayLayer;
+        }
+
+        /// <summary>
         /// Add a child view to window.
         /// </summary>
         /// <param name="view">the child should be added to the window.</param>
@@ -1767,6 +1786,34 @@ namespace Tizen.NUI
             Touch ret = new Touch(Interop.Window.GetLastTouchEvent(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Sets the necessary for window rotation Acknowledgement.
+        /// After this function called, SendRotationCompletedAcknowledgement() should be called to complete window rotation.
+        ///
+        /// This function is supprot that application has the window rotation acknowledgement's control.
+        /// It means display server waits when application's rotation work is finished.
+        /// It is useful application has the other rendering engine which works asynchronous.
+        /// For instance, GlView.
+        /// </summary>
+        /// <param name="needAcknowledgement">the flag is true if window rotation acknowledge is sent.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetNeedsRotationCompletedAcknowledgement(bool needAcknowledgement)
+        {
+            Interop.Window.SetNeedsRotationCompletedAcknowledgement(SwigCPtr, needAcknowledgement);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// send the Acknowledgement to complete window rotation.
+        /// For this function, SetNeedsRotationCompletedAcknowledgement should be already called with true.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SendRotationCompletedAcknowledgement()
+        {
+            Interop.Window.SendRotationCompletedAcknowledgement(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>

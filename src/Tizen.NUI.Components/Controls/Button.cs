@@ -357,7 +357,7 @@ namespace Tizen.NUI.Components
                     overlayImage = CreateOverlayImage();
                     if (null != Extension)
                     {
-                        overlayImage = Extension.OnCreateOverlayImage(this, overlayImage);
+                        Extension.ProcessOverlayImage(this, ref overlayImage);
                     }
                     if (null != overlayImage)
                     {
@@ -1007,24 +1007,25 @@ namespace Tizen.NUI.Components
 
             base.ApplyStyle(viewStyle);
 
-            if (!styleApplying && viewStyle is ButtonStyle buttonStyle)
+            if (viewStyle is ButtonStyle buttonStyle)
             {
-                styleApplying = true;
+                styleApplying++;
+
+                if ((Extension = buttonStyle.CreateExtension()) != null)
+                {
+                    bool needRelayout = false;
+                    needRelayout |= Extension.ProcessIcon(this, ref buttonIcon);
+                    needRelayout |= Extension.ProcessText(this, ref buttonText);
+
+                    if (needRelayout)
+                    {
+                        LayoutItems();
+                    }
+                }
 
                 if (buttonStyle.Overlay != null)
                 {
                     OverlayImage?.ApplyStyle(buttonStyle.Overlay);
-                }
-
-                if ((Extension = buttonStyle.CreateExtension()) != null)
-                {
-                    buttonIcon.Unparent();
-                    buttonIcon = Extension.OnCreateIcon(this, buttonIcon);
-
-                    buttonText.Unparent();
-                    buttonText = Extension.OnCreateText(this, buttonText);
-
-                    LayoutItems();
                 }
 
                 if (buttonStyle.Text != null)
@@ -1037,7 +1038,8 @@ namespace Tizen.NUI.Components
                 {
                     buttonIcon.ApplyStyle(buttonStyle.Icon);
                 }
-                styleApplying = false;
+
+                styleApplying--;
             }
 
             UpdateState();
