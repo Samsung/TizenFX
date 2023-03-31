@@ -850,6 +850,7 @@ namespace Tizen.Content.Download
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <feature>http://tizen.org/feature/download</feature>
         /// <exception cref="ArgumentException">Thrown when it is failed due to setting an invalid value.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>

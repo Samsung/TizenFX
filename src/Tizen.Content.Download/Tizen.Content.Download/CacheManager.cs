@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2016 Samsung Electronics Co., Ltd All Rights Reserved
+* Copyright (c) 2023 Samsung Electronics Co., Ltd All Rights Reserved
 *
 * Licensed under the Apache License, Version 2.0 (the License);
 * you may not use this file except in compliance with the License.
@@ -31,6 +31,7 @@ namespace Tizen.Content.Download
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <feature>http://tizen.org/feature/download</feature>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when not supported.</exception>
@@ -48,6 +49,7 @@ namespace Tizen.Content.Download
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <feature>http://tizen.org/feature/download</feature>
         /// <exception cref="ArgumentException">Thrown when it is failed due to setting an invalid value.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
@@ -80,6 +82,7 @@ namespace Tizen.Content.Download
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <feature>http://tizen.org/feature/download</feature>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
         /// <exception cref="NotSupportedException">Thrown when not supported.</exception>
@@ -98,6 +101,7 @@ namespace Tizen.Content.Download
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <feature>http://tizen.org/feature/download</feature>
         /// <exception cref="ArgumentException">Thrown when it is failed due to setting an invalid value.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
         /// <exception cref="UnauthorizedAccessException">Thrown when a permission is denied.</exception>
@@ -130,6 +134,7 @@ namespace Tizen.Content.Download
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         /// <privilege>http://tizen.org/privilege/download</privilege>
+        /// <feature>http://tizen.org/feature/download</feature>
         /// <remarks> The time after which the stored cache will be invalid/stale.</remarks>
         /// <exception cref="ArgumentException">Thrown when it is failed due to setting an invalid value.</exception>
         /// <exception cref="InvalidOperationException">Thrown when it is failed due to an invalid operation.</exception>
