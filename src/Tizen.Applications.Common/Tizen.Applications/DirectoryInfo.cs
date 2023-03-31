@@ -185,19 +185,19 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the absolute path to the application's resource control directory, which is used to share the resources of the allowed resource packages that available.
+        /// Gets the absolute path to the application's resource control directory, which is used to share the allowed resources of the resource packages.
         /// </summary>
-        /// <param name="res_type">The resource package's type</param>
-        /// <returns> The absolute path to the application's resource control directory, which is used to share the resources of the allowed resource packages that available.</returns>
+        /// <param name="resourceType">The resource type defined in the resource package</param>
+        /// <returns> The absolute path to the application's resource control directory, which is used to share the allowed resources of the resource packages.</returns>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
-        /// <exception cref="DirectoryNotFoundException">Thrown in case of nonexistence of available resource.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown in case of nonexistence of resource.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
-        /// <since_tizen> 7.5 </since_tizen>
-        public string GetResControlAllowedResource(string res_type)
+        /// <since_tizen> 11 </since_tizen>
+        public string GetResourceControlAllowedResource(string resourceType)
         {
             string path = string.Empty;
-            Interop.AppCommon.AppCommonErrorCode err = Interop.AppCommon.AppGetResControlAllowedResourcePath(res_type, out path);
+            Interop.AppCommon.AppCommonErrorCode err = Interop.AppCommon.AppGetResControlAllowedResourcePath(resourceType, out path);
             if (err != Interop.AppCommon.AppCommonErrorCode.None)
             {
                 switch (err)
@@ -209,7 +209,7 @@ namespace Tizen.Applications
                     case Interop.AppCommon.AppCommonErrorCode.InvalidContext:
                         throw new InvalidOperationException("Invalid app context");
                     case Interop.AppCommon.AppCommonErrorCode.PermissionDenied:
-                        throw new DirectoryNotFoundException(String.Format("Allowed Resource about {0} is not Found", res_type));
+                        throw new DirectoryNotFoundException(String.Format("Allowed Resource about {0} is not Found", resourceType));
                     default:
                         throw new InvalidOperationException("Invalid Operation");
                 }
@@ -219,19 +219,19 @@ namespace Tizen.Applications
         }
 
         /// <summary>
-        /// Gets the absolute path to the application's resource control directory, which is used to share the resources of the global resource packages that available.
+        /// Gets the absolute path to the application's resource control directory, which is used to share the global resources of the resource packages.
         /// </summary>
-        /// <param name="res_type">The resource package's type</param>
-        /// <returns> The absolute path to the application's resource control directory, which is used to share the resources of the global resource packages that available.</returns>
+        /// <param name="resourceType">The resource type defined in the resource package</param>
+        /// <returns> The absolute path to the application's resource control directory, which is used to share the global resources of the resource packages.</returns>
         /// <exception cref="ArgumentException">Thrown in case of an invalid parameter.</exception>
         /// <exception cref="OutOfMemoryException">Thrown in case of out of memory.</exception>
-        /// <exception cref="DirectoryNotFoundException">Thrown in case of nonexistence of available resource.</exception>
+        /// <exception cref="DirectoryNotFoundException">Thrown in case of nonexistence of resource.</exception>
         /// <exception cref="InvalidOperationException">Thrown in case of any internal error.</exception>
-        /// <since_tizen> 7.5 </since_tizen>
-        public string GetResControlGlobalResource(string res_type)
+        /// <since_tizen> 11 </since_tizen>
+        public string GetResourceControlGlobalResource(string resourceType)
         {
             string path = string.Empty;
-            Interop.AppCommon.AppCommonErrorCode err = Interop.AppCommon.AppGetResControlGlobalResourcePath(res_type, out path);
+            Interop.AppCommon.AppCommonErrorCode err = Interop.AppCommon.AppGetResControlGlobalResourcePath(resourceType, out path);
             if (err != Interop.AppCommon.AppCommonErrorCode.None)
             {
                 switch (err)
@@ -243,7 +243,7 @@ namespace Tizen.Applications
                     case Interop.AppCommon.AppCommonErrorCode.InvalidContext:
                         throw new InvalidOperationException("Invalid app context");
                     case Interop.AppCommon.AppCommonErrorCode.PermissionDenied:
-                        throw new DirectoryNotFoundException(String.Format("Allowed Resource about {0} is not Found", res_type));
+                        throw new DirectoryNotFoundException(String.Format("Allowed Resource about {0} is not Found", resourceType));
                     default:
                         throw new InvalidOperationException("Invalid Operation");
                 }
