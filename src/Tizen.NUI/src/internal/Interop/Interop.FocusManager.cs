@@ -83,7 +83,7 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusedActorEnterKeySignal_Connect")]
             public static extern void FocusedActorEnterKeySignalConnect(HandleRef focusManager, HandleRef handler);
 
-            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusedActorEnterKeySignal_Disonnect")]
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_KeyboardFocusManager_FocusedActorEnterKeySignal_Disconnect")]
             public static extern void FocusedActorEnterKeySignalDisconnect(HandleRef focusManager, HandleRef handler);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyboardFocusManager_EnableDefaultAlgorithm")]
