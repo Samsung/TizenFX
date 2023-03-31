@@ -66,6 +66,25 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// This is used to pre-cache fonts in order to improve the runtime performance of the application.
+        /// </summary>
+        /// <param name="fallbackFamilyList">A list of fallback font families to be pre-cached.</param>
+        /// <param name="extraFamilyList">A list of additional font families to be pre-cached.</param>
+        /// <param name="localeFamily">A locale font family to be pre-cached.</param>
+        /// <param name="useThread">True if the font client should create thread and perform pre-caching, false otherwise.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void PreCache(List<string> fallbackFamilyList, List<string> extraFamilyList, string localeFamily, bool useThread)
+        {
+            int fallbackFamilySize = fallbackFamilyList?.Count ?? 0;
+            int extraFamilySize = extraFamilyList?.Count ?? 0;
+            string[] fallbackFamilyArray = fallbackFamilySize > 0 ? fallbackFamilyList.ToArray() : null;
+            string[] extraFamilyArray = extraFamilySize > 0 ? extraFamilyList.ToArray() : null;
+
+            Interop.FontClient.PreCache(fallbackFamilyArray, fallbackFamilySize, extraFamilyArray, extraFamilySize, localeFamily, useThread);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// Called when the user changes the system defaults.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>

@@ -55,7 +55,7 @@ namespace Tizen.NUI.BaseComponents
         private LayoutDirectionChangedEventCallbackType layoutDirectionChangedEventCallback;
         // Resource Ready Signal
         private EventHandler resourcesLoadedEventHandler;
-        private ResourcesLoadedCallbackType ResourcesLoadedCallback;
+        private ResourcesLoadedCallbackType resourcesLoadedCallback;
         private EventHandler<BackgroundResourceLoadedEventArgs> backgroundResourceLoadedEventHandler;
         private _backgroundResourceLoadedCallbackType backgroundResourceLoadedCallback;
         private TouchDataCallbackType hitTestResultDataCallback;
@@ -112,8 +112,8 @@ namespace Tizen.NUI.BaseComponents
                 if (keyInputFocusGainedEventHandler == null)
                 {
                     keyInputFocusGainedCallback = OnKeyInputFocusGained;
-                    using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusGainedSignal(SwigCPtr), false);
-                    signal?.Connect(keyInputFocusGainedCallback);
+                    Interop.ViewSignal.KeyInputFocusGainedConnect(SwigCPtr, keyInputFocusGainedCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 keyInputFocusGainedEventHandler += value;
             }
@@ -121,18 +121,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 keyInputFocusGainedEventHandler -= value;
-                if (keyInputFocusGainedEventHandler == null)
+                if (keyInputFocusGainedEventHandler == null && keyInputFocusGainedCallback != null)
                 {
-                    using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusGainedSignal(SwigCPtr), false);
-
-                    if (keyInputFocusGainedCallback != null)
-                    {
-                        signal?.Disconnect(keyInputFocusGainedCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            keyInputFocusGainedCallback = null;
-                        }
-                    }
+                    Interop.ViewSignal.KeyInputFocusGainedDisconnect(SwigCPtr, keyInputFocusGainedCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    keyInputFocusGainedCallback = null;
                 }
             }
         }
@@ -149,8 +142,8 @@ namespace Tizen.NUI.BaseComponents
                 if (keyInputFocusLostEventHandler == null)
                 {
                     keyInputFocusLostCallback = OnKeyInputFocusLost;
-                    using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusLostSignal(SwigCPtr), false);
-                    signal?.Connect(keyInputFocusLostCallback);
+                    Interop.ViewSignal.KeyInputFocusLostConnect(SwigCPtr, keyInputFocusLostCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 keyInputFocusLostEventHandler += value;
             }
@@ -158,18 +151,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 keyInputFocusLostEventHandler -= value;
-                if (keyInputFocusLostEventHandler == null)
+                if (keyInputFocusLostEventHandler == null && keyInputFocusLostCallback != null)
                 {
-                    using KeyInputFocusSignal signal = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusLostSignal(SwigCPtr), false);
-
-                    if (keyInputFocusLostCallback != null)
-                    {
-                        signal?.Disconnect(keyInputFocusLostCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            keyInputFocusLostCallback = null;
-                        }
-                    }
+                    Interop.ViewSignal.KeyInputFocusLostDisconnect(SwigCPtr, keyInputFocusLostCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    keyInputFocusLostCallback = null;
                 }
             }
         }
@@ -186,8 +172,8 @@ namespace Tizen.NUI.BaseComponents
                 if (keyEventHandler == null)
                 {
                     keyCallback = OnKeyEvent;
-                    using ControlKeySignal signal = new ControlKeySignal(Interop.ViewSignal.KeyEventSignal(SwigCPtr), false);
-                    signal?.Connect(keyCallback);
+                    Interop.ViewSignal.KeyEventConnect(SwigCPtr, keyCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 keyEventHandler += value;
             }
@@ -195,17 +181,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 keyEventHandler -= value;
-                if (keyEventHandler == null)
+                if (keyEventHandler == null && keyCallback != null)
                 {
-                    using ControlKeySignal signal = new ControlKeySignal(Interop.ViewSignal.KeyEventSignal(SwigCPtr), false);
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(keyCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            keyCallback = null;
-                        }
-                    }
+                    Interop.ViewSignal.KeyEventDisconnect(SwigCPtr, keyCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    keyCallback = null;
                 }
             }
         }
@@ -222,8 +202,8 @@ namespace Tizen.NUI.BaseComponents
                 if (onRelayoutEventHandler == null)
                 {
                     onRelayoutEventCallback = OnRelayout;
-                    using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnRelayoutSignal(SwigCPtr), false);
-                    signal?.Connect(onRelayoutEventCallback);
+                    Interop.ActorSignal.OnRelayoutConnect(SwigCPtr, onRelayoutEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 onRelayoutEventHandler += value;
             }
@@ -231,17 +211,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 onRelayoutEventHandler -= value;
-                if (onRelayoutEventHandler == null)
+                if (onRelayoutEventHandler == null && onRelayoutEventCallback != null)
                 {
-                    using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnRelayoutSignal(SwigCPtr), false);
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(onRelayoutEventCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            onRelayoutEventCallback = null;
-                        }
-                    }
+                    Interop.ActorSignal.OnRelayoutDisconnect(SwigCPtr, onRelayoutEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    onRelayoutEventCallback = null;
                 }
             }
         }
@@ -260,8 +234,8 @@ namespace Tizen.NUI.BaseComponents
                 if (interceptTouchDataEventHandler == null)
                 {
                     interceptTouchDataCallback = OnInterceptTouch;
-                    using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(SwigCPtr), false);
-                    signal?.Connect(interceptTouchDataCallback);
+                    Interop.ActorSignal.InterceptTouchConnect(SwigCPtr, interceptTouchDataCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 interceptTouchDataEventHandler += value;
             }
@@ -269,17 +243,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 interceptTouchDataEventHandler -= value;
-                if (interceptTouchDataEventHandler == null)
+                if (interceptTouchDataEventHandler == null && interceptTouchDataCallback != null)
                 {
-                    using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(SwigCPtr), false);
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(interceptTouchDataCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            interceptTouchDataCallback = null;
-                        }
-                    }
+                    Interop.ActorSignal.InterceptTouchDisconnect(SwigCPtr, interceptTouchDataCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    interceptTouchDataCallback = null;
                 }
             }
         }
@@ -309,8 +277,8 @@ namespace Tizen.NUI.BaseComponents
                 if (touchDataEventHandler == null)
                 {
                     touchDataCallback = OnTouch;
-                    using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(SwigCPtr), false);
-                    signal.Connect(touchDataCallback);
+                    Interop.ActorSignal.TouchConnect(SwigCPtr, touchDataCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 touchDataEventHandler += value;
             }
@@ -318,17 +286,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 touchDataEventHandler -= value;
-                if (touchDataEventHandler == null)
+                if (touchDataEventHandler == null && touchDataCallback != null)
                 {
-                    using TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(SwigCPtr), false);
-                    if (signal.Empty() == false)
-                    {
-                        signal.Disconnect(touchDataCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            touchDataCallback = null;
-                        }
-                    }
+                    Interop.ActorSignal.TouchDisconnect(SwigCPtr, touchDataCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    touchDataCallback = null;
                 }
             }
         }
@@ -345,8 +307,8 @@ namespace Tizen.NUI.BaseComponents
                 if (hoverEventHandler == null)
                 {
                     hoverEventCallback = OnHoverEvent;
-                    using HoverSignal signal = new HoverSignal(Interop.ActorSignal.ActorHoveredSignal(SwigCPtr), false);
-                    signal?.Connect(hoverEventCallback);
+                    Interop.ActorSignal.HoveredConnect(SwigCPtr, hoverEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 hoverEventHandler += value;
             }
@@ -354,17 +316,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 hoverEventHandler -= value;
-                if (hoverEventHandler == null)
+                if (hoverEventHandler == null && hoverEventCallback != null)
                 {
-                    using HoverSignal signal = new HoverSignal(Interop.ActorSignal.ActorHoveredSignal(SwigCPtr), false);
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(hoverEventCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            hoverEventCallback = null;
-                        }
-                    }
+                    Interop.ActorSignal.HoveredDisconnect(SwigCPtr, hoverEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    hoverEventCallback = null;
                 }
             }
         }
@@ -381,8 +337,8 @@ namespace Tizen.NUI.BaseComponents
                 if (wheelEventHandler == null)
                 {
                     wheelEventCallback = OnWheelEvent;
-                    using WheelSignal signal = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(SwigCPtr), false);
-                    signal?.Connect(wheelEventCallback);
+                    Interop.ActorSignal.WheelEventConnect(SwigCPtr, wheelEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 wheelEventHandler += value;
             }
@@ -390,17 +346,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 wheelEventHandler -= value;
-                if (wheelEventHandler == null)
+                if (wheelEventHandler == null && wheelEventCallback != null)
                 {
-                    using WheelSignal signal = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(SwigCPtr), false);
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(wheelEventCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            wheelEventCallback = null;
-                        }
-                    }
+                    Interop.ActorSignal.WheelEventDisconnect(SwigCPtr, wheelEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    wheelEventCallback = null;
                 }
             }
         }
@@ -417,8 +367,8 @@ namespace Tizen.NUI.BaseComponents
                 if (onWindowEventHandler == null)
                 {
                     onWindowEventCallback = OnWindow;
-                    using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
-                    signal?.Connect(onWindowEventCallback);
+                    Interop.ActorSignal.OnSceneConnect(SwigCPtr, onWindowEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 onWindowEventHandler += value;
             }
@@ -426,17 +376,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 onWindowEventHandler -= value;
-                if (onWindowEventHandler == null)
+                if (onWindowEventHandler == null && onWindowEventCallback != null)
                 {
-                    using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(onWindowEventCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            onWindowEventCallback = null;
-                        }
-                    }
+                    Interop.ActorSignal.OnSceneDisconnect(SwigCPtr, onWindowEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    onWindowEventCallback = null;
                 }
             }
         }
@@ -453,8 +397,8 @@ namespace Tizen.NUI.BaseComponents
                 if (offWindowEventHandler == null)
                 {
                     offWindowEventCallback = OffWindow;
-                    using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOffSceneSignal(SwigCPtr), false);
-                    signal?.Connect(offWindowEventCallback);
+                    Interop.ActorSignal.OffSceneConnect(SwigCPtr, offWindowEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 offWindowEventHandler += value;
             }
@@ -462,17 +406,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 offWindowEventHandler -= value;
-                if (offWindowEventHandler == null)
+                if (offWindowEventHandler == null && offWindowEventCallback != null)
                 {
-                    using ViewSignal signal = new ViewSignal(Interop.ActorSignal.ActorOffSceneSignal(SwigCPtr), false);
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(offWindowEventCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            offWindowEventCallback = null;
-                        }
-                    }
+                    Interop.ActorSignal.OffSceneDisconnect(SwigCPtr, offWindowEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    offWindowEventCallback = null;
                 }
             }
         }
@@ -489,23 +427,20 @@ namespace Tizen.NUI.BaseComponents
                 if (visibilityChangedEventHandler == null)
                 {
                     visibilityChangedEventCallback = OnVisibilityChanged;
-                    VisibilityChangedSignal(this).Connect(visibilityChangedEventCallback);
+                    Interop.ActorSignal.VisibilityChangedConnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
-
                 visibilityChangedEventHandler += value;
             }
 
             remove
             {
                 visibilityChangedEventHandler -= value;
-
-                if (visibilityChangedEventHandler == null && VisibilityChangedSignal(this).Empty() == false)
+                if (visibilityChangedEventHandler == null && visibilityChangedEventCallback != null)
                 {
-                    VisibilityChangedSignal(this).Disconnect(visibilityChangedEventCallback);
-                    if (VisibilityChangedSignal(this).Empty() == true)
-                    {
-                        visibilityChangedEventCallback = null;
-                    }
+                    Interop.ActorSignal.VisibilityChangedDisconnect(SwigCPtr, visibilityChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    visibilityChangedEventCallback = null;
                 }
             }
         }
@@ -522,7 +457,8 @@ namespace Tizen.NUI.BaseComponents
                 if (layoutDirectionChangedEventHandler == null)
                 {
                     layoutDirectionChangedEventCallback = OnLayoutDirectionChanged;
-                    LayoutDirectionChangedSignal(this).Connect(layoutDirectionChangedEventCallback);
+                    Interop.ActorSignal.LayoutDirectionChangedConnect(SwigCPtr, layoutDirectionChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
 
                 layoutDirectionChangedEventHandler += value;
@@ -532,13 +468,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 layoutDirectionChangedEventHandler -= value;
 
-                if (layoutDirectionChangedEventHandler == null && LayoutDirectionChangedSignal(this).Empty() == false)
+                if (layoutDirectionChangedEventHandler == null && layoutDirectionChangedEventCallback != null)
                 {
-                    LayoutDirectionChangedSignal(this).Disconnect(layoutDirectionChangedEventCallback);
-                    if (LayoutDirectionChangedSignal(this).Empty() == true)
-                    {
-                        layoutDirectionChangedEventCallback = null;
-                    }
+                    Interop.ActorSignal.LayoutDirectionChangedDisconnect(SwigCPtr, layoutDirectionChangedEventCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    layoutDirectionChangedEventCallback = null;
                 }
             }
         }
@@ -554,9 +488,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 if (resourcesLoadedEventHandler == null)
                 {
-                    ResourcesLoadedCallback = OnResourcesLoaded;
-                    using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(SwigCPtr), false);
-                    signal?.Connect(ResourcesLoadedCallback);
+                    resourcesLoadedCallback = OnResourcesLoaded;
+                    Interop.ViewSignal.ResourceReadyConnect(SwigCPtr, resourcesLoadedCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 resourcesLoadedEventHandler += value;
             }
@@ -564,17 +498,11 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 resourcesLoadedEventHandler -= value;
-                if (resourcesLoadedEventHandler == null)
+                if (resourcesLoadedEventHandler == null && resourcesLoadedCallback != null)
                 {
-                    using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(SwigCPtr), false);
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(ResourcesLoadedCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            ResourcesLoadedCallback = null;
-                        }
-                    }
+                    Interop.ViewSignal.ResourceReadyDisconnect(SwigCPtr, resourcesLoadedCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    resourcesLoadedCallback = null;
                 }
             }
         }
@@ -618,8 +546,8 @@ namespace Tizen.NUI.BaseComponents
                 if (backgroundResourceLoadedEventHandler == null)
                 {
                     backgroundResourceLoadedCallback = OnBackgroundResourceLoaded;
-                    using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(SwigCPtr), false);
-                    signal?.Connect(backgroundResourceLoadedCallback);
+                    Interop.ViewSignal.ResourceReadyConnect(SwigCPtr, backgroundResourceLoadedCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
                 }
                 backgroundResourceLoadedEventHandler += value;
             }
@@ -627,117 +555,13 @@ namespace Tizen.NUI.BaseComponents
             remove
             {
                 backgroundResourceLoadedEventHandler -= value;
-                if (backgroundResourceLoadedEventHandler == null)
+                if (backgroundResourceLoadedEventHandler == null && backgroundResourceLoadedCallback != null)
                 {
-                    using ViewSignal signal = new ViewSignal(Interop.View.ResourceReadySignal(SwigCPtr), false);
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(backgroundResourceLoadedCallback);
-                        if (signal?.Empty() == true)
-                        {
-                            backgroundResourceLoadedCallback = null;
-                        }
-                    }
+                    Interop.ViewSignal.ResourceReadyDisconnect(SwigCPtr, backgroundResourceLoadedCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    backgroundResourceLoadedCallback = null;
                 }
             }
-        }
-
-        internal TouchDataSignal InterceptTouchSignal()
-        {
-            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.ActorInterceptTouchSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal TouchDataSignal TouchSignal()
-        {
-            TouchDataSignal ret = new TouchDataSignal(Interop.ActorSignal.ActorTouchSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal HoverSignal HoveredSignal()
-        {
-            HoverSignal ret = new HoverSignal(Interop.ActorSignal.ActorHoveredSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal WheelSignal WheelEventSignal()
-        {
-            WheelSignal ret = new WheelSignal(Interop.ActorSignal.ActorWheelEventSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ViewSignal OnWindowSignal()
-        {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.ActorOnSceneSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ViewSignal OffWindowSignal()
-        {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.ActorOffSceneSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ViewSignal OnRelayoutSignal()
-        {
-            ViewSignal ret = new ViewSignal(Interop.ActorSignal.ActorOnRelayoutSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending)
-                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ViewVisibilityChangedSignal VisibilityChangedSignal(View view)
-        {
-            ViewVisibilityChangedSignal ret = new ViewVisibilityChangedSignal(Interop.NDalic.VisibilityChangedSignal(View.getCPtr(view)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ViewLayoutDirectionChangedSignal LayoutDirectionChangedSignal(View view)
-        {
-            ViewLayoutDirectionChangedSignal ret = new ViewLayoutDirectionChangedSignal(Interop.Layout.LayoutDirectionChangedSignal(View.getCPtr(view)), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ViewSignal ResourcesLoadedSignal()
-        {
-            ViewSignal ret = new ViewSignal(Interop.View.ResourceReadySignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal ControlKeySignal KeyEventSignal()
-        {
-            ControlKeySignal ret = new ControlKeySignal(Interop.ViewSignal.KeyEventSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal KeyInputFocusSignal KeyInputFocusGainedSignal()
-        {
-            KeyInputFocusSignal ret = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusGainedSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
-        }
-
-        internal KeyInputFocusSignal KeyInputFocusLostSignal()
-        {
-            KeyInputFocusSignal ret = new KeyInputFocusSignal(Interop.ViewSignal.KeyInputFocusLostSignal(SwigCPtr), false);
-            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
         }
 
         private void OnColorChanged(float r, float g, float b, float a)

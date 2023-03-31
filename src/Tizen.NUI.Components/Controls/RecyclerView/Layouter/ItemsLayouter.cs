@@ -50,11 +50,19 @@ namespace Tizen.NUI.Components
             }
         }
 
+
+        /// <summary>
+        /// Internal item source that organized.
+        /// Check IItemSource and IGrouppedItemSoure also.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected IItemSource Source => ItemsView?.InternalSource;
+
         /// <summary>
         /// Container which contains ViewItems.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected View Container { get; set; }
+        protected View Container =>ItemsView?.ContentContainer;
 
         /// <summary>
         /// Parent ItemsView.
@@ -85,6 +93,12 @@ namespace Tizen.NUI.Components
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected List<RecyclerViewItem> VisibleItems { get; } = new List<RecyclerViewItem>();
+
+        /// <summary>
+        /// Visible ViewItem.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual List<GroupInfo> GroupItems { get; }
 
         /// <summary>
         /// Flag of layouter initialization.
@@ -124,7 +138,6 @@ namespace Tizen.NUI.Components
         public virtual void Initialize(RecyclerView view)
         {
             ItemsView = view ?? throw new ArgumentNullException(nameof(view));
-            Container = view.ContentContainer;
             PrevScrollPosition = 0.0f;
 
             IsHorizontal = (view.ScrollingDirection == ScrollableBase.Direction.Horizontal);
@@ -166,7 +179,6 @@ namespace Tizen.NUI.Components
             {
                 if (ItemsView != null) Container.Size = ItemsView.Size;
                 Container.Position = new Position(0.0f, 0.0f);
-                Container = null;
             }
             ItemsView = null;
         }
@@ -381,14 +393,80 @@ namespace Tizen.NUI.Components
             }
         }
 
-        internal virtual (float X, float Y) GetItemPosition(int index)
+        /// <summary>
+        /// Get item position.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal virtual (float X, float Y) GetItemPosition(int index)
         {
             return (0, 0);
         }
 
-        internal virtual (float Width, float Height) GetItemSize(int index)
+        /// <summary>
+        /// Get item size.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal virtual (float Width, float Height) GetItemSize(int index)
         {
             return (0, 0);
+        }
+
+        /// <summary>
+        /// Get visible item object on index if it is realized.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected virtual RecyclerViewItem GetVisibleItem(int index)
+        {
+
+            foreach (RecyclerViewItem item in VisibleItems)
+            {
+                if (item.Index == index) return item;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// The data class for group informations.
+        /// inherited class can use this data to managing group items feature.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected internal class GroupInfo
+        {
+            /// <summary>
+            /// Group parent object.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public object GroupParent;
+
+            /// <summary>
+            /// Group start index.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public int StartIndex;
+
+            /// <summary>
+            /// Group count.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public int Count;
+
+            /// <summary>
+            /// Group size. this value is size of scrollable axis only.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float GroupSize;
+
+            /// <summary>
+            /// Group position. this value is size of scrollable axis only.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public float GroupPosition;
+
+            /// <summary>
+            /// List of group items position.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public List<float> ItemPosition = new List<float>();
         }
     }
 }
