@@ -99,6 +99,17 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// Create an initialized Model.
+        /// </summary>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Model() : this(Interop.Model.ModelNew(), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            this.PositionUsesAnchorPoint = true;
+        }
+
+        /// <summary>
         /// Copy constructor.
         /// </summary>
         /// <param name="model">Source object to copy.</param>
@@ -136,6 +147,57 @@ namespace Tizen.NUI.Scene3D
             {
                 return GetImageBasedLightScaleFactor();
             }
+        }
+
+        /// <summary>
+        /// Adds modelNode to this Model.
+        /// </summary>
+        /// <param name="modelRoot">Root of a ModelNode tree</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddModelNode(ModelNode modelRoot)
+        {
+            Interop.Model.AddModelNode(SwigCPtr, ModelNode.getCPtr(modelRoot));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes modelNode from this Model.
+        /// </summary>
+        /// <param name="modelRoot">Root of a ModelNode tree to be removed</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void RemoveModelNode(ModelNode modelRoot)
+        {
+            Interop.Model.RemoveModelNode(SwigCPtr, ModelNode.getCPtr(modelRoot));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Removes Returns a child ModelNode object with a name that matches nodeName.
+        /// </summary>
+        /// <param name="nodeName">The name of the child ModelNode object you want to find.</param>
+        /// <returns>Child ModelNode that has nodeName as name.</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public ModelNode FindChildModelNodeByName(string nodeName)
+        {
+            global::System.IntPtr cPtr = Interop.Model.FindChildModelNodeByName(SwigCPtr, nodeName);
+            ModelNode ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ModelNode;
+            if (ret == null)
+            {
+                // Register new animatable into Registry.
+                ret = new ModelNode(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI animatable. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.BaseHandle.DeleteBaseHandle(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
@@ -318,14 +380,14 @@ namespace Tizen.NUI.Scene3D
         /// <returns>Root View of the model.</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        private Animatable GetModelRoot()
+        private ModelNode GetModelRoot()
         {
             global::System.IntPtr cPtr = Interop.Model.GetModelRoot(SwigCPtr);
-            Animatable ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animatable;
+            ModelNode ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ModelNode;
             if (ret == null)
             {
                 // Register new animatable into Registry.
-                ret = new Animatable(cPtr, true);
+                ret = new ModelNode(cPtr, true);
             }
             else
             {
