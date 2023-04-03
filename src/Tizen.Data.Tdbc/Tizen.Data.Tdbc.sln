@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32819.101
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Data.Tdbc", "Tizen.Data.Tdbc\Tizen.Data.Tdbc.csproj", "{218E5B96-2231-4C8A-9980-5858EDD84D29}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tizen.Data.Tdbc.Driver.Sqlite", "Tizen.Data.Tdbc.Driver.Sqlite\Tizen.Data.Tdbc.Driver.Sqlite.csproj", "{7798035E-735F-4489-9795-06A0918532FB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{218E5B96-2231-4C8A-9980-5858EDD84D29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{218E5B96-2231-4C8A-9980-5858EDD84D29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{218E5B96-2231-4C8A-9980-5858EDD84D29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7798035E-735F-4489-9795-06A0918532FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7798035E-735F-4489-9795-06A0918532FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7798035E-735F-4489-9795-06A0918532FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7798035E-735F-4489-9795-06A0918532FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
