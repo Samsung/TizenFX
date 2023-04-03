@@ -1,0 +1,64 @@
+﻿/*
+ * Copyright (c) 2023 Samsung Electronics Co., Ltd All Rights Reserved
+ *
+ * Licensed under the Apache License, Version 2.0 (the License);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an AS IS BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
+
+namespace Tizen.Data.Tdbc
+{
+    /// <summary>
+    /// RecordChangedEventArgs class. This class is an event arguments of the RecordChanged events.
+    /// </summary>
+    /// <since_tizen> 11 </since_tizen>
+    public class RecordChangedEventArgs : EventArgs
+    {
+        private readonly int _operationType; /* TODO: add enumeration? */
+        private readonly string _database;
+        private readonly string _table;
+        private readonly long _rowId;
+
+        public RecordChangedEventArgs(int operationType, string database, string table, long rowId)
+        {
+            _operationType = operationType;
+            _database = database;
+            _table = table;
+            _rowId = rowId;
+        }
+
+        /// <summary>
+        /// Gets the operation type of the record changed event.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public int OperationType { get { return _operationType; } }
+
+        /// <summary>
+        /// Gets the database name of the record chagned event.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public string Database { get { return _database; } }
+
+        /// <summary>
+        /// Gets the table name of the record changed event.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public string Table { get { return _table; } }
+
+        /// <summary>
+        /// Gets the row id of the record changed event.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public long RowId { get { return _rowId; } }
+    }
+}
