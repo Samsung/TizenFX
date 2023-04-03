@@ -104,6 +104,13 @@ namespace Tizen.NUI.Components
             AccessibilityRole = Role.PageTab;
         }
 
+        /// <inheritdoc/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override string AccessibilityGetName()
+        {
+            return AppBar?.Title;
+        }
+
         /// <summary>
         /// AppBar of ContentPage.
         /// AppBar is added as a child of ContentPage automatically.
