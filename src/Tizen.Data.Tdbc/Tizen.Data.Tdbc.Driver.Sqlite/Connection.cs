@@ -73,18 +73,17 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
 
         private void UpdateHookCallback(IntPtr data, int action, string db_name, string table_name, long rowid)
         {
-            // TODO: public enumeration type
-            int operationType = -1;
+            OperationType operationType = OperationType.None;
             switch (((Interop.Sqlite.UpdateHookAction)action))
             {
                 case Interop.Sqlite.UpdateHookAction.SQLITE_UPDATE:
-                    operationType = 0;
+                    operationType = Tizen.Data.Tdbc.OperationType.Update;
                     break;
                 case Interop.Sqlite.UpdateHookAction.SQLITE_INSERT:
-                    operationType = 1;
+                    operationType = Tizen.Data.Tdbc.OperationType.Insert;
                     break;
                 case Interop.Sqlite.UpdateHookAction.SQLITE_DELETE:
-                    operationType = 2;
+                    operationType = Tizen.Data.Tdbc.OperationType.Delete;
                     break;
             }
 

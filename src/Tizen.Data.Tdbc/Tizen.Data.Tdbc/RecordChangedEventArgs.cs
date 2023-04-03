@@ -24,12 +24,20 @@ namespace Tizen.Data.Tdbc
     /// <since_tizen> 11 </since_tizen>
     public class RecordChangedEventArgs : EventArgs
     {
-        private readonly int _operationType; /* TODO: add enumeration? */
+        private readonly OperationType _operationType;
         private readonly string _database;
         private readonly string _table;
         private readonly long _rowId;
 
-        public RecordChangedEventArgs(int operationType, string database, string table, long rowId)
+        /// <summary>
+        /// Creates and initializes a new instance of type of the RecordChangedEventArgs class.
+        /// </summary>
+        /// <param name="operationType">The operation type of the changed record.</param>
+        /// <param name="database">The database of the changed record.</param>
+        /// <param name="table">The table of the changed record.</param>
+        /// <param name="rowId">The rowId of the changed record.</param>
+        /// <since_tizen> 11 </since_tizen>
+        public RecordChangedEventArgs(OperationType operationType, string database, string table, long rowId)
         {
             _operationType = operationType;
             _database = database;
@@ -41,7 +49,7 @@ namespace Tizen.Data.Tdbc
         /// Gets the operation type of the record changed event.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
-        public int OperationType { get { return _operationType; } }
+        public OperationType OperationType { get { return _operationType; } }
 
         /// <summary>
         /// Gets the database name of the record chagned event.
