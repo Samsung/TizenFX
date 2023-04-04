@@ -15,6 +15,8 @@
  *
  */
 
+using System.Runtime.InteropServices;
+
 namespace Tizen.NUI
 {
     internal static partial class Interop
@@ -121,6 +123,10 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_LoadContents")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool LoadContents(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, uint jarg3, string jarg4, string jarg5, string jarg6);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, CallingConvention = CallingConvention.Cdecl, CharSet = CharSet.Ansi, EntryPoint = "CSharp_Dali_WebView_LoadContents")]
+            [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
+            public static extern bool LoadContents(global::System.Runtime.InteropServices.HandleRef jarg1, [MarshalAs(UnmanagedType.LPArray)] byte[] jarg2, uint jarg3, string jarg4, string jarg5, string jarg6);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_WebView_Reload")]
             public static extern void Reload(global::System.Runtime.InteropServices.HandleRef jarg1);
