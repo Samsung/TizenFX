@@ -684,6 +684,24 @@ namespace Tizen.NUI.BaseComponents
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        /// <summary>
+        /// Rotate the view look at specific position.
+        /// It will change the view's orientation property.
+        /// </summary>
+        /// <remark>Target position should be setup by world coordinates.</remark>
+        /// <param name="target">The target world position to look at.</param>
+        /// <param name="up">The up vector after target look at. If it is null, up vector become +Y axis</param>
+        /// <param name="localForward">The forward vector of view when it's orientation is not applied. If it is null, localForward vector become +Z axis</param>
+        /// <param name="localUp">The up vector of view when it's orientation is not applied. If it is null, localUp vector become +Y axis</param>
+        /// This will be public opened in tizen_next after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void LookAt(Vector3 target, Vector3 up = null, Vector3 localForward = null, Vector3 localUp = null)
+        {
+            Interop.ActorInternal.LookAt(SwigCPtr, Vector3.getCPtr(target), Vector3.getCPtr(up), Vector3.getCPtr(localForward), Vector3.getCPtr(localUp));
+            if (NDalicPINVOKE.SWIGPendingException.Pending)
+                throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetColorMode(ColorMode colorMode)
