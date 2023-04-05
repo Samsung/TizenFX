@@ -107,7 +107,6 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the data shape of the Design QR code.
         /// </summary>
         /// <remarks>The default value is <see cref="QrShape.Rectangular"/>.</remarks>
-        /// <remarks>If user get value before setting value, DataShape will return null.</remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 11 </since_tizen>
         public QrShape DataShape
@@ -128,7 +127,6 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the finder shape of the Design QR code.
         /// </summary>
         /// <remarks>The default value is <see cref="QrShape.Rectangular"/>.</remarks>
-        /// <remarks>If user get value before setting value, FinderShape will return null.</remarks>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
         /// <since_tizen> 11 </since_tizen>
         public QrShape FinderShape

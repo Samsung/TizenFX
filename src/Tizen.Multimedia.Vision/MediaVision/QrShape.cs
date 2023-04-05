@@ -30,7 +30,7 @@ namespace Tizen.Multimedia.Vision
         Rectangular,
 
         /// <summary>
-        /// Round rectangular.
+        /// Rectangular with rounded corners.
         /// </summary>
         RoundRectangular,
 
