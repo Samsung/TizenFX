@@ -55,6 +55,7 @@ namespace Tizen.NUI.Samples
             sliderb = new Slider()
             {
                 Position = new Position(0, 0),
+                WidthResizePolicy = ResizePolicyType.FillToParent,
                 MinValue = 0.01f,
                 MaxValue = 1.0f,
                 CurrentValue = b,
@@ -69,6 +70,7 @@ namespace Tizen.NUI.Samples
             sliderk = new Slider()
             {
                 Position = new Position(0, 60),
+                WidthResizePolicy = ResizePolicyType.FillToParent,
                 MinValue = 0.1f,
                 MaxValue = 10.0f,
                 CurrentValue = k,
@@ -263,7 +265,7 @@ namespace Tizen.NUI.Samples
             {
                 x = MathF.Exp(MathF.Sqrt(D) * t);
             }
-            return 1.0f - x * (dumpingRate - minimumDumpingRate);
+            return 1.0f - x * (dumpingRate - minimumDumpingRate) / (1.0f - minimumDumpingRate);
         }
 
         public void Deactivate()
