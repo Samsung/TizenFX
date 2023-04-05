@@ -15,7 +15,9 @@
  */
 
 using System;
+using System.Text;
 using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 using System.ComponentModel;
 
 namespace Tizen
@@ -112,17 +114,52 @@ namespace Tizen
             Print(Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
         }
 
-        static void Print(Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
+        static unsafe void Print(Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
-            if (String.IsNullOrEmpty(file))
+            int tagByteLength = Encoding.UTF8.GetMaxByteCount(tag.Length);
+            Span<byte> tagByte = tagByteLength < 1024 ? stackalloc byte[tagByteLength + 1] : new byte[tagByteLength + 1];
+
+            int messageByteLength = Encoding.UTF8.GetMaxByteCount(message.Length);
+            Span<byte> messageByte = messageByteLength < 1024 ? stackalloc byte[messageByteLength + 1] : new byte[messageByteLength + 1];
+
+            fixed (char* pTagChar = &MemoryMarshal.GetReference(tag.AsSpan()))
+            fixed (char* pMessageChar = &MemoryMarshal.GetReference(message.AsSpan()))
+            fixed (byte* pTagByte = &MemoryMarshal.GetReference(tagByte))
+            fixed (byte* pMessageByte = &MemoryMarshal.GetReference(messageByte))
             {
-                Interop.Dlog.Print(priority, tag, "%s", message);
-            }
-            else
-            {
-                int index = file.LastIndexOfAny(sep);
-                string filename = file.Substring(index + 1);
-                Interop.Dlog.Print(priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
+                int len = Encoding.UTF8.GetBytes(pTagChar, tag.Length, pTagByte, tagByteLength);
+                pTagByte[len] = 0;
+                len = Encoding.UTF8.GetBytes(pMessageChar, message.Length, pMessageByte, messageByteLength);
+                pMessageByte[len] = 0;
+
+                if (String.IsNullOrEmpty(file))
+                {
+                    Interop.Dlog.Print(priority, pTagByte, "%s", pMessageByte);
+                }
+                else
+                {
+                    int index = file.LastIndexOfAny(sep);
+                    string filename = file.Substring(index + 1);
+
+                    int filenameByteLength = Encoding.UTF8.GetMaxByteCount(filename.Length);
+                    Span<byte> filenameByte = filenameByteLength < 1024 ? stackalloc byte[filenameByteLength + 1] : new byte[filenameByteLength + 1];
+
+                    int funcByteLength = Encoding.UTF8.GetMaxByteCount(func.Length);
+                    Span<byte> funcByte = funcByteLength < 1024 ? stackalloc byte[funcByteLength + 1] : new byte[funcByteLength + 1];
+
+                    fixed (char* pFilenameChar = &MemoryMarshal.GetReference(filename.AsSpan()))
+                    fixed (char* pFuncChar = &MemoryMarshal.GetReference(func.AsSpan()))
+                    fixed (byte* pFilenameByte = &MemoryMarshal.GetReference(filenameByte))
+                    fixed (byte* pFuncByte = &MemoryMarshal.GetReference(funcByte))
+                    {
+                        len = Encoding.UTF8.GetBytes(pFilenameChar, filename.Length, pFilenameByte, filenameByteLength);
+                        pFilenameByte[len] = 0;
+                        len = Encoding.UTF8.GetBytes(pFuncChar, func.Length, pFuncByte, funcByteLength);
+                        pFuncByte[len] = 0;
+
+                        Interop.Dlog.Print(priority, pTagByte, "%s: %s(%d) > %s", pFilenameByte, pFuncByte, line, pMessageByte);
+                    }
+                }
             }
         }
     }
@@ -220,17 +257,52 @@ namespace Tizen
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
         }
 
-        static void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
+        static unsafe void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
-            if (String.IsNullOrEmpty(file))
+            int tagByteLength = Encoding.UTF8.GetMaxByteCount(tag.Length);
+            Span<byte> tagByte = tagByteLength < 1024 ? stackalloc byte[tagByteLength + 1] : new byte[tagByteLength + 1];
+
+            int messageByteLength = Encoding.UTF8.GetMaxByteCount(message.Length);
+            Span<byte> messageByte = messageByteLength < 1024 ? stackalloc byte[messageByteLength + 1] : new byte[messageByteLength + 1];
+
+            fixed (char* pTagChar = &MemoryMarshal.GetReference(tag.AsSpan()))
+            fixed (char* pMessageChar = &MemoryMarshal.GetReference(message.AsSpan()))
+            fixed (byte* pTagByte = &MemoryMarshal.GetReference(tagByte))
+            fixed (byte* pMessageByte = &MemoryMarshal.GetReference(messageByte))
             {
-                Interop.Dlog.InternalPrint(log_id, priority, tag, "%s", message);
-            }
-            else
-            {
-                int index = file.LastIndexOfAny(sep);
-                string filename = file.Substring(index + 1);
-                Interop.Dlog.InternalPrint(log_id, priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
+                int len = Encoding.UTF8.GetBytes(pTagChar, tag.Length, pTagByte, tagByteLength);
+                pTagByte[len] = 0;
+                len = Encoding.UTF8.GetBytes(pMessageChar, message.Length, pMessageByte, messageByteLength);
+                pMessageByte[len] = 0;
+
+                if (String.IsNullOrEmpty(file))
+                {
+                    Interop.Dlog.InternalPrint(log_id, priority, pTagByte, "%s", pMessageByte);
+                }
+                else
+                {
+                    int index = file.LastIndexOfAny(sep);
+                    string filename = file.Substring(index + 1);
+
+                    int filenameByteLength = Encoding.UTF8.GetMaxByteCount(filename.Length);
+                    Span<byte> filenameByte = filenameByteLength < 1024 ? stackalloc byte[filenameByteLength + 1] : new byte[filenameByteLength + 1];
+
+                    int funcByteLength = Encoding.UTF8.GetMaxByteCount(func.Length);
+                    Span<byte> funcByte = funcByteLength < 1024 ? stackalloc byte[funcByteLength + 1] : new byte[funcByteLength + 1];
+
+                    fixed (char* pFilenameChar = &MemoryMarshal.GetReference(filename.AsSpan()))
+                    fixed (char* pFuncChar = &MemoryMarshal.GetReference(func.AsSpan()))
+                    fixed (byte* pFilenameByte = &MemoryMarshal.GetReference(filenameByte))
+                    fixed (byte* pFuncByte = &MemoryMarshal.GetReference(funcByte))
+                    {
+                        len = Encoding.UTF8.GetBytes(pFilenameChar, filename.Length, pFilenameByte, filenameByteLength);
+                        pFilenameByte[len] = 0;
+                        len = Encoding.UTF8.GetBytes(pFuncChar, func.Length, pFuncByte, funcByteLength);
+                        pFuncByte[len] = 0;
+
+                        Interop.Dlog.InternalPrint(log_id, priority, pTagByte, "%s: %s(%d) > %s", pFilenameByte, pFuncByte, line, pMessageByte);
+                    }
+                }
             }
         }
     }
@@ -328,18 +400,53 @@ namespace Tizen
             Print(Interop.Dlog.LogID.LOG_ID_MAIN, Interop.Dlog.LogPriority.DLOG_FATAL, tag, message, file, func, line);
         }
 
-        static void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
+        static unsafe void Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
 #if !DISABLE_SECURELOG
-            if (String.IsNullOrEmpty(file))
+            int tagByteLength = Encoding.UTF8.GetMaxByteCount(tag.Length);
+            Span<byte> tagByte = tagByteLength < 1024 ? stackalloc byte[tagByteLength + 1] : new byte[tagByteLength + 1];
+
+            int messageByteLength = Encoding.UTF8.GetMaxByteCount(message.Length);
+            Span<byte> messageByte = messageByteLength < 1024 ? stackalloc byte[messageByteLength + 1] : new byte[messageByteLength + 1];
+
+            fixed (char* pTagChar = &MemoryMarshal.GetReference(tag.AsSpan()))
+            fixed (char* pMessageChar = &MemoryMarshal.GetReference(message.AsSpan()))
+            fixed (byte* pTagByte = &MemoryMarshal.GetReference(tagByte))
+            fixed (byte* pMessageByte = &MemoryMarshal.GetReference(messageByte))
             {
-                Interop.Dlog.InternalPrint(log_id, priority, tag, "[SECURE_LOG] %s", message);
-            }
-            else
-            {
-                int index = file.LastIndexOfAny(sep);
-                string filename = file.Substring(index + 1);
-                Interop.Dlog.InternalPrint(log_id, priority, tag, "%s: %s(%d) > %s", filename, func, line, message);
+                int len = Encoding.UTF8.GetBytes(pTagChar, tag.Length, pTagByte, tagByteLength);
+                pTagByte[len] = 0;
+                len = Encoding.UTF8.GetBytes(pMessageChar, message.Length, pMessageByte, messageByteLength);
+                pMessageByte[len] = 0;
+
+                if (String.IsNullOrEmpty(file))
+                {
+                    Interop.Dlog.InternalPrint(log_id, priority, pTagByte, "%s", pMessageByte);
+                }
+                else
+                {
+                    int index = file.LastIndexOfAny(sep);
+                    string filename = file.Substring(index + 1);
+
+                    int filenameByteLength = Encoding.UTF8.GetMaxByteCount(filename.Length);
+                    Span<byte> filenameByte = filenameByteLength < 1024 ? stackalloc byte[filenameByteLength + 1] : new byte[filenameByteLength + 1];
+
+                    int funcByteLength = Encoding.UTF8.GetMaxByteCount(func.Length);
+                    Span<byte> funcByte = funcByteLength < 1024 ? stackalloc byte[funcByteLength + 1] : new byte[funcByteLength + 1];
+
+                    fixed (char* pFilenameChar = &MemoryMarshal.GetReference(filename.AsSpan()))
+                    fixed (char* pFuncChar = &MemoryMarshal.GetReference(func.AsSpan()))
+                    fixed (byte* pFilenameByte = &MemoryMarshal.GetReference(filenameByte))
+                    fixed (byte* pFuncByte = &MemoryMarshal.GetReference(funcByte))
+                    {
+                        len = Encoding.UTF8.GetBytes(pFilenameChar, filename.Length, pFilenameByte, filenameByteLength);
+                        pFilenameByte[len] = 0;
+                        len = Encoding.UTF8.GetBytes(pFuncChar, func.Length, pFuncByte, funcByteLength);
+                        pFuncByte[len] = 0;
+
+                        Interop.Dlog.InternalPrint(log_id, priority, pTagByte, "%s: %s(%d) > %s", pFilenameByte, pFuncByte, line, pMessageByte);
+                    }
+                }
             }
 #endif
         }
