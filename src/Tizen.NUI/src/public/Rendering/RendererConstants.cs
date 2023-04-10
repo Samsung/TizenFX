@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2019 Samsung Electronics Co., Ltd.
+﻿// Copyright (c) 2023 Samsung Electronics Co., Ltd.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,22 +26,22 @@ namespace Tizen.NUI
         /// <summary>
         /// None of the faces should be culled
         /// </summary>
-        NONE = 0,
+        None = 0,
 
         /// <summary>
         /// Cull front face, front faces should never be shown
         /// </summary>
-        FRONT,
+        Front,
 
         /// <summary>
         /// Cull back face, back faces should never be shown
         /// </summary>
-        BACK,
+        Back,
 
         /// <summary>
         /// Cull front and back faces; if the geometry is composed of triangles none of the faces will be shown
         /// </summary>
-        FRONT_AND_BACK
+        FrontAndBack,
     }
 
     /// <summary>
@@ -54,27 +54,27 @@ namespace Tizen.NUI
         /// <summary>
         /// Blending is disabled.
         /// </summary>
-        OFF = 0,
+        Off = 0,
 
         /// <summary>
         /// Blending is enabled if there is alpha channel. This is the default mode.
         /// </summary>
-        AUTO,
+        Auto,
 
         /// <summary>
         /// Blending is enabled.
         /// </summary>
-        ON,
+        On,
 
         /// <summary>
         /// Blending is enabled, and don't cull the renderer.
         /// </summary>
-        ON_WITHOUT_CULL,
+        OnWithoutCull,
 
         /// <summary>
         /// Blending is enabled when the actor is not opaque
         /// </summary>
-        USE_ACTOR_OPACITY
+        UseActorOpacity,
     }
 
     /// <summary>
@@ -90,6 +90,22 @@ namespace Tizen.NUI
         Add = 0x8006,
 
         /// <summary>
+        /// Use minimum value of the source and the destination.
+        /// </summary>
+        /// <remark>
+        /// It will be supported only if OpenGL es 3.0  or higher version using.
+        /// </remark>
+        Min = 0x8007,
+
+        /// <summary>
+        /// Use maximum value of the source and the destination.
+        /// </summary>
+        /// <remark>
+        /// It will be supported only if OpenGL es 3.0  or higher version using.
+        /// </remark>
+        Max = 0x8008,
+
+        /// <summary>
         /// Subtracts the destination from the source.
         /// </summary>
         Subtract = 0x800A,
@@ -98,14 +114,6 @@ namespace Tizen.NUI
         /// Subtracts the source from the destination.
         /// </summary>
         ReverseSubtract = 0x800B,
-
-        //OpenGL es 3.0 enumeration
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        Min = 0x8007,
-        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        Max = 0x8008,
 
         //Advanced Blend Equation
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
@@ -152,7 +160,7 @@ namespace Tizen.NUI
         Color = 0x92AF,
         /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Luminosity = 0x92B0
+        Luminosity = 0x92B0,
     }
 
     /// <summary>
@@ -165,77 +173,77 @@ namespace Tizen.NUI
         /// <summary>
         /// Match as GL_ZERO
         /// </summary>
-        ZERO = 0,
+        Zero = 0,
 
         /// <summary>
         /// Match as GL_ONE
         /// </summary>
-        ONE = 1,
+        One = 1,
 
         /// <summary>
         /// Match as GL_SRC_COLOR
         /// </summary>
-        SRC_COLOR = 0x0300,
+        SrcColor = 0x0300,
 
         /// <summary>
         /// Match as GL_ONE_MINUS_SRC_COLOR
         /// </summary>
-        ONE_MINUS_SRC_COLOR = 0x0301,
+        OneMinusSrcColor = 0x0301,
 
         /// <summary>
         /// Match as GL_SRC_ALPHA
         /// </summary>
-        SRC_ALPHA = 0x0302,
+        SrcAlpha = 0x0302,
 
         /// <summary>
         /// Match as GL_ONE_MINUS_SRC_ALPHA
         /// </summary>
-        ONE_MINUS_SRC_ALPHA = 0x0303,
+        OneMinusSrcAlpha = 0x0303,
 
         /// <summary>
         /// Match as GL_DST_ALPHA
         /// </summary>
-        DST_ALPHA = 0x0304,
+        DstAlpha = 0x0304,
 
         /// <summary>
         /// Match as GL_ONE_MINUS_DST_ALPHA
         /// </summary>
-        ONE_MINUS_DST_ALPHA = 0x0305,
+        OneMinusDstAlpha = 0x0305,
 
         /// <summary>
         /// Match as GL_DST_COLOR
         /// </summary>
-        DST_COLOR = 0x0306,
+        DstColor = 0x0306,
 
         /// <summary>
         /// Match as GL_ONE_MINUS_DST_COLOR
         /// </summary>
-        ONE_MINUS_DST_COLOR = 0x0307,
+        OneMinusDstColor = 0x0307,
 
         /// <summary>
         /// Match as GL_SRC_ALPHA_SATURATE
         /// </summary>
-        SRC_ALPHA_SATURATE = 0x0308,
+        SrcAlphaSaturate = 0x0308,
 
         /// <summary>
         /// Match as GL_CONSTANT_COLOR
         /// </summary>
-        CONSTANT_COLOR = 0x8001,
+        ConstantColor = 0x8001,
 
         /// <summary>
         /// Match as GL_ONE_MINUS_CONSTANT_COLOR
         /// </summary>
-        ONE_MINUS_CONSTANT_COLOR = 0x8002,
+        OneMinusConstantColor = 0x8002,
 
         /// <summary>
         /// Match as GL_CONSTANT_ALPHA
         /// </summary>
-        CONSTANT_ALPHA = 0x8003,
+        ConstantAlpha = 0x8003,
 
         /// <summary>
         /// Match as GL_ONE_MINUS_CONSTANT_ALPHA
         /// </summary>
-        ONE_MINUS_CONSTANT_ALPHA = 0x8004
+        OneMinusConstantAlpha = 0x8004,
     }
 
     /// <summary>
@@ -248,17 +256,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Renderer doesn't write to the depth buffer
         /// </summary>
-        OFF = 0,
+        Off = 0,
 
         /// <summary>
         /// Renderer only writes to the depth buffer if it's opaque
         /// </summary>
-        AUTO,
+        Auto,
 
         /// <summary>
         /// Renderer writes to the depth buffer
         /// </summary>
-        ON
+        On,
     }
 
     /// <summary>
@@ -271,42 +279,42 @@ namespace Tizen.NUI
         /// <summary>
         /// Depth test never passes
         /// </summary>
-        NEVER = 0,
+        Never = 0,
 
         /// <summary>
         /// Depth test always passes
         /// </summary>
-        ALWAYS,
+        Always,
 
         /// <summary>
         /// Depth test passes if the incoming depth value is less than the stored depth value
         /// </summary>
-        LESS,
+        Less,
 
         /// <summary>
         /// Depth test passes if the incoming depth value is greater than the stored depth value
         /// </summary>
-        GREATER,
+        Greater,
 
         /// <summary>
         /// Depth test passes if the incoming depth value is equal to the stored depth value
         /// </summary>
-        EQUAL,
+        Equal,
 
         /// <summary>
         /// Depth test passes if the incoming depth value is not equal to the stored depth value
         /// </summary>
-        NOT_EQUAL,
+        NotEqual,
 
         /// <summary>
         /// Depth test passes if the incoming depth value is less than or equal to the stored depth value
         /// </summary>
-        LESS_EQUAL,
+        LessEqual,
 
         /// <summary>
         /// Depth test passes if the incoming depth value is greater than or equal to the stored depth value
         /// </summary>
-        GREATER_EQUAL
+        GreaterEqual,
     }
 
     /// <summary>
@@ -319,17 +327,17 @@ namespace Tizen.NUI
         /// <summary>
         /// Renderer does not read from the depth buffer
         /// </summary>
-        OFF = 0,
+        Off = 0,
 
         /// <summary>
         /// Renderer only reads from the depth buffer if in a 3D layer
         /// </summary>
-        AUTO,
+        Auto,
 
         /// <summary>
         /// Renderer reads from the depth buffer based on the DepthFunction
         /// </summary>
-        ON
+        On,
     }
 
     /// <summary>
@@ -342,27 +350,27 @@ namespace Tizen.NUI
         /// <summary>
         /// Do not write to either color or stencil buffer (But will potentially render to depth buffer).
         /// </summary>
-        NONE = 0,
+        None = 0,
 
         /// <summary>
         /// Managed by the View Clipping API. This is the default.
         /// </summary>
-        AUTO,
+        Auto,
 
         /// <summary>
         /// Ingore stencil properties.  Write to the color buffer.
         /// </summary>
-        COLOR,
+        Color,
 
         /// <summary>
         /// Use the stencil properties. Do not write to the color buffer.
         /// </summary>
-        STENCIL,
+        Stencil,
 
         /// <summary>
         /// Use the stencil properties AND Write to the color buffer.
         /// </summary>
-        COLOR_STENCIL,
+        ColorStencil,
     }
 
     /// <summary>
@@ -375,42 +383,42 @@ namespace Tizen.NUI
         /// <summary>
         /// Always fails
         /// </summary>
-        NEVER = 0,
+        Never = 0,
 
         /// <summary>
         /// Passes if <![CDATA[ ( reference & mask ) <  ( stencil & mask ) ]]>
         /// </summary>
-        LESS,
+        Less,
 
         /// <summary>
         /// Passes if <![CDATA[ ( reference & mask ) =  ( stencil & mask ) ]]>
         /// </summary>
-        EQUAL,
+        Equal,
 
         /// <summary>
         /// Passes if <![CDATA[ ( reference & mask ) <= ( stencil & mask ) ]]>
         /// </summary>
-        LESS_EQUAL,
+        LessEqual,
 
         /// <summary>
         /// Passes if <![CDATA[ ( reference & mask ) >  ( stencil & mask ) ]]>
         /// </summary>
-        GREATER,
+        Greater,
 
         /// <summary>
         /// Passes if <![CDATA[ ( reference & mask ) != ( stencil & mask ) ]]>
         /// </summary>
-        NOT_EQUAL,
+        NotEqual,
 
         /// <summary>
         /// Passes if <![CDATA[ ( reference & mask ) >= ( stencil & mask ) ]]>
         /// </summary>
-        GREATER_EQUAL,
+        GreaterEqual,
 
         /// <summary>
         /// Always passes
         /// </summary>
-        ALWAYS
+        Always,
     }
 
     /// <summary>
@@ -423,43 +431,43 @@ namespace Tizen.NUI
         /// <summary>
         /// Sets the stencil buffer value to 0
         /// </summary>
-        ZERO = 0,
+        Zero = 0,
 
         /// <summary>
         /// Keeps the current value
         /// </summary>
-        KEEP,
+        Keep,
 
         /// <summary>
         /// Sets the stencil buffer value to ref, as specified by glStencilFunc
         /// </summary>
-        REPLACE,
+        Replace,
 
         /// <summary>
         /// Increments the current stencil buffer value. Clamps to the maximum representable unsigned value
         /// </summary>
-        INCREMENT,
+        Increment,
 
         /// <summary>
         /// Decrements the current stencil buffer value. Clamps to 0
         /// </summary>
-        DECREMENT,
+        Decrement,
 
         /// <summary>
         /// Bitwise inverts the current stencil buffer value
         /// </summary>
-        INVERT,
+        Invert,
 
         /// <summary>
         /// Increments the current stencil buffer value.
         /// Wraps stencil buffer value to zero when incrementing the maximum representable unsigned value
         /// </summary>
-        INCREMENT_WRAP,
+        IncrementWrap,
 
         /// <summary>
         /// Decrements the current stencil buffer value.
         /// Wraps stencil buffer value to the maximum representable unsigned value when decrementing a stencil buffer value of zero
         /// </summary>,
-        DECREMENT_WRAP
+        DecrementWrap,
     }
 }
