@@ -16029,6 +16029,11 @@
     "title": "Namespace Tizen.Common",
     "keywords": ""
   },
+  "API11/api/Tizen.Content.Download.CacheManager.html": {
+    "href": "API11/api/Tizen.Content.Download.CacheManager.html",
+    "title": "Class CacheManager",
+    "keywords": ""
+  },
   "API11/api/Tizen.Content.Download.DownloadState.html": {
     "href": "API11/api/Tizen.Content.Download.DownloadState.html",
     "title": "Enum DownloadState",
