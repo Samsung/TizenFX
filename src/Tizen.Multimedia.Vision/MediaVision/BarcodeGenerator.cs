@@ -250,7 +250,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     <paramref name="message"/> contains characters which are illegal by the <see cref="QrMode"/>.
         /// </exception>
-        /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to access a file.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <seealso cref="QrMode"/>
         /// <since_tizen> 4 </since_tizen>
@@ -284,7 +284,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     <paramref name="message"/> contains characters which are illegal by the <see cref="QrMode"/>.
         /// </exception>
-        /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to access a file.</exception>
         /// <exception cref="NotSupportedException">
         ///     The feature is not supported.<br/>
         ///     -or-<br/>
@@ -342,7 +342,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     <paramref name="message"/> contains illegal characters.
         /// </exception>
-        /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to access a file.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static void GenerateImage(string message, BarcodeType type, BarcodeImageConfiguration imageConfig)
@@ -372,7 +372,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     <paramref name="message"/> contains illegal characters.
         /// </exception>
-        /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to access a file.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="config"/> already has been disposed of.</exception>
         /// <since_tizen> 4 </since_tizen>

@@ -86,6 +86,10 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Gets or sets the embed image absolute path of the Design QR code.
         /// </summary>
+        /// <remarks>
+        /// The mediastorage privilege (http://tizen.org/privilege/mediastorage) is needed if the image path is relevant to media storage.<br/>
+        /// The externalstorage privilege (http://tizen.org/privilege/externalstorage) is needed if the image path is relevant to external storage.
+        /// </remarks>
         /// <exception cref="ArgumentNullException"><paramref name="value"/> is null.</exception>
         /// <exception cref="ArgumentException"><paramref name="value"/> is zero-length string.</exception>
         /// <since_tizen> 11 </since_tizen>
