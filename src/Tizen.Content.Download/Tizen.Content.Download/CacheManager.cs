@@ -23,7 +23,7 @@ namespace Tizen.Content.Download
     /// The CacheManager class provides the functions to manage cache properties.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
-    static class CacheManager
+    public static class CacheManager
     {
 
         /// <summary>
