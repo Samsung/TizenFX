@@ -127,6 +127,48 @@ internal static partial class Interop
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_whitebalance")]
         internal static extern CameraError GetWhiteBalance(IntPtr handle, out CameraWhiteBalance level);
 
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_whitebalance_temperature")]
+        internal static extern CameraError SetWhitebalanceTemperature(IntPtr handle, int temperature);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_whitebalance_temperature")]
+        internal static extern CameraError GetWhiteBalanceTemperature(IntPtr handle, out int temperature);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_whitebalance_temperature_step")]
+        internal static extern CameraError GetWhiteBalanceTemperatureStep(IntPtr handle, out int step);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_whitebalance_temperature_range")]
+        internal static extern CameraError GetWhiteBalanceTemperatureRange(IntPtr handle, out int min, out int max);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_saturation")]
+        internal static extern CameraError SetSaturation(IntPtr handle, int level);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_saturation")]
+        internal static extern CameraError GetSaturation(IntPtr handle, out int level);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_saturation_range")]
+        internal static extern CameraError GetSaturationRange(IntPtr handle, out int min, out int max);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_sharpness")]
+        internal static extern CameraError SetSharpness(IntPtr handle, int level);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_sharpness")]
+        internal static extern CameraError GetSharpness(IntPtr handle, out int level);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_sharpness_range")]
+        internal static extern CameraError GetSharpnessRange(IntPtr handle, out int min, out int max);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_gain")]
+        internal static extern CameraError SetGain(IntPtr handle, int level);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_gain")]
+        internal static extern CameraError GetGain(IntPtr handle, out int level);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_gain_step")]
+        internal static extern CameraError GetGainStep(IntPtr handle, out int step);
+
+        [DllImport(Libraries.Camera, EntryPoint = "camera_attr_get_gain_range")]
+        internal static extern CameraError GetGainRange(IntPtr handle, out int min, out int max);
+
         [DllImport(Libraries.Camera, EntryPoint = "camera_attr_set_effect")]
         internal static extern CameraError SetEffect(IntPtr handle, CameraEffectMode mode);
 
