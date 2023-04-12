@@ -21,7 +21,7 @@ using System.Runtime.InteropServices;
 namespace Tizen.Data.Tdbc.Driver.Sqlite
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Record : Tizen.Data.Tdbc.Record
+    internal class Record : IRecord
     {
         private IntPtr _stmt;
 

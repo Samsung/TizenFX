@@ -21,29 +21,39 @@ namespace Tizen.Data.Tdbc
     /// <summary>
     /// This class helps the operation of the statement in a transacted way.
     /// </summary>
+    /// <remarks>To finish the transaction, either call Commit() to apply database operations or Dispose() to rollback the transaction.</remarks>
+    /// /// <example>
+    /// Usage:
+    /// @code
+    /// using (var transaction = new TransationGuard(statement)) {
+    ///     ...
+    ///     transaction.Commit();
+    /// }
+    /// @endcode
+    /// </example>
     /// <since_tizen> 11 </since_tizen>
     public class TransactionGuard : IDisposable
     {
-        private Tdbc.Statement _stmt;
+        private IStatement _stmt;
         private bool _commited;
 
         /// <summary>
         /// The boolean variable if the transact operation enabled.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
-        public bool Enable { get; set; }
+        public bool IsEnabled { get; set; }
 
         /// <summary>
         /// The constructor of TransactionGuard class.
         /// </summary>
-        /// <param name="stmt"></param>
-        /// <param name="enable"></param>
+        /// <param name="statement"></param>
+        /// <param name="isEnabled"></param>
         /// <since_tizen> 11 </since_tizen>
-        public TransactionGuard(Tdbc.Statement stmt, bool enable = true)
+        public TransactionGuard(IStatement statement, bool isEnabled = true)
         {
-            _stmt = stmt;
-            Enable = enable;
-            if (!Enable)
+            _stmt = statement;
+            IsEnabled = isEnabled;
+            if (!IsEnabled)
                 return;
             _stmt.Execute(new Sql("BEGIN DEFERRED"));
         }
@@ -54,7 +64,7 @@ namespace Tizen.Data.Tdbc
         /// <since_tizen> 11 </since_tizen>
         public void Dispose()
         {
-            if (!Enable)
+            if (!IsEnabled)
                 return;
             if (_commited)
                 return;
@@ -67,7 +77,7 @@ namespace Tizen.Data.Tdbc
         /// <since_tizen> 11 </since_tizen>
         public void Commit()
         {
-            if (!Enable)
+            if (!IsEnabled)
                 return;
             if (_commited)
                 return;

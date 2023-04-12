@@ -20,7 +20,7 @@ using System.Reflection;
 namespace Tizen.Data.Tdbc
 {
     /// <summary>
-    /// DriverManager loads TDBC drivers and gets connections of databases.
+    /// DriverManager loads TDBC drivers and gets connections to databases.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
     public class DriverManager
@@ -36,17 +36,17 @@ namespace Tizen.Data.Tdbc
         /// <exception cref="InvalidOperationException">No driver registered.</exception>
         /// <exception cref="SystemException">Failed to open database connection.</exception>
         /// <since_tizen> 11 </since_tizen>
-        public static Connection GetConnection(Uri uri)
+        public static IConnection GetConnection(Uri uri)
         {
             if (_driverAssembly == null)
             {
                 throw new InvalidOperationException("No TDBC driver registered.");
             }
 
-            Connection conn;
+            IConnection conn;
             try
             {
-                conn = (Connection)_driverAssembly.CreateInstance(_driverName + ".Connection");
+                conn = (IConnection)_driverAssembly.CreateInstance(_driverName + ".Connection");
             }
             catch (Exception ex)
             {
@@ -60,27 +60,27 @@ namespace Tizen.Data.Tdbc
         /// <summary>
         /// Get connection of registered database and open the database.
         /// </summary>
-        /// <param name="openStr">The string for connect and open database.</param>
+        /// <param name="connectionString">The string for connect and open database.</param>
         /// <returns>The connection object.</returns>
         /// <exception cref="InvalidOperationException">No driver registered.</exception>
         /// <exception cref="SystemException">Failed to open database connection.</exception>
         /// <since_tizen> 11 </since_tizen>
-        public static Connection GetConnection(String openStr)
+        public static IConnection GetConnection(String connectionString)
         {
             if (_driverAssembly == null)
                 throw new InvalidOperationException("No TDBC driver registered.");
 
-            Connection conn;
+            IConnection conn;
             try
             {
-                conn = (Connection)_driverAssembly.CreateInstance(_driverName + ".Connection");
+                conn = (IConnection)_driverAssembly.CreateInstance(_driverName + ".Connection");
             }
             catch (Exception ex)
             {
                 throw new SystemException("Failed to open connection due to: " + ex);
             }
 
-            conn.Open(openStr);
+            conn.Open(connectionString);
             return conn;
         }
 

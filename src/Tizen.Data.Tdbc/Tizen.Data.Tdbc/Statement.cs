@@ -23,7 +23,7 @@ namespace Tizen.Data.Tdbc
     /// TDBC interface for representing statement.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
-    public interface Statement : IDisposable
+    public interface IStatement : IDisposable
     {
         /// <summary>
         /// Executes the given Sql.
@@ -33,7 +33,7 @@ namespace Tizen.Data.Tdbc
         /// <remarks>
         /// </remarks>
         /// <since_tizen> 11 </since_tizen>
-        ResultSet ExecuteQuery(Sql sql);
+        IResultSet ExecuteQuery(Sql sql);
 
         /// <summary>
         /// Executes the given Sql.
@@ -63,7 +63,7 @@ namespace Tizen.Data.Tdbc
         /// <remarks>
         /// </remarks>
         /// <since_tizen> 11 </since_tizen>
-        Task<ResultSet> ExecuteQueryAsync(Sql sql);
+        Task<IResultSet> ExecuteQueryAsync(Sql sql);
 
         /// <summary>
         /// Executes the given Sql asynchronously.

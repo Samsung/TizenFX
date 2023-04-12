@@ -23,7 +23,7 @@ namespace Tizen.Data.Tdbc
     /// Record class. This class provides the result of query.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
-    public interface Record : IEnumerator
+    public interface IRecord : IEnumerator
     {
         /// <summary>
         /// Get integer type value from the record with given index.
@@ -41,7 +41,7 @@ namespace Tizen.Data.Tdbc
         /// <exception cref="ArgumentOutOfRangeException">The given index is out of range.</exception>
         /// <exception cref="NotSupportedException">This type is not supported.</exception>
         /// <since_tizen> 11 </since_tizen>
-        string GetString(int coulmnIndex);
+        string GetString(int columnIndex);
 
         /// <summary>
         /// Get double type value from the record with given index.

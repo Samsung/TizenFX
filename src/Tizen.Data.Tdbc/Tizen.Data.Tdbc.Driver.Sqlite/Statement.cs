@@ -21,7 +21,7 @@ using System.Threading.Tasks;
 namespace Tizen.Data.Tdbc.Driver.Sqlite
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Statement : Tizen.Data.Tdbc.Statement
+    public class Statement : IStatement
     {
         Connection _conn;
         private IntPtr _stmt;
@@ -49,9 +49,9 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
 
             foreach (var i in sql.Bindings)
             {
-                Type t = i.Value.Value;
+                Type t = i.Value.Item2;
                 string key = i.Key;
-                Object obj = i.Value.Key;
+                Object obj = i.Value.Item1;
                 int pos = Interop.Sqlite.GetParameterIndex(_stmt, key);
                 if (pos == 0)
                     throw new InvalidOperationException("Invalid binding");
@@ -111,7 +111,7 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
             return Interop.Sqlite.Changes(_conn.GetHandle());
         }
 
-        public Tdbc.ResultSet ExecuteQuery(Sql sql)
+        public IResultSet ExecuteQuery(Sql sql)
         {
             bool prepared = Prepare(sql);
 
@@ -124,7 +124,7 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
             return set;
         }
 
-        public async Task<Tdbc.ResultSet> ExecuteQueryAsync(Sql sql)
+        public async Task<IResultSet> ExecuteQueryAsync(Sql sql)
         {
             return await Task.Run(() =>
             {

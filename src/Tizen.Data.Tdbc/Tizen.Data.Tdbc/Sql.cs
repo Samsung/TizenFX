@@ -20,13 +20,13 @@ using System.Collections.Generic;
 namespace Tizen.Data.Tdbc
 {
     /// <summary>
-    /// Represents a SQL statement.
+    /// Represents a SQL string.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
     public class Sql
     {
         private string _sql;
-        private Dictionary<string, KeyValuePair<Object, Type>> _bindings = new Dictionary<string, KeyValuePair<object, Type>>();
+        private Dictionary<string, Tuple<Object, Type>> _bindings = new Dictionary<string, Tuple<object, Type>>();
 
         /// <summary>
         /// The SQL command string.
@@ -41,7 +41,7 @@ namespace Tizen.Data.Tdbc
         /// The bindings as a dictionary of command.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
-        public Dictionary<string, KeyValuePair<Object, Type>> Bindings
+        public Dictionary<string, Tuple<Object, Type>> Bindings
         {
             get => _bindings;
         }
@@ -65,7 +65,7 @@ namespace Tizen.Data.Tdbc
         /// <since_tizen> 11 </since_tizen>
         public Sql Bind(string key, string val)
         {
-            _bindings.Add(key, new KeyValuePair<Object, Type>(val,typeof(string)));
+            _bindings.Add(key, new Tuple<Object, Type>(val,typeof(string)));
             return this;
         }
 
@@ -78,7 +78,7 @@ namespace Tizen.Data.Tdbc
         /// <since_tizen> 11 </since_tizen>
         public Sql Bind(string key, int val)
         {
-            _bindings.Add(key, new KeyValuePair<Object, Type>(val, typeof(int)));
+            _bindings.Add(key, new Tuple<Object, Type>(val, typeof(int)));
             return this;
         }
 
@@ -91,7 +91,7 @@ namespace Tizen.Data.Tdbc
         /// <since_tizen> 11 </since_tizen>
         public Sql Bind(string key, double val)
         {
-            _bindings.Add(key, new KeyValuePair<Object, Type>(val, typeof(double)));
+            _bindings.Add(key, new Tuple<Object, Type>(val, typeof(double)));
             return this;
         }
 
@@ -104,7 +104,7 @@ namespace Tizen.Data.Tdbc
         /// <since_tizen> 11 </since_tizen>
         public Sql Bind(string key, bool val)
         {
-            _bindings.Add(key, new KeyValuePair<Object, Type>(val, typeof(bool)));
+            _bindings.Add(key, new Tuple<Object, Type>(val, typeof(bool)));
             return this;
         }
 
@@ -117,7 +117,7 @@ namespace Tizen.Data.Tdbc
         /// <since_tizen> 11 </since_tizen>
         public Sql Bind(string key, byte[] val)
         {
-            _bindings.Add(key, new KeyValuePair<Object, Type>(val, typeof(byte[])));
+            _bindings.Add(key, new Tuple<Object, Type>(val, typeof(byte[])));
             return this;
         }
     }

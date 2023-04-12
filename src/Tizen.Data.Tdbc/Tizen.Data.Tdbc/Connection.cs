@@ -19,40 +19,40 @@ using System;
 namespace Tizen.Data.Tdbc
 {
     /// <summary>
-    /// TDBC Interface for connect with a database.
+    /// TDBC Interface for connecting with a database.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
-    public interface Connection : IDisposable
+    public interface IConnection : IDisposable
     {
         /// <summary>
         /// Open the database.
         /// </summary>
-        /// <param name="uri">The uri represents database to connect.</param>
-        /// <exception cref="ArgumentException">The input uri is invalid.</exception>
+        /// <param name="uri">The URI represents database to connect.</param>
+        /// <exception cref="ArgumentException">The input URI is invalid.</exception>
         /// <exception cref="InvalidOperationException">The drvier open is failed.</exception>
         /// <since_tizen> 11 </since_tizen>
         void Open(Uri uri);
 
         /// <summary>
-        /// Open the database.
+        /// Opens the database.
         /// </summary>
-        /// <param name="openString">The uri represents database to connect.</param>
+        /// <param name="openString">The URI represents database to connect.</param>
         /// <exception cref="ArgumentException">The input openString is invalid.</exception>
         /// <exception cref="InvalidOperationException">The drvier open is failed.</exception>
         /// <since_tizen> 11 </since_tizen>
         void Open(String openString);
 
         /// <summary>
-        /// Close the database.
+        /// Closes the database.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         void Close();
 
         /// <summary>
-        /// Returns that the database is closed or not.
+        /// Returns that the database is opened or not.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
-        bool IsClosed();
+        bool IsOpened();
 
         /// <summary>
         /// Creates a statement object associated with the connection.
@@ -60,7 +60,7 @@ namespace Tizen.Data.Tdbc
         /// <exception cref="InvalidOperationException">The connection is not opened.</exception>
         /// <returns>The statement object.</returns>
         /// <since_tizen> 11 </since_tizen>
-        Statement CreateStatement();
+        IStatement CreateStatement();
 
         /// <summary>
         /// The event occurs when record changed.

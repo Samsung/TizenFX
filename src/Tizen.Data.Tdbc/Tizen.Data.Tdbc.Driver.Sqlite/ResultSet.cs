@@ -16,12 +16,13 @@
 
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Tizen.Data.Tdbc.Driver.Sqlite
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class ResultSet : Tizen.Data.Tdbc.ResultSet
+    internal class ResultSet : IResultSet
     {
         private IntPtr _stmt;
         private bool disposedValue;
@@ -42,9 +43,14 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
             _conn = conn;
         }
 
-        public IEnumerator GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            return new Record(_stmt);
+            return this.GetEnumerator();
+        }
+
+        public IEnumerator<IRecord> GetEnumerator()
+        {
+            yield return new Record(_stmt);
         }
 
         protected virtual void Dispose(bool disposing)

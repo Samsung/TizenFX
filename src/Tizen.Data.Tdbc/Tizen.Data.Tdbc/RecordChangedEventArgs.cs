@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.ComponentModel;
 
 namespace Tizen.Data.Tdbc
 {
@@ -37,6 +38,7 @@ namespace Tizen.Data.Tdbc
         /// <param name="table">The table of the changed record.</param>
         /// <param name="rowId">The rowId of the changed record.</param>
         /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
         public RecordChangedEventArgs(OperationType operationType, string database, string table, long rowId)
         {
             _operationType = operationType;
@@ -64,7 +66,7 @@ namespace Tizen.Data.Tdbc
         public string Table { get { return _table; } }
 
         /// <summary>
-        /// Gets the row id of the record changed event.
+        /// Gets the row ID of the record changed event.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         public long RowId { get { return _rowId; } }

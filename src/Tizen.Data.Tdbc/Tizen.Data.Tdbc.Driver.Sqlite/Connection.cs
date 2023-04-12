@@ -20,7 +20,7 @@ using System.ComponentModel;
 namespace Tizen.Data.Tdbc.Driver.Sqlite
 {
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class Connection : Tdbc.Connection
+    internal class Connection : IConnection
     {
         private bool _opened;
         private IntPtr _db;
@@ -77,13 +77,13 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
             switch (((Interop.Sqlite.UpdateHookAction)action))
             {
                 case Interop.Sqlite.UpdateHookAction.SQLITE_UPDATE:
-                    operationType = Tizen.Data.Tdbc.OperationType.Update;
+                    operationType = OperationType.Update;
                     break;
                 case Interop.Sqlite.UpdateHookAction.SQLITE_INSERT:
-                    operationType = Tizen.Data.Tdbc.OperationType.Insert;
+                    operationType = OperationType.Insert;
                     break;
                 case Interop.Sqlite.UpdateHookAction.SQLITE_DELETE:
-                    operationType = Tizen.Data.Tdbc.OperationType.Delete;
+                    operationType = OperationType.Delete;
                     break;
             }
 
@@ -144,17 +144,17 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
             _opened = true;
         }
 
-        public Tdbc.Statement CreateStatement()
+        public IStatement CreateStatement()
         {
-            if (IsClosed())
+            if (!IsOpened())
                 throw new InvalidOperationException("Not opened");
 
             return new Statement(this);
         }
 
-        public bool IsClosed()
+        public bool IsOpened()
         {
-            return !_opened;
+            return _opened;
         }
 
         protected virtual void Dispose(bool disposing)

@@ -15,15 +15,15 @@
  */
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Tizen.Data.Tdbc
 {
     /// <summary>
-    /// TDBC interface for the container of the Record class.
+    /// TDBC interface for a collection of IRecord items.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
-    public interface ResultSet : IEnumerable, IDisposable
+    public interface IResultSet : IEnumerable<IRecord>, IDisposable
     {
     }
 }
