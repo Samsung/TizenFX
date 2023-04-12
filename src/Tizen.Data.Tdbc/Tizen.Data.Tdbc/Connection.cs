@@ -25,7 +25,7 @@ namespace Tizen.Data.Tdbc
     public interface IConnection : IDisposable
     {
         /// <summary>
-        /// Open the database.
+        /// Opens the database.
         /// </summary>
         /// <param name="uri">The URI represents database to connect.</param>
         /// <exception cref="ArgumentException">The input URI is invalid.</exception>
