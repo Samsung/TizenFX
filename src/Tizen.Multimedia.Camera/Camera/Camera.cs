@@ -46,7 +46,6 @@ namespace Tizen.Multimedia
         private bool _disposed = false;
         private CameraState _state = CameraState.None;
         PinnedPreviewBuffer<byte> _previewBuffer;
-        private CameraDeviceManager _cameraDeviceManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> class.
@@ -95,22 +94,14 @@ namespace Tizen.Multimedia
             CameraDeviceType cameraDeviceType = CameraDeviceType.BuiltIn;
             CameraDevice cameraDevice = device;
 
-            try
+            if (device == CameraDevice.Default)
             {
-                _cameraDeviceManager = new CameraDeviceManager();
-            }
-            catch (NotSupportedException)
-            {
-                Log.Info(CameraLog.Tag,
-                    $"CameraDeviceManager is not supported. Not error.");
-            }
+                var deviceInfo = Enumerable.Empty<CameraDeviceInformation>();
 
-            if (_cameraDeviceManager != null)
-            {
-                var deviceInfo = _cameraDeviceManager.SupportedDevices;
-
-                // CameraDeviceManager is not used internally anymore.
-                _cameraDeviceManager.Dispose();
+                using (var cameraDeviceManager = new CameraDeviceManager())
+                {
+                    deviceInfo = cameraDeviceManager.SupportedDevices;
+                }
 
                 if (!deviceInfo.Any())
                 {
@@ -119,7 +110,7 @@ namespace Tizen.Multimedia
 
                 cameraDeviceType = deviceInfo.First().Type;
                 cameraDevice = deviceInfo.First().Device;
-                Log.Debug(CameraLog.Tag, $"Type:[{cameraDeviceType}], Device:[{cameraDevice}]");
+                Log.Debug(CameraLog.Tag, $"Type:[{cameraDeviceType}], Auto selected camera device:[{cameraDevice}]");
             }
 
             CreateNativeCameraDevice(cameraDeviceType, cameraDevice);
