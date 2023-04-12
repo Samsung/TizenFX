@@ -73,6 +73,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Generates a QR image with the specified message.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
         /// <param name="message">The message to be encoded in the barcode.</param>
         /// <param name="qrConfig">The <see cref="QrConfiguration"/> instance.</param>
         /// <returns><see cref="MediaVisionSource"/> containing the generated QR image.</returns>
@@ -97,6 +98,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Generates a QR image with the specified message with <see cref="BarcodeGenerationConfiguration"/>.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
         /// <param name="message">The message to be encoded in the barcode.</param>
         /// <param name="qrConfig">The <see cref="QrConfiguration"/> instance.</param>
         /// <param name="config">The configuration of the barcode generator. This value can be null.</param>
@@ -178,6 +180,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Generates a barcode image with the specified message and <see cref="BarcodeGenerationConfiguration"/>.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
         /// <param name="message">The message to be encoded in the barcode.</param>
         /// <param name="type">Type of the barcode to be generated.</param>
         /// <param name="config">The configuration of the barcode generator. This value can be null.</param>
@@ -231,6 +234,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Generates a QR image file with the specified message.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
         /// <remarks>
         ///     <see cref="BarcodeGenerationConfiguration.TextVisibility"/> must be <see cref="Visibility.Invisible"/>,
         ///     because the text visibility is not supported in the QR code.
@@ -263,6 +267,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Generates a QR image file with the specified message and <see cref="BarcodeGenerationConfiguration"/>.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
         /// <remarks>
         ///     <see cref="BarcodeGenerationConfiguration.TextVisibility"/> must be <see cref="Visibility.Invisible"/>,
         ///     because the text visibility is not supported in the QR code.
@@ -324,6 +329,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Generates a barcode image file with the specified message.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
         /// <param name="message">The message to be encoded in the barcode.</param>
         /// <param name="type">Type of the barcode to be generated.</param>
         /// <param name="imageConfig">The <see cref="BarcodeImageConfiguration"/> that contains
@@ -353,6 +359,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Generates a barcode image file with the specified message and <see cref="BarcodeGenerationConfiguration"/>.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
         /// <param name="message">The message to be encoded in the barcode.</param>
         /// <param name="type">Type of the barcode to be generated.</param>
         /// <param name="imageConfig">The <see cref="BarcodeImageConfiguration"/> that contains
