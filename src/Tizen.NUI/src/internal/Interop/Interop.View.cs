@@ -101,6 +101,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyInt")]
             public static extern int InternalUpdateVisualPropertyInt(HandleRef control, int visualIndex, int visualPropertyIndex, int valInt);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyMap")]
+            public static extern int InternalUpdateVisualPropertyPropertyMap(HandleRef control, int visualIndex, int visualPropertyIndex, HandleRef propertyMap);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_View_InternalUpdateVisualPropertyVector4")]
             public static extern int InternalUpdateVisualPropertyVector4(HandleRef control, int visualIndex, int visualPropertyIndex, HandleRef vector4);
 
