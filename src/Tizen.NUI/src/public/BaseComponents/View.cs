@@ -3644,5 +3644,17 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Vector3 CurrentScale => GetCurrentScale();
 
+        /// <summary>
+        /// Index for background visual
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int BackgroundVisualIndex => View.Property.BACKGROUND;
+
+        /// <summary>
+        /// Index for shadow visual
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static int ShadowVisualIndex => View.Property.SHADOW;
+
     }
 }

@@ -976,5 +976,52 @@ namespace Tizen.NUI.BaseComponents
                 hitTestResultDataCallback = null;
             }
         }
+
+        /// Update View's Visual Property.
+        /// View has several reserved visual indices by default, for example, Background and Shadow.
+        /// If it is necessary to manipulate visuals beyond the API provided by View, this method can be use.
+        /// </summary>
+        /// <param name="visualIndex">The visual index</param>
+        /// <param name="propertyIndex">The property index. Please refer <see cref="Visual.Property"/></param>
+        /// <param name="value">The value update to</param>
+        /// <seealso cref="BackgroundVisualIndex"/>
+        /// <seealso cref="ShadowVisualIndex"/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void UpdateVisualProperty(int visualIndex, int propertyIndex, float value)
+        {
+            Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, visualIndex, propertyIndex, value);
+        }
+
+        /// <summary>
+        /// Update View's Visual Property.
+        /// View has several reserved visual indices by default, for example, Background and Shadow.
+        /// If it is necessary to manipulate visuals beyond the API provided by View, this method can be use.
+        /// </summary>
+        /// <param name="visualIndex">The visual index</param>
+        /// <param name="propertyIndex">The property index. Please refer <see cref="Visual.Property"/></param>
+        /// <param name="value">The value update to</param>
+        /// <seealso cref="BackgroundVisualIndex"/>
+        /// <seealso cref="ShadowVisualIndex"/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void UpdateVisualProperty(int visualIndex, int propertyIndex, Vector4 value)
+        {
+            Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, visualIndex, propertyIndex, Vector4.getCPtr(value));
+        }
+
+        /// <summary>
+        /// Update View's Visual Property.
+        /// View has several reserved visual indices by default, for example, Background and Shadow.
+        /// If it is necessary to manipulate visuals beyond the API provided by View, this method can be use.
+        /// </summary>
+        /// <param name="visualIndex">The visual index</param>
+        /// <param name="propertyIndex">The property index. Please refer <see cref="Visual.Property"/></param>
+        /// <param name="value">The value update to</param>
+        /// <seealso cref="BackgroundVisualIndex"/>
+        /// <seealso cref="ShadowVisualIndex"/>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void UpdateVisualProperty(int visualIndex, int propertyIndex, PropertyMap value)
+        {
+            Interop.View.InternalUpdateVisualPropertyPropertyMap(this.SwigCPtr, visualIndex, propertyIndex, PropertyMap.getCPtr(value));
+        }
     }
 }
