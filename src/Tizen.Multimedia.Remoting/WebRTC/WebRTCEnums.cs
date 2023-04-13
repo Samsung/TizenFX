@@ -510,31 +510,28 @@ namespace Tizen.Multimedia.Remoting
         RemoteOutboundRtp = 0x0010,
 
         /// <summary>
+        /// Candidate pair.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        CandidatePair = 0x0020,
+
+        /// <summary>
+        /// Local candidate.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        LocalCandidate = 0x0040,
+
+        /// <summary>
+        /// Remote candidate.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        RemoteCandidate = 0x0080,
+
+        /// <summary>
         /// All types of WebRTC statistics.
         /// </summary>
-        All = Codec | InboundRtp | OutboundRtp | RemoteInboundRtp | RemoteOutboundRtp
-    }
-
-    [Flags]
-    internal enum WebRTCStatisticsPropertyCategory
-    {
-        Common = 0x00000100,
-
-        Codec = 0x00000200,
-
-        RtpStream = 0x00000400,
-
-        ReceivedRtpStream = 0x00000800,
-
-        InboundRtpStream = 0x00001000,
-
-        SentRtpStream = 0x00002000,
-
-        OutboundRtpStream = 0x00004000,
-
-        RemoteInboundRtpStream = 0x00008000,
-
-        RemoteOutboundRtpStream = 0x00010000
+        [Obsolete("Deprecated since API11; Will be removed in API13.")]
+        All = Codec | InboundRtp | OutboundRtp | RemoteInboundRtp | RemoteOutboundRtp | CandidatePair | LocalCandidate | RemoteCandidate
     }
 
     /// <summary>
@@ -546,137 +543,197 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Timestamp.
         /// </summary>
-        Timestamp = WebRTCStatisticsPropertyCategory.Common | 0x01,
+        Timestamp = 1,
 
         /// <summary>
         /// ID.
         /// </summary>
-        Id = WebRTCStatisticsPropertyCategory.Common | 0x02,
+        Id,
 
         /// <summary>
         /// Payload type.
         /// </summary>
-        PayloadType = WebRTCStatisticsPropertyCategory.Codec | 0x01,
+        PayloadType,
 
         /// <summary>
         /// Clock rate.
         /// </summary>
-        ClockRate = WebRTCStatisticsPropertyCategory.Codec | 0x02,
+        ClockRate,
 
         /// <summary>
         /// The number of channels.
         /// </summary>
-        Channels = WebRTCStatisticsPropertyCategory.Codec | 0x03,
+        Channels,
 
         /// <summary>
         /// MIME type.
         /// </summary>
-        MimeType = WebRTCStatisticsPropertyCategory.Codec | 0x04,
+        MimeType,
 
         /// <summary>
         /// Codec type.
         /// </summary>
-        CodecType = WebRTCStatisticsPropertyCategory.Codec | 0x05,
+        CodecType,
 
         /// <summary>
         /// SDP FMTP line.
         /// </summary>
-        SdpFmtpLine = WebRTCStatisticsPropertyCategory.Codec | 0x06,
+        SdpFmtpLine,
 
         /// <summary>
         /// SSRC.
         /// </summary>
-        Ssrc = WebRTCStatisticsPropertyCategory.RtpStream | 0x01,
+        Ssrc,
 
         /// <summary>
         /// Transport ID.
         /// </summary>
-        TransportId = WebRTCStatisticsPropertyCategory.RtpStream | 0x02,
+        TransportId,
 
         /// <summary>
         /// Codec ID.
         /// </summary>
-        CodecId = WebRTCStatisticsPropertyCategory.RtpStream | 0x03,
+        CodecId,
 
         /// <summary>
         /// Received packet.
         /// </summary>
-        PacketsReceived = WebRTCStatisticsPropertyCategory.ReceivedRtpStream | 0x01,
+        PacketsReceived,
 
         /// <summary>
         /// Lost packet.
         /// </summary>
-        PacketsLost = WebRTCStatisticsPropertyCategory.ReceivedRtpStream | 0x02,
+        PacketsLost,
 
         /// <summary>
         /// Discarted packet.
         /// </summary>
-        PacketsDiscarded = WebRTCStatisticsPropertyCategory.ReceivedRtpStream | 0x03,
+        PacketsDiscarded,
 
         /// <summary>
         /// Jitter.
         /// </summary>
-        Jitter = WebRTCStatisticsPropertyCategory.ReceivedRtpStream | 0x05,
+        Jitter,
 
         /// <summary>
         /// Received bytes.
         /// </summary>
-        BytesReceived = WebRTCStatisticsPropertyCategory.InboundRtpStream | 0x01,
+        BytesReceived,
 
         /// <summary>
         /// Duplicated packet.
         /// </summary>
-        PacketsDuplicated = WebRTCStatisticsPropertyCategory.InboundRtpStream | 0x02,
+        PacketsDuplicated,
 
         /// <summary>
         /// Sent bytes.
         /// </summary>
-        BytesSent = WebRTCStatisticsPropertyCategory.SentRtpStream | 0x01,
+        BytesSent,
 
         /// <summary>
         /// Sent packets.
         /// </summary>
-        PacketsSent = WebRTCStatisticsPropertyCategory.SentRtpStream | 0x02,
+        PacketsSent,
 
         /// <summary>
         /// Remote ID.
         /// </summary>
-        RemoteId = WebRTCStatisticsPropertyCategory.InboundRtpStream | WebRTCStatisticsPropertyCategory.OutboundRtpStream | 0x01,
+        RemoteId,
 
         /// <summary>
         /// FIR count.
         /// </summary>
-        FirCount = WebRTCStatisticsPropertyCategory.InboundRtpStream | WebRTCStatisticsPropertyCategory.OutboundRtpStream | 0x02,
+        FirCount,
 
         /// <summary>
         /// PLI count.
         /// </summary>
-        PliCount = WebRTCStatisticsPropertyCategory.InboundRtpStream | WebRTCStatisticsPropertyCategory.OutboundRtpStream | 0x03,
+        PliCount,
 
         /// <summary>
         /// NACK count.
         /// </summary>
-        NackCount = WebRTCStatisticsPropertyCategory.InboundRtpStream | WebRTCStatisticsPropertyCategory.OutboundRtpStream | 0x04,
+        NackCount,
 
         /// <summary>
         /// Round trip time.
         /// </summary>
-        RoundTripTime = WebRTCStatisticsPropertyCategory.RemoteInboundRtpStream | 0x01,
+        RoundTripTime,
 
         /// <summary>
         /// Lost fraction.
         /// </summary>
-        FractionLost = WebRTCStatisticsPropertyCategory.RemoteInboundRtpStream | 0x02,
+        FractionLost,
 
         /// <summary>
         /// Remote timestamp.
         /// </summary>
-        RemoteTimestamp = WebRTCStatisticsPropertyCategory.OutboundRtpStream | 0x01,
+        RemoteTimestamp,
 
         /// <summary>
         /// Local ID.
         /// </summary>
-        LocalId = WebRTCStatisticsPropertyCategory.RemoteInboundRtpStream | WebRTCStatisticsPropertyCategory.RemoteOutboundRtpStream | 0x01
+        LocalId,
+
+        /// <summary>
+        /// Kind.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        Kind,
+
+        /// <summary>
+        /// Address of the candidate.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        Address,
+
+        /// <summary>
+        /// Port number of the candidate.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        Port,
+
+        /// <summary>
+        /// Candidate type.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        CandidateType,
+
+        /// <summary>
+        /// Priority.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        Priority,
+
+        /// <summary>
+        /// Protocol(UDP or TCP).
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        Protocol,
+
+        /// <summary>
+        /// Relay protocol.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        RelayProtocol,
+
+        /// <summary>
+        /// URL.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        Url,
+
+        /// <summary>
+        /// Local candidate ID associated with the candidate pair.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        LocalCandidateId,
+
+        /// <summary>
+        /// Remote candidate ID associated with the candidate pair.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        RemoteCandidateId
     }
 
     internal enum WebRTCStatsPropertyType

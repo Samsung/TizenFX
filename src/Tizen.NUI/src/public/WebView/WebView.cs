@@ -1115,6 +1115,7 @@ namespace Tizen.NUI.BaseComponents
 
         /// <summary>
         /// Background color of web page.
+        /// Please note that it only works after LoadUrl, etc.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Color ContentBackgroundColor
@@ -1574,7 +1575,23 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Requests to load the given contents by MIME type.
         /// </summary>
-        /// <param name="contents">The contents to be loaded</param>
+        /// <param name="contents">The contents to be loaded in bytes</param>
+        /// <param name="mimeType">The type of contents, "text/html" is assumed if null</param>
+        /// <param name="encoding">The encoding for contents, "UTF-8" is assumed if null</param>
+        /// <param name="baseUri">The base URI to use for relative resources</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool LoadContents(byte[] contents, string mimeType, string encoding, string baseUri)
+        {
+            int length = contents != null ? contents.Length : 0;
+            bool result = Interop.WebView.LoadContents(SwigCPtr, contents, (uint)length, mimeType, encoding, baseUri);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return result;
+        }
+
+        /// <summary>
+        /// Requests to load the given contents by MIME type.
+        /// </summary>
+        /// <param name="contents">The contents to be loaded. For UTF-8 encoding, contents would be got like System.Text.Encoding.UTF8.GetString(...)</param>
         /// <param name="contentSize">The size of contents (in bytes)</param>
         /// <param name="mimeType">The type of contents, "text/html" is assumed if null</param>
         /// <param name="encoding">The encoding for contents, "UTF-8" is assumed if null</param>

@@ -106,5 +106,25 @@ internal static partial class Interop
         internal static extern int SetNotificationAppControl(int requestId, int appControlType, SafeAppControlHandle handle);
         [DllImport(Libraries.Download, EntryPoint = "download_get_notification_app_control")]
         internal static extern int GetNotificationAppControl(int requestId, int appControlType, out SafeAppControlHandle handle);
+        [DllImport(Libraries.Download, EntryPoint = "download_set_cache")]
+        internal static extern int SetDownloadCache(int downloadId, bool enable);
+        [DllImport(Libraries.Download, EntryPoint = "download_get_cache")]
+        internal static extern int GetDownloadCache(int downloadId, out bool enable);
+        [DllImport(Libraries.Download, EntryPoint = "download_reset_cache")]
+        internal static extern int ResetDownloadCache();
+        [DllImport(Libraries.Download, EntryPoint = "download_set_cache_max_size")]
+        internal static extern int SetDownloadCacheMaxSize(uint maxSize);
+        [DllImport(Libraries.Download, EntryPoint = "download_get_cache_max_size")]
+        internal static extern int GetDownloadCacheMaxSize(out uint maxSize);
+        [DllImport(Libraries.Download, EntryPoint = "download_reset_all_cache")]
+        internal static extern int ResetAllDownloadCache();
+        [DllImport(Libraries.Download, EntryPoint = "download_set_cache_path")]
+        internal static extern int SetDownloadCachePath(string cachePath);
+        [DllImport(Libraries.Download, EntryPoint = "download_get_cache_path")]
+        internal static extern int GetDownloadCachePath(out string cachePath);
+        [DllImport(Libraries.Download, EntryPoint = "download_set_cache_lifecycle")]
+        internal static extern int SetDownloadCacheLifeCycle(uint time);
+        [DllImport(Libraries.Download, EntryPoint = "download_get_cache_lifecycle")]
+        internal static extern int GetDownloadCacheLifeCycle(out uint time);
     }
 }
