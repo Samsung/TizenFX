@@ -545,6 +545,15 @@ namespace Tizen.NUI.Components
             }
         }
 
+        /// <summary>
+        /// Formatted current value.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        string IAtspiValue.AccessibilityGetValueText()
+        {
+            return (this as IAtspiValue).AccessibilityGetCurrent().ToString();
+        }
+
         [EditorBrowsable(EditorBrowsableState.Never)]
         bool IAtspiValue.AccessibilitySetCurrent(double value)
         {

@@ -400,6 +400,7 @@ namespace Tizen.NUI.BaseComponents
             ad.GetMaximum          = AccessibilityGetMaximumWrapper;
             ad.GetMinimum          = AccessibilityGetMinimumWrapper;
             ad.GetMinimumIncrement = AccessibilityGetMinimumIncrementWrapper;
+            ad.GetValueText        = AccessibilityGetValueTextWrapper;
             ad.SetCurrent          = AccessibilitySetCurrentWrapper;
         }
 
@@ -421,6 +422,33 @@ namespace Tizen.NUI.BaseComponents
         private static double AccessibilityGetMinimumIncrementWrapper(IntPtr self)
         {
             return GetInterfaceFromRefObject<IAtspiValue>(self).AccessibilityGetMinimumIncrement();
+        }
+
+        private static IntPtr AccessibilityGetValueTextWrapper(IntPtr self)
+        {
+            var view = GetViewFromRefObject(self);
+            var value = GetInterfaceFromRefObject<IAtspiValue>(self);
+            string text;
+
+            // Mimic the behaviour of the pairs AccessibilityNameRequested & AccessibilityGetName(),
+            // and AccessibilityDescriptionRequested & AccessibilityGetDescription(),
+            // i.e. a higher-priority Accessibility[…]Requested event for application developers,
+            // and a lower-priority AccessibilityGet[…]() virtual method for component developers.
+            // The difference is that event-or-virtual-method dispatching is done in C++ for
+            // Name and Description, and here in this wrapper method for ValueText (because there
+            // is no signal for ValueText in DALi.)
+            if (view.AccessibilityValueTextRequested?.GetInvocationList().Length > 0)
+            {
+                var args = new AccessibilityValueTextRequestedEventArgs();
+                view.AccessibilityValueTextRequested.Invoke(view, args);
+                text = args.Text;
+            }
+            else
+            {
+                text = value.AccessibilityGetValueText();
+            }
+
+            return DuplicateString(text);
         }
 
         private static bool AccessibilitySetCurrentWrapper(IntPtr self, double value)
