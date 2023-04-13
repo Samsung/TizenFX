@@ -19249,6 +19249,11 @@
     "title": "Enum QrMode",
     "keywords": ""
   },
+  "API11/api/Tizen.Multimedia.Vision.QrShape.html": {
+    "href": "API11/api/Tizen.Multimedia.Vision.QrShape.html",
+    "title": "Enum QrShape",
+    "keywords": ""
+  },
   "API11/api/Tizen.Multimedia.Vision.Quadrangle.html": {
     "href": "API11/api/Tizen.Multimedia.Vision.Quadrangle.html",
     "title": "Class Quadrangle",
