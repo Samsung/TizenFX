@@ -383,6 +383,11 @@ namespace Tizen.NUI
                 public delegate void AccessibilityGetAttributes(IntPtr self, AccessibilityGetAttributesCallback callback, IntPtr userData);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetAttributes GetAttributes; // 37
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate IntPtr AccessibilityGetValueText(IntPtr self);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetValueText GetValueText; // 38
             }
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_DuplicateString")]

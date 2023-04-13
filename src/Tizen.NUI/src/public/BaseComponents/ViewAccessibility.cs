@@ -59,7 +59,7 @@ namespace Tizen.NUI.BaseComponents
         /// Dictionary of accessibility attributes (key-value pairs of strings).
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected Dictionary<string, string> AccessibilityAttributes { get; } = new Dictionary<string, string>();
+        public Dictionary<string, string> AccessibilityAttributes { get; } = new Dictionary<string, string>();
 
         ///////////////////////////////////////////////////////////////////
         // ************************** Highlight ************************ //
