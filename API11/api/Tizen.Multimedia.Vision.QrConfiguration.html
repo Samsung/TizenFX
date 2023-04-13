@@ -115,7 +115,7 @@
   <h3 id="constructors">Constructors
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/QrConfiguration.cs/#L49">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/QrConfiguration.cs/#L53">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_QrConfiguration__ctor_" data-uid="Tizen.Multimedia.Vision.QrConfiguration.#ctor*"></a>
   <h4 id="Tizen_Multimedia_Vision_QrConfiguration__ctor_Tizen_Multimedia_Vision_QrMode_Tizen_Multimedia_Vision_ErrorCorrectionLevel_System_Int32_" data-uid="Tizen.Multimedia.Vision.QrConfiguration.#ctor(Tizen.Multimedia.Vision.QrMode,Tizen.Multimedia.Vision.ErrorCorrectionLevel,System.Int32)">QrConfiguration(QrMode, ErrorCorrectionLevel, Int32)</h4>
@@ -192,7 +192,115 @@
   <h3 id="properties">Properties
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/QrConfiguration.cs/#L74">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/QrConfiguration.cs/#L116">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_Vision_QrConfiguration_DataShape_" data-uid="Tizen.Multimedia.Vision.QrConfiguration.DataShape*"></a>
+  <h4 id="Tizen_Multimedia_Vision_QrConfiguration_DataShape" data-uid="Tizen.Multimedia.Vision.QrConfiguration.DataShape">DataShape</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the data shape of the Design QR code.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public QrShape DataShape { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Vision.QrShape.html">QrShape</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Vision_QrConfiguration_DataShape_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The default value is <a class="xref" href="Tizen.Multimedia.Vision.QrShape.html#Tizen_Multimedia_Vision_QrShape_Rectangular">Rectangular</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is not valid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>11</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/QrConfiguration.cs/#L96">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_Vision_QrConfiguration_EmbedImagePath_" data-uid="Tizen.Multimedia.Vision.QrConfiguration.EmbedImagePath*"></a>
+  <h4 id="Tizen_Multimedia_Vision_QrConfiguration_EmbedImagePath" data-uid="Tizen.Multimedia.Vision.QrConfiguration.EmbedImagePath">EmbedImagePath</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the embed image absolute path of the Design QR code.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string EmbedImagePath { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Vision_QrConfiguration_EmbedImagePath_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The mediastorage privilege (<a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a>) is needed if the image path is relevant to media storage.<br>
+The externalstorage privilege (<a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>) is needed if the image path is relevant to external storage.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is zero-length string.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>11</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/QrConfiguration.cs/#L78">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_QrConfiguration_ErrorCorrectionLevel_" data-uid="Tizen.Multimedia.Vision.QrConfiguration.ErrorCorrectionLevel*"></a>
   <h4 id="Tizen_Multimedia_Vision_QrConfiguration_ErrorCorrectionLevel" data-uid="Tizen.Multimedia.Vision.QrConfiguration.ErrorCorrectionLevel">ErrorCorrectionLevel</h4>
@@ -224,7 +332,58 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/QrConfiguration.cs/#L68">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/QrConfiguration.cs/#L136">View Source</a>
+  </span>
+  <a id="Tizen_Multimedia_Vision_QrConfiguration_FinderShape_" data-uid="Tizen.Multimedia.Vision.QrConfiguration.FinderShape*"></a>
+  <h4 id="Tizen_Multimedia_Vision_QrConfiguration_FinderShape" data-uid="Tizen.Multimedia.Vision.QrConfiguration.FinderShape">FinderShape</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the finder shape of the Design QR code.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public QrShape FinderShape { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Multimedia.Vision.QrShape.html">QrShape</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Multimedia_Vision_QrConfiguration_FinderShape_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The default value is <a class="xref" href="Tizen.Multimedia.Vision.QrShape.html#Tizen_Multimedia_Vision_QrShape_Rectangular">Rectangular</a>.</p>
+</div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is not valid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>11</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/QrConfiguration.cs/#L72">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_QrConfiguration_Mode_" data-uid="Tizen.Multimedia.Vision.QrConfiguration.Mode*"></a>
   <h4 id="Tizen_Multimedia_Vision_QrConfiguration_Mode" data-uid="Tizen.Multimedia.Vision.QrConfiguration.Mode">Mode</h4>
@@ -256,7 +415,7 @@
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/QrConfiguration.cs/#L80">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Vision/MediaVision/QrConfiguration.cs/#L84">View Source</a>
   </span>
   <a id="Tizen_Multimedia_Vision_QrConfiguration_Version_" data-uid="Tizen.Multimedia.Vision.QrConfiguration.Version*"></a>
   <h4 id="Tizen_Multimedia_Vision_QrConfiguration_Version" data-uid="Tizen.Multimedia.Vision.QrConfiguration.Version">Version</h4>
