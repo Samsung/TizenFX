@@ -20,7 +20,7 @@ using System.Collections.Generic;
 namespace Tizen.Data.Tdbc
 {
     /// <summary>
-    /// Represents a SQL string.
+    /// Represents a SQL query string.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
     public class Sql

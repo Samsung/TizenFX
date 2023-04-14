@@ -28,7 +28,6 @@ namespace Tizen.Data.Tdbc
         private readonly OperationType _operationType;
         private readonly string _database;
         private readonly string _table;
-        private readonly long _rowId;
 
         /// <summary>
         /// Creates and initializes a new instance of type of the RecordChangedEventArgs class.
@@ -36,15 +35,13 @@ namespace Tizen.Data.Tdbc
         /// <param name="operationType">The operation type of the changed record.</param>
         /// <param name="database">The database of the changed record.</param>
         /// <param name="table">The table of the changed record.</param>
-        /// <param name="rowId">The rowId of the changed record.</param>
         /// <since_tizen> 11 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RecordChangedEventArgs(OperationType operationType, string database, string table, long rowId)
+        public RecordChangedEventArgs(OperationType operationType, string database, string table)
         {
             _operationType = operationType;
             _database = database;
             _table = table;
-            _rowId = rowId;
         }
 
         /// <summary>
@@ -64,11 +61,5 @@ namespace Tizen.Data.Tdbc
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         public string Table { get { return _table; } }
-
-        /// <summary>
-        /// Gets the row ID of the record changed event.
-        /// </summary>
-        /// <since_tizen> 11 </since_tizen>
-        public long RowId { get { return _rowId; } }
     }
 }

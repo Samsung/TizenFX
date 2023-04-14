@@ -87,7 +87,7 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
                     break;
             }
 
-            RecordChangedEventArgs ev = new RecordChangedEventArgs(operationType, db_name, table_name, rowid);
+            RecordChangedEventArgs ev = new RecordChangedEventArgs(operationType, db_name, table_name);
             _recordChanged?.Invoke(this, ev);
         }
 

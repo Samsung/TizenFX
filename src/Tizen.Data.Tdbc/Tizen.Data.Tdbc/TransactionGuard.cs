@@ -38,7 +38,7 @@ namespace Tizen.Data.Tdbc
         private bool _commited;
 
         /// <summary>
-        /// The boolean variable if the transact operation enabled.
+        /// The flag representing whether the TransactionGuard is enabled.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         public bool IsEnabled { get; set; }
