@@ -1270,6 +1270,16 @@ namespace Tizen.NUI
         {
             add
             {
+                // This is to defend against problems in the operation of unsubscribing the VisibilityChanged event of the sub window within the handler,
+                // where the sub window is disabled and the View RemovedFromWindow event occurs.
+                // The problem seems to have occurred because the native window object itself is invalid 
+                // when trying to obtain the window native signal because the sub window is in the Dispose state.
+                if (disposed)
+                {
+                    Tizen.Log.Error("NUI", "[ERR] This Window object has already been destroyed, but VisibilityChanged event is added or removed!");
+                    return;
+                }
+
                 if (VisibilityChangedEventHandler == null)
                 {
                     VisibilityChangedEventCallback = OnVisibilityChanged;
@@ -1280,6 +1290,16 @@ namespace Tizen.NUI
             }
             remove
             {
+                // This is to defend against problems in the operation of unsubscribing the VisibilityChanged event of the sub window within the handler,
+                // where the sub window is disabled and the View RemovedFromWindow event occurs.
+                // The problem seems to have occurred because the native window object itself is invalid 
+                // when trying to obtain the window native signal because the sub window is in the Dispose state.
+                if (disposed)
+                {
+                    Tizen.Log.Error("NUI", "[ERR] This Window object has already been destroyed, but VisibilityChanged event is added or removed!");
+                    return;
+                }
+
                 VisibilityChangedEventHandler -= value;
                 if (VisibilityChangedEventHandler == null && VisibilityChangedEventCallback != null)
                 {
