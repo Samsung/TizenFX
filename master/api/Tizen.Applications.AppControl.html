@@ -692,6 +692,55 @@ if (applicationIds != null)
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L1022">View Source</a>
+  </span>
+  <a id="Tizen_Applications_AppControl_GetWindowPosition_" data-uid="Tizen.Applications.AppControl.GetWindowPosition*"></a>
+  <h4 id="Tizen_Applications_AppControl_GetWindowPosition" data-uid="Tizen.Applications.AppControl.GetWindowPosition">GetWindowPosition()</h4>
+  <div class="markdown level1 summary"><p>Gets the window position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WindowPosition GetWindowPosition()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.WindowPosition.html">WindowPosition</a></td>
+        <td><p>The window position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when the invalid operation error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>11</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L586">View Source</a>
   </span>
   <a id="Tizen_Applications_AppControl_SendLaunchRequest_" data-uid="Tizen.Applications.AppControl.SendLaunchRequest*"></a>
@@ -1033,6 +1082,67 @@ AppControl.SendTerminateRequest(terminateRequest);</code></pre>
   </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/AppControl.cs/#L995">View Source</a>
+  </span>
+  <a id="Tizen_Applications_AppControl_SetWindowPosition_" data-uid="Tizen.Applications.AppControl.SetWindowPosition*"></a>
+  <h4 id="Tizen_Applications_AppControl_SetWindowPosition_Tizen_Applications_WindowPosition_" data-uid="Tizen.Applications.AppControl.SetWindowPosition(Tizen.Applications.WindowPosition)">SetWindowPosition(WindowPosition)</h4>
+  <div class="markdown level1 summary"><p>Sets the window position.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetWindowPosition(WindowPosition windowPosition)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.WindowPosition.html">WindowPosition</a></td>
+        <td><span class="parametername">windowPosition</span></td>
+        <td><p>The window position object.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when the argument is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when the argument is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when the invalid operation error occurs.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>11</span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
