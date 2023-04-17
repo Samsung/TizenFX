@@ -37,7 +37,7 @@ namespace Tizen.NUI
 
         internal NUIGadgetResourceManager(NUIGadgetInfo info)
         {
-            _resourcePath = info.ResourcePath; ;
+            _resourcePath = info.ResourcePath;
             _resourceDll = info.ResourceFile;
             _resourceClassName = info.ResourceClassName;
         }
@@ -68,7 +68,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the return value of the string resource localied for the specified culture.
+        /// Gets the return value of the string resource localized for the specified culture.
         /// </summary>
         /// <param name="name">The name of the resource to retrieve.</param>
         /// <param name="cultureInfo">An object that represents the culture for which the resource is localied.</param>
