@@ -116,10 +116,54 @@ namespace Tizen.NUI.BaseComponents
         }
 
         /// <summary>
+        /// Accessibility mode for controlling View's Accessible implementation.
+        /// It is only relevant when deriving custom controls from View directly,
+        /// as classes derived from CustomView (or any of its subclasses) get the
+        /// Custom mode by default.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public enum ViewAccessibilityMode
+        {
+            /// <summary>
+            /// Default accessibility implementation. Overriding View.Accessibility...()
+            /// virtual methods will have no effect.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Default,
+            /// <summary>
+            /// Custom accessibility implementation. Overriding View.Accessibility...()
+            /// will be necessary to provide accessibility support for the View.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Custom,
+        }
+
+        private static IntPtr NewWithAccessibilityMode(ViewAccessibilityMode accessibilityMode)
+        {
+            switch (accessibilityMode)
+            {
+                case ViewAccessibilityMode.Custom:
+                {
+                    return Interop.View.NewCustom();
+                }
+                case ViewAccessibilityMode.Default:
+                default:
+                {
+                    return Interop.View.New();
+                }
+            }
+        }
+
+        /// <summary>
         /// Creates a new instance of a view.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public View() : this(Interop.View.New(), true)
+        public View() : this(ViewAccessibilityMode.Default)
+        {
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View(ViewAccessibilityMode accessibilityMode) : this(NewWithAccessibilityMode(accessibilityMode), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -165,9 +209,6 @@ namespace Tizen.NUI.BaseComponents
                 PositionUsesPivotPoint = false;
                 GrabTouchAfterLeave = defaultGrabTouchAfterLeave;
                 AllowOnlyOwnTouch = defaultAllowOnlyOwnTouch;
-
-                // TODO : Can we call this function only for required subclass?
-                RegisterHitTestCallback();
             }
 
             if (!shown)
@@ -3193,6 +3234,17 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 Object.InternalSetPropertyBool(SwigCPtr, View.Property.CaptureAllTouchAfterStart, value);
+
+                // Use custom HitTest callback only if GrabTouchAfterLeave is true.
+                if (value)
+                {
+                    RegisterHitTestCallback();
+                }
+                else
+                {
+                    UnregisterHitTestCallback();
+                }
+
                 NotifyPropertyChanged();
             }
         }

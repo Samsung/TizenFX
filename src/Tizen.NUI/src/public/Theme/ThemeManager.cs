@@ -65,6 +65,7 @@ namespace Tizen.NUI
             if (InitialThemeDisabled) return;
 
             ExternalThemeManager.Initialize();
+            ExternalThemeManager.PlatformThemeChanged += OnExternalThemeChanged;
             AddPackageTheme(DefaultThemeCreator.Instance);
         }
 
@@ -375,7 +376,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="id">The external theme id.</param>
         /// <param name="version">The external theme version.</param>
-        internal static void ApplyExternalPlatformTheme(string id, string version)
+        private static void ApplyExternalPlatformTheme(string id, string version)
         {
             if (InitialThemeDisabled) return;
 
@@ -592,6 +593,16 @@ namespace Tizen.NUI
             ThemeChanged?.Invoke(null, new ThemeChangedEventArgs(userThemeId, platformThemeId, platformThemeUpdated));
 
             isInEventProgress = false;
+        }
+
+        private static void OnExternalThemeChanged(object sender, EventArgs e)
+        {
+            if (!PlatformThemeEnabled)
+            {
+                return;
+            }
+
+            ApplyExternalPlatformTheme(ExternalThemeManager.CurrentThemeId, ExternalThemeManager.CurrentThemeVersion);
         }
     }
 }

@@ -1,5 +1,5 @@
 /*
- *  Copyright (c) 2016-2020 Samsung Electronics Co., Ltd All Rights Reserved
+ *  Copyright (c) 2016-2023 Samsung Electronics Co., Ltd All Rights Reserved
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -153,6 +153,7 @@ namespace Tizen.Security
         /// <exception cref="System.OutOfMemoryException">Thrown when out of memory occurs.</exception>
         /// <exception cref="System.InvalidOperationException">Thrown when an internal error occurs.</exception>
         /// <exception cref="System.NotSupportedException">The required feature is not supported.</exception>
+        [Obsolete("Deprecated since API level 11.")]
         public static string GetPrivacyDisplayName(string privilege)
         {
             string displayName;

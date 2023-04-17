@@ -209,6 +209,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetRootLayer")]
             public static extern global::System.IntPtr GetRootLayer(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetOverlayLayer")]
+            public static extern global::System.IntPtr GetOverlayLayer(global::System.Runtime.InteropServices.HandleRef jarg1);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_KeyEventSignal")]
             public static extern global::System.IntPtr KeyEventSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
@@ -298,6 +301,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_Set_Minimum_Size")]
             public static extern void SetMimimumSize(global::System.Runtime.InteropServices.HandleRef window, global::System.Runtime.InteropServices.HandleRef size);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetLayout")]
+            public static extern void SetLayout(global::System.Runtime.InteropServices.HandleRef window, uint numCols, uint numRows, uint column, uint row, uint colSpan, uint rowSpan);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_IsWindowRotating")]
             [return: global::System.Runtime.InteropServices.MarshalAs(global::System.Runtime.InteropServices.UnmanagedType.U1)]
             public static extern bool IsWindowRotating(global::System.Runtime.InteropServices.HandleRef window);
@@ -307,6 +313,12 @@ namespace Tizen.NUI
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_GetLastTouchEvent")]
             public static extern global::System.IntPtr GetLastTouchEvent(global::System.Runtime.InteropServices.HandleRef window);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SetNeedsRotationCompletedAcknowledgement")]
+            public static extern void SetNeedsRotationCompletedAcknowledgement(global::System.Runtime.InteropServices.HandleRef window, bool needAcknowledgement);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Window_SendRotationCompletedAcknowledgement")]
+            public static extern void SendRotationCompletedAcknowledgement(global::System.Runtime.InteropServices.HandleRef window);
         }
     }
 }

@@ -30,31 +30,19 @@ namespace Tizen.NUI.Components.Extension
         }
 
         /// <summary>
-        /// Called immediately after the Switch creates the track part.
+        /// Perform further processing of the switch thumb.
         /// </summary>
-        /// <param name="switchButton">The Switch instance that the extension currently applied to.</param>
-        /// <param name="track">The created Switch's track part.</param>
-        /// <return>The refined switch track.</return>
+        /// <param name="switchButton">The switch instance that the extension currently applied to.</param>
+        /// <param name="thumb">The reference of the switch thumb.</param>
+        /// <return>True if the given thumb is replaced.</return>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual ImageView OnCreateTrack(Switch switchButton, ImageView track)
-        {
-            return track;
-        }
-
-        /// <summary>
-        /// Called immediately after the Switch creates the thumb part.
-        /// </summary>
-        /// <param name="switchButton">The Switch instance that the extension currently applied to.</param>
-        /// <param name="thumb">The created Switch's thumb part.</param>
-        /// <return>The refined switch thumb.</return>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public virtual ImageView OnCreateThumb(Switch switchButton, ImageView thumb)
+        public bool ProcessThumb(Switch switchButton, ref ImageView thumb)
         {
             if (switchButton.IsSelected)
             {
                 OnSelectedChanged(switchButton);
             }
-            return thumb;
+            return false;
         }
 
         /// <summary>

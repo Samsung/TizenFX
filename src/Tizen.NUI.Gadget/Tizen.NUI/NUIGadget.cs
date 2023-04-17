@@ -44,6 +44,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the class representing information of the current gadget.
         /// </summary>
+        /// <remarks> This property is set before the OnCreate() is called, after the instance has been created. </remarks>
         /// <since_tizen> 10 </since_tizen>
         public NUIGadgetInfo NUIGadgetInfo
         {
@@ -64,6 +65,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets the class name.
         /// </summary>
+        /// <remarks> This property is set before the OnCreate() is called, after the instance has been created. </remarks>
         /// <since_tizen> 10 </since_tizen>
         public string ClassName
         {
@@ -86,6 +88,17 @@ namespace Tizen.NUI
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public NUIGadgetLifecycleState State
+        {
+            internal set;
+            get;
+        }
+
+        /// <summary>
+        /// Gets the resource manager.
+        /// </summary>
+        /// <remarks> This property is set before the OnCreate() is called, after the instance has been created. </remarks>
+        /// <since_tizen> 10 </since_tizen>
+        public NUIGadgetResourceManager NUIGadgetResourceManager
         {
             internal set;
             get;

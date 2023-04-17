@@ -23,7 +23,7 @@ namespace Tizen.NUI
     /// </summary>
     /// <since_tizen> 10 </since_tizen>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public  enum NUIGadgetLifecycleState
+    public enum NUIGadgetLifecycleState
     {
         /// <summary>
         /// The initialized state.

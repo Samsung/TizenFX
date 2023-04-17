@@ -164,5 +164,10 @@ internal static partial class Interop
         [DllImport(Libraries.AppControl, EntryPoint = "app_control_foreach_default_application")]
         internal static extern ErrorCode ForeachDefaultApplication(DefaultApplicationCallback callback, IntPtr userData);
 
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_set_window_position")]
+        internal static extern ErrorCode SetWindowPosition(SafeAppControlHandle handle, int x, int y, int w, int h);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_get_window_position")]
+        internal static extern ErrorCode GetWindowPosition(SafeAppControlHandle handle, out int x, out int y, out int w, out int h);
     }
 }
