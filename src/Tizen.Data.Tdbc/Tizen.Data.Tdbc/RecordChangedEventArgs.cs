@@ -28,6 +28,7 @@ namespace Tizen.Data.Tdbc
         private readonly OperationType _operationType;
         private readonly string _database;
         private readonly string _table;
+        private readonly IRecord _record;
 
         /// <summary>
         /// Creates and initializes a new instance of type of the RecordChangedEventArgs class.
@@ -35,13 +36,15 @@ namespace Tizen.Data.Tdbc
         /// <param name="operationType">The operation type of the changed record.</param>
         /// <param name="database">The database of the changed record.</param>
         /// <param name="table">The table of the changed record.</param>
+        /// <param name="record">The changed record.</param>
         /// <since_tizen> 11 </since_tizen>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public RecordChangedEventArgs(OperationType operationType, string database, string table)
+        public RecordChangedEventArgs(OperationType operationType, string database, string table, IRecord record)
         {
             _operationType = operationType;
             _database = database;
             _table = table;
+            _record = record;
         }
 
         /// <summary>
@@ -61,5 +64,12 @@ namespace Tizen.Data.Tdbc
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         public string Table { get { return _table; } }
+
+        /// <summary>
+        /// Gets the changed record.
+        /// </summary>
+        /// <remarks>If the operation type is Delete, the changed record may by empty.</remarks>
+        /// <since_tizen> 11 </since_tizen>
+        public IRecord Record { get { return _record; } }
     }
 }
