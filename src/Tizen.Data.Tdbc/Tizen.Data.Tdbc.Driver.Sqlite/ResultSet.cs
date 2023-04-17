@@ -43,14 +43,14 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
             _conn = conn;
         }
 
+        public IEnumerator<IRecord> GetEnumerator()
+        {
+            return new Record(_stmt);
+        }
+
         IEnumerator IEnumerable.GetEnumerator()
         {
             return this.GetEnumerator();
-        }
-
-        public IEnumerator<IRecord> GetEnumerator()
-        {
-            yield return new Record(_stmt);
         }
 
         protected virtual void Dispose(bool disposing)

@@ -15,7 +15,7 @@
  */
 
 using System;
-using System.Collections;
+using System.Collections.Generic;
 
 namespace Tizen.Data.Tdbc
 {
@@ -23,7 +23,7 @@ namespace Tizen.Data.Tdbc
     /// Record class. This class provides the result of query.
     /// </summary>
     /// <since_tizen> 11 </since_tizen>
-    public interface IRecord : IEnumerator
+    public interface IRecord : IEnumerator<IRecord>
     {
         /// <summary>
         /// Get integer type value from the record with given index.

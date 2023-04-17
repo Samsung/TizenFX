@@ -15,6 +15,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 
@@ -24,12 +25,26 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
     internal class Record : IRecord
     {
         private IntPtr _stmt;
-
-        public object Current => this;
+        IRecord IEnumerator<IRecord>.Current => this;
+        public object Current => this.Current;
 
         internal Record(IntPtr stmt)
         {
             _stmt = stmt;
+        }
+
+        public bool MoveNext()
+        {
+            int ret = Interop.Sqlite.Step(_stmt);
+            if (ret != (int)Interop.Sqlite.ResultCode.SQLITE_ROW)
+                return false;
+
+            return true;
+        }
+
+        public void Reset()
+        {
+            Interop.Sqlite.Reset(_stmt);
         }
 
         public bool GetBool(int columnIndex)
@@ -68,20 +83,6 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
             IntPtr raw = Interop.Sqlite.ColumnText(_stmt, columnIndex);
 
             return Marshal.PtrToStringAnsi(raw);
-        }
-
-        public bool MoveNext()
-        {
-            int ret = Interop.Sqlite.Step(_stmt);
-            if (ret != (int)Interop.Sqlite.ResultCode.SQLITE_ROW)
-                return false;
-                
-            return true;
-        }
-
-        public void Reset()
-        {
-            Interop.Sqlite.Reset(_stmt);
         }
 
         public char GetChar(int columnIndex)
@@ -132,6 +133,10 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
         public string GetName(int columnIndex)
         {
             throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
         }
     }
 }
