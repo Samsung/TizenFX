@@ -16014,6 +16014,11 @@
     "title": "Class WidgetLifecycleEventArgs",
     "keywords": ""
   },
+  "API11/api/Tizen.Applications.WindowPosition.html": {
+    "href": "API11/api/Tizen.Applications.WindowPosition.html",
+    "title": "Class WindowPosition",
+    "keywords": ""
+  },
   "API11/api/Tizen.Common.Color.html": {
     "href": "API11/api/Tizen.Common.Color.html",
     "title": "Struct Color",

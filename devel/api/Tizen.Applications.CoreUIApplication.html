@@ -53,7 +53,7 @@
   CoreUIApplication
   </h1>
       <div class="contribution align-self-end">
-        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L27" class="contribution-link">View Source</a>
+        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L29" class="contribution-link">View Source</a>
       </div>
   </div>
   <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
@@ -75,7 +75,7 @@
     <dt>Inheritance</dt>
     <dd>
       <div class="pdl-holder">
-        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><span class="xref">System.Object</span></div>
         <div class="pdl"><a class="xref" href="Tizen.Applications.Application.html">Application</a></div>
         <div class="pdl"><a class="xref" href="Tizen.Applications.CoreApplication.html">CoreApplication</a></div>
         <div><span class="xref">CoreUIApplication</span></div>
@@ -88,7 +88,7 @@
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div class="pdl"><span class="xref">System.IDisposable</span></div>
     </dd>
   </dl>
   
@@ -99,7 +99,7 @@
   <a id="Tizen_Applications_CoreUIApplication__ctor_" data-uid="Tizen.Applications.CoreUIApplication.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L36">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L38">View Source</a>
     </span>
     <h4 id="Tizen_Applications_CoreUIApplication__ctor" data-uid="Tizen.Applications.CoreUIApplication.#ctor">CoreUIApplication()</h4>
     <section>
@@ -122,7 +122,7 @@
   <a id="Tizen_Applications_CoreUIApplication__ctor_" data-uid="Tizen.Applications.CoreUIApplication.#ctor*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L48">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L50">View Source</a>
     </span>
     <h4 id="Tizen_Applications_CoreUIApplication__ctor_Tizen_Applications_CoreBackend_ICoreBackend_" data-uid="Tizen.Applications.CoreUIApplication.#ctor(Tizen.Applications.CoreBackend.ICoreBackend)">CoreUIApplication(ICoreBackend)</h4>
     <section>
@@ -165,7 +165,7 @@
   <a id="Tizen_Applications_CoreUIApplication_CurrentDeviceOrientation_" data-uid="Tizen.Applications.CoreUIApplication.CurrentDeviceOrientation*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L56">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L58">View Source</a>
     </span>
     <h4 id="Tizen_Applications_CoreUIApplication_CurrentDeviceOrientation" data-uid="Tizen.Applications.CoreUIApplication.CurrentDeviceOrientation">CurrentDeviceOrientation</h4>
     <section>
@@ -199,10 +199,62 @@
   <h2 id="methods">Methods
   </h2>
   
+  <a id="Tizen_Applications_CoreUIApplication_GetWindowPosition_" data-uid="Tizen.Applications.CoreUIApplication.GetWindowPosition*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L125">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_CoreUIApplication_GetWindowPosition" data-uid="Tizen.Applications.CoreUIApplication.GetWindowPosition">GetWindowPosition()</h4>
+    <section>
+      <p>Gets the window position of the application.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public WindowPosition GetWindowPosition()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="Tizen.Applications.WindowPosition.html">WindowPosition</a></td>
+        <td><p>The window position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.InvalidOperationException</span></td>
+        <td><p>Thrown when there is no window position.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>11</span></h6>
+  
+  
   <a id="Tizen_Applications_CoreUIApplication_OnPause_" data-uid="Tizen.Applications.CoreUIApplication.OnPause*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L112">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L114">View Source</a>
     </span>
     <h4 id="Tizen_Applications_CoreUIApplication_OnPause" data-uid="Tizen.Applications.CoreUIApplication.OnPause">OnPause()</h4>
     <section>
@@ -223,7 +275,7 @@ If base.OnPause() is not called, the event &apos;Paused&apos; will not be emitte
   <a id="Tizen_Applications_CoreUIApplication_OnPreCreate_" data-uid="Tizen.Applications.CoreUIApplication.OnPreCreate*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L93">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L95">View Source</a>
     </span>
     <h4 id="Tizen_Applications_CoreUIApplication_OnPreCreate" data-uid="Tizen.Applications.CoreUIApplication.OnPreCreate">OnPreCreate()</h4>
     <section>
@@ -243,7 +295,7 @@ If base.OnPause() is not called, the event &apos;Paused&apos; will not be emitte
   <a id="Tizen_Applications_CoreUIApplication_OnResume_" data-uid="Tizen.Applications.CoreUIApplication.OnResume*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L102">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L104">View Source</a>
     </span>
     <h4 id="Tizen_Applications_CoreUIApplication_OnResume" data-uid="Tizen.Applications.CoreUIApplication.OnResume">OnResume()</h4>
     <section>
@@ -264,7 +316,7 @@ If base.OnResume() is not called, the event &apos;Resumed&apos; will not be emit
   <a id="Tizen_Applications_CoreUIApplication_Run_" data-uid="Tizen.Applications.CoreUIApplication.Run*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L81">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L83">View Source</a>
     </span>
     <h4 id="Tizen_Applications_CoreUIApplication_Run_System_String___" data-uid="Tizen.Applications.CoreUIApplication.Run(System.String[])">Run(String[])</h4>
     <section>
@@ -288,7 +340,7 @@ If base.OnResume() is not called, the event &apos;Resumed&apos; will not be emit
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>[]</td>
+        <td><span class="xref">System.String</span>[]</td>
         <td><span class="parametername">args</span></td>
         <td><p>Arguments from the commandline.</p>
 </td>
@@ -305,7 +357,7 @@ If base.OnResume() is not called, the event &apos;Resumed&apos; will not be emit
   
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L74">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L76">View Source</a>
     </span>
     <h4 id="Tizen_Applications_CoreUIApplication_Paused" data-uid="Tizen.Applications.CoreUIApplication.Paused">Paused</h4>
     <section>
@@ -328,7 +380,7 @@ If base.OnResume() is not called, the event &apos;Resumed&apos; will not be emit
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
+        <td><span class="xref">System.EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -339,7 +391,7 @@ If base.OnResume() is not called, the event &apos;Resumed&apos; will not be emit
   
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L68">View Source</a>
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.UI/Tizen.Applications/CoreUIApplication.cs/#L70">View Source</a>
     </span>
     <h4 id="Tizen_Applications_CoreUIApplication_Resumed" data-uid="Tizen.Applications.CoreUIApplication.Resumed">Resumed</h4>
     <section>
@@ -362,7 +414,7 @@ If base.OnResume() is not called, the event &apos;Resumed&apos; will not be emit
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
+        <td><span class="xref">System.EventHandler</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -372,7 +424,7 @@ If base.OnResume() is not called, the event &apos;Resumed&apos; will not be emit
   
   <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <span class="xref">System.IDisposable</span>
   </div>
   </div></section>
             </div>
