@@ -199,7 +199,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the available contrast level.
+        /// Gets the available contrast value range.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
@@ -244,7 +244,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the available hue level.
+        /// Gets the available hue value range.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         /// <remarks>
@@ -290,7 +290,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the available brightness level.
+        /// Gets the available brightness value range.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
@@ -362,7 +362,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the available exposure value.
+        /// Gets the available exposure value range.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
@@ -406,7 +406,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the available saturation value.
+        /// Gets the available saturation value range.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         /// <remarks>
@@ -450,7 +450,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the available sharpness value.
+        /// Gets the available sharpness value range.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         /// <remarks>
@@ -494,7 +494,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the available gain value.
+        /// Gets the available gain value range.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         /// <remarks>
@@ -554,7 +554,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the available camera white balance temperature value.
+        /// Gets the available camera white balance temperature value range.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
         /// <remarks>
@@ -616,7 +616,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets the available zoom level.
+        /// Gets the available zoom value range.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>
