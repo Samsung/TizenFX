@@ -1114,23 +1114,28 @@ namespace Tizen.NUI.Accessibility
         {
             add
             {
-                // Restricted to only one listener
                 if (_accessibilityManagerFocusedViewActivatedEventHandler == null)
                 {
-                    _accessibilityManagerFocusedViewActivatedEventCallbackDelegate = new FocusedViewActivatedEventCallbackDelegate(OnFocusedViewActivated);
-                    this.FocusedViewActivatedSignal().Connect(_accessibilityManagerFocusedViewActivatedEventCallbackDelegate);
+                    _accessibilityManagerFocusedViewActivatedEventCallbackDelegate = OnFocusedViewActivated;
+                    var signal = FocusedViewActivatedSignal();
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                    signal?.Connect(_accessibilityManagerFocusedViewActivatedEventCallbackDelegate);
+                    signal?.Dispose();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
-
                 _accessibilityManagerFocusedViewActivatedEventHandler += value;
             }
-
             remove
             {
                 _accessibilityManagerFocusedViewActivatedEventHandler -= value;
-
-                if (_accessibilityManagerFocusedViewActivatedEventHandler == null && FocusedViewActivatedSignal().Empty() == false)
+                if (_accessibilityManagerFocusedViewActivatedEventHandler == null && _accessibilityManagerFocusedViewActivatedEventCallbackDelegate != null)
                 {
-                    this.FocusedViewActivatedSignal().Disconnect(_accessibilityManagerFocusedViewActivatedEventCallbackDelegate);
+                    var signal = FocusedViewActivatedSignal();
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                    signal?.Disconnect(_accessibilityManagerFocusedViewActivatedEventCallbackDelegate);
+                    _accessibilityManagerFocusedViewActivatedEventCallbackDelegate = null;
+                    signal?.Dispose();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
         }

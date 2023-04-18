@@ -62,17 +62,26 @@ namespace Tizen.NUI
             {
                 if (_styleManagerStyleChangedEventHandler == null)
                 {
-                    _styleManagerStyleChangedCallbackDelegate = (OnStyleChanged);
-                    StyleChangedSignal().Connect(_styleManagerStyleChangedCallbackDelegate);
+                    _styleManagerStyleChangedCallbackDelegate = OnStyleChanged;
+                    var signal = StyleChangedSignal();
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                    signal?.Connect(_styleManagerStyleChangedCallbackDelegate);
+                    signal?.Dispose();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 _styleManagerStyleChangedEventHandler += value;
             }
             remove
             {
                 _styleManagerStyleChangedEventHandler -= value;
-                if (_styleManagerStyleChangedEventHandler == null && StyleChangedSignal().Empty() == false)
+                if (_styleManagerStyleChangedEventHandler == null && _styleManagerStyleChangedCallbackDelegate != null)
                 {
-                    StyleChangedSignal().Disconnect(_styleManagerStyleChangedCallbackDelegate);
+                    var signal = StyleChangedSignal();
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                    signal?.Disconnect(_styleManagerStyleChangedCallbackDelegate);
+                    _styleManagerStyleChangedCallbackDelegate = null;
+                    signal?.Dispose();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
         }

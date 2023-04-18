@@ -1131,7 +1131,7 @@ namespace Tizen.NUI.BaseComponents
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-            
+
             DisConnectFromSignals();
 
             foreach (View view in Children)
@@ -1194,9 +1194,11 @@ namespace Tizen.NUI.BaseComponents
             if (_offWindowEventCallback != null)
             {
                 ViewSignal signal = new ViewSignal(Interop.ActorSignal.Actor_OffSceneSignal(GetBaseHandleCPtrHandleRef), false);
+                if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
                 signal?.Disconnect(_offWindowEventCallback);
                 signal?.Dispose();
                 _offWindowEventCallback = null;
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             if (_onWindowEventCallback != null)
@@ -1239,9 +1241,11 @@ namespace Tizen.NUI.BaseComponents
             if (_touchDataCallback != null)
             {
                 TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.Actor_TouchSignal(GetBaseHandleCPtrHandleRef), false);
+                if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
                 signal?.Disconnect(_touchDataCallback);
                 signal?.Dispose();
                 _touchDataCallback = null;
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             if (_ResourcesLoadedCallback != null)
@@ -1255,9 +1259,11 @@ namespace Tizen.NUI.BaseComponents
             if (_keyCallback != null)
             {
                 ControlKeySignal signal = new ControlKeySignal(Interop.ViewSignal.View_KeyEventSignal(GetBaseHandleCPtrHandleRef), false);
+                if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
                 signal?.Disconnect(_keyCallback);
                 signal?.Dispose();
                 _keyCallback = null;
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             if (_keyInputFocusLostCallback != null)

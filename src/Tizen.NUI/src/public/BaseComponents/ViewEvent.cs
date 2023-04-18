@@ -184,23 +184,24 @@ namespace Tizen.NUI.BaseComponents
                 {
                     _keyCallback = OnKeyEvent;
                     var signal = KeyEventSignal();
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
                     signal?.Connect(_keyCallback);
                     signal?.Dispose();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 _keyEventHandler += value;
             }
             remove
             {
                 _keyEventHandler -= value;
-                if (_keyEventHandler == null)
+                if (_keyEventHandler == null && _keyCallback != null)
                 {
                     var signal = KeyEventSignal();
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(_keyCallback);
-                        _keyCallback = null;
-                    }
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                    signal?.Disconnect(_keyCallback);
+                    _keyCallback = null;
                     signal?.Dispose();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
         }
@@ -301,23 +302,24 @@ namespace Tizen.NUI.BaseComponents
                 {
                     _touchDataCallback = OnTouch;
                     var signal = TouchSignal();
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
                     signal?.Connect(_touchDataCallback);
                     signal?.Dispose();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 _touchDataEventHandler += value;
             }
             remove
             {
                 _touchDataEventHandler -= value;
-                if (_touchDataEventHandler == null)
+                if (_touchDataEventHandler == null && _touchDataCallback != null)
                 {
                     var signal = TouchSignal();
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(_touchDataCallback);
-                        _touchDataCallback = null;
-                    }
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                    signal?.Disconnect(_touchDataCallback);
+                    _touchDataCallback = null;
                     signal?.Dispose();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
         }
@@ -449,23 +451,24 @@ namespace Tizen.NUI.BaseComponents
                 {
                     _offWindowEventCallback = OffWindow;
                     var signal = OffWindowSignal();
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
                     signal?.Connect(_offWindowEventCallback);
                     signal?.Dispose();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 _offWindowEventHandler += value;
             }
             remove
             {
                 _offWindowEventHandler -= value;
-                if (_offWindowEventHandler == null)
+                if (_offWindowEventHandler == null && _offWindowEventCallback != null)
                 {
                     var signal = OffWindowSignal();
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(_offWindowEventCallback);
-                        _offWindowEventCallback = null;
-                    }
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                    signal?.Disconnect(_offWindowEventCallback);
+                    _offWindowEventCallback = null;
                     signal?.Dispose();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
         }
@@ -924,7 +927,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Error("implicit disposed(unreachable)! just return here!");
                 return true;
             }
-            
+
             if (touchData == global::System.IntPtr.Zero)
             {
                 NUILog.Error("touchData should not be null!");
