@@ -169,5 +169,8 @@ internal static partial class Interop
 
         [DllImport(Libraries.AppControl, EntryPoint = "app_control_get_window_position")]
         internal static extern ErrorCode GetWindowPosition(SafeAppControlHandle handle, out int x, out int y, out int w, out int h);
+
+        [DllImport(Libraries.AppControl, EntryPoint = "app_control_unset_auto_restart")]
+        internal static extern ErrorCode UnsetAutoRestart();
     }
 }
