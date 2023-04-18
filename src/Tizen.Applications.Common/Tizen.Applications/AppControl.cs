@@ -830,6 +830,34 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Unsets the auto restart.
+        /// </summary>
+        /// <remarks>
+        /// The functionality of this method only applies to the caller application.
+        /// This method is only available for platform level signed applications.
+        /// </remarks>
+        /// <exception cref="Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
+        /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the memory is insufficient.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void UnsetAutoRestart()
+        {
+            Interop.AppControl.ErrorCode err = Interop.AppControl.UnsetAutoRestart();
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.PermissionDenied:
+                        throw new Exceptions.PermissionDeniedException("Permission denied");
+                    case Interop.AppControl.ErrorCode.OutOfMemory:
+                        throw new Exceptions.OutOfMemoryException("Out of memory");
+                    default:
+                        throw new InvalidOperationException("err = " + err);
+                }
+            }
+        }
+
+        /// <summary>
         /// Sets the window position.
         /// </summary>
         /// <param name="windowPosition">The window position object.</param>
