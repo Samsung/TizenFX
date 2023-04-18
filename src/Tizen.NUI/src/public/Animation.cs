@@ -47,6 +47,7 @@ namespace Tizen.NUI
 
         private AnimationFinishedEventCallbackType _animationFinishedEventCallback;
         private System.IntPtr _finishedCallbackOfNative;
+        private bool isFinishedSignalConnected = false;
 
         private AnimationProgressReachedEventCallbackType _animationProgressReachedEventCallback;
 
@@ -74,6 +75,7 @@ namespace Tizen.NUI
 
             _animationFinishedEventCallback = OnFinished;
             _finishedCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_animationFinishedEventCallback);
+            isFinishedSignalConnected = false;
         }
 
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -93,19 +95,28 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_animationFinishedEventHandler == null && disposed == false)
+                if (_animationFinishedEventHandler == null && disposed == false && isFinishedSignalConnected == false)
                 {
-                    FinishedSignal().Connect(_finishedCallbackOfNative);
+                    var signal = FinishedSignal();
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                    signal?.Connect(_finishedCallbackOfNative);
+                    signal?.Dispose();
+                    isFinishedSignalConnected = true;
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 _animationFinishedEventHandler += value;
             }
             remove
             {
                 _animationFinishedEventHandler -= value;
-
-                if (_animationFinishedEventHandler == null && FinishedSignal().Empty() == false)
+                if (_animationFinishedEventHandler == null && isFinishedSignalConnected)
                 {
-                    FinishedSignal().Disconnect(_finishedCallbackOfNative);
+                    var signal = FinishedSignal();
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                    signal?.Disconnect(_finishedCallbackOfNative);
+                    signal?.Dispose();
+                    isFinishedSignalConnected = false;
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
         }
@@ -1288,10 +1299,15 @@ namespace Tizen.NUI
                 return;
             }
 
-            if (_animationFinishedEventHandler != null)
+            if (_animationFinishedEventHandler != null && isFinishedSignalConnected)
             {
-                FinishedSignal().Disconnect(_finishedCallbackOfNative);
+                var signal = FinishedSignal();
+                if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                signal?.Disconnect(_finishedCallbackOfNative);
+                signal?.Dispose();
+                isFinishedSignalConnected = false;
                 _animationFinishedEventHandler = null;
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             if (_animationProgressReachedEventCallback != null)
@@ -1308,7 +1324,7 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
-            if(swigCPtr.Handle == IntPtr.Zero || this.HasBody() == false)
+            if (swigCPtr.Handle == IntPtr.Zero || this.HasBody() == false)
             {
                 Tizen.Log.Fatal("NUI", $"[ERROR] Animation ReleaseSwigCPtr()! IntPtr=0x{swigCPtr.Handle:X} HasBody={this.HasBody()}");
                 return;

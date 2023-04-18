@@ -110,23 +110,24 @@ namespace Tizen.NUI
                 {
                     _rootLayerTouchDataCallback = OnWindowTouch;
                     var signal = TouchDataSignal();
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
                     signal?.Connect(_rootLayerTouchDataCallback);
                     signal?.Dispose();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 _rootLayerTouchDataEventHandler += value;
             }
             remove
             {
                 _rootLayerTouchDataEventHandler -= value;
-                if (_rootLayerTouchDataEventHandler == null)
+                if (_rootLayerTouchDataEventHandler == null && _rootLayerTouchDataCallback != null)
                 {
                     var signal = TouchDataSignal();
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(_rootLayerTouchDataCallback);
-                        _rootLayerTouchDataCallback = null;
-                    }
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                    signal?.Disconnect(_rootLayerTouchDataCallback);
+                    _rootLayerTouchDataCallback = null;
                     signal?.Dispose();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
         }
@@ -176,23 +177,24 @@ namespace Tizen.NUI
                 {
                     _stageKeyCallbackDelegate = OnStageKey;
                     var signal = KeyEventSignal();
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
                     signal?.Connect(_stageKeyCallbackDelegate);
                     signal?.Dispose();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 _stageKeyHandler += value;
             }
             remove
             {
                 _stageKeyHandler -= value;
-                if (_stageKeyHandler == null)
+                if (_stageKeyHandler == null && _stageKeyCallbackDelegate != null)
                 {
                     var signal = KeyEventSignal();
-                    if (signal?.Empty() == false)
-                    {
-                        signal?.Disconnect(_stageKeyCallbackDelegate);
-                        _stageKeyCallbackDelegate = null;
-                    }
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                    signal?.Disconnect(_stageKeyCallbackDelegate);
+                    _stageKeyCallbackDelegate = null;
                     signal?.Dispose();
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
         }
@@ -577,9 +579,11 @@ namespace Tizen.NUI
             if (_rootLayerTouchDataCallback != null)
             {
                 TouchDataSignal signal = new TouchDataSignal(Interop.ActorSignal.Actor_TouchSignal(Layer.getCPtr(GetRootLayer())), false);
+                if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
                 signal?.Disconnect(_rootLayerTouchDataCallback);
                 signal?.Dispose();
                 _rootLayerTouchDataCallback = null;
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             if (_wheelEventCallback != null)
@@ -598,9 +602,11 @@ namespace Tizen.NUI
             if (_stageKeyCallbackDelegate != null)
             {
                 KeyEventSignal signal = new KeyEventSignal(Interop.Window.KeyEventSignal(GetBaseHandleCPtrHandleRef), false);
+                if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
                 signal?.Disconnect(_stageKeyCallbackDelegate);
                 signal?.Dispose();
                 _stageKeyCallbackDelegate = null;
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             if (_stageEventProcessingFinishedEventCallbackDelegate != null)

@@ -40,6 +40,7 @@ namespace Tizen.NUI
         private TickCallbackDelegate _timerTickCallbackDelegate;
 
         private System.IntPtr _timerTickCallbackOfNative;
+        private bool isTickSignalConnected = false;
 
         /// <summary>
         /// Creates a tick timer that emits periodic signal.
@@ -60,10 +61,9 @@ namespace Tizen.NUI
 
         internal Timer(global::System.IntPtr cPtr, bool cMemoryOwn) : base(Interop.Timer.Timer_SWIGUpcast(cPtr), cMemoryOwn)
         {
-
             _timerTickCallbackDelegate = OnTick;
             _timerTickCallbackOfNative = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<System.Delegate>(_timerTickCallbackDelegate);
-
+            isTickSignalConnected = false;
             NUILog.Debug($"(0x{swigCPtr.Handle:X})Timer() contructor!");
         }
 
@@ -87,18 +87,28 @@ namespace Tizen.NUI
         {
             add
             {
-                if (_timerTickEventHandler == null && disposed == false)
+                if (_timerTickEventHandler == null && disposed == false && isTickSignalConnected == false)
                 {
-                    TickSignal().Connect(_timerTickCallbackOfNative);
+                    var signal = TickSignal();
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                    signal?.Connect(_timerTickCallbackOfNative);
+                    signal?.Dispose();
+                    isTickSignalConnected = true;
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
                 _timerTickEventHandler += value;
             }
             remove
             {
                 _timerTickEventHandler -= value;
-                if (_timerTickEventHandler == null && TickSignal().Empty() == false)
+                if (_timerTickEventHandler == null && isTickSignalConnected)
                 {
-                    TickSignal().Disconnect(_timerTickCallbackOfNative);
+                    var signal = TickSignal();
+                    if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                    signal?.Disconnect(_timerTickCallbackOfNative);
+                    signal?.Dispose();
+                    isTickSignalConnected = false;
+                    if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
                 }
             }
         }
@@ -242,7 +252,7 @@ namespace Tizen.NUI
 
         internal uint GetInterval()
         {
-            if(swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
+            if (swigCPtr.Handle == global::System.IntPtr.Zero || disposed)
             {
                 NUILog.Error("[ERR] already disposed! can not get this done! just return here! please make sure that the handle gets free when using explicit Dispose()! For example, timer.Dispose(); timer = null; this must be done!");
                 return 0;
@@ -268,9 +278,14 @@ namespace Tizen.NUI
         {
             NUILog.Debug($"(0x{swigCPtr.Handle:X}) Timer.Dispose(type={type}, disposed={disposed})");
 
-            if (this != null && _timerTickCallbackDelegate != null)
+            if (this != null && _timerTickCallbackDelegate != null && isTickSignalConnected)
             {
-                TickSignal().Disconnect(_timerTickCallbackOfNative);
+                var signal = TickSignal();
+                if (signal?.SwigCPtr.Handle == IntPtr.Zero) { signal = null; }
+                signal?.Disconnect(_timerTickCallbackOfNative);
+                signal?.Dispose();
+                isTickSignalConnected = false;
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
 
             if (disposed)
