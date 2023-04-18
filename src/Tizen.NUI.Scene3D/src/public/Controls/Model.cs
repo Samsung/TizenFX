@@ -380,6 +380,37 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
+        /// Load bvh animation and assign to model.
+        /// Scale is additional scale factor of bvh animation. It is possible that
+        /// Model's scale may not matched with bvh animation scale.
+        /// If scale is null, default use as Vector3.ONE
+        /// </summary>
+        /// <param name="bvhBuffer">Contents of bvh format file.</param>
+        /// <param name="scale">Scale value of bvh animation match with model.</param>
+        /// <returns>Animaion of bvh</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Animation LoadBvhAnimationFromBuffer(string bvhBuffer, Vector3 scale = null)
+        {
+            global::System.IntPtr cPtr = Interop.Model.LoadBvhAnimationFromBuffer(SwigCPtr, bvhBuffer, bvhBuffer.Length, Vector3.getCPtr(scale));
+            Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
+            if (ret == null)
+            {
+                // Register new animation into Registry.
+                ret = new Animation(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI animation. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Load facial animation and assign to model.
         /// </summary>
         /// <param name="facialFilename">Name of json format file what we predefined.</param>
@@ -389,6 +420,33 @@ namespace Tizen.NUI.Scene3D
         public Animation LoadFacialAnimation(string facialFilename)
         {
             global::System.IntPtr cPtr = Interop.Model.LoadFacialAnimation(SwigCPtr, facialFilename);
+            Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
+            if (ret == null)
+            {
+                // Register new animation into Registry.
+                ret = new Animation(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI animation. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Load facial animation and assign to model.
+        /// </summary>
+        /// <param name="facialBuffer">Contents of json format file what we predefined.</param>
+        /// <returns>Animaion of facial</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Animation LoadFacialAnimationFromBuffer(string facialBuffer)
+        {
+            global::System.IntPtr cPtr = Interop.Model.LoadFacialAnimationFromBuffer(SwigCPtr, facialBuffer, facialBuffer.Length);
             Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
             if (ret == null)
             {
