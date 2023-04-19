@@ -28,8 +28,13 @@ namespace Tizen.Data.Tdbc
         /// Opens the database.
         /// </summary>
         /// <param name="uri">The URI represents database to connect.</param>
+        /// <remarks>
+        /// If the driver uses database at filesystem, such as media storage or external storage,
+        /// you need to declare a proper privilege such as http://tizen.org/privileges/mediastorage or http://tizen.org/privileges/externalstorage.
+        /// </remarks>
         /// <exception cref="ArgumentException">The input URI is invalid.</exception>
         /// <exception cref="InvalidOperationException">The drvier open is failed.</exception>
+        /// <exception cref="UnauthorizedAccessException">.The application doesn't have permission or privilege to access database.</exception>
         /// <since_tizen> 11 </since_tizen>
         void Open(Uri uri);
 
@@ -37,8 +42,13 @@ namespace Tizen.Data.Tdbc
         /// Opens the database.
         /// </summary>
         /// <param name="openString">The URI represents database to connect.</param>
+        /// <remarks>
+        /// If the driver uses database at filesystem, such as media storage or external storage,
+        /// you need to declare a proper privilege such as http://tizen.org/privileges/mediastorage or http://tizen.org/privileges/externalstorage.
+        /// </remarks>
         /// <exception cref="ArgumentException">The input openString is invalid.</exception>
         /// <exception cref="InvalidOperationException">The drvier open is failed.</exception>
+        /// <exception cref="UnauthorizedAccessException">.The application doesn't have permission or privilege to access database.</exception>
         /// <since_tizen> 11 </since_tizen>
         void Open(String openString);
 

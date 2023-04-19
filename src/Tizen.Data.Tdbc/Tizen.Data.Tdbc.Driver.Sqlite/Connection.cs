@@ -60,6 +60,7 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
 
         public void Open(String openString)
         {
+            Open(new Uri(openString));
         }
         
         public void Close()
@@ -102,6 +103,9 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
 
         public void Open(Uri uri)
         {
+            if (IsOpened())
+                return;
+
             if (uri.Scheme != "tdbc")
                 throw new ArgumentException("Wrong scheme:" + uri.Scheme);
 

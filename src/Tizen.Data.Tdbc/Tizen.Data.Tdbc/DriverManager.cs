@@ -33,8 +33,13 @@ namespace Tizen.Data.Tdbc
         /// </summary>
         /// <param name="uri">The uri represents database to connect.</param>
         /// <returns>The connection object.</returns>
+        /// <remarks>
+        /// If the driver uses database at filesystem, such as media storage or external storage,
+        /// you need to declare a proper privilege such as http://tizen.org/privileges/mediastorage or http://tizen.org/privileges/externalstorage.
+        /// </remarks>
         /// <exception cref="InvalidOperationException">No driver registered.</exception>
         /// <exception cref="SystemException">Failed to open database connection.</exception>
+        /// <exception cref="UnauthorizedAccessException">.The application doesn't have permission or privilege to access database.</exception>
         /// <since_tizen> 11 </since_tizen>
         public static IConnection GetConnection(Uri uri)
         {
@@ -62,8 +67,13 @@ namespace Tizen.Data.Tdbc
         /// </summary>
         /// <param name="connectionString">The string for connect and open database.</param>
         /// <returns>The connection object.</returns>
+        /// <remarks>
+        /// If the driver uses database at filesystem, such as media storage or external storage,
+        /// you need to declare a proper privilege such as http://tizen.org/privileges/mediastorage or http://tizen.org/privileges/externalstorage.
+        /// </remarks>
         /// <exception cref="InvalidOperationException">No driver registered.</exception>
         /// <exception cref="SystemException">Failed to open database connection.</exception>
+        /// <exception cref="UnauthorizedAccessException">.The application doesn't have permission or privilege to access database.</exception>
         /// <since_tizen> 11 </since_tizen>
         public static IConnection GetConnection(String connectionString)
         {

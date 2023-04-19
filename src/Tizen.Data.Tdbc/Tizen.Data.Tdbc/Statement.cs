@@ -30,8 +30,6 @@ namespace Tizen.Data.Tdbc
         /// </summary>
         /// <param name="sql">The sql to execute.</param>
         /// <returns>The ResultSet object that includes the result of the query.</returns>
-        /// <remarks>
-        /// </remarks>
         /// <since_tizen> 11 </since_tizen>
         IResultSet ExecuteQuery(Sql sql);
 
@@ -40,8 +38,6 @@ namespace Tizen.Data.Tdbc
         /// </summary>
         /// <param name="sql">The sql to execute.</param>
         /// <returns>The number of rows updated.</returns>
-        /// <remarks>
-        /// </remarks>
         /// <since_tizen> 11 </since_tizen>
         int ExecuteUpdate(Sql sql);
 
@@ -50,8 +46,6 @@ namespace Tizen.Data.Tdbc
         /// </summary>
         /// <param name="sql">The sql to execute.</param>
         /// <returns>True if the execution was success, otherwise false.</returns>
-        /// <remarks>
-        /// </remarks>
         /// <since_tizen> 11 </since_tizen>
         bool Execute(Sql sql);
 
@@ -60,8 +54,6 @@ namespace Tizen.Data.Tdbc
         /// </summary>
         /// <param name="sql">The sql to execute.</param>
         /// <returns>The ResultSet object that includes the result of the query.</returns>
-        /// <remarks>
-        /// </remarks>
         /// <since_tizen> 11 </since_tizen>
         Task<IResultSet> ExecuteQueryAsync(Sql sql);
 
@@ -70,8 +62,6 @@ namespace Tizen.Data.Tdbc
         /// </summary>
         /// <param name="sql">The sql to execute.</param>
         /// <returns>The number of rows updated.</returns>
-        /// <remarks>
-        /// </remarks>
         /// <since_tizen> 11 </since_tizen>
         Task<int> ExecuteUpdateAsync(Sql sql);
 
@@ -80,8 +70,6 @@ namespace Tizen.Data.Tdbc
         /// </summary>
         /// <param name="sql">The sql to execute.</param>
         /// <returns>True if the execution was success, otherwise false.</returns>
-        /// <remarks>
-        /// </remarks>
         /// <since_tizen> 11 </since_tizen>
         Task<bool> ExecuteAsync(Sql sql);
     }
