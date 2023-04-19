@@ -71,14 +71,16 @@ namespace Tizen.NUI
         internal Shadow(PropertyMap propertyMap) : base(propertyMap)
         {
             Color = new Color(noColor);
-            PropertyValue pValue = propertyMap.Find(ColorVisualProperty.MixColor);
-            pValue?.Get(Color);
-            pValue?.Dispose();
+            using (PropertyValue mixColorValue = propertyMap.Find(ColorVisualProperty.MixColor))
+            {
+                mixColorValue?.Get(Color);
+            }
 
             float blurRadius = 0;
-            pValue = propertyMap.Find(ColorVisualProperty.BlurRadius);
-            pValue?.Get(out blurRadius);
-            pValue?.Dispose();
+            using (PropertyValue blurRadiusValue = propertyMap.Find(ColorVisualProperty.BlurRadius))
+            {
+                blurRadiusValue?.Get(out blurRadius);
+            }
             BlurRadius = blurRadius;
         }
 
