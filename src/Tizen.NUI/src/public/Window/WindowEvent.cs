@@ -1274,7 +1274,7 @@ namespace Tizen.NUI
                 // where the sub window is disabled and the View RemovedFromWindow event occurs.
                 // The problem seems to have occurred because the native window object itself is invalid 
                 // when trying to obtain the window native signal because the sub window is in the Dispose state.
-                if (disposed)
+                if (Disposed)
                 {
                     Tizen.Log.Error("NUI", "[ERR] This Window object has already been destroyed, but VisibilityChanged event is added or removed!");
                     return;
