@@ -26,7 +26,7 @@ namespace Tizen.Data.Tdbc
     public class Sql
     {
         private string _sql;
-        private Dictionary<string, Tuple<Object, Type>> _bindings = new Dictionary<string, Tuple<object, Type>>();
+        private Dictionary<string, Object> _bindings = new Dictionary<string, Object>();
 
         /// <summary>
         /// The SQL command string.
@@ -38,10 +38,10 @@ namespace Tizen.Data.Tdbc
         }
 
         /// <summary>
-        /// The bindings as a dictionary of command.
+        /// The bindings as a name to value Dictionary.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
-        public Dictionary<string, Tuple<Object, Type>> Bindings
+        public IReadOnlyDictionary<string, Object> Bindings
         {
             get => _bindings;
         }

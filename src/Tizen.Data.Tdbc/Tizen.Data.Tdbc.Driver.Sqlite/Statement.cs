@@ -49,31 +49,30 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
 
             foreach (var i in sql.Bindings)
             {
-                Type t = i.Value.Item2;
                 string key = i.Key;
-                Object obj = i.Value.Item1;
+                Object obj = i.Value;
                 int pos = Interop.Sqlite.GetParameterIndex(_stmt, key);
                 if (pos == 0)
                     throw new InvalidOperationException("Invalid binding");
 
-                if (typeof(int) == t)
+                if (typeof(int) == obj.GetType())
                 {
                     Interop.Sqlite.BindInt(_stmt, pos, (int)obj);
                 }
-                else if (typeof(bool) == t)
+                else if (typeof(bool) == obj.GetType())
                 {
                     bool val = (bool)obj;
                     Interop.Sqlite.BindInt(_stmt, pos, val ? 1 : 0);
                 }
-                else if (typeof(double) == t)
+                else if (typeof(double) == obj.GetType())
                 {
                     Interop.Sqlite.BindDouble(_stmt, pos, (double)obj);
                 }
-                else if (typeof(string) == t)
+                else if (typeof(string) == obj.GetType())
                 {
                     Interop.Sqlite.BindText(_stmt, pos, (string)obj, -1, (IntPtr)(-1));
                 }
-                else if (typeof(byte[]) == t)
+                else if (typeof(byte[]) == obj.GetType())
                 {
                     if (obj != null)
                         Interop.Sqlite.BindData(_stmt, pos, (byte[])obj, ((byte[])obj).Length, IntPtr.Zero);

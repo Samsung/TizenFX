@@ -22,14 +22,13 @@ namespace Tizen.Data.Tdbc
     /// This class helps the operation of the statement in a transacted way.
     /// </summary>
     /// <remarks>To finish the transaction, either call Commit() to apply database operations or Dispose() to rollback the transaction.</remarks>
-    /// /// <example>
-    /// Usage:
-    /// @code
+    /// <example>Usage:
+    /// <code>
     /// using (var transaction = new TransationGuard(statement)) {
     ///     ...
     ///     transaction.Commit();
     /// }
-    /// @endcode
+    /// </code>
     /// </example>
     /// <since_tizen> 11 </since_tizen>
     public class TransactionGuard : IDisposable
