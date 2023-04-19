@@ -60,7 +60,7 @@ namespace Tizen.NUI
         internal static Property GetPropertyFromString(Animatable handle, string stringProperty)
         {
             Property property = new Property(handle, LowerFirstLetter(stringProperty));
-            if (property.propertyIndex == Property.InvalidIndex)
+            if (property.PropertyIndex == Property.InvalidIndex)
             {
                 throw new System.ArgumentException("string property is invalid");
             }
@@ -87,14 +87,14 @@ namespace Tizen.NUI
         {
             Property property = new Property(animatable, lowercasePropertyString);
 
-            if (property.propertyIndex == Property.InvalidIndex)
+            if (property.PropertyIndex == Property.InvalidIndex)
             {
                 property.Dispose();
                 return null;
             }
 
             OOConverter converter = null;
-            if (animatable.GetPropertyType(property.propertyIndex).Equals(PropertyType.Float))
+            if (animatable.GetPropertyType(property.PropertyIndex).Equals(PropertyType.Float))
             {
                 converter = ObjectIntToFloat;
             }
@@ -118,7 +118,7 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             var property = new Property(propertyIntPtr, true);
-            if (property.propertyIndex == Property.InvalidIndex)
+            if (property.PropertyIndex == Property.InvalidIndex)
             {
                 property.Dispose();
                 return data.RelatedData == null ? null : GenerateVisualPropertySearchResult(view, data.RelatedData);
