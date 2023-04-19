@@ -147,13 +147,13 @@ namespace Tizen.NUI
         {
             var propertyName = LowerFirstLetter(name);
             Property property = new Property(this, propertyName);
-            if (property.propertyIndex == Property.InvalidIndex)
+            if (property.PropertyIndex == Property.InvalidIndex)
             {
                 Tizen.Log.Error("NUI", "Invalid property name\n");
             }
             else
             {
-                Tizen.NUI.Object.SetProperty(SwigCPtr, property.propertyIndex, propertyValue);
+                Tizen.NUI.Object.SetProperty(SwigCPtr, property.PropertyIndex, propertyValue);
             }
             property.Dispose();
         }
@@ -209,7 +209,7 @@ namespace Tizen.NUI
         public PropertyNotification AddPropertyNotification(string property, PropertyCondition condition)
         {
             Property properties = PropertyHelper.GetPropertyFromString(this, property);
-            PropertyNotification ret = new PropertyNotification(Interop.Handle.AddPropertyNotification(SwigCPtr, properties.propertyIndex, PropertyCondition.getCPtr(condition)), true);
+            PropertyNotification ret = new PropertyNotification(Interop.Handle.AddPropertyNotification(SwigCPtr, properties.PropertyIndex, PropertyCondition.getCPtr(condition)), true);
             properties.Dispose();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
