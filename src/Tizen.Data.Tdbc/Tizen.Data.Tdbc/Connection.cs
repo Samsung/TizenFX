@@ -62,7 +62,7 @@ namespace Tizen.Data.Tdbc
         /// Returns that the database is opened or not.
         /// </summary>
         /// <since_tizen> 11 </since_tizen>
-        bool IsOpened();
+        bool IsOpen();
 
         /// <summary>
         /// Creates a statement object associated with the connection.

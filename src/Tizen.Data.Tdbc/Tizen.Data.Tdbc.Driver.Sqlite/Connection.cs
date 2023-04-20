@@ -26,7 +26,7 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
         private bool _opened;
         private IntPtr _db;
         private bool disposedValue;
-        private object _lock = new object();
+        private readonly object _lock = new object();
         private EventHandler<RecordChangedEventArgs> _recordChanged;
 
 
@@ -103,7 +103,7 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
 
         public void Open(Uri uri)
         {
-            if (IsOpened())
+            if (IsOpen())
                 return;
 
             if (uri.Scheme != "tdbc")
@@ -154,13 +154,13 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
 
         public IStatement CreateStatement()
         {
-            if (!IsOpened())
+            if (!IsOpen())
                 throw new InvalidOperationException("Not opened");
 
             return new Statement(this);
         }
 
-        public bool IsOpened()
+        public bool IsOpen()
         {
             return _opened;
         }
