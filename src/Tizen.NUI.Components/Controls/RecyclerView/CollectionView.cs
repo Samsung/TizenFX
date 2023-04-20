@@ -985,7 +985,11 @@ namespace Tizen.NUI.Components
                 return Header;
             }
 
-            if (index == InternalSource.Count - 1 && Footer != null)
+            var source = InternalSource;
+            if (source == null)
+                return null;
+
+            if (index == source.Count - 1 && Footer != null)
             {
                 Footer.Show();
                 return Footer;
@@ -993,14 +997,14 @@ namespace Tizen.NUI.Components
 
             if (isGrouped)
             {
-                var context = InternalSource.GetItem(index);
-                if (InternalSource.IsGroupHeader(index))
+                if (source.IsGroupHeader(index))
                 {
+                    var context = source.GetItem(index);
                     item = RealizeGroupHeader(index, context);
                 }
-                else if (InternalSource.IsGroupFooter(index))
+                else if (source.IsGroupFooter(index))
                 {
-
+                    var context = source.GetItem(index);
                     //group selection?
                     item = RealizeGroupFooter(index, context);
                 }
@@ -1011,7 +1015,7 @@ namespace Tizen.NUI.Components
                     {
                         throw new Exception("Item realize failed by Null content return.");
                     }
-                    item.ParentGroup = InternalSource.GetGroupParent(index);
+                    item.ParentGroup = source.GetGroupParent(index);
                 }
             }
             else
