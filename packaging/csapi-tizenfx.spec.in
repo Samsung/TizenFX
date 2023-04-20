@@ -56,6 +56,7 @@ BuildRequires: pkgconfig(capi-ui-inputmethod)
 BuildRequires: pkgconfig(stt-engine)
 BuildRequires: pkgconfig(tts-engine)
 BuildRequires: pkgconfig(chromium-efl)
+BuildRequires: pkgconfig(libsessiond)
 %if "%{profile}" == "tv"
 BuildRequires: pkgconfig(trustzone-nwd)
 %else
