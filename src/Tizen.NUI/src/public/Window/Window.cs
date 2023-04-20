@@ -944,6 +944,7 @@ namespace Tizen.NUI
             {
                 overlayLayer = new Layer(Interop.Window.GetOverlayLayer(SwigCPtr), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+                LayersChildren?.Add(overlayLayer);
                 overlayLayer.SetWindow(this);
             }
             return overlayLayer;
