@@ -190,9 +190,9 @@ namespace Tizen.NUI.Components
                 }
                 else
                 {
-                    if (AppBar != null)
+                    if (AppBar is var bar && bar != null)
                     {
-                        FocusManager.Instance.SetCurrentFocusView(AppBar.PassFocusableViewInsideIfNeeded());
+                        FocusManager.Instance.SetCurrentFocusView(bar.PassFocusableViewInsideIfNeeded());
                     }
                     else
                     {
