@@ -1536,9 +1536,12 @@ namespace Tizen.NUI.BaseComponents
             {
                 Vector3 temp = GetNaturalSize();
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
-
-                Size2D sz = new Size2D((int)temp.Width, (int)temp.Height);
-                temp.Dispose();
+                Size2D sz = null;
+                if (temp != null)
+                {
+                    sz = new Size2D((int)temp.Width, (int)temp.Height);
+                    temp.Dispose();
+                }
                 return sz;
             }
         }
