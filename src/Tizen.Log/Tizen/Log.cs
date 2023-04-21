@@ -57,21 +57,21 @@ namespace Tizen
                     return;
                 }
 
-                int index = file.LastIndexOfAny(sep);
-                string filename = file.Substring(index + 1);
+                int index = file.LastIndexOfAny(sep) + 1;
+                int filenameLength = file.Length - index;
 
-                int filenameByteLength = Encoding.UTF8.GetMaxByteCount(filename.Length);
+                int filenameByteLength = Encoding.UTF8.GetMaxByteCount(filenameLength);
                 Span<byte> filenameByte = filenameByteLength < 1024 ? stackalloc byte[filenameByteLength + 1] : new byte[filenameByteLength + 1];
 
                 int funcByteLength = Encoding.UTF8.GetMaxByteCount(func.Length);
                 Span<byte> funcByte = funcByteLength < 1024 ? stackalloc byte[funcByteLength + 1] : new byte[funcByteLength + 1];
 
-                fixed (char* pFilenameChar = filename)
+                fixed (char* pFilenameChar = file)
                 fixed (char* pFuncChar = func)
                 fixed (byte* pFilenameByte = &MemoryMarshal.GetReference(filenameByte))
                 fixed (byte* pFuncByte = &MemoryMarshal.GetReference(funcByte))
                 {
-                    len = Encoding.UTF8.GetBytes(pFilenameChar, filename.Length, pFilenameByte, filenameByteLength);
+                    len = Encoding.UTF8.GetBytes(pFilenameChar + index, filenameLength, pFilenameByte, filenameByteLength);
                     pFilenameByte[len] = 0;
                     len = Encoding.UTF8.GetBytes(pFuncChar, func.Length, pFuncByte, funcByteLength);
                     pFuncByte[len] = 0;
