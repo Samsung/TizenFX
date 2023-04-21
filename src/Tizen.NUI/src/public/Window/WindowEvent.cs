@@ -49,7 +49,6 @@ namespace Tizen.NUI
         private MovedEventCallbackType movedEventCallback;
         private OrientationChangedEventCallbackType orientationChangedEventCallback;
         private KeyboardRepeatSettingsChangedEventCallbackType keyboardRepeatSettingsChangedEventCallback;
-        private ViewAddedEventCallbackType viewAddedEventCallback;
         private AuxiliaryMessageEventCallbackType auxiliaryMessageEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
@@ -69,8 +68,6 @@ namespace Tizen.NUI
         private delegate void OrientationChangedEventCallbackType(IntPtr window, int orientation);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void KeyboardRepeatSettingsChangedEventCallbackType();
-        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-        private delegate void ViewAddedEventCallbackType(IntPtr view);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void AuxiliaryMessageEventCallbackType(IntPtr kData, IntPtr vData, IntPtr optionsArray);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -444,36 +441,6 @@ namespace Tizen.NUI
             }
         }
 
-        /// <summary>
-        /// ViewAdded will be triggered when the view added on Window
-        /// </summary>
-        /// <since_tizen> 6 </since_tizen>
-        /// This will be public opened in tizen_5.5 after ACR done. Before ACR, need to be hidden as inhouse API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler ViewAdded
-        {
-            add
-            {
-                if (viewAddedHandler == null)
-                {
-                    viewAddedEventCallback = OnViewAdded;
-                    using WindowViewAddedSignal signal = new WindowViewAddedSignal(Interop.WindowViewAddedSignal.GetSignal(SwigCPtr), false);
-                    signal.Ensure()?.Connect(viewAddedEventCallback);
-                }
-                viewAddedHandler += value;
-            }
-            remove
-            {
-                viewAddedHandler -= value;
-                if (viewAddedHandler == null && viewAddedEventCallback != null)
-                {
-                    using WindowViewAddedSignal signal = new WindowViewAddedSignal(Interop.WindowViewAddedSignal.GetSignal(SwigCPtr), false);
-                    signal.Ensure()?.Disconnect(viewAddedEventCallback);
-                    viewAddedEventCallback = null;
-                }
-            }
-        }
-
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler;
         private event EventHandler<TouchEventArgs> rootLayerTouchDataEventHandler;
         private ReturnTypeEventHandler<object, TouchEventArgs, bool> rootLayerInterceptTouchDataEventHandler;
@@ -487,7 +454,6 @@ namespace Tizen.NUI
         private event EventHandler<WindowMovedEventArgs> movedHandler;
         private event EventHandler<WindowOrientationChangedEventArgs> orientationChangedHandler;
         private event EventHandler keyboardRepeatSettingsChangedHandler;
-        private event EventHandler viewAddedHandler;
         private event EventHandler<AuxiliaryMessageEventArgs> auxiliaryMessageEventHandler;
 
 
@@ -725,13 +691,6 @@ namespace Tizen.NUI
                 keyboardRepeatSettingsChangedEventCallback = null;
             }
 
-            if (viewAddedEventCallback != null)
-            {
-                using WindowViewAddedSignal signal = new WindowViewAddedSignal(Interop.WindowViewAddedSignal.GetSignal(GetBaseHandleCPtrHandleRef), false);
-                signal?.Disconnect(viewAddedEventCallback);
-                viewAddedEventCallback = null;
-            }
-
             if (auxiliaryMessageEventCallback != null)
             {
                 using WindowAuxiliaryMessageSignal signal = new WindowAuxiliaryMessageSignal(Interop.WindowAuxiliaryMessageSignalType.Get(GetBaseHandleCPtrHandleRef), false);
@@ -956,22 +915,6 @@ namespace Tizen.NUI
         private void OnKeyboardRepeatSettingsChanged()
         {
             keyboardRepeatSettingsChangedHandler?.Invoke(this, null);
-            return;
-        }
-
-        private void OnViewAdded(IntPtr view)
-        {
-            if (view == global::System.IntPtr.Zero)
-            {
-                return;
-            }
-
-            View addedView = Extensions.GetInstanceSafely<View>(this, view);
-            if (addedView)
-            {
-                // Note : object sender is View, not window it selfs (Since tizen_5.5, Pull Request #705)
-                viewAddedHandler?.Invoke(view, EventArgs.Empty);
-            }
             return;
         }
 
