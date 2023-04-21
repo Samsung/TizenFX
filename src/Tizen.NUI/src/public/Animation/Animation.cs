@@ -624,7 +624,7 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="action">The end action can be set.</param>
         /// <since_tizen> 3 </since_tizen>
-        public void Stop(EndActions action = EndActions.Cancel)
+        public void Stop(EndActions action)
         {
             SetEndAction(action);
             Interop.Animation.Stop(SwigCPtr);
