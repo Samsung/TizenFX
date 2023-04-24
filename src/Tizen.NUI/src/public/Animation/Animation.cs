@@ -83,10 +83,10 @@ namespace Tizen.NUI
 
         private event EventHandler animationFinishedEventHandler;
 
-        /**
-        * @brief Event for the finished signal which can be used to subscribe or unsubscribe the event handler.
-        * The finished signal is emitted when an animation's animations have finished.
-        */
+        /// <summary>
+        /// Event for the finished signal which can be used to subscribe or unsubscribe the event handler.<br />
+        /// The finished signal is emitted when an animation's animations have finished.<br />
+        /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler Finished
         {
@@ -115,10 +115,13 @@ namespace Tizen.NUI
 
         private event EventHandler animationProgressReachedEventHandler;
 
-        /**
-       * @brief Event for the ProgressReached signal, which can be used to subscribe or unsubscribe the event handler.
-       * The ProgressReached signal is emitted when the animation has reached a given progress percentage, this is set in the api SetProgressNotification.
-       */
+        /// <summary>
+        /// Event for the ProgressReached signal, which can be used to subscribe or unsubscribe the event handler.<br />
+        /// The ProgressReached signal is emitted when the animation has reached a given progress percentage, this is set in the api SetProgressNotification.<br />
+        /// </summary>
+        /// <remark>
+        /// This value only be applied if animation state is Stopped.
+        /// </remark>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler ProgressReached
         {
@@ -311,8 +314,11 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the end action of the animation.<br />
         /// This action is performed when the animation ends or if it is stopped.<br />
-        /// The default end action is cancel.<br />
+        /// The default end action is EndActions.Cancel.<br />
         /// </summary>
+        /// <remark>
+        /// Change the action value from EndActions.Discard, or to EndActions.Discard during animation is playing / paused will not works well.
+        /// </remark>
         /// <since_tizen> 3 </since_tizen>
         public EndActions EndAction
         {
@@ -342,7 +348,7 @@ namespace Tizen.NUI
         /// <summary>
         /// Gets or sets the disconnect action.<br />
         /// If any of the animated property owners are disconnected from the stage while the animation is being played, then this action is performed.<br />
-        /// The default action is cancel.<br />
+        /// The default action is EndActions.StopFinal.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public EndActions DisconnectAction
@@ -429,9 +435,12 @@ namespace Tizen.NUI
 
         /// <summary>
         /// Gets or sets the progress notification marker which triggers the ProgressReachedSignal.<br />
-        /// Percentage of animation progress should be greater than 0 and less than 1, for example, 0.3 for 30% <br />
+        /// Percentage of animation progress should be greater than 0 and less than 1, for example, 0.3 for 30%<br />
         /// One notification can be set on each animation.
         /// </summary>
+        /// <remark>
+        /// This value only be applied if animation state is Stopped.
+        /// </remark>
         /// <since_tizen> 3 </since_tizen>
         public float ProgressNotification
         {
@@ -620,8 +629,12 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Stops the animation.
+        /// Stops the animation. It will change this animation's EndAction property.
         /// </summary>
+        /// <remark>
+        /// Change the value from EndActions.Discard, or to EndActions.Discard during animation is playing / paused will not works well.<br />
+        /// If you want to stop by EndActions.Discard, EndAction property also should be EndActions.Discard before Play API called.
+        /// </remark>
         /// <param name="action">The end action can be set.</param>
         /// <since_tizen> 3 </since_tizen>
         public void Stop(EndActions action)
