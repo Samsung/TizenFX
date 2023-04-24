@@ -90,10 +90,10 @@ namespace Tizen.NUI.Scene3D
             public static extern global::System.IntPtr FindChildModelNodeByName(global::System.Runtime.InteropServices.HandleRef model, string nodeName);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_LoadBvhAnimation_1")]
-            public static extern global::System.IntPtr LoadBvhAnimation(global::System.Runtime.InteropServices.HandleRef model, string bvhFilename, global::System.Runtime.InteropServices.HandleRef scale);
+            public static extern global::System.IntPtr LoadBvhAnimation(global::System.Runtime.InteropServices.HandleRef model, string bvhFilename, global::System.Runtime.InteropServices.HandleRef scale, bool translateRootFromModelNode);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_LoadBvhAnimation_2")]
-            public static extern global::System.IntPtr LoadBvhAnimationFromBuffer(global::System.Runtime.InteropServices.HandleRef model, string bvhBuffer, int bvhBufferLength, global::System.Runtime.InteropServices.HandleRef scale);
+            public static extern global::System.IntPtr LoadBvhAnimationFromBuffer(global::System.Runtime.InteropServices.HandleRef model, string bvhBuffer, int bvhBufferLength, global::System.Runtime.InteropServices.HandleRef scale, bool translateRootFromModelNode);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_LoadFacialAnimation_1")]
             public static extern global::System.IntPtr LoadFacialAnimation(global::System.Runtime.InteropServices.HandleRef model, string facialFilename);
