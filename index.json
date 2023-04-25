@@ -16374,6 +16374,61 @@
     "title": "Class UsageStatisticsData",
     "keywords": ""
   },
+  "API11/api/Tizen.Data.Tdbc.ConnectionUriBuilder.html": {
+    "href": "API11/api/Tizen.Data.Tdbc.ConnectionUriBuilder.html",
+    "title": "Class ConnectionUriBuilder",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Data.Tdbc.DriverManager.html": {
+    "href": "API11/api/Tizen.Data.Tdbc.DriverManager.html",
+    "title": "Class DriverManager",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Data.Tdbc.html": {
+    "href": "API11/api/Tizen.Data.Tdbc.html",
+    "title": "Namespace Tizen.Data.Tdbc",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Data.Tdbc.IConnection.html": {
+    "href": "API11/api/Tizen.Data.Tdbc.IConnection.html",
+    "title": "Interface IConnection",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Data.Tdbc.IRecord.html": {
+    "href": "API11/api/Tizen.Data.Tdbc.IRecord.html",
+    "title": "Interface IRecord",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Data.Tdbc.IResultSet.html": {
+    "href": "API11/api/Tizen.Data.Tdbc.IResultSet.html",
+    "title": "Interface IResultSet",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Data.Tdbc.IStatement.html": {
+    "href": "API11/api/Tizen.Data.Tdbc.IStatement.html",
+    "title": "Interface IStatement",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Data.Tdbc.OperationType.html": {
+    "href": "API11/api/Tizen.Data.Tdbc.OperationType.html",
+    "title": "Enum OperationType",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Data.Tdbc.RecordChangedEventArgs.html": {
+    "href": "API11/api/Tizen.Data.Tdbc.RecordChangedEventArgs.html",
+    "title": "Class RecordChangedEventArgs",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Data.Tdbc.Sql.html": {
+    "href": "API11/api/Tizen.Data.Tdbc.Sql.html",
+    "title": "Class Sql",
+    "keywords": ""
+  },
+  "API11/api/Tizen.Data.Tdbc.TransactionGuard.html": {
+    "href": "API11/api/Tizen.Data.Tdbc.TransactionGuard.html",
+    "title": "Class TransactionGuard",
+    "keywords": ""
+  },
   "API11/api/Tizen.html": {
     "href": "API11/api/Tizen.html",
     "title": "Namespace Tizen",
