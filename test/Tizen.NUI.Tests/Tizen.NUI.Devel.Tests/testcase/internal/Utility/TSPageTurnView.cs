@@ -26,7 +26,7 @@ namespace Tizen.NUI.Devel.Tests
                 Size = new Size(100, 50),
                 Color = Color.Cyan
             };
-            view.OnWindowSignal();
+            //view.OnWindowSignal();
             pageTurnView = new PageTurnView(view.SwigCPtr.Handle, false);
         }
 

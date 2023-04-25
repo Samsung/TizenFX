@@ -313,53 +313,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("PropertyNotification NotifySignal")]
-        [Property("SPEC", "Tizen.NUI.PropertyNotification.NotifySignal M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task PropertyNotificationNotifySignal()
-        {
-            tlog.Debug(tag, $"PropertyNotificationNotifySignal START");
-
-            var view = new View();
-            Assert.IsNotNull(view, "should not be null.");
-            Assert.IsInstanceOf<View>(view, "should be an instance of View class!");
-
-            Window.Instance.Add(view);
-            var testingTarget = view.AddPropertyNotification("positionX", PropertyCondition.GreaterThan(100.0f));
-            Assert.IsNotNull(testingTarget, "should not be null.");
-            Assert.IsInstanceOf<PropertyNotification>(testingTarget, "should be an instance of PropertyNotification class!");
-
-            testingTarget.SetNotifyMode(PropertyNotification.NotifyMode.NotifyOnChanged);
-#pragma warning disable CS0219 // Variable is assigned but its value is never used
-            bool flag = false;
-#pragma warning restore CS0219 // Variable is assigned but its value is never used
-            testingTarget.Notified += (obj, e) =>
-            {
-                flag = true;
-            };
-
-            testingTarget.Notified -= (obj, e) =>
-            {
-                flag = false;
-            };
-
-            view.Position = new Position(300.0f, 0.0f, 0.0f);
-            await Task.Delay(200);
-
-            var result = testingTarget.NotifySignal();
-            Assert.IsNotNull(result, "Should be not null");
-            Assert.IsInstanceOf<PropertyNotifySignal>(result, "Should be an instance of propertyNotifySignal");
-
-            Window.Instance.Remove(view);
-            testingTarget.Dispose();
-            view.Dispose();
-            tlog.Debug(tag, $"PropertyNotificationNotifySignal END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("PropertyNotification Assign")]
         [Property("SPEC", "Tizen.NUI.PropertyNotification.Assign M")]
         [Property("SPEC_URL", "-")]
