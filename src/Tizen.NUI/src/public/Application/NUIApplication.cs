@@ -568,7 +568,7 @@ namespace Tizen.NUI
         {
             Tizen.Tracer.Begin("[NUI] OnPreCreate()");
 
-            if (borderEnabled)
+            if (borderEnabled && GetDefaultWindow() != null)
             {
                 GetDefaultWindow().EnableBorder(borderInterface, new Window.BorderCloseDelegate(Exit));
             }

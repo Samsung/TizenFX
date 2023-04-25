@@ -943,6 +943,34 @@ namespace Tizen.Applications
         }
 
         /// <summary>
+        /// Unsets the auto restart.
+        /// </summary>
+        /// <remarks>
+        /// The functionality of this method only applies to the caller application.
+        /// This method is only available for platform level signed applications.
+        /// </remarks>
+        /// <exception cref="Exceptions.PermissionDeniedException">Thrown when the permission is denied.</exception>
+        /// <exception cref="Exceptions.OutOfMemoryException">Thrown when the memory is insufficient.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the memory is insufficient.</exception>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void UnsetAutoRestart()
+        {
+            Interop.AppControl.ErrorCode err = Interop.AppControl.UnsetAutoRestart();
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                switch (err)
+                {
+                    case Interop.AppControl.ErrorCode.PermissionDenied:
+                        throw new Exceptions.PermissionDeniedException("Permission denied");
+                    case Interop.AppControl.ErrorCode.OutOfMemory:
+                        throw new Exceptions.OutOfMemoryException("Out of memory");
+                    default:
+                        throw new InvalidOperationException("err = " + err);
+                }
+            }
+        }
+
+        /// <summary>
         /// Gets all default applications.
         /// </summary>
         /// <returns>ApplicationIds.</returns>
@@ -982,6 +1010,52 @@ namespace Tizen.Applications
             }
 
             return ids;
+        }
+
+        /// <summary>
+        /// Sets the window position.
+        /// </summary>
+        /// <param name="windowPosition">The window position object.</param>
+        /// <exception cref="ArgumentNullException">Thrown when the argument is null.</exception>
+        /// <exception cref="ArgumentException">Thrown when the argument is invalid.</exception>
+        /// <exception cref="InvalidOperationException">Thrown when the invalid operation error occurs.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public void SetWindowPosition(WindowPosition windowPosition)
+        {
+            if (windowPosition == null)
+            {
+                throw new ArgumentNullException(nameof(windowPosition));
+            }
+
+            Interop.AppControl.ErrorCode err = Interop.AppControl.SetWindowPosition(this.SafeAppControlHandle, windowPosition.PositionX, windowPosition.PositionY, windowPosition.Width, windowPosition.Height);
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                if (err == Interop.AppControl.ErrorCode.InvalidParameter)
+                {
+                    throw new ArgumentException("Invalid arguments");
+                }
+                else
+                {
+                    throw new InvalidOperationException("err = " + err);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets the window position.
+        /// </summary>
+        /// <returns>The window position.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the invalid operation error occurs.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public WindowPosition GetWindowPosition()
+        {
+            Interop.AppControl.ErrorCode err = Interop.AppControl.GetWindowPosition(this.SafeAppControlHandle, out int x, out int y, out int w, out int h);
+            if (err != Interop.AppControl.ErrorCode.None)
+            {
+                throw new InvalidOperationException("err = " + err);
+            }
+
+            return new WindowPosition(x, y, w, h);
         }
 
         /// <summary>
