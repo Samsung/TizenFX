@@ -119,7 +119,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Adds a NUIGadget to a NUIGadgetManager.
+        /// Adds a NUIGadget to the NUIGadgetManager.
         /// </summary>
         /// <param name="resourceType">The resource type of the NUIGadget package.</param>
         /// <param name="className">The class name of the NUIGadget.</param>
@@ -196,7 +196,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Removes the NUIGadget from a NUIGadgetManager.
+        /// Removes the NUIGadget from the NUIGadgetManager.
         /// </summary>
         /// <param name="gadget">The NUIGadget object.</param>
         /// <since_tizen> 10 </since_tizen>
@@ -220,7 +220,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Removes all NUIGadget from a NUIGadgetManager.
+        /// Removes all NUIGadgets from the NUIGadgetManager.
         /// </summary>
         /// <since_tizen> 10 </since_tizen>
         public static void RemoveAll()
