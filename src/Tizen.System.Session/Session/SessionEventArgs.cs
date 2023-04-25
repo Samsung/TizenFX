@@ -126,7 +126,7 @@ namespace Tizen.System
     }
 
     /// <summary>
-    /// An event arguemnt type for SwitchUserCompletion event type
+    /// An event arguemnt type for SwitchUserCompleted event type
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SwitchUserCompletionEventArgs : SwitchUserEventArgs
