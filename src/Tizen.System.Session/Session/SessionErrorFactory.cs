@@ -37,41 +37,45 @@ namespace Tizen.System
     {
         internal const string LogTag = "Tizen.System.Session";
 
-        internal static void ThrowException(SessionError err)
+        internal static Exception CreateException(SessionError err)
         {
             SessionError error = (SessionError)err;
             if (error == SessionError.InvalidParameter)
             {
-                throw new ArgumentException("Invalid parameter");
+                return new ArgumentException("Invalid parameter");
             }
             else if (error == SessionError.Io)
             {
-                throw new IOException("I/O error");
+                return new IOException("I/O error");
             }
             else if (error == SessionError.OutOfMemory)
             {
-                throw new OutOfMemoryException("Out of memory");
+                return new InvalidOperationException("Out of memory");
             }
             else if (error == SessionError.AlreadyExists)
             {
-                throw new InvalidOperationException("Already exists");
+                return new InvalidOperationException("Already exists");
             }
             else if (error == SessionError.NotAvailible)
             {
-                throw new InvalidOperationException("Not availible");
+                return new InvalidOperationException("Not availible");
             }
             else if (error == SessionError.ResourceBusy)
             {
-                throw new InvalidOperationException("Resource busy");
+                return new InvalidOperationException("Resource busy");
             }
             else if (error == SessionError.PermissionDenied)
             {
-                throw new UnauthorizedAccessException("Permission denied");
+                return new UnauthorizedAccessException("Permission denied");
             }
             else if (error == SessionError.NotSupported)
             {
-                throw new NotSupportedException("Not supported");
+                return new NotSupportedException("Not supported");
             }
-        }
+			else
+			{
+				return null;
+			}
+		}
     }
 }

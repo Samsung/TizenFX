@@ -80,7 +80,8 @@ namespace Tizen.System
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static Session GetInstance(int sessionUID)
         {
-            s_sessionInstances.TryAdd(sessionUID, new Session(sessionUID));
+            if (!s_sessionInstances.ContainsKey(sessionUID))
+                s_sessionInstances.TryAdd(sessionUID, new Session(sessionUID));
             return s_sessionInstances[sessionUID];
         }
 
@@ -213,19 +214,21 @@ namespace Tizen.System
 
             _replyMap[taskID] = (int result, IntPtr data) =>
             {
-                _replyMap.Remove((int)data);
 
                 try
                 {
                     CheckError((SessionError)result, "Interop failed to remove a subsession user");
+                    task.SetResult(true);
                 }
                 catch (Exception exception)
                 {
                     task.SetException(exception);
                     return;
                 }
-
-                task.SetResult(true);
+                finally
+                {
+                    _replyMap.Remove((int)data);
+                }
             };
 
             SessionError ret = Interop.Session.SubsessionRemoveUser(SessionUID, userName, _replyMap[taskID], (IntPtr)taskID);
@@ -258,19 +261,20 @@ namespace Tizen.System
 
             _replyMap[taskID] = (int result, IntPtr data) =>
             {
-                _replyMap.Remove((int)data);
-
                 try
                 {
                     CheckError((SessionError)result, "Interop failed to switch to a different subsession user");
+                    task.SetResult(true);
                 }
                 catch (Exception exception)
                 {
                     task.SetException(exception);
                     return;
                 }
-
-                task.SetResult(true);
+                finally
+                {
+                    _replyMap.Remove((int)data);
+                }
             };
 
             SessionError ret = Interop.Session.SubsessionSwitchUser(SessionUID, userName, _replyMap[taskID], (IntPtr)taskID);
@@ -443,7 +447,7 @@ namespace Tizen.System
         /// <exception cref="UnauthorizedAccessException">Not permitted</exception>
         /// <exception cref="NotSupportedException">Not supported</exception>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public event EventHandler<SwitchUserCompletionEventArgs> SwitchUserCompletion
+        public event EventHandler<SwitchUserCompletionEventArgs> SwitchUserCompleted
         {
             add
             {
@@ -471,7 +475,14 @@ namespace Tizen.System
                 return;
 
             Log.Error(SessionErrorFactory.LogTag, msg);
-            SessionErrorFactory.ThrowException(ret);
+            Exception ex = SessionErrorFactory.CreateException(ret);
+            if (ex == null)
+            {
+                Log.Error(SessionErrorFactory.LogTag,
+                    "Unexpected exception type for SessionError: " + Enum.GetName(typeof(SessionError), ret));
+                throw new InvalidOperationException("Unrecognized error");
+            }
+            throw ex;
         }
 
         private void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)
