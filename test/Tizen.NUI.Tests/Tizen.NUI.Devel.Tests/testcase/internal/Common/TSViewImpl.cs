@@ -414,38 +414,5 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"ViewImplOnKeyInputFocusLost (OK)");
         }
-        
-        [Test]
-        [Category("P1")]
-        [Description("ViewImpl KeyEventSignal.")]
-        [Property("SPEC", "Tizen.NUI.ViewImpl.KeyEventSignal M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void ViewImplSignal()
-        {
-            tlog.Debug(tag, $"ViewImplSignal START");
-
-            using (ViewWrapperImpl impl = new ViewWrapperImpl(CustomViewBehaviour.ViewBehaviourDefault))
-            {
-                var testingTarget = new ViewWrapper("CustomView", impl);
-                Assert.IsNotNull(testingTarget, "should be not null");
-                Assert.IsInstanceOf<ViewWrapper>(testingTarget, "should be an instance of testing target class!");
-
-                var signal = testingTarget.viewWrapperImpl.KeyEventSignal();
-                Assert.IsInstanceOf<ControlKeySignal>(signal, "Should return ControlKeySignal instance.");
-
-                var focusGained = testingTarget.viewWrapperImpl.KeyInputFocusGainedSignal();
-                Assert.IsInstanceOf<KeyInputFocusSignal>(focusGained, "Should return ControlKeySignal instance.");
-
-                var focusLost = testingTarget.viewWrapperImpl.KeyInputFocusLostSignal();
-                Assert.IsInstanceOf<KeyInputFocusSignal>(focusLost, "Should return ControlKeySignal instance.");
-
-                testingTarget.Dispose();
-            }
-
-            tlog.Debug(tag, $"ViewImplSignal (OK)");
-        }
     }
 }

@@ -385,27 +385,6 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("AccessibilityManager FocusedViewActivatedSignal.")]
-        [Property("SPEC", "Tizen.NUI.AccessibilityManager.FocusedViewActivatedSignal M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void AccessibilityManagerFocusedViewActivatedSignal()
-        {
-            tlog.Debug(tag, $"AccessibilityManagerFocusedViewActivatedSignal START");
-
-            var testingTarget = Accessibility.AccessibilityManager.Instance;
-            Assert.IsNotNull(testingTarget, "Can't create success object AccessibilityManager ");
-            Assert.IsInstanceOf<Accessibility.AccessibilityManager>(testingTarget, "Should be an instance of AccessibilityManager  type.");
-
-            var result = testingTarget.FocusedViewActivatedSignal();
-            Assert.IsNotNull(result);
-
-            tlog.Debug(tag, $"AccessibilityManagerFocusedViewActivatedSignal END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
         [Description("AccessibilityManager StatusChangedSignal.")]
         [Property("SPEC", "Tizen.NUI.AccessibilityManager.StatusChangedSignal M")]
         [Property("SPEC_URL", "-")]
