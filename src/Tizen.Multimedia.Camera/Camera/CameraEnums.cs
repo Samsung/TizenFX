@@ -488,7 +488,17 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Custom mode.
         /// </summary>
-        Custom
+        Custom,
+        /// <summary>
+        /// Shutter priority mode.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        ShutterPriority,
+        /// <summary>
+        /// Aperture priority mode.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        AperturePriority
     }
 
     /// <summary>
