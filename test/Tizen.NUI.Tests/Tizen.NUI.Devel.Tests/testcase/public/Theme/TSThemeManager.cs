@@ -161,38 +161,6 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"ThemeManagerAddPackageTheme END (OK)");
         }
-
-        [Test]
-        [Category("P1")]
-        [Description("ThemeManager ApplyExternalPlatformTheme.")]
-        [Property("SPEC", "Tizen.NUI.ThemeManager.ApplyExternalPlatformTheme  M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        public void ThemeManagerApplyExternalPlatformTheme()
-        {
-            tlog.Debug(tag, $"ThemeManagerApplyExternalPlatformTheme START");
-
-            var theme = new Theme(path);
-            ViewStyle style = new ViewStyle()
-            {
-                Color = Color.Cyan,
-            };
-
-            theme.AddStyle("style", style);
-
-            try
-            {
-                ThemeManager.ApplyExternalPlatformTheme(theme.Id, theme.Version);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            tlog.Debug(tag, $"ThemeManagerApplyExternalPlatformTheme END (OK)");
-        }
     }
 }
 

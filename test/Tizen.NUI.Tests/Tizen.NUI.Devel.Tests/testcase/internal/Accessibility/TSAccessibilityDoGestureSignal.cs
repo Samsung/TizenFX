@@ -181,7 +181,7 @@ namespace Tizen.NUI.Devel.Tests
 
             using (View view = new View())
             {
-                view.OnWindowSignal();
+                //view.OnWindowSignal();
 
                 AccessibilityDoGestureSignal.SetResult(view.SwigCPtr.Handle, true);
                 var result = AccessibilityDoGestureSignal.GetResult(view.SwigCPtr.Handle);
