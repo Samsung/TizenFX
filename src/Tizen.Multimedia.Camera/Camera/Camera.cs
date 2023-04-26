@@ -46,7 +46,6 @@ namespace Tizen.Multimedia
         private bool _disposed = false;
         private CameraState _state = CameraState.None;
         PinnedPreviewBuffer<byte> _previewBuffer;
-        private CameraDeviceManager _cameraDeviceManager;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> class.
@@ -69,11 +68,20 @@ namespace Tizen.Multimedia
         /// <summary>
         /// Initializes a new instance of the <see cref="Camera"/> class.
         /// </summary>
-        /// <remarks>CameraDevice and Type will be selected internally by CameraDeviceManager.</remarks>
-        /// <exception cref="InvalidOperationException">In case of any invalid operations.</exception>
+        /// <remarks>
+        /// If <see cref="CameraDeviceManager"/> is supported, <see cref="CameraDevice"/> will be selected automatically by internal policy.<br/>
+        /// (User can check whether <see cref="CameraDeviceManager"/> is supported or not by using <see cref="CameraDeviceManager.IsCameraDeviceManagerSupported"/>.)<br/>
+        /// But, if not, this constructor will try to create Camera instance with <see cref="CameraDevice.CameraDevice0"/> by default.
+        /// </remarks>
+        /// <exception cref="InvalidOperationException">
+        /// There's no available camera device.
+        ///     -or-<br/>
+        /// In case of any invalid operations.
+        /// </exception>
         /// <exception cref="NotSupportedException">The camera feature is not supported.</exception>
-        /// <since_tizen> 9 </since_tizen>
+        /// <since_tizen> 11 </since_tizen>
         /// <feature> http://tizen.org/feature/camera </feature>
+        /// <seealso cref="CameraDeviceManager.IsCameraDeviceManagerSupported"/>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Camera() : this(CameraDevice.Default)
         {
@@ -95,31 +103,31 @@ namespace Tizen.Multimedia
             CameraDeviceType cameraDeviceType = CameraDeviceType.BuiltIn;
             CameraDevice cameraDevice = device;
 
-            try
+            if (device == CameraDevice.Default)
             {
-                _cameraDeviceManager = new CameraDeviceManager();
-            }
-            catch (NotSupportedException)
-            {
-                Log.Info(CameraLog.Tag,
-                    $"CameraDeviceManager is not supported. Not error.");
-            }
+                var deviceInfo = Enumerable.Empty<CameraDeviceInformation>();
 
-            if (_cameraDeviceManager != null)
-            {
-                var deviceInfo = _cameraDeviceManager.SupportedDevices;
-
-                // CameraDeviceManager is not used internally anymore.
-                _cameraDeviceManager.Dispose();
-
-                if (!deviceInfo.Any())
+                try
                 {
-                    throw new InvalidOperationException("CameraDeviceManager is supported but, there's no available camera device.");
-                }
+                    using (var cameraDeviceManager = new CameraDeviceManager())
+                    {
+                        deviceInfo = cameraDeviceManager.SupportedDevices;
+                    }
 
-                cameraDeviceType = deviceInfo.First().Type;
-                cameraDevice = deviceInfo.First().Device;
-                Log.Debug(CameraLog.Tag, $"Type:[{cameraDeviceType}], Device:[{cameraDevice}]");
+                    if (!deviceInfo.Any())
+                    {
+                        throw new InvalidOperationException("CameraDeviceManager is supported but, there's no available camera device.");
+                    }
+
+                    cameraDeviceType = deviceInfo.First().Type;
+                    cameraDevice = deviceInfo.First().Device;
+                    Log.Debug(CameraLog.Tag, $"Type:[{cameraDeviceType}], Auto selected camera device:[{cameraDevice}]");
+                }
+                catch (NotSupportedException)
+                {
+                    Log.Debug(CameraLog.Tag, "CameraDeviceManager is not supported. Try to create Camera instance by CameraDevice0.");
+                    cameraDevice = CameraDevice.CameraDevice0;
+                }
             }
 
             CreateNativeCameraDevice(cameraDeviceType, cameraDevice);
