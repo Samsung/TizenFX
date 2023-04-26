@@ -54,7 +54,7 @@ namespace ElmSharp.Test
             Print(priority, tag, "%s: %s(%d) > %s", finfo.Name, func, line, message);
         }
 
-        [DllImportAttribute(Library, EntryPoint = "dlog_print")]
+        [DllImportAttribute(Library, EntryPoint = "dlog_print_dotnet")]
         internal static extern int Print(LogPriority prio, string tag, string fmt, string file, string func, int line, string msg);
     }
 }
