@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 using System;
+using System.ComponentModel;
 using System.Threading;
 using Tizen.Internals.Errors;
 
@@ -344,5 +345,29 @@ namespace Tizen.Multimedia
         ///  An optional flag for using the S/W codec
         /// </summary>
         Software,
+    }
+
+    /// <summary>
+    /// Specifies the types of a video codec for <see cref="Player"/>.
+    /// </summary>
+    /// <seealso cref="Player.VideoCodecType"/>
+    /// <since_tizen> 11 </since_tizen>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum VideoCodecType
+    {
+        /// <summary>
+        /// An optional flag for using the H/W codec.
+        /// </summary>
+        Hardware,
+
+        /// <summary>
+        ///  An optional flag for using the S/W codec
+        /// </summary>
+        Software,
+
+        /// <summary>
+        ///  An optional flag for using the codec which has higher priority.
+        /// </summary>
+        Default,
     }
 }
