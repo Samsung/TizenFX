@@ -210,6 +210,28 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Enumeration for what looping mode is in.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Naming", "CA1717:Only FlagsAttribute enums should have plural names")]
+        public enum LoopingModes
+        {
+            /// <summary>
+            /// When the animation arrives at the end in looping mode, the animation restarts from the beginning. (Default)
+            /// </summary>
+            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Restart,
+            /// <summary>
+            /// When the animation arrives at the end in looping mode, the animation reverses direction and runs backwards again.
+            /// </summary>
+            /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            AutoReverse
+        }
+
+        /// <summary>
         /// Gets or sets the duration in milliseconds of the animation.
         /// This duration is applied to the animations are added after the Duration is set.
         /// </summary>
@@ -452,6 +474,26 @@ namespace Tizen.NUI
             get
             {
                 float ret = Interop.Animation.GetProgressNotification(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return ret;
+            }
+        }
+
+        /// <summary>
+        /// Enumeration for what looping mode is in.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public LoopingModes LoopingMode
+        {
+            set
+            {
+                Interop.Animation.SetLoopingMode(SwigCPtr, (int)value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                Animation.LoopingModes ret = (Animation.LoopingModes)Interop.Animation.GetLoopingMode(SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
                 return ret;
             }
