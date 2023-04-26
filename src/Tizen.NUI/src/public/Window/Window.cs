@@ -41,6 +41,8 @@ namespace Tizen.NUI
         private string windowTitle;
         private List<Layer> childLayers = new List<Layer>();
         private LayoutController localController;
+        private Key internalLastKeyEvent;
+        private Touch internalLastTouchEvent;
 
         static internal bool IsSupportedMultiWindow()
         {
@@ -1849,9 +1851,13 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Key GetLastKeyEvent()
         {
-            Key ret = new Key(Interop.Window.GetLastKeyEvent(SwigCPtr), false);
+            if(internalLastKeyEvent == null)
+            {
+                internalLastKeyEvent = new Key();
+            }
+            Interop.Window.InternalRetrievingLastKeyEvent(SwigCPtr, internalLastKeyEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return internalLastKeyEvent;
         }
 
         /// <summary>
@@ -1861,9 +1867,13 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Touch GetLastTouchEvent()
         {
-            Touch ret = new Touch(Interop.Window.GetLastTouchEvent(SwigCPtr), false);
+            if(internalLastTouchEvent == null)
+            {
+                internalLastTouchEvent = new Touch();
+            }
+            Interop.Window.InternalRetrievingLastTouchEvent(SwigCPtr, internalLastTouchEvent.SwigCPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
-            return ret;
+            return internalLastTouchEvent;
         }
 
         /// <summary>
@@ -1947,6 +1957,11 @@ namespace Tizen.NUI
                 childLayers.Clear();
 
                 localController?.Dispose();
+
+                internalLastKeyEvent?.Dispose();
+                internalLastKeyEvent = null;
+                internalLastTouchEvent?.Dispose();
+                internalLastTouchEvent = null;
             }
 
 
