@@ -65,7 +65,7 @@ namespace Tizen.Data.Tdbc
         /// <since_tizen> 11 </since_tizen>
         public Sql Bind(string key, string val)
         {
-            _bindings.Add(key, new Tuple<Object, Type>(val,typeof(string)));
+            _bindings.Add(key, val);
             return this;
         }
 
@@ -78,7 +78,7 @@ namespace Tizen.Data.Tdbc
         /// <since_tizen> 11 </since_tizen>
         public Sql Bind(string key, int val)
         {
-            _bindings.Add(key, new Tuple<Object, Type>(val, typeof(int)));
+            _bindings.Add(key, val);
             return this;
         }
 
@@ -91,7 +91,7 @@ namespace Tizen.Data.Tdbc
         /// <since_tizen> 11 </since_tizen>
         public Sql Bind(string key, double val)
         {
-            _bindings.Add(key, new Tuple<Object, Type>(val, typeof(double)));
+            _bindings.Add(key, val);
             return this;
         }
 
@@ -104,7 +104,7 @@ namespace Tizen.Data.Tdbc
         /// <since_tizen> 11 </since_tizen>
         public Sql Bind(string key, bool val)
         {
-            _bindings.Add(key, new Tuple<Object, Type>(val, typeof(bool)));
+            _bindings.Add(key, val);
             return this;
         }
 
@@ -117,7 +117,7 @@ namespace Tizen.Data.Tdbc
         /// <since_tizen> 11 </since_tizen>
         public Sql Bind(string key, byte[] val)
         {
-            _bindings.Add(key, new Tuple<Object, Type>(val, typeof(byte[])));
+            _bindings.Add(key, val);
             return this;
         }
     }
