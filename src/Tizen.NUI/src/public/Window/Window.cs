@@ -1383,7 +1383,7 @@ namespace Tizen.NUI
 
             if (isBorderWindow)
             {
-                Interop.Actor.Add(GetBorderWindowRootLayer().SwigCPtr, layer.SwigCPtr);
+                Interop.Actor.Add(GetRootLayer().SwigCPtr, layer.SwigCPtr);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) { throw NDalicPINVOKE.SWIGPendingException.Retrieve(); }
             }
             else
