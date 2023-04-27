@@ -239,9 +239,9 @@ namespace Tizen.NUI.Components
             }
 
             while (!failed &&
-                    Source.IsHeader(firstIndex) ||
+                   (Source.IsHeader(firstIndex) ||
                     Source.IsGroupHeader(firstIndex) ||
-                    Source.IsGroupFooter(firstIndex))
+                    Source.IsGroupFooter(firstIndex)))
             {
                 if (Source.IsFooter(firstIndex)
                     || ((Source.Count - 1) <= firstIndex))
