@@ -170,18 +170,19 @@ namespace Tizen.System
 
             _replyMap[taskID] = (int result, IntPtr data) =>
             {
-                _replyMap.Remove((int)data);
                 try
                 {
                     CheckError((SessionError)result, "Interop failed to complete adding a new subsession user");
+                    task.SetResult(true);
                 }
                 catch (Exception exception)
                 {
                     task.SetException(exception);
-                    return;
                 }
-
-                task.SetResult(true);
+                finally
+                {
+                    _replyMap.Remove((int)data);
+                }
             };
 
             SessionError ret = Interop.Session.SubsessionAddUser(SessionUID, userName, _replyMap[taskID], (IntPtr)taskID);
@@ -223,7 +224,6 @@ namespace Tizen.System
                 catch (Exception exception)
                 {
                     task.SetException(exception);
-                    return;
                 }
                 finally
                 {
@@ -269,7 +269,6 @@ namespace Tizen.System
                 catch (Exception exception)
                 {
                     task.SetException(exception);
-                    return;
                 }
                 finally
                 {
@@ -328,7 +327,7 @@ namespace Tizen.System
                 lock (_addUserWaitLock)
                 {
                     if (_addUserWaitHandler == null)
-                        RegisterCallbackForEvent(SessionEventType.AddUserWait, _addUserWaitCB, OnAddUserWait);
+                        RegisterCallbackForEvent(SessionEventType.AddUserWait, ref _addUserWaitCB, OnAddUserWait);
                     _addUserWaitHandler += value;
                 }
             }
@@ -338,7 +337,7 @@ namespace Tizen.System
                 {
                     _addUserWaitHandler -= value;
                     if (_addUserWaitHandler == null)
-                        UnregisterCallbackForEvent(SessionEventType.AddUserWait, _addUserWaitCB);
+                        UnregisterCallbackForEvent(SessionEventType.AddUserWait, ref _addUserWaitCB);
                 }
             }
         }
@@ -370,7 +369,7 @@ namespace Tizen.System
                 lock (_removeUserWaitLock)
                 {
                     if (_removeUserWaitHandler == null)
-                        RegisterCallbackForEvent(SessionEventType.RemoveUserWait, _removeUserWaitCB, OnRemoveUserWait);
+                        RegisterCallbackForEvent(SessionEventType.RemoveUserWait, ref _removeUserWaitCB, OnRemoveUserWait);
                     _removeUserWaitHandler += value;
                 }
             }
@@ -380,7 +379,7 @@ namespace Tizen.System
                 {
                     _removeUserWaitHandler -= value;
                     if (_removeUserWaitHandler == null)
-                        UnregisterCallbackForEvent(SessionEventType.RemoveUserWait, _removeUserWaitCB);
+                        UnregisterCallbackForEvent(SessionEventType.RemoveUserWait, ref _removeUserWaitCB);
                 }
             }
         }
@@ -412,7 +411,7 @@ namespace Tizen.System
                 lock (_switchUserWaitLock)
                 {
                     if (_switchUserWaitHandler == null)
-                        RegisterCallbackForEvent(SessionEventType.SwitchUserWait, _switchUserWaitCB, OnSwitchUserWait);
+                        RegisterCallbackForEvent(SessionEventType.SwitchUserWait, ref _switchUserWaitCB, OnSwitchUserWait);
                     _switchUserWaitHandler += value;
                 }
             }
@@ -422,7 +421,7 @@ namespace Tizen.System
                 {
                     _switchUserWaitHandler -= value;
                     if (_switchUserWaitHandler == null)
-                        UnregisterCallbackForEvent(SessionEventType.SwitchUserWait, _switchUserWaitCB);
+                        UnregisterCallbackForEvent(SessionEventType.SwitchUserWait, ref _switchUserWaitCB);
                 }
             }
         }
@@ -454,7 +453,7 @@ namespace Tizen.System
                 lock (_switchUserCompletionLock)
                 {
                     if (_switchUserCompletionHandler == null)
-                        RegisterCallbackForEvent(SessionEventType.SwitchUserCompletion, _switchUserCompletionCB, OnSwitchUserCompletion);
+                        RegisterCallbackForEvent(SessionEventType.SwitchUserCompletion, ref _switchUserCompletionCB, OnSwitchUserCompletion);
                     _switchUserCompletionHandler += value;
                 }
             }
@@ -464,7 +463,7 @@ namespace Tizen.System
                 {
                     _switchUserCompletionHandler -= value;
                     if (_switchUserCompletionHandler == null)
-                        UnregisterCallbackForEvent(SessionEventType.SwitchUserCompletion, _switchUserCompletionCB);
+                        UnregisterCallbackForEvent(SessionEventType.SwitchUserCompletion, ref _switchUserCompletionCB);
                 }
             }
         }
@@ -485,23 +484,19 @@ namespace Tizen.System
             throw ex;
         }
 
-        private void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)
+        static void IntPtrToStringArray(IntPtr unmanagedArray, int size, out string[] managedArray)
         {
-            managedArray = new string[size];
-
-            byte[] byteArray = new byte[MaxUserLength * size];
-            byte[] tmpArray = new byte[MaxUserLength];
-
-            Marshal.Copy(unmanagedArray, byteArray, 0, MaxUserLength * size);
-
-            for (int i = 0; i < size; i++)
+            managedArray = new string[size]; 
+            var curr = unmanagedArray;
+            
+            for (int iterator = 0; iterator < size; iterator++)
             {
-                Array.Copy(byteArray, MaxUserLength * i, tmpArray, 0, MaxUserLength);
-                managedArray[i] = Encoding.UTF8.GetString(tmpArray);
+                managedArray[iterator] = Marshal.PtrToStringAnsi(curr, 20);
+                curr = IntPtr.Add(curr, 20);
             }
         }
 
-        private void RegisterCallbackForEvent(SessionEventType eventType, Interop.Session.SubsessionEventCallback eventCallback,
+        private void RegisterCallbackForEvent(SessionEventType eventType, ref Interop.Session.SubsessionEventCallback eventCallback,
             EventDelegate delegateToSet)
         {
             eventCallback = new Interop.Session.SubsessionEventCallback(delegateToSet);
@@ -510,7 +505,7 @@ namespace Tizen.System
             CheckError(ret, $"Interop failed to register a callback for an event of type {eventType}");
         }
 
-        private void UnregisterCallbackForEvent(SessionEventType eventType, Interop.Session.SubsessionEventCallback eventCallback)
+        private void UnregisterCallbackForEvent(SessionEventType eventType, ref Interop.Session.SubsessionEventCallback eventCallback)
         {
             SessionError ret = Interop.Session.SubesssionUnregisterEventCallback(SessionUID, eventType);
             CheckError(ret, $"Interop failed to unregister a callback for an event of type {eventType}");
