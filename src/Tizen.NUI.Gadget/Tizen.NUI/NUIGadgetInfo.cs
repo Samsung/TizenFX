@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using Tizen.Applications;
 
@@ -106,6 +107,8 @@ namespace Tizen.NUI
         internal string ResourceFile { get; set; }
 
         internal string ResourceClassName { get; set; }
+
+        internal Assembly Assembly { get; set; }
 
         internal static NUIGadgetInfo CreateNUIGadgetInfo(string packageId)
         {

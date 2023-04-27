@@ -139,19 +139,21 @@ namespace Tizen.NUI
                 throw new ArgumentException("Failed to find NUIGadgetInfo. resource type: " + resourceType);
             }
 
-            Assembly assembly = null;
             try
             {
-                Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " ++");
-                assembly = Assembly.Load(File.ReadAllBytes(info.ResourcePath + info.ExecutableFile));
-                Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " --");
+                if (info.Assembly == null)
+                {
+                    Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " ++");
+                    info.Assembly = Assembly.Load(File.ReadAllBytes(info.ResourcePath + info.ExecutableFile));
+                    Log.Warn("NUIGadgetAssembly.Load(): " + info.ResourcePath + info.ExecutableFile + " --");
+                }
             }
             catch (FileLoadException e)
             {
                 throw new InvalidOperationException(e.Message);
             }
 
-            NUIGadget gadget = assembly.CreateInstance(className, true) as NUIGadget;
+            NUIGadget gadget = info.Assembly.CreateInstance(className, true) as NUIGadget;
             if (gadget == null)
             {
                 throw new InvalidOperationException("Failed to create instance. className: " + className);
