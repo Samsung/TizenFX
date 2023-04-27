@@ -72,5 +72,16 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
         }
+
+        /// <summary>
+        /// Generate URI from current buffer.
+        /// </summary>
+        /// <param name="pixelFormat">The pixel format for this frame buffer</param>
+        /// <param name="width">The width for this frame buffer</param>
+        /// <param name="height">The height for this frame buffer</param>
+        public ImageUrl GenerateUrl(PixelFormat pixelFormat, int width, int height)
+        {
+            return new ImageUrl(Interop.FrameBuffer.GenerateUrl(this.SwigCPtr.Handle, (int)pixelFormat, width, height), true);
+        }
     }
 }
