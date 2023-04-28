@@ -2390,14 +2390,7 @@ namespace Tizen.NUI.BaseComponents
 
         private void SetInternalFontSizeScale(float fontSizeScale)
         {
-#if NUI_PROPERTY_CHANGE_2
             Object.InternalSetPropertyFloat(this.SwigCPtr, TextField.Property.FontSizeScale, (float)fontSizeScale);
-#else
-            using (var property = new Tizen.NUI.PropertyValue((float)fontSizeScale))
-            {
-                Tizen.NUI.Object.SetProperty((System.Runtime.InteropServices.HandleRef)this.SwigCPtr, TextField.Property.FontSizeScale, property);
-            }
-#endif
         }
 
         /// <summary>
