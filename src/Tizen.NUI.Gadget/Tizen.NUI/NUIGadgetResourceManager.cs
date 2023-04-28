@@ -91,6 +91,14 @@ namespace Tizen.NUI
             var resourceManager = GetResourceManager(cultureInfo.Name);
             if (resourceManager == null)
             {
+                resourceManager = GetResourceManager("default");
+                if (resourceManager != null)
+                {
+#pragma warning disable CA1304
+                    return resourceManager.GetString(name);
+#pragma warning restore CA1304
+                }
+
                 if (cultureInfo.Name != "en")
                 {
                     resourceManager = GetResourceManager("en");
@@ -116,7 +124,16 @@ namespace Tizen.NUI
                 return resourceManager;
             }
 
-            string path = _resourcePath + locale + "/" + _resourceDll;
+            string path = string.Empty;
+            if (locale == "default")
+            {
+                path = _resourcePath + _resourceDll;
+            }
+            else
+            {
+                path = _resourcePath + locale + "/" + _resourceDll;
+            }
+
             if (!File.Exists(path))
             {
                 Log.Warn(path + " does not exist");
@@ -129,7 +146,12 @@ namespace Tizen.NUI
                 Assembly assembly = Assembly.Load(File.ReadAllBytes(path));
                 if (assembly != null)
                 {
-                    string baseName = _resourceClassName + "." + locale;
+                    string baseName = _resourceClassName;
+                    if (locale != "default")
+                    {
+                        baseName += "." + locale;
+                    }
+
                     resourceManager = new global::System.Resources.ResourceManager(baseName, assembly);
                     if (resourceManager == null)
                     {
