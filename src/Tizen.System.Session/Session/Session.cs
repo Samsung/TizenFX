@@ -57,7 +57,7 @@ namespace Tizen.System
 
         private int _replyID = 0;
 
-        private delegate void EventDelegate(SubsessionEventInfoNative infoNative, IntPtr data);
+        private delegate void EventDelegate(IntPtr infoNative, IntPtr data);
 
         static Session()
         {
@@ -300,7 +300,7 @@ namespace Tizen.System
             CheckError(ret, $"Interop failed to mark this client's event (of type {subsessionEventArgs.SessionInfo.eventType}) as finished");
         }
 
-        private void OnAddUserWait(SubsessionEventInfoNative infoNative, IntPtr data)
+        private void OnAddUserWait(IntPtr infoNative, IntPtr data)
         {
             _addUserWaitHandler?.Invoke(this, new AddUserEventArgs(infoNative));
         }
@@ -342,7 +342,7 @@ namespace Tizen.System
             }
         }
 
-        private void OnRemoveUserWait(SubsessionEventInfoNative infoNative, IntPtr data)
+        private void OnRemoveUserWait(IntPtr infoNative, IntPtr data)
         {
             _removeUserWaitHandler?.Invoke(this, new RemoveUserEventArgs(infoNative));
         }
@@ -384,7 +384,7 @@ namespace Tizen.System
             }
         }
 
-        private void OnSwitchUserWait(SubsessionEventInfoNative infoNative, IntPtr data)
+        private void OnSwitchUserWait(IntPtr infoNative, IntPtr data)
         {
             _switchUserWaitHandler?.Invoke(this, new SwitchUserWaitEventArgs(infoNative));
         }
@@ -426,7 +426,7 @@ namespace Tizen.System
             }
         }
 
-        private void OnSwitchUserCompletion(SubsessionEventInfoNative infoNative, IntPtr data)
+        private void OnSwitchUserCompletion(IntPtr infoNative, IntPtr data)
         {
             _switchUserCompletionHandler?.Invoke(this, new SwitchUserCompletionEventArgs(infoNative));
         }
@@ -488,7 +488,7 @@ namespace Tizen.System
         {
             managedArray = new string[size]; 
             var curr = unmanagedArray;
-            
+
             for (int iterator = 0; iterator < size; iterator++)
             {
                 managedArray[iterator] = Marshal.PtrToStringAnsi(curr, 20);
