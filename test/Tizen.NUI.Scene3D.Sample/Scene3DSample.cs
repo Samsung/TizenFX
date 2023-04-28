@@ -32,6 +32,15 @@ class Scene3DSample : NUIApplication
 
     SceneView mSceneView;
     Model mModel;
+    Animation mModelAnimation;
+    bool mModelLoadFinished;
+
+    // Note : This motion data works well only if model is MorthStressTest!
+    MotionData mStaticMotionData;
+    MotionData mStaticRevertMotionData;
+    MotionData mAnimateMotionData;
+    Animation mMotionAnimation;
+    const int modelMotionAnimationDurationMilliseconds = 2000; // milliseconds
 
     Animation mModelRotateAnimation;
     const int modelRotateAnimationDurationMilliseconds = 10000; // milliseconds
@@ -39,18 +48,26 @@ class Scene3DSample : NUIApplication
     private bool mMutex = false; // Lock key event during some transition / Change informations
 
     #region Model list define
+    /*
+     * Copyright 2021 Analytical Graphics, Inc.
+     * CC-BY 4.0 https://creativecommons.org/licenses/by/4.0/
+     */
     private static readonly List<string> ModelUrlList = new List<string>()
     {
         // Model reference : https://sketchfab.com/models/b81008d513954189a063ff901f7abfe4
         // Get from KhronosGroup https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/DamagedHelmet
         "DamagedHelmet/DamagedHelmet.gltf",
-        
+
+        //Get from KhronosGroup https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/MorphStressTest
+        "MorphStressTest/MorphStressTest.gltf",
+
         // Get from KhronosGroup https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/2CylinderEngine
         "2CylinderEngine/2CylinderEngine_e.gltf",
 
         // Get from KhronosGroup https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/ToyCar
         "ToyCar/ToyCar.glb",
 
+        //Get from KhronosGroup https://github.com/KhronosGroup/glTF-Sample-Models/tree/master/2.0/BoxAnimated
         "BoxAnimated/BoxAnimated.gltf",
     };
     private int currentModelIndex = 0;
@@ -70,11 +87,11 @@ class Scene3DSample : NUIApplication
     #region Camera list define
     private class CameraInfo
     {
-        public Vector3 Position {get; set;} = Vector3.Zero;
-        public Rotation Orientation {get; set;} = null;
-        public Radian Fov {get; set;} = null;
-        public float Near {get; set;} = 0.5f;
-        public float Far {get; set;} = 50.0f;
+        public Vector3 Position { get; set; } = Vector3.Zero;
+        public Rotation Orientation { get; set; } = null;
+        public Radian Fov { get; set; } = null;
+        public float Near { get; set; } = 0.5f;
+        public float Far { get; set; } = 50.0f;
     };
     private static readonly List<CameraInfo> CameraInfoList = new List<CameraInfo>()
     {
@@ -182,6 +199,14 @@ class Scene3DSample : NUIApplication
             mModel.Dispose();
         }
 
+        // Release old animation if exist
+        if (mModelAnimation != null)
+        {
+            mModelAnimation.Stop();
+            mModelAnimation.Dispose();
+            mModelAnimation = null;
+        }
+
         // Release old camera if exist
         if (additionalCameraList != null)
         {
@@ -199,6 +224,8 @@ class Scene3DSample : NUIApplication
             additionalCameraList = null;
         }
 
+        mModelLoadFinished = false;
+
         mModel = new Model(MODEL_DIR + modelUrl)
         {
             Name = modelUrl,
@@ -210,8 +237,12 @@ class Scene3DSample : NUIApplication
             // You can play animation if the animation exists.
             if (model.GetAnimationCount() > 0u)
             {
-                model.GetAnimation(0u).Looping = true;
-                model.GetAnimation(0u).Play();
+                mModelAnimation = model.GetAnimation(0u);
+                if (mModelAnimation != null)
+                {
+                    mModelAnimation.Looping = true;
+                    mModelAnimation.Play();
+                }
             }
             // You can apply camera properties if the camera parameter exists.
             if (model.GetCameraCount() > 0u)
@@ -244,12 +275,14 @@ class Scene3DSample : NUIApplication
             }
             Tizen.Log.Error("NUI", $"{model.Name} size : {model.Size.Width}, {model.Size.Height}, {model.Size.Depth}\n");
             Tizen.Log.Error("NUI", $"Animation count {model.GetAnimationCount()} , Camera count {model.GetCameraCount()}\n");
-            
+
             // Auto rotate model only if it don't have camera.
             if (mModel.GetCameraCount() == 0u)
             {
                 mModelRotateAnimation.Play();
             }
+
+            mModelLoadFinished = true;
 
             if (mMutex)
             {
@@ -265,6 +298,85 @@ class Scene3DSample : NUIApplication
         mSceneView.Add(mModel);
 
         mMutex = true;
+    }
+
+    // Note : This motion data works well only if model is MorthStressTest!
+    private void CreateMotionData()
+    {
+        mStaticMotionData = new MotionData();
+        mStaticRevertMotionData = new MotionData();
+        mAnimateMotionData = new MotionData();
+
+        mStaticMotionData.MotionValues = new List<(MotionIndex, MotionValue)>
+        {
+            (
+                new MotionTransformIndex()
+                {
+                    ModelNodeId = new PropertyKey("Main"),
+                    TransformType = MotionTransformIndex.TransformTypes.Orientation,
+                },
+                new MotionValue()
+                {
+                    Value = new PropertyValue(new Rotation(new Radian(new Degree(-45.0f)), Vector3.ZAxis)),
+                }
+            ),
+        };
+        mStaticRevertMotionData.MotionValues = new List<(MotionIndex, MotionValue)>
+        {
+            (
+                new MotionTransformIndex()
+                {
+                    ModelNodeId = new PropertyKey("Main"),
+                    TransformType = MotionTransformIndex.TransformTypes.Orientation,
+                },
+                new MotionValue()
+                {
+                    Value = new PropertyValue(new Rotation(new Radian(new Degree(0.0f)), Vector3.ZAxis)),
+                }
+            ),
+            (
+                new MotionTransformIndex()
+                {
+                    ModelNodeId = new PropertyKey("Main"),
+                    TransformType = MotionTransformIndex.TransformTypes.Scale,
+                },
+                new MotionValue()
+                {
+                    Value = new PropertyValue(Vector3.One),
+                }
+            ),
+        };
+
+        mAnimateMotionData.MotionValues = new List<(MotionIndex, MotionValue)>()
+        {
+            (
+                new MotionTransformIndex()
+                {
+                    ModelNodeId = new PropertyKey("Main"),
+                    TransformType = MotionTransformIndex.TransformTypes.Scale,
+                },
+                new MotionValue()
+                {
+                    Value = new PropertyValue(new Vector3(0.5f, 1.5f, 1.0f)),
+                }
+            ),
+        };
+        for (int i = 0; i < 8; ++i)
+        {
+            MotionIndex index = new BlendShapeIndex()
+            {
+                ModelNodeId = new PropertyKey("Main"),
+                BlendShapeId = new PropertyKey(i),
+            };
+            MotionValue value = new MotionValue()
+            {
+                KeyFramesValue = new KeyFrames()
+            };
+            value.KeyFramesValue.Add(0.0f, 0.0f);
+            value.KeyFramesValue.Add(1.0f, 1.0f * ((float)Math.Abs(i - 3.5f) + 0.5f) / 4.0f);
+
+            mAnimateMotionData.MotionValues.Add(ValueTuple.Create(index, value));
+        }
     }
 
     void SetupIBLimage(string specularUrl, string diffuseUrl, float iblFactor)
@@ -283,8 +395,6 @@ class Scene3DSample : NUIApplication
         }
         if (e.Key.State == Key.StateType.Down)
         {
-            FullGC();
-
             switch (e.Key.KeyPressedName)
             {
                 case "Escape":
@@ -347,10 +457,51 @@ class Scene3DSample : NUIApplication
                     }
                     break;
                 }
+                case "f":
+                {
+                    if (mModelAnimation?.State == Animation.States.Playing)
+                    {
+                        if (mModel != null && mModelLoadFinished)
+                        {
+                            mMotionAnimation = mModel.GenerateMotionDataAnimation(mAnimateMotionData, modelMotionAnimationDurationMilliseconds);
+
+                            if (mMotionAnimation != null)
+                            {
+                                // Stop original model animation
+                                mModelAnimation.Stop();
+
+                                mModel.SetMotionData(mStaticMotionData);
+                                mMotionAnimation.Looping = true;
+                                mMotionAnimation.Play();
+                                Tizen.Log.Error("NUI", $"Animate pre-defined motion data!\n");
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+
+            FullGC();
+        }
+        else if (e.Key.State == Key.StateType.Up)
+        {
+            if (mModelAnimation?.State == Animation.States.Stopped)
+            {
+                if (mMotionAnimation != null)
+                {
+                    mMotionAnimation.Stop();
+                    mMotionAnimation.Dispose();
+                    mMotionAnimation = null;
+
+                    // Revert motion data
+                    mModel.SetMotionData(mStaticRevertMotionData);
+
+                    // Replay original model animation
+                    mModelAnimation.Play();
+                }
             }
         }
     }
-
 
     public void Activate()
     {
@@ -366,11 +517,15 @@ class Scene3DSample : NUIApplication
 
         mWindow.KeyEvent += OnKeyEvent;
 
+        // Create motion data for MorphStressTest.gltf
+        CreateMotionData();
+
         CreateSceneView();
         SetupIBLimage(IBLUrlList[currentIBLIndex].Item1, IBLUrlList[currentIBLIndex].Item2, IBLFactor);
         CreateModel(ModelUrlList[currentModelIndex]);
     }
-    public void FullGC(){
+    public void FullGC()
+    {
         global::System.GC.Collect();
         global::System.GC.WaitForPendingFinalizers();
         global::System.GC.Collect();
