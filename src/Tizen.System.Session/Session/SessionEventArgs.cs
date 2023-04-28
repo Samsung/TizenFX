@@ -16,6 +16,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
 
 namespace Tizen.System
 {
@@ -38,10 +39,10 @@ namespace Tizen.System
 
         internal SubsessionEventInfoNative SessionInfo { get; set; }
 
-        internal SubsessionEventArgs(SubsessionEventInfoNative infoNative)
+        internal SubsessionEventArgs(IntPtr infoNativePtr)
         {
-            SessionUID = infoNative.sessionUID;
-            SessionInfo = infoNative;
+            SessionInfo = (SubsessionEventInfoNative)Marshal.PtrToStructure(infoNativePtr, typeof(SubsessionEventInfoNative));
+            SessionUID = SessionInfo.sessionUID;
         }
     }
 
@@ -57,10 +58,10 @@ namespace Tizen.System
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string UserName { get; internal set; }
 
-        internal AddUserEventArgs(SubsessionEventInfoNative infoNative)
-            : base(infoNative)
+        internal AddUserEventArgs(IntPtr infoNativePtr)
+            : base(infoNativePtr)
         {
-            UserName = infoNative.addUser.userName;
+            UserName = Marshal.PtrToStringAnsi(IntPtr.Add(infoNativePtr, 8), 20);
         }
     }
 
@@ -76,10 +77,10 @@ namespace Tizen.System
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string UserName { get; internal set; }
 
-        internal RemoveUserEventArgs(SubsessionEventInfoNative infoNative)
-            : base(infoNative)
+        internal RemoveUserEventArgs(IntPtr infoNativePtr)
+            : base(infoNativePtr)
         {
-            UserName = infoNative.removeUser.userName;
+            UserName = Marshal.PtrToStringAnsi(IntPtr.Add(infoNativePtr, 8), 20);
         }
     }
 
@@ -107,12 +108,12 @@ namespace Tizen.System
         [EditorBrowsable(EditorBrowsableState.Never)]
         public string UserNameNext { get; internal set; }
 
-        internal SwitchUserEventArgs(SubsessionEventInfoNative infoNative)
-            : base(infoNative)
+        internal SwitchUserEventArgs(IntPtr infoNativePtr)
+            : base(infoNativePtr)
         {
-            SwitchID = infoNative.switchUser.switchID;
-            UserNamePrev = infoNative.switchUser.userNamePrev;
-            UserNameNext = infoNative.switchUser.userNameNext;
+            SwitchID = SessionInfo.switchID;
+            UserNamePrev = Marshal.PtrToStringAnsi(IntPtr.Add(infoNativePtr, 16), 20);
+            UserNameNext = Marshal.PtrToStringAnsi(IntPtr.Add(infoNativePtr, 36), 20);
         }
     }
 
@@ -122,7 +123,7 @@ namespace Tizen.System
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SwitchUserWaitEventArgs : SwitchUserEventArgs
     {
-        internal SwitchUserWaitEventArgs(SubsessionEventInfoNative infoNative) : base(infoNative) { }
+        internal SwitchUserWaitEventArgs(IntPtr infoNativePtr) : base(infoNativePtr) { }
     }
 
     /// <summary>
@@ -131,6 +132,6 @@ namespace Tizen.System
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class SwitchUserCompletionEventArgs : SwitchUserEventArgs
     {
-        internal SwitchUserCompletionEventArgs(SubsessionEventInfoNative infoNative) : base(infoNative) { }
+        internal SwitchUserCompletionEventArgs(IntPtr infoNativePtr) : base(infoNativePtr) { }
     }
 }
