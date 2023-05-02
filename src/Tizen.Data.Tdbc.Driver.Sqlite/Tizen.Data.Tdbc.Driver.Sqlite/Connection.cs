@@ -90,10 +90,12 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
             }
 
             Sql sql = new Sql(string.Format("SELECT * from {0} WHERE rowid = {1}", table_name, rowid));
-            IRecord record = CreateStatement().ExecuteQuery(sql).FirstOrDefault();
-
-            RecordChangedEventArgs ev = new RecordChangedEventArgs(operationType, db_name, table_name, record);
-            _recordChanged?.Invoke(this, ev);
+            using (IStatement stmt = CreateStatement())
+            {
+                IRecord record = stmt.ExecuteQuery(sql).FirstOrDefault();
+                RecordChangedEventArgs ev = new RecordChangedEventArgs(operationType, db_name, table_name, record);
+                _recordChanged?.Invoke(this, ev);
+            }
         }
 
         internal IntPtr GetHandle()

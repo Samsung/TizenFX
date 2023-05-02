@@ -55,27 +55,31 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
                 if (pos == 0)
                     throw new InvalidOperationException("Invalid binding");
 
-                if (typeof(int) == obj.GetType())
+                // TODO: consider null binding
+                if (obj == null)
+                    continue;
+
+                Type type = obj.GetType();
+                if (typeof(int) == type)
                 {
                     Interop.Sqlite.BindInt(_stmt, pos, (int)obj);
                 }
-                else if (typeof(bool) == obj.GetType())
+                else if (typeof(bool) == type)
                 {
                     bool val = (bool)obj;
                     Interop.Sqlite.BindInt(_stmt, pos, val ? 1 : 0);
                 }
-                else if (typeof(double) == obj.GetType())
+                else if (typeof(double) == type)
                 {
                     Interop.Sqlite.BindDouble(_stmt, pos, (double)obj);
                 }
-                else if (typeof(string) == obj.GetType())
+                else if (typeof(string) == type)
                 {
                     Interop.Sqlite.BindText(_stmt, pos, (string)obj, -1, (IntPtr)(-1));
                 }
-                else if (typeof(byte[]) == obj.GetType())
+                else if (typeof(byte[]) == type)
                 {
-                    if (obj != null)
-                        Interop.Sqlite.BindData(_stmt, pos, (byte[])obj, ((byte[])obj).Length, IntPtr.Zero);
+                    Interop.Sqlite.BindData(_stmt, pos, (byte[])obj, ((byte[])obj).Length, IntPtr.Zero);
                 }
             }
 
