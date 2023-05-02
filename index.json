@@ -20839,6 +20839,11 @@
     "title": "Enum Animation.Interpolation",
     "keywords": ""
   },
+  "API11/api/Tizen.NUI.Animation.LoopingModes.html": {
+    "href": "API11/api/Tizen.NUI.Animation.LoopingModes.html",
+    "title": "Enum Animation.LoopingModes",
+    "keywords": ""
+  },
   "API11/api/Tizen.NUI.Animation.States.html": {
     "href": "API11/api/Tizen.NUI.Animation.States.html",
     "title": "Enum Animation.States",
