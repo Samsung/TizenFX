@@ -1154,6 +1154,44 @@ namespace Tizen.NUI.BaseComponents
         }
         private bool adjustViewSize = false;
 
+        /// <summary>
+        /// ImageView PlaceHolderUrl, type string.
+        /// This is one of mandatory property. Even if not set or null set, it sets empty string ("") internally.
+        /// When it is set as null, it gives empty string ("") to be read.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string PlaceHolderUrl
+        {
+            get
+            {
+                return (string)GetValue(PlaceHolderUrlProperty);
+            }
+            set
+            {
+                SetValue(PlaceHolderUrlProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether the image use TransitionEffect or not<br />
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool TransitionEffect
+        {
+            get
+            {
+                return (bool)GetValue(TransitionEffectProperty);
+            }
+            set
+            {
+                SetValue(TransitionEffectProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
         internal Selector<string> ResourceUrlSelector
         {
             get => GetSelector<string>(resourceUrlSelector, ImageView.ResourceUrlProperty);
@@ -1686,6 +1724,8 @@ namespace Tizen.NUI.BaseComponents
             internal static readonly int IMAGE = Interop.ImageView.ImageGet();
             internal static readonly int PreMultipliedAlpha = Interop.ImageView.PreMultipliedAlphaGet();
             internal static readonly int PixelArea = Interop.ImageView.PixelAreaGet();
+            internal static readonly int PlaceHolderUrl = Interop.ImageView.PlaceHolderImageGet();
+            internal static readonly int TransitionEffect = Interop.ImageView.TransitionEffectGet();
         }
 
         private enum ImageType
