@@ -542,6 +542,29 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Decide using focus indicator or not
+        /// </summary>
+        /// <param name="enable">Whether using focus indicator or not</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void EnableFocusIndicator(bool enable)
+        {
+            Interop.FocusManager.EnableFocusIndicator(SwigCPtr, enable);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Check focus indicator is enabled or not
+        /// </summary>
+        /// <returns>Whether focus indicator is enabled</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsFocusIndicatorEnabled()
+        {
+            bool ret = Interop.FocusManager.IsFocusIndicatorEnabled(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Get a default focus indicator
         /// </summary>
         /// <remarks>
