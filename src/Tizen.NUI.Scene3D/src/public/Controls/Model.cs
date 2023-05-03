@@ -1,5 +1,5 @@
 /*
- * Copyright(c) 2022 Samsung Electronics Co., Ltd.
+ * Copyright(c) 2023 Samsung Electronics Co., Ltd.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -74,7 +74,7 @@ namespace Tizen.NUI.Scene3D
     /// </code>
     /// </example>
     /// <since_tizen> 10 </since_tizen>
-    public class Model : View
+    public partial class Model : View
     {
         internal Model(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
@@ -461,6 +461,32 @@ namespace Tizen.NUI.Scene3D
             }
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        /// <summary>
+        /// Prototype of animation generate by MotionData
+        /// </summary>
+        /// <param name="motionData">Inputed list of pair of MotionIndex and MotionValue.</param>
+        /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
+        /// <returns>Generated animation by input motion data</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Animation GenerateMotionDataAnimation(MotionData motionData, int durationMilliSeconds)
+        {
+            return InternalGenerateMotionDataAnimation(motionData, durationMilliSeconds);
+        }
+
+        /// <summary>
+        /// Prototype of MotionData setter.
+        /// Note that this API didn't apply KeyFrames animation.
+        /// If you want to apply the animation, please use <see cref="GenerateMotionDataAnimation(MotionData, int)"/> and play the result.
+        /// </summary>
+        /// <param name="motionData">Inputed list of pair of MotionIndex and MotionValue.</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetMotionData(MotionData motionData)
+        {
+            InternalSetMotionData(motionData);
         }
 
         /// <summary>
