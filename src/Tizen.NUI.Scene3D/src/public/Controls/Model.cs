@@ -358,9 +358,9 @@ namespace Tizen.NUI.Scene3D
         /// <returns>Animaion of bvh</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Animation LoadBvhAnimation(string bvhFilename, Vector3 scale = null)
+        public Animation LoadBvhAnimation(string bvhFilename, Vector3 scale = null, bool translateRootFromModelNode = true)
         {
-            global::System.IntPtr cPtr = Interop.Model.LoadBvhAnimation(SwigCPtr, bvhFilename, Vector3.getCPtr(scale));
+            global::System.IntPtr cPtr = Interop.Model.LoadBvhAnimation(SwigCPtr, bvhFilename, Vector3.getCPtr(scale), translateRootFromModelNode);
             Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
             if(ret == null)
             {
@@ -389,9 +389,9 @@ namespace Tizen.NUI.Scene3D
         /// <returns>Animaion of bvh</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Animation LoadBvhAnimationFromBuffer(string bvhBuffer, Vector3 scale = null)
+        public Animation LoadBvhAnimationFromBuffer(string bvhBuffer, Vector3 scale = null, bool translateRootFromModelNode = true)
         {
-            global::System.IntPtr cPtr = Interop.Model.LoadBvhAnimationFromBuffer(SwigCPtr, bvhBuffer, bvhBuffer.Length, Vector3.getCPtr(scale));
+            global::System.IntPtr cPtr = Interop.Model.LoadBvhAnimationFromBuffer(SwigCPtr, bvhBuffer, bvhBuffer.Length, Vector3.getCPtr(scale), translateRootFromModelNode);
             Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
             if (ret == null)
             {
