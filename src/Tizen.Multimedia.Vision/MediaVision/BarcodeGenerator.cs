@@ -145,10 +145,10 @@ namespace Tizen.Multimedia.Vision
                 if (qrConfig.DataShape != QrShape.Rectangular || qrConfig.FinderShape != QrShape.Rectangular)
                 {
                     config = new BarcodeGenerationConfiguration();
-
-                    SetDesignQrOptions(qrConfig, config);
                 }
             }
+
+            SetDesignQrOptions(qrConfig, config);
 
             return GenerateSource(config, message, BarcodeType.QR, (int)qrConfig.Mode,
                 (int)qrConfig.ErrorCorrectionLevel, qrConfig.Version);
@@ -317,10 +317,10 @@ namespace Tizen.Multimedia.Vision
                 if (qrConfig.DataShape != QrShape.Rectangular || qrConfig.FinderShape != QrShape.Rectangular)
                 {
                     config = new BarcodeGenerationConfiguration();
-
-                    SetDesignQrOptions(qrConfig, config);
                 }
             }
+
+            SetDesignQrOptions(qrConfig, config);
 
             GenerateImage(config, message, BarcodeType.QR, imageConfig, (int)qrConfig.Mode,
                 (int)qrConfig.ErrorCorrectionLevel, qrConfig.Version);
