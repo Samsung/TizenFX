@@ -66,6 +66,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetAngle")]
             public static extern global::System.IntPtr GetAngle(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetDeviceClass")]
+            public static extern int GetDeviceClass(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_GetDeviceSubclass")]
+            public static extern int GetDeviceSubClass(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Touch_SWIGUpcast")]
             public static extern global::System.IntPtr Upcast(global::System.IntPtr jarg1);
 
