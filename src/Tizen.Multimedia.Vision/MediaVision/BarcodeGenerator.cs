@@ -142,7 +142,8 @@ namespace Tizen.Multimedia.Vision
             }
             else
             {
-                if (qrConfig.DataShape != QrShape.Rectangular || qrConfig.FinderShape != QrShape.Rectangular)
+                if (qrConfig.DataShape != QrShape.Rectangular || qrConfig.FinderShape != QrShape.Rectangular ||
+                    qrConfig.EmbedImagePath != null)
                 {
                     config = new BarcodeGenerationConfiguration();
                 }
@@ -314,7 +315,8 @@ namespace Tizen.Multimedia.Vision
             }
             else
             {
-                if (qrConfig.DataShape != QrShape.Rectangular || qrConfig.FinderShape != QrShape.Rectangular)
+                if (qrConfig.DataShape != QrShape.Rectangular || qrConfig.FinderShape != QrShape.Rectangular ||
+                    qrConfig.EmbedImagePath != null)
                 {
                     config = new BarcodeGenerationConfiguration();
                 }
