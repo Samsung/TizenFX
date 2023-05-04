@@ -58,7 +58,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual TextLabel CreateText()
         {
-            return new TextLabel(new TextLabelStyle())
+            return new TextLabel()
             {
                 HorizontalAlignment = HorizontalAlignment.Center,
                 VerticalAlignment = VerticalAlignment.Center,
@@ -86,7 +86,7 @@ namespace Tizen.NUI.Components
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual ImageView CreateOverlayImage()
         {
-            return new ImageView
+            return new ImageView()
             {
                 PositionUsesPivotPoint = true,
                 ParentOrigin = NUI.ParentOrigin.Center,
@@ -420,24 +420,24 @@ namespace Tizen.NUI.Components
 
             float lengthWithoutText = 0;
             Size2D cellPadding = null;
-            Extents iconMargin = buttonIcon.Margin ?? new Extents(0);
-            Extents textMargin = buttonText.Margin ?? new Extents(0);
 
             if (buttonIcon.Size.Width != 0 && buttonIcon.Size.Height != 0)
             {
-                lengthWithoutText = buttonIcon.Size.Width;
-
-                if (!String.IsNullOrEmpty(buttonText.Text))
+                if (!string.IsNullOrEmpty(buttonText.Text))
                 {
                     cellPadding = itemSpacing;
 
+                    Extents iconMargin = buttonIcon.Margin ?? new Extents(0);
+                    Extents textMargin = buttonText.Margin ?? new Extents(0);
+
                     if (iconRelativeOrientation == IconOrientation.Left || iconRelativeOrientation == IconOrientation.Right)
                     {
+                        lengthWithoutText += buttonIcon.Size.Width;
                         lengthWithoutText += (itemSpacing?.Width ?? 0) + iconMargin.Start + iconMargin.End + textMargin.Start + textMargin.End + Padding.Start + Padding.End;
                     }
                     else
                     {
-                        lengthWithoutText += (itemSpacing?.Height ?? 0) + iconMargin.Top + iconMargin.Bottom + textMargin.Top + textMargin.Bottom + Padding.Top + Padding.Bottom;
+                        lengthWithoutText += textMargin.Start + textMargin.End + Padding.Start + Padding.End;
                     }
                 }
             }
@@ -445,7 +445,7 @@ namespace Tizen.NUI.Components
             layout.CellPadding = cellPadding ?? new Size2D(0, 0);
 
             // If the button has fixed width and the text is not empty, the text should not exceed button boundary.
-            if (WidthSpecification != LayoutParamPolicies.WrapContent && !String.IsNullOrEmpty(buttonText.Text))
+            if (WidthSpecification != LayoutParamPolicies.WrapContent && !string.IsNullOrEmpty(buttonText.Text))
             {
                 buttonText.MaximumSize = new Size2D((int)Math.Max(size.Width - lengthWithoutText, Math.Max(buttonText.MinimumSize.Width, 1)), (int)size.Height);
             }
