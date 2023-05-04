@@ -29,6 +29,9 @@ namespace Tizen.Multimedia.Vision
         private const string KeyTextAttr = "MV_BARCODE_GENERATE_ATTR_TEXT";
         private const string KeyForegroundColorAttr = "MV_BARCODE_GENERATE_ATTR_COLOR_FRONT";
         private const string KeyBackgroundColorAttr = "MV_BARCODE_GENERATE_ATTR_COLOR_BACK";
+        private const string KeyEmbedImageAbsolutePathAttr = "MV_BARCODE_GENERATE_ATTR_EMBED_IMG_PATH";
+        private const string KeyDataShapeAttr = "MV_BARCODE_GENERATE_ATTR_DATA_SHAPE";
+        private const string KeyFinderShapeAttr = "MV_BARCODE_GENERATE_ATTR_FINDER_SHAPE";
 
         /// <summary>
         /// Initializes a new instance of the <see cref="BarcodeGenerationConfiguration"/> class.
@@ -43,7 +46,7 @@ namespace Tizen.Multimedia.Vision
         /// Gets or sets the text visibility of the barcode to be generated.
         /// </summary>
         /// <exception cref="ArgumentException"><paramref name="value"/> is not valid.</exception>
-        /// <exception cref="ObjectDisposedException">The <see cref="BarcodeGenerationConfiguration"/> already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="BarcodeGenerationConfiguration"/> already has been disposed.</exception>
         /// <since_tizen> 4 </since_tizen>
         public Visibility TextVisibility
         {
@@ -67,7 +70,7 @@ namespace Tizen.Multimedia.Vision
         /// <remarks>
         /// The alpha value of the color will be ignored.
         /// </remarks>
-        /// <exception cref="ObjectDisposedException">The <see cref="BarcodeGenerationConfiguration"/> already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="BarcodeGenerationConfiguration"/> already has been disposed.</exception>
         /// <since_tizen> 4 </since_tizen>
         public Color ForegroundColor
         {
@@ -90,7 +93,7 @@ namespace Tizen.Multimedia.Vision
         /// <remarks>
         /// The alpha value of the color will be ignored.
         /// </remarks>
-        /// <exception cref="ObjectDisposedException">The <see cref="BarcodeGenerationConfiguration"/> already has been disposed of.</exception>
+        /// <exception cref="ObjectDisposedException">The <see cref="BarcodeGenerationConfiguration"/> already has been disposed.</exception>
         /// <since_tizen> 4 </since_tizen>
         public Color BackgroundColor
         {
@@ -102,6 +105,45 @@ namespace Tizen.Multimedia.Vision
             {
                 Set(KeyBackgroundColorAttr, string.Format("{0:x2}{1:x2}{2:x2}", value.R, value.G, value.B));
                 _backgroundColor = value;
+            }
+        }
+
+        internal string EmbedImagePath
+        {
+            get
+            {
+                return GetString(KeyEmbedImageAbsolutePathAttr);
+            }
+            set
+            {
+                // Validation is already checked in QrConfiguration.
+                Set(KeyEmbedImageAbsolutePathAttr, value);
+            }
+        }
+
+        internal QrShape DataShape
+        {
+            get
+            {
+                return (QrShape)GetInt(KeyDataShapeAttr);
+            }
+            set
+            {
+                // Validation is already checked in QrConfiguration.
+                Set(KeyDataShapeAttr, (int)value);
+            }
+        }
+
+        internal QrShape FinderShape
+        {
+            get
+            {
+                return (QrShape)GetInt(KeyFinderShapeAttr);
+            }
+            set
+            {
+                // Validation is already checked in QrConfiguration.
+                Set(KeyFinderShapeAttr, (int)value);
             }
         }
     }

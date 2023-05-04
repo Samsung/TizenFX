@@ -31,6 +31,20 @@ namespace Tizen.Multimedia.Vision
         private const int NoneErrorCorrection = (int)ErrorCorrectionLevel.High + 1;
         private const int NoneQrMode = (int)QrMode.Utf8 + 1;
 
+        private static void SetDesignQrOptions(QrConfiguration qrConfig, BarcodeGenerationConfiguration config)
+        {
+            if (config != null && qrConfig != null)
+            {
+                if (qrConfig.EmbedImagePath != null)
+                {
+                    config.EmbedImagePath = qrConfig.EmbedImagePath;
+                }
+
+                config.DataShape = qrConfig.DataShape;
+                config.FinderShape = qrConfig.FinderShape;
+            }
+        }
+
         private static MediaVisionSource GenerateSource(BarcodeGenerationConfiguration config,
             string message, BarcodeType type, int qrMode, int qrEcc, int qrVersion)
         {
@@ -59,6 +73,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Generates a QR image with the specified message.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
         /// <param name="message">The message to be encoded in the barcode.</param>
         /// <param name="qrConfig">The <see cref="QrConfiguration"/> instance.</param>
         /// <returns><see cref="MediaVisionSource"/> containing the generated QR image.</returns>
@@ -83,6 +98,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Generates a QR image with the specified message with <see cref="BarcodeGenerationConfiguration"/>.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
         /// <param name="message">The message to be encoded in the barcode.</param>
         /// <param name="qrConfig">The <see cref="QrConfiguration"/> instance.</param>
         /// <param name="config">The configuration of the barcode generator. This value can be null.</param>
@@ -124,6 +140,16 @@ namespace Tizen.Multimedia.Vision
                     throw new NotSupportedException("Text can't be visible in QR.");
                 }
             }
+            else
+            {
+                if (qrConfig.DataShape != QrShape.Rectangular || qrConfig.FinderShape != QrShape.Rectangular ||
+                    qrConfig.EmbedImagePath != null)
+                {
+                    config = new BarcodeGenerationConfiguration();
+                }
+            }
+
+            SetDesignQrOptions(qrConfig, config);
 
             return GenerateSource(config, message, BarcodeType.QR, (int)qrConfig.Mode,
                 (int)qrConfig.ErrorCorrectionLevel, qrConfig.Version);
@@ -155,6 +181,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Generates a barcode image with the specified message and <see cref="BarcodeGenerationConfiguration"/>.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
         /// <param name="message">The message to be encoded in the barcode.</param>
         /// <param name="type">Type of the barcode to be generated.</param>
         /// <param name="config">The configuration of the barcode generator. This value can be null.</param>
@@ -208,6 +235,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Generates a QR image file with the specified message.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
         /// <remarks>
         ///     <see cref="BarcodeGenerationConfiguration.TextVisibility"/> must be <see cref="Visibility.Invisible"/>,
         ///     because the text visibility is not supported in the QR code.
@@ -227,7 +255,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     <paramref name="message"/> contains characters which are illegal by the <see cref="QrMode"/>.
         /// </exception>
-        /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to access a file.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <seealso cref="QrMode"/>
         /// <since_tizen> 4 </since_tizen>
@@ -240,6 +268,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Generates a QR image file with the specified message and <see cref="BarcodeGenerationConfiguration"/>.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
         /// <remarks>
         ///     <see cref="BarcodeGenerationConfiguration.TextVisibility"/> must be <see cref="Visibility.Invisible"/>,
         ///     because the text visibility is not supported in the QR code.
@@ -261,7 +290,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     <paramref name="message"/> contains characters which are illegal by the <see cref="QrMode"/>.
         /// </exception>
-        /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to access a file.</exception>
         /// <exception cref="NotSupportedException">
         ///     The feature is not supported.<br/>
         ///     -or-<br/>
@@ -284,6 +313,16 @@ namespace Tizen.Multimedia.Vision
                     throw new NotSupportedException("Text can't be visible in QR.");
                 }
             }
+            else
+            {
+                if (qrConfig.DataShape != QrShape.Rectangular || qrConfig.FinderShape != QrShape.Rectangular ||
+                    qrConfig.EmbedImagePath != null)
+                {
+                    config = new BarcodeGenerationConfiguration();
+                }
+            }
+
+            SetDesignQrOptions(qrConfig, config);
 
             GenerateImage(config, message, BarcodeType.QR, imageConfig, (int)qrConfig.Mode,
                 (int)qrConfig.ErrorCorrectionLevel, qrConfig.Version);
@@ -292,6 +331,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Generates a barcode image file with the specified message.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
         /// <param name="message">The message to be encoded in the barcode.</param>
         /// <param name="type">Type of the barcode to be generated.</param>
         /// <param name="imageConfig">The <see cref="BarcodeImageConfiguration"/> that contains
@@ -310,7 +350,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     <paramref name="message"/> contains illegal characters.
         /// </exception>
-        /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to access a file.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <since_tizen> 4 </since_tizen>
         public static void GenerateImage(string message, BarcodeType type, BarcodeImageConfiguration imageConfig)
@@ -321,6 +361,7 @@ namespace Tizen.Multimedia.Vision
         /// <summary>
         /// Generates a barcode image file with the specified message and <see cref="BarcodeGenerationConfiguration"/>.
         /// </summary>
+        /// <feature>http://tizen.org/feature/vision.barcode_generation</feature>
         /// <param name="message">The message to be encoded in the barcode.</param>
         /// <param name="type">Type of the barcode to be generated.</param>
         /// <param name="imageConfig">The <see cref="BarcodeImageConfiguration"/> that contains
@@ -340,7 +381,7 @@ namespace Tizen.Multimedia.Vision
         ///     -or-<br/>
         ///     <paramref name="message"/> contains illegal characters.
         /// </exception>
-        /// <exception cref="UnauthorizedAccessException">No permission to write a file.</exception>
+        /// <exception cref="UnauthorizedAccessException">No permission to access a file.</exception>
         /// <exception cref="NotSupportedException">The feature is not supported.</exception>
         /// <exception cref="ObjectDisposedException"><paramref name="config"/> already has been disposed of.</exception>
         /// <since_tizen> 4 </since_tizen>
