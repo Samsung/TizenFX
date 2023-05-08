@@ -210,7 +210,7 @@ namespace Tizen.NUI.BaseComponents
         /// Create an instance of scrollable.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
-        public Scrollable() : this(Interop.Scrollable.NewScrollable(), true)
+        internal Scrollable() : this(Interop.Scrollable.NewScrollable(), true)
         {
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
