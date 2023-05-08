@@ -702,12 +702,16 @@ namespace Tizen.NUI
         /// <summary>
         /// Stops the animation. It will change this animation's EndAction property.
         /// </summary>
-        /// <remark>
-        /// Change the value from EndActions.Discard, or to EndActions.Discard during animation is playing / paused will not works well.<br />
-        /// If you want to stop by EndActions.Discard, EndAction property also should be EndActions.Discard before Play API called.
-        /// </remark>
+        /// <remarks>
+        /// Change the value from EndActions.Discard, or to EndActions.Discard during animation is playing / paused will not works well.<br/>
+        /// If you want to stop by EndActions.Discard, EndAction property also should be EndActions.Discard before Play API called. <br/>
+        /// <br/>
+        /// This method is deprecated since API11 because EndActions property concept is not matched with Stop(). <br/>
+        /// Use <see cref="EndAction"/> property instead.
+        /// </remarks>
         /// <param name="action">The end action can be set.</param>
         /// <since_tizen> 3 </since_tizen>
+        [Obsolete("Deprecated in API11, will be removed in API13. Use EndAction property instead.")]
         public void Stop(EndActions action)
         {
             SetEndAction(action);
