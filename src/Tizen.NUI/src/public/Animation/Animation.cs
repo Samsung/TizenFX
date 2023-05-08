@@ -500,6 +500,35 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Sets and Gets the blend point to interpolate animate property
+        ///
+        /// BlendPoint is a value between [0,1], If the value of the keyframe whose progress is 0 is different from the current value,
+        /// the property is animated as it smoothly blends until the progress reaches the blendPoint.
+        /// </summary>
+        /// <remarks>
+        /// The blend point only affects animation registered with AnimateBetween. Other animations operate the same as when Play() is called.
+        /// And the blend point needs to be set before this animation plays. If the blend point changes after playback, animation continuity cannot be guaranteed.
+        /// </remarks>
+        /// <remarks>
+        /// In the case of a looping animation, the animation is blended only in the first loop.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public float BlendPoint
+        {
+            set
+            {
+                Interop.Animation.SetBlendPoint(SwigCPtr, value);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            get
+            {
+                float ret = Interop.Animation.GetBlendPoint(SwigCPtr);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw new InvalidOperationException("FATAL: get Exception", NDalicPINVOKE.SWIGPendingException.Retrieve());
+                return ret;
+            }
+        }
+
+        /// <summary>
         /// Gets or sets the properties of the animation.
         /// </summary>
         //ToDo : will raise deprecated-ACR, [Obsolete("Deprecated in API9, will be removed in API11, Use PropertyList instead")]

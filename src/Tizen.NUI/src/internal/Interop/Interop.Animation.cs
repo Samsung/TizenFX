@@ -128,6 +128,12 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetProgressNotification")]
             public static extern float GetProgressNotification(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_SetBlendPoint")]
+            public static extern void SetBlendPoint(global::System.Runtime.InteropServices.HandleRef csAnimation, float blendPoint);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_GetBlendPoint")]
+            public static extern float GetBlendPoint(global::System.Runtime.InteropServices.HandleRef csAnimation);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Animation_FinishedSignal")]
             public static extern global::System.IntPtr FinishedSignal(global::System.Runtime.InteropServices.HandleRef jarg1);
 
