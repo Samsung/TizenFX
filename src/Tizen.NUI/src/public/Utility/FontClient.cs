@@ -66,7 +66,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// This is used to pre-cache fonts in order to improve the runtime performance of the application.
+        /// This is used to pre-cache FontConfig in order to improve the runtime performance of the application.
         /// </summary>
         /// <param name="fallbackFamilyList">A list of fallback font families to be pre-cached.</param>
         /// <param name="extraFamilyList">A list of additional font families to be pre-cached.</param>
@@ -81,6 +81,30 @@ namespace Tizen.NUI
             string[] extraFamilyArray = extraFamilySize > 0 ? extraFamilyList.ToArray() : null;
 
             Interop.FontClient.PreCache(fallbackFamilyArray, fallbackFamilySize, extraFamilyArray, extraFamilySize, localeFamily, useThread);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// This is used to pre-load FreeType font face in order to improve the runtime performance of the application.
+        /// <note>
+        /// The fonts in the fontPathList perform FT_New_Face during pre-loading, which can provide some performace benefits.<br />
+        /// The fonts in the memoryFontPathList read the font file and cache the buffer in memory during pre-load.<br />
+        /// This enables the use of FT_New_Memory_Face during runtime and provides a performance boost.<br />
+        /// It requires memory equivalent to the size of each font file.
+        /// </note>
+        /// </summary>
+        /// <param name="fontPathList">A list of font paths to be pre-loaded.</param>
+        /// <param name="memoryFontPathList">A list of memory font paths to be pre-loaded.</param>
+        /// <param name="useThread">if the font client should create thread and perform font pre-loading, false otherwise.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static void FontPreLoad(List<string> fontPathList, List<string> memoryFontPathList, bool useThread)
+        {
+            int fontPathSize = fontPathList?.Count ?? 0;
+            int memoryFontPathSize = memoryFontPathList?.Count ?? 0;
+            string[] fontPathArray = fontPathSize > 0 ? fontPathList.ToArray() : null;
+            string[] memoryFontPathArray = memoryFontPathSize > 0 ? memoryFontPathList.ToArray() : null;
+
+            Interop.FontClient.FontPreLoad(fontPathArray, fontPathSize, memoryFontPathArray, memoryFontPathSize, useThread);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
