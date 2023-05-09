@@ -39,6 +39,8 @@ namespace Tizen.Applications.NotificationEventListener
             IntPtr dummy = IntPtr.Zero;
             SafeAppControlHandle appcontrol = null;
 
+            bool doNotShowAgainFlag = false;
+
             NotificationEventArgs eventargs = new NotificationEventArgs();
 
             eventargs.Handle = new Interop.NotificationEventListener.NotificationSafeHandle(notification, data);
@@ -202,6 +204,14 @@ namespace Tizen.Applications.NotificationEventListener
             }
 
             eventargs.HasEventFlag = eventFlag;
+
+            err = Interop.NotificationEventListener.GetDoNotShowAgain(eventargs.Handle, out doNotShowAgainFlag);
+            if (err != Interop.NotificationEventListener.ErrorCode.None)
+            {
+                Log.Info(LogTag, "unable to get do not show again flag");
+            }
+
+            eventargs.HasDoNotShowAgain = doNotShowAgainFlag;
 
             NotificationAccessoryAgsBinder.BindObject(eventargs);
             NotificationStyleArgBinder.BindObject(eventargs);
