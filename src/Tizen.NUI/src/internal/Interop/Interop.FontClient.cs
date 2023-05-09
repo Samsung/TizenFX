@@ -25,6 +25,9 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_PreCache")]
             public static extern void PreCache(string[] fallbackFamilyArray, int fallbackFamilySize, string[] extraFamilyArray, int extraFamilySize, string localeFamily, bool useThread);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_FontPreLoad")]
+            public static extern void FontPreLoad(string[] fontPathArray, int fontPathSize, string[] memoryFontPathArray, int memoryFontPathSize, bool useThread);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_FontClient_DEFAULT_POINT_SIZE_get")]
             public static extern uint DefaultPointSizeGet();
 
