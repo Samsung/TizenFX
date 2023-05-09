@@ -123,6 +123,11 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             Mouse,
+            /// <summary>
+            /// Touch.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            Touch,
         }
 
         /// <summary>
@@ -151,7 +156,7 @@ namespace Tizen.NUI
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
             MouseTertiary = 2,
-        }        
+        }
 
         /// <summary>
         /// The gesture type.
