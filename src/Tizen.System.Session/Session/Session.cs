@@ -215,7 +215,6 @@ namespace Tizen.System
 
             _replyMap[taskID] = (int result, IntPtr data) =>
             {
-
                 try
                 {
                     CheckError((SessionError)result, "Interop failed to remove a subsession user");
