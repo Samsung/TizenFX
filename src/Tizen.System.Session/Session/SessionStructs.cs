@@ -32,17 +32,21 @@ namespace Tizen.System
         public int sessionUID;
 
         [FieldOffset(8)]
-        public IntPtr AddUserPtr;
-
-        [FieldOffset(8)]
-        public IntPtr RemoveUserPtr;
-
-        [FieldOffset(8)]
         public Int64 switchID;
+
+        /// The following 4 fields are here just for the record and for the NativeStruct validation
+        /// which is performed as one of the steps during build with GBS.
+        /// However, we've verified that representing the whole structure as IntPtr and accessing
+        /// individual string fields with PtrToStructure with and PtrToStringAnsi + IntPtr.Add is
+        /// the only way to make it work. That's why we do not use these fields and they shouldn't
+        /// be accessed directly.
+        [FieldOffset(8)]
+        private IntPtr AddUserPtr;
+        [FieldOffset(8)]
+        private IntPtr RemoveUserPtr;
         [FieldOffset(16)]
-        public IntPtr PrevUserPtr;
-        
+        private IntPtr PrevUserPtr;
         [FieldOffset(36)]
-        public IntPtr NextUserPtr;
+        private IntPtr NextUserPtr;
     }
 }
