@@ -24,6 +24,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// The DevicePolicyManager provides the methods to create handle for device policy.
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
+    [Obsolete("Deprecated since API level 11.")]
     public class DevicePolicyManager : IDisposable
     {
         private IntPtr _handle = IntPtr.Zero;
@@ -34,6 +35,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when connection refused or a memory error occurred.</exception>
+        [Obsolete("Deprecated since API level 11.")]
         public DevicePolicyManager()
         {
             _handle = Interop.DevicePolicyManager.CreateHandle();
@@ -51,6 +53,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <returns>An instance of policy.</returns>
         /// <since_tizen> 6 </since_tizen>
         /// <exception cref="InvalidOperationException">Thrown when failed to create instance of the policy.</exception>
+        [Obsolete("Deprecated since API level 11.")]
         public T GetPolicy<T>() where T : DevicePolicy
         {
             try
@@ -75,6 +78,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// A Destructor of DevicePolicyManager.
         /// </summary>
+        [Obsolete("Deprecated since API level 11.")]
         ~DevicePolicyManager()
         {
             this.Dispose(false);
@@ -84,6 +88,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        [Obsolete("Deprecated since API level 11.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -111,6 +116,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        [Obsolete("Deprecated since API level 11.")]
         public void Dispose()
         {
             this.Dispose(true);
