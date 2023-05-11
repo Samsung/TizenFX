@@ -23,6 +23,7 @@ namespace Tizen.Security.DevicePolicyManager
     /// </summary>
     /// <since_tizen> 6 </since_tizen>
     /// <remarks>The LocationPolicy is created by <seealso cref="DevicePolicyManager.GetPolicy{T}"/>. and the DevicePolicyManager instance must exists when using the LocationPolicy.</remarks>
+    [Obsolete("Deprecated since API level 11.")]
     public class LocationPolicy : DevicePolicy, IDisposable
     {
         /// <summary>
@@ -30,6 +31,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This is used in <see cref="PolicyChangedEventArgs.PolicyName"/>.</remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 11.")]
         public static readonly string LocationPolicyName = "Location";
 
         private readonly string _locationPolicyName = "location";
@@ -46,6 +48,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// A Destructor of LocationPolicy.
         /// </summary>
+        [Obsolete("Deprecated since API level 11.")]
         ~LocationPolicy()
         {
             this.Dispose(false);
@@ -56,6 +59,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <value>true if the location state change is allowed, false otherwise. The default value is true.</value>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 11.")]
         public bool IsLocationAllowed
         {
             get
@@ -75,6 +79,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// <summary>
         /// Releases any unmanaged resources used by this object.
         /// </summary>
+        [Obsolete("Deprecated since API level 11.")]
         public void Dispose()
         {
             this.Dispose(true);
@@ -85,6 +90,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// Releases any unmanaged resources used by this object. Can also dispose any other disposable objects.
         /// </summary>
         /// <param name="disposing">If true, disposes any disposable objects. If false, does not dispose disposable objects.</param>
+        [Obsolete("Deprecated since API level 11.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -115,6 +121,7 @@ namespace Tizen.Security.DevicePolicyManager
         /// </summary>
         /// <remarks>This event will be removed automatically when LocationPolicy is destroyed.</remarks>
         /// <since_tizen> 6 </since_tizen>
+        [Obsolete("Deprecated since API level 11.")]
         public event EventHandler<PolicyChangedEventArgs> LocationPolicyChanged
         {
             add
