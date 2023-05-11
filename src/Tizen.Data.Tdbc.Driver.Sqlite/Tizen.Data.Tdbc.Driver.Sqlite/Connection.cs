@@ -62,7 +62,7 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
         {
             Open(new Uri(openString));
         }
-        
+
         public void Close()
         {
             if (_opened)
@@ -92,7 +92,7 @@ namespace Tizen.Data.Tdbc.Driver.Sqlite
             Sql sql = new Sql(string.Format("SELECT * from {0} WHERE rowid = {1}", table_name, rowid));
             using (IStatement stmt = CreateStatement())
             {
-                IRecord record = stmt.ExecuteQuery(sql).FirstOrDefault();
+                IRecord record = (operationType != OperationType.Delete ? stmt.ExecuteQuery(sql).FirstOrDefault() : null);
                 RecordChangedEventArgs ev = new RecordChangedEventArgs(operationType, db_name, table_name, record);
                 _recordChanged?.Invoke(this, ev);
             }
