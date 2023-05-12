@@ -355,6 +355,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="bvhFilename">Name of bvh format file.</param>
         /// <param name="scale">Scale value of bvh animation match with model.</param>
+        /// <param name="translateRootFromModelNode">Whether we should translate the bvh root from it's ModelNode position or not.</param>
         /// <returns>Animaion of bvh</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -386,6 +387,7 @@ namespace Tizen.NUI.Scene3D
         /// </summary>
         /// <param name="bvhBuffer">Contents of bvh format file.</param>
         /// <param name="scale">Scale value of bvh animation match with model.</param>
+        /// <param name="translateRootFromModelNode">Whether we should translate the bvh root from it's ModelNode position or not.</param>
         /// <returns>Animaion of bvh</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
