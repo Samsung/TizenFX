@@ -96,10 +96,10 @@ namespace Tizen.NUI.Scene3D
             public static extern global::System.IntPtr LoadBvhAnimationFromBuffer(global::System.Runtime.InteropServices.HandleRef model, string bvhBuffer, int bvhBufferLength, global::System.Runtime.InteropServices.HandleRef scale, bool translateRootFromModelNode);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_LoadFacialAnimation_1")]
-            public static extern global::System.IntPtr LoadFacialAnimation(global::System.Runtime.InteropServices.HandleRef model, string facialFilename);
+            public static extern global::System.IntPtr LoadBlendShapeAnimation(global::System.Runtime.InteropServices.HandleRef model, string jsonFilename);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_LoadFacialAnimation_2")]
-            public static extern global::System.IntPtr LoadFacialAnimationFromBuffer(global::System.Runtime.InteropServices.HandleRef model, string facialBuffer, int facialBufferLength);
+            public static extern global::System.IntPtr LoadBlendShapeAnimationFromBuffer(global::System.Runtime.InteropServices.HandleRef model, string jsonBuffer, int jsonBufferLength);
         }
     }
 }

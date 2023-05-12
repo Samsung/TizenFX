@@ -416,9 +416,35 @@ namespace Tizen.NUI.Scene3D
         /// <returns>Animaion of facial</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this LoadFacialAnimation. Use LoadBlendShapeAnimation instead.")]
         public Animation LoadFacialAnimation(string facialFilename)
         {
-            global::System.IntPtr cPtr = Interop.Model.LoadFacialAnimation(SwigCPtr, facialFilename);
+            return LoadBlendShapeAnimation(facialFilename);
+        }
+
+        /// <summary>
+        /// Load facial animation and assign to model.
+        /// </summary>
+        /// <param name="facialBuffer">Contents of json format file what we predefined.</param>
+        /// <returns>Animaion of facial</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this LoadFacialAnimation. Use LoadBlendShapeAnimation instead.")]
+        public Animation LoadFacialAnimationFromBuffer(string facialBuffer)
+        {
+            return LoadBlendShapeAnimationFromBuffer(facialBuffer);
+        }
+
+        /// <summary>
+        /// Load blendshape animation and assign to model from json file.
+        /// </summary>
+        /// <param name="jsonFilename">Name of json format file what we predefined.</param>
+        /// <returns>Animaion of facial</returns>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Animation LoadBlendShapeAnimation(string jsonFilename)
+        {
+            global::System.IntPtr cPtr = Interop.Model.LoadBlendShapeAnimation(SwigCPtr, jsonFilename);
             Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
             if (ret == null)
             {
@@ -437,15 +463,15 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Load facial animation and assign to model.
+        /// Load morphing animation and assign to model from json string.
         /// </summary>
-        /// <param name="facialBuffer">Contents of json format file what we predefined.</param>
+        /// <param name="jsonBuffer">Contents of json format file what we predefined.</param>
         /// <returns>Animaion of facial</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Animation LoadFacialAnimationFromBuffer(string facialBuffer)
+        public Animation LoadBlendShapeAnimationFromBuffer(string jsonBuffer)
         {
-            global::System.IntPtr cPtr = Interop.Model.LoadFacialAnimationFromBuffer(SwigCPtr, facialBuffer, facialBuffer.Length);
+            global::System.IntPtr cPtr = Interop.Model.LoadBlendShapeAnimationFromBuffer(SwigCPtr, jsonBuffer, jsonBuffer.Length);
             Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
             if (ret == null)
             {
