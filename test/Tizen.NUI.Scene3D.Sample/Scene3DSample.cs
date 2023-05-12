@@ -472,6 +472,7 @@ class Scene3DSample : NUIApplication
 
                                 mModel.SetMotionData(mStaticMotionData);
                                 mMotionAnimation.Looping = true;
+                                mMotionAnimation.BlendPoint = 0.25f;
                                 mMotionAnimation.Play();
                                 Tizen.Log.Error("NUI", $"Animate pre-defined motion data!\n");
                             }
