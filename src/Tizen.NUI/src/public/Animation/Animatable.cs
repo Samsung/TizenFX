@@ -200,6 +200,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Retrieves the latest rendered frame value of the property.
+        /// </summary>
+        /// <param name="index">The index of the property.</param>
+        /// <returns>The property value.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyValue GetCurrentProperty(int index)
+        {
+            PropertyValue ret = Tizen.NUI.Object.GetCurrentProperty(SwigCPtr, index);
+            return ret;
+        }
+
+        /// <summary>
         /// Adds a property notification to this object.
         /// </summary>
         /// <param name="property">The name of the property.</param>
