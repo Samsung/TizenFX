@@ -164,7 +164,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                 PrintParam(@"XamlC_Log.txt", "ReferencePath is " + ReferencePath);
             }
 
-            LoggingHelper.LogWarning("Assembly is " + Assembly);
+            LoggingHelper.LogMessage(Normal, $"Assembly is {Assembly}");
 
             thrownExceptions = null;
 
@@ -299,7 +299,7 @@ namespace Tizen.NUI.Xaml.Build.Tasks
                             XamlOptimization = 1;
                         }
 
-                        LoggingHelper.LogWarning($"XamlOptimization is {XamlOptimization}.");
+                        LoggingHelper.LogMessage(Normal, $"XamlOptimization is {XamlOptimization}.");
 
                         if (0 == XamlOptimization)
                         {
