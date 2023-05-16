@@ -403,10 +403,6 @@ namespace Tizen.NUI.BaseComponents
                     break;
             }
 
-            //temporal fix
-            Extents tmp = base.Margin;
-            base.Margin = tmp;
-
             base.Play();
             AnimationState = AnimationStates.Playing;
 
