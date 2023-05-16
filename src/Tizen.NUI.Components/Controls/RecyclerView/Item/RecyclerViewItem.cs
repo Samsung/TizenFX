@@ -68,7 +68,7 @@ namespace Tizen.NUI.Components
                         else if (collectionView.SelectionMode is ItemSelectionMode.Multiple)
                         {
                             var selectedList = collectionView.SelectedItems;
-                            if (selectedList != null)
+                            if (selectedList != null && context != null)
                             {
                                 bool contains = selectedList.Contains(context);
                                 if (newSelected && !contains)
