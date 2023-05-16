@@ -185,24 +185,13 @@ namespace Tizen.NUI.BaseComponents
             get
             {
                 NUILog.Debug($"< Get!");
-                using PropertyMap map = base.Image;
-                var ret = 0;
-                if (map != null)
-                {
-                    using PropertyValue val = map.Find(ImageVisualProperty.PlayState);
-                    if (val != null)
-                    {
-                        if (val.Get(out ret))
-                        {
-                            currentStates.playState = (PlayStateType)ret;
-                            NUILog.Debug($"gotten play state={ret} >");
-                        }
-                    }
-                }
-                else
-                {
-                    Tizen.Log.Error(tag, $"<[ERROR][{GetId()}]Fail to get PlayState from dali currentStates.playState={currentStates.playState}>");
-                }
+
+                int ret = 0;
+                Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.PlayState, out ret);
+
+                currentStates.playState = (PlayStateType)ret;
+                NUILog.Debug($"gotten play state={currentStates.playState} >");
+
                 return currentStates.playState;
             }
         }
@@ -218,22 +207,10 @@ namespace Tizen.NUI.BaseComponents
                 int ret = currentStates.totalFrame;
                 if (ret == -1)
                 {
-                    // TODO : Could we get this value without base.Image?
-                    using PropertyMap map = base.Image;
-                    if (map != null)
-                    {
-                        using PropertyValue val = map.Find(ImageVisualProperty.TotalFrameNumber);
-                        if (val != null)
-                        {
-                            if (val.Get(out ret))
-                            {
-                                NUILog.Debug($"TotalFrameNumber get! ret={ret}");
-                                currentStates.totalFrame = ret;
-                                return ret;
-                            }
-                        }
-                    }
-                    Tizen.Log.Error(tag, $"<[ERROR][{GetId()}](LottieAnimationView) Fail to get TotalFrameNumber from dali>");
+                    Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.TotalFrameNumber, out ret);
+
+                    currentStates.totalFrame = ret;
+                    NUILog.Debug($"TotalFrameNumber get! ret={ret}");
                 }
                 return ret;
             }
@@ -276,27 +253,16 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 NUILog.Debug($"<[{GetId()}]SET frame={value}>");
-                using PropertyValue attribute = new PropertyValue(value);
-                DoAction(ImageView.Property.IMAGE, ActionJumpTo, attribute);
+
+                Interop.View.DoActionWithSingleIntAttributes(this.SwigCPtr, ImageView.Property.IMAGE, ActionJumpTo, value);
             }
             get
             {
-                // TODO : Could we get this value without base.Image?
                 int ret = 0;
-                using PropertyMap map = base.Image;
-                if (map != null)
-                {
-                    using PropertyValue val = map.Find(ImageVisualProperty.CurrentFrameNumber);
-                    if (val != null)
-                    {
-                        if (val.Get(out ret))
-                        {
-                            NUILog.Debug($"CurrentFrameNumber get! val={ret}");
-                            return ret;
-                        }
-                    }
-                }
-                Tizen.Log.Error(tag, $"<[ERROR][{GetId()}](LottieAnimationView) Fail to get CurrentFrameNumber from dali!! ret={ret}>");
+
+                Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.CurrentFrameNumber, out ret);
+
+                NUILog.Debug($"CurrentFrameNumber get! val={ret}");
                 return ret;
             }
         }
@@ -328,11 +294,8 @@ namespace Tizen.NUI.BaseComponents
                     currentStates.loopMode = (LoopingModeType)value;
 
                     NUILog.Debug($"<[{GetId()}] SET loopMode={currentStates.loopMode}>");
-                    using PropertyMap map = new PropertyMap();
-                    using PropertyValue loopMode = new PropertyValue((int)currentStates.loopMode);
-                    map.Add(ImageVisualProperty.LoopingMode, loopMode);
-                    using PropertyValue attribute = new PropertyValue(map);
-                    DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, attribute);
+
+                    Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.LoopingMode, (int)currentStates.loopMode);
                 }
             }
             get
@@ -384,11 +347,8 @@ namespace Tizen.NUI.BaseComponents
                     currentStates.loopCount = value;
 
                     NUILog.Debug($"<[{GetId()}]SET currentStates.loopCount={currentStates.loopCount}>");
-                    using PropertyMap map = new PropertyMap();
-                    using PropertyValue loopCnt = new PropertyValue(currentStates.loopCount);
-                    map.Add(ImageVisualProperty.LoopCount, loopCnt);
-                    using PropertyValue attribute = new PropertyValue(map);
-                    DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, attribute);
+
+                    Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.LoopCount, currentStates.loopCount);
                 }
             }
             get
@@ -425,11 +385,8 @@ namespace Tizen.NUI.BaseComponents
                     currentStates.stopEndAction = (StopBehaviorType)value;
 
                     NUILog.Debug($"<[{GetId()}]SET val={currentStates.stopEndAction}>");
-                    using PropertyMap map = new PropertyMap();
-                    using PropertyValue stopAction = new PropertyValue((int)currentStates.stopEndAction);
-                    map.Add(ImageVisualProperty.StopBehavior, stopAction);
-                    using PropertyValue attribute = new PropertyValue(map);
-                    DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, attribute);
+
+                    Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.StopBehavior, (int)currentStates.stopEndAction);
                 }
             }
             get
@@ -470,11 +427,8 @@ namespace Tizen.NUI.BaseComponents
                     currentStates.redrawInScalingDown = value;
 
                     NUILog.Debug($"<[{GetId()}]SET currentStates.redrawInScalingDown={currentStates.redrawInScalingDown}>");
-                    using PropertyMap map = new PropertyMap();
-                    using PropertyValue redraw = new PropertyValue(currentStates.redrawInScalingDown);
-                    map.Add(ImageVisualProperty.RedrawInScalingDown, redraw);
-                    using PropertyValue action = new PropertyValue(map);
-                    DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, action);
+
+                    Interop.View.InternalUpdateVisualPropertyBool(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.RedrawInScalingDown, currentStates.redrawInScalingDown);
                 }
             }
             get
@@ -514,17 +468,8 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.framePlayRangeMin = minFrame;
                 currentStates.framePlayRangeMax = maxFrame;
 
-                using PropertyArray array = new PropertyArray();
-                using PropertyValue min = new PropertyValue(currentStates.framePlayRangeMin);
-                using PropertyValue max = new PropertyValue(currentStates.framePlayRangeMax);
-                array.PushBack(min);
-                array.PushBack(max);
+                Interop.View.InternalUpdateVisualPropertyIntPair(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.PlayRange, currentStates.framePlayRangeMin, currentStates.framePlayRangeMax);
 
-                using PropertyMap map = new PropertyMap();
-                using PropertyValue range = new PropertyValue(array);
-                map.Add(ImageVisualProperty.PlayRange, range);
-                using PropertyValue action = new PropertyValue(map);
-                DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, action);
                 NUILog.Debug($"  [{GetId()}] currentStates.min:({currentStates.framePlayRangeMin}, max:{currentStates.framePlayRangeMax})>");
             }
         }
@@ -639,20 +584,15 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.mark1 = marker1;
                 currentStates.mark2 = marker2;
 
-                using PropertyArray array = new PropertyArray();
-                using PropertyValue mark1 = new PropertyValue(currentStates.mark1);
-                array.PushBack(mark1);
-                using PropertyValue mark2 = new PropertyValue(currentStates.mark2);
-                if (marker2 != null)
+                if (string.IsNullOrEmpty(currentStates.mark2))
                 {
-                    array.PushBack(mark2);
+                    Interop.View.InternalUpdateVisualPropertyString(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.PlayRange, currentStates.mark1);
+                }
+                else
+                {
+                    Interop.View.InternalUpdateVisualPropertyStringPair(this.SwigCPtr, ImageView.Property.IMAGE, ImageVisualProperty.PlayRange, currentStates.mark1, currentStates.mark2);
                 }
 
-                using PropertyMap map = new PropertyMap();
-                using PropertyValue range = new PropertyValue(array);
-                map.Add(ImageVisualProperty.PlayRange, range);
-                using PropertyValue actionProperty = new PropertyValue(map);
-                DoAction(ImageView.Property.IMAGE, ActionUpdateProperty, actionProperty);
                 NUILog.Debug($"  [{GetId()}] currentStates.mark1:{currentStates.mark1}, mark2:{currentStates.mark2} >");
             }
         }
