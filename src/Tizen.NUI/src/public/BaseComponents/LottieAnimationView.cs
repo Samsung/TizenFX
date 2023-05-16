@@ -750,10 +750,10 @@ namespace Tizen.NUI.BaseComponents
             // Update currentStates properties to cachedImagePropertyMap
             if(currentStates.changed)
             {
-                UpdateImage(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount));
-                UpdateImage(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction));
-                UpdateImage(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode));
-                UpdateImage(ImageVisualProperty.RedrawInScalingDown, new PropertyValue(currentStates.redrawInScalingDown));
+                UpdateImage(ImageVisualProperty.LoopCount, new PropertyValue(currentStates.loopCount), false);
+                UpdateImage(ImageVisualProperty.StopBehavior, new PropertyValue((int)currentStates.stopEndAction), false);
+                UpdateImage(ImageVisualProperty.LoopingMode, new PropertyValue((int)currentStates.loopMode), false);
+                UpdateImage(ImageVisualProperty.RedrawInScalingDown, new PropertyValue(currentStates.redrawInScalingDown), false);
 
                 // Do not cache PlayRange and TotalFrameNumber into cachedImagePropertyMap.
                 // (To keep legacy implements behaviour)
@@ -761,7 +761,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             using PropertyValue animatiedImage = new PropertyValue((int)Visual.Type.AnimatedVectorImage);
-            UpdateImage(Visual.Property.Type, animatiedImage);
+            UpdateImage(Visual.Property.Type, animatiedImage, false);
 
             base.UpdateImage();
         }

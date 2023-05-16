@@ -256,7 +256,8 @@ namespace Tizen.NUI.BaseComponents
                         return;
                     }
                 }
-                imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
+                // Note : We need to create new visual if previous visual was async, and now we set value as sync.
+                imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue), (bool)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
@@ -285,7 +286,8 @@ namespace Tizen.NUI.BaseComponents
                         return;
                     }
                 }
-                imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue));
+                // Note : We need to create new visual if previous visual was async, and now we set value as sync.
+                imageView.UpdateImage(ImageVisualProperty.SynchronousLoading, new PropertyValue((bool)newValue), (bool)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
