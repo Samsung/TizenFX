@@ -404,12 +404,12 @@ namespace Tizen.NUI.BaseComponents
                     using PropertyValue arrayProperty = new PropertyValue(indexPropertyArray);
 
                     // Trigger the ImageView so that we have something update
-                    UpdateImage(ImageVisualProperty.URL, arrayProperty);
+                    UpdateImage(ImageVisualProperty.URL, arrayProperty, false);
                 }
             }
 
             using PropertyValue animatiedImage = new PropertyValue((int)Visual.Type.AnimatedImage);
-            UpdateImage(Visual.Property.Type, animatiedImage);
+            UpdateImage(Visual.Property.Type, animatiedImage, false);
 
             base.UpdateImage();
         }
