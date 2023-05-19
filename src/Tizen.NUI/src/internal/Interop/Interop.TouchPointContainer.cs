@@ -28,13 +28,13 @@ namespace Tizen.NUI
             public static extern void Add(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_size")]
-            public static extern uint size(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern uint Size(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_capacity")]
-            public static extern uint capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
+            public static extern uint Capacity(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_reserve")]
-            public static extern void reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
+            public static extern void Reserve(global::System.Runtime.InteropServices.HandleRef jarg1, uint jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_new_TouchPointContainer__SWIG_0")]
             public static extern global::System.IntPtr NewTouchPointContainer();
@@ -46,13 +46,13 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr NewTouchPointContainer(int jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_getitemcopy")]
-            public static extern global::System.IntPtr getitemcopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static extern global::System.IntPtr GetItemCopy(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_getitem")]
-            public static extern global::System.IntPtr getitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
+            public static extern global::System.IntPtr GetItem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_setitem")]
-            public static extern void setitem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
+            public static extern void SetItem(global::System.Runtime.InteropServices.HandleRef jarg1, int jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_TouchPointContainer_AddRange")]
             public static extern void AddRange(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);
