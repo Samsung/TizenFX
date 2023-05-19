@@ -50,10 +50,10 @@ internal static partial class Interop
             DLOG_PRIO_MAX,
         }
 
-        [DllImport(Libraries.Dlog, EntryPoint = "dlog_print_dotnet", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Dlog, EntryPoint = "dlog_print", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int Print(LogPriority prio, string tag, string fmt, string msg);
 
-        [DllImport(Libraries.Dlog, EntryPoint = "dlog_print_dotnet", CallingConvention = CallingConvention.Cdecl)]
+        [DllImport(Libraries.Dlog, EntryPoint = "dlog_print", CallingConvention = CallingConvention.Cdecl)]
         internal static extern int Print(LogPriority prio, string tag, string fmt, string file, string func, int line, string msg);
 
         [DllImport(Libraries.Dlog, EntryPoint = "__dlog_print", CallingConvention = CallingConvention.Cdecl)]
