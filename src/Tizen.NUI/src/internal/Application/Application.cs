@@ -401,6 +401,26 @@ namespace Tizen.NUI
             DestroySignal(taskDeviceOrientationChangedSignal, applicationTaskDeviceOrientationChangedEventCallback);
             DestroySignal(taskAppControlSignal, applicationTaskAppControlEventCallbackDelegate);
 
+            initSignal = null;
+            terminateSignal = null;
+            pauseSignal = null;
+            resumeSignal = null;
+            resetSignal = null;
+            languageChangedSignal = null;
+            regionChangedSignal = null;
+            batteryLowSignal = null;
+            memoryLowSignal = null;
+            deviceOrientationChangedSignal = null;
+            appControlSignal = null;
+            taskInitSignal = null;
+            taskTerminateSignal = null;
+            taskLanguageChangedSignal = null;
+            taskRegionChangedSignal = null;
+            taskBatteryLowSignal = null;
+            taskMemoryLowSignal = null;
+            taskDeviceOrientationChangedSignal = null;
+            taskAppControlSignal = null;
+            
             window?.Dispose();
             window = null;
 
@@ -556,6 +576,7 @@ namespace Tizen.NUI
                 if (applicationInitEventHandler != null)
                 {
                     DestroySignal(initSignal, applicationInitEventCallbackDelegate);
+                    initSignal = null;
                 }
 
                 applicationInitEventHandler -= value;
@@ -667,6 +688,7 @@ namespace Tizen.NUI
                 if (applicationPauseEventHandler != null)
                 {
                     DestroySignal(pauseSignal, applicationPauseEventCallbackDelegate);
+                    pauseSignal = null;
                 }
 
                 applicationPauseEventHandler -= value;
@@ -706,6 +728,7 @@ namespace Tizen.NUI
                 if (applicationResumeEventHandler != null)
                 {
                     DestroySignal(resumeSignal, applicationResumeEventCallbackDelegate);
+                    resumeSignal = null;
                 }
 
                 applicationResumeEventHandler -= value;
@@ -745,6 +768,7 @@ namespace Tizen.NUI
                 if (applicationResetEventHandler != null)
                 {
                     DestroySignal(resetSignal, applicationResetEventCallbackDelegate);
+                    resetSignal = null;
                 }
 
                 applicationResetEventHandler -= value;
@@ -784,6 +808,7 @@ namespace Tizen.NUI
                 if (applicationLanguageChangedEventHandler != null)
                 {
                     DestroySignal(languageChangedSignal, applicationLanguageChangedEventCallbackDelegate);
+                    languageChangedSignal = null;
                 }
 
                 applicationLanguageChangedEventHandler -= value;
@@ -823,6 +848,7 @@ namespace Tizen.NUI
                 if (applicationRegionChangedEventHandler != null)
                 {
                     DestroySignal(regionChangedSignal, applicationRegionChangedEventCallbackDelegate);
+                    regionChangedSignal = null;
                 }
 
                 applicationRegionChangedEventHandler -= value;
@@ -862,6 +888,7 @@ namespace Tizen.NUI
                 if (applicationBatteryLowEventHandler != null)
                 {
                     DestroySignal(batteryLowSignal, applicationBatteryLowEventCallbackDelegate);
+                    batteryLowSignal = null;
                 }
 
                 applicationBatteryLowEventHandler -= value;
@@ -900,6 +927,7 @@ namespace Tizen.NUI
                 if (applicationMemoryLowEventHandler != null)
                 {
                     DestroySignal(memoryLowSignal, applicationMemoryLowEventCallbackDelegate);
+                    batteryLowSignal = null;
                 }
 
                 applicationMemoryLowEventHandler -= value;
@@ -938,6 +966,7 @@ namespace Tizen.NUI
                 if (applicationDeviceOrientationChangedEventHandler != null)
                 {
                     DestroySignal(deviceOrientationChangedSignal, applicationDeviceOrientationChangedEventCallback);
+                    deviceOrientationChangedSignal = null;
                 }
 
                 applicationDeviceOrientationChangedEventHandler -= value;
@@ -975,6 +1004,7 @@ namespace Tizen.NUI
                 if (applicationAppControlEventHandler != null)
                 {
                     DestroySignal(appControlSignal, applicationAppControlEventCallbackDelegate);
+                    appControlSignal = null;
                 }
 
                 applicationAppControlEventHandler -= value;
@@ -1017,6 +1047,7 @@ namespace Tizen.NUI
                 if (applicationTaskInitEventHandler != null)
                 {
                     DestroySignal(taskInitSignal, applicationTaskInitEventCallbackDelegate);
+                    taskInitSignal = null;
                 }
 
                 applicationTaskInitEventHandler -= value;
@@ -1058,6 +1089,7 @@ namespace Tizen.NUI
                 if (applicationTaskTerminateEventHandler != null)
                 {
                     DestroySignal(taskTerminateSignal, applicationTaskTerminateEventCallbackDelegate);
+                    taskTerminateSignal = null;
                 }
 
                 applicationTaskTerminateEventHandler -= value;
@@ -1098,6 +1130,7 @@ namespace Tizen.NUI
                 if (applicationTaskLanguageChangedEventHandler != null)
                 {
                     DestroySignal(taskLanguageChangedSignal, applicationTaskLanguageChangedEventCallbackDelegate);
+                    taskLanguageChangedSignal = null;
                 }
 
                 applicationTaskLanguageChangedEventHandler -= value;
@@ -1138,6 +1171,7 @@ namespace Tizen.NUI
                 if (applicationTaskRegionChangedEventHandler != null)
                 {
                     DestroySignal(taskRegionChangedSignal, applicationTaskRegionChangedEventCallbackDelegate);
+                    taskRegionChangedSignal = null;
                 }
 
                 applicationTaskRegionChangedEventHandler -= value;
@@ -1178,6 +1212,7 @@ namespace Tizen.NUI
                 if (applicationTaskBatteryLowEventHandler != null)
                 {
                     DestroySignal(taskBatteryLowSignal, applicationTaskBatteryLowEventCallbackDelegate);
+                    taskBatteryLowSignal = null;
                 }
 
                 applicationTaskBatteryLowEventHandler -= value;
@@ -1217,6 +1252,7 @@ namespace Tizen.NUI
                 if (applicationTaskMemoryLowEventHandler != null)
                 {
                     DestroySignal(taskMemoryLowSignal, applicationTaskMemoryLowEventCallbackDelegate);
+                    taskMemoryLowSignal = null;
                 }
 
                 applicationTaskMemoryLowEventHandler -= value;
@@ -1255,6 +1291,7 @@ namespace Tizen.NUI
                 if (applicationTaskDeviceOrientationChangedEventHandler != null)
                 {
                     DestroySignal(taskDeviceOrientationChangedSignal, applicationTaskDeviceOrientationChangedEventCallback);
+                    taskDeviceOrientationChangedSignal = null;
                 }
 
                 applicationTaskDeviceOrientationChangedEventHandler -= value;
@@ -1293,6 +1330,7 @@ namespace Tizen.NUI
                 if (applicationTaskAppControlEventHandler != null)
                 {
                     DestroySignal(taskAppControlSignal, applicationTaskAppControlEventCallbackDelegate);
+                    taskAppControlSignal = null;
                 }
 
                 applicationTaskAppControlEventHandler -= value;
@@ -1815,7 +1853,6 @@ namespace Tizen.NUI
             {
                 signal?.Disconnect(callbackDelegate);
                 signal?.Dispose();
-                signal = null;
             }
         }
     }
