@@ -17,9 +17,8 @@
 
 namespace Tizen.NUI
 {
-    internal class ApplicationSignal : Disposable
+    internal class ApplicationSignal : Disposable, Signal
     {
-
         internal ApplicationSignal(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
         }

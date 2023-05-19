@@ -17,7 +17,7 @@
 
 namespace Tizen.NUI
 {
-    internal class LowMemorySignalType : Disposable
+    internal class LowMemorySignalType : Disposable, Signal
     {
         internal LowMemorySignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

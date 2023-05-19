@@ -20,7 +20,7 @@ namespace Tizen.NUI
     /// <summary>
     /// LowBatterySignalType.
     /// </summary>
-    internal class LowBatterySignalType : Disposable
+    internal class LowBatterySignalType : Disposable, Signal
     {
         internal LowBatterySignalType(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {

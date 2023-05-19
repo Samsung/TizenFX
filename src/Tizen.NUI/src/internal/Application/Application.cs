@@ -379,145 +379,34 @@ namespace Tizen.NUI
             //Release your own unmanaged resources here.
             //You should not access any managed member here except static instance.
             //because the execution order of Finalizes is non-deterministic.
-            if (applicationInitEventCallbackDelegate != null)
-            {
-                initSignal?.Disconnect(applicationInitEventCallbackDelegate);
-                initSignal?.Dispose();
-                initSignal = null;
-            }
+            DestroySignal(initSignal, applicationInitEventCallbackDelegate);
+            DestroySignal(terminateSignal, applicationTerminateEventCallbackDelegate);
+            DestroySignal(pauseSignal, applicationPauseEventCallbackDelegate);
+            DestroySignal(resumeSignal, applicationResumeEventCallbackDelegate);
+            DestroySignal(resetSignal, applicationResetEventCallbackDelegate);
+            DestroySignal(languageChangedSignal, applicationLanguageChangedEventCallbackDelegate);
+            DestroySignal(regionChangedSignal, applicationRegionChangedEventCallbackDelegate);
 
-            if (applicationTerminateEventCallbackDelegate != null)
-            {
-                terminateSignal?.Disconnect(applicationTerminateEventCallbackDelegate);
-                terminateSignal?.Dispose();
-                terminateSignal = null;
-            }
+            DestroySignal(batteryLowSignal, applicationBatteryLowEventCallbackDelegate);
+            DestroySignal(memoryLowSignal, applicationMemoryLowEventCallbackDelegate);
+            DestroySignal(deviceOrientationChangedSignal, applicationDeviceOrientationChangedEventCallback);
+            DestroySignal(appControlSignal, applicationAppControlEventCallbackDelegate);
+            DestroySignal(taskInitSignal, applicationTaskInitEventCallbackDelegate);
+            DestroySignal(taskTerminateSignal, applicationTaskTerminateEventCallbackDelegate);
+            DestroySignal(taskLanguageChangedSignal, applicationTaskLanguageChangedEventCallbackDelegate);
+            DestroySignal(taskRegionChangedSignal, applicationTaskRegionChangedEventCallbackDelegate);
+            DestroySignal(taskBatteryLowSignal, applicationTaskBatteryLowEventCallbackDelegate);
 
-            if (applicationPauseEventCallbackDelegate != null)
-            {
-                pauseSignal?.Disconnect(applicationPauseEventCallbackDelegate);
-                pauseSignal?.Dispose();
-                pauseSignal = null;
-            }
-
-            if (applicationResumeEventCallbackDelegate != null)
-            {
-                resumeSignal?.Disconnect(applicationResumeEventCallbackDelegate);
-                resumeSignal?.Dispose();
-                resumeSignal = null;
-            }
-
-            if (applicationResetEventCallbackDelegate != null)
-            {
-                resetSignal?.Disconnect(applicationResetEventCallbackDelegate);
-                resetSignal?.Dispose();
-                resetSignal = null;
-            }
-
-            if (applicationLanguageChangedEventCallbackDelegate != null)
-            {
-                languageChangedSignal?.Disconnect(applicationLanguageChangedEventCallbackDelegate);
-                languageChangedSignal?.Dispose();
-                languageChangedSignal = null;
-            }
-
-            if (applicationRegionChangedEventCallbackDelegate != null)
-            {
-                regionChangedSignal?.Disconnect(applicationRegionChangedEventCallbackDelegate);
-                regionChangedSignal?.Dispose();
-                regionChangedSignal = null;
-            }
-
-            if (applicationBatteryLowEventCallbackDelegate != null)
-            {
-                batteryLowSignal?.Disconnect(applicationBatteryLowEventCallbackDelegate);
-                batteryLowSignal?.Dispose();
-                batteryLowSignal = null;
-            }
-
-            if (applicationMemoryLowEventCallbackDelegate != null)
-            {
-                memoryLowSignal?.Disconnect(applicationMemoryLowEventCallbackDelegate);
-                memoryLowSignal?.Dispose();
-                memoryLowSignal = null;
-            }
-
-            if (applicationDeviceOrientationChangedEventCallback != null)
-            {
-                deviceOrientationChangedSignal?.Disconnect(applicationDeviceOrientationChangedEventCallback);
-                deviceOrientationChangedSignal?.Dispose();
-                deviceOrientationChangedSignal = null;
-            }
-
-            if (applicationAppControlEventCallbackDelegate != null)
-            {
-                appControlSignal?.Disconnect(applicationAppControlEventCallbackDelegate);
-                appControlSignal?.Dispose();
-                appControlSignal = null;
-            }
-
-            //Task
-            if (applicationTaskInitEventCallbackDelegate != null)
-            {
-                taskInitSignal?.Disconnect(applicationTaskInitEventCallbackDelegate);
-                taskInitSignal?.Dispose();
-                taskInitSignal = null;
-            }
-
-            if (applicationTaskTerminateEventCallbackDelegate != null)
-            {
-                taskTerminateSignal?.Disconnect(applicationTaskTerminateEventCallbackDelegate);
-                taskTerminateSignal?.Dispose();
-                taskTerminateSignal = null;
-            }
-
-            if (applicationTaskLanguageChangedEventCallbackDelegate != null)
-            {
-                taskLanguageChangedSignal?.Disconnect(applicationTaskLanguageChangedEventCallbackDelegate);
-                taskLanguageChangedSignal?.Dispose();
-                taskLanguageChangedSignal = null;
-            }
-
-            if (applicationTaskRegionChangedEventCallbackDelegate != null)
-            {
-                taskRegionChangedSignal?.Disconnect(applicationTaskRegionChangedEventCallbackDelegate);
-                taskRegionChangedSignal?.Dispose();
-                taskRegionChangedSignal = null;
-            }
-
-            if (applicationTaskBatteryLowEventCallbackDelegate != null)
-            {
-                taskBatteryLowSignal?.Disconnect(applicationTaskBatteryLowEventCallbackDelegate);
-                taskBatteryLowSignal?.Dispose();
-                taskBatteryLowSignal = null;
-            }
-
-            if (applicationTaskMemoryLowEventCallbackDelegate != null)
-            {
-                taskMemoryLowSignal?.Disconnect(applicationTaskMemoryLowEventCallbackDelegate);
-                taskMemoryLowSignal?.Dispose();
-                taskMemoryLowSignal = null;
-            }
-
-            if (applicationTaskDeviceOrientationChangedEventCallback != null)
-            {
-                taskDeviceOrientationChangedSignal?.Disconnect(applicationTaskDeviceOrientationChangedEventCallback);
-                taskDeviceOrientationChangedSignal?.Dispose();
-                taskDeviceOrientationChangedSignal = null;
-            }
-
-            if (applicationTaskAppControlEventCallbackDelegate != null)
-            {
-                taskAppControlSignal?.Disconnect(applicationTaskAppControlEventCallbackDelegate);
-                taskAppControlSignal?.Dispose();
-                taskAppControlSignal = null;
-            }
+            DestroySignal(taskMemoryLowSignal, applicationTaskMemoryLowEventCallbackDelegate);
+            DestroySignal(taskDeviceOrientationChangedSignal, applicationTaskDeviceOrientationChangedEventCallback);
+            DestroySignal(taskAppControlSignal, applicationTaskAppControlEventCallbackDelegate);
 
             window?.Dispose();
             window = null;
 
             base.Dispose(type);
         }
+
         protected override void ReleaseSwigCPtr(System.Runtime.InteropServices.HandleRef swigCPtr)
         {
             Interop.Application.DeleteApplication(swigCPtr);
@@ -666,9 +555,7 @@ namespace Tizen.NUI
             {
                 if (applicationInitEventHandler != null)
                 {
-                    initSignal?.Disconnect(applicationInitEventCallbackDelegate);
-                    initSignal?.Dispose();
-                    initSignal = null;
+                    DestroySignal(initSignal, applicationInitEventCallbackDelegate);
                 }
 
                 applicationInitEventHandler -= value;
@@ -734,9 +621,7 @@ namespace Tizen.NUI
             {
                 if (applicationTerminateEventHandler != null)
                 {
-                    terminateSignal?.Disconnect(applicationTerminateEventCallbackDelegate);
-                    terminateSignal?.Dispose();
-                    terminateSignal = null;
+                    DestroySignal(terminateSignal, applicationTerminateEventCallbackDelegate);
                 }
 
                 applicationTerminateEventHandler -= value;
@@ -781,9 +666,7 @@ namespace Tizen.NUI
             {
                 if (applicationPauseEventHandler != null)
                 {
-                    pauseSignal?.Disconnect(applicationPauseEventCallbackDelegate);
-                    pauseSignal?.Dispose();
-                    pauseSignal = null;
+                    DestroySignal(pauseSignal, applicationPauseEventCallbackDelegate);
                 }
 
                 applicationPauseEventHandler -= value;
@@ -822,9 +705,7 @@ namespace Tizen.NUI
             {
                 if (applicationResumeEventHandler != null)
                 {
-                    resumeSignal?.Disconnect(applicationResumeEventCallbackDelegate);
-                    resumeSignal?.Dispose();
-                    resumeSignal = null;
+                    DestroySignal(resumeSignal, applicationResumeEventCallbackDelegate);
                 }
 
                 applicationResumeEventHandler -= value;
@@ -863,9 +744,7 @@ namespace Tizen.NUI
             {
                 if (applicationResetEventHandler != null)
                 {
-                    resetSignal?.Disconnect(applicationResetEventCallbackDelegate);
-                    resetSignal?.Dispose();
-                    resetSignal = null;
+                    DestroySignal(resetSignal, applicationResetEventCallbackDelegate);
                 }
 
                 applicationResetEventHandler -= value;
@@ -904,9 +783,7 @@ namespace Tizen.NUI
             {
                 if (applicationLanguageChangedEventHandler != null)
                 {
-                    languageChangedSignal?.Disconnect(applicationLanguageChangedEventCallbackDelegate);
-                    languageChangedSignal?.Dispose();
-                    languageChangedSignal = null;
+                    DestroySignal(languageChangedSignal, applicationLanguageChangedEventCallbackDelegate);
                 }
 
                 applicationLanguageChangedEventHandler -= value;
@@ -945,9 +822,7 @@ namespace Tizen.NUI
             {
                 if (applicationRegionChangedEventHandler != null)
                 {
-                    regionChangedSignal?.Disconnect(applicationRegionChangedEventCallbackDelegate);
-                    regionChangedSignal?.Dispose();
-                    regionChangedSignal = null;
+                    DestroySignal(regionChangedSignal, applicationRegionChangedEventCallbackDelegate);
                 }
 
                 applicationRegionChangedEventHandler -= value;
@@ -986,9 +861,7 @@ namespace Tizen.NUI
             {
                 if (applicationBatteryLowEventHandler != null)
                 {
-                    batteryLowSignal?.Disconnect(applicationBatteryLowEventCallbackDelegate);
-                    batteryLowSignal?.Dispose();
-                    batteryLowSignal = null;
+                    DestroySignal(batteryLowSignal, applicationBatteryLowEventCallbackDelegate);
                 }
 
                 applicationBatteryLowEventHandler -= value;
@@ -1026,9 +899,7 @@ namespace Tizen.NUI
             {
                 if (applicationMemoryLowEventHandler != null)
                 {
-                    memoryLowSignal?.Disconnect(applicationMemoryLowEventCallbackDelegate);
-                    memoryLowSignal?.Dispose();
-                    memoryLowSignal = null;
+                    DestroySignal(memoryLowSignal, applicationMemoryLowEventCallbackDelegate);
                 }
 
                 applicationMemoryLowEventHandler -= value;
@@ -1066,9 +937,7 @@ namespace Tizen.NUI
             {
                 if (applicationDeviceOrientationChangedEventHandler != null)
                 {
-                    deviceOrientationChangedSignal?.Disconnect(applicationDeviceOrientationChangedEventCallback);
-                    deviceOrientationChangedSignal?.Dispose();
-                    deviceOrientationChangedSignal = null;
+                    DestroySignal(deviceOrientationChangedSignal, applicationDeviceOrientationChangedEventCallback);
                 }
 
                 applicationDeviceOrientationChangedEventHandler -= value;
@@ -1105,9 +974,7 @@ namespace Tizen.NUI
             {
                 if (applicationAppControlEventHandler != null)
                 {
-                    appControlSignal?.Disconnect(applicationAppControlEventCallbackDelegate);
-                    appControlSignal?.Dispose();
-                    appControlSignal = null;
+                    DestroySignal(appControlSignal, applicationAppControlEventCallbackDelegate);
                 }
 
                 applicationAppControlEventHandler -= value;
@@ -1149,9 +1016,7 @@ namespace Tizen.NUI
             {
                 if (applicationTaskInitEventHandler != null)
                 {
-                    taskInitSignal?.Disconnect(applicationTaskInitEventCallbackDelegate);
-                    taskInitSignal?.Dispose();
-                    taskInitSignal = null;
+                    DestroySignal(taskInitSignal, applicationTaskInitEventCallbackDelegate);
                 }
 
                 applicationTaskInitEventHandler -= value;
@@ -1192,9 +1057,7 @@ namespace Tizen.NUI
             {
                 if (applicationTaskTerminateEventHandler != null)
                 {
-                    taskTerminateSignal?.Disconnect(applicationTaskTerminateEventCallbackDelegate);
-                    taskTerminateSignal?.Dispose();
-                    taskTerminateSignal = null;
+                    DestroySignal(taskTerminateSignal, applicationTaskTerminateEventCallbackDelegate);
                 }
 
                 applicationTaskTerminateEventHandler -= value;
@@ -1234,9 +1097,7 @@ namespace Tizen.NUI
             {
                 if (applicationTaskLanguageChangedEventHandler != null)
                 {
-                    taskLanguageChangedSignal?.Disconnect(applicationTaskLanguageChangedEventCallbackDelegate);
-                    taskLanguageChangedSignal?.Dispose();
-                    taskLanguageChangedSignal = null;
+                    DestroySignal(taskLanguageChangedSignal, applicationTaskLanguageChangedEventCallbackDelegate);
                 }
 
                 applicationTaskLanguageChangedEventHandler -= value;
@@ -1276,9 +1137,7 @@ namespace Tizen.NUI
             {
                 if (applicationTaskRegionChangedEventHandler != null)
                 {
-                    taskRegionChangedSignal?.Disconnect(applicationTaskRegionChangedEventCallbackDelegate);
-                    taskRegionChangedSignal?.Dispose();
-                    taskRegionChangedSignal = null;
+                    DestroySignal(taskRegionChangedSignal, applicationTaskRegionChangedEventCallbackDelegate);
                 }
 
                 applicationTaskRegionChangedEventHandler -= value;
@@ -1318,9 +1177,7 @@ namespace Tizen.NUI
             {
                 if (applicationTaskBatteryLowEventHandler != null)
                 {
-                    taskBatteryLowSignal?.Disconnect(applicationTaskBatteryLowEventCallbackDelegate);
-                    taskBatteryLowSignal?.Dispose();
-                    taskBatteryLowSignal = null;
+                    DestroySignal(taskBatteryLowSignal, applicationTaskBatteryLowEventCallbackDelegate);
                 }
 
                 applicationTaskBatteryLowEventHandler -= value;
@@ -1359,9 +1216,7 @@ namespace Tizen.NUI
             {
                 if (applicationTaskMemoryLowEventHandler != null)
                 {
-                    taskMemoryLowSignal?.Disconnect(applicationTaskMemoryLowEventCallbackDelegate);
-                    taskMemoryLowSignal?.Dispose();
-                    taskMemoryLowSignal = null;
+                    DestroySignal(taskMemoryLowSignal, applicationTaskMemoryLowEventCallbackDelegate);
                 }
 
                 applicationTaskMemoryLowEventHandler -= value;
@@ -1399,9 +1254,7 @@ namespace Tizen.NUI
             {
                 if (applicationTaskDeviceOrientationChangedEventHandler != null)
                 {
-                    taskDeviceOrientationChangedSignal?.Disconnect(applicationTaskDeviceOrientationChangedEventCallback);
-                    taskDeviceOrientationChangedSignal?.Dispose();
-                    taskDeviceOrientationChangedSignal = null;
+                    DestroySignal(taskDeviceOrientationChangedSignal, applicationTaskDeviceOrientationChangedEventCallback);
                 }
 
                 applicationTaskDeviceOrientationChangedEventHandler -= value;
@@ -1439,9 +1292,7 @@ namespace Tizen.NUI
             {
                 if (applicationTaskAppControlEventHandler != null)
                 {
-                    taskAppControlSignal?.Disconnect(applicationTaskAppControlEventCallbackDelegate);
-                    taskAppControlSignal?.Dispose();
-                    taskAppControlSignal = null;
+                    DestroySignal(taskAppControlSignal, applicationTaskAppControlEventCallbackDelegate);
                 }
 
                 applicationTaskAppControlEventHandler -= value;
@@ -1956,6 +1807,16 @@ namespace Tizen.NUI
             DeviceOrientationChangedSignalType ret = new DeviceOrientationChangedSignalType(NDalicPINVOKE.ApplicationTaskDeviceOrientationChangedSignal(SwigCPtr), false);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
+        }
+
+        private void DestroySignal(Signal signal, Delegate callbackDelegate)
+        {
+            if (callbackDelegate != null)
+            {
+                signal?.Disconnect(callbackDelegate);
+                signal?.Dispose();
+                signal = null;
+            }
         }
     }
 }
