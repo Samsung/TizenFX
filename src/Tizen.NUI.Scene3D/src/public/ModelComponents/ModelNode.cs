@@ -168,7 +168,7 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ModelNode FindChildModelNodeByName(string nodeName)
         {
-            global::System.IntPtr cPtr = Interop.Model.FindChildModelNodeByName(SwigCPtr, nodeName);
+            global::System.IntPtr cPtr = Interop.ModelNode.FindChildModelNodeByName(SwigCPtr, nodeName);
             ModelNode ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as ModelNode;
             if (ret == null)
             {

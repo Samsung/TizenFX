@@ -73,7 +73,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr GetParent(global::System.Runtime.InteropServices.HandleRef jarg1);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_FindChildByName")]
-            public static extern global::System.IntPtr FindChildByName(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2);
+            public static extern global::System.IntPtr FindChildByName(global::System.Runtime.InteropServices.HandleRef jarg1, string jarg2, int jarg3);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_SetAnchorPoint")]
             public static extern void SetAnchorPoint(global::System.Runtime.InteropServices.HandleRef jarg1, global::System.Runtime.InteropServices.HandleRef jarg2);

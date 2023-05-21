@@ -319,6 +319,24 @@ namespace Tizen.NUI
     }
 
     /// <summary>
+    /// Method of search child item when we use FindChildByName operations
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public enum ChildSearchMethod
+    {
+        /// <summary>
+        /// Search by DFS algorithm. Default.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        DepthFirstSearch = 0,
+        /// <summary>
+        /// Search by BFS algorithm.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        BreadthFirstSearch = 1,
+    }
+
+    /// <summary>
     /// An enum of Device Class types.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>

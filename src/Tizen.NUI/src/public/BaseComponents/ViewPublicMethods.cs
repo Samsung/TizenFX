@@ -458,8 +458,22 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 3 </since_tizen>
         public View FindChildByName(string viewName)
         {
+            return FindChildByName(viewName, ChildSearchMethod.DepthFirstSearch);
+        }
+
+        /// <summary>
+        /// Search through this view's hierarchy for a view with the given name.
+        /// The view itself is also considered in the search.
+        /// </summary>
+        /// <pre>The view has been initialized.</pre>
+        /// <param name="viewName">The name of the view to find.</param>
+        /// <param name="childSearchMethod">The method of the view finding. Default is DFS</param>
+        /// <returns>A handle to the view if found, or an empty handle if not.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public View FindChildByName(string viewName, ChildSearchMethod childSearchMethod)
+        {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Actor.FindChildByName(SwigCPtr, viewName);
+            IntPtr cPtr = Interop.Actor.FindChildByName(SwigCPtr, viewName, (int)childSearchMethod);
             View ret = this.GetInstanceSafely<View>(cPtr);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             return ret;
@@ -471,22 +485,23 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         /// <pre>The view has been initialized.</pre>
         /// <param name="childName">The name of the Animatable to find.</param>
+        /// <param name="childSearchMethod">The method of the aniatable finding. Default is DFS</param>
         /// <returns>A handle to the view as Animatable if found, or an empty handle if not.</returns>
         /// This will not be public opened.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Animatable FindChildAnimatableByName(string childName)
+        public Animatable FindChildAnimatableByName(string childName, ChildSearchMethod childSearchMethod = ChildSearchMethod.DepthFirstSearch)
         {
             //to fix memory leak issue, match the handle count with native side.
-            IntPtr cPtr = Interop.Actor.FindChildByName(SwigCPtr, childName);
+            IntPtr cPtr = Interop.Actor.FindChildByName(SwigCPtr, childName, (int)childSearchMethod);
             Animatable ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animatable;
             if(ret == null)
             {
-                // Register new camera into Registry.
+                // Register new animatable into Registry.
                 ret = new Animatable(cPtr, true);
             }
             else
             {
-                // We found matched NUI camera. Reduce cPtr reference count.
+                // We found matched NUI animatable. Reduce cPtr reference count.
                 HandleRef handle = new HandleRef(this, cPtr);
                 Interop.Actor.DeleteActor(handle);
                 handle = new HandleRef(null, IntPtr.Zero);
