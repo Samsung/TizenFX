@@ -328,6 +328,18 @@ namespace Tizen.NUI.Samples
         log.Fatal(tag, $"OnWindowMoved() called!, x:{position.X}, y:{position.Y}");
     }
 
+    private void OnWindowMoveCompleted(object sender, WindowMoveCompletedEventArgs e)
+    {
+        Position2D position = e.WindowCompletedPosition;
+        log.Fatal(tag, $"OnWindowMoveCompleted() called!, x:{position.X}, y:{position.Y}");
+    }
+
+    private void OnWindowResizeCompleted(object sender, WindowResizeCompletedEventArgs e)
+    {
+        Size2D size = e.WindowCompletedSize;
+        log.Fatal(tag, $"OnWindowResizeCompleted() called!, width:{size.Width}, height:{size.Height}");
+    }
+
     void CreateSubWindowOne()
     {
       if (subWindowOne == null)
@@ -360,6 +372,8 @@ namespace Tizen.NUI.Samples
 
         subWindowOne.KeyEvent += OnKeyEvent;
         subWindowOne.Moved += OnWindowMoved;
+        subWindowOne.MoveCompleted += OnWindowMoveCompleted;
+        subWindowOne.ResizeCompleted += OnWindowResizeCompleted;
       }
       else
       {
@@ -371,6 +385,18 @@ namespace Tizen.NUI.Samples
     {
         Position2D position = e.WindowPosition;
         log.Fatal(tag, $"OnWindowMoved2() called!, x:{position.X}, y:{position.Y}");
+    }
+
+    private void OnWindowMoveCompleted2(object sender, WindowMoveCompletedEventArgs e)
+    {
+        Position2D position = e.WindowCompletedPosition;
+        log.Fatal(tag, $"OnWindowMoveCompleted2() called!, x:{position.X}, y:{position.Y}");
+    }
+
+    private void OnWindowResizeCompleted2(object sender, WindowResizeCompletedEventArgs e)
+    {
+        Size2D size = e.WindowCompletedSize;
+        log.Fatal(tag, $"OnWindowResizeCompleted2() called!, width:{size.Width}, height:{size.Height}");
     }
 
     void CreateSubWindowTwo()
@@ -411,6 +437,8 @@ namespace Tizen.NUI.Samples
         subWindowTwo.Add(root);
 
         subWindowTwo.Moved += OnWindowMoved2;
+        subWindowTwo.MoveCompleted += OnWindowMoveCompleted2;
+        subWindowTwo.ResizeCompleted += OnWindowResizeCompleted2;
       }
       else
       {
