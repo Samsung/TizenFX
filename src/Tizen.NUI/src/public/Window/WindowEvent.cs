@@ -51,6 +51,8 @@ namespace Tizen.NUI
         private KeyboardRepeatSettingsChangedEventCallbackType keyboardRepeatSettingsChangedEventCallback;
         private AuxiliaryMessageEventCallbackType auxiliaryMessageEventCallback;
         private WindowMouseInOutEventCallbackType windowMouseInOutEventCallback;
+        private MoveCompletedEventCallbackType moveCompletedEventCallback;
+        private ResizeCompletedEventCallbackType resizeCompletedEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -75,6 +77,11 @@ namespace Tizen.NUI
         private delegate bool InterceptKeyEventDelegateType(IntPtr arg1);
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowMouseInOutEventCallbackType(IntPtr window, IntPtr mouseEvent);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void MoveCompletedEventCallbackType(IntPtr window, IntPtr position);
+        [UnmanagedFunctionPointer(CallingConvention.StdCall)]
+        private delegate void ResizeCompletedEventCallbackType(IntPtr window, IntPtr size);
+
 
         /// <summary>
         /// FocusChanged event.
@@ -268,7 +275,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Emits the event when the window resized.
+        /// Emits the event when window is resized by user or the display server.<br />
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         public event EventHandler<ResizedEventArgs> Resized
@@ -360,7 +367,7 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// MovedEvent
+        /// Emits the event when window is moved by user or the display server.<br />
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public event EventHandler<WindowMovedEventArgs> Moved
@@ -472,6 +479,66 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Emits the event when window has been moved by the display server.<br />
+        /// To make the window move by display server, RequestMoveToServer() should be called.<br />
+        /// After the moving job is completed, this signal will be emitted.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WindowMoveCompletedEventArgs> MoveCompleted
+        {
+            add
+            {
+                if (moveCompletedHandler == null)
+                {
+                    moveCompletedEventCallback = OnMoveCompleted;
+                    using WindowMoveCompletedSignal signal = new WindowMoveCompletedSignal(Interop.WindowMoveCompletedSignal.GetSignal(SwigCPtr), false);
+                    signal.Ensure()?.Connect(moveCompletedEventCallback);
+                }
+                moveCompletedHandler += value;
+            }
+            remove
+            {
+                moveCompletedHandler -= value;
+                if (moveCompletedHandler == null && moveCompletedEventCallback != null)
+                {
+                    using WindowMoveCompletedSignal signal = new WindowMoveCompletedSignal(Interop.WindowMoveCompletedSignal.GetSignal(SwigCPtr), false);
+                    signal.Ensure()?.Disconnect(moveCompletedEventCallback);
+                    moveCompletedEventCallback = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Emits the event when window has been resized by the display server.<br />
+        /// To make the window resize by display server, RequestResizeToServer() should be called.<br />
+        /// After the resizing job is completed, this signal will be emitted.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<WindowResizeCompletedEventArgs> ResizeCompleted
+        {
+            add
+            {
+                if (resizeCompletedHandler == null)
+                {
+                    resizeCompletedEventCallback = OnResizeCompleted;
+                    using WindowResizeCompletedSignal signal = new WindowResizeCompletedSignal(Interop.WindowResizeCompletedSignal.GetSignal(SwigCPtr), false);
+                    signal.Ensure()?.Connect(resizeCompletedEventCallback);
+                }
+                resizeCompletedHandler += value;
+            }
+            remove
+            {
+                resizeCompletedHandler -= value;
+                if (resizeCompletedHandler == null && resizeCompletedEventCallback != null)
+                {
+                    using WindowResizeCompletedSignal signal = new WindowResizeCompletedSignal(Interop.WindowResizeCompletedSignal.GetSignal(SwigCPtr), false);
+                    signal.Ensure()?.Disconnect(resizeCompletedEventCallback);
+                    resizeCompletedEventCallback = null;
+                }
+            }
+        }
+
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler;
         private event EventHandler<TouchEventArgs> rootLayerTouchDataEventHandler;
         private ReturnTypeEventHandler<object, TouchEventArgs, bool> rootLayerInterceptTouchDataEventHandler;
@@ -487,6 +554,8 @@ namespace Tizen.NUI
         private event EventHandler keyboardRepeatSettingsChangedHandler;
         private event EventHandler<AuxiliaryMessageEventArgs> auxiliaryMessageEventHandler;
         private event EventHandler<MouseInOutEventArgs> windowMouseInOutEventHandler;
+        private event EventHandler<WindowMoveCompletedEventArgs> moveCompletedHandler;
+        private event EventHandler<WindowResizeCompletedEventArgs> resizeCompletedHandler;
 
 
         internal event EventHandler EventProcessingFinished
@@ -744,6 +813,19 @@ namespace Tizen.NUI
                 windowMouseInOutEventCallback = null;
             }
 
+            if (moveCompletedEventCallback != null)
+            {
+                using WindowMoveCompletedSignal signal = new WindowMoveCompletedSignal(Interop.WindowMoveCompletedSignal.GetSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(moveCompletedEventCallback);
+                moveCompletedEventCallback = null;
+            }
+
+            if (resizeCompletedEventCallback != null)
+            {
+                using WindowResizeCompletedSignal signal = new WindowResizeCompletedSignal(Interop.WindowResizeCompletedSignal.GetSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(resizeCompletedEventCallback);
+                resizeCompletedEventCallback = null;
+            }
         }
 
         private void OnWindowFocusedChanged(IntPtr window, bool focusGained)
@@ -972,6 +1054,36 @@ namespace Tizen.NUI
                 e.MouseInOut = Tizen.NUI.MouseInOut.GetMouseInOutFromPtr(mouseEvent);
                 windowMouseInOutEventHandler(this, e);
             }
+        }
+
+        private void OnMoveCompleted(IntPtr window, IntPtr position)
+        {
+            if (window == global::System.IntPtr.Zero)
+            {
+                return;
+            }
+
+            if (moveCompletedHandler != null)
+            {
+                WindowMoveCompletedEventArgs e = new WindowMoveCompletedEventArgs(this.WindowPosition);
+                moveCompletedHandler(this, e);
+            }
+            return;
+        }
+
+        private void OnResizeCompleted(IntPtr window, IntPtr size)
+        {
+            if (window == global::System.IntPtr.Zero)
+            {
+                return;
+            }
+
+            if (resizeCompletedHandler != null)
+            {
+                WindowResizeCompletedEventArgs e = new WindowResizeCompletedEventArgs(this.WindowSize);
+                resizeCompletedHandler(this, e);
+            }
+            return;
         }
 
         /// <summary>
@@ -1453,7 +1565,7 @@ namespace Tizen.NUI
     }
 
     /// <summary>
-    /// MovedArgs
+    /// Move event is sent when window is resized by user or the display server.
     /// </summary>
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class WindowMovedEventArgs : EventArgs
@@ -1495,4 +1607,43 @@ namespace Tizen.NUI
             }
         }
     }
+
+    /// <summary>
+    /// Move Completed event is sent when window has been moved the display server.
+    /// It is triggered by calling RequestMoveToServer().
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class WindowMoveCompletedEventArgs : EventArgs
+    {
+        public WindowMoveCompletedEventArgs(Position2D completedPosition)
+        {
+            WindowCompletedPosition = completedPosition;
+        }
+
+        public Position2D WindowCompletedPosition
+        {
+            get;
+            private set;
+        }
+    }
+
+    /// <summary>
+    /// Resize Completed event is sent when window has been resized the display server.
+    /// It is triggered by calling RequestResizeToServer().
+    /// </summary>
+    [EditorBrowsable(EditorBrowsableState.Never)]
+    public class WindowResizeCompletedEventArgs : EventArgs
+    {
+        public WindowResizeCompletedEventArgs(Size2D completedSize)
+        {
+            WindowCompletedSize = completedSize;
+        }
+
+        public Size2D WindowCompletedSize
+        {
+            get;
+            private set;
+        }
+    }
+
 }
