@@ -80,6 +80,7 @@ namespace Tizen.NUI.BaseComponents
         private RotationGestureDetector rotationGestureDetector = null;
         private int configGestureCount = 0;
         private bool dispatchTouchEvents = true;
+        private bool dispatchParentTouchEvents = true;
         private bool dispatchGestureEvents = true;
         private bool dispatchParentGestureEvents = true;
         private string internalName = string.Empty;
@@ -3503,6 +3504,43 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private bool OnDispatchTouchEvent(object source, View.TouchEventArgs e)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether touch events can be dispatched to the parent.
+        /// If a View's DispatchParentTouchEvents is set to false, then parents will not receive a touch event signal either.
+        /// This works without adding a TouchEvent callback in the View.
+        /// <note>
+        /// If the <see cref="Tizen.NUI.BaseComponents.View.Sensitive"/> is a property that determines whether or not to be hittable, then this property prevents the propagation of the hit touch event.
+        /// </note>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchParentTouchEvents
+        {
+            get
+            {
+                return dispatchParentTouchEvents;
+            }
+            set
+            {
+                if (dispatchParentTouchEvents != value)
+                {
+                    dispatchParentTouchEvents = value;
+                    if (dispatchParentTouchEvents == false)
+                    {
+                        TouchEvent += OnDispatchParentTouchEvent;
+                    }
+                    else
+                    {
+                        TouchEvent -= OnDispatchParentTouchEvent;
+                    }
+                }
+            }
+        }
+
+        private bool OnDispatchParentTouchEvent(object source, View.TouchEventArgs e)
         {
             return true;
         }
