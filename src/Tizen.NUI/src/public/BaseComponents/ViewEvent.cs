@@ -741,7 +741,7 @@ namespace Tizen.NUI.BaseComponents
                 NUILog.Error("touchData should not be null!");
                 return true;
             }
-            
+
             TouchEventArgs e = new TouchEventArgs();
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
             return HitTest(e.Touch);
@@ -805,6 +805,12 @@ namespace Tizen.NUI.BaseComponents
             if (enableControlState && !consumed)
             {
                 consumed = HandleControlStateOnTouch(e.Touch);
+            }
+
+            if (DispatchParentTouchEvents == false)
+            {
+                NUILog.Debug("If DispatchParentTouchEvents is false, it can not dispatch to parent.");
+                return true;
             }
 
             return consumed;
