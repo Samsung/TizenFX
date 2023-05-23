@@ -1573,7 +1573,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             // Listen theme change event if needs.
-            if (ThemeManager.PlatformThemeEnabled && initialStyle != null)
+            if (initialStyle != null)
             {
                 SetThemeApplied();
             }
