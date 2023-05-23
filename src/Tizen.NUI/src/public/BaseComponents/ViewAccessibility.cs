@@ -61,6 +61,12 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public Dictionary<string, string> AccessibilityAttributes { get; } = new Dictionary<string, string>();
 
+        /// <summary>
+        /// Dictionary of dynamically-evaluated accessibility attributes (key-value pairs of strings).
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Dictionary<string, Func<string>> AccessibilityDynamicAttributes { get; } = new Dictionary<string, Func<string>>();
+
         ///////////////////////////////////////////////////////////////////
         // ************************** Highlight ************************ //
         ///////////////////////////////////////////////////////////////////

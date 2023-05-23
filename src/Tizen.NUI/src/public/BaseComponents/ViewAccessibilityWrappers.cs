@@ -126,6 +126,11 @@ namespace Tizen.NUI.BaseComponents
             {
                 callback(attribute.Key, attribute.Value, userData);
             }
+
+            foreach (var attribute in view.AccessibilityDynamicAttributes)
+            {
+                callback(attribute.Key, attribute.Value.Invoke(), userData);
+            }
         }
 
         private static IntPtr AccessibilityGetDescriptionWrapper(IntPtr self)
