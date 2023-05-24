@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <NoWarn>$(NoWarn);CS0618;CA1054;CA1056</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Tizen.Log\Tizen.Log.csproj" />
+    <ProjectReference Include="..\Tizen.NUI\Tizen.NUI.csproj" />
+    <ProjectReference Include="..\Tizen.NUI.Scene3D\Tizen.NUI.Scene3D.csproj" />
+  </ItemGroup>
+
+</Project>
