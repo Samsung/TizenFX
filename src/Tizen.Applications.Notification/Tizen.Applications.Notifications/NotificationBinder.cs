@@ -57,6 +57,11 @@ namespace Tizen.Applications.Notifications
             }
 
             Interop.Notification.SetProperties(notification.Handle, (int)notification.Property);
+
+            if (notification.DoNotShowAgain == true)
+            {
+                Interop.Notification.SetDoNotShowAgain(notification.Handle, notification.DoNotShowAgain);
+            }
         }
 
         internal static void BindSafeHandle(Notification notification)

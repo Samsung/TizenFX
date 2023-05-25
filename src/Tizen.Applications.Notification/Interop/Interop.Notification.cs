@@ -232,6 +232,9 @@ internal static partial class Interop
         [DllImport(Libraries.Notification, EntryPoint = "notification_clone")]
         internal static extern NotificationError Clone(IntPtr handle, out IntPtr cloned);
 
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_do_not_show_again")]
+        internal static extern NotificationError SetDoNotShowAgain(NotificationSafeHandle handle, bool flag);
+
         internal static NotificationError GetText(NotificationSafeHandle handle, NotificationText type, out string text)
         {
             NotificationError ret;
