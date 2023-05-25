@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.IO;
 using System.ComponentModel;
+using System.Resources;
 
 namespace Tizen.NUI
 {
@@ -88,35 +89,51 @@ namespace Tizen.NUI
                 cultureInfo = CultureInfo.CurrentUICulture;
             }
 
-            var resourceManager = GetResourceManager(cultureInfo.Name);
-            if (resourceManager == null)
+            string result = string.Empty;
+            try
             {
-                if (cultureInfo.Name != "en")
+                var resourceManager = GetResourceManager(cultureInfo.Name);
+                if (resourceManager != null)
                 {
-                    resourceManager = GetResourceManager("en");
+                    result = resourceManager.GetString(name, cultureInfo);
+                }
+
+                if (string.IsNullOrEmpty(result))
+                {
+                    resourceManager = GetResourceManager("default");
                     if (resourceManager != null)
                     {
 #pragma warning disable CA1304
-                        return resourceManager.GetString(name);
+                        result = resourceManager.GetString(name);
 #pragma warning restore CA1304
                     }
                 }
-
-                return string.Empty;
+            }
+            catch (InvalidOperationException e)
+            {
+                Log.Error("InvalidOperationException occurs. " + e.Message);
+            }
+            catch (MissingManifestResourceException e)
+            {
+                Log.Error("MissingManifestResourceException occurs. " + e.Message);
+            }
+            catch (MissingSatelliteAssemblyException e)
+            {
+                Log.Error("MissingSateliteAssemblyException occurs. " + e.Message);
             }
 
-            return resourceManager.GetString(name, cultureInfo);
+            return result;
         }
 
-        private global::System.Resources.ResourceManager GetResourceManager(string locale)
+        private global::System.Resources.ResourceManager GetResourceManager(string path, string baseName)
         {
-            global::System.Resources.ResourceManager resourceManager;
-            if (_resourceMap.TryGetValue(locale, out resourceManager))
+            global::System.Resources.ResourceManager resourceManager = null;
+
+            if (string.IsNullOrEmpty(path))
             {
-                return resourceManager;
+                return null;
             }
 
-            string path = _resourcePath + locale + "/" + _resourceDll;
             if (!File.Exists(path))
             {
                 Log.Warn(path + " does not exist");
@@ -129,15 +146,11 @@ namespace Tizen.NUI
                 Assembly assembly = Assembly.Load(File.ReadAllBytes(path));
                 if (assembly != null)
                 {
-                    string baseName = _resourceClassName + "." + locale;
                     resourceManager = new global::System.Resources.ResourceManager(baseName, assembly);
                     if (resourceManager == null)
                     {
                         Log.Error("Failed to create ResourceManager");
-                    }
-                    else
-                    {
-                        _resourceMap.Add(locale, resourceManager);
+                        return null;
                     }
                 }
             }
@@ -154,6 +167,37 @@ namespace Tizen.NUI
                 Log.Error("Exception occurs. " + e.Message);
             }
 #pragma warning restore CA1031
+
+            return resourceManager;
+        }
+
+
+        private global::System.Resources.ResourceManager GetResourceManager(string locale)
+        {
+            global::System.Resources.ResourceManager resourceManager;
+
+            if (_resourceMap.TryGetValue(locale, out resourceManager))
+            {
+                return resourceManager;
+            }
+
+            string baseName = _resourceClassName;
+            string path;
+            if (locale == "default")
+            {
+                path = _resourcePath + _resourceDll;
+            }
+            else
+            {
+                path = _resourcePath + locale + "/" + _resourceDll;
+                baseName += "." + locale;
+            }
+
+            resourceManager = GetResourceManager(path, baseName);
+            if (resourceManager != null)
+            {
+                _resourceMap.Add(locale, resourceManager);
+            }
 
             return resourceManager;
         }
