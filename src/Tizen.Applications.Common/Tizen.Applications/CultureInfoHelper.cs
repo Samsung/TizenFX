@@ -15,32 +15,63 @@
  */
 
 using System;
+using System.IO;
 using System.Runtime.InteropServices;
 
 namespace Tizen.Applications
 {
+
     internal static class CultureInfoHelper
     {
-        private const string _pathCultureInfoIni = "/usr/share/dotnet.tizen/framework/i18n/CultureInfo.ini";
+        private class CultureInfoManager
+        {
+            private static CultureInfoManager _inst;
+            private const string _pathCultureInfoIni = "/usr/share/dotnet.tizen/framework/i18n/CultureInfo.ini";
+            private static IntPtr _dictionary = IntPtr.Zero;
+
+            public static CultureInfoManager GetInst()
+            {
+                return _inst;
+            }
+
+            private CultureInfoManager()
+            {
+                if (File.Exists(_pathCultureInfoIni))
+                {
+                    _dictionary = Interop.LibIniParser.Load(_pathCultureInfoIni);
+                }
+            }
+
+            ~CultureInfoManager()
+            {
+                if (_dictionary != IntPtr.Zero)
+                {
+                    Interop.LibIniParser.FreeDict(_dictionary);
+                }
+            }
+
+            public string GetCultureName(string locale)
+            {
+                if (_dictionary == IntPtr.Zero)
+                {
+                    return string.Empty;
+                }
+
+                string cultureName = string.Empty;
+                string key = "CultureInfo:" + locale.ToLowerInvariant();
+                IntPtr value = Interop.LibIniParser.GetString(_dictionary, key, IntPtr.Zero);
+                if (value != IntPtr.Zero)
+                {
+                    cultureName = Marshal.PtrToStringAnsi(value);
+                }
+
+                return cultureName;
+            }
+        }
 
         public static string GetCultureName(string locale)
         {
-            IntPtr dictionary = Interop.LibIniParser.Load(_pathCultureInfoIni);
-            if (dictionary == IntPtr.Zero)
-            {
-                return string.Empty;
-            }
-
-            string cultureName = string.Empty;
-            string key = "CultureInfo:" + locale.ToLowerInvariant();
-            IntPtr value = Interop.LibIniParser.GetString(dictionary, key, IntPtr.Zero);
-            if (value != IntPtr.Zero)
-            {
-                cultureName = Marshal.PtrToStringAnsi(value);
-            }
-
-            Interop.LibIniParser.FreeDict(dictionary);
-            return cultureName;
+            return CultureInfoManager.GetInst().GetCultureName(locale);
         }
     }
 }
