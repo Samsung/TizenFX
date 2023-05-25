@@ -72,15 +72,16 @@ namespace Tizen.NUI
         /// <param name="extraFamilyList">A list of additional font families to be pre-cached.</param>
         /// <param name="localeFamily">A locale font family to be pre-cached.</param>
         /// <param name="useThread">True if the font client should create thread and perform pre-caching, false otherwise.</param>
+        /// <param name="syncCreation">True if thread creation guarantees syncronization with the main thread, false async creation. Optional, the default value is true.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void PreCache(List<string> fallbackFamilyList, List<string> extraFamilyList, string localeFamily, bool useThread)
+        public static void PreCache(List<string> fallbackFamilyList, List<string> extraFamilyList, string localeFamily, bool useThread, bool syncCreation = true)
         {
             int fallbackFamilySize = fallbackFamilyList?.Count ?? 0;
             int extraFamilySize = extraFamilyList?.Count ?? 0;
             string[] fallbackFamilyArray = fallbackFamilySize > 0 ? fallbackFamilyList.ToArray() : null;
             string[] extraFamilyArray = extraFamilySize > 0 ? extraFamilyList.ToArray() : null;
 
-            Interop.FontClient.PreCache(fallbackFamilyArray, fallbackFamilySize, extraFamilyArray, extraFamilySize, localeFamily, useThread);
+            Interop.FontClient.PreCache(fallbackFamilyArray, fallbackFamilySize, extraFamilyArray, extraFamilySize, localeFamily, useThread, syncCreation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -95,16 +96,17 @@ namespace Tizen.NUI
         /// </summary>
         /// <param name="fontPathList">A list of font paths to be pre-loaded.</param>
         /// <param name="memoryFontPathList">A list of memory font paths to be pre-loaded.</param>
-        /// <param name="useThread">if the font client should create thread and perform font pre-loading, false otherwise.</param>
+        /// <param name="useThread">True if the font client should create thread and perform font pre-loading, false otherwise.</param>
+        /// <param name="syncCreation">True if thread creation guarantees syncronization with the main thread, false async creation. Optional, the default value is true.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public static void FontPreLoad(List<string> fontPathList, List<string> memoryFontPathList, bool useThread)
+        public static void FontPreLoad(List<string> fontPathList, List<string> memoryFontPathList, bool useThread, bool syncCreation = true)
         {
             int fontPathSize = fontPathList?.Count ?? 0;
             int memoryFontPathSize = memoryFontPathList?.Count ?? 0;
             string[] fontPathArray = fontPathSize > 0 ? fontPathList.ToArray() : null;
             string[] memoryFontPathArray = memoryFontPathSize > 0 ? memoryFontPathList.ToArray() : null;
 
-            Interop.FontClient.FontPreLoad(fontPathArray, fontPathSize, memoryFontPathArray, memoryFontPathSize, useThread);
+            Interop.FontClient.FontPreLoad(fontPathArray, fontPathSize, memoryFontPathArray, memoryFontPathSize, useThread, syncCreation);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
