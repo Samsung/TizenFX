@@ -75,6 +75,16 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The constructor of Rotation from Quaternion Vector4.
+        /// </summary>
+        /// <param name="vector">Quaternion vector for Rotation.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Rotation(Vector4 vector) : this(Interop.Rotation.NewRotation4(Vector4.getCPtr(vector)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
         /// (0.0f,0.0f,0.0f,1.0f).
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
