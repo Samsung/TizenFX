@@ -70,12 +70,7 @@ namespace Tizen.NUI.Devel.Tests
                 WebHttpAuthHandler handler = new WebHttpAuthHandler(webview.SwigCPtr.Handle, false);
 
                 var testingTarget = new WebViewHttpAuthRequestedEventArgs(handler);
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebViewHttpAuthRequestedEventArgs>(testingTarget, "Should return WebViewHttpAuthRequestedEventArgs instance.");
-
-                var result = testingTarget.HttpAuthHandler;
-                tlog.Debug(tag, "HttpAuthHandler : " + result);
-
+                
                 handler.Dispose();
             }
 

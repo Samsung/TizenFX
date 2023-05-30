@@ -14,12 +14,12 @@ namespace Tizen.NUI.Devel.Tests
     public class PublicWebViewTest
     {
         private const string tag = "NUITEST";
-        private string url = Applications.Application.Current.DirectoryInfo.Resource + "webview/index.html"; // its size is 150x150.
-        private string secondUrl = Applications.Application.Current.DirectoryInfo.Resource + "webview/second.html";
+        private string url = $"file://{Applications.Application.Current.DirectoryInfo.Resource}webview/index.html";
+        private string secondUrl = $"file://{Applications.Application.Current.DirectoryInfo.Resource}webview/second.html";
         private string urlForNavigationPolicyTest = "http://www.google.com";
         private string urlForCertificateConfirmTest = "https://wrong.host.badssl.com/";
         private string urlForResponsePolicyTest = "http://www.samsung.com";
-        private string urlForConsoleMessageTest = Applications.Application.Current.DirectoryInfo.Resource + "webview/console_info.html";
+        private string urlForConsoleMessageTest = $"file://{Applications.Application.Current.DirectoryInfo.Resource}webview/console_info.html";
 
         private static string[] runtimeArgs = { "--enable-dali-window", "--enable-spatial-navigation" };
         private const string USER_AGENT = "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36";
@@ -32,7 +32,7 @@ namespace Tizen.NUI.Devel.Tests
         private void PlainReceivedCallback(string arg2) { }
         private void ScreenshotAcquiredCallbackCase(ImageView image) { }
 
-        internal class MyWebView : Tizen.NUI.BaseComponents.WebView
+        internal class MyWebView : BaseComponents.WebView
         {
             public MyWebView() : base()
             { }
@@ -48,7 +48,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             webView = new BaseComponents.WebView(runtimeArgs)
             {
-                Size = new Size(150, 100), //For scrolling to edge...
+                Size = new Size(150, 100),
             };
             tlog.Info(tag, "Init() is called!");
         }
@@ -194,42 +194,6 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WebViewPageLoadFinished END (OK)");
         }
 
-        //TODO... it seems that web engine does not implement it.
-        //[Test]
-        //[Category("P1")]
-        //[Description("WebView ScrollEdgeReached.")]
-        //[Property("SPEC", "Tizen.NUI.WebView.ScrollEdgeReached E")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public async Task WebViewScrollEdgeReached()
-        //{
-        //    tlog.Debug(tag, $"WebViewScrollEdgeReached START");
-
-        //    TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
-        //    EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
-        //    {
-        //        webView.ScrollBy(0, 60);
-        //    };
-        //    webView.PageLoadFinished += onLoadFinished;
-
-        //    EventHandler<WebViewScrollEdgeReachedEventArgs> onEdgeReached = (s, e) =>
-        //    {
-        //        tcs.TrySetResult(true);
-        //    };
-        //    webView.ScrollEdgeReached += onEdgeReached;
-
-        //    webView.LoadUrl(url);
-        //    var result = await tcs.Task;
-        //    Assert.IsTrue(result, "ScrollEdgeReached event should be invoked");
-
-        //    webView.PageLoadFinished -= onLoadFinished;
-        //    webView.ScrollEdgeReached -= onEdgeReached;
-
-        //    tlog.Debug(tag, $"WebViewScrollEdgeReached END (OK)");
-        //}
-
         [Test]
         [Category("P1")]
         [Description("WebView UrlChanged.")]
@@ -258,24 +222,6 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WebViewUrlChanged END (OK)");
         }
-
-        //[Test]
-        //[Category("P1")]
-        //[Description("WebView FormRepostPolicyDecided.")]
-        //[Property("SPEC", "Tizen.NUI.WebView.FormRepostPolicyDecided A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WebViewFormRepostPolicyDecided()
-        //{
-        //    tlog.Debug(tag, $"WebViewFormRepostPolicyDecided START");
-
-        //    webView.FormRepostPolicyDecided += OnFormRepostPolicyDecide;
-        //    webView.FormRepostPolicyDecided -= OnFormRepostPolicyDecide;
-
-        //    tlog.Debug(tag, $"WebViewFormRepostPolicyDecided END (OK)");
-        //}
 
         [Test]
         [Category("P1")]
@@ -448,7 +394,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public async Task WebViewConsoleMessageReceived()
         {
-            tlog.Debug(tag, $"WebViewHttpAuthRequested START");
+            tlog.Debug(tag, $"WebViewConsoleMessageReceived START");
 
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
             EventHandler<WebViewConsoleMessageReceivedEventArgs> onConsoleMessageReceive = (s, e) => { tcs.TrySetResult(true); };
@@ -462,44 +408,6 @@ namespace Tizen.NUI.Devel.Tests
 
             tlog.Debug(tag, $"WebViewConsoleMessageReceived END (OK)");
         }
-
-        //TODO... move it to manual test...
-        //[Test]
-        //[Category("P1")]
-        //[Description("WebView ContextMenuShown.")]
-        //[Property("SPEC", "Tizen.NUI.WebView.ContextMenuShown A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WebViewContextMenuShown()
-        //{
-        //    tlog.Debug(tag, $"WebViewContextMenuShown START");
-
-        //    webView.ContextMenuShown += OnContextMenuShown;
-        //    webView.ContextMenuShown -= OnContextMenuShown;
-
-        //    tlog.Debug(tag, $"WebViewContextMenuShown END (OK)");
-        //}
-
-        //TODO... move it to manual test...
-        //[Test]
-        //[Category("P1")]
-        //[Description("WebView ContextMenuHidden.")]
-        //[Property("SPEC", "Tizen.NUI.WebView.ContextMenuHidden A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public void WebViewContextMenuHidden()
-        //{
-        //    tlog.Debug(tag, $"WebViewContextMenuHidden START");
-
-        //    webView.ContextMenuHidden += OnContextMenuHidden;
-        //    webView.ContextMenuHidden -= OnContextMenuHidden;
-
-        //    tlog.Debug(tag, $"WebViewContextMenuHidden END (OK)");
-        //}
 
         [Test]
         [Category("P1")]
