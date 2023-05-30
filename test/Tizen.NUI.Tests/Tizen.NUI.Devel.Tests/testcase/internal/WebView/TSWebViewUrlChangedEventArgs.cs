@@ -3,6 +3,7 @@ using NUnit.Framework;
 using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
+using System.Threading.Tasks;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -13,37 +14,25 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalWebViewUrlChangedEventArgsTest
     {
         private const string tag = "NUITEST";
-        private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
+        private string url = $"file://{Applications.Application.Current.DirectoryInfo.Resource}webview/index.html";
+        private BaseComponents.WebView webView = null;
 
         [SetUp]
         public void Init()
         {
+            webView = new BaseComponents.WebView()
+            {
+                Size = new Size(150, 100),
+            };
             tlog.Info(tag, "Init() is called!");
         }
 
         [TearDown]
         public void Destroy()
         {
+            tlog.Info(tag, "Destroy() is being called!");
+            webView.Dispose();
             tlog.Info(tag, "Destroy() is called!");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebViewUrlChangedEventArgs constructor.")]
-        [Property("SPEC", "Tizen.NUI.WebViewUrlChangedEventArgs.WebViewUrlChangedEventArgs C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewUrlChangedEventArgsConstructor()
-        {
-            tlog.Debug(tag, $"WebViewUrlChangedEventArgsConstructor START");
-
-            var testingTarget = new WebViewUrlChangedEventArgs(url);
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<WebViewUrlChangedEventArgs>(testingTarget, "Should return WebViewUrlChangedEventArgs instance.");
-
-            tlog.Debug(tag, $"WebViewUrlChangedEventArgsConstructor END (OK)");
         }
 
         [Test]
@@ -54,15 +43,27 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "PRO")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewUrlChangedEventArgsNewPageUrl()
+        public async Task WebViewUrlChangedEventArgsNewPageUrl()
         {
             tlog.Debug(tag, $"WebViewUrlChangedEventArgsNewPageUrl START");
 
-            var testingTarget = new WebViewUrlChangedEventArgs(url);
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<WebViewUrlChangedEventArgs>(testingTarget, "Should return WebViewUrlChangedEventArgs instance.");
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
 
-            tlog.Debug(tag, "NewPageUrl : " + testingTarget.NewPageUrl);
+            EventHandler<WebViewUrlChangedEventArgs> onUrlChange = (s, e) =>
+            {
+                Assert.IsNotNull(e, "null handle");
+                Assert.IsInstanceOf<WebViewUrlChangedEventArgs>(e, "Should return WebViewUrlChangedEventArgs instance.");
+                Assert.IsNotNull(e.NewPageUrl);
+
+                tcs.TrySetResult(true);
+            };
+            webView.UrlChanged += onUrlChange;
+
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "UrlChanged event should be invoked");
+
+            webView.UrlChanged -= onUrlChange;
 
             tlog.Debug(tag, $"WebViewUrlChangedEventArgsNewPageUrl END (OK)");
         }
