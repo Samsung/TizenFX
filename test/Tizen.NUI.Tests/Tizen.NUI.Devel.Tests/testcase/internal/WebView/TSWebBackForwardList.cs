@@ -3,6 +3,7 @@ using NUnit.Framework;
 using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
+using System.Threading.Tasks;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -13,17 +14,25 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalWebBackForwardListTest
     {
         private const string tag = "NUITEST";
-        private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
+        private string url = $"file://{Applications.Application.Current.DirectoryInfo.Resource}webview/index.html";
+        private string secondUrl = $"file://{Applications.Application.Current.DirectoryInfo.Resource}webview/second.html";
+        private BaseComponents.WebView webView = null;
 
         [SetUp]
         public void Init()
         {
+            webView = new BaseComponents.WebView()
+            {
+                Size = new Size(150, 100),
+            };
             tlog.Info(tag, "Init() is called!");
         }
 
         [TearDown]
         public void Destroy()
         {
+            tlog.Info(tag, "Destroy() is being called!");
+            webView.Dispose();
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -35,17 +44,28 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "PRO")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebBackForwardListConstructor()
+        public async Task WebBackForwardListConstructor()
         {
             tlog.Debug(tag, $"WebBackForwardListConstructor START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
 
-            tlog.Debug(tag, "ItemCount : " + testingTarget.BackForwardList.ItemCount);
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked.");
 
-            testingTarget.Dispose();
+            Assert.IsNotNull(webView.BackForwardList, "null handle");
+            Assert.IsInstanceOf<WebBackForwardList>(webView.BackForwardList, "Should return WebBackForwardList instance.");
+            Assert.Greater(webView.BackForwardList.ItemCount, 0, "ItemCount should be greater than 0.");
+
+            webView.PageLoadFinished -= onLoadFinished;
+
             tlog.Debug(tag, $"WebBackForwardListConstructor END (OK)");
         }
 
@@ -57,17 +77,25 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebBackForwardListGetCurrentItem()
+        public async Task WebBackForwardListGetCurrentItem()
         {
             tlog.Debug(tag, $"WebBackForwardListGetCurrentItem START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
 
-            tlog.Debug(tag, "GetCurrentItem : " + testingTarget.BackForwardList.GetCurrentItem());
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked.");
+            Assert.IsNotNull(webView.BackForwardList.GetCurrentItem(), "handle should not be null.");
 
-            testingTarget.Dispose();
+            webView.PageLoadFinished -= onLoadFinished;
+
             tlog.Debug(tag, $"WebBackForwardListGetCurrentItem END (OK)");
         }
 
@@ -79,17 +107,33 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebBackForwardListGetPreviousItem()
+        public async Task WebBackForwardListGetPreviousItem()
         {
             tlog.Debug(tag, $"WebBackForwardListGetPreviousItem START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                if (webView.Url.Contains("index.html"))
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    webView.LoadUrl(secondUrl);
+                }
+                else
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    tcs.TrySetResult(true);
+                }
+            };
+            webView.PageLoadFinished += onLoadFinished;
 
-            tlog.Debug(tag, "GetCurrentItem : " + testingTarget.BackForwardList.GetPreviousItem());
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+            Assert.IsNotNull(webView.BackForwardList.GetPreviousItem(), "handle should not be null.");
 
-            testingTarget.Dispose();
+            webView.PageLoadFinished -= onLoadFinished;
+
             tlog.Debug(tag, $"WebBackForwardListGetPreviousItem END (OK)");
         }
 
@@ -101,17 +145,34 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebBackForwardListGetNextItem()
+        public async Task WebBackForwardListGetNextItem()
         {
             tlog.Debug(tag, $"WebBackForwardListGetNextItem START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                if (webView.Url.Contains("index.html"))
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    webView.LoadUrl(secondUrl);
+                }
+                else
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    webView.GoBack();
+                    tcs.TrySetResult(true);
+                }
+            };
+            webView.PageLoadFinished += onLoadFinished;
 
-            tlog.Debug(tag, "GetNextItem : " + testingTarget.BackForwardList.GetNextItem());
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+            Assert.IsNotNull(webView.BackForwardList.GetNextItem(), "handle should not be null.");
 
-            testingTarget.Dispose();
+            webView.PageLoadFinished -= onLoadFinished;
+
             tlog.Debug(tag, $"WebBackForwardListGetNextItem END (OK)");
         }
 
@@ -123,17 +184,33 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebBackForwardListGetItemAtIndex()
+        public async Task WebBackForwardListGetItemAtIndex()
         {
             tlog.Debug(tag, $"WebBackForwardListGetItemAtIndex START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                if (webView.Url.Contains("index.html"))
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    webView.LoadUrl(secondUrl);
+                }
+                else
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    tcs.TrySetResult(true);
+                }
+            };
+            webView.PageLoadFinished += onLoadFinished;
 
-            tlog.Debug(tag, "GetItemAtIndex : " + testingTarget.BackForwardList.GetItemAtIndex(0));
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+            Assert.IsNotNull(webView.BackForwardList.GetItemAtIndex(0), "handle should not be null.");
 
-            testingTarget.Dispose();
+            webView.PageLoadFinished -= onLoadFinished;
+
             tlog.Debug(tag, $"WebBackForwardListGetItemAtIndex END (OK)");
         }
 
@@ -145,17 +222,33 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebBackForwardListGetBackwardItems()
+        public async Task WebBackForwardListGetBackwardItems()
         {
             tlog.Debug(tag, $"WebBackForwardListGetBackwardItems START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                if (webView.Url.Contains("index.html"))
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    webView.LoadUrl(secondUrl);
+                }
+                else
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    tcs.TrySetResult(true);
+                }
+            };
+            webView.PageLoadFinished += onLoadFinished;
 
-            tlog.Debug(tag, "GetBackwardItems : " + testingTarget.BackForwardList.GetBackwardItems(0));
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+            Assert.IsNotNull(webView.BackForwardList.GetBackwardItems(2), "handle should not be null.");
 
-            testingTarget.Dispose();
+            webView.PageLoadFinished -= onLoadFinished;
+
             tlog.Debug(tag, $"WebBackForwardListGetBackwardItems END (OK)");
         }
 
@@ -167,17 +260,34 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebBackForwardListGetForwardItems()
+        public async Task WebBackForwardListGetForwardItems()
         {
             tlog.Debug(tag, $"WebBackForwardListGetForwardItems START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                if (webView.Url.Contains("index.html"))
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    webView.LoadUrl(secondUrl);
+                }
+                else
+                {
+                    tlog.Info(tag, "onLoadFinished is called!");
+                    webView.GoBack();
+                    tcs.TrySetResult(true);
+                }
+            };
+            webView.PageLoadFinished += onLoadFinished;
 
-            tlog.Debug(tag, "GetForwardItems : " + testingTarget.BackForwardList.GetForwardItems(0));
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+            Assert.IsNotNull(webView.BackForwardList.GetForwardItems(2), "handle should not be null.");
 
-            testingTarget.Dispose();
+            webView.PageLoadFinished -= onLoadFinished;
+
             tlog.Debug(tag, $"WebBackForwardListGetForwardItems END (OK)");
         }
 
@@ -189,20 +299,26 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "PRO")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebBackForwardListItemUrl()
+        public async Task WebBackForwardListItemUrl()
         {
             tlog.Debug(tag, $"WebBackForwardListItemUrl START");
 
-            using (Tizen.NUI.BaseComponents.WebView webView = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                var testingTarget = webView.BackForwardList.GetCurrentItem();
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebBackForwardListItem>(testingTarget, "Should return WebBackForwardListItem instance.");
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
 
-                tlog.Debug(tag, "Url : " + testingTarget.Url);
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked.");
 
-                testingTarget.Dispose();
-            }
+            var testingTarget = webView.BackForwardList.GetCurrentItem();
+            Assert.IsNotNull(testingTarget, "Handle should not be null.");
+            Assert.IsNotNull(testingTarget.Url, "Url should not be null.");
+            Assert.IsTrue(testingTarget.Url.Contains("index.html"), "Url of current item should contain a correct string.");
 
             tlog.Debug(tag, $"WebBackForwardListItemUrl END (OK)");
         }
@@ -215,20 +331,26 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "PRO")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebBackForwardListItemTitle()
+        public async Task WebBackForwardListItemTitle()
         {
             tlog.Debug(tag, $"WebBackForwardListItemTitle START");
 
-            using (Tizen.NUI.BaseComponents.WebView webView = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                var testingTarget = webView.BackForwardList.GetCurrentItem();
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebBackForwardListItem>(testingTarget, "Should return WebBackForwardListItem instance.");
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
 
-                tlog.Debug(tag, "Title : " + testingTarget.Title);
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked.");
 
-                testingTarget.Dispose();
-            }
+            var testingTarget = webView.BackForwardList.GetCurrentItem();
+            Assert.IsNotNull(testingTarget, "handle should not be null.");
+            Assert.IsNotNull(testingTarget.Title, "Title should not be null.");
+            Assert.IsTrue(testingTarget.Title.Contains("Title"), "Title of current item should contain a correct string.");
 
             tlog.Debug(tag, $"WebBackForwardListItemTitle END (OK)");
         }
@@ -241,20 +363,26 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "PRO")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebBackForwardListItemOriginalUrl()
+        public async Task WebBackForwardListItemOriginalUrl()
         {
             tlog.Debug(tag, $"WebBackForwardListItemOriginalUrl START");
 
-            using (Tizen.NUI.BaseComponents.WebView webView = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                var testingTarget = webView.BackForwardList.GetCurrentItem();
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebBackForwardListItem>(testingTarget, "Should return WebBackForwardListItem instance.");
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished;
 
-                tlog.Debug(tag, "OriginalUrl : " + testingTarget.OriginalUrl);
+            webView.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked.");
 
-                testingTarget.Dispose();
-            }
+            var testingTarget = webView.BackForwardList.GetCurrentItem();
+            Assert.IsNotNull(testingTarget, "Handle should not be null.");
+            Assert.IsNotNull(testingTarget.OriginalUrl, "Url should not be null.");
+            Assert.IsTrue(testingTarget.OriginalUrl.Contains("index.html"), "Url of current item should contain a correct string.");
 
             tlog.Debug(tag, $"WebBackForwardListItemOriginalUrl END (OK)");
         }

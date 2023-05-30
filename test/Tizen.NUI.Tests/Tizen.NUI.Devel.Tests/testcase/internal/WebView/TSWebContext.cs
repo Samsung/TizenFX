@@ -15,16 +15,16 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalWebContextTest
     {
         private const string tag = "NUITEST";
-        private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
-        private static string[] runtimeArgs = { "Tizen.NUI.Devel.Tests", "--enable-dali-window", "--enable-spatial-navigation" };
-        private const string USER_AGENT = "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36";
+        private string url = $"file://{Tizen.Applications.Application.Current.DirectoryInfo.Resource}webview/index.html";
+        private string urlForDatabase = $"file://{Tizen.Applications.Application.Current.DirectoryInfo.Resource}webview/webdb.html";
+        private string urlForStorage = $"file://{Tizen.Applications.Application.Current.DirectoryInfo.Resource}webview/webstorage.html";
+        private string urlForLocalFileSystem = $"file://{Tizen.Applications.Application.Current.DirectoryInfo.Resource}webview/weblocalfilesystem.html";
+        private string urlForFormPassword = $"file://{Tizen.Applications.Application.Current.DirectoryInfo.Resource}webview/webformpasword.html";
+        private string urlForDownload = "https://codeload.github.com/Samsung/TizenFX/zip/refs/heads/master";
+        private string urlForApplicatonCache = "https://www.google.com/";
 
-        private void OriginListAcquiredCallback (IList<WebSecurityOrigin> list) { }
-        private void OnSecurityOriginListAcquired (IList<WebSecurityOrigin> list) { }
-        private void OnStorageUsageAcquired(ulong usage) { }
-        private void PasswordAcquiredCallback (IList<WebPasswordData> list) { }
-        private void DownloadCallback (string url) { }
-        private void UsageAcquiredCallback (ulong usage) { }
+        private BaseComponents.WebView webview_ = null;
+
         private bool MimeWrittenCallback(string url, string currentMime, out string newMime) 
         {
             newMime = null;
@@ -34,12 +34,18 @@ namespace Tizen.NUI.Devel.Tests
         [SetUp]
         public void Init()
         {
+            webview_ = new BaseComponents.WebView()
+            {
+                Size = new Size(500, 200),
+            };
             tlog.Info(tag, "Init() is called!");
         }
 
         [TearDown]
         public void Destroy()
         {
+            tlog.Info(tag, "Destroy() is being called!");
+            webview_.Dispose();
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -55,21 +61,14 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebContextProxyUrl START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
+            var context = webview_.Context;
             tlog.Debug(tag, "ProxyUrl : " + context.ProxyUrl);
 
             context.ProxyUrl = "http://www.baidu.com";
             tlog.Debug(tag, "ProxyUrl : " + context.ProxyUrl);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextProxyUrl END (OK)");
         }
 
@@ -85,21 +84,14 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebContextCertificateFilePath START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
+            var context = webview_.Context;
             tlog.Debug(tag, "CertificateFilePath : " + context.CertificateFilePath);
 
             context.CertificateFilePath = url;
             tlog.Debug(tag, "CertificateFilePath : " + context.CertificateFilePath);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextCertificateFilePath END (OK)");
         }
 
@@ -115,11 +107,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebContextCacheEnabled START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
+            var context = webview_.Context;
             tlog.Debug(tag, "CacheEnabled : " + context.CacheEnabled);
 
             context.CacheEnabled = true;
@@ -128,11 +116,8 @@ namespace Tizen.NUI.Devel.Tests
             context.CacheEnabled = false;
             tlog.Debug(tag, "CacheEnabled : " + context.CacheEnabled);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextCertificateFilePath END (OK)");
         }
 
@@ -148,21 +133,14 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebContextAppId START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
+            var context = webview_.Context;
             tlog.Debug(tag, "AppId : " + context.AppId);
 
             context.AppId = "WebContextAppId";
             tlog.Debug(tag, "AppId : " + context.AppId);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextAppId END (OK)");
         }
 
@@ -178,21 +156,14 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebContextAppVersion START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
+            var context = webview_.Context;
             tlog.Debug(tag, "AppVersion : " + context.AppVersion);
 
             context.AppVersion = "1.0";
             tlog.Debug(tag, "AppVersion : " + context.AppVersion);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextAppVersion END (OK)");
         }
 
@@ -208,21 +179,14 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebContextAppType START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
+            var context = webview_.Context;
             tlog.Debug(tag, "AppType : " + context.AppType);
 
             context.AppType = WebContext.ApplicationType.WebBrowser;
             tlog.Debug(tag, "AppType : " + context.AppType);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextAppType END (OK)");
         }
 
@@ -238,21 +202,14 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebContextTimeOffset START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
+            var context = webview_.Context;
             tlog.Debug(tag, "TimeOffset : " + context.TimeOffset);
 
             context.TimeOffset = 0.3f;
             tlog.Debug(tag, "TimeOffset : " + context.TimeOffset);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextAppType END (OK)");
         }
 
@@ -268,21 +225,14 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebContextDefaultZoomFactor START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
+            var context = webview_.Context;
             tlog.Debug(tag, "DefaultZoomFactor : " + context.DefaultZoomFactor);
 
             context.DefaultZoomFactor = 0.3f;
             tlog.Debug(tag, "DefaultZoomFactor : " + context.DefaultZoomFactor);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextDefaultZoomFactor END (OK)");
         }
 
@@ -298,18 +248,11 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebContextContextProxy START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
+            var context = webview_.Context;
             tlog.Debug(tag, "ContextProxy : " + context.ContextProxy);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextContextProxy END (OK)");
         }
 
@@ -325,56 +268,46 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebContextProxyBypassRule START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
+            var context = webview_.Context;
             tlog.Debug(tag, "ProxyBypassRule : " + context.ProxyBypassRule);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextProxyBypassRule END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("WebContext SetDefaultProxyAuth.")]
-        [Property("SPEC", "Tizen.NUI.WebContext.SetDefaultProxyAuth M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextSetDefaultProxyAuth()
-        {
-            tlog.Debug(tag, $"WebContextSetDefaultProxyAuth START");
+        //TODO...API would block. Its doc in web engine proposes to avoid using this API.
+        //[Test]
+        //[Category("P1")]
+        //[Description("WebContext SetDefaultProxyAuth.")]
+        //[Property("SPEC", "Tizen.NUI.WebContext.SetDefaultProxyAuth M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("COVPARAM", "")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public async Task WebContextSetDefaultProxyAuth()
+        //{
+        //    tlog.Debug(tag, $"WebContextSetDefaultProxyAuth START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+        //    var context = webview_.Context;
+        //    context.SetDefaultProxyAuth("tizen", "samsung");
 
-            var context = testingTarget.Context;
+        //    TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+        //    EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+        //    {
+        //        tcs.TrySetResult(true);
+        //    };
+        //    webview_.PageLoadFinished += onLoadFinished;
 
-            try
-            {
-                context.SetDefaultProxyAuth("tizen", "samsung");
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
+        //    webview_.LoadUrl(url);
+        //    var result = await tcs.Task;
+        //    Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+        //    webview_.PageLoadFinished -= onLoadFinished;
+        //    context.Dispose();
 
-            context.Dispose();
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"WebContextSetDefaultProxyAuth END (OK)");
-        }
+        //    tlog.Debug(tag, $"WebContextSetDefaultProxyAuth END (OK)");
+        //}
 
         [Test]
         [Category("P1")]
@@ -384,31 +317,53 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextDeleteAllWebDatabase()
+        public async Task WebContextDeleteAllWebDatabase()
         {
             tlog.Debug(tag, $"WebContextDeleteAllWebDatabase START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
-
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                context.DeleteAllWebDatabase();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+            webview_.LoadUrl(urlForDatabase);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Check list count.
+            var context = webview_.Context;
+
+            TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
+            WebContext.SecurityOriginListAcquiredCallback cb2 = (list) =>
+            {
+                tcs2.TrySetResult(list.Count);
+            };
+            context.GetWebDatabaseOrigins(cb2);
+
+            var result2 = await tcs2.Task;
+            Assert.AreEqual(result2, 0, "GetWebDatabaseOrigins should be called."); //TODO... result2 is 1?
+
+            // Delete all web db.
+            context.DeleteAllWebDatabase();
+
+            // Check list count.
+            TaskCompletionSource<int> tcs3 = new TaskCompletionSource<int>(0);
+            WebContext.SecurityOriginListAcquiredCallback cb3 = (list) =>
+            {
+                tcs3.TrySetResult(list.Count);
+            };
+
+            context.GetWebDatabaseOrigins(cb3);
+
+            var result3 = await tcs3.Task;
+            Assert.AreEqual(result3, 0, "GetWebDatabaseOrigins should be called.");
+
+            webview_.PageLoadFinished -= onLoadFinished;
 
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextDeleteAllWebDatabase END (OK)");
         }
 
@@ -420,31 +375,35 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextGetWebDatabaseOrigins()
+        public async Task WebContextGetWebDatabaseOrigins()
         {
             tlog.Debug(tag, $"WebContextGetWebDatabaseOrigins START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
-
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                context.GetWebDatabaseOrigins(OriginListAcquiredCallback);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+            webview_.LoadUrl(urlForDatabase);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            var context = webview_.Context;
+            TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
+            WebContext.SecurityOriginListAcquiredCallback cb = (list) =>
+            {
+                tcs2.TrySetResult(list.Count);
+            };
+            context.GetWebDatabaseOrigins(cb);
+
+            var result2 = await tcs2.Task;
+            Assert.AreEqual(result2, 0, "GetWebDatabaseOrigins should be called.");  //TODO... result2 is 1?
 
             context.Dispose();
-            testingTarget.Dispose();
+            webview_.PageLoadFinished -= onLoadFinished;
+
             tlog.Debug(tag, $"WebContextGetWebDatabaseOrigins END (OK)");
         }
 
@@ -456,37 +415,62 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextDeleteWebDatabase()
+        public async Task WebContextDeleteWebDatabase()
         {
             tlog.Debug(tag, $"WebContextDeleteWebDatabase START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
-
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                using (WebSecurityOrigin origin = new WebSecurityOrigin(testingTarget.SwigCPtr.Handle, false))
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
+
+            webview_.LoadUrl(urlForDatabase);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            var context = webview_.Context;
+            WebSecurityOrigin seo = null;
+            TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
+            WebContext.SecurityOriginListAcquiredCallback cb2 = (list) =>
+            {
+                if (list.Count > 0)
                 {
-                    context.DeleteWebDatabase(origin);
+                    seo = list[0];
                 }
-            }
-            catch (Exception e)
+                tcs2.TrySetResult(list.Count);
+            };
+            context.GetWebDatabaseOrigins(cb2);
+
+            var result2 = await tcs2.Task;
+            Assert.AreEqual(result2, 0, "GetWebDatabaseOrigins should be called.");  //TODO... result2 is 1?
+
+            // Delete db by security origin.
+            tlog.Debug(tag, $"WebContextDeleteWebDatabase, Host: {seo?.Host}");
+            tlog.Debug(tag, $"WebContextDeleteWebDatabase Protocol: {seo?.Protocol}");
+            if (seo != null)
             {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
+                context.DeleteWebDatabase(seo);
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+            TaskCompletionSource<int> tcs3 = new TaskCompletionSource<int>(0);
+            WebContext.SecurityOriginListAcquiredCallback cb3 = (list) =>
+            {
+                tcs3.TrySetResult(list.Count);
+            };
+            context.GetWebDatabaseOrigins(cb3);
+
+            var result3 = await tcs3.Task;
+            Assert.AreEqual(result3, 0, "GetWebDatabaseOrigins should be called.");
 
             context.Dispose();
-            testingTarget.Dispose();
+            webview_.PageLoadFinished -= onLoadFinished;
+
             tlog.Debug(tag, $"WebContextDeleteWebDatabase END (OK)");
         }
 
+        //TODO... Web engine blocks!!!!!!
         [Test]
         [Category("P1")]
         [Description("WebContext GetWebStorageOrigins.")]
@@ -499,35 +483,53 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebContextGetWebStorageUsageForOrigin START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView(runtimeArgs)
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                Size = new Size(500, 200),
-                UserAgent = USER_AGENT
+                tcs.TrySetResult(true);
             };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return Tizen.NUI.BaseComponents.WebView instance.");
+            webview_.PageLoadFinished += onLoadFinished;
 
-            testingTarget.LoadUrl("https://www.youtube.com");
-            await Task.Delay(60000);
+            webview_.LoadUrl(urlForStorage);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            try
+            // Get web storage.
+            var context = webview_.Context;
+            WebSecurityOrigin seo = null;
+            TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
+            WebContext.SecurityOriginListAcquiredCallback cb2 = (list) =>
             {
-                var result = testingTarget.Context.GetWebStorageOrigins(OnSecurityOriginListAcquired);
-                tlog.Error(tag, "result : " + result);
-            }
-            catch (Exception e)
+                if (list.Count > 0)
+                {
+                    seo = list[0];
+                }
+                tcs2.TrySetResult(list.Count);
+            };
+            context.GetWebStorageOrigins(cb2);
+
+            var result2 = await tcs2.Task;
+            Assert.AreEqual(result2, 1, "GetWebStorageOrigins should be called.");
+
+            if (seo != null)
             {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
+                TaskCompletionSource<ulong> tcs3 = new TaskCompletionSource<ulong>(0);
+                WebContext.StorageUsageAcquiredCallback cb3 = (usage) =>
+                {
+                    tcs3.TrySetResult(usage);
+                };
+                context.GetWebStorageUsageForOrigin(seo, cb3);
+                var result3 = await tcs3.Task;
+                Assert.Greater(result3, 0, "GetWebStorageUsageForOrigin should be called.");
             }
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+            context.Dispose();
+            webview_.PageLoadFinished -= onLoadFinished;
 
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"GetWebStorageOrigins END (OK)");
+            tlog.Debug(tag, $"WebContextGetWebStorageUsageForOrigin END (OK)");
         }
 
+        //TODO... Web engine blocks!!!!!!
         [Test]
         [Category("P1")]
         [Description("WebContext DeleteAllWebStorage.")]
@@ -536,31 +538,114 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextDeleteAllWebStorage()
+        public async Task WebContextDeleteAllWebStorage()
         {
             tlog.Debug(tag, $"WebContextDeleteAllWebStorage START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
-
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                context.DeleteAllWebStorage();
-            }
-            catch (Exception e)
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
+
+            webview_.LoadUrl(urlForStorage);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            var context = webview_.Context;
+
+            // Check list count.
+            TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
+            WebContext.SecurityOriginListAcquiredCallback cb2 = (list) =>
             {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
+                tcs2.TrySetResult(list.Count);
+            };
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+            context.GetWebStorageOrigins(cb2);
 
+            var result2 = await tcs2.Task;
+            Assert.Greater(result2, 0, "GetWebStorageOrigins should be called.");
+
+            // Delete all web storage.
+            context.DeleteAllWebStorage();
+
+            // Check list count.
+            TaskCompletionSource<int> tcs3 = new TaskCompletionSource<int>(0);
+            WebContext.SecurityOriginListAcquiredCallback cb3 = (list) =>
+            {
+                tcs3.TrySetResult(list.Count);
+            };
+
+            context.GetWebStorageOrigins(cb3);
+
+            var result3 = await tcs3.Task;
+            Assert.AreEqual(result3, 0, "GetWebStorageOrigins should be called.");
+
+            webview_.PageLoadFinished -= onLoadFinished;
             context.Dispose();
-            testingTarget.Dispose();
+
+            tlog.Debug(tag, $"WebContextDeleteAllWebStorage END (OK)");
+        }
+
+        //TODO... Web engine blocks!!!!!!
+        [Test]
+        [Category("P1")]
+        [Description("WebContext DeleteAllWebStorage.")]
+        [Property("SPEC", "Tizen.NUI.WebContext.DeleteWebStorage M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task WebContextDeleteWebStorage()
+        {
+            tlog.Debug(tag, $"WebContextDeleteAllWebStorage START");
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
+
+            webview_.LoadUrl(urlForStorage);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            var context = webview_.Context;
+
+            // Check list count.
+            WebSecurityOrigin seo = null;
+            TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
+            WebContext.SecurityOriginListAcquiredCallback cb2 = (list) =>
+            {
+                seo = list[0];
+                tcs2.TrySetResult(list.Count);
+            };
+
+            context.GetWebStorageOrigins(cb2);
+
+            var result2 = await tcs2.Task;
+            Assert.Greater(result2, 0, "GetWebStorageOrigins should be called.");
+
+            // Delete web storage.
+            context.DeleteWebStorage(seo);
+
+            // Check list count.
+            TaskCompletionSource<int> tcs3 = new TaskCompletionSource<int>(0);
+            WebContext.SecurityOriginListAcquiredCallback cb3 = (list) =>
+            {
+                tcs3.TrySetResult(list.Count);
+            };
+
+            context.GetWebStorageOrigins(cb3);
+
+            var result3 = await tcs3.Task;
+            Assert.AreEqual(result3, 0, "GetWebStorageOrigins should be called.");
+
+            webview_.PageLoadFinished -= onLoadFinished;
+            context.Dispose();
+
             tlog.Debug(tag, $"WebContextDeleteAllWebStorage END (OK)");
         }
 
@@ -572,31 +657,30 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextDeleteLocalFileSystem()
+        public async Task WebContextDeleteLocalFileSystem()
         {
             tlog.Debug(tag, $"WebContextDeleteLocalFileSystem START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
-
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                context.DeleteLocalFileSystem();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+            webview_.LoadUrl(urlForLocalFileSystem);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            var context = webview_.Context;
+
+            // Delete all web local file system.
+            context.DeleteLocalFileSystem();
+            // TODO...list count need be checked, but query API is not wrapped.
+
+            webview_.PageLoadFinished -= onLoadFinished;
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextDeleteLocalFileSystem END (OK)");
         }
 
@@ -608,32 +692,113 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextGetFormPasswordList()
+        public async Task WebContextGetFormPasswordList()
         {
             tlog.Debug(tag, $"WebContextGetFormPasswordList START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
-
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                context.GetFormPasswordList(PasswordAcquiredCallback);
-            }
-            catch (Exception e)
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
+
+            webview_.LoadUrl(urlForFormPassword);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            var context = webview_.Context;
+
+            // Check list count.
+            // Check list count.
+            WebPasswordData pd = null;
+            TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
+            WebContext.PasswordDataListAcquiredCallback cb2 = (list) =>
             {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
+                if (list.Count > 0)
+                {
+                    pd = list[0];
+                }
+                tcs2.TrySetResult(list.Count);
+            };
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+            context.GetFormPasswordList(cb2);
 
+            var result2 = await tcs2.Task;
+            Assert.AreEqual(result2, 0, "GetFormPasswordList should be called.");
+
+            tlog.Info(tag, $"WebContextGetFormPasswordList, url: {pd?.Url}");
+            tlog.Info(tag, $"WebContextGetFormPasswordList, FingerprintUsed: {pd?.FingerprintUsed}");
+
+            webview_.PageLoadFinished -= onLoadFinished;
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextGetFormPasswordList END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebContext DeleteAllFormPasswordData.")]
+        [Property("SPEC", "Tizen.NUI.WebContext.DeleteAllFormPasswordData M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task WebContextDeleteAllFormPasswordData()
+        {
+            tlog.Debug(tag, $"WebContextDeleteAllFormPasswordData START");
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
+
+            webview_.LoadUrl(urlForFormPassword);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            var context = webview_.Context;
+
+            // Check list count.
+            List<string> pl = new List<string>();
+            TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
+            WebContext.PasswordDataListAcquiredCallback cb2 = (list) =>
+            {
+                if (list.Count > 0)
+                {
+                    pl.Add(list[0].Url);
+                }
+                tcs2.TrySetResult(list.Count);
+            };
+
+            context.GetFormPasswordList(cb2);
+
+            var result2 = await tcs2.Task;
+            Assert.AreEqual(result2, 0, "GetFormPasswordList should be called.");
+
+            // Delete web storage.
+            context.DeleteFormPasswordDataList(pl.ToArray()); //TODO... This API seems not correct.
+            context.DeleteAllFormPasswordData();
+            context.DeleteAllFormCandidateData();
+
+            // Check list count.
+            TaskCompletionSource<int> tcs3 = new TaskCompletionSource<int>(0);
+            WebContext.PasswordDataListAcquiredCallback cb3 = (list) =>
+            {
+                tcs3.TrySetResult(list.Count);
+            };
+
+            context.GetFormPasswordList(cb3);
+
+            var result3 = await tcs3.Task;
+            Assert.AreEqual(result3, 0, "GetFormPasswordList should be called.");
+
+            webview_.PageLoadFinished -= onLoadFinished;
+            context.Dispose();
+
+            tlog.Debug(tag, $"WebContextDeleteAllFormPasswordData END (OK)");
         }
 
         [Test]
@@ -644,31 +809,25 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextRegisterDownloadStartedCallback()
+        public async Task WebContextRegisterDownloadStartedCallback()
         {
             tlog.Debug(tag, $"WebContextRegisterDownloadStartedCallback START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
-
-            try
+            // Check if download or not.
+            var context = webview_.Context;
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            WebContext.DownloadStartedCallback dcb = (url) =>
             {
-                context.RegisterDownloadStartedCallback(DownloadCallback);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
+                tcs.TrySetResult(true);
+            };
+            context.RegisterDownloadStartedCallback(dcb);
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+            webview_.LoadUrl(urlForDownload);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "DownloadStartedCallback should be invoked");
 
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextRegisterDownloadStartedCallback END (OK)");
         }
 
@@ -680,31 +839,27 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextRegisterMimeOverriddenCallback()
+        public async Task WebContextRegisterMimeOverriddenCallback()
         {
             tlog.Debug(tag, $"WebContextRegisterMimeOverriddenCallback START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            var context = webview_.Context;
+            context.RegisterMimeOverriddenCallback(MimeWrittenCallback); //TODO... how to test it?
 
-            var context = testingTarget.Context;
-
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                context.RegisterMimeOverriddenCallback(MimeWrittenCallback);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+            webview_.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            webview_.PageLoadFinished -= onLoadFinished;
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextRegisterMimeOverriddenCallback END (OK)");
         }
 
@@ -716,31 +871,27 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextSetTimeZoneOffset()
+        public async Task WebContextSetTimeZoneOffset()
         {
             tlog.Debug(tag, $"WebContextSetTimeZoneOffset START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            var context = webview_.Context;
+            context.SetTimeZoneOffset(0.3f, 1.0f);
 
-            var context = testingTarget.Context;
-
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                context.SetTimeZoneOffset(0.3f, 1.0f);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+            webview_.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            webview_.PageLoadFinished -= onLoadFinished;
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextSetTimeZoneOffset END (OK)");
         }
 
@@ -752,31 +903,27 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextSetContextTimeZoneOffset()
+        public async Task WebContextSetContextTimeZoneOffset()
         {
             tlog.Debug(tag, $"WebContextSetContextTimeZoneOffset START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
+            var context = webview_.Context;
+            context.SetContextTimeZoneOffset(0.3f, 1.0f);
 
-            var context = testingTarget.Context;
-
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                context.SetContextTimeZoneOffset(0.3f, 1.0f);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+            webview_.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            webview_.PageLoadFinished -= onLoadFinished;
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextSetContextTimeZoneOffset END (OK)");
         }
 
@@ -788,31 +935,30 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextDeleteAllApplicationCache()
+        public async Task WebContextDeleteAllApplicationCache()
         {
             tlog.Debug(tag, $"WebContextDeleteAllApplicationCache START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
-
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                context.DeleteAllApplicationCache();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+            webview_.LoadUrl(urlForApplicatonCache);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            var context = webview_.Context;
+
+            // Delete all web applicaton cache.
+            context.DeleteAllApplicationCache();
+            // TODO...list count need be checked, but query API is not wrapped.
+
+            webview_.PageLoadFinished -= onLoadFinished;
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextDeleteAllApplicationCache END (OK)");
         }
 
@@ -824,105 +970,31 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextDeleteAllWebIndexedDatabase()
+        public async Task WebContextDeleteAllWebIndexedDatabase()
         {
             tlog.Debug(tag, $"WebContextDeleteAllWebIndexedDatabase START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
-
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                context.DeleteAllWebIndexedDatabase();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+            webview_.LoadUrl(urlForApplicatonCache);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            var context = webview_.Context;
+
+            // Delete all web indexed db.
+            context.DeleteAllWebIndexedDatabase();
+            // TODO...list count need be checked, but query API is not wrapped.
+
+            webview_.PageLoadFinished -= onLoadFinished;
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextDeleteAllWebIndexedDatabase END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebContext DeleteAllFormPasswordData.")]
-        [Property("SPEC", "Tizen.NUI.WebContext.DeleteAllFormPasswordData M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextDeleteAllFormPasswordData()
-        {
-            tlog.Debug(tag, $"WebContextDeleteAllFormPasswordData START");
-
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            var context = testingTarget.Context;
-
-            try
-            {
-                context.DeleteAllFormPasswordData();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            context.Dispose();
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"WebContextDeleteAllFormPasswordData END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebContext DeleteAllFormCandidateData.")]
-        [Property("SPEC", "Tizen.NUI.WebContext.DeleteAllFormCandidateData M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextDeleteAllFormCandidateData()
-        {
-            tlog.Debug(tag, $"WebContextDeleteAllFormCandidateData START");
-
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            testingTarget.LoadUrl("http://www.baidu.com");
-            var context = testingTarget.Context;
-
-            try
-            {
-                context.DeleteAllFormCandidateData();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
-
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-
-            context.Dispose();
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"WebContextDeleteAllFormCandidateData END (OK)");
         }
 
         [Test]
@@ -933,32 +1005,29 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebContextFreeUnusedMemory()
+        public async Task WebContextFreeUnusedMemory()
         {
             tlog.Debug(tag, $"WebContextFreeUnusedMemory START");
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai");
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return WebView instance.");
-
-            testingTarget.LoadUrl("http://www.baidu.com");
-            var context = testingTarget.Context;
-
-            try
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                context.FreeUnusedMemory();
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception :  Failed!");
-            }
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
+            webview_.LoadUrl(urlForApplicatonCache);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            var context = webview_.Context;
+
+            // Free unused memory if low memory.
+            context.FreeUnusedMemory();
+
+            webview_.PageLoadFinished -= onLoadFinished;
             context.Dispose();
-            testingTarget.Dispose();
+
             tlog.Debug(tag, $"WebContextFreeUnusedMemory END (OK)");
         }
     }

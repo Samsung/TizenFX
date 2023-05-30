@@ -3,6 +3,7 @@ using NUnit.Framework;
 using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
+using System.Threading.Tasks;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -13,73 +14,58 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalWebViewResponsePolicyDecidedEventArgsTest
     {
         private const string tag = "NUITEST";
-        private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
+        private string urlForResponsePolicyTest = "http://www.samsung.com";
+        private BaseComponents.WebView webView = null;
 
         [SetUp]
         public void Init()
         {
+            webView = new BaseComponents.WebView()
+            {
+                Size = new Size(150, 100),
+            };
             tlog.Info(tag, "Init() is called!");
         }
 
         [TearDown]
         public void Destroy()
         {
+            tlog.Info(tag, "Destroy() is being called!");
+            webView.Dispose();
             tlog.Info(tag, "Destroy() is called!");
         }
 
         [Test]
         [Category("P1")]
-        [Description("WebViewPolicyDecidedEventArgs constructor.")]
-        [Property("SPEC", "Tizen.NUI.WebViewPolicyDecidedEventArgs.WebViewPolicyDecidedEventArgs C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewPolicyDecidedEventArgsConstructor()
-        {
-            tlog.Debug(tag, $"WebViewPolicyDecidedEventArgsConstructor START");
-
-            using (Tizen.NUI.BaseComponents.WebView webview = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
-            {
-                WebPolicyDecisionMaker maker = new WebPolicyDecisionMaker(webview.SwigCPtr.Handle, false);
-
-                var testingTarget = new WebViewPolicyDecidedEventArgs(maker);
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebViewPolicyDecidedEventArgs>(testingTarget, "Should return WebViewPolicyDecidedEventArgs instance.");
-
-                maker.Dispose();
-            }
-
-            tlog.Debug(tag, $"WebViewPolicyDecidedEventArgsConstructor END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebViewPolicyDecidedEventArgs ResponsePolicyDecisionMaker.")]
-        [Property("SPEC", "Tizen.NUI.WebViewPolicyDecidedEventArgs.ResponsePolicyDecisionMaker A")]
+        [Description("WebPolicyDecisionMaker Url.")]
+        [Property("SPEC", "Tizen.NUI.WebPolicyDecisionMaker.Ignore M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewPolicyDecidedEventArgsResponsePolicyDecisionMaker()
+        public async Task WebPolicyDecisionMakerIgnore()
         {
-            tlog.Debug(tag, $"WebViewPolicyDecidedEventArgsResponsePolicyDecisionMaker  START");
+            tlog.Debug(tag, $"ResponsePolicyDecided START");
 
-            using (Tizen.NUI.BaseComponents.WebView webview = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPolicyDecidedEventArgs> onResponsePolicyDecide = (s, e) =>
             {
-                WebPolicyDecisionMaker maker = new WebPolicyDecisionMaker(webview.SwigCPtr.Handle, false);
+                Assert.IsNotNull(e.ResponsePolicyDecisionMaker, "null handle");
+                Assert.IsInstanceOf<WebPolicyDecisionMaker>(e.ResponsePolicyDecisionMaker, "Should return WebViewPolicyDecidedEventArgs instance.");
 
-                var testingTarget = new WebViewPolicyDecidedEventArgs(maker);
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebViewPolicyDecidedEventArgs>(testingTarget, "Should return WebViewPolicyDecidedEventArgs instance.");
+                e.ResponsePolicyDecisionMaker.Ignore();
 
-                var result = testingTarget.ResponsePolicyDecisionMaker;
-                tlog.Debug(tag, "ResponsePolicyDecisionMaker : " + result);
+                tcs.TrySetResult(true);
+            };
+            webView.ResponsePolicyDecided += onResponsePolicyDecide;
 
-                maker.Dispose();
-            }
+            webView.LoadUrl(urlForResponsePolicyTest);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "ResponsePolicyDecided event should be invoked");
 
-            tlog.Debug(tag, $"WebViewPolicyDecidedEventArgsResponsePolicyDecisionMaker  END (OK)");
+            webView.ResponsePolicyDecided -= onResponsePolicyDecide;
+
+            tlog.Debug(tag, $"WebPolicyDecisionMakerUrl END (OK)");
         }
     }
 }

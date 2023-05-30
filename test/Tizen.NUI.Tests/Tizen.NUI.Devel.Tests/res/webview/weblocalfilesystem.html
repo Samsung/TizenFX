@@ -1,0 +1,45 @@
+﻿<html>
+<head>
+    <title>Sample for WebContext.LocalFileSystem apis</title>
+</head>
+<script>
+  window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
+
+  var fs = null;
+
+  function errorHandler(e) {
+    console.log('[JS]: ' + e.name + " : " + e.message);
+    document.title = 'FAILURE';
+  }
+
+  function createFile(fs) {
+    console.log('createFile()');
+    fs.root.getFile('testFile.txt', {create: true, exclusive: false}, function(fileEntry) {
+      fileEntry.createWriter(function(fileWriter) {
+
+        fileWriter.onwriteend = function(e) {
+          console.log('Write completed.');
+          document.title = 'SUCCESS';
+        };
+
+        fileWriter.onerror = function(e) {
+          console.log('Write failed: ' + e.toString());
+          document.title = 'FAILURE';
+        };
+
+        var blob = new Blob(['EFL is great!'], { type: 'text/plain' });
+        fileWriter.write(blob);
+      }, errorHandler);
+
+    }, errorHandler);
+  }
+
+  function initFS() {
+    console.log('initFS()');
+    window.requestFileSystem(window.TEMPORARY, 1024*1024, createFile, errorHandler);
+  }
+</script>
+<body onload="initFS();">
+    <h2>Sample for WebContext.LocalFileSystem apis</h2>
+</body>
+</html>
