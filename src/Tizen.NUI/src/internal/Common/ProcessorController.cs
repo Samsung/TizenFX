@@ -41,6 +41,11 @@ namespace Tizen.NUI
 
         internal ProcessorController(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
         {
+            onceEventIndex = 0u;
+            internalProcessorOnceEvent = new EventHandler[2];
+            internalProcessorOnceEvent[0] = null;
+            internalProcessorOnceEvent[1] = null;
+
             processorCallback = new ProcessorEventHandler(Process);
             Interop.ProcessorController.SetCallback(SwigCPtr, processorCallback);
         }
@@ -50,7 +55,21 @@ namespace Tizen.NUI
 
         private ProcessorEventHandler processorCallback = null;
 
-        public event EventHandler ProcessorOnceEvent;
+        private uint onceEventIndex;
+        // Double buffered once event processing
+        private EventHandler[] internalProcessorOnceEvent;
+
+        public event EventHandler ProcessorOnceEvent
+        {
+            add
+            {
+                internalProcessorOnceEvent[onceEventIndex] += value;
+            }
+            remove
+            {
+                internalProcessorOnceEvent[onceEventIndex] -= value;
+            }
+        }
         public event EventHandler ProcessorEvent;
         public event EventHandler LayoutProcessorEvent;
 
@@ -68,15 +87,20 @@ namespace Tizen.NUI
 
         public void Process()
         {
-            ProcessorOnceEvent?.Invoke(this, null);
-            ProcessorOnceEvent = null;
+            // Let us add once event into 1 index during 0 event invoke
+            onceEventIndex = 1;
+            internalProcessorOnceEvent[0]?.Invoke(this, null);
+            internalProcessorOnceEvent[0] = null;
+
             ProcessorEvent?.Invoke(this, null);
             LayoutProcessorEvent?.Invoke(this, null);
 
-            // To avoid ImageView's properties mismatched problem,
-            // We need to invoke events now which attached during LayoutProcessor.
-            ProcessorOnceEvent?.Invoke(this, null);
-            ProcessorOnceEvent = null;
+            // Let us add once event into 0 index during 1 event invoke
+            // Note : To avoid ImageView's properties mismatched problem,
+            // We need to invoke events now which attached during internalProcessorOnceEvent[0] and LayoutProcessor.
+            onceEventIndex = 0;
+            internalProcessorOnceEvent[1]?.Invoke(this, null);
+            internalProcessorOnceEvent[1] = null;
         }
 
         /// <summary>
@@ -86,7 +110,8 @@ namespace Tizen.NUI
         protected override void Dispose(DisposeTypes type)
         {
             Interop.ProcessorController.RemoveCallback(SwigCPtr, processorCallback);
-            ProcessorOnceEvent = null;
+            internalProcessorOnceEvent[0] = null;
+            internalProcessorOnceEvent[1] = null;
             ProcessorEvent = null;
             LayoutProcessorEvent = null;
             GC.SuppressFinalize(this);
