@@ -1498,8 +1498,9 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         private void UpdateImage(object source, EventArgs e)
         {
-            UpdateImage();
+            // Note : To allow event attachment during UpdateImage, let we make flag as false before call UpdateImage().
             imagePropertyUpdateProcessAttachedFlag = false;
+            UpdateImage();
         }
 
         /// <summary>
