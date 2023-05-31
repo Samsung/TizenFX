@@ -9,113 +9,172 @@ namespace Tizen.NUI.Samples
     public class TouchGestureSample : IExample
     {
         private View root;
-        private View frontView;
-        private TextLabel backView;
-        private TapGestureDetector tapGestureDetector;
-        private LongPressGestureDetector longPressGestureDetector;
+        // private View frontView;
+        // private PanGestureDetector panGestureDetector;
+        // private PinchGestureDetector pinchGestureDetector;
+        // private TapGestureDetector tapGestureDetector;
+        // private Vector3 startingScale = new Vector3(1.0f, 1.0f, 1.0f);
 
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
-            root = new View();
+            // View testView = new View()
+            // {
+            //      Size = new Size(300, 300, 0),
+            //     Position = new Position(150, 270),
+            //     BackgroundColor = new Color(1.0f, 0.0f, 0.0f, 0.5f),
+            // };
+            // testView.HoverEvent += (s, e) =>
+            // {
+            //     Tizen.Log.Error("NUITEST", $" HoverEvent \n");
+            //     return true;
+            // };
+            // window.Add(testView);
+            window.Hide();
 
-            window.WheelEvent += (s, e) =>
-            {
-                Tizen.Log.Error("NUI", $"window WheelEvent!!!!{e.Wheel.Type}\n");
-            };
 
-            frontView = new View
+
+            // Window subWindowOne = new Window("subwin1", new Rectangle(20, 20, 800, 800), false);
+            // subWindowOne.BackgroundColor = Color.Red;
+            window.InputPointerGrabEnabledSet(true);
+            // Tizen.Log.Error("NUITEST", $"InputPointerGrabEnabledGet {subWindowOne.InputPointerGrabEnabledGet()}\n");
+            // subWindowOne.PointerConstraintsUnlockPointer();
+            window.MousePointerGrabEvent += (s, e) =>
             {
-                Size = new Size(300, 300),
-                Position = new Position(150, 170),
-                BackgroundColor = new Color(1.0f, 0.0f, 0.0f, 1.0f),
-                Focusable = true,
-                FocusableInTouch = true,
-            };
-            frontView.TouchEvent += OnFrontTouchEvent;
-            frontView.WheelEvent += (s, e) =>
-            {
-                Tizen.Log.Error("NUI", $"frontView WheelEvent!!!!{e.Wheel.Type}\n");
-                if (e.Wheel.Type == Wheel.WheelType.CustomWheel)
+                Tizen.Log.Error("NUITEST", $"state {e.MousePointerGrab.State} \n");
+                if (e.MousePointerGrab.State == MousePointerGrab.StateType.Move)
                 {
-                       // rotary event
+                    Tizen.Log.Error("NUITEST", $"ScreenPosition {e.MousePointerGrab.ScreenPosition.X} {e.MousePointerGrab.ScreenPosition.Y} \n");
+
                 }
-                else if (e.Wheel.Type == Wheel.WheelType.MouseWheel)
+                else if (e.MousePointerGrab.State == MousePointerGrab.StateType.RelativeMove)
                 {
-                      // mouse wheel event
+                    Tizen.Log.Error("NUITEST", $"DiffPosition {e.MousePointerGrab.DiffPosition.X} {e.MousePointerGrab.DiffPosition.Y} \n");
                 }
-                return false;
             };
 
-            var middleView = new View
+            window.TouchEvent += (s, e) =>
             {
-                Size = new Size(300, 300),
-                Position = new Position(110, 120),
-                BackgroundColor = new Color(0.0f, 1.0f, 0.0f, 1.0f),
-                Focusable = true,
-                FocusableInTouch = true,
+                if (e.Touch.GetState(0) == PointStateType.Up)
+                {
+                    window.PointerConstraintsLockPointer();
+                }
             };
 
+            // FocusManager.Instance.EnableDefaultAlgorithm(true);
+            // Window window = NUIApplication.GetDefaultWindow();
+            // root = new View();
 
-            // The default the maximum allowed time is 500ms.
-            // If you want to change this time, do as below.
-            // But keep in mind this is a global option. Affects all gestures.
-            GestureOptions.Instance.SetDoubleTapTimeout(300);
-            tapGestureDetector = new TapGestureDetector();
-            tapGestureDetector.Attach(frontView);
-            tapGestureDetector.SetMaximumTapsRequired(2);
-            tapGestureDetector.Detected += (s, e) =>
-            {
-              Tizen.Log.Error("NUI", $"OnTap {e.TapGesture.NumberOfTaps}\n");
-            };
+            // // frontView = new ImageView("/home/puro/workspace/tizen/submit/dali-toolkit/automated-tests/resources/svg1.svg")
+            // frontView = new View
+            // {
 
-            backView = new TextLabel
-            {
-                Size = new Size(300, 300),
-                Text = "Back View",
-                Position = new Position(50, 70),
-                PointSize = 11,
-                BackgroundColor = new Color(1.0f, 1.0f, 0.0f, 1.0f),
-                Focusable = true,
-                FocusableInTouch = true,
-            };
-            backView.TouchEvent += OnBackTouchEvent;
-            backView.WheelEvent += (s, e) =>
-            {
-                Tizen.Log.Error("NUI", $"backView WheelEvent!!!!{e.Wheel.Type}\n");
-                return true;
-            };
+            //     Size = new Size(300, 300, 0),
+            //     Position = new Position(150, 270),
+            //     BackgroundColor = new Color(1.0f, 0.0f, 0.0f, 0.5f),
+            //     // Scale = new Vector3(1.0f, 1.0f, 0.0f),
+            // };
+            // frontView.HoverEvent += (s, e) =>
+            // {
+            //     Tizen.Log.Error("NUITEST", $"front HoverEvent\n");
+            //     return false;
+            // };
+            // // frontView.TouchEvent += (s, e) =>
+            // // {
+            // //     if (e.Touch.GetState(0) == PointStateType.Down)
+            // //     {
+            // //         Tizen.Log.Error("NUITEST", $"front TouchDown\n");
+            // //         // frontView.PositionUsesPivotPoint = true;
+            // //         // Tizen.Log.Error("NUITEST", $"Position {e.Touch.GetLocalPosition(0).X} {e.Touch.GetLocalPosition(0).Y}\n");
+            // //         // frontView.PivotPoint = new Position(e.Touch.GetLocalPosition(0).X / frontView.Size.Width, e.Touch.GetLocalPosition(0).Y / frontView.Size.Height);
+            // //         // frontView.Position = new Position(e.Touch.GetScreenPosition(0).X, e.Touch.GetScreenPosition(0).Y);
+            // //         // Tizen.Log.Error("NUITEST", $"PivotPoint {frontView.PivotPoint.X} {frontView.PivotPoint.Y}\n");
+            // //     }
+            // //     // if (e.Touch.GetMouseButton(0) == MouseButton.Primary)
+            // //     // {
+            // //     //     frontView.Scale *= 1.03f;
+            // //     // }
+            // //     // else if (e.Touch.GetMouseButton(0) == MouseButton.Secondary)
+            // //     // {
+            // //     //     frontView.Scale *= 0.9f;
+            // //     // }
+            // //     return false;
+            // // };
 
-            // The default the minimum holding time is 500ms.
-            // If you want to change this time, do as below.
-            // But keep in mind this is a global option. Affects all gestures.
-            GestureOptions.Instance.SetLongPressMinimumHoldingTime(300);
+            // // frontView.DispatchParentTouchEvents = false;
 
-            longPressGestureDetector = new LongPressGestureDetector();
-            longPressGestureDetector.Attach(backView);
-            longPressGestureDetector.Detected += (s, e) =>
-            {
-              Tizen.Log.Error("NUI", $"OnLongPress\n");
-            };
 
-            backView.Add(middleView);
-            backView.Add(frontView);
-            root.Add(backView);
-            window.Add(root);
+            // // GestureOptions.Instance.SetPinchGestureMinimumTouchEvents(1000);
+            // // pinchGestureDetector = new PinchGestureDetector();
+            // // pinchGestureDetector.Attach(frontView);
+            // // pinchGestureDetector.Detected += (s, e) =>
+            // // {
+            // //     if (e.PinchGesture.State == Gesture.StateType.Started)
+            // //     {
+            // //         startingScale = (Vector3)e.View.Scale.Clone();
+            // //         e.View.PositionUsesPivotPoint = true;
+            // //         e.View.PivotPoint = new Position((e.PinchGesture.LocalCenterPoint.X ) / (e.View.Size.Width ), (e.PinchGesture.LocalCenterPoint.Y ) / (e.View.Size.Height ));
+            // //         e.View.Position = new Position(e.PinchGesture.ScreenCenterPoint.X, e.PinchGesture.ScreenCenterPoint.Y);
+            // //     }
+            // //     e.View.Scale = startingScale * e.PinchGesture.Scale;
+            // // };
+
+            // // frontView.TouchEvent += (s, e) =>
+            // // {
+            // //     Tizen.Log.Error("NUI", $"frontView \n");
+            // //     return false;
+            // // };
+
+            // // var middleView = new View
+            // // {
+            // //     Size = new Size(300, 300),
+            // //     Position = new Position(250, 270),
+            // //     BackgroundColor = Color.Blue,
+            // //     Focusable = true,
+            // //     FocusableInTouch = true,
+            // // };
+            // // middleView.TouchEvent += (s, e) =>
+            // // {
+            // //     Tizen.Log.Error("NUI", $"middleView \n");
+            // //     return true;
+            // // };
+
+
+            // // FocusManager.Instance.FocusChanged += OnFocusChanged;
+
+            // GestureOptions.Instance.SetDoubleTapTimeout(250);
+            // tapGestureDetector = new TapGestureDetector();
+            // tapGestureDetector.SetMaximumTapsRequired(3);
+            // tapGestureDetector.SetMinimumTapsRequired(2);
+            // tapGestureDetector.Attach(frontView);
+            // tapGestureDetector.Detected += (s, e) =>
+            // {
+            //     Tizen.Log.Error("NUITEST", $"tapGestureDetector {e.TapGesture.NumberOfTaps}\n");
+            // };
+
+
+            // var tapGestureDetector1 = new TapGestureDetector();
+            // tapGestureDetector1.SetMinimumTapsRequired(0);
+            // tapGestureDetector1.SetMaximumTapsRequired(0);
+            // tapGestureDetector1.Attach(frontView);
+            // tapGestureDetector1.Detected += (s, e) =>
+            // {
+            //     Tizen.Log.Error("NUITEST", $"tapGestureDetector1 {e.TapGesture.NumberOfTaps}\n");
+            // };
+
+            // // middleView.Add(frontView);
+            // window.Add(frontView);
         }
 
-        private bool OnFrontTouchEvent(object source, View.TouchEventArgs e)
+        private void TestGrab(object sender, Window.MousePointerGrabEventArgs e)
         {
-            Tizen.Log.Error("NUI", $"OnFrontTouchEvent {e.Touch.GetState(0)}\n");
-            return false;
+
         }
 
-
-        private bool OnBackTouchEvent(object source, View.TouchEventArgs e)
-        {
-            Tizen.Log.Error("NUI", $"OnBackTouchEvent {e.Touch.GetState(0)}\n");
-            return false;
-        }
+        // private void OnFocusChanged(object sender, NUI.FocusManager.FocusChangedEventArgs e)
+        // {
+        //     Tizen.Log.Debug("NUITEST", $"e.Previous.Name={e.Previous} e.Current.Name={e.Current}\n");
+        // }
 
         public void Deactivate()
         {

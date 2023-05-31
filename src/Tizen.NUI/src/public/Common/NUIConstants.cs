@@ -646,7 +646,7 @@ namespace Tizen.NUI
         /// <summary>
         /// A system event has occurred which has interrupted the touch or hover event sequence.
         /// </summary>
-        Interrupted
+        Interrupted,
     }
 
     /// <summary>
@@ -783,7 +783,7 @@ namespace Tizen.NUI
         /// This is a desktop type. No other windows can be placed below this type of window.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        Desktop        
+        Desktop
     }
 
     /// <summary>

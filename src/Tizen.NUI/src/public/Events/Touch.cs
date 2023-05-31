@@ -150,6 +150,7 @@ namespace Tizen.NUI
             return ret;
         }
 
+
         /// <summary>
         /// Retrieves the radius of the press point.<br />
         /// This is the average of both the horizontal and vertical radii of the press point.<br />

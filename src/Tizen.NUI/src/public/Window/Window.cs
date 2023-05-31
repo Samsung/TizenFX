@@ -1655,6 +1655,38 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool InputPointerGrabEnabledSet(bool enabled)
+        {
+            bool ret = Interop.Window.InputPointerGrabEnabledSet(SwigCPtr, enabled);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool InputPointerGrabEnabledGet()
+        {
+            bool ret = Interop.Window.InputPointerGrabEnabledGet(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PointerConstraintsLockPointer()
+        {
+            bool ret = Interop.Window.PointerConstraintsLockPointer(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PointerConstraintsUnlockPointer()
+        {
+            bool ret = Interop.Window.PointerConstraintsUnlockPointer(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
         /// <summary>
         /// Maximizes window's size.
         /// If this function is called with true, window will be resized with screen size.
