@@ -1007,7 +1007,7 @@ namespace Tizen.NUI
         /// <since_tizen> 3 </since_tizen>
         public void KeepRendering(float durationSeconds)
         {
-            Interop.Stage.KeepRendering(stageCPtr, durationSeconds);
+            Interop.Window.KeepRendering(SwigCPtr, durationSeconds);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
