@@ -54,6 +54,16 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         Selection = 21,
+        /// <summary>
+        /// Accessibility interface which can represent a table
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        Table = 23,
+        /// <summary>
+        /// Accessibility interface which can represent a table cell
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        TableCell = 24,
     }
 
     /// <summary>
