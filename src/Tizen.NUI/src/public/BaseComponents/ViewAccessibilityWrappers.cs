@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Accessibility;
 
@@ -32,6 +33,8 @@ namespace Tizen.NUI.BaseComponents
             InitializeAccessibilityDelegateComponentInterface();
             InitializeAccessibilityDelegateEditableTextInterface();
             InitializeAccessibilityDelegateSelectionInterface();
+            InitializeAccessibilityDelegateTableInterface();
+            InitializeAccessibilityDelegateTableCellInterface();
             InitializeAccessibilityDelegateTextInterface();
             InitializeAccessibilityDelegateValueInterface();
             InitializeAccessibilityDelegateTizenExtensions();
@@ -46,7 +49,14 @@ namespace Tizen.NUI.BaseComponents
 
         private static View GetViewFromRefObject(IntPtr refObjectPtr)
         {
-            return Registry.GetManagedBaseHandleFromRefObject(refObjectPtr) as View;
+            View view = Registry.GetManagedBaseHandleFromRefObject(refObjectPtr) as View;
+
+            if (view is null)
+            {
+                NUILog.Error($"RefObject 0x{refObjectPtr:x} is not a View");
+            }
+
+            return view;
         }
 
         private static T GetInterfaceFromRefObject<T>(IntPtr refObjectPtr)
@@ -59,6 +69,8 @@ namespace Tizen.NUI.BaseComponents
             {
                 return atspiInterface;
             }
+
+            NUILog.Error($"RefObject 0x{refObjectPtr:x} is not a {typeof(T).FullName}");
 
             return default(T);
         }
@@ -76,6 +88,11 @@ namespace Tizen.NUI.BaseComponents
         private static IntPtr DuplicateAccessibilityRectangle(Rectangle rect)
         {
             return Interop.Rectangle.NewRectangle(rect.X, rect.Y, rect.Width, rect.Height);
+        }
+
+        private static IntPtr DuplicateIntPair(Tuple<int, int> pair)
+        {
+            return Interop.ControlDevel.DaliAccessibilityMakeIntPair(pair.Item1, pair.Item2);
         }
 
         //
@@ -153,6 +170,16 @@ namespace Tizen.NUI.BaseComponents
             if (view is IAtspiSelection)
             {
                 flags |= (1U << (int)AccessibilityInterface.Selection);
+            }
+
+            if (view is IAtspiTable)
+            {
+                flags |= (1U << (int)AccessibilityInterface.Table);
+            }
+
+            if (view is IAtspiTableCell)
+            {
+                flags |= (1U << (int)AccessibilityInterface.TableCell);
             }
 
             if (view is IAtspiText)
@@ -319,6 +346,226 @@ namespace Tizen.NUI.BaseComponents
         private static bool AccessibilitySelectChildWrapper(IntPtr self, int childIndex)
         {
             return GetInterfaceFromRefObject<IAtspiSelection>(self).AccessibilitySelectChild(childIndex);
+        }
+
+        //
+        // Table interface
+        //
+
+        private static void InitializeAccessibilityDelegateTableInterface()
+        {
+            var ad = Interop.ControlDevel.AccessibilityDelegate.Instance;
+
+            ad.AddColumnSelection      = AccessibilityAddColumnSelectionWrapper;
+            ad.AddRowSelection         = AccessibilityAddRowSelectionWrapper;
+            ad.GetCaption              = AccessibilityGetCaptionWrapper;
+            ad.GetCell                 = AccessibilityGetCellWrapper;
+            ad.GetChildIndex           = AccessibilityGetChildIndexWrapper;
+            ad.GetColumnCount          = AccessibilityGetColumnCountWrapper;
+            ad.GetColumnDescription    = AccessibilityGetColumnDescriptionWrapper;
+            ad.GetColumnHeader         = AccessibilityGetColumnHeaderWrapper;
+            ad.GetPositionByChildIndex = AccessibilityGetPositionByChildIndexWrapper;
+            ad.GetRowCount             = AccessibilityGetRowCountWrapper;
+            ad.GetRowDescription       = AccessibilityGetRowDescriptionWrapper;
+            ad.GetRowHeader            = AccessibilityGetRowHeaderWrapper;
+            ad.GetSelectedColumnCount  = AccessibilityGetSelectedColumnCountWrapper;
+            ad.GetSelectedColumns      = AccessibilityGetSelectedColumnsWrapper;
+            ad.GetSelectedRowCount     = AccessibilityGetSelectedRowCountWrapper;
+            ad.GetSelectedRows         = AccessibilityGetSelectedRowsWrapper;
+            ad.GetSummary              = AccessibilityGetSummaryWrapper;
+            ad.IsCellSelected          = AccessibilityIsCellSelectedWrapper;
+            ad.IsColumnSelected        = AccessibilityIsColumnSelectedWrapper;
+            ad.IsRowSelected           = AccessibilityIsRowSelectedWrapper;
+            ad.RemoveColumnSelection   = AccessibilityRemoveColumnSelectionWrapper;
+            ad.RemoveRowSelection      = AccessibilityRemoveRowSelectionWrapper;
+        }
+
+        private static bool AccessibilityAddColumnSelectionWrapper(IntPtr self, int column)
+        {
+            return GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityAddColumnSelection(column);
+        }
+
+        private static bool AccessibilityAddRowSelectionWrapper(IntPtr self, int row)
+        {
+            return GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityAddRowSelection(row);
+        }
+
+        private static IntPtr AccessibilityGetCaptionWrapper(IntPtr self)
+        {
+            View caption = GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetCaption();
+
+            return View.getCPtr(caption).Handle;
+        }
+
+        private static IntPtr AccessibilityGetCellWrapper(IntPtr self, int row, int column)
+        {
+            IAtspiTableCell cell = GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetCell(row, column);
+
+            if (cell is View view)
+            {
+                return View.getCPtr(view).Handle;
+            }
+
+            NUILog.Error("Cannot get Actor handle from IAtspiTableCell");
+
+            return IntPtr.Zero;
+        }
+
+        private static ulong AccessibilityGetChildIndexWrapper(IntPtr self, int row, int column)
+        {
+            return (ulong)GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetChildIndex(row, column);
+        }
+
+        private static int AccessibilityGetColumnCountWrapper(IntPtr self)
+        {
+            return GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetColumnCount();
+        }
+
+        private static IntPtr AccessibilityGetColumnDescriptionWrapper(IntPtr self, int column)
+        {
+            string description = GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetColumnDescription(column);
+
+            return DuplicateString(description);
+        }
+
+        private static IntPtr AccessibilityGetColumnHeaderWrapper(IntPtr self, int column)
+        {
+            View header = GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetColumnHeader(column);
+
+            return View.getCPtr(header).Handle;
+        }
+
+        private static IntPtr AccessibilityGetPositionByChildIndexWrapper(IntPtr self, ulong childIndex)
+        {
+            Tuple<int, int> position = GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetPositionByChildIndex((int)childIndex);
+
+            return DuplicateIntPair(position);
+        }
+
+        private static int AccessibilityGetRowCountWrapper(IntPtr self)
+        {
+            return GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetRowCount();
+        }
+
+        private static IntPtr AccessibilityGetRowDescriptionWrapper(IntPtr self, int row)
+        {
+            string description = GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetRowDescription(row);
+
+            return DuplicateString(description);
+        }
+
+        private static IntPtr AccessibilityGetRowHeaderWrapper(IntPtr self, int row)
+        {
+            View header = GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetRowHeader(row);
+
+            return View.getCPtr(header).Handle;
+        }
+
+        private static int AccessibilityGetSelectedColumnCountWrapper(IntPtr self)
+        {
+            return GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetSelectedColumnCount();
+        }
+
+        private static void AccessibilityGetSelectedColumnsWrapper(IntPtr self, Interop.ControlDevel.AccessibilityDelegate.AccessibilityGetSelectedRowsColumnsCallback callback, IntPtr userData)
+        {
+            IEnumerable<int> columns = GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetSelectedColumns();
+
+            foreach (int column in columns)
+            {
+                callback(column, userData);
+            }
+        }
+
+        private static int AccessibilityGetSelectedRowCountWrapper(IntPtr self)
+        {
+            return GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetSelectedRowCount();
+        }
+
+        private static void AccessibilityGetSelectedRowsWrapper(IntPtr self, Interop.ControlDevel.AccessibilityDelegate.AccessibilityGetSelectedRowsColumnsCallback callback, IntPtr userData)
+        {
+            IEnumerable<int> rows = GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetSelectedRows();
+
+            foreach (int row in rows)
+            {
+                callback(row, userData);
+            }
+        }
+
+        private static IntPtr AccessibilityGetSummaryWrapper(IntPtr self)
+        {
+            View summary = GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityGetSummary();
+
+            return View.getCPtr(summary).Handle;
+        }
+
+        private static bool AccessibilityIsCellSelectedWrapper(IntPtr self, int row, int column)
+        {
+            return GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityIsCellSelected(row, column);
+        }
+
+        private static bool AccessibilityIsColumnSelectedWrapper(IntPtr self, int column)
+        {
+            return GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityIsColumnSelected(column);
+        }
+
+        private static bool AccessibilityIsRowSelectedWrapper(IntPtr self, int row)
+        {
+            return GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityIsRowSelected(row);
+        }
+
+        private static bool AccessibilityRemoveColumnSelectionWrapper(IntPtr self, int column)
+        {
+            return GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityRemoveColumnSelection(column);
+        }
+
+        private static bool AccessibilityRemoveRowSelectionWrapper(IntPtr self, int row)
+        {
+            return GetInterfaceFromRefObject<IAtspiTable>(self).AccessibilityRemoveRowSelection(row);
+        }
+
+        //
+        // TableCell interface
+        //
+
+        private static void InitializeAccessibilityDelegateTableCellInterface()
+        {
+            var ad = Interop.ControlDevel.AccessibilityDelegate.Instance;
+
+            ad.GetCellColumnSpan = AccessibilityGetCellColumnSpanWrapper;
+            ad.GetCellPosition   = AccessibilityGetCellPositionWrapper;
+            ad.GetCellRowSpan    = AccessibilityGetCellRowSpanWrapper;
+            ad.GetTable          = AccessibilityGetTableWrapper;
+        }
+
+        private static int AccessibilityGetCellColumnSpanWrapper(IntPtr self)
+        {
+            return GetInterfaceFromRefObject<IAtspiTableCell>(self).AccessibilityGetCellColumnSpan();
+        }
+
+        private static IntPtr AccessibilityGetCellPositionWrapper(IntPtr self)
+        {
+            Tuple<int, int> position = GetInterfaceFromRefObject<IAtspiTableCell>(self).AccessibilityGetCellPosition();
+
+            return DuplicateIntPair(position);
+        }
+
+        private static int AccessibilityGetCellRowSpanWrapper(IntPtr self)
+        {
+            return GetInterfaceFromRefObject<IAtspiTableCell>(self).AccessibilityGetCellRowSpan();
+        }
+
+        private static IntPtr AccessibilityGetTableWrapper(IntPtr self)
+        {
+            IAtspiTable table = GetInterfaceFromRefObject<IAtspiTableCell>(self).AccessibilityGetTable();
+
+            if (table is View view)
+            {
+                return View.getCPtr(view).Handle;
+            }
+
+            NUILog.Error("Cannot get Actor handle from IAtspiTable");
+
+            return IntPtr.Zero;
         }
 
         //
