@@ -396,10 +396,146 @@ namespace Tizen.NUI
                 public delegate IntPtr AccessibilityGetValueText(IntPtr self);
                 [EditorBrowsable(EditorBrowsableState.Never)]
                 public AccessibilityGetValueText GetValueText; // 38
+
+                public delegate int AccessibilityGetRowCount(IntPtr self);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetRowCount GetRowCount; // 39
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate int AccessibilityGetColumnCount(IntPtr self);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetColumnCount GetColumnCount; // 40
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate int AccessibilityGetSelectedRowCount(IntPtr self);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetSelectedRowCount GetSelectedRowCount; // 41
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate int AccessibilityGetSelectedColumnCount(IntPtr self);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetSelectedColumnCount GetSelectedColumnCount; // 42
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate IntPtr AccessibilityGetCaption(IntPtr self);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetCaption GetCaption; // 43
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate IntPtr AccessibilityGetSummary(IntPtr self);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetSummary GetSummary; // 44
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate IntPtr AccessibilityGetCell(IntPtr self, int row, int column);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetCell GetCell; // 45
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate ulong AccessibilityGetChildIndex(IntPtr self, int row, int column);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetChildIndex GetChildIndex; // 46
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate IntPtr AccessibilityGetPositionByChildIndex(IntPtr self, ulong childIndex);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetPositionByChildIndex GetPositionByChildIndex; // 47
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate IntPtr AccessibilityGetRowDescription(IntPtr self, int row);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetRowDescription GetRowDescription; // 48
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate IntPtr AccessibilityGetColumnDescription(IntPtr self, int column);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetColumnDescription GetColumnDescription; // 49
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate IntPtr AccessibilityGetRowHeader(IntPtr self, int row);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetRowHeader GetRowHeader; // 50
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate IntPtr AccessibilityGetColumnHeader(IntPtr self, int column);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetColumnHeader GetColumnHeader; // 51
+
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate void AccessibilityGetSelectedRowsColumnsCallback(int index, IntPtr userData);
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate void AccessibilityGetSelectedRows(IntPtr self, AccessibilityGetSelectedRowsColumnsCallback callback, IntPtr userData);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetSelectedRows GetSelectedRows; // 52
+
+                // Reuses the callback type from GetSelectedRows
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate void AccessibilityGetSelectedColumns(IntPtr self, AccessibilityGetSelectedRowsColumnsCallback callback, IntPtr userData);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetSelectedColumns GetSelectedColumns; // 53
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityIsRowSelected(IntPtr self, int row);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityIsRowSelected IsRowSelected; // 54
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityIsColumnSelected(IntPtr self, int column);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityIsColumnSelected IsColumnSelected; // 55
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityIsCellSelected(IntPtr self, int row, int column);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityIsCellSelected IsCellSelected; // 56
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityAddRowSelection(IntPtr self, int row);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityAddRowSelection AddRowSelection; // 57
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityAddColumnSelection(IntPtr self, int column);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityAddColumnSelection AddColumnSelection; // 58
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityRemoveRowSelection(IntPtr self, int row);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityRemoveRowSelection RemoveRowSelection; // 59
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate bool AccessibilityRemoveColumnSelection(IntPtr self, int column);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityRemoveColumnSelection RemoveColumnSelection; // 60
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate IntPtr AccessibilityGetTable(IntPtr self);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetTable GetTable; // 61
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate IntPtr AccessibilityGetCellPosition(IntPtr self);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetCellPosition GetCellPosition; // 62
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate int AccessibilityGetCellRowSpan(IntPtr self);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetCellRowSpan GetCellRowSpan; // 63
+
+                [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+                public delegate int AccessibilityGetCellColumnSpan(IntPtr self);
+                [EditorBrowsable(EditorBrowsableState.Never)]
+                public AccessibilityGetCellColumnSpan GetCellColumnSpan; // 64
             }
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_DuplicateString")]
             public static extern IntPtr DaliAccessibilityDuplicateString(string arg);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_MakeIntPair")]
+            public static extern IntPtr DaliAccessibilityMakeIntPair(int first, int second);
 
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Accessibility_SetAccessibilityDelegate")]
             public static extern IntPtr DaliAccessibilitySetAccessibilityDelegate(IntPtr arg1_accessibilityDelegate, uint arg2_accessibilityDelegateSize);
