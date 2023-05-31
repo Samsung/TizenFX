@@ -5174,7 +5174,7 @@ The KeyPressed signal is emitted when the key event is received.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ViewEvent.cs/#L453">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ViewEvent.cs/#L463">View Source</a>
   </span>
   <h4 id="Tizen_NUI_BaseComponents_View_LayoutDirectionChanged" data-uid="Tizen.NUI.BaseComponents.View.LayoutDirectionChanged">LayoutDirectionChanged</h4>
   <div class="markdown level1 summary"><p>Event for layout direction change which can be used to subscribe/unsubscribe the event handler.<br>
@@ -5270,7 +5270,7 @@ OffWindow signal is emitted after the view has been disconnected from the window
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ViewEvent.cs/#L485">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ViewEvent.cs/#L495">View Source</a>
   </span>
   <h4 id="Tizen_NUI_BaseComponents_View_ResourcesLoaded" data-uid="Tizen.NUI.BaseComponents.View.ResourcesLoaded">ResourcesLoaded</h4>
   <div class="markdown level1 summary"><p>An event for the ResourcesLoadedSignal signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br>
@@ -5334,11 +5334,11 @@ The touched signal is emitted when the touch input is received.<br></p>
   <div style="margin-bottom: 15px"></div>
 
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ViewEvent.cs/#L423">View Source</a>
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/ViewEvent.cs/#L433">View Source</a>
   </span>
   <h4 id="Tizen_NUI_BaseComponents_View_VisibilityChanged" data-uid="Tizen.NUI.BaseComponents.View.VisibilityChanged">VisibilityChanged</h4>
   <div class="markdown level1 summary"><p>An event for visibility change which can be used to subscribe or unsubscribe the event handler.<br>
-This signal is emitted when the visible property of this or a parent view is changed.<br></p>
+This event is sent when the visibility of this or a parent view is changed.<br></p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
@@ -5360,6 +5360,17 @@ This signal is emitted when the visible property of this or a parent view is cha
       </tr>
     </tbody>
   </table>
+  <h5 id="Tizen_NUI_BaseComponents_View_VisibilityChanged_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>
+When VisibilityChangedEventArgs.Type is SELF, VisibilityChangedEventArgs.Visibility is true means this View&apos;s Visibility property is true.
+When VisibilityChangedEventArgs.Type is PARENT, VisibilityChangedEventArgs.Visibility is true means a parent&apos;s Visibility property has changed to true.
+</p>
+<p>
+This event is NOT sent if the view becomes transparent (or the reverse), it&apos;s ONLY linked with View.Show() and View.Hide().
+For reference, a view is only shown if the view and its parents (up to the root view) are also visible, they are not transparent, and the view has a non-zero size.
+So if its parent is not visible, the view is not shown even though VisibilityChangedEventArgs.Type is SELF and VisibilityChangedEventArgs.Visibility is true.
+</p>
+</div>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
