@@ -17,6 +17,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Runtime.InteropServices;
 using Tizen.NUI.Binding;
 
@@ -33,6 +34,7 @@ namespace Tizen.NUI.BaseComponents
         private static HashSet<BindableProperty> scalePropertyGroup = new HashSet<BindableProperty>();
         private static bool defaultGrabTouchAfterLeave = false;
         private static bool defaultAllowOnlyOwnTouch = false;
+        private static bool disableHoverEvent = false;
 
         internal BackgroundExtraData backgroundExtraData;
 
@@ -224,6 +226,16 @@ namespace Tizen.NUI.BaseComponents
 
             GrabTouchAfterLeave = defaultGrabTouchAfterLeave;
             AllowOnlyOwnTouch = defaultAllowOnlyOwnTouch;
+
+            var hoverEnv = System.Environment.GetEnvironmentVariable("DISABLE_HOVERING");
+            if (hoverEnv != null)
+            {
+                int disable = 0;
+                if (int.TryParse(hoverEnv, NumberStyles.Number, CultureInfo.InvariantCulture, out disable) && disable == 1)
+                {
+                    disableHoverEvent = true;
+                }
+            }
         }
 
         internal View(ViewImpl implementation, bool shown = true) : this(Interop.View.NewViewInternal(ViewImpl.getCPtr(implementation)), true)
