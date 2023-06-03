@@ -186,14 +186,14 @@ namespace Tizen.NUI
                     SetMimimumSize(mimimumSize);
                     minSize = borderInterface.MinSize;
                 }
-                
+
                 if (maxSize != borderInterface.MaxSize || (borderInterface.MaxSize != null && isNeedResizeByLine == true))
                 {
                     using Size2D maximumSize = new Size2D((borderInterface.MaxSize?.Width + (int)borderLineThickness * 2 ?? 0), (borderInterface.MaxSize?.Height ?? 0) + (int)(borderHeight + borderLineThickness * 2));
                     SetMaximumSize(maximumSize);
                     maxSize = borderInterface.MaxSize;
                 }
-                
+
                 if (borderResizePolicy != borderInterface.ResizePolicy)
                 {
                     AddAuxiliaryHint("wm.policy.win.resize_aspect_ratio", "0");
@@ -203,7 +203,7 @@ namespace Tizen.NUI
                         AddAuxiliaryHint("wm.policy.win.resize_aspect_ratio", "1");
                     }
                 }
-                
+
             }
         }
         /// <summary>
@@ -268,6 +268,10 @@ namespace Tizen.NUI
                 Resized += OnBorderWindowResized;
 
                 Moved += OnBorderWindowMoved;
+
+                MoveCompleted += OnBorderWindowMoveCompleted;
+
+                ResizeCompleted += OnBorderWindowResizeCompleted;
 
                 borderInterface.OnCreated(borderView);
 
@@ -533,7 +537,19 @@ namespace Tizen.NUI
         private void OnBorderWindowMoved(object sender, WindowMovedEventArgs e)
         {
             Tizen.Log.Info("NUI", $"OnBorderWindowMoved {e.WindowPosition.X}, {e.WindowPosition.Y}\n");
-            borderInterface.OnMoved(e.WindowPosition.X, e.WindowPosition.X);
+            borderInterface.OnMoved(e.WindowPosition.X, e.WindowPosition.Y);
+        }
+
+        private void OnBorderWindowMoveCompleted(object sender, WindowMoveCompletedEventArgs e)
+        {
+            Tizen.Log.Info("NUI", $"OnBorderWindowMoveCompleted {e.WindowCompletedPosition.X}, {e.WindowCompletedPosition.Y}\n");
+            borderInterface.OnMoveCompleted(e.WindowCompletedPosition.X, e.WindowCompletedPosition.Y);
+        }
+
+        private void OnBorderWindowResizeCompleted(object sender, WindowResizeCompletedEventArgs e)
+        {
+            Tizen.Log.Info("NUI", $"OnBorderWindowResizeCompleted {e.WindowCompletedSize.Width}, {e.WindowCompletedSize.Height}\n");
+            borderInterface.OnResizeCompleted(e.WindowCompletedSize.Width, e.WindowCompletedSize.Height);
         }
 
 
