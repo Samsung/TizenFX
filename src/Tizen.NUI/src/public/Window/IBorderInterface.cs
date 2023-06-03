@@ -125,6 +125,22 @@ namespace Tizen.NUI
         public void OnMoved(int x, int y);
 
         /// <summary>
+        /// Called when window has been moved the display server.
+        /// </summary>
+        /// <param name="x">The x of the has been moved window</param>
+        /// <param name="y">The y of the has been moved window</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void OnMoveCompleted(int x, int y);
+
+        /// <summary>
+        /// Called when window has been resized the display server.
+        /// </summary>
+        /// <param name="width">The width of the resized window</param>
+        /// <param name="height">The height of the resized window</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void OnResizeCompleted(int width, int height);
+
+        /// <summary>
         /// Called when the window is maximized.
         /// </summary>
         /// <param name="isMaximized">If window is maximized or unmaximized.</param>
