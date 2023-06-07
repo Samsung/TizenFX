@@ -78,19 +78,18 @@ namespace Tizen.NUI.Devel.Tests
                     failed = false;
                 }
 
-                if (!failed)
-                {
-                    tcs.TrySetResult(true);
-                }
+                tcs.TrySetResult(!failed);
             };
 
             _webview.PageLoadError += onLoadError;
 
             _webview.LoadUrl(errorUrl);
             var result = await tcs.Task;
-            Assert.IsTrue(result, "Url should be valid value");
+            Assert.IsTrue(result, "PageLoadError should be invoked.");
 
-            await Task.Delay(10000);
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             _webview.PageLoadError -= onLoadError;
 
             tlog.Debug(tag, $"WebPageLoadErrorUrl END (OK)");

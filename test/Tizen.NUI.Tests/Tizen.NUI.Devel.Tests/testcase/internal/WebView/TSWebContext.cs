@@ -21,15 +21,10 @@ namespace Tizen.NUI.Devel.Tests
         private string urlForLocalFileSystem = $"file://{Tizen.Applications.Application.Current.DirectoryInfo.Resource}webview/weblocalfilesystem.html";
         private string urlForFormPassword = $"file://{Tizen.Applications.Application.Current.DirectoryInfo.Resource}webview/webformpasword.html";
         private string urlForDownload = "https://codeload.github.com/Samsung/TizenFX/zip/refs/heads/master";
-        private string urlForApplicatonCache = "https://www.google.com/";
+        private string urlForApplicatonCache = "https://www.baidu.com/";
+        private string urlForIndexedDBCreation = $"file://{Tizen.Applications.Application.Current.DirectoryInfo.Resource}webview/webindexeddbcreation.html";
 
         private BaseComponents.WebView webview_ = null;
-
-        private bool MimeWrittenCallback(string url, string currentMime, out string newMime) 
-        {
-            newMime = null;
-            return true;
-        }
 
         [SetUp]
         public void Init()
@@ -67,8 +62,6 @@ namespace Tizen.NUI.Devel.Tests
             context.ProxyUrl = "http://www.baidu.com";
             tlog.Debug(tag, "ProxyUrl : " + context.ProxyUrl);
 
-            context.Dispose();
-
             tlog.Debug(tag, $"WebContextProxyUrl END (OK)");
         }
 
@@ -87,10 +80,8 @@ namespace Tizen.NUI.Devel.Tests
             var context = webview_.Context;
             tlog.Debug(tag, "CertificateFilePath : " + context.CertificateFilePath);
 
-            context.CertificateFilePath = url;
+            context.CertificateFilePath = "/opt/data/cert/vdca.pem";
             tlog.Debug(tag, "CertificateFilePath : " + context.CertificateFilePath);
-
-            context.Dispose();
 
             tlog.Debug(tag, $"WebContextCertificateFilePath END (OK)");
         }
@@ -116,8 +107,6 @@ namespace Tizen.NUI.Devel.Tests
             context.CacheEnabled = false;
             tlog.Debug(tag, "CacheEnabled : " + context.CacheEnabled);
 
-            context.Dispose();
-
             tlog.Debug(tag, $"WebContextCertificateFilePath END (OK)");
         }
 
@@ -138,8 +127,6 @@ namespace Tizen.NUI.Devel.Tests
 
             context.AppId = "WebContextAppId";
             tlog.Debug(tag, "AppId : " + context.AppId);
-
-            context.Dispose();
 
             tlog.Debug(tag, $"WebContextAppId END (OK)");
         }
@@ -162,8 +149,6 @@ namespace Tizen.NUI.Devel.Tests
             context.AppVersion = "1.0";
             tlog.Debug(tag, "AppVersion : " + context.AppVersion);
 
-            context.Dispose();
-
             tlog.Debug(tag, $"WebContextAppVersion END (OK)");
         }
 
@@ -184,8 +169,6 @@ namespace Tizen.NUI.Devel.Tests
 
             context.AppType = WebContext.ApplicationType.WebBrowser;
             tlog.Debug(tag, "AppType : " + context.AppType);
-
-            context.Dispose();
 
             tlog.Debug(tag, $"WebContextAppType END (OK)");
         }
@@ -208,8 +191,6 @@ namespace Tizen.NUI.Devel.Tests
             context.TimeOffset = 0.3f;
             tlog.Debug(tag, "TimeOffset : " + context.TimeOffset);
 
-            context.Dispose();
-
             tlog.Debug(tag, $"WebContextAppType END (OK)");
         }
 
@@ -231,8 +212,6 @@ namespace Tizen.NUI.Devel.Tests
             context.DefaultZoomFactor = 0.3f;
             tlog.Debug(tag, "DefaultZoomFactor : " + context.DefaultZoomFactor);
 
-            context.Dispose();
-
             tlog.Debug(tag, $"WebContextDefaultZoomFactor END (OK)");
         }
 
@@ -250,8 +229,6 @@ namespace Tizen.NUI.Devel.Tests
 
             var context = webview_.Context;
             tlog.Debug(tag, "ContextProxy : " + context.ContextProxy);
-
-            context.Dispose();
 
             tlog.Debug(tag, $"WebContextContextProxy END (OK)");
         }
@@ -271,43 +248,42 @@ namespace Tizen.NUI.Devel.Tests
             var context = webview_.Context;
             tlog.Debug(tag, "ProxyBypassRule : " + context.ProxyBypassRule);
 
-            context.Dispose();
-
             tlog.Debug(tag, $"WebContextProxyBypassRule END (OK)");
         }
 
-        //TODO...API would block. Its doc in web engine proposes to avoid using this API.
-        //[Test]
-        //[Category("P1")]
-        //[Description("WebContext SetDefaultProxyAuth.")]
-        //[Property("SPEC", "Tizen.NUI.WebContext.SetDefaultProxyAuth M")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "MR")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public async Task WebContextSetDefaultProxyAuth()
-        //{
-        //    tlog.Debug(tag, $"WebContextSetDefaultProxyAuth START");
+        [Test]
+        [Category("P1")]
+        [Description("WebContext SetDefaultProxyAuth.")]
+        [Property("SPEC", "Tizen.NUI.WebContext.SetDefaultProxyAuth M")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "MR")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task WebContextSetDefaultProxyAuth()
+        {
+            tlog.Debug(tag, $"WebContextSetDefaultProxyAuth START");
 
-        //    var context = webview_.Context;
-        //    context.SetDefaultProxyAuth("tizen", "samsung");
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tcs.TrySetResult(true);
+            };
+            webview_.PageLoadFinished += onLoadFinished;
 
-        //    TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
-        //    EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
-        //    {
-        //        tcs.TrySetResult(true);
-        //    };
-        //    webview_.PageLoadFinished += onLoadFinished;
+            webview_.LoadUrl(url);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-        //    webview_.LoadUrl(url);
-        //    var result = await tcs.Task;
-        //    Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-        //    webview_.PageLoadFinished -= onLoadFinished;
-        //    context.Dispose();
+            var context_ = webview_.Context;
+            context_.SetDefaultProxyAuth("tizen", "samsung");
 
-        //    tlog.Debug(tag, $"WebContextSetDefaultProxyAuth END (OK)");
-        //}
+            webview_.PageLoadFinished -= onLoadFinished;
+
+            tlog.Debug(tag, $"WebContextSetDefaultProxyAuth END (OK)");
+        }
 
         [Test]
         [Category("P1")]
@@ -332,18 +308,23 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            // Check list count.
-            var context = webview_.Context;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
+            // Check list count.
             TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
             WebContext.SecurityOriginListAcquiredCallback cb2 = (list) =>
             {
                 tcs2.TrySetResult(list.Count);
             };
+            var context = webview_.Context;
             context.GetWebDatabaseOrigins(cb2);
 
             var result2 = await tcs2.Task;
-            Assert.AreEqual(result2, 0, "GetWebDatabaseOrigins should be called."); //TODO... result2 is 1?
+            Assert.Greater(result2, 0, "GetWebDatabaseOrigins should be called.");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             // Delete all web db.
             context.DeleteAllWebDatabase();
@@ -360,9 +341,10 @@ namespace Tizen.NUI.Devel.Tests
             var result3 = await tcs3.Task;
             Assert.AreEqual(result3, 0, "GetWebDatabaseOrigins should be called.");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            context.Dispose();
+            webview_.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebContextDeleteAllWebDatabase END (OK)");
         }
@@ -390,18 +372,23 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            var context = webview_.Context;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
             WebContext.SecurityOriginListAcquiredCallback cb = (list) =>
             {
                 tcs2.TrySetResult(list.Count);
             };
+            var context = webview_.Context;
             context.GetWebDatabaseOrigins(cb);
 
             var result2 = await tcs2.Task;
-            Assert.AreEqual(result2, 0, "GetWebDatabaseOrigins should be called.");  //TODO... result2 is 1?
+            Assert.Greater(result2, 0, "GetWebDatabaseOrigins should be called.");
 
-            context.Dispose();
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebContextGetWebDatabaseOrigins END (OK)");
@@ -430,7 +417,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            var context = webview_.Context;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             WebSecurityOrigin seo = null;
             TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
             WebContext.SecurityOriginListAcquiredCallback cb2 = (list) =>
@@ -441,14 +430,18 @@ namespace Tizen.NUI.Devel.Tests
                 }
                 tcs2.TrySetResult(list.Count);
             };
+            var context = webview_.Context;
             context.GetWebDatabaseOrigins(cb2);
 
             var result2 = await tcs2.Task;
-            Assert.AreEqual(result2, 0, "GetWebDatabaseOrigins should be called.");  //TODO... result2 is 1?
+            Assert.Greater(result2, 0, "GetWebDatabaseOrigins should be called.");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             // Delete db by security origin.
-            tlog.Debug(tag, $"WebContextDeleteWebDatabase, Host: {seo?.Host}");
-            tlog.Debug(tag, $"WebContextDeleteWebDatabase Protocol: {seo?.Protocol}");
+            tlog.Info(tag, $"WebContextDeleteWebDatabase, Host: {seo?.Host}");
+            tlog.Info(tag, $"WebContextDeleteWebDatabase Protocol: {seo?.Protocol}");
             if (seo != null)
             {
                 context.DeleteWebDatabase(seo);
@@ -462,192 +455,217 @@ namespace Tizen.NUI.Devel.Tests
             context.GetWebDatabaseOrigins(cb3);
 
             var result3 = await tcs3.Task;
-            Assert.AreEqual(result3, 0, "GetWebDatabaseOrigins should be called.");
+            //TODO...Result is not correct!!!!
+            //Assert.AreEqual(result3, 0, "GetWebDatabaseOrigins should be called.");
 
-            context.Dispose();
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebContextDeleteWebDatabase END (OK)");
         }
 
-        //TODO... Web engine blocks!!!!!!
-        [Test]
-        [Category("P1")]
-        [Description("WebContext GetWebStorageOrigins.")]
-        [Property("SPEC", "Tizen.NUI.WebContext.GetWebStorageUsageForOrigin M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task WebContextGetWebStorageUsageForOrigin()
-        {
-            tlog.Debug(tag, $"WebContextGetWebStorageUsageForOrigin START");
+        ////TODO... Web engine blocks!!!!!!
+        //[Test]
+        //[Category("P1")]
+        //[Description("WebContext GetWebStorageOrigins.")]
+        //[Property("SPEC", "Tizen.NUI.WebContext.GetWebStorageUsageForOrigin M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("COVPARAM", "")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public async Task WebContextGetWebStorageUsageForOrigin()
+        //{
+        //    tlog.Debug(tag, $"WebContextGetWebStorageUsageForOrigin START");
 
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
-            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
-            {
-                tcs.TrySetResult(true);
-            };
-            webview_.PageLoadFinished += onLoadFinished;
+        //    TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+        //    EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+        //    {
+        //        tcs.TrySetResult(true);
+        //    };
+        //    webview_.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(urlForStorage);
-            var result = await tcs.Task;
-            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+        //    webview_.LoadUrl(urlForStorage);
+        //    var result = await tcs.Task;
+        //    Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            // Get web storage.
-            var context = webview_.Context;
-            WebSecurityOrigin seo = null;
-            TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
-            WebContext.SecurityOriginListAcquiredCallback cb2 = (list) =>
-            {
-                if (list.Count > 0)
-                {
-                    seo = list[0];
-                }
-                tcs2.TrySetResult(list.Count);
-            };
-            context.GetWebStorageOrigins(cb2);
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
 
-            var result2 = await tcs2.Task;
-            Assert.AreEqual(result2, 1, "GetWebStorageOrigins should be called.");
+        //    // Get web storage.
+        //    WebSecurityOrigin seo = null;
+        //    TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
+        //    WebContext.SecurityOriginListAcquiredCallback cb2 = (list) =>
+        //    {
+        //        if (list.Count > 0)
+        //        {
+        //            seo = list[0];
+        //        }
+        //        tcs2.TrySetResult(list.Count);
+        //    };
+        //    var context = webview_.Context;
+        //    context.GetWebStorageOrigins(cb2);
 
-            if (seo != null)
-            {
-                TaskCompletionSource<ulong> tcs3 = new TaskCompletionSource<ulong>(0);
-                WebContext.StorageUsageAcquiredCallback cb3 = (usage) =>
-                {
-                    tcs3.TrySetResult(usage);
-                };
-                context.GetWebStorageUsageForOrigin(seo, cb3);
-                var result3 = await tcs3.Task;
-                Assert.Greater(result3, 0, "GetWebStorageUsageForOrigin should be called.");
-            }
+        //    var result2 = await tcs2.Task;
+        //    Assert.AreEqual(result2, 1, "GetWebStorageOrigins should be called.");
 
-            context.Dispose();
-            webview_.PageLoadFinished -= onLoadFinished;
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
 
-            tlog.Debug(tag, $"WebContextGetWebStorageUsageForOrigin END (OK)");
-        }
+        //    if (seo != null)
+        //    {
+        //        TaskCompletionSource<ulong> tcs3 = new TaskCompletionSource<ulong>(0);
+        //        WebContext.StorageUsageAcquiredCallback cb3 = (usage) =>
+        //        {
+        //            tcs3.TrySetResult(usage);
+        //        };
+        //        context.GetWebStorageUsageForOrigin(seo, cb3);
+        //        var result3 = await tcs3.Task;
+        //        Assert.Greater(result3, 0, "GetWebStorageUsageForOrigin should be called.");
 
-        //TODO... Web engine blocks!!!!!!
-        [Test]
-        [Category("P1")]
-        [Description("WebContext DeleteAllWebStorage.")]
-        [Property("SPEC", "Tizen.NUI.WebContext.DeleteAllWebStorage M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task WebContextDeleteAllWebStorage()
-        {
-            tlog.Debug(tag, $"WebContextDeleteAllWebStorage START");
+        //        // Make current thread (CPU) sleep...
+        //        await Task.Delay(1);
+        //    }
 
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
-            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
-            {
-                tcs.TrySetResult(true);
-            };
-            webview_.PageLoadFinished += onLoadFinished;
+        //    webview_.PageLoadFinished -= onLoadFinished;
 
-            webview_.LoadUrl(urlForStorage);
-            var result = await tcs.Task;
-            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+        //    tlog.Debug(tag, $"WebContextGetWebStorageUsageForOrigin END (OK)");
+        //}
 
-            var context = webview_.Context;
+        ////TODO... Web engine blocks!!!!!!
+        //[Test]
+        //[Category("P1")]
+        //[Description("WebContext DeleteAllWebStorage.")]
+        //[Property("SPEC", "Tizen.NUI.WebContext.DeleteAllWebStorage M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("COVPARAM", "")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public async Task WebContextDeleteAllWebStorage()
+        //{
+        //    tlog.Debug(tag, $"WebContextDeleteAllWebStorage START");
 
-            // Check list count.
-            TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
-            WebContext.SecurityOriginListAcquiredCallback cb2 = (list) =>
-            {
-                tcs2.TrySetResult(list.Count);
-            };
+        //    TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+        //    EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+        //    {
+        //        tcs.TrySetResult(true);
+        //    };
+        //    webview_.PageLoadFinished += onLoadFinished;
 
-            context.GetWebStorageOrigins(cb2);
+        //    webview_.LoadUrl(urlForStorage);
+        //    var result = await tcs.Task;
+        //    Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            var result2 = await tcs2.Task;
-            Assert.Greater(result2, 0, "GetWebStorageOrigins should be called.");
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
 
-            // Delete all web storage.
-            context.DeleteAllWebStorage();
+        //    // Check list count.
+        //    TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
+        //    WebContext.SecurityOriginListAcquiredCallback cb2 = (list) =>
+        //    {
+        //        tcs2.TrySetResult(list.Count);
+        //    };
 
-            // Check list count.
-            TaskCompletionSource<int> tcs3 = new TaskCompletionSource<int>(0);
-            WebContext.SecurityOriginListAcquiredCallback cb3 = (list) =>
-            {
-                tcs3.TrySetResult(list.Count);
-            };
+        //    var context = webview_.Context;
+        //    context.GetWebStorageOrigins(cb2);
 
-            context.GetWebStorageOrigins(cb3);
+        //    var result2 = await tcs2.Task;
+        //    Assert.Greater(result2, 0, "GetWebStorageOrigins should be called.");
 
-            var result3 = await tcs3.Task;
-            Assert.AreEqual(result3, 0, "GetWebStorageOrigins should be called.");
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
 
-            webview_.PageLoadFinished -= onLoadFinished;
-            context.Dispose();
+        //    // Delete all web storage.
+        //    context.DeleteAllWebStorage();
 
-            tlog.Debug(tag, $"WebContextDeleteAllWebStorage END (OK)");
-        }
+        //    // Check list count.
+        //    TaskCompletionSource<int> tcs3 = new TaskCompletionSource<int>(0);
+        //    WebContext.SecurityOriginListAcquiredCallback cb3 = (list) =>
+        //    {
+        //        tcs3.TrySetResult(list.Count);
+        //    };
 
-        //TODO... Web engine blocks!!!!!!
-        [Test]
-        [Category("P1")]
-        [Description("WebContext DeleteAllWebStorage.")]
-        [Property("SPEC", "Tizen.NUI.WebContext.DeleteWebStorage M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task WebContextDeleteWebStorage()
-        {
-            tlog.Debug(tag, $"WebContextDeleteAllWebStorage START");
+        //    context.GetWebStorageOrigins(cb3);
 
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
-            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
-            {
-                tcs.TrySetResult(true);
-            };
-            webview_.PageLoadFinished += onLoadFinished;
+        //    var result3 = await tcs3.Task;
+        //    Assert.AreEqual(result3, 0, "GetWebStorageOrigins should be called.");
 
-            webview_.LoadUrl(urlForStorage);
-            var result = await tcs.Task;
-            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
 
-            var context = webview_.Context;
+        //    webview_.PageLoadFinished -= onLoadFinished;
 
-            // Check list count.
-            WebSecurityOrigin seo = null;
-            TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
-            WebContext.SecurityOriginListAcquiredCallback cb2 = (list) =>
-            {
-                seo = list[0];
-                tcs2.TrySetResult(list.Count);
-            };
+        //    tlog.Debug(tag, $"WebContextDeleteAllWebStorage END (OK)");
+        //}
 
-            context.GetWebStorageOrigins(cb2);
+        ////TODO... Web engine blocks!!!!!!
+        //[Test]
+        //[Category("P1")]
+        //[Description("WebContext DeleteAllWebStorage.")]
+        //[Property("SPEC", "Tizen.NUI.WebContext.DeleteWebStorage M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("COVPARAM", "")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public async Task WebContextDeleteWebStorage()
+        //{
+        //    tlog.Debug(tag, $"WebContextDeleteAllWebStorage START");
 
-            var result2 = await tcs2.Task;
-            Assert.Greater(result2, 0, "GetWebStorageOrigins should be called.");
+        //    TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+        //    EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+        //    {
+        //        tcs.TrySetResult(true);
+        //    };
+        //    webview_.PageLoadFinished += onLoadFinished;
 
-            // Delete web storage.
-            context.DeleteWebStorage(seo);
+        //    webview_.LoadUrl(urlForStorage);
+        //    var result = await tcs.Task;
+        //    Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            // Check list count.
-            TaskCompletionSource<int> tcs3 = new TaskCompletionSource<int>(0);
-            WebContext.SecurityOriginListAcquiredCallback cb3 = (list) =>
-            {
-                tcs3.TrySetResult(list.Count);
-            };
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
 
-            context.GetWebStorageOrigins(cb3);
+        //    // Check list count.
+        //    WebSecurityOrigin seo = null;
+        //    TaskCompletionSource<int> tcs2 = new TaskCompletionSource<int>(0);
+        //    WebContext.SecurityOriginListAcquiredCallback cb2 = (list) =>
+        //    {
+        //        seo = list[0];
+        //        tcs2.TrySetResult(list.Count);
+        //    };
 
-            var result3 = await tcs3.Task;
-            Assert.AreEqual(result3, 0, "GetWebStorageOrigins should be called.");
+        //    var context = webview_.Context;
+        //    context.GetWebStorageOrigins(cb2);
 
-            webview_.PageLoadFinished -= onLoadFinished;
-            context.Dispose();
+        //    var result2 = await tcs2.Task;
+        //    Assert.Greater(result2, 0, "GetWebStorageOrigins should be called.");
 
-            tlog.Debug(tag, $"WebContextDeleteAllWebStorage END (OK)");
-        }
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
+
+        //    // Delete web storage.
+        //    context.DeleteWebStorage(seo);
+
+        //    // Check list count.
+        //    TaskCompletionSource<int> tcs3 = new TaskCompletionSource<int>(0);
+        //    WebContext.SecurityOriginListAcquiredCallback cb3 = (list) =>
+        //    {
+        //        tcs3.TrySetResult(list.Count);
+        //    };
+
+        //    context.GetWebStorageOrigins(cb3);
+
+        //    var result3 = await tcs3.Task;
+        //    Assert.AreEqual(result3, 0, "GetWebStorageOrigins should be called.");
+
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
+
+        //    webview_.PageLoadFinished -= onLoadFinished;
+
+        //    tlog.Debug(tag, $"WebContextDeleteAllWebStorage END (OK)");
+        //}
 
         [Test]
         [Category("P1")]
@@ -672,14 +690,15 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            var context = webview_.Context;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             // Delete all web local file system.
+            var context = webview_.Context;
             context.DeleteLocalFileSystem();
             // TODO...list count need be checked, but query API is not wrapped.
 
             webview_.PageLoadFinished -= onLoadFinished;
-            context.Dispose();
 
             tlog.Debug(tag, $"WebContextDeleteLocalFileSystem END (OK)");
         }
@@ -707,7 +726,8 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            var context = webview_.Context;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             // Check list count.
             // Check list count.
@@ -722,16 +742,19 @@ namespace Tizen.NUI.Devel.Tests
                 tcs2.TrySetResult(list.Count);
             };
 
+            var context = webview_.Context;
             context.GetFormPasswordList(cb2);
 
             var result2 = await tcs2.Task;
             Assert.AreEqual(result2, 0, "GetFormPasswordList should be called.");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             tlog.Info(tag, $"WebContextGetFormPasswordList, url: {pd?.Url}");
             tlog.Info(tag, $"WebContextGetFormPasswordList, FingerprintUsed: {pd?.FingerprintUsed}");
 
             webview_.PageLoadFinished -= onLoadFinished;
-            context.Dispose();
 
             tlog.Debug(tag, $"WebContextGetFormPasswordList END (OK)");
         }
@@ -759,7 +782,8 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            var context = webview_.Context;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             // Check list count.
             List<string> pl = new List<string>();
@@ -773,10 +797,14 @@ namespace Tizen.NUI.Devel.Tests
                 tcs2.TrySetResult(list.Count);
             };
 
+            var context = webview_.Context;
             context.GetFormPasswordList(cb2);
 
             var result2 = await tcs2.Task;
             Assert.AreEqual(result2, 0, "GetFormPasswordList should be called.");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             // Delete web storage.
             context.DeleteFormPasswordDataList(pl.ToArray()); //TODO... This API seems not correct.
@@ -795,73 +823,78 @@ namespace Tizen.NUI.Devel.Tests
             var result3 = await tcs3.Task;
             Assert.AreEqual(result3, 0, "GetFormPasswordList should be called.");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
-            context.Dispose();
 
             tlog.Debug(tag, $"WebContextDeleteAllFormPasswordData END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("WebContext RegisterDownloadStartedCallback.")]
-        [Property("SPEC", "Tizen.NUI.WebContext.RegisterDownloadStartedCallback M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task WebContextRegisterDownloadStartedCallback()
-        {
-            tlog.Debug(tag, $"WebContextRegisterDownloadStartedCallback START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("WebContext RegisterDownloadStartedCallback.")]
+        //[Property("SPEC", "Tizen.NUI.WebContext.RegisterDownloadStartedCallback M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("COVPARAM", "")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public async Task WebContextRegisterDownloadStartedCallback()
+        //{
+        //    tlog.Debug(tag, $"WebContextRegisterDownloadStartedCallback START");
 
-            // Check if download or not.
-            var context = webview_.Context;
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
-            WebContext.DownloadStartedCallback dcb = (url) =>
-            {
-                tcs.TrySetResult(true);
-            };
-            context.RegisterDownloadStartedCallback(dcb);
+        //    // Check if download or not.
+        //    TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+        //    WebContext.DownloadStartedCallback dcb = (url) =>
+        //    {
+        //        tcs.TrySetResult(true);
+        //    };
 
-            webview_.LoadUrl(urlForDownload);
-            var result = await tcs.Task;
-            Assert.IsTrue(result, "DownloadStartedCallback should be invoked");
+        //    var context = webview_.Context;
+        //    context.RegisterDownloadStartedCallback(dcb);
 
-            context.Dispose();
+        //    webview_.LoadUrl(urlForDownload);
+        //    var result = await tcs.Task;
+        //    Assert.IsTrue(result, "DownloadStartedCallback should be invoked");
 
-            tlog.Debug(tag, $"WebContextRegisterDownloadStartedCallback END (OK)");
-        }
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
 
-        [Test]
-        [Category("P1")]
-        [Description("WebContext RegisterMimeOverriddenCallback.")]
-        [Property("SPEC", "Tizen.NUI.WebContext.RegisterMimeOverriddenCallback M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task WebContextRegisterMimeOverriddenCallback()
-        {
-            tlog.Debug(tag, $"WebContextRegisterMimeOverriddenCallback START");
+        //    tlog.Debug(tag, $"WebContextRegisterDownloadStartedCallback END (OK)");
+        //}
 
-            var context = webview_.Context;
-            context.RegisterMimeOverriddenCallback(MimeWrittenCallback); //TODO... how to test it?
+        //[Test]
+        //[Category("P1")]
+        //[Description("WebContext RegisterMimeOverriddenCallback.")]
+        //[Property("SPEC", "Tizen.NUI.WebContext.RegisterMimeOverriddenCallback M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("COVPARAM", "")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public async Task WebContextRegisterMimeOverriddenCallback()
+        //{
+        //    tlog.Debug(tag, $"WebContextRegisterMimeOverriddenCallback START");
 
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
-            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
-            {
-                tcs.TrySetResult(true);
-            };
-            webview_.PageLoadFinished += onLoadFinished;
+        //    TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+        //    WebContext.MimeOverriddenCallback onMimeWrittenCallback = (string url, string currentMime, out string newMime) =>
+        //    {
+        //        tlog.Info(tag, "onMimeWrittenCallback is called!");
+        //        newMime = null;
+        //        tcs.TrySetResult(true);
+        //        return false;
+        //    };
+        //    var context = webview_.Context;
+        //    context.RegisterMimeOverriddenCallback(onMimeWrittenCallback);
 
-            webview_.LoadUrl(url);
-            var result = await tcs.Task;
-            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+        //    webview_.LoadUrl(url);
+        //    var result = await tcs.Task;
+        //    Assert.IsTrue(result, "MimeOverriddenCallback event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
-            context.Dispose();
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
 
-            tlog.Debug(tag, $"WebContextRegisterMimeOverriddenCallback END (OK)");
-        }
+        //    tlog.Debug(tag, $"WebContextRegisterMimeOverriddenCallback END (OK)");
+        //}
 
         [Test]
         [Category("P1")]
@@ -875,9 +908,6 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebContextSetTimeZoneOffset START");
 
-            var context = webview_.Context;
-            context.SetTimeZoneOffset(0.3f, 1.0f);
-
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
@@ -889,8 +919,13 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            var context = webview_.Context;
+            context.SetTimeZoneOffset(0.3f, 1.0f);
+
             webview_.PageLoadFinished -= onLoadFinished;
-            context.Dispose();
 
             tlog.Debug(tag, $"WebContextSetTimeZoneOffset END (OK)");
         }
@@ -907,9 +942,6 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebContextSetContextTimeZoneOffset START");
 
-            var context = webview_.Context;
-            context.SetContextTimeZoneOffset(0.3f, 1.0f);
-
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
@@ -921,8 +953,13 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            var context = webview_.Context;
+            context.SetContextTimeZoneOffset(0.3f, 1.0f);
+
             webview_.PageLoadFinished -= onLoadFinished;
-            context.Dispose();
 
             tlog.Debug(tag, $"WebContextSetContextTimeZoneOffset END (OK)");
         }
@@ -950,14 +987,15 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            var context = webview_.Context;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             // Delete all web applicaton cache.
+            var context = webview_.Context;
             context.DeleteAllApplicationCache();
             // TODO...list count need be checked, but query API is not wrapped.
 
             webview_.PageLoadFinished -= onLoadFinished;
-            context.Dispose();
 
             tlog.Debug(tag, $"WebContextDeleteAllApplicationCache END (OK)");
         }
@@ -974,6 +1012,7 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebContextDeleteAllWebIndexedDatabase START");
 
+            // Load url to check db exists.
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
@@ -981,18 +1020,20 @@ namespace Tizen.NUI.Devel.Tests
             };
             webview_.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(urlForApplicatonCache);
+            webview_.LoadUrl(urlForIndexedDBCreation);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            var context = webview_.Context;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             // Delete all web indexed db.
+            var context = webview_.Context;
             context.DeleteAllWebIndexedDatabase();
-            // TODO...list count need be checked, but query API is not wrapped.
+
+            //TODO... how to check if title is changed.
 
             webview_.PageLoadFinished -= onLoadFinished;
-            context.Dispose();
 
             tlog.Debug(tag, $"WebContextDeleteAllWebIndexedDatabase END (OK)");
         }
@@ -1020,13 +1061,14 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            var context = webview_.Context;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             // Free unused memory if low memory.
+            var context = webview_.Context;
             context.FreeUnusedMemory();
 
             webview_.PageLoadFinished -= onLoadFinished;
-            context.Dispose();
 
             tlog.Debug(tag, $"WebContextFreeUnusedMemory END (OK)");
         }

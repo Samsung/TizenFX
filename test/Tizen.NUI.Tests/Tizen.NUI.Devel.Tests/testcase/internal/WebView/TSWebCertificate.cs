@@ -60,6 +60,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "SslCertificateChanged event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.SslCertificateChanged -= onSslCertificateChange;
 
             tlog.Debug(tag, $"WebCertificateConstructor END (OK)");
@@ -67,13 +70,13 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("WebCertificate IsFromMainFrame.")]
-        [Property("SPEC", "Tizen.NUI.WebCertificate.IsFromMainFrame A")]
+        [Description("WebCertificate Allow.")]
+        [Property("SPEC", "Tizen.NUI.WebCertificate.Allow M")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task WebCertificateIsFromMainFrame()
+        public async Task WebCertificateAllow()
         {
             tlog.Debug(tag, $"WebCertificateIsFromMainFrame START");
 
@@ -91,6 +94,9 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "SslCertificateChanged event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.SslCertificateChanged -= onSslCertificateChange;
 

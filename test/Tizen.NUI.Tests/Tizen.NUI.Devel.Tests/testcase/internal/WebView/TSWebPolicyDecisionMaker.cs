@@ -57,6 +57,7 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Info(tag, $"response policy decided, ResponseStatusCode: {e.ResponsePolicyDecisionMaker.ResponseStatusCode}");
                 tlog.Info(tag, $"response policy decided, DecisionNavigationType: {e.ResponsePolicyDecisionMaker.DecisionNavigationType}");
                 tlog.Info(tag, $"response policy decided, Scheme: {e.ResponsePolicyDecisionMaker.Scheme}");
+                tlog.Info(tag, $"response policy decided, MainFrame: {e.ResponsePolicyDecisionMaker.Frame.IsMainFrame}");
 
                 if (e.ResponsePolicyDecisionMaker.Frame != null)
                 {
@@ -71,6 +72,9 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(urlForResponsePolicyTest);
             var result = await tcs.Task;
             Assert.IsTrue(result, "ResponsePolicyDecided event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.ResponsePolicyDecided -= onResponsePolicyDecide;
 
@@ -93,7 +97,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPolicyDecidedEventArgs> onResponsePolicyDecide = (s, e) =>
             {
                 e.ResponsePolicyDecisionMaker.Suspend();
-
                 tcs.TrySetResult(true);
             };
             webView.ResponsePolicyDecided += onResponsePolicyDecide;
@@ -101,6 +104,9 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(urlForResponsePolicyTest);
             var result = await tcs.Task;
             Assert.IsTrue(result, "ResponsePolicyDecided event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.ResponsePolicyDecided -= onResponsePolicyDecide;
 
@@ -123,7 +129,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPolicyDecidedEventArgs> onResponsePolicyDecide = (s, e) =>
             {
                 e.ResponsePolicyDecisionMaker.Use();
-
                 tcs.TrySetResult(true);
             };
             webView.ResponsePolicyDecided += onResponsePolicyDecide;
@@ -131,6 +136,9 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(urlForResponsePolicyTest);
             var result = await tcs.Task;
             Assert.IsTrue(result, "ResponsePolicyDecided event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.ResponsePolicyDecided -= onResponsePolicyDecide;
 

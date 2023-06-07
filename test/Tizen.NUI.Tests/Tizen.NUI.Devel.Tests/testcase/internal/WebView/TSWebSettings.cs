@@ -59,6 +59,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
 
             var webSettings = webview_.Settings;
@@ -96,6 +99,9 @@ namespace Tizen.NUI.Devel.Tests
             webview_.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webview_.PageLoadFinished -= onLoadFinished;
 
@@ -135,6 +141,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
 
             var webSettings = webview_.Settings;
@@ -172,6 +181,9 @@ namespace Tizen.NUI.Devel.Tests
             webview_.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webview_.PageLoadFinished -= onLoadFinished;
 
@@ -211,6 +223,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
 
             var webSettings = webview_.Settings;
@@ -248,6 +263,9 @@ namespace Tizen.NUI.Devel.Tests
             webview_.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webview_.PageLoadFinished -= onLoadFinished;
 
@@ -287,6 +305,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
 
             var webSettings = webview_.Settings;
@@ -324,6 +345,9 @@ namespace Tizen.NUI.Devel.Tests
             webview_.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webview_.PageLoadFinished -= onLoadFinished;
 
@@ -363,6 +387,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
 
             var webSettings = webview_.Settings;
@@ -400,6 +427,9 @@ namespace Tizen.NUI.Devel.Tests
             webview_.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webview_.PageLoadFinished -= onLoadFinished;
 
@@ -439,6 +469,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
 
             var webSettings = webview_.Settings;
@@ -476,6 +509,9 @@ namespace Tizen.NUI.Devel.Tests
             webview_.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webview_.PageLoadFinished -= onLoadFinished;
 
@@ -515,6 +551,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
 
             var webSettings = webview_.Settings;
@@ -552,6 +591,9 @@ namespace Tizen.NUI.Devel.Tests
             webview_.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webview_.PageLoadFinished -= onLoadFinished;
 
@@ -591,6 +633,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
 
             var webSettings = webview_.Settings;
@@ -628,6 +673,9 @@ namespace Tizen.NUI.Devel.Tests
             webview_.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webview_.PageLoadFinished -= onLoadFinished;
 
@@ -667,6 +715,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
 
             var webSettings = webview_.Settings;
@@ -704,6 +755,9 @@ namespace Tizen.NUI.Devel.Tests
             webview_.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webview_.PageLoadFinished -= onLoadFinished;
 
@@ -743,6 +797,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
 
             var webSettings = webview_.Settings;
@@ -780,6 +837,9 @@ namespace Tizen.NUI.Devel.Tests
             webview_.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webview_.PageLoadFinished -= onLoadFinished;
 
@@ -819,6 +879,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
 
             var webSettings = webview_.Settings;
@@ -856,6 +919,9 @@ namespace Tizen.NUI.Devel.Tests
             webview_.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webview_.PageLoadFinished -= onLoadFinished;
 
@@ -895,6 +961,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webview_.PageLoadFinished -= onLoadFinished;
 
             var webSettings = webview_.Settings;
@@ -932,6 +1001,9 @@ namespace Tizen.NUI.Devel.Tests
             webview_.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webview_.PageLoadFinished -= onLoadFinished;
 

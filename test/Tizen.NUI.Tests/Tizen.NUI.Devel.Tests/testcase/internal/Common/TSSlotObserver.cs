@@ -1,4 +1,4 @@
-﻿using global::System;
+using global::System;
 using NUnit.Framework;
 using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
