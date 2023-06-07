@@ -34,6 +34,7 @@ namespace Tizen.NUI
         private Rectangle windowRectangle = null;
         private WindowType defaultWindowType = WindowType.Normal;
         private ICoreTask coreTask;
+        private WindowData windowData = null;
 
         /// <summary>
         /// The Dictionary to contain each type of event callback.
@@ -88,6 +89,13 @@ namespace Tizen.NUI
             this.stylesheet = stylesheet;
             this.windowMode = windowMode;
             this.defaultWindowType = type;
+        }
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUICoreBackend(WindowData windowData)
+        {
+            //NOTE: windowMode, defaultWindowType, windowRectangle are not used.
+            this.windowData = windowData;
         }
 
         /// <summary>
@@ -171,7 +179,12 @@ namespace Tizen.NUI
                 args[0] = this.GetType().Assembly.FullName.Replace(" ", "");
             }
 
-            if (defaultWindowType != WindowType.Normal)
+            if (windowData != null)
+            {
+                bool enableUIThread = coreTask != null;
+                application = Application.NewApplication(args, stylesheet, enableUIThread, windowData);
+            }
+            else if (defaultWindowType != WindowType.Normal)
             {
                 application = Application.NewApplication(stylesheet, windowMode, defaultWindowType);
             }
