@@ -264,6 +264,22 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// The constructor with a ThemeOptions, WindowData
+        /// </summary>
+        /// <param name="option">The theme option.</param>
+        /// <param name="windowData">The default window data</param>
+        [SuppressMessage("Microsoft.Design", "CA2000: Dispose objects before losing scope", Justification = "NUICoreBackend is disposed in the base class when the application is terminated")]
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public NUIApplication(ThemeOptions option, WindowData windowData) : base(new NUICoreBackend(windowData))
+        {
+            if (windowData.BorderInterface != null)
+            {
+                EnableBorder(windowData.BorderInterface);
+            }
+            ApplyThemeOption(option);
+        }
+
+        /// <summary>
         /// Occurs whenever the application is resumed.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>

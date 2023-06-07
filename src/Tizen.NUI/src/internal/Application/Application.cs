@@ -1576,6 +1576,19 @@ namespace Tizen.NUI
             return instance;
         }
 
+        public static Application NewApplication(string[] args, string stylesheet, bool useUIThread, WindowData windowData)
+        {
+            if (instance != null)
+            {
+                return instance;
+            }
+            Application ret = New(args, stylesheet, useUIThread, windowData);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            instance = ret;
+            return instance;
+        }
+
         /// <summary>
         /// Ensures that the function passed in is called from the main loop when it is idle.
         /// </summary>
@@ -1705,6 +1718,30 @@ namespace Tizen.NUI
                 argvStr = string.Join(" ", args);
 
                 ret = new Application(Interop.Application.New(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize), useUIThread), true);
+                if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+            catch (Exception exception)
+            {
+                Tizen.Log.Fatal("NUI", "[Error] got exception during Application New(), this should not occur, message : " + exception.Message);
+                Tizen.Log.Fatal("NUI", "[Error] error line number : " + new StackTrace(exception, true).GetFrame(0).GetFileLineNumber());
+                Tizen.Log.Fatal("NUI", "[Error] Stack Trace : " + exception.StackTrace);
+                throw;
+            }
+
+            return ret;
+        }
+
+        public static Application New(string[] args, string stylesheet, bool useUIThread, WindowData windowData)
+        {
+            Application ret = null;
+            int argc = 0;
+            string argvStr = "";
+            try
+            {
+                argc = args.Length;
+                argvStr = string.Join(" ", args);
+
+                ret = new Application(Interop.Application.New(argc, argvStr, stylesheet, useUIThread, WindowData.getCPtr(windowData)), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             catch (Exception exception)
