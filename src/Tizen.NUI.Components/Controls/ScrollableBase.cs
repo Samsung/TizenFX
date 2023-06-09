@@ -1115,6 +1115,16 @@ namespace Tizen.NUI.Components
         }
 
         /// <summary>
+        /// return the children of ContentContainer when user try to get the children of ScrollableBase.
+        /// </summary>
+        /// <returns></returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override List<View> GetChildren()
+        {
+            return ContentContainer.Children;
+        }
+
+        /// <summary>
         /// Scrolls to the item at the specified index.
         /// </summary>
         /// <param name="index">Index of item.</param>
