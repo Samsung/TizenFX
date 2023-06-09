@@ -3599,7 +3599,7 @@ namespace Tizen.NUI.BaseComponents
 
             if (dispatch == true)
             {
-                configGestureCount = configGestureCount > 0 ? configGestureCount-- : 0;
+                configGestureCount = configGestureCount > 0 ? configGestureCount - 1 : 0;
                 if (configGestureCount == 0)
                 {
                     panGestureDetector.Detach(this);
@@ -3613,12 +3613,6 @@ namespace Tizen.NUI.BaseComponents
                     pinchGestureDetector.Detected -= OnGestureDetected;
                     tapGestureDetector.Detected -= OnGestureDetected;
                     rotationGestureDetector.Detected -= OnGestureDetected;
-
-                    panGestureDetector = null;
-                    longGestureDetector = null;
-                    pinchGestureDetector = null;
-                    tapGestureDetector = null;
-                    rotationGestureDetector = null;
                 }
             }
             else
