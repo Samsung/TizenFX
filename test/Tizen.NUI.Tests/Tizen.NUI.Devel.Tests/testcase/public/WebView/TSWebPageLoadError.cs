@@ -15,12 +15,12 @@ namespace Tizen.NUI.Devel.Tests
     {
         private const string tag = "NUITEST";
         private const string errorUrl = "file:///file_that_does_not_exist.html";
-        private BaseComponents.WebView _webview = null;
+        private BaseComponents.WebView webview = null;
 
         [SetUp]
         public void Init()
         {
-            _webview = new BaseComponents.WebView()
+            webview = new BaseComponents.WebView()
             {
                 Size = new Size(500, 200)
             };
@@ -30,7 +30,7 @@ namespace Tizen.NUI.Devel.Tests
         [TearDown]
         public void Destroy()
         {
-            _webview.Dispose();
+            webview.Dispose();
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -78,20 +78,19 @@ namespace Tizen.NUI.Devel.Tests
                     failed = false;
                 }
 
-                if (!failed)
-                {
-                    tcs.TrySetResult(true);
-                }
+                tcs.TrySetResult(!failed);
             };
 
-            _webview.PageLoadError += onLoadError;
+            webview.PageLoadError += onLoadError;
 
-            _webview.LoadUrl(errorUrl);
+            webview.LoadUrl(errorUrl);
             var result = await tcs.Task;
-            Assert.IsTrue(result, "Url should be valid value");
+            Assert.IsTrue(result, "PageLoadError should be invoked.");
 
-            await Task.Delay(10000);
-            _webview.PageLoadError -= onLoadError;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webview.PageLoadError -= onLoadError;
 
             tlog.Debug(tag, $"WebPageLoadErrorUrl END (OK)");
         }

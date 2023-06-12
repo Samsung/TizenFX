@@ -4,6 +4,7 @@ using NUnit.Framework.TUnit;
 using Tizen.NUI.Components;
 using Tizen.NUI.BaseComponents;
 using System.Threading.Tasks;
+using Tizen.WebView;
 
 namespace Tizen.NUI.Devel.Tests
 {
@@ -14,25 +15,71 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalWebCookieManagerTest
     {
         private const string tag = "NUITEST";
-        private static string[] runtimeArgs = { "Tizen.NUI.Devel.Tests", "--enable-dali-window", "--enable-spatial-navigation" };
-        private const string USER_AGENT = "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36";
+        private string urlForCookies = "https://www.baidu.com/";
+        private BaseComponents.WebView webview;
+        private WebCookieManager _cookieManager;
+        private const string cookiePath = "/home/owner/.cookie";
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
+            webview = new BaseComponents.WebView()
+            {
+                Size = new Size(500, 200),
+            };
+            _cookieManager = webview.CookieManager;
         }
 
         [TearDown]
         public void Destroy()
         {
+            tlog.Info(tag, "Destroy() is being called!");
+            webview.Dispose();
             tlog.Info(tag, "Destroy() is called!");
         }
 
         [Test]
         [Category("P1")]
         [Description("WebCookieManager CookieChanged.")]
-        [Property("SPEC", "Tizen.NUI.WebCookieManager.CookieChanged A")]
+        [Property("SPEC", "Tizen.NUI.WebCookieManager.CookieAcceptPolicy A")]
+        [Property("SPEC_URL", "-")]
+        [Property("CRITERIA", "PRW")]
+        [Property("COVPARAM", "")]
+        [Property("AUTHOR", "guowei.wang@samsung.com")]
+        public async Task WebCookieManagerCookieAcceptPolicy()
+        {
+            tlog.Debug(tag, $"WebCookieManagerCookieAcceptPolicy START");
+
+            _cookieManager.CookieAcceptPolicy = WebCookieManager.CookieAcceptPolicyType.Never;
+            _cookieManager.SetPersistentStorage(cookiePath, WebCookieManager.CookiePersistentStorageType.SqlLite);
+
+            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+            {
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
+            };
+            webview.PageLoadFinished += onLoadFinished;
+
+            webview.LoadUrl(urlForCookies);
+            var result = await tcs.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            Assert.AreEqual(_cookieManager.CookieAcceptPolicy, WebCookieManager.CookieAcceptPolicyType.Never, "Failed to set CookieAcceptPolicyType!");
+
+            webview.PageLoadFinished -= onLoadFinished;
+
+            tlog.Debug(tag, $"WebCookieManagerCookieAcceptPolicy END (OK)");
+        }
+
+        [Test]
+        [Category("P1")]
+        [Description("WebCookieManager CookieChanged.")]
+        [Property("SPEC", "Tizen.NUI.WebCookieManager.CookieChanged E")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
@@ -41,62 +88,92 @@ namespace Tizen.NUI.Devel.Tests
         {
             tlog.Debug(tag, $"WebCookieManagerCookieChanged START");
 
-            var webview = new Tizen.NUI.BaseComponents.WebView(runtimeArgs)
+            _cookieManager.CookieAcceptPolicy = WebCookieManager.CookieAcceptPolicyType.Always;
+            _cookieManager.SetPersistentStorage(cookiePath, WebCookieManager.CookiePersistentStorageType.SqlLite);
+
+            TaskCompletionSource<bool> tcs1 = new TaskCompletionSource<bool>(false);
+
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                Size = new Size(500, 200),
-                UserAgent = USER_AGENT
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs1.TrySetResult(true);
             };
-            Assert.IsNotNull(webview, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(webview, "Should return Tizen.NUI.BaseComponents.WebView instance.");
+            webview.PageLoadFinished += onLoadFinished;
 
-            var testingTarget = webview.CookieManager;
-            Assert.IsInstanceOf<WebCookieManager>(testingTarget, "Should return WebCookieManager instance.");
+            webview.LoadUrl(urlForCookies);
 
-            testingTarget.CookieChanged += OnCookieChanged;
+            var result = await tcs1.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview.LoadUrl("http://www.baidu.com/");
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            await Task.Delay(10000);
+            TaskCompletionSource<bool> tcs2 = new TaskCompletionSource<bool>(false);
+            EventHandler<EventArgs> onCookieChanged = (s, e) =>
+            {
+                tlog.Info(tag, "CookieChanged is called!");
+                tcs2.TrySetResult(true);
+            };
 
-            testingTarget.CookieChanged -= OnCookieChanged;
+            _cookieManager.CookieChanged += onCookieChanged;
 
-            testingTarget.Dispose();
+            const string addCookies = "document.cookie = \"username=John Doe\";";
+            BaseComponents.WebView.JavaScriptMessageHandler onEvaluateJS = (message) =>
+            {
+                tlog.Info(tag, $"EvaluateJavaScript is called!, result is {message}");
+            };
+            webview.EvaluateJavaScript(addCookies, onEvaluateJS);
+
+            tlog.Info(tag, "EvaluateJavaScript is called!");
+
+            var result2 = await tcs2.Task;
+            Assert.IsTrue(result2, "CookieChanged event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webview.PageLoadFinished -= onLoadFinished;
+            _cookieManager.CookieChanged -= onCookieChanged;
+
             tlog.Debug(tag, $"WebCookieManagerCookieChanged END (OK)");
         }
 
         [Test]
         [Category("P1")]
-        [Description("WebCookieManager SetPersistentStorage.")]
-        [Property("SPEC", "Tizen.NUI.WebCookieManager.SetPersistentStorage M")]
+        [Description("WebCookieManager CookieChanged.")]
+        [Property("SPEC", "Tizen.NUI.WebCookieManager.ClearCookies M")]
         [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
+        [Property("CRITERIA", "PRW")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebCookieManagerSetPersistentStorage()
+        public async Task WebCookieManagerClearCookies()
         {
-            tlog.Debug(tag, $"WebCookieManagerSetPersistentStorage START");
+            tlog.Debug(tag, $"WebCookieManagerClearCookies START");
 
-            using (Tizen.NUI.BaseComponents.WebView webview = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
+            _cookieManager.CookieAcceptPolicy = WebCookieManager.CookieAcceptPolicyType.Always;
+            _cookieManager.SetPersistentStorage(cookiePath, WebCookieManager.CookiePersistentStorageType.SqlLite);
+
+            TaskCompletionSource<bool> tcs1 = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                var testingTarget = webview.CookieManager;
-                Assert.IsInstanceOf<WebCookieManager>(testingTarget, "Should return WebCookieManager instance.");
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs1.TrySetResult(true);
+            };
+            webview.PageLoadFinished += onLoadFinished;
 
-                try
-                {
-                    testingTarget.SetPersistentStorage("/", WebCookieManager.CookiePersistentStorageType.Text);
-                }
-                catch (Exception e)
-                {
-                    tlog.Debug(tag, e.Message.ToString());
-                    Assert.Fail("Caught Exception : Failed!");
-                }
+            webview.LoadUrl(urlForCookies);
+            var result = await tcs1.Task;
+            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-                testingTarget.Dispose();
-            }
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            tlog.Debug(tag, $"WebCookieManagerSetPersistentStorage END (OK)");
+            // Clear cookies.
+            _cookieManager.ClearCookies(); //
+
+            webview.PageLoadFinished -= onLoadFinished;
+
+            tlog.Debug(tag, $"WebCookieManagerClearCookies END (OK)");
         }
-
-        private void OnCookieChanged(object sender, EventArgs e) { }
     }
 }

@@ -45,7 +45,7 @@ namespace Tizen.NUI.Devel.Tests
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public async Task WebPolicyDecisionMakerIgnore()
         {
-            tlog.Debug(tag, $"WebPolicyDecisionMakerIgnore START");
+            tlog.Debug(tag, $"ResponsePolicyDecided START");
 
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
             EventHandler<WebViewPolicyDecidedEventArgs> onResponsePolicyDecide = (s, e) =>
@@ -57,6 +57,8 @@ namespace Tizen.NUI.Devel.Tests
                 tlog.Info(tag, $"response policy decided, ResponseStatusCode: {e.ResponsePolicyDecisionMaker.ResponseStatusCode}");
                 tlog.Info(tag, $"response policy decided, DecisionNavigationType: {e.ResponsePolicyDecisionMaker.DecisionNavigationType}");
                 tlog.Info(tag, $"response policy decided, Scheme: {e.ResponsePolicyDecisionMaker.Scheme}");
+                tlog.Info(tag, $"response policy decided, MainFrame: {e.ResponsePolicyDecisionMaker.Frame.IsMainFrame}");
+
                 if (e.ResponsePolicyDecisionMaker.Frame != null)
                 {
                     tlog.Info(tag, $"response policy decided, Frame.IsMainFrame: {e.ResponsePolicyDecisionMaker.Frame.IsMainFrame}");
@@ -71,9 +73,12 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "ResponsePolicyDecided event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.ResponsePolicyDecided -= onResponsePolicyDecide;
 
-            tlog.Debug(tag, $"WebPolicyDecisionMakerIgnore END (OK)");
+            tlog.Debug(tag, $"WebPolicyDecisionMakerUrl END (OK)");
         }
 
         [Test]
@@ -86,13 +91,12 @@ namespace Tizen.NUI.Devel.Tests
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public async Task WebPolicyDecisionMakerSuspend()
         {
-            tlog.Debug(tag, $"WebPolicyDecisionMakerSuspend START");
+            tlog.Debug(tag, $"WebPolicyDecisionMakerIgnore START");
 
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
             EventHandler<WebViewPolicyDecidedEventArgs> onResponsePolicyDecide = (s, e) =>
             {
                 e.ResponsePolicyDecisionMaker.Suspend();
-
                 tcs.TrySetResult(true);
             };
             webView.ResponsePolicyDecided += onResponsePolicyDecide;
@@ -101,9 +105,12 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "ResponsePolicyDecided event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.ResponsePolicyDecided -= onResponsePolicyDecide;
 
-            tlog.Debug(tag, $"WebPolicyDecisionMakerSuspend END (OK)");
+            tlog.Debug(tag, $"WebPolicyDecisionMakerIgnore END (OK)");
         }
 
         [Test]
@@ -116,13 +123,12 @@ namespace Tizen.NUI.Devel.Tests
         [Property("AUTHOR", "guowei.wang@samsung.com")]
         public async Task WebPolicyDecisionMakerUse()
         {
-            tlog.Debug(tag, $"WebPolicyDecisionMakerUse START");
+            tlog.Debug(tag, $"ResponsePolicyDecided START");
 
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
             EventHandler<WebViewPolicyDecidedEventArgs> onResponsePolicyDecide = (s, e) =>
             {
                 e.ResponsePolicyDecisionMaker.Use();
-
                 tcs.TrySetResult(true);
             };
             webView.ResponsePolicyDecided += onResponsePolicyDecide;
@@ -130,6 +136,9 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(urlForResponsePolicyTest);
             var result = await tcs.Task;
             Assert.IsTrue(result, "ResponsePolicyDecided event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.ResponsePolicyDecided -= onResponsePolicyDecide;
 

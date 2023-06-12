@@ -60,6 +60,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "ConsoleMessageReceived event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.ConsoleMessageReceived -= onConsoleMessageReceive;
 
             tlog.Debug(tag, $"WebConsoleMessageConstructor END (OK)");
@@ -91,6 +94,10 @@ namespace Tizen.NUI.Devel.Tests
 
             webView.LoadUrl(urlForConsoleMessageTest);
             var result = await tcs.Task;
+            Assert.IsTrue(result, "ConsoleMessageReceived event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.ConsoleMessageReceived -= onConsoleMessageReceive;
 
