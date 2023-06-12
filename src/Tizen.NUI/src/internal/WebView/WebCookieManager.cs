@@ -56,6 +56,11 @@ namespace Tizen.NUI
             remove
             {
                 cookieChangedEventHandler -= value;
+                if (cookieChangedEventHandler == null)
+                {
+                    IntPtr ip = IntPtr.Zero;
+                    Interop.WebCookieManager.CookieChangedCallback(SwigCPtr, new HandleRef(this, ip));
+                }
             }
         }
 
