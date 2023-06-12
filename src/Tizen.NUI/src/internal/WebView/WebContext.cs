@@ -518,7 +518,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterDownloadStartedCallback(DownloadStartedCallback callback)
         {
-            IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
+            IntPtr ip = IntPtr.Zero;
+            if (callback != null)
+            {
+                ip = Marshal.GetFunctionPointerForDelegate(callback);
+            }
             Interop.WebContext.RegisterDownloadStartedCallback(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -530,7 +534,11 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void RegisterMimeOverriddenCallback(MimeOverriddenCallback callback)
         {
-            IntPtr ip = Marshal.GetFunctionPointerForDelegate(callback);
+            IntPtr ip = IntPtr.Zero;
+            if (callback != null)
+            {
+                ip = Marshal.GetFunctionPointerForDelegate(callback);
+            }
             Interop.WebContext.RegisterMimeOverriddenCallback(SwigCPtr, new HandleRef(this, ip));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
