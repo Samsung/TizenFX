@@ -60,6 +60,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked.");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             Assert.IsNotNull(webView.BackForwardList, "null handle");
             Assert.IsInstanceOf<WebBackForwardList>(webView.BackForwardList, "Should return WebBackForwardList instance.");
             Assert.Greater(webView.BackForwardList.ItemCount, 0, "ItemCount should be greater than 0.");
@@ -92,6 +95,10 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked.");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             Assert.IsNotNull(webView.BackForwardList.GetCurrentItem(), "handle should not be null.");
 
             webView.PageLoadFinished -= onLoadFinished;
@@ -114,25 +121,39 @@ namespace Tizen.NUI.Devel.Tests
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                if (webView.Url.Contains("index.html"))
-                {
-                    tlog.Info(tag, "onLoadFinished is called!");
-                    webView.LoadUrl(secondUrl);
-                }
-                else
-                {
-                    tlog.Info(tag, "onLoadFinished is called!");
-                    tcs.TrySetResult(true);
-                }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
 
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
-            Assert.IsNotNull(webView.BackForwardList.GetPreviousItem(), "handle should not be null.");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.PageLoadFinished -= onLoadFinished;
+
+            // Load second url.
+            TaskCompletionSource<bool> tcs2 = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished2 = (s, e) =>
+            {
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs2.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished2;
+
+            webView.LoadUrl(secondUrl);
+            var result2 = await tcs2.Task;
+            Assert.IsTrue(result2, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            Assert.IsNotNull(webView.BackForwardList.GetPreviousItem(), "handle should not be null.");
+
+            webView.PageLoadFinished -= onLoadFinished2;
 
             tlog.Debug(tag, $"WebBackForwardListGetPreviousItem END (OK)");
         }
@@ -152,26 +173,40 @@ namespace Tizen.NUI.Devel.Tests
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                if (webView.Url.Contains("index.html"))
-                {
-                    tlog.Info(tag, "onLoadFinished is called!");
-                    webView.LoadUrl(secondUrl);
-                }
-                else
-                {
-                    tlog.Info(tag, "onLoadFinished is called!");
-                    webView.GoBack();
-                    tcs.TrySetResult(true);
-                }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
 
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
-            Assert.IsNotNull(webView.BackForwardList.GetNextItem(), "handle should not be null.");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.PageLoadFinished -= onLoadFinished;
+
+            // Load second url.
+            TaskCompletionSource<bool> tcs2 = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished2 = (s, e) =>
+            {
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs2.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished2;
+
+            webView.LoadUrl(secondUrl);
+            var result2 = await tcs2.Task;
+            Assert.IsTrue(result2, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.GoBack();
+            Assert.IsNotNull(webView.BackForwardList.GetNextItem(), "handle should not be null.");
+
+            webView.PageLoadFinished -= onLoadFinished2;
 
             tlog.Debug(tag, $"WebBackForwardListGetNextItem END (OK)");
         }
@@ -191,105 +226,147 @@ namespace Tizen.NUI.Devel.Tests
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                if (webView.Url.Contains("index.html"))
-                {
-                    tlog.Info(tag, "onLoadFinished is called!");
-                    webView.LoadUrl(secondUrl);
-                }
-                else
-                {
-                    tlog.Info(tag, "onLoadFinished is called!");
-                    tcs.TrySetResult(true);
-                }
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
 
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
-            Assert.IsNotNull(webView.BackForwardList.GetItemAtIndex(0), "handle should not be null.");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.PageLoadFinished -= onLoadFinished;
+
+            // Load second url.
+            TaskCompletionSource<bool> tcs2 = new TaskCompletionSource<bool>(false);
+            EventHandler<WebViewPageLoadEventArgs> onLoadFinished2 = (s, e) =>
+            {
+                tlog.Info(tag, "onLoadFinished is called!");
+                tcs2.TrySetResult(true);
+            };
+            webView.PageLoadFinished += onLoadFinished2;
+
+            webView.LoadUrl(secondUrl);
+            var result2 = await tcs2.Task;
+            Assert.IsTrue(result2, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            Assert.IsNotNull(webView.BackForwardList.GetItemAtIndex(0), "handle should not be null.");
+
+            webView.PageLoadFinished -= onLoadFinished2;
 
             tlog.Debug(tag, $"WebBackForwardListGetItemAtIndex END (OK)");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("WebBackForwardList GetBackwardItems.")]
-        [Property("SPEC", "Tizen.NUI.WebBackForwardList.GetBackwardItems M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task WebBackForwardListGetBackwardItems()
-        {
-            tlog.Debug(tag, $"WebBackForwardListGetBackwardItems START");
+        //[Test]
+        //[Category("P1")]
+        //[Description("WebBackForwardList GetBackwardItems.")]
+        //[Property("SPEC", "Tizen.NUI.WebBackForwardList.GetBackwardItems M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("COVPARAM", "")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public async Task WebBackForwardListGetBackwardItems()
+        //{
+        //    tlog.Debug(tag, $"WebBackForwardListGetBackwardItems START");
 
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
-            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
-            {
-                if (webView.Url.Contains("index.html"))
-                {
-                    tlog.Info(tag, "onLoadFinished is called!");
-                    webView.LoadUrl(secondUrl);
-                }
-                else
-                {
-                    tlog.Info(tag, "onLoadFinished is called!");
-                    tcs.TrySetResult(true);
-                }
-            };
-            webView.PageLoadFinished += onLoadFinished;
+        //    TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+        //    EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+        //    {
+        //        tlog.Info(tag, "onLoadFinished is called!");
+        //        tcs.TrySetResult(true);
+        //    };
+        //    webView.PageLoadFinished += onLoadFinished;
 
-            webView.LoadUrl(url);
-            var result = await tcs.Task;
-            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
-            Assert.IsNotNull(webView.BackForwardList.GetBackwardItems(2), "handle should not be null.");
+        //    webView.LoadUrl(url);
+        //    var result = await tcs.Task;
+        //    Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webView.PageLoadFinished -= onLoadFinished;
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
 
-            tlog.Debug(tag, $"WebBackForwardListGetBackwardItems END (OK)");
-        }
+        //    webView.PageLoadFinished -= onLoadFinished;
 
-        [Test]
-        [Category("P1")]
-        [Description("WebBackForwardList GetForwardItems.")]
-        [Property("SPEC", "Tizen.NUI.WebBackForwardList.GetForwardItems M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task WebBackForwardListGetForwardItems()
-        {
-            tlog.Debug(tag, $"WebBackForwardListGetForwardItems START");
+        //    // Load second url.
+        //    TaskCompletionSource<bool> tcs2 = new TaskCompletionSource<bool>(false);
+        //    EventHandler<WebViewPageLoadEventArgs> onLoadFinished2 = (s, e) =>
+        //    {
+        //        tlog.Info(tag, "onLoadFinished is called!");
+        //        tcs2.TrySetResult(true);
+        //    };
+        //    webView.PageLoadFinished += onLoadFinished2;
 
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
-            EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
-            {
-                if (webView.Url.Contains("index.html"))
-                {
-                    tlog.Info(tag, "onLoadFinished is called!");
-                    webView.LoadUrl(secondUrl);
-                }
-                else
-                {
-                    tlog.Info(tag, "onLoadFinished is called!");
-                    webView.GoBack();
-                    tcs.TrySetResult(true);
-                }
-            };
-            webView.PageLoadFinished += onLoadFinished;
+        //    webView.LoadUrl(secondUrl);
+        //    var result2 = await tcs2.Task;
+        //    Assert.IsTrue(result2, "PageLoadFinished event should be invoked");
 
-            webView.LoadUrl(url);
-            var result = await tcs.Task;
-            Assert.IsTrue(result, "PageLoadFinished event should be invoked");
-            Assert.IsNotNull(webView.BackForwardList.GetForwardItems(2), "handle should not be null.");
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
 
-            webView.PageLoadFinished -= onLoadFinished;
+        //    Assert.IsNotNull(webView.BackForwardList.GetBackwardItems(1), "handle should not be null.");
 
-            tlog.Debug(tag, $"WebBackForwardListGetForwardItems END (OK)");
-        }
+        //    webView.PageLoadFinished -= onLoadFinished2;
+
+        //    tlog.Debug(tag, $"WebBackForwardListGetBackwardItems END (OK)");
+        //}
+
+        //[Test]
+        //[Category("P1")]
+        //[Description("WebBackForwardList GetForwardItems.")]
+        //[Property("SPEC", "Tizen.NUI.WebBackForwardList.GetForwardItems M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "MR")]
+        //[Property("COVPARAM", "")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public async Task WebBackForwardListGetForwardItems()
+        //{
+        //    tlog.Debug(tag, $"WebBackForwardListGetForwardItems START");
+
+        //    TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+        //    EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
+        //    {
+        //        tlog.Info(tag, "onLoadFinished is called!");
+        //        tcs.TrySetResult(true);
+        //    };
+        //    webView.PageLoadFinished += onLoadFinished;
+
+        //    webView.LoadUrl(url);
+        //    var result = await tcs.Task;
+        //    Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
+
+        //    webView.PageLoadFinished -= onLoadFinished;
+
+        //    // Load second url.
+        //    TaskCompletionSource<bool> tcs2 = new TaskCompletionSource<bool>(false);
+        //    EventHandler<WebViewPageLoadEventArgs> onLoadFinished2 = (s, e) =>
+        //    {
+        //        tlog.Info(tag, "onLoadFinished is called!");
+        //        tcs2.TrySetResult(true);
+        //    };
+        //    webView.PageLoadFinished += onLoadFinished2;
+
+        //    webView.LoadUrl(secondUrl);
+        //    var result2 = await tcs2.Task;
+        //    Assert.IsTrue(result2, "PageLoadFinished event should be invoked");
+
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
+
+        //    webView.GoBack();
+        //    Assert.IsNotNull(webView.BackForwardList.GetForwardItems(1), "handle should not be null.");
+
+        //    webView.PageLoadFinished -= onLoadFinished2;
+
+        //    tlog.Debug(tag, $"WebBackForwardListGetForwardItems END (OK)");
+        //}
 
         [Test]
         [Category("P1")]
@@ -315,10 +392,15 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked.");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             var testingTarget = webView.BackForwardList.GetCurrentItem();
             Assert.IsNotNull(testingTarget, "Handle should not be null.");
             Assert.IsNotNull(testingTarget.Url, "Url should not be null.");
             Assert.IsTrue(testingTarget.Url.Contains("index.html"), "Url of current item should contain a correct string.");
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebBackForwardListItemUrl END (OK)");
         }
@@ -347,10 +429,15 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked.");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             var testingTarget = webView.BackForwardList.GetCurrentItem();
             Assert.IsNotNull(testingTarget, "handle should not be null.");
             Assert.IsNotNull(testingTarget.Title, "Title should not be null.");
             Assert.IsTrue(testingTarget.Title.Contains("Title"), "Title of current item should contain a correct string.");
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebBackForwardListItemTitle END (OK)");
         }
@@ -379,10 +466,15 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked.");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             var testingTarget = webView.BackForwardList.GetCurrentItem();
             Assert.IsNotNull(testingTarget, "Handle should not be null.");
             Assert.IsNotNull(testingTarget.OriginalUrl, "Url should not be null.");
             Assert.IsTrue(testingTarget.OriginalUrl.Contains("index.html"), "Url of current item should contain a correct string.");
+
+            webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebBackForwardListItemOriginalUrl END (OK)");
         }

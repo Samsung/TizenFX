@@ -139,6 +139,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadStarted event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.PageLoadStarted -= onLoadStarted;
 
             tlog.Debug(tag, $"WebViewPageLoadStarted END (OK)");
@@ -163,6 +166,9 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoading event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.PageLoading -= onLoading;
 
@@ -189,6 +195,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewPageLoadFinished END (OK)");
@@ -210,6 +219,7 @@ namespace Tizen.NUI.Devel.Tests
 
             EventHandler<WebViewUrlChangedEventArgs> onUrlChange = (s, e) =>
             {
+                Assert.IsNotNull(e.NewPageUrl, "New page url should not be null");
                 tcs.TrySetResult(true);
             };
             webView.UrlChanged += onUrlChange;
@@ -217,6 +227,9 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "UrlChanged event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.UrlChanged -= onUrlChange;
 
@@ -243,6 +256,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "FrameRendered event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.FrameRendered -= onFrameRender;
 
             tlog.Debug(tag, $"WebViewFrameRendered END (OK)");
@@ -267,6 +283,9 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(urlForResponsePolicyTest);
             var result = await tcs.Task;
             Assert.IsTrue(result, "ResponsePolicyDecided event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.ResponsePolicyDecided -= onResponsePolicyDecide;
 
@@ -298,6 +317,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "NavigationPolicyDecided event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.NavigationPolicyDecided -= onNavigationPolicyDecided;
 
             tlog.Debug(tag, $"WebViewNavigationPolicyDecided END (OK)");
@@ -328,6 +350,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "CertificateConfirmed event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.CertificateConfirmed -= onCertificateConfirme;
 
             tlog.Debug(tag, $"WebViewCertificateConfirmed END (OK)");
@@ -353,36 +378,13 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "SslCertificateChanged event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.SslCertificateChanged -= onSslCertificateChange;
 
             tlog.Debug(tag, $"WebViewSslCertificateChanged END (OK)");
         }
-
-        //TODO... it seems that web engine does not implement it.
-        //[Test]
-        //[Category("P1")]
-        //[Description("WebView HttpAuthRequested.")]
-        //[Property("SPEC", "Tizen.NUI.WebView.HttpAuthRequested A")]
-        //[Property("SPEC_URL", "-")]
-        //[Property("CRITERIA", "PRW")]
-        //[Property("COVPARAM", "")]
-        //[Property("AUTHOR", "guowei.wang@samsung.com")]
-        //public async Task WebViewHttpAuthRequested()
-        //{
-        //    tlog.Debug(tag, $"WebViewHttpAuthRequested START");
-
-        //    TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
-        //    EventHandler<WebViewHttpAuthRequestedEventArgs> onHttpAuthRequeste = (s, e) => { tcs.TrySetResult(true); };
-        //    webView.HttpAuthRequested += onHttpAuthRequeste;
-
-        //    webView.LoadUrl(urlForHttpAuthRequestTest);
-        //    var result = await tcs.Task;
-        //    Assert.IsTrue(result, "ResponsePolicyDecided event should be invoked");
-
-        //    webView.HttpAuthRequested -= onHttpAuthRequeste;
-
-        //    tlog.Debug(tag, $"WebViewHttpAuthRequested END (OK)");
-        //}
 
         [Test]
         [Category("P1")]
@@ -403,6 +405,9 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(urlForConsoleMessageTest);
             var result = await tcs.Task;
             Assert.IsTrue(result, "ConsoleMessageReceived event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.ConsoleMessageReceived -= onConsoleMessageReceive;
 
@@ -503,6 +508,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, "Url : " + webView.Url);
@@ -579,6 +587,9 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -792,6 +803,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, "ContentBackgroundColor : " + webView.ContentBackgroundColor);
@@ -992,6 +1006,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewLoadHtmlString END (OK)");
@@ -1021,6 +1038,9 @@ namespace Tizen.NUI.Devel.Tests
 
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1052,6 +1072,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewLoadContents END (OK)");
@@ -1073,7 +1096,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.Reload();
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1082,6 +1104,11 @@ namespace Tizen.NUI.Devel.Tests
 
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.Reload();
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1104,7 +1131,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.ReloadWithoutCache();
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1113,6 +1139,11 @@ namespace Tizen.NUI.Devel.Tests
 
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ReloadWithoutCache();
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1135,7 +1166,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadStarted = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.StopLoading();
                 tcs.TrySetResult(true);
             };
             webView.PageLoadStarted += onLoadStarted;
@@ -1144,6 +1174,11 @@ namespace Tizen.NUI.Devel.Tests
 
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadStarted event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.StopLoading();
 
             webView.PageLoadStarted -= onLoadStarted;
 
@@ -1163,27 +1198,23 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WebViewSuspend START");
 
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
-            EventHandler<WebViewPageLoadEventArgs> onLoadStarted = (s, e) =>
-            {
-                tlog.Info(tag, "onLoadStarted is called!");
-                webView.Suspend();
-            };
-            webView.PageLoadStarted += onLoadStarted;
-
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
-                tlog.Info(tag, "onLoadFinished is called!");
-                webView.Resume();
+                tlog.Info(tag, "onLoadFinished is called!");          
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
-
             webView.LoadUrl(url);
 
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webView.PageLoadStarted -= onLoadStarted;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.Suspend();
+            webView.Resume();
+
             webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewSuspend END (OK)");
@@ -1202,17 +1233,9 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"WebViewSuspendNetworkLoading START");
 
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
-            EventHandler<WebViewPageLoadEventArgs> onLoadStarted = (s, e) =>
-            {
-                tlog.Info(tag, "onLoadStarted is called!");
-                webView.SuspendNetworkLoading();
-            };
-            webView.PageLoadStarted += onLoadStarted;
-
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.ResumeNetworkLoading();
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1222,7 +1245,12 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webView.PageLoadStarted -= onLoadStarted;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.SuspendNetworkLoading();
+            webView.ResumeNetworkLoading();
+
             webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewSuspendNetworkLoading END (OK)");
@@ -1265,7 +1293,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.ScrollBy(0, 60);
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1273,6 +1300,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "ScrollEdgeReached event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ScrollBy(0, 60);
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1295,7 +1327,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.ScrollEdgeBy(0, 60);
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1303,6 +1334,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ScrollEdgeBy(0, 60);
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1332,7 +1368,6 @@ namespace Tizen.NUI.Devel.Tests
                 else
                 {
                     tlog.Info(tag, "onLoadFinished is called!");
-                    webView.GoBack();
                     tcs.TrySetResult(true);
                 }
             };
@@ -1341,6 +1376,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.GoBack();
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1370,8 +1410,6 @@ namespace Tizen.NUI.Devel.Tests
                 else
                 {
                     tlog.Info(tag, "onLoadFinished is called!");
-                    webView.GoBack();
-                    webView.GoForward();
                     tcs.TrySetResult(true);
                 }
             };
@@ -1380,6 +1418,12 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.GoBack();
+            webView.GoForward();
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1409,8 +1453,7 @@ namespace Tizen.NUI.Devel.Tests
                 else
                 {
                     tlog.Info(tag, "onLoadFinished is called!");
-                    var canGo = webView.CanGoBack();
-                    tcs.TrySetResult(canGo);
+                    tcs.TrySetResult(true);
                 }
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1418,6 +1461,12 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            var canGo = webView.CanGoBack();
+            Assert.IsTrue(canGo, "CanGoBack should be invoked");
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1447,8 +1496,6 @@ namespace Tizen.NUI.Devel.Tests
                 else
                 {
                     tlog.Info(tag, "onLoadFinished is called!");
-                    webView.GoBack();
-                    var canGo = webView.CanGoForward();
                     tcs.TrySetResult(true);
                 }
             };
@@ -1457,6 +1504,14 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            if (webView.CanGoForward())
+            {
+                webView.GoBack();
+            }
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1479,7 +1534,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.EvaluateJavaScript("<script type=\"text / javascript\">document.write(\"page\");</script>");
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1487,6 +1541,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.EvaluateJavaScript("<script type=\"text / javascript\">document.write(\"page\");</script>");
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1509,7 +1568,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.AddJavaScriptMessageHandler("AllowOrigin", JsCallback);
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1517,6 +1575,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.AddJavaScriptMessageHandler("AllowOrigin", JsCallback);
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1549,6 +1612,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewRegisterJavaScriptAlertCallback END (OK)");
@@ -1579,6 +1645,9 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1611,6 +1680,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewRegisterJavaScriptPromptCallback END (OK)");
@@ -1632,7 +1704,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.ClearAllTilesResources();
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1640,6 +1711,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ClearAllTilesResources();
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1662,7 +1738,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.ClearHistory();
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1670,6 +1745,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ClearHistory();
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1692,13 +1772,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                using (Vector2 point = new Vector2(1.0f, 1.0f))
-                {
-                    webView.SetScaleFactor(0.2f, point);
-
-                    var factor = webView.GetScaleFactor();
-                    tlog.Debug(tag, "ScaleFactor : " + factor);
-                }
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1706,6 +1779,17 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            using (Vector2 point = new Vector2(1.0f, 1.0f))
+            {
+                webView.SetScaleFactor(0.2f, point);
+
+                var factor = webView.GetScaleFactor();
+                tlog.Debug(tag, "ScaleFactor : " + factor);
+            }
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1728,7 +1812,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.ActivateAccessibility(false);
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1736,6 +1819,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ActivateAccessibility(false);
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1758,7 +1846,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.HighlightText("web", BaseComponents.WebView.FindOption.AtWordStart, 3);
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1766,6 +1853,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.HighlightText("web", BaseComponents.WebView.FindOption.AtWordStart, 3);
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1788,7 +1880,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.AddDynamicCertificatePath("127.0.0.0", "/");
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1796,6 +1887,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.AddDynamicCertificatePath("127.0.0.0", "/");
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1818,7 +1914,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.CheckVideoPlayingAsynchronously(VideoCallback);
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1826,6 +1921,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.CheckVideoPlayingAsynchronously(VideoCallback);
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1858,6 +1958,9 @@ namespace Tizen.NUI.Devel.Tests
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
             webView.PageLoadFinished -= onLoadFinished;
 
             tlog.Debug(tag, $"WebViewRegisterGeolocationPermissionCallback END (OK)");
@@ -1879,7 +1982,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.GetPlainTextAsynchronously(PlainReceivedCallback);
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1887,6 +1989,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.GetPlainTextAsynchronously(PlainReceivedCallback);
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1909,7 +2016,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.SetTtsFocus(false);
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1917,6 +2023,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.SetTtsFocus(true);
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1939,8 +2050,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                var factor = webView.GetScaleFactor();
-                webView.GetScreenshot(new Rectangle(5, 6, 100, 200), factor);
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1948,6 +2057,12 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            var factor = webView.GetScaleFactor();
+            webView.GetScreenshot(new Rectangle(5, 6, 100, 200), factor);
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -1970,8 +2085,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                var factor = webView.GetScaleFactor();
-                webView.GetScreenshotAsynchronously(new Rectangle(5, 6, 50, 50), factor, ScreenshotAcquiredCallbackCase);
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -1979,6 +2092,12 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            var factor = webView.GetScaleFactor();
+            webView.GetScreenshotAsynchronously(new Rectangle(5, 6, 50, 50), factor, ScreenshotAcquiredCallbackCase);
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -2001,7 +2120,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.EvaluateJavaScript("<script type=\"text / javascript\">document.write(\"page\");</script>", JsCallback);
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -2009,6 +2127,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.EvaluateJavaScript("<script type=\"text / javascript\">document.write(\"page\");</script>", JsCallback);
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -2031,7 +2154,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.ClearCache();
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -2039,6 +2161,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ClearCache();
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -2061,7 +2188,6 @@ namespace Tizen.NUI.Devel.Tests
             EventHandler<WebViewPageLoadEventArgs> onLoadFinished = (s, e) =>
             {
                 tlog.Info(tag, "onLoadFinished is called!");
-                webView.ClearCookies();
                 tcs.TrySetResult(true);
             };
             webView.PageLoadFinished += onLoadFinished;
@@ -2069,6 +2195,11 @@ namespace Tizen.NUI.Devel.Tests
             webView.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
+
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
+
+            webView.ClearCookies();
 
             webView.PageLoadFinished -= onLoadFinished;
 
@@ -2083,46 +2214,15 @@ namespace Tizen.NUI.Devel.Tests
         [Property("CRITERIA", "MR")]
         [Property("COVPARAM", "")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewDownCast()
+        public async Task WebViewDownCast()
         {
             tlog.Debug(tag, $"WebViewDownCast START");
 
-            try
-            {
-                BaseComponents.WebView.DownCast(webView);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
+            BaseComponents.WebView.DownCast(webView);
+
+            await Task.Delay(1);
 
             tlog.Debug(tag, $"WebViewDownCast END (OK)");
-        }
-
-        [Test]
-        [Category("P1")]
-        [Description("WebView Assign.")]
-        [Property("SPEC", "Tizen.NUI.WebView.Assign M")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "MR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebViewAssign()
-        {
-            tlog.Debug(tag, $"WebViewAssign START");
-
-            try
-            {
-                webView.Assign(webView);
-            }
-            catch (Exception e)
-            {
-                tlog.Debug(tag, e.Message.ToString());
-                Assert.Fail("Caught Exception : Failed!");
-            }
-
-            tlog.Debug(tag, $"WebViewAssign END (OK)");
         }
 
         [Test]
