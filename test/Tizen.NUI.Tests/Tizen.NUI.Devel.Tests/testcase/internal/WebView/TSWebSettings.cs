@@ -16,13 +16,13 @@ namespace Tizen.NUI.Devel.Tests
         private const string tag = "NUITEST";
         private string url = $"file://{Tizen.Applications.Application.Current.DirectoryInfo.Resource}webview/index.html";
 
-        private BaseComponents.WebView webview_ = null;
+        private BaseComponents.WebView webview = null;
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
-            webview_ = new BaseComponents.WebView()
+            webview = new BaseComponents.WebView()
             {
                 Size = new Size(500, 200),
             };
@@ -32,7 +32,7 @@ namespace Tizen.NUI.Devel.Tests
         public void Destroy()
         {
             tlog.Info(tag, "Destroy() is being called!");
-            webview_.Dispose();
+            webview.Dispose();
             tlog.Info(tag, "Destroy() is called!");
         }
 
@@ -53,15 +53,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "MixedContentsAllowed : " + webSettings.MixedContentsAllowed);
 
             webSettings.MixedContentsAllowed = true;
@@ -91,15 +94,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "SpatialNavigationEnabled : " + webSettings.SpatialNavigationEnabled);
 
             webSettings.SpatialNavigationEnabled = true;
@@ -129,15 +135,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "WebSecurityEnabled : " + webSettings.WebSecurityEnabled);
 
             webSettings.WebSecurityEnabled = true;
@@ -167,15 +176,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "CacheBuilderEnabled : " + webSettings.CacheBuilderEnabled);
 
             webSettings.CacheBuilderEnabled = true;
@@ -205,15 +217,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "DoNotTrackEnabled : " + webSettings.DoNotTrackEnabled);
 
             webSettings.DoNotTrackEnabled = true;
@@ -243,15 +258,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "ScrollbarThumbFocusNotificationsUsed : " + webSettings.ScrollbarThumbFocusNotificationsUsed);
 
             webSettings.ScrollbarThumbFocusNotificationsUsed = true;
@@ -281,15 +299,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "FileAccessFromExternalUrlAllowed : " + webSettings.FileAccessFromExternalUrlAllowed);
 
             webSettings.FileAccessFromExternalUrlAllowed = true;
@@ -319,15 +340,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "AutoFittingEnabled : " + webSettings.AutoFittingEnabled);
 
             webSettings.AutoFittingEnabled = true;
@@ -357,15 +381,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "PluginsEnabled : " + webSettings.PluginsEnabled);
 
             webSettings.PluginsEnabled = true;
@@ -395,15 +422,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "PrivateBrowsingEnabled : " + webSettings.PrivateBrowsingEnabled);
 
             webSettings.PrivateBrowsingEnabled = true;
@@ -433,15 +463,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "LinkMagnifierEnabled : " + webSettings.LinkMagnifierEnabled);
 
             webSettings.LinkMagnifierEnabled = true;
@@ -471,15 +504,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "KeypadWithoutUserActionUsed : " + webSettings.KeypadWithoutUserActionUsed);
 
             webSettings.KeypadWithoutUserActionUsed = true;
@@ -509,15 +545,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "AutofillPasswordFormEnabled : " + webSettings.AutofillPasswordFormEnabled);
 
             webSettings.AutofillPasswordFormEnabled = true;
@@ -547,15 +586,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "FormCandidateDataEnabled : " + webSettings.FormCandidateDataEnabled);
 
             webSettings.FormCandidateDataEnabled = true;
@@ -585,15 +627,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "TextSelectionEnabled : " + webSettings.TextSelectionEnabled);
 
             webSettings.TextSelectionEnabled = true;
@@ -623,15 +668,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "TextAutosizingEnabled : " + webSettings.TextAutosizingEnabled);
 
             webSettings.TextAutosizingEnabled = true;
@@ -661,15 +709,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "ArrowScrollEnabled : " + webSettings.ArrowScrollEnabled);
 
             webSettings.ArrowScrollEnabled = true;
@@ -699,15 +750,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "ClipboardEnabled : " + webSettings.ClipboardEnabled);
 
             webSettings.ClipboardEnabled = true;
@@ -737,15 +791,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "ImePanelEnabled : " + webSettings.ImePanelEnabled);
 
             webSettings.ImePanelEnabled = true;
@@ -775,15 +832,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "ScriptsOpenWindowsAllowed : " + webSettings.ScriptsOpenWindowsAllowed);
 
             webSettings.ScriptsOpenWindowsAllowed = true;
@@ -813,15 +873,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "ViewportMetaTag : " + webSettings.ViewportMetaTag);
 
             webSettings.ViewportMetaTag = true;
@@ -851,15 +914,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "ZoomForced : " + webSettings.ZoomForced);
 
             webSettings.ZoomForced = true;
@@ -889,15 +955,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
             tlog.Debug(tag, "TextZoomEnabled : " + webSettings.TextZoomEnabled);
 
             webSettings.TextZoomEnabled = true;
@@ -927,15 +996,18 @@ namespace Tizen.NUI.Devel.Tests
             {
                 tcs.TrySetResult(true);
             };
-            webview_.PageLoadFinished += onLoadFinished;
+            webview.PageLoadFinished += onLoadFinished;
 
-            webview_.LoadUrl(url);
+            webview.LoadUrl(url);
             var result = await tcs.Task;
             Assert.IsTrue(result, "PageLoadFinished event should be invoked");
 
-            webview_.PageLoadFinished -= onLoadFinished;
+            // Make current thread (CPU) sleep...
+            await Task.Delay(1);
 
-            var webSettings = webview_.Settings;
+            webview.PageLoadFinished -= onLoadFinished;
+
+            var webSettings = webview.Settings;
 
             bool newValue = !webSettings.IsExtraFeatureEnabled("longpress,enable");
             webSettings.EnableExtraFeature("longpress,enable", newValue);

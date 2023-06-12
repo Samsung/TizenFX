@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <script type="text/javascript">
+    function setTitle(title) {
+      document.title = title;
+    }
+
+    var request = indexedDB.open('test_db', 1);
+    request.onupgradeneeded = function (e){
+      e.target.transaction.abort();
+      setTitle('error');
+    }
+    request.onsuccess = function(e) {
+      setTitle('success');
+    };
+    </script>
+  </head>
+  <body>
+    Creation of indexed database
+  </body>
+</html>

@@ -14,97 +14,130 @@ namespace Tizen.NUI.Devel.Tests
     public class InternalWebHttpAuthHandlerTest
     {
         private const string tag = "NUITEST";
-        private string url = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "picture.png";
-        private static string[] runtimeArgs = { "Tizen.NUI.Devel.Tests", "--enable-dali-window", "--enable-spatial-navigation" };
-        private const string USER_AGENT = "Mozilla/5.0 (SMART-TV; Linux; Tizen 6.0) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/4.0 Chrome/76.0.3809.146 TV Safari/537.36";
-
-        internal class MyWebHttpAuthHandler : WebHttpAuthHandler
-        {
-            public MyWebHttpAuthHandler(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
-            { }
-
-            public void OnReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
-            {
-                base.ReleaseSwigCPtr(swigCPtr);
-            }
-        }
+        private string urlForHttpAuth = "https://review.tizen.org/gerrit/#/";
+        private BaseComponents.WebView webview_;
 
         [SetUp]
         public void Init()
         {
             tlog.Info(tag, "Init() is called!");
+            webview_ = new BaseComponents.WebView()
+            {
+                Size = new Size(500, 200),
+            };
         }
 
         [TearDown]
         public void Destroy()
         {
+            tlog.Info(tag, "Destroy() is being called!");
+            webview_.Dispose();
             tlog.Info(tag, "Destroy() is called!");
         }
 
-        [Test]
-        [Category("P1")]
-        [Description("WebHttpAuthHandler constructor.")]
-        [Property("SPEC", "Tizen.NUI.WebHttpAuthHandler.WebHttpAuthHandler C")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "CONSTR")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void WebHttpAuthHandlerConstructor()
-        {
-            tlog.Debug(tag, $"WebHttpAuthHandlerConstructor START");
+        //TODO... This TC will be blocked because web engine does not support it any longer.
+        //[Test]
+        //[Category("P1")]
+        //[Description("WebHttpAuthHandler CancelCredential.")]
+        //[Property("SPEC", "Tizen.NUI.WebHttpAuthHandler.CancelCredential M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRO")]
+        //[Property("COVPARAM", "")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public async Task WebHttpAuthHandlerCancelCredential()
+        //{
+        //    tlog.Debug(tag, $"WebHttpAuthHandlerRealm START");
 
-            using (Tizen.NUI.BaseComponents.WebView webview = new Tizen.NUI.BaseComponents.WebView("Shanghai", "Asia/Shanghai"))
-            {
-                var testingTarget = new WebHttpAuthHandler(webview.SwigCPtr.Handle, false);
-                Assert.IsNotNull(testingTarget, "null handle");
-                Assert.IsInstanceOf<WebHttpAuthHandler>(testingTarget, "Should return WebHttpAuthHandler instance.");
+        //    TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+        //    EventHandler<WebViewHttpAuthRequestedEventArgs> onHttpAuthRequested = (s, e) =>
+        //    {
+        //        tlog.Info(tag, $"HttpAuthRequested, Url: {e.HttpAuthHandler.Realm}");
+        //        e.HttpAuthHandler.CancelCredential();
+        //        tcs.TrySetResult(true);
+        //    };
 
-                testingTarget.Dispose();
-            }
+        //    webview_.HttpAuthRequested += onHttpAuthRequested;
 
-            tlog.Debug(tag, $"WebHttpAuthHandlerConstructor END (OK)");
-        }
+        //    webview_.LoadUrl(urlForHttpAuth);
+        //    var result = await tcs.Task;
+        //    Assert.IsTrue(result, "HttpAuthRequested event should be invoked.");
 
-        [Test]
-        [Category("P1")]
-        [Description("WebHttpAuthHandler Realm.")]
-        [Property("SPEC", "Tizen.NUI.WebHttpAuthHandler.Realm A")]
-        [Property("SPEC_URL", "-")]
-        [Property("CRITERIA", "PRO")]
-        [Property("COVPARAM", "")]
-        [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public async Task WebHttpAuthHandlerRealm()
-        {
-            tlog.Debug(tag, $"WebHttpAuthHandlerRealm START");
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
 
-            var testingTarget = new Tizen.NUI.BaseComponents.WebView(runtimeArgs)
-            {
-                Size = new Size(500, 200),
-                UserAgent = USER_AGENT
-            };
-            Assert.IsNotNull(testingTarget, "null handle");
-            Assert.IsInstanceOf<Tizen.NUI.BaseComponents.WebView>(testingTarget, "Should return Tizen.NUI.BaseComponents.WebView instance.");
+        //    webview_.HttpAuthRequested -= onHttpAuthRequested;
 
-            testingTarget.HttpAuthRequested += OnHttpAuthRequested;
-            NUIApplication.GetDefaultWindow().Add(testingTarget);
+        //    tlog.Debug(tag, $"WebHttpAuthHandlerRealm END (OK)");
+        //}
 
-            testingTarget.LoadUrl("http://www.163.com");
-            await Task.Delay(10000);
+        //TODO... This TC will be blocked because web engine does not support it any longer.
+        //[Test]
+        //[Category("P1")]
+        //[Description("WebHttpAuthHandler UseCredential.")]
+        //[Property("SPEC", "Tizen.NUI.WebHttpAuthHandler.UseCredential M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRO")]
+        //[Property("COVPARAM", "")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public async Task WebHttpAuthHandlerUseCredential()
+        //{
+        //    tlog.Debug(tag, $"WebHttpAuthHandlerRealm START");
 
-            testingTarget.ClearCache();
-            testingTarget.ClearCookies();
-            NUIApplication.GetDefaultWindow().Remove(testingTarget);
+        //    TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+        //    EventHandler<WebViewHttpAuthRequestedEventArgs> onHttpAuthRequested = (s, e) =>
+        //    {
+        //        tlog.Info(tag, $"HttpAuthRequested, Url: {e.HttpAuthHandler.Realm}");
+        //        e.HttpAuthHandler.UseCredential("tizen", "samsung");
+        //        tcs.TrySetResult(true);
+        //    };
 
-            testingTarget.Dispose();
-            tlog.Debug(tag, $"WebHttpAuthHandlerRealm END (OK)");
-        }
+        //    webview_.HttpAuthRequested += onHttpAuthRequested;
 
-        private void OnHttpAuthRequested(object sender, WebViewHttpAuthRequestedEventArgs e)
-        {
-            tlog.Info(tag, $"HttpAuthRequested, Url: {e.HttpAuthHandler.Realm}");
-            e.HttpAuthHandler.CancelCredential();
-            e.HttpAuthHandler.UseCredential("tizen", "samsung");
-            e.HttpAuthHandler.Suspend();
-        }
+        //    webview_.LoadUrl(urlForHttpAuth);
+        //    var result = await tcs.Task;
+        //    Assert.IsTrue(result, "HttpAuthRequested event should be invoked.");
+
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
+
+        //    webview_.HttpAuthRequested -= onHttpAuthRequested;
+
+        //    tlog.Debug(tag, $"WebHttpAuthHandlerRealm END (OK)");
+        //}
+
+        //TODO... This TC will be blocked because web engine does not support it any longer.
+        //[Test]
+        //[Category("P1")]
+        //[Description("WebHttpAuthHandler Suspend.")]
+        //[Property("SPEC", "Tizen.NUI.WebHttpAuthHandler.Suspend M")]
+        //[Property("SPEC_URL", "-")]
+        //[Property("CRITERIA", "PRO")]
+        //[Property("COVPARAM", "")]
+        //[Property("AUTHOR", "guowei.wang@samsung.com")]
+        //public async Task WebHttpAuthHandlerSuspend()
+        //{
+        //    tlog.Debug(tag, $"WebHttpAuthHandlerRealm START");
+
+        //    TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>(false);
+        //    EventHandler<WebViewHttpAuthRequestedEventArgs> onHttpAuthRequested = (s, e) =>
+        //    {
+        //        tlog.Info(tag, $"HttpAuthRequested, Url: {e.HttpAuthHandler.Realm}");
+        //        e.HttpAuthHandler.Suspend();
+        //        tcs.TrySetResult(true);
+        //    };
+
+        //    webview_.HttpAuthRequested += onHttpAuthRequested;
+
+        //    webview_.LoadUrl(urlForHttpAuth);
+        //    var result = await tcs.Task;
+        //    Assert.IsTrue(result, "HttpAuthRequested event should be invoked.");
+
+        //    // Make current thread (CPU) sleep...
+        //    await Task.Delay(1);
+
+        //    webview_.HttpAuthRequested -= onHttpAuthRequested;
+
+        //    tlog.Debug(tag, $"WebHttpAuthHandlerRealm END (OK)");
+        //}
     }   
 }
