@@ -81,6 +81,8 @@ namespace Tizen.NUI.BaseComponents
         private int configGestureCount = 0;
         private bool dispatchTouchEvents = true;
         private bool dispatchParentTouchEvents = true;
+        private bool dispatchHoverEvents = true;
+        private bool dispatchParentHoverEvents = true;
         private bool dispatchGestureEvents = true;
         private bool dispatchParentGestureEvents = true;
         private string internalName = string.Empty;
@@ -3541,6 +3543,80 @@ namespace Tizen.NUI.BaseComponents
         }
 
         private bool OnDispatchParentTouchEvent(object source, View.TouchEventArgs e)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether hover events can be dispatched.
+        /// If a View's DispatchHoverEvents is set to false, then it's can not will receive hover event and parents will not receive a hover event signal either.
+        /// This works without adding a HoverEvent callback in the View.
+        /// <note>
+        /// If the <see cref="Tizen.NUI.BaseComponents.View.Sensitive"/> is a property that determines whether or not to be hittable, then this property prevents the propagation of the hit hover event.
+        /// </note>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchHoverEvents
+        {
+            get
+            {
+                return dispatchHoverEvents;
+            }
+            set
+            {
+                if (dispatchHoverEvents != value)
+                {
+                    dispatchHoverEvents = value;
+                    if (dispatchHoverEvents == false)
+                    {
+                        HoverEvent += OnDispatchHoverEvent;
+                    }
+                    else
+                    {
+                        HoverEvent -= OnDispatchHoverEvent;
+                    }
+                }
+            }
+        }
+
+        private bool OnDispatchHoverEvent(object source, View.HoverEventArgs e)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether hover events can be dispatched to the parent.
+        /// If a View's DispatchParentHoverEvents is set to false, then parents will not receive a hover event signal either.
+        /// This works without adding a HoverEvent callback in the View.
+        /// <note>
+        /// If the <see cref="Tizen.NUI.BaseComponents.View.Sensitive"/> is a property that determines whether or not to be hittable, then this property prevents the propagation of the hit hover event.
+        /// </note>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchParentHoverEvents
+        {
+            get
+            {
+                return dispatchParentHoverEvents;
+            }
+            set
+            {
+                if (dispatchParentHoverEvents != value)
+                {
+                    dispatchParentHoverEvents = value;
+                    if (dispatchParentHoverEvents == false)
+                    {
+                        HoverEvent += OnDispatchParentHoverEvent;
+                    }
+                    else
+                    {
+                        HoverEvent -= OnDispatchParentHoverEvent;
+                    }
+                }
+            }
+        }
+
+        private bool OnDispatchParentHoverEvent(object source, View.HoverEventArgs e)
         {
             return true;
         }
