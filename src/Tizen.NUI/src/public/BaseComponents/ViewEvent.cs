@@ -835,15 +835,30 @@ namespace Tizen.NUI.BaseComponents
                 return true;
             }
 
+            if (DispatchHoverEvents == false)
+            {
+                NUILog.Debug("If DispatchHoverEvents is false, it can not dispatch.");
+                return true;
+            }
+
             HoverEventArgs e = new HoverEventArgs();
 
             e.Hover = Tizen.NUI.Hover.GetHoverFromPtr(hoverEvent);
 
+            bool consumed = false;
+
             if (hoverEventHandler != null)
             {
-                return hoverEventHandler(this, e);
+                consumed = hoverEventHandler(this, e);
             }
-            return false;
+
+            if (DispatchParentHoverEvents == false && consumed == false)
+            {
+                NUILog.Debug("If DispatchParentHoverEvents is false, it can not dispatch to parent.");
+                return true;
+            }
+
+            return consumed;
         }
 
         // Callback for View Wheel signal
