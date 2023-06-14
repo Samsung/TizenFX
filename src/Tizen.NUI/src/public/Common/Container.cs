@@ -107,7 +107,7 @@ namespace Tizen.NUI
         {
             get
             {
-                return GetChildren();
+                return childViews;
             }
         }
 
@@ -324,16 +324,6 @@ namespace Tizen.NUI
             }
             if (changedResources.Count != 0)
                 OnResourcesChanged(changedResources);
-        }
-
-        /// <summary>
-        /// Some type which inherit from Container overwrite the Add/Remove, so the getter of children should also be overwrite.
-        /// </summary>
-        /// <returns></returns>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected virtual List<View> GetChildren()
-        {
-            return childViews;
         }
 
         /// <summary>
