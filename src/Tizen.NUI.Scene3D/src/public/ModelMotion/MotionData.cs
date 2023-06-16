@@ -30,11 +30,72 @@ namespace Tizen.NUI.Scene3D
     [EditorBrowsable(EditorBrowsableState.Never)]
     public class MotionData : IDisposable
     {
+        private List<(MotionIndex, MotionValue)> motionValues { get; set; } = null;
+
         /// <summary>
         /// Owned motion value list.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public List<(MotionIndex, MotionValue)> MotionValues { get; set; } = null;
+        [Obsolete("Do not use this MotionValues property directly. Use Add and GetIndex, GetValue instead.")]
+        public List<(MotionIndex, MotionValue)> MotionValues
+        {
+            get
+            {
+                return motionValues;
+            }
+            set
+            {
+                motionValues = value;
+            }
+        }
+
+        /// <summary>
+        /// Append pair of MotionIndex and MotionValue end of list.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Add(MotionIndex index, MotionValue value)
+        {
+            if(motionValues == null)
+            {
+                motionValues = new List<(MotionIndex, MotionValue)>();
+            }
+            motionValues.Add((index, value));
+        }
+
+        /// <summary>
+        /// Get MotionIndex at index'th. null if invalid index inputed
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public MotionIndex GetIndex(uint index)
+        {
+            if(motionValues != null && index < motionValues.Count)
+            {
+                return motionValues[(int)index].Item1;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Get MotionValue at index'th. null if invalid index inputed
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public MotionValue GetValue(uint index)
+        {
+            if(motionValues != null && index < motionValues.Count)
+            {
+                return motionValues[(int)index].Item2;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Clear all inputed values.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void Clear()
+        {
+            motionValues = null;
+        }
 
         /// <summary>
         /// Create an initialized motion data.
@@ -49,13 +110,14 @@ namespace Tizen.NUI.Scene3D
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void Dispose()
         {
-            if (MotionValues != null)
+            if (motionValues != null)
             {
-                foreach (var indexValuePair in MotionValues)
+                foreach (var indexValuePair in motionValues)
                 {
                     indexValuePair.Item1?.Dispose();
                     indexValuePair.Item2?.Dispose();
                 }
+                motionValues = null;
             }
         }
     }
