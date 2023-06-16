@@ -307,60 +307,51 @@ class Scene3DSample : NUIApplication
         mStaticRevertMotionData = new MotionData();
         mAnimateMotionData = new MotionData();
 
-        mStaticMotionData.MotionValues = new List<(MotionIndex, MotionValue)>
-        {
-            (
-                new MotionTransformIndex()
-                {
-                    ModelNodeId = new PropertyKey("Main"),
-                    TransformType = MotionTransformIndex.TransformTypes.Orientation,
-                },
-                new MotionValue()
-                {
-                    Value = new PropertyValue(new Rotation(new Radian(new Degree(-45.0f)), Vector3.ZAxis)),
-                }
-            ),
-        };
-        mStaticRevertMotionData.MotionValues = new List<(MotionIndex, MotionValue)>
-        {
-            (
-                new MotionTransformIndex()
-                {
-                    ModelNodeId = new PropertyKey("Main"),
-                    TransformType = MotionTransformIndex.TransformTypes.Orientation,
-                },
-                new MotionValue()
-                {
-                    Value = new PropertyValue(new Rotation(new Radian(new Degree(0.0f)), Vector3.ZAxis)),
-                }
-            ),
-            (
-                new MotionTransformIndex()
-                {
-                    ModelNodeId = new PropertyKey("Main"),
-                    TransformType = MotionTransformIndex.TransformTypes.Scale,
-                },
-                new MotionValue()
-                {
-                    Value = new PropertyValue(Vector3.One),
-                }
-            ),
-        };
+        mStaticMotionData.Add(
+            new MotionTransformIndex()
+            {
+                ModelNodeId = new PropertyKey("Main"),
+                TransformType = MotionTransformIndex.TransformTypes.Orientation,
+            },
+            new MotionValue()
+            {
+                Value = new PropertyValue(new Rotation(new Radian(new Degree(-45.0f)), Vector3.ZAxis)),
+            }
+        );
+        mStaticRevertMotionData.Add(
+            new MotionTransformIndex()
+            {
+                ModelNodeId = new PropertyKey("Main"),
+                TransformType = MotionTransformIndex.TransformTypes.Orientation,
+            },
+            new MotionValue()
+            {
+                Value = new PropertyValue(new Rotation(new Radian(new Degree(0.0f)), Vector3.ZAxis)),
+            }
+        );
+        mStaticRevertMotionData.Add(
+            new MotionTransformIndex()
+            {
+                ModelNodeId = new PropertyKey("Main"),
+                TransformType = MotionTransformIndex.TransformTypes.Scale,
+            },
+            new MotionValue()
+            {
+                Value = new PropertyValue(Vector3.One),
+            }
+        );
 
-        mAnimateMotionData.MotionValues = new List<(MotionIndex, MotionValue)>()
-        {
-            (
-                new MotionTransformIndex()
-                {
-                    ModelNodeId = new PropertyKey("Main"),
-                    TransformType = MotionTransformIndex.TransformTypes.Scale,
-                },
-                new MotionValue()
-                {
-                    Value = new PropertyValue(new Vector3(0.5f, 1.5f, 1.0f)),
-                }
-            ),
-        };
+        mAnimateMotionData.Add(
+            new MotionTransformIndex()
+            {
+                ModelNodeId = new PropertyKey("Main"),
+                TransformType = MotionTransformIndex.TransformTypes.Scale,
+            },
+            new MotionValue()
+            {
+                Value = new PropertyValue(new Vector3(0.5f, 1.5f, 1.0f)),
+            }
+        );
         for (int i = 0; i < 8; ++i)
         {
             MotionIndex index = new BlendShapeIndex()
@@ -375,7 +366,7 @@ class Scene3DSample : NUIApplication
             value.KeyFramesValue.Add(0.0f, 0.0f);
             value.KeyFramesValue.Add(1.0f, 1.0f * ((float)Math.Abs(i - 3.5f) + 0.5f) / 4.0f);
 
-            mAnimateMotionData.MotionValues.Add(ValueTuple.Create(index, value));
+            mAnimateMotionData.Add(index, value);
         }
     }
 
