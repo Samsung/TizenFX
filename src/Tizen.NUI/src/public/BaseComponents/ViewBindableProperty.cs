@@ -215,6 +215,12 @@ namespace Tizen.NUI.BaseComponents
         public static readonly BindableProperty BackgroundImageProperty = BindableProperty.Create(nameof(BackgroundImage), typeof(string), typeof(View), default(string),
             propertyChanged: (bindable, oldValue, newValue) =>
             {
+                if (String.Equals(oldValue, newValue))
+                {
+                    NUILog.Debug($"oldValue={oldValue} newValue={newValue} are same. just return here");
+                    return;
+                }
+
                 var view = (View)bindable;
 
                 if (view.themeData?.selectorData != null)
