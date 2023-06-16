@@ -1845,6 +1845,12 @@ namespace Tizen.NUI
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static List<Window> GetWindowList()
         {
+            if (Interop.Stage.IsInstalled() == false)
+            {
+                NUILog.ErrorBacktrace($"[ERROR] dali adaptor and dali window is not ready. just return NULL here");
+                return null;
+            }
+
             uint ListSize = Interop.Application.GetWindowsListSize();
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
