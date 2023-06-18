@@ -53,6 +53,7 @@ namespace Tizen.NUI
         private WindowMouseInOutEventCallbackType windowMouseInOutEventCallback;
         private MoveCompletedEventCallbackType moveCompletedEventCallback;
         private ResizeCompletedEventCallbackType resizeCompletedEventCallback;
+        private WindowDeviceInfoEventCallbackType windowDeviceInfoEventCallback;
         [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
         private delegate void WindowFocusChangedEventCallbackType(IntPtr window, bool focusGained);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
@@ -81,6 +82,8 @@ namespace Tizen.NUI
         private delegate void MoveCompletedEventCallbackType(IntPtr window, IntPtr position);
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void ResizeCompletedEventCallbackType(IntPtr window, IntPtr size);
+        [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+        private delegate void WindowDeviceInfoEventCallbackType(IntPtr window, IntPtr deviceInfoEvent);
 
 
         /// <summary>
@@ -539,6 +542,34 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// DeviceInfoEvent event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandler<DeviceInfoEventArgs> DeviceInfoEvent
+        {
+            add
+            {
+                if (windowDeviceInfoEventHandler == null)
+                {
+                    windowDeviceInfoEventCallback = OnWindowDeviceInfoEvent;
+                    using WindowDeviceInfoEventSignal signal = new WindowDeviceInfoEventSignal(Interop.WindowDeviceInfoEventSignal.GetSignal(SwigCPtr), false);
+                    signal.Ensure()?.Connect(windowDeviceInfoEventCallback);
+                }
+                windowDeviceInfoEventHandler += value;
+            }
+            remove
+            {
+                windowDeviceInfoEventHandler -= value;
+                if (windowDeviceInfoEventHandler == null && windowDeviceInfoEventCallback != null)
+                {
+                    using WindowDeviceInfoEventSignal signal = new WindowDeviceInfoEventSignal(Interop.WindowDeviceInfoEventSignal.GetSignal(SwigCPtr), false);
+                    signal.Ensure()?.Disconnect(windowDeviceInfoEventCallback);
+                    windowDeviceInfoEventCallback = null;
+                }
+            }
+        }
+
         private event EventHandler<FocusChangedEventArgs> windowFocusChangedEventHandler;
         private event EventHandler<TouchEventArgs> rootLayerTouchDataEventHandler;
         private ReturnTypeEventHandler<object, TouchEventArgs, bool> rootLayerInterceptTouchDataEventHandler;
@@ -556,6 +587,7 @@ namespace Tizen.NUI
         private event EventHandler<MouseInOutEventArgs> windowMouseInOutEventHandler;
         private event EventHandler<WindowMoveCompletedEventArgs> moveCompletedHandler;
         private event EventHandler<WindowResizeCompletedEventArgs> resizeCompletedHandler;
+        private event EventHandler<DeviceInfoEventArgs> windowDeviceInfoEventHandler;
 
 
         internal event EventHandler EventProcessingFinished
@@ -826,6 +858,13 @@ namespace Tizen.NUI
                 signal?.Disconnect(resizeCompletedEventCallback);
                 resizeCompletedEventCallback = null;
             }
+
+            if (windowDeviceInfoEventCallback != null)
+            {
+                using WindowDeviceInfoEventSignal signal = new WindowDeviceInfoEventSignal(Interop.WindowDeviceInfoEventSignal.GetSignal(GetBaseHandleCPtrHandleRef), false);
+                signal?.Disconnect(windowDeviceInfoEventCallback);
+                windowDeviceInfoEventCallback = null;
+            }
         }
 
         private void OnWindowFocusedChanged(IntPtr window, bool focusGained)
@@ -1086,6 +1125,22 @@ namespace Tizen.NUI
             return;
         }
 
+        private void OnWindowDeviceInfoEvent(IntPtr view, IntPtr deviceInfoEvent)
+        {
+            if (deviceInfoEvent == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("deviceInfo should not be null!");
+                return;
+            }
+
+            if (windowDeviceInfoEventHandler != null)
+            {
+                DeviceInfoEventArgs e = new DeviceInfoEventArgs();
+                e.DeviceInfo = Tizen.NUI.DeviceInfo.GetDeviceInfoFromPtr(deviceInfoEvent);
+                windowDeviceInfoEventHandler(this, e);
+            }
+        }
+
         /// <summary>
         /// The focus changed event argument.
         /// </summary>
@@ -1228,6 +1283,32 @@ namespace Tizen.NUI
                 }
             }
         }
+
+        /// <summary>
+        /// DeviceInfo evnet arguments.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public class DeviceInfoEventArgs : EventArgs
+        {
+            private DeviceInfo deviceInfoEvent;
+
+            /// <summary>
+            /// DeviceInfo event.
+            /// </summary>
+            [EditorBrowsable(EditorBrowsableState.Never)]
+            public DeviceInfo DeviceInfo
+            {
+                get
+                {
+                    return deviceInfoEvent;
+                }
+                set
+                {
+                    deviceInfoEvent = value;
+                }
+            }
+        }
+
 
         /// <summary>
         /// Do not use this, that will be deprecated.
