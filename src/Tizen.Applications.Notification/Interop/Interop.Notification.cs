@@ -232,6 +232,12 @@ internal static partial class Interop
         [DllImport(Libraries.Notification, EntryPoint = "notification_clone")]
         internal static extern NotificationError Clone(IntPtr handle, out IntPtr cloned);
 
+        [DllImport(Libraries.Notification, EntryPoint = "notification_set_check_box")]
+        internal static extern NotificationError SetCheckBox(NotificationSafeHandle handle, bool flag, bool checkedValue);
+
+        [DllImport(Libraries.Notification, EntryPoint = "notification_get_check_box")]
+        internal static extern NotificationError GetCheckBox(NotificationSafeHandle handle, out bool flag, out bool checkedValue);
+
         internal static NotificationError GetText(NotificationSafeHandle handle, NotificationText type, out string text)
         {
             NotificationError ret;

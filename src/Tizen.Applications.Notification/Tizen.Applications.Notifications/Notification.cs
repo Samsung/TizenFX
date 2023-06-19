@@ -203,6 +203,16 @@ namespace Tizen.Applications.Notifications
         public bool IsVisible { get; set; } = true;
 
         /// <summary>
+        /// Gets a flag for do not show again checkbox.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool CheckBox { get; set; } = false;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool CheckedValue { get; set; } = false;
+
+        /// <summary>
         /// Gets or sets NotificationSafeHandle.
         /// </summary>
         internal NotificationSafeHandle Handle

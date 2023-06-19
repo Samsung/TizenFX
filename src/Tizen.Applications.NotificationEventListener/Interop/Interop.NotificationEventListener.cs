@@ -171,6 +171,17 @@ internal static partial class Interop
         [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_get_all_count")]
         internal static extern ErrorCode GetAllCount(NotificationType type, out int count);
 
+        [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_set_check_box_checked")]
+        internal static extern ErrorCode SetCheckedValue(NotificationSafeHandle handle, bool checkedValue);
+
+        [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_get_check_box")]
+        internal static extern ErrorCode GetCheckBox(NotificationSafeHandle handle, out bool flag, out bool checkedValue);
+
+        [DllImport(Libraries.NotificationEventListener, EntryPoint = "notification_send_event")]
+        internal static extern ErrorCode SendEventWithNotification(NotificationSafeHandle handle, int evnetType);
+
+
+
         internal static ErrorCode GetAppId(NotificationSafeHandle handle, out string appid)
         {
             ErrorCode err;
