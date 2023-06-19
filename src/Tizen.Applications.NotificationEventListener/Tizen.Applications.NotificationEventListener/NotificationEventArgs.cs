@@ -127,6 +127,16 @@ namespace Tizen.Applications.NotificationEventListener
         public bool HasEventFlag { get; internal set; } = false;
 
         /// <summary>
+        /// Gets the do not show again flag.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool CheckBox { get; internal set; } = false;
+
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool CheckedValue { get; internal set; } = false;
+
+        /// <summary>
         /// Gets the AppControl, which is invoked when notification is clicked.
         /// </summary>
         /// <since_tizen> 4 </since_tizen>
