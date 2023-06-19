@@ -174,6 +174,11 @@ namespace Tizen.Applications.NotificationEventListener
         /// Event type : Deleted by user.
         /// </summary>
         DeleteNotification = 201,
+
+        /// <summary>
+        /// Event type : Do not show again checked by user.
+        /// </summary>
+        CheckBox = 300,
     }
 
     /// <summary>
