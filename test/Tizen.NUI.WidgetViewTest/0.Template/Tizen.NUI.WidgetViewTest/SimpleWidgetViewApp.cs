@@ -62,8 +62,40 @@ namespace WidgetApplicationTemplate
             mWidgetView2.Position = new Position(100, widgetHeight + 110);
             window.GetDefaultLayer().Add(mWidgetView2);
 
+            mTimer = new Timer(4000);
+            mTimer.Tick += onTick;
+            mTimer.Start();
 
+            created = true;
         }
+
+        private bool onTick(object o, Timer.TickEventArgs e)
+        {
+            Window window = GetDefaultWindow();
+            if(created)
+            {
+                WidgetViewManager.Instance.RemoveWidget(mWidgetView2);
+                mWidgetView2.Dispose();
+                mWidgetView2 = null;
+                created = false;
+            }
+            else
+            {
+                Bundle bundle = new Bundle();
+                bundle.AddItem("COUNT", "1");
+                String encodedBundle = bundle.Encode();
+
+                mWidgetView2 = WidgetViewManager.Instance.AddWidget("class2@Tizen.NUI.WidgetTest", encodedBundle, widgetWidth, widgetHeight, 0.0f);
+                mWidgetView2.Position = new Position(100, widgetHeight + 110);
+                window.GetDefaultLayer().Add(mWidgetView2);
+
+                bundle.Dispose();
+                bundle = null;
+                created = true;
+            }
+            return true;
+        }
+
         public void OnKeyEvent(object sender, Window.KeyEventArgs e)
         {
             if (e.Key.State == Key.StateType.Down )
@@ -109,6 +141,11 @@ namespace WidgetApplicationTemplate
         WidgetView mWidgetView2;
         int widgetWidth;
         int widgetHeight;
+
+        Timer mTimer;
+        bool created;
+
+        Window mWindow;
     }
 }
 
