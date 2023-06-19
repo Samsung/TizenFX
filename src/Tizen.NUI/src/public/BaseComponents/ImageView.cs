@@ -1525,9 +1525,9 @@ namespace Tizen.NUI.BaseComponents
             }
 
             // Checkup the cached visual type is AnimatedImage.
-            // It is trick to know that this code is running on AnimatedImageView.UpdateImage() / LottieAnimationView.UpdateImage() or not.
+            // It is trick to know that this code is running on AnimatedImageView.UpdateImage() with resourceURLs or not.
             int visualType = (int)Visual.Type.Invalid;
-            if (!((GetCachedImageVisualProperty(Visual.Property.Type)?.Get(out visualType) ?? false) && (visualType == (int)Visual.Type.AnimatedImage || visualType == (int)Visual.Type.AnimatedVectorImage)))
+            if (!((GetCachedImageVisualProperty(Visual.Property.Type)?.Get(out visualType) ?? false) && (visualType == (int)Visual.Type.AnimatedImage)))
             {
                 // If ResourceUrl is not setuped, don't set property. fast return.
                 if (string.IsNullOrEmpty(_resourceUrl))
@@ -1691,6 +1691,11 @@ namespace Tizen.NUI.BaseComponents
                 {
                     // Update-or-Insert new value
                     cachedImagePropertyMap[key] = value;
+                    if (key == ImageVisualProperty.URL)
+                    {
+                        // Special case. If key is Url, update _resourceUrl here.
+                        value.Get(out _resourceUrl);
+                    }
                 }
             }
         }
