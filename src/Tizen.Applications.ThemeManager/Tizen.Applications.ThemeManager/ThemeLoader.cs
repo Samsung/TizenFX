@@ -209,7 +209,6 @@ namespace Tizen.Applications.ThemeManager
                 {
                     Log.Error(LogTag, "Failed to remove event");
                 }
-                _callback = null;
 
                 Interop.ThemeManager.LoaderDestroy(_loaderHandle);
                 _loaderHandle = IntPtr.Zero;
