@@ -700,9 +700,6 @@ namespace Tizen.NUI.BaseComponents
                 currentStates.changed = false;
             }
 
-            using PropertyValue animatiedImage = new PropertyValue((int)Visual.Type.AnimatedVectorImage);
-            UpdateImage(Visual.Property.Type, animatiedImage, false);
-
             base.UpdateImage();
         }
 

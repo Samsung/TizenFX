@@ -388,6 +388,13 @@ namespace Tizen.NUI.BaseComponents
         {
             if (!imagePropertyUpdatedFlag) return;
 
+            // Assume that we are using standard Image at first.
+            // (Since we might cache Visual.Property.Type as Visual.Type.AnimatedImage even we don't use URLs.)
+            using (PropertyValue imageType = new PropertyValue((int)Visual.Type.Image))
+            {
+                UpdateImage(Visual.Property.Type, imageType, false);
+            }
+
             if (resourceURLs != null && resourceURLs.Count != 0)
             {
                 using (PropertyArray indexPropertyArray = new PropertyArray())
@@ -406,10 +413,11 @@ namespace Tizen.NUI.BaseComponents
                     // Trigger the ImageView so that we have something update
                     UpdateImage(ImageVisualProperty.URL, arrayProperty, false);
                 }
-            }
 
-            using PropertyValue animatiedImage = new PropertyValue((int)Visual.Type.AnimatedImage);
-            UpdateImage(Visual.Property.Type, animatiedImage, false);
+                // Trick that we are using resourceURLs without ResourceUrl API.
+                using PropertyValue animatiedImage = new PropertyValue((int)Visual.Type.AnimatedImage);
+                UpdateImage(Visual.Property.Type, animatiedImage, false);
+            }
 
             base.UpdateImage();
         }
