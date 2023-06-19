@@ -35,6 +35,21 @@ namespace Tizen.NUI
             //throw new global::System.MethodAccessException("C++ destructor does not have public access");
         }
 
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (disposed)
+            {
+                return;
+            }
+
+            if (type == DisposeTypes.Explicit)
+            {
+                SwigDirectorDisconnect();
+            }
+
+            base.Dispose(type);
+        }
+
         public class WIdgetInstanceOnCreateArgs : EventArgs
         {
             private string contentInfo;
@@ -298,6 +313,20 @@ namespace Tizen.NUI
             Interop.WidgetImpl.DirectorConnect(SwigCPtr, swigDelegate0, swigDelegate1, swigDelegate2, swigDelegate3, swigDelegate4, swigDelegate5, swigDelegate6, swigDelegate7);
         }
 
+        private void SwigDirectorDisconnect()
+        {
+            swigDelegate0 = null;
+            swigDelegate1 = null;
+            swigDelegate2 = null;
+            swigDelegate3 = null;
+            swigDelegate4 = null;
+            swigDelegate5 = null;
+            swigDelegate6 = null;
+            swigDelegate7 = null;
+
+            Interop.WidgetImpl.DirectorConnect(SwigCPtr,  null, null, null, null, null, null, null, null);
+        }
+
         private bool SwigDerivedClassHasMethod(string methodName, global::System.Type[] methodTypes)
         {
             global::System.Reflection.MethodInfo methodInfo = this.GetType().GetMethod(methodName, global::System.Reflection.BindingFlags.Public | global::System.Reflection.BindingFlags.NonPublic | global::System.Reflection.BindingFlags.Instance, null, methodTypes, null);
@@ -311,6 +340,12 @@ namespace Tizen.NUI
             if (ret == null)
             {
                 ret = new Window(window, true);
+            }
+            else
+            {
+                System.Runtime.InteropServices.HandleRef CPtr = new System.Runtime.InteropServices.HandleRef(this, window);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
             }
             OnCreate(contentInfo, ret);
         }
@@ -336,6 +371,12 @@ namespace Tizen.NUI
             if (ret == null)
             {
                 ret = new Window(window, true);
+            }
+            else
+            {
+                System.Runtime.InteropServices.HandleRef CPtr = new System.Runtime.InteropServices.HandleRef(this, window);
+                Interop.BaseHandle.DeleteBaseHandle(CPtr);
+                CPtr = new System.Runtime.InteropServices.HandleRef(null, IntPtr.Zero);
             }
             OnResize(ret);
         }
