@@ -355,6 +355,8 @@ namespace Tizen.NUI.Wearable
                             nextFocusedView = DownFocusableView;
                             break;
                         }
+                    default:
+                        break;
                 }
 
                 if (nextFocusedView)

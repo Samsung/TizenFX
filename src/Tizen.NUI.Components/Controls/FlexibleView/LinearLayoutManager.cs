@@ -425,6 +425,8 @@ namespace Tizen.NUI.Components
                             return position + 1;
                         }
                         break;
+                    default:
+                        break;
                 }
             }
             else
@@ -442,6 +444,8 @@ namespace Tizen.NUI.Components
                         {
                             return position + 1;
                         }
+                        break;
+                    default:
                         break;
                 }
             }

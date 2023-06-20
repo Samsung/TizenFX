@@ -250,6 +250,8 @@ namespace Tizen.NUI
                             childLayout.ConditionForAnimation = TransitionCondition.LayoutChanged;
                             break;
                         }
+                    default:
+                        break;
                 }
             }
 
