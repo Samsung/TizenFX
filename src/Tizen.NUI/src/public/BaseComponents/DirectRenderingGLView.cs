@@ -182,7 +182,7 @@ namespace Tizen.NUI.BaseComponents
         {
             unsafe
             {
-                if (textures != null)
+                if (textures != null && textures.Count > 0)
                 {
                     IntPtr unmanagedPointer = Marshal.AllocHGlobal(sizeof(IntPtr) * textures.Count);
                     IntPtr[] texturesArray = new IntPtr[textures.Count];
