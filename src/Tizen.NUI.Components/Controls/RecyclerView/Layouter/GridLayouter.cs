@@ -1295,6 +1295,8 @@ namespace Tizen.NUI.Components
                         targetSibling = IsHorizontal ? targetSibling : currentFocusedView.SiblingOrder + 1;
                         break;
                     }
+                default:
+                    break;
             }
 
             if (targetSibling > -1 && targetSibling < Container.Children.Count)
