@@ -289,6 +289,8 @@ namespace Tizen.NUI.Wearable
                         targetSibling = isHorizontal ? currentFocusedView.SiblingOrder + Columns : currentFocusedView.SiblingOrder + 1;
                         break;
                     }
+                default:
+                    break;
             }
 
             if (targetSibling > -1 && targetSibling < Container.Children.Count)
