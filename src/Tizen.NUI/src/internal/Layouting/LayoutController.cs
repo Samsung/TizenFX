@@ -225,7 +225,7 @@ namespace Tizen.NUI
         // Parent not a View so assume it's a Layer which is the size of the window.
         private void MeasureAndLayout(View root, float parentWidth, float parentHeight)
         {
-            if (root.Layout != null)
+            if (root.Layout is var rootLayout && rootLayout != null)
             {
                 // Determine measure specification for root.
                 // The root layout policy could be an exact size, be match parent or wrap children.
@@ -237,7 +237,7 @@ namespace Tizen.NUI
                 var widthMode = GetMode(root.WidthSpecification);
                 var heightMode = GetMode(root.HeightSpecification);
 
-                if (root.Layout.NeedsLayout(widthSize, heightSize, widthMode, heightMode))
+                if (rootLayout.NeedsLayout(widthSize, heightSize, widthMode, heightMode))
                 {
                     var widthSpec = CreateMeasureSpecification(widthSize, widthMode);
                     var heightSpec = CreateMeasureSpecification(heightSize, heightMode);
@@ -251,8 +251,8 @@ namespace Tizen.NUI
                 // Start at root which was just measured.
                 PerformLayout(root, new LayoutLength(positionX),
                                      new LayoutLength(positionY),
-                                     new LayoutLength(positionX) + root.Layout.MeasuredWidth.Size,
-                                     new LayoutLength(positionY) + root.Layout.MeasuredHeight.Size);
+                                     new LayoutLength(positionX) + rootLayout.MeasuredWidth.Size,
+                                     new LayoutLength(positionY) + rootLayout.MeasuredHeight.Size);
             }
         }
 
