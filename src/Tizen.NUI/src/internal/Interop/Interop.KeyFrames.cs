@@ -42,6 +42,15 @@ namespace Tizen.NUI
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyFrames_GetType")]
             public static extern int GetType(global::System.Runtime.InteropServices.HandleRef jarg1);
 
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyFrames_GetKeyFrameCount")]
+            public static extern uint GetKeyFrameCount(global::System.Runtime.InteropServices.HandleRef jarg1);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyFrames_GetKeyFrame")]
+            public static extern void GetKeyFrame(global::System.Runtime.InteropServices.HandleRef jarg1, uint index, out float time, global::System.Runtime.InteropServices.HandleRef value);
+
+            [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyFrames_SetKeyFrameValue")]
+            public static extern void SetKeyFrameValue(global::System.Runtime.InteropServices.HandleRef jarg1, uint index, global::System.Runtime.InteropServices.HandleRef value);
+
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_KeyFrames_Add__SWIG_0")]
             public static extern void Add(global::System.Runtime.InteropServices.HandleRef jarg1, float jarg2, global::System.Runtime.InteropServices.HandleRef jarg3);
 

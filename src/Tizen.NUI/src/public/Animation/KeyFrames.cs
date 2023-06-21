@@ -67,7 +67,9 @@ namespace Tizen.NUI
         }
 
         /// <summary>
-        /// Gets the type of the key frame.
+        /// Gets the type of the key frame.<br/>
+        /// An empty key frame will return PropertyType.None, wheras an initialised<br/>
+        /// key frame object will return the type of it's first element.
         /// </summary>
         /// <returns>The key frame property type</returns>
         /// <since_tizen> 3 </since_tizen>
@@ -100,6 +102,47 @@ namespace Tizen.NUI
         public void Add(float progress, PropertyValue value, AlphaFunction alpha)
         {
             Interop.KeyFrames.Add(SwigCPtr, progress, PropertyValue.getCPtr(value), AlphaFunction.getCPtr(alpha));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Get the number of added key frame.
+        /// </summary>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public uint GetKeyFrameCount()
+        {
+            uint ret = Interop.KeyFrames.GetKeyFrameCount(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
+        /// Get the progress and value from specific key frame.<br/>
+        /// If index is greater or equal than total key frame count, progress and value is not changed.
+        /// </summary>
+        /// <param name="index">The index of keyframe.</param>
+        /// <param name="progress">A progress value between 0.0 and 1.0.</param>
+        /// <param name="value">A value.</param>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void GetKeyFrame(uint index, out float progress, PropertyValue value)
+        {
+            Interop.KeyFrames.GetKeyFrame(SwigCPtr, index, out progress, PropertyValue.getCPtr(value));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Set the value to specific key frame.<br/>
+        /// If index is greater or equal than total key frame count or value's PropertyType is not matched, Nothing happened.
+        /// </summary>
+        /// <param name="index">The index of keyframe.</param>
+        /// <param name="value">A value.</param>
+        /// This will be public opened in next tizen after ACR done. Before ACR, need to be hidden as inhouse API.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void SetKeyFrameValue(uint index, PropertyValue value)
+        {
+            Interop.KeyFrames.SetKeyFrameValue(SwigCPtr, index, PropertyValue.getCPtr(value));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
