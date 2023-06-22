@@ -93,7 +93,7 @@ namespace Tizen.NUI
             public static extern global::System.IntPtr New(int jarg1, string jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5, int jarg6);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_New__SWIG_6")]
-            public static extern global::System.IntPtr New(int jarg1, string jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5, bool jarg7);
+            public static extern global::System.IntPtr New(int argc, string argv, string jarg3, int jarg4, global::System.Runtime.InteropServices.HandleRef jarg5, bool jarg7);
 
             [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Application_New_WithWindowData")]
             public static extern global::System.IntPtr New(int argc, string argv, string styleSheet, bool uiThread, global::System.Runtime.InteropServices.HandleRef windowData);

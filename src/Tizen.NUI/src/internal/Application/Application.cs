@@ -1717,7 +1717,7 @@ namespace Tizen.NUI
                 argc = args.Length;
                 argvStr = string.Join(" ", args);
 
-                ret = new Application(Interop.Application.New(argc, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize), useUIThread), true);
+                ret = new Application(Interop.Application.New(argc, argvStr, stylesheet, (int)windowMode, Rectangle.getCPtr(positionSize), useUIThread), true);
                 if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
             }
             catch (Exception exception)
