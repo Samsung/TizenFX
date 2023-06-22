@@ -129,6 +129,22 @@ namespace Tizen.NUI.BaseComponents
             }
         }
 
+        /// <summary>
+        /// Set or Get resource URL of Lottie file.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public new string ResourceUrl
+        {
+            get
+            {
+                return URL;
+            }
+            set
+            {
+                URL = value;
+            }
+        }
+
         private string InternalURL
         {
             set
