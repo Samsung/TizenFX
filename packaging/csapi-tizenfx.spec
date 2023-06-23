@@ -11,8 +11,8 @@
 %define DOTNET_PRELOAD_PATH /usr/share/dotnet.tizen/preload
 %define DOTNET_NUGET_SOURCE /nuget
 
-%define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0:6.0.0:6.5.0:7.0.0
-%define TIZEN_NET_TARGET_FRAMEWORK_MONIKERS tizen10.0:tizen90:tizen80:tizen70:tizen60:tizen50:tizen40
+%define TIZEN_NET_RUNTIME_IDENTIFIERS 4.0.0:5.0.0:5.5.0:6.0.0:6.5.0:7.0.0:8.0.0
+%define TIZEN_NET_TARGET_FRAMEWORK_MONIKERS tizen11.0:tizen10.0:tizen90:tizen80:tizen70:tizen60:tizen50:tizen40
 
 %define UPGRADE_SCRIPT_PATH /usr/share/upgrade/scripts
 
