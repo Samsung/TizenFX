@@ -159,19 +159,19 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Matrix IDENTITY.")]
-        [Property("SPEC", "Tizen.NUI.Matrix.IDENTITY A")]
+        [Description("Matrix Identity.")]
+        [Property("SPEC", "Tizen.NUI.Matrix.Identity A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void MatrixIDENTITY()
+        public void MatrixIdentity()
         {
-            tlog.Debug(tag, $"MatrixIDENTITY START");
+            tlog.Debug(tag, $"MatrixIdentity START");
 
             try
             {
-                var result = Matrix.IDENTITY;
-                tlog.Debug(tag, "IDENTITY : " + result);
+                var result = Matrix.Identity;
+                tlog.Debug(tag, "Identity : " + result);
             }
             catch (Exception e)
             {
@@ -179,7 +179,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"MatrixIDENTITY END (OK)");
+            tlog.Debug(tag, $"MatrixIdentity END (OK)");
         }
 
         [Test]
@@ -330,11 +330,14 @@ namespace Tizen.NUI.Devel.Tests
             {
                 testingTarget.SetXAxis(vector);
 
-                var result = testingTarget.GetXAxis();
-                Assert.AreEqual(1.0f, result.X, "Should be equal!");
-                Assert.AreEqual(2.0f, result.Y, "Should be equal!");
-                Assert.AreEqual(3.0f, result.Z, "Should be equal!");
+                using (var result = testingTarget.GetXAxis())
+                {
+                    Assert.AreEqual(1.0f, result.X, "Should be equal!");
+                    Assert.AreEqual(2.0f, result.Y, "Should be equal!");
+                    Assert.AreEqual(3.0f, result.Z, "Should be equal!");
+                }
             }
+            
 
             testingTarget.Dispose();
             tlog.Debug(tag, $"MatrixSetXAxis END (OK)");
@@ -360,10 +363,12 @@ namespace Tizen.NUI.Devel.Tests
             {
                 testingTarget.SetYAxis(vector);
 
-                var result = testingTarget.GetYAxis();
-                Assert.AreEqual(1.0f, result.X, "Should be equal!");
-                Assert.AreEqual(2.0f, result.Y, "Should be equal!");
-                Assert.AreEqual(3.0f, result.Z, "Should be equal!");
+                using (var result = testingTarget.GetYAxis())
+                {
+                    Assert.AreEqual(1.0f, result.X, "Should be equal!");
+                    Assert.AreEqual(2.0f, result.Y, "Should be equal!");
+                    Assert.AreEqual(3.0f, result.Z, "Should be equal!");
+                }
             }
 
             testingTarget.Dispose();
@@ -390,10 +395,12 @@ namespace Tizen.NUI.Devel.Tests
             {
                 testingTarget.SetZAxis(vector);
 
-                var result = testingTarget.GetZAxis();
-                Assert.AreEqual(1.0f, result.X, "Should be equal!");
-                Assert.AreEqual(2.0f, result.Y, "Should be equal!");
-                Assert.AreEqual(3.0f, result.Z, "Should be equal!");
+                using (var result = testingTarget.GetZAxis())
+                {
+                    Assert.AreEqual(1.0f, result.X, "Should be equal!");
+                    Assert.AreEqual(2.0f, result.Y, "Should be equal!");
+                    Assert.AreEqual(3.0f, result.Z, "Should be equal!");
+                }
             }
 
             testingTarget.Dispose();
@@ -419,11 +426,13 @@ namespace Tizen.NUI.Devel.Tests
             {
                 testingTarget.SetTranslation(vector);
 
-                var result = testingTarget.GetTranslation();
-                Assert.AreEqual(1.0f, result.X, "Should be equal!");
-                Assert.AreEqual(2.0f, result.Y, "Should be equal!");
-                Assert.AreEqual(3.0f, result.Z, "Should be equal!");
-                Assert.AreEqual(4.0f, result.W, "Should be equal!");
+                using (var result = testingTarget.GetTranslation())
+                {
+                    Assert.AreEqual(1.0f, result.X, "Should be equal!");
+                    Assert.AreEqual(2.0f, result.Y, "Should be equal!");
+                    Assert.AreEqual(3.0f, result.Z, "Should be equal!");
+                    Assert.AreEqual(4.0f, result.W, "Should be equal!");
+                }
             }
 
             testingTarget.Dispose();
@@ -449,10 +458,12 @@ namespace Tizen.NUI.Devel.Tests
             {
                 testingTarget.SetTranslation(vector);
 
-                var result = testingTarget.GetTranslation3();
-                Assert.AreEqual(1.0f, result.X, "Should be equal!");
-                Assert.AreEqual(2.0f, result.Y, "Should be equal!");
-                Assert.AreEqual(3.0f, result.Z, "Should be equal!");
+                using (var result = testingTarget.GetTranslation3())
+                {
+                    Assert.AreEqual(1.0f, result.X, "Should be equal!");
+                    Assert.AreEqual(2.0f, result.Y, "Should be equal!");
+                    Assert.AreEqual(3.0f, result.Z, "Should be equal!");
+                }
             }
 
             testingTarget.Dispose();
@@ -1002,9 +1013,9 @@ namespace Tizen.NUI.Devel.Tests
 
             try
             {
-                Rotation rhs = new Rotation();
-                Matrix ret = testingTarget * rhs;
-                rhs.Dispose();
+                Rotation lhs = new Rotation();
+                Matrix ret = lhs * testingTarget;
+                lhs.Dispose();
                 ret.Dispose();
             }
             catch (Exception e)
