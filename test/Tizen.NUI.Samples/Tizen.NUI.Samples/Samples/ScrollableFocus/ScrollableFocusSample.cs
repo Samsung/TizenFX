@@ -9,6 +9,16 @@ namespace Tizen.NUI.Samples
     public class ScrollableFocusSample : IExample
     {
         public View root;
+        public class CustomScrollableBase : ScrollableBase
+        {
+            public override bool OnWheel(Wheel wheel)
+            {
+                base.OnWheel(wheel);
+                Window window = NUIApplication.GetDefaultWindow();
+                window.LazyFeedHover();
+                return true;
+            }
+        }
 
         public void Activate()
         {
@@ -38,7 +48,7 @@ namespace Tizen.NUI.Samples
             };
             root.Add(topbtn);
 
-            var scrollview = new ScrollableBase
+            var scrollview = new CustomScrollableBase
             {
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
@@ -62,7 +72,7 @@ namespace Tizen.NUI.Samples
             };
             root.Add(middle);
 
-            var myscrollview = new ScrollableBase
+            var myscrollview = new CustomScrollableBase
             {
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
@@ -97,6 +107,20 @@ namespace Tizen.NUI.Samples
                 Focusable = true,
                 FocusableInTouch = true,
                 Text = $"Item {index}",
+                LeaveRequired = true,
+                BackgroundColor = Color.DarkOrange,
+            };
+            btn.HoverEvent += (s, e) =>
+            {
+                if(e.Hover.GetState(0) == PointStateType.Started)
+                {
+                    btn.BackgroundColor = Color.Red;
+                }
+                else if (e.Hover.GetState(0) == PointStateType.Leave)
+                {
+                    btn.BackgroundColor = Color.DarkOrange;
+                }
+                return true;
             };
             // btn.FocusGained += (s, e) =>
             // {
