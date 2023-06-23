@@ -1574,6 +1574,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             // Do Fitting Buffer when desired dimension is set
+            // TODO : Couldn't we do this job in dali-engine side.
             if (_desired_width != -1 && _desired_height != -1)
             {
                 if (_resourceUrl != null)
@@ -1604,10 +1605,6 @@ namespace Tizen.NUI.BaseComponents
                         PropertyValue scaleToFit = new PropertyValue((int)FittingModeType.ScaleToFill);
                         cachedImagePropertyMap[ImageVisualProperty.FittingMode] = scaleToFit;
                         scaleToFit?.Dispose();
-                    }
-                    else
-                    {
-                        Tizen.Log.Fatal("NUI", "[ERROR] Can't use DesiredSize when ImageLoading is failed.");
                     }
                     imageSize?.Dispose();
                 }
