@@ -1154,6 +1154,17 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void FeedHover(Vector2 screenPosition = null)
+        {
+            if (screenPosition == null)
+            {
+                screenPosition = Vector2.Zero;
+            }
+            Interop.Window.FeedHoverEvent(SwigCPtr, Vector2.getCPtr(screenPosition));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
         /// <summary>
         /// Allows at least one more render, even when paused.
         /// The window should be shown, not minimised.
