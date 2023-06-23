@@ -71,15 +71,6 @@
       <param name="rootNamespace">An <see cref="T:System.Xml.XmlDictionaryString" /> that contains the namespace of the root element.</param>
       <param name="knownTypes">A <see cref="T:System.Collections.Generic.IEnumerable`1" /> of <see cref="T:System.Type" /> that contains the known types that may be present in the object graph.</param>
     </member>
-    <member name="P:System.Runtime.Serialization.DataContractSerializer.DataContractResolver">
-      <summary>Gets the component used to dynamically map <see langword="xsi:type" /> declarations to known contract types.</summary>
-      <returns>An implementation of the <see cref="T:System.Runtime.Serialization.DataContractResolver" /> class.</returns>
-    </member>
-    <member name="P:System.Runtime.Serialization.DataContractSerializer.IgnoreExtensionDataObject">
-      <summary>Gets a value that specifies whether to ignore data supplied by an extension of the class when the class is being serialized or deserialized.</summary>
-      <returns>
-        <see langword="true" /> to omit the extension data; otherwise, <see langword="false" />.</returns>
-    </member>
     <member name="M:System.Runtime.Serialization.DataContractSerializer.IsStartObject(System.Xml.XmlDictionaryReader)">
       <summary>Determines whether the <see cref="T:System.Xml.XmlDictionaryReader" /> is positioned on an object that can be deserialized.</summary>
       <param name="reader">An <see cref="T:System.Xml.XmlDictionaryReader" /> used to read the XML stream.</param>
@@ -92,27 +83,13 @@
       <returns>
         <see langword="true" /> if the reader is at the start element of the stream to read; otherwise, <see langword="false" />.</returns>
     </member>
-    <member name="P:System.Runtime.Serialization.DataContractSerializer.KnownTypes">
-      <summary>Gets a collection of types that may be present in the object graph serialized using this instance of the <see cref="T:System.Runtime.Serialization.DataContractSerializer" />.</summary>
-      <returns>A <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" /> that contains the expected types passed in as known types to the <see cref="T:System.Runtime.Serialization.DataContractSerializer" /> constructor.</returns>
-    </member>
-    <member name="P:System.Runtime.Serialization.DataContractSerializer.MaxItemsInObjectGraph">
-      <summary>Gets the maximum number of items in an object graph to serialize or deserialize.</summary>
-      <returns>The maximum number of items to serialize or deserialize. The default is <see cref="F:System.Int32.MaxValue" />.</returns>
-      <exception cref="T:System.ArgumentOutOfRangeException">The number of items exceeds the maximum value.</exception>
-    </member>
-    <member name="P:System.Runtime.Serialization.DataContractSerializer.PreserveObjectReferences">
-      <summary>Gets a value that specifies whether to use non-standard XML constructs to preserve object reference data.</summary>
-      <returns>
-        <see langword="true" /> to keep the references; otherwise, <see langword="false" />.</returns>
-    </member>
     <member name="M:System.Runtime.Serialization.DataContractSerializer.ReadObject(System.Xml.XmlDictionaryReader,System.Boolean)">
       <summary>Reads the XML stream with an <see cref="T:System.Xml.XmlDictionaryReader" /> and returns the deserialized object, and also specifies whether a check is made to verify the object name before reading its value.</summary>
       <param name="reader">The <see cref="T:System.Xml.XmlDictionaryReader" /> used to read the XML stream.</param>
       <param name="verifyObjectName">
         <see langword="true" /> to check whether the name of the object corresponds to the root name value supplied in the constructor; otherwise, <see langword="false" />.</param>
-      <returns>The deserialized object.</returns>
       <exception cref="T:System.Runtime.Serialization.SerializationException">The <paramref name="verifyObjectName" /> parameter is set to <see langword="true" />, and the element name and namespace do not correspond to the values set in the constructor.</exception>
+      <returns>The deserialized object.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.DataContractSerializer.ReadObject(System.Xml.XmlDictionaryReader,System.Boolean,System.Runtime.Serialization.DataContractResolver)">
       <summary>Reads an XML document or document stream and returns the deserialized object.  The method includes a parameter to specify whether the object name is verified is validated, and a resolver for mapping <see langword="xsi:type" /> declarations at runtime.</summary>
@@ -132,13 +109,8 @@
       <param name="reader">The <see cref="T:System.Xml.XmlReader" /> used to read the XML stream.</param>
       <param name="verifyObjectName">
         <see langword="true" /> to check whether the name of the object corresponds to the root name value supplied in the constructor; otherwise, <see langword="false" />.</param>
-      <returns>The deserialized object.</returns>
       <exception cref="T:System.Runtime.Serialization.SerializationException">The <paramref name="verifyObjectName" /> parameter is set to <see langword="true" />, and the element name and namespace do not correspond to the values set in the constructor.</exception>
-    </member>
-    <member name="P:System.Runtime.Serialization.DataContractSerializer.SerializeReadOnlyTypes">
-      <summary>Gets a value that specifies whether read-only types are serialized.</summary>
-      <returns>
-        <see langword="true" /> if read-only types are serialized; <see langword="false" /> if all types are serialized.</returns>
+      <returns>The deserialized object.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.DataContractSerializer.WriteEndObject(System.Xml.XmlDictionaryWriter)">
       <summary>Writes the closing XML element using an <see cref="T:System.Xml.XmlDictionaryWriter" />.</summary>
@@ -188,6 +160,34 @@
       <summary>Writes the opening XML element using an <see cref="T:System.Xml.XmlWriter" />.</summary>
       <param name="writer">The <see cref="T:System.Xml.XmlWriter" /> used to write the XML start element.</param>
       <param name="graph">The object to write.</param>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataContractSerializer.DataContractResolver">
+      <summary>Gets the component used to dynamically map <see langword="xsi:type" /> declarations to known contract types.</summary>
+      <returns>An implementation of the <see cref="T:System.Runtime.Serialization.DataContractResolver" /> class.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataContractSerializer.IgnoreExtensionDataObject">
+      <summary>Gets a value that specifies whether to ignore data supplied by an extension of the class when the class is being serialized or deserialized.</summary>
+      <returns>
+        <see langword="true" /> to omit the extension data; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataContractSerializer.KnownTypes">
+      <summary>Gets a collection of types that may be present in the object graph serialized using this instance of the <see cref="T:System.Runtime.Serialization.DataContractSerializer" />.</summary>
+      <returns>A <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" /> that contains the expected types passed in as known types to the <see cref="T:System.Runtime.Serialization.DataContractSerializer" /> constructor.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataContractSerializer.MaxItemsInObjectGraph">
+      <summary>Gets the maximum number of items in an object graph to serialize or deserialize.</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">The number of items exceeds the maximum value.</exception>
+      <returns>The maximum number of items to serialize or deserialize. The default is <see cref="F:System.Int32.MaxValue" />.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataContractSerializer.PreserveObjectReferences">
+      <summary>Gets a value that specifies whether to use non-standard XML constructs to preserve object reference data.</summary>
+      <returns>
+        <see langword="true" /> to keep the references; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.DataContractSerializer.SerializeReadOnlyTypes">
+      <summary>Gets a value that specifies whether read-only types are serialized.</summary>
+      <returns>
+        <see langword="true" /> if read-only types are serialized; <see langword="false" /> if all types are serialized.</returns>
     </member>
     <member name="T:System.Runtime.Serialization.DataContractSerializerExtensions">
       <summary>Extends the <see cref="T:System.Runtime.Serialization.DataContractSerializer" /> class by providing methods for setting and getting an <see cref="T:System.Runtime.Serialization.ISerializationSurrogateProvider" />.</summary>
@@ -392,9 +392,9 @@
     <member name="M:System.Runtime.Serialization.XmlSerializableServices.ReadNodes(System.Xml.XmlReader)">
       <summary>Reads a set of XML nodes from the specified reader and returns the result.</summary>
       <param name="xmlReader">An <see cref="T:System.Xml.XmlReader" /> used for reading.</param>
-      <returns>An array of type <see cref="T:System.Xml.XmlNode" />.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="xmlReader" /> argument is <see langword="null" />.</exception>
       <exception cref="T:System.Runtime.Serialization.SerializationException">While reading, a <see langword="null" /> node was encountered.</exception>
+      <returns>An array of type <see cref="T:System.Xml.XmlNode" />.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.XmlSerializableServices.WriteNodes(System.Xml.XmlWriter,System.Xml.XmlNode[])">
       <summary>Writes the supplied nodes using the specified writer.</summary>
@@ -412,8 +412,9 @@
       <param name="rootElementXpath">The top level element in the xpath.</param>
       <param name="namespaces">The XML namespaces and their prefixes found in the data contract.</param>
       <returns>
-        <see cref="T:System.String" />
-The XPath generated from the type and member data.</returns>
+        <see cref="T:System.String" />  
+  
+ The XPath generated from the type and member data.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.XPathQueryGenerator.CreateFromDataContractSerializer(System.Type,System.Reflection.MemberInfo[],System.Xml.XmlNamespaceManager@)">
       <summary>Creates an XPath from a data contract using the specified data contract type, array of metadata elements, and namespaces.</summary>
@@ -421,11 +422,12 @@ The XPath generated from the type and member data.</returns>
       <param name="pathToMember">The metadata, generated using the <see cref="Overload:System.Type.GetMember" /> method of the <see cref="T:System.Type" /> class, that points to the specific data member used to generate the query.</param>
       <param name="namespaces">The XML namespaces and their prefixes found in the data contract.</param>
       <returns>
-        <see cref="T:System.String" />
-The XPath generated from the type and member data.</returns>
+        <see cref="T:System.String" />  
+  
+ The XPath generated from the type and member data.</returns>
     </member>
     <member name="T:System.Runtime.Serialization.XsdDataContractExporter">
-      <summary>Allows the transformation of a set of .NET Framework types that are used in data contracts into an XML schema file (.xsd).</summary>
+      <summary>Allows the transformation of a set of .NET types that are used in data contracts into an XML schema file (.xsd).</summary>
     </member>
     <member name="M:System.Runtime.Serialization.XsdDataContractExporter.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Runtime.Serialization.XsdDataContractExporter" /> class.</summary>
@@ -472,20 +474,20 @@ The XPath generated from the type and member data.</returns>
     <member name="M:System.Runtime.Serialization.XsdDataContractExporter.GetRootElementName(System.Type)">
       <summary>Returns the top-level name and namespace for the <see cref="T:System.Type" />.</summary>
       <param name="type">The <see cref="T:System.Type" /> to query.</param>
-      <returns>The <see cref="T:System.Xml.XmlQualifiedName" /> that represents the top-level name and namespace for this <see cref="T:System.Type" />, which is written to the stream when writing this object.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="type" /> argument is <see langword="null" />.</exception>
+      <returns>The <see cref="T:System.Xml.XmlQualifiedName" /> that represents the top-level name and namespace for this <see cref="T:System.Type" />, which is written to the stream when writing this object.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.XsdDataContractExporter.GetSchemaType(System.Type)">
       <summary>Returns the XML schema type for the specified type.</summary>
       <param name="type">The type to return a schema for.</param>
-      <returns>An <see cref="T:System.Xml.Schema.XmlSchemaType" /> that contains the XML schema.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="type" /> argument is <see langword="null" />.</exception>
+      <returns>An <see cref="T:System.Xml.Schema.XmlSchemaType" /> that contains the XML schema.</returns>
     </member>
     <member name="M:System.Runtime.Serialization.XsdDataContractExporter.GetSchemaTypeName(System.Type)">
       <summary>Returns the contract name and contract namespace for the <see cref="T:System.Type" />.</summary>
       <param name="type">The <see cref="T:System.Type" /> that was exported.</param>
-      <returns>An <see cref="T:System.Xml.XmlQualifiedName" /> that represents the contract name of the type and its namespace.</returns>
       <exception cref="T:System.ArgumentNullException">The <paramref name="type" /> argument is <see langword="null" />.</exception>
+      <returns>An <see cref="T:System.Xml.XmlQualifiedName" /> that represents the contract name of the type and its namespace.</returns>
     </member>
     <member name="P:System.Runtime.Serialization.XsdDataContractExporter.Options">
       <summary>Gets or sets an <see cref="T:System.Runtime.Serialization.ExportOptions" /> that contains options that can be set for the export operation.</summary>
@@ -497,11 +499,6 @@ The XPath generated from the type and member data.</returns>
     </member>
     <member name="T:System.Xml.IFragmentCapableXmlDictionaryWriter">
       <summary>Contains properties and methods that when implemented by a <see cref="T:System.Xml.XmlDictionaryWriter" />, allows processing of XML fragments.</summary>
-    </member>
-    <member name="P:System.Xml.IFragmentCapableXmlDictionaryWriter.CanFragment">
-      <summary>Gets a value that indicates whether this <see cref="T:System.Xml.XmlDictionaryWriter" /> can process XML fragments.</summary>
-      <returns>
-        <see langword="true" /> if this <see cref="T:System.Xml.XmlDictionaryWriter" /> can process XML fragments; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="M:System.Xml.IFragmentCapableXmlDictionaryWriter.EndFragment">
       <summary>Ends the processing of an XML fragment.</summary>
@@ -516,6 +513,11 @@ The XPath generated from the type and member data.</returns>
       <param name="buffer">The buffer to write to.</param>
       <param name="offset">The starting position from which to write in <paramref name="buffer" />.</param>
       <param name="count">The number of bytes to be written to the <paramref name="buffer" />.</param>
+    </member>
+    <member name="P:System.Xml.IFragmentCapableXmlDictionaryWriter.CanFragment">
+      <summary>Gets a value that indicates whether this <see cref="T:System.Xml.XmlDictionaryWriter" /> can process XML fragments.</summary>
+      <returns>
+        <see langword="true" /> if this <see cref="T:System.Xml.XmlDictionaryWriter" /> can process XML fragments; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="T:System.Xml.IStreamProvider">
       <summary>Represents an interface that can be implemented by classes providing streams.</summary>
@@ -658,7 +660,9 @@ The XPath generated from the type and member data.</returns>
         <paramref name="chars" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> less than zero or greater than the length of the array.
+
 -or-
+
 <paramref name="count" /> less than zero or greater than the length of the array minus <paramref name="offset" />.</exception>
       <exception cref="T:System.FormatException">
         <paramref name="count" /> equals zero.</exception>
@@ -676,10 +680,6 @@ The XPath generated from the type and member data.</returns>
         <paramref name="value" /> is <see langword="null" />.</exception>
       <exception cref="T:System.FormatException">Length of <paramref name="value" /> is zero.</exception>
     </member>
-    <member name="P:System.Xml.UniqueId.CharArrayLength">
-      <summary>Gets the length of the string representation of the <see cref="T:System.Xml.UniqueId" />.</summary>
-      <returns>The length of the string representation of the <see cref="T:System.Xml.UniqueId" />.</returns>
-    </member>
     <member name="M:System.Xml.UniqueId.Equals(System.Object)">
       <summary>Tests whether an object equals this <see cref="T:System.Xml.UniqueId" />.</summary>
       <param name="obj">The object to compare.</param>
@@ -689,11 +689,6 @@ The XPath generated from the type and member data.</returns>
     <member name="M:System.Xml.UniqueId.GetHashCode">
       <summary>Creates a hash-code representation of this <see cref="T:System.Xml.UniqueId" />.</summary>
       <returns>An integer hash-code representation of this <see cref="T:System.Xml.UniqueId" />.</returns>
-    </member>
-    <member name="P:System.Xml.UniqueId.IsGuid">
-      <summary>Indicates whether the <see cref="T:System.Xml.UniqueId" /> is a <see cref="T:System.Guid" />.</summary>
-      <returns>
-        <see langword="true" /> if the <see cref="T:System.Xml.UniqueId" /> is a <see cref="T:System.Guid" />; otherwise <see langword="false" />.</returns>
     </member>
     <member name="M:System.Xml.UniqueId.op_Equality(System.Xml.UniqueId,System.Xml.UniqueId)">
       <summary>Overrides the equality operator to test for equality of two <see cref="T:System.Xml.UniqueId" />s.</summary>
@@ -713,13 +708,13 @@ The XPath generated from the type and member data.</returns>
       <summary>Puts the <see cref="T:System.Xml.UniqueId" /> value into a <see langword="char" /> array.</summary>
       <param name="chars">The <see langword="char" /> array.</param>
       <param name="offset">Position in the <see langword="char" /> array to start inserting the <see cref="T:System.Xml.UniqueId" /> value.</param>
-      <returns>Number of entries in the <see langword="char" /> array filled by the <see cref="T:System.Xml.UniqueId" /> value.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="chars" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> less than zero or greater than the length of the array.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="guid" /> and <paramref name="offset" /> provide less than 16 valid bytes.</exception>
+      <returns>Number of entries in the <see langword="char" /> array filled by the <see cref="T:System.Xml.UniqueId" /> value.</returns>
     </member>
     <member name="M:System.Xml.UniqueId.ToString">
       <summary>Displays the <see cref="T:System.Xml.UniqueId" /> value in string format.</summary>
@@ -730,24 +725,33 @@ The XPath generated from the type and member data.</returns>
       <param name="buffer">
         <see langword="byte" /> array that will contain the <see cref="T:System.Guid" />.</param>
       <param name="offset">Position in the <see langword="byte" /> array to start inserting the <see cref="T:System.Guid" /> value.</param>
-      <returns>
-        <see langword="true" /> if the value stored in this instance of <see cref="T:System.Xml.UniqueId" /> is a <see cref="T:System.Guid" />; otherwise <see langword="false" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="buffer" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> less than zero or greater than the length of the array.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="buffer" /> and <paramref name="offset" /> provide less than 16 valid bytes.</exception>
+      <returns>
+        <see langword="true" /> if the value stored in this instance of <see cref="T:System.Xml.UniqueId" /> is a <see cref="T:System.Guid" />; otherwise <see langword="false" />.</returns>
     </member>
     <member name="M:System.Xml.UniqueId.TryGetGuid(System.Guid@)">
       <summary>Tries to get the value of the <see cref="T:System.Xml.UniqueId" /> as a <see cref="T:System.Guid" />.</summary>
       <param name="guid">The <see cref="T:System.Guid" /> if successful; otherwise <see cref="F:System.Guid.Empty" />.</param>
-      <returns>
-        <see langword="true" /> if the UniqueId represents a <see cref="T:System.Guid" />; otherwise <see langword="false" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="buffer" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="buffer" /> and <paramref name="offset" /> provide less than 16 valid bytes.</exception>
+      <returns>
+        <see langword="true" /> if the UniqueId represents a <see cref="T:System.Guid" />; otherwise <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Xml.UniqueId.CharArrayLength">
+      <summary>Gets the length of the string representation of the <see cref="T:System.Xml.UniqueId" />.</summary>
+      <returns>The length of the string representation of the <see cref="T:System.Xml.UniqueId" />.</returns>
+    </member>
+    <member name="P:System.Xml.UniqueId.IsGuid">
+      <summary>Indicates whether the <see cref="T:System.Xml.UniqueId" /> is a <see cref="T:System.Guid" />.</summary>
+      <returns>
+        <see langword="true" /> if the <see cref="T:System.Xml.UniqueId" /> is a <see cref="T:System.Guid" />; otherwise <see langword="false" />.</returns>
     </member>
     <member name="T:System.Xml.XmlBinaryReaderSession">
       <summary>Enables optimized strings to be managed in a dynamic way.</summary>
@@ -759,12 +763,12 @@ The XPath generated from the type and member data.</returns>
       <summary>Creates an <see cref="T:System.Xml.XmlDictionaryString" /> from the input parameters and adds it to an internal collection.</summary>
       <param name="id">The key value.</param>
       <param name="value">The value.</param>
-      <returns>The newly created <see cref="T:System.Xml.XmlDictionaryString" /> that is added to an internal collection.</returns>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="id" /> is less than zero.</exception>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="value" /> is <see langword="null" />.</exception>
       <exception cref="T:System.InvalidOperationException">An entry with key = <paramref name="id" /> already exists.</exception>
+      <returns>The newly created <see cref="T:System.Xml.XmlDictionaryString" /> that is added to an internal collection.</returns>
     </member>
     <member name="M:System.Xml.XmlBinaryReaderSession.Clear">
       <summary>Clears the internal collection of all contents.</summary>
@@ -773,28 +777,28 @@ The XPath generated from the type and member data.</returns>
       <summary>Checks whether the internal collection contains an entry matching a key.</summary>
       <param name="key">The key to search on.</param>
       <param name="result">When this method returns, contains a string if an entry is found; otherwise, <see langword="null" />. This parameter is passed uninitialized.</param>
-      <returns>
-        <see langword="true" /> if an entry matching the <paramref name="key" /> was found; otherwise, <see langword="false" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="key" /> is <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> if an entry matching the <paramref name="key" /> was found; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="M:System.Xml.XmlBinaryReaderSession.TryLookup(System.String,System.Xml.XmlDictionaryString@)">
       <summary>Checks whether the internal collection contains an entry matching a value.</summary>
       <param name="value">The value to search for.</param>
       <param name="result">When this method returns, contains a string if an entry is found; otherwise, <see langword="null" />. This parameter is passed uninitialized.</param>
-      <returns>
-        <see langword="true" /> if an entry matching the <paramref name="value" /> was found; otherwise, <see langword="false" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="value" /> is <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> if an entry matching the <paramref name="value" /> was found; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="M:System.Xml.XmlBinaryReaderSession.TryLookup(System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString@)">
       <summary>Checks whether the internal collection contains an entry matching a value.</summary>
       <param name="value">The value to search for.</param>
       <param name="result">When this method returns, contains a string if an entry is found; otherwise, <see langword="null" />. This parameter is passed uninitialized.</param>
-      <returns>
-        <see langword="true" /> if an entry matching the <paramref name="value" /> was found; otherwise, <see langword="false" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="value" /> is <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> if an entry matching the <paramref name="value" /> was found; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="T:System.Xml.XmlBinaryWriterSession">
       <summary>Enables using a dynamic dictionary to compress common strings that appear in a message and maintain state.</summary>
@@ -809,11 +813,11 @@ The XPath generated from the type and member data.</returns>
       <summary>Tries to add an <see cref="T:System.Xml.XmlDictionaryString" /> to the internal collection.</summary>
       <param name="value">The <see cref="T:System.Xml.XmlDictionaryString" /> to add.</param>
       <param name="key">The key of the <see cref="T:System.Xml.XmlDictionaryString" /> that was successfully added.</param>
-      <returns>
-        <see langword="true" /> if the string could be added; otherwise, <see langword="false" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="value" /> is <see langword="null" />.</exception>
       <exception cref="T:System.InvalidOperationException">An entry with key = <paramref name="key" /> already exists.</exception>
+      <returns>
+        <see langword="true" /> if the string could be added; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="T:System.Xml.XmlDictionary">
       <summary>Implements a dictionary used to optimize Windows Communication Foundation (WCF)'s XML reader/writer implementations.</summary>
@@ -830,10 +834,6 @@ The XPath generated from the type and member data.</returns>
       <param name="value">String to add to the dictionary.</param>
       <returns>The <see cref="T:System.Xml.XmlDictionaryString" /> that was added.</returns>
     </member>
-    <member name="P:System.Xml.XmlDictionary.Empty">
-      <summary>Gets a <see langword="static" /> empty <see cref="T:System.Xml.IXmlDictionary" />.</summary>
-      <returns>A <see langword="static" /> empty <see cref="T:System.Xml.IXmlDictionary" />.</returns>
-    </member>
     <member name="M:System.Xml.XmlDictionary.TryLookup(System.Int32,System.Xml.XmlDictionaryString@)">
       <summary>Attempts to look up an entry in the dictionary.</summary>
       <param name="key">Key to look up.</param>
@@ -845,29 +845,29 @@ The XPath generated from the type and member data.</returns>
       <summary>Checks the dictionary for a specified string value.</summary>
       <param name="value">String value being checked for.</param>
       <param name="result">The corresponding <see cref="T:System.Xml.XmlDictionaryString" />, if found; otherwise <see langword="null" />.</param>
-      <returns>
-        <see langword="true" /> if value is in the dictionary; otherwise, <see langword="false" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="value" /> is <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> if value is in the dictionary; otherwise, <see langword="false" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionary.TryLookup(System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString@)">
       <summary>Checks the dictionary for a specified <see cref="T:System.Xml.XmlDictionaryString" />.</summary>
       <param name="value">The <see cref="T:System.Xml.XmlDictionaryString" /> being checked for.</param>
       <param name="result">The matching <see cref="T:System.Xml.XmlDictionaryString" />, if found; otherwise, <see langword="null" />.</param>
-      <returns>
-        <see langword="true" /> if <see cref="T:System.Xml.XmlDictionaryString" /> is in the dictionary; otherwise, <see langword="false" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="value" /> is <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> if <see cref="T:System.Xml.XmlDictionaryString" /> is in the dictionary; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Xml.XmlDictionary.Empty">
+      <summary>Gets a <see langword="static" /> empty <see cref="T:System.Xml.IXmlDictionary" />.</summary>
+      <returns>A <see langword="static" /> empty <see cref="T:System.Xml.IXmlDictionary" />.</returns>
     </member>
     <member name="T:System.Xml.XmlDictionaryReader">
       <summary>An <see langword="abstract" /> class that the Windows Communication Foundation (WCF) derives from <see cref="T:System.Xml.XmlReader" /> to do serialization and deserialization.</summary>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.#ctor">
       <summary>Creates an instance of this class.  Invoked only by its derived classes.</summary>
-    </member>
-    <member name="P:System.Xml.XmlDictionaryReader.CanCanonicalize">
-      <summary>This property always returns <see langword="false" />. Its derived classes can override to return <see langword="true" /> if they support canonicalization.</summary>
-      <returns>Returns <see langword="false" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateBinaryReader(System.Byte[],System.Int32,System.Int32,System.Xml.IXmlDictionary,System.Xml.XmlDictionaryReaderQuotas)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" /> that can read .NET Binary XML Format.</summary>
@@ -877,13 +877,15 @@ The XPath generated from the type and member data.</returns>
       <param name="dictionary">
         <see cref="T:System.Xml.XmlDictionary" /> to use.</param>
       <param name="quotas">The quotas that apply to this operation.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="buffer" /> is <see langword="null" />.
+
 -or-
+
 <paramref name="offset" /> is less than zero or greater than the buffer length.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="count" /> is less than zero or greater than the buffer length minus the offset.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateBinaryReader(System.Byte[],System.Int32,System.Int32,System.Xml.IXmlDictionary,System.Xml.XmlDictionaryReaderQuotas,System.Xml.XmlBinaryReaderSession)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" /> that can read .NET Binary XML Format.</summary>
@@ -893,13 +895,15 @@ The XPath generated from the type and member data.</returns>
       <param name="dictionary">The <see cref="T:System.Xml.XmlDictionary" /> to use.</param>
       <param name="quotas">The <see cref="T:System.Xml.XmlDictionaryReaderQuotas" /> to apply.</param>
       <param name="session">The <see cref="T:System.Xml.XmlBinaryReaderSession" /> to use.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="buffer" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="count" /> is less than zero or greater than the buffer length minus the offset.
+
 -or-
+
 <paramref name="offset" /> is less than zero or greater than the buffer length.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateBinaryReader(System.Byte[],System.Int32,System.Int32,System.Xml.IXmlDictionary,System.Xml.XmlDictionaryReaderQuotas,System.Xml.XmlBinaryReaderSession,System.Xml.OnXmlDictionaryReaderClose)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" /> that can read .NET Binary XML Format.</summary>
@@ -910,13 +914,15 @@ The XPath generated from the type and member data.</returns>
       <param name="quotas">The <see cref="T:System.Xml.XmlDictionaryReaderQuotas" /> to apply.</param>
       <param name="session">The <see cref="T:System.Xml.XmlBinaryReaderSession" /> to use.</param>
       <param name="onClose">Delegate to be called when the reader is closed.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="buffer" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="count" /> is less than zero or greater than the buffer length minus the offset.
+
 -or-
+
 <paramref name="offset" /> is less than zero or greater than the buffer length.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateBinaryReader(System.Byte[],System.Int32,System.Int32,System.Xml.XmlDictionaryReaderQuotas)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" /> that can read .NET Binary XML Format.</summary>
@@ -924,21 +930,23 @@ The XPath generated from the type and member data.</returns>
       <param name="offset">The starting position from which to read in <paramref name="buffer" />.</param>
       <param name="count">The number of bytes that can be read from <paramref name="buffer" />.</param>
       <param name="quotas">The quotas that apply to this operation.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="buffer" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="count" /> is less than zero or greater than the buffer length minus the offset.
+
 -or-
+
 <paramref name="offset" /> is less than zero or greater than the buffer length.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateBinaryReader(System.Byte[],System.Xml.XmlDictionaryReaderQuotas)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" /> that can read .NET Binary XML Format.</summary>
       <param name="buffer">The buffer from which to read.</param>
       <param name="quotas">The quotas that apply to this operation.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="buffer" /> is <see langword="null" />.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateBinaryReader(System.IO.Stream,System.Xml.IXmlDictionary,System.Xml.XmlDictionaryReaderQuotas)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" /> that can read .NET Binary XML Format.</summary>
@@ -946,9 +954,9 @@ The XPath generated from the type and member data.</returns>
       <param name="dictionary">
         <see cref="T:System.Xml.XmlDictionary" /> to use.</param>
       <param name="quotas">The quotas that apply to this operation.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="stream" /> or <paramref name="quotas" /> is <see langword="null" />.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateBinaryReader(System.IO.Stream,System.Xml.IXmlDictionary,System.Xml.XmlDictionaryReaderQuotas,System.Xml.XmlBinaryReaderSession)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" /> that can read .NET Binary XML Format.</summary>
@@ -958,9 +966,9 @@ The XPath generated from the type and member data.</returns>
       <param name="quotas">The quotas that apply to this operation.</param>
       <param name="session">
         <see cref="T:System.Xml.XmlBinaryReaderSession" /> to use.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="stream" /> is <see langword="null" />.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateBinaryReader(System.IO.Stream,System.Xml.IXmlDictionary,System.Xml.XmlDictionaryReaderQuotas,System.Xml.XmlBinaryReaderSession,System.Xml.OnXmlDictionaryReaderClose)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" /> that can read .NET Binary XML Format.</summary>
@@ -972,24 +980,24 @@ The XPath generated from the type and member data.</returns>
       <param name="session">
         <see cref="T:System.Xml.XmlBinaryReaderSession" /> to use.</param>
       <param name="onClose">Delegate to be called when the reader is closed.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="stream" /> is <see langword="null" />.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateBinaryReader(System.IO.Stream,System.Xml.XmlDictionaryReaderQuotas)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" /> that can read .NET Binary XML Format.</summary>
       <param name="stream">The stream from which to read.</param>
       <param name="quotas">The quotas that apply to this operation.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="stream" /> is <see langword="null" />.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateDictionaryReader(System.Xml.XmlReader)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" /> from an existing <see cref="T:System.Xml.XmlReader" />.</summary>
       <param name="reader">An instance of <see cref="T:System.Xml.XmlReader" />.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="reader" /> is <see langword="null" />.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateMtomReader(System.Byte[],System.Int32,System.Int32,System.Text.Encoding,System.Xml.XmlDictionaryReaderQuotas)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" /> that reads XML in the MTOM format.</summary>
@@ -998,9 +1006,9 @@ The XPath generated from the type and member data.</returns>
       <param name="count">The number of bytes that can be read from <paramref name="buffer" />.</param>
       <param name="encoding">The possible character encoding of the input.</param>
       <param name="quotas">The quotas to apply to this reader.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="encoding" /> is <see langword="null" />.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateMtomReader(System.Byte[],System.Int32,System.Int32,System.Text.Encoding[],System.String,System.Xml.XmlDictionaryReaderQuotas)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" /> that reads XML in the MTOM format.</summary>
@@ -1038,9 +1046,9 @@ The XPath generated from the type and member data.</returns>
       <param name="stream">The stream from which to read.</param>
       <param name="encoding">The possible character encoding of the stream.</param>
       <param name="quotas">The quotas to apply to this reader.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="encoding" /> is <see langword="null" />.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateMtomReader(System.IO.Stream,System.Text.Encoding[],System.String,System.Xml.XmlDictionaryReaderQuotas)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" /> that reads XML in the MTOM format.</summary>
@@ -1065,9 +1073,9 @@ The XPath generated from the type and member data.</returns>
       <param name="stream">The stream from which to read.</param>
       <param name="encodings">The possible character encodings of the stream.</param>
       <param name="quotas">The quotas to apply to this reader.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="encoding" /> is <see langword="null" />.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateTextReader(System.Byte[],System.Int32,System.Int32,System.Text.Encoding,System.Xml.XmlDictionaryReaderQuotas,System.Xml.OnXmlDictionaryReaderClose)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</summary>
@@ -1091,9 +1099,9 @@ The XPath generated from the type and member data.</returns>
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</summary>
       <param name="buffer">The buffer from which to read.</param>
       <param name="quotas">The quotas applied to the reader.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="buffer" /> is <see langword="null" />.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.CreateTextReader(System.IO.Stream,System.Text.Encoding,System.Xml.XmlDictionaryReaderQuotas,System.Xml.OnXmlDictionaryReaderClose)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryReader" />.</summary>
@@ -1128,21 +1136,25 @@ The XPath generated from the type and member data.</returns>
       <summary>Gets the index of the local name of the current node within an array of names.</summary>
       <param name="localNames">The string array of local names to be searched.</param>
       <param name="namespaceUri">The namespace of current node.</param>
-      <returns>The index of the local name of the current node within an array of names.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="localNames" /> or any of the names in the array is <see langword="null" />.
+
 -or-
+
 <paramref name="namespaceUri" /> is <see langword="null" />.</exception>
+      <returns>The index of the local name of the current node within an array of names.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.IndexOfLocalName(System.Xml.XmlDictionaryString[],System.Xml.XmlDictionaryString)">
       <summary>Gets the index of the local name of the current node within an array of names.</summary>
       <param name="localNames">The <see cref="T:System.Xml.XmlDictionaryString" /> array of local names to be searched.</param>
       <param name="namespaceUri">The namespace of current node.</param>
-      <returns>The index of the local name of the current node within an array of names.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="localNames" /> or any of the names in the array is <see langword="null" />.
+
 -or-
+
 <paramref name="namespaceUri" /> is <see langword="null" />.</exception>
+      <returns>The index of the local name of the current node within an array of names.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.IsLocalName(System.String)">
       <summary>Checks whether the parameter, <paramref name="localName" />, is the local name of the current node.</summary>
@@ -1153,26 +1165,26 @@ The XPath generated from the type and member data.</returns>
     <member name="M:System.Xml.XmlDictionaryReader.IsLocalName(System.Xml.XmlDictionaryString)">
       <summary>Checks whether the parameter, <paramref name="localName" />, is the local name of the current node.</summary>
       <param name="localName">An <see cref="T:System.Xml.XmlDictionaryString" /> that represents the local name of the current node.</param>
-      <returns>
-        <see langword="true" /> if <paramref name="localName" /> matches local name of the current node; otherwise <see langword="false" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="localName" /> is <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> if <paramref name="localName" /> matches local name of the current node; otherwise <see langword="false" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.IsNamespaceUri(System.String)">
       <summary>Checks whether the parameter, <paramref name="namespaceUri" />, is the namespace of the current node.</summary>
       <param name="namespaceUri">The namespace of current node.</param>
-      <returns>
-        <see langword="true" /> if <paramref name="namespaceUri" /> matches namespace of the current node; otherwise <see langword="false" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="namespaceUri" /> is <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> if <paramref name="namespaceUri" /> matches namespace of the current node; otherwise <see langword="false" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.IsNamespaceUri(System.Xml.XmlDictionaryString)">
       <summary>Checks whether the parameter, <paramref name="namespaceUri" />, is the namespace of the current node.</summary>
       <param name="namespaceUri">Namespace of current node.</param>
-      <returns>
-        <see langword="true" /> if <paramref name="namespaceUri" /> matches namespace of the current node; otherwise <see langword="false" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="namespaceUri" /> is <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> if <paramref name="namespaceUri" /> matches namespace of the current node; otherwise <see langword="false" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.IsStartArray(System.Type@)">
       <summary>Checks whether the reader is positioned at the start of an array. This class returns <see langword="false" />, but derived classes that have the concept of arrays might return <see langword="true" />.</summary>
@@ -1210,10 +1222,6 @@ The XPath generated from the type and member data.</returns>
       <param name="localName">The local name of the element.</param>
       <param name="namespaceUri">The namespace URI of the element.</param>
     </member>
-    <member name="P:System.Xml.XmlDictionaryReader.Quotas">
-      <summary>Gets the quota values that apply to the current instance of this class.</summary>
-      <returns>The <see cref="T:System.Xml.XmlDictionaryReaderQuotas" /> that applies to the current instance of this class.</returns>
-    </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.String,System.String,System.Boolean[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see cref="T:System.Boolean" /> nodes into a typed array.</summary>
       <param name="localName">The local name of the element.</param>
@@ -1221,13 +1229,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the nodes are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of nodes to put in the array.</param>
-      <returns>The number of nodes put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of nodes put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.String,System.String,System.DateTime[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see cref="T:System.DateTime" /> nodes into a typed array.</summary>
@@ -1236,13 +1246,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the nodes are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of nodes to put in the array.</param>
-      <returns>The number of nodes put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of nodes put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.String,System.String,System.Decimal[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see cref="T:System.Decimal" /> nodes into a typed array.</summary>
@@ -1251,13 +1263,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the nodes are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of nodes to put in the array.</param>
-      <returns>The number of nodes put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of nodes put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.String,System.String,System.Double[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see cref="T:System.Double" /> nodes into a typed array.</summary>
@@ -1266,13 +1280,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the nodes are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of nodes to put in the array.</param>
-      <returns>The number of nodes put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of nodes put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.String,System.String,System.Guid[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see cref="T:System.Guid" /> nodes into a typed array.</summary>
@@ -1281,13 +1297,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the nodes are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of nodes to put in the array.</param>
-      <returns>The number of nodes put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of nodes put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.String,System.String,System.Int16[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see langword="short" /> integers into a typed array.</summary>
@@ -1296,13 +1314,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the integers are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of integers to put in the array.</param>
-      <returns>The number of integers put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of integers put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.String,System.String,System.Int32[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of integers into a typed array.</summary>
@@ -1311,13 +1331,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the integers are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of integers to put in the array.</param>
-      <returns>The number of integers put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of integers put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.String,System.String,System.Int64[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see langword="long" /> integers into a typed array.</summary>
@@ -1326,13 +1348,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the integers are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of integers to put in the array.</param>
-      <returns>The number of integers put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of integers put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.String,System.String,System.Single[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see langword="float" /> numbers into a typed array.</summary>
@@ -1341,13 +1365,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the float numbers are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of float numbers to put in the array.</param>
-      <returns>The umber of float numbers put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The umber of float numbers put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.String,System.String,System.TimeSpan[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see cref="T:System.TimeSpan" /> nodes into a typed array.</summary>
@@ -1356,13 +1382,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the nodes are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of nodes to put in the array.</param>
-      <returns>The number of nodes put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of nodes put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Boolean[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see cref="T:System.Boolean" /> nodes into a typed array.</summary>
@@ -1371,13 +1399,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the nodes are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of nodes to put in the array.</param>
-      <returns>The number of nodes put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of nodes put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.DateTime[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see cref="T:System.DateTime" /> nodes into a typed array.</summary>
@@ -1386,13 +1416,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the nodes are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of nodes to put in the array.</param>
-      <returns>The number of nodes put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of nodes put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Decimal[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see cref="T:System.Decimal" /> nodes into a typed array.</summary>
@@ -1401,13 +1433,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the nodes are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of nodes to put in the array.</param>
-      <returns>The number of nodes put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of nodes put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Double[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see cref="T:System.Double" /> nodes type into a typed array.</summary>
@@ -1416,13 +1450,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the nodes are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of nodes to put in the array.</param>
-      <returns>The number of nodes put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of nodes put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Guid[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see cref="T:System.Guid" /> nodes into a typed array.</summary>
@@ -1431,13 +1467,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the nodes are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of nodes to put in the array.</param>
-      <returns>The number of nodes put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of nodes put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Int16[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see langword="short" /> integers into a typed array.</summary>
@@ -1446,13 +1484,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the integers are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of integers to put in the array.</param>
-      <returns>The number of integers put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of integers put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Int32[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of integers into a typed array.</summary>
@@ -1461,13 +1501,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the integers are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of integers to put in the array.</param>
-      <returns>The number of integers put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of integers put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Int64[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see langword="long" /> integers into a typed array.</summary>
@@ -1476,13 +1518,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the integers are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of integers to put in the array.</param>
-      <returns>The number of integers put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of integers put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Single[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see langword="float" /> numbers into a typed array.</summary>
@@ -1491,13 +1535,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the float numbers are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of float numbers to put in the array.</param>
-      <returns>The number of float numbers put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of float numbers put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadArray(System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.TimeSpan[],System.Int32,System.Int32)">
       <summary>Reads repeated occurrences of <see cref="T:System.TimeSpan" /> nodes into a typed array.</summary>
@@ -1506,13 +1552,15 @@ The XPath generated from the type and member data.</returns>
       <param name="array">The array into which the nodes are put.</param>
       <param name="offset">The starting index in the array.</param>
       <param name="count">The number of nodes to put in the array.</param>
-      <returns>The number of nodes put in the array.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
+      <returns>The number of nodes put in the array.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadBooleanArray(System.String,System.String)">
       <summary>Reads repeated occurrences of <see cref="T:System.Boolean" /> nodes into a typed array.</summary>
@@ -1534,19 +1582,19 @@ The XPath generated from the type and member data.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadContentAsBase64">
       <summary>Reads the content and returns the Base64 decoded binary bytes.</summary>
-      <returns>A byte array that contains the Base64 decoded binary bytes.</returns>
       <exception cref="T:System.Xml.XmlException">The array size is greater than the MaxArrayLength quota for this reader.</exception>
+      <returns>A byte array that contains the Base64 decoded binary bytes.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadContentAsBinHex">
       <summary>Reads the content and returns the <see langword="BinHex" /> decoded binary bytes.</summary>
-      <returns>A byte array that contains the <see langword="BinHex" /> decoded binary bytes.</returns>
       <exception cref="T:System.Xml.XmlException">The array size is greater than <see cref="F:System.Int32.MaxValue" />.</exception>
+      <returns>A byte array that contains the <see langword="BinHex" /> decoded binary bytes.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadContentAsBinHex(System.Int32)">
       <summary>Reads the content and returns the <see langword="BinHex" /> decoded binary bytes.</summary>
       <param name="maxByteArrayContentLength">The maximum array length.</param>
-      <returns>A byte array that contains the <see langword="BinHex" /> decoded binary bytes.</returns>
       <exception cref="T:System.Xml.XmlException">The array size is greater than <paramref name="maxByteArrayContentLength" />.</exception>
+      <returns>A byte array that contains the <see langword="BinHex" /> decoded binary bytes.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadContentAsChars(System.Char[],System.Int32,System.Int32)">
       <summary>Reads the content into a <see langword="char" /> array.</summary>
@@ -1585,21 +1633,25 @@ The XPath generated from the type and member data.</returns>
       <summary>Converts a node's content to a string.</summary>
       <param name="strings">The array of strings to match content against.</param>
       <param name="index">The index of the entry in <paramref name="strings" /> that matches the content.</param>
-      <returns>The node content in a string representation.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="strings" /> is <see langword="null" />.
+
 -or-
+
 An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
+      <returns>The node content in a string representation.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadContentAsString(System.Xml.XmlDictionaryString[],System.Int32@)">
       <summary>Converts a node's content to a string.</summary>
       <param name="strings">The array of <see cref="T:System.Xml.XmlDictionaryString" /> objects to match content against.</param>
       <param name="index">The index of the entry in <paramref name="strings" /> that matches the content.</param>
-      <returns>The node content in a string representation.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="strings" /> is <see langword="null" />.
+
 -or-
+
 An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
+      <returns>The node content in a string representation.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadContentAsTimeSpan">
       <summary>Converts a node's content to <see cref="T:System.TimeSpan" />.</summary>
@@ -1660,9 +1712,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadElementContentAsDateTime">
       <summary>Converts an element's content to a <see cref="T:System.DateTime" />.</summary>
-      <returns>The node's content represented as a <see cref="T:System.DateTime" />.</returns>
       <exception cref="T:System.ArgumentException">The element is not in valid format.</exception>
       <exception cref="T:System.FormatException">The element is not in valid format.</exception>
+      <returns>The node's content represented as a <see cref="T:System.DateTime" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadElementContentAsDecimal">
       <summary>Converts an element's content to a <see cref="T:System.Decimal" />.</summary>
@@ -1678,9 +1730,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadElementContentAsGuid">
       <summary>Converts an element's content to a <see cref="T:System.Guid" />.</summary>
-      <returns>The node's content represented as a <see cref="T:System.Guid" />.</returns>
       <exception cref="T:System.ArgumentException">The element is not in valid format.</exception>
       <exception cref="T:System.FormatException">The element is not in valid format.</exception>
+      <returns>The node's content represented as a <see cref="T:System.Guid" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadElementContentAsInt">
       <summary>Converts an element's content to an integer (<see cref="T:System.Int32" />).</summary>
@@ -1700,9 +1752,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadElementContentAsUniqueId">
       <summary>Converts an element's content to a unique identifier.</summary>
-      <returns>The node's content represented as a unique identifier.</returns>
       <exception cref="T:System.ArgumentException">The element is not in valid format.</exception>
       <exception cref="T:System.FormatException">The element is not in valid format.</exception>
+      <returns>The node's content represented as a unique identifier.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadFullStartElement">
       <summary>Checks whether the current node is an element and advances the reader to the next node.</summary>
@@ -1796,16 +1848,16 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadString">
       <summary>Reads the contents of the current node into a string.</summary>
-      <returns>A string that contains the contents of the current node.</returns>
       <exception cref="T:System.InvalidOperationException">Unable to read the contents of the current node.</exception>
       <exception cref="T:System.Xml.XmlException">Maximum allowed string length exceeded.</exception>
+      <returns>A string that contains the contents of the current node.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadString(System.Int32)">
       <summary>Reads the contents of the current node into a string with a given maximum length.</summary>
       <param name="maxStringContentLength">Maximum allowed string length.</param>
-      <returns>A string that contains the contents of the current node.</returns>
       <exception cref="T:System.InvalidOperationException">Unable to read the contents of the current node.</exception>
       <exception cref="T:System.Xml.XmlException">Maximum allowed string length exceeded.</exception>
+      <returns>A string that contains the contents of the current node.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.ReadTimeSpanArray(System.String,System.String)">
       <summary>Reads the contents of a series of nodes with the given <paramref name="localName" /> and <paramref name="namespaceUri" /> into a <see cref="T:System.TimeSpan" /> array.</summary>
@@ -1824,8 +1876,8 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
       <param name="buffer">The buffer from which to read.</param>
       <param name="offset">The starting position from which to read in <paramref name="buffer" />.</param>
       <param name="count">The number of bytes that can be read from <paramref name="buffer" />.</param>
-      <returns>Not implemented.</returns>
       <exception cref="T:System.NotSupportedException">Always.</exception>
+      <returns>Not implemented.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryReader.StartCanonicalization(System.IO.Stream,System.Boolean,System.String[])">
       <summary>This method is not yet implemented.</summary>
@@ -1864,6 +1916,14 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
       <returns>
         <see langword="false" />, unless overridden in a derived class.</returns>
     </member>
+    <member name="P:System.Xml.XmlDictionaryReader.CanCanonicalize">
+      <summary>This property always returns <see langword="false" />. Its derived classes can override to return <see langword="true" /> if they support canonicalization.</summary>
+      <returns>Returns <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Xml.XmlDictionaryReader.Quotas">
+      <summary>Gets the quota values that apply to the current instance of this class.</summary>
+      <returns>The <see cref="T:System.Xml.XmlDictionaryReaderQuotas" /> that applies to the current instance of this class.</returns>
+    </member>
     <member name="T:System.Xml.XmlDictionaryReaderQuotas">
       <summary>Contains configurable quota values for XmlDictionaryReaders.</summary>
     </member>
@@ -1882,33 +1942,33 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
     </member>
     <member name="P:System.Xml.XmlDictionaryReaderQuotas.MaxArrayLength">
       <summary>Gets or sets the maximum allowed array length.</summary>
-      <returns>The maximum allowed array length. The default is 16384.</returns>
       <exception cref="T:System.InvalidOperationException">Trying to <see langword="set" /> the value, but quota values are read-only for this instance.</exception>
       <exception cref="T:System.ArgumentException">Trying to <see langword="set" /> the value to less than zero.</exception>
+      <returns>The maximum allowed array length. The default is 16384.</returns>
     </member>
     <member name="P:System.Xml.XmlDictionaryReaderQuotas.MaxBytesPerRead">
       <summary>Gets or sets the maximum allowed bytes returned for each read.</summary>
-      <returns>The maximum allowed bytes returned for each read. The default is 4096.</returns>
       <exception cref="T:System.InvalidOperationException">Trying to <see langword="set" /> the value, but quota values are read-only for this instance.</exception>
       <exception cref="T:System.ArgumentException">Trying to <see langword="set" /> the value to less than zero.</exception>
+      <returns>The maximum allowed bytes returned for each read. The default is 4096.</returns>
     </member>
     <member name="P:System.Xml.XmlDictionaryReaderQuotas.MaxDepth">
       <summary>Gets or sets the maximum nested node depth.</summary>
-      <returns>The maximum nested node depth. The default is 32;</returns>
       <exception cref="T:System.InvalidOperationException">Trying to <see langword="set" /> the value and quota values are read-only for this instance.</exception>
       <exception cref="T:System.ArgumentException">Trying to <see langword="set" /> the value is less than zero.</exception>
+      <returns>The maximum nested node depth. The default is 32.</returns>
     </member>
     <member name="P:System.Xml.XmlDictionaryReaderQuotas.MaxNameTableCharCount">
       <summary>Gets or sets the maximum characters allowed in a table name.</summary>
-      <returns>The maximum characters allowed in a table name. The default is 16384.</returns>
       <exception cref="T:System.InvalidOperationException">Trying to <see langword="set" /> the value, but quota values are read-only for this instance.</exception>
       <exception cref="T:System.ArgumentException">Trying to <see langword="set" /> the value to less than zero.</exception>
+      <returns>The maximum characters allowed in a table name. The default is 16384.</returns>
     </member>
     <member name="P:System.Xml.XmlDictionaryReaderQuotas.MaxStringContentLength">
       <summary>Gets or sets the maximum string length returned by the reader.</summary>
-      <returns>The maximum string length returned by the reader. The default is 8192.</returns>
       <exception cref="T:System.InvalidOperationException">Trying to <see langword="set" /> the value, but quota values are read-only for this instance.</exception>
       <exception cref="T:System.ArgumentException">Trying to <see langword="set" /> the value to less than zero.</exception>
+      <returns>The maximum string length returned by the reader. The default is 8192.</returns>
     </member>
     <member name="P:System.Xml.XmlDictionaryReaderQuotas.ModifiedQuotas">
       <summary>Gets the modified quotas for the <see cref="T:System.Xml.XmlDictionaryReaderQuotas" />.</summary>
@@ -1945,6 +2005,10 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="key" /> is less than 0 or greater than <see cref="F:System.Int32.MaxValue" /> / 4.</exception>
     </member>
+    <member name="M:System.Xml.XmlDictionaryString.ToString">
+      <summary>Displays a text representation of this object.</summary>
+      <returns>The string value for this instance of the class.</returns>
+    </member>
     <member name="P:System.Xml.XmlDictionaryString.Dictionary">
       <summary>Represents the <see cref="T:System.Xml.IXmlDictionary" /> passed to the constructor of this instance of <see cref="T:System.Xml.XmlDictionaryString" />.</summary>
       <returns>The <see cref="T:System.Xml.IXmlDictionary" /> for this dictionary entry.</returns>
@@ -1957,10 +2021,6 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
       <summary>Gets the integer key for this instance of the class.</summary>
       <returns>The integer key for this instance of the class.</returns>
     </member>
-    <member name="M:System.Xml.XmlDictionaryString.ToString">
-      <summary>Displays a text representation of this object.</summary>
-      <returns>The string value for this instance of the class.</returns>
-    </member>
     <member name="P:System.Xml.XmlDictionaryString.Value">
       <summary>Gets the string value for this instance of the class.</summary>
       <returns>The string value for this instance of the class.</returns>
@@ -1970,11 +2030,6 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Xml.XmlDictionaryWriter" /> class.</summary>
-    </member>
-    <member name="P:System.Xml.XmlDictionaryWriter.CanCanonicalize">
-      <summary>This property always returns <see langword="false" />. Its derived classes can override to return <see langword="true" /> if they support canonicalization.</summary>
-      <returns>
-        <see langword="false" /> in all cases.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.CreateBinaryWriter(System.IO.Stream)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryWriter" /> that writes WCF binary XML format.</summary>
@@ -2006,9 +2061,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
     <member name="M:System.Xml.XmlDictionaryWriter.CreateDictionaryWriter(System.Xml.XmlWriter)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryWriter" /> from an existing <see cref="T:System.Xml.XmlWriter" />.</summary>
       <param name="writer">An instance of <see cref="T:System.Xml.XmlWriter" />.</param>
-      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryWriter" />.</returns>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="writer" /> is <see langword="null" />.</exception>
+      <returns>An instance of <see cref="T:System.Xml.XmlDictionaryWriter" />.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.CreateMtomWriter(System.IO.Stream,System.Text.Encoding,System.Int32,System.String)">
       <summary>Creates an instance of <see cref="T:System.Xml.XmlDictionaryWriter" /> that writes XML in the MTOM format.</summary>
@@ -2075,7 +2130,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.String,System.String,System.DateTime[],System.Int32,System.Int32)">
@@ -2090,7 +2147,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.String,System.String,System.Decimal[],System.Int32,System.Int32)">
@@ -2105,7 +2164,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.String,System.String,System.Double[],System.Int32,System.Int32)">
@@ -2120,7 +2181,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.String,System.String,System.Guid[],System.Int32,System.Int32)">
@@ -2135,7 +2198,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.String,System.String,System.Int16[],System.Int32,System.Int32)">
@@ -2150,7 +2215,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.String,System.String,System.Int32[],System.Int32,System.Int32)">
@@ -2165,7 +2232,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.String,System.String,System.Int64[],System.Int32,System.Int32)">
@@ -2180,7 +2249,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.String,System.String,System.Single[],System.Int32,System.Int32)">
@@ -2195,7 +2266,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.String,System.String,System.TimeSpan[],System.Int32,System.Int32)">
@@ -2210,7 +2283,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Boolean[],System.Int32,System.Int32)">
@@ -2225,7 +2300,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.DateTime[],System.Int32,System.Int32)">
@@ -2240,7 +2317,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Decimal[],System.Int32,System.Int32)">
@@ -2255,7 +2334,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Double[],System.Int32,System.Int32)">
@@ -2270,7 +2351,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Guid[],System.Int32,System.Int32)">
@@ -2285,7 +2368,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Int16[],System.Int32,System.Int32)">
@@ -2300,7 +2385,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Int32[],System.Int32,System.Int32)">
@@ -2315,7 +2402,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Int64[],System.Int32,System.Int32)">
@@ -2330,7 +2419,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.Single[],System.Int32,System.Int32)">
@@ -2345,7 +2436,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteArray(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.TimeSpan[],System.Int32,System.Int32)">
@@ -2360,7 +2453,9 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
         <paramref name="array" /> is <see langword="null" />.</exception>
       <exception cref="T:System.ArgumentOutOfRangeException">
         <paramref name="offset" /> is &lt; 0 or &gt; <paramref name="array" /> length.
+
 -or-
+
 <paramref name="count" /> is &lt; 0 or &gt; <paramref name="array" /> length minus <paramref name="offset" />.</exception>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteAttributeString(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.String)">
@@ -2381,10 +2476,12 @@ An entry in <paramref name="strings" /> is <see langword="null" />.</exception>
       <param name="buffer">Byte array to encode.</param>
       <param name="index">The position in the buffer indicating the start of the bytes to write.</param>
       <param name="count">The number of bytes to write.</param>
-      <returns>The task that represents the asynchronous <see langword="WriteBase64" /> operation.</returns>
       <exception cref="T:System.InvalidOperationException">An <see cref="T:System.Xml.XmlDictionaryWriter" /> method was called before a previous asynchronous operation finished. In this case, <see cref="T:System.InvalidOperationException" /> is thrown with the message "An asynchronous operation is already in progress."
+
 -or-
+
 An <see cref="T:System.Xml.XmlDictionaryWriter" /> asynchronous method was called without setting the <see cref="P:System.Xml.XmlWriterSettings.Async" /> flag to <see langword="true" />. In this case, <see cref="T:System.InvalidOperationException" /> is thrown with the message "Set XmlWriterSettings.Async to true if you want to use Async Methods."</exception>
+      <returns>The task that represents the asynchronous <see langword="WriteBase64" /> operation.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteElementString(System.String,System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString,System.String)">
       <summary>Writes an element with a text content.</summary>
@@ -2486,10 +2583,12 @@ An <see cref="T:System.Xml.XmlDictionaryWriter" /> asynchronous method was calle
     <member name="M:System.Xml.XmlDictionaryWriter.WriteValueAsync(System.Xml.IStreamProvider)">
       <summary>Asynchronously writes a value from an <see cref="T:System.Xml.IStreamProvider" />.</summary>
       <param name="value">The <see cref="T:System.Xml.IStreamProvider" /> value to write.</param>
-      <returns>The task that represents the asynchronous <see langword="WriteValue" /> operation.</returns>
       <exception cref="T:System.InvalidOperationException">An <see cref="T:System.Xml.XmlDictionaryWriter" /> method was called before a previous asynchronous operation finished. In this case, <see cref="T:System.InvalidOperationException" /> is thrown with the message "An asynchronous operation is already in progress."
+
 -or-
+
 An <see cref="T:System.Xml.XmlDictionaryWriter" /> asynchronous method was called without setting the <see cref="P:System.Xml.XmlWriterSettings.Async" /> flag to <see langword="true" />. In this case, <see cref="T:System.InvalidOperationException" /> is thrown with the message "Set XmlWriterSettings.Async to true if you want to use Async Methods."</exception>
+      <returns>The task that represents the asynchronous <see langword="WriteValue" /> operation.</returns>
     </member>
     <member name="M:System.Xml.XmlDictionaryWriter.WriteXmlAttribute(System.String,System.String)">
       <summary>Writes a standard XML attribute in the current node.</summary>
@@ -2514,6 +2613,11 @@ An <see cref="T:System.Xml.XmlDictionaryWriter" /> asynchronous method was calle
       <param name="namespaceUri">The namespace to which the prefix is bound.</param>
       <exception cref="T:System.ArgumentNullException">
         <paramref name="namespaceUri" /> is <see langword="null" />.</exception>
+    </member>
+    <member name="P:System.Xml.XmlDictionaryWriter.CanCanonicalize">
+      <summary>This property always returns <see langword="false" />. Its derived classes can override to return <see langword="true" /> if they support canonicalization.</summary>
+      <returns>
+        <see langword="false" /> in all cases.</returns>
     </member>
   </members>
 </doc>

@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <_TizenNETCoreAppPackageVersion>3.0.0</_TizenNETCoreAppPackageVersion>
+    <_TizenNETCoreAppPackageVersion>6.0.0</_TizenNETCoreAppPackageVersion>
   </PropertyGroup>
 
   <ItemGroup>

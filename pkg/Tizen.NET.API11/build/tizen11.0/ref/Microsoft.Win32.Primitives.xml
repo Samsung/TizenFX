@@ -40,13 +40,13 @@
       <exception cref="T:System.ArgumentNullException">
         <paramref name="info" /> is <see langword="null" />.</exception>
     </member>
-    <member name="P:System.ComponentModel.Win32Exception.NativeErrorCode">
-      <summary>Gets the Win32 error code associated with this exception.</summary>
-      <returns>The Win32 error code associated with this exception.</returns>
-    </member>
     <member name="M:System.ComponentModel.Win32Exception.ToString">
       <summary>Returns a string that contains the <see cref="P:System.ComponentModel.Win32Exception.NativeErrorCode" />, or <see cref="P:System.Exception.HResult" />, or both.</summary>
       <returns>A string that represents the <see cref="P:System.ComponentModel.Win32Exception.NativeErrorCode" />, or <see cref="P:System.Exception.HResult" />, or both.</returns>
+    </member>
+    <member name="P:System.ComponentModel.Win32Exception.NativeErrorCode">
+      <summary>Gets the Win32 error code associated with this exception.</summary>
+      <returns>The Win32 error code associated with this exception.</returns>
     </member>
   </members>
 </doc>
