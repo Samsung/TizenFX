@@ -1383,10 +1383,21 @@ namespace Tizen.NUI.BaseComponents
                 // Lazy update only if _resourceUrl is not empty and ProcessAttachedFlag is false.
                 if (!string.IsNullOrEmpty(_resourceUrl) && !imagePropertyUpdateProcessAttachedFlag)
                 {
-                    imagePropertyUpdateProcessAttachedFlag = true;
-                    ProcessorController.Instance.ProcessorOnceEvent += UpdateImage;
-                    // Call process hardly.
-                    ProcessorController.Instance.Awake();
+                    if(!HasBody())
+                    {
+                        // Throw exception if ImageView is disposed.
+                        // For legacy code safety, do not throw exception. and just print log for API10 now.
+                        //throw new global::System.InvalidOperationException("[NUI][ImageVIew] Someone try to change disposed ImageView's property.\n");
+
+                        Tizen.Log.Error("NUI", "[NUI][ImageVIew] Someone try to change disposed ImageView's property.\n");
+                    }
+                    else
+                    {
+                        imagePropertyUpdateProcessAttachedFlag = true;
+                        ProcessorController.Instance.ProcessorOnceEvent += UpdateImage;
+                        // Call process hardly.
+                        ProcessorController.Instance.Awake();
+                    }
                 }
             }
         }
