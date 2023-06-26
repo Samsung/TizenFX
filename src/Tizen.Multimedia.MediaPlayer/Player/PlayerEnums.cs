@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 using System;
+using System.ComponentModel;
 using System.Threading;
 using Tizen.Internals.Errors;
 
@@ -326,7 +327,6 @@ namespace Tizen.Multimedia
         /// </summary>
         NoSyncAndDeinterleave = 0x03,
     }
-
 
     /// <summary>
     /// Specifies the types of a codec for <see cref="Player"/>.
