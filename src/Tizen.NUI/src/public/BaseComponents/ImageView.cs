@@ -1462,6 +1462,12 @@ namespace Tizen.NUI.BaseComponents
             // Update image property map value as inputed value.
             if (key != 0)
             {
+                if(!HasBody())
+                {
+                    // Throw exception if ImageView is disposed.
+                    throw new global::System.InvalidOperationException("[NUI][ImageVIew] Someone try to change disposed ImageView's property.\n");
+                }
+
                 if (cachedImagePropertyMap == null)
                 {
                     cachedImagePropertyMap = new PropertyMap();
