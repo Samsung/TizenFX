@@ -150,26 +150,39 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Adds modelNode to this Model.
+        /// Retrieves root ModelNode of this Model.
         /// </summary>
-        /// <param name="modelRoot">Root of a ModelNode tree</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void AddModelNode(ModelNode modelRoot)
+        public ModelNode ModelRoot
         {
-            Interop.Model.AddModelNode(SwigCPtr, ModelNode.getCPtr(modelRoot));
+            get
+            {
+                return GetModelRoot();
+            }
+        }
+
+        /// <summary>
+        /// Adds modelNode to this Model.
+        /// </summary>
+        /// <param name="modelNode">Root of a ModelNode tree</param>
+        // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void AddModelNode(ModelNode modelNode)
+        {
+            Interop.Model.AddModelNode(SwigCPtr, ModelNode.getCPtr(modelNode));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
         /// Removes modelNode from this Model.
         /// </summary>
-        /// <param name="modelRoot">Root of a ModelNode tree to be removed</param>
+        /// <param name="modelNode">Root of a ModelNode tree to be removed</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void RemoveModelNode(ModelNode modelRoot)
+        public void RemoveModelNode(ModelNode modelNode)
         {
-            Interop.Model.RemoveModelNode(SwigCPtr, ModelNode.getCPtr(modelRoot));
+            Interop.Model.RemoveModelNode(SwigCPtr, ModelNode.getCPtr(modelNode));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
