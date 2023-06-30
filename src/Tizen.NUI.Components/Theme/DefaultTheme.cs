@@ -25,13 +25,6 @@ namespace Tizen.NUI.Components
 
         public static void Preload()
         {
-            if (ThemeManager.InitialThemeDisabled) return;
-
-            ThemeManager.AddPackageTheme(Instance);
-
-            if (string.IsNullOrEmpty(ExternalThemeManager.CurrentThemeId)) return;
-
-            ThemeManager.LoadPlatformTheme(ExternalThemeManager.CurrentThemeId);
         }
     }
 }
