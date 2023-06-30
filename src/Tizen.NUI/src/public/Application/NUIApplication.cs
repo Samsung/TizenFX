@@ -626,7 +626,6 @@ namespace Tizen.NUI
         static public void Preload()
         {
             Interop.Application.PreInitialize();
-            ThemeManager.Preload();
             IsPreload = true;
         }
 
