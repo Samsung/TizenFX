@@ -453,15 +453,6 @@ namespace Tizen.NUI
             UpdateThemeForInitialize();
         }
 
-        internal static void Preload()
-        {
-            if (InitialThemeDisabled) return;
-
-            if (string.IsNullOrEmpty(ExternalThemeManager.CurrentThemeId)) return;
-
-            LoadPlatformTheme(ExternalThemeManager.CurrentThemeId);
-        }
-
         // TODO Please make it private after removing Tizen.NUI.Components.StyleManager.
         internal static void UpdateThemeForUpdate()
         {
