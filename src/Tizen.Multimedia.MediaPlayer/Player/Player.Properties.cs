@@ -737,7 +737,7 @@ namespace Tizen.Multimedia
         }
 
         /// <summary>
-        /// Gets or sets the default codec type of the video decoder.
+        /// Gets or sets the codec type of the video decoder.
         /// </summary>
         /// <value>A <see cref="CodecType"/> specifies the type.
         /// The default codec type could be different depending on the device capability.</value>
