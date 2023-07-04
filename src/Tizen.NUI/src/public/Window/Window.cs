@@ -566,6 +566,24 @@ namespace Tizen.NUI
             }
         }
 
+        /// <summary>
+        /// Gets or sets whether the window will update partial area or full area.
+        /// If this value is true, window will update and render partial area.
+        /// If false, full area updated.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PartialUpdate
+        {
+            get
+            {
+                return IsPartialUpdate();
+            }
+            set
+            {
+                SetPartialUpdate(value);
+            }
+        }
+
         internal static Vector4 DEFAULT_BACKGROUND_COLOR
         {
             get
@@ -1630,6 +1648,27 @@ namespace Tizen.NUI
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
 
             // Setting Position of the window should request a relayout of the tree.
+        }
+
+        /// <summary>
+        /// Set the window use partial update or not.
+        /// </summary>
+        /// <param name="enabled">If window enable partial update or disable.</param>
+        internal void SetPartialUpdate(bool enabled)
+        {
+            Interop.Window.SetPartialUpdateEnabled(SwigCPtr, enabled);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns whether the window is enabled partial update or not.
+        /// </summary>
+        /// <returns>True if the window is enabled partial update, false otherwise.</returns>
+        internal bool IsPartialUpdate()
+        {
+            bool ret = Interop.Window.IsPartialUpdateEnabled(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
         }
 
         /// <summary>
