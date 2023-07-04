@@ -42,7 +42,7 @@
       </group>
       <group targetFramework="Tizen11.0">
         <dependency id="Tizen.NET.API11" version="$fxversion$" />
-        <dependency id="Microsoft.NETCore.Platforms" version="6.0.0" />
+        <dependency id="Microsoft.NETCore.Platforms" version="6.0.9" />
       </group>
       <group targetFramework=".NETStandard2.0">
         <dependency id="Tizen.NET.API10" version="10.0.0.17508" />
@@ -50,7 +50,7 @@
       </group>
       <group targetFramework=".NET6.0">
         <dependency id="Tizen.NET.API11" version="$fxversion$" />
-        <dependency id="Microsoft.NETCore.Platforms" version="6.0.0" />
+        <dependency id="Microsoft.NETCore.Platforms" version="6.0.9" />
       </group>
     </dependencies>
   </metadata>
