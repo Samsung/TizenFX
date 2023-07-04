@@ -52,6 +52,12 @@ namespace Tizen.NUI
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_WheelEventSignal_Disconnect")]
             public static extern void WheelEventDisconnect(HandleRef actor, HandleRef handler);
 
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InterceptWheelSignal_Connect")]
+            public static extern void InterceptWheelConnect(HandleRef actor, HandleRef handler);
+
+            [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_InterceptWheelSignal_Disconnect")]
+            public static extern void InterceptWheelDisconnect(HandleRef actor, HandleRef handler);
+
             [DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_Actor_OnSceneSignal_Connect")]
             public static extern void OnSceneConnect(HandleRef actor, HandleRef handler);
 
