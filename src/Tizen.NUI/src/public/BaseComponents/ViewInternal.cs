@@ -545,9 +545,9 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalTargetSize = new Vector3(0, 0, 0);
             }
-            
+
             Interop.ActorInternal.RetrieveTargetSize(SwigCPtr, internalTargetSize.SwigCPtr);
-            
+
             if (NDalicPINVOKE.SWIGPendingException.Pending)
             {
                 throw NDalicPINVOKE.SWIGPendingException.Retrieve();
@@ -562,7 +562,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalCurrentSize = new Size2D(0, 0);
             }
-            
+
             Interop.ActorInternal.RetrieveCurrentPropertyVector2ActualVector3(SwigCPtr, Property.SIZE, internalCurrentSize.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -627,7 +627,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalCurrentPosition = new Position(0, 0, 0);
             }
-            
+
             Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, Property.POSITION, internalCurrentPosition.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -643,7 +643,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalCurrentWorldPosition = new Vector3(0, 0, 0);
             }
-            
+
             Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.WorldPosition, internalCurrentWorldPosition.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -772,7 +772,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalCurrentScale = new Vector3(0, 0, 0);
             }
-            
+
             Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.SCALE, internalCurrentScale.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -789,7 +789,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalCurrentWorldScale = new Vector3(0, 0, 0);
             }
-            
+
             Interop.ActorInternal.RetrieveCurrentPropertyVector3(SwigCPtr, View.Property.WorldScale, internalCurrentWorldScale.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -866,7 +866,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalCurrentColor = new Vector4(0, 0, 0, 0);
             }
-            
+
             Interop.ActorInternal.RetrieveCurrentPropertyVector4(SwigCPtr, Interop.ActorProperty.ColorGet(), internalCurrentColor.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -890,7 +890,7 @@ namespace Tizen.NUI.BaseComponents
             {
                 internalCurrentWorldColor = new Vector4(0, 0, 0, 0);
             }
-            
+
             Interop.ActorInternal.RetrieveCurrentPropertyVector4(SwigCPtr, Property.WorldColor, internalCurrentWorldColor.SwigCPtr);
 
             if (NDalicPINVOKE.SWIGPendingException.Pending)
@@ -1446,6 +1446,15 @@ namespace Tizen.NUI.BaseComponents
                 Interop.ActorSignal.OnSceneDisconnect(GetBaseHandleCPtrHandleRef, onWindowEventCallback.ToHandleRef(this));
                 NDalicPINVOKE.ThrowExceptionIfExistsDebug();
                 onWindowEventCallback = null;
+            }
+
+            if (interceptWheelCallback != null)
+            {
+                NUILog.Debug($"[Dispose] interceptWheelCallback");
+
+                Interop.ActorSignal.InterceptWheelDisconnect(GetBaseHandleCPtrHandleRef, interceptWheelCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExistsDebug();
+                interceptWheelCallback = null;
             }
 
             if (wheelEventCallback != null)
