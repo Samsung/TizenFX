@@ -9,20 +9,17 @@ namespace Tizen.NUI.Samples
     public class ScrollableFocusSample : IExample
     {
         public View root;
-        public class CustomScrollableBase : ScrollableBase
-        {
-            public override bool OnWheel(Wheel wheel)
-            {
-                base.OnWheel(wheel);
-                Window window = NUIApplication.GetDefaultWindow();
-                window.LazyFeedHover();
-                return true;
-            }
-        }
 
         public void Activate()
         {
             Window window = NUIApplication.GetDefaultWindow();
+
+            // Use LazyFeedHover if you want to trigger the HoverEvent again when a Wheel event is received.
+            window.InterceptWheelEvent += (s, e) =>
+            {
+                window.LazyFeedHover();
+                return false;
+            };
 
             root = new View();
             root.Layout = new AbsoluteLayout();
@@ -48,7 +45,7 @@ namespace Tizen.NUI.Samples
             };
             root.Add(topbtn);
 
-            var scrollview = new CustomScrollableBase
+            var scrollview = new ScrollableBase
             {
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
                 WidthSpecification = LayoutParamPolicies.MatchParent,
@@ -72,7 +69,7 @@ namespace Tizen.NUI.Samples
             };
             root.Add(middle);
 
-            var myscrollview = new CustomScrollableBase
+            var myscrollview = new ScrollableBase
             {
                 ScrollingDirection = ScrollableBase.Direction.Vertical,
                 WidthSpecification = LayoutParamPolicies.MatchParent,

@@ -29,6 +29,8 @@ namespace Tizen.NUI.BaseComponents
     {
         private EventHandler offWindowEventHandler;
         private OffWindowEventCallbackType offWindowEventCallback;
+        private EventHandlerWithReturnType<object, WheelEventArgs, bool> interceptWheelHandler;
+        private WheelEventCallbackType interceptWheelCallback;
         private EventHandlerWithReturnType<object, WheelEventArgs, bool> wheelEventHandler;
         private WheelEventCallbackType wheelEventCallback;
         private EventHandlerWithReturnType<object, KeyEventArgs, bool> keyEventHandler;
@@ -324,6 +326,50 @@ namespace Tizen.NUI.BaseComponents
                 }
             }
         }
+
+        /// <summary>
+        /// An event for the wheel which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
+        /// The wheel event is emitted when the wheel input is received.<br />
+        /// This can receive wheel events before child. <br />
+        /// If it returns false, the child can receive the wheel event. If it returns true, the wheel event is intercepted. So child cannot receive wheel event.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event EventHandlerWithReturnType<object, WheelEventArgs, bool> InterceptWheelEvent
+        {
+            add
+            {
+                if (interceptWheelHandler == null)
+                {
+                    interceptWheelCallback = OnInterceptWheel;
+                    Interop.ActorSignal.InterceptWheelConnect(SwigCPtr, interceptWheelCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                interceptWheelHandler += value;
+            }
+
+            remove
+            {
+                interceptWheelHandler -= value;
+                if (interceptWheelHandler == null && interceptWheelCallback != null)
+                {
+                    Interop.ActorSignal.InterceptWheelDisconnect(SwigCPtr, interceptWheelCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    interceptWheelCallback = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// If child view doesn't want the parent's view to intercept the wheel event, you can set it to true.
+        /// for example :
+        ///    parent.Add(child);
+        ///    parent.InterceptWheelEvent += OnInterceptWheelEvent;
+        ///    View view = child.GetParent() as View;
+        ///    view.DisallowInterceptWheelEvent = true;
+        ///  This prevents the parent from intercepting wheel event.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DisallowInterceptWheelEvent { get; set; }
 
         /// <summary>
         /// An event for the WheelMoved signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
@@ -856,6 +902,35 @@ namespace Tizen.NUI.BaseComponents
             {
                 NUILog.Debug("If DispatchParentHoverEvents is false, it can not dispatch to parent.");
                 return true;
+            }
+
+            return consumed;
+        }
+
+        // Callback for View InterceptWheel signal
+        private bool OnInterceptWheel(IntPtr view, IntPtr wheelEvent)
+        {
+            if (wheelEvent == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("wheelEvent should not be null!");
+                return true;
+            }
+
+            // DisallowInterceptWheelEvent prevents the parent from intercepting wheel.
+            if (DisallowInterceptWheelEvent)
+            {
+                return false;
+            }
+
+            WheelEventArgs e = new WheelEventArgs();
+
+            e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
+
+            bool consumed = false;
+
+            if (interceptWheelHandler != null)
+            {
+                consumed = interceptWheelHandler(this, e);
             }
 
             return consumed;

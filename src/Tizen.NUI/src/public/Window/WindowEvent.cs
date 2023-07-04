@@ -34,6 +34,7 @@ namespace Tizen.NUI
         private RootLayerTouchDataCallbackType rootLayerTouchDataCallback;
         private RootLayerTouchDataCallbackType rootLayerInterceptTouchDataCallback;
         private WheelEventCallbackType wheelEventCallback;
+        private WheelEventCallbackType interceptWheelCallback;
         private EventCallbackDelegateType1 stageKeyCallbackDelegate;
         private InterceptKeyEventDelegateType stageInterceptKeyCallbackDelegate;
         private EventCallbackDelegateType0 stageEventProcessingFinishedEventCallbackDelegate;
@@ -213,6 +214,37 @@ namespace Tizen.NUI
                     using StageWheelSignal signal = new StageWheelSignal(Interop.StageSignal.WheelEventSignal(stageCPtr), false);
                     signal.Ensure()?.Disconnect(DetentEventCallback);
                     DetentEventCallback = null;
+                }
+            }
+        }
+
+        /// <summary>
+        /// An event for the wheel event signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br />
+        /// The wheel event signal is emitted when the wheel input is received.<br />
+        /// This can receive wheel events before child. <br />
+        /// If it returns false, the child can receive the wheel event. If it returns true, the wheel event is intercepted. So child cannot receive wheel event.<br />
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public event ReturnTypeEventHandler<object, WheelEventArgs, bool> InterceptWheelEvent
+        {
+            add
+            {
+                if (interceptWheelHandler == null)
+                {
+                    interceptWheelCallback = OnWindowInterceptWheel;
+                    Interop.ActorSignal.InterceptWheelConnect(Layer.getCPtr(GetRootLayer()), interceptWheelCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                }
+                interceptWheelHandler += value;
+            }
+            remove
+            {
+                interceptWheelHandler -= value;
+                if (interceptWheelHandler == null && interceptWheelCallback != null)
+                {
+                    Interop.ActorSignal.InterceptWheelDisconnect(Layer.getCPtr(GetRootLayer()), interceptWheelCallback.ToHandleRef(this));
+                    NDalicPINVOKE.ThrowExceptionIfExists();
+                    interceptWheelCallback = null;
                 }
             }
         }
@@ -543,6 +575,7 @@ namespace Tizen.NUI
         private event EventHandler<TouchEventArgs> rootLayerTouchDataEventHandler;
         private ReturnTypeEventHandler<object, TouchEventArgs, bool> rootLayerInterceptTouchDataEventHandler;
         private event EventHandler<WheelEventArgs> stageWheelHandler;
+        private ReturnTypeEventHandler<object, WheelEventArgs, bool> interceptWheelHandler;
         private event EventHandler<KeyEventArgs> stageKeyHandler;
         private ReturnTypeEventHandler<object, KeyEventArgs, bool> stageInterceptKeyHandler;
         private event EventHandler stageEventProcessingFinishedEventHandler;
@@ -706,6 +739,13 @@ namespace Tizen.NUI
                 using StageWheelSignal signal = new StageWheelSignal(Interop.StageSignal.WheelEventSignal(stageCPtr), false);
                 signal?.Disconnect(DetentEventCallback);
                 DetentEventCallback = null;
+            }
+
+            if (interceptWheelCallback != null)
+            {
+                Interop.ActorSignal.InterceptWheelDisconnect(Layer.getCPtr(GetRootLayer()), interceptWheelCallback.ToHandleRef(this));
+                NDalicPINVOKE.ThrowExceptionIfExists();
+                interceptWheelCallback = null;
             }
 
             if (stageKeyCallbackDelegate != null)
@@ -894,6 +934,24 @@ namespace Tizen.NUI
                 stageWheelHandler(this, e);
             }
             return true;
+        }
+
+        private bool OnWindowInterceptWheel(IntPtr view, IntPtr wheelEvent)
+        {
+            if (wheelEvent == global::System.IntPtr.Zero)
+            {
+                NUILog.Error("wheelEvent should not be null!");
+                return true;
+            }
+
+            bool consumed = false;
+            if (interceptWheelHandler != null)
+            {
+                WheelEventArgs e = new WheelEventArgs();
+                e.Wheel = Tizen.NUI.Wheel.GetWheelFromPtr(wheelEvent);
+                consumed = interceptWheelHandler(this, e);
+            }
+            return consumed;
         }
 
         // Callback for Stage KeyEventsignal
