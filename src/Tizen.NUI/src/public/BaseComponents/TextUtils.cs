@@ -1137,11 +1137,11 @@ namespace Tizen.NUI.BaseComponents
         private const float FontSizeScaleGiant = 2.5f;
 #else   // PROFILE_MOBILE and etc
         // The following values from 'system-settings/libutil/sstu.c'
-        private const float FontSizeScaleSmall = 0.8f;
+        private const float FontSizeScaleSmall = 0.87f;
         private const float FontSizeScaleNormal = 1.0f;
-        private const float FontSizeScaleLarge = 1.5f;
-        private const float FontSizeScaleHuge = 1.9f;
-        private const float FontSizeScaleGiant = 2.5f;
+        private const float FontSizeScaleLarge = 1.1f;
+        private const float FontSizeScaleHuge = 1.2f;
+        private const float FontSizeScaleGiant = 1.4f;
 #endif
 
         /// <summary>
