@@ -307,6 +307,8 @@ class Scene3DSample : NUIApplication
         mStaticRevertMotionData = new MotionData();
         mAnimateMotionData = new MotionData();
 
+        mAnimateMotionData.Duration = modelMotionAnimationDurationMilliseconds;
+
         mStaticMotionData.Add(
             new MotionTransformIndex()
             {
@@ -315,7 +317,7 @@ class Scene3DSample : NUIApplication
             },
             new MotionValue()
             {
-                Value = new PropertyValue(new Rotation(new Radian(new Degree(-45.0f)), Vector3.ZAxis)),
+                PropertyValue = new PropertyValue(new Rotation(new Radian(new Degree(-45.0f)), Vector3.ZAxis)),
             }
         );
         mStaticRevertMotionData.Add(
@@ -326,7 +328,7 @@ class Scene3DSample : NUIApplication
             },
             new MotionValue()
             {
-                Value = new PropertyValue(new Rotation(new Radian(new Degree(0.0f)), Vector3.ZAxis)),
+                PropertyValue = new PropertyValue(new Rotation(new Radian(new Degree(0.0f)), Vector3.ZAxis)),
             }
         );
         mStaticRevertMotionData.Add(
@@ -337,7 +339,7 @@ class Scene3DSample : NUIApplication
             },
             new MotionValue()
             {
-                Value = new PropertyValue(Vector3.One),
+                PropertyValue = new PropertyValue(Vector3.One),
             }
         );
 
@@ -349,7 +351,7 @@ class Scene3DSample : NUIApplication
             },
             new MotionValue()
             {
-                Value = new PropertyValue(new Vector3(0.5f, 1.5f, 1.0f)),
+                PropertyValue = new PropertyValue(new Vector3(0.5f, 1.5f, 1.0f)),
             }
         );
         for (int i = 0; i < 8; ++i)
@@ -454,7 +456,7 @@ class Scene3DSample : NUIApplication
                     {
                         if (mModel != null && mModelLoadFinished)
                         {
-                            mMotionAnimation = mModel.GenerateMotionDataAnimation(mAnimateMotionData, modelMotionAnimationDurationMilliseconds);
+                            mMotionAnimation = mModel.GenerateMotionDataAnimation(mAnimateMotionData);
 
                             if (mMotionAnimation != null)
                             {

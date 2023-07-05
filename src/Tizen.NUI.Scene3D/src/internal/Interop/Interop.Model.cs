@@ -78,7 +78,7 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_GetCameraCount")]
             public static extern uint GetCameraCount(global::System.Runtime.InteropServices.HandleRef model);
-            
+
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_GenerateCamera")]
             public static extern global::System.IntPtr GenerateCamera(global::System.Runtime.InteropServices.HandleRef model, uint index);
 
@@ -88,6 +88,12 @@ namespace Tizen.NUI.Scene3D
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_FindChildModelNodeByName")]
             public static extern global::System.IntPtr FindChildModelNodeByName(global::System.Runtime.InteropServices.HandleRef model, string nodeName);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_GenerateMotionDataAnimation")]
+            public static extern global::System.IntPtr GenerateMotionDataAnimation(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef motionData);
+
+            [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_SetMotionData")]
+            public static extern void SetMotionData(global::System.Runtime.InteropServices.HandleRef model, global::System.Runtime.InteropServices.HandleRef motionData);
 
             [global::System.Runtime.InteropServices.DllImport(Libraries.Scene3D, EntryPoint = "CSharp_Dali_Model_LoadBvhAnimation_1")]
             public static extern global::System.IntPtr LoadBvhAnimation(global::System.Runtime.InteropServices.HandleRef model, string bvhFilename, global::System.Runtime.InteropServices.HandleRef scale, bool translateRootFromModelNode);
