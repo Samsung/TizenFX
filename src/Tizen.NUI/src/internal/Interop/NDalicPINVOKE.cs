@@ -17,6 +17,7 @@
 
 using System;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Tizen.NUI
 {
@@ -308,5 +309,14 @@ namespace Tizen.NUI
         [Obsolete("This has been deprecated in API9 and will be removed in API11. Use NDalicPINVOKE.DeleteBaseHandle(...) instead.")]
         [global::System.Runtime.InteropServices.DllImport(NDalicPINVOKE.Lib, EntryPoint = "CSharp_Dali_delete_BaseHandle")]
         public static extern void delete_BaseHandle(global::System.Runtime.InteropServices.HandleRef jarg1);
+    }
+
+    internal static class NDalicExtension
+    {
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        internal static global::System.Runtime.InteropServices.HandleRef ToHandleRef(this Delegate caller, object wrapper)
+        {
+            return new global::System.Runtime.InteropServices.HandleRef(wrapper, global::System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate<Delegate>(caller));
+        }
     }
 }

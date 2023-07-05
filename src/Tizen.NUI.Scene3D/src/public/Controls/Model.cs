@@ -372,6 +372,7 @@ namespace Tizen.NUI.Scene3D
         /// <returns>Animaion of bvh</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this LoadBvhAnimation. Use MotionData.LoadMotionCaptureAnimation and GenerateMotionDataAnimation instead.")]
         public Animation LoadBvhAnimation(string bvhFilename, Vector3 scale = null, bool translateRootFromModelNode = true)
         {
             global::System.IntPtr cPtr = Interop.Model.LoadBvhAnimation(SwigCPtr, bvhFilename, Vector3.getCPtr(scale), translateRootFromModelNode);
@@ -404,6 +405,7 @@ namespace Tizen.NUI.Scene3D
         /// <returns>Animaion of bvh</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this LoadBvhAnimationFromBuffer. Use MotionData.LoadMotionCaptureAnimationFromBuffer and GenerateMotionDataAnimation instead.")]
         public Animation LoadBvhAnimationFromBuffer(string bvhBuffer, Vector3 scale = null, bool translateRootFromModelNode = true)
         {
             global::System.IntPtr cPtr = Interop.Model.LoadBvhAnimationFromBuffer(SwigCPtr, bvhBuffer, bvhBuffer.Length, Vector3.getCPtr(scale), translateRootFromModelNode);
@@ -431,7 +433,7 @@ namespace Tizen.NUI.Scene3D
         /// <returns>Animaion of facial</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("Do not use this LoadFacialAnimation. Use LoadBlendShapeAnimation instead.")]
+        [Obsolete("Do not use this LoadFacialAnimation. Use MotionData.LoadBlendShapeAnimation and GenerateMotionDataAnimation instead.")]
         public Animation LoadFacialAnimation(string facialFilename)
         {
             return LoadBlendShapeAnimation(facialFilename);
@@ -444,7 +446,7 @@ namespace Tizen.NUI.Scene3D
         /// <returns>Animaion of facial</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        [Obsolete("Do not use this LoadFacialAnimation. Use LoadBlendShapeAnimation instead.")]
+        [Obsolete("Do not use this LoadFacialAnimationFromBuffer. Use MotionData.LoadBlendShapeAnimationFromBuffer and GenerateMotionDataAnimation instead.")]
         public Animation LoadFacialAnimationFromBuffer(string facialBuffer)
         {
             return LoadBlendShapeAnimationFromBuffer(facialBuffer);
@@ -457,6 +459,7 @@ namespace Tizen.NUI.Scene3D
         /// <returns>Animaion of facial</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this LoadBlendShapeAnimation. Use MotionData.LoadBlendShapeAnimation and GenerateMotionDataAnimation instead.")]
         public Animation LoadBlendShapeAnimation(string jsonFilename)
         {
             global::System.IntPtr cPtr = Interop.Model.LoadBlendShapeAnimation(SwigCPtr, jsonFilename);
@@ -484,6 +487,7 @@ namespace Tizen.NUI.Scene3D
         /// <returns>Animaion of facial</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
+        [Obsolete("Do not use this LoadBlendShapeAnimationFromBuffer. Use MotionData.LoadBlendShapeAnimationFromBuffer and GenerateMotionDataAnimation instead.")]
         public Animation LoadBlendShapeAnimationFromBuffer(string jsonBuffer)
         {
             global::System.IntPtr cPtr = Interop.Model.LoadBlendShapeAnimationFromBuffer(SwigCPtr, jsonBuffer, jsonBuffer.Length);
@@ -505,29 +509,53 @@ namespace Tizen.NUI.Scene3D
         }
 
         /// <summary>
-        /// Prototype of animation generate by MotionData
+        /// Generate animation by MotionData.
+        /// If there is no animatable item for MotionData, return null.
         /// </summary>
-        /// <param name="motionData">Inputed list of pair of MotionIndex and MotionValue.</param>
-        /// <param name="durationMilliSeconds">The duration in milliseconds.</param>
-        /// <returns>Generated animation by input motion data</returns>
+        /// <param name="motionData">Inputed list of pair of MotionIndex and MotionValue, and duration.</param>
+        /// <returns>Generated animation by input motion data, or null if there is no animatable item exist about inputed motionData</returns>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public Animation GenerateMotionDataAnimation(MotionData motionData, int durationMilliSeconds)
+        public Animation GenerateMotionDataAnimation(MotionData motionData)
         {
-            return InternalGenerateMotionDataAnimation(motionData, durationMilliSeconds);
+            global::System.IntPtr cPtr = Interop.Model.GenerateMotionDataAnimation(SwigCPtr, MotionData.getCPtr(motionData));
+            Animation ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as Animation;
+            if (ret == null)
+            {
+                // Register new animation into Registry.
+                ret = new Animation(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI animation. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.Animation.DeleteAnimation(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+
+            // It is possible if there is no animatable properties exist on inputed motionData.
+            // In this case, let we return null.
+            if (!ret.HasBody())
+            {
+                ret.Dispose();
+                ret = null;
+            }
+            return ret;
         }
 
         /// <summary>
         /// Prototype of MotionData setter.
         /// Note that this API didn't apply KeyFrames animation.
-        /// If you want to apply the animation, please use <see cref="GenerateMotionDataAnimation(MotionData, int)"/> and play the result.
+        /// If you want to apply the animation, please use <see cref="GenerateMotionDataAnimation(MotionData)"/> and play the result.
         /// </summary>
         /// <param name="motionData">Inputed list of pair of MotionIndex and MotionValue.</param>
         // This will be public opened after ACR done. (Before ACR, need to be hidden as Inhouse API)
         [EditorBrowsable(EditorBrowsableState.Never)]
         public void SetMotionData(MotionData motionData)
         {
-            InternalSetMotionData(motionData);
+            Interop.Model.SetMotionData(SwigCPtr, MotionData.getCPtr(motionData));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
