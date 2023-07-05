@@ -16,6 +16,7 @@
  */
 
 using System;
+using System.Runtime.InteropServices;
 using System.ComponentModel;
 using System.Collections.Generic;
 using Tizen.NUI;
@@ -23,13 +24,18 @@ using Tizen.NUI;
 namespace Tizen.NUI.Scene3D
 {
     /// <summary>
-    /// Target value of motion. It can be define as specific PropertyValue, or KeyFrames
+    /// This MotionValue be used for target value of each <see cref="MotionIndex"/>.
+    /// We can get and set MotionValue as 2 types : PropertyValue and KeyFrames.
+    ///
+    /// Each types will be cross-converted internally.
+    /// For example, when we set PropertyValue, we can get KeyFrames with 2 frames, and target value is set.
     /// </summary>
+    /// <remarks>
+    /// The type of property should be matched with MotionIndex required.
+    /// </remarks>
     [EditorBrowsable(EditorBrowsableState.Never)]
-    public class MotionValue : IDisposable
+    public class MotionValue : BaseHandle
     {
-        private IDisposable internalValue = null;
-
         /// <summary>
         /// Determine whether current stored value is PropertyValue, or KeyFrames.
         /// </summary>
@@ -40,13 +46,13 @@ namespace Tizen.NUI.Scene3D
             /// Value is null, or invalid class.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Invalid,
+            Invalid = -1,
 
             /// <summary>
             /// Value is PropertyValue.
             /// </summary>
             [EditorBrowsable(EditorBrowsableState.Never)]
-            Property,
+            Property = 0,
 
             /// <summary>
             /// Value is KeyFrames.
@@ -59,71 +65,166 @@ namespace Tizen.NUI.Scene3D
         /// Create an initialized motion value with invalid.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public MotionValue()
+        public MotionValue() : this(Interop.MotionValue.MotionValueNew(), true)
         {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
         /// <summary>
-        /// Get or set the value as PropertyValue type.
-        /// It will return null if value is not PropertyValue.
+        /// Create an initialized motion value with PropertyValue.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public PropertyValue Value
+        public MotionValue(PropertyValue propertyValue) : this(Interop.MotionValue.MotionValueNewPropertyValue(PropertyValue.getCPtr(propertyValue)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Create an initialized motion value with KeyFrames.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public MotionValue(KeyFrames keyFrames) : this(Interop.MotionValue.MotionValueNewKeyFrames(KeyFrames.getCPtr(keyFrames)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Copy constructor.
+        /// </summary>
+        /// <param name="motionValue">Source object to copy.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public MotionValue(MotionValue motionValue) : this(Interop.MotionValue.NewMotionValue(MotionValue.getCPtr(motionValue)), true)
+        {
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Assignment operator.
+        /// </summary>
+        /// <param name="motionValue">Source object to be assigned.</param>
+        /// <returns>Reference to this.</returns>
+        internal MotionValue Assign(MotionValue motionValue)
+        {
+            MotionValue ret = new MotionValue(Interop.MotionValue.MotionValueAssign(SwigCPtr, MotionValue.getCPtr(motionValue)), false);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal MotionValue(global::System.IntPtr cPtr, bool cMemoryOwn) : base(cPtr, cMemoryOwn)
+        {
+        }
+
+
+        /// <summary>
+        /// Get or set the value as PropertyValue type.
+        /// If ValueType is ValueType.KeyFrames, it will return last value of stored KeyFrames.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public PropertyValue PropertyValue
         {
             get
             {
-                return internalValue as PropertyValue;
+                return GetPropertyValue();
             }
             set
             {
-                internalValue = (Disposable)value;
+                SetPropertyValue(value);
             }
         }
 
         /// <summary>
         /// Get or set the value as KeyFrames type.
-        /// It will return null if value is not KeyFrames.
+        /// If ValueType is ValueType.PropertyValue, it will create new KeyFrames by stored PropertyValue.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public KeyFrames KeyFramesValue
         {
             get
             {
-                return internalValue as KeyFrames;
+                return GetKeyFrames();
             }
             set
             {
-                internalValue = (BaseHandle)value;
+                SetKeyFrames(value);
             }
         }
 
         /// <summary>
-        /// Get the type of value what we setted.
+        /// Get the type of value what we set.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public ValueType Type
         {
             get
             {
-                if (internalValue is KeyFrames)
-                {
-                    return ValueType.KeyFrames;
-                }
-                if (internalValue is PropertyValue)
-                {
-                    return ValueType.Property;
-                }
-                return ValueType.Invalid;
+                return GetMotionValueType();
             }
         }
 
         /// <summary>
-        /// IDisposable.Dipsose.
+        /// Invalidate the value what we set.
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        public void Dispose()
+        public void Invalidate()
         {
-            internalValue?.Dispose();
+            Interop.MotionValue.Clear(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal void SetPropertyValue(PropertyValue propertyValue)
+        {
+            Interop.MotionValue.SetValuePropertyValue(SwigCPtr, PropertyValue.getCPtr(propertyValue));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal PropertyValue GetPropertyValue()
+        {
+            IntPtr cPtr = Interop.MotionValue.GetPropertyValue(SwigCPtr);
+            PropertyValue ret = new PropertyValue(cPtr, true);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+        internal void SetKeyFrames(KeyFrames keyFrames)
+        {
+            Interop.MotionValue.SetValueKeyFrames(SwigCPtr, KeyFrames.getCPtr(keyFrames));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        internal KeyFrames GetKeyFrames()
+        {
+            IntPtr cPtr = Interop.MotionValue.GetKeyFrames(SwigCPtr);
+            KeyFrames ret = Registry.GetManagedBaseHandleFromNativePtr(cPtr) as KeyFrames;
+            if (ret == null)
+            {
+                // Register new animation into Registry.
+                ret = new KeyFrames(cPtr, true);
+            }
+            else
+            {
+                // We found matched NUI animation. Reduce cPtr reference count.
+                HandleRef handle = new HandleRef(this, cPtr);
+                Tizen.NUI.Interop.KeyFrames.DeleteKeyFrames(handle);
+                handle = new HandleRef(null, IntPtr.Zero);
+            }
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        internal ValueType GetMotionValueType()
+        {
+            int ret = Interop.MotionValue.GetValueType(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return (ValueType)ret;
+        }
+
+        /// <summary>
+        /// Release swigCPtr.
+        /// </summary>
+        // This will be public opened.
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        protected override void ReleaseSwigCPtr(global::System.Runtime.InteropServices.HandleRef swigCPtr)
+        {
+            Interop.MotionValue.DeleteMotionValue(swigCPtr);
         }
     }
 }
