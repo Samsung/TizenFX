@@ -116,7 +116,7 @@ namespace Tizen.NUI.Binding
 
                 if (source is BindableObject bindableObject)
                 {
-                    bindableObject.IsBinded = true;
+                    bindableObject.IsBound = true;
                 }
             }
         }
