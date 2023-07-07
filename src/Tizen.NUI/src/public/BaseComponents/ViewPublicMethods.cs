@@ -253,7 +253,35 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 4 </since_tizen>
         public override Container GetParent()
         {
-            return InternalParent as Container;
+            if (InternalParent == null && !(this is Window))
+            {
+                // Ask to dali, recersively.
+                
+                IntPtr cPtrParent = Interop.Actor.GetParent(SwigCPtr);
+                HandleRef parent = new global::System.Runtime.InteropServices.HandleRef(this, cPtrParent);
+                while (Interop.BaseHandle.HasBody(parent) && (Registry.GetManagedBaseHandleFromNativePtr(parent.Handle) == null))
+                {
+                    cPtrParent = Interop.Actor.GetParent(parent);
+
+                    Interop.BaseHandle.DeleteBaseHandle(parent);
+                    parent = new global::System.Runtime.InteropServices.HandleRef(this, cPtrParent);
+                }
+
+                if (!Interop.BaseHandle.HasBody(parent))
+                {
+                    Interop.BaseHandle.DeleteBaseHandle(parent);
+                    return null;
+                }
+                
+                BaseHandle baseHandle = Registry.GetManagedBaseHandleFromNativePtr(parent.Handle);
+                InternalParent = baseHandle;
+
+                return baseHandle as Container;
+            }
+            else
+            {
+                return InternalParent as Container;
+            }
         }
 
         /// <summary>
