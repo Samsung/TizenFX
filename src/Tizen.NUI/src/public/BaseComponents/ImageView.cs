@@ -1462,6 +1462,12 @@ namespace Tizen.NUI.BaseComponents
             // Update image property map value as inputed value.
             if (key != 0)
             {
+                if(!HasBody())
+                {
+                    // Throw exception if ImageView is disposed.
+                    throw new global::System.InvalidOperationException("[NUI][ImageVIew] Someone try to change disposed ImageView's property.\n");
+                }
+
                 if (cachedImagePropertyMap == null)
                 {
                     cachedImagePropertyMap = new PropertyMap();
@@ -1574,6 +1580,7 @@ namespace Tizen.NUI.BaseComponents
             }
 
             // Do Fitting Buffer when desired dimension is set
+            // TODO : Couldn't we do this job in dali-engine side.
             if (_desired_width != -1 && _desired_height != -1)
             {
                 if (_resourceUrl != null)
@@ -1604,10 +1611,6 @@ namespace Tizen.NUI.BaseComponents
                         PropertyValue scaleToFit = new PropertyValue((int)FittingModeType.ScaleToFill);
                         cachedImagePropertyMap[ImageVisualProperty.FittingMode] = scaleToFit;
                         scaleToFit?.Dispose();
-                    }
-                    else
-                    {
-                        Tizen.Log.Fatal("NUI", "[ERROR] Can't use DesiredSize when ImageLoading is failed.");
                     }
                     imageSize?.Dispose();
                 }

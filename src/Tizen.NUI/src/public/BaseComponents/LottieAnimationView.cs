@@ -133,9 +133,16 @@ namespace Tizen.NUI.BaseComponents
         {
             set
             {
+                // Reset cached infomations.
+                currentStates.contentInfo = null;
+                currentStates.mark1 = null;
+                currentStates.mark2 = null;
+                currentStates.framePlayRangeMin = -1;
+                currentStates.framePlayRangeMax = -1;
+                currentStates.totalFrame = -1;
+
                 string ret = (value == null ? "" : value);
                 currentStates.url = ret;
-                currentStates.totalFrame = -1; // Reset cached totalFrame value;
 
                 NUILog.Debug($"<[{GetId()}]SET url={currentStates.url}");
 
@@ -158,8 +165,6 @@ namespace Tizen.NUI.BaseComponents
 
                 // All states applied well.
                 currentStates.changed = false;
-
-                currentStates.contentInfo = null;
 
                 if (currentStates.scale != 1.0f)
                 {

@@ -92,19 +92,19 @@ namespace Tizen.NUI.Devel.Tests
 
         [Test]
         [Category("P1")]
-        [Description("Matrix3 IDENTITY.")]
-        [Property("SPEC", "Tizen.NUI.Matrix3.IDENTITY A")]
+        [Description("Matrix3 Identity.")]
+        [Property("SPEC", "Tizen.NUI.Matrix3.Identity A")]
         [Property("SPEC_URL", "-")]
         [Property("CRITERIA", "PRO")]
         [Property("AUTHOR", "guowei.wang@samsung.com")]
-        public void Matrix3IDENTITY()
+        public void Matrix3Identity()
         {
-            tlog.Debug(tag, $"Matrix3IDENTITY START");
+            tlog.Debug(tag, $"Matrix3Identity START");
 
             try
             {
-                var result = Matrix3.IDENTITY;
-                tlog.Debug(tag, "IDENTITY : " + result);
+                var result = Matrix3.Identity;
+                tlog.Debug(tag, "Identity : " + result);
             }
             catch (Exception e)
             {
@@ -112,7 +112,7 @@ namespace Tizen.NUI.Devel.Tests
                 Assert.Fail("Caught Exception : Failed!");
             }
 
-            tlog.Debug(tag, $"Matrix3IDENTITY END (OK)");
+            tlog.Debug(tag, $"Matrix3Identity END (OK)");
         }
 
         [Test]

@@ -43,6 +43,7 @@ namespace Tizen.NUI
         private LayoutController localController;
         private Key internalLastKeyEvent;
         private Touch internalLastTouchEvent;
+        private Timer internalHoverTimer;
 
         static internal bool IsSupportedMultiWindow()
         {
@@ -562,6 +563,24 @@ namespace Tizen.NUI
             set
             {
                 SetPositionSize(value);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether the window will update partial area or full area.
+        /// If this value is true, window will update and render partial area.
+        /// If false, full area updated.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool PartialUpdate
+        {
+            get
+            {
+                return IsPartialUpdate();
+            }
+            set
+            {
+                SetPartialUpdate(value);
             }
         }
 
@@ -1134,6 +1153,36 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Feeds a hover event into the window. <br />
+        /// This is feed after a default time of 48 ms. You can also set this time.
+        /// </summary>
+        /// <param name="time">The time of how much later it will be feed (default is 48ms)</param>
+        /// <remarks>If you want to do FeedHover after the UI is updated, it is recommended to set the time to at least 16ms. This will be a good time waiting for the UI to update.<br />
+        /// and LazyFeedHover called within the set time are ignored. Only the last request becomes a FeedHover.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public void LazyFeedHover(uint time = 48)
+        {
+            if (internalHoverTimer == null)
+            {
+                internalHoverTimer = new Timer(time);
+                internalHoverTimer.Tick += (s, e) =>
+                {
+                    FeedHover();
+                    internalHoverTimer?.Stop();
+                    internalHoverTimer?.Dispose();
+                    internalHoverTimer = null;
+                    return false;
+                };
+                internalHoverTimer.Start();
+            }
+            else
+            {
+                internalHoverTimer.Start();
+            }
+        }
+
+        /// <summary>
         /// Feeds a touch point into the window.
         /// </summary>
         /// <param name="touchPoint">The touch point to feed.</param>
@@ -1151,6 +1200,23 @@ namespace Tizen.NUI
         internal void FeedWheel(Wheel wheelEvent)
         {
             Interop.Window.FeedWheelEvent(SwigCPtr, Wheel.getCPtr(wheelEvent));
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Feeds a hover event into the window.
+        /// </summary>
+        /// <param name="touchPoint">The touch point to feed hover event. If null is entered, the feed hover event is generated with the last inputed touch point.</param>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        internal void FeedHover(TouchPoint touchPoint = null)
+        {
+            if (touchPoint == null)
+            {
+                using Touch touch = GetLastTouchEvent();
+                using Vector2 screenPosition = touch.GetScreenPosition(0);
+                touchPoint = new TouchPoint(touch.GetDeviceId(0), TouchPoint.StateType.Motion, screenPosition.X, screenPosition.Y);
+            }
+            Interop.Window.FeedHoverEvent(SwigCPtr, TouchPoint.getCPtr(touchPoint));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
 
@@ -1585,6 +1651,27 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Set the window use partial update or not.
+        /// </summary>
+        /// <param name="enabled">If window enable partial update or disable.</param>
+        internal void SetPartialUpdate(bool enabled)
+        {
+            Interop.Window.SetPartialUpdateEnabled(SwigCPtr, enabled);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+        }
+
+        /// <summary>
+        /// Returns whether the window is enabled partial update or not.
+        /// </summary>
+        /// <returns>True if the window is enabled partial update, false otherwise.</returns>
+        internal bool IsPartialUpdate()
+        {
+            bool ret = Interop.Window.IsPartialUpdateEnabled(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Enables the floating mode of window.
         /// The floating mode is to support window is moved or resized by display server.
         /// For example, if the video-player window sets the floating mode,
@@ -1962,6 +2049,10 @@ namespace Tizen.NUI
                 internalLastKeyEvent = null;
                 internalLastTouchEvent?.Dispose();
                 internalLastTouchEvent = null;
+
+                internalHoverTimer?.Stop();
+                internalHoverTimer?.Dispose();
+                internalHoverTimer = null;
             }
 
 
