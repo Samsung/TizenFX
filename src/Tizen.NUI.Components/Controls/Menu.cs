@@ -529,6 +529,7 @@ namespace Tizen.NUI.Components
                 ExcludeLayouting = true,
                 BackgroundColor = Color.Transparent,
                 Size = new Size(NUIApplication.GetDefaultWindow().Size),
+                DispatchParentGestureEvents = false,
             };
 
             scrim.TouchEvent += (object source, TouchEventArgs e) =>
