@@ -325,6 +325,7 @@ namespace Tizen.NUI.Components
                 }
                 return true;
             };
+            scrim.DispatchParentGestureEvents = false;
 
             return scrim;
         }
