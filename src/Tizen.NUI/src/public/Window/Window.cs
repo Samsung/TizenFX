@@ -1688,6 +1688,18 @@ namespace Tizen.NUI
         }
 
         /// <summary>
+        /// Returns whether the window is floating mode or not.
+        /// </summary>
+        /// <returns>True if the window is enabled floating mode, false otherwise.</returns>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool IsFloatingModeEnabled()
+        {
+            bool ret = Interop.Window.IsFloatingModeEnabled(SwigCPtr);
+            if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            return ret;
+        }
+
+        /// <summary>
         /// Requests to display server for the window is moved by display server.
         /// It can be work with setting window floating mode.
         /// </summary>
