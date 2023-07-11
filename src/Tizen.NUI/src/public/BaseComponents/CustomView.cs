@@ -501,6 +501,11 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected override bool OnAccessibilityActivated()
         {
+            if (!base.OnAccessibilityActivated())
+            {
+                return false;
+            }
+
             return OnKeyboardEnter();
         }
 
