@@ -582,7 +582,7 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         protected virtual bool OnAccessibilityActivated()
         {
-            return false;
+            return FocusManager.Instance.SetCurrentFocusView(this);
         }
 
         /// <summary>
