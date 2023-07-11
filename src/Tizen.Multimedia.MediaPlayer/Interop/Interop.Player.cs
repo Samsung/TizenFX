@@ -387,6 +387,12 @@ internal static partial class Interop
 
         [DllImport(Libraries.Player, EntryPoint = "player_get_audio_codec_type")]
         internal static extern PlayerErrorCode GetAudioCodecType(IntPtr player, out CodecType type);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_set_video_codec_type")]
+        internal static extern PlayerErrorCode SetVideoCodecType(IntPtr player, CodecType type);
+
+        [DllImport(Libraries.Player, EntryPoint = "player_get_video_codec_type")]
+        internal static extern PlayerErrorCode GetVideoCodecType(IntPtr player, out CodecType type);
     }
 
     internal class PlayerHandle : SafeHandle
