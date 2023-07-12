@@ -274,7 +274,6 @@ namespace Tizen.NUI.BaseComponents
                 }
                 
                 BaseHandle baseHandle = Registry.GetManagedBaseHandleFromNativePtr(parent.Handle);
-                InternalParent = baseHandle;
 
                 return baseHandle as Container;
             }
