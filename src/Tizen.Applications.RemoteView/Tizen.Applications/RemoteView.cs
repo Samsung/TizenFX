@@ -143,6 +143,12 @@ namespace Tizen.Applications
 
                 case Interop.WidgetViewerEvas.ErrorCode.MaxExceeded:
                     throw new InvalidOperationException("Max exceeded");
+
+                case Interop.WidgetViewerEvas.ErrorCode.Disabled:
+                    throw new InvalidOperationException("Disabled");
+
+                default:
+                    throw new InvalidOperationException("Invalid Operation");
             }
         }
 
