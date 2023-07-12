@@ -354,6 +354,7 @@ namespace Tizen.NUI.Scene3D
             {
                 return;
             }
+            this.GetSelectedCamera()?.Unparent();
             Interop.SceneView.SelectCamera(SwigCPtr, index);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
@@ -369,6 +370,7 @@ namespace Tizen.NUI.Scene3D
             {
                 return;
             }
+            this.GetSelectedCamera()?.Unparent();
             Interop.SceneView.SelectCamera(SwigCPtr, name);
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
