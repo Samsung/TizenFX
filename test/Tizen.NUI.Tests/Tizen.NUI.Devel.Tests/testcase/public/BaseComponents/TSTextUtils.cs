@@ -1034,19 +1034,19 @@ namespace Tizen.NUI.Devel.Tests
             tlog.Debug(tag, $"TextUtilsGetFontSizeScale START");
 
             var giant = TextUtils.GetFontSizeScale(System.SystemSettingsFontSize.Giant);
-            Assert.AreEqual(2.5f, giant, "Should be equal!");
+            Assert.AreEqual(1.4f, giant, "Should be equal!");
 
             var huge = TextUtils.GetFontSizeScale(System.SystemSettingsFontSize.Huge);
-            Assert.AreEqual(1.9f, huge, "Should be equal!");
+            Assert.AreEqual(1.26f, huge, "Should be equal!");
 
             var large = TextUtils.GetFontSizeScale(System.SystemSettingsFontSize.Large);
-            Assert.AreEqual(1.5f, large, "Should be equal!");
+            Assert.AreEqual(1.13f, large, "Should be equal!");
 
             var normal = TextUtils.GetFontSizeScale(System.SystemSettingsFontSize.Normal);
             Assert.AreEqual(1.0f, normal, "Should be equal!");
 
             var small = TextUtils.GetFontSizeScale(System.SystemSettingsFontSize.Small);
-            Assert.AreEqual(0.8f, small, "Should be equal!");
+            Assert.AreEqual(0.87f, small, "Should be equal!");
 
             tlog.Debug(tag, $"TextUtilsGetFontSizeScale END (OK)");
         }
