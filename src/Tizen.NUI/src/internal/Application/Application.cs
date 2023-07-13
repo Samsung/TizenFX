@@ -754,9 +754,12 @@ namespace Tizen.NUI
             }
 
             List<Window> windows = GetWindowList();
-            foreach (Window window in windows)
+            if (windows != null)
             {
-                window?.DisconnectNativeSignals();
+                foreach (Window window in windows)
+                {
+                    window?.DisconnectNativeSignals();
+                }
             }
         }
 
