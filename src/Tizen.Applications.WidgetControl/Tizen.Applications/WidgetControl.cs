@@ -1011,6 +1011,9 @@ namespace Tizen.Applications
                         }
                     }
                     break;
+
+                default:
+                    break;
             }
             return 0;
 
