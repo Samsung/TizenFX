@@ -237,7 +237,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Occurs when the repeat mode capabilities are updated.
+        /// Occurs when the repeat mode capability is updated.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public event EventHandler<RepeatModeCapabilityUpdatedEventArgs> RepeatModeCapabilityUpdated;
@@ -248,7 +248,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Occurs when the shuffle mode capabilities are updated.
+        /// Occurs when the shuffle mode capability is updated.
         /// </summary>
         /// <since_tizen> 5 </since_tizen>
         public event EventHandler<ShuffleModeCapabilityUpdatedEventArgs> ShuffleModeCapabilityUpdated;
@@ -259,7 +259,73 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Occurs when the display mode capabilities are updated.
+        /// Occurs when the playback position capability is updated.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<PlaybackPositionCapabilityUpdatedEventArgs> PlaybackPositionCapabilityUpdated;
+
+        internal void RaisePlaybackPositionCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
+        {
+            PlaybackPositionCapabilityUpdated?.Invoke(this, new PlaybackPositionCapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when the playlist capability is updated.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<PlaylistCapabilityUpdatedEventArgs> PlaylistCapabilityUpdated;
+
+        internal void RaisePlaylistCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
+        {
+            PlaylistCapabilityUpdated?.Invoke(this, new PlaylistCapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when the client custom capability is updated.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<ClientCustomCapabilityUpdatedEventArgs> ClientCustomCapabilityUpdated;
+
+        internal void RaiseClientCustomCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
+        {
+            ClientCustomCapabilityUpdated?.Invoke(this, new ClientCustomCapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when the search capability is updated.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<SearchCapabilityUpdatedEventArgs> SearchCapabilityUpdated;
+
+        internal void RaiseSearchCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
+        {
+            SearchCapabilityUpdated?.Invoke(this, new SearchCapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when the subtitle capability is updated.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<SubtitleCapabilityUpdatedEventArgs> SubtitleCapabilityUpdated;
+
+        internal void RaiseSubtitleCapabilityUpdatedEvent(MediaControlCapabilitySupport support)
+        {
+            SubtitleCapabilityUpdated?.Invoke(this, new SubtitleCapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when the mode360 capability is updated.
+        /// </summary>
+        /// <since_tizen> 11 </since_tizen>
+        public event EventHandler<Mode360CapabilityUpdatedEventArgs> Mode360CapabilityUpdated;
+
+        internal void RaiseMode360CapabilityUpdatedEvent(MediaControlCapabilitySupport support)
+        {
+            Mode360CapabilityUpdated?.Invoke(this, new Mode360CapabilityUpdatedEventArgs(support));
+        }
+
+        /// <summary>
+        /// Occurs when the display mode capability is updated.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<DisplayModeCapabilityUpdatedEventArgs> DisplayModeCapabilityUpdated;
@@ -270,7 +336,7 @@ namespace Tizen.Multimedia.Remoting
         }
 
         /// <summary>
-        /// Occurs when the display rotation capabilities are updated.
+        /// Occurs when the display rotation capability is updated.
         /// </summary>
         /// <since_tizen> 6 </since_tizen>
         public event EventHandler<DisplayRotationCapabilityUpdatedEventArgs> DisplayRotationCapabilityUpdated;
