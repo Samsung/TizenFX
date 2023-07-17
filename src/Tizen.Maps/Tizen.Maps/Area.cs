@@ -22,7 +22,7 @@ namespace Tizen.Maps
     /// The class representing a geographical area.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
-    [Obsolete("Deprecated since API11. Might be removed in API13.")]
+    [Obsolete("Deprecated since API11. Might be removed in API13")]
     public class Area : IDisposable
     {
         internal Interop.AreaHandle handle;
