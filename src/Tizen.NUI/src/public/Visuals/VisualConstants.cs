@@ -969,6 +969,14 @@ namespace Tizen.NUI
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
         public static readonly int MaskingMode = NDalic.ImageVisualOrientationCorrection + 12;
+
+        /// <summary>
+        /// @brief Whether to uploading texture before ResourceReady signal emit or after texture load completed time.
+        /// @details Name "fastTrackUploading", type Property::BOOLEAN.
+        /// @note It is used in the ImageVisual. The default is false.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly int FastTrackUploading = NDalic.ImageVisualOrientationCorrection + 13;
     }
 
     /// <summary>

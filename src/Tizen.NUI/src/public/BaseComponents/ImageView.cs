@@ -68,6 +68,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.SynchronousLoading,
             Visual.Property.PremultipliedAlpha,
             ImageVisualProperty.OrientationCorrection,
+            ImageVisualProperty.FastTrackUploading,
             NpatchImageVisualProperty.Border,
             NpatchImageVisualProperty.BorderOnly,
         };
@@ -79,6 +80,7 @@ namespace Tizen.NUI.BaseComponents
         private string _resourceUrl = "";
         private int _desired_width = -1;
         private int _desired_height = -1;
+        private bool _fastTrackUploading = false;
         private TriggerableSelector<string> resourceUrlSelector;
         private TriggerableSelector<Rectangle> borderSelector;
 
@@ -607,6 +609,64 @@ namespace Tizen.NUI.BaseComponents
                 PropertyValue setValue = new PropertyValue((int)ret);
                 UpdateImage(ImageVisualProperty.MaskingMode, setValue);
                 setValue?.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets whether to apply fast track uploading or not.<br />
+        /// </summary>
+        /// <remarks>
+        /// If we use fast track uploading feature, It can upload texture without event-thead dependency. But also,<br />
+        ///  - Texture size is invalid until ResourceReady signal comes.<br />
+        ///  - Texture cannot be cached (We always try to load new image).<br />
+        ///  - Seamless visual change didn't supported.<br />
+        ///  - Alpha masking didn't supported. If you try, It will load as normal case.<br />
+        ///  - Synchronous loading didn't supported. If you try, It will load as normal case.<br />
+        ///  - Reload action didn't supported. If you try, It will load as normal case.<br />
+        ///  - Atlas loading didn't supported. If you try, It will load as normal case.<br />
+        ///  - Custom shader didn't supported. If you try, It will load as normal case.
+        /// </remarks>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool FastTrackUploading
+        {
+            get
+            {
+                return (bool)GetValue(FastTrackUploadingProperty);
+            }
+            set
+            {
+                SetValue(FastTrackUploadingProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        private bool InternalFastTrackUploading
+        {
+            get
+            {
+                PropertyValue fastTrackUploading = GetCachedImageVisualProperty(ImageVisualProperty.FastTrackUploading);
+                fastTrackUploading?.Get(out _fastTrackUploading);
+                fastTrackUploading?.Dispose();
+
+                return _fastTrackUploading;
+            }
+            set
+            {
+                if (_fastTrackUploading != value)
+                {
+                    _fastTrackUploading = value;
+
+                    PropertyValue setValue = new PropertyValue(_fastTrackUploading);
+                    UpdateImage(ImageVisualProperty.FastTrackUploading, setValue);
+                    setValue?.Dispose();
+
+                    if (_fastTrackUploading && !string.IsNullOrEmpty(_resourceUrl))
+                    {
+                        // Special case. If user set FastTrackUploading mean, user want to upload image As-Soon-As-Possible.
+                        // Create ImageVisual synchronously.
+                        UpdateImage();
+                    }
+                }
             }
         }
 
@@ -1396,8 +1456,8 @@ namespace Tizen.NUI.BaseComponents
                     {
                         UpdateImage(ImageVisualProperty.URL, setValue);
                     }
-                    // Special case. If we set GeneratedUrl, Create ImageVisual synchronously.
-                    if (value.StartsWith("dali://") || value.StartsWith("enbuf://"))
+                    // Special case. If we set GeneratedUrl, or FastTrackUploading, Create ImageVisual synchronously.
+                    if (value.StartsWith("dali://") || value.StartsWith("enbuf://") || _fastTrackUploading)
                     {
                         UpdateImage();
                     }
@@ -1462,7 +1522,7 @@ namespace Tizen.NUI.BaseComponents
             // Update image property map value as inputed value.
             if (key != 0)
             {
-                if(!HasBody())
+                if (!HasBody())
                 {
                     // Throw exception if ImageView is disposed.
                     throw new global::System.InvalidOperationException("[NUI][ImageVIew] Someone try to change disposed ImageView's property.\n");
