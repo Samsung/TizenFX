@@ -349,6 +349,24 @@ namespace Tizen.NUI.BaseComponents
         });
 
         /// <summary>
+        /// FastTrackUploadingProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty FastTrackUploadingProperty = BindableProperty.Create(nameof(FastTrackUploading), typeof(bool), typeof(ImageView), false, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            if (newValue != null)
+            {
+                instance.InternalFastTrackUploading = (bool)newValue;
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var instance = (Tizen.NUI.BaseComponents.ImageView)bindable;
+            return instance.InternalFastTrackUploading;
+        });
+
+        /// <summary>
         /// ImageMapProperty
         /// </summary>
         [EditorBrowsable(EditorBrowsableState.Never)]
@@ -537,7 +555,7 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (Tizen.NUI.BaseComponents.ImageView)bindable;
             if (newValue != null)
             {
-                Object.InternalSetPropertyString(imageView.SwigCPtr, ImageView.Property.PlaceHolderUrl, (string)newValue );
+                Object.InternalSetPropertyString(imageView.SwigCPtr, ImageView.Property.PlaceHolderUrl, (string)newValue);
             }
         },
         defaultValueCreator: (bindable) =>
