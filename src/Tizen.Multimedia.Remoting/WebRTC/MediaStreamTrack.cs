@@ -79,7 +79,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 if (Type != MediaType.Video)
                 {
-                    throw new InvalidOperationException("This property is only for video.");
+                    throw new InvalidOperationException("This property is only for video track.");
                 }
 
                 if (value == null)
@@ -132,7 +132,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 if (Type != MediaType.Video)
                 {
-                    throw new InvalidOperationException("This property is only for video.");
+                    throw new InvalidOperationException("This property is only for video track.");
                 }
 
                 NativeWebRTC.GetDisplayMode(_webRtc.Handle, _trackId, out var val).
@@ -144,7 +144,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 if (Type != MediaType.Video)
                 {
-                    throw new InvalidOperationException("This property is only for video.");
+                    throw new InvalidOperationException("This property is only for video track.");
                 }
 
                 ValidationUtil.ValidateEnum(typeof(WebRTCDisplayMode), value, nameof(value));
@@ -169,7 +169,7 @@ namespace Tizen.Multimedia.Remoting
             {
                 if (Type != MediaType.Video)
                 {
-                    throw new InvalidOperationException("This property is only for video.");
+                    throw new InvalidOperationException("This property is only for video track.");
                 }
 
                 NativeWebRTC.GetDisplayVisible(_webRtc.Handle, _trackId, out bool val).
@@ -181,11 +181,44 @@ namespace Tizen.Multimedia.Remoting
             {
                 if (Type != MediaType.Video)
                 {
-                    throw new InvalidOperationException("This property is only for video.");
+                    throw new InvalidOperationException("This property is only for video track.");
                 }
 
                 NativeWebRTC.SetDisplayVisible(_webRtc.Handle, _trackId, value).
                     ThrowIfFailed("Failed to set display status.");
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the mute status of the audio track.
+        /// </summary>
+        /// <value>true if audio is muted, otherwise false.</value>
+        /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
+        /// <exception cref="InvalidOperationException">This MediaStreamTrack is not Audio.</exception>
+        /// <since_tizen> 11 </since_tizen>
+        public bool Mute
+        {
+            get
+            {
+                if (Type != MediaType.Audio)
+                {
+                    throw new InvalidOperationException("This property is only for audio track.");
+                }
+
+                NativeWebRTC.GetAudioMute(_webRtc.Handle, _trackId, out bool val).
+                    ThrowIfFailed("Failed to get audio mute status");
+
+                return val;
+            }
+            set
+            {
+                if (Type != MediaType.Audio)
+                {
+                    throw new InvalidOperationException("This property is only for audio track.");
+                }
+
+                NativeWebRTC.SetAudioMute(_webRtc.Handle, _trackId, value).
+                    ThrowIfFailed("Failed to set audio mute status.");
             }
         }
 
@@ -228,7 +261,7 @@ namespace Tizen.Multimedia.Remoting
 
             if (Type != MediaType.Audio)
             {
-                throw new InvalidOperationException("Should be applied in Audio");
+                throw new InvalidOperationException("This method is only for audio track.");
             }
 
             var ret = NativeWebRTC.SetAudioStreamPolicy(_webRtc.Handle, _trackId, policy.Handle);
