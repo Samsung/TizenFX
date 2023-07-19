@@ -91,6 +91,23 @@ namespace Tizen.NUI.BaseComponents
         [UnmanagedFunctionPointer(CallingConvention.StdCall)]
         private delegate void LayoutDirectionChangedEventCallbackType(IntPtr data, ViewLayoutDirectionType type);
 
+        // List of dispatch Event
+        private PanGestureDetector panGestureDetector = null;
+        private LongPressGestureDetector longGestureDetector = null;
+        private PinchGestureDetector pinchGestureDetector = null;
+        private TapGestureDetector tapGestureDetector = null;
+        private RotationGestureDetector rotationGestureDetector = null;
+        private int configGestureCount = 0;
+        private bool dispatchTouchEvents = true;
+        private bool dispatchParentTouchEvents = true;
+        private bool dispatchHoverEvents = true;
+        private bool dispatchParentHoverEvents = true;
+        private bool dispatchGestureEvents = true;
+        private bool dispatchParentGestureEvents = true;
+        private bool dispatchTouchMotion = true;
+        private bool dispatchHoverMotion = true;
+
+
         /// <summary>
         /// Event when a child is removed.
         /// </summary>
@@ -819,8 +836,13 @@ namespace Tizen.NUI.BaseComponents
             }
 
             TouchEventArgs e = new TouchEventArgs();
-
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
+
+            // If DispatchTouchMotion is false, Motion event is not dispatched.
+            if (DispatchTouchMotion == false && e.Touch.GetState(0) == PointStateType.Motion)
+            {
+                return true;
+            }
 
             bool consumed = false;
 
@@ -848,8 +870,14 @@ namespace Tizen.NUI.BaseComponents
             }
 
             TouchEventArgs e = new TouchEventArgs();
-
             e.Touch = Tizen.NUI.Touch.GetTouchFromPtr(touchData);
+
+            // If DispatchTouchMotion is false, Motion event is not dispatched.
+            if (DispatchTouchMotion == false && e.Touch.GetState(0) == PointStateType.Motion)
+            {
+                return true;
+            }
+
 
             bool consumed = false;
 
@@ -888,8 +916,13 @@ namespace Tizen.NUI.BaseComponents
             }
 
             HoverEventArgs e = new HoverEventArgs();
-
             e.Hover = Tizen.NUI.Hover.GetHoverFromPtr(hoverEvent);
+
+            // If DispatchHoverMotion is false, Motion event is not dispatched.
+            if (DispatchHoverMotion == false && e.Hover.GetState(0) == PointStateType.Motion)
+            {
+                return true;
+            }
 
             bool consumed = false;
 
@@ -1366,6 +1399,302 @@ namespace Tizen.NUI.BaseComponents
                 Interop.ActorInternal.SetTouchAreaOffset(SwigCPtr, value.Left, value.Right, value.Bottom, value.Top);
                 if (NDalicPINVOKE.SWIGPendingException.Pending)
                     throw NDalicPINVOKE.SWIGPendingException.Retrieve();
+            }
+        }
+
+
+        /// <summary>
+        /// Gets or sets the status of whether the view should emit key event signals.
+        /// If a View's DispatchKeyEvents is set to false, then itself and parents will not receive key event signals.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchKeyEvents
+        {
+            get
+            {
+                return (bool)GetValue(DispatchKeyEventsProperty);
+            }
+            set
+            {
+                SetValue(DispatchKeyEventsProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether touch events can be dispatched.
+        /// If a View's DispatchTouchEvents is set to false, then it's can not will receive touch and parents will not receive a touch event signal either.
+        /// This works without adding a TouchEvent callback in the View.
+        /// <note>
+        /// If the <see cref="Tizen.NUI.BaseComponents.View.Sensitive"/> is a property that determines whether or not to be hittable, then this property prevents the propagation of the hit touch event.
+        /// </note>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchTouchEvents
+        {
+            get
+            {
+                return dispatchTouchEvents;
+            }
+            set
+            {
+                if (dispatchTouchEvents != value)
+                {
+                    dispatchTouchEvents = value;
+                    if (dispatchTouchEvents == false)
+                    {
+                        TouchEvent += OnDispatchTouchEvent;
+                    }
+                    else
+                    {
+                        TouchEvent -= OnDispatchTouchEvent;
+                    }
+                }
+            }
+        }
+
+        private bool OnDispatchTouchEvent(object source, View.TouchEventArgs e)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether touch events can be dispatched to the parent.
+        /// If a View's DispatchParentTouchEvents is set to false, then parents will not receive a touch event signal either.
+        /// This works without adding a TouchEvent callback in the View.
+        /// <note>
+        /// If the <see cref="Tizen.NUI.BaseComponents.View.Sensitive"/> is a property that determines whether or not to be hittable, then this property prevents the propagation of the hit touch event.
+        /// </note>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchParentTouchEvents
+        {
+            get
+            {
+                return dispatchParentTouchEvents;
+            }
+            set
+            {
+                if (dispatchParentTouchEvents != value)
+                {
+                    dispatchParentTouchEvents = value;
+                    if (dispatchParentTouchEvents == false)
+                    {
+                        TouchEvent += OnDispatchParentTouchEvent;
+                    }
+                    else
+                    {
+                        TouchEvent -= OnDispatchParentTouchEvent;
+                    }
+                }
+            }
+        }
+
+        private bool OnDispatchParentTouchEvent(object source, View.TouchEventArgs e)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether hover events can be dispatched.
+        /// If a View's DispatchHoverEvents is set to false, then it's can not will receive hover event and parents will not receive a hover event signal either.
+        /// This works without adding a HoverEvent callback in the View.
+        /// <note>
+        /// If the <see cref="Tizen.NUI.BaseComponents.View.Sensitive"/> is a property that determines whether or not to be hittable, then this property prevents the propagation of the hit hover event.
+        /// </note>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchHoverEvents
+        {
+            get
+            {
+                return dispatchHoverEvents;
+            }
+            set
+            {
+                if (dispatchHoverEvents != value)
+                {
+                    dispatchHoverEvents = value;
+                    if (dispatchHoverEvents == false)
+                    {
+                        HoverEvent += OnDispatchHoverEvent;
+                    }
+                    else
+                    {
+                        HoverEvent -= OnDispatchHoverEvent;
+                    }
+                }
+            }
+        }
+
+        private bool OnDispatchHoverEvent(object source, View.HoverEventArgs e)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether hover events can be dispatched to the parent.
+        /// If a View's DispatchParentHoverEvents is set to false, then parents will not receive a hover event signal either.
+        /// This works without adding a HoverEvent callback in the View.
+        /// <note>
+        /// If the <see cref="Tizen.NUI.BaseComponents.View.Sensitive"/> is a property that determines whether or not to be hittable, then this property prevents the propagation of the hit hover event.
+        /// </note>
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchParentHoverEvents
+        {
+            get
+            {
+                return dispatchParentHoverEvents;
+            }
+            set
+            {
+                if (dispatchParentHoverEvents != value)
+                {
+                    dispatchParentHoverEvents = value;
+                    if (dispatchParentHoverEvents == false)
+                    {
+                        HoverEvent += OnDispatchParentHoverEvent;
+                    }
+                    else
+                    {
+                        HoverEvent -= OnDispatchParentHoverEvent;
+                    }
+                }
+            }
+        }
+
+        private bool OnDispatchParentHoverEvent(object source, View.HoverEventArgs e)
+        {
+            return true;
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether the view should emit Gesture event signals.
+        /// If a View's DispatchGestureEvents is set to false, then itself and parents will not receive all gesture event signals.
+        /// The itself and parents does not receive tap, pinch, pan, rotation, or longpress gestures.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchGestureEvents
+        {
+            get
+            {
+                return dispatchGestureEvents;
+            }
+            set
+            {
+                if (dispatchGestureEvents != value)
+                {
+                    dispatchGestureEvents = value;
+                    ConfigGestureDetector(dispatchGestureEvents);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether the view should emit Gesture event signals.
+        /// If a View's DispatchParentGestureEvents is set to false, then parents will not receive all gesture event signals.
+        /// The parents does not receive tap, pinch, pan, rotation, or longpress gestures.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchParentGestureEvents
+        {
+            get
+            {
+                return dispatchParentGestureEvents;
+            }
+            set
+            {
+                if (dispatchParentGestureEvents != value)
+                {
+                    dispatchParentGestureEvents = value;
+                    ConfigGestureDetector(dispatchParentGestureEvents);
+                }
+            }
+        }
+
+        private void ConfigGestureDetector(bool dispatch)
+        {
+            if (panGestureDetector == null) panGestureDetector = new PanGestureDetector();
+            if (longGestureDetector == null) longGestureDetector = new LongPressGestureDetector();
+            if (pinchGestureDetector == null) pinchGestureDetector = new PinchGestureDetector();
+            if (tapGestureDetector == null) tapGestureDetector = new TapGestureDetector();
+            if (rotationGestureDetector == null) rotationGestureDetector = new RotationGestureDetector();
+
+            if (dispatch == true)
+            {
+                configGestureCount = configGestureCount > 0 ? configGestureCount - 1 : 0;
+                if (configGestureCount == 0)
+                {
+                    panGestureDetector.Detach(this);
+                    longGestureDetector.Detach(this);
+                    pinchGestureDetector.Detach(this);
+                    tapGestureDetector.Detach(this);
+                    rotationGestureDetector.Detach(this);
+
+                    panGestureDetector.Detected -= OnGestureDetected;
+                    longGestureDetector.Detected -= OnGestureDetected;
+                    pinchGestureDetector.Detected -= OnGestureDetected;
+                    tapGestureDetector.Detected -= OnGestureDetected;
+                    rotationGestureDetector.Detected -= OnGestureDetected;
+                }
+            }
+            else
+            {
+                if (configGestureCount == 0)
+                {
+                    panGestureDetector.Attach(this);
+                    longGestureDetector.Attach(this);
+                    pinchGestureDetector.Attach(this);
+                    tapGestureDetector.Attach(this);
+                    rotationGestureDetector.Attach(this);
+
+                    panGestureDetector.Detected += OnGestureDetected;
+                    longGestureDetector.Detected += OnGestureDetected;
+                    pinchGestureDetector.Detected += OnGestureDetected;
+                    tapGestureDetector.Detected += OnGestureDetected;
+                    rotationGestureDetector.Detected += OnGestureDetected;
+                }
+                configGestureCount++;
+            }
+        }
+
+        private void OnGestureDetected(object source, EventArgs e)
+        {
+            // Does notting. This is to consume the gesture.
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether motion event of Touch can be dispatched.
+        /// If a View's DispatchTouchMotion is set to false, then it's can not will receive motion event of TouchEvent.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchTouchMotion
+        {
+            get
+            {
+                return dispatchTouchMotion;
+            }
+            set
+            {
+                dispatchTouchMotion = value;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the status of whether motion event of Hover can be dispatched.
+        /// If a View's DispatchHoverMotion is set to false, then it's can not will receive motion event of HoverEvent.
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public bool DispatchHoverMotion
+        {
+            get
+            {
+                return dispatchHoverMotion;
+            }
+            set
+            {
+                dispatchHoverMotion = value;
             }
         }
 
