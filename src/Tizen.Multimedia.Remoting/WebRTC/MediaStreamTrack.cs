@@ -192,7 +192,7 @@ namespace Tizen.Multimedia.Remoting
         /// <summary>
         /// Gets or sets the mute status of the audio track.
         /// </summary>
-        /// <value>true if audio is muted, otherwise false.</value>
+        /// <value>true if audio is muted, otherwise false. The default value is false.</value>
         /// <exception cref="ObjectDisposedException">The WebRTC has already been disposed.</exception>
         /// <exception cref="InvalidOperationException">This MediaStreamTrack is not Audio.</exception>
         /// <since_tizen> 11 </since_tizen>
