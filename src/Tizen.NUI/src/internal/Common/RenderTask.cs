@@ -41,6 +41,21 @@ namespace Tizen.NUI
             return ret;
         }
 
+        protected override void Dispose(DisposeTypes type)
+        {
+            if (Disposed)
+            {
+                return;
+            }
+
+            foreach (var window in Application.GetWindowList())
+            {
+                window.GetRenderTaskList().RemoveTask(this);
+            }
+
+            base.Dispose(type);
+        }
+
         internal class Property
         {
             internal static readonly int ViewportPosition = Interop.RenderTask.ViewportPositionGet();
