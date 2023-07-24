@@ -453,7 +453,7 @@ namespace Tizen.NUI.BaseComponents
 
         // This is used for internal purpose. hidden API.
         [EditorBrowsable(EditorBrowsableState.Never)]
-        protected int SetDynamicProperty => ActionJumpTo + 1;
+        protected int ActionSetDynamicProperty { get; set; } = Interop.LottieAnimationView.AnimatedVectorImageVisualActionSetDynamicProperty();
         #endregion Property
 
 
@@ -662,7 +662,7 @@ namespace Tizen.NUI.BaseComponents
             weakReferencesOfLottie?.Add(dynamicPropertyCallbackId, new WeakReference<LottieAnimationView>(this));
             InternalSavedDynamicPropertyCallbacks?.Add(dynamicPropertyCallbackId, info.Callback);
 
-            Interop.View.DoActionExtension(SwigCPtr, ImageView.Property.IMAGE, SetDynamicProperty, dynamicPropertyCallbackId, info.KeyPath, (int)info.Property, Marshal.GetFunctionPointerForDelegate<System.Delegate>(rootCallback));
+            Interop.View.DoActionExtension(SwigCPtr, ImageView.Property.IMAGE, ActionSetDynamicProperty, dynamicPropertyCallbackId, info.KeyPath, (int)info.Property, Marshal.GetFunctionPointerForDelegate<System.Delegate>(rootCallback));
 
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
