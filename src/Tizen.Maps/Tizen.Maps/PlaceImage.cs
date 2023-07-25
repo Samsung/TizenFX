@@ -22,6 +22,7 @@ namespace Tizen.Maps
     /// Place image information, used in place discovery and search requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class PlaceImage
     {
         private string _id;
@@ -45,36 +46,42 @@ namespace Tizen.Maps
         /// Gets an ID for this place image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Id { get { return _id; } }
 
         /// <summary>
         /// Gets an URL for this place image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Url { get { return _url; } }
 
         /// <summary>
         /// Gets the width for this place image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public int Width { get { return _width; } }
 
         /// <summary>
         /// Gets the height for this place image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public int Height { get { return _height; } }
 
         /// <summary>
         /// Gets an object representing the user link for this place image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceLink UserLink { get { return _userLink; } }
 
         /// <summary>
         /// Gets an object representing the image media for this place image.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceMedia ImageMedia { get { return _media; } }
     }
 }

@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// Preferences for route search requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class SearchPreference : IGeocodePreference, IPlaceSearchPreference, IRouteSearchPreference, IDisposable
     {
         internal Interop.PreferenceHandle handle;
@@ -32,6 +33,7 @@ namespace Tizen.Maps
         /// Constructor for a new search preference.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public SearchPreference()
         {
             handle = new Interop.PreferenceHandle();
@@ -59,6 +61,7 @@ namespace Tizen.Maps
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>Language should be specified as an ISO 3166 alpha-2 two letter country-code
         /// followed by ISO 639-1 for the two-letter language code.<br/>e.g. "ko-KR", "en-US".</remarks>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Language
         {
             get
@@ -77,6 +80,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
         /// <remarks>Setting negative value will not have any effect on MaxResults value.</remarks>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public int MaxResults
         {
             get
@@ -94,6 +98,7 @@ namespace Tizen.Maps
         /// Gets or sets the distance unit.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public DistanceUnit Unit
         {
             get
@@ -111,6 +116,7 @@ namespace Tizen.Maps
         /// Gets or sets the preferred country.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string CountryCode
         {
             get
@@ -128,6 +134,7 @@ namespace Tizen.Maps
         /// Gets or sets the search properties as a key value pair.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IReadOnlyDictionary<string, string> Properties
         {
             get
@@ -155,6 +162,7 @@ namespace Tizen.Maps
         /// Gets or sets the route optimization.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public RouteOptimization Optimization
         {
             get
@@ -172,6 +180,7 @@ namespace Tizen.Maps
         /// Gets or sets the route transport mode.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public TransportMode Mode
         {
             get
@@ -189,6 +198,7 @@ namespace Tizen.Maps
         /// Gets or sets the route feature weight.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public RouteFeatureWeight RouteFeatureWeight
         {
             get
@@ -206,6 +216,7 @@ namespace Tizen.Maps
         /// Gets or sets the route feature.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public RouteFeature RouteFeature
         {
             get
@@ -223,6 +234,7 @@ namespace Tizen.Maps
         /// Gets or sets if the searching for alternative routes is enabled.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public bool SearchAlternativeRoutes
         {
             get
@@ -244,6 +256,7 @@ namespace Tizen.Maps
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -261,6 +274,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);
