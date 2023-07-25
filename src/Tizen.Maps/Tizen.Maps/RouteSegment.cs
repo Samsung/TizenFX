@@ -24,6 +24,7 @@ namespace Tizen.Maps
     /// Place Segment information used in Route Search requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class RouteSegment
     {
         private Geocoordinates _origin;
@@ -51,36 +52,42 @@ namespace Tizen.Maps
         /// Gets the origin coordinates for this segment.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Geocoordinates Origin { get { return _origin; } }
 
         /// <summary>
         /// Gets the destination coordinates for this segment.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Geocoordinates Destination { get { return _destination; } }
 
         /// <summary>
         /// Gets the total distance for this segment.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public double Distance { get { return _distance; } }
 
         /// <summary>
         /// Gets the total duration to cover this segment.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public double Duration { get { return _duration; } }
 
         /// <summary>
         /// Gets the maneuver list for this segment.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IEnumerable<RouteManeuver> Maneuvers { get { return _maneuvers; } }
 
         /// <summary>
         /// Gets the coordinates list for this segment.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IEnumerable<Geocoordinates> Path { get { return _path; } }
 
         private Area BoundingBox { get { return _boundingBox; } }

@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Maps
 {
     /// <summary>
     /// Enumeration for the user gesture over a map view.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum GestureType
     {
         /// <summary>
