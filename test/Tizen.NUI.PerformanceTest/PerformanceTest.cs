@@ -28,11 +28,12 @@ class PerformanceTestExample : NUIApplication
     const uint TOTAL_COLUMNS_COUNT = 80;
     const uint DURATION_PER_COLUMNS = 50; // miliseconds
     // Increase animation time cause OnTick time can be delayed.
-    const uint DURATION_OF_ANIMATION = (DURATION_PER_COLUMNS*(COLUMNS_COUNT * 4 / 3)); // miliseconds.
+    const uint DURATION_OF_ANIMATION = (DURATION_PER_COLUMNS * (COLUMNS_COUNT * 4 / 3)); // miliseconds.
     
 
     const float VIEW_MARGIN_RATE = 0.2f;
-    enum ViewTestType{
+    enum ViewTestType
+    {
         TEST_TYPE_COLOR = 0,            ///< Test with simple color
         TEST_TYPE_IMAGE,                ///< Test with simple image
         TEST_TYPE_TEXT,                 ///< Test with simple text label
@@ -61,7 +62,8 @@ class PerformanceTestExample : NUIApplication
     }
 
     static string IMAGE_DIR = Tizen.Applications.Application.Current.DirectoryInfo.Resource + "image/";
-    readonly static string[] IMAGE_PATH = {
+    readonly static string[] IMAGE_PATH = 
+    {
         IMAGE_DIR + "gallery-small-1.jpg",
     };
 
@@ -129,8 +131,6 @@ class PerformanceTestExample : NUIApplication
     uint mRowsCount = COLUMNS_COUNT;
     uint mTotalColumnsCount = TOTAL_COLUMNS_COUNT;
     uint mDurationPerColumns = DURATION_PER_COLUMNS; // miliseconds
-
-    uint tickCount;
     
     uint mCreateCount = 0u;
     uint mDeleteCount = 0u;
@@ -158,7 +158,6 @@ class PerformanceTestExample : NUIApplication
         timer.Tick += OnTick;
         mTimerList.AddLast(timer);
 
-        tickCount = 0;
         mDeleteCount = 0;
 
         mCreationStatistic = new Statistic();
@@ -333,7 +332,7 @@ class PerformanceTestExample : NUIApplication
         var currentControl = mRemovingControlList.First.Value;
         mRemovingControlList.RemoveFirst();
 
-        // We can assume that front of mViewLIst must be deleted.
+        // We can assume that front of mViewList must be deleted.
         currentControl.Unparent();
         currentControl.DisposeRecursively();
 
@@ -355,7 +354,8 @@ class PerformanceTestExample : NUIApplication
 
     private View CreateColor()
     {
-        View bgView = new View(){
+        View bgView = new View()
+        {
             BackgroundColor = Color.Yellow,
 
             ParentOrigin = Position.ParentOriginTopLeft,
@@ -366,8 +366,8 @@ class PerformanceTestExample : NUIApplication
     }
     private View CreateImage()
     {
-        ImageView bgView = new ImageView(){
-            BackgroundColor = Color.Yellow,
+        ImageView bgView = new ImageView()
+        {
             ResourceUrl = IMAGE_PATH[(mImageCount++) % (IMAGE_PATH.Length)],
 
             ParentOrigin = Position.ParentOriginTopLeft,
@@ -378,7 +378,8 @@ class PerformanceTestExample : NUIApplication
     }
     private View CreateTextLabel()
     {
-        TextLabel bgView = new TextLabel(){
+        TextLabel bgView = new TextLabel()
+        {
             Text = "Hello, World!",
 
             ParentOrigin = Position.ParentOriginTopLeft,
@@ -389,7 +390,8 @@ class PerformanceTestExample : NUIApplication
     }
     private View CreateRoundedColor()
     {
-        View bgView = new View(){
+        View bgView = new View()
+        {
             BackgroundColor = Color.Yellow,
             CornerRadius = 0.5f,
             CornerRadiusPolicy = VisualTransformPolicyType.Relative,
@@ -403,7 +405,8 @@ class PerformanceTestExample : NUIApplication
 
     private View CreateBorderColor(float requiredBorderlineWidth)
     {
-        View bgView = new View(){
+        View bgView = new View()
+        {
             BackgroundColor = Color.Yellow,
             BorderlineColor = Color.Red,
             BorderlineWidth = requiredBorderlineWidth,
@@ -416,7 +419,8 @@ class PerformanceTestExample : NUIApplication
     }
     private View CreateRoundedBorderColor(float requiredBorderlineWidth)
     {
-        View bgView = new View(){
+        View bgView = new View()
+        {
             BackgroundColor = Color.Yellow,
             CornerRadius = 0.5f,
             CornerRadiusPolicy = VisualTransformPolicyType.Relative,
@@ -476,7 +480,8 @@ class PerformanceTestExample : NUIApplication
     {
         CreateScene();
     }
-    public void FullGC(){
+    public void FullGC()
+    {
         global::System.GC.Collect();
         global::System.GC.WaitForPendingFinalizers();
         global::System.GC.Collect();
@@ -486,8 +491,25 @@ class PerformanceTestExample : NUIApplication
     {
         DestroyScene();
     }
+
+    private void CleanList<T>(ref global::System.Collections.Generic.LinkedList<T> list) where T : BaseHandle
+    {
+        while(list.Count > 0)
+        {
+            list.First.Value.Dispose();
+            list.RemoveFirst();
+        }
+        list = null;
+    }
+
     private void DestroyScene()
     {
+        // Dereference safety
+        CleanList(ref mCreatingControlList);
+        CleanList(ref mRemovingControlList);
+        CleanList(ref mTimerList);
+        CleanList(ref mCreatingAnimationList);
+        CleanList(ref mRemovingAnimationList);
     }
 
     protected override void OnCreate()
