@@ -49,10 +49,6 @@ namespace Tizen.NUI.BaseComponents
         /// <since_tizen> 7 </since_tizen>
         public LottieAnimationView(float scale = 1.0f, bool shown = true) : base()
         {
-            ActionPlay = Interop.LottieAnimationView.AnimatedVectorImageVisualActionPlayGet();
-            ActionPause = Interop.LottieAnimationView.AnimatedVectorImageVisualActionPauseGet();
-            ActionStop = Interop.LottieAnimationView.AnimatedVectorImageVisualActionStopGet();
-
             NUILog.Debug($"< constructor GetId={GetId()} >");
             currentStates.url = "";
             currentStates.loopCount = 1;
@@ -442,18 +438,6 @@ namespace Tizen.NUI.BaseComponents
                 return currentStates.redrawInScalingDown;
             }
         }
-
-
-        /// <summary>
-        /// Actions property value to Jump to the specified frame.
-        /// This property can be redefined by child class if it use different value.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected int ActionJumpTo { get; set; } = Interop.LottieAnimationView.AnimatedVectorImageVisualActionJumpToGet();
-
-        // This is used for internal purpose. hidden API.
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected int ActionSetDynamicProperty { get; set; } = Interop.LottieAnimationView.AnimatedVectorImageVisualActionSetDynamicProperty();
         #endregion Property
 
 
@@ -916,6 +900,14 @@ namespace Tizen.NUI.BaseComponents
 
 
         #region Internal
+        /// <summary>
+        /// Actions property value to Jump to the specified frame.
+        /// </summary>
+        internal static readonly int ActionJumpTo = Interop.LottieAnimationView.AnimatedVectorImageVisualActionJumpToGet();
+
+        // This is used for internal purpose.
+        internal static readonly int ActionSetDynamicProperty = Interop.LottieAnimationView.AnimatedVectorImageVisualActionSetDynamicProperty();
+
         internal class VisualEventSignalArgs : EventArgs
         {
             public int VisualIndex
