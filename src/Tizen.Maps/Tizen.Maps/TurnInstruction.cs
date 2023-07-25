@@ -14,12 +14,15 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Maps
 {
     /// <summary>
     /// Turns the Instruction type for route maneuver.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum TurnInstruction
     {
         /// <summary>

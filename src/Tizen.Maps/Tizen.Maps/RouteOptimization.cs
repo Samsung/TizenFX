@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+using System;
+
 namespace Tizen.Maps
 {
     /// <summary>
@@ -23,6 +25,7 @@ namespace Tizen.Maps
     /// <remarks>
     /// Depending on the loaded maps plug-in using <see cref="MapService"/>, some features might have no effect or differences with the descriptions.
     /// </remarks>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public enum RouteOptimization
     {
         /// <summary>

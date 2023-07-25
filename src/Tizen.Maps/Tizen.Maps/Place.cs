@@ -23,6 +23,7 @@ namespace Tizen.Maps
     /// Place information, used in place discovery and search requests.
     /// </summary>
     /// <since_tizen> 3 </since_tizen>
+    [Obsolete("Deprecated since API11. Might be removed in API13.")]
     public class Place : IDisposable
     {
         internal Interop.PlaceHandle handle;
@@ -44,6 +45,7 @@ namespace Tizen.Maps
         /// Gets an ID string for the place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Id
         {
             get
@@ -56,6 +58,7 @@ namespace Tizen.Maps
         /// Gets name string for the place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Name
         {
             get
@@ -68,6 +71,7 @@ namespace Tizen.Maps
         /// Gets a view URI for the place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public string Uri
         {
             get
@@ -80,6 +84,7 @@ namespace Tizen.Maps
         /// Gets a distance for the place from the center.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public int Distance
         {
             get
@@ -92,6 +97,7 @@ namespace Tizen.Maps
         /// Gets a geographical location for the place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public Geocoordinates Coordinates
         {
             get
@@ -116,6 +122,7 @@ namespace Tizen.Maps
         /// Gets a rating for the place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceRating Rating
         {
             get
@@ -128,6 +135,7 @@ namespace Tizen.Maps
         /// Gets a supplier link for the place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceLink Supplier
         {
             get
@@ -140,6 +148,7 @@ namespace Tizen.Maps
         /// Gets a related link for the place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public PlaceLink Related
         {
             get
@@ -152,6 +161,7 @@ namespace Tizen.Maps
         /// Gets all the properties attached to this place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IDictionary<string, string> Properties
         {
             get
@@ -166,6 +176,7 @@ namespace Tizen.Maps
         /// Gets all the categories attached to this place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IEnumerable<PlaceCategory> Categories
         {
             get
@@ -180,6 +191,7 @@ namespace Tizen.Maps
         /// Gets all the attributes attached to this place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IEnumerable<PlaceAttribute> Attributes
         {
             get
@@ -194,6 +206,7 @@ namespace Tizen.Maps
         /// Gets all the contacts attached to this place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IEnumerable<PlaceContact> Contacts
         {
             get
@@ -208,6 +221,7 @@ namespace Tizen.Maps
         /// Gets all the editorials attached to this place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IEnumerable<PlaceEditorial> Editorials
         {
             get
@@ -222,6 +236,7 @@ namespace Tizen.Maps
         /// Gets all the images attached to this place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IEnumerable<PlaceImage> Images
         {
             get
@@ -236,6 +251,7 @@ namespace Tizen.Maps
         /// Gets all the reviews attached to this place.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public IEnumerable<PlaceReview> Reviews
         {
             get
@@ -253,6 +269,7 @@ namespace Tizen.Maps
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         /// <param name="disposing">If true, managed and unmanaged resources can be disposed, otherwise only unmanaged resources can be disposed.</param>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposedValue)
@@ -266,6 +283,7 @@ namespace Tizen.Maps
         /// Releases all the resources used by this object.
         /// </summary>
         /// <since_tizen> 3 </since_tizen>
+	[Obsolete("Deprecated since API11. Might be removed in API13.")]
         public void Dispose()
         {
             Dispose(true);
