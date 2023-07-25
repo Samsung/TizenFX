@@ -891,28 +891,22 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Actions property value for Reload image.
         /// </summary>
-        private int ActionReload { get; set; } = Interop.ImageView.ImageVisualActionReloadGet();
+        internal static readonly int ActionReload = Interop.ImageView.ImageVisualActionReloadGet();
 
         /// <summary>
         /// Actions property value to Play animated images.
-        /// This property can be redefined by child class if it use different value.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected int ActionPlay { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionPlayGet();
+        internal static readonly int ActionPlay = Interop.AnimatedImageView.AnimatedImageVisualActionPlayGet();
 
         /// <summary>
         /// Actions property value to Pause animated images.
-        /// This property can be redefined by child class if it use different value.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected int ActionPause { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionPauseGet();
+        internal static readonly int ActionPause = Interop.AnimatedImageView.AnimatedImageVisualActionPauseGet();
 
         /// <summary>
         /// Actions property value to Stop animated images.
-        /// This property can be redefined by child class if it use different value.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected int ActionStop { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionStopGet();
+        internal static readonly int ActionStop = Interop.AnimatedImageView.AnimatedImageVisualActionStopGet();
 
         internal VisualFittingModeType ConvertFittingModetoVisualFittingMode(FittingModeType value)
         {

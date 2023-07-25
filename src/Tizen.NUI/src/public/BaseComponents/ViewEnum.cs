@@ -166,10 +166,8 @@ namespace Tizen.NUI.BaseComponents
         /// <summary>
         /// Actions property value to update visual property.
         /// Note : Only few kind of properies can be update. Update with invalid property action is undefined.
-        /// This property can be redefined by child class if it use different value.
         /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected int ActionUpdateProperty { get; set; } = Interop.Visual.GetActionUpdateProperty();
+        internal static readonly int ActionUpdateProperty = Interop.Visual.GetActionUpdateProperty();
 
         internal enum PropertyRange
         {

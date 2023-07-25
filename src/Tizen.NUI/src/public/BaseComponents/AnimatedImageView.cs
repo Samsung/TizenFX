@@ -28,6 +28,10 @@ namespace Tizen.NUI.BaseComponents
     public partial class AnimatedImageView : ImageView
     {
         #region Internal
+        /// <summary>
+        /// Actions property value to Jump to the specified frame.
+        /// </summary>
+        internal static readonly int ActionJumpTo = Interop.AnimatedImageView.AnimatedImageVisualActionJumpToGet();
         #endregion Internal
 
         #region Private
@@ -50,9 +54,6 @@ namespace Tizen.NUI.BaseComponents
         [EditorBrowsable(EditorBrowsableState.Never)]
         public AnimatedImageView() : base()
         {
-            ActionPlay = Interop.AnimatedImageView.AnimatedImageVisualActionPlayGet();
-            ActionPause = Interop.AnimatedImageView.AnimatedImageVisualActionPauseGet();
-            ActionStop = Interop.AnimatedImageView.AnimatedImageVisualActionStopGet();
         }
 
         /// <summary>
@@ -355,13 +356,6 @@ namespace Tizen.NUI.BaseComponents
                 return ret;
             }
         }
-
-        /// <summary>
-        /// Actions property value to Jump to the specified frame.
-        /// This property can be redefined by child class if it use different value.
-        /// </summary>
-        [EditorBrowsable(EditorBrowsableState.Never)]
-        protected int ActionJumpTo { get; set; } = Interop.AnimatedImageView.AnimatedImageVisualActionJumpToGet();
         #endregion Property
 
         #region Method
