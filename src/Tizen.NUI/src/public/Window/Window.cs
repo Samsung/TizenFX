@@ -1168,7 +1168,13 @@ namespace Tizen.NUI
                 internalHoverTimer = new Timer(time);
                 internalHoverTimer.Tick += (s, e) =>
                 {
-                    FeedHover();
+                    using Touch touch = GetLastTouchEvent();
+                    if(touch != null && touch.GetPointCount() > 0)
+                    {
+                        using Vector2 screenPosition = touch.GetScreenPosition(0);
+                        using TouchPoint touchPoint = new TouchPoint(touch.GetDeviceId(0), TouchPoint.StateType.Motion, screenPosition.X, screenPosition.Y);
+                        FeedHover(touchPoint);
+                    }
                     internalHoverTimer?.Stop();
                     internalHoverTimer?.Dispose();
                     internalHoverTimer = null;
@@ -1206,16 +1212,10 @@ namespace Tizen.NUI
         /// <summary>
         /// Feeds a hover event into the window.
         /// </summary>
-        /// <param name="touchPoint">The touch point to feed hover event. If null is entered, the feed hover event is generated with the last inputed touch point.</param>
+        /// <param name="touchPoint">The touch point to feed hover event.</param>
         [EditorBrowsable(EditorBrowsableState.Never)]
-        internal void FeedHover(TouchPoint touchPoint = null)
+        internal void FeedHover(TouchPoint touchPoint)
         {
-            if (touchPoint == null)
-            {
-                using Touch touch = GetLastTouchEvent();
-                using Vector2 screenPosition = touch.GetScreenPosition(0);
-                touchPoint = new TouchPoint(touch.GetDeviceId(0), TouchPoint.StateType.Motion, screenPosition.X, screenPosition.Y);
-            }
             Interop.Window.FeedHoverEvent(SwigCPtr, TouchPoint.getCPtr(touchPoint));
             if (NDalicPINVOKE.SWIGPendingException.Pending) throw NDalicPINVOKE.SWIGPendingException.Retrieve();
         }
