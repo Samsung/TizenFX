@@ -66,6 +66,7 @@ namespace Tizen.NUI.BaseComponents
             ImageVisualProperty.WrapModeU,
             ImageVisualProperty.WrapModeV,
             ImageVisualProperty.SynchronousLoading,
+            Visual.Property.MixColor,
             Visual.Property.PremultipliedAlpha,
             ImageVisualProperty.OrientationCorrection,
             ImageVisualProperty.FastTrackUploading,
@@ -1274,6 +1275,39 @@ namespace Tizen.NUI.BaseComponents
             set
             {
                 SetValue(TransitionEffectProperty, value);
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// The mixed color value for the image.
+        /// </summary>
+        /// <remarks>
+        /// <para>
+        /// The property cascade chaining set is not recommended.
+        /// </para>
+        /// </remarks>
+        /// <example>
+        /// This way is recommended for setting the property
+        /// <code>
+        /// var imageView = new ImageView();
+        /// imageView.ImageColor = new Color(0.5f, 0.1f, 0.0f, 1.0f);
+        /// </code>
+        /// This way to set the property is prohibited
+        /// <code>
+        /// imageView.ImageColor.R = 0.5f; //This does not guarantee a proper operation
+        /// </code>
+        /// </example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public Color ImageColor
+        {
+            get
+            {
+                return (Color)GetValue(ImageColorProperty);
+            }
+            set
+            {
+                SetValue(ImageColorProperty, value);
                 NotifyPropertyChanged();
             }
         }
