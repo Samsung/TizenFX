@@ -579,5 +579,27 @@ namespace Tizen.NUI.BaseComponents
             var imageView = (ImageView)bindable;
             return Object.InternalGetPropertyBool(imageView.SwigCPtr, ImageView.Property.TransitionEffect);
         }));
+
+        /// <summary>
+        /// ImageColorProperty
+        /// </summary>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public static readonly BindableProperty ImageColorProperty = BindableProperty.Create(nameof(ImageColor), typeof(Color), typeof(ImageView), null, propertyChanged: (bindable, oldValue, newValue) =>
+        {
+            var imageView = (ImageView)bindable;
+            if (newValue != null)
+            {
+                imageView.UpdateImage(Visual.Property.MixColor, new PropertyValue((Color)newValue));
+            }
+        },
+        defaultValueCreator: (bindable) =>
+        {
+            var imageView = (ImageView)bindable;
+            Color ret = new Color();
+
+            imageView.GetCachedImageVisualProperty(Visual.Property.MixColor)?.Get(ret);
+
+            return ret;
+        });
     }
 }
