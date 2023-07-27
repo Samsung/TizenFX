@@ -30,6 +30,15 @@ namespace Tizen
 
         private static unsafe void _Print(Interop.Dlog.LogID log_id, Interop.Dlog.LogPriority priority, string tag, string message, string file, string func, int line)
         {
+            if (tag == null)
+                tag = String.Empty;
+            if (message == null)
+                message = String.Empty;
+            if (file == null)
+                file = String.Empty;
+            if (func == null)
+                func = String.Empty;
+
             int tagByteLength = Encoding.UTF8.GetMaxByteCount(tag.Length);
             Span<byte> tagByte = tagByteLength < 1024 ? stackalloc byte[tagByteLength + 1] : new byte[tagByteLength + 1];
 
