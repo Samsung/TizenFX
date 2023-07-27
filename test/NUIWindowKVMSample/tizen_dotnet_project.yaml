@@ -1,0 +1,9 @@
+# csproj file path
+csproj_file: NUIWindowKVMSample.csproj
+
+# files monitored for dirty/modified status
+files:
+  - NUIWindowKVMSample.csproj
+  - NUIWindowKVMSample.cs
+  - tizen-manifest.xml
+  - shared/res/NUIWindowKVMSample.png
