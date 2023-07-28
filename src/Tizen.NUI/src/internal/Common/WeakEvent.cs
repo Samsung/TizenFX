@@ -25,28 +25,33 @@ namespace Tizen.NUI
     {
         private List<WeakHandler<T>> handlers = new List<WeakHandler<T>>();
 
-        public void Add(T handler)
+        protected int Count => handlers.Count;
+
+        public virtual void Add(T handler)
         {
             handlers.Add(new WeakHandler<T>(handler));
         }
 
-        public void Remove(T handler)
+        public virtual void Remove(T handler)
         {
             handlers.RemoveAll(item => !item.IsAlive || item.Equals(handler));
         }
 
         public void Invoke(object sender, EventArgs args)
         {
-            var copied = handlers.ToArray();
-            foreach (var item in copied)
+            var disposed = new HashSet<WeakHandler<T>>();
+
+            foreach (var item in handlers)
             {
                 if (item.IsAlive)
                 {
                     item.Invoke(sender, args);
                     continue;
                 }
-                handlers.Remove(item);
+                disposed.Add(item);
             }
+
+            handlers.RemoveAll(disposed.Contains);
         }
 
         internal class WeakHandler<U>
@@ -86,6 +91,43 @@ namespace Tizen.NUI
                     if (localRefCopied != null) Delegate.CreateDelegate(typeof(U), localRefCopied, methodInfo).DynamicInvoke(args);
                 }
             }
+        }
+    }
+
+    /// <summary>
+    /// Internal class that helps to make a proxy weak event connecting to a normal source event.
+    /// Note that the source event will have a strong reference of the WeakEventProxy instance instead of handler's.
+    /// Please replace it to WeakEventManager after version up.
+    /// </summary>
+    internal abstract class WeakEventProxy<EventArgsT> : WeakEvent<EventHandler<EventArgsT>>
+    {
+        protected abstract void ConnectToEvent(EventHandler<EventArgsT> handler);
+
+        protected abstract void DisconnectToEvent(EventHandler<EventArgsT> handler);
+
+        public override void Add(EventHandler<EventArgsT> handler)
+        {
+            if (Count == 0)
+            {
+                ConnectToEvent(OnEventInvoked);
+            }
+
+            base.Add(handler);
+        }
+
+        public override void Remove(EventHandler<EventArgsT> handler)
+        {
+            base.Remove(handler);
+
+            if (Count == 0)
+            {
+                DisconnectToEvent(OnEventInvoked);
+            }
+        }
+
+        private void OnEventInvoked(object sender, EventArgsT args)
+        {
+            Invoke(sender, args as EventArgs);
         }
     }
 }
