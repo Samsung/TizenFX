@@ -68,7 +68,7 @@ It has a private key or its certificate or all the members of a chain of trust.<
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Pkcs12</code></pre>
+    <pre><code class="lang-csharp hljs">public class Pkcs12 : object</code></pre>
   </div>
 
   
@@ -132,7 +132,7 @@ It has a private key or its certificate or all the members of a chain of trust.<
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Security.SecureRepository/Tizen.Security.SecureRepository/Pkcs12.cs/#L90">View Source</a>
     </span>
-    <h4 id="Tizen_Security_SecureRepository_Pkcs12__ctor_Tizen_Security_SecureRepository_Key_Tizen_Security_SecureRepository_Certificate_System_Collections_Generic_IEnumerable_Tizen_Security_SecureRepository_Certificate__" data-uid="Tizen.Security.SecureRepository.Pkcs12.#ctor(Tizen.Security.SecureRepository.Key,Tizen.Security.SecureRepository.Certificate,System.Collections.Generic.IEnumerable{Tizen.Security.SecureRepository.Certificate})">Pkcs12(Key, Certificate, IEnumerable&lt;Certificate&gt;)</h4>
+    <h4 id="Tizen_Security_SecureRepository_Pkcs12__ctor_Tizen_Security_SecureRepository_Key_Tizen_Security_SecureRepository_Certificate_IEnumerable_Tizen_Security_SecureRepository_Certificate__" data-uid="Tizen.Security.SecureRepository.Pkcs12.#ctor(Tizen.Security.SecureRepository.Key,Tizen.Security.SecureRepository.Certificate,IEnumerable{Tizen.Security.SecureRepository.Certificate})">Pkcs12(Key, Certificate, IEnumerable&lt;Certificate&gt;)</h4>
     <section>
       <p>A constructor of Key that takes a private key, its corresponding certicate,
 and CA&apos;s certificate chain.</p>
@@ -167,7 +167,7 @@ and CA&apos;s certificate chain.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a>&gt;</td>
         <td><span class="parametername">caChain</span></td>
         <td><p>A certificate chain of CA(Certificate Authority) that issued the certificate.</p>
 </td>
@@ -206,7 +206,7 @@ and CA&apos;s certificate chain.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Security.SecureRepository.Certificate.html">Certificate</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -343,33 +343,31 @@ If the PKCS12 file is not encrypted, passphrase can be null.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p>The filePath is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>No file on filePath.
-No permission to access file.
-File is in the invalid PKCS12 format.
-File cannot be extracted with provided filePassword.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
   </div></section>
             </div>
           </main>

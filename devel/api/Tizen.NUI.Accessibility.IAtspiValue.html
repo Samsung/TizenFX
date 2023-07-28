@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Interface IAtspiValue
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Interface IAtspiValue
+   ">
+    <meta name="generator" content="docfx 2.56.1.0">
+    <meta name="version" content="API11">
+    
+    <link rel="shortcut icon" href="../../images/tizen_favicon.ico">
+    <link rel="stylesheet" href="../../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../../styles/docfx.css">
+    <link rel="stylesheet" href="../../styles/main.css">
+    <link rel="stylesheet" href="../../styles/tizen.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>  <body>
+    <div class="layout--main">
+      <div class="container-fluid h-100 api-infra">
+        <div role="main" class="article row flex-xl-nowrap h-100 body-content hide-when-search">
+          <div class="col-md-3 col-xl-2 px-0 layout--column is-sidebar" id="td_docs-sidebar">
+            
+            <div class="sidenav hide-when-search">
+              <div class="sidetoggle collapse d-lg-block" id="secondaryNavbar">
+              </div>
+            </div>
+          </div>
+          <div class="d-none d-xl-block col-xl-2 layout--column pl-0 is-toc" id="td_docs-toc">
+            
+            <div class="hidden-sm sideaffix toc-wrapper" role="complementary">
+              <div class="bs-docs-sidebar toc-content hidden-print hidden-xs hidden-sm affix" id="affix">
+              </div>
+            </div>
+          </div>
+          <main class="col-md-9 col-xl-8 layout--column is-content">
+            <div id="printableArea" class="md-content-wrapper">
+              
+              <nav id="td_docs-breadcrumb" aria-label="breadcrumb"></nav>              <section class="content wrap" id="_content" data-uid="Tizen.NUI.Accessibility.IAtspiValue">
+  
+  <div class="entity">
+  
+  <div class="entity-header w-100 d-flex justify-content-between">
+    <h1 id="Tizen_NUI_Accessibility_IAtspiValue" data-uid="Tizen.NUI.Accessibility.IAtspiValue" class="mt-0 text-break"><span class="entity-type">Interface</span>
+  IAtspiValue
+  </h1>
+      <div class="contribution align-self-end">
+        <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiValue.cs/#L23" class="contribution-link">View Source</a>
+      </div>
+  </div>
+  <h3 class="hidden-anchor m-0" id="definition"><a href="#definition"></a>Definition</h3>
+  
+  <dl class="attribute-list"><dt>Namespace:</dt><dd id="parent-namespace"><a class="xref" href="Tizen.NUI.Accessibility.html">Tizen.NUI.Accessibility</a></dd></dl>
+  <dl class="attribute-list"><dt>Assembly:</dt><dd>Tizen.NUI.dll</dd></dl>
+  
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public interface IAtspiValue</code></pre>
+  </div>
+
+  
+  
+  
+  <h2 id="methods">Methods
+  </h2>
+  
+  <a id="Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetCurrent_" data-uid="Tizen.NUI.Accessibility.IAtspiValue.AccessibilityGetCurrent*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiValue.cs/#L40">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetCurrent" data-uid="Tizen.NUI.Accessibility.IAtspiValue.AccessibilityGetCurrent">AccessibilityGetCurrent()</h4>
+    <section>
+      <p>Gets the current numeric value.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double AccessibilityGetCurrent()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetCurrent_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The application may set the &quot;value_format&quot; attribute to one of the
+following values in order to customize what is read by the Screen Reader:</p>
+<ol>
+<li>&quot;percent&quot; (the default) - AccessibilityGetCurrent() normalized as
+a percentage of the range [AccessibilityGetMinimum(), AccessibilityGetMaximum()],</li>
+<li>&quot;number&quot; - AccessibilityGetCurrent() verbatim,</li>
+<li>&quot;text&quot; - AccessibilityGetValueText() is used instead of AccessibilityGetCurrent()</li>
+</ol>
+</div>
+  
+  
+  
+  <a id="Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMaximum_" data-uid="Tizen.NUI.Accessibility.IAtspiValue.AccessibilityGetMaximum*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiValue.cs/#L55">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMaximum" data-uid="Tizen.NUI.Accessibility.IAtspiValue.AccessibilityGetMaximum">AccessibilityGetMaximum()</h4>
+    <section>
+      
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double AccessibilityGetMaximum()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMinimum_" data-uid="Tizen.NUI.Accessibility.IAtspiValue.AccessibilityGetMinimum*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiValue.cs/#L26">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMinimum" data-uid="Tizen.NUI.Accessibility.IAtspiValue.AccessibilityGetMinimum">AccessibilityGetMinimum()</h4>
+    <section>
+      
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double AccessibilityGetMinimum()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMinimumIncrement_" data-uid="Tizen.NUI.Accessibility.IAtspiValue.AccessibilityGetMinimumIncrement*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiValue.cs/#L61">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetMinimumIncrement" data-uid="Tizen.NUI.Accessibility.IAtspiValue.AccessibilityGetMinimumIncrement">AccessibilityGetMinimumIncrement()</h4>
+    <section>
+      
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">double AccessibilityGetMinimumIncrement()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  
+  <a id="Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetValueText_" data-uid="Tizen.NUI.Accessibility.IAtspiValue.AccessibilityGetValueText*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiValue.cs/#L52">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetValueText" data-uid="Tizen.NUI.Accessibility.IAtspiValue.AccessibilityGetValueText">AccessibilityGetValueText()</h4>
+    <section>
+      <p>Gets the formatted current value.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">string AccessibilityGetValueText()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_NUI_Accessibility_IAtspiValue_AccessibilityGetValueText_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>This does not have to be AccessibilityGetCurrent() formatted in any
+particular way, i.e. it may be an arbitrary string, e.g. &quot;small font size&quot;
+for the numeric value 10.0. The return value of this method is only
+used if the &quot;value_format&quot; attribute is &quot;text&quot;.</p>
+</div>
+  
+  
+  
+  <a id="Tizen_NUI_Accessibility_IAtspiValue_AccessibilitySetCurrent_" data-uid="Tizen.NUI.Accessibility.IAtspiValue.AccessibilitySetCurrent*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Accessibility/IAtspiValue.cs/#L58">View Source</a>
+    </span>
+    <h4 id="Tizen_NUI_Accessibility_IAtspiValue_AccessibilitySetCurrent_System_Double_" data-uid="Tizen.NUI.Accessibility.IAtspiValue.AccessibilitySetCurrent(System.Double)">AccessibilitySetCurrent(Double)</h4>
+    <section>
+      
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">bool AccessibilitySetCurrent(double value)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
+        <td><span class="parametername">value</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  </div></section>
+            </div>
+          </main>
+        </div>
+      </div>
+          </div>
+    
+    <script type="text/javascript" src="../../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../../styles/docfx.js"></script>
+    <script type="text/javascript" src="../../styles/main.js"></script>
+  </body>
+</html>

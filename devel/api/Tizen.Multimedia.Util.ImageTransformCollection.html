@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ImageTransformCollection : IList&lt;ImageTransform&gt;, ICollection&lt;ImageTransform&gt;, IEnumerable&lt;ImageTransform&gt;, IEnumerable</code></pre>
+    <pre><code class="lang-csharp hljs">public class ImageTransformCollection : IEnumerable&lt;ImageTransform&gt;, IList&lt;ImageTransform&gt;</code></pre>
   </div>
 
   
@@ -86,10 +86,7 @@
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a>&gt;</div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a>&gt;</div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a>&gt;</div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
+      <div class="pdl"><span class="xref">IList</span>&lt;<a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a>&gt;</div>
     </dd>
   </dl>
   
@@ -200,24 +197,6 @@
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a></td>
         <td><p>The <a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a> at the specified index.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>index is less than 0.<br>
--or-<br>
-index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.ImageTransformCollection.html#Tizen_Multimedia_Util_ImageTransformCollection_Count">Count</a>.</p>
 </td>
       </tr>
     </tbody>
@@ -383,32 +362,6 @@ index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.Im
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">array</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">arrayIndex</code> is less than 0.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>The number of elements in the source collection is greater than the available space from arrayIndex to the end of the destination array.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -439,7 +392,7 @@ index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.Im
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;<a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a>&gt;</td>
+        <td><span class="xref">IEnumerator</span>&lt;<a class="xref" href="Tizen.Multimedia.Util.ImageTransform.html">ImageTransform</a>&gt;</td>
         <td><p>An enumerator that can be used to iterate through the collection.</p>
 </td>
       </tr>
@@ -543,29 +496,6 @@ index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.Im
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">item</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>index is less than 0.<br>
--or-<br>
-index is greater than <a class="xref" href="Tizen.Multimedia.Util.ImageTransformCollection.html#Tizen_Multimedia_Util_ImageTransformCollection_Count">Count</a>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -658,107 +588,34 @@ index is greater than <a class="xref" href="Tizen.Multimedia.Util.ImageTransform
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
-        <td><p>index is less than 0.<br>
--or-<br>
-index is equal to or greater than <a class="xref" href="Tizen.Multimedia.Util.ImageTransformCollection.html#Tizen_Multimedia_Util_ImageTransformCollection_Count">Count</a>.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
-  <h2 id="eii">Explicit Interface Implementations
-  </h2>
-  
-  <a id="Tizen_Multimedia_Util_ImageTransformCollection_System_Collections_Generic_ICollection_Tizen_Multimedia_Util_ImageTransform__IsReadOnly_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.System#Collections#Generic#ICollection{Tizen#Multimedia#Util#ImageTransform}#IsReadOnly*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L62">View Source</a>
-    </span>
-    <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_System_Collections_Generic_ICollection_Tizen_Multimedia_Util_ImageTransform__IsReadOnly" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.System#Collections#Generic#ICollection{Tizen#Multimedia#Util#ImageTransform}#IsReadOnly">ICollection&lt;ImageTransform&gt;.IsReadOnly</h4>
-    <section>
-      
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">bool ICollection&lt;ImageTransform&gt;.IsReadOnly { get; }</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
-  <a id="Tizen_Multimedia_Util_ImageTransformCollection_System_Collections_IEnumerable_GetEnumerator_" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.System#Collections#IEnumerable#GetEnumerator*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Util/ImageUtil/ImageTransformCollection.cs/#L164">View Source</a>
-    </span>
-    <h4 id="Tizen_Multimedia_Util_ImageTransformCollection_System_Collections_IEnumerable_GetEnumerator" data-uid="Tizen.Multimedia.Util.ImageTransformCollection.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
-    <section>
-      
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerator IEnumerable.GetEnumerator()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">System.Collections.Generic.IList&lt;T&gt;</a>
+      <span class="xref">IList&lt;&gt;</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">System.Collections.Generic.ICollection&lt;T&gt;</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
   </div>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">System.Collections.Generic.IEnumerable&lt;T&gt;</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
   </div>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">System.Collections.IEnumerable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

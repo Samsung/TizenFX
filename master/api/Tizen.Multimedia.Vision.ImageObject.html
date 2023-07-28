@@ -84,12 +84,6 @@
 
   
   
-  <dl class="attribute-list">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    </dd>
-  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -111,22 +105,6 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public ImageObject()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>The feature is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -168,39 +146,6 @@
   <h5 id="Tizen_Multimedia_Vision_ImageObject__ctor_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>ImageObject has been saved by <a class="xref" href="Tizen.Multimedia.Vision.ImageObject.html#Tizen_Multimedia_Vision_ImageObject_Save_System_String_">Save(String)</a> can be loaded.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filenotfoundexception">FileNotFoundException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>The feature is not supported.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">path</code> is not supported file.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>No permission to access the specified file.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_Vision_ImageObject__ctor_System_String__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Vision.ImageObject.html#Tizen_Multimedia_Vision_ImageObject_Save_System_String_">Save(String)</a></div>
@@ -248,22 +193,6 @@ If the recognition rate is 0 object can not be recognized and the bigger it is t
   <div class="markdown level1 remarks"><p>If recognition rate is too low, try to use another image or change some configuration parameters
 and fill the image object again.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.ImageObject.html">ImageObject</a> has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_Vision_ImageObject_RecognitionRate_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Vision.ImageFillConfiguration.html">ImageFillConfiguration</a></div>
@@ -371,29 +300,6 @@ Extracts data from source image which will be needed for recognition of depicted
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.ImageObject.html">ImageObject</a> has already been disposed of.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -440,29 +346,6 @@ in location.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.ImageObject.html">ImageObject</a> has already been disposed of.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -504,31 +387,6 @@ Extracts data from source image which will be needed for recognition of depicted
         <td><a class="xref" href="Tizen.Multimedia.Vision.ImageFillConfiguration.html">ImageFillConfiguration</a></td>
         <td><span class="parametername">config</span></td>
         <td><p>The configuration used for extract recognition data from source. This value can be null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.ImageObject.html">ImageObject</a> has already been disposed of.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">config</code> has already been disposed of.</p>
 </td>
       </tr>
     </tbody>
@@ -581,31 +439,6 @@ in location.</p>
         <td><a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a></td>
         <td><span class="parametername">rect</span></td>
         <td><p>Rectangular bound of the image object on the source image.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.ImageObject.html">ImageObject</a> has already been disposed of.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">source</code> has already been disposed of.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">config</code> has already been disposed of.</p>
 </td>
       </tr>
     </tbody>
@@ -665,22 +498,6 @@ in location.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.ImageObject.html">ImageObject</a> has already been disposed of.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_Vision_ImageObject_GetLabel_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Vision.ImageObject.html#Tizen_Multimedia_Vision_ImageObject_SetLabel_System_Int32_">SetLabel(Int32)</a></div>
@@ -719,37 +536,6 @@ in location.</p>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">path</span></td>
         <td><p>Path to the file to save the model.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>No permission to write to the specified path.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.ImageObject.html">ImageObject</a> has already been disposed of.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.directorynotfoundexception">DirectoryNotFoundException</a></td>
-        <td><p>The directory for <code data-dev-comment-type="paramref" class="paramref">path</code> does not exist.</p>
 </td>
       </tr>
     </tbody>
@@ -799,9 +585,27 @@ in location.</p>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
-  <h2 id="implements">Implements</h2>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

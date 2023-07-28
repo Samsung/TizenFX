@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class InputMethodEditor</code></pre>
+    <pre><code class="lang-csharp hljs">public static class InputMethodEditor : object</code></pre>
   </div>
 
   
@@ -134,27 +134,6 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -195,27 +174,28 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
+  
+  <h6><strong>API Level</strong>: <span>4</span></h6>
+  <h6><strong>Privilege Level</strong>: public</h6>
+  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/ime</span></span></h6>
+  
+  
+  <a id="Tizen_Uix_InputMethod_InputMethodEditor_Create_" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.Create*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Uix.InputMethod/Tizen.Uix.InputMethod/InputMethodEditor.cs/#L1936">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_InputMethod_InputMethodEditor_Create" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.Create">Create()</h4>
+    <section>
+      <p>This API requests the InputMethodEditor to initialize.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Create()</code></pre>
+  </div>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -262,32 +242,28 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>This exception can be due to an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
+  
+  <h6><strong>API Level</strong>: <span>4</span></h6>
+  <h6><strong>Privilege Level</strong>: public</h6>
+  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/ime</span></span></h6>
+  
+  
+  <a id="Tizen_Uix_InputMethod_InputMethodEditor_Destroy_" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.Destroy*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Uix.InputMethod/Tizen.Uix.InputMethod/InputMethodEditor.cs/#L1964">View Source</a>
+    </span>
+    <h4 id="Tizen_Uix_InputMethod_InputMethodEditor_Destroy" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.Destroy">Destroy()</h4>
+    <section>
+      <p>This API requests the InputMethodEditor to finalize.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void Destroy()</code></pre>
+  </div>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -299,7 +275,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Uix.InputMethod/Tizen.Uix.InputMethod/InputMethodEditor.cs/#L1894">View Source</a>
     </span>
-    <h4 id="Tizen_Uix_InputMethod_InputMethodEditor_GetMainWindow" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.GetMainWindow" data-obsolete="Deprecated since API10. Will be removed in API12." class="obsolete">GetMainWindow()</h4>
+    <h4 id="Tizen_Uix_InputMethod_InputMethodEditor_GetMainWindow" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.GetMainWindow">GetMainWindow()</h4>
     <section>
       <p>This API returns the input panel main window.</p>
 
@@ -308,8 +284,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
-public static EditorWindow GetMainWindow()</code></pre>
+    <pre><code class="lang-csharp hljs">public static EditorWindow GetMainWindow()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -323,29 +298,6 @@ public static EditorWindow GetMainWindow()</code></pre>
       <tr>
         <td><a class="xref" href="Tizen.Uix.InputMethod.EditorWindow.html">EditorWindow</a></td>
         <td><p>The input panel main window object on success, otherwise null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>This can occur due to the following reasons:
-1) The IME main loop has not started yet.
-2) Operation failed.</p>
 </td>
       </tr>
     </tbody>
@@ -384,27 +336,6 @@ public static EditorWindow GetMainWindow()</code></pre>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><p>The selected text.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
 </td>
       </tr>
     </tbody>
@@ -467,32 +398,6 @@ public static EditorWindow GetMainWindow()</code></pre>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>This exception can be due to out of memory.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -515,27 +420,6 @@ public static EditorWindow GetMainWindow()</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void HidePreEditString()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -558,27 +442,6 @@ public static EditorWindow GetMainWindow()</code></pre>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void RequestHide()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -625,29 +488,6 @@ public static EditorWindow GetMainWindow()</code></pre>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>This can occur due to the following reasons:
-1) The IME main loop has not started yet.
-2) The necessary event is not set.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -659,7 +499,7 @@ public static EditorWindow GetMainWindow()</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Uix.InputMethod/Tizen.Uix.InputMethod/InputMethodEditor.cs/#L1639">View Source</a>
     </span>
-    <h4 id="Tizen_Uix_InputMethod_InputMethodEditor_Run_System_Action_System_Action_System_Action_Tizen_Uix_InputMethod_InputMethodEditor_ContextId_Tizen_Uix_InputMethod_InputMethodContext__System_Action_Tizen_Uix_InputMethod_InputMethodEditor_ContextId__" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.Run(System.Action,System.Action,System.Action{Tizen.Uix.InputMethod.InputMethodEditor.ContextId,Tizen.Uix.InputMethod.InputMethodContext},System.Action{Tizen.Uix.InputMethod.InputMethodEditor.ContextId})">Run(Action, Action, Action&lt;InputMethodEditor.ContextId, InputMethodContext&gt;, Action&lt;InputMethodEditor.ContextId&gt;)</h4>
+    <h4 id="Tizen_Uix_InputMethod_InputMethodEditor_Run_Action_Action_Action_Tizen_Uix_InputMethod_InputMethodEditor_ContextId_Tizen_Uix_InputMethod_InputMethodContext__Action_Tizen_Uix_InputMethod_InputMethodEditor_ContextId__" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.Run(Action,Action,Action{Tizen.Uix.InputMethod.InputMethodEditor.ContextId,Tizen.Uix.InputMethod.InputMethodContext},Action{Tizen.Uix.InputMethod.InputMethodEditor.ContextId})">Run(Action, Action, Action&lt;InputMethodEditor.ContextId, InputMethodContext&gt;, Action&lt;InputMethodEditor.ContextId&gt;)</h4>
     <section>
       <p>Runs the main loop of the IME application.
 This function starts to run the IME application&apos;s main loop.</p>
@@ -682,26 +522,26 @@ This function starts to run the IME application&apos;s main loop.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></td>
+        <td><span class="xref">Action</span></td>
         <td><span class="parametername">create</span></td>
         <td><p>This is called to initialize the IME application before the main loop starts up.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action">Action</a></td>
+        <td><span class="xref">Action</span></td>
         <td><span class="parametername">terminate</span></td>
         <td><p>This is called when the IME application is terminated.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-2">Action</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.InputMethodEditor.ContextId.html">InputMethodEditor.ContextId</a>, <a class="xref" href="Tizen.Uix.InputMethod.InputMethodContext.html">InputMethodContext</a>&gt;</td>
+        <td><span class="xref">Action</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.InputMethodEditor.ContextId.html">InputMethodEditor.ContextId</a>, <a class="xref" href="Tizen.Uix.InputMethod.InputMethodContext.html">InputMethodContext</a>&gt;</td>
         <td><span class="parametername">show</span></td>
         <td><p>This is called when the IME application is shown.
 It provides the context information and the context ID.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.action-1">Action</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.InputMethodEditor.ContextId.html">InputMethodEditor.ContextId</a>&gt;</td>
+        <td><span class="xref">Action</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.InputMethodEditor.ContextId.html">InputMethodEditor.ContextId</a>&gt;</td>
         <td><span class="parametername">hide</span></td>
         <td><p>This is called when the IME application is hidden.
 It provides the context ID.</p>
@@ -709,34 +549,11 @@ It provides the context ID.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Uix_InputMethod_InputMethodEditor_Run_System_Action_System_Action_System_Action_Tizen_Uix_InputMethod_InputMethodEditor_ContextId_Tizen_Uix_InputMethod_InputMethodContext__System_Action_Tizen_Uix_InputMethod_InputMethodEditor_ContextId___remarks">Remarks</h5>
+  <h5 id="Tizen_Uix_InputMethod_InputMethodEditor_Run_Action_Action_Action_Tizen_Uix_InputMethod_InputMethodEditor_ContextId_Tizen_Uix_InputMethod_InputMethodContext__Action_Tizen_Uix_InputMethod_InputMethodEditor_ContextId___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This API is a blocking call, as it starts the main loop of the application.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>This exception can be due to operation failed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/ime</span></span></h6>
   
   
   <a id="Tizen_Uix_InputMethod_InputMethodEditor_SendCustomGeometryUpdated_" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.SendCustomGeometryUpdated*"></a>
@@ -755,27 +572,6 @@ It provides the context ID.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void SendCustomGeometryUpdated()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -832,27 +628,6 @@ It provides the context ID.</p>
   <div class="markdown level1 remarks"><p>This function sends a key down or up event with the key mask to the client application. If forwardKey is true, this key event goes to the edit filed directly.
 And if forwardKey is false, the ProcessKey event receives the key event before the edit field.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -878,27 +653,6 @@ And if forwardKey is false, the ProcessKey event receives the key event before t
   <h5 id="Tizen_Uix_InputMethod_InputMethodEditor_SendLanguageUpdated_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>LanguageRequestedCallback is raised after this API is called when the App requests changed language information.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -935,27 +689,6 @@ And if forwardKey is false, the ProcessKey event receives the key event before t
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">command</span></td>
         <td><p>The UTF-8 string to be sent.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
 </td>
       </tr>
     </tbody>
@@ -1000,27 +733,6 @@ And if forwardKey is false, the ProcessKey event receives the key event before t
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -1057,27 +769,6 @@ And if forwardKey is false, the ProcessKey event receives the key event before t
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><span class="parametername">visible</span></td>
         <td><p><code>true</code> to show candidate strings, <code>false</code> otherwise.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
 </td>
       </tr>
     </tbody>
@@ -1145,27 +836,6 @@ And if forwardKey is false, the ProcessKey event receives the key event before t
   <h5 id="Tizen_Uix_InputMethod_InputMethodEditor_SetFloatingDragEnd_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This function can be used in floating mode. If the floating mode is deactivated, calling this function has no effect.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -1191,27 +861,6 @@ And if forwardKey is false, the ProcessKey event receives the key event before t
   <h5 id="Tizen_Uix_InputMethod_InputMethodEditor_SetFloatingDragStart_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This function can be used in floating mode. If the floating mode is deactivated, calling this function has no effect.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -1248,27 +897,6 @@ And if forwardKey is false, the ProcessKey event receives the key event before t
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><span class="parametername">floatingMode</span></td>
         <td><p><code>true</code> to set the floating mode to on and <code>false</code> to set it to off.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
 </td>
       </tr>
     </tbody>
@@ -1477,32 +1105,6 @@ This Event processes the key event before an associated text input UI control do
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>This exception can be due to an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -1514,7 +1116,7 @@ This Event processes the key event before an associated text input UI control do
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Uix.InputMethod/Tizen.Uix.InputMethod/InputMethodEditor.cs/#L2271">View Source</a>
     </span>
-    <h4 id="Tizen_Uix_InputMethod_InputMethodEditor_SetSize_System_IntPtr_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.SetSize(System.IntPtr,System.Int32,System.Int32,System.Int32,System.Int32)">SetSize(IntPtr, Int32, Int32, Int32, Int32)</h4>
+    <h4 id="Tizen_Uix_InputMethod_InputMethodEditor_SetSize_IntPtr_System_Int32_System_Int32_System_Int32_System_Int32_" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.SetSize(IntPtr,System.Int32,System.Int32,System.Int32,System.Int32)">SetSize(IntPtr, Int32, Int32, Int32, Int32)</h4>
     <section>
       <p>This API updates the given native input panel window&apos;s size information.
 The native window handle of NUI Window can be got by below code.
@@ -1539,7 +1141,7 @@ IntPtr nativeHandle = handle.DangerousGetHandle();</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
+        <td><span class="xref">IntPtr</span></td>
         <td><span class="parametername">window</span></td>
         <td><p>The native window handle.</p>
 </td>
@@ -1570,36 +1172,8 @@ IntPtr nativeHandle = handle.DangerousGetHandle();</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>This exception can be due to an invalid parameter.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
-  <h6><strong>API Level</strong>: <span>9</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/ime</span></span></h6>
+  <h6><strong>API Level</strong>: <span>4</span></h6>
   
   
   <a id="Tizen_Uix_InputMethod_InputMethodEditor_ShowPreEditString_" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.ShowPreEditString*"></a>
@@ -1618,27 +1192,6 @@ IntPtr nativeHandle = handle.DangerousGetHandle();</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public static void ShowPreEditString()</code></pre>
   </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -1679,27 +1232,6 @@ IntPtr nativeHandle = handle.DangerousGetHandle();</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>10</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -1711,7 +1243,7 @@ IntPtr nativeHandle = handle.DangerousGetHandle();</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Uix.InputMethod/Tizen.Uix.InputMethod/InputMethodEditor.cs/#L1758">View Source</a>
     </span>
-    <h4 id="Tizen_Uix_InputMethod_InputMethodEditor_UpdatePreEditString_System_String_System_Collections_Generic_IEnumerable_Tizen_Uix_InputMethod_PreEditAttribute__" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.UpdatePreEditString(System.String,System.Collections.Generic.IEnumerable{Tizen.Uix.InputMethod.PreEditAttribute})">UpdatePreEditString(String, IEnumerable&lt;PreEditAttribute&gt;)</h4>
+    <h4 id="Tizen_Uix_InputMethod_InputMethodEditor_UpdatePreEditString_System_String_IEnumerable_Tizen_Uix_InputMethod_PreEditAttribute__" data-uid="Tizen.Uix.InputMethod.InputMethodEditor.UpdatePreEditString(System.String,IEnumerable{Tizen.Uix.InputMethod.PreEditAttribute})">UpdatePreEditString(String, IEnumerable&lt;PreEditAttribute&gt;)</h4>
     <section>
       <p>Updates a new pre-edit string.</p>
 
@@ -1739,7 +1271,7 @@ IntPtr nativeHandle = handle.DangerousGetHandle();</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.PreEditAttribute.html">PreEditAttribute</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.PreEditAttribute.html">PreEditAttribute</a>&gt;</td>
         <td><span class="parametername">attrs</span></td>
         <td><p>The list which has ime_preedit_attribute lists, strings can be composed of multiple string attributes: underline, highlight color, and reversal color.
 The attrs list can be empty if no attributes to set.</p>
@@ -1747,31 +1279,8 @@ The attrs list can be empty if no attributes to set.</p>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>This exception can be due to permission denied.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The IME main loop has not started yet.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/ime</span></span></h6>
   
   <h2 id="events">Events
   </h2>
@@ -1801,7 +1310,7 @@ The attrs list can be empty if no attributes to set.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.AccessibilityStateChangedEventArgs.html">AccessibilityStateChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.AccessibilityStateChangedEventArgs.html">AccessibilityStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1835,7 +1344,7 @@ The attrs list can be empty if no attributes to set.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.CursorPositionUpdatedEventArgs.html">CursorPositionUpdatedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.CursorPositionUpdatedEventArgs.html">CursorPositionUpdatedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1869,7 +1378,7 @@ The attrs list can be empty if no attributes to set.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.SetDataEventArgs.html">SetDataEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.SetDataEventArgs.html">SetDataEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1903,7 +1412,7 @@ The attrs list can be empty if no attributes to set.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.DisplayLanguageChangedEventArgs.html">DisplayLanguageChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.DisplayLanguageChangedEventArgs.html">DisplayLanguageChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1937,7 +1446,7 @@ The attrs list can be empty if no attributes to set.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.FocusedInEventArgs.html">FocusedInEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.FocusedInEventArgs.html">FocusedInEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1971,7 +1480,7 @@ The attrs list can be empty if no attributes to set.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.FocusedOutEventArgs.html">FocusedOutEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.FocusedOutEventArgs.html">FocusedOutEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2005,7 +1514,7 @@ The attrs list can be empty if no attributes to set.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventargs">EventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<span class="xref">EventArgs</span>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2040,7 +1549,7 @@ It will only be called when the client application changes the edit field&apos;s
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.InputHintSetEventArgs.html">InputHintSetEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.InputHintSetEventArgs.html">InputHintSetEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2079,7 +1588,7 @@ It will only be called when the client application changes the edit field&apos;s
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.LanguageSetEventArgs.html">LanguageSetEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.LanguageSetEventArgs.html">LanguageSetEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2114,7 +1623,7 @@ It will only be called when the client application changes the edit field&apos;s
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.LayoutSetEventArgs.html">LayoutSetEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.LayoutSetEventArgs.html">LayoutSetEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2148,7 +1657,7 @@ It will only be called when the client application changes the edit field&apos;s
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.MimeTypeUpdateRequestedEventArgs.html">MimeTypeUpdateRequestedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.MimeTypeUpdateRequestedEventArgs.html">MimeTypeUpdateRequestedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2182,7 +1691,7 @@ It will only be called when the client application changes the edit field&apos;s
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.PredictionHintDataUpdatedEventArgs.html">PredictionHintDataUpdatedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.PredictionHintDataUpdatedEventArgs.html">PredictionHintDataUpdatedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2216,7 +1725,7 @@ It will only be called when the client application changes the edit field&apos;s
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.PredictionHintUpdatedEventArgs.html">PredictionHintUpdatedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.PredictionHintUpdatedEventArgs.html">PredictionHintUpdatedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2251,7 +1760,7 @@ The input panel can show the text or an image on the Return button, according to
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.ReturnKeySetEventArgs.html">ReturnKeySetEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.ReturnKeySetEventArgs.html">ReturnKeySetEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2285,7 +1794,7 @@ The input panel can show the text or an image on the Return button, according to
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.ReturnKeyStateSetEventArgs.html">ReturnKeyStateSetEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.ReturnKeyStateSetEventArgs.html">ReturnKeyStateSetEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2319,7 +1828,7 @@ The input panel can show the text or an image on the Return button, according to
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.RotationChangedEventArgs.html">RotationChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.RotationChangedEventArgs.html">RotationChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -2353,7 +1862,7 @@ The input panel can show the text or an image on the Return button, according to
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Uix.InputMethod.SurroundingTextUpdatedEventArgs.html">SurroundingTextUpdatedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Uix.InputMethod.SurroundingTextUpdatedEventArgs.html">SurroundingTextUpdatedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>

@@ -65,8 +65,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[LoadInSeparateAppDomain]
-public abstract class XamlTask : MarshalByRefObject, ITask</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class XamlTask : MarshalByRefObject, ITask</code></pre>
   </div>
 
   
@@ -75,18 +74,24 @@ public abstract class XamlTask : MarshalByRefObject, ITask</code></pre>
     <dd>
       <div class="pdl-holder">
         <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
-        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject">MarshalByRefObject</a></div>
         <div><span class="xref">XamlTask</span></div>
       </div>
     </dd>
   </dl>
 
+  <dl class="attribute-list">
+    <dt>Derived</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Xaml.Build.Tasks.DebugXamlCTask.html">DebugXamlCTask</a></div>
+      <div class="pdl"><a class="xref" href="Tizen.NUI.Xaml.Build.Tasks.NUIXamlCTask.html">NUIXamlCTask</a></div>
+    </dd>
+  </dl>
   
   
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.build.framework.itask">ITask</a></div>
+      <div class="pdl"><span class="xref">ITask</span></div>
     </dd>
   </dl>
   
@@ -107,8 +112,7 @@ public abstract class XamlTask : MarshalByRefObject, ITask</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Required]
-public string Assembly { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public string Assembly { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -153,7 +157,7 @@ public string Assembly { get; set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.build.framework.ibuildengine">IBuildEngine</a></td>
+        <td><span class="xref">IBuildEngine</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -285,7 +289,7 @@ public string Assembly { get; set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.build.framework.itaskhost">ITaskHost</a></td>
+        <td><span class="xref">ITaskHost</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -318,7 +322,7 @@ public string Assembly { get; set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.build.utilities.tasklogginghelper">TaskLoggingHelper</a></td>
+        <td><span class="xref">TaskLoggingHelper</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -397,7 +401,7 @@ public string Assembly { get; set; }</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.XamlBuild/src/public/XamlBuild/XamlTask.cs/#L47">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Xaml_Build_Tasks_XamlTask_Verbosity" data-uid="Tizen.NUI.Xaml.Build.Tasks.XamlTask.Verbosity" data-obsolete="this is no longer used" class="obsolete">Verbosity</h4>
+    <h4 id="Tizen_NUI_Xaml_Build_Tasks_XamlTask_Verbosity" data-uid="Tizen.NUI.Xaml.Build.Tasks.XamlTask.Verbosity">Verbosity</h4>
     <section>
       
     </section>
@@ -405,8 +409,7 @@ public string Assembly { get; set; }</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;this is no longer used&quot;)]
-public int Verbosity { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public int Verbosity { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -499,7 +502,7 @@ public int Verbosity { get; set; }</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.XamlBuild/src/public/XamlBuild/XamlTask.cs/#L70">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Xaml_Build_Tasks_XamlTask_Execute_System_Collections_Generic_IList_System_Exception___" data-uid="Tizen.NUI.Xaml.Build.Tasks.XamlTask.Execute(System.Collections.Generic.IList{System.Exception}@)">Execute(out IList&lt;Exception&gt;)</h4>
+    <h4 id="Tizen_NUI_Xaml_Build_Tasks_XamlTask_Execute_IList_Exception___" data-uid="Tizen.NUI.Xaml.Build.Tasks.XamlTask.Execute(IList{Exception}@)">Execute(out IList&lt;Exception&gt;)</h4>
     <section>
       
     </section>
@@ -520,7 +523,7 @@ public int Verbosity { get; set; }</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.exception">Exception</a>&gt;</td>
+        <td><span class="xref">IList</span>&lt;<span class="xref">Exception</span>&gt;</td>
         <td><span class="parametername">thrownExceptions</span></td>
         <td></td>
       </tr>
@@ -545,7 +548,29 @@ public int Verbosity { get; set; }</code></pre>
   
   <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/microsoft.build.framework.itask">Microsoft.Build.Framework.ITask</a>
+      <span class="xref">ITask</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

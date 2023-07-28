@@ -49,7 +49,7 @@
   <div class="entity">
   
   <div class="entity-header w-100 d-flex justify-content-between">
-    <h1 id="Tizen_Applications_WidgetApplication" data-uid="Tizen.Applications.WidgetApplication" data-obsolete="Deprecated since API10. Will be removed in API12." class="mt-0 text-break obsolete"><span class="entity-type">Class</span>
+    <h1 id="Tizen_Applications_WidgetApplication" data-uid="Tizen.Applications.WidgetApplication" class="mt-0 text-break"><span class="entity-type">Class</span>
   WidgetApplication
   </h1>
       <div class="contribution align-self-end">
@@ -67,8 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
-public class WidgetApplication : CoreApplication, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class WidgetApplication : CoreApplication</code></pre>
   </div>
 
   
@@ -86,12 +85,6 @@ public class WidgetApplication : CoreApplication, IDisposable</code></pre>
 
   
   
-  <dl class="attribute-list">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    </dd>
-  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -102,7 +95,7 @@ public class WidgetApplication : CoreApplication, IDisposable</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.WidgetApplication/Tizen.Applications/WidgetApplication.cs/#L35">View Source</a>
     </span>
-    <h4 id="Tizen_Applications_WidgetApplication__ctor_System_Collections_Generic_IDictionary_System_Type_System_String__" data-uid="Tizen.Applications.WidgetApplication.#ctor(System.Collections.Generic.IDictionary{System.Type,System.String})" data-obsolete="Deprecated since API10. Will be removed in API12." class="obsolete">WidgetApplication(IDictionary&lt;Type, String&gt;)</h4>
+    <h4 id="Tizen_Applications_WidgetApplication__ctor_IDictionary_Type_System_String__" data-uid="Tizen.Applications.WidgetApplication.#ctor(IDictionary{Type,System.String})">WidgetApplication(IDictionary&lt;Type, String&gt;)</h4>
     <section>
       <p>Initializes the WidgetApplication class with the type and application ID.</p>
 
@@ -111,8 +104,7 @@ public class WidgetApplication : CoreApplication, IDisposable</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
-public WidgetApplication(IDictionary&lt;Type, string&gt; typeInfo)</code></pre>
+    <pre><code class="lang-csharp hljs">public WidgetApplication(IDictionary&lt;Type, string&gt; typeInfo)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -125,7 +117,7 @@ public WidgetApplication(IDictionary&lt;Type, string&gt; typeInfo)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">IDictionary</span>&lt;<span class="xref">Type</span>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><span class="parametername">typeInfo</span></td>
         <td><p>Map structure for the derived class type and widget ID.</p>
 </td>
@@ -141,7 +133,7 @@ public WidgetApplication(IDictionary&lt;Type, string&gt; typeInfo)</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.WidgetApplication/Tizen.Applications/WidgetApplication.cs/#L49">View Source</a>
     </span>
-    <h4 id="Tizen_Applications_WidgetApplication__ctor_System_Type_" data-uid="Tizen.Applications.WidgetApplication.#ctor(System.Type)" data-obsolete="Deprecated since API10. Will be removed in API12." class="obsolete">WidgetApplication(Type)</h4>
+    <h4 id="Tizen_Applications_WidgetApplication__ctor_Type_" data-uid="Tizen.Applications.WidgetApplication.#ctor(Type)">WidgetApplication(Type)</h4>
     <section>
       <p>Initializes the WidgetApplication class with the type.</p>
 
@@ -150,8 +142,7 @@ public WidgetApplication(IDictionary&lt;Type, string&gt; typeInfo)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
-public WidgetApplication(Type type)</code></pre>
+    <pre><code class="lang-csharp hljs">public WidgetApplication(Type type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -164,14 +155,14 @@ public WidgetApplication(Type type)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="xref">Type</span></td>
         <td><span class="parametername">type</span></td>
         <td><p>Derived class type.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Applications_WidgetApplication__ctor_System_Type__remarks">Remarks</h5>
+  <h5 id="Tizen_Applications_WidgetApplication__ctor_Type__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Widget ID will be replaced as the application ID.</p>
 </div>
   
@@ -185,7 +176,7 @@ public WidgetApplication(Type type)</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.WidgetApplication/Tizen.Applications/WidgetApplication.cs/#L62">View Source</a>
     </span>
-    <h4 id="Tizen_Applications_WidgetApplication_GetInstances_System_Type_" data-uid="Tizen.Applications.WidgetApplication.GetInstances(System.Type)" data-obsolete="Deprecated since API10. Will be removed in API12." class="obsolete">GetInstances(Type)</h4>
+    <h4 id="Tizen_Applications_WidgetApplication_GetInstances_Type_" data-uid="Tizen.Applications.WidgetApplication.GetInstances(Type)">GetInstances(Type)</h4>
     <section>
       <p>Gets all instances of the widget associated with the type.</p>
 
@@ -194,8 +185,7 @@ public WidgetApplication(Type type)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
-public IEnumerable&lt;WidgetBase&gt; GetInstances(Type type)</code></pre>
+    <pre><code class="lang-csharp hljs">public IEnumerable&lt;WidgetBase&gt; GetInstances(Type type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -208,7 +198,7 @@ public IEnumerable&lt;WidgetBase&gt; GetInstances(Type type)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.type">Type</a></td>
+        <td><span class="xref">Type</span></td>
         <td><span class="parametername">type</span></td>
         <td><p>Class type for the widget.</p>
 </td>
@@ -225,7 +215,7 @@ public IEnumerable&lt;WidgetBase&gt; GetInstances(Type type)</code></pre>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Applications.WidgetBase.html">WidgetBase</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Applications.WidgetBase.html">WidgetBase</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -239,7 +229,7 @@ public IEnumerable&lt;WidgetBase&gt; GetInstances(Type type)</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.WidgetApplication/Tizen.Applications/WidgetApplication.cs/#L86">View Source</a>
     </span>
-    <h4 id="Tizen_Applications_WidgetApplication_Run_System_String___" data-uid="Tizen.Applications.WidgetApplication.Run(System.String[])" data-obsolete="Deprecated since API10. Will be removed in API12." class="obsolete">Run(String[])</h4>
+    <h4 id="Tizen_Applications_WidgetApplication_Run_System_String___" data-uid="Tizen.Applications.WidgetApplication.Run(System.String[])">Run(String[])</h4>
     <section>
       <p>Runs the widget application&apos;s main loop.</p>
 
@@ -248,8 +238,7 @@ public IEnumerable&lt;WidgetBase&gt; GetInstances(Type type)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
-public override void Run(string[] args)</code></pre>
+    <pre><code class="lang-csharp hljs">public override void Run(string[] args)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -274,9 +263,27 @@ public override void Run(string[] args)</code></pre>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
-  <h2 id="implements">Implements</h2>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

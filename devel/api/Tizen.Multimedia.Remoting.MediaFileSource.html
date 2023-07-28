@@ -84,6 +84,12 @@
 
   
   
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><span class="xref">Tizen.Multimedia.IDisplayable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a>&gt;</div>
+    </dd>
+  </dl>
   
   <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Depending on where the source file is located either the media storage privilege (<a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a>) is required or<br>
@@ -127,22 +133,6 @@ the external storage privilege(<a href="http://tizen.org/privilege/externalstora
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>10</span></h6>
   
@@ -178,27 +168,6 @@ the external storage privilege(<a href="http://tizen.org/privilege/externalstora
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><p>true if the transfer starts again from the beginning of the file source after reaching the end of the file; otherwise, false\n
 The default value is false.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>MediaSource is not attached yet.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The WebRTC has already been disposed.</p>
 </td>
       </tr>
     </tbody>
@@ -262,27 +231,6 @@ The default value is false.</p>
   <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_GetPause_Tizen_Multimedia_Remoting_MediaType__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The default value is false.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>MediaSource is not attached yet.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The WebRTC has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>10</span></h6>
   
@@ -340,27 +288,6 @@ The default value is false.</p>
   <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_GetTransceiverDirection_Tizen_Multimedia_Remoting_MediaType__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The default value is <a class="xref" href="Tizen.Multimedia.Remoting.TransceiverDirection.html#Tizen_Multimedia_Remoting_TransceiverDirection_SendRecv">SendRecv</a></p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>MediaSource is not attached yet.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The WebRTC has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>10</span></h6>
   
@@ -401,27 +328,6 @@ The default value is false.</p>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td><span class="parametername">isPaused</span></td>
         <td><p>The pause status.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>MediaSource is not attached yet.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The WebRTC has already been disposed.</p>
 </td>
       </tr>
     </tbody>
@@ -473,32 +379,35 @@ The default value is false.</p>
   <h5 id="Tizen_Multimedia_Remoting_MediaFileSource_SetTransceiverDirection_Tizen_Multimedia_Remoting_MediaType_Tizen_Multimedia_Remoting_TransceiverDirection__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The WebRTC must be in the <a class="xref" href="Tizen.Multimedia.Remoting.WebRTCState.html#Tizen_Multimedia_Remoting_WebRTCState_Idle">Idle</a> state when transceiver direction is set.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>MediaSource is not attached yet.<br>
--or-<br>
-The WebRTC is not in the valid state.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The WebRTC has already been disposed.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>10</span></h6>
   
+  <h2 id="implements">Implements</h2>
+  <div>
+      <span class="xref">Tizen.Multimedia.IDisplayable&lt;&gt;</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
   <h3 id="seealso">See Also</h3>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Multimedia.Remoting.WebRTC.html#Tizen_Multimedia_Remoting_WebRTC_AddSource_Tizen_Multimedia_Remoting_MediaSource_">AddSource(MediaSource)</a></div>

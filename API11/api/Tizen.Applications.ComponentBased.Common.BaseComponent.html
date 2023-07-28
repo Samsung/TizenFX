@@ -68,7 +68,7 @@ It provides common functions of FrameComponent and ServiceComponent.</p>
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class BaseComponent</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class BaseComponent : object</code></pre>
   </div>
 
   
@@ -127,6 +127,41 @@ It provides common functions of FrameComponent and ServiceComponent.</p>
     <tbody>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  
+  <h6><strong>API Level</strong>: <span>6</span></h6>
+  
+  
+  <a id="Tizen_Applications_ComponentBased_Common_BaseComponent_ContextHandle_" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.ContextHandle*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased/Tizen.Applications.ComponentBased.Common/BaseComponent.cs/#L103">View Source</a>
+    </span>
+    <h4 id="Tizen_Applications_ComponentBased_Common_BaseComponent_ContextHandle" data-uid="Tizen.Applications.ComponentBased.Common.BaseComponent.ContextHandle">ContextHandle</h4>
+    <section>
+      <p>A Context Handle</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public IntPtr ContextHandle { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IntPtr</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -354,7 +389,7 @@ It will be created after OnCreate method is invoked.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="Tizen.Applications.AppControlResult.html">AppControlResult</a>&gt;</td>
+        <td><span class="xref">Task</span>&lt;<a class="xref" href="Tizen.Applications.AppControlResult.html">AppControlResult</a>&gt;</td>
         <td><p>A task with the result of the launch request.</p>
 </td>
       </tr>
@@ -372,16 +407,6 @@ It will be created after OnCreate method is invoked.</p>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when failed because of the argument is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when fail to set component information to the AppControl.</p>
-</td>
-      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Applications.Exceptions.AppNotFoundException.html">AppNotFoundException</a></td>
         <td><p>Thrown when the application to run is not found.</p>
@@ -427,7 +452,7 @@ It will be created after OnCreate method is invoked.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.DeviceOrientationEventArgs.html">DeviceOrientationEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.DeviceOrientationEventArgs.html">DeviceOrientationEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -461,7 +486,7 @@ It will be created after OnCreate method is invoked.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.LocaleChangedEventArgs.html">LocaleChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.LocaleChangedEventArgs.html">LocaleChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -495,7 +520,7 @@ It will be created after OnCreate method is invoked.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.LowBatteryEventArgs.html">LowBatteryEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.LowBatteryEventArgs.html">LowBatteryEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -529,7 +554,7 @@ It will be created after OnCreate method is invoked.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.LowMemoryEventArgs.html">LowMemoryEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.LowMemoryEventArgs.html">LowMemoryEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -563,7 +588,7 @@ It will be created after OnCreate method is invoked.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.RegionFormatChangedEventArgs.html">RegionFormatChangedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.RegionFormatChangedEventArgs.html">RegionFormatChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -597,7 +622,7 @@ It will be created after OnCreate method is invoked.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Applications.SuspendedStateEventArgs.html">SuspendedStateEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Applications.SuspendedStateEventArgs.html">SuspendedStateEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -605,6 +630,28 @@ It will be created after OnCreate method is invoked.</p>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
   </div></section>
             </div>
           </main>

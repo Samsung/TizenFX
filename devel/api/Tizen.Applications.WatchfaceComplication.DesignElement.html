@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class DesignElement : IEditable</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class DesignElement : object, IEditable</code></pre>
   </div>
 
   
@@ -99,7 +99,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.WatchfaceComplication/Tizen.Applications/DesignElement.cs/#L85">View Source</a>
     </span>
-    <h4 id="Tizen_Applications_WatchfaceComplication_DesignElement__ctor_System_Collections_Generic_IEnumerable_Tizen_Applications_Bundle__System_Int32_System_String_" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.#ctor(System.Collections.Generic.IEnumerable{Tizen.Applications.Bundle},System.Int32,System.String)">DesignElement(IEnumerable&lt;Bundle&gt;, Int32, String)</h4>
+    <h4 id="Tizen_Applications_WatchfaceComplication_DesignElement__ctor_IEnumerable_Tizen_Applications_Bundle__System_Int32_System_String_" data-uid="Tizen.Applications.WatchfaceComplication.DesignElement.#ctor(IEnumerable{Tizen.Applications.Bundle},System.Int32,System.String)">DesignElement(IEnumerable&lt;Bundle&gt;, Int32, String)</h4>
     <section>
       <p>Initializes a new instance of the DesignElement class.</p>
 
@@ -121,7 +121,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a>&gt;</td>
         <td><span class="parametername">candidates</span></td>
         <td><p>The candidates list.</p>
 </td>
@@ -140,7 +140,7 @@
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Applications_WatchfaceComplication_DesignElement__ctor_System_Collections_Generic_IEnumerable_Tizen_Applications_Bundle__System_Int32_System_String__examples">Examples</h5>
+  <h5 id="Tizen_Applications_WatchfaceComplication_DesignElement__ctor_IEnumerable_Tizen_Applications_Bundle__System_Int32_System_String__examples">Examples</h5>
   <pre><code>public class ColorDesign : DesignElement
 {
     private Button _layout;
@@ -177,32 +177,6 @@ data.AddItem(_colorKey, &quot;BLUE&quot;);
 candidatesList.Add(data);
 ColorDesign colorEdit = new ColorDesign(candidatesList, curIdx, &quot;COLOR&quot;, _complicationBtn);</code></pre>
 
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when e is invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when the method failed due to invalid operation.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the watchface complication is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
@@ -235,7 +209,7 @@ ColorDesign colorEdit = new ColorDesign(candidatesList, curIdx, &quot;COLOR&quot
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a>&gt;</td>
+        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Applications.Bundle.html">Bundle</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -506,6 +480,28 @@ ColorDesign colorEdit = new ColorDesign(candidatesList, curIdx, &quot;COLOR&quot
   <h2 id="implements">Implements</h2>
   <div>
       <a class="xref" href="Tizen.Applications.WatchfaceComplication.IEditable.html">IEditable</a>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

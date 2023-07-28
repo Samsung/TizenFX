@@ -83,12 +83,6 @@
 
   
   
-  <dl class="attribute-list">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    </dd>
-  </dl>
   
   <h5 id="Tizen_MachineLearning_Inference_CustomFilter_remarks"><strong>Remarks</strong></h5>
   <div class="markdown level0 remarks"><p>Because of data translation (i.e. marshaling and unmarshaling ) between Native and .Net Layer, CustomFilter class shows lower performance than native implementation.</p>
@@ -138,7 +132,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.MachineLearning.Inference/Tizen.MachineLearning.Inference/CustomFilter.cs/#L60">View Source</a>
     </span>
-    <h4 id="Tizen_MachineLearning_Inference_CustomFilter_Create_System_String_Tizen_MachineLearning_Inference_TensorsInfo_Tizen_MachineLearning_Inference_TensorsInfo_System_Func_Tizen_MachineLearning_Inference_TensorsData_Tizen_MachineLearning_Inference_TensorsData__" data-uid="Tizen.MachineLearning.Inference.CustomFilter.Create(System.String,Tizen.MachineLearning.Inference.TensorsInfo,Tizen.MachineLearning.Inference.TensorsInfo,System.Func{Tizen.MachineLearning.Inference.TensorsData,Tizen.MachineLearning.Inference.TensorsData})">Create(String, TensorsInfo, TensorsInfo, Func&lt;TensorsData, TensorsData&gt;)</h4>
+    <h4 id="Tizen_MachineLearning_Inference_CustomFilter_Create_System_String_Tizen_MachineLearning_Inference_TensorsInfo_Tizen_MachineLearning_Inference_TensorsInfo_Func_Tizen_MachineLearning_Inference_TensorsData_Tizen_MachineLearning_Inference_TensorsData__" data-uid="Tizen.MachineLearning.Inference.CustomFilter.Create(System.String,Tizen.MachineLearning.Inference.TensorsInfo,Tizen.MachineLearning.Inference.TensorsInfo,Func{Tizen.MachineLearning.Inference.TensorsData,Tizen.MachineLearning.Inference.TensorsData})">Create(String, TensorsInfo, TensorsInfo, Func&lt;TensorsData, TensorsData&gt;)</h4>
     <section>
       <p>Creates new custom-filter with input and output tensors information.</p>
 
@@ -178,7 +172,7 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.func-2">Func</a>&lt;<a class="xref" href="Tizen.MachineLearning.Inference.TensorsData.html">TensorsData</a>, <a class="xref" href="Tizen.MachineLearning.Inference.TensorsData.html">TensorsData</a>&gt;</td>
+        <td><span class="xref">Func</span>&lt;<a class="xref" href="Tizen.MachineLearning.Inference.TensorsData.html">TensorsData</a>, <a class="xref" href="Tizen.MachineLearning.Inference.TensorsData.html">TensorsData</a>&gt;</td>
         <td><span class="parametername">filter</span></td>
         <td><p>Delegate to be called while processing the pipeline</p>
 </td>
@@ -197,27 +191,6 @@
       <tr>
         <td><a class="xref" href="Tizen.MachineLearning.Inference.CustomFilter.html">CustomFilter</a></td>
         <td><p>CustomFiter instance</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when the method failed due to an invalid parameter.</p>
 </td>
       </tr>
     </tbody>
@@ -283,9 +256,27 @@
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
-  <h2 id="implements">Implements</h2>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

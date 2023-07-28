@@ -49,7 +49,7 @@
   <div class="entity">
   
   <div class="entity-header w-100 d-flex justify-content-between">
-    <h1 id="Tizen_Maps_Area" data-uid="Tizen.Maps.Area" data-obsolete="Deprecated since API11. Might be removed in API13" class="mt-0 text-break obsolete"><span class="entity-type">Class</span>
+    <h1 id="Tizen_Maps_Area" data-uid="Tizen.Maps.Area" class="mt-0 text-break"><span class="entity-type">Class</span>
   Area
   </h1>
       <div class="contribution align-self-end">
@@ -67,8 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13&quot;)]
-public class Area : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Area : IDisposable</code></pre>
   </div>
 
   
@@ -84,12 +83,6 @@ public class Area : IDisposable</code></pre>
 
   
   
-  <dl class="attribute-list">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    </dd>
-  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -100,7 +93,7 @@ public class Area : IDisposable</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/Area.cs/#L54">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_Area__ctor_Tizen_Maps_Geocoordinates_System_Double_" data-uid="Tizen.Maps.Area.#ctor(Tizen.Maps.Geocoordinates,System.Double)" data-obsolete="Deprecated since API10. Might be removed in API12." class="obsolete">Area(Geocoordinates, Double)</h4>
+    <h4 id="Tizen_Maps_Area__ctor_Tizen_Maps_Geocoordinates_System_Double_" data-uid="Tizen.Maps.Area.#ctor(Tizen.Maps.Geocoordinates,System.Double)">Area(Geocoordinates, Double)</h4>
     <section>
       <p>Constructs a circular area.</p>
 
@@ -109,8 +102,7 @@ public class Area : IDisposable</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
-public Area(Geocoordinates center, double radius)</code></pre>
+    <pre><code class="lang-csharp hljs">public Area(Geocoordinates center, double radius)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -136,32 +128,6 @@ public Area(Geocoordinates center, double radius)</code></pre>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the required feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when input coordinates are invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when a native operation fails to allocate memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -171,7 +137,7 @@ public Area(Geocoordinates center, double radius)</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/Area.cs/#L39">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_Area__ctor_Tizen_Maps_Geocoordinates_Tizen_Maps_Geocoordinates_" data-uid="Tizen.Maps.Area.#ctor(Tizen.Maps.Geocoordinates,Tizen.Maps.Geocoordinates)" data-obsolete="Deprecated since API10. Might be removed in API12." class="obsolete">Area(Geocoordinates, Geocoordinates)</h4>
+    <h4 id="Tizen_Maps_Area__ctor_Tizen_Maps_Geocoordinates_Tizen_Maps_Geocoordinates_" data-uid="Tizen.Maps.Area.#ctor(Tizen.Maps.Geocoordinates,Tizen.Maps.Geocoordinates)">Area(Geocoordinates, Geocoordinates)</h4>
     <section>
       <p>Constructs a rectangular area.</p>
 
@@ -180,8 +146,7 @@ public Area(Geocoordinates center, double radius)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
-public Area(Geocoordinates topLeft, Geocoordinates bottomRight)</code></pre>
+    <pre><code class="lang-csharp hljs">public Area(Geocoordinates topLeft, Geocoordinates bottomRight)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -207,32 +172,6 @@ public Area(Geocoordinates topLeft, Geocoordinates bottomRight)</code></pre>
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the required feature is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when input coordinates are invalid.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>Thrown when a native operation fails to allocate memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -244,7 +183,7 @@ public Area(Geocoordinates topLeft, Geocoordinates bottomRight)</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/Area.cs/#L95">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_Area_Dispose" data-uid="Tizen.Maps.Area.Dispose" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Dispose()</h4>
+    <h4 id="Tizen_Maps_Area_Dispose" data-uid="Tizen.Maps.Area.Dispose">Dispose()</h4>
     <section>
       <p>Releases all the resources used by this object.</p>
 
@@ -253,8 +192,7 @@ public Area(Geocoordinates topLeft, Geocoordinates bottomRight)</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
-public void Dispose()</code></pre>
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
   </div>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
@@ -265,7 +203,7 @@ public void Dispose()</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/Area.cs/#L81">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_Area_Dispose_System_Boolean_" data-uid="Tizen.Maps.Area.Dispose(System.Boolean)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Dispose(Boolean)</h4>
+    <h4 id="Tizen_Maps_Area_Dispose_System_Boolean_" data-uid="Tizen.Maps.Area.Dispose(System.Boolean)">Dispose(Boolean)</h4>
     <section>
       <p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
 
@@ -274,8 +212,7 @@ public void Dispose()</code></pre>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
-protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -304,7 +241,7 @@ protected virtual void Dispose(bool disposing)</code></pre>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/Area.cs/#L68">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_Area_Finalize" data-uid="Tizen.Maps.Area.Finalize" data-obsolete="Deprecated since API11. Might be removed in API13" class="obsolete">Finalize()</h4>
+    <h4 id="Tizen_Maps_Area_Finalize" data-uid="Tizen.Maps.Area.Finalize">Finalize()</h4>
     <section>
       <p>Destroy the Area object.</p>
 
@@ -317,9 +254,27 @@ protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   
   
-  <h2 id="implements">Implements</h2>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

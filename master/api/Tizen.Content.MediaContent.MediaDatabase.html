@@ -83,12 +83,6 @@
 
   
   
-  <dl class="attribute-list">
-    <dt>Implements</dt>
-    <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
-    </dd>
-  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -180,16 +174,6 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The database is already connected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while connecting.</p>
 </td>
@@ -225,16 +209,6 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The database is not connected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
       <tr>
         <td><a class="xref" href="Tizen.Content.MediaContent.MediaDatabaseException.html">MediaDatabaseException</a></td>
         <td><p>An error occurred while connecting.</p>
@@ -350,53 +324,8 @@ If you want to access internal storage, you should add privilege <a href="http:/
 If you want to access external storage, you should add privilege <a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>.<br>
 <br>
 If <a href="http://tizen.org/feature/content.scanning.others">http://tizen.org/feature/content.scanning.others</a> feature is not supported and the specified file is other-type,
-<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a> will be thrown.</p>
+<see cref="!:NotSupportedException"></see> will be thrown.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The database is not connected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is a zero-length string, contains only white space.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">path</code> contains a hidden path that starts with &apos;.&apos;.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">path</code> contains a directory containing the &quot;.scan_ignore&quot; file.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>The caller has no required privilege.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>The required feature is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -447,7 +376,7 @@ If <a href="http://tizen.org/feature/content.scanning.others">http://tizen.org/f
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task that represents the asynchronous scan operation.</p>
 </td>
       </tr>
@@ -457,50 +386,74 @@ If <a href="http://tizen.org/feature/content.scanning.others">http://tizen.org/f
   <div class="markdown level1 remarks"><p>If you want to access internal storage, you should add privilege <a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a>.<br>
 If you want to access external storage, you should add privilege <a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The database is not connected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>The caller has no required privilege.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">folderPath</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">folderPath</code> is a zero-length string, contains only white space.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">folderPath</code> contains a hidden path that starts with &apos;.&apos;.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">folderPath</code> contains a directory containing the &quot;.scan_ignore&quot; file.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
   <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/content.write</span><span>http://tizen.org/privilege/mediastorage</span><span>http://tizen.org/privilege/externalstorage</span></span></h6>
+  
+  
+  <a id="Tizen_Content_MediaContent_MediaDatabase_ScanFolderAsync_" data-uid="Tizen.Content.MediaContent.MediaDatabase.ScanFolderAsync*"></a>
+  <div class="entity-child">
+    <span class="pull-right mobile-hide view-source">
+      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaDatabase.cs/#L327">View Source</a>
+    </span>
+    <h4 id="Tizen_Content_MediaContent_MediaDatabase_ScanFolderAsync_System_String_CancellationToken_" data-uid="Tizen.Content.MediaContent.MediaDatabase.ScanFolderAsync(System.String,CancellationToken)">ScanFolderAsync(String, CancellationToken)</h4>
+    <section>
+      <p>Requests to scan a folder recursively.</p>
+
+    </section>
+  </div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ScanFolderAsync(string folderPath, CancellationToken cancellationToken)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">folderPath</span></td>
+        <td><p>The path to scan.</p>
+</td>
+      </tr>
+      <tr>
+        <td><span class="xref">CancellationToken</span></td>
+        <td><span class="parametername">cancellationToken</span></td>
+        <td><p>The token to stop scanning.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">Task</span></td>
+        <td><p>A task that represents the asynchronous scan operation.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="Tizen_Content_MediaContent_MediaDatabase_ScanFolderAsync_System_String_CancellationToken__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>If you want to access internal storage, you should add privilege <a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a>.<br>
+If you want to access external storage, you should add privilege <a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>.</p>
+</div>
+  
+  <h6><strong>API Level</strong>: <span>4</span></h6>
   
   
   <a id="Tizen_Content_MediaContent_MediaDatabase_ScanFolderAsync_" data-uid="Tizen.Content.MediaContent.MediaDatabase.ScanFolderAsync*"></a>
@@ -553,7 +506,7 @@ If you want to access external storage, you should add privilege <a href="http:/
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task that represents the asynchronous scan operation.</p>
 </td>
       </tr>
@@ -563,46 +516,6 @@ If you want to access external storage, you should add privilege <a href="http:/
   <div class="markdown level1 remarks"><p>If you want to access internal storage, you should add privilege <a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a>.<br>
 If you want to access external storage, you should add privilege <a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The database is not connected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>The caller has no required privilege.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">folderPath</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">folderPath</code> is a zero-length string, contains only white space.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">folderPath</code> contains a hidden path that starts with &apos;.&apos;.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">folderPath</code> contains a directory containing the &quot;.scan_ignore&quot; file.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -614,7 +527,7 @@ If you want to access external storage, you should add privilege <a href="http:/
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaDatabase.cs/#L359">View Source</a>
     </span>
-    <h4 id="Tizen_Content_MediaContent_MediaDatabase_ScanFolderAsync_System_String_System_Boolean_System_Threading_CancellationToken_" data-uid="Tizen.Content.MediaContent.MediaDatabase.ScanFolderAsync(System.String,System.Boolean,System.Threading.CancellationToken)">ScanFolderAsync(String, Boolean, CancellationToken)</h4>
+    <h4 id="Tizen_Content_MediaContent_MediaDatabase_ScanFolderAsync_System_String_System_Boolean_CancellationToken_" data-uid="Tizen.Content.MediaContent.MediaDatabase.ScanFolderAsync(System.String,System.Boolean,CancellationToken)">ScanFolderAsync(String, Boolean, CancellationToken)</h4>
     <section>
       <p>Requests to scan a folder.</p>
 
@@ -648,7 +561,7 @@ If you want to access external storage, you should add privilege <a href="http:/
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
+        <td><span class="xref">CancellationToken</span></td>
         <td><span class="parametername">cancellationToken</span></td>
         <td><p>The token to stop scanning.</p>
 </td>
@@ -665,166 +578,18 @@ If you want to access external storage, you should add privilege <a href="http:/
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td><span class="xref">Task</span></td>
         <td><p>A task that represents the asynchronous scan operation.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Content_MediaContent_MediaDatabase_ScanFolderAsync_System_String_System_Boolean_System_Threading_CancellationToken__remarks">Remarks</h5>
+  <h5 id="Tizen_Content_MediaContent_MediaDatabase_ScanFolderAsync_System_String_System_Boolean_CancellationToken__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>If you want to access internal storage, you should add privilege <a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a>.<br>
 If you want to access external storage, you should add privilege <a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>.</p>
 </div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The database is not connected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>The caller has no required privilege.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">folderPath</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">folderPath</code> is a zero-length string, contains only white space.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">folderPath</code> contains a hidden path that starts with &apos;.&apos;.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">folderPath</code> contains a directory containing the &quot;.scan_ignore&quot; file.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/content.write</span><span>http://tizen.org/privilege/mediastorage</span><span>http://tizen.org/privilege/externalstorage</span></span></h6>
-  
-  
-  <a id="Tizen_Content_MediaContent_MediaDatabase_ScanFolderAsync_" data-uid="Tizen.Content.MediaContent.MediaDatabase.ScanFolderAsync*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Content.MediaContent/Tizen.Content.MediaContent/MediaDatabase.cs/#L327">View Source</a>
-    </span>
-    <h4 id="Tizen_Content_MediaContent_MediaDatabase_ScanFolderAsync_System_String_System_Threading_CancellationToken_" data-uid="Tizen.Content.MediaContent.MediaDatabase.ScanFolderAsync(System.String,System.Threading.CancellationToken)">ScanFolderAsync(String, CancellationToken)</h4>
-    <section>
-      <p>Requests to scan a folder recursively.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task ScanFolderAsync(string folderPath, CancellationToken cancellationToken)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">folderPath</span></td>
-        <td><p>The path to scan.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.cancellationtoken">CancellationToken</a></td>
-        <td><span class="parametername">cancellationToken</span></td>
-        <td><p>The token to stop scanning.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
-        <td><p>A task that represents the asynchronous scan operation.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Content_MediaContent_MediaDatabase_ScanFolderAsync_System_String_System_Threading_CancellationToken__remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>If you want to access internal storage, you should add privilege <a href="http://tizen.org/privilege/mediastorage">http://tizen.org/privilege/mediastorage</a>.<br>
-If you want to access external storage, you should add privilege <a href="http://tizen.org/privilege/externalstorage">http://tizen.org/privilege/externalstorage</a>.</p>
-</div>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>The database is not connected.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
-        <td><p>The <a class="xref" href="Tizen.Content.MediaContent.MediaDatabase.html">MediaDatabase</a> has already been disposed.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>The caller has no required privilege.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">folderPath</code> is null.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p><code data-dev-comment-type="paramref" class="paramref">folderPath</code> is a zero-length string, contains only white space.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">folderPath</code> contains a hidden path that starts with &apos;.&apos;.<br>
--or-<br>
-<code data-dev-comment-type="paramref" class="paramref">folderPath</code> contains a directory containing the &quot;.scan_ignore&quot; file.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>4</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/content.write</span><span>http://tizen.org/privilege/mediastorage</span><span>http://tizen.org/privilege/externalstorage</span></span></h6>
   
   <h2 id="events">Events
   </h2>
@@ -854,7 +619,7 @@ If you want to access external storage, you should add privilege <a href="http:/
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Content.MediaContent.FolderUpdatedEventArgs.html">FolderUpdatedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Content.MediaContent.FolderUpdatedEventArgs.html">FolderUpdatedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -888,7 +653,7 @@ If you want to access external storage, you should add privilege <a href="http:/
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Content.MediaContent.MediaInfoUpdatedEventArgs.html">MediaInfoUpdatedEventArgs</a>&gt;</td>
+        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Content.MediaContent.MediaInfoUpdatedEventArgs.html">MediaInfoUpdatedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -896,9 +661,27 @@ If you want to access external storage, you should add privilege <a href="http:/
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
-  <h2 id="implements">Implements</h2>
+  <h3 id="extensionmethods">Extension Methods</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>
