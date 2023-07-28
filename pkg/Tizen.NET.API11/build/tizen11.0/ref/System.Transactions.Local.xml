@@ -9,17 +9,14 @@
     </member>
     <member name="M:System.Transactions.CommittableTransaction.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Transactions.CommittableTransaction" /> class.</summary>
-      <exception cref="T:System.PlatformNotSupportedException">An attempt to create a transaction under Windows 98, Windows 98 Second Edition or Windows Millennium Edition.</exception>
     </member>
     <member name="M:System.Transactions.CommittableTransaction.#ctor(System.TimeSpan)">
       <summary>Initializes a new instance of the <see cref="T:System.Transactions.CommittableTransaction" /> class with the specified <paramref name="timeout" /> value.</summary>
       <param name="timeout">The maximum amount of time the transaction can exist, before it is aborted.</param>
-      <exception cref="T:System.PlatformNotSupportedException">An attempt to create a transaction under Windows 98, Windows 98 Second Edition or Windows Millennium Edition.</exception>
     </member>
     <member name="M:System.Transactions.CommittableTransaction.#ctor(System.Transactions.TransactionOptions)">
       <summary>Initializes a new instance of the <see cref="T:System.Transactions.CommittableTransaction" /> class with the specified transaction options.</summary>
       <param name="options">A <see cref="T:System.Transactions.TransactionOptions" /> structure that describes the transaction options to use for the new transaction.</param>
-      <exception cref="T:System.PlatformNotSupportedException">An attempt to create a transaction under Windows 98, Windows 98 Second Edition or Windows Millennium Edition.</exception>
       <exception cref="T:System.ArgumentException">
         <paramref name="options" /> is invalid.</exception>
     </member>
@@ -192,8 +189,10 @@
       <summary>Volatile data can be read but not modified, and no new data can be added during the transaction.</summary>
     </member>
     <member name="F:System.Transactions.IsolationLevel.Snapshot">
-      <summary>Volatile data can be read. Before a transaction modifies data, it verifies if another transaction has changed the data after it was initially read. If the data has been updated, an error is raised. This allows a transaction to get to the previously committed value of the data.
-When you try to promote a transaction that was created with the <see langword="Snapshot" /> isolation level, an <see cref="T:System.InvalidOperationException" /> is thrown with the error message "Transactions with IsolationLevel Snapshot cannot be promoted".</summary>
+      <summary>
+        <para>Volatile data can be read. Before a transaction modifies data, it verifies if another transaction has changed the data after it was initially read. If the data has been updated, an error is raised. This allows a transaction to get to the previously committed value of the data.</para>
+        <para>When you try to promote a transaction that was created with the <see langword="Snapshot" /> isolation level, an <see cref="T:System.InvalidOperationException" /> is thrown with the error message "Transactions with IsolationLevel Snapshot cannot be promoted".</para>
+      </summary>
     </member>
     <member name="F:System.Transactions.IsolationLevel.Unspecified">
       <summary>A different isolation level than the one specified is being used, but the level cannot be determined. An exception is thrown if this value is set.</summary>
@@ -220,8 +219,8 @@ When you try to promote a transaction that was created with the <see langword="S
     </member>
     <member name="M:System.Transactions.PreparingEnlistment.RecoveryInformation">
       <summary>Gets the recovery information of an enlistment.</summary>
-      <returns>The recovery information of an enlistment.</returns>
       <exception cref="T:System.InvalidOperationException">An attempt to get recovery information inside a volatile enlistment, which does not generate any recovery information.</exception>
+      <returns>The recovery information of an enlistment.</returns>
     </member>
     <member name="T:System.Transactions.SinglePhaseEnlistment">
       <summary>Provides a set of callbacks that facilitate communication between a participant enlisted for Single Phase Commit and the transaction manager when the <see cref="M:System.Transactions.ISinglePhaseNotification.SinglePhaseCommit(System.Transactions.SinglePhaseEnlistment)" /> notification is received.</summary>
@@ -248,19 +247,19 @@ When you try to promote a transaction that was created with the <see langword="S
     </member>
     <member name="M:System.Transactions.SubordinateTransaction.#ctor(System.Transactions.IsolationLevel,System.Transactions.ISimpleTransactionSuperior)">
       <summary>Initializes a new instance of the <see cref="T:System.Transactions.SubordinateTransaction" /> class.</summary>
-      <param name="isoLevel">The isolation level of the transaction</param>
-      <param name="superior">A <see cref="T:System.Transactions.ISimpleTransactionSuperior" /></param>
+      <param name="isoLevel">The isolation level of the transaction.</param>
+      <param name="superior">A <see cref="T:System.Transactions.ISimpleTransactionSuperior" />.</param>
     </member>
     <member name="T:System.Transactions.Transaction">
       <summary>Represents a transaction.</summary>
     </member>
+    <member name="E:System.Transactions.Transaction.TransactionCompleted">
+      <summary>Indicates that the transaction is completed.</summary>
+      <exception cref="T:System.ObjectDisposedException">An attempt to subscribe this event on a transaction that has been disposed.</exception>
+    </member>
     <member name="M:System.Transactions.Transaction.Clone">
       <summary>Creates a clone of the transaction.</summary>
       <returns>A <see cref="T:System.Transactions.Transaction" /> that is a copy of the current transaction object.</returns>
-    </member>
-    <member name="P:System.Transactions.Transaction.Current">
-      <summary>Gets or sets the ambient transaction.</summary>
-      <returns>A <see cref="T:System.Transactions.Transaction" /> that describes the current transaction.</returns>
     </member>
     <member name="M:System.Transactions.Transaction.DependentClone(System.Transactions.DependentCloneOption)">
       <summary>Creates a dependent clone of the transaction.</summary>
@@ -325,10 +324,6 @@ When you try to promote a transaction that was created with the <see langword="S
       <summary>Gets the  <c>byte[]</c> returned by the <c>Promote</c> method when the transaction is promoted.</summary>
       <returns>The  <c>byte[]</c> returned by the <c>Promote</c> method when the transaction is promoted.</returns>
     </member>
-    <member name="P:System.Transactions.Transaction.IsolationLevel">
-      <summary>Gets the isolation level of the transaction.</summary>
-      <returns>One of the <see cref="T:System.Transactions.IsolationLevel" /> values that indicates the isolation level of the transaction.</returns>
-    </member>
     <member name="M:System.Transactions.Transaction.op_Equality(System.Transactions.Transaction,System.Transactions.Transaction)">
       <summary>Tests whether two specified <see cref="T:System.Transactions.Transaction" /> instances are equivalent.</summary>
       <param name="x">The <see cref="T:System.Transactions.Transaction" /> instance that is to the left of the equality operator.</param>
@@ -351,10 +346,6 @@ When you try to promote a transaction that was created with the <see langword="S
       <param name="enlistmentOptions">
         <see cref="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired" /> if the resource manager wants to perform additional work during the prepare phase.</param>
     </member>
-    <member name="P:System.Transactions.Transaction.PromoterType">
-      <summary>Uniquely identifies the format of the <c>byte[]</c> returned by the Promote method when the transaction is promoted.</summary>
-      <returns>A guid that uniquely identifies the format of the <c>byte[]</c> returned by the Promote method when the transaction is promoted.</returns>
-    </member>
     <member name="M:System.Transactions.Transaction.Rollback">
       <summary>Rolls back (aborts) the transaction.</summary>
     </member>
@@ -372,9 +363,17 @@ When you try to promote a transaction that was created with the <see langword="S
       <param name="serializationInfo">The <see cref="T:System.Runtime.Serialization.SerializationInfo" /> to populate with data.</param>
       <param name="context">The destination (see <see cref="T:System.Runtime.Serialization.StreamingContext" /> ) for this serialization.</param>
     </member>
-    <member name="E:System.Transactions.Transaction.TransactionCompleted">
-      <summary>Indicates that the transaction is completed.</summary>
-      <exception cref="T:System.ObjectDisposedException">An attempt to subscribe this event on a transaction that has been disposed.</exception>
+    <member name="P:System.Transactions.Transaction.Current">
+      <summary>Gets or sets the ambient transaction.</summary>
+      <returns>A <see cref="T:System.Transactions.Transaction" /> that describes the current transaction.</returns>
+    </member>
+    <member name="P:System.Transactions.Transaction.IsolationLevel">
+      <summary>Gets the isolation level of the transaction.</summary>
+      <returns>One of the <see cref="T:System.Transactions.IsolationLevel" /> values that indicates the isolation level of the transaction.</returns>
+    </member>
+    <member name="P:System.Transactions.Transaction.PromoterType">
+      <summary>Uniquely identifies the format of the <c>byte[]</c> returned by the Promote method when the transaction is promoted.</summary>
+      <returns>A guid that uniquely identifies the format of the <c>byte[]</c> returned by the Promote method when the transaction is promoted.</returns>
     </member>
     <member name="P:System.Transactions.Transaction.TransactionInformation">
       <summary>Retrieves additional information about a transaction.</summary>
@@ -477,6 +476,9 @@ When you try to promote a transaction that was created with the <see langword="S
     <member name="T:System.Transactions.TransactionInterop">
       <summary>Facilitates interaction between <see cref="N:System.Transactions" /> and components that were previously written to interact with MSDTC, COM+, or <see cref="N:System.EnterpriseServices" />. This class cannot be inherited.</summary>
     </member>
+    <member name="F:System.Transactions.TransactionInterop.PromoterTypeDtc">
+      <summary>The type of the distributed transaction processor.</summary>
+    </member>
     <member name="M:System.Transactions.TransactionInterop.GetDtcTransaction(System.Transactions.Transaction)">
       <summary>Gets an <see cref="T:System.Transactions.IDtcTransaction" /> instance that represents a <see cref="T:System.Transactions.Transaction" />.</summary>
       <param name="transaction">A <see cref="T:System.Transactions.Transaction" /> instance to be marshaled.</param>
@@ -501,39 +503,25 @@ When you try to promote a transaction that was created with the <see langword="S
     <member name="M:System.Transactions.TransactionInterop.GetTransactionFromTransmitterPropagationToken(System.Byte[])">
       <summary>Generates a <see cref="T:System.Transactions.Transaction" /> instance from the specified transmitter propagation token.</summary>
       <param name="propagationToken">A propagation token representing a transaction.</param>
-      <returns>A <see cref="T:System.Transactions.Transaction" /> from the specified transmitter propagation token.</returns>
       <exception cref="T:System.Transactions.TransactionManagerCommunicationException">The deserialization of a transaction fails because the transaction manager cannot be contacted. This may be caused by network firewall or security settings.</exception>
+      <returns>A <see cref="T:System.Transactions.Transaction" /> from the specified transmitter propagation token.</returns>
     </member>
     <member name="M:System.Transactions.TransactionInterop.GetTransmitterPropagationToken(System.Transactions.Transaction)">
       <summary>Generates a propagation token for the specified <see cref="T:System.Transactions.Transaction" />.</summary>
       <param name="transaction">A transaction to be marshaled into a propagation token.</param>
-      <returns>This method, together with the <see cref="M:System.Transactions.TransactionInterop.GetTransactionFromTransmitterPropagationToken(System.Byte[])" /> method, provide functionality for Transmitter/Receiver propagation, in which the transaction is "pulled" from the remote machine when the latter is called to unmarshal the transaction.
-For more information on different propagation models, see <see cref="T:System.Transactions.TransactionInterop" /> class.</returns>
+      <returns>This method, together with the <see cref="M:System.Transactions.TransactionInterop.GetTransactionFromTransmitterPropagationToken(System.Byte[])" /> method, provide functionality for Transmitter/Receiver propagation, in which the transaction is "pulled" from the remote machine when the latter is called to unmarshal the transaction.  
+  
+ For more information on different propagation models, see <see cref="T:System.Transactions.TransactionInterop" /> class.</returns>
     </member>
     <member name="M:System.Transactions.TransactionInterop.GetWhereabouts">
       <summary>Gets the Whereabouts of the distributed transaction manager that <see cref="N:System.Transactions" /> uses.</summary>
       <returns>The Whereabouts of the distributed transaction manager that <see cref="N:System.Transactions" /> uses.</returns>
     </member>
-    <member name="F:System.Transactions.TransactionInterop.PromoterTypeDtc">
-      <summary>The type of the distributed transaction processor.</summary>
-    </member>
     <member name="T:System.Transactions.TransactionManager">
       <summary>Contains methods used for transaction management. This class cannot be inherited.</summary>
     </member>
-    <member name="P:System.Transactions.TransactionManager.DefaultTimeout">
-      <summary>Gets the default timeout interval for new transactions.</summary>
-      <returns>A <see cref="T:System.TimeSpan" /> value that specifies the timeout interval for new transactions.</returns>
-    </member>
     <member name="E:System.Transactions.TransactionManager.DistributedTransactionStarted">
       <summary>Indicates that a distributed transaction has started.</summary>
-    </member>
-    <member name="P:System.Transactions.TransactionManager.HostCurrentCallback">
-      <summary>Gets or sets a custom transaction factory.</summary>
-      <returns>A <see cref="T:System.Transactions.HostCurrentTransactionCallback" /> that contains a custom transaction factory.</returns>
-    </member>
-    <member name="P:System.Transactions.TransactionManager.MaximumTimeout">
-      <summary>Gets the default maximum timeout interval for new transactions.</summary>
-      <returns>A <see cref="T:System.TimeSpan" /> value that specifies the maximum timeout interval that is allowed when creating new transactions.</returns>
     </member>
     <member name="M:System.Transactions.TransactionManager.RecoveryComplete(System.Guid)">
       <summary>Notifies the transaction manager that a resource manager recovering from failure has finished reenlisting in all unresolved transactions.</summary>
@@ -545,16 +533,32 @@ For more information on different propagation models, see <see cref="T:System.Tr
       <param name="resourceManagerIdentifier">A <see cref="T:System.Guid" /> that uniquely identifies the resource manager.</param>
       <param name="recoveryInformation">Contains additional information of recovery information.</param>
       <param name="enlistmentNotification">A resource object that implements <see cref="T:System.Transactions.IEnlistmentNotification" /> to receive notifications.</param>
-      <returns>An <see cref="T:System.Transactions.Enlistment" /> that describes the enlistment.</returns>
       <exception cref="T:System.ArgumentException">
-        <paramref name="recoveryInformation" /> is invalid.
--or-
-Transaction Manager information in <paramref name="recoveryInformation" /> does not match the configured transaction manager.
--or-
-<paramref name="RecoveryInformation" /> is not recognized by <see cref="N:System.Transactions" />.</exception>
+        <paramref name="recoveryInformation" /> is invalid.  
+  
+ -or-  
+  
+ Transaction Manager information in <paramref name="recoveryInformation" /> does not match the configured transaction manager.  
+  
+ -or-  
+  
+ <paramref name="RecoveryInformation" /> is not recognized by <see cref="N:System.Transactions" />.</exception>
       <exception cref="T:System.InvalidOperationException">
         <see cref="M:System.Transactions.TransactionManager.RecoveryComplete(System.Guid)" /> has already been called for the specified <paramref name="resourceManagerIdentifier" />. The reenlistment is rejected.</exception>
       <exception cref="T:System.Transactions.TransactionException">The <paramref name="resourceManagerIdentifier" /> does not match the content of the specified recovery information in <paramref name="recoveryInformation" />.</exception>
+      <returns>An <see cref="T:System.Transactions.Enlistment" /> that describes the enlistment.</returns>
+    </member>
+    <member name="P:System.Transactions.TransactionManager.DefaultTimeout">
+      <summary>Gets the default timeout interval for new transactions.</summary>
+      <returns>A <see cref="T:System.TimeSpan" /> value that specifies the timeout interval for new transactions.</returns>
+    </member>
+    <member name="P:System.Transactions.TransactionManager.HostCurrentCallback">
+      <summary>Gets or sets a custom transaction factory.</summary>
+      <returns>A <see cref="T:System.Transactions.HostCurrentTransactionCallback" /> that contains a custom transaction factory.</returns>
+    </member>
+    <member name="P:System.Transactions.TransactionManager.MaximumTimeout">
+      <summary>Gets the default maximum timeout interval for new transactions.</summary>
+      <returns>A <see cref="T:System.TimeSpan" /> value that specifies the maximum timeout interval that is allowed when creating new transactions.</returns>
     </member>
     <member name="T:System.Transactions.TransactionManagerCommunicationException">
       <summary>The exception that is thrown when a resource manager cannot communicate with the transaction manager.</summary>
@@ -589,10 +593,6 @@ Transaction Manager information in <paramref name="recoveryInformation" /> does 
       <summary>Returns the hash code for this instance.</summary>
       <returns>A 32-bit signed integer hash code.</returns>
     </member>
-    <member name="P:System.Transactions.TransactionOptions.IsolationLevel">
-      <summary>Gets or sets the isolation level of the transaction.</summary>
-      <returns>A <see cref="T:System.Transactions.IsolationLevel" /> enumeration that specifies the isolation level of the transaction.</returns>
-    </member>
     <member name="M:System.Transactions.TransactionOptions.op_Equality(System.Transactions.TransactionOptions,System.Transactions.TransactionOptions)">
       <summary>Tests whether two specified <see cref="T:System.Transactions.TransactionOptions" /> instances are equivalent.</summary>
       <param name="x">The <see cref="T:System.Transactions.TransactionOptions" /> instance that is to the left of the equality operator.</param>
@@ -606,6 +606,10 @@ Transaction Manager information in <paramref name="recoveryInformation" /> does 
       <param name="y">The <see cref="T:System.Transactions.TransactionOptions" /> instance that is to the right of the equality operator.</param>
       <returns>
         <see langword="true" /> if <paramref name="x" /> and <paramref name="y" /> are not equal; otherwise, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Transactions.TransactionOptions.IsolationLevel">
+      <summary>Gets or sets the isolation level of the transaction.</summary>
+      <returns>A <see cref="T:System.Transactions.IsolationLevel" /> enumeration that specifies the isolation level of the transaction.</returns>
     </member>
     <member name="P:System.Transactions.TransactionOptions.Timeout">
       <summary>Gets or sets the timeout period for the transaction.</summary>
@@ -653,15 +657,17 @@ Transaction Manager information in <paramref name="recoveryInformation" /> does 
       <param name="interopOption">An instance of the <see cref="T:System.Transactions.EnterpriseServicesInteropOption" /> enumeration that describes how the associated transaction interacts with COM+ transactions.</param>
     </member>
     <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.Transaction,System.TimeSpan,System.Transactions.TransactionScopeAsyncFlowOption)">
-      <summary>[Supported in the .NET Framework 4.5.1 and later versions]
-Initializes a new instance of the <see cref="T:System.Transactions.TransactionScope" /> class with the specified timeout value, and sets the specified transaction as the ambient transaction, so that transactional work done inside the scope uses this transaction.</summary>
+      <summary>[Supported in the .NET Framework 4.5.1 and later versions]  
+  
+ Initializes a new instance of the <see cref="T:System.Transactions.TransactionScope" /> class with the specified timeout value, and sets the specified transaction as the ambient transaction, so that transactional work done inside the scope uses this transaction.</summary>
       <param name="transactionToUse">The transaction to be set as the ambient transaction, so that transactional work done inside the scope uses this transaction.</param>
       <param name="scopeTimeout">The <see cref="T:System.TimeSpan" /> after which the transaction scope times out and aborts the transaction.</param>
       <param name="asyncFlowOption">An instance of the <see cref="T:System.Transactions.TransactionScopeAsyncFlowOption" /> enumeration that describes whether the ambient transaction associated with the transaction scope will flow across thread continuations when using Task or async/await .NET async programming patterns.</param>
     </member>
     <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.Transaction,System.Transactions.TransactionScopeAsyncFlowOption)">
-      <summary>[Supported in the .NET Framework 4.5.1 and later versions]
-Initializes a new instance of the <see cref="T:System.Transactions.TransactionScope" /> class and sets the specified transaction as the ambient transaction, so that transactional work done inside the scope uses this transaction.</summary>
+      <summary>[Supported in the .NET Framework 4.5.1 and later versions]  
+  
+ Initializes a new instance of the <see cref="T:System.Transactions.TransactionScope" /> class and sets the specified transaction as the ambient transaction, so that transactional work done inside the scope uses this transaction.</summary>
       <param name="transactionToUse">The transaction to be set as the ambient transaction, so that transactional work done inside the scope uses this transaction.</param>
       <param name="asyncFlowOption">An instance of the <see cref="T:System.Transactions.TransactionScopeAsyncFlowOption" /> enumeration that describes whether the ambient transaction associated with the transaction scope will flow across thread continuations when using Task or async/await .NET async programming patterns.</param>
     </member>
@@ -696,8 +702,9 @@ Initializes a new instance of the <see cref="T:System.Transactions.TransactionSc
       <param name="interopOption">An instance of the <see cref="T:System.Transactions.EnterpriseServicesInteropOption" /> enumeration that describes how the associated transaction interacts with COM+ transactions.</param>
     </member>
     <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.TransactionScopeOption,System.Transactions.TransactionOptions,System.Transactions.TransactionScopeAsyncFlowOption)">
-      <summary>[Supported in the .NET Framework 4.5.1 and later versions]
-Initializes a new instance of the <see cref="T:System.Transactions.TransactionScope" /> class with the specified requirements and asynchronous flow option.</summary>
+      <summary>[Supported in the .NET Framework 4.5.1 and later versions]  
+  
+ Initializes a new instance of the <see cref="T:System.Transactions.TransactionScope" /> class with the specified requirements and asynchronous flow option.</summary>
       <param name="scopeOption">An instance of the <see cref="T:System.Transactions.TransactionScopeOption" /> enumeration that describes the transaction requirements associated with this transaction scope.</param>
       <param name="transactionOptions">A <see cref="T:System.Transactions.TransactionOptions" /> structure that describes the transaction options to use if a new transaction is created. If an existing transaction is used, the timeout value in this parameter applies to the transaction scope. If that time expires before the scope is disposed, the transaction is aborted.</param>
       <param name="asyncFlowOption">An instance of the <see cref="T:System.Transactions.TransactionScopeAsyncFlowOption" /> enumeration that describes whether the ambient transaction associated with the transaction scope will flow across thread continuations when using Task or async/await .NET async programming patterns.</param>
