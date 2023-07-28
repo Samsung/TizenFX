@@ -98,7 +98,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class PowerUsage</code></pre>
+    <pre><code class="lang-csharp hljs">public static class PowerUsage : object</code></pre>
   </div>
 
   
@@ -118,113 +118,10 @@
   <h3 id="methods">Methods
   </h3>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System.PowerUsage/PowerUsage/PowerUsage.cs/#L82">View Source</a>
-  </span>
-  <a id="Tizen_System_PowerUsage_GetPowerUsage_" data-uid="Tizen.System.PowerUsage.GetPowerUsage*"></a>
-  <h4 id="Tizen_System_PowerUsage_GetPowerUsage_System_String_System_Collections_Generic_IList_Tizen_System_PowerUsageResourceType__System_DateTime_System_DateTime_" data-uid="Tizen.System.PowerUsage.GetPowerUsage(System.String,System.Collections.Generic.IList{Tizen.System.PowerUsageResourceType},System.DateTime,System.DateTime)">GetPowerUsage(String, IList&lt;PowerUsageResourceType&gt;, DateTime, DateTime)</h4>
-  <div class="markdown level1 summary"><p>Gets the battery consumption in mAh(milli-Ampere hour) for the resources specified by the application in custom interval.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IDictionary&lt;PowerUsageResourceType, double&gt; GetPowerUsage(string appID, IList&lt;PowerUsageResourceType&gt; rtypes, DateTime start, DateTime end)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">appID</span></td>
-        <td><p>Application ID of the application for which battery usage is required.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ilist-1">IList</a>&lt;<a class="xref" href="Tizen.System.PowerUsageResourceType.html">PowerUsageResourceType</a>&gt;</td>
-        <td><span class="parametername">rtypes</span></td>
-        <td><p>list of resource type identifiers like BLE, WiFi, CPU etc.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
-        <td><span class="parametername">start</span></td>
-        <td><p>Start Time for data in DateTime.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
-        <td><span class="parametername">end</span></td>
-        <td><p>End Time for data in DateTime.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="Tizen.System.PowerUsageResourceType.html">PowerUsageResourceType</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a>&gt;</td>
-        <td><p>Returns the battery consumption in mAh(milli-Ampere hour) for the resources specified by the application in custom interval.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>When an invalid parameter value is set.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>If the privilege is not set.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>In case of any system error.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>In case power usage is not supported</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>7</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/systemmonitor</span></span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/battery</span></span></h6>
-  
-  <div style="margin-bottom: 15px"></div>
-
-  <span class="small pull-right mobile-hide">
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System.PowerUsage/PowerUsage/PowerUsage.cs/#L175">View Source</a>
   </span>
   <a id="Tizen_System_PowerUsage_GetPowerUsage_" data-uid="Tizen.System.PowerUsage.GetPowerUsage*"></a>
-  <h4 id="Tizen_System_PowerUsage_GetPowerUsage_System_String_System_DateTime_System_DateTime_" data-uid="Tizen.System.PowerUsage.GetPowerUsage(System.String,System.DateTime,System.DateTime)">GetPowerUsage(String, DateTime, DateTime)</h4>
+  <h4 id="Tizen_System_PowerUsage_GetPowerUsage_System_String_DateTime_DateTime_" data-uid="Tizen.System.PowerUsage.GetPowerUsage(System.String,DateTime,DateTime)">GetPowerUsage(String, DateTime, DateTime)</h4>
   <div class="markdown level1 summary"><p>Gets the total battery usage in mAh(milli-Ampere hour) by an application for certain time interval.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -249,13 +146,13 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td><span class="xref">DateTime</span></td>
         <td><span class="parametername">start</span></td>
         <td><p>Start Time for data in DateTime.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td><span class="xref">DateTime</span></td>
         <td><span class="parametername">end</span></td>
         <td><p>End Time for data in DateTime.</p>
 </td>
@@ -278,33 +175,74 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
+  
+  <h6><strong>API Level</strong>: <span>7</span></h6>
+  <h6><strong>Privilege Level</strong>: public</h6>
+  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/systemmonitor</span></span></h6>
+  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/battery</span></span></h6>
+  
+  <div style="margin-bottom: 15px"></div>
+
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System.PowerUsage/PowerUsage/PowerUsage.cs/#L82">View Source</a>
+  </span>
+  <a id="Tizen_System_PowerUsage_GetPowerUsage_" data-uid="Tizen.System.PowerUsage.GetPowerUsage*"></a>
+  <h4 id="Tizen_System_PowerUsage_GetPowerUsage_System_String_IList_Tizen_System_PowerUsageResourceType__DateTime_DateTime_" data-uid="Tizen.System.PowerUsage.GetPowerUsage(System.String,IList{Tizen.System.PowerUsageResourceType},DateTime,DateTime)">GetPowerUsage(String, IList&lt;PowerUsageResourceType&gt;, DateTime, DateTime)</h4>
+  <div class="markdown level1 summary"><p>Gets the battery consumption in mAh(milli-Ampere hour) for the resources specified by the application in custom interval.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static IDictionary&lt;PowerUsageResourceType, double&gt; GetPowerUsage(string appID, IList&lt;PowerUsageResourceType&gt; rtypes, DateTime start, DateTime end)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
     <thead>
       <tr>
         <th>Type</th>
-        <th>Condition</th>
+        <th>Name</th>
+        <th>Description</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>When an invalid parameter value is set.</p>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
+        <td><span class="parametername">appID</span></td>
+        <td><p>Application ID of the application for which battery usage is required.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>If the privilege is not set.</p>
+        <td><span class="xref">IList</span>&lt;<a class="xref" href="Tizen.System.PowerUsageResourceType.html">PowerUsageResourceType</a>&gt;</td>
+        <td><span class="parametername">rtypes</span></td>
+        <td><p>list of resource type identifiers like BLE, WiFi, CPU etc.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>In case of any system error.</p>
+        <td><span class="xref">DateTime</span></td>
+        <td><span class="parametername">start</span></td>
+        <td><p>Start Time for data in DateTime.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>In case power usage is not supported</p>
+        <td><span class="xref">DateTime</span></td>
+        <td><span class="parametername">end</span></td>
+        <td><p>End Time for data in DateTime.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">IDictionary</span>&lt;<a class="xref" href="Tizen.System.PowerUsageResourceType.html">PowerUsageResourceType</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a>&gt;</td>
+        <td><p>Returns the battery consumption in mAh(milli-Ampere hour) for the resources specified by the application in custom interval.</p>
 </td>
       </tr>
     </tbody>
@@ -321,7 +259,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System.PowerUsage/PowerUsage/PowerUsage.cs/#L141">View Source</a>
   </span>
   <a id="Tizen_System_PowerUsage_GetPowerUsage_" data-uid="Tizen.System.PowerUsage.GetPowerUsage*"></a>
-  <h4 id="Tizen_System_PowerUsage_GetPowerUsage_System_String_Tizen_System_PowerUsageResourceType_System_DateTime_System_DateTime_" data-uid="Tizen.System.PowerUsage.GetPowerUsage(System.String,Tizen.System.PowerUsageResourceType,System.DateTime,System.DateTime)">GetPowerUsage(String, PowerUsageResourceType, DateTime, DateTime)</h4>
+  <h4 id="Tizen_System_PowerUsage_GetPowerUsage_System_String_Tizen_System_PowerUsageResourceType_DateTime_DateTime_" data-uid="Tizen.System.PowerUsage.GetPowerUsage(System.String,Tizen.System.PowerUsageResourceType,DateTime,DateTime)">GetPowerUsage(String, PowerUsageResourceType, DateTime, DateTime)</h4>
   <div class="markdown level1 summary"><p>Gets the battery consumption in mAh(milli-Ampere hour) for the specific resource for the given application in custom interval.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -352,13 +290,13 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td><span class="xref">DateTime</span></td>
         <td><span class="parametername">start</span></td>
         <td><p>Start Time for data in DateTime.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td><span class="xref">DateTime</span></td>
         <td><span class="parametername">end</span></td>
         <td><p>End Time for data in DateTime.</p>
 </td>
@@ -381,37 +319,6 @@
       </tr>
     </tbody>
   </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>When an invalid parameter value is set.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>If the privilege is not set.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>In case of any system error.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>In case power usage is not supported</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>7</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -424,7 +331,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System.PowerUsage/PowerUsage/PowerUsage.cs/#L201">View Source</a>
   </span>
   <a id="Tizen_System_PowerUsage_GetPowerUsage_" data-uid="Tizen.System.PowerUsage.GetPowerUsage*"></a>
-  <h4 id="Tizen_System_PowerUsage_GetPowerUsage_Tizen_System_PowerUsageResourceType_System_DateTime_System_DateTime_" data-uid="Tizen.System.PowerUsage.GetPowerUsage(Tizen.System.PowerUsageResourceType,System.DateTime,System.DateTime)">GetPowerUsage(PowerUsageResourceType, DateTime, DateTime)</h4>
+  <h4 id="Tizen_System_PowerUsage_GetPowerUsage_Tizen_System_PowerUsageResourceType_DateTime_DateTime_" data-uid="Tizen.System.PowerUsage.GetPowerUsage(Tizen.System.PowerUsageResourceType,DateTime,DateTime)">GetPowerUsage(PowerUsageResourceType, DateTime, DateTime)</h4>
   <div class="markdown level1 summary"><p>Gets the battery usage in mAh(milli-Ampere hour) by a resource for certain time interval.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -449,13 +356,13 @@
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td><span class="xref">DateTime</span></td>
         <td><span class="parametername">start</span></td>
         <td><p>Start Time for data in DateTime.</p>
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a></td>
+        <td><span class="xref">DateTime</span></td>
         <td><span class="parametername">end</span></td>
         <td><p>End Time for data in DateTime.</p>
 </td>
@@ -474,37 +381,6 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.double">Double</a></td>
         <td><p>Returns the battery usage in mAh(milli-Ampere hour) by a resource for certain time interval.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>When an invalid parameter value is set.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
-        <td><p>If the privilege is not set.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
-        <td><p>In case of any system error.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>In case power usage is not supported</p>
 </td>
       </tr>
     </tbody>

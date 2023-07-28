@@ -104,7 +104,6 @@
     <dd>
       <div class="pdl-holder">
         <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
-        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext">SynchronizationContext</a></div>
         <div><span class="xref">TizenSynchronizationContext</span></div>
       </div>
     </dd>
@@ -140,7 +139,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/TizenSynchronizationContext.cs/#L52">View Source</a>
   </span>
   <a id="Tizen_Applications_TizenSynchronizationContext_Post_" data-uid="Tizen.Applications.TizenSynchronizationContext.Post*"></a>
-  <h4 id="Tizen_Applications_TizenSynchronizationContext_Post_System_Threading_SendOrPostCallback_System_Object_" data-uid="Tizen.Applications.TizenSynchronizationContext.Post(System.Threading.SendOrPostCallback,System.Object)">Post(SendOrPostCallback, Object)</h4>
+  <h4 id="Tizen_Applications_TizenSynchronizationContext_Post_SendOrPostCallback_System_Object_" data-uid="Tizen.Applications.TizenSynchronizationContext.Post(SendOrPostCallback,System.Object)">Post(SendOrPostCallback, Object)</h4>
   <div class="markdown level1 summary"><p>Dispatches an asynchronous message to a Tizen main loop.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -159,22 +158,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.sendorpostcallback">SendOrPostCallback</a></td>
+        <td><span class="xref">SendOrPostCallback</span></td>
         <td><span class="parametername">d</span></td>
-        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.sendorpostcallback">SendOrPostCallback</a>The SendOrPostCallback delegate to call.</p>
+        <td><p><see cref="!:System.Threading.SendOrPostCallback"></see>The SendOrPostCallback delegate to call.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></td>
         <td><span class="parametername">state</span></td>
-        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>The object passed to the delegate.</p>
+        <td><p><see cref="!:System.Object"></see>The object passed to the delegate.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.post#system-threading-synchronizationcontext-post(system-threading-sendorpostcallback-system-object)">SynchronizationContext.Post(SendOrPostCallback, Object)</a></div>
-  <h5 id="Tizen_Applications_TizenSynchronizationContext_Post_System_Threading_SendOrPostCallback_System_Object__remarks">Remarks</h5>
+  <h5 id="Tizen_Applications_TizenSynchronizationContext_Post_SendOrPostCallback_System_Object__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The post method starts an asynchronous request to post a message.</p>
 </div>
   
@@ -186,7 +183,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.Common/Tizen.Applications/TizenSynchronizationContext.cs/#L68">View Source</a>
   </span>
   <a id="Tizen_Applications_TizenSynchronizationContext_Send_" data-uid="Tizen.Applications.TizenSynchronizationContext.Send*"></a>
-  <h4 id="Tizen_Applications_TizenSynchronizationContext_Send_System_Threading_SendOrPostCallback_System_Object_" data-uid="Tizen.Applications.TizenSynchronizationContext.Send(System.Threading.SendOrPostCallback,System.Object)">Send(SendOrPostCallback, Object)</h4>
+  <h4 id="Tizen_Applications_TizenSynchronizationContext_Send_SendOrPostCallback_System_Object_" data-uid="Tizen.Applications.TizenSynchronizationContext.Send(SendOrPostCallback,System.Object)">Send(SendOrPostCallback, Object)</h4>
   <div class="markdown level1 summary"><p>Dispatches a synchronous message to a Tizen main loop.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -205,22 +202,20 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.sendorpostcallback">SendOrPostCallback</a></td>
+        <td><span class="xref">SendOrPostCallback</span></td>
         <td><span class="parametername">d</span></td>
-        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.sendorpostcallback">SendOrPostCallback</a>The SendOrPostCallback delegate to call.</p>
+        <td><p><see cref="!:System.Threading.SendOrPostCallback"></see>The SendOrPostCallback delegate to call.</p>
 </td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></td>
         <td><span class="parametername">state</span></td>
-        <td><p><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a>The object passed to the delegate.</p>
+        <td><p><see cref="!:System.Object"></see>The object passed to the delegate.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.synchronizationcontext.send#system-threading-synchronizationcontext-send(system-threading-sendorpostcallback-system-object)">SynchronizationContext.Send(SendOrPostCallback, Object)</a></div>
-  <h5 id="Tizen_Applications_TizenSynchronizationContext_Send_System_Threading_SendOrPostCallback_System_Object__remarks">Remarks</h5>
+  <h5 id="Tizen_Applications_TizenSynchronizationContext_Send_SendOrPostCallback_System_Object__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The send method starts a synchronous request to send a message.</p>
 </div>
   
@@ -228,6 +223,28 @@
   
   <div style="margin-bottom: 15px"></div>
 
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
 </article>
           </div>
           

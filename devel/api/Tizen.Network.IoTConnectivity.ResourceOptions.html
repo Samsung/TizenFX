@@ -97,7 +97,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class ResourceOptions : IDictionary&lt;ushort, string&gt;, ICollection&lt;KeyValuePair&lt;ushort, string&gt;&gt;, IEnumerable&lt;KeyValuePair&lt;ushort, string&gt;&gt;, IEnumerable, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class ResourceOptions : IDictionary&lt;ushort, string&gt;, IDisposable</code></pre>
   </div>
 
   
@@ -116,11 +116,7 @@
   <dl class="attribute-list stack">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">IDictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;&gt;</div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;&gt;</div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">IEnumerable</a></div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div class="pdl"><span class="xref">IDisposable</span></div>
     </dd>
   </dl>
   
@@ -140,27 +136,6 @@
   </div>
   <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions__ctor_examples">Examples</h5>
   <pre><code>    ResourceOptions options = new ResourceOptions();</code></pre>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the iotcon is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
-        <td><p>Thrown when there is not enough memory.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions__ctor_seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceOptions.html#Tizen_Network_IoTConnectivity_ResourceOptions_Add_System_UInt16_System_String_">Add(UInt16, String)</a></div>
@@ -327,7 +302,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>&gt;</td>
+        <td><span class="xref">ICollection</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>&gt;</td>
         <td><p>All the Option keys.</p>
 </td>
       </tr>
@@ -366,7 +341,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">ICollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">ICollection</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><p>All the Option values.</p>
 </td>
       </tr>
@@ -389,7 +364,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceOptions.cs/#L314">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_ResourceOptions_Add_" data-uid="Tizen.Network.IoTConnectivity.ResourceOptions.Add*"></a>
-  <h4 id="Tizen_Network_IoTConnectivity_ResourceOptions_Add_System_Collections_Generic_KeyValuePair_System_UInt16_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceOptions.Add(System.Collections.Generic.KeyValuePair{System.UInt16,System.String})">Add(KeyValuePair&lt;UInt16, String&gt;)</h4>
+  <h4 id="Tizen_Network_IoTConnectivity_ResourceOptions_Add_KeyValuePair_System_UInt16_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceOptions.Add(KeyValuePair{System.UInt16,System.String})">Add(KeyValuePair&lt;UInt16, String&gt;)</h4>
   <div class="markdown level1 summary"><p>Adds options key and value as a key value pair.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -408,23 +383,22 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">KeyValuePair</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><span class="parametername">item</span></td>
         <td><p>The key value pair.</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_Add_System_Collections_Generic_KeyValuePair_System_UInt16_System_String___examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_Add_KeyValuePair_System_UInt16_System_String___examples">Examples</h5>
   <pre><code>    ResourceOptions options = new ResourceOptions();
     options.Add(new KeyValuePair&lt;ushort, string>(2050, &quot;12345&quot;));</code></pre>
-  <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_Add_System_Collections_Generic_KeyValuePair_System_UInt16_System_String___seealso">See Also</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_Add_KeyValuePair_System_UInt16_System_String___seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceOptions.html#Tizen_Network_IoTConnectivity_ResourceOptions_Remove_System_Collections_Generic_KeyValuePair_System_UInt16_System_String__">Remove(KeyValuePair&lt;UInt16, String&gt;)</a></div>
+      <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceOptions.html#Tizen_Network_IoTConnectivity_ResourceOptions_Remove_KeyValuePair_System_UInt16_System_String__">Remove(KeyValuePair&lt;UInt16, String&gt;)</a></div>
   </div>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/iot.ocf</span></span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
@@ -472,27 +446,6 @@
   <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_Add_System_UInt16_System_String__examples">Examples</h5>
   <pre><code>    ResourceOptions options = new ResourceOptions();
     options.Add(2050, &quot;sample-data&quot;);</code></pre>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the iotcon is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when there is an invalid parameter.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_Add_System_UInt16_System_String__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceOptions.html#Tizen_Network_IoTConnectivity_ResourceOptions_Remove_System_UInt16_">Remove(UInt16)</a></div>
@@ -520,22 +473,6 @@
     options.Add(2050, &quot;12345&quot;);
     options.Add(2055, &quot;sample&quot;);
     options.Clear();</code></pre>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the iotcon is not supported.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/iot.ocf</span></span></h6>
@@ -546,7 +483,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceOptions.cs/#L358">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_ResourceOptions_Contains_" data-uid="Tizen.Network.IoTConnectivity.ResourceOptions.Contains*"></a>
-  <h4 id="Tizen_Network_IoTConnectivity_ResourceOptions_Contains_System_Collections_Generic_KeyValuePair_System_UInt16_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceOptions.Contains(System.Collections.Generic.KeyValuePair{System.UInt16,System.String})">Contains(KeyValuePair&lt;UInt16, String&gt;)</h4>
+  <h4 id="Tizen_Network_IoTConnectivity_ResourceOptions_Contains_KeyValuePair_System_UInt16_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceOptions.Contains(KeyValuePair{System.UInt16,System.String})">Contains(KeyValuePair&lt;UInt16, String&gt;)</h4>
   <div class="markdown level1 summary"><p>Checks if the given option pair exists.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -565,7 +502,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">KeyValuePair</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><span class="parametername">item</span></td>
         <td><p>The key value pair.</p>
 </td>
@@ -588,7 +525,7 @@
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_Contains_System_Collections_Generic_KeyValuePair_System_UInt16_System_String___examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_Contains_KeyValuePair_System_UInt16_System_String___examples">Examples</h5>
   <pre><code>    ResourceOptions options = new ResourceOptions();
     options.Add(new KeyValuePair&lt;ushort, string>(2050, &quot;12345&quot;));
     var isPresent = options.Contains(new KeyValuePair&lt;ushort, string>(2050, &quot;12345&quot;));
@@ -659,7 +596,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceOptions.cs/#L376">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_ResourceOptions_CopyTo_" data-uid="Tizen.Network.IoTConnectivity.ResourceOptions.CopyTo*"></a>
-  <h4 id="Tizen_Network_IoTConnectivity_ResourceOptions_CopyTo_System_Collections_Generic_KeyValuePair_System_UInt16_System_String____System_Int32_" data-uid="Tizen.Network.IoTConnectivity.ResourceOptions.CopyTo(System.Collections.Generic.KeyValuePair{System.UInt16,System.String}[],System.Int32)">CopyTo(KeyValuePair&lt;UInt16, String&gt;[], Int32)</h4>
+  <h4 id="Tizen_Network_IoTConnectivity_ResourceOptions_CopyTo_KeyValuePair_System_UInt16_System_String____System_Int32_" data-uid="Tizen.Network.IoTConnectivity.ResourceOptions.CopyTo(KeyValuePair{System.UInt16,System.String}[],System.Int32)">CopyTo(KeyValuePair&lt;UInt16, String&gt;[], Int32)</h4>
   <div class="markdown level1 summary"><p>Copies the elements of the options collection to an array, starting at a particular index.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -678,7 +615,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;[]</td>
+        <td><span class="xref">KeyValuePair</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;[]</td>
         <td><span class="parametername">array</span></td>
         <td><p>The destination array.</p>
 </td>
@@ -691,7 +628,7 @@
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_CopyTo_System_Collections_Generic_KeyValuePair_System_UInt16_System_String____System_Int32__examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_CopyTo_KeyValuePair_System_UInt16_System_String____System_Int32__examples">Examples</h5>
   <pre><code>    ResourceOptions options = new ResourceOptions();
     options.Add(new KeyValuePair&lt;ushort, string>(2050, &quot;12345&quot;));
     KeyValuePair&lt;ushort, string>[] dest = new KeyValuePair&lt;ushort, string>[options.Count];
@@ -794,7 +731,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerator-1">IEnumerator</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;&gt;</td>
+        <td><span class="xref">IEnumerator</span>&lt;<span class="xref">KeyValuePair</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;&gt;</td>
         <td><p>Enumerator to option pairs.</p>
 </td>
       </tr>
@@ -817,7 +754,7 @@
     <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceOptions.cs/#L395">View Source</a>
   </span>
   <a id="Tizen_Network_IoTConnectivity_ResourceOptions_Remove_" data-uid="Tizen.Network.IoTConnectivity.ResourceOptions.Remove*"></a>
-  <h4 id="Tizen_Network_IoTConnectivity_ResourceOptions_Remove_System_Collections_Generic_KeyValuePair_System_UInt16_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceOptions.Remove(System.Collections.Generic.KeyValuePair{System.UInt16,System.String})">Remove(KeyValuePair&lt;UInt16, String&gt;)</h4>
+  <h4 id="Tizen_Network_IoTConnectivity_ResourceOptions_Remove_KeyValuePair_System_UInt16_System_String__" data-uid="Tizen.Network.IoTConnectivity.ResourceOptions.Remove(KeyValuePair{System.UInt16,System.String})">Remove(KeyValuePair&lt;UInt16, String&gt;)</h4>
   <div class="markdown level1 summary"><p>Removes the given key value pair from the options.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -836,7 +773,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.keyvaluepair-2">KeyValuePair</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><span class="xref">KeyValuePair</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><span class="parametername">item</span></td>
         <td><p>The key value pair to remove</p>
 </td>
@@ -859,33 +796,16 @@
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_Remove_System_Collections_Generic_KeyValuePair_System_UInt16_System_String___examples">Examples</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_Remove_KeyValuePair_System_UInt16_System_String___examples">Examples</h5>
   <pre><code>    ResourceOptions options = new ResourceOptions();
     options.Add(new KeyValuePair&lt;ushort, string>(2050, &quot;12345&quot;));
     var result = options.Remove(new KeyValuePair&lt;ushort, string>(2050, &quot;12345&quot;));</code></pre>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when there is an invalid parameter</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_Remove_System_Collections_Generic_KeyValuePair_System_UInt16_System_String___seealso">See Also</h5>
+  <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_Remove_KeyValuePair_System_UInt16_System_String___seealso">See Also</h5>
   <div class="seealso">
-      <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceOptions.html#Tizen_Network_IoTConnectivity_ResourceOptions_Add_System_Collections_Generic_KeyValuePair_System_UInt16_System_String__">Add(KeyValuePair&lt;UInt16, String&gt;)</a></div>
+      <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceOptions.html#Tizen_Network_IoTConnectivity_ResourceOptions_Add_KeyValuePair_System_UInt16_System_String__">Add(KeyValuePair&lt;UInt16, String&gt;)</a></div>
   </div>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
-  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/iot.ocf</span></span></h6>
   
   <div style="margin-bottom: 15px"></div>
 
@@ -939,27 +859,6 @@
   <pre><code>    ResourceOptions options = new ResourceOptions();
     options.Add(2050, &quot;12345&quot;);
     var result = options.Remove(2050);</code></pre>
-  <h5 class="exceptions">Exceptions</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
-        <td><p>Thrown when the iotcon is not supported.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
-        <td><p>Thrown when there is an invalid parameter.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
   <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_Remove_System_UInt16__seealso">See Also</h5>
   <div class="seealso">
       <div><a class="xref" href="Tizen.Network.IoTConnectivity.ResourceOptions.html#Tizen_Network_IoTConnectivity_ResourceOptions_Add_System_UInt16_System_String_">Add(UInt16, String)</a></div>
@@ -1034,64 +933,31 @@
   
   <div style="margin-bottom: 15px"></div>
 
-  <h3 id="eii">Explicit Interface Implementations
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Network.IoTConnectivity/Tizen.Network.IoTConnectivity/ResourceOptions.cs/#L444">View Source</a>
-  </span>
-  <a id="Tizen_Network_IoTConnectivity_ResourceOptions_System_Collections_IEnumerable_GetEnumerator_" data-uid="Tizen.Network.IoTConnectivity.ResourceOptions.System#Collections#IEnumerable#GetEnumerator*"></a>
-  <h4 id="Tizen_Network_IoTConnectivity_ResourceOptions_System_Collections_IEnumerable_GetEnumerator" data-uid="Tizen.Network.IoTConnectivity.ResourceOptions.System#Collections#IEnumerable#GetEnumerator">IEnumerable.GetEnumerator()</h4>
-  <div class="markdown level1 summary"><p>Gets the enumerator to options collection.</p>
-</div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">IEnumerator IEnumerable.GetEnumerator()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerator">IEnumerator</a></td>
-        <td><p>Enumerator to option pairs.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_Network_IoTConnectivity_ResourceOptions_System_Collections_IEnumerable_GetEnumerator_examples">Examples</h5>
-  <pre><code>    ResourceOptions options = new ResourceOptions();
-    options.Add(new KeyValuePair&lt;ushort, string>(2050, &quot;sample1&quot;));
-    options.Add(new KeyValuePair&lt;ushort, string>(2055, &quot;sample2&quot;));
-    foreach (KeyValuePair&lt;string, object> pair in options)
-    {
-        Console.WriteLine(&quot;key : {0}, value : {1}&quot;, pair.Key, pair.Value);
-    }</code></pre>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
-  <div style="margin-bottom: 15px"></div>
-
   <h3 id="implements">Implements</h3>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.idictionary-2">System.Collections.Generic.IDictionary&lt;TKey,TValue&gt;</a>
+      <span class="xref">IDisposable</span>
+  </div>
+  <h3 id="extensionmethods">Extension Methods</h3>
+  <div>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.icollection-1">System.Collections.Generic.ICollection&lt;T&gt;</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
   </div>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">System.Collections.Generic.IEnumerable&lt;T&gt;</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
   </div>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.ienumerable">System.Collections.IEnumerable</a>
+      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
   </div>
   <div>
-      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
+  </div>
+  <div>
+      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
 </article>
           </div>
