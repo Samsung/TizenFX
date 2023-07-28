@@ -339,7 +339,7 @@ namespace Tizen.MachineLearning.Train
 
         internal static TensorsInfo CreateTensorsInfoFormHandle(IntPtr handle)
         {
-            const int RankLimit = 4;
+            const int RankLimit = 16;
             NNTrainerError ret = NNTrainerError.None;
             int count;
 
