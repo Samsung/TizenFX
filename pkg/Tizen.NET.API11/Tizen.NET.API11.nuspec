@@ -14,9 +14,9 @@
   </metadata>
   <files>
     <file src="pkg\Tizen.NET.API11\build\**" target="build" />
-    <file src="pkg\Tizen.NET.API11\design\*.dll" target="ref\netstandard2.0\Design" />
+    <file src="pkg\Tizen.NET.API11\design\*.dll" target="ref\net6.0\Design" />
     <file src="pkg\Tizen.NET.API11\xamlbuild\**" target="buildTransitive" />
-    <file src="Artifacts\bin\dummy\*.dll"  target="ref\netstandard2.0" />
-    <file src="Artifacts\bin\public\*.xml"  target="ref\netstandard2.0" />
+    <file src="Artifacts\bin\dummy\*.dll"  target="ref\net6.0" />
+    <file src="Artifacts\bin\public\*.xml"  target="ref\net6.0" />
   </files>
 </package>

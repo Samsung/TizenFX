@@ -60,14 +60,6 @@
       <exception cref="T:System.ArgumentNullException">
         <paramref name="fileName" /> is <see langword="null" />.</exception>
     </member>
-    <member name="P:System.Diagnostics.DelimitedListTraceListener.Delimiter">
-      <summary>Gets or sets the delimiter for the delimited list.</summary>
-      <returns>The delimiter for the delimited list.</returns>
-      <exception cref="T:System.ArgumentNullException">
-        <see cref="P:System.Diagnostics.DelimitedListTraceListener.Delimiter" /> is set to <see langword="null" />.</exception>
-      <exception cref="T:System.ArgumentException">
-        <see cref="P:System.Diagnostics.DelimitedListTraceListener.Delimiter" /> is set to an empty string ("").</exception>
-    </member>
     <member name="M:System.Diagnostics.DelimitedListTraceListener.GetSupportedAttributes">
       <summary>Returns the custom configuration file attribute supported by the delimited trace listener.</summary>
       <returns>A string array that contains the single value "delimiter".</returns>
@@ -104,6 +96,14 @@
       <param name="id">A numeric identifier for the event.</param>
       <param name="format">A format string that contains zero or more format items that correspond to objects in the <paramref name="args" /> array.</param>
       <param name="args">An array containing zero or more objects to format.</param>
+    </member>
+    <member name="P:System.Diagnostics.DelimitedListTraceListener.Delimiter">
+      <summary>Gets or sets the delimiter for the delimited list.</summary>
+      <exception cref="T:System.ArgumentNullException">
+        <see cref="P:System.Diagnostics.DelimitedListTraceListener.Delimiter" /> is set to <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <see cref="P:System.Diagnostics.DelimitedListTraceListener.Delimiter" /> is set to an empty string ("").</exception>
+      <returns>The delimiter for the delimited list.</returns>
     </member>
     <member name="T:System.Diagnostics.TextWriterTraceListener">
       <summary>Directs tracing or debugging output to a <see cref="T:System.IO.TextWriter" /> or to a <see cref="T:System.IO.Stream" />, such as <see cref="T:System.IO.FileStream" />.</summary>
