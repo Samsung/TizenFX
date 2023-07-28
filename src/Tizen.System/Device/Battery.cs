@@ -317,6 +317,8 @@ namespace Tizen.System
                     };
                     Interop.Device.DeviceAddCallback(eventType, s_chargingHandler, IntPtr.Zero);
                     break;
+                default:
+                    break;
             }
         }
 
@@ -334,6 +336,8 @@ namespace Tizen.System
 
                 case EventType.BatteryCharging:
                     Interop.Device.DeviceRemoveCallback(eventType, s_chargingHandler);
+                    break;
+                default:
                     break;
             }
         }
