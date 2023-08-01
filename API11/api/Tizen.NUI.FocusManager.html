@@ -69,7 +69,7 @@ It also draws a highlight for the focused view and sends an event when the focus
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class FocusManager : BaseHandle, IDynamicResourceHandler, IElement, INameScope, IElementController, System.IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class FocusManager : BaseHandle, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable</code></pre>
   </div>
 
   
@@ -79,7 +79,7 @@ It also draws a highlight for the focused view and sends an event when the focus
       <div class="pdl-holder">
         <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div><span class="xref">FocusManager</span></div>
       </div>
@@ -91,9 +91,8 @@ It also draws a highlight for the focused view and sends an event when the focus
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
   
@@ -231,81 +230,6 @@ It will emit the FocusChanged event without the current focused view.<br></p>
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
   
-  <a id="Tizen_NUI_FocusManager_EnableDefaultAlgorithm_" data-uid="Tizen.NUI.FocusManager.EnableDefaultAlgorithm*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L487">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_FocusManager_EnableDefaultAlgorithm_System_Boolean_" data-uid="Tizen.NUI.FocusManager.EnableDefaultAlgorithm(System.Boolean)">EnableDefaultAlgorithm(Boolean)</h4>
-    <section>
-      <p>Sets to use the automatic focus moveing algorithm. <br>
-It moves the focus to the view closest to the keyboard movement direction.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void EnableDefaultAlgorithm(bool enable)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td><span class="parametername">enable</span></td>
-        <td><p>Whether using default focus algorithm or not</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
-  <a id="Tizen_NUI_FocusManager_EnableFocusIndicator_" data-uid="Tizen.NUI.FocusManager.EnableFocusIndicator*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L549">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_FocusManager_EnableFocusIndicator_System_Boolean_" data-uid="Tizen.NUI.FocusManager.EnableFocusIndicator(System.Boolean)">EnableFocusIndicator(Boolean)</h4>
-    <section>
-      <p>Decide using focus indicator or not</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void EnableFocusIndicator(bool enable)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td><span class="parametername">enable</span></td>
-        <td><p>Whether using focus indicator or not</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
   <a id="Tizen_NUI_FocusManager_GetCurrentFocusView_" data-uid="Tizen.NUI.FocusManager.GetCurrentFocusView*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -340,57 +264,6 @@ It moves the focus to the view closest to the keyboard movement direction.</p>
   </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
-  
-  
-  <a id="Tizen_NUI_FocusManager_GetDefaultFocusIndicator_" data-uid="Tizen.NUI.FocusManager.GetDefaultFocusIndicator*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L590">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_FocusManager_GetDefaultFocusIndicator" data-uid="Tizen.NUI.FocusManager.GetDefaultFocusIndicator">GetDefaultFocusIndicator()</h4>
-    <section>
-      <p>Get a default focus indicator</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public View GetDefaultFocusIndicator()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
-        <td><p>instance of default focus indicator</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_NUI_FocusManager_GetDefaultFocusIndicator_remarks">Remarks</h5>
-  <div class="markdown level1 remarks"><p>The type actually <a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html">ImageView</a> of blue border squred png image, so it would be difficult to modify itself.
-To change focus indicator, creating new indicator and assigning it to FocusIndicator are recommended.
-For example,</p>
-<pre><code>FocusManager.Instance.FocusIndicator = new View()
-{
-    PositionUsesPivotPoint = true,
-    PivotPoint = new Position(0, 0, 0),
-    WidthResizePolicy = ResizePolicyType.FillToParent,
-    HeightResizePolicy = ResizePolicyType.FillToParent,
-    BorderlineColor = Color.Orange,
-    BorderlineWidth = 4.0f,
-    BorderlineOffset = -1f,
-    BackgroundColor = new Color(0.2f, 0.2f, 0.2f, 0.2f),
-};</code></pre>
-</div>
-  
   
   
   <a id="Tizen_NUI_FocusManager_GetFocusGroup_" data-uid="Tizen.NUI.FocusManager.GetFocusGroup*"></a>
@@ -447,106 +320,6 @@ For example,</p>
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
   
-  <a id="Tizen_NUI_FocusManager_GetNearestFocusableActor_" data-uid="Tizen.NUI.FocusManager.GetNearestFocusableActor*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L513">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_FocusManager_GetNearestFocusableActor_Tizen_NUI_BaseComponents_View_Tizen_NUI_BaseComponents_View_Tizen_NUI_BaseComponents_View_FocusDirection_" data-uid="Tizen.NUI.FocusManager.GetNearestFocusableActor(Tizen.NUI.BaseComponents.View,Tizen.NUI.BaseComponents.View,Tizen.NUI.BaseComponents.View.FocusDirection)">GetNearestFocusableActor(View, View, View.FocusDirection)</h4>
-    <section>
-      <p>Get the nearest focusable view.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public View GetNearestFocusableActor(View rootView, View focusedView, View.FocusDirection direction)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
-        <td><span class="parametername">rootView</span></td>
-        <td><p>The view group in which to find the next focusable view.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
-        <td><span class="parametername">focusedView</span></td>
-        <td><p>The current focused view.</p>
-</td>
-      </tr>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.FocusDirection.html">View.FocusDirection</a></td>
-        <td><span class="parametername">direction</span></td>
-        <td><p>The direction.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
-        <td><p>The nearest focusable view, or an empty handle if none exists.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
-  <a id="Tizen_NUI_FocusManager_IsDefaultAlgorithmEnabled_" data-uid="Tizen.NUI.FocusManager.IsDefaultAlgorithmEnabled*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L498">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_FocusManager_IsDefaultAlgorithmEnabled" data-uid="Tizen.NUI.FocusManager.IsDefaultAlgorithmEnabled">IsDefaultAlgorithmEnabled()</h4>
-    <section>
-      <p>Checks default focus moveing algorithm is enabled or not</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsDefaultAlgorithmEnabled()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td><p>Whether default focus algorithm is enabled</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
   <a id="Tizen_NUI_FocusManager_IsFocusGroup_" data-uid="Tizen.NUI.FocusManager.IsFocusGroup*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -599,41 +372,6 @@ For example,</p>
   </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
-  
-  
-  <a id="Tizen_NUI_FocusManager_IsFocusIndicatorEnabled_" data-uid="Tizen.NUI.FocusManager.IsFocusIndicatorEnabled*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L560">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_FocusManager_IsFocusIndicatorEnabled" data-uid="Tizen.NUI.FocusManager.IsFocusIndicatorEnabled">IsFocusIndicatorEnabled()</h4>
-    <section>
-      <p>Check focus indicator is enabled or not</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsFocusIndicatorEnabled()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td><p>Whether focus indicator is enabled</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
   
   
   <a id="Tizen_NUI_FocusManager_MoveFocus_" data-uid="Tizen.NUI.FocusManager.MoveFocus*"></a>
@@ -708,26 +446,6 @@ For example,</p>
   </div>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
-  
-  
-  <a id="Tizen_NUI_FocusManager_ResetFocusFinderRootView_" data-uid="Tizen.NUI.FocusManager.ResetFocusFinderRootView*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L538">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_FocusManager_ResetFocusFinderRootView" data-uid="Tizen.NUI.FocusManager.ResetFocusFinderRootView">ResetFocusFinderRootView()</h4>
-    <section>
-      <p>Reset the root view that starts moving focus when DefaultAlgorithm is enabled.
-When reset, the window becomes root.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ResetFocusFinderRootView()</code></pre>
-  </div>
-  
   
   
   <a id="Tizen_NUI_FocusManager_SetAsFocusGroup_" data-uid="Tizen.NUI.FocusManager.SetAsFocusGroup*"></a>
@@ -868,44 +586,6 @@ The view must be in the stage already and keyboard focusable.<br></p>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
-  
-  <a id="Tizen_NUI_FocusManager_SetFocusFinderRootView_" data-uid="Tizen.NUI.FocusManager.SetFocusFinderRootView*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L527">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_FocusManager_SetFocusFinderRootView_Tizen_NUI_BaseComponents_View_" data-uid="Tizen.NUI.FocusManager.SetFocusFinderRootView(Tizen.NUI.BaseComponents.View)">SetFocusFinderRootView(View)</h4>
-    <section>
-      <p>Sets the root view to start moving focus when DefaultAlgorithm is enabled.
-This will only look for focusable Views within that View tree when looking for the next focus.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetFocusFinderRootView(View rootView)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.html">View</a></td>
-        <td><span class="parametername">rootView</span></td>
-        <td><p>The root view in which to find the next focusable view.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   <h2 id="events">Events
   </h2>
   
@@ -934,7 +614,7 @@ This will only look for focusable Views within that View tree when looking for t
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.FocusManager.FocusChangedEventArgs.html">FocusManager.FocusChangedEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.NUI.FocusManager.FocusChangedEventArgs.html">FocusManager.FocusChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -972,7 +652,7 @@ It won&apos;t be emitted for focus movement by calling the SetCurrentFocusView d
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.FocusChangingEventArgs.html">FocusChangingEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.NUI.FocusChangingEventArgs.html">FocusChangingEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1009,41 +689,7 @@ It won&apos;t be emitted for focus movement by calling the SetCurrentFocusView d
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.FocusManager.FocusedViewActivatedEventArgs.html">FocusManager.FocusedViewActivatedEventArgs</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
-  
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L243">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_FocusManager_FocusedViewEnterKeyPressed" data-uid="Tizen.NUI.FocusManager.FocusedViewEnterKeyPressed">FocusedViewEnterKeyPressed</h4>
-    <section>
-      <p>[Obsolete(&quot;Do not use this, that will be deprecated.&quot;)]</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;FocusManager.FocusedViewActivatedEventArgs&gt; FocusedViewEnterKeyPressed</code></pre>
-  </div>
-  <h5 class="eventType">Event Type</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.FocusManager.FocusedViewActivatedEventArgs.html">FocusManager.FocusedViewActivatedEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.NUI.FocusManager.FocusedViewActivatedEventArgs.html">FocusManager.FocusedViewActivatedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1079,7 +725,7 @@ If not, the application has to set the new focus.<br></p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.FocusManager.FocusGroupChangedEventArgs.html">FocusManager.FocusGroupChangedEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.NUI.FocusManager.FocusGroupChangedEventArgs.html">FocusManager.FocusGroupChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1092,7 +738,7 @@ If not, the application has to set the new focus.<br></p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/FocusManager.cs/#L89">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_FocusManager_PreFocusChange" data-uid="Tizen.NUI.FocusManager.PreFocusChange">PreFocusChange</h4>
+    <h4 id="Tizen_NUI_FocusManager_PreFocusChange" data-uid="Tizen.NUI.FocusManager.PreFocusChange" data-obsolete="Please do not use! This will be deprecated in API10. Please use FocusChanging instead!" class="obsolete">PreFocusChange</h4>
     <section>
       <p>PreFocusChange will be triggered before the focus is going to be changed.<br>
 The FocusManager makes the best guess for which view to focus towards the given direction, but applications might want to change that.<br>
@@ -1105,7 +751,8 @@ It won&apos;t be emitted for focus movement by calling the SetCurrentFocusView d
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandlerWithReturnType&lt;object, FocusManager.PreFocusChangeEventArgs, View&gt; PreFocusChange</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use! This will be deprecated in API10. Please use FocusChanging instead!&quot;)]
+public event EventHandlerWithReturnType&lt;object, FocusManager.PreFocusChangeEventArgs, View&gt; PreFocusChange</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -1127,41 +774,10 @@ It won&apos;t be emitted for focus movement by calling the SetCurrentFocusView d
   
   <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">System.ComponentModel.INotifyPropertyChanged</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.BindableObjectExtensions.html#Tizen_NUI_Binding_BindableObjectExtensions_SetBinding_Tizen_NUI_Binding_BindableObject_Tizen_NUI_Binding_BindableProperty_System_String_Tizen_NUI_Binding_BindingMode_Tizen_NUI_Binding_IValueConverter_System_String_">BindableObjectExtensions.SetBinding(BindableObject, BindableProperty, String, BindingMode, IValueConverter, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.NameScopeExtensions.html#Tizen_NUI_Binding_NameScopeExtensions_FindByName__1_Tizen_NUI_Binding_Element_System_String_">NameScopeExtensions.FindByName&lt;T&gt;(Element, String)</a>
   </div>
   </div></section>
             </div>

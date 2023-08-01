@@ -82,6 +82,12 @@
 
   
   
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -112,7 +118,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L37">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_KeyValue_KeyInt" data-uid="Tizen.NUI.KeyValue.KeyInt">KeyInt</h4>
+    <h4 id="Tizen_NUI_KeyValue_KeyInt" data-uid="Tizen.NUI.KeyValue.KeyInt" data-obsolete="Deprecated in API9, will be removed in API11. Use IntegerKey instead." class="obsolete">KeyInt</h4>
     <section>
       <p>Int key.</p>
 
@@ -121,7 +127,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int? KeyInt</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use IntegerKey instead.&quot;)]
+public int? KeyInt</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -145,7 +152,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L45">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_KeyValue_KeyString" data-uid="Tizen.NUI.KeyValue.KeyString">KeyString</h4>
+    <h4 id="Tizen_NUI_KeyValue_KeyString" data-uid="Tizen.NUI.KeyValue.KeyString" data-obsolete="Deprecated in API9, will be removed in API11. Use StringKey instead." class="obsolete">KeyString</h4>
     <section>
       <p>String key.</p>
 
@@ -154,7 +161,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string KeyString</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use StringKey instead.&quot;)]
+public string KeyString</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -178,7 +186,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L53">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_KeyValue_TrueValue" data-uid="Tizen.NUI.KeyValue.TrueValue">TrueValue</h4>
+    <h4 id="Tizen_NUI_KeyValue_TrueValue" data-uid="Tizen.NUI.KeyValue.TrueValue" data-obsolete="Deprecated in API9, will be removed in API11. Use PropertyValue instead." class="obsolete">TrueValue</h4>
     <section>
       <p>True value.</p>
 
@@ -187,7 +195,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PropertyValue TrueValue</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API9, will be removed in API11. Use PropertyValue instead.&quot;)]
+public PropertyValue TrueValue</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table">
@@ -311,40 +320,6 @@
   
   
   
-  <a id="Tizen_NUI_KeyValue_IntegerKey_" data-uid="Tizen.NUI.KeyValue.IntegerKey*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L138">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_KeyValue_IntegerKey" data-uid="Tizen.NUI.KeyValue.IntegerKey">IntegerKey</h4>
-    <section>
-      <p>Int key.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int? IntegerKey { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.nullable-1">Nullable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
   <a id="Tizen_NUI_KeyValue_IntergerValue_" data-uid="Tizen.NUI.KeyValue.IntergerValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -441,6 +416,22 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when value is null. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -576,40 +567,6 @@
     <tbody>
       <tr>
         <td><a class="xref" href="Tizen.NUI.PropertyMap.html">PropertyMap</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
-  <a id="Tizen_NUI_KeyValue_PropertyValue_" data-uid="Tizen.NUI.KeyValue.PropertyValue*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L170">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_KeyValue_PropertyValue" data-uid="Tizen.NUI.KeyValue.PropertyValue">PropertyValue</h4>
-    <section>
-      <p>Property value.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PropertyValue PropertyValue { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.PropertyValue.html">PropertyValue</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -889,40 +846,6 @@
   
   
   
-  <a id="Tizen_NUI_KeyValue_StringKey_" data-uid="Tizen.NUI.KeyValue.StringKey*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L154">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_KeyValue_StringKey" data-uid="Tizen.NUI.KeyValue.StringKey">StringKey</h4>
-    <section>
-      <p>String key.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string StringKey { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
   <a id="Tizen_NUI_KeyValue_StringValue_" data-uid="Tizen.NUI.KeyValue.StringValue*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -1092,82 +1015,9 @@
   </table>
   
   
-  <h2 id="methods">Methods
-  </h2>
-  
-  <a id="Tizen_NUI_KeyValue_Dispose_" data-uid="Tizen.NUI.KeyValue.Dispose*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L628">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_KeyValue_Dispose" data-uid="Tizen.NUI.KeyValue.Dispose">Dispose()</h4>
-    <section>
-      
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
-  </div>
-  
-  
-  
-  <a id="Tizen_NUI_KeyValue_Dispose_" data-uid="Tizen.NUI.KeyValue.Dispose*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Input/KeyValue.cs/#L613">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_KeyValue_Dispose_System_Boolean_" data-uid="Tizen.NUI.KeyValue.Dispose(System.Boolean)">Dispose(Boolean)</h4>
-    <section>
-      
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td><span class="parametername">disposing</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
   </div></section>
             </div>

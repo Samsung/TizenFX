@@ -49,7 +49,7 @@
   <div class="entity">
   
   <div class="entity-header w-100 d-flex justify-content-between">
-    <h1 id="Tizen_Maps_MapService" data-uid="Tizen.Maps.MapService" class="mt-0 text-break"><span class="entity-type">Class</span>
+    <h1 id="Tizen_Maps_MapService" data-uid="Tizen.Maps.MapService" data-obsolete="Deprecated since API11. Might be removed in API13." class="mt-0 text-break obsolete"><span class="entity-type">Class</span>
   MapService
   </h1>
       <div class="contribution align-self-end">
@@ -67,7 +67,8 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class MapService : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public class MapService : IDisposable</code></pre>
   </div>
 
   
@@ -83,6 +84,12 @@
 
   
   
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -93,7 +100,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L51">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService__ctor_System_String_System_String_" data-uid="Tizen.Maps.MapService.#ctor(System.String,System.String)">MapService(String, String)</h4>
+    <h4 id="Tizen_Maps_MapService__ctor_System_String_System_String_" data-uid="Tizen.Maps.MapService.#ctor(System.String,System.String)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">MapService(String, String)</h4>
     <section>
       <p>Creates a new maps service object for given service provider.</p>
 
@@ -102,7 +109,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MapService(string serviceProvider, string serviceProviderKey)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public MapService(string serviceProvider, string serviceProviderKey)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -128,6 +136,37 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when parameters are invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when a native operation failed to allocate memory and connect to the service.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -141,7 +180,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L154">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_GeocodePreferences" data-uid="Tizen.Maps.MapService.GeocodePreferences">GeocodePreferences</h4>
+    <h4 id="Tizen_Maps_MapService_GeocodePreferences" data-uid="Tizen.Maps.MapService.GeocodePreferences" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">GeocodePreferences</h4>
     <section>
       <p>Gets the search preferences used for <a class="xref" href="Tizen.Maps.GeocodeRequest.html">GeocodeRequest</a> or <a class="xref" href="Tizen.Maps.ReverseGeocodeRequest.html">ReverseGeocodeRequest</a>.</p>
 
@@ -150,7 +189,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IGeocodePreference GeocodePreferences { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public IGeocodePreference GeocodePreferences { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -176,7 +216,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L134">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_PlaceSearchFilter" data-uid="Tizen.Maps.MapService.PlaceSearchFilter">PlaceSearchFilter</h4>
+    <h4 id="Tizen_Maps_MapService_PlaceSearchFilter" data-uid="Tizen.Maps.MapService.PlaceSearchFilter" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">PlaceSearchFilter</h4>
     <section>
       <p>Gets and sets a filter used for the place search result.</p>
 
@@ -185,7 +225,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PlaceFilter PlaceSearchFilter { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public PlaceFilter PlaceSearchFilter { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -211,7 +252,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L167">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_PlaceSearchPreferences" data-uid="Tizen.Maps.MapService.PlaceSearchPreferences">PlaceSearchPreferences</h4>
+    <h4 id="Tizen_Maps_MapService_PlaceSearchPreferences" data-uid="Tizen.Maps.MapService.PlaceSearchPreferences" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">PlaceSearchPreferences</h4>
     <section>
       <p>Gets the search preferences used for <a class="xref" href="Tizen.Maps.PlaceSearchRequest.html">PlaceSearchRequest</a>.</p>
 
@@ -220,7 +261,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IPlaceSearchPreference PlaceSearchPreferences { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public IPlaceSearchPreference PlaceSearchPreferences { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -246,7 +288,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L193">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_Preferences" data-uid="Tizen.Maps.MapService.Preferences">Preferences</h4>
+    <h4 id="Tizen_Maps_MapService_Preferences" data-uid="Tizen.Maps.MapService.Preferences" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Preferences</h4>
     <section>
       <p>Gets and sets the search preferences.</p>
 
@@ -255,7 +297,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SearchPreference Preferences { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public SearchPreference Preferences { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -281,7 +324,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L94">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_Provider" data-uid="Tizen.Maps.MapService.Provider">Provider</h4>
+    <h4 id="Tizen_Maps_MapService_Provider" data-uid="Tizen.Maps.MapService.Provider" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Provider</h4>
     <section>
       <p>Gets the name of the map service provider.</p>
 
@@ -290,7 +333,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Provider { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public string Provider { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -316,7 +360,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L117">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_ProviderKey" data-uid="Tizen.Maps.MapService.ProviderKey">ProviderKey</h4>
+    <h4 id="Tizen_Maps_MapService_ProviderKey" data-uid="Tizen.Maps.MapService.ProviderKey" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">ProviderKey</h4>
     <section>
       <p>Gets and sets a string representing keys for the map service provider.</p>
 
@@ -325,7 +369,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string ProviderKey { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public string ProviderKey { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -355,7 +400,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L77">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_Providers" data-uid="Tizen.Maps.MapService.Providers">Providers</h4>
+    <h4 id="Tizen_Maps_MapService_Providers" data-uid="Tizen.Maps.MapService.Providers" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Providers</h4>
     <section>
       <p>Gets the list of available map service providers.</p>
 
@@ -364,7 +409,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static IEnumerable&lt;string&gt; Providers { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public static IEnumerable&lt;string&gt; Providers { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -376,8 +422,29 @@ Depending on the plan and its provider which you have signed, you might have to 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a>&gt;</td>
         <td><p>The list of map service providers.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have privilege to access this property.</p>
 </td>
       </tr>
     </tbody>
@@ -393,7 +460,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L180">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_RouteSearchPreferences" data-uid="Tizen.Maps.MapService.RouteSearchPreferences">RouteSearchPreferences</h4>
+    <h4 id="Tizen_Maps_MapService_RouteSearchPreferences" data-uid="Tizen.Maps.MapService.RouteSearchPreferences" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">RouteSearchPreferences</h4>
     <section>
       <p>Gets the search preferences used for <a class="xref" href="Tizen.Maps.RouteSearchRequest.html">RouteSearchRequest</a>.</p>
 
@@ -402,7 +469,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public IRouteSearchPreference RouteSearchPreferences { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public IRouteSearchPreference RouteSearchPreferences { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -428,7 +496,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L102">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_UserConsented" data-uid="Tizen.Maps.MapService.UserConsented">UserConsented</h4>
+    <h4 id="Tizen_Maps_MapService_UserConsented" data-uid="Tizen.Maps.MapService.UserConsented" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">UserConsented</h4>
     <section>
       <p>Gets a user consent for the map service provider</p>
 
@@ -437,7 +505,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool UserConsented { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public bool UserConsented { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -467,7 +536,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L281">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_CreateGeocodeRequest_System_String_" data-uid="Tizen.Maps.MapService.CreateGeocodeRequest(System.String)">CreateGeocodeRequest(String)</h4>
+    <h4 id="Tizen_Maps_MapService_CreateGeocodeRequest_System_String_" data-uid="Tizen.Maps.MapService.CreateGeocodeRequest(System.String)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">CreateGeocodeRequest(String)</h4>
     <section>
       <p>Creates a geocode search request for the given free-formed address string.</p>
 
@@ -476,7 +545,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GeocodeRequest CreateGeocodeRequest(string address)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public GeocodeRequest CreateGeocodeRequest(string address)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -521,7 +591,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L295">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_CreateGeocodeRequest_System_String_Tizen_Maps_Area_" data-uid="Tizen.Maps.MapService.CreateGeocodeRequest(System.String,Tizen.Maps.Area)">CreateGeocodeRequest(String, Area)</h4>
+    <h4 id="Tizen_Maps_MapService_CreateGeocodeRequest_System_String_Tizen_Maps_Area_" data-uid="Tizen.Maps.MapService.CreateGeocodeRequest(System.String,Tizen.Maps.Area)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">CreateGeocodeRequest(String, Area)</h4>
     <section>
       <p>Creates a geocode search request for the given free-formed address string, within the specified boundary.</p>
 
@@ -530,7 +600,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GeocodeRequest CreateGeocodeRequest(string address, Area boundary)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public GeocodeRequest CreateGeocodeRequest(string address, Area boundary)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -585,7 +656,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L307">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_CreateGeocodeRequest_Tizen_Maps_PlaceAddress_" data-uid="Tizen.Maps.MapService.CreateGeocodeRequest(Tizen.Maps.PlaceAddress)">CreateGeocodeRequest(PlaceAddress)</h4>
+    <h4 id="Tizen_Maps_MapService_CreateGeocodeRequest_Tizen_Maps_PlaceAddress_" data-uid="Tizen.Maps.MapService.CreateGeocodeRequest(Tizen.Maps.PlaceAddress)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">CreateGeocodeRequest(PlaceAddress)</h4>
     <section>
       <p>Creates a geocode search request for the given structured address.</p>
 
@@ -594,7 +665,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public GeocodeRequest CreateGeocodeRequest(PlaceAddress address)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public GeocodeRequest CreateGeocodeRequest(PlaceAddress address)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -639,7 +711,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L332">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_CreateMultiReverseGeocodeRequest_IEnumerable_Tizen_Maps_Geocoordinates__" data-uid="Tizen.Maps.MapService.CreateMultiReverseGeocodeRequest(IEnumerable{Tizen.Maps.Geocoordinates})">CreateMultiReverseGeocodeRequest(IEnumerable&lt;Geocoordinates&gt;)</h4>
+    <h4 id="Tizen_Maps_MapService_CreateMultiReverseGeocodeRequest_System_Collections_Generic_IEnumerable_Tizen_Maps_Geocoordinates__" data-uid="Tizen.Maps.MapService.CreateMultiReverseGeocodeRequest(System.Collections.Generic.IEnumerable{Tizen.Maps.Geocoordinates})" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">CreateMultiReverseGeocodeRequest(IEnumerable&lt;Geocoordinates&gt;)</h4>
     <section>
       <p>Creates a reverse geocode search request for the given position coordinates list.</p>
 
@@ -648,7 +720,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public MultiReverseGeocodeRequest CreateMultiReverseGeocodeRequest(IEnumerable&lt;Geocoordinates&gt; coordinates)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public MultiReverseGeocodeRequest CreateMultiReverseGeocodeRequest(IEnumerable&lt;Geocoordinates&gt; coordinates)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -661,7 +734,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Maps.Geocoordinates.html">Geocoordinates</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Maps.Geocoordinates.html">Geocoordinates</a>&gt;</td>
         <td><span class="parametername">coordinates</span></td>
         <td><p>Coordinates list with [2 ~ 100] coordinates.</p>
 </td>
@@ -693,7 +766,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L383">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_CreatePlaceSearchRequest_System_String_Tizen_Maps_Area_" data-uid="Tizen.Maps.MapService.CreatePlaceSearchRequest(System.String,Tizen.Maps.Area)">CreatePlaceSearchRequest(String, Area)</h4>
+    <h4 id="Tizen_Maps_MapService_CreatePlaceSearchRequest_System_String_Tizen_Maps_Area_" data-uid="Tizen.Maps.MapService.CreatePlaceSearchRequest(System.String,Tizen.Maps.Area)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">CreatePlaceSearchRequest(String, Area)</h4>
     <section>
       <p>Creates a place search request for a free-formed address within the boundary.</p>
 
@@ -702,7 +775,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PlaceSearchRequest CreatePlaceSearchRequest(string address, Area boundary)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public PlaceSearchRequest CreatePlaceSearchRequest(string address, Area boundary)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -753,7 +827,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L370">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_CreatePlaceSearchRequest_Tizen_Maps_Area_" data-uid="Tizen.Maps.MapService.CreatePlaceSearchRequest(Tizen.Maps.Area)">CreatePlaceSearchRequest(Area)</h4>
+    <h4 id="Tizen_Maps_MapService_CreatePlaceSearchRequest_Tizen_Maps_Area_" data-uid="Tizen.Maps.MapService.CreatePlaceSearchRequest(Tizen.Maps.Area)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">CreatePlaceSearchRequest(Area)</h4>
     <section>
       <p>Creates a place search request for places within a specified boundary.</p>
 
@@ -762,7 +836,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PlaceSearchRequest CreatePlaceSearchRequest(Area boundary)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public PlaceSearchRequest CreatePlaceSearchRequest(Area boundary)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -807,7 +882,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L358">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_CreatePlaceSearchRequest_Tizen_Maps_Geocoordinates_System_Int32_" data-uid="Tizen.Maps.MapService.CreatePlaceSearchRequest(Tizen.Maps.Geocoordinates,System.Int32)">CreatePlaceSearchRequest(Geocoordinates, Int32)</h4>
+    <h4 id="Tizen_Maps_MapService_CreatePlaceSearchRequest_Tizen_Maps_Geocoordinates_System_Int32_" data-uid="Tizen.Maps.MapService.CreatePlaceSearchRequest(Tizen.Maps.Geocoordinates,System.Int32)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">CreatePlaceSearchRequest(Geocoordinates, Int32)</h4>
     <section>
       <p>Creates a place search request for a specified search radius around a given coordinates position.</p>
 
@@ -816,7 +891,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PlaceSearchRequest CreatePlaceSearchRequest(Geocoordinates coordinates, int distance)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public PlaceSearchRequest CreatePlaceSearchRequest(Geocoordinates coordinates, int distance)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -867,7 +943,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L320">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_CreateReverseGeocodeRequest_System_Double_System_Double_" data-uid="Tizen.Maps.MapService.CreateReverseGeocodeRequest(System.Double,System.Double)">CreateReverseGeocodeRequest(Double, Double)</h4>
+    <h4 id="Tizen_Maps_MapService_CreateReverseGeocodeRequest_System_Double_System_Double_" data-uid="Tizen.Maps.MapService.CreateReverseGeocodeRequest(System.Double,System.Double)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">CreateReverseGeocodeRequest(Double, Double)</h4>
     <section>
       <p>Creates a reverse geocode search request for the given latitude and longitude.</p>
 
@@ -876,7 +952,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ReverseGeocodeRequest CreateReverseGeocodeRequest(double latitude, double longitude)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public ReverseGeocodeRequest CreateReverseGeocodeRequest(double latitude, double longitude)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -927,7 +1004,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L345">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_CreateRouteSearchRequest_Tizen_Maps_Geocoordinates_Tizen_Maps_Geocoordinates_" data-uid="Tizen.Maps.MapService.CreateRouteSearchRequest(Tizen.Maps.Geocoordinates,Tizen.Maps.Geocoordinates)">CreateRouteSearchRequest(Geocoordinates, Geocoordinates)</h4>
+    <h4 id="Tizen_Maps_MapService_CreateRouteSearchRequest_Tizen_Maps_Geocoordinates_Tizen_Maps_Geocoordinates_" data-uid="Tizen.Maps.MapService.CreateRouteSearchRequest(Tizen.Maps.Geocoordinates,Tizen.Maps.Geocoordinates)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">CreateRouteSearchRequest(Geocoordinates, Geocoordinates)</h4>
     <section>
       <p>Creates a route search request for the origin and destination points.</p>
 
@@ -936,7 +1013,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public RouteSearchRequest CreateRouteSearchRequest(Geocoordinates from, Geocoordinates to)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public RouteSearchRequest CreateRouteSearchRequest(Geocoordinates from, Geocoordinates to)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -987,7 +1065,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L416">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_Dispose" data-uid="Tizen.Maps.MapService.Dispose">Dispose()</h4>
+    <h4 id="Tizen_Maps_MapService_Dispose" data-uid="Tizen.Maps.MapService.Dispose" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Dispose()</h4>
     <section>
       <p>Releases all the resources used by this object.</p>
 
@@ -996,7 +1074,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public void Dispose()</code></pre>
   </div>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
@@ -1007,7 +1086,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L397">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_Dispose_System_Boolean_" data-uid="Tizen.Maps.MapService.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+    <h4 id="Tizen_Maps_MapService_Dispose_System_Boolean_" data-uid="Tizen.Maps.MapService.Dispose(System.Boolean)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Dispose(Boolean)</h4>
     <section>
       <p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
 
@@ -1016,7 +1095,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1045,7 +1125,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L64">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_Finalize" data-uid="Tizen.Maps.MapService.Finalize">Finalize()</h4>
+    <h4 id="Tizen_Maps_MapService_Finalize" data-uid="Tizen.Maps.MapService.Finalize" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Finalize()</h4>
     <section>
       <p>Destroy the MapService object.</p>
 
@@ -1064,7 +1144,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L266">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_IsSupported_Tizen_Maps_ServiceData_" data-uid="Tizen.Maps.MapService.IsSupported(Tizen.Maps.ServiceData)">IsSupported(ServiceData)</h4>
+    <h4 id="Tizen_Maps_MapService_IsSupported_Tizen_Maps_ServiceData_" data-uid="Tizen.Maps.MapService.IsSupported(Tizen.Maps.ServiceData)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">IsSupported(ServiceData)</h4>
     <section>
       <p>Checks if the maps service supports a given data feature.</p>
 
@@ -1073,7 +1153,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsSupported(ServiceData data)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public bool IsSupported(ServiceData data)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1109,6 +1190,27 @@ Depending on the plan and its provider which you have signed, you might have to 
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -1120,7 +1222,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L248">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_IsSupported_Tizen_Maps_ServiceRequestType_" data-uid="Tizen.Maps.MapService.IsSupported(Tizen.Maps.ServiceRequestType)">IsSupported(ServiceRequestType)</h4>
+    <h4 id="Tizen_Maps_MapService_IsSupported_Tizen_Maps_ServiceRequestType_" data-uid="Tizen.Maps.MapService.IsSupported(Tizen.Maps.ServiceRequestType)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">IsSupported(ServiceRequestType)</h4>
     <section>
       <p>Checks if the maps service supports the given request.</p>
 
@@ -1129,7 +1231,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsSupported(ServiceRequestType type)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public bool IsSupported(ServiceRequestType type)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -1165,6 +1268,27 @@ Depending on the plan and its provider which you have signed, you might have to 
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -1176,7 +1300,7 @@ Depending on the plan and its provider which you have signed, you might have to 
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/MapService.cs/#L222">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_MapService_RequestUserConsent" data-uid="Tizen.Maps.MapService.RequestUserConsent">RequestUserConsent()</h4>
+    <h4 id="Tizen_Maps_MapService_RequestUserConsent" data-uid="Tizen.Maps.MapService.RequestUserConsent" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">RequestUserConsent()</h4>
     <section>
       <p>Gets the user&apos;s consent to use maps data.</p>
 
@@ -1185,7 +1309,8 @@ Depending on the plan and its provider which you have signed, you might have to 
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;bool&gt; RequestUserConsent()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public Task&lt;bool&gt; RequestUserConsent()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -1197,8 +1322,29 @@ Depending on the plan and its provider which you have signed, you might have to 
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a>&gt;</td>
         <td><p>Returns true if user agreed that the application can use maps data, otherwise false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the required feature is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when application does not have some privilege to access this method.</p>
 </td>
       </tr>
     </tbody>
@@ -1208,27 +1354,9 @@ Depending on the plan and its provider which you have signed, you might have to 
   <h6><strong>Privilege Level</strong>: public</h6>
   <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/mapservice</span></span></h6>
   
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
   </div></section>
             </div>

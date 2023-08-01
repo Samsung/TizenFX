@@ -49,7 +49,7 @@
   <div class="entity">
   
   <div class="entity-header w-100 d-flex justify-content-between">
-    <h1 id="Tizen_WebView_Context" data-uid="Tizen.WebView.Context" class="mt-0 text-break"><span class="entity-type">Class</span>
+    <h1 id="Tizen_WebView_Context" data-uid="Tizen.WebView.Context" data-obsolete="Deprecated since API Level 10. Will be removed in API Level 12." class="mt-0 text-break obsolete"><span class="entity-type">Class</span>
   Context
   </h1>
       <div class="contribution align-self-end">
@@ -67,7 +67,8 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Context : object</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
+public class Context</code></pre>
   </div>
 
   
@@ -97,7 +98,7 @@ All pages in the same context share the same preferences, visited link set, loca
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Context.cs/#L90">View Source</a>
     </span>
-    <h4 id="Tizen_WebView_Context_CacheModel" data-uid="Tizen.WebView.Context.CacheModel">CacheModel</h4>
+    <h4 id="Tizen_WebView_Context_CacheModel" data-uid="Tizen.WebView.Context.CacheModel" data-obsolete="Deprecated since API Level 10. Will be removed in API Level 12." class="obsolete">CacheModel</h4>
     <section>
       <p>The cache model.</p>
 
@@ -106,7 +107,8 @@ All pages in the same context share the same preferences, visited link set, loca
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CacheModel CacheModel { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
+public CacheModel CacheModel { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -137,7 +139,7 @@ All pages in the same context share the same preferences, visited link set, loca
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Context.cs/#L128">View Source</a>
     </span>
-    <h4 id="Tizen_WebView_Context_ClearResourceCache" data-uid="Tizen.WebView.Context.ClearResourceCache">ClearResourceCache()</h4>
+    <h4 id="Tizen_WebView_Context_ClearResourceCache" data-uid="Tizen.WebView.Context.ClearResourceCache" data-obsolete="Deprecated since API Level 10. Will be removed in API Level 12." class="obsolete">ClearResourceCache()</h4>
     <section>
       <p>Clears HTTP caches in the local storage and all resources cached in memory.</p>
 
@@ -146,7 +148,8 @@ All pages in the same context share the same preferences, visited link set, loca
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ClearResourceCache()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
+public void ClearResourceCache()</code></pre>
   </div>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
@@ -157,7 +160,7 @@ All pages in the same context share the same preferences, visited link set, loca
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Context.cs/#L109">View Source</a>
     </span>
-    <h4 id="Tizen_WebView_Context_GetCookieManager" data-uid="Tizen.WebView.Context.GetCookieManager">GetCookieManager()</h4>
+    <h4 id="Tizen_WebView_Context_GetCookieManager" data-uid="Tizen.WebView.Context.GetCookieManager" data-obsolete="Deprecated since API Level 10. Will be removed in API Level 12." class="obsolete">GetCookieManager()</h4>
     <section>
       <p>Gets the CookieManager object for this context.</p>
 
@@ -166,7 +169,8 @@ All pages in the same context share the same preferences, visited link set, loca
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CookieManager GetCookieManager()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API Level 10. Will be removed in API Level 12.&quot;)]
+public CookieManager GetCookieManager()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -187,196 +191,6 @@ All pages in the same context share the same preferences, visited link set, loca
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
-  
-  <a id="Tizen_WebView_Context_NotifyLowMemory_" data-uid="Tizen.WebView.Context.NotifyLowMemory*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Context.cs/#L138">View Source</a>
-    </span>
-    <h4 id="Tizen_WebView_Context_NotifyLowMemory" data-uid="Tizen.WebView.Context.NotifyLowMemory">NotifyLowMemory()</h4>
-    <section>
-      <p>Informs the WebEngine low memory to release unused memory.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void NotifyLowMemory()</code></pre>
-  </div>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
-  
-  <a id="Tizen_WebView_Context_SetDownloadRequestDelegate_" data-uid="Tizen.WebView.Context.SetDownloadRequestDelegate*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Context.cs/#L149">View Source</a>
-    </span>
-    <h4 id="Tizen_WebView_Context_SetDownloadRequestDelegate_Tizen_WebView_Context_DownloadRequestDelegate_" data-uid="Tizen.WebView.Context.SetDownloadRequestDelegate(Tizen.WebView.Context.DownloadRequestDelegate)">SetDownloadRequestDelegate(Context.DownloadRequestDelegate)</h4>
-    <section>
-      <p>Sets the delegate function for download request.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetDownloadRequestDelegate(Context.DownloadRequestDelegate startDownloadCb)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.WebView.Context.DownloadRequestDelegate.html">Context.DownloadRequestDelegate</a></td>
-        <td><span class="parametername">startDownloadCb</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  
-  
-  <a id="Tizen_WebView_Context_SetInterceptRequestDelegate_" data-uid="Tizen.WebView.Context.SetInterceptRequestDelegate*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Context.cs/#L165">View Source</a>
-    </span>
-    <h4 id="Tizen_WebView_Context_SetInterceptRequestDelegate_Tizen_WebView_Context_InterceptRequestDelegate_" data-uid="Tizen.WebView.Context.SetInterceptRequestDelegate(Tizen.WebView.Context.InterceptRequestDelegate)">SetInterceptRequestDelegate(Context.InterceptRequestDelegate)</h4>
-    <section>
-      <p>Sets the delegate function for intercepting a resource request.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetInterceptRequestDelegate(Context.InterceptRequestDelegate interceptRequestCb)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.WebView.Context.InterceptRequestDelegate.html">Context.InterceptRequestDelegate</a></td>
-        <td><span class="parametername">interceptRequestCb</span></td>
-        <td><p>The delegate function for intercepting a resource request. </p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
-  
-  <a id="Tizen_WebView_Context_StartInspectorServer_" data-uid="Tizen.WebView.Context.StartInspectorServer*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Context.cs/#L182">View Source</a>
-    </span>
-    <h4 id="Tizen_WebView_Context_StartInspectorServer_System_UInt32_" data-uid="Tizen.WebView.Context.StartInspectorServer(System.UInt32)">StartInspectorServer(UInt32)</h4>
-    <section>
-      <p>Starts the inspector server.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint StartInspectorServer(uint port)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td><span class="parametername">port</span></td>
-        <td><p>The port number. </p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
-  
-  <a id="Tizen_WebView_Context_StopInspectorServer_" data-uid="Tizen.WebView.Context.StopInspectorServer*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.WebView/Tizen.WebView/Context.cs/#L193">View Source</a>
-    </span>
-    <h4 id="Tizen_WebView_Context_StopInspectorServer" data-uid="Tizen.WebView.Context.StopInspectorServer">StopInspectorServer()</h4>
-    <section>
-      <p>Stops the inspector server.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void StopInspectorServer()</code></pre>
-  </div>
-  
-  <h6><strong>API Level</strong>: <span>8</span></h6>
-  
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
   </div></section>
             </div>
           </main>

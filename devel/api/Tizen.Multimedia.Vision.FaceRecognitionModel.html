@@ -84,6 +84,12 @@
 
   
   
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -105,6 +111,22 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public FaceRecognitionModel()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -146,6 +168,39 @@
   <h5 id="Tizen_Multimedia_Vision_FaceRecognitionModel__ctor_System_String__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Models saved by <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html#Tizen_Multimedia_Vision_FaceRecognitionModel_Save_System_String_">Save(String)</a> can be loaded.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">modelPath</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.filenotfoundexception">FileNotFoundException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">modelPath</code> is invalid.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The feature is not supported.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">modelPath</code> is not supported format.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>No permission to access the specified file.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_Vision_FaceRecognitionModel__ctor_System_String__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html#Tizen_Multimedia_Vision_FaceRecognitionModel_Save_System_String_">Save(String)</a></div>
@@ -184,6 +239,22 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>[]</td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> has already been disposed of.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -231,6 +302,29 @@
         <td><p>The label that identifies face for which example is adding.
     Specify the same labels for the face images of a single person when calling this method.
     Has to be unique for each face.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> has already been disposed of.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">source</code> has already been dispose of.</p>
 </td>
       </tr>
     </tbody>
@@ -287,6 +381,29 @@
         <td><a class="xref" href="Tizen.Multimedia.Rectangle.html">Rectangle</a></td>
         <td><span class="parametername">area</span></td>
         <td><p>The rectangular region of the face image at the source image.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">source</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> has already been disposed of.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">source</code> has already been dispose of.</p>
 </td>
       </tr>
     </tbody>
@@ -398,6 +515,27 @@ These examples have to be provided by <a class="xref" href="Tizen.Multimedia.Vis
 Recognition accuracy is usually increased when the different examples of the identical faces are added more and more.
 But it depends on the used learning algorithm.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>No examples added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_Vision_FaceRecognitionModel_Learn_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html#Tizen_Multimedia_Vision_FaceRecognitionModel_Add_Tizen_Multimedia_Vision_MediaVisionSource_System_Int32_">Add(MediaVisionSource, Int32)</a></div>
@@ -447,6 +585,29 @@ These examples have to be provided by <a class="xref" href="Tizen.Multimedia.Vis
 Recognition accuracy is usually increased when the different examples of the identical faces are added more and more.
 But it depends on the used learning algorithm.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> has already been disposed of.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">config</code> has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>No examples added.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_Vision_FaceRecognitionModel_Learn_Tizen_Multimedia_Vision_FaceRecognitionConfiguration__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html#Tizen_Multimedia_Vision_FaceRecognitionModel_Add_Tizen_Multimedia_Vision_MediaVisionSource_System_Int32_">Add(MediaVisionSource, Int32)</a></div>
@@ -506,6 +667,22 @@ But it depends on the used learning algorithm.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_Vision_FaceRecognitionModel_Remove_System_Int32__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html#Tizen_Multimedia_Vision_FaceRecognitionModel_Add_Tizen_Multimedia_Vision_MediaVisionSource_System_Int32_">Add(MediaVisionSource, Int32)</a></div>
@@ -531,6 +708,22 @@ But it depends on the used learning algorithm.</p>
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Reset()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -569,30 +762,43 @@ But it depends on the used learning algorithm.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">path</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>No permission to write to the specified path.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The <a class="xref" href="Tizen.Multimedia.Vision.FaceRecognitionModel.html">FaceRecognitionModel</a> has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.directorynotfoundexception">DirectoryNotFoundException</a></td>
+        <td><p>The directory for <code data-dev-comment-type="paramref" class="paramref">path</code> does not exist.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
   </div></section>
             </div>

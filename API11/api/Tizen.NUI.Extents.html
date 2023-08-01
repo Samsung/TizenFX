@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Extents : Disposable, ICloneable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Extents : Disposable, IDisposable, ICloneable</code></pre>
   </div>
 
   
@@ -87,7 +87,8 @@
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">ICloneable</span></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icloneable">ICloneable</a></div>
     </dd>
   </dl>
   
@@ -282,7 +283,12 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ushort Bottom { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ushort Bottom
+{
+    get;
+    [Obsolete(&quot;Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -320,7 +326,12 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ushort End { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ushort End
+{
+    get;
+    [Obsolete(&quot;Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -358,7 +369,12 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ushort Start { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ushort Start
+{
+    get;
+    [Obsolete(&quot;Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -396,7 +412,12 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ushort Top { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">public ushort Top
+{
+    get;
+    [Obsolete(&quot;Do not use this setter, that is deprecated in API8 and will be removed in API10. Use new Extents(...) constructor&quot;)]
+    set;
+}</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -421,39 +442,6 @@
   
   <h2 id="methods">Methods
   </h2>
-  
-  <a id="Tizen_NUI_Extents_Clone_" data-uid="Tizen.NUI.Extents.Clone*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Extents.cs/#L286">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Extents_Clone" data-uid="Tizen.NUI.Extents.Clone">Clone()</h4>
-    <section>
-      
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public object Clone()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   
   <a id="Tizen_NUI_Extents_CopyFrom_" data-uid="Tizen.NUI.Extents.CopyFrom*"></a>
   <div class="entity-child">
@@ -485,6 +473,22 @@
         <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
         <td><span class="parametername">that</span></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when that is null. </p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -599,135 +603,12 @@
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
-  
-  <a id="Tizen_NUI_Extents_ReleaseSwigCPtr_" data-uid="Tizen.NUI.Extents.ReleaseSwigCPtr*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Extents.cs/#L304">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Extents_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.Extents.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</h4>
-    <section>
-      
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
-        <td><span class="parametername">swigCPtr</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.Disposable.html#Tizen_NUI_Disposable_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">Disposable.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
-  
-  
-  <h2 id="operators">Operators
-  </h2>
-  
-  <a id="Tizen_NUI_Extents_op_Implicit_" data-uid="Tizen.NUI.Extents.op_Implicit*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/Common/Extents.cs/#L57">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Extents_op_Implicit_System_UInt16__Tizen_NUI_Extents" data-uid="Tizen.NUI.Extents.op_Implicit(System.UInt16)~Tizen.NUI.Extents">Implicit(UInt16 to Extents)</h4>
-    <section>
-      <p>The type cast operator, ushort to Extents.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static implicit operator Extents(ushort value)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint16">UInt16</a></td>
-        <td><span class="parametername">value</span></td>
-        <td><p>A value of ushort type.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Extents.html">Extents</a></td>
-        <td><p>return a Extents instance</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   <h2 id="implements">Implements</h2>
   <div>
-      <span class="xref">ICloneable</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.GraphicsTypeExtensions.html#Tizen_NUI_GraphicsTypeExtensions_PxToDp_Tizen_NUI_Extents_">GraphicsTypeExtensions.PxToDp(Extents)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
   <div>
-      <a class="xref" href="Tizen.NUI.GraphicsTypeExtensions.html#Tizen_NUI_GraphicsTypeExtensions_PxToSp_Tizen_NUI_Extents_">GraphicsTypeExtensions.PxToSp(Extents)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.GraphicsTypeExtensions.html#Tizen_NUI_GraphicsTypeExtensions_DpToPx_Tizen_NUI_Extents_">GraphicsTypeExtensions.DpToPx(Extents)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.GraphicsTypeExtensions.html#Tizen_NUI_GraphicsTypeExtensions_SpToPx_Tizen_NUI_Extents_">GraphicsTypeExtensions.SpToPx(Extents)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.icloneable">System.ICloneable</a>
   </div>
   </div></section>
             </div>

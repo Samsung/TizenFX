@@ -68,7 +68,7 @@ The icon part consists of track and thumb.</p>
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Switch : Button, IDynamicResourceHandler, IElement, INameScope, IElementController, System.IDisposable, IResourcesProvider</code></pre>
+    <pre><code class="lang-csharp hljs">public class Switch : Button, INotifyPropertyChanged, IDynamicResourceHandler, IElement, INameScope, IElementController, IDisposable, IResourcesProvider</code></pre>
   </div>
 
   
@@ -78,7 +78,7 @@ The icon part consists of track and thumb.</p>
       <div class="pdl-holder">
         <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.BindableObject.html">BindableObject</a></div>
-        <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Element.html">Element</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Binding.Element</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseHandle.html">BaseHandle</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Animatable.html">Animatable</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Container.html">Container</a></div>
@@ -86,7 +86,7 @@ The icon part consists of track and thumb.</p>
         <div class="pdl"><a class="xref" href="Tizen.NUI.ViewWrapper.html">ViewWrapper</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.CustomView.html">CustomView</a></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.BaseComponents.VisualView.html">VisualView</a></div>
-        <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Control.html">Control</a></div>
+        <div class="pdl"><span class="xref">Tizen.NUI.Components.Control</span></div>
         <div class="pdl"><a class="xref" href="Tizen.NUI.Components.Button.html">Button</a></div>
         <div><span class="xref">Switch</span></div>
       </div>
@@ -98,10 +98,8 @@ The icon part consists of track and thumb.</p>
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a></div>
-      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a></div>
-      <div class="pdl"><a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">INotifyPropertyChanged</a></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
   
@@ -204,140 +202,6 @@ The icon part consists of track and thumb.</p>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
-  <h2 id="fields">Fields
-  </h2>
-  
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/SwitchBindableProperty.cs/#L12">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Switch_SwitchBackgroundImageURLSelectorProperty" data-uid="Tizen.NUI.Components.Switch.SwitchBackgroundImageURLSelectorProperty">SwitchBackgroundImageURLSelectorProperty</h4>
-    <section>
-      <p>SwitchBackgroundImageURLSelectorProperty</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SwitchBackgroundImageURLSelectorProperty</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/SwitchBindableProperty.cs/#L66">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Switch_SwitchHandlerImageSizeProperty" data-uid="Tizen.NUI.Components.Switch.SwitchHandlerImageSizeProperty">SwitchHandlerImageSizeProperty</h4>
-    <section>
-      <p>SwitchHandlerImageSizeProperty</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SwitchHandlerImageSizeProperty</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/SwitchBindableProperty.cs/#L30">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Switch_SwitchHandlerImageURLProperty" data-uid="Tizen.NUI.Components.Switch.SwitchHandlerImageURLProperty">SwitchHandlerImageURLProperty</h4>
-    <section>
-      <p>SwitchHandlerImageURLProperty</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SwitchHandlerImageURLProperty</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/SwitchBindableProperty.cs/#L48">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Switch_SwitchHandlerImageURLSelectorProperty" data-uid="Tizen.NUI.Components.Switch.SwitchHandlerImageURLSelectorProperty">SwitchHandlerImageURLSelectorProperty</h4>
-    <section>
-      <p>SwitchHandlerImageURLSelectorProperty</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly BindableProperty SwitchHandlerImageURLSelectorProperty</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Binding.BindableProperty.html">BindableProperty</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
   <h2 id="properties">Properties
   </h2>
   
@@ -405,7 +269,7 @@ The icon part consists of track and thumb.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.Components.StringSelector.html">StringSelector</a></td>
+        <td><span class="xref">Tizen.NUI.Components.StringSelector</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -511,7 +375,7 @@ Getter returns copied selector value if exist, null otherwise.</p>
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Tizen.NUI.Components.StringSelector.html">StringSelector</a></td>
+        <td><span class="xref">Tizen.NUI.Components.StringSelector</span></td>
         <td></td>
       </tr>
     </tbody>
@@ -592,117 +456,6 @@ Getter returns copied selector value if exist, null otherwise.</p>
   <h2 id="methods">Methods
   </h2>
   
-  <a id="Tizen_NUI_Components_Switch_AccessibilityCalculateStates_" data-uid="Tizen.NUI.Components.Switch.AccessibilityCalculateStates*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Switch.cs/#L79">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Switch_AccessibilityCalculateStates" data-uid="Tizen.NUI.Components.Switch.AccessibilityCalculateStates">AccessibilityCalculateStates()</h4>
-    <section>
-      <p>Informs AT-SPI bridge about the set of AT-SPI states associated with this object.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override AccessibilityStates AccessibilityCalculateStates()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.AccessibilityStates.html">AccessibilityStates</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.Components.Button.html#Tizen_NUI_Components_Button_AccessibilityCalculateStates">Button.AccessibilityCalculateStates()</a></div>
-  
-  
-  
-  <a id="Tizen_NUI_Components_Switch_ApplyStyle_" data-uid="Tizen.NUI.Components.Switch.ApplyStyle*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Switch.cs/#L115">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Switch_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_" data-uid="Tizen.NUI.Components.Switch.ApplyStyle(Tizen.NUI.BaseComponents.ViewStyle)">ApplyStyle(ViewStyle)</h4>
-    <section>
-      <p>Apply style to switch.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void ApplyStyle(ViewStyle viewStyle)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.ViewStyle.html">ViewStyle</a></td>
-        <td><span class="parametername">viewStyle</span></td>
-        <td><p>The style to apply.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.Components.Button.html#Tizen_NUI_Components_Button_ApplyStyle_Tizen_NUI_BaseComponents_ViewStyle_">Button.ApplyStyle(ViewStyle)</a></div>
-  
-  
-  
-  <a id="Tizen_NUI_Components_Switch_CreateIcon_" data-uid="Tizen.NUI.Components.Switch.CreateIcon*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Switch.cs/#L358">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Switch_CreateIcon" data-uid="Tizen.NUI.Components.Switch.CreateIcon">CreateIcon()</h4>
-    <section>
-      <p>Creates Button&apos;s icon part.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override ImageView CreateIcon()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.ImageView.html">ImageView</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.Components.Button.html#Tizen_NUI_Components_Button_CreateIcon">Button.CreateIcon()</a></div>
-  
-  
-  
   <a id="Tizen_NUI_Components_Switch_CreateViewStyle_" data-uid="Tizen.NUI.Components.Switch.CreateViewStyle*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -781,66 +534,6 @@ Getter returns copied selector value if exist, null otherwise.</p>
   <h6><strong>API Level</strong>: <span>6</span></h6>
   
   
-  <a id="Tizen_NUI_Components_Switch_OnControlStateChanged_" data-uid="Tizen.NUI.Components.Switch.OnControlStateChanged*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Switch.cs/#L374">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Switch_OnControlStateChanged_Tizen_NUI_BaseComponents_View_ControlStateChangedEventArgs_" data-uid="Tizen.NUI.Components.Switch.OnControlStateChanged(Tizen.NUI.BaseComponents.View.ControlStateChangedEventArgs)">OnControlStateChanged(View.ControlStateChangedEventArgs)</h4>
-    <section>
-      <p>Called after the View&apos;s ControlStates changed.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void OnControlStateChanged(View.ControlStateChangedEventArgs controlStateChangedInfo)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.BaseComponents.View.ControlStateChangedEventArgs.html">View.ControlStateChangedEventArgs</a></td>
-        <td><span class="parametername">controlStateChangedInfo</span></td>
-        <td><p>The information including state changed variables.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.Components.Button.html#Tizen_NUI_Components_Button_OnControlStateChanged_Tizen_NUI_BaseComponents_View_ControlStateChangedEventArgs_">Button.OnControlStateChanged(View.ControlStateChangedEventArgs)</a></div>
-  
-  
-  
-  <a id="Tizen_NUI_Components_Switch_OnInitialize_" data-uid="Tizen.NUI.Components.Switch.OnInitialize*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Switch.cs/#L65">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Switch_OnInitialize" data-uid="Tizen.NUI.Components.Switch.OnInitialize">OnInitialize()</h4>
-    <section>
-      <p>Initialize AT-SPI object.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override void OnInitialize()</code></pre>
-  </div>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.Components.Button.html#Tizen_NUI_Components_Button_OnInitialize">Button.OnInitialize()</a></div>
-  
-  
-  
   <a id="Tizen_NUI_Components_Switch_OnKey_" data-uid="Tizen.NUI.Components.Switch.OnKey*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -902,7 +595,7 @@ Getter returns copied selector value if exist, null otherwise.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Switch.cs/#L339">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Switch_OnTouch_Tizen_NUI_Touch_" data-uid="Tizen.NUI.Components.Switch.OnTouch(Tizen.NUI.Touch)">OnTouch(Touch)</h4>
+    <h4 id="Tizen_NUI_Components_Switch_OnTouch_Tizen_NUI_Touch_" data-uid="Tizen.NUI.Components.Switch.OnTouch(Tizen.NUI.Touch)" data-obsolete="Deprecated in API8; Will be removed in API10. Please use OnClicked instead." class="obsolete">OnTouch(Touch)</h4>
     <section>
       <p>Called after a touch event is received by the owning view.<br>
 CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. See CustomView(ViewWrapperImpl.CustomViewBehaviour behaviour).<br></p>
@@ -912,7 +605,8 @@ CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. S
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool OnTouch(Touch touch)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10. Please use OnClicked instead.&quot;)]
+public override bool OnTouch(Touch touch)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -981,7 +675,7 @@ CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. S
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.Components.SelectedChangedEventArgs.html">SelectedChangedEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.NUI.Components.SelectedChangedEventArgs.html">SelectedChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -994,7 +688,7 @@ CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. S
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Switch.cs/#L94">View Source</a>
     </span>
-    <h4 id="Tizen_NUI_Components_Switch_SelectedEvent" data-uid="Tizen.NUI.Components.Switch.SelectedEvent">SelectedEvent</h4>
+    <h4 id="Tizen_NUI_Components_Switch_SelectedEvent" data-uid="Tizen.NUI.Components.Switch.SelectedEvent" data-obsolete="Deprecated in API8; Will be removed in API10. Please use SelectedChanged event instead." class="obsolete">SelectedEvent</h4>
     <section>
       <p>An event for the item selected signal which can be used to subscribe or unsubscribe the event handler provided by the user.<br></p>
 
@@ -1003,7 +697,8 @@ CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. S
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event EventHandler&lt;Switch.SelectEventArgs&gt; SelectedEvent</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated in API8; Will be removed in API10. Please use SelectedChanged event instead.&quot;)]
+public event EventHandler&lt;Switch.SelectEventArgs&gt; SelectedEvent</code></pre>
   </div>
   <h5 class="eventType">Event Type</h5>
   <table class="table">
@@ -1015,7 +710,7 @@ CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. S
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.NUI.Components.Switch.SelectEventArgs.html">Switch.SelectEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.NUI.Components.Switch.SelectEventArgs.html">Switch.SelectEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -1025,38 +720,10 @@ CustomViewBehaviour.REQUIRES_TOUCH_EVENTS must be enabled during construction. S
   
   <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="Tizen.NUI.Binding.Internals.IDynamicResourceHandler.html">IDynamicResourceHandler</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.Internals.INameScope.html">INameScope</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.componentmodel.inotifypropertychanged">System.ComponentModel.INotifyPropertyChanged</a>
   </div>
   <div>
       <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Binding.IResourcesProvider.html">IResourcesProvider</a>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
   </div>
   </div></section>
             </div>

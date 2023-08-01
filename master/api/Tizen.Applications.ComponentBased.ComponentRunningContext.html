@@ -83,6 +83,12 @@
 
   
   
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -118,6 +124,37 @@
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
         <td><span class="parametername">componentId</span></td>
         <td><p>Component ID.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when failed because of an invalid argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when failed because of the &quot;component not exist&quot; error or the system error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><p>Thrown when failed because of out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when failed because of permission denied.</p>
 </td>
       </tr>
     </tbody>
@@ -381,28 +418,6 @@
   
   
   
-  <a id="Tizen_Applications_ComponentBased_ComponentRunningContext_Pause_" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.Pause*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentRunningContext.cs/#L253">View Source</a>
-    </span>
-    <h4 id="Tizen_Applications_ComponentBased_ComponentRunningContext_Pause" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.Pause">Pause()</h4>
-    <section>
-      <p>Pauses the running component.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Pause()</code></pre>
-  </div>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/appmanager.launch</span></span></h6>
-  
-  
   <a id="Tizen_Applications_ComponentBased_ComponentRunningContext_Resume_" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.Resume*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -419,54 +434,45 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Resume()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when failed because of an invalid argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when failed because of the system error.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><p>Thrown when failed because of out of memory.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when failed because of permission denied.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>6</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
   <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/appmanager.launch</span></span></h6>
   
-  
-  <a id="Tizen_Applications_ComponentBased_ComponentRunningContext_Terminate_" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.Terminate*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.ComponentBased.ComponentManager/Tizen.Applications/ComponentRunningContext.cs/#L272">View Source</a>
-    </span>
-    <h4 id="Tizen_Applications_ComponentBased_ComponentRunningContext_Terminate" data-uid="Tizen.Applications.ComponentBased.ComponentRunningContext.Terminate">Terminate()</h4>
-    <section>
-      <p>Terminates the running component.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Terminate()</code></pre>
-  </div>
-  
-  <h6><strong>API Level</strong>: <span>6</span></h6>
-  <h6><strong>Privilege Level</strong>: public</h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/appmanager.launch</span></span></h6>
-  
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
   </div></section>
             </div>

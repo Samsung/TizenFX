@@ -69,7 +69,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class Power : object</code></pre>
+    <pre><code class="lang-csharp hljs">public static class Power</code></pre>
   </div>
 
   
@@ -94,77 +94,12 @@ It can be made to hold the specific state to avoid the CPU state internally.</p>
   <h2 id="methods">Methods
   </h2>
   
-  <a id="Tizen_System_Power_PowerOff_" data-uid="Tizen.System.Power.PowerOff*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System/Device/Power.cs/#L170">View Source</a>
-    </span>
-    <h4 id="Tizen_System_Power_PowerOff" data-uid="Tizen.System.Power.PowerOff">PowerOff()</h4>
-    <section>
-      <p>Power off the device.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void PowerOff()</code></pre>
-  </div>
-  <h5 id="Tizen_System_Power_PowerOff_examples">Examples</h5>
-  <pre><code>Tizen.System.Power.PowerOff();</code></pre>
-
-  
-  <h6><strong>Privilege Level</strong>: <span>platform</span></h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/reboot</span></span></h6>
-  
-  
-  <a id="Tizen_System_Power_Reboot_" data-uid="Tizen.System.Power.Reboot*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System/Device/Power.cs/#L191">View Source</a>
-    </span>
-    <h4 id="Tizen_System_Power_Reboot_System_String_" data-uid="Tizen.System.Power.Reboot(System.String)">Reboot(String)</h4>
-    <section>
-      <p>Reboot the device.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Reboot(string reason)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
-        <td><span class="parametername">reason</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 id="Tizen_System_Power_Reboot_System_String__examples">Examples</h5>
-  <pre><code>Tizen.System.Power.Reboot(null);</code></pre>
-
-  
-  <h6><strong>Privilege Level</strong>: <span>platform</span></h6>
-  <h6><strong>Privilege</strong>: <span class="tz_multiple_items"><span>http://tizen.org/privilege/reboot</span></span></h6>
-  
-  
   <a id="Tizen_System_Power_ReleaseCpuLock_" data-uid="Tizen.System.Power.ReleaseCpuLock*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System/Device/Power.cs/#L94">View Source</a>
     </span>
-    <h4 id="Tizen_System_Power_ReleaseCpuLock" data-uid="Tizen.System.Power.ReleaseCpuLock">ReleaseCpuLock()</h4>
+    <h4 id="Tizen_System_Power_ReleaseCpuLock" data-uid="Tizen.System.Power.ReleaseCpuLock" data-obsolete="Please do not use! This will be deprecated! Please use ReleaseLock instead!" class="obsolete">ReleaseCpuLock()</h4>
     <section>
       <p>[Obsolete(&quot;Please do not use! this will be deprecated&quot;)]</p>
 
@@ -173,8 +108,30 @@ It can be made to hold the specific state to avoid the CPU state internally.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void ReleaseCpuLock()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use! This will be deprecated! Please use ReleaseLock instead!&quot;)]
+public static void ReleaseCpuLock()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>If the privilege is not set.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>In case of any system error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -216,6 +173,32 @@ It can be made to hold the specific state to avoid the CPU state internally.</p>
   <h5 id="Tizen_System_Power_ReleaseLock_Tizen_System_PowerLock__examples">Examples</h5>
   <pre><code>Tizen.System.Power.ReleaseLock(Tizen.System.Power.PowerLock.Cpu);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>When an invalid parameter value is set.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>If the privilege is not set.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>In case of any system error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   
@@ -225,7 +208,7 @@ It can be made to hold the specific state to avoid the CPU state internally.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System/Device/Power.cs/#L77">View Source</a>
     </span>
-    <h4 id="Tizen_System_Power_RequestCpuLock_System_Int32_" data-uid="Tizen.System.Power.RequestCpuLock(System.Int32)">RequestCpuLock(Int32)</h4>
+    <h4 id="Tizen_System_Power_RequestCpuLock_System_Int32_" data-uid="Tizen.System.Power.RequestCpuLock(System.Int32)" data-obsolete="Please do not use! This will be deprecated! Please use RequestLock instead!" class="obsolete">RequestCpuLock(Int32)</h4>
     <section>
       <p>[Obsolete(&quot;Please do not use! this will be deprecated&quot;)]</p>
 
@@ -234,7 +217,8 @@ It can be made to hold the specific state to avoid the CPU state internally.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void RequestCpuLock(int timeout)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use! This will be deprecated! Please use RequestLock instead!&quot;)]
+public static void RequestCpuLock(int timeout)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -258,6 +242,32 @@ So you must release the permanent lock of the power state with ReleaseCpuLock() 
   <h5 id="Tizen_System_Power_RequestCpuLock_System_Int32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>If the process dies, then every lock will be removed.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>When an invalid parameter value is set.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>If the privilege is not set.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>In case of any system error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -310,6 +320,32 @@ So you must release the permanent lock of the power state with ReleaseLock() if 
   <h5 id="Tizen_System_Power_RequestLock_Tizen_System_PowerLock_System_Int32__examples">Examples</h5>
   <pre><code>Tizen.System.Power.RequestLock(Tizen.System.Power.PowerLock.Cpu, 2000);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>When an invalid parameter value is set.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>If the privilege is not set.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>In case of any system error.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   

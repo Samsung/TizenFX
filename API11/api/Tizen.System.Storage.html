@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Storage : object</code></pre>
+    <pre><code class="lang-csharp hljs">public class Storage</code></pre>
   </div>
 
   
@@ -129,7 +129,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.System.Storage/Storage/Storage.cs/#L300">View Source</a>
     </span>
-    <h4 id="Tizen_System_Storage_AvaliableSpace" data-uid="Tizen.System.Storage.AvaliableSpace">AvaliableSpace</h4>
+    <h4 id="Tizen_System_Storage_AvaliableSpace" data-uid="Tizen.System.Storage.AvaliableSpace" data-obsolete="Please do not use! This will be deprecated! Please use AvailableSpace instead!" class="obsolete">AvaliableSpace</h4>
     <section>
       <p>[Obsolete(&quot;Please do not use! this will be deprecated&quot;)]</p>
 
@@ -138,7 +138,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public ulong AvaliableSpace { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use! This will be deprecated! Please use AvailableSpace instead!&quot;)]
+public ulong AvaliableSpace { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -190,6 +191,22 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when DeviceType is not initialized.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/storage.external</span></span></h6>
@@ -223,6 +240,22 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when flags are not initialized.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -262,6 +295,22 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when Fstype is not initialized.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/storage.external</span></span></h6>
@@ -295,6 +344,22 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">String</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when Fsuuid is not initialized.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -367,6 +432,22 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when primary is not initialized.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -585,6 +666,32 @@ foreach (var storage in storageList)
     string pathForVideoDir = storage.GetAbsolutePath(DirectoryType.Videos);
 }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when failed because of an invalid argument.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.outofmemoryexception">OutOfMemoryException</a></td>
+        <td><p>Thrown when failed due to out of memory exception.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the storage is not supported or the application does not have the permission to access the directory path.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -619,7 +726,7 @@ foreach (var storage in storageList)
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -638,28 +745,6 @@ foreach (var storage in storageList)
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/storage.external</span></span></h6>
   
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
   </div></section>
             </div>
           </main>

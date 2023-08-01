@@ -49,7 +49,7 @@
   <div class="entity">
   
   <div class="entity-header w-100 d-flex justify-content-between">
-    <h1 id="Tizen_Applications_RemoteViewFactory" data-uid="Tizen.Applications.RemoteViewFactory" class="mt-0 text-break"><span class="entity-type">Class</span>
+    <h1 id="Tizen_Applications_RemoteViewFactory" data-uid="Tizen.Applications.RemoteViewFactory" data-obsolete="Deprecated since API10. Will be removed in API12." class="mt-0 text-break obsolete"><span class="entity-type">Class</span>
   RemoteViewFactory
   </h1>
       <div class="contribution align-self-end">
@@ -67,7 +67,8 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class RemoteViewFactory : object</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+public static class RemoteViewFactory</code></pre>
   </div>
 
   
@@ -93,7 +94,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.RemoteView/Tizen.Applications/RemoteViewFactory.cs/#L67">View Source</a>
     </span>
-    <h4 id="Tizen_Applications_RemoteViewFactory_Create_ElmSharp_EvasObject_System_String_System_String_System_Double_System_Boolean_System_Boolean_System_Boolean_" data-uid="Tizen.Applications.RemoteViewFactory.Create(ElmSharp.EvasObject,System.String,System.String,System.Double,System.Boolean,System.Boolean,System.Boolean)">Create(EvasObject, String, String, Double, Boolean, Boolean, Boolean)</h4>
+    <h4 id="Tizen_Applications_RemoteViewFactory_Create_ElmSharp_EvasObject_System_String_System_String_System_Double_System_Boolean_System_Boolean_System_Boolean_" data-uid="Tizen.Applications.RemoteViewFactory.Create(ElmSharp.EvasObject,System.String,System.String,System.Double,System.Boolean,System.Boolean,System.Boolean)" data-obsolete="Deprecated since API10. Will be removed in API12." class="obsolete">Create(EvasObject, String, String, Double, Boolean, Boolean, Boolean)</h4>
     <section>
       <p>Creates a RemoteView object.</p>
 
@@ -102,7 +103,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static RemoteView Create(EvasObject parent, string widgetId, string content, double period, bool previewImage = true, bool overlayText = true, bool loadingMessage = true)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+public static RemoteView Create(EvasObject parent, string widgetId, string content, double period, bool previewImage = true, bool overlayText = true, bool loadingMessage = true)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -174,6 +176,32 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when this operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when this operation is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when this operation is not supported for this device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -185,7 +213,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.RemoteView/Tizen.Applications/RemoteViewFactory.cs/#L42">View Source</a>
     </span>
-    <h4 id="Tizen_Applications_RemoteViewFactory_Init_ElmSharp_EvasObject_" data-uid="Tizen.Applications.RemoteViewFactory.Init(ElmSharp.EvasObject)">Init(EvasObject)</h4>
+    <h4 id="Tizen_Applications_RemoteViewFactory_Init_ElmSharp_EvasObject_" data-uid="Tizen.Applications.RemoteViewFactory.Init(ElmSharp.EvasObject)" data-obsolete="Deprecated since API10. Will be removed in API12." class="obsolete">Init(EvasObject)</h4>
     <section>
       <p>Initializes RemoteViewFactory.</p>
 
@@ -194,7 +222,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Init(EvasObject win)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+public static void Init(EvasObject win)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -215,6 +244,32 @@ All the remote views will be located in the specified window object.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when this operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when this operation is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when this operation is not supported for this device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>
@@ -226,7 +281,7 @@ All the remote views will be located in the specified window object.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Applications.RemoteView/Tizen.Applications/RemoteViewFactory.cs/#L99">View Source</a>
     </span>
-    <h4 id="Tizen_Applications_RemoteViewFactory_Shutdown" data-uid="Tizen.Applications.RemoteViewFactory.Shutdown">Shutdown()</h4>
+    <h4 id="Tizen_Applications_RemoteViewFactory_Shutdown" data-uid="Tizen.Applications.RemoteViewFactory.Shutdown" data-obsolete="Deprecated since API10. Will be removed in API12." class="obsolete">Shutdown()</h4>
     <section>
       <p>Finalizes the RemoteViewFactory.</p>
 
@@ -235,8 +290,35 @@ All the remote views will be located in the specified window object.</p>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static void Shutdown()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Will be removed in API12.&quot;)]
+public static void Shutdown()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when this operation failed.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when this operation is denied.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when this operation is not supported for this device.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>

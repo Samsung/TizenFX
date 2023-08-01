@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Notification : Disposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class Notification : Disposable, IDisposable</code></pre>
   </div>
 
   
@@ -84,6 +84,12 @@
 
   
   
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -123,175 +129,29 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the device does not support a notification feature.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when a given contentView is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
-  
-  <h2 id="fields">Fields
-  </h2>
-  
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Notification.cs/#L46">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Notification_ToastBottom" data-uid="Tizen.NUI.Components.Notification.ToastBottom">ToastBottom</h4>
-    <section>
-      <p>Toast will appear at the bottom of the screen.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Position ToastBottom</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Notification.cs/#L40">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Notification_ToastCenter" data-uid="Tizen.NUI.Components.Notification.ToastCenter">ToastCenter</h4>
-    <section>
-      <p>Toast will appear at the center of the screen.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Position ToastCenter</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Notification.cs/#L58">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Notification_ToastLong" data-uid="Tizen.NUI.Components.Notification.ToastLong">ToastLong</h4>
-    <section>
-      <p>Show the notification for a long period of time.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly uint ToastLong</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Notification.cs/#L52">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Notification_ToastShort" data-uid="Tizen.NUI.Components.Notification.ToastShort">ToastShort</h4>
-    <section>
-      <p>Show the notification for a short period of time.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly uint ToastShort</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Notification.cs/#L34">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Notification_ToastTop" data-uid="Tizen.NUI.Components.Notification.ToastTop">ToastTop</h4>
-    <section>
-      <p>Toast will appear at the top of the screen.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static readonly Position ToastTop</code></pre>
-  </div>
-  <h5 class="fieldValue">Field Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Position.html">Position</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
   
   <h2 id="properties">Properties
   </h2>
@@ -472,6 +332,27 @@
   <p>The following example demonstrates how to make a toast at the bottom and show it for a short period time.</p>
 <pre><code>Notification.MakeToast(&quot;Hello World!&quot;, Notification.ToastBottom).Post(Notification.ToastShort);</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown when the device does not support a notification feature.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p>Thrown when the given text or gravity is null.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>9</span></h6>
   
@@ -490,7 +371,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Post(uint duration = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public void Post(uint duration = 0U)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -506,6 +387,22 @@
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
         <td><span class="parametername">duration</span></td>
         <td><p>Dismiss the notification window after given time in millisecond. The value 0 won&apos;t dismiss the notification.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when the application does not have proper privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -624,59 +521,6 @@ The Notification will play the given animation right after the notification wind
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
   
-  <a id="Tizen_NUI_Components_Notification_SetDismissOnTouch_" data-uid="Tizen.NUI.Components.Notification.SetDismissOnTouch*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI.Components/Controls/Notification.cs/#L319">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_Components_Notification_SetDismissOnTouch_System_Boolean_" data-uid="Tizen.NUI.Components.Notification.SetDismissOnTouch(System.Boolean)">SetDismissOnTouch(Boolean)</h4>
-    <section>
-      <p>Sets whether listen to touch event to dismiss notification window.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Notification SetDismissOnTouch(bool dismissOnTouch)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">Boolean</a></td>
-        <td><span class="parametername">dismissOnTouch</span></td>
-        <td><p>Dismiss notification window on touch if the value is true.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="returns">Returns</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Tizen.NUI.Components.Notification.html">Notification</a></td>
-        <td><p>The current Notification instance.</p>
-</td>
-      </tr>
-    </tbody>
-  </table>
-  
-  
-  
   <a id="Tizen_NUI_Components_Notification_SetLevel_" data-uid="Tizen.NUI.Components.Notification.SetLevel*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -724,6 +568,22 @@ The default level is NotificationLevel.Base.</p>
       <tr>
         <td><a class="xref" href="Tizen.NUI.Components.Notification.html">Notification</a></td>
         <td><p>The current Notification instance.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when the application does not have proper privilege.</p>
 </td>
       </tr>
     </tbody>
@@ -784,30 +644,28 @@ The default level is NotificationLevel.Base.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when a given positionSize is invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
   </div></section>
             </div>

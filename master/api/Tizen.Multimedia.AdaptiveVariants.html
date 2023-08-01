@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class AdaptiveVariants : object</code></pre>
+    <pre><code class="lang-csharp hljs">public class AdaptiveVariants</code></pre>
   </div>
 
   
@@ -114,8 +114,29 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Multimedia.VariantInfo.html">VariantInfo</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Multimedia.VariantInfo.html">VariantInfo</a>&gt;</td>
         <td><p>It returns a list contained all the available adaptive variants.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>The player is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The <span class="xref">Tizen.Multimedia.AdaptiveVariants.Player</span> has already been disposed of.</p>
 </td>
       </tr>
     </tbody>
@@ -162,6 +183,22 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The <span class="xref">Tizen.Multimedia.AdaptiveVariants.Player</span> has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_AdaptiveVariants_GetMaxLimit_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.AdaptiveVariants.html#Tizen_Multimedia_AdaptiveVariants_SetMaxLimit_System_Int32_System_Int32_System_Int32_">SetMaxLimit(Int32, Int32, Int32)</a></div>
@@ -184,7 +221,7 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SetMaxLimit(int bandwidth, int width = null, int height = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public void SetMaxLimit(int bandwidth, int width = -1, int height = -1)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -213,6 +250,31 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The <span class="xref">Tizen.Multimedia.AdaptiveVariants.Player</span> has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p><pramref name="bandwidth"></pramref> is less than -1.<br>
+-or-<br>
+<pramref name="width"></pramref> is less than -1.<br>
+-or-<br>
+<pramref name="height"></pramref> is less than -1.<br></p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_AdaptiveVariants_SetMaxLimit_System_Int32_System_Int32_System_Int32__seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.AdaptiveVariants.html#Tizen_Multimedia_AdaptiveVariants_GetMaxLimit">GetMaxLimit()</a></div>
@@ -220,28 +282,6 @@
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
   </div></section>
             </div>
           </main>

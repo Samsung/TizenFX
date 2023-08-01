@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public abstract class Engine : object</code></pre>
+    <pre><code class="lang-csharp hljs">public abstract class Engine</code></pre>
   </div>
 
   
@@ -312,6 +312,27 @@ This function is the main function for operating the TTS engine.</p>
   <h5 id="Tizen_Uix_TtsEngine_Engine_EngineMain_System_Int32_System_String____remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>ServiceAppMain should be used for working the engine after this function.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/speech.synthesis</span></span></h6>
@@ -322,7 +343,7 @@ This function is the main function for operating the TTS engine.</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L280">View Source</a>
     </span>
-    <h4 id="Tizen_Uix_TtsEngine_Engine_ForEachSupportedVoices_Tizen_Uix_TtsEngine_Engine_SupportedVoice_IntPtr_" data-uid="Tizen.Uix.TtsEngine.Engine.ForEachSupportedVoices(Tizen.Uix.TtsEngine.Engine.SupportedVoice,IntPtr)">ForEachSupportedVoices(Engine.SupportedVoice, IntPtr)</h4>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_ForEachSupportedVoices_Tizen_Uix_TtsEngine_Engine_SupportedVoice_System_IntPtr_" data-uid="Tizen.Uix.TtsEngine.Engine.ForEachSupportedVoices(Tizen.Uix.TtsEngine.Engine.SupportedVoice,System.IntPtr)">ForEachSupportedVoices(Engine.SupportedVoice, IntPtr)</h4>
     <section>
       <p>Called when the engine service user gets the whole supported voice list.</p>
 
@@ -350,7 +371,7 @@ This function is the main function for operating the TTS engine.</p>
 </td>
       </tr>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
         <td><span class="parametername">userData</span></td>
         <td><p>The user data which must be passed to SupportedVoice().</p>
 </td>
@@ -377,7 +398,7 @@ This function is the main function for operating the TTS engine.</p>
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Uix_TtsEngine_Engine_ForEachSupportedVoices_Tizen_Uix_TtsEngine_Engine_SupportedVoice_IntPtr__remarks">Remarks</h5>
+  <h5 id="Tizen_Uix_TtsEngine_Engine_ForEachSupportedVoices_Tizen_Uix_TtsEngine_Engine_SupportedVoice_System_IntPtr__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>In this function, the engine service user&apos;s callback function &apos;SupportedVoice()&apos; is invoked repeatedly for getting all the supported voices,
 and userData must be transferred to &apos;SupportedVoice()&apos;. If &apos;SupportedVoice()&apos; returns false, it should be stopped to call &apos;SupportedVoice()&apos;.</p>
 </div>
@@ -515,6 +536,27 @@ Therefore, engineSetting must be transferred to the engine service user.</p>
   <h5 id="Tizen_Uix_TtsEngine_Engine_GetPitchRange_System_Int32__System_Int32__System_Int32___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This API is used when the TTS engine wants to get the pitch range from the Tizen platform.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/speech.synthesis</span></span></h6>
@@ -569,6 +611,27 @@ Therefore, engineSetting must be transferred to the engine service user.</p>
   <h5 id="Tizen_Uix_TtsEngine_Engine_GetSpeedRange_System_Int32__System_Int32__System_Int32___remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This API is used when the TTS engine wants to get the speed range from the Tizen platform.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/speech.synthesis</span></span></h6>
@@ -832,6 +895,27 @@ For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American Englis
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/speech.synthesis</span></span></h6>
@@ -842,7 +926,7 @@ For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American Englis
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L518">View Source</a>
     </span>
-    <h4 id="Tizen_Uix_TtsEngine_Engine_SendResult_Tizen_Uix_TtsEngine_ResultEvent_IntPtr_System_Int32_Tizen_Uix_TtsEngine_AudioType_System_Int32_" data-uid="Tizen.Uix.TtsEngine.Engine.SendResult(Tizen.Uix.TtsEngine.ResultEvent,IntPtr,System.Int32,Tizen.Uix.TtsEngine.AudioType,System.Int32)">SendResult(ResultEvent, IntPtr, Int32, AudioType, Int32)</h4>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_SendResult_Tizen_Uix_TtsEngine_ResultEvent_System_IntPtr_System_Int32_Tizen_Uix_TtsEngine_AudioType_System_Int32_" data-uid="Tizen.Uix.TtsEngine.Engine.SendResult(Tizen.Uix.TtsEngine.ResultEvent,System.IntPtr,System.Int32,Tizen.Uix.TtsEngine.AudioType,System.Int32)">SendResult(ResultEvent, IntPtr, Int32, AudioType, Int32)</h4>
     <section>
       <p>Sends the synthesized result to the engine service user.</p>
 
@@ -870,7 +954,7 @@ For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American Englis
 </td>
       </tr>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
         <td><span class="parametername">data</span></td>
         <td><p>The result data.</p>
 </td>
@@ -895,12 +979,39 @@ For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American Englis
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Uix_TtsEngine_Engine_SendResult_Tizen_Uix_TtsEngine_ResultEvent_IntPtr_System_Int32_Tizen_Uix_TtsEngine_AudioType_System_Int32__remarks">Remarks</h5>
+  <h5 id="Tizen_Uix_TtsEngine_Engine_SendResult_Tizen_Uix_TtsEngine_ResultEvent_System_IntPtr_System_Int32_Tizen_Uix_TtsEngine_AudioType_System_Int32__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>This API is used in StartSynthesis(), when the TTS engine sends the synthesized result to the engine service user.
 The synthesized result must be transferred to the engine service user through this function.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown in case of operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
+  <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/speech.synthesis</span></span></h6>
   
   
   <a id="Tizen_Uix_TtsEngine_Engine_SetPitch_" data-uid="Tizen.Uix.TtsEngine.Engine.SetPitch*"></a>
@@ -1009,6 +1120,32 @@ The following error codes can be returned:</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>thrown in case of operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/speech.synthesis</span></span></h6>
@@ -1058,6 +1195,32 @@ The following error codes can be returned:</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown in case of an invalid parameter.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>Thrown in case of not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>thrown in case of operation failure.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   <h6><strong>Feature</strong>: <span class="tz_multiple_items"><span>http://tizen.org/feature/speech.synthesis</span></span></h6>
@@ -1068,7 +1231,7 @@ The following error codes can be returned:</p>
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Uix.TtsEngine/Tizen.Uix.TtsEngine/TtsEngine.cs/#L216">View Source</a>
     </span>
-    <h4 id="Tizen_Uix_TtsEngine_Engine_StartSynthesis_System_String_System_Int32_System_String_System_Int32_System_String_System_String_IntPtr_" data-uid="Tizen.Uix.TtsEngine.Engine.StartSynthesis(System.String,System.Int32,System.String,System.Int32,System.String,System.String,IntPtr)">StartSynthesis(String, Int32, String, Int32, String, String, IntPtr)</h4>
+    <h4 id="Tizen_Uix_TtsEngine_Engine_StartSynthesis_System_String_System_Int32_System_String_System_Int32_System_String_System_String_System_IntPtr_" data-uid="Tizen.Uix.TtsEngine.Engine.StartSynthesis(System.String,System.Int32,System.String,System.Int32,System.String,System.String,System.IntPtr)">StartSynthesis(String, Int32, String, Int32, String, String, IntPtr)</h4>
     <section>
       <p>Called when the engine service user starts to synthesize a voice, asynchronously.</p>
 
@@ -1127,7 +1290,7 @@ For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American Englis
 </td>
       </tr>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
         <td><span class="parametername">userData</span></td>
         <td><p>The user data which must be passed to the SendResult() function.</p>
 </td>
@@ -1159,7 +1322,7 @@ For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American Englis
       </tr>
     </tbody>
   </table>
-  <h5 id="Tizen_Uix_TtsEngine_Engine_StartSynthesis_System_String_System_Int32_System_String_System_Int32_System_String_System_String_IntPtr__remarks">Remarks</h5>
+  <h5 id="Tizen_Uix_TtsEngine_Engine_StartSynthesis_System_String_System_Int32_System_String_System_Int32_System_String_System_String_System_IntPtr__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>In this callback function, the TTS engine must transfer the synthesized result to the engine service user using SendResult().
 Also, if the TTS engine needs the application&apos;s credential, it can set the credential granted to the application.</p>
 </div>
@@ -1234,28 +1397,6 @@ For example, &quot;ko_KR&quot; for Korean, &quot;en_US&quot; for American Englis
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
   </div></section>
             </div>
           </main>

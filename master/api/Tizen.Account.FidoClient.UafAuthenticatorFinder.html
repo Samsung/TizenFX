@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class UafAuthenticatorFinder : object</code></pre>
+    <pre><code class="lang-csharp hljs">public static class UafAuthenticatorFinder</code></pre>
   </div>
 
   
@@ -114,7 +114,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span>&lt;<span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Account.FidoClient.AuthenticatorInformation.html">AuthenticatorInformation</a>&gt;&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Account.FidoClient.AuthenticatorInformation.html">AuthenticatorInformation</a>&gt;&gt;</td>
         <td><p>Enumerable list of authenticators</p>
 </td>
       </tr>
@@ -128,6 +128,27 @@
         string title = authInfo.Title;
     }</code></pre>
 
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.unauthorizedaccessexception">UnauthorizedAccessException</a></td>
+        <td><p>Thrown when the application does not have privilege to access this method</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>FIDO is not supported</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   <h6><strong>Privilege Level</strong>: public</h6>

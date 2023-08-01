@@ -49,7 +49,7 @@
   <div class="entity">
   
   <div class="entity-header w-100 d-flex justify-content-between">
-    <h1 id="Tizen_Maps_PlaceCategory" data-uid="Tizen.Maps.PlaceCategory" class="mt-0 text-break"><span class="entity-type">Class</span>
+    <h1 id="Tizen_Maps_PlaceCategory" data-uid="Tizen.Maps.PlaceCategory" data-obsolete="Deprecated since API11. Might be removed in API13." class="mt-0 text-break obsolete"><span class="entity-type">Class</span>
   PlaceCategory
   </h1>
       <div class="contribution align-self-end">
@@ -67,7 +67,8 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class PlaceCategory : IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public class PlaceCategory : IDisposable</code></pre>
   </div>
 
   
@@ -83,6 +84,12 @@
 
   
   
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -93,7 +100,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/PlaceCategory.cs/#L35">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_PlaceCategory__ctor" data-uid="Tizen.Maps.PlaceCategory.#ctor">PlaceCategory()</h4>
+    <h4 id="Tizen_Maps_PlaceCategory__ctor" data-uid="Tizen.Maps.PlaceCategory.#ctor" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">PlaceCategory()</h4>
     <section>
       <p>Constructs a search category object.</p>
 
@@ -102,8 +109,25 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public PlaceCategory()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public PlaceCategory()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Thrown when native operation failed to allocate memory.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -115,7 +139,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/PlaceCategory.cs/#L58">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_PlaceCategory_Id" data-uid="Tizen.Maps.PlaceCategory.Id">Id</h4>
+    <h4 id="Tizen_Maps_PlaceCategory_Id" data-uid="Tizen.Maps.PlaceCategory.Id" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Id</h4>
     <section>
       <p>Gets or sets an ID for this category.</p>
 
@@ -124,7 +148,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Id { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public string Id { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -150,7 +175,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/PlaceCategory.cs/#L69">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_PlaceCategory_Name" data-uid="Tizen.Maps.PlaceCategory.Name">Name</h4>
+    <h4 id="Tizen_Maps_PlaceCategory_Name" data-uid="Tizen.Maps.PlaceCategory.Name" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Name</h4>
     <section>
       <p>Gets or sets a name for this category.</p>
 
@@ -159,7 +184,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Name { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public string Name { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -185,7 +211,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/PlaceCategory.cs/#L80">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_PlaceCategory_Url" data-uid="Tizen.Maps.PlaceCategory.Url">Url</h4>
+    <h4 id="Tizen_Maps_PlaceCategory_Url" data-uid="Tizen.Maps.PlaceCategory.Url" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Url</h4>
     <section>
       <p>Gets or sets a URL for this category.</p>
 
@@ -194,7 +220,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public string Url { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public string Url { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -222,7 +249,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/PlaceCategory.cs/#L120">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_PlaceCategory_Dispose" data-uid="Tizen.Maps.PlaceCategory.Dispose">Dispose()</h4>
+    <h4 id="Tizen_Maps_PlaceCategory_Dispose" data-uid="Tizen.Maps.PlaceCategory.Dispose" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Dispose()</h4>
     <section>
       <p>Releases all the resources used by this object.</p>
 
@@ -231,7 +258,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public void Dispose()</code></pre>
   </div>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
@@ -242,7 +270,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/PlaceCategory.cs/#L106">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_PlaceCategory_Dispose_System_Boolean_" data-uid="Tizen.Maps.PlaceCategory.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+    <h4 id="Tizen_Maps_PlaceCategory_Dispose_System_Boolean_" data-uid="Tizen.Maps.PlaceCategory.Dispose(System.Boolean)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Dispose(Boolean)</h4>
     <section>
       <p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
 
@@ -251,7 +279,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -280,7 +309,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/PlaceCategory.cs/#L49">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_PlaceCategory_Finalize" data-uid="Tizen.Maps.PlaceCategory.Finalize">Finalize()</h4>
+    <h4 id="Tizen_Maps_PlaceCategory_Finalize" data-uid="Tizen.Maps.PlaceCategory.Finalize" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Finalize()</h4>
     <section>
       <p>Destroy the PlaceCategory object.</p>
 
@@ -299,7 +328,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/PlaceCategory.cs/#L92">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_PlaceCategory_ToString" data-uid="Tizen.Maps.PlaceCategory.ToString">ToString()</h4>
+    <h4 id="Tizen_Maps_PlaceCategory_ToString" data-uid="Tizen.Maps.PlaceCategory.ToString" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">ToString()</h4>
     <section>
       <p>Returns a string that represents this object.</p>
 
@@ -308,7 +337,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override string ToString()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public override string ToString()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table">
@@ -326,30 +356,14 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring#system-object-tostring">Object.ToString()</a></div>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
   </div></section>
             </div>

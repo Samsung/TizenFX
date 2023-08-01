@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CellPosition : Disposable</code></pre>
+    <pre><code class="lang-csharp hljs">public class CellPosition : Disposable, IDisposable</code></pre>
   </div>
 
   
@@ -84,6 +84,12 @@
 
   
   
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -299,41 +305,6 @@
   <h2 id="properties">Properties
   </h2>
   
-  <a id="Tizen_NUI_BaseComponents_TableView_CellPosition_columnIndex_" data-uid="Tizen.NUI.BaseComponents.TableView.CellPosition.columnIndex*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L697">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_BaseComponents_TableView_CellPosition_columnIndex" data-uid="Tizen.NUI.BaseComponents.TableView.CellPosition.columnIndex">columnIndex</h4>
-    <section>
-      <p>The index of a column.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint columnIndex { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
-  
   <a id="Tizen_NUI_BaseComponents_TableView_CellPosition_ColumnIndex_" data-uid="Tizen.NUI.BaseComponents.TableView.CellPosition.ColumnIndex*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -367,41 +338,6 @@
   </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
-  
-  
-  <a id="Tizen_NUI_BaseComponents_TableView_CellPosition_columnSpan_" data-uid="Tizen.NUI.BaseComponents.TableView.CellPosition.columnSpan*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L767">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_BaseComponents_TableView_CellPosition_columnSpan" data-uid="Tizen.NUI.BaseComponents.TableView.CellPosition.columnSpan">columnSpan</h4>
-    <section>
-      <p>The span of a column.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint columnSpan { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
   
   
   <a id="Tizen_NUI_BaseComponents_TableView_CellPosition_ColumnSpan_" data-uid="Tizen.NUI.BaseComponents.TableView.CellPosition.ColumnSpan*"></a>
@@ -439,41 +375,6 @@
   <h6><strong>API Level</strong>: <span>5</span></h6>
   
   
-  <a id="Tizen_NUI_BaseComponents_TableView_CellPosition_rowIndex_" data-uid="Tizen.NUI.BaseComponents.TableView.CellPosition.rowIndex*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L661">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_BaseComponents_TableView_CellPosition_rowIndex" data-uid="Tizen.NUI.BaseComponents.TableView.CellPosition.rowIndex">rowIndex</h4>
-    <section>
-      <p>The index of a row.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint rowIndex { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
-  
-  
   <a id="Tizen_NUI_BaseComponents_TableView_CellPosition_RowIndex_" data-uid="Tizen.NUI.BaseComponents.TableView.CellPosition.RowIndex*"></a>
   <div class="entity-child">
     <span class="pull-right mobile-hide view-source">
@@ -507,41 +408,6 @@
   </table>
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
-  
-  
-  <a id="Tizen_NUI_BaseComponents_TableView_CellPosition_rowSpan_" data-uid="Tizen.NUI.BaseComponents.TableView.CellPosition.rowSpan*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L732">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_BaseComponents_TableView_CellPosition_rowSpan" data-uid="Tizen.NUI.BaseComponents.TableView.CellPosition.rowSpan">rowSpan</h4>
-    <section>
-      <p>The span of a row.</p>
-
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public uint rowSpan { get; set; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">UInt32</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  
-  <h6><strong>API Level</strong>: <span>3</span></h6>
   
   
   <a id="Tizen_NUI_BaseComponents_TableView_CellPosition_RowSpan_" data-uid="Tizen.NUI.BaseComponents.TableView.CellPosition.RowSpan*"></a>
@@ -578,66 +444,9 @@
   
   <h6><strong>API Level</strong>: <span>5</span></h6>
   
-  <h2 id="methods">Methods
-  </h2>
-  
-  <a id="Tizen_NUI_BaseComponents_TableView_CellPosition_ReleaseSwigCPtr_" data-uid="Tizen.NUI.BaseComponents.TableView.CellPosition.ReleaseSwigCPtr*"></a>
-  <div class="entity-child">
-    <span class="pull-right mobile-hide view-source">
-      <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.NUI/src/public/BaseComponents/TableView.cs/#L799">View Source</a>
-    </span>
-    <h4 id="Tizen_NUI_BaseComponents_TableView_CellPosition_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_" data-uid="Tizen.NUI.BaseComponents.TableView.CellPosition.ReleaseSwigCPtr(Tizen.System.Runtime.InteropServices.HandleRef)">ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</h4>
-    <section>
-      
-    </section>
-  </div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected override void ReleaseSwigCPtr(Runtime.InteropServices.HandleRef swigCPtr)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Tizen.System.Runtime.InteropServices.HandleRef</span></td>
-        <td><span class="parametername">swigCPtr</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h5 class="overrides">Overrides</h5>
-  <div><a class="xref" href="Tizen.NUI.Disposable.html#Tizen_NUI_Disposable_ReleaseSwigCPtr_Tizen_System_Runtime_InteropServices_HandleRef_">Disposable.ReleaseSwigCPtr(Runtime.InteropServices.HandleRef)</a></div>
-  
-  
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
   </div></section>
             </div>

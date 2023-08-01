@@ -49,7 +49,7 @@
   <div class="entity">
   
   <div class="entity-header w-100 d-flex justify-content-between">
-    <h1 id="Tizen_Maps_Overlay" data-uid="Tizen.Maps.Overlay" class="mt-0 text-break"><span class="entity-type">Class</span>
+    <h1 id="Tizen_Maps_Overlay" data-uid="Tizen.Maps.Overlay" data-obsolete="Deprecated since API11. Might be removed in API13." class="mt-0 text-break obsolete"><span class="entity-type">Class</span>
   Overlay
   </h1>
       <div class="contribution align-self-end">
@@ -67,7 +67,8 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class Overlay : MapObject, IDisposable</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public class Overlay : MapObject, IDisposable</code></pre>
   </div>
 
   
@@ -94,7 +95,7 @@
   <dl class="attribute-list">
     <dt>Implements</dt>
     <dd>
-      <div class="pdl"><span class="xref">IDisposable</span></div>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
     </dd>
   </dl>
   
@@ -107,7 +108,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/Overlay.cs/#L38">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_Overlay__ctor_Tizen_Maps_Geocoordinates_ElmSharp_EvasObject_" data-uid="Tizen.Maps.Overlay.#ctor(Tizen.Maps.Geocoordinates,ElmSharp.EvasObject)">Overlay(Geocoordinates, EvasObject)</h4>
+    <h4 id="Tizen_Maps_Overlay__ctor_Tizen_Maps_Geocoordinates_ElmSharp_EvasObject_" data-uid="Tizen.Maps.Overlay.#ctor(Tizen.Maps.Geocoordinates,ElmSharp.EvasObject)" data-obsolete="Deprecated since API10. Might be removed in API12." class="obsolete">Overlay(Geocoordinates, EvasObject)</h4>
     <section>
       <p>Creates a normal overlay map object.</p>
 
@@ -116,7 +117,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Overlay(Geocoordinates coordinates, EvasObject objectToContain)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public Overlay(Geocoordinates coordinates, EvasObject objectToContain)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -140,6 +142,22 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Thrown when the input coordinates or objectToContain are invalid.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -151,7 +169,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/Overlay.cs/#L77">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_Overlay_Coordinates" data-uid="Tizen.Maps.Overlay.Coordinates">Coordinates</h4>
+    <h4 id="Tizen_Maps_Overlay_Coordinates" data-uid="Tizen.Maps.Overlay.Coordinates" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Coordinates</h4>
     <section>
       <p>Gets or sets geographical coordinates for an overlay map object.</p>
 
@@ -160,7 +178,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Geocoordinates Coordinates { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public Geocoordinates Coordinates { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -186,7 +205,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/Overlay.cs/#L66">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_Overlay_IsVisible" data-uid="Tizen.Maps.Overlay.IsVisible">IsVisible</h4>
+    <h4 id="Tizen_Maps_Overlay_IsVisible" data-uid="Tizen.Maps.Overlay.IsVisible" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">IsVisible</h4>
     <section>
       <p>Gets or sets the visibility of an overlay map object.</p>
 
@@ -195,7 +214,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public override bool IsVisible { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public override bool IsVisible { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -223,7 +243,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/Overlay.cs/#L113">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_Overlay_MaximumZoomLevel" data-uid="Tizen.Maps.Overlay.MaximumZoomLevel">MaximumZoomLevel</h4>
+    <h4 id="Tizen_Maps_Overlay_MaximumZoomLevel" data-uid="Tizen.Maps.Overlay.MaximumZoomLevel" data-obsolete="Deprecated since API10. Might be removed in API12." class="obsolete">MaximumZoomLevel</h4>
     <section>
       <p>Gets or sets maximum zoom lever for an overlay map object.</p>
 
@@ -232,7 +252,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int MaximumZoomLevel { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public int MaximumZoomLevel { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -258,7 +279,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/Overlay.cs/#L96">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_Overlay_MinimumZoomLevel" data-uid="Tizen.Maps.Overlay.MinimumZoomLevel">MinimumZoomLevel</h4>
+    <h4 id="Tizen_Maps_Overlay_MinimumZoomLevel" data-uid="Tizen.Maps.Overlay.MinimumZoomLevel" data-obsolete="Deprecated since API10. Might be removed in API12." class="obsolete">MinimumZoomLevel</h4>
     <section>
       <p>Gets or sets minimum zoom level for an overlay map object.</p>
 
@@ -267,7 +288,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int MinimumZoomLevel { get; set; }</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API10. Might be removed in API12.&quot;)]
+public int MinimumZoomLevel { get; set; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table">
@@ -295,7 +317,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/Overlay.cs/#L164">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_Overlay_Dispose" data-uid="Tizen.Maps.Overlay.Dispose">Dispose()</h4>
+    <h4 id="Tizen_Maps_Overlay_Dispose" data-uid="Tizen.Maps.Overlay.Dispose" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Dispose()</h4>
     <section>
       <p>Releases all the resources used by this object.</p>
 
@@ -304,7 +326,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+public void Dispose()</code></pre>
   </div>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
@@ -315,7 +338,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/Overlay.cs/#L150">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_Overlay_Dispose_System_Boolean_" data-uid="Tizen.Maps.Overlay.Dispose(System.Boolean)">Dispose(Boolean)</h4>
+    <h4 id="Tizen_Maps_Overlay_Dispose_System_Boolean_" data-uid="Tizen.Maps.Overlay.Dispose(System.Boolean)" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Dispose(Boolean)</h4>
     <section>
       <p>Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.</p>
 
@@ -324,7 +347,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">protected virtual void Dispose(bool disposing)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Deprecated since API11. Might be removed in API13.&quot;)]
+protected virtual void Dispose(bool disposing)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -353,7 +377,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Maps/Tizen.Maps/Overlay.cs/#L57">View Source</a>
     </span>
-    <h4 id="Tizen_Maps_Overlay_Finalize" data-uid="Tizen.Maps.Overlay.Finalize">Finalize()</h4>
+    <h4 id="Tizen_Maps_Overlay_Finalize" data-uid="Tizen.Maps.Overlay.Finalize" data-obsolete="Deprecated since API11. Might be removed in API13." class="obsolete">Finalize()</h4>
     <section>
       <p>Destroy the Overlay object.</p>
 
@@ -368,29 +392,7 @@
   
   <h2 id="implements">Implements</h2>
   <div>
-      <span class="xref">IDisposable</span>
-  </div>
-  <h3 id="extensionmethods">Extension Methods</h3>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
   </div></section>
             </div>

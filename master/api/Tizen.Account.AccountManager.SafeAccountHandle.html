@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public sealed class SafeAccountHandle : SafeHandle</code></pre>
+    <pre><code class="lang-csharp hljs">public sealed class SafeAccountHandle : SafeHandle, IDisposable</code></pre>
   </div>
 
   
@@ -76,6 +76,8 @@
     <dd>
       <div class="pdl-holder">
         <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">Object</a></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.runtime.constrainedexecution.criticalfinalizerobject">CriticalFinalizerObject</a></div>
+        <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.runtime.interopservices.safehandle">SafeHandle</a></div>
         <div><span class="xref">SafeAccountHandle</span></div>
       </div>
     </dd>
@@ -83,6 +85,12 @@
 
   
   
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -113,7 +121,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Account.AccountManager/Tizen.Account.AccountManager/SafeAccountHandle.cs/#L43">View Source</a>
     </span>
-    <h4 id="Tizen_Account_AccountManager_SafeAccountHandle__ctor_IntPtr_System_Boolean_" data-uid="Tizen.Account.AccountManager.SafeAccountHandle.#ctor(IntPtr,System.Boolean)">SafeAccountHandle(IntPtr, Boolean)</h4>
+    <h4 id="Tizen_Account_AccountManager_SafeAccountHandle__ctor_System_IntPtr_System_Boolean_" data-uid="Tizen.Account.AccountManager.SafeAccountHandle.#ctor(System.IntPtr,System.Boolean)">SafeAccountHandle(IntPtr, Boolean)</h4>
     <section>
       <p>Initializes a new instance of the SafeAccountHandle class.</p>
 
@@ -135,7 +143,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IntPtr</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.intptr">IntPtr</a></td>
         <td><span class="parametername">existingHandle</span></td>
         <td><p>An IntPtr object that represents the pre-existing handle to use.</p>
 </td>
@@ -185,6 +193,8 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.runtime.interopservices.safehandle.isinvalid#system-runtime-interopservices-safehandle-isinvalid">SafeHandle.IsInvalid</a></div>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -223,29 +233,13 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="overrides">Overrides</h5>
+  <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.runtime.interopservices.safehandle.releasehandle#system-runtime-interopservices-safehandle-releasehandle">SafeHandle.ReleaseHandle()</a></div>
   
   
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
   </div></section>
             </div>

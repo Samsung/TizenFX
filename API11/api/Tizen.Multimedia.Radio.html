@@ -83,6 +83,12 @@
 
   
   
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   
   <h2 id="constructors">Constructors
@@ -104,6 +110,22 @@
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public Radio()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p>The radio feature is not supported.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -138,6 +160,22 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The radio already has been disposed.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -176,6 +214,29 @@
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than <a class="xref" href="Tizen.Multimedia.Range.html#Tizen_Multimedia_Range_Min">Min</a> of <a class="xref" href="Tizen.Multimedia.Radio.html#Tizen_Multimedia_Radio_FrequencyRange">FrequencyRange</a>.<br>
+-or- <br>
+<code data-dev-comment-type="paramref" class="paramref">value</code> is greater than <a class="xref" href="Tizen.Multimedia.Range.html#Tizen_Multimedia_Range_Max">Max</a> of <a class="xref" href="Tizen.Multimedia.Radio.html#Tizen_Multimedia_Radio_FrequencyRange">FrequencyRange</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The radio already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -208,6 +269,22 @@
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.Range.html">Range</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The radio already has been disposed.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -248,6 +325,22 @@ The default is false.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The radio already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -283,6 +376,22 @@ The default is false.</p>
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The radio already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -315,6 +424,22 @@ The default is false.</p>
       <tr>
         <td><a class="xref" href="Tizen.Multimedia.RadioState.html">RadioState</a></td>
         <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The radio already has been disposed.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -357,6 +482,29 @@ The default is false.</p>
   <h5 id="Tizen_Multimedia_Radio_Volume_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>Valid volume range is from 0 to 1.0(100%), inclusive.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">value</code> is less than zero.<br>
+-or-<br>
+<code data-dev-comment-type="paramref" class="paramref">value</code> is greater than 1.0.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The radio already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -447,7 +595,7 @@ The default is false.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><p>A task that represents the asynchronous seeking operation.
 The result value is the current frequency in the range of 87500 ~ 108000 kHz.
 It can be -1 if the seeking operation has failed.</p>
@@ -458,6 +606,29 @@ It can be -1 if the seeking operation has failed.</p>
   <h5 id="Tizen_Multimedia_Radio_SeekDownAsync_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The radio must be in the <a class="xref" href="Tizen.Multimedia.RadioState.html#Tizen_Multimedia_RadioState_Playing">Playing</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>The radio is not in the valid state.<br>
+-or-<br>
+Seeking is in progress.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The radio already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -488,7 +659,7 @@ It can be -1 if the seeking operation has failed.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Task</span>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1">Task</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a>&gt;</td>
         <td><p>A task that represents the asynchronous seeking operation.
 The result value is the current frequency in the range of 87500 ~ 108000 kHz.
 It can be -1 if the seeking operation has failed.</p>
@@ -499,6 +670,29 @@ It can be -1 if the seeking operation has failed.</p>
   <h5 id="Tizen_Multimedia_Radio_SeekUpAsync_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The radio must be in the <a class="xref" href="Tizen.Multimedia.RadioState.html#Tizen_Multimedia_RadioState_Playing">Playing</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>The radio is not in the valid state.<br>
+-or-<br>
+Seeking is in progress.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The radio already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -522,6 +716,27 @@ It can be -1 if the seeking operation has failed.</p>
   <h5 id="Tizen_Multimedia_Radio_Start_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The radio must be in the <a class="xref" href="Tizen.Multimedia.RadioState.html#Tizen_Multimedia_RadioState_Ready">Ready</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>The radio is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The radio already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -545,6 +760,27 @@ It can be -1 if the seeking operation has failed.</p>
   <h5 id="Tizen_Multimedia_Radio_StartScan_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The radio must be in the <a class="xref" href="Tizen.Multimedia.RadioState.html#Tizen_Multimedia_RadioState_Ready">Ready</a> or <a class="xref" href="Tizen.Multimedia.RadioState.html#Tizen_Multimedia_RadioState_Playing">Playing</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>The radio is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The radio already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_Radio_StartScan_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Radio.html#Tizen_Multimedia_Radio_ScanUpdated">ScanUpdated</a></div>
@@ -573,6 +809,27 @@ It can be -1 if the seeking operation has failed.</p>
   <h5 id="Tizen_Multimedia_Radio_Stop_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The radio must be in the <a class="xref" href="Tizen.Multimedia.RadioState.html#Tizen_Multimedia_RadioState_Playing">Playing</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>The radio is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The radio already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -596,6 +853,27 @@ It can be -1 if the seeking operation has failed.</p>
   <h5 id="Tizen_Multimedia_Radio_StopScan_remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The radio must be in the <a class="xref" href="Tizen.Multimedia.RadioState.html#Tizen_Multimedia_RadioState_Scanning">Scanning</a> state.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>The radio is not in the valid state.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The radio already has been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_Radio_StopScan_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.Radio.html#Tizen_Multimedia_Radio_ScanStopped">ScanStopped</a></div>
@@ -631,7 +909,7 @@ It can be -1 if the seeking operation has failed.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.RadioInterruptedEventArgs.html">RadioInterruptedEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.RadioInterruptedEventArgs.html">RadioInterruptedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -665,7 +943,7 @@ It can be -1 if the seeking operation has failed.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -699,7 +977,7 @@ It can be -1 if the seeking operation has failed.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span></td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler">EventHandler</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -733,7 +1011,7 @@ It can be -1 if the seeking operation has failed.</p>
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.ScanUpdatedEventArgs.html">ScanUpdatedEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.ScanUpdatedEventArgs.html">ScanUpdatedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -741,27 +1019,9 @@ It can be -1 if the seeking operation has failed.</p>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
   </div></section>
             </div>

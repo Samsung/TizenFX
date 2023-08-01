@@ -67,7 +67,7 @@
   <div class="markdown level0 conceptual"></div>
   
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static class ImageUtil : object</code></pre>
+    <pre><code class="lang-csharp hljs">public static class ImageUtil</code></pre>
   </div>
 
   
@@ -93,7 +93,7 @@
     <span class="pull-right mobile-hide view-source">
       <a href="https://github.com/Samsung/TizenFX/blob/master/src/Tizen.Multimedia.Util/ImageUtil/ImageUtil.cs/#L63">View Source</a>
     </span>
-    <h4 id="Tizen_Multimedia_Util_ImageUtil_CalculateBufferSize_Tizen_Multimedia_Size_Tizen_Multimedia_ColorSpace_" data-uid="Tizen.Multimedia.Util.ImageUtil.CalculateBufferSize(Tizen.Multimedia.Size,Tizen.Multimedia.ColorSpace)">CalculateBufferSize(Size, ColorSpace)</h4>
+    <h4 id="Tizen_Multimedia_Util_ImageUtil_CalculateBufferSize_Tizen_Multimedia_Size_Tizen_Multimedia_ColorSpace_" data-uid="Tizen.Multimedia.Util.ImageUtil.CalculateBufferSize(Tizen.Multimedia.Size,Tizen.Multimedia.ColorSpace)" data-obsolete="Please do not use! This will be deprecated in level 6." class="obsolete">CalculateBufferSize(Size, ColorSpace)</h4>
     <section>
       <p>Calculates the size of the image buffer for the specified resolution and color-space.</p>
 
@@ -102,7 +102,8 @@
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public static int CalculateBufferSize(Size resolution, ColorSpace colorSpace)</code></pre>
+    <pre><code class="lang-csharp hljs">[Obsolete(&quot;Please do not use! This will be deprecated in level 6.&quot;)]
+public static int CalculateBufferSize(Size resolution, ColorSpace colorSpace)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table">
@@ -140,6 +141,29 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">Int32</a></td>
         <td><p>The buffer size.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p>width of <code data-dev-comment-type="paramref" class="paramref">resolution</code> is less than or equal to zero.<br>
+-or-<br>
+height of <code data-dev-comment-type="paramref" class="paramref">resolution</code> is less than or equal to zero.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">colorSpace</code> is invalid.</p>
 </td>
       </tr>
     </tbody>
@@ -198,7 +222,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">Color</span></td>
+        <td><a class="xref" href="Tizen.Common.Color.html">Color</a></td>
         <td><p>The representative color of the image.</p>
 </td>
       </tr>
@@ -207,6 +231,34 @@
   <h5 id="Tizen_Multimedia_Util_ImageUtil_GetColor_System_Byte___Tizen_Multimedia_Size__remarks">Remarks</h5>
   <div class="markdown level1 remarks"><p>The image should be <a class="xref" href="Tizen.Multimedia.ColorSpace.html#Tizen_Multimedia_ColorSpace_Rgb888">Rgb888</a>.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">buffer</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">buffer</code> is empty.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentoutofrangeexception">ArgumentOutOfRangeException</a></td>
+        <td><p>width of <code data-dev-comment-type="paramref" class="paramref">size</code> is less than or equal to zero.<br>
+-or-<br>
+height of <code data-dev-comment-type="paramref" class="paramref">size</code> is less than or equal to zero.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>4</span></h6>
   
@@ -255,8 +307,24 @@
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">IEnumerable</span>&lt;<a class="xref" href="Tizen.Multimedia.ColorSpace.html">ColorSpace</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.ienumerable-1">IEnumerable</a>&lt;<a class="xref" href="Tizen.Multimedia.ColorSpace.html">ColorSpace</a>&gt;</td>
         <td><p>An IEnumerable of <a class="xref" href="Tizen.Multimedia.ColorSpace.html">ColorSpace</a> representing the supported color-spaces.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">format</code> is invalid.</p>
 </td>
       </tr>
     </tbody>

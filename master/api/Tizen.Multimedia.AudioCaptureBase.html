@@ -93,6 +93,12 @@
   </dl>
   
   
+  <dl class="attribute-list">
+    <dt>Implements</dt>
+    <dd>
+      <div class="pdl"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+    </dd>
+  </dl>
   
   
   <h2 id="fields">Fields
@@ -320,6 +326,22 @@ Note that if the value is less than 0.0, it will be set 0.0 and if the value is 
 If the value is greater than 1.0, the loudness of recorded data will be increased.<br>
 Note that the volume can be clipped if the value is greater than 1.0 and the loudness of original recorded data is high enough.</p>
 </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The AudioCapture has already been disposed.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>8</span></h6>
   
@@ -356,6 +378,39 @@ Note that the volume can be clipped if the value is greater than 1.0 and the lou
         <td><a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a></td>
         <td><span class="parametername">streamPolicy</span></td>
         <td><p>The <a class="xref" href="Tizen.Multimedia.AudioStreamPolicy.html">AudioStreamPolicy</a> to apply for the AudioCapture.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentnullexception">ArgumentNullException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> is null.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> has already been disposed of.<br>
+-or-<br>
+The AudioCaptureBase has already been disposed of.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.notsupportedexception">NotSupportedException</a></td>
+        <td><p><code data-dev-comment-type="paramref" class="paramref">streamPolicy</code> is not supported.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.argumentexception">ArgumentException</a></td>
+        <td><p>Not able to retrieve information from <code data-dev-comment-type="paramref" class="paramref">streamPolicy</code>.</p>
 </td>
       </tr>
     </tbody>
@@ -457,6 +512,27 @@ Note that the volume can be clipped if the value is greater than 1.0 and the lou
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Flush()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>The current state is <a class="xref" href="Tizen.Multimedia.AudioIOState.html#Tizen_Multimedia_AudioIOState_Idle">Idle</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The AudioCaptureBase has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -493,6 +569,22 @@ Note that the volume can be clipped if the value is greater than 1.0 and the lou
       </tr>
     </tbody>
   </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The AudioCaptureBase has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
@@ -513,6 +605,29 @@ Note that the volume can be clipped if the value is greater than 1.0 and the lou
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Pause()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>The current state is <a class="xref" href="Tizen.Multimedia.AudioIOState.html#Tizen_Multimedia_AudioIOState_Idle">Idle</a>.<br>
+-or-<br>
+The method is called in the <a class="xref" href="Tizen.Multimedia.AsyncAudioCapture.html#Tizen_Multimedia_AsyncAudioCapture_DataAvailable">DataAvailable</a> event handler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The AudioCaptureBase has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_AudioCaptureBase_Pause_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.AudioCaptureBase.html#Tizen_Multimedia_AudioCaptureBase_Resume">Resume()</a></div>
@@ -537,6 +652,29 @@ Note that the volume can be clipped if the value is greater than 1.0 and the lou
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Prepare()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Operation failed due to an internal error.<br>
+-or-<br>
+The current state is not <a class="xref" href="Tizen.Multimedia.AudioIOState.html#Tizen_Multimedia_AudioIOState_Idle">Idle</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The AudioCaptureBase has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_AudioCaptureBase_Prepare_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.AudioCaptureBase.html#Tizen_Multimedia_AudioCaptureBase_Unprepare">Unprepare()</a></div>
@@ -561,6 +699,29 @@ Note that the volume can be clipped if the value is greater than 1.0 and the lou
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Resume()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>The current state is <a class="xref" href="Tizen.Multimedia.AudioIOState.html#Tizen_Multimedia_AudioIOState_Idle">Idle</a>.<br>
+-or-<br>
+The method is called in the <a class="xref" href="Tizen.Multimedia.AsyncAudioCapture.html#Tizen_Multimedia_AsyncAudioCapture_DataAvailable">DataAvailable</a> event handler.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The AudioCaptureBase has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_AudioCaptureBase_Resume_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.AudioCaptureBase.html#Tizen_Multimedia_AudioCaptureBase_Pause">Pause()</a></div>
@@ -585,6 +746,29 @@ Note that the volume can be clipped if the value is greater than 1.0 and the lou
   <div class="codewrapper">
     <pre><code class="lang-csharp hljs">public void Unprepare()</code></pre>
   </div>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.invalidoperationexception">InvalidOperationException</a></td>
+        <td><p>Operation failed due to an internal error.<br>
+-or-<br>
+The current state is <a class="xref" href="Tizen.Multimedia.AudioIOState.html#Tizen_Multimedia_AudioIOState_Idle">Idle</a>.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.objectdisposedexception">ObjectDisposedException</a></td>
+        <td><p>The AudioCaptureBase has already been disposed of.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
   <div class="seealso">
     <h5 id="Tizen_Multimedia_AudioCaptureBase_Unprepare_seealso">See Also</h5>
       <div><a class="xref" href="Tizen.Multimedia.AudioCaptureBase.html#Tizen_Multimedia_AudioCaptureBase_Prepare">Prepare()</a></div>
@@ -620,7 +804,7 @@ Note that the volume can be clipped if the value is greater than 1.0 and the lou
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">EventHandler</span>&lt;<a class="xref" href="Tizen.Multimedia.AudioIOStateChangedEventArgs.html">AudioIOStateChangedEventArgs</a>&gt;</td>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="Tizen.Multimedia.AudioIOStateChangedEventArgs.html">AudioIOStateChangedEventArgs</a>&gt;</td>
         <td></td>
       </tr>
     </tbody>
@@ -628,27 +812,9 @@ Note that the volume can be clipped if the value is greater than 1.0 and the lou
   
   <h6><strong>API Level</strong>: <span>3</span></h6>
   
-  <h3 id="extensionmethods">Extension Methods</h3>
+  <h2 id="implements">Implements</h2>
   <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_System_String_">EXamlExtensions.LoadFromEXamlPath&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlPath__1___0_Type_">EXamlExtensions.LoadFromEXamlPath&lt;T&gt;(T, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXamlByRelativePath__1___0_System_String_">EXamlExtensions.LoadFromEXamlByRelativePath&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.EXaml.EXamlExtensions.html#Tizen_NUI_EXaml_EXamlExtensions_LoadFromEXaml__1___0_System_String_">EXamlExtensions.LoadFromEXaml&lt;T&gt;(T, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_Type_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, Type)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXaml__1___0_System_String_">Extensions.LoadFromXaml&lt;TXaml&gt;(TXaml, String)</a>
-  </div>
-  <div>
-      <a class="xref" href="Tizen.NUI.Xaml.Extensions.html#Tizen_NUI_Xaml_Extensions_LoadFromXamlFile__1___0_System_String_">Extensions.LoadFromXamlFile&lt;TXaml&gt;(TXaml, String)</a>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">System.IDisposable</a>
   </div>
   </div></section>
             </div>
