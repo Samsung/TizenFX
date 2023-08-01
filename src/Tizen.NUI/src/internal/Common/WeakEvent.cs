@@ -130,4 +130,39 @@ namespace Tizen.NUI
             Invoke(sender, args as EventArgs);
         }
     }
+
+    /// <summary>
+    /// The non-generic version of <see cref="WeakEventProxy"/>.
+    /// </summary>
+    internal abstract class WeakEventProxy : WeakEvent<EventHandler>
+    {
+        protected abstract void ConnectToEvent(EventHandler handler);
+
+        protected abstract void DisconnectToEvent(EventHandler handler);
+
+        public override void Add(EventHandler handler)
+        {
+            if (Count == 0)
+            {
+                ConnectToEvent(OnEventInvoked);
+            }
+
+            base.Add(handler);
+        }
+
+        public override void Remove(EventHandler handler)
+        {
+            base.Remove(handler);
+
+            if (Count == 0)
+            {
+                DisconnectToEvent(OnEventInvoked);
+            }
+        }
+
+        private void OnEventInvoked(object sender, EventArgs args)
+        {
+            Invoke(sender, args);
+        }
+    }
 }
