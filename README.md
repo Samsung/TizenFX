@@ -21,7 +21,12 @@ TizenFX API, which allows you to access platform-specific features not covered b
 ### master
 The __master__ branch is the main development branch for the Tizen .NET __API Level 11__.
 
-The following NuGet packages will be published to [Tizen MyGet Gallery](https://tizen.myget.org/gallery/dotnet) every day if there are any changes. (Nightly Build)
+The following NuGet packages will be published to [Tizen MyGet Gallery](https://tizen.myget.org/gallery/dotnet) and [Github Packages Registry](https://github.com/orgs/Samsung/packages?tab=packages&q=Tizen.NET) every day if there are any changes. (Nightly Build)
+
+> - MyGet Feed : ```https://tizen.myget.org/F/dotnet/api/v3/index.json```
+> - GitHub Packages Feed : ```https://nuget.pkg.github.com/Samsung/index.json```
+>   - GitHub Packages only supports authentication using a personal access token (classic). For more information, see [Working with the NuGet registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-nuget-registry) and [Managing your personal access tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+
 * Tizen.NET 11.0.0.#####
 * Tizen.NET.API11 11.0.0.#####
 * Tizen.NET.Internals 11.0.0.#####
