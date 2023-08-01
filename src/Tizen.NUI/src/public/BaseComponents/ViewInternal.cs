@@ -30,6 +30,29 @@ namespace Tizen.NUI.BaseComponents
     {
         internal string styleName;
 
+        [Flags]
+        internal enum BackgroundExtraDataUpdatedFlag : byte
+        {
+            BackgroundCornerRadius = 1 << 0,
+            BackgroundBorderline = 1 << 1,
+            ShadowCornerRadius = 1 << 2,
+            ContentsCornerRadius = 1 << 3, /// Subclass cases.
+            ContentsBorderline = 1 << 4, /// Subclass cases.
+
+            Background = BackgroundCornerRadius | BackgroundBorderline,
+            Shadow = ShadowCornerRadius,
+
+            CornerRadius = BackgroundCornerRadius | ShadowCornerRadius | ContentsCornerRadius,
+            Borderline = BackgroundBorderline | ContentsBorderline,
+
+            None = 0,
+            All = Background | Shadow,
+        }
+
+        internal BackgroundExtraDataUpdatedFlag backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
+
+        private bool backgroundExtraDataUpdateProcessAttachedFlag = false;
+
         internal virtual LayoutItem CreateDefaultLayout()
         {
             return new AbsoluteLayout();
@@ -1058,9 +1081,18 @@ namespace Tizen.NUI.BaseComponents
         /// </summary>
         internal bool IsBackgroundEmpty()
         {
-
             int visualType = (int)Visual.Type.Invalid;
             Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, Property.BACKGROUND, Visual.Property.Type, out visualType);
+            return visualType == (int)Visual.Type.Invalid;
+        }
+
+        /// <summary>
+        /// Check whether Current view don't has ShadowVisual or not.
+        /// </summary>
+        internal bool IsShadowEmpty()
+        {
+            int visualType = (int)Visual.Type.Invalid;
+            Interop.View.InternalRetrievingVisualPropertyInt(this.SwigCPtr, Property.SHADOW, Visual.Property.Type, out visualType);
             return visualType == (int)Visual.Type.Invalid;
         }
 
@@ -1151,27 +1183,104 @@ namespace Tizen.NUI.BaseComponents
             return (ResourceLoadingStatusType)Interop.View.GetVisualResourceStatus(this.SwigCPtr, Property.BACKGROUND);
         }
 
+        /// <summary>
+        /// Lazy call to UpdateBackgroundExtraData.
+        /// Collect Properties need to be update, and set properties that starts the Processing.
+        /// </summary>
+        internal virtual void UpdateBackgroundExtraData(BackgroundExtraDataUpdatedFlag flag)
+        {
+            if (backgroundExtraData == null)
+            {
+                return;
+            }
+
+            if (!backgroundExtraDataUpdatedFlag.HasFlag(flag))
+            {
+                backgroundExtraDataUpdatedFlag |= flag;
+                if (!backgroundExtraDataUpdateProcessAttachedFlag)
+                {
+                    backgroundExtraDataUpdateProcessAttachedFlag = true;
+                    ProcessorController.Instance.ProcessorOnceEvent += UpdateBackgroundExtraData;
+                    // Call process hardly.
+                    ProcessorController.Instance.Awake();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Callback function to Lazy UpdateBackgroundExtraData.
+        /// </summary>
+        private void UpdateBackgroundExtraData(object source, EventArgs e)
+        {
+            // Note : To allow event attachment during UpdateBackgroundExtraData, let we make flag as false before call UpdateBackgroundExtraData().
+            backgroundExtraDataUpdateProcessAttachedFlag = false;
+            UpdateBackgroundExtraData();
+        }
+
+        /// <summary>
+        /// Update background extra data properties synchronously.
+        /// After call this API, All background extra data properties updated.
+        /// </summary>
+        internal virtual void UpdateBackgroundExtraData()
+        {
+            if (backgroundExtraData == null)
+            {
+                return;
+            }
+
+            if (IsShadowEmpty())
+            {
+                backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Shadow;
+            }
+            if (!Rectangle.IsNullOrZero(backgroundExtraData.BackgroundImageBorder))
+            {
+                backgroundExtraDataUpdatedFlag &= ~BackgroundExtraDataUpdatedFlag.Background;
+            }
+
+            if (backgroundExtraDataUpdatedFlag == BackgroundExtraDataUpdatedFlag.None)
+            {
+                return;
+            }
+
+            if ((backgroundExtraDataUpdatedFlag & BackgroundExtraDataUpdatedFlag.Borderline) != BackgroundExtraDataUpdatedFlag.None)
+            {
+                ApplyBorderline();
+            }
+            if ((backgroundExtraDataUpdatedFlag & BackgroundExtraDataUpdatedFlag.CornerRadius) != BackgroundExtraDataUpdatedFlag.None)
+            {
+                ApplyCornerRadius();
+            }
+            backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
+        }
+
         /// TODO open as a protected level
         internal virtual void ApplyCornerRadius()
         {
             if (backgroundExtraData == null) return;
 
-
             // Update corner radius properties to background and shadow by ActionUpdateProperty
-            if (backgroundExtraData.CornerRadius != null)
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.BackgroundCornerRadius))
             {
-                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
-                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                if (backgroundExtraData.CornerRadius != null)
+                {
+                    Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                }
+                Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
             }
-            Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
-            Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.ShadowCornerRadius))
+            {
+                if (backgroundExtraData.CornerRadius != null)
+                {
+                    Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadius, Vector4.getCPtr(backgroundExtraData.CornerRadius));
+                }
+                Interop.View.InternalUpdateVisualPropertyInt(this.SwigCPtr, View.Property.SHADOW, Visual.Property.CornerRadiusPolicy, (int)backgroundExtraData.CornerRadiusPolicy);
+            }
         }
 
         /// TODO open as a protected level
         internal virtual void ApplyBorderline()
         {
             if (backgroundExtraData == null) return;
-
 
             // ActionUpdateProperty works well only if BACKGROUND visual setup before.
             // If view don't have BACKGROUND visual, we set transparent background color in default.
@@ -1185,9 +1294,12 @@ namespace Tizen.NUI.BaseComponents
             }
 
             // Update borderline properties to background by ActionUpdateProperty
-            Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
-            Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineColor, Vector4.getCPtr(backgroundExtraData.BorderlineColor ?? Color.Black));
-            Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
+            if (backgroundExtraDataUpdatedFlag.HasFlag(BackgroundExtraDataUpdatedFlag.BackgroundBorderline))
+            {
+                Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineWidth, backgroundExtraData.BorderlineWidth);
+                Interop.View.InternalUpdateVisualPropertyVector4(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineColor, Vector4.getCPtr(backgroundExtraData.BorderlineColor ?? Color.Black));
+                Interop.View.InternalUpdateVisualPropertyFloat(this.SwigCPtr, View.Property.BACKGROUND, Visual.Property.BorderlineOffset, backgroundExtraData.BorderlineOffset);
+            }
         }
 
         /// <summary>
@@ -1333,6 +1445,13 @@ namespace Tizen.NUI.BaseComponents
             foreach (View view in Children)
             {
                 view.InternalParent = null;
+            }
+
+            backgroundExtraDataUpdatedFlag = BackgroundExtraDataUpdatedFlag.None;
+            if (backgroundExtraDataUpdateProcessAttachedFlag)
+            {
+                ProcessorController.Instance.ProcessorOnceEvent -= UpdateBackgroundExtraData;
+                backgroundExtraDataUpdateProcessAttachedFlag = false;
             }
 
             LayoutCount = 0;
