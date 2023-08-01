@@ -172,11 +172,8 @@ cmd_dummy_build() {
     exit 1
   fi
   mkdir -p $OUTDIR/bin/dummy
-  CACHE=`pwd`
-  cd $OUTDIR/bin/dummy
   dotnet $SCRIPT_DIR/tools/bin/APITool.dll \
          dummy $OUTDIR/bin/public/ref $OUTDIR/bin/dummy
-  cd $CACHE
 }
 
 cmd_pack() {
